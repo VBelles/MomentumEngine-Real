@@ -50,15 +50,11 @@
 		"entity": {
 			"name": "xthe_camera",
 			"transform": {
-				"pos": "0 3 3"
-			},
-			"render" : {},
-			"circular_controller" : {
-				"radius" : 3,
-				"target" : "teapot"
+				"pos": "12 8 8"
 			},
 			"camera" : {
-				"fov" : 80 
+				"fov" : 80 ,
+				"target_position" : "0 0 0"
 			}
 		}
 	}
