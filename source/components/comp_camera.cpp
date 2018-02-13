@@ -18,6 +18,8 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
 
 	distanceToTarget = j.value("distance_to_target", 10.f);
+	distanceVector.z = -distanceToTarget;
+
 	if (j.count("target")) {
 		targetName = j.value("target", "");
 	}
@@ -33,6 +35,8 @@ void TCompCamera::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	
 	CEntity *playerEntity = (CEntity *)getEntityByName(targetName.c_str());
 	targetTransform = playerEntity->get<TCompTransform>();
+
+	yIncrement = DEFAULT_Y;
 }
 
 void TCompCamera::update(float dt) {
@@ -52,8 +56,10 @@ void TCompCamera::update(float dt) {
 		xIncrement += mouse._position_delta.x * dt;
 		yIncrement += mouse._position_delta.y * dt;
 	}
+
+	yIncrement = clamp(yIncrement, Y_ANGLE_MIN, Y_ANGLE_MAX);
+
 	QUAT rotationQuat = QUAT::CreateFromYawPitchRoll(xIncrement, yIncrement, 0);
-	VEC3 distanceVector = { 0, 0, -distanceToTarget };
 
 	VEC3 localPosition = VEC3::Transform(distanceVector, rotationQuat);
 
