@@ -8,6 +8,10 @@ struct TMsgEntityCreated {
   DECL_MSG_ID();
 };
 
+struct TMsgEntitiesGroupCreated {
+	DECL_MSG_ID();
+};
+
 struct TMsgAssignBulletOwner {
   CHandle h_owner;
   DECL_MSG_ID();

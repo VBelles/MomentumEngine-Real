@@ -56,7 +56,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
   for (auto h : ctx.entities_loaded) {
 	  // Send a msg to the entity components to let them know
 	  // the entity is fully loaded.
-	  h.sendMsg(TMsgEntityCreated());
+	  h.sendMsg(TMsgEntitiesGroupCreated());
   }
 
 

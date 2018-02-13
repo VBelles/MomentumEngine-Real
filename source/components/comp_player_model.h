@@ -12,7 +12,7 @@ class TCompPlayerModel : public TCompBase {
 	float   rotationSpeed = 2.0f;
 	TCompTransform *myTransform;
 	TCompCamera *currentCamera;
-	void OnCreate(const TMsgEntityCreated& msg);
+	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 	DECL_SIBLING_ACCESS();
 

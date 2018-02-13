@@ -22,13 +22,14 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 
 }
 
-void TCompCamera::registerMsgs(){
-	DECL_MSG(TCompCamera, TMsgEntityCreated, OnCreate);
+void TCompCamera::registerMsgs() {
+	DECL_MSG(TCompCamera, TMsgEntitiesGroupCreated, OnGroupCreated);
 }
 
-void TCompCamera::OnCreate(const TMsgEntityCreated & msg){
+void TCompCamera::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	myTransform = get<TCompTransform>();
 	assert(myTransform);
+	distanceToTarget = VEC3::Distance(targetPosition, myTransform->getPosition());
 }
 
 void TCompCamera::update(float dt) {
@@ -37,22 +38,25 @@ void TCompCamera::update(float dt) {
 	rightAnalogInput.x = pad.button(Input::EPadButton::PAD_RANALOG_X).value;
 	rightAnalogInput.y = pad.button(Input::EPadButton::PAD_RANALOG_Y).value;
 
-	if (rightAnalogInput.Length() > padDeadZone) {
-		VEC3 myNewPos = myTransform->getPosition();
-		
 
-		myTransform->setPosition(myNewPos);
+	//El pad manda
+	if (rightAnalogInput.Length() > padDeadZone) {
+		xIncrement += rightAnalogInput.x * dt;
+		yIncrement -= rightAnalogInput.y * dt;
 	}
-	else {
+	else {//Si no, mouse
 		auto& mouse = CEngine::get().getInput().host(Input::PLAYER_1).mouse();
-		dbg("%f, %f   Delta = %f\n", mouse._position_delta.x, mouse._position_delta.y);
+		xIncrement += mouse._position_delta.x * dt;
+		yIncrement += mouse._position_delta.y * dt;
 	}
+	QUAT rotationQuat = QUAT::CreateFromYawPitchRoll(xIncrement, yIncrement, 0);
+	VEC3 distanceVector = { 0, 0, -distanceToTarget };
+
+	VEC3 localPosition = VEC3::Transform(distanceVector, rotationQuat);
+
+	myTransform->setPosition(targetPosition + localPosition);
 
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
 	this->lookAt(myTransform->getPosition(), targetPosition, myTransform->getUp());
-
-	
-
-	
 }
 

@@ -17,10 +17,10 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 
 
 void TCompPlayerModel::registerMsgs() {
-	DECL_MSG(TCompPlayerModel, TMsgEntityCreated, OnCreate);
+	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
 }
 
-void TCompPlayerModel::OnCreate(const TMsgEntityCreated& msg) {
+void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	myTransform = get<TCompTransform>();
 
 	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
@@ -31,7 +31,8 @@ void TCompPlayerModel::OnCreate(const TMsgEntityCreated& msg) {
 void TCompPlayerModel::update(float dt) {
 }
 
-void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {//Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
+//Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
+void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 	input.Normalize();
 	VEC3 myNewPos = myTransform->getPosition();
 	myNewPos += myTransform->getFront() * input.y * speedFactor * delta;

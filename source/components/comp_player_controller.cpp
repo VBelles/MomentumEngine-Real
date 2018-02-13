@@ -15,10 +15,10 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlayerController::registerMsgs() {
-	DECL_MSG(TCompPlayerController, TMsgEntityCreated, OnCreate);
+	DECL_MSG(TCompPlayerController, TMsgEntitiesGroupCreated, OnGroupCreated);
 }
 
-void TCompPlayerController::OnCreate(const TMsgEntityCreated& msg) {
+void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	playerModel = get<TCompPlayerModel>();
 	assert(playerModel);
 }
