@@ -3,7 +3,6 @@
 #include "comp_player_controller.h"
 #include "comp_transform.h"
 #include "entity/common_msgs.h"
-#include "comp_player_model.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
@@ -15,26 +14,46 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
 }
 
-void TCompPlayerController::update(float dt) {
-	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
+void TCompPlayerController::registerMsgs() {
+	DECL_MSG(TCompPlayerController, TMsgEntityCreated, onCreate);
+}
+
+void TCompPlayerController::onCreate(const TMsgEntityCreated& msg) {
+	playerModel = get<TCompPlayerModel>();
 	assert(playerModel);
+}
+
+void TCompPlayerController::update(float dt) {
+	auto pad = CEngine::get().getInput().host(Input::PLAYER_1).pad();
 
 	VEC2 translationInput = VEC2::Zero;
 	float rotationInput = 0.f;
 
-	//Detecto el teclado
-	if (isPressed('A')) {
-		translationInput.x -= 1.f;
+	VEC2 leftAnalogInput = VEC2::Zero;
+	leftAnalogInput.x = pad.button(Input::EPadButton::PAD_LANALOG_X).value;
+	leftAnalogInput.y = pad.button(Input::EPadButton::PAD_LANALOG_Y).value;
+
+	if (leftAnalogInput.Length() > padDeadZone) {
+		//Manda el input del pad
+		translationInput = leftAnalogInput;
 	}
-	if (isPressed('D')) {
-		translationInput.x += 1.f;
+	else {
+		//Detecto el teclado
+		if (isPressed('A')) {
+			translationInput.x -= 1.f;
+		}
+		if (isPressed('D')) {
+			translationInput.x += 1.f;
+		}
+		if (isPressed('S')) {
+			translationInput.y -= 1.f;
+		}
+		if (isPressed('W')) {
+			translationInput.y += 1.f;
+		}
 	}
-	if (isPressed('S')) {
-		translationInput.y -= 1.f;
-	}
-	if (isPressed('W')) {
-		translationInput.y += 1.f;
-	}
+
+	//Esto es para tirar en un futuro cercano
 	if (isPressed('Q')) {
 		rotationInput += 1.f;
 	}
@@ -45,6 +64,7 @@ void TCompPlayerController::update(float dt) {
 	playerModel->SetTranslationInput(translationInput, dt);
 	playerModel->SetRotationInput(rotationInput, dt);
 
+	//Esto es para tirar en un futuro cercano
 	const Input::TButton& bt = CEngine::get().getInput().host(Input::PLAYER_1).keyboard().key(VK_SPACE);
 	if (bt.getsPressed()) {
 		TEntityParseContext ctx;

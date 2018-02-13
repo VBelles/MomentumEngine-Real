@@ -2,13 +2,19 @@
 
 #include "comp_base.h"
 #include "geometry/transform.h"
+#include "comp_player_model.h"
 
 class TCompPlayerController : public TCompBase {
+	float padDeadZone = 0.1f;
+	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 
-  DECL_SIBLING_ACCESS();
+	void onCreate(const TMsgEntityCreated& msg);
+
+	DECL_SIBLING_ACCESS();
 
 public:
-  void debugInMenu();
-  void load(const json& j, TEntityParseContext& ctx);
-  void update(float dt);
+	static void registerMsgs();
+	void debugInMenu();
+	void load(const json& j, TEntityParseContext& ctx);
+	void update(float dt);
 };

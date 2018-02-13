@@ -26,12 +26,9 @@ void TCompPlayerModel::onCreate(const TMsgEntityCreated& msg) {
 	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
 	currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
-
-
 }
 
 void TCompPlayerModel::update(float dt) {
-	dbg("Position: (%f, %f, %f)", currentCamera->getPosition().x, currentCamera->getPosition().y, currentCamera->getPosition().z);
 }
 
 void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {//Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
