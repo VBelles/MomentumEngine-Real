@@ -170,6 +170,10 @@
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="components\comp_player_model.cpp" />
+    <ClCompile Include="components\comp_combat_controller.cpp" />
+    <ClCompile Include="components\comp_flyover_controller.cpp" />
+    <ClCompile Include="render\texture\material.cpp" />
+    <ClCompile Include="render\render_technique.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="windows">
@@ -495,6 +499,9 @@
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="components\comp_player_model.h" />
+    <ClInclude Include="components\comp_combat_controller.h" />
+    <ClInclude Include="components\comp_flyover_controller.h" />
+    <ClInclude Include="render\texture\material.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl">

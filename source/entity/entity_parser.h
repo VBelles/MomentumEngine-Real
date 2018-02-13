@@ -1,5 +1,7 @@
 #pragma once
+
 #include "common_msgs.h"
+
 // This will store the current loading process of a single file
 struct TEntityParseContext {
 
