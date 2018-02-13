@@ -16,10 +16,12 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 	zNear = j.value("z_near", 0.1f);
 	zFar = j.value("z_far", 1000.f);
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
-	if (j.count("target_position")) {
-		targetPosition = loadVEC3(j["target_position"]);
-	}
 
+	distanceToTarget = j.value("distance_to_target", 10.f);
+	if (j.count("target")) {
+		targetName = j.value("target", "");
+	}
+	
 }
 
 void TCompCamera::registerMsgs() {
@@ -28,8 +30,9 @@ void TCompCamera::registerMsgs() {
 
 void TCompCamera::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	myTransform = get<TCompTransform>();
-	assert(myTransform);
-	distanceToTarget = VEC3::Distance(targetPosition, myTransform->getPosition());
+	
+	CEntity *playerEntity = (CEntity *)getEntityByName(targetName.c_str());
+	targetTransform = playerEntity->get<TCompTransform>();
 }
 
 void TCompCamera::update(float dt) {
@@ -41,7 +44,7 @@ void TCompCamera::update(float dt) {
 
 	//El pad manda
 	if (rightAnalogInput.Length() > padDeadZone) {
-		xIncrement += rightAnalogInput.x * dt;
+		xIncrement -= rightAnalogInput.x * dt;
 		yIncrement -= rightAnalogInput.y * dt;
 	}
 	else {//Si no, mouse
@@ -54,9 +57,9 @@ void TCompCamera::update(float dt) {
 
 	VEC3 localPosition = VEC3::Transform(distanceVector, rotationQuat);
 
-	myTransform->setPosition(targetPosition + localPosition);
+	myTransform->setPosition(targetTransform->getPosition() + localPosition);
 
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
-	this->lookAt(myTransform->getPosition(), targetPosition, myTransform->getUp());
+	this->lookAt(myTransform->getPosition(), targetTransform->getPosition(), myTransform->getUp());
 }
 
