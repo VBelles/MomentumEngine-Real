@@ -4,19 +4,19 @@
 #include "geometry/transform.h"
 #include "entity/common_msgs.h"
 
-struct TCompBulletController : public TCompBase {
-  
-  CHandle h_sender;
-  float collision_radius = 0.25f;
-  float speed = 1.0f;
+class TCompFlyOverController : public TCompBase {
 
-  void onAssignBulletOwner(const TMsgAssignBulletOwner& msg);
+  VEC2    cursor;
+  VEC3    speed;
+  float   rotation_sensibility = deg2rad(65.f) / 150.0f;
+  float   pan_sensibility = 0.7f;
+  float   speed_reduction_factor = 0.95f;
 
   DECL_SIBLING_ACCESS();
 
 public:
-  static void registerMsgs();
   void debugInMenu();
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
 };
+

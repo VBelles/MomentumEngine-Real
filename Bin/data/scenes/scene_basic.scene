@@ -2,7 +2,7 @@
 		"entity": {
 			"name": "The Enemy",
 			"transform": {
-				"pos": "4 0 5",
+				"pos": "1 0 0",
 				"lookat": "-1 0 -1"
 			},
 			"render" : {},
@@ -15,18 +15,20 @@
 	{
 		"entity": {
 			"name": "The Player",
-			"render" : {
-				"mesh": "data/meshes/Teapot001.mesh",
-				"texture": "data/textures/wood_d.dds"
-			}
+			"render" : [
+				{
+					"mesh": "data/meshes/Teapot001.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
+				}
+			]
 			,
 			"transform": {
-				"pos": "5 0 0",
-				"lookat": "-1 0 -1"
+				"pos": "5 0 0"
 			}
 			, 
-			"player_controller" : {}
-			,
+			"player_controller" : {},
 			"player_model" : {
 				"rotation_speed" : 3.0,
 				"speed" : 3.0
@@ -36,10 +38,14 @@
 	{
 		"entity": {
 			"name": "Teapot 2",
-			"render" : {
-				"mesh": "data/meshes/Teapot001.mesh",
-				"texture": "data/textures/wood_d.dds"
-			}
+			"render" : [
+				{
+					"mesh": "data/meshes/Teapot001.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
+				}
+			]
 			,
 			"transform": {
 				"pos": "-4 0 0"
@@ -53,7 +59,7 @@
 				"pos": "12 8 8"
 			},
 			"camera" : {
-				"fov" : 80 ,
+				"fov" : 80,
 				"target_position" : "0 0 0"
 			}
 		}

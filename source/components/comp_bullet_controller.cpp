@@ -51,13 +51,9 @@ void TCompBulletController::update(float dt) {
     float distance_to_c = VEC3::Distance( c->getPosition(), c_tmx->getPosition());
     if (distance_to_c < this->collision_radius) {
       CHandle h_candidate = CHandle(c).getOwner();
-	  CEntity *candidateEntity = h_candidate;
-	  if (!candidateEntity) { return; }
-	  auto component = candidateEntity->get<TCompBulletController>();
-
+      
       // Discard my sender (the teapot)
-      if(h_candidate != h_sender && !component.isValid())
-	  //if (h_candidate != h_sender)
+      if(h_candidate != h_sender )
         h_near = h_candidate;
     }
   });
@@ -72,7 +68,6 @@ void TCompBulletController::update(float dt) {
     TMsgDamage msg;
     msg.h_sender = h_sender;      // Who send this bullet
     msg.h_bullet = CHandle(this); // The bullet information
-	msg.damage = damage;
     e_near->sendMsg( msg );
 
     // Queue my owner entity as 'destroyed'
