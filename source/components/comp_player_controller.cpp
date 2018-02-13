@@ -15,16 +15,16 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlayerController::registerMsgs() {
-	DECL_MSG(TCompPlayerController, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompPlayerController, TMsgEntityCreated, OnCreate);
 }
 
-void TCompPlayerController::onCreate(const TMsgEntityCreated& msg) {
+void TCompPlayerController::OnCreate(const TMsgEntityCreated& msg) {
 	playerModel = get<TCompPlayerModel>();
 	assert(playerModel);
 }
 
 void TCompPlayerController::update(float dt) {
-	auto pad = CEngine::get().getInput().host(Input::PLAYER_1).pad();
+	auto& pad = CEngine::get().getInput().host(Input::PLAYER_1).pad();
 
 	VEC2 translationInput = VEC2::Zero;
 	float rotationInput = 0.f;

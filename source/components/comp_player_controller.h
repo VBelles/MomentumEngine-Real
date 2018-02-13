@@ -8,7 +8,7 @@ class TCompPlayerController : public TCompBase {
 	float padDeadZone = 0.1f;
 	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 
-	void onCreate(const TMsgEntityCreated& msg);
+	void OnCreate(const TMsgEntityCreated& msg);
 
 	DECL_SIBLING_ACCESS();
 

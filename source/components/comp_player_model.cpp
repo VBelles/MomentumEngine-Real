@@ -17,10 +17,10 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 
 
 void TCompPlayerModel::registerMsgs() {
-	DECL_MSG(TCompPlayerModel, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompPlayerModel, TMsgEntityCreated, OnCreate);
 }
 
-void TCompPlayerModel::onCreate(const TMsgEntityCreated& msg) {
+void TCompPlayerModel::OnCreate(const TMsgEntityCreated& msg) {
 	myTransform = get<TCompTransform>();
 
 	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
