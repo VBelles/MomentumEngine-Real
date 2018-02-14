@@ -30,8 +30,8 @@
 			, 
 			"player_controller" : {},
 			"player_model" : {
-				"rotation_speed" : 3.0,
-				"speed" : 3.0
+				"rotation_speed" : 11.0,
+				"speed" : 6.0
 			}
 		}
 	},
@@ -59,7 +59,8 @@
 			"camera" : {
 				"distance_to_target": 10,
 				"fov" : 80,
-				"target" : "The Player"
+				"target" : "The Player",
+				"active": true
 			}
 		}
 	}

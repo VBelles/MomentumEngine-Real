@@ -8,8 +8,8 @@
 
 
 class TCompPlayerModel : public TCompBase {
-	float   speedFactor = 2.0f;
-	float   rotationSpeed = 2.0f;
+	float   speedFactor = 0.f;//cargado desde json
+	float   rotationSpeed = 0.f;//cargado desde json
 	TCompTransform *myTransform;
 	TCompCamera *currentCamera;
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);

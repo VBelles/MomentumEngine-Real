@@ -34,10 +34,23 @@ void TCompPlayerModel::update(float dt) {
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 	VEC3 desiredDirection = currentCamera->TransformToWorld(input);
+	VEC3 targetPos = myTransform->getPosition() + desiredDirection * speedFactor * delta;
 
-	VEC3 myNewPos = myTransform->getPosition() + desiredDirection * speedFactor * delta;
+	if (input.x != 0 && abs(myTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
+		float y, p, r;
+		myTransform->getYawPitchRoll(&y, &p, &r);
+		if (myTransform->isInLeft(targetPos)) {
+			y += rotationSpeed *delta;
+		}
+		else {
+			y -= rotationSpeed *delta;
+		}
+		myTransform->setYawPitchRoll(y, p, r);
+	}
 
-	myTransform->setPosition(myNewPos);
+	if (input.y != 0) {
+		myTransform->setPosition(myTransform->getPosition() + myTransform->getFront() * speedFactor * delta);
+	}
 }
 
 void TCompPlayerModel::SetRotationInput(float input, float delta) {
