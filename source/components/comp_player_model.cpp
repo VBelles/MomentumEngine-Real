@@ -33,10 +33,9 @@ void TCompPlayerModel::update(float dt) {
 
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
-	input.Normalize();
-	VEC3 myNewPos = myTransform->getPosition();
-	myNewPos += myTransform->getFront() * input.y * speedFactor * delta;
-	myNewPos -= myTransform->getLeft() * input.x * speedFactor * delta;
+	VEC3 desiredDirection = currentCamera->TransformToWorld(input);
+
+	VEC3 myNewPos = myTransform->getPosition() + desiredDirection * speedFactor * delta;
 
 	myTransform->setPosition(myNewPos);
 }

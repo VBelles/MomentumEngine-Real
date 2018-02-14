@@ -77,5 +77,4 @@ void TCompCamera::CalculateVerticalOffsetVector(){
 	currentOffset = ((pitchAngleRange - (yIncrement - Y_ANGLE_MIN)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
 
 	verticalOffsetVector.y = currentOffset;
-	dbg("%f", currentOffset);
 }

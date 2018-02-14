@@ -29,3 +29,20 @@ void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new
   updateViewProj();
 }
 
+VEC3 CCamera::TransformToWorld(VEC3 direction) {
+	direction.Normalize();
+	VEC3 cameraFront = getFront();
+	VEC3 cameraRight = -getLeft();
+	cameraFront.y = 0.f;
+	cameraRight.y = 0.f;
+	cameraFront.Normalize();
+	cameraRight.Normalize();
+	VEC3 desiredDirection = cameraFront * direction.z + cameraRight * direction.x;
+	return desiredDirection;
+}
+
+VEC3 CCamera::TransformToWorld(VEC2 direction) {
+	VEC3 direction3D = { direction.x, 0, direction.y };
+	return TransformToWorld(direction3D);
+}
+
