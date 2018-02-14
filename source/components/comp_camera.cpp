@@ -37,7 +37,9 @@ void TCompCamera::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	targetTransform = playerEntity->get<TCompTransform>();
 
 	yIncrement = DEFAULT_Y;
+	pitchAngleRange = Y_ANGLE_MAX - Y_ANGLE_MIN;
 }
+
 
 void TCompCamera::update(float dt) {
 	auto& pad = CEngine::get().getInput().host(Input::PLAYER_1).pad();
@@ -64,8 +66,16 @@ void TCompCamera::update(float dt) {
 	VEC3 localPosition = VEC3::Transform(distanceVector, rotationQuat);
 
 	myTransform->setPosition(targetTransform->getPosition() + localPosition);
-
+	CalculateVerticalOffsetVector();
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
-	this->lookAt(myTransform->getPosition(), targetTransform->getPosition(), myTransform->getUp());
+	this->lookAt(myTransform->getPosition(), targetTransform->getPosition() + verticalOffsetVector, myTransform->getUp());
 }
 
+void TCompCamera::CalculateVerticalOffsetVector(){
+	float currentOffset;
+
+	currentOffset = ((pitchAngleRange - (yIncrement - Y_ANGLE_MIN)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
+
+	verticalOffsetVector.y = currentOffset;
+	dbg("%f", currentOffset);
+}

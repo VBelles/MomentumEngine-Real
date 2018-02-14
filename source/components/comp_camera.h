@@ -10,24 +10,33 @@ class TCompCamera : public CCamera, public TCompBase {
 	float fovInDegrees;
 	float zNear;
 	float zFar;
+
 	const float Y_ANGLE_MIN = deg2rad(5.f);
 	const float Y_ANGLE_MAX = deg2rad(60.f);
 	const float DEFAULT_Y = deg2rad(20.f);
 
-	std::string targetName;
+	float maxVerticalOffset = 3.0f;
+	float minVerticalOffset = 0.2f;
+	VEC3 verticalOffsetVector = VEC3::Zero;
+	float pitchAngleRange;
+
 	float distanceToTarget = 0.f;
 	VEC3 distanceVector = VEC3::Zero;
 
-	float padDeadZone = 0.1f;
-	float speedFactor = 3.f;
-	
 	float xIncrement = 0.f;
 	float yIncrement = 0.f;
-	
+
+	float speedFactor = 3.f;
+
+	std::string targetName;
 	TCompTransform* targetTransform;
+
+	float padDeadZone = 0.1f;
+	
 	TCompTransform* myTransform;
 
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void CalculateVerticalOffsetVector();
 
 public:
 	static void registerMsgs();
