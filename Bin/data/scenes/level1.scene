@@ -203,7 +203,10 @@
             "data/materials/piedras1.material"
           ]
         }
-      ]
+      ],
+      "collider": {
+        "shape": "plane"
+      }
     }
   }
 ]

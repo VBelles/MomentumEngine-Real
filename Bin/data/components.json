@@ -1,18 +1,17 @@
 {
-	"sizes" : {
-		"default" : 256,
-		"transform" : 256
+	"sizes": {
+		"default": 256,
+		"transform": 256
 	},
-  "init_order" : {
-    "entity" : 100,
-    "transform" : 90
-  },
-	"update" : [
+	"init_order": {
+		"entity": 100,
+		"transform": 90
+	},
+	"update": [
 		"circular_controller",
 		"player_controller",
 		"bullet_controller",
 		"ai_patrol",
-    	"flyover_controller",
 		"camera",
 		"player_model"
 	]
