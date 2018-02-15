@@ -26,6 +26,8 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 
 void TCompPlayerController::update(float dt) {
 	auto& pad = CEngine::get().getInput().host(Input::PLAYER_1).pad();
+	auto& keyboard = CEngine::get().getInput().host(Input::PLAYER_1).keyboard();
+	
 
 	VEC2 translationInput = VEC2::Zero;
 	float rotationInput = 0.f;
@@ -40,7 +42,7 @@ void TCompPlayerController::update(float dt) {
 	}
 	else {
 		//Detecto el teclado
-		if (isPressed('A')) {
+		if (keyboard.key(0x57).isPressed()) {
 			translationInput.x -= 1.f;
 		}
 		if (isPressed('D')) {
@@ -54,31 +56,11 @@ void TCompPlayerController::update(float dt) {
 		}
 	}
 
-	//Esto es para tirar en un futuro cercano
-	if (isPressed('Q')) {
-		rotationInput += 1.f;
-	}
-	if (isPressed('E')) {
-		rotationInput -= 1.f;
+	if (pad.button(Input::EPadButton::PAD_A).getsPressed() ||
+		keyboard.key(VK_SPACE).getsPressed()) {
+		playerModel->JumpButtonPressed();
 	}
 
 	playerModel->SetTranslationInput(translationInput, dt);
 	playerModel->SetRotationInput(rotationInput, dt);
-
-	//Esto es para tirar en un futuro cercano
-	const Input::TButton& bt = CEngine::get().getInput().host(Input::PLAYER_1).keyboard().key(VK_SPACE);
-	if (bt.getsPressed() || pad.button(Input::EPadButton::PAD_A).getsPressed()) {
-		TEntityParseContext ctx;
-		if (parseScene("data/prefabs/bullet.prefab", ctx)) {
-			assert(!ctx.entities_loaded.empty());
-			// Send the entity who has generated the bullet
-			ctx.entities_loaded[0].sendMsg(TMsgAssignBulletOwner{ CHandle(this).getOwner() });
-		}
-		/*TCompCollider* comp_collider= get<TCompCollider>();
-		if(comp_collider && comp_collider->controller)
-		{
-		delta_move.y += -9.81*dt;
-		comp_collider->controller->move(physx::PxVec3(delta_move.x, delta_move.y, delta_move.z), 0.f, dt, physx::PxControllerFilters());
-		}*/
-	}
 }

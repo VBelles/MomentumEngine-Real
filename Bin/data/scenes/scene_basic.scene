@@ -24,7 +24,7 @@
 				}
 			],
 			"transform": {
-				"pos": "5 0 0"
+				"pos": "5 20 0"
 			}, 
 			"player_controller" : {},
 			"player_model" : {
@@ -54,8 +54,8 @@
 				"pos": "-4 0 0"
 			},
 			"collider": {
-				"is_dynamic": false,
-				"is_trigger": true,
+				"is_dynamic": true,
+				"is_trigger": false,
 				"shape": "sphere",
 				"radius": 2
 			}

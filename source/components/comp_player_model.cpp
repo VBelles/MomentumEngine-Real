@@ -26,9 +26,16 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
 	currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
+
+	collider = get<TCompCollider>();
+	assert(collider);
+	//assert(collider->controller);
+
+
 }
 
 void TCompPlayerModel::update(float dt) {
+
 }
 
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
@@ -40,17 +47,22 @@ void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 		float y, p, r;
 		myTransform->getYawPitchRoll(&y, &p, &r);
 		if (myTransform->isInLeft(targetPos)) {
-			y += rotationSpeed *delta;
+			y += rotationSpeed * delta;
 		}
 		else {
-			y -= rotationSpeed *delta;
+			y -= rotationSpeed * delta;
 		}
 		myTransform->setYawPitchRoll(y, p, r);
 	}
 
+	deltaMovement.x = 0;
+	deltaMovement.z = 0;
 	if (input.y != 0) {
-		myTransform->setPosition(myTransform->getPosition() + myTransform->getFront() * speedFactor * delta);
+		deltaMovement = myTransform->getFront() * speedFactor * delta;
 	}
+	deltaMovement.y += -9.81 * delta;
+	collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	
 }
 
 void TCompPlayerModel::SetRotationInput(float input, float delta) {
@@ -63,4 +75,10 @@ void TCompPlayerModel::SetRotationInput(float input, float delta) {
 	currentYaw += amountRotated * input;
 	myTransform->setYawPitchRoll(currentYaw, currentPitch, 0.f);
 }
+
+void TCompPlayerModel::JumpButtonPressed() {
+	velocityVector += jumpVelocity;
+}
+
+
 

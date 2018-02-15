@@ -43,7 +43,7 @@ public:
   };
 
   TConfig config;
-  physx::PxActor* actor;
+  physx::PxRigidActor* actor;
   physx::PxController* controller;
   void debugInMenu();
   static void registerMsgs();
