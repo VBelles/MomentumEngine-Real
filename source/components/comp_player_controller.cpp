@@ -66,7 +66,7 @@ void TCompPlayerController::update(float dt) {
 
 	//Esto es para tirar en un futuro cercano
 	const Input::TButton& bt = CEngine::get().getInput().host(Input::PLAYER_1).keyboard().key(VK_SPACE);
-	if (bt.getsPressed()) {
+	if (bt.getsPressed() || pad.button(Input::EPadButton::PAD_A).getsPressed()) {
 		TEntityParseContext ctx;
 		if (parseScene("data/prefabs/bullet.prefab", ctx)) {
 			assert(!ctx.entities_loaded.empty());
