@@ -1,4 +1,5 @@
-[{
+[
+	{
 		"entity": {
 			"name": "The Enemy",
 			"transform": {
@@ -9,7 +10,6 @@
 			"ai_patrol": {
 				"waypoints" : [ "-10 0 0", "5 0 5", "2 0 10"] 
 			}
-
 		}
 	},
 	{
@@ -22,16 +22,20 @@
 						"data/materials/madera.material"
 					]
 				}
-			]
-			,
+			],
 			"transform": {
 				"pos": "5 0 0"
-			}
-			, 
+			}, 
 			"player_controller" : {},
 			"player_model" : {
 				"rotation_speed" : 11.0,
 				"speed" : 6.0
+			      },
+			"collider": {
+				"shape": "capsule",
+				"is_character_controller": true,
+				"radius": 0.5,
+				"height": 1.0
 			}
 		}
 	},
@@ -45,10 +49,15 @@
 						"data/materials/madera.material"
 					]
 				}
-			]
-			,
+			],
 			"transform": {
 				"pos": "-4 0 0"
+			},
+			"collider": {
+				"is_dynamic": false,
+				"is_trigger": true,
+				"shape": "sphere",
+				"radius": 2
 			}
 		}
 	},

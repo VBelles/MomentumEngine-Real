@@ -2,6 +2,7 @@
 #include "entity/entity_parser.h"
 #include "comp_player_controller.h"
 #include "comp_transform.h"
+#include "comp_collider.h"
 #include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
@@ -66,13 +67,20 @@ void TCompPlayerController::update(float dt) {
 
 	//Esto es para tirar en un futuro cercano
 	const Input::TButton& bt = CEngine::get().getInput().host(Input::PLAYER_1).keyboard().key(VK_SPACE);
-	if (bt.getsPressed()) {
-		TEntityParseContext ctx;
-		if (parseScene("data/prefabs/bullet.prefab", ctx)) {
-			assert(!ctx.entities_loaded.empty());
-			// Send the entity who has generated the bullet
-			ctx.entities_loaded[0].sendMsg(TMsgAssignBulletOwner{ CHandle(this).getOwner() });
-		}
-	}
+    if (bt.getsPressed())
+    {
+        TEntityParseContext ctx;
+        if (parseScene("data/prefabs/bullet.prefab", ctx))
+        {
+            assert(!ctx.entities_loaded.empty());
+            // Send the entity who has generated the bullet
+            ctx.entities_loaded[0].sendMsg(TMsgAssignBulletOwner{ CHandle(this).getOwner() });
+        }
+        /*TCompCollider* comp_collider= get<TCompCollider>();
+        if(comp_collider && comp_collider->controller)
+        {
+          delta_move.y += -9.81*dt;
+          comp_collider->controller->move(physx::PxVec3(delta_move.x, delta_move.y, delta_move.z), 0.f, dt, physx::PxControllerFilters());
+        }*/
+    }
 }
-
