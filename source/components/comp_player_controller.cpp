@@ -27,10 +27,8 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 void TCompPlayerController::update(float dt) {
 	auto& pad = CEngine::get().getInput().host(Input::PLAYER_1).pad();
 	auto& keyboard = CEngine::get().getInput().host(Input::PLAYER_1).keyboard();
-	
 
 	VEC2 translationInput = VEC2::Zero;
-	float rotationInput = 0.f;
 
 	VEC2 leftAnalogInput = VEC2::Zero;
 	leftAnalogInput.x = pad.button(Input::EPadButton::PAD_LANALOG_X).value;
@@ -42,16 +40,16 @@ void TCompPlayerController::update(float dt) {
 	}
 	else {
 		//Detecto el teclado
-		if (keyboard.key(0x57).isPressed()) {
+		if (keyboard.key(0x41).isPressed()) { //A
 			translationInput.x -= 1.f;
 		}
-		if (isPressed('D')) {
+		if (keyboard.key(0x44).isPressed()) { //D
 			translationInput.x += 1.f;
 		}
-		if (isPressed('S')) {
+		if (keyboard.key(0x53).isPressed()) { //S
 			translationInput.y -= 1.f;
 		}
-		if (isPressed('W')) {
+		if (keyboard.key(0x57).isPressed()) { //W
 			translationInput.y += 1.f;
 		}
 	}
@@ -61,6 +59,7 @@ void TCompPlayerController::update(float dt) {
 		playerModel->JumpButtonPressed();
 	}
 
+	dbg("Input: (%f, %f)\n", translationInput.x, translationInput.y);
+
 	playerModel->SetTranslationInput(translationInput, dt);
-	playerModel->SetRotationInput(rotationInput, dt);
 }
