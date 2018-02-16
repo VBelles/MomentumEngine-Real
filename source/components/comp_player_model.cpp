@@ -8,12 +8,15 @@ DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Speed", &speedFactor, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("Rotation", &rotationSpeed, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat("fallingMultiplier", &fallingMultiplier, 0.01f, 1.f, 2.f);
 	ImGui::DragFloat3("jumpVelocity", &jumpVelocity.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("accelerationVector", &accelerationVector.x, 1.f, -1500.f, -0.1f);
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
-	speedFactor = j.value("speed", 2.0f);
-	rotationSpeed = j.value("rotation_speed", 2.0f);
+	speedFactor = j.value("speed", 10.0f);
+	rotationSpeed = j.value("rotation_speed", 11.0f);
+	fallingMultiplier = j.value("falling_multiplier", 1.0f);
 
 	if (j.count("initialAcceleration")) accelerationVector = loadVEC3(j["initialAcceleration"]);
 	if (j.count("initialVelocity")) velocityVector = loadVEC3(j["initialVelocity"]);
@@ -61,7 +64,8 @@ void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 		deltaMovement = myTransform->getFront() * speedFactor * delta;
 	}
 
-	deltaMovement.y = velocityVector.y * delta + 0.5 * accelerationVector.y * delta * delta;
+	currentGravityMultiplier = velocityVector.y < 0 ? fallingMultiplier : normalGravityMultiplier;
+	deltaMovement.y = velocityVector.y * delta + 0.5 * accelerationVector.y * currentGravityMultiplier * delta * delta;
 	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 	velocityVector.y += clamp(accelerationVector.y * delta, -maxVelocity.y, maxVelocity.y);
 
