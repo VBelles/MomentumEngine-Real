@@ -25,14 +25,13 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 }
 
 void TCompPlayerController::update(float dt) {
-	auto& pad = CEngine::get().getInput().host(Input::PLAYER_1).pad();
-	auto& keyboard = CEngine::get().getInput().host(Input::PLAYER_1).keyboard();
+	auto& keyboard = EngineInput.host(Input::PLAYER_1).keyboard();
 
 	VEC2 translationInput = VEC2::Zero;
 
 	VEC2 leftAnalogInput = VEC2::Zero;
-	leftAnalogInput.x = pad.button(Input::EPadButton::PAD_LANALOG_X).value;
-	leftAnalogInput.y = pad.button(Input::EPadButton::PAD_LANALOG_Y).value;
+    leftAnalogInput.x = EngineInput[Input::EPadButton::PAD_LANALOG_X].value;
+    leftAnalogInput.y = EngineInput[Input::EPadButton::PAD_LANALOG_Y].value;
 
 	if (leftAnalogInput.Length() > padDeadZone) {
 		//Manda el input del pad
@@ -40,6 +39,7 @@ void TCompPlayerController::update(float dt) {
 	}
 	else {
 		//Detecto el teclado
+        //if (EngineInput["kb_w"].isPressed()) dbg("w pressed\n");
 		if (keyboard.key(0x41).isPressed()) { //A
 			translationInput.x -= 1.f;
 		}
@@ -54,12 +54,11 @@ void TCompPlayerController::update(float dt) {
 		}
 	}
 
-	if (pad.button(Input::EPadButton::PAD_A).getsPressed() ||
-		keyboard.key(VK_SPACE).getsPressed()) {
+	if (EngineInput["jump"].getsPressed()) {
 		playerModel->JumpButtonPressed();
 	}
 
-	dbg("Input: (%f, %f)\n", translationInput.x, translationInput.y);
+	//dbg("Input: (%f, %f)\n", translationInput.x, translationInput.y);
 
 	playerModel->SetTranslationInput(translationInput, dt);
 }

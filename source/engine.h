@@ -10,27 +10,27 @@
 class CEngine
 {
 public:
-	CEngine();
-  static CEngine& get();
+    CEngine();
+    static CEngine& get();
 
-  bool start();
-  bool stop();
-  void update(float delta);
-  void render();
+    bool start();
+    bool stop();
+    void update(float delta);
+    void render();
 
-  CModuleManager& getModules() { return _modules; }
-  CModuleRender& getRender() { return _module_render; }
-  CModuleIA& getIA() { return _module_ia; }
-  CModuleInput& getInput() { return _module_input; }
-  CModulePhysics& getPhysics() { return _module_physics; }
+    CModuleManager& getModules() { return _modules; }
+    CModuleRender& getRender() { return _module_render; }
+    CModuleIA& getIA() { return _module_ia; }
+    CModuleInput& getInput() { return _module_input; }
+    CModulePhysics& getPhysics() { return _module_physics; }
 
 private:
-  CModuleManager  _modules;
-  CModuleRender   _module_render;
-  CModuleEntities _module_entities;
-  CModulePhysics _module_physics;
-	CModuleIA       _module_ia;
-	CModuleInput    _module_input;
+    CModuleManager  _modules;
+    CModuleRender   _module_render;
+    CModuleEntities _module_entities;
+    CModulePhysics  _module_physics;
+    CModuleIA       _module_ia;
+    CModuleInput    _module_input;
 };
 
 #define Engine CEngine::get()

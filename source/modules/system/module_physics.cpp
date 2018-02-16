@@ -169,9 +169,9 @@ void CModulePhysics::update(float delta) {
 			TCompCollider* compCollider = h_comp_collider;
 			if (compCollider->controller) {
 				PxExtendedVec3 pxpos_ext = compCollider->controller->getFootPosition();
-				pxpos.x = pxpos_ext.x;
-				pxpos.y = pxpos_ext.y;
-				pxpos.z = pxpos_ext.z;
+				pxpos.x = static_cast<float>(pxpos_ext.x);
+				pxpos.y = static_cast<float>(pxpos_ext.y);
+				pxpos.z = static_cast<float>(pxpos_ext.z);
 			}
 			else {
 				compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));

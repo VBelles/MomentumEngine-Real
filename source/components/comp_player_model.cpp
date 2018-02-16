@@ -57,7 +57,7 @@ void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 	if (hasInput) {
 		deltaMovement = myTransform->getFront() * speedFactor * delta;
 	}
-	deltaMovement.y += -9.81 * delta;
+	deltaMovement.y += -9.81f * delta;
 	collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 	
 }

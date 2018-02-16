@@ -1,17 +1,27 @@
 [
 	{
-		"name" : "red",
+		"name" : "kb_w",
 		"all" : false,
-		"buttons" : [ "pad_a", "mouse_right", "r"]
+		"buttons" : ["w"]
 	},
 	{
-		"name" : "green",
-		"all" : true,
-		"buttons" : [ "pad_x", "pad_y"]
+		"name" : "kb_a",
+		"all" : false,
+		"buttons" : ["a"]
 	},
 	{
-		"name" : "blue",
+		"name" : "kb_s",
 		"all" : false,
-		"buttons" : [ "pad_lanalogx"]
+		"buttons" : ["s"]
+	},
+	{
+		"name" : "kb_d",
+		"all" : false,
+		"buttons" : ["d"]
+	},
+	{
+		"name" : "jump",
+		"all" : false,
+		"buttons" : ["pad_a", "space"]
 	}
 ]

@@ -41,9 +41,9 @@ void CModuleTestInput::update(float delta)
 	EngineInput.feedback(feedback);*/
 
 	// ---------------------- TEST: mapping
-	r = EngineInput["red"].value;
-	g = EngineInput["green"].value;
-	b = 0.5f + 0.5f * EngineInput["blue"].value;
+	//r = EngineInput["red"].value;
+	//g = EngineInput["green"].value;
+	//b = 0.5f + 0.5f * EngineInput["blue"].value;
 
-	CEngine::get().getRender().setBackgroundColor(r, g, b, 1.f);
+	//CEngine::get().getRender().setBackgroundColor(r, g, b, 1.f);
 }
