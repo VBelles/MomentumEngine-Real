@@ -8,8 +8,11 @@
 
 
 class TCompPlayerModel : public TCompBase {
-	float   speedFactor = 0.f;//cargado desde json
-	float   rotationSpeed = 0.f;//cargado desde json
+	float speedFactor = 0.f;//cargado desde json
+	float rotationSpeed = 0.f;//cargado desde json
+	float fallingMultiplier = 1.1f;
+	float normalGravityMultiplier = 1.f;
+	float currentGravityMultiplier = 1.f;
 	VEC3 deltaMovement;
 	TCompTransform *myTransform;
 	TCompCamera *currentCamera;
