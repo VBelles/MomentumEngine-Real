@@ -5,9 +5,26 @@
 #include "entity/common_msgs.h"
 #include "comp_transform.h"
 #include "comp_camera.h"
+#include "player/IActionState.h"
 
 
 class TCompPlayerModel : public TCompBase {
+
+public:
+	enum ActionStates{
+		Grounded, Airborne
+	};
+	IActionState* actionState;// { get; private set; }
+
+	static void registerMsgs();
+	void debugInMenu();
+	void load(const json& j, TEntityParseContext& ctx);
+	void update(float dt);
+	void SetTranslationInput(VEC2 input, float delta);
+	void SetRotationInput(float amount, float delta);
+	void JumpButtonPressed();
+
+private:
 	float speedFactor = 0.f;//cargado desde json
 	float rotationSpeed = 0.f;//cargado desde json
 	float fallingMultiplier = 1.1f;
@@ -25,14 +42,7 @@ class TCompPlayerModel : public TCompBase {
 
 	bool grounded = false;
 
-	DECL_SIBLING_ACCESS();
+	std::map<ActionStates, IActionState> actionStates;
 
-public:
-	static void registerMsgs();
-	void debugInMenu();
-	void load(const json& j, TEntityParseContext& ctx);
-	void update(float dt);
-	void SetTranslationInput(VEC2 input, float delta);
-	void SetRotationInput(float amount, float delta);
-	void JumpButtonPressed();
+	DECL_SIBLING_ACCESS();
 };
