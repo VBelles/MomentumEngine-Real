@@ -1,0 +1,156 @@
+[
+  {
+    "entity":
+    {
+      "name": "Plane001"
+      ,
+      "transform":
+      {
+        "pos": "0.00591602 0.0 0.0553105"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plane001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/Material25.material"
+          ]
+        }
+      ]
+      ,
+      "collider": {
+        "shape": "box",
+		    "halfExtent" : "20.0 2.18557e-07 20.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box001"
+      ,
+      "transform":
+      {
+        "pos": "0.176458 0.0 -2.07786"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/Material25.material"
+          ]
+        }
+      ]
+      ,
+      "collider": {
+        "shape": "box",
+		    "halfExtent" : "0.5 0.5 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Platform001"
+      ,
+      "transform":
+      {
+        "pos": "-2.08486 1.0 0.405432"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Platform001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/Material25.material"
+          ]
+        }
+      ]
+      ,
+      "collider": {
+        "shape": "box",
+		    "halfExtent" : "0.5 0.2 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Platform002"
+      ,
+      "transform":
+      {
+        "pos": "-2.08486 1.5 -1.43365"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Platform002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/Material25.material"
+          ]
+        }
+      ]
+      ,
+      "collider": {
+        "shape": "box",
+		    "halfExtent" : "0.5 0.2 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Platform003"
+      ,
+      "transform":
+      {
+        "pos": "-0.277216 2.5 -1.43365"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Platform003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/Material25.material"
+          ]
+        }
+      ]
+      ,
+      "collider": {
+        "shape": "box",
+		    "halfExtent" : "0.5 0.2 0.5"
+      }
+    }
+  }
+]

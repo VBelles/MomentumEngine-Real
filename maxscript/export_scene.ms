@@ -196,7 +196,7 @@ fn isCollider obj = (
 struct TSceneExporter (
 
 	fs = TJsonFormatter(), 
-	project_path = "c:/code/engine/bin/",
+	project_path = "d:/Dev/MomentumEngine-Real/Bin/",
 	base_path = "data/",
 	scenes_path = base_path + "scenes/",
 	mesh_path = base_path + "meshes/",

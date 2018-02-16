@@ -30,7 +30,7 @@ const CResourceClass* getResourceClassOf<CTexture>() {
 bool CTexture::create(const std::string& name) {
 
   wchar_t wFilename[MAX_PATH];
-  mbstowcs(wFilename, name.c_str(), name.length()+1 );
+  mbstowcs(wFilename, name.c_str(), name.length() + 1 );
 
   HRESULT hr = DirectX::CreateDDSTextureFromFile(
     Render.device,

@@ -181,6 +181,6 @@ function exportMeshObject given_obj outfilename = (
 	
 )
 
-
+exportMeshObject $Player "D:\\Dev\\MomentumEngine-Real\\Bin\\data\\meshes\\Player.mesh"
 --exportMeshObject $Box001
 --exportMeshObject $ "c:\\code\\pep.mesh"
