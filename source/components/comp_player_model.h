@@ -15,8 +15,9 @@ class TCompPlayerModel : public TCompBase {
 	TCompCamera *currentCamera;
 	TCompCollider* collider;
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	VEC3 accelerationVector = VEC3::Zero;
-	VEC3 velocityVector = VEC3::Zero;
+	VEC3 accelerationVector = {0.f, -9.81f, 0.f};
+	VEC3 velocityVector = { 0.f, 0.f, 0.f };
+	VEC3 maxVelocity = {50.f, 25.f, 50.f};
 	VEC3 jumpVelocity = {0.f, 8.f, 0.f};
 
 	DECL_SIBLING_ACCESS();

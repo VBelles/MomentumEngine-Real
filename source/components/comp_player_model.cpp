@@ -8,11 +8,17 @@ DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Speed", &speedFactor, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("Rotation", &rotationSpeed, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat3("jumpVelocity", &jumpVelocity.x, 1.f, -50.f, 1000000.f);
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	speedFactor = j.value("speed", 2.0f);
 	rotationSpeed = j.value("rotation_speed", 2.0f);
+
+	if (j.count("initialAcceleration")) accelerationVector = loadVEC3(j["initialAcceleration"]);
+	if (j.count("initialVelocity")) velocityVector = loadVEC3(j["initialVelocity"]);
+	if (j.count("jumpVelocity")) jumpVelocity = loadVEC3(j["jumpVelocity"]);
+	if (j.count("maxVelocity")) maxVelocity = loadVEC3(j["maxVelocity"]);
 }
 
 
@@ -29,9 +35,6 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	collider = get<TCompCollider>();
 	assert(collider);
-	//assert(collider->controller);
-
-
 }
 
 void TCompPlayerModel::update(float dt) {
@@ -57,9 +60,13 @@ void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 	if (hasInput) {
 		deltaMovement = myTransform->getFront() * speedFactor * delta;
 	}
-	deltaMovement.y += -9.81f * delta;
+
+	deltaMovement.y = velocityVector.y * delta + 0.5 * accelerationVector.y * delta * delta;
 	collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	
+	velocityVector.y += clamp(accelerationVector.y * delta, -maxVelocity.y, maxVelocity.y);
+
+	//Espera de sensor suelo
+	if (myTransform->getPosition().y + deltaMovement.y <= 0) velocityVector.y = 0;
 }
 
 void TCompPlayerModel::SetRotationInput(float input, float delta) {

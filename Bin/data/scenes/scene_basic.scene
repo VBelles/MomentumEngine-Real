@@ -29,7 +29,11 @@
 			"player_controller" : {},
 			"player_model" : {
 				"rotation_speed" : 11.0,
-				"speed" : 6.0
+				"speed" : 6.0,
+				"initialAcceleration" : "0 -9.81 0",
+				"initialVelocity" : "0 0 0",
+				"jumpVelocity" : " 0 10 0",
+				"maxVelocity" : " 50 25 50"
 			      },
 			"collider": {
 				"shape": "capsule",
