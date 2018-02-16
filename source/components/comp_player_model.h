@@ -20,6 +20,8 @@ class TCompPlayerModel : public TCompBase {
 	VEC3 maxVelocity = {50.f, 25.f, 50.f};
 	VEC3 jumpVelocity = {0.f, 8.f, 0.f};
 
+	bool grounded = false;
+
 	DECL_SIBLING_ACCESS();
 
 public:

@@ -205,7 +205,8 @@
         }
       ],
       "collider": {
-        "shape": "plane"
+        "shape": "box",
+		"halfExtent" : "500.0 2.18557e-07 500.0"
       }
     }
   }

@@ -62,11 +62,11 @@ void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 	}
 
 	deltaMovement.y = velocityVector.y * delta + 0.5 * accelerationVector.y * delta * delta;
-	collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 	velocityVector.y += clamp(accelerationVector.y * delta, -maxVelocity.y, maxVelocity.y);
 
-	//Espera de sensor suelo
-	if (myTransform->getPosition().y + deltaMovement.y <= 0) velocityVector.y = 0;
+	grounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
+	if (grounded) velocityVector.y = 0;
 }
 
 void TCompPlayerModel::SetRotationInput(float input, float delta) {
@@ -81,7 +81,7 @@ void TCompPlayerModel::SetRotationInput(float input, float delta) {
 }
 
 void TCompPlayerModel::JumpButtonPressed() {
-	velocityVector += jumpVelocity;
+	if (grounded) velocityVector += jumpVelocity;
 }
 
 
