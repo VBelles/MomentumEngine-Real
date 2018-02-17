@@ -42,7 +42,7 @@ private:
 
 	bool grounded = false;
 
-	std::map<ActionStates, IActionState> actionStates;
+	std::map<ActionStates, IActionState*> actionStates;
 
 	DECL_SIBLING_ACCESS();
 };

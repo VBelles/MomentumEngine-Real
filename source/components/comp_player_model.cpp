@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
+#include "player/AirborneActionState.h"
 
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
@@ -38,10 +39,15 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	collider = get<TCompCollider>();
 	assert(collider);
+
+	actionStates = {
+		{ ActionStates::Airborne, new AirborneActionState(this), }
+	};
+	actionState = actionStates[ActionStates::Airborne];
 }
 
 void TCompPlayerModel::update(float dt) {
-
+	actionState->update(dt);
 }
 
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
@@ -65,7 +71,7 @@ void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 	}
 
 	currentGravityMultiplier = velocityVector.y < 0 ? fallingMultiplier : normalGravityMultiplier;
-	deltaMovement.y = velocityVector.y * delta + 0.5 * accelerationVector.y * currentGravityMultiplier * delta * delta;
+	deltaMovement.y = velocityVector.y * delta + 0.5f * accelerationVector.y * currentGravityMultiplier * delta * delta;
 	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 	velocityVector.y += clamp(accelerationVector.y * delta, -maxVelocity.y, maxVelocity.y);
 
