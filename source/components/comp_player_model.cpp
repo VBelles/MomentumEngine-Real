@@ -2,8 +2,9 @@
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
 
-
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
+
+using namespace physx;
 
 void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Speed", &speedFactor, 0.1f, 0.f, 20.f);
@@ -65,11 +66,11 @@ void TCompPlayerModel::SetTranslationInput(VEC2 input, float delta) {
 	}
 
 	currentGravityMultiplier = velocityVector.y < 0 ? fallingMultiplier : normalGravityMultiplier;
-	deltaMovement.y = velocityVector.y * delta + 0.5 * accelerationVector.y * currentGravityMultiplier * delta * delta;
-	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	deltaMovement.y = velocityVector.y * delta + 0.5f * accelerationVector.y * currentGravityMultiplier * delta * delta;
+	auto myFlags = collider->controller->move(PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, PxControllerFilters());
 	velocityVector.y += clamp(accelerationVector.y * delta, -maxVelocity.y, maxVelocity.y);
 
-	grounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
+	grounded = myFlags.isSet(PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (grounded) velocityVector.y = 0;
 }
 
@@ -87,6 +88,3 @@ void TCompPlayerModel::SetRotationInput(float input, float delta) {
 void TCompPlayerModel::JumpButtonPressed() {
 	if (grounded) velocityVector += jumpVelocity;
 }
-
-
-

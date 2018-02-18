@@ -25,8 +25,6 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 }
 
 void TCompPlayerController::update(float dt) {
-	auto& keyboard = EngineInput.host(Input::PLAYER_1).keyboard();
-
 	VEC2 translationInput = VEC2::Zero;
 
 	VEC2 leftAnalogInput = VEC2::Zero;
@@ -39,17 +37,16 @@ void TCompPlayerController::update(float dt) {
 	}
 	else {
 		//Detecto el teclado
-        //if (EngineInput["kb_w"].isPressed()) dbg("w pressed\n");
-		if (keyboard.key(0x41).isPressed()) { //A
+		if (EngineInput["kb_a"].isPressed()) {
 			translationInput.x -= 1.f;
 		}
-		if (keyboard.key(0x44).isPressed()) { //D
+		if (EngineInput["kb_d"].isPressed()) {
 			translationInput.x += 1.f;
 		}
-		if (keyboard.key(0x53).isPressed()) { //S
+		if (EngineInput["kb_s"].isPressed()) {
 			translationInput.y -= 1.f;
 		}
-		if (keyboard.key(0x57).isPressed()) { //W
+		if (EngineInput["kb_w"].isPressed()) {
 			translationInput.y += 1.f;
 		}
 	}

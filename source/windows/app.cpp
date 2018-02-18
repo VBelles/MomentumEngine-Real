@@ -199,8 +199,15 @@ void CApp::mainLoop() {
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
   // ...
-  xres = 1024;
-  yres = 640;
+  xres = 1280;
+  yres = 720;
+   //16:9 resolutions:
+   //1280x720  = 720p HD
+   //1920x1080 = 1080p HD
+   //2560x1440 = 27' Monitor
+   //3840x2160 = 4K UHDTV
+   //5120x2880 = Retina 5K
+   //7680x4320 = 8K UHDTV
 
   time_since_last_render.reset();
 

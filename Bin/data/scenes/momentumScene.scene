@@ -18,7 +18,7 @@
           ,
           "materials":
           [
-            "data/materials/Material25.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -49,7 +49,7 @@
           ,
           "materials":
           [
-            "data/materials/Material25.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -80,7 +80,7 @@
           ,
           "materials":
           [
-            "data/materials/Material25.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -111,7 +111,7 @@
           ,
           "materials":
           [
-            "data/materials/Material25.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -142,7 +142,7 @@
           ,
           "materials":
           [
-            "data/materials/Material25.material"
+            "data/materials/madera.material"
           ]
         }
       ]
