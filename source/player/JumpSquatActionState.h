@@ -1,11 +1,15 @@
 #pragma once
 
 #include "components/comp_player_model.h"
+#include "GroundedActionState.h"
 
-
-class GroundedActionState : public IActionState {
+class JumpSquatActionState : public GroundedActionState {
+	CTimer timer;
+	int squatFrames = 4;
+	float squatTime;
+	float enteringVelocity = 0.f;
 public:
-	GroundedActionState(TCompPlayerModel* player);
+	JumpSquatActionState(TCompPlayerModel* player);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

@@ -178,6 +178,7 @@
     <ClCompile Include="player\AirborneActionState.cpp" />
     <ClCompile Include="player\GroundedActionState.cpp" />
     <ClCompile Include="components\comp_ground_sensor.cpp" />
+    <ClCompile Include="player\JumpSquatActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="windows">
@@ -511,6 +512,7 @@
     <ClInclude Include="player\AirborneActionState.h" />
     <ClInclude Include="player\GroundedActionState.h" />
     <ClInclude Include="components\comp_ground_sensor.h" />
+    <ClInclude Include="player\JumpSquatActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl">
