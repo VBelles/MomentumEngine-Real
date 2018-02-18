@@ -19,6 +19,7 @@ public:
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
+	void SetActionState(ActionStates newState);
 	void update(float dt);
 	void SetTranslationInput(VEC2 input, float delta);
 	void SetRotationInput(float amount, float delta);

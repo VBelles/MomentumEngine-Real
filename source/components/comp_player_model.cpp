@@ -2,6 +2,7 @@
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
 #include "player/AirborneActionState.h"
+#include "player/GroundedActionState.h"
 
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
@@ -25,6 +26,13 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("maxVelocity")) maxVelocity = loadVEC3(j["maxVelocity"]);
 }
 
+void TCompPlayerModel::SetActionState(ActionStates newState) {
+	IActionState* exitingState = actionState;
+	actionState = actionStates[newState];
+	if(exitingState) exitingState->OnStateExit(actionState);
+	if(actionState)  actionState->OnStateEnter(exitingState);
+}
+
 
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
@@ -41,9 +49,10 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	assert(collider);
 
 	actionStates = {
-		{ ActionStates::Airborne, new AirborneActionState(this), }
+		{ ActionStates::Airborne, new AirborneActionState(this) },
+		{ ActionStates::Grounded, new GroundedActionState(this) },
 	};
-	actionState = actionStates[ActionStates::Airborne];
+	SetActionState(ActionStates::Grounded);
 }
 
 void TCompPlayerModel::update(float dt) {

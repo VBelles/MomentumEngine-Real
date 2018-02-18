@@ -91,6 +91,7 @@
     <ClCompile Include="components\comp_circular_controller.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_flyover_controller.cpp" />
+    <ClCompile Include="components\comp_ground_sensor.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_player_controller.cpp" />
     <ClCompile Include="components\comp_player_model.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="player\AirborneActionState.cpp" />
+    <ClCompile Include="player\GroundedActionState.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
@@ -161,6 +163,7 @@
     <ClInclude Include="components\comp_circular_controller.h" />
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_flyover_controller.h" />
+    <ClInclude Include="components\comp_ground_sensor.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="components\comp_player_model.h" />
@@ -216,6 +219,7 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="player\AirborneActionState.h" />
+    <ClInclude Include="player\GroundedActionState.h" />
     <ClInclude Include="player\IActionState.h" />
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\mesh\mesh.h" />

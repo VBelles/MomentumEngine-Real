@@ -15,3 +15,6 @@ void AirborneActionState::OnStateEnter(IActionState * lastState) {
 void AirborneActionState::OnStateExit(IActionState * nextState) {
 	IActionState::OnStateExit(nextState);
 }
+
+void AirborneActionState::OnJumpHighButton() {
+}

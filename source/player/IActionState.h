@@ -17,6 +17,6 @@ public:
 	virtual void update(float delta) = 0;
 	virtual void OnStateEnter(IActionState* lastState) { this->lastState = lastState; }
 	virtual void OnStateExit(IActionState* nextState) { this->nextState = nextState; }
-	virtual void OnJumpHighButton() { }
+	virtual void OnJumpHighButton() {}
 
 };
