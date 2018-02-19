@@ -14,7 +14,7 @@
 #include "components/comp_camera.h"
 #include "entity/entity_parser.h"
 
-CCamera        camera;
+CCamera camera;
 
 bool CModuleTestAxis::start()
 {
@@ -57,7 +57,6 @@ void CModuleTestAxis::update(float delta)
 
 void CModuleTestAxis::render()
 {
-
   // Find the entity with name 'the_camera'
   CHandle h_e_camera = getEntityByName("xthe_camera");
   if (h_e_camera.isValid()) {
@@ -82,5 +81,4 @@ void CModuleTestAxis::render()
   grid->activateAndRender();
   auto axis = Resources.get("axis.mesh")->as<CRenderMesh>();
   axis->activateAndRender();
-
 }
