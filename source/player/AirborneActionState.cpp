@@ -46,7 +46,9 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	player->currentGravityMultiplier = velocityVector->y < 0 ? player->fallingMultiplier : player->normalGravityMultiplier;
 	deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * player->currentGravityMultiplier * delta * delta;
 	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	velocityVector->y += clamp(accelerationVector->y * delta, -player->maxVelocityVertical, player->maxVelocityVertical);
+	velocityVector->y += accelerationVector->y * delta;
+	velocityVector->y = clamp(velocityVector->y, -player->maxVelocityVertical, player->maxVelocityVertical);
+
 
 	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (player->isGrounded) {
@@ -55,7 +57,7 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 }
 
 void AirborneActionState::OnJumpHighButton() {
-	//grab
+	//grab 
 }
 
 void AirborneActionState::OnLanding() {
