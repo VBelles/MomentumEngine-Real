@@ -56,12 +56,13 @@
 				"shape": "capsule",
 				"is_character_controller": true,
 				"radius": 0.3,
-				"height": 1.52
+				"height": 0.76
 			},
 			"ground_sensor" : {
 				"shape": "box",
 				"halfExtent" : "0.5 0.2 0.5",
-				"height" : 0.65
+				"height" : 0.65,
+				"is_trigger" : true
 			}
 		}
 	},
