@@ -22,9 +22,9 @@ void JumpSquatActionState::OnStateExit(IActionState * nextState) {
 void JumpSquatActionState::update (float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		*player->GetVelocityVector() += player->jumpVelocityVector;
-		//Dejamos que el cambio de estado se haga cuando lo detecte grouns sensor
-
+		PowerStats* currentPowerStats = player->GetPowerStats();
+		*player->GetVelocityVector() += currentPowerStats->jumpVelocityVector;
+		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 	}
 }
 
@@ -35,18 +35,19 @@ void JumpSquatActionState::SetMovementInput(VEC2 input, float delta) {
 	collider = player->GetCollider();
 	accelerationVector = player->GetAccelerationVector();
 	velocityVector = player->GetVelocityVector();
+	PowerStats* currentPowerStats = player->GetPowerStats();
 
 	deltaMovement.x = 0;
 	deltaMovement.z = 0;
 	if (hasInput) {
 		//usar entering velocity en vez de player->speedFactor (una vez el movimiento se haga con velocityVector)
-		deltaMovement = playerTransform->getFront() * player->speedFactor * delta;
+		deltaMovement = playerTransform->getFront() * currentPowerStats->speedFactor * delta;
 	}
 
-	player->currentGravityMultiplier = velocityVector->y < 0 ? player->fallingMultiplier : player->normalGravityMultiplier;
-	deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * player->currentGravityMultiplier * delta * delta;
+	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
+	deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta * delta;
 	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	velocityVector->y += clamp(accelerationVector->y * delta, -player->maxVelocityVertical, player->maxVelocityVertical);
+	velocityVector->y += clamp(accelerationVector->y * delta, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 
 	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (player->isGrounded) {

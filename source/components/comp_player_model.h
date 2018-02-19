@@ -7,14 +7,24 @@
 #include "comp_camera.h"
 #include "player/IActionState.h"
 
+struct PowerStats {
+	float speedFactor = 0.f;
+	float rotationSpeed = 0.f;
+	float fallingMultiplier = 1.1f;
+	float normalGravityMultiplier = 1.f;
+	float currentGravityMultiplier = 1.f;
+	float maxVelocityVertical = 30.f;
+	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
+};
 
 class TCompPlayerModel : public TCompBase {
-
+	DECL_SIBLING_ACCESS();
 public:
 	enum ActionStates{
 		Grounded, Airborne, JumpSquat
 	};
 	IActionState* actionState;// { get; private set; }
+
 
 	static void registerMsgs();
 	void debugInMenu();
@@ -30,13 +40,9 @@ public:
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
 
-	float speedFactor = 0.f;//cargado desde json
-	float rotationSpeed = 0.f;//cargado desde json
-	float fallingMultiplier = 1.1f;
-	float normalGravityMultiplier = 1.f;
-	float currentGravityMultiplier = 1.f;
-	float maxVelocityVertical = 30.f;
-	VEC3 jumpVelocityVector = {0.f, 8.f, 0.f};
+	
+	PowerStats* GetPowerStats();
+	
 	bool isGrounded = false;
 
 private:
@@ -46,10 +52,15 @@ private:
 	TCompCollider* collider;
 	VEC3 accelerationVector = {0.f, -9.81f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
+
+	PowerStats* ssj1;
+	PowerStats* ssj2;
+	PowerStats* ssj3;
+	PowerStats* currentPowerStats;
+
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
+	PowerStats* loadPowerStats(const json& j);
 
 	std::map<ActionStates, IActionState*> actionStates;
-
-	DECL_SIBLING_ACCESS();
 };

@@ -28,13 +28,29 @@
 			}, 
 			"player_controller" : {},
 			"player_model" : {
-				"rotation_speed" : 11.0,
-				"speed" : 10.0,
 				"initialAcceleration" : "0 -55 0",
 				"initialVelocity" : "0 0 0",
-				"jumpVelocity" : " 0 20 0",
-				"maxVelocity" : " 40 30 40",
-				"falling_multiplier" : 1.05
+				"ssj1":{
+					"rotation_speed" : 11.0,
+					"speed" : 10.0,
+					"jumpVelocity" : " 0 20 0",
+					"maxVelocityVertical" :  30.0,
+					"falling_multiplier" : 1.05
+				},
+				"ssj2":{
+					"rotation_speed" : 11.0,
+					"speed" : 10.0,
+					"jumpVelocity" : " 0 20 0",
+					"maxVelocityVertical" : 30.0,
+					"falling_multiplier" : 1.05
+				},
+				"ssj3":{
+					"rotation_speed" : 11.0,
+					"speed" : 10.0,
+					"jumpVelocity" : " 0 20 0",
+					"maxVelocityVertical" : 30.0,
+					"falling_multiplier" : 1.05
+				}
 			},
 			"collider": {
 				"shape": "capsule",
@@ -45,7 +61,7 @@
 			"ground_sensor" : {
 				"shape": "box",
 				"halfExtent" : "0.5 0.2 0.5",
-				"height" : 0.8
+				"height" : 0.65
 			}
 		}
 	},
