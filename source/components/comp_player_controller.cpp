@@ -57,5 +57,5 @@ void TCompPlayerController::update(float dt) {
 
 	//dbg("Input: (%f, %f)\n", translationInput.x, translationInput.y);
 
-	playerModel->SetTranslationInput(translationInput, dt);
+	playerModel->SetMovementInput(translationInput, dt);//Dejar este para el final
 }
