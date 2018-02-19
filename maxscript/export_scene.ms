@@ -280,7 +280,7 @@ struct TSceneExporter (
 
 	-- ----------------------------------------------------------
 	fn exportCompCollider obj = (
-		fs.writeKey "physics"
+		fs.writeKey "collider"
 		fs.beginObj()
 
 		if classof obj == Sphere then (
@@ -291,7 +291,7 @@ struct TSceneExporter (
 			fs.writeKeyValue "shape" "box"
 			fs.writeComma()
 			-- Warning, order might be incorrect!!!
-			fs.writeKeyValue "half_size" [abs obj.width, abs obj.height, abs obj.length]
+			fs.writeKeyValue "halfExtent" [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
 		)
 
 		-- Add it in the user properties panel of max:     density = 10
@@ -351,7 +351,7 @@ struct TSceneExporter (
 			if classof obj == Editable_Mesh then exportEditableMesh obj
 			else if isCollider obj then exportEntityCollider obj
 			else (
-				format "Warning. Don't kwow how to export obj % of class %\n" obj.name ((classof obj) as string)
+				format "Warning. Don't know how to export obj % of class %\n" obj.name ((classof obj) as string)
 			)
 			fs.endObj()
 		fs.endObj()
@@ -378,5 +378,5 @@ struct TSceneExporter (
 	)
 )
 
-exporter = TSceneExporter project_path: "C:/Users/JoePerkins/CODE/_testMaxScript/"
+exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
 exporter.exportAll()

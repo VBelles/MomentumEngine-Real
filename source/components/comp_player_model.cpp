@@ -60,6 +60,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 void TCompPlayerModel::update(float dt) {
 	actionState->update(dt);
+	dbg("Player model: %f\n", dt);
 }
 
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
