@@ -43,8 +43,13 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	deltaMovement.z = 0;
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
+	//dbg("speed: %f\n", currentSpeed);
 	if (hasInput) {
-		deltaMovement = desiredDirection * currentSpeed * delta + 0.5f * desiredDirection * acceleration * delta * delta;
+		VEC3 resultingDirection = *velocityVector;
+		resultingDirection.y = 0.f;
+		resultingDirection += desiredDirection * acceleration * delta;
+		deltaMovement = resultingDirection * delta;
+		//deltaMovement = desiredDirection * currentSpeed * delta + 0.5f * desiredDirection * acceleration * delta * delta;
 
 		horizontalVelocity.x += desiredDirection.x * currentSpeed;
 		horizontalVelocity.y += desiredDirection.z * currentSpeed;
@@ -81,6 +86,8 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	}
 	if (myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP)) {
 		velocityVector->y = 0.f;
+		dbg("Frame: %d\n", player->frame);
+		collider->controller->move(physx::PxVec3(0.f, -0.1f, 0.f), 0.f, delta, physx::PxControllerFilters());
 	}
 
 }

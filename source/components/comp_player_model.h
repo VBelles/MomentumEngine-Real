@@ -17,9 +17,12 @@ struct PowerStats {
 	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
 };
 
+
 class TCompPlayerModel : public TCompBase {
 	DECL_SIBLING_ACCESS();
+
 public:
+	int frame = 0;
 	enum ActionStates{
 		Grounded, Airborne, JumpSquat, GhostJumpSquat,
 		GhostJumpWindow,

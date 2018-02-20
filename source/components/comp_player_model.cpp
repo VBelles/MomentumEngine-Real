@@ -41,6 +41,7 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 }
 
 void TCompPlayerModel::SetActionState(ActionStates newState) {
+	//dbg("Frame: %d\n", frame);
 	IActionState* exitingState = actionState;
 	actionState = actionStates[newState];
 	if (exitingState) exitingState->OnStateExit(actionState);
@@ -80,6 +81,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 
 void TCompPlayerModel::update(float dt) {
+	frame++;
 	actionState->update(dt);
 }
 
