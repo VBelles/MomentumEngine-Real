@@ -27,6 +27,10 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.radius = j.value("radius", 0.f);
 	config.height = j.value("height", 0.f);
 
+  // todo: extend this be able to parse more than group and mask
+  config.group = CEngine::get().getPhysics().getFilterByName(j.value("group", "all"));
+  config.mask = CEngine::get().getPhysics().getFilterByName(j.value("mask", "all"));
+
 	if (j.count("halfExtent"))
 		config.halfExtent = loadVEC3(j["halfExtent"]);
 	dbg("%s: %f\n", shape.c_str(), config.halfExtent.y);

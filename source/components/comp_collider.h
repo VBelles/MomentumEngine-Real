@@ -14,14 +14,6 @@ struct TMsgTriggerExit {
   DECL_MSG_ID();
 };
 
-enum FilterGroups {
-  Wall = 0 << 1,
-  Floor = 0 << 2,
-  Player = 0 << 3,
-  Enemy = 0 << 4,
-  Characters = Player | Enemy,
-  all = -1
-};
 class TCompCollider: public TCompBase {
 public:
   struct TConfig
@@ -34,8 +26,8 @@ public:
     float radius;
     float height;
     physx::PxGeometryType::Enum shapeType;
-    int group;
-    int mask;
+    unsigned int group;
+    unsigned int mask;
     bool is_dynamic;
     bool is_trigger;
     bool is_character_controller;
@@ -43,7 +35,7 @@ public:
   };
 
   TConfig config;
-  physx::PxRigidActor* actor;
+  physx::PxActor* actor;
   physx::PxController* controller;
   void debugInMenu();
   static void registerMsgs();
