@@ -23,5 +23,10 @@
 		"name" : "jump",
 		"all" : false,
 		"buttons" : ["pad_a", "space"]
+	},
+	{
+		"name" : "center_camera",
+		"all" : false,
+		"buttons" : ["pad_l2", "mouse_middle"]
 	}
 ]

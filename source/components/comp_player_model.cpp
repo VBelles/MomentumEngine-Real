@@ -93,3 +93,7 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 void TCompPlayerModel::JumpButtonPressed() {
 	actionState->OnJumpHighButton();
 }
+
+void TCompPlayerModel::CenterCameraButtonPressed() {
+	currentCamera->CenterCamera();
+}

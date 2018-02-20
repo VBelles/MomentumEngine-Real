@@ -37,6 +37,7 @@ public:
 	void update(float dt);
 	void SetMovementInput(VEC2 input, float delta);
 	void JumpButtonPressed();
+	void CenterCameraButtonPressed();
 
 	TCompTransform* GetTransform() { return myTransform; }
 	TCompCamera* GetCamera() { return currentCamera; }

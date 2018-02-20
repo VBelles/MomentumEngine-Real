@@ -27,6 +27,7 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 void TCompPlayerController::update(float dt) {
 	VEC2 translationInput = VEC2::Zero;
 	VEC2 leftAnalogInput = VEC2::Zero;
+	float leftTrigger = 0.f;
     leftAnalogInput.x = EngineInput[Input::EPadButton::PAD_LANALOG_X].value;
     leftAnalogInput.y = EngineInput[Input::EPadButton::PAD_LANALOG_Y].value;
 
@@ -52,6 +53,10 @@ void TCompPlayerController::update(float dt) {
 
 	if (EngineInput["jump"].getsPressed()) {
 		playerModel->JumpButtonPressed();
+	}
+
+	if (EngineInput["center_camera"].getsPressed()) {
+		playerModel->CenterCameraButtonPressed();
 	}
 
 	playerModel->SetMovementInput(translationInput, dt);//Dejar este para el final
