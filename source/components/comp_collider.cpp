@@ -7,35 +7,40 @@ void TCompCollider::debugInMenu() {
 }
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
-	std::string shape = j["shape"].get<std::string>();
-	if (strcmp("box", shape.c_str()) == 0) {
-		config.shapeType = physx::PxGeometryType::eBOX;
-	}
-	else if (strcmp("sphere", shape.c_str()) == 0) {
-		config.shapeType = physx::PxGeometryType::eSPHERE;
-	}
-	else if (strcmp("plane", shape.c_str()) == 0) {
-		config.shapeType = physx::PxGeometryType::ePLANE;
-	}
-	else if (strcmp("capsule", shape.c_str()) == 0) {
-		config.shapeType = physx::PxGeometryType::eCAPSULE;
-	}
+    std::string shape = j["shape"].get<std::string>();
+    if (strcmp("box", shape.c_str()) == 0) {
+        config.shapeType = PxGeometryType::eBOX;
+    }
+    else if (strcmp("sphere", shape.c_str()) == 0) {
+        config.shapeType = PxGeometryType::eSPHERE;
+    }
+    else if (strcmp("plane", shape.c_str()) == 0) {
+        config.shapeType = PxGeometryType::ePLANE;
+    }
+    else if (strcmp("capsule", shape.c_str()) == 0) {
+        config.shapeType = PxGeometryType::eCAPSULE;
+    }
 
-	config.is_character_controller = j.value("is_character_controller", false);
-	config.is_dynamic = j.value("is_dynamic", false);
-	config.is_trigger = j.value("is_trigger", false);
-	config.radius = j.value("radius", 0.f);
-	config.height = j.value("height", 0.f);
+    config.is_character_controller = j.value("is_character_controller", false);
+    config.is_dynamic = j.value("is_dynamic", false);
+    config.is_trigger = j.value("is_trigger", false);
+    config.radius = j.value("radius", 0.f);
+    config.height = j.value("height", 0.f);
 
-	if (j.count("halfExtent"))
-		config.halfExtent = loadVEC3(j["halfExtent"]);
+    // todo: extend this be able to parse more than group and mask
+    config.group = Engine.getPhysics().getFilterByName(j.value("group", "all"));
+    config.mask = Engine.getPhysics().getFilterByName(j.value("mask", "all"));
+
+    if (j.count("halfExtent")) {
+        config.halfExtent = loadVEC3(j["halfExtent"]);
+    }
+    dbg("%s: %f\n", shape.c_str(), config.halfExtent.y);
 }
 
-
 void TCompCollider::registerMsgs() {
-	DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
-	CEngine::get().getPhysics().createActor(*this);
+    Engine.getPhysics().createActor(*this);
 }

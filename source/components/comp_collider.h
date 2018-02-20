@@ -4,14 +4,16 @@
 #include "PxPhysicsAPI.h"
 #include "entity/common_msgs.h"
 
-struct TMsgTriggerEnter{
-  CHandle h_other_entity;
-  DECL_MSG_ID();
+using namespace physx;
+
+struct TMsgTriggerEnter {
+    CHandle h_other_entity;
+    DECL_MSG_ID();
 };
 
 struct TMsgTriggerExit {
-  CHandle h_other_entity;
-  DECL_MSG_ID();
+    CHandle h_other_entity;
+    DECL_MSG_ID();
 };
 
 enum FilterGroups {
@@ -22,32 +24,31 @@ enum FilterGroups {
   Characters = Player | Enemy,
   all = -1
 };
+
 class TCompCollider: public TCompBase {
 	DECL_SIBLING_ACCESS();
 public:
-  struct TConfig
-  {
-    VEC3 halfExtent;
-    
-    //todo implement
-    VEC3 offset;
+    struct TConfig {
+        VEC3 halfExtent;
 
-    float radius;
-    float height;
-    physx::PxGeometryType::Enum shapeType;
-    int group;
-    int mask;
-    bool is_dynamic;
-    bool is_trigger;
-    bool is_character_controller;
+        //todo implement
+        VEC3 offset;
 
-  };
+        float radius;
+        float height;
+        PxGeometryType::Enum shapeType;
+        unsigned int group;
+        unsigned int mask;
+        bool is_dynamic;
+        bool is_trigger;
+        bool is_character_controller;
+    };
 
-  TConfig config;
-  physx::PxRigidActor* actor;
-  physx::PxController* controller;
-  void debugInMenu();
-  static void registerMsgs();
-  void load(const json& j, TEntityParseContext& ctx);
-  void onCreate(const TMsgEntityCreated& msg);
+    TConfig config;
+    PxActor* actor;
+    PxController* controller;
+    void debugInMenu();
+    static void registerMsgs();
+    void load(const json& j, TEntityParseContext& ctx);
+    void onCreate(const TMsgEntityCreated& msg);
 };
