@@ -21,7 +21,7 @@ class TCompPlayerModel : public TCompBase {
 	DECL_SIBLING_ACCESS();
 public:
 	enum ActionStates{
-		Grounded, Airborne, JumpSquat
+		Grounded, Airborne, JumpSquat, GhostJumpSquat
 	};
 	IActionState* actionState;// { get; private set; }
 

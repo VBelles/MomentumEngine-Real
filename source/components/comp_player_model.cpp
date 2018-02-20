@@ -4,6 +4,7 @@
 #include "player/AirborneActionState.h"
 #include "player/GroundedActionState.h"
 #include "player/JumpSquatActionState.h"
+#include "player/GhostJumpSquatActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -68,6 +69,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::Airborne, new AirborneActionState(this) },
 		{ ActionStates::Grounded, new GroundedActionState(this) },
 		{ ActionStates::JumpSquat, new JumpSquatActionState(this) },
+		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(this) },
 	};
 	SetActionState(ActionStates::Grounded);
 	currentPowerStats = ssj1;

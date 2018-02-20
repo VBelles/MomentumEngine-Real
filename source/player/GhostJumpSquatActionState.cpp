@@ -1,34 +1,35 @@
 #include "mcv_platform.h"
-#include "JumpSquatActionState.h"
+#include "GhostJumpSquatActionState.h"
 
-JumpSquatActionState::JumpSquatActionState(TCompPlayerModel * player)
-	: GroundedActionState::GroundedActionState(player) {
+GhostJumpSquatActionState::GhostJumpSquatActionState(TCompPlayerModel * player)
+	: AirborneActionState::AirborneActionState(player) {
 }
 
 
-void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
-	dbg("Entrando en JumpSquat\n");
+void GhostJumpSquatActionState::OnStateEnter(IActionState * lastState) {
+	AirborneActionState::OnStateEnter(lastState);
+	dbg("Entrando en GhostJumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
 	enteringVelocity = player->GetVelocityVector()->Length();
 }
 
-void JumpSquatActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de JumpSquat\n");
+void GhostJumpSquatActionState::OnStateExit(IActionState * nextState) {
+	AirborneActionState::OnStateExit(nextState);
+	dbg("Saliendo de GhostJumpSquat\n");
 }
 
-void JumpSquatActionState::update (float delta) {
+void GhostJumpSquatActionState::update (float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//saltar
 		PowerStats* currentPowerStats = player->GetPowerStats();
 		*player->GetVelocityVector() += currentPowerStats->jumpVelocityVector;
-		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
+		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
+		player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
 	}
 }
 
-void JumpSquatActionState::SetMovementInput(VEC2 input, float delta) {
+void GhostJumpSquatActionState::SetMovementInput(VEC2 input, float delta) {
 	bool hasInput = input != VEC2::Zero;
 	playerTransform = player->GetTransform();
 	currentCamera = player->GetCamera();
@@ -51,23 +52,14 @@ void JumpSquatActionState::SetMovementInput(VEC2 input, float delta) {
 
 	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (player->isGrounded) {
-		velocityVector->y = 0;
-	}
-	else {
-		OnLeavingGround();
+		OnLanding();
 	}
 }
 
 //ni caso a este input
-void JumpSquatActionState::OnJumpHighButton() {}
+void GhostJumpSquatActionState::OnJumpHighButton() {}
 
-void JumpSquatActionState::OnLeavingGround() {
-	if (timer.elapsed() >= squatTime) {
-		timer.reset();
-		player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
-	}
-	else {
-		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		player->SetActionState(TCompPlayerModel::ActionStates::GhostJumpSquat);
-	}
+void GhostJumpSquatActionState::OnLanding() {
+	//Ir a landing action state
+	player->SetActionState(TCompPlayerModel::ActionStates::Grounded);
 }
