@@ -4,6 +4,8 @@
 
 
 class AirborneActionState : public IActionState {
+private:
+	bool isTouching = false;
 public:
 	AirborneActionState(TCompPlayerModel* player);
 	void update(float delta) override;

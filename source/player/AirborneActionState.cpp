@@ -31,20 +31,25 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(input);
 	VEC3 targetPos = playerTransform->getPosition() + desiredDirection * currentPowerStats->maxHorizontalSpeed * delta;
 
-	/*if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
+	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
 		float y, p, r;
 		playerTransform->getYawPitchRoll(&y, &p, &r);
 		float yMult = playerTransform->isInLeft(targetPos) ? 1.f : -1.f;
 		y += currentPowerStats->rotationSpeed * delta * yMult;
 		playerTransform->setYawPitchRoll(y, p, r);
-	}*/
+	}
 
 	deltaMovement.x = 0;
 	deltaMovement.z = 0;
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
+	//dbg("speed: %f\n", currentSpeed);
 	if (hasInput) {
-		deltaMovement = desiredDirection * currentSpeed * delta + 0.5f * desiredDirection * acceleration * delta * delta;
+		VEC3 resultingDirection = *velocityVector;
+		resultingDirection.y = 0.f;
+		resultingDirection += desiredDirection * acceleration * delta;
+		deltaMovement = resultingDirection * delta;
+		//deltaMovement = desiredDirection * currentSpeed * delta + 0.5f * desiredDirection * acceleration * delta * delta;
 
 		horizontalVelocity.x += desiredDirection.x * currentSpeed;
 		horizontalVelocity.y += desiredDirection.z * currentSpeed;
@@ -77,12 +82,15 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 
 	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (player->isGrounded) {
+		isTouching = false;
 		OnLanding();
 	}
-	if (myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP)) {
-		velocityVector->y = 0.f;
+	if (!isTouching) {
+		isTouching = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
+		if (isTouching) {
+			velocityVector->y = 0.f;
+		}
 	}
-
 }
 
 void AirborneActionState::OnJumpHighButton() {

@@ -41,6 +41,7 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 }
 
 void TCompPlayerModel::SetActionState(ActionStates newState) {
+	//dbg("Frame: %d\n", frame);
 	IActionState* exitingState = actionState;
 	actionState = actionStates[newState];
 	if (exitingState) exitingState->OnStateExit(actionState);
@@ -80,6 +81,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 
 void TCompPlayerModel::update(float dt) {
+	frame++;
 	actionState->update(dt);
 }
 
@@ -90,4 +92,8 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 
 void TCompPlayerModel::JumpButtonPressed() {
 	actionState->OnJumpHighButton();
+}
+
+void TCompPlayerModel::CenterCameraButtonPressed() {
+	currentCamera->CenterCamera();
 }

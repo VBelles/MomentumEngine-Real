@@ -17,9 +17,12 @@ struct PowerStats {
 	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
 };
 
+
 class TCompPlayerModel : public TCompBase {
 	DECL_SIBLING_ACCESS();
+
 public:
+	int frame = 0;
 	enum ActionStates{
 		Grounded, Airborne, JumpSquat, GhostJumpSquat,
 		GhostJumpWindow,
@@ -34,6 +37,7 @@ public:
 	void update(float dt);
 	void SetMovementInput(VEC2 input, float delta);
 	void JumpButtonPressed();
+	void CenterCameraButtonPressed();
 
 	TCompTransform* GetTransform() { return myTransform; }
 	TCompCamera* GetCamera() { return currentCamera; }
