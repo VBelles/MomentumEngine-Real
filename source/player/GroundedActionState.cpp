@@ -41,12 +41,10 @@ void GroundedActionState::SetMovementInput(VEC2 input, float delta) {
 
 	deltaMovement.x = 0;
 	deltaMovement.z = 0;
-	//dbg("Velocity vector: %f, %f, %f\n", velocityVector->x, velocityVector->y, velocityVector->z);
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
-	dbg("current speed: %f\n", currentSpeed);
-	if (hasInput) {
-		//deltaMovement = playerTransform->getFront() * currentPowerStats->maxHorizontalSpeed * delta;		
+	//dbg("current speed: %f\n", currentSpeed);
+	if (hasInput) {		
 		deltaMovement = playerTransform->getFront() * currentSpeed * delta + 0.5f * playerTransform->getFront() * acceleration * delta * delta;
 		
 		horizontalVelocity.x = playerTransform->getFront().x * currentSpeed;

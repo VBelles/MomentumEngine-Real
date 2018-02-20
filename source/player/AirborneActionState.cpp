@@ -26,22 +26,46 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	accelerationVector = player->GetAccelerationVector();
 	velocityVector = player->GetVelocityVector();
 	PowerStats* currentPowerStats = player->GetPowerStats();
+	float acceleration = player->GetAcceleration();
 
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(input);
 	VEC3 targetPos = playerTransform->getPosition() + desiredDirection * currentPowerStats->maxHorizontalSpeed * delta;
 
-	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
+	/*if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
 		float y, p, r;
 		playerTransform->getYawPitchRoll(&y, &p, &r);
 		float yMult = playerTransform->isInLeft(targetPos) ? 1.f : -1.f;
 		y += currentPowerStats->rotationSpeed * delta * yMult;
 		playerTransform->setYawPitchRoll(y, p, r);
-	}
+	}*/
 
 	deltaMovement.x = 0;
 	deltaMovement.z = 0;
+	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
+	float currentSpeed = horizontalVelocity.Length();
 	if (hasInput) {
-		deltaMovement = playerTransform->getFront() * currentPowerStats->maxHorizontalSpeed * delta;
+		deltaMovement = desiredDirection * currentSpeed * delta + 0.5f * desiredDirection * acceleration * delta * delta;
+
+		horizontalVelocity.x += desiredDirection.x * currentSpeed;
+		horizontalVelocity.y += desiredDirection.z * currentSpeed;
+
+		velocityVector->x = horizontalVelocity.x + desiredDirection.x * acceleration * delta;
+		velocityVector->z = horizontalVelocity.y + desiredDirection.z * acceleration * delta;
+
+		//clampear velocidad horizontal
+		horizontalVelocity.x = velocityVector->x;
+		horizontalVelocity.y = velocityVector->z;
+
+		if (horizontalVelocity.Length() > currentPowerStats->maxHorizontalSpeed) {
+			horizontalVelocity.Normalize();
+			horizontalVelocity *= currentPowerStats->maxHorizontalSpeed;
+			velocityVector->x = horizontalVelocity.x;
+			velocityVector->z = horizontalVelocity.y;
+		}
+	}
+	else {
+		deltaMovement.x = velocityVector->x * delta;
+		deltaMovement.z = velocityVector->z * delta;
 	}
 
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
