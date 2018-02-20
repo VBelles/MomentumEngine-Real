@@ -10,11 +10,15 @@ void TCompGroundSensor::debugInMenu() {
 
 void TCompGroundSensor::registerMsgs() {
 	DECL_MSG(TCompGroundSensor, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompGroundSensor, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 void TCompGroundSensor::onCreate(const TMsgEntityCreated& msg) {
-	//Por qué petas, hijoputa?
-	//CEngine::get().getPhysics().createActor(*this);
+	//TCompCollider::onCreate(msg);
+}
+
+void TCompGroundSensor::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+	
 }
 
 void TCompGroundSensor::load(const json& j, TEntityParseContext& ctx) {

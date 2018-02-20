@@ -79,6 +79,10 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	if (player->isGrounded) {
 		OnLanding();
 	}
+	if (myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP)) {
+		velocityVector->y = 0.f;
+	}
+
 }
 
 void AirborneActionState::OnJumpHighButton() {

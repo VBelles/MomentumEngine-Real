@@ -5,9 +5,9 @@
 #include "entity/common_msgs.h"
 #include "PxPhysicsAPI.h"
 
-struct TCompGroundSensor : public TCompCollider {
-
+class TCompGroundSensor : public TCompCollider {
   DECL_SIBLING_ACCESS();
+
 
 public:
   static void registerMsgs();
@@ -15,4 +15,5 @@ public:
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
   void onCreate(const TMsgEntityCreated& msg);
+  void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 };

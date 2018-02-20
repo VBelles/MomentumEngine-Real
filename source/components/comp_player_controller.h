@@ -5,12 +5,12 @@
 #include "comp_player_model.h"
 
 class TCompPlayerController : public TCompBase {
+	DECL_SIBLING_ACCESS();
+
 	float padDeadZone = 0.1f;
 	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 
-	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
-
-	DECL_SIBLING_ACCESS();
+	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);	
 
 public:
 	static void registerMsgs();

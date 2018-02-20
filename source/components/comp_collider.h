@@ -27,6 +27,7 @@ enum FilterGroups {
 
 class TCompCollider: public TCompBase {
 	DECL_SIBLING_ACCESS();
+
 public:
     struct TConfig {
         VEC3 halfExtent;
