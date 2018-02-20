@@ -8,7 +8,7 @@
 #include "player/IActionState.h"
 
 struct PowerStats {
-	float speedFactor = 0.f;
+	float maxHorizontalSpeed = 0.f;
 	float rotationSpeed = 0.f;
 	float fallingMultiplier = 1.1f;
 	float normalGravityMultiplier = 1.f;
@@ -39,7 +39,7 @@ public:
 	TCompCollider* GetCollider() { return collider; }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
-
+	float GetAcceleration() { return acceleration; }
 	
 	PowerStats* GetPowerStats();
 	
@@ -52,6 +52,7 @@ private:
 	TCompCollider* collider;
 	VEC3 accelerationVector = {0.f, -9.81f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
+	float acceleration;
 
 	PowerStats* ssj1;
 	PowerStats* ssj2;

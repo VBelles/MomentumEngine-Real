@@ -28,7 +28,7 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	PowerStats* currentPowerStats = player->GetPowerStats();
 
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(input);
-	VEC3 targetPos = playerTransform->getPosition() + desiredDirection * currentPowerStats->speedFactor * delta;
+	VEC3 targetPos = playerTransform->getPosition() + desiredDirection * currentPowerStats->maxHorizontalSpeed * delta;
 
 	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
 		float y, p, r;
@@ -41,7 +41,7 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	deltaMovement.x = 0;
 	deltaMovement.z = 0;
 	if (hasInput) {
-		deltaMovement = playerTransform->getFront() * currentPowerStats->speedFactor * delta;
+		deltaMovement = playerTransform->getFront() * currentPowerStats->maxHorizontalSpeed * delta;
 	}
 
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;

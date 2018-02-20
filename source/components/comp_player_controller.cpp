@@ -26,7 +26,6 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 
 void TCompPlayerController::update(float dt) {
 	VEC2 translationInput = VEC2::Zero;
-	dbg("Player controller: %f - ", dt);
 	VEC2 leftAnalogInput = VEC2::Zero;
     leftAnalogInput.x = EngineInput[Input::EPadButton::PAD_LANALOG_X].value;
     leftAnalogInput.y = EngineInput[Input::EPadButton::PAD_LANALOG_Y].value;
@@ -54,8 +53,6 @@ void TCompPlayerController::update(float dt) {
 	if (EngineInput["jump"].getsPressed()) {
 		playerModel->JumpButtonPressed();
 	}
-
-	//dbg("Input: (%f, %f)\n", translationInput.x, translationInput.y);
 
 	playerModel->SetMovementInput(translationInput, dt);//Dejar este para el final
 }

@@ -30,23 +30,24 @@
 			"player_model" : {
 				"initialAcceleration" : "0 -55 0",
 				"initialVelocity" : "0 0 0",
+				"acceleration" : 30.0,
 				"ssj1":{
 					"rotation_speed" : 11.0,
-					"speed" : 10.0,
+					"maxSpeed" : 10.0,
 					"jumpVelocity" : " 0 20 0",
 					"maxVelocityVertical" :  30.0,
 					"falling_multiplier" : 1.05
 				},
 				"ssj2":{
 					"rotation_speed" : 11.0,
-					"speed" : 10.0,
+					"maxSpeed" : 10.0,
 					"jumpVelocity" : " 0 20 0",
 					"maxVelocityVertical" : 30.0,
 					"falling_multiplier" : 1.05
 				},
 				"ssj3":{
 					"rotation_speed" : 11.0,
-					"speed" : 10.0,
+					"maxSpeed" : 10.0,
 					"jumpVelocity" : " 0 20 0",
 					"maxVelocityVertical" : 30.0,
 					"falling_multiplier" : 1.05

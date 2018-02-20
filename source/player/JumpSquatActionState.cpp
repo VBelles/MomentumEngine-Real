@@ -40,8 +40,8 @@ void JumpSquatActionState::SetMovementInput(VEC2 input, float delta) {
 	deltaMovement.x = 0;
 	deltaMovement.z = 0;
 	if (hasInput) {
-		//usar entering velocity en vez de player->speedFactor (una vez el movimiento se haga con velocityVector)
-		deltaMovement = playerTransform->getFront() * currentPowerStats->speedFactor * delta;
+		//usar entering velocity en vez de player->maxHorizontalSpeed (una vez el movimiento se haga con velocityVector)
+		deltaMovement = playerTransform->getFront() * currentPowerStats->maxHorizontalSpeed * delta;
 	}
 
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;

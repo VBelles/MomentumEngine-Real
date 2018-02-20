@@ -23,6 +23,7 @@ enum FilterGroups {
   all = -1
 };
 class TCompCollider: public TCompBase {
+	DECL_SIBLING_ACCESS();
 public:
   struct TConfig
   {

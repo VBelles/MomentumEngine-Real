@@ -10,7 +10,7 @@ DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 using namespace physx;
 
 void TCompPlayerModel::debugInMenu() {
-	ImGui::DragFloat("Speed", &ssj1->speedFactor, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat("Speed", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("Rotation", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("fallingMultiplier", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
 	ImGui::DragFloat3("jumpVelocity", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
@@ -20,7 +20,8 @@ void TCompPlayerModel::debugInMenu() {
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("initialAcceleration")) accelerationVector = loadVEC3(j["initialAcceleration"]);
 	if (j.count("initialVelocity")) velocityVector = loadVEC3(j["initialVelocity"]);
-	
+	acceleration = j.value("acceleration", 0.0f);
+
 	ssj1 = loadPowerStats(j["ssj1"]);
 	ssj2 = loadPowerStats(j["ssj2"]);
 	ssj3 = loadPowerStats(j["ssj3"]);
@@ -29,7 +30,7 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 
 PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	PowerStats* ssj = new PowerStats();
-	ssj->speedFactor = j.value("speed", 0.0f);
+	ssj->maxHorizontalSpeed = j.value("maxSpeed", 0.0f);
 	ssj->rotationSpeed = j.value("rotation_speed", 0.0f);
 	ssj->fallingMultiplier = j.value("falling_multiplier", 0.0f);
 	ssj->maxVelocityVertical = j.value("maxVelocityVertical", 0.0f);
@@ -76,40 +77,13 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 void TCompPlayerModel::update(float dt) {
 	actionState->update(dt);
-	dbg("Player model: %f\n", dt);
 }
 
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
-	actionState->SetMovementInput(input, delta);
-	//bool hasInput = input != VEC2::Zero;
-	//VEC3 desiredDirection = currentCamera->TransformToWorld(input);
-	//VEC3 targetPos = myTransform->getPosition() + desiredDirection * speedFactor * delta;
-
-	//if (hasInput && abs(myTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
-	//	float y, p, r;
-	//	myTransform->getYawPitchRoll(&y, &p, &r);
-	//	float yMult = myTransform->isInLeft(targetPos) ? 1.f : -1.f;
-	//	y += rotationSpeed * delta * yMult;
-	//	myTransform->setYawPitchRoll(y, p, r);
-	//}
-
-	//deltaMovement.x = 0;
-	//deltaMovement.z = 0;
-	//if (hasInput) {
-	//	deltaMovement = myTransform->getFront() * speedFactor * delta;
-	//}
-
-	//currentGravityMultiplier = velocityVector.y < 0 ? fallingMultiplier : normalGravityMultiplier;
-	//deltaMovement.y = velocityVector.y * delta + 0.5f * accelerationVector.y * currentGravityMultiplier * delta * delta;
-	//physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	//velocityVector.y += clamp(accelerationVector.y * delta, -maxVelocityVertical, maxVelocityVertical);
-
-	//isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
-	//if (isGrounded) velocityVector.y = 0;
+	actionState->SetMovementInput(input, delta);	
 }
 
 void TCompPlayerModel::JumpButtonPressed() {
 	actionState->OnJumpHighButton();
-	/*if (isGrounded) velocityVector += jumpVelocityVector;*/
 }
