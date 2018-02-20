@@ -136,6 +136,7 @@
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="player\AirborneActionState.cpp" />
     <ClCompile Include="player\GhostJumpSquatActionState.cpp" />
+    <ClCompile Include="player\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="player\GroundedActionState.cpp" />
     <ClCompile Include="player\JumpSquatActionState.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="player\AirborneActionState.h" />
     <ClInclude Include="player\GhostJumpSquatActionState.h" />
+    <ClInclude Include="player\GhostJumpWindowActionState.h" />
     <ClInclude Include="player\GroundedActionState.h" />
     <ClInclude Include="player\IActionState.h" />
     <ClInclude Include="player\JumpSquatActionState.h" />

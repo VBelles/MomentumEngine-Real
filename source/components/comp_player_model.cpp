@@ -5,6 +5,7 @@
 #include "player/GroundedActionState.h"
 #include "player/JumpSquatActionState.h"
 #include "player/GhostJumpSquatActionState.h"
+#include "player/GhostJumpWindowActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -70,6 +71,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::Grounded, new GroundedActionState(this) },
 		{ ActionStates::JumpSquat, new JumpSquatActionState(this) },
 		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(this) },
+		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(this) },
 	};
 	SetActionState(ActionStates::Grounded);
 	currentPowerStats = ssj1;

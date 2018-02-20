@@ -23,7 +23,9 @@ void GhostJumpSquatActionState::update (float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//saltar
 		PowerStats* currentPowerStats = player->GetPowerStats();
-		*player->GetVelocityVector() += currentPowerStats->jumpVelocityVector;
+		VEC3* velocityVector = player->GetVelocityVector();
+		velocityVector->y = 0.f;
+		*velocityVector += currentPowerStats->jumpVelocityVector;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
 		player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
 	}

@@ -91,5 +91,5 @@ void GroundedActionState::OnJumpHighButton() {
 
 void GroundedActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
+	player->SetActionState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
