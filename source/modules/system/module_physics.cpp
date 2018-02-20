@@ -49,8 +49,8 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
         setupFiltering(actor, config.group, config.mask);
         gScene->addActor(*actor);
     }
-    else if (config.shapeType == PxGeometryType::eCAPSULE
-             && config.is_character_controller) {
+    else if (config.shapeType == PxGeometryType::eCAPSULE &&
+             config.is_character_controller) {
         PxControllerDesc* cDesc;
         PxCapsuleControllerDesc capsuleDesc;
 
@@ -82,7 +82,6 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
         }
         //....todo: more shapes
 
-
         setupFiltering(shape, config.group, config.mask);
         shape->setLocalPose(offset);
 
@@ -95,7 +94,6 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
             PxRigidStatic* body = gPhysics->createRigidStatic(initialTrans);
             actor = body;
         }
-
 
         if (config.is_trigger) {
             shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
@@ -140,8 +138,10 @@ PxFilterFlags CustomFilterShader(
     PxFilterObjectAttributes attributes0, PxFilterData filterData0,
     PxFilterObjectAttributes attributes1, PxFilterData filterData1,
     PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize) {
-    if ((filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1)) {
-        if (PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1)) {
+    if ((filterData0.word0 & filterData1.word1) &&
+        (filterData1.word0 & filterData0.word1)) {
+        if (PxFilterObjectIsTrigger(attributes0) ||
+            PxFilterObjectIsTrigger(attributes1)) {
             pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
         }
         else {
@@ -192,8 +192,7 @@ bool CModulePhysics::start() {
 }
 
 void CModulePhysics::update(float delta) {
-    if (!gScene)
-        return;
+    if (!gScene) return;
     gScene->simulate(delta);
     gScene->fetchResults(true);
 
