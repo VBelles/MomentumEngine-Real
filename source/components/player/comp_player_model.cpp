@@ -79,6 +79,15 @@ PowerStats* TCompPlayerModel::GetPowerStats() {
 
 void TCompPlayerModel::OnLevelChange(int powerLevel) {
 	dbg("Power changed: %d\n", powerLevel);
+	if (powerLevel == 1) {
+		currentPowerStats = ssj1;
+	}
+	else if (powerLevel == 2) {
+		currentPowerStats = ssj2;
+	}
+	else if (powerLevel == 3) {
+		currentPowerStats = ssj3;
+	}
 }
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -131,7 +140,3 @@ void TCompPlayerModel::GainPowerButtonPressed() {
 	powerGauge->GainPower();
 }
 
-
-TCompPlayerModel::~TCompPlayerModel(void) {
-	dbg("Wololo");
-}

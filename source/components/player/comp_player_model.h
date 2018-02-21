@@ -29,9 +29,8 @@ public:
 		Grounded, Airborne, JumpSquat, GhostJumpSquat,
 		GhostJumpWindow,
 	};
-	IActionState* actionState;// { get; private set; }
-
-
+	IActionState* actionState;
+	
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
@@ -65,6 +64,7 @@ private:
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
 	float acceleration;
 	float gravity = 0;
+
 
 	PowerStats* ssj1;
 	PowerStats* ssj2;

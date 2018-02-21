@@ -40,14 +40,14 @@
 				},
 				"ssj2":{
 					"rotation_speed" : 11.0,
-					"maxSpeed" : 10.0,
+					"maxSpeed" : 20.0,
 					"jumpVelocity" : " 0 20 0",
 					"maxVelocityVertical" : 30.0,
 					"falling_multiplier" : 1.05
 				},
 				"ssj3":{
 					"rotation_speed" : 11.0,
-					"maxSpeed" : 10.0,
+					"maxSpeed" : 50.0,
 					"jumpVelocity" : " 0 20 0",
 					"maxVelocityVertical" : 30.0,
 					"falling_multiplier" : 1.05

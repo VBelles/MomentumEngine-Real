@@ -3,7 +3,7 @@
 #include "utils/utils.h"
 
 
-
+  
 void PowerGauge::Update(float delta) {
 	IncreasePower(-dropSpeed * delta);
 }
