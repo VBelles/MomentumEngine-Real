@@ -52,12 +52,12 @@ void TCompCamera::update(float delta) {
 VEC2 TCompCamera::GetIncrementFromInput(float delta) {
 	VEC2 increment = VEC2::Zero;
 	VEC2 padInput = {
-		EngineInput[Input::EPadButton::PAD_LANALOG_X].value,
-		EngineInput[Input::EPadButton::PAD_LANALOG_Y].value
+		EngineInput[Input::EPadButton::PAD_RANALOG_X].value,
+		EngineInput[Input::EPadButton::PAD_RANALOG_Y].value
 	};
 	if (padInput.Length() > padDeadZone) {
 		increment.x -= padInput.x * cameraSpeed.x * delta;
-		increment.y -= padInput.y * cameraSpeed.y * delta;
+		increment.y += padInput.y * cameraSpeed.y * delta;
 	}
 	else {
 		auto& mouse = EngineInput.host(Input::PLAYER_1).mouse();
