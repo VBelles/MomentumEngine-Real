@@ -25,6 +25,7 @@ void TCompGroundSensor::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 }
 
 void TCompGroundSensor::load(const json& j, TEntityParseContext& ctx) {
+
 }
 
 void TCompGroundSensor::update(float dt) {
