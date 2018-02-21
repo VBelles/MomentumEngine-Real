@@ -55,9 +55,10 @@ private:
 	TCompTransform *myTransform;
 	TCompCamera *currentCamera;
 	TCompCollider* collider;
-	VEC3 accelerationVector = {0.f, -9.81f, 0.f};
+	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
 	float acceleration;
+	float gravity = 0;
 
 	PowerStats* ssj1;
 	PowerStats* ssj2;
