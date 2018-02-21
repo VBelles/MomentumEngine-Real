@@ -28,5 +28,15 @@
 		"name" : "center_camera",
 		"all" : false,
 		"buttons" : ["pad_l2", "mouse_middle"]
+	},
+	{
+		"name" : "release_power",
+		"all" : false,
+		"buttons" : ["pad_l1", "r"]
+	},
+	{
+		"name" : "gain_power",
+		"all" : false,
+		"buttons" : ["pad_r1", "e"]
 	}
 ]

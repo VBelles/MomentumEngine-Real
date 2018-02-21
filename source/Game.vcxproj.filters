@@ -142,9 +142,6 @@
     <ClCompile Include="components\comp_camera.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\comp_player_controller.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="components\comp_bullet_controller.cpp">
       <Filter>components</Filter>
     </ClCompile>
@@ -157,17 +154,11 @@
     <ClCompile Include="render\render_utils.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="components\comp_player_model.cpp" />
     <ClCompile Include="components\comp_flyover_controller.cpp" />
     <ClCompile Include="render\texture\material.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
-    <ClCompile Include="player\AirborneActionState.cpp" />
-    <ClCompile Include="player\GroundedActionState.cpp" />
     <ClCompile Include="components\comp_ground_sensor.cpp" />
-    <ClCompile Include="player\JumpSquatActionState.cpp" />
-    <ClCompile Include="player\GhostJumpSquatActionState.cpp" />
-    <ClCompile Include="player\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
@@ -178,6 +169,16 @@
     <ClCompile Include="render\shaders\vertex_shader.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
+    <ClCompile Include="components\player\comp_player_controller.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\player\comp_player_model.cpp" />
+    <ClCompile Include="components\player\states\AirborneActionState.cpp" />
+    <ClCompile Include="components\player\states\GhostJumpSquatActionState.cpp" />
+    <ClCompile Include="components\player\states\GhostJumpWindowActionState.cpp" />
+    <ClCompile Include="components\player\states\GroundedActionState.cpp" />
+    <ClCompile Include="components\player\states\JumpSquatActionState.cpp" />
+    <ClCompile Include="components\player\PowerGauge.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="windows">
@@ -466,9 +467,6 @@
     <ClInclude Include="components\comp_camera.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="components\comp_player_controller.h">
-      <Filter>components</Filter>
-    </ClInclude>
     <ClInclude Include="entity\msgs.h">
       <Filter>entity</Filter>
     </ClInclude>
@@ -487,18 +485,11 @@
     <ClInclude Include="render\render_utils.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="components\comp_player_model.h" />
     <ClInclude Include="components\comp_flyover_controller.h" />
     <ClInclude Include="render\texture\material.h" />
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="modules\system\module_physics.h" />
-    <ClInclude Include="player\IActionState.h" />
-    <ClInclude Include="player\AirborneActionState.h" />
-    <ClInclude Include="player\GroundedActionState.h" />
     <ClInclude Include="components\comp_ground_sensor.h" />
-    <ClInclude Include="player\JumpSquatActionState.h" />
-    <ClInclude Include="player\GhostJumpSquatActionState.h" />
-    <ClInclude Include="player\GhostJumpWindowActionState.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_tags.h" />
@@ -510,6 +501,17 @@
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="utils\directory_watcher.h" />
     <ClInclude Include="utils\murmur3\murmur3.h" />
+    <ClInclude Include="components\player\comp_player_controller.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\player\comp_player_model.h" />
+    <ClInclude Include="components\player\states\AirborneActionState.h" />
+    <ClInclude Include="components\player\states\GhostJumpSquatActionState.h" />
+    <ClInclude Include="components\player\states\GhostJumpWindowActionState.h" />
+    <ClInclude Include="components\player\states\GroundedActionState.h" />
+    <ClInclude Include="components\player\states\IActionState.h" />
+    <ClInclude Include="components\player\states\JumpSquatActionState.h" />
+    <ClInclude Include="components\player\PowerGauge.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl">

@@ -13,12 +13,12 @@ void TCompCamera::debugInMenu() {
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 
 	// ..
-	fovInDegrees = j.value("fov", 75.f);
+	fovInDegrees = j.value("fov", 85.f);
 	zNear = j.value("z_near", 0.1f);
 	zFar = j.value("z_far", 1000.f);
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
 
-	distanceToTarget = j.value("distance_to_target", 10.f);
+	distanceToTarget = j.value("distance_to_target", 5.f);
 	distanceVector.z = -distanceToTarget;
 
 	if (j.count("target")) {
@@ -37,7 +37,7 @@ void TCompCamera::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	CEntity *playerEntity = (CEntity *)getEntityByName(targetName.c_str());
 	targetTransform = playerEntity->get<TCompTransform>();
 
-	yIncrement = DEFAULT_Y;
+	myTransform->setYawPitchRoll(0, DEFAULT_Y, 0);
 	pitchAngleRange = Y_ANGLE_MAX - Y_ANGLE_MIN;
 }
 
@@ -46,7 +46,7 @@ void TCompCamera::update(float delta) {
 	UpdateMovement(increment, delta);
 	CalculateVerticalOffsetVector();
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
-	this->lookAt(myTransform->getPosition(), targetTransform->getPosition() + verticalOffsetVector, myTransform->getUp());
+	this->lookAt(myTransform->getPosition(), targetTransform->getPosition() /*+ verticalOffsetVector*/ , myTransform->getUp());
 }
 
 VEC2 TCompCamera::GetIncrementFromInput(float delta) {
@@ -77,7 +77,7 @@ void TCompCamera::UpdateMovement(VEC2 increment, float delta) {
 	//Rotate the camera
 	y += increment.x;
 	p += increment.y;
-	p = clamp(p, -Y_ANGLE_MAX, -Y_ANGLE_MIN);
+	p = clamp(p, Y_ANGLE_MIN, Y_ANGLE_MAX);
 	myTransform->setYawPitchRoll(y, p, r);
 
 	//Move the camera back
@@ -85,7 +85,9 @@ void TCompCamera::UpdateMovement(VEC2 increment, float delta) {
 }
 
 void TCompCamera::CalculateVerticalOffsetVector() {
-	float currentOffset = ((pitchAngleRange - (yIncrement - Y_ANGLE_MIN)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
+	float y, p, r;
+	myTransform->getYawPitchRoll(&y, &p, &r);
+	float currentOffset = ((pitchAngleRange - (y - Y_ANGLE_MIN)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
 	verticalOffsetVector.y = currentOffset;
 }
 

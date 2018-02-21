@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_controller.h"
-#include "comp_transform.h"
-#include "comp_collider.h"
+#include "components/comp_transform.h"
+#include "components/comp_collider.h"
 #include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
@@ -54,9 +54,14 @@ void TCompPlayerController::update(float dt) {
 	if (EngineInput["jump"].getsPressed()) {
 		playerModel->JumpButtonPressed();
 	}
-
 	if (EngineInput["center_camera"].getsPressed()) {
 		playerModel->CenterCameraButtonPressed();
+	}
+	if (EngineInput["release_power"].getsPressed()) {
+		playerModel->ReleasePowerButtonPressed();
+	}
+	if (EngineInput["gain_power"].getsPressed()) {
+		playerModel->GainPowerButtonPressed();
 	}
 
 	playerModel->SetMovementInput(translationInput, dt);//Dejar este para el final

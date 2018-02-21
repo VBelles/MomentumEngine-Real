@@ -40,17 +40,20 @@
 				},
 				"ssj2":{
 					"rotation_speed" : 11.0,
-					"maxSpeed" : 10.0,
+					"maxSpeed" : 20.0,
 					"jumpVelocity" : " 0 20 0",
 					"maxVelocityVertical" : 30.0,
 					"falling_multiplier" : 1.05
 				},
 				"ssj3":{
 					"rotation_speed" : 11.0,
-					"maxSpeed" : 10.0,
+					"maxSpeed" : 50.0,
 					"jumpVelocity" : " 0 20 0",
 					"maxVelocityVertical" : 30.0,
 					"falling_multiplier" : 1.05
+				},
+				"power_gauge":{
+
 				}
 			},
 			"collider": {
@@ -67,8 +70,8 @@
 			"name": "xthe_camera",
 			"transform": {},
 			"camera" : {
-				"distance_to_target": 4,
-				"fov" : 80,
+				"distance_to_target": 4.5,
+				"fov" : 90,
 				"target" : "The Player",
 				"active": true
 			}
