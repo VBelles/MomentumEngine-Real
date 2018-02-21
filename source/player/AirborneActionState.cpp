@@ -29,44 +29,38 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	float acceleration = player->GetAcceleration();
 
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(input);
-	VEC3 targetPos = playerTransform->getPosition() + desiredDirection * currentPowerStats->maxHorizontalSpeed * delta;
+	VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
 
 	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
 		float y, p, r;
 		playerTransform->getYawPitchRoll(&y, &p, &r);
 		float yMult = playerTransform->isInLeft(targetPos) ? 1.f : -1.f;
-		y += currentPowerStats->rotationSpeed * delta * yMult;
+		y += 3.5f * delta * yMult;
 		playerTransform->setYawPitchRoll(y, p, r);
 	}
 
-	deltaMovement.x = 0;
-	deltaMovement.z = 0;
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
-	//dbg("speed: %f\n", currentSpeed);
+	dbg("speed: %f\n", currentSpeed);
 	if (hasInput) {
-		VEC3 resultingDirection = *velocityVector;
-		resultingDirection.y = 0.f;
-		resultingDirection += desiredDirection * acceleration * delta;
-		deltaMovement = resultingDirection * delta;
-		//deltaMovement = desiredDirection * currentSpeed * delta + 0.5f * desiredDirection * acceleration * delta * delta;
+		VEC3 newVelocity = *velocityVector;
+		newVelocity.y = 0;
+		newVelocity += desiredDirection * acceleration * delta;
 
-		horizontalVelocity.x += desiredDirection.x * currentSpeed;
-		horizontalVelocity.y += desiredDirection.z * currentSpeed;
-
-		velocityVector->x = horizontalVelocity.x + desiredDirection.x * acceleration * delta;
-		velocityVector->z = horizontalVelocity.y + desiredDirection.z * acceleration * delta;
-
-		//clampear velocidad horizontal
-		horizontalVelocity.x = velocityVector->x;
-		horizontalVelocity.y = velocityVector->z;
+		horizontalVelocity.x = newVelocity.x;
+		horizontalVelocity.y = newVelocity.z;
 
 		if (horizontalVelocity.Length() > currentPowerStats->maxHorizontalSpeed) {
 			horizontalVelocity.Normalize();
 			horizontalVelocity *= currentPowerStats->maxHorizontalSpeed;
-			velocityVector->x = horizontalVelocity.x;
-			velocityVector->z = horizontalVelocity.y;
+			newVelocity.x = horizontalVelocity.x;
+			newVelocity.z = horizontalVelocity.y;
 		}
+
+		deltaMovement = newVelocity * delta;
+
+		velocityVector->x = newVelocity.x;
+		velocityVector->z = newVelocity.z;
 	}
 	else {
 		deltaMovement.x = velocityVector->x * delta;
