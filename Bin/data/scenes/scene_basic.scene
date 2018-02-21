@@ -10,12 +10,7 @@
 			"ai_patrol": {
 				"waypoints" : [ "-10 0 0", "5 0 5", "2 0 10"] 
 			},
-			"tags" : ["enemy"],
-			"collider": {
-				"is_dynamic": false,
-				"shape": "sphere",
-				"radius": 1
-			}
+			"tags" : ["enemy"]
 		}
 	},
 	{
