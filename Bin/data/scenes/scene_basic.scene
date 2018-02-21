@@ -72,8 +72,8 @@
 			"name": "xthe_camera",
 			"transform": {},
 			"camera" : {
-				"distance_to_target": 4,
-				"fov" : 80,
+				"distance_to_target": 4.5,
+				"fov" : 90,
 				"target" : "The Player",
 				"active": true
 			}
