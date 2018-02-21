@@ -1,6 +1,7 @@
 clearListener()
 gc()
 
+-- 
 struct TJsonFormatter (
 	ofilename,			-- Name of output file
 	fs, 				-- File stream

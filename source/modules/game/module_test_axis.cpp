@@ -7,7 +7,7 @@
 #include "resources/resources_manager.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
-#include "render/render_technique.h"
+#include "render/shaders/render_technique.h"
 #include "handle/handle.h"
 #include "components/comp_name.h"
 #include "components/comp_transform.h"

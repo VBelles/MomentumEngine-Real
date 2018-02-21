@@ -12,6 +12,8 @@
 		"player_controller",
 		"bullet_controller",
 		"ai_patrol",
+    	"flyover_controller",
+    	"hierarchy",
 		"camera",
 		"player_model",
 		"ground_sensor"

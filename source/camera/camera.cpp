@@ -1,6 +1,12 @@
 #include "mcv_platform.h"
 #include "camera.h"
-
+/*
+CCamera::CCamera() {
+  aspect_ratio = 1.f;
+  setPerspective(deg2rad(60.f), 1.0f, 1000.f);
+  lookAt(VEC3(1, 0, 0), VEC3(0, 0, 0), VEC3(0, 1, 0));
+}
+*/
 void CCamera::updateViewProj() {
   view_proj = view * proj;
 }

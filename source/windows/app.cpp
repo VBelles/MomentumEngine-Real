@@ -23,9 +23,17 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		EndPaint(hWnd, &ps);
 		break;
 
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
+    case CDirectoyWatcher::WM_FILE_CHANGED: {
+        const char* filename = (const char*)lParam;
+        dbg("File has changed! %s (%d)\n", filename, wParam);
+        Resources.onFileChanged(filename);
+        delete[] filename;
+        break;
+    }
+
+  case WM_DESTROY:
+    PostQuitMessage(0);
+    break;
 
 	case WM_MOUSEMOVE:
 	{
@@ -240,7 +248,10 @@ bool CApp::readConfig() {
 
 //--------------------------------------------------------------------------------------
 bool CApp::start() {
-	return CEngine::get().start();
+
+  resources_dir_watcher.start("data", getWnd());
+
+  return CEngine::get().start();
 }
 
 //--------------------------------------------------------------------------------------
