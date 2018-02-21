@@ -12,16 +12,32 @@ DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 using namespace physx;
 
 void TCompPlayerModel::debugInMenu() {
-	ImGui::DragFloat("Speed", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 20.f);
-	ImGui::DragFloat("Rotation", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
-	ImGui::DragFloat("fallingMultiplier", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
-	ImGui::DragFloat3("jumpVelocity", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	ImGui::DragFloat3("accelerationVector", &accelerationVector.x, 1.f, -1500.f, -0.1f);
+	ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
+	ImGui::DragFloat("Rotation_Ssj1", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat("FallingMultiplier_Ssj1", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
+	ImGui::DragFloat("MaxVerticalVelocity_Ssj1", &ssj1->maxVelocityVertical, 1.f, 0.f, 100.f);
+	ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	
+	ImGui::DragFloat("Speed_Ssj2", &ssj2->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
+	ImGui::DragFloat("Rotation_Ssj2", &ssj2->rotationSpeed, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat("FallingMultiplier_Ssj2", &ssj2->fallingMultiplier, 0.01f, 1.f, 2.f);
+	ImGui::DragFloat("MaxVerticalVelocity_Ssj2", &ssj2->maxVelocityVertical, 1.f, 0.f, 100.f);
+	ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	
+	ImGui::DragFloat("Speed_Ssj3", &ssj3->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
+	ImGui::DragFloat("Rotation_Ssj3", &ssj3->rotationSpeed, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat("FallingMultiplier_Ssj3", &ssj3->fallingMultiplier, 0.01f, 1.f, 2.f);
+	ImGui::DragFloat("MaxVerticalVelocity_Ssj3", &ssj3->maxVelocityVertical, 1.f, 0.f, 100.f);
+	ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);	
+
+	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
+		gravity = accelerationVector.y;
+	}
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
-	if (j.count("initialAcceleration")) accelerationVector = loadVEC3(j["initialAcceleration"]);
-	if (j.count("initialVelocity")) velocityVector = loadVEC3(j["initialVelocity"]);
+	gravity = j.value("gravity", 0.0f);
+	accelerationVector.y = gravity;
 	acceleration = j.value("acceleration", 0.0f);
 
 	ssj1 = loadPowerStats(j["ssj1"]);

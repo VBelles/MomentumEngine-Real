@@ -23,9 +23,17 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		EndPaint(hWnd, &ps);
 		break;
 
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
+    case CDirectoyWatcher::WM_FILE_CHANGED: {
+        const char* filename = (const char*)lParam;
+        dbg("File has changed! %s (%d)\n", filename, wParam);
+        Resources.onFileChanged(filename);
+        delete[] filename;
+        break;
+    }
+
+  case WM_DESTROY:
+    PostQuitMessage(0);
+    break;
 
 	case WM_MOUSEMOVE:
 	{
@@ -172,7 +180,7 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 		return false;
 
 	ShowWindow(hWnd, nCmdShow);
-	ShowCursor(false);
+	//ShowCursor(false);
 
 #ifndef HID_USAGE_PAGE_GENERIC
 #define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
@@ -206,12 +214,12 @@ void CApp::mainLoop() {
 		else {
 			doFrame();
 
-			if (resetMouse) {
+		/*	if (resetMouse) {
 				RECT rect;
 				GetWindowRect(getWnd(), &rect);
 				SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
 				resetMouse = false;
-			}
+			}*/
 		}
 	}
 }
@@ -239,7 +247,10 @@ bool CApp::readConfig() {
 
 //--------------------------------------------------------------------------------------
 bool CApp::start() {
-	return CEngine::get().start();
+
+  resources_dir_watcher.start("data", getWnd());
+
+  return CEngine::get().start();
 }
 
 //--------------------------------------------------------------------------------------

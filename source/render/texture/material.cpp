@@ -7,7 +7,7 @@ class CMaterialResourceClass : public CResourceClass {
 public:
   CMaterialResourceClass() {
     class_name = "Materials";
-    extension = ".material";
+    extensions = { ".material" };
   }
   IResource* create(const std::string& name) const override {
     dbg("Creating material %s\n", name.c_str());
@@ -57,6 +57,17 @@ bool CMaterial::create(const std::string& name) {
   }
 
   return true;
+}
+
+void CMaterial::onFileChanged(const std::string& filename) {
+  if (filename == getName()) {
+    create(filename);
+  }
+  else {
+    // Maybe a texture has been updated, get the new shader resource view
+    for (int i = 0; i < TS_COUNT; ++i)
+      srvs[i] = textures[i] ? textures[i]->getShaderResourceView() : nullptr;
+  }
 }
 
 void CMaterial::activate() const {
