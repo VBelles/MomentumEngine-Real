@@ -41,80 +41,63 @@ void TCompCamera::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	pitchAngleRange = Y_ANGLE_MAX - Y_ANGLE_MIN;
 }
 
-
-void TCompCamera::update(float dt) {
-	if (centeringCamera) {
-		UpdateCenteringCamera(dt);
-	}
-	else {
-		UpdateInputCamera(dt);
-	}
-}
-
-void TCompCamera::UpdateInputCamera(float dt) {
-	auto& pad = CEngine::get().getInput().host(Input::PLAYER_1).pad();
-	VEC2 rightAnalogInput = VEC2::Zero;
-	rightAnalogInput.x = pad.button(Input::EPadButton::PAD_RANALOG_X).value;
-	rightAnalogInput.y = pad.button(Input::EPadButton::PAD_RANALOG_Y).value;
-	//El pad manda
-	if (rightAnalogInput.Length() > padDeadZone) {
-		xIncrement -= rightAnalogInput.x * xCameraSpeed * dt;
-		yIncrement -= rightAnalogInput.y * yCameraSpeed * dt;
-	}
-	else {//Si no, mouse
-		auto& mouse = CEngine::get().getInput().host(Input::PLAYER_1).mouse();
-		xIncrement += mouse._position_delta.x * dt;
-		yIncrement += mouse._position_delta.y * dt;
-	}
-	yIncrement = clamp(yIncrement, Y_ANGLE_MIN, Y_ANGLE_MAX);
-
-	QUAT rotationQuat = QUAT::CreateFromYawPitchRoll(xIncrement, yIncrement, 0);
-
-	VEC3 localPosition = VEC3::Transform(distanceVector, rotationQuat);
-
-	myTransform->setPosition(targetTransform->getPosition() + localPosition);
+void TCompCamera::update(float delta) {
+	VEC2 increment = GetIncrementFromInput(delta);
+	UpdateMovement(increment, delta);
 	CalculateVerticalOffsetVector();
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
 	this->lookAt(myTransform->getPosition(), targetTransform->getPosition() + verticalOffsetVector, myTransform->getUp());
 }
 
-void TCompCamera::UpdateCenteringCamera(float dt) {
-	VEC3 ea = myTransform->getPosition();
-	ea.y = 0.f;
-	float distanceToCenteredCamera = VEC3::Distance(ea, centeredPosition);
-	if (distanceToCenteredCamera <= 3.f) {
-		centeredPosition.y = myTransform->getPosition().y;
-		myTransform->setPosition(centeredPosition);
-		xIncrement = myTransform->getDeltaYawToAimTo(VEC3::Forward);
-		centeringCamera = false;
-		dbg("fjghkfdg\n");
+VEC2 TCompCamera::GetIncrementFromInput(float delta) {
+	VEC2 increment = VEC2::Zero;
+	VEC2 padInput = {
+		EngineInput[Input::EPadButton::PAD_LANALOG_X].value,
+		EngineInput[Input::EPadButton::PAD_LANALOG_Y].value
+	};
+	if (padInput.Length() > padDeadZone) {
+		increment.x -= padInput.x * cameraSpeed.x * delta;
+		increment.y -= padInput.y * cameraSpeed.y * delta;
 	}
 	else {
-		float direction = myTransform->isInLeft(centeredPosition) ? -1.f : 1.f;
-		xIncrement += 6 * dt * direction;
-
-		QUAT rotationQuat = QUAT::CreateFromYawPitchRoll(xIncrement, yIncrement, 0);
-		VEC3 localPosition = VEC3::Transform(distanceVector, rotationQuat);
-		myTransform->setPosition(targetTransform->getPosition() + localPosition);
-		//dbg("Distance: %f\n", distanceToCenteredCamera);
+		auto& mouse = EngineInput.host(Input::PLAYER_1).mouse();
+		increment.x -= mouse._position_delta.x * cameraSpeed.x * delta;
+		increment.y -= mouse._position_delta.y * cameraSpeed.y * delta;
 	}
-	this->lookAt(myTransform->getPosition(), targetTransform->getPosition() + verticalOffsetVector, myTransform->getUp());
+	return increment;
+}
 
+void TCompCamera::UpdateMovement(VEC2 increment, float delta) {
+	float y, p, r;
+	myTransform->getYawPitchRoll(&y, &p, &r);
+
+	//Move the camera to the target position
+	myTransform->setPosition(targetTransform->getPosition());
+
+	//Rotate the camera
+	y += increment.x;
+	p += increment.y;
+	p = clamp(p, -Y_ANGLE_MAX, -Y_ANGLE_MIN);
+	myTransform->setYawPitchRoll(y, p, r);
+
+	//Move the camera back
+	myTransform->setPosition(myTransform->getPosition() - myTransform->getFront() * distanceToTarget);
 }
 
 void TCompCamera::CalculateVerticalOffsetVector() {
-	float currentOffset;
-
-	currentOffset = ((pitchAngleRange - (yIncrement - Y_ANGLE_MIN)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
-
+	float currentOffset = ((pitchAngleRange - (yIncrement - Y_ANGLE_MIN)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
 	verticalOffsetVector.y = currentOffset;
 }
 
 void TCompCamera::CenterCamera() {
-	//if (!centeringCamera) {
-	//	centeringCamera = true;
-	//	centeredPosition = targetTransform->getPosition() - targetTransform->getFront() * distanceToTarget;
-	//	centeredPosition.y = 0.f;
-	//	//this->lookAt(myTransform->getPosition(), targetTransform->getPosition() + verticalOffsetVector, myTransform->getUp());
-	//}
+	centeredPosition = targetTransform->getPosition() - targetTransform->getFront() * distanceToTarget;
+	VEC3 direction = targetTransform->getPosition() - centeredPosition;
+	direction.Normalize();
+	myTransform->setPosition(centeredPosition);
+	float y, p, r;
+	myTransform->getYawPitchRoll(&y, &p, &r);
+	y = atan2(direction.x, direction.z);
+	//p = asin(-direction.y); //No nos interesa el pitch
+	myTransform->setYawPitchRoll(y, p, r);
+
 }
