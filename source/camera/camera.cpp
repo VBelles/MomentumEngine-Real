@@ -44,6 +44,7 @@ VEC3 CCamera::TransformToWorld(VEC3 direction) {
 	cameraFront.Normalize();
 	cameraRight.Normalize();
 	VEC3 desiredDirection = cameraFront * direction.z + cameraRight * direction.x;
+	desiredDirection.Normalize();
 	return desiredDirection;
 }
 
