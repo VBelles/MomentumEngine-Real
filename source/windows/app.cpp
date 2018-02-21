@@ -133,7 +133,6 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 			if (mouse) {
 				mouse->setDelta(static_cast<float>(xPosRelative), static_cast<float>(yPosRelative));
 			}
-			dbg("%f, %f\n", xPosRelative, yPosRelative);
 		}
 		break;
 	}
