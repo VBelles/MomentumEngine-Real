@@ -16,12 +16,12 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Rotation", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("fallingMultiplier", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
 	ImGui::DragFloat3("jumpVelocity", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	ImGui::DragFloat3("accelerationVector", &accelerationVector.x, 1.f, -1500.f, -0.1f);
+	ImGui::DragFloat("gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f);
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
-	if (j.count("initialAcceleration")) accelerationVector = loadVEC3(j["initialAcceleration"]);
-	if (j.count("initialVelocity")) velocityVector = loadVEC3(j["initialVelocity"]);
+	gravity = j.value("gravity", 0.0f);
+	accelerationVector.y = gravity;
 	acceleration = j.value("acceleration", 0.0f);
 
 	ssj1 = loadPowerStats(j["ssj1"]);

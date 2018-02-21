@@ -28,8 +28,7 @@
 			}, 
 			"player_controller" : {},
 			"player_model" : {
-				"initialAcceleration" : "0 -55 0",
-				"initialVelocity" : "0 0 0",
+				"gravity" : -55,
 				"acceleration" : 30.0,
 				"ssj1":{
 					"rotation_speed" : 11.0,

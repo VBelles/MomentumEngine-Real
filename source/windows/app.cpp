@@ -172,7 +172,7 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 		return false;
 
 	ShowWindow(hWnd, nCmdShow);
-	ShowCursor(false);
+	//ShowCursor(false);
 
 #ifndef HID_USAGE_PAGE_GENERIC
 #define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
@@ -206,12 +206,12 @@ void CApp::mainLoop() {
 		else {
 			doFrame();
 
-			if (resetMouse) {
+		/*	if (resetMouse) {
 				RECT rect;
 				GetWindowRect(getWnd(), &rect);
 				SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
 				resetMouse = false;
-			}
+			}*/
 		}
 	}
 }
