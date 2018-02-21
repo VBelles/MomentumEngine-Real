@@ -1,11 +1,13 @@
 #pragma once
 
-#include "comp_base.h"
+#include "components/comp_base.h"
 #include "geometry/transform.h"
 #include "entity/common_msgs.h"
-#include "comp_transform.h"
-#include "comp_camera.h"
-#include "player/IActionState.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
+#include "states/IActionState.h"
+#include "PowerGauge.h"
+
 
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
@@ -18,7 +20,7 @@ struct PowerStats {
 };
 
 
-class TCompPlayerModel : public TCompBase {
+class TCompPlayerModel : public TCompBase, PowerGauge::PowerListener {
 	DECL_SIBLING_ACCESS();
 
 public:
@@ -38,6 +40,8 @@ public:
 	void SetMovementInput(VEC2 input, float delta);
 	void JumpButtonPressed();
 	void CenterCameraButtonPressed();
+	void ReleasePowerButtonPressed();
+	void GainPowerButtonPressed();
 
 	TCompTransform* GetTransform() { return myTransform; }
 	TCompCamera* GetCamera() { return currentCamera; }
@@ -49,6 +53,8 @@ public:
 	PowerStats* GetPowerStats();
 	
 	bool isGrounded = false;
+
+	void OnLevelChange(int powerLevel);
 
 private:
 	VEC3 deltaMovement;
@@ -68,6 +74,8 @@ private:
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 	PowerStats* loadPowerStats(const json& j);
+
+	PowerGauge* powerGauge;
 
 	std::map<ActionStates, IActionState*> actionStates;
 };

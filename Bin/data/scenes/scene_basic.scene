@@ -51,6 +51,9 @@
 					"jumpVelocity" : " 0 20 0",
 					"maxVelocityVertical" : 30.0,
 					"falling_multiplier" : 1.05
+				},
+				"power_gauge":{
+
 				}
 			},
 			"collider": {

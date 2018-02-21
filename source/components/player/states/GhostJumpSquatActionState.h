@@ -1,15 +1,15 @@
 #pragma once
 
-#include "components/comp_player_model.h"
+#include "components/player/comp_player_model.h"
 #include "AirborneActionState.h"
 
-class GhostJumpWindowActionState : public AirborneActionState {
+class GhostJumpSquatActionState : public AirborneActionState {
 	CTimer timer;
-	int frameWindow = 6;
+	int squatFrames = 2;
 	float squatTime;
 	float enteringVelocity = 0.f;
 public:
-	GhostJumpWindowActionState(TCompPlayerModel* player);
+	GhostJumpSquatActionState(TCompPlayerModel* player);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

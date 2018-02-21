@@ -1,11 +1,12 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
-#include "player/AirborneActionState.h"
-#include "player/GroundedActionState.h"
-#include "player/JumpSquatActionState.h"
-#include "player/GhostJumpSquatActionState.h"
-#include "player/GhostJumpWindowActionState.h"
+#include "states/AirborneActionState.h"
+#include "states/GroundedActionState.h"
+#include "states/JumpSquatActionState.h"
+#include "states/GhostJumpSquatActionState.h"
+#include "states/GhostJumpWindowActionState.h"
+#include "PowerGauge.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -17,18 +18,18 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("FallingMultiplier_Ssj1", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
 	ImGui::DragFloat("MaxVerticalVelocity_Ssj1", &ssj1->maxVelocityVertical, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	
+
 	ImGui::DragFloat("Speed_Ssj2", &ssj2->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj2", &ssj2->rotationSpeed, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("FallingMultiplier_Ssj2", &ssj2->fallingMultiplier, 0.01f, 1.f, 2.f);
 	ImGui::DragFloat("MaxVerticalVelocity_Ssj2", &ssj2->maxVelocityVertical, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	
+
 	ImGui::DragFloat("Speed_Ssj3", &ssj3->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj3", &ssj3->rotationSpeed, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("FallingMultiplier_Ssj3", &ssj3->fallingMultiplier, 0.01f, 1.f, 2.f);
 	ImGui::DragFloat("MaxVerticalVelocity_Ssj3", &ssj3->maxVelocityVertical, 1.f, 0.f, 100.f);
-	ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);	
+	ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		gravity = accelerationVector.y;
@@ -43,7 +44,9 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	ssj1 = loadPowerStats(j["ssj1"]);
 	ssj2 = loadPowerStats(j["ssj2"]);
 	ssj3 = loadPowerStats(j["ssj3"]);
-	
+
+	powerGauge = new PowerGauge(this);
+
 }
 
 PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
@@ -65,12 +68,17 @@ void TCompPlayerModel::SetActionState(ActionStates newState) {
 }
 
 
+
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
 	return currentPowerStats;
+}
+
+void TCompPlayerModel::OnLevelChange(int powerLevel) {
+	dbg("Power changed: %d\n", powerLevel);
 }
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -99,11 +107,12 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 void TCompPlayerModel::update(float dt) {
 	frame++;
 	actionState->update(dt);
+	powerGauge->Update(dt);
 }
 
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
-	actionState->SetMovementInput(input, delta);	
+	actionState->SetMovementInput(input, delta);
 }
 
 void TCompPlayerModel::JumpButtonPressed() {
@@ -112,4 +121,17 @@ void TCompPlayerModel::JumpButtonPressed() {
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
 	currentCamera->CenterCamera();
+}
+
+void TCompPlayerModel::ReleasePowerButtonPressed() {
+	powerGauge->ReleasePower();
+}
+
+void TCompPlayerModel::GainPowerButtonPressed() {
+	powerGauge->GainPower();
+}
+
+
+TCompPlayerModel::~TCompPlayerModel(void) {
+	dbg("Wololo");
 }
