@@ -10,7 +10,6 @@ public:
     extensions = { ".mesh" };
   }
   IResource* create(const std::string& name) const override {
-    dbg("Creating mesh %s\n", name.c_str());
     CRenderMesh* res = loadMesh(name.c_str());
     return res;
   }

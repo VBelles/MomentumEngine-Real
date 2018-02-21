@@ -19,11 +19,27 @@
 				"rotation_speed" : 3.0,
 				"speed" : 3.0
 			},
-			    "collider": {
-					"shape": "capsule",
-					"is_character_controller": true,
-					"radius": 0.5,
-					"height": 1.0
+			"collider": {
+				"shape": "capsule",
+				"is_character_controller": true,
+				"radius": 0.5,
+				"height": 1.0
+			}
+		},
+		"entity": {
+			"name": "Ground sensor",
+			"transform": {
+				"pos": "5 0 0"
+			},
+			"collider": {
+				"shape": "box",
+				"is_character_controller": false,
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"halfExtent" : "0.5 0.1 0.5"
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
 			}
 		}
 	}

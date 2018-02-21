@@ -10,12 +10,12 @@ void GroundedActionState::update (float delta) {
 
 void GroundedActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
-	dbg("Entrando en grounded\n");
+	//dbg("Entrando en grounded\n");
 }
 
 void GroundedActionState::OnStateExit(IActionState * nextState) {
 	IActionState::OnStateExit(nextState);
-	dbg("Saliendo de grounded\n");
+	//dbg("Saliendo de grounded\n");
 }
 
 void GroundedActionState::SetMovementInput(VEC2 input, float delta) {

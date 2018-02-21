@@ -8,7 +8,7 @@ JumpSquatActionState::JumpSquatActionState(TCompPlayerModel * player)
 
 void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	//GroundedActionState::OnStateEnter(lastState);
-	dbg("Entrando en JumpSquat\n");
+	//dbg("Entrando en JumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
 	enteringVelocity = player->GetVelocityVector()->Length();
@@ -16,7 +16,7 @@ void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
 
 void JumpSquatActionState::OnStateExit(IActionState * nextState) {
 	//GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de JumpSquat\n");
+	//dbg("Saliendo de JumpSquat\n");
 }
 
 void JumpSquatActionState::update (float delta) {

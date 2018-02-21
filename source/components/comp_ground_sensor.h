@@ -5,9 +5,8 @@
 #include "entity/common_msgs.h"
 #include "PxPhysicsAPI.h"
 
-class TCompGroundSensor : public TCompCollider {
+class TCompGroundSensor : public TCompBase {
   DECL_SIBLING_ACCESS();
-
 
 public:
   static void registerMsgs();
@@ -16,4 +15,6 @@ public:
   void update(float dt);
   void onCreate(const TMsgEntityCreated& msg);
   void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+  void onTriggerEnter(const TMsgTriggerEnter& msg);
+  void onTriggerExit(const TMsgTriggerExit& msg);
 };

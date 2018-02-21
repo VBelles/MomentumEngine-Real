@@ -10,12 +10,12 @@ void AirborneActionState::update (float delta) {
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
-	dbg("Entrando en airborne\n");
+	//dbg("Entrando en airborne\n");
 }
 
 void AirborneActionState::OnStateExit(IActionState * nextState) {
 	IActionState::OnStateExit(nextState);
-	dbg("Saliendo de airborne\n");
+	//dbg("Saliendo de airborne\n");
 }
 
 void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
@@ -41,7 +41,7 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
-	dbg("speed: %f\n", currentSpeed);
+	//dbg("speed: %f\n", currentSpeed);
 	if (hasInput) {
 		VEC3 newVelocity = *velocityVector;
 		newVelocity.y = 0;

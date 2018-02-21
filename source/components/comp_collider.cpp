@@ -34,7 +34,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
     if (j.count("halfExtent")) {
         config.halfExtent = loadVEC3(j["halfExtent"]);
     }
-    dbg("%s: %f\n", shape.c_str(), config.halfExtent.y);
 }
 
 void TCompCollider::registerMsgs() {

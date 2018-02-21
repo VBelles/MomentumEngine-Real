@@ -25,7 +25,7 @@
 				}
 			],
 			"transform": {
-				"pos": "0 5 0"
+				"pos": "0 0 0"
 			}, 
 			"player_controller" : {},
 			"player_model" : {
@@ -57,13 +57,8 @@
 				"shape": "capsule",
 				"is_character_controller": true,
 				"radius": 0.3,
-				"height": 0.76
-			},
-			"ground_sensor" : {
-				"shape": "box",
-				"halfExtent" : "0.5 0.2 0.5",
-				"height" : 0.65,
-				"is_trigger" : true
+				"height": 0.76,
+				"group" : "Player"
 			}
 		}
 	},
@@ -77,6 +72,24 @@
 				"target" : "The Player",
 				"active": true
 			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Ground sensor",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"collider": {
+				"shape": "box",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"halfExtent" : "0.5 0.2 0.5"
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"ground_sensor" : {}
 		}
 	}
 ]

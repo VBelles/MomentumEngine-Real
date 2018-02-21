@@ -66,8 +66,6 @@ void TCompBulletController::update(float dt) {
   if (h_near.isValid()) {
     CEntity *e_near = h_near;
 
-    dbg("Entity %s has been hit\n", e_near->getName());
-
     // Notify the entity that he has been hit
     TMsgDamage msg;
     msg.h_sender = h_sender;      // Who send this bullet
