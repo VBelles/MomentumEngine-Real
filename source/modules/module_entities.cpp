@@ -6,6 +6,7 @@
 #include "entity/entity.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
+#include "components/comp_render_ui.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 
@@ -116,6 +117,11 @@ void CModuleEntities::render()
     for (auto& m : c->materials)
       m->activate();
     c->mesh->activateAndRender();
+  });
+
+  auto om_render_ui = getObjectManager<TCompRenderUI>();
+  om_render_ui->forEach([](TCompRenderUI* c) {
+	  c->renderUI();
   });
 
 }
