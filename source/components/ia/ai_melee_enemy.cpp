@@ -66,13 +66,26 @@ void CAIMeleeEnemy::ChaseState(float delta) {
 	transform->setPosition(myPosition);
 
 	if (!IsPlayerInFov()) {
+		timer.reset();
 		ChangeState("recall");
 	}
 }
 
 void CAIMeleeEnemy::RecallState(float delta) {
-	transform->setPosition(spawnPosition);
-	ChangeState("idle");
+	if(timer.elapsed() <= 2.f) {
+		float y, r, p;
+		transform->getYawPitchRoll(&y, &p, &r);
+		y += 35 * delta;
+		transform->setYawPitchRoll(y, p, r);
+		if (timer.elapsed() > 1.f) {
+			transform->setPosition(transform->getPosition() + VEC3::Up * 25.f * delta);
+		}
+	}
+	else {
+		transform->setPosition(spawnPosition);
+		ChangeState("idle");
+	}
+	
 }
 
 boolean CAIMeleeEnemy::IsPlayerInFov() {

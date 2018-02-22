@@ -17,6 +17,8 @@ private:
 
 	VEC3 spawnPosition;
 
+	CTimer timer;
+
 	void OnHit(const TMsgDamage& msg);
 
 	void OnGroupCreated(const TMsgEntitiesGroupCreated & msg);
