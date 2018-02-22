@@ -11,5 +11,7 @@ public:
 	void OnStateExit(IActionState* nextState) override;
 	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
+	void OnJumpLongButton() override;
+
 	virtual void OnLeavingGround();
 };

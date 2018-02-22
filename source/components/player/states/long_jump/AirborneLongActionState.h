@@ -1,17 +1,18 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
-#include "GroundedActionState.h"
+#include "../AirborneActionState.h"
 
-
-class RunActionState : public GroundedActionState {
+class AirborneLongActionState : public AirborneActionState {
+private:
+	bool isTouching = false;
 public:
-	RunActionState(TCompPlayerModel* player);
+	AirborneLongActionState(TCompPlayerModel* player);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
 	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
-	void OnJumpLongButton() override;
-	virtual void OnLeavingGround();
+	virtual void OnLanding();
+
 };

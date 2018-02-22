@@ -1,11 +1,11 @@
 #include "mcv_platform.h"
-#include "AirborneActionState.h"
+#include "AirborneLongActionState.h"
 
-AirborneActionState::AirborneActionState(TCompPlayerModel * player) 
-	: IActionState::IActionState(player) {
+AirborneLongActionState::AirborneLongActionState(TCompPlayerModel * player)
+	: AirborneActionState::AirborneActionState(player) {
 }
 
-void AirborneActionState::update (float delta) {
+void AirborneLongActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
 	playerTransform = player->GetTransform();
 	currentCamera = player->GetCamera();
@@ -29,16 +29,15 @@ void AirborneActionState::update (float delta) {
 	float currentSpeed = horizontalVelocity.Length();
 	//dbg("speed: %f\n", currentSpeed);
 	if (hasInput) {
-		VEC3 newVelocity = *velocityVector;
-		newVelocity.y = 0;
+		VEC3 newVelocity = { velocityVector->x , 0, velocityVector->z };
 		newVelocity += desiredDirection * currentPowerStats->acceleration * delta;
 
 		horizontalVelocity.x = newVelocity.x;
 		horizontalVelocity.y = newVelocity.z;
 
-		if (horizontalVelocity.Length() > currentPowerStats->maxHorizontalSpeed) {
+		if (horizontalVelocity.Length() > currentPowerStats->longJumpVelocityVector.z) {
 			horizontalVelocity.Normalize();
-			horizontalVelocity *= currentPowerStats->maxHorizontalSpeed;
+			horizontalVelocity *= currentPowerStats->longJumpVelocityVector.z;
 			newVelocity.x = horizontalVelocity.x;
 			newVelocity.z = horizontalVelocity.y;
 		}
@@ -53,7 +52,7 @@ void AirborneActionState::update (float delta) {
 		deltaMovement.z = velocityVector->z * delta;
 	}
 
-	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
+	currentPowerStats->currentGravityMultiplier = currentPowerStats->longGravityMultiplier;
 	float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
 	deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
 	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
@@ -74,23 +73,25 @@ void AirborneActionState::update (float delta) {
 	}
 }
 
-void AirborneActionState::OnStateEnter(IActionState * lastState) {
-	IActionState::OnStateEnter(lastState);
+void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
+	AirborneActionState::OnStateEnter(lastState);
+	//dbg("Entrando en airborne long\n");
 }
 
-void AirborneActionState::OnStateExit(IActionState * nextState) {
-	IActionState::OnStateExit(nextState);
+void AirborneLongActionState::OnStateExit(IActionState * nextState) {
+	AirborneActionState::OnStateExit(nextState);
+	//dbg("Saliendo de airborne long\n");
 }
 
-void AirborneActionState::SetMovementInput(VEC2 input) {
+void AirborneLongActionState::SetMovementInput(VEC2 input) {
 	movementInput = input;
 }
 
-void AirborneActionState::OnJumpHighButton() {
+void AirborneLongActionState::OnJumpHighButton() {
 	//grab
 }
 
-void AirborneActionState::OnLanding() {
+void AirborneLongActionState::OnLanding() {
 	//Ir a landing action state
 	player->SetActionState(TCompPlayerModel::ActionStates::Run);
 }

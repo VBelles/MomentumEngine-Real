@@ -30,27 +30,35 @@
 			"player_controller" : {},
 			"player_model" : {
 				"gravity" : -55,
-				"acceleration" : 30.0,
 				"ssj1":{
 					"rotation_speed" : 11.0,
-					"maxSpeed" : 10.0,
+					"maxSpeed" : 7.0,
 					"jumpVelocity" : " 0 20 0",
+					"longJumpVelocity" : " 0 11 12",
 					"maxVelocityVertical" :  30.0,
-					"falling_multiplier" : 1.05
+					"acceleration" : 30.0,
+					"falling_multiplier" : 1.05,
+					"long_gravity_multiplier" : 0.60
 				},
 				"ssj2":{
-					"rotation_speed" : 11.0,
-					"maxSpeed" : 15.0,
-					"jumpVelocity" : " 0 26.7 0",
+					"rotation_speed" : 14.0,
+					"maxSpeed" : 11.0,
+					"jumpVelocity" : " 0 25 0",
+					"longJumpVelocity" : " 0 12 17",
 					"maxVelocityVertical" : 30.0,
-					"falling_multiplier" : 1.05
+					"acceleration" : 32.0,
+					"falling_multiplier" : 1.05,
+					"long_gravity_multiplier" : 0.60
 				},
 				"ssj3":{
-					"rotation_speed" : 11.0,
-					"maxSpeed" : 20.0,
-					"jumpVelocity" : " 0 32.1 0",
+					"rotation_speed" : 17.0,
+					"maxSpeed" : 15.0,
+					"jumpVelocity" : " 0 30 0",
+					"longJumpVelocity" : " 0 13 23",
 					"maxVelocityVertical" : 30.0,
-					"falling_multiplier" : 1.05
+					"acceleration" : 35.0,
+					"falling_multiplier" : 1.05,
+					"long_gravity_multiplier" : 0.60
 				},
 				"power_gauge":{
 				}

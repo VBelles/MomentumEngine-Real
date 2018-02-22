@@ -27,6 +27,10 @@ void RunActionState::OnJumpHighButton() {
 	player->SetActionState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
+void RunActionState::OnJumpLongButton() {
+	player->SetActionState(TCompPlayerModel::ActionStates::JumpSquatLong);
+}
+
 void RunActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
 	player->SetActionState(TCompPlayerModel::ActionStates::GhostJumpWindow);

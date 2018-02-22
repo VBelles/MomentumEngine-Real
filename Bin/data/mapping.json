@@ -38,5 +38,20 @@
 		"name" : "gain_power",
 		"all" : false,
 		"buttons" : ["pad_r1", "e"]
+	},
+	{
+		"name" : "long_jump",
+		"all" : false,
+		"buttons" : ["pad_x", "lshift"]
+	},
+	{
+		"name" : "fast_attack",
+		"all" : false,
+		"buttons" : ["pad_b", "mouse_left"]
+	},
+	{
+		"name" : "strong_attack",
+		"all" : false,
+		"buttons" : ["pad_y", "mouse_right"]
 	}
 ]
