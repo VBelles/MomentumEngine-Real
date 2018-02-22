@@ -79,20 +79,20 @@
 	},
 	{
 		"entity": {
-			"name": "Ground sensor",
-			"transform": {
-				"pos": "0 0 0"
-			},
+			"name": "Player hitbox",
+			"transform": {},
 			"collider": {
-				"shape": "box",
+				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"halfExtent" : "0.5 0.2 0.5"
+				"radius" : 0.3
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
 			},
-			"ground_sensor" : {}
+			"hitbox" : {
+				"offset" : "0.6 0.5 0"
+			}
 		}
 	},
 	{

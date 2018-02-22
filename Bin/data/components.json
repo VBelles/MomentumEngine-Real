@@ -17,6 +17,7 @@
 		"camera",
 		"player_model",
 		"ground_sensor",
-		"ai_melee_enemy"
+		"ai_melee_enemy",
+		"hitbox"
 	]
 }

@@ -65,6 +65,13 @@ public:
     return !(*this == h);
   }
 
+  bool operator<(CHandle h) const {
+	  bool ret = false;
+	  if (external_index == h.external_index) ret = age < h.age;
+	  else ret = external_index < h.external_index;
+	  return ret;
+  }
+
   uint32_t asUnsigned() const { return *(uint32_t*)this; }
   void fromUnsigned(uint32_t data) { *(uint32_t*)this = data; }
   // When we want to store/retrieve the handle in a void* 
