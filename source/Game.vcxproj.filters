@@ -20,7 +20,6 @@
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\player\PowerGauge.cpp" />
-    <ClCompile Include="components\player\states\AirborneNormalActionState.cpp" />
     <ClCompile Include="components\player\states\RunActionState.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
@@ -55,10 +54,8 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
-    <ClCompile Include="components\player\states\GhostJumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
-    <ClCompile Include="components\player\states\JumpSquatActionState.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
@@ -79,6 +76,12 @@
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="components\ia\ai_melee_enemy.cpp" />
+    <ClCompile Include="components\player\states\long_jump\AirborneLongActionState.cpp" />
+    <ClCompile Include="components\player\states\long_jump\GhostJumpSquatLongActionState.cpp" />
+    <ClCompile Include="components\player\states\long_jump\JumpSquatLongActionState.cpp" />
+    <ClCompile Include="components\player\states\normal_jump\AirborneNormalActionState.cpp" />
+    <ClCompile Include="components\player\states\normal_jump\GhostJumpSquatActionState.cpp" />
+    <ClCompile Include="components\player\states\normal_jump\JumpSquatActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -102,7 +105,6 @@
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\player\PowerGauge.h" />
-    <ClInclude Include="components\player\states\AirborneNormalActionState.h" />
     <ClInclude Include="components\player\states\RunActionState.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
@@ -152,11 +154,9 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="components\player\states\AirborneActionState.h" />
-    <ClInclude Include="components\player\states\GhostJumpSquatActionState.h" />
     <ClInclude Include="components\player\states\GhostJumpWindowActionState.h" />
     <ClInclude Include="components\player\states\GroundedActionState.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
-    <ClInclude Include="components\player\states\JumpSquatActionState.h" />
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
@@ -182,6 +182,12 @@
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="windows\app.h" />
     <ClInclude Include="components\ia\ai_melee_enemy.h" />
+    <ClInclude Include="components\player\states\long_jump\AirborneLongActionState.h" />
+    <ClInclude Include="components\player\states\long_jump\GhostJumpSquatLongActionState.h" />
+    <ClInclude Include="components\player\states\long_jump\JumpSquatLongActionState.h" />
+    <ClInclude Include="components\player\states\normal_jump\AirborneNormalActionState.h" />
+    <ClInclude Include="components\player\states\normal_jump\GhostJumpSquatActionState.h" />
+    <ClInclude Include="components\player\states\normal_jump\JumpSquatActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

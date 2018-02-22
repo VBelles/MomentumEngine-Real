@@ -13,10 +13,13 @@ struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
 	float rotationSpeed = 0.f;
 	float fallingMultiplier = 1.1f;
+	float longGravityMultiplier = 1.f;
 	float normalGravityMultiplier = 1.f;
 	float currentGravityMultiplier = 1.f;
 	float maxVelocityVertical = 30.f;
+	float acceleration = 30.f;
 	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
+	VEC3 longJumpVelocityVector = { 0.f, 6.f, 12.f };
 };
 
 
@@ -27,7 +30,8 @@ public:
 	int frame = 0;
 	enum ActionStates{
 		Grounded, Airborne, JumpSquat, GhostJumpSquat,
-		GhostJumpWindow, Run, AirborneNormal,
+		GhostJumpWindow, Run, AirborneNormal, JumpSquatLong,
+		AirborneLong, GhostJumpSquatLong
 	};
 	IActionState* actionState;
 	
@@ -38,6 +42,9 @@ public:
 	void update(float dt);
 	void SetMovementInput(VEC2 input, float delta);
 	void JumpButtonPressed();
+	void LongJumpButtonPressed();
+	void FastAttackButtonPressed();
+	void StrongAttackButtonPressed();
 	void CenterCameraButtonPressed();
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();
@@ -47,7 +54,6 @@ public:
 	TCompCollider* GetCollider() { return collider; }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
-	float GetAcceleration() { return acceleration; }
 	
 	PowerStats* GetPowerStats();
 	
@@ -62,7 +68,6 @@ private:
 	TCompCollider* collider;
 	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
-	float acceleration;
 	float gravity = 0;
 
 	PowerStats* ssj1;

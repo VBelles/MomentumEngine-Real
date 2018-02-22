@@ -5,12 +5,14 @@
 #include "PowerGauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
-#include "states/JumpSquatActionState.h"
-#include "states/GhostJumpSquatActionState.h"
+#include "states/normal_jump/JumpSquatActionState.h"
+#include "states/normal_jump/GhostJumpSquatActionState.h"
 #include "states/GhostJumpWindowActionState.h"
 #include "states/RunActionState.h"
-#include "states/AirborneNormalActionState.h"
-
+#include "states/normal_jump/AirborneNormalActionState.h"
+#include "states/long_jump/AirborneLongActionState.h"
+#include "states/long_jump/GhostJumpSquatLongActionState.h"
+#include "states/long_jump/JumpSquatLongActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -20,20 +22,29 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj1", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("FallingMultiplier_Ssj1", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
+	ImGui::DragFloat("LongGravityMultiplier_Ssj1", &ssj1->longGravityMultiplier, 1.f, 0.f, 2.f);
 	ImGui::DragFloat("MaxVerticalVelocity_Ssj1", &ssj1->maxVelocityVertical, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("Acceleration_Ssj1", &ssj1->acceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("LongJumpVelocity_Ssj1", &ssj1->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	ImGui::DragFloat("Speed_Ssj2", &ssj2->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj2", &ssj2->rotationSpeed, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("FallingMultiplier_Ssj2", &ssj2->fallingMultiplier, 0.01f, 1.f, 2.f);
+	ImGui::DragFloat("LongGravityMultiplier_Ssj2", &ssj2->longGravityMultiplier, 1.f, 0.f, 2.f);
 	ImGui::DragFloat("MaxVerticalVelocity_Ssj2", &ssj2->maxVelocityVertical, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("Acceleration_Ssj2", &ssj2->acceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("LongJumpVelocity_Ssj2", &ssj2->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	ImGui::DragFloat("Speed_Ssj3", &ssj3->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj3", &ssj3->rotationSpeed, 0.1f, 0.f, 20.f);
 	ImGui::DragFloat("FallingMultiplier_Ssj3", &ssj3->fallingMultiplier, 0.01f, 1.f, 2.f);
+	ImGui::DragFloat("LongGravityMultiplier_Ssj3", &ssj3->longGravityMultiplier, 1.f, 0.f, 2.f);
 	ImGui::DragFloat("MaxVerticalVelocity_Ssj3", &ssj3->maxVelocityVertical, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("Acceleration_Ssj3", &ssj3->acceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		gravity = accelerationVector.y;
@@ -44,7 +55,6 @@ void TCompPlayerModel::debugInMenu() {
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	gravity = j.value("gravity", 0.0f);
 	accelerationVector.y = gravity;
-	acceleration = j.value("acceleration", 0.0f);
 
 	ssj1 = loadPowerStats(j["ssj1"]);
 	ssj2 = loadPowerStats(j["ssj2"]);
@@ -59,8 +69,11 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	ssj->maxHorizontalSpeed = j.value("maxSpeed", 0.0f);
 	ssj->rotationSpeed = j.value("rotation_speed", 0.0f);
 	ssj->fallingMultiplier = j.value("falling_multiplier", 0.0f);
+	ssj->longGravityMultiplier = j.value("long_gravity_multiplier", 0.0f);
 	ssj->maxVelocityVertical = j.value("maxVelocityVertical", 0.0f);
 	ssj->jumpVelocityVector = loadVEC3(j["jumpVelocity"]);
+	ssj->longJumpVelocityVector = loadVEC3(j["longJumpVelocity"]);
+	ssj->acceleration = j.value("acceleration", 0.0f);
 	return ssj;
 }
 
@@ -120,6 +133,39 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 		ImGui::End();
 		ImGui::PopStyleColor();
+
+		ImGui::Begin("Puta vida", &showWindow);
+		ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
+		ImGui::DragFloat("Rotation_Ssj1", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
+		ImGui::DragFloat("FallingMultiplier_Ssj1", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
+		ImGui::DragFloat("LongGravityMultiplier_Ssj1", &ssj1->longGravityMultiplier, 1.f, 0.f, 2.f);
+		ImGui::DragFloat("MaxVerticalVelocity_Ssj1", &ssj1->maxVelocityVertical, 1.f, 0.f, 100.f);
+		ImGui::DragFloat("Acceleration_Ssj1", &ssj1->acceleration, 1.f, 0.f, 100.f);
+		ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+		ImGui::DragFloat3("LongJumpVelocity_Ssj1", &ssj1->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+
+		ImGui::DragFloat("Speed_Ssj2", &ssj2->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
+		ImGui::DragFloat("Rotation_Ssj2", &ssj2->rotationSpeed, 0.1f, 0.f, 20.f);
+		ImGui::DragFloat("FallingMultiplier_Ssj2", &ssj2->fallingMultiplier, 0.01f, 1.f, 2.f);
+		ImGui::DragFloat("LongGravityMultiplier_Ssj2", &ssj2->longGravityMultiplier, 1.f, 0.f, 2.f);
+		ImGui::DragFloat("MaxVerticalVelocity_Ssj2", &ssj2->maxVelocityVertical, 1.f, 0.f, 100.f);
+		ImGui::DragFloat("Acceleration_Ssj2", &ssj2->acceleration, 1.f, 0.f, 100.f);
+		ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+		ImGui::DragFloat3("LongJumpVelocity_Ssj2", &ssj2->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+
+		ImGui::DragFloat("Speed_Ssj3", &ssj3->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
+		ImGui::DragFloat("Rotation_Ssj3", &ssj3->rotationSpeed, 0.1f, 0.f, 20.f);
+		ImGui::DragFloat("FallingMultiplier_Ssj3", &ssj3->fallingMultiplier, 0.01f, 1.f, 2.f);
+		ImGui::DragFloat("LongGravityMultiplier_Ssj3", &ssj3->longGravityMultiplier, 1.f, 0.f, 2.f);
+		ImGui::DragFloat("MaxVerticalVelocity_Ssj3", &ssj3->maxVelocityVertical, 1.f, 0.f, 100.f);
+		ImGui::DragFloat("Acceleration_Ssj3", &ssj3->acceleration, 1.f, 0.f, 100.f);
+		ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+		ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+
+		if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
+			gravity = accelerationVector.y;
+		}
+		ImGui::End();
 	
 	});
 	myTransform = get<TCompTransform>();
@@ -139,6 +185,9 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(this) },
 		{ ActionStates::Run, new RunActionState(this) },
 		{ ActionStates::AirborneNormal, new AirborneNormalActionState(this) },
+		{ ActionStates::GhostJumpSquatLong, new GhostJumpSquatLongActionState(this) },
+		{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(this) },
+		{ ActionStates::AirborneLong, new AirborneLongActionState(this) },
 	};
 	SetActionState(ActionStates::Run);
 	currentPowerStats = ssj1;
@@ -159,6 +208,18 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 
 void TCompPlayerModel::JumpButtonPressed() {
 	actionState->OnJumpHighButton();
+}
+
+void TCompPlayerModel::LongJumpButtonPressed() {
+	actionState->OnJumpLongButton();
+}
+
+void TCompPlayerModel::FastAttackButtonPressed() {
+	actionState->OnFastAttack();
+}
+
+void TCompPlayerModel::StrongAttackButtonPressed() {
+	actionState->OnStrongAttack();
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {

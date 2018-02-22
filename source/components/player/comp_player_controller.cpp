@@ -54,6 +54,15 @@ void TCompPlayerController::update(float dt) {
 	if (EngineInput["jump"].getsPressed()) {
 		playerModel->JumpButtonPressed();
 	}
+	if (EngineInput["long_jump"].getsPressed()) {
+		playerModel->LongJumpButtonPressed();
+	}
+	if (EngineInput["fast_attack"].getsPressed()) {
+		playerModel->FastAttackButtonPressed();
+	}
+	if (EngineInput["strong_attack"].getsPressed()) {
+		playerModel->StrongAttackButtonPressed();
+	}
 	if (EngineInput["center_camera"].getsPressed()) {
 		playerModel->CenterCameraButtonPressed();
 	}

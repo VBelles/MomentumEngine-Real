@@ -13,7 +13,6 @@ void GroundedActionState::update (float delta) {
 	accelerationVector = player->GetAccelerationVector();
 	velocityVector = player->GetVelocityVector();
 	PowerStats* currentPowerStats = player->GetPowerStats();
-	float acceleration = player->GetAcceleration();
 
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
 	VEC3 targetPos = playerTransform->getPosition() + desiredDirection * currentPowerStats->maxHorizontalSpeed * delta;
@@ -32,13 +31,13 @@ void GroundedActionState::update (float delta) {
 	float currentSpeed = horizontalVelocity.Length();
 	//dbg("current speed: %f\n", currentSpeed);
 	if (hasInput) {
-		deltaMovement = playerTransform->getFront() * currentSpeed * delta + 0.5f * playerTransform->getFront() * acceleration * delta * delta;
+		deltaMovement = playerTransform->getFront() * currentSpeed * delta + 0.5f * playerTransform->getFront() * currentPowerStats->acceleration * delta * delta;
 
 		horizontalVelocity.x = playerTransform->getFront().x * currentSpeed;
 		horizontalVelocity.y = playerTransform->getFront().z * currentSpeed;
 
-		velocityVector->x = horizontalVelocity.x + playerTransform->getFront().x * acceleration * delta;
-		velocityVector->z = horizontalVelocity.y + playerTransform->getFront().z * acceleration * delta;
+		velocityVector->x = horizontalVelocity.x + playerTransform->getFront().x * currentPowerStats->acceleration * delta;
+		velocityVector->z = horizontalVelocity.y + playerTransform->getFront().z * currentPowerStats->acceleration * delta;
 
 		//clampear velocidad horizontal
 		horizontalVelocity.x = velocityVector->x;
@@ -88,6 +87,10 @@ void GroundedActionState::SetMovementInput(VEC2 input) {
 
 void GroundedActionState::OnJumpHighButton() {
 	player->SetActionState(TCompPlayerModel::ActionStates::JumpSquat);
+}
+
+void GroundedActionState::OnJumpLongButton() {
+	player->SetActionState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void GroundedActionState::OnLeavingGround() {
