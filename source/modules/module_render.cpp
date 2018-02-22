@@ -94,6 +94,7 @@ void CModuleRender::update(float delta)
 
 void CModuleRender::render()
 {
+	
   // Edit the Background color
   ImGui::ColorEdit4("Background Color", _backgroundColor);
 

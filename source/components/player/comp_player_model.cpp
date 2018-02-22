@@ -7,6 +7,7 @@
 #include "states/GhostJumpSquatActionState.h"
 #include "states/GhostJumpWindowActionState.h"
 #include "PowerGauge.h"
+#include "components/comp_render_ui.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -34,6 +35,7 @@ void TCompPlayerModel::debugInMenu() {
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		gravity = accelerationVector.y;
 	}
+
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
@@ -91,6 +93,32 @@ void TCompPlayerModel::OnLevelChange(int powerLevel) {
 }
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+	TCompRenderUI* renderUI = get<TCompRenderUI>();
+	
+	renderUI->registerOnRenderUI([&]() {
+		bool showWindow = true;
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor {0, 0, 0, 0});
+		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 25, 0 + 25));
+		ImGui::SetNextWindowSize(ImVec2(200, 70));
+		ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
+		
+		//Hp bar
+		std::string hpProgressBarText = "HP: " + std::to_string(hp) + "/" + std::to_string(maxHp);
+		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 0, 255, 0 });
+		ImGui::ProgressBar((float) hp / maxHp, ImVec2(-1,0), hpProgressBarText.c_str());
+		ImGui::PopStyleColor();
+
+		//Power bar
+		std::string powerProgressBarText ="Power: " + std::to_string((int) powerGauge->power) + "/" + std::to_string((int) powerGauge->maxPower);
+		ImVec4 color = powerGauge->powerLevel == 1 ? ImColor{ 255, 255, 0 } : powerGauge->powerLevel == 2 ? ImColor{ 255, 255/2, 0 } : ImColor{ 255, 0, 0 };
+		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
+		ImGui::ProgressBar((float)powerGauge->power / powerGauge->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
+		ImGui::PopStyleColor();
+
+		ImGui::End();
+		ImGui::PopStyleColor();
+	
+	});
 	myTransform = get<TCompTransform>();
 
 	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");

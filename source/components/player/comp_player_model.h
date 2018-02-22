@@ -65,12 +65,14 @@ private:
 	float acceleration;
 	float gravity = 0;
 
-
 	PowerStats* ssj1;
 	PowerStats* ssj2;
 	PowerStats* ssj3;
 	PowerStats* currentPowerStats;
 
+	int hp = 2;
+	int maxHp = 3;
+ 
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 	PowerStats* loadPowerStats(const json& j);

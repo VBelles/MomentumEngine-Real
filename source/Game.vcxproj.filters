@@ -179,6 +179,7 @@
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
     <ClCompile Include="components\player\states\JumpSquatActionState.cpp" />
     <ClCompile Include="components\player\PowerGauge.cpp" />
+    <ClCompile Include="components\comp_render_ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="windows">
@@ -512,6 +513,7 @@
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\states\JumpSquatActionState.h" />
     <ClInclude Include="components\player\PowerGauge.h" />
+    <ClInclude Include="components\comp_render_ui.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl">
