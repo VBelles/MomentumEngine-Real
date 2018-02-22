@@ -76,6 +76,7 @@ void TCompPlayerModel::SetActionState(ActionStates newState) {
 
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
+	DECL_MSG(TCompPlayerModel, TMsgAtackHit, OnAtackHit);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -171,5 +172,13 @@ void TCompPlayerModel::ReleasePowerButtonPressed() {
 
 void TCompPlayerModel::GainPowerButtonPressed() {
 	powerGauge->GainPower();
+}
+
+void TCompPlayerModel::OnAtackHit(const TMsgAtackHit& msg) {
+	hp -= msg.damage;
+	if (hp <= 0) {
+		dbg("YOU DIED!\n");
+		hp = 0;
+	}
 }
 

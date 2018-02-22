@@ -28,6 +28,12 @@ struct TMsgDamage {
   DECL_MSG_ID();
 };
 
+struct TMsgAtackHit {
+	CHandle atacker;
+	int damage;
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

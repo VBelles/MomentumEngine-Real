@@ -79,7 +79,7 @@ void CAIMeleeEnemy::ChaseState(float delta) {
 }
 
 void CAIMeleeEnemy::RecallState(float delta) {
-	if(recallTimer.elapsed() <= 2.f) {
+	if (recallTimer.elapsed() <= 2.f) {
 		float y, r, p;
 		transform->getYawPitchRoll(&y, &p, &r);
 		y += 35 * delta;
@@ -112,6 +112,8 @@ void CAIMeleeEnemy::AtackState(float delta) {
 	if (atackTimer.elapsed() > atackDuration) {
 		waitAtackTimer.reset();
 		ChangeState("idle_war");
+		TMsgAtackHit msg{ CHandle(this), 1 };
+		player->sendMsg(msg);
 	}
 }
 
