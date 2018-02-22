@@ -43,13 +43,6 @@ void TCompHitbox::update(float dt) {
 
 		rigidDynamic->setKinematicTarget({ transform->getPosition().x + desiredDirection.x, transform->getPosition().y + offset.y, transform->getPosition().z + desiredDirection.z });
 	}
-
-	if (EngineInput["release_power"].getsPressed()) {
-		enable();
-	}
-	if (EngineInput["gain_power"].getsPressed()) {
-		disable();
-	}
 }
 
 void TCompHitbox::onTriggerEnter(const TMsgTriggerEnter& msg) {
@@ -57,7 +50,6 @@ void TCompHitbox::onTriggerEnter(const TMsgTriggerEnter& msg) {
 		handles.insert(msg.h_other_entity);
 		CEntity *owner = CHandle(this).getOwner();
 		owner->sendMsg(TMsgTriggerEnter{ msg.h_other_entity });
-		dbg("Trigger enter\n");
 	}
 }
 

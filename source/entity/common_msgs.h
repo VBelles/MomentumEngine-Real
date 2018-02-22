@@ -28,6 +28,11 @@ struct TMsgDamage {
   DECL_MSG_ID();
 };
 
+struct TMsgHitboxEnter {
+	CHandle h_other_entity;
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

@@ -1,15 +1,11 @@
 #pragma once
 
+#include <set>
+
 #include "comp_base.h"
 #include "geometry/transform.h"
 #include "entity/common_msgs.h"
 #include "PxPhysicsAPI.h"
-#include <set>
-
-struct TMsgHitboxEnter {
-	CHandle h_other_entity;
-	DECL_MSG_ID();
-};
 
 class TCompHitbox : public TCompBase {
 	DECL_SIBLING_ACCESS();
