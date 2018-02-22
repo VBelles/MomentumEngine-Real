@@ -5,19 +5,26 @@
 
 class CAIMeleeEnemy : public IAIController {
 	DECL_SIBLING_ACCESS();
+
 private:
 
 	enum States{Idle, Chase, Recall}; //Todo: use this
 
 	float health = 180.f;
+	float speed = 25.f;
+	float movementSpeed = 2.5f;
+	float rotationSpeed = 5.f;
 
 	TCompTransform* transform;
 	CEntity* player;
 	TCompTransform* playerTransform;
+	TCompCollider* collider;
 
 	VEC3 spawnPosition;
 
-	CTimer timer;
+	CTimer recallTimer;
+	CTimer waitAtackTimer;
+	CTimer atackTimer;
 
 	void OnHit(const TMsgDamage& msg);
 
@@ -31,6 +38,9 @@ public:
 	void IdleState(float delta);
 	void ChaseState(float delta);
 	void RecallState(float delta);
+	void IdleWarState(float delta);
+	void AtackState(float delta);
+	boolean IsPlayerInAtackRange();
 	boolean IsPlayerInFov();
 };
 
