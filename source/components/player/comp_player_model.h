@@ -42,6 +42,8 @@ public:
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();
 
+	void OnAtackHit(const TMsgAtackHit& msg);
+
 	TCompTransform* GetTransform() { return myTransform; }
 	TCompCamera* GetCamera() { return currentCamera; }
 	TCompCollider* GetCollider() { return collider; }
@@ -70,7 +72,7 @@ private:
 	PowerStats* ssj3;
 	PowerStats* currentPowerStats;
 
-	int hp = 2;
+	int hp = 3;
 	int maxHp = 3;
  
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);

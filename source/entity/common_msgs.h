@@ -28,8 +28,15 @@ struct TMsgDamage {
   DECL_MSG_ID();
 };
 
+
 struct TMsgHitboxEnter {
 	CHandle h_other_entity;
+	DECL_MSG_ID();
+};
+
+struct TMsgAtackHit {
+	CHandle atacker;
+	int damage;
 	DECL_MSG_ID();
 };
 
