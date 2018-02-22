@@ -16,6 +16,7 @@
     	"hierarchy",
 		"camera",
 		"player_model",
-		"ground_sensor"
+		"ground_sensor",
+		"ai_melee_enemy"
 	]
 }

@@ -94,5 +94,26 @@
 			},
 			"ground_sensor" : {}
 		}
+	},
+	{
+		"entity": {
+			"name": "MeleeEnemy01",
+			"transform": {
+				"pos": "10 0 0",
+				"lookat": "-1 0 -1"
+			},
+			"render" : [
+				{
+					"mesh": "data/meshes/Player.mesh",
+					"materials" : [
+						"data/materials/solid.material"
+					]
+				}
+			],
+			"ai_melee_enemy": {
+				"waypoints" : [ "-10 0 0", "5 0 5", "2 0 10"] 
+			},
+			"tags" : ["enemy"]
+		}
 	}
 ]
