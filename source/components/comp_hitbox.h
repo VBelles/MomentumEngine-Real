@@ -28,4 +28,7 @@ public:
 	void onTriggerEnter(const TMsgTriggerEnter& msg);
 	void disable();
 	void enable();
+
+	VEC3 getOffset();
+	void setOffset(VEC3 newOffset);
 };

@@ -82,3 +82,11 @@ void TCompHitbox::enable() {
 		rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
 	}
 }
+
+VEC3 TCompHitbox::getOffset() {
+	return offset;
+}
+
+void TCompHitbox::setOffset(VEC3 newOffset) {
+	offset = newOffset;
+}
