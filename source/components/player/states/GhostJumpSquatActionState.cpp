@@ -31,7 +31,7 @@ void GhostJumpSquatActionState::update (float delta) {
 		*velocityVector += currentPowerStats->jumpVelocityVector;
 		deltaMovement = *velocityVector * delta;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
+		player->SetActionState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
@@ -66,5 +66,5 @@ void GhostJumpSquatActionState::OnJumpHighButton() {}
 
 void GhostJumpSquatActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetActionState(TCompPlayerModel::ActionStates::Grounded);
+	player->SetActionState(TCompPlayerModel::ActionStates::Run);
 }

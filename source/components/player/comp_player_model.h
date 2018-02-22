@@ -27,7 +27,7 @@ public:
 	int frame = 0;
 	enum ActionStates{
 		Grounded, Airborne, JumpSquat, GhostJumpSquat,
-		GhostJumpWindow,
+		GhostJumpWindow, Run, AirborneNormal,
 	};
 	IActionState* actionState;
 	

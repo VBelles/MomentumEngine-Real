@@ -76,12 +76,10 @@ void AirborneActionState::update (float delta) {
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
-	//dbg("Entrando en airborne\n");
 }
 
 void AirborneActionState::OnStateExit(IActionState * nextState) {
 	IActionState::OnStateExit(nextState);
-	//dbg("Saliendo de airborne\n");
 }
 
 void AirborneActionState::SetMovementInput(VEC2 input) {
@@ -94,5 +92,5 @@ void AirborneActionState::OnJumpHighButton() {
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetActionState(TCompPlayerModel::ActionStates::Grounded);
+	player->SetActionState(TCompPlayerModel::ActionStates::Run);
 }

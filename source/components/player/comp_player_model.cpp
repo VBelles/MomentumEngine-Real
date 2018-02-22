@@ -1,12 +1,14 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
+#include "PowerGauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/JumpSquatActionState.h"
 #include "states/GhostJumpSquatActionState.h"
 #include "states/GhostJumpWindowActionState.h"
-#include "PowerGauge.h"
+#include "states/RunActionState.h"
+#include "states/AirborneNormalActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -106,8 +108,10 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::JumpSquat, new JumpSquatActionState(this) },
 		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(this) },
 		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(this) },
+		{ ActionStates::Run, new RunActionState(this) },
+		{ ActionStates::AirborneNormal, new AirborneNormalActionState(this) },
 	};
-	SetActionState(ActionStates::Grounded);
+	SetActionState(ActionStates::Run);
 	currentPowerStats = ssj1;
 }
 

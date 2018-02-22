@@ -22,7 +22,7 @@ void GhostJumpWindowActionState::OnStateExit(IActionState * nextState) {
 void GhostJumpWindowActionState::update (float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
+		player->SetActionState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	AirborneActionState::update(delta);
 }
@@ -38,10 +38,10 @@ void GhostJumpWindowActionState::OnJumpHighButton() {
 	velocityVector->y = 0.f;
 	*velocityVector += currentPowerStats->jumpVelocityVector;
 	//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-	player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
+	player->SetActionState(TCompPlayerModel::ActionStates::AirborneNormal);
 }
 
 void GhostJumpWindowActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetActionState(TCompPlayerModel::ActionStates::Grounded);
+	player->SetActionState(TCompPlayerModel::ActionStates::Run);
 }
