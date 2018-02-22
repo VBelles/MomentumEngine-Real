@@ -28,6 +28,11 @@ struct TMsgDamage {
   DECL_MSG_ID();
 };
 
+struct TMsgCollector {
+	CHandle h_collector;
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();
