@@ -102,14 +102,14 @@ void CAIMeleeEnemy::IdleWarState(float delta) {
 		ChangeState("idle");
 		return;
 	}
-	if (waitAtackTimer.elapsed() > 1) {
+	if (waitAtackTimer.elapsed() > atackColdown) {
 		atackTimer.reset();
 		ChangeState("atack");
 	}
 }
 
 void CAIMeleeEnemy::AtackState(float delta) {
-	if (atackTimer.elapsed() > 1) {
+	if (atackTimer.elapsed() > atackDuration) {
 		waitAtackTimer.reset();
 		ChangeState("idle_war");
 	}
@@ -117,12 +117,12 @@ void CAIMeleeEnemy::AtackState(float delta) {
 
 boolean CAIMeleeEnemy::IsPlayerInAtackRange() {
 	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
-	return distance < 2.f && transform->isInFov(playerTransform->getPosition(), deg2rad(60));
+	return distance < atackRadius && transform->isInFov(playerTransform->getPosition(), chaseFov);
 }
 
 boolean CAIMeleeEnemy::IsPlayerInFov() {
 	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
-	return distance < 10.f || (distance < 20.f && transform->isInFov(playerTransform->getPosition(), deg2rad(60)));
+	return distance < smallChaseRadius || (distance < fovChaseDistance && transform->isInFov(playerTransform->getPosition(), atackFov));
 }
 
 
