@@ -20,35 +20,34 @@ void GhostJumpSquatActionState::OnStateExit(IActionState * nextState) {
 }
 
 void GhostJumpSquatActionState::update (float delta) {
+	PowerStats* currentPowerStats = player->GetPowerStats();
+	velocityVector = player->GetVelocityVector();
+	collider = player->GetCollider();
+	accelerationVector = player->GetAccelerationVector();
+
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		PowerStats* currentPowerStats = player->GetPowerStats();
-		VEC3* velocityVector = player->GetVelocityVector();
 		velocityVector->y = 0.f;
 		*velocityVector += currentPowerStats->jumpVelocityVector;
+		deltaMovement = *velocityVector * delta;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
 		player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
 	}
-}
+	else {
+		bool hasInput = movementInput != VEC2::Zero;
+		playerTransform = player->GetTransform();
 
-void GhostJumpSquatActionState::SetMovementInput(VEC2 input, float delta) {
-	bool hasInput = input != VEC2::Zero;
-	playerTransform = player->GetTransform();
-	currentCamera = player->GetCamera();
-	collider = player->GetCollider();
-	accelerationVector = player->GetAccelerationVector();
-	velocityVector = player->GetVelocityVector();
-	PowerStats* currentPowerStats = player->GetPowerStats();
+		deltaMovement.x = 0;
+		deltaMovement.z = 0;
+		if (hasInput) {
+			//usar entering velocity en vez de player->maxHorizontalSpeed (una vez el movimiento se haga con velocityVector)
+			deltaMovement = playerTransform->getFront() * enteringVelocity * delta;
+		}
 
-	deltaMovement.x = 0;
-	deltaMovement.z = 0;
-	if (hasInput) {
-		//usar entering velocity en vez de player->maxHorizontalSpeed (una vez el movimiento se haga con velocityVector)
-		deltaMovement = playerTransform->getFront() * currentPowerStats->maxHorizontalSpeed * delta;
+		currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
+		deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta * delta;
 	}
 
-	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-	deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta * delta;
 	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 	velocityVector->y += clamp(accelerationVector->y * delta, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 
@@ -56,6 +55,10 @@ void GhostJumpSquatActionState::SetMovementInput(VEC2 input, float delta) {
 	if (player->isGrounded) {
 		OnLanding();
 	}
+}
+
+void GhostJumpSquatActionState::SetMovementInput(VEC2 input) {
+	movementInput = input;
 }
 
 //ni caso a este input

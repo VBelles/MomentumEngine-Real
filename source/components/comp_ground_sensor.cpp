@@ -36,9 +36,9 @@ void TCompGroundSensor::update(float dt) {
 }
 
 void TCompGroundSensor::onTriggerEnter(const TMsgTriggerEnter& msg) {
-	dbg("Trigger enter\n");
+	//dbg("Trigger enter\n");
 }
 
 void TCompGroundSensor::onTriggerExit(const TMsgTriggerExit& msg) {
-	dbg("Trigger exit\n");
+	//dbg("Trigger exit\n");
 }

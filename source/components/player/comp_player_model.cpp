@@ -121,7 +121,7 @@ void TCompPlayerModel::update(float dt) {
 
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
-	actionState->SetMovementInput(input, delta);
+	actionState->SetMovementInput(input);
 }
 
 void TCompPlayerModel::JumpButtonPressed() {

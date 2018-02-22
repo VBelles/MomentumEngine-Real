@@ -11,6 +11,7 @@ protected:
 	IActionState* nextState;
 	TCompPlayerModel* player;
 	VEC3 deltaMovement;
+	VEC2 movementInput;
 	TCompTransform* playerTransform;
 	TCompCamera* currentCamera;
 	TCompCollider* collider;
@@ -24,7 +25,7 @@ public:
 	virtual void update(float delta) = 0;
 	virtual void OnStateEnter(IActionState* lastState) { this->lastState = lastState; }
 	virtual void OnStateExit(IActionState* nextState) { this->nextState = nextState; }
-	virtual void SetMovementInput(VEC2 movementInput, float delta) {}
+	virtual void SetMovementInput(VEC2 movementInput) {}
 	virtual void OnJumpHighButton() {}
 
 };

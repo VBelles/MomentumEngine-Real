@@ -24,10 +24,11 @@ void GhostJumpWindowActionState::update (float delta) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
 		player->SetActionState(TCompPlayerModel::ActionStates::Airborne);
 	}
+	AirborneActionState::update(delta);
 }
 
-void GhostJumpWindowActionState::SetMovementInput(VEC2 input, float delta) {
-	AirborneActionState::SetMovementInput(input, delta);
+void GhostJumpWindowActionState::SetMovementInput(VEC2 input) {
+	AirborneActionState::SetMovementInput(input);
 }
 
 void GhostJumpWindowActionState::OnJumpHighButton() {

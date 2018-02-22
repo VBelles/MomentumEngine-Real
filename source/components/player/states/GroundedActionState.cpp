@@ -6,20 +6,7 @@ GroundedActionState::GroundedActionState(TCompPlayerModel * player)
 }
 
 void GroundedActionState::update (float delta) {
-}
-
-void GroundedActionState::OnStateEnter(IActionState * lastState) {
-	IActionState::OnStateEnter(lastState);
-	//dbg("Entrando en grounded\n");
-}
-
-void GroundedActionState::OnStateExit(IActionState * nextState) {
-	IActionState::OnStateExit(nextState);
-	//dbg("Saliendo de grounded\n");
-}
-
-void GroundedActionState::SetMovementInput(VEC2 input, float delta) {
-	bool hasInput = input != VEC2::Zero;
+	bool hasInput = movementInput != VEC2::Zero;
 	playerTransform = player->GetTransform();
 	currentCamera = player->GetCamera();
 	collider = player->GetCollider();
@@ -28,7 +15,7 @@ void GroundedActionState::SetMovementInput(VEC2 input, float delta) {
 	PowerStats* currentPowerStats = player->GetPowerStats();
 	float acceleration = player->GetAcceleration();
 
-	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(input);
+	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
 	VEC3 targetPos = playerTransform->getPosition() + desiredDirection * currentPowerStats->maxHorizontalSpeed * delta;
 
 	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
@@ -44,19 +31,19 @@ void GroundedActionState::SetMovementInput(VEC2 input, float delta) {
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
 	//dbg("current speed: %f\n", currentSpeed);
-	if (hasInput) {		
+	if (hasInput) {
 		deltaMovement = playerTransform->getFront() * currentSpeed * delta + 0.5f * playerTransform->getFront() * acceleration * delta * delta;
-		
+
 		horizontalVelocity.x = playerTransform->getFront().x * currentSpeed;
 		horizontalVelocity.y = playerTransform->getFront().z * currentSpeed;
-		
+
 		velocityVector->x = horizontalVelocity.x + playerTransform->getFront().x * acceleration * delta;
 		velocityVector->z = horizontalVelocity.y + playerTransform->getFront().z * acceleration * delta;
 
 		//clampear velocidad horizontal
 		horizontalVelocity.x = velocityVector->x;
 		horizontalVelocity.y = velocityVector->z;
-		
+
 		if (horizontalVelocity.Length() > currentPowerStats->maxHorizontalSpeed) {
 			horizontalVelocity.Normalize();
 			horizontalVelocity *= currentPowerStats->maxHorizontalSpeed;
@@ -83,6 +70,20 @@ void GroundedActionState::SetMovementInput(VEC2 input, float delta) {
 	else {
 		OnLeavingGround();
 	}
+}
+
+void GroundedActionState::OnStateEnter(IActionState * lastState) {
+	IActionState::OnStateEnter(lastState);
+	//dbg("Entrando en grounded\n");
+}
+
+void GroundedActionState::OnStateExit(IActionState * nextState) {
+	IActionState::OnStateExit(nextState);
+	//dbg("Saliendo de grounded\n");
+}
+
+void GroundedActionState::SetMovementInput(VEC2 input) {
+	movementInput = input;
 }
 
 void GroundedActionState::OnJumpHighButton() {

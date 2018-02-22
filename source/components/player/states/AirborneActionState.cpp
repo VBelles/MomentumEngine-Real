@@ -6,20 +6,7 @@ AirborneActionState::AirborneActionState(TCompPlayerModel * player)
 }
 
 void AirborneActionState::update (float delta) {
-}
-
-void AirborneActionState::OnStateEnter(IActionState * lastState) {
-	IActionState::OnStateEnter(lastState);
-	//dbg("Entrando en airborne\n");
-}
-
-void AirborneActionState::OnStateExit(IActionState * nextState) {
-	IActionState::OnStateExit(nextState);
-	//dbg("Saliendo de airborne\n");
-}
-
-void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
-	bool hasInput = input != VEC2::Zero;
+	bool hasInput = movementInput != VEC2::Zero;
 	playerTransform = player->GetTransform();
 	currentCamera = player->GetCamera();
 	collider = player->GetCollider();
@@ -28,7 +15,7 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 	PowerStats* currentPowerStats = player->GetPowerStats();
 	float acceleration = player->GetAcceleration();
 
-	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(input);
+	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
 	VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
 
 	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
@@ -85,6 +72,20 @@ void AirborneActionState::SetMovementInput(VEC2 input, float delta) {
 			velocityVector->y = 0.f;
 		}
 	}
+}
+
+void AirborneActionState::OnStateEnter(IActionState * lastState) {
+	IActionState::OnStateEnter(lastState);
+	//dbg("Entrando en airborne\n");
+}
+
+void AirborneActionState::OnStateExit(IActionState * nextState) {
+	IActionState::OnStateExit(nextState);
+	//dbg("Saliendo de airborne\n");
+}
+
+void AirborneActionState::SetMovementInput(VEC2 input) {
+	movementInput = input;
 }
 
 void AirborneActionState::OnJumpHighButton() {
