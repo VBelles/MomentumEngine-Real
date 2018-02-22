@@ -1,19 +1,16 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
+#include "components/comp_render_ui.h"
 #include "PowerGauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/JumpSquatActionState.h"
 #include "states/GhostJumpSquatActionState.h"
 #include "states/GhostJumpWindowActionState.h"
-<<<<<<< HEAD
 #include "states/RunActionState.h"
 #include "states/AirborneNormalActionState.h"
-=======
-#include "PowerGauge.h"
-#include "components/comp_render_ui.h"
->>>>>>> entities_ui
+
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
