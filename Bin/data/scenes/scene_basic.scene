@@ -106,26 +106,30 @@
 	{
 		"entity": {
 			"name": "MeleeEnemy01",
+			"prefab": "data/prefabs/enemy_melee.prefab",
 			"transform": {
-				"pos": "5 0 5",
+				"pos": "0 0 10",
 				"lookat": "-1 0 -1"
-			},
-			"render" : [
-				{
-					"mesh": "data/meshes/Player.mesh",
-					"materials" : [
-						"data/materials/solid.material"
-					]
-				}
-			],
-			"tags" : ["enemy"],
-			"ai_melee_enemy":{},
-			"collider": {
-				"shape": "capsule",
-				"is_character_controller": true,
-				"radius": 0.3,
-				"height": 0.76,
-				"group" : "Enemy"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "MeleeEnemy02",
+			"prefab": "data/prefabs/enemy_melee.prefab",
+			"transform": {
+				"pos": "10 0 0",
+				"lookat": "-1 0 -1"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "MeleeEnemy03",
+			"prefab": "data/prefabs/enemy_melee.prefab",
+			"transform": {
+				"pos": "10 0 10",
+				"lookat": "-1 0 -1"
 			}
 		}
 	}

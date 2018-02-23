@@ -1,0 +1,26 @@
+[
+	{
+		"entity": {
+			"transform":{},
+			"render": [
+				{
+					"mesh": "data/meshes/Player.mesh",
+					"materials": [
+						"data/materials/solid.material"
+					]
+				}
+			],
+			"tags": [
+				"enemy"
+			],
+			"ai_melee_enemy": {},
+			"collider": {
+				"shape": "capsule",
+				"is_character_controller": true,
+				"radius": 0.3,
+				"height": 0.76,
+				"group": "Enemy"
+			}
+		}
+	}
+]
