@@ -49,7 +49,7 @@ public:
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();
 
-	void OnAtackHit(const TMsgAtackHit& msg);
+	void OnAttackHit(const TMsgAttackHit& msg);
 
 	TCompTransform* GetTransform() { return myTransform; }
 	TCompCamera* GetCamera() { return currentCamera; }
