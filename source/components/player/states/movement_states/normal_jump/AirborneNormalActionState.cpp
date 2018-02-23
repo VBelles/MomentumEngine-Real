@@ -29,5 +29,5 @@ void AirborneNormalActionState::OnJumpHighButton() {
 
 void AirborneNormalActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetActionState(TCompPlayerModel::ActionStates::Run);
+	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

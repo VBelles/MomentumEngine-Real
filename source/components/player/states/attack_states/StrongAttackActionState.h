@@ -1,9 +1,10 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
+#include "../GroundedActionState.h"
 
 
-class StrongAttackActionState : public IActionState {
+class StrongAttackActionState : public GroundedActionState {
 public:
 	StrongAttackActionState(TCompPlayerModel* player);
 	void update(float delta) override;
@@ -13,5 +14,5 @@ public:
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
 
-	virtual void OnLeavingGround();
+	void OnLeavingGround() override;
 };

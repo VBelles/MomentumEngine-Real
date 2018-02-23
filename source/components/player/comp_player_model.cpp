@@ -3,8 +3,8 @@
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
 #include "PowerGauge.h"
-#include "states/movement_states/AirborneActionState.h"
-#include "states/movement_states/GroundedActionState.h"
+#include "states/AirborneActionState.h"
+#include "states/GroundedActionState.h"
 #include "states/movement_states/normal_jump/JumpSquatActionState.h"
 #include "states/movement_states/normal_jump/GhostJumpSquatActionState.h"
 #include "states/movement_states/GhostJumpWindowActionState.h"
@@ -13,6 +13,7 @@
 #include "states/movement_states/long_jump/AirborneLongActionState.h"
 #include "states/movement_states/long_jump/GhostJumpSquatLongActionState.h"
 #include "states/movement_states/long_jump/JumpSquatLongActionState.h"
+#include "states/attack_states/StrongAttackActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -77,12 +78,19 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	return ssj;
 }
 
-void TCompPlayerModel::SetActionState(ActionStates newState) {
+void TCompPlayerModel::SetMovementState(ActionStates newState) {
 	//dbg("Frame: %d\n", frame);
-	IActionState* exitingState = actionState;
-	actionState = actionStates[newState];
-	if (exitingState) exitingState->OnStateExit(actionState);
-	if (actionState)  actionState->OnStateEnter(exitingState);
+	IActionState* exitingState = movementState;
+	movementState = movementStates[newState];
+	if (exitingState) exitingState->OnStateExit(movementState);
+	if (movementState) movementState->OnStateEnter(exitingState);
+}
+
+void TCompPlayerModel::SetAttackState(ActionStates newState) {
+	IActionState* exitingState = attackState;
+	attackState = attackStates[newState];
+	if (exitingState) exitingState->OnStateExit(attackState);
+	if (attackState) attackState->OnStateEnter(exitingState);
 }
 
 
@@ -178,9 +186,8 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	collider = get<TCompCollider>();
 	assert(collider);
 
-	actionStates = {
-		{ ActionStates::Airborne, new AirborneActionState(this) },
-		{ ActionStates::Grounded, new GroundedActionState(this) },
+	movementStates = {
+		{ ActionStates::Idle, nullptr },
 		{ ActionStates::JumpSquat, new JumpSquatActionState(this) },
 		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(this) },
 		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(this) },
@@ -190,7 +197,12 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(this) },
 		{ ActionStates::AirborneLong, new AirborneLongActionState(this) },
 	};
-	SetActionState(ActionStates::Run);
+	attackStates = {
+		{ ActionStates::Idle, nullptr },
+		{ ActionStates::StrongAttack, new StrongAttackActionState(this) },
+	};
+	SetMovementState(ActionStates::Run);
+	SetAttackState(ActionStates::StrongAttack);
 	currentPowerStats = ssj1;
 }
 
@@ -198,29 +210,81 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 void TCompPlayerModel::update(float dt) {
 	frame++;
-	actionState->update(dt);
+	movementState->update(dt);
+	attackState->update(dt);
 	powerGauge->Update(dt);
+	if (!lockWalk) { 
+		deltaMovement = movementState->GetDeltaMovement();
+	}
+	else {
+		deltaMovement = attackState->GetDeltaMovement();
+	}
+	UpdateMovement(dt, deltaMovement);
+}
+
+void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
+	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
+	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
+	if (dynamic_cast<AirborneActionState*>(movementState)) {//NULL si no lo consigue
+		if (isGrounded) {
+			isTouchingCeiling = false;
+			(static_cast<AirborneActionState*>(movementState))->OnLanding();
+		}
+		if (!isTouchingCeiling) {
+			isTouchingCeiling = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
+			if (isTouchingCeiling) {
+				velocityVector.y = 0.f;
+			}
+		}
+	}
+	else if (dynamic_cast<GroundedActionState*>(movementState)) {
+		if (!isGrounded) {
+			(static_cast<GroundedActionState*>(movementState))->OnLeavingGround();
+		}
+	}
 }
 
 //Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
-	actionState->SetMovementInput(input);
+	if (!lockWalk) {
+		movementState->SetMovementInput(input);
+	}
+	else {
+		movementState->SetMovementInput(VEC2::Zero);
+	}
 }
 
 void TCompPlayerModel::JumpButtonPressed() {
-	actionState->OnJumpHighButton();
+	if (!lockMovementState) {
+		movementState->OnJumpHighButton();
+	}
+	else {
+		attackState->OnJumpHighButton();
+	}
 }
 
 void TCompPlayerModel::LongJumpButtonPressed() {
-	actionState->OnJumpLongButton();
+	if (!lockMovementState) {
+		movementState->OnJumpLongButton();
+	}
+	else {
+		attackState->OnJumpLongButton();
+	}
 }
 
 void TCompPlayerModel::FastAttackButtonPressed() {
-	actionState->OnFastAttack();
+	if (!lockAttackState) {
+		attackState->OnFastAttack();
+	}
 }
 
 void TCompPlayerModel::StrongAttackButtonPressed() {
-	actionState->OnStrongAttack();
+	if (!lockAttackState) {
+		movementState->OnStrongAttack();
+		if (attackState != attackStates[ActionStates::Idle]) {
+			attackState->OnStrongAttack();
+		}
+	}
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
@@ -228,11 +292,18 @@ void TCompPlayerModel::CenterCameraButtonPressed() {
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
-	powerGauge->ReleasePower();
+	if (!lockAttackState) {
+		//attackState->OnReleasePower();
+		powerGauge->ReleasePower();
+	}
 }
 
 void TCompPlayerModel::GainPowerButtonPressed() {
 	powerGauge->GainPower();
+}
+
+bool TCompPlayerModel::IsAttackFree() {
+	return (attackState == attackStates[ActionStates::Idle]);
 }
 
 void TCompPlayerModel::OnAtackHit(const TMsgAtackHit& msg) {

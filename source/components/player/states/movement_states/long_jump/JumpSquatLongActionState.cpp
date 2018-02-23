@@ -35,19 +35,12 @@ void JumpSquatLongActionState::update (float delta) {
 	else {
 		deltaMovement = VEC3::Zero;
 		currentPowerStats->currentGravityMultiplier = currentPowerStats->normalGravityMultiplier;
-		deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta * delta;
+		float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
+		deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
+		velocityVector->y += verticalVelocityIncrement;
 	}
 
-	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	velocityVector->y += clamp(accelerationVector->y * delta, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
-
-	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
-	if (player->isGrounded) {
-		velocityVector->y = 0;
-	}
-	else {
-		OnLeavingGround();
-	}
+	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 }
 
 void JumpSquatLongActionState::SetMovementInput(VEC2 input) {
@@ -62,10 +55,10 @@ void JumpSquatLongActionState::OnJumpLongButton() {}
 void JumpSquatLongActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		player->SetActionState(TCompPlayerModel::ActionStates::AirborneLong);
+		player->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		player->SetActionState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
+		player->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
 	}
 }

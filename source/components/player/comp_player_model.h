@@ -29,17 +29,23 @@ class TCompPlayerModel : public TCompBase, PowerGauge::PowerListener {
 public:
 	int frame = 0;
 	enum ActionStates{
-		Grounded, Airborne, JumpSquat, GhostJumpSquat,
+		Idle, JumpSquat, GhostJumpSquat,
 		GhostJumpWindow, Run, AirborneNormal, JumpSquatLong,
-		AirborneLong, GhostJumpSquatLong
+		AirborneLong, GhostJumpSquatLong, StrongAttack
 	};
-	IActionState* actionState;
+	IActionState* movementState;
+	IActionState* attackState;
 	
+	bool lockMovementState = false;
+	bool lockWalk = false;
+	bool lockAttackState = false;
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
-	void SetActionState(ActionStates newState);
+	void SetMovementState(ActionStates newState);
+	void SetAttackState(ActionStates newState);
 	void update(float dt);
+	void UpdateMovement(float dt, VEC3 deltaMovement);
 	void SetMovementInput(VEC2 input, float delta);
 	void JumpButtonPressed();
 	void LongJumpButtonPressed();
@@ -48,6 +54,7 @@ public:
 	void CenterCameraButtonPressed();
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();
+	bool IsAttackFree();
 
 	void OnAtackHit(const TMsgAtackHit& msg);
 
@@ -60,6 +67,7 @@ public:
 	PowerStats* GetPowerStats();
 	
 	bool isGrounded = false;
+	bool isTouchingCeiling = false;
 
 	void OnLevelChange(int powerLevel);
 
@@ -86,5 +94,6 @@ private:
 
 	PowerGauge* powerGauge;
 
-	std::map<ActionStates, IActionState*> actionStates;
+	std::map<ActionStates, IActionState*> movementStates;
+	std::map<ActionStates, IActionState*> attackStates;
 };

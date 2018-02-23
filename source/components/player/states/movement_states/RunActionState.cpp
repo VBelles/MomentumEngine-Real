@@ -24,14 +24,14 @@ void RunActionState::SetMovementInput(VEC2 input) {
 }
 
 void RunActionState::OnJumpHighButton() {
-	player->SetActionState(TCompPlayerModel::ActionStates::JumpSquat);
+	player->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void RunActionState::OnJumpLongButton() {
-	player->SetActionState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	player->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void RunActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	player->SetActionState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	player->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }

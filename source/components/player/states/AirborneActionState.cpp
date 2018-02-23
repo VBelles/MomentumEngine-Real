@@ -56,22 +56,9 @@ void AirborneActionState::update (float delta) {
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
 	float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
 	deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
-	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
 	velocityVector->y += verticalVelocityIncrement;
 	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
-
-	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
-	if (player->isGrounded) {
-		isTouching = false;
-		OnLanding();
-	}
-	if (!isTouching) {
-		isTouching = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
-		if (isTouching) {
-			velocityVector->y = 0.f;
-		}
-	}
 }
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
@@ -92,5 +79,5 @@ void AirborneActionState::OnJumpHighButton() {
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetActionState(TCompPlayerModel::ActionStates::Run);
+	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

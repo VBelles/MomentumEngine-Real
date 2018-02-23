@@ -39,7 +39,7 @@ void TCompHitbox::update(float dt) {
 		right.y = 0.f;
 		front.Normalize();
 		right.Normalize();
-		VEC3 desiredDirection = front * offset.x + right * offset.z;
+		VEC3 desiredDirection = front * offset.z + right * offset.x;
 
 		rigidDynamic->setKinematicTarget({ transform->getPosition().x + desiredDirection.x, transform->getPosition().y + offset.y, transform->getPosition().z + desiredDirection.z });
 	}

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
+#include "../../GroundedActionState.h"
 
 class JumpSquatLongActionState : public GroundedActionState {
 	CTimer timer;

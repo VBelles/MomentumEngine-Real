@@ -30,7 +30,7 @@ void GhostJumpSquatLongActionState::update (float delta) {
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		player->SetActionState(TCompPlayerModel::ActionStates::AirborneLong);
+		player->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
@@ -44,16 +44,12 @@ void GhostJumpSquatLongActionState::update (float delta) {
 		}
 
 		currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-		deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta * delta;
+		float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
+		deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
+		velocityVector->y += verticalVelocityIncrement;
 	}
 
-	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	velocityVector->y += clamp(accelerationVector->y * delta, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
-
-	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
-	if (player->isGrounded) {
-		OnLanding();
-	}
+	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 }
 
 void GhostJumpSquatLongActionState::SetMovementInput(VEC2 input) {
@@ -67,5 +63,5 @@ void GhostJumpSquatLongActionState::OnJumpLongButton() {}
 
 void GhostJumpSquatLongActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetActionState(TCompPlayerModel::ActionStates::Run);
+	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

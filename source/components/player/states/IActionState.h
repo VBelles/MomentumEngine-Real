@@ -26,6 +26,7 @@ public:
 	virtual void OnStateEnter(IActionState* lastState) { this->lastState = lastState; }
 	virtual void OnStateExit(IActionState* nextState) { this->nextState = nextState; }
 	virtual void SetMovementInput(VEC2 movementInput) {}
+	virtual VEC3 GetDeltaMovement() { return deltaMovement; }
 	virtual void OnJumpHighButton() {}
 	virtual void OnJumpLongButton() {}
 	virtual void OnStrongAttack() {}
