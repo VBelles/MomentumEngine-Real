@@ -96,4 +96,6 @@ private:
 
 	std::map<ActionStates, IActionState*> movementStates;
 	std::map<ActionStates, IActionState*> attackStates;
+
+	CHandle hitbox;
 };

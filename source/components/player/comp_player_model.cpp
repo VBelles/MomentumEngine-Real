@@ -3,6 +3,7 @@
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
 #include "PowerGauge.h"
+#include "components/comp_hitbox.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/movement_states/normal_jump/JumpSquatActionState.h"
@@ -119,6 +120,10 @@ void TCompPlayerModel::OnLevelChange(int powerLevel) {
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
+	hitbox = getEntityByName("Player hitbox");
+	CEntity* cackajds = hitbox;
+	TCompHitbox* ujhkdjf = cackajds->get<TCompHitbox>();
+	ujhkdjf->enable();
 	
 	renderUI->registerOnRenderUI([&]() {
 		bool showWindow = true;
