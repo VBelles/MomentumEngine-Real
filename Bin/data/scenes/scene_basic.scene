@@ -15,6 +15,15 @@
 	},
 	{
 		"entity": {
+			"prefab": "data/prefabs/crisalida.prefab",
+			"name": "crisalida1",
+			"transform": {
+				"pos": "4 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
 			"name": "The Player",
 			"render" : [
 				{
