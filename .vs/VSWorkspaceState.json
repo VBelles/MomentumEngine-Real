@@ -2,7 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\source",
-    "\\source\\render"
+    "\\source\\components",
+    "\\source\\components\\player",
+    "\\source\\components\\player\\states",
+    "\\source\\components\\player\\states\\attack_states",
+    "\\source\\components\\player\\states\\movement_states",
+    "\\source\\components\\player\\states\\movement_states\\long_jump",
+    "\\source\\components\\player\\states\\movement_states\\normal_jump",
+    "\\source\\input"
   ],
   "PreviewInSolutionExplorer": false
 }
