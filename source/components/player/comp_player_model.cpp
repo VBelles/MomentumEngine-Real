@@ -120,6 +120,7 @@ void TCompPlayerModel::OnLevelChange(int powerLevel) {
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
+
 	hitbox = getEntityByName("Player hitbox");
 	CEntity* cackajds = hitbox;
 	TCompHitbox* ujhkdjf = cackajds->get<TCompHitbox>();
@@ -207,7 +208,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::StrongAttack, new StrongAttackActionState(this) },
 	};
 	SetMovementState(ActionStates::Run);
-	SetAttackState(ActionStates::StrongAttack);
+	SetAttackState(ActionStates::Idle);
 	currentPowerStats = ssj1;
 }
 
@@ -216,13 +217,17 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 void TCompPlayerModel::update(float dt) {
 	frame++;
 	movementState->update(dt);
-	attackState->update(dt);
+	if (attackState != attackStates[ActionStates::Idle]) {
+		attackState->update(dt);
+	}
 	powerGauge->Update(dt);
 	if (!lockWalk) { 
 		deltaMovement = movementState->GetDeltaMovement();
 	}
 	else {
-		deltaMovement = attackState->GetDeltaMovement();
+		if (attackState != attackStates[ActionStates::Idle]) {
+			deltaMovement = attackState->GetDeltaMovement();
+		}
 	}
 	UpdateMovement(dt, deltaMovement);
 }
@@ -264,7 +269,9 @@ void TCompPlayerModel::JumpButtonPressed() {
 		movementState->OnJumpHighButton();
 	}
 	else {
-		attackState->OnJumpHighButton();
+		if (attackState != attackStates[ActionStates::Idle]) {
+			attackState->OnJumpHighButton();
+		}
 	}
 }
 
@@ -273,13 +280,17 @@ void TCompPlayerModel::LongJumpButtonPressed() {
 		movementState->OnJumpLongButton();
 	}
 	else {
-		attackState->OnJumpLongButton();
+		if (attackState != attackStates[ActionStates::Idle]) {
+			attackState->OnJumpLongButton();
+		}
 	}
 }
 
 void TCompPlayerModel::FastAttackButtonPressed() {
 	if (!lockAttackState) {
-		attackState->OnFastAttack();
+		if (attackState != attackStates[ActionStates::Idle]) {
+			attackState->OnFastAttack();
+		}
 	}
 }
 

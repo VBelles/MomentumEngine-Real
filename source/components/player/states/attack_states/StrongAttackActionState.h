@@ -5,6 +5,17 @@
 
 
 class StrongAttackActionState : public GroundedActionState {
+	CTimer timer;
+	int warmUpFrames = 20;
+	int activeFrames = 5;
+	int endingLagFrames = 40;
+	float hitboxOutTime;
+	float hitEndTime;
+	float animationEndTime;
+
+	int IASAFrames = 60;//Interruptible As Soon As
+	float interruptibleTime;
+
 public:
 	StrongAttackActionState(TCompPlayerModel* player);
 	void update(float delta) override;
