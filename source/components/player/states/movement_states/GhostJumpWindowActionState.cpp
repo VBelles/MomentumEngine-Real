@@ -32,9 +32,7 @@ void GhostJumpWindowActionState::SetMovementInput(VEC2 input) {
 }
 
 void GhostJumpWindowActionState::OnJumpHighButton() {
-	//saltar
 	PowerStats* currentPowerStats = player->GetPowerStats();
-	VEC3* velocityVector = player->GetVelocityVector();
 	velocityVector->y = 0.f;
 	*velocityVector += currentPowerStats->jumpVelocityVector;
 	//Como estamos ya en el aire, hacemos el cambio nosotros mismos
@@ -43,7 +41,6 @@ void GhostJumpWindowActionState::OnJumpHighButton() {
 
 void GhostJumpWindowActionState::OnJumpLongButton() {
 	PowerStats* currentPowerStats = player->GetPowerStats();
-	VEC3* velocityVector = player->GetVelocityVector();
 	*velocityVector = playerTransform->getFront() * currentPowerStats->longJumpVelocityVector.z;
 	velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 	player->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);

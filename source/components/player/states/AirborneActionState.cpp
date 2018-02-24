@@ -3,15 +3,15 @@
 
 AirborneActionState::AirborneActionState(TCompPlayerModel * player) 
 	: IActionState::IActionState(player) {
+	accelerationVector = player->GetAccelerationVector();
+	velocityVector = player->GetVelocityVector();
+	playerTransform = player->GetTransform();
 }
 
 void AirborneActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
-	playerTransform = player->GetTransform();
 	currentCamera = player->GetCamera();
 	collider = player->GetCollider();
-	accelerationVector = player->GetAccelerationVector();
-	velocityVector = player->GetVelocityVector();
 	PowerStats* currentPowerStats = player->GetPowerStats();
 
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);

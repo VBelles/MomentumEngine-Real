@@ -251,6 +251,10 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 		if (!isGrounded) {
 			(static_cast<GroundedActionState*>(movementState))->OnLeavingGround();
 		}
+		else {
+			//Si sigue en el suelo anulamos la velocidad ganada por la gravedad
+			velocityVector.y = 0.f;
+		}
 	}
 }
 

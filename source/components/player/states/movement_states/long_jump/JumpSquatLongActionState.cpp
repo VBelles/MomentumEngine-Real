@@ -20,9 +20,6 @@ void JumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 
 void JumpSquatLongActionState::update (float delta) {
 	PowerStats* currentPowerStats = player->GetPowerStats();
-	velocityVector = player->GetVelocityVector();
-	playerTransform = player->GetTransform();
-	accelerationVector = player->GetAccelerationVector();
 	collider = player->GetCollider();
 
 	if (timer.elapsed() >= squatTime) {

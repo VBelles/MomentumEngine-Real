@@ -21,9 +21,7 @@ void GhostJumpSquatActionState::OnStateExit(IActionState * nextState) {
 
 void GhostJumpSquatActionState::update (float delta) {
 	PowerStats* currentPowerStats = player->GetPowerStats();
-	velocityVector = player->GetVelocityVector();
 	collider = player->GetCollider();
-	accelerationVector = player->GetAccelerationVector();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -45,16 +43,12 @@ void GhostJumpSquatActionState::update (float delta) {
 		}
 
 		currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-		deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta * delta;
+		float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
+		deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
+		velocityVector->y += verticalVelocityIncrement;
 	}
 
-	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	velocityVector->y += clamp(accelerationVector->y * delta, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
-
-	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
-	if (player->isGrounded) {
-		OnLanding();
-	}
+	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 }
 
 void GhostJumpSquatActionState::SetMovementInput(VEC2 input) {

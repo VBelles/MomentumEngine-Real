@@ -3,15 +3,15 @@
 
 GroundedActionState::GroundedActionState(TCompPlayerModel * player)
 	: IActionState::IActionState(player) {
+	accelerationVector = player->GetAccelerationVector();
+	velocityVector = player->GetVelocityVector();
+	playerTransform = player->GetTransform();
 }
 
 void GroundedActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
-	playerTransform = player->GetTransform();
 	currentCamera = player->GetCamera();
 	collider = player->GetCollider();
-	accelerationVector = player->GetAccelerationVector();
-	velocityVector = player->GetVelocityVector();
 	PowerStats* currentPowerStats = player->GetPowerStats();
 
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
@@ -56,19 +56,11 @@ void GroundedActionState::update (float delta) {
 	}
 
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-	deltaMovement.y = velocityVector->y * delta + 0.5f * accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta * delta;
-	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
+	deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
 
-	velocityVector->y += accelerationVector->y * delta;
+	velocityVector->y += verticalVelocityIncrement;
 	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
-
-	player->isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
-	if (player->isGrounded) {
-		velocityVector->y = 0;
-	}
-	else {
-		OnLeavingGround();
-	}
 }
 
 void GroundedActionState::OnStateEnter(IActionState * lastState) {

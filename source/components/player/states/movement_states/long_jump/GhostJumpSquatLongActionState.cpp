@@ -20,9 +20,7 @@ void GhostJumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 
 void GhostJumpSquatLongActionState::update (float delta) {
 	PowerStats* currentPowerStats = player->GetPowerStats();
-	velocityVector = player->GetVelocityVector();
 	collider = player->GetCollider();
-	accelerationVector = player->GetAccelerationVector();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar

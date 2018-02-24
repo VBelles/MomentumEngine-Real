@@ -7,23 +7,12 @@ AirborneLongActionState::AirborneLongActionState(TCompPlayerModel * player)
 
 void AirborneLongActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
-	playerTransform = player->GetTransform();
 	currentCamera = player->GetCamera();
 	collider = player->GetCollider();
-	accelerationVector = player->GetAccelerationVector();
-	velocityVector = player->GetVelocityVector();
+	
 	PowerStats* currentPowerStats = player->GetPowerStats();
 
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
-	VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
-
-	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
-		float y, p, r;
-		playerTransform->getYawPitchRoll(&y, &p, &r);
-		float yMult = playerTransform->isInLeft(targetPos) ? 1.f : -1.f;
-		y += 3.5f * delta * yMult;
-		playerTransform->setYawPitchRoll(y, p, r);
-	}
 
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
