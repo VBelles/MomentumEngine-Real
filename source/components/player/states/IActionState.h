@@ -24,12 +24,16 @@ public:
 	}
 	virtual void update(float delta) = 0;
 	virtual void OnStateEnter(IActionState* lastState) { this->lastState = lastState; }
-	virtual void OnStateExit(IActionState* nextState) { this->nextState = nextState; }
+	virtual void OnStateExit(IActionState* nextState) { 
+		this->nextState = nextState; 
+		deltaMovement = VEC3::Zero;
+		movementInput = VEC2::Zero;
+	}
 	virtual void SetMovementInput(VEC2 movementInput) {}
 	virtual VEC3 GetDeltaMovement() { return deltaMovement; }
 	virtual void OnJumpHighButton() {}
 	virtual void OnJumpLongButton() {}
-	virtual void OnStrongAttack() {}
-	virtual void OnFastAttack() {}
+	virtual void OnStrongAttackButton() {}
+	virtual void OnFastAttackButton() {}
 
 };

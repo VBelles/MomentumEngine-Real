@@ -85,10 +85,13 @@ void GroundedActionState::OnJumpLongButton() {
 	player->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
-void GroundedActionState::OnStrongAttack() {
+void GroundedActionState::OnStrongAttackButton() {
 	if(player->IsAttackFree()){
 		player->SetAttackState(TCompPlayerModel::ActionStates::StrongAttack);
 	}
+}
+
+void GroundedActionState::OnFastAttackButton() {
 }
 
 void GroundedActionState::OnLeavingGround() {

@@ -106,6 +106,7 @@
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
     <ClCompile Include="components\player\PowerGauge.cpp" />
+    <ClCompile Include="components\player\states\attack_states\FallingAttackActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\StrongAttackActionState.cpp" />
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\GhostJumpWindowActionState.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
     <ClInclude Include="components\player\PowerGauge.h" />
+    <ClInclude Include="components\player\states\attack_states\FallingAttackActionState.h" />
     <ClInclude Include="components\player\states\attack_states\StrongAttackActionState.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\states\AirborneActionState.h" />

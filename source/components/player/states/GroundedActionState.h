@@ -12,7 +12,8 @@ public:
 	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
-	void OnStrongAttack() override;
+	void OnStrongAttackButton() override;
+	void OnFastAttackButton() override;
 
 	virtual void OnLeavingGround();
 };

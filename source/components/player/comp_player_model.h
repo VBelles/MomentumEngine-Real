@@ -29,9 +29,9 @@ class TCompPlayerModel : public TCompBase, PowerGauge::PowerListener {
 public:
 	int frame = 0;
 	enum ActionStates{
-		Idle, JumpSquat, GhostJumpSquat,
-		GhostJumpWindow, Run, AirborneNormal, JumpSquatLong,
-		AirborneLong, GhostJumpSquatLong, StrongAttack
+		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
+		Run, AirborneNormal, JumpSquatLong, AirborneLong,
+		GhostJumpSquatLong, StrongAttack, FallingAttack
 	};
 	IActionState* movementState;
 	IActionState* attackState;

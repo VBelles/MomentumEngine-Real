@@ -1,21 +1,24 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
+#include "../AirborneActionState.h"
 
-class AirborneActionState : public IActionState {
-private:
-	bool isTouching = false;
+
+class FallingAttackActionState : public AirborneActionState {
+	CTimer timer;
+	int warmUpFrames = 20;
+	float hitboxOutTime;
+	float fallingAcceleration = -70.f;
+	float maxFallingVelocity = 45.f;
+
 public:
-	AirborneActionState(TCompPlayerModel* player);
+	FallingAttackActionState(TCompPlayerModel* player);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
 	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
-	void OnStrongAttackButton() override;
-	void OnFastAttackButton() override;
 
-	virtual void OnLanding();
-
+	void OnLanding() override;
 };

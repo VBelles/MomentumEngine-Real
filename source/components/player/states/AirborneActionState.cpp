@@ -74,8 +74,22 @@ void AirborneActionState::SetMovementInput(VEC2 input) {
 }
 
 void AirborneActionState::OnJumpHighButton() {
-	//grab
+	//grab high
 }
+
+void AirborneActionState::OnJumpLongButton() {
+	//grab long
+}
+
+void AirborneActionState::OnStrongAttackButton() {
+	if (player->IsAttackFree()) {
+		player->SetAttackState(TCompPlayerModel::ActionStates::FallingAttack);
+	}
+}
+
+void AirborneActionState::OnFastAttackButton() {
+}
+
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state

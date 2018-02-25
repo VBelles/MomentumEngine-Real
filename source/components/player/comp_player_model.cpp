@@ -15,6 +15,7 @@
 #include "states/movement_states/long_jump/GhostJumpSquatLongActionState.h"
 #include "states/movement_states/long_jump/JumpSquatLongActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
+#include "states/attack_states/FallingAttackActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -122,9 +123,9 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
 	hitbox = getEntityByName("Player hitbox");
-	CEntity* cackajds = hitbox;
-	TCompHitbox* ujhkdjf = cackajds->get<TCompHitbox>();
-	ujhkdjf->enable();
+	CEntity* hitboxEntity = hitbox;
+	TCompHitbox* hitboxComponent = hitboxEntity->get<TCompHitbox>();
+	hitboxComponent->enable();
 	
 	renderUI->registerOnRenderUI([&]() {
 		bool showWindow = true;
@@ -149,7 +150,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::End();
 		ImGui::PopStyleColor();
 
-		ImGui::Begin("Puta vida", &showWindow);
+		ImGui::Begin("Params Main Character", &showWindow);
 		ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 		ImGui::DragFloat("Rotation_Ssj1", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
 		ImGui::DragFloat("FallingMultiplier_Ssj1", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
@@ -205,7 +206,8 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	};
 	attackStates = {
 		{ ActionStates::Idle, nullptr },
-		{ ActionStates::StrongAttack, new StrongAttackActionState(this) },
+	{ ActionStates::StrongAttack, new StrongAttackActionState(this) },
+	{ ActionStates::FallingAttack, new FallingAttackActionState(this) },
 	};
 	SetMovementState(ActionStates::Run);
 	SetAttackState(ActionStates::Idle);
@@ -216,7 +218,9 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 void TCompPlayerModel::update(float dt) {
 	frame++;
-	movementState->update(dt);
+	if (!lockMovementState) {
+		movementState->update(dt);
+	}
 	if (attackState != attackStates[ActionStates::Idle]) {
 		attackState->update(dt);
 	}
@@ -239,6 +243,9 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 		if (isGrounded) {
 			isTouchingCeiling = false;
 			(static_cast<AirborneActionState*>(movementState))->OnLanding();
+			if (attackState != attackStates[ActionStates::Idle]) {
+				(static_cast<AirborneActionState*>(attackState))->OnLanding();
+			}
 		}
 		if (!isTouchingCeiling) {
 			isTouchingCeiling = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
@@ -265,6 +272,9 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 	}
 	else {
 		movementState->SetMovementInput(VEC2::Zero);
+	}
+	if (!lockAttackState && attackState != attackStates[ActionStates::Idle]) {
+		(static_cast<AirborneActionState*>(attackState))->SetMovementInput(input);
 	}
 }
 
@@ -293,16 +303,16 @@ void TCompPlayerModel::LongJumpButtonPressed() {
 void TCompPlayerModel::FastAttackButtonPressed() {
 	if (!lockAttackState) {
 		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnFastAttack();
+			attackState->OnFastAttackButton();
 		}
 	}
 }
 
 void TCompPlayerModel::StrongAttackButtonPressed() {
 	if (!lockAttackState) {
-		movementState->OnStrongAttack();
+		movementState->OnStrongAttackButton();
 		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnStrongAttack();
+			attackState->OnStrongAttackButton();
 		}
 	}
 }
