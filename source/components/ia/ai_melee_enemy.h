@@ -17,10 +17,10 @@ private:
 	float fovChaseDistance = 20.f;
 	float smallChaseRadius = 10.f;
 
-	float atackFov = deg2rad(60);
-	float atackRadius = 2.f;
-	float atackColdown = 1.f;
-	float atackDuration = 1.f;
+	float attackFov = deg2rad(60);
+	float attackRadius = 2.f;
+	float attackColdown = 1.f;
+	float attackDuration = 1.f;
 
 	TCompTransform* transform;
 	CEntity* player;
@@ -30,14 +30,14 @@ private:
 	VEC3 spawnPosition;
 
 	CTimer recallTimer;
-	CTimer waitAtackTimer;
-	CTimer atackTimer;
+	CTimer waitAttackTimer;
+	CTimer attackTimer;
 
 	//Mesage functions
 	void OnHit(const TMsgDamage& msg);
 	void OnGroupCreated(const TMsgEntitiesGroupCreated & msg);
 
-	boolean IsPlayerInAtackRange();
+	boolean IsPlayerInAttackRange();
 	boolean IsPlayerInFov();
 
 public:
@@ -51,7 +51,7 @@ public:
 	void ChaseState(float delta);
 	void RecallState(float delta);
 	void IdleWarState(float delta);
-	void AtackState(float delta);
+	void AttackState(float delta);
 
 };
 

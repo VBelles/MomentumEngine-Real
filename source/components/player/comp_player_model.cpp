@@ -99,7 +99,7 @@ void TCompPlayerModel::SetAttackState(ActionStates newState) {
 
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
-	DECL_MSG(TCompPlayerModel, TMsgAtackHit, OnAtackHit);
+	DECL_MSG(TCompPlayerModel, TMsgAttackHit, OnAttackHit);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -336,7 +336,7 @@ bool TCompPlayerModel::IsAttackFree() {
 	return (attackState == attackStates[ActionStates::Idle]);
 }
 
-void TCompPlayerModel::OnAtackHit(const TMsgAtackHit& msg) {
+void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
 	hp -= msg.damage;
 	if (hp <= 0) {
 		dbg("YOU DIED!\n");

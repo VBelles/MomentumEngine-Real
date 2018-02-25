@@ -34,8 +34,8 @@ struct TMsgHitboxEnter {
 	DECL_MSG_ID();
 };
 
-struct TMsgAtackHit {
-	CHandle atacker;
+struct TMsgAttackHit {
+	CHandle attacker;
 	int damage;
 	DECL_MSG_ID();
 };

@@ -56,7 +56,7 @@ public:
 	void GainPowerButtonPressed();
 	bool IsAttackFree();
 
-	void OnAtackHit(const TMsgAtackHit& msg);
+	void OnAttackHit(const TMsgAttackHit& msg);
 
 	TCompTransform* GetTransform() { return myTransform; }
 	TCompCamera* GetCamera() { return currentCamera; }

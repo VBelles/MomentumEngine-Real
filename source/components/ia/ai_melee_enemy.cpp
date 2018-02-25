@@ -23,7 +23,7 @@ void CAIMeleeEnemy::InitStates() {
 	AddState("chase", (statehandler)&CAIMeleeEnemy::ChaseState);
 	AddState("recall", (statehandler)&CAIMeleeEnemy::RecallState);
 	AddState("idle_war", (statehandler)&CAIMeleeEnemy::IdleWarState);
-	AddState("atack", (statehandler)&CAIMeleeEnemy::AtackState);
+	AddState("attack", (statehandler)&CAIMeleeEnemy::AttackState);
 	ChangeState("idle");
 }
 
@@ -73,7 +73,7 @@ void CAIMeleeEnemy::ChaseState(float delta) {
 		recallTimer.reset();
 		ChangeState("recall");
 	}
-	if (IsPlayerInAtackRange()) {
+	if (IsPlayerInAttackRange()) {
 		ChangeState("idle_war");
 	}
 }
@@ -98,33 +98,33 @@ void CAIMeleeEnemy::RecallState(float delta) {
 }
 
 void CAIMeleeEnemy::IdleWarState(float delta) {
-	if (!IsPlayerInAtackRange()) {
+	if (!IsPlayerInAttackRange()) {
 		ChangeState("idle");
 		return;
 	}
-	if (waitAtackTimer.elapsed() > atackColdown) {
-		atackTimer.reset();
-		ChangeState("atack");
+	if (waitAttackTimer.elapsed() > attackColdown) {
+		attackTimer.reset();
+		ChangeState("attack");
 	}
 }
 
-void CAIMeleeEnemy::AtackState(float delta) {
-	if (atackTimer.elapsed() > atackDuration) {
-		waitAtackTimer.reset();
+void CAIMeleeEnemy::AttackState(float delta) {
+	if (attackTimer.elapsed() > attackDuration) {
+		waitAttackTimer.reset();
 		ChangeState("idle_war");
-		TMsgAtackHit msg{ CHandle(this), 1 };
+		TMsgAttackHit msg{ CHandle(this), 1 };
 		player->sendMsg(msg);
 	}
 }
 
-boolean CAIMeleeEnemy::IsPlayerInAtackRange() {
+boolean CAIMeleeEnemy::IsPlayerInAttackRange() {
 	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
-	return distance < atackRadius && transform->isInFov(playerTransform->getPosition(), chaseFov);
+	return distance < attackRadius && transform->isInFov(playerTransform->getPosition(), chaseFov);
 }
 
 boolean CAIMeleeEnemy::IsPlayerInFov() {
 	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
-	return distance < smallChaseRadius || (distance < fovChaseDistance && transform->isInFov(playerTransform->getPosition(), atackFov));
+	return distance < smallChaseRadius || (distance < fovChaseDistance && transform->isInFov(playerTransform->getPosition(), attackFov));
 }
 
 
