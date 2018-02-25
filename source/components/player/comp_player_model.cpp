@@ -3,7 +3,6 @@
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
 #include "PowerGauge.h"
-#include "components/comp_hitbox.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/movement_states/normal_jump/JumpSquatActionState.h"
@@ -100,6 +99,7 @@ void TCompPlayerModel::SetAttackState(ActionStates newState) {
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(TCompPlayerModel, TMsgAttackHit, OnAttackHit);
+	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, OnHitboxEnter);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -121,11 +121,6 @@ void TCompPlayerModel::OnLevelChange(int powerLevel) {
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
-
-	hitbox = getEntityByName("Player hitbox");
-	CEntity* hitboxEntity = hitbox;
-	TCompHitbox* hitboxComponent = hitboxEntity->get<TCompHitbox>();
-	hitboxComponent->enable();
 	
 	renderUI->registerOnRenderUI([&]() {
 		bool showWindow = true;
@@ -204,10 +199,14 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(this) },
 		{ ActionStates::AirborneLong, new AirborneLongActionState(this) },
 	};
+
+	strongAttackHitbox = getEntityByName("Strong attack hitbox");
+	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
+
 	attackStates = {
 		{ ActionStates::Idle, nullptr },
-	{ ActionStates::StrongAttack, new StrongAttackActionState(this) },
-	{ ActionStates::FallingAttack, new FallingAttackActionState(this) },
+	{ ActionStates::StrongAttack, new StrongAttackActionState(this, strongAttackHitbox) },
+	{ ActionStates::FallingAttack, new FallingAttackActionState(this, fallingAttackHitbox) },
 	};
 	SetMovementState(ActionStates::Run);
 	SetAttackState(ActionStates::Idle);
@@ -344,3 +343,8 @@ void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
 	}
 }
 
+void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
+	if (attackState != attackStates[ActionStates::Idle]) {
+		attackState->OnHitboxEnter(msg.h_other_entity);
+	}
+}

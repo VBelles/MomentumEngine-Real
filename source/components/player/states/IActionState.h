@@ -36,4 +36,5 @@ public:
 	virtual void OnStrongAttackButton() {}
 	virtual void OnFastAttackButton() {}
 
+	virtual void OnHitboxEnter(CHandle entity) {}
 };

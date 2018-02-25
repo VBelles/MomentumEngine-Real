@@ -12,6 +12,7 @@ struct TMsgEntitiesGroupCreated;
 struct TCompHierarchy : public CTransform, public TCompBase {
   CHandle     h_parent_transform;
   CHandle     h_my_transform;
+  CHandle     h_parent;
   std::string parent_name;          // entity name as search in the ctx
 
   void setParentEntity(CHandle new_h_parent);

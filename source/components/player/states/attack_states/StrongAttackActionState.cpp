@@ -1,16 +1,27 @@
 #include "mcv_platform.h"
 #include "StrongAttackActionState.h"
+#include "components/comp_hitbox.h"
 
-StrongAttackActionState::StrongAttackActionState(TCompPlayerModel * player)
+StrongAttackActionState::StrongAttackActionState(TCompPlayerModel * player, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(player) {
+	hitboxHandle = hitbox;
 }
 
 void StrongAttackActionState::update (float delta) {
-	//Ataque en sí
 	if (timer.elapsed() > animationEndTime) {
 		player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 		player->lockMovementState = false;
 		player->lockWalk = false;
+	}
+	else if (timer.elapsed() > hitEndTime) {
+		CEntity *hitboxEntity = hitboxHandle;
+		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+		hitbox->disable();
+	}
+	else if (timer.elapsed() > hitboxOutTime) {
+		CEntity *hitboxEntity = hitboxHandle;
+		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+		hitbox->enable();
 	}
 }
 
@@ -42,4 +53,12 @@ void StrongAttackActionState::OnJumpLongButton() {
 
 void StrongAttackActionState::OnLeavingGround() {
 	player->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+}
+
+void StrongAttackActionState::OnHitboxEnter(CHandle entity) {
+	if (entity != CHandle(player).getOwner()) {
+		CEntity *otherEntity = entity;
+		otherEntity->sendMsg(TMsgAttackHit{ entity, damage });
+		dbg("Strong attack hit for %i damage\n", damage);
+	}
 }

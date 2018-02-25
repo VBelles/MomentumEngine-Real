@@ -57,6 +57,7 @@ public:
 	bool IsAttackFree();
 
 	void OnAttackHit(const TMsgAttackHit& msg);
+	void OnHitboxEnter(const TMsgHitboxEnter& msg);
 
 	TCompTransform* GetTransform() { return myTransform; }
 	TCompCamera* GetCamera() { return currentCamera; }
@@ -97,5 +98,6 @@ private:
 	std::map<ActionStates, IActionState*> movementStates;
 	std::map<ActionStates, IActionState*> attackStates;
 
-	CHandle hitbox;
+	CHandle strongAttackHitbox;
+	CHandle fallingAttackHitbox;
 };

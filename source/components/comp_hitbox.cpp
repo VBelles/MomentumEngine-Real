@@ -2,6 +2,7 @@
 #include "entity/entity_parser.h"
 #include "comp_hitbox.h"
 #include "comp_transform.h"
+#include "comp_hierarchy.h"
 
 DECL_OBJ_MANAGER("hitbox", TCompHitbox);
 
@@ -15,10 +16,10 @@ void TCompHitbox::registerMsgs() {
 }
 
 void TCompHitbox::onCreate(const TMsgEntityCreated& msg) {
+	disable();
 }
 
 void TCompHitbox::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-	disable();
 }
 
 void TCompHitbox::load(const json& j, TEntityParseContext& ctx) {
@@ -49,7 +50,9 @@ void TCompHitbox::onTriggerEnter(const TMsgTriggerEnter& msg) {
 	if (handles.find(msg.h_other_entity) == handles.end()) {
 		handles.insert(msg.h_other_entity);
 		CEntity *owner = CHandle(this).getOwner();
-		owner->sendMsg(TMsgTriggerEnter{ msg.h_other_entity });
+		TCompHierarchy *hierarchy = owner->get<TCompHierarchy>();
+		CEntity *parent = hierarchy->h_parent;
+		parent->sendMsg(TMsgHitboxEnter{ msg.h_other_entity });
 	}
 }
 

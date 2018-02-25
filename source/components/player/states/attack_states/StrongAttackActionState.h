@@ -16,8 +16,11 @@ class StrongAttackActionState : public GroundedActionState {
 	int IASAFrames = 60;//Interruptible As Soon As
 	float interruptibleTime;
 
+	CHandle hitboxHandle;
+	int damage = 2;
+
 public:
-	StrongAttackActionState(TCompPlayerModel* player);
+	StrongAttackActionState(TCompPlayerModel* player, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
@@ -26,4 +29,6 @@ public:
 	void OnJumpLongButton() override;
 
 	void OnLeavingGround() override;
+
+	void OnHitboxEnter(CHandle entity) override;
 };

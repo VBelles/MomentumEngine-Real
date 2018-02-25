@@ -11,8 +11,11 @@ class FallingAttackActionState : public AirborneActionState {
 	float fallingAcceleration = -70.f;
 	float maxFallingVelocity = 45.f;
 
+	CHandle hitboxHandle;
+	int damage = 3;
+
 public:
-	FallingAttackActionState(TCompPlayerModel* player);
+	FallingAttackActionState(TCompPlayerModel* player, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
@@ -21,4 +24,6 @@ public:
 	void OnJumpLongButton() override;
 
 	void OnLanding() override;
+
+	void OnHitboxEnter(CHandle entity) override;
 };
