@@ -11,7 +11,6 @@
 #include "states/RunActionState.h"
 #include "states/AirborneNormalActionState.h"
 
-
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
 using namespace physx;
@@ -38,7 +37,6 @@ void TCompPlayerModel::debugInMenu() {
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		gravity = accelerationVector.y;
 	}
-
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
@@ -51,7 +49,6 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	ssj3 = loadPowerStats(j["ssj3"]);
 
 	powerGauge = new PowerGauge(this);
-
 }
 
 PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
@@ -72,10 +69,9 @@ void TCompPlayerModel::SetActionState(ActionStates newState) {
 	if (actionState)  actionState->OnStateEnter(exitingState);
 }
 
-
-
 void TCompPlayerModel::registerMsgs() {
-	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
+    DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
+    DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -144,7 +140,25 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	currentPowerStats = ssj1;
 }
 
-
+void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
+    std::string type = msg.type;
+    if (type == "chrysalis") {
+        ++chrysalis;
+        dbg("Collected chrysalis. Current total: %d\n", chrysalis);
+        if (chrysalis >= chrysalisTarget) {
+            // Open boss door.
+            CEntity* player = (CEntity*)getEntityByName("The Player"); // This doesn't work !!
+            TMsgDestroy msg{};
+            player->sendMsg(msg);
+        }
+    }
+    else if (type == "coin") {
+        // add coin
+    }
+    else {
+        dbg("Collected unknown object %s\n", type);
+    }
+}
 
 void TCompPlayerModel::update(float dt) {
 	frame++;
@@ -172,4 +186,3 @@ void TCompPlayerModel::ReleasePowerButtonPressed() {
 void TCompPlayerModel::GainPowerButtonPressed() {
 	powerGauge->GainPower();
 }
-

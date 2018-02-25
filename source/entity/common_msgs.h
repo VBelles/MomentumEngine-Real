@@ -28,8 +28,13 @@ struct TMsgDamage {
     DECL_MSG_ID();
 };
 
-struct TMsgCollector {
-    CHandle h_collector;
+struct TMsgCollect {
+    std::string type;
+    DECL_MSG_ID();
+};
+
+struct TMsgDestroy {
+    CHandle h_sender;
     DECL_MSG_ID();
 };
 
@@ -54,4 +59,3 @@ struct TMsgSpawnAt {
 */
 
 #endif
-

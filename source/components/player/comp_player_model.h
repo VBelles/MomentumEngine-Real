@@ -8,7 +8,6 @@
 #include "states/IActionState.h"
 #include "PowerGauge.h"
 
-
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
 	float rotationSpeed = 0.f;
@@ -18,7 +17,6 @@ struct PowerStats {
 	float maxVelocityVertical = 30.f;
 	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
 };
-
 
 class TCompPlayerModel : public TCompBase, PowerGauge::PowerListener {
 	DECL_SIBLING_ACCESS();
@@ -72,8 +70,11 @@ private:
 
 	int hp = 2;
 	int maxHp = 3;
+    int chrysalis = 0;
+    int chrysalisTarget = 5;
  
-	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+    void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+    void OnCollect(const TMsgCollect& msg);
 
 	PowerStats* loadPowerStats(const json& j);
 

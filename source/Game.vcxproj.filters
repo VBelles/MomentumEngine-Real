@@ -80,6 +80,7 @@
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="components\ia\ai_melee_enemy.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
+    <ClCompile Include="components\comp_destroy_condition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="windows\app.h" />
     <ClInclude Include="components\ia\ai_melee_enemy.h" />
     <ClInclude Include="components\comp_collectable.h" />
+    <ClInclude Include="components\comp_destroy_condition.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
