@@ -4,7 +4,7 @@
 			"transform":{},
 			"render": [
 				{
-					"mesh": "data/meshes/Player.mesh",
+					"mesh": "data/meshes/enemy.mesh",
 					"materials": [
 						"data/materials/solid.material"
 					]
@@ -17,8 +17,8 @@
 			"collider": {
 				"shape": "capsule",
 				"is_character_controller": true,
-				"radius": 0.3,
-				"height": 0.76,
+				"radius": 0.9,
+				"height": 0.9,
 				"group": "Enemy"
 			}
 		}
