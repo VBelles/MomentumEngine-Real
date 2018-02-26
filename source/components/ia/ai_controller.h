@@ -18,6 +18,7 @@ class IAIController;
 typedef void (IAIController::*statehandler)(float delta);
 
 class IAIController : public TCompBase {
+	DECL_SIBLING_ACCESS();
 
 protected:
   CHandle         h_entity;

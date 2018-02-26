@@ -8,7 +8,7 @@ class CAIMeleeEnemy : public IAIController {
 
 private:
 
-	float health = 180.f;
+	float health = 5.f;
 	float speed = 25.f;
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 5.f;
@@ -34,7 +34,7 @@ private:
 	CTimer attackTimer;
 
 	//Mesage functions
-	void OnHit(const TMsgDamage& msg);
+	void OnHit(const TMsgAttackHit& msg);
 	void OnGroupCreated(const TMsgEntitiesGroupCreated & msg);
 
 	boolean IsPlayerInAttackRange();
@@ -52,7 +52,7 @@ public:
 	void RecallState(float delta);
 	void IdleWarState(float delta);
 	void AttackState(float delta);
-
+	void DeathState(float delta);
 };
 
 
