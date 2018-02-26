@@ -14,52 +14,35 @@ void GroundedActionState::update (float delta) {
 	collider = player->GetCollider();
 	PowerStats* currentPowerStats = player->GetPowerStats();
 
-	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
-	VEC3 targetPos = playerTransform->getPosition() + desiredDirection * currentPowerStats->maxHorizontalSpeed * delta;
-
-	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
-		float y, p, r;
-		playerTransform->getYawPitchRoll(&y, &p, &r);
-		float yMult = playerTransform->isInLeft(targetPos) ? 1.f : -1.f;
-		y += currentPowerStats->rotationSpeed * delta * yMult;
-		playerTransform->setYawPitchRoll(y, p, r);
+	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
+	if (hasInput) {
+		VEC3 desiredDirection = currentCamera->TransformToWorld(movementInput);
+		VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
+		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
 
-	deltaMovement.x = 0;
-	deltaMovement.z = 0;
-	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
-	float currentSpeed = horizontalVelocity.Length();
-	//dbg("current speed: %f\n", currentSpeed);
+	deltaMovement = VEC3::Zero;
+	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
 	if (hasInput) {
-		deltaMovement = playerTransform->getFront() * currentSpeed * delta + 0.5f * playerTransform->getFront() * currentPowerStats->acceleration * delta * delta;
+		deltaMovement = CalculateHorizontalDeltaMovement(delta, playerTransform->getFront(),
+						playerTransform->getFront(), currentPowerStats->acceleration,
+						currentPowerStats->maxHorizontalSpeed);
 
-		horizontalVelocity.x = playerTransform->getFront().x * currentSpeed;
-		horizontalVelocity.y = playerTransform->getFront().z * currentSpeed;
-
-		velocityVector->x = horizontalVelocity.x + playerTransform->getFront().x * currentPowerStats->acceleration * delta;
-		velocityVector->z = horizontalVelocity.y + playerTransform->getFront().z * currentPowerStats->acceleration * delta;
-
-		//clampear velocidad horizontal
-		horizontalVelocity.x = velocityVector->x;
-		horizontalVelocity.y = velocityVector->z;
-
-		if (horizontalVelocity.Length() > currentPowerStats->maxHorizontalSpeed) {
-			horizontalVelocity.Normalize();
-			horizontalVelocity *= currentPowerStats->maxHorizontalSpeed;
-			velocityVector->x = horizontalVelocity.x;
-			velocityVector->z = horizontalVelocity.y;
-		}
+		TransferVelocityToDirectionAndAccelerate(delta, true, playerTransform->getFront(), currentPowerStats->acceleration);
+		ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 	}
 	else {
+		//Cuando no hay input se frena (TODO no frenar de golpe, desacelerar)
 		velocityVector->x = 0.f;
 		velocityVector->z = 0.f;
 	}
 
+	//distancia vertical recorrida
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-	float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-	deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
+	deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
 
-	velocityVector->y += verticalVelocityIncrement;
+	//Nueva velocidad vertical y clampeo
+	velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
 	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 }
 
