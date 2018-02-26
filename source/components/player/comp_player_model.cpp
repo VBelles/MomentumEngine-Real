@@ -114,6 +114,12 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::ProgressBar((float)powerGauge->power / powerGauge->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
+        //Chrysalis counter
+        std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
+        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
+        ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
+        ImGui::PopStyleColor();
+
 		ImGui::End();
 		ImGui::PopStyleColor();
 	
@@ -144,12 +150,11 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
     std::string type = msg.type;
     if (type == "chrysalis") {
         ++chrysalis;
-        dbg("Collected chrysalis. Current total: %d\n", chrysalis);
         if (chrysalis >= chrysalisTarget) {
             // Open boss door.
-            CEntity* player = (CEntity*)getEntityByName("The Player"); // This doesn't work !!
-            TMsgDestroy msg{};
-            player->sendMsg(msg);
+            CEntity* door = (CEntity*)getEntityByName("door");
+            TMsgDestroy msg;
+            door->sendMsg(msg);
         }
     }
     else if (type == "coin") {

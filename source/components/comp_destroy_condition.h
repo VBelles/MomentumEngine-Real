@@ -6,8 +6,6 @@
 class TCompDestroyCondition: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
-    CEntity* player;
-
 public:
     void debugInMenu();
     static void registerMsgs();

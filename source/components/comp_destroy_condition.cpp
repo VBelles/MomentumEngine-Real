@@ -17,14 +17,14 @@ void TCompDestroyCondition::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompDestroyCondition::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-    player = (CEntity*)getEntityByName("The Player");
 }
 
 void TCompDestroyCondition::update(float dt) {
 }
 
 void TCompDestroyCondition::onDestroy(const TMsgDestroy & msg) {
-    dbg("Door: Destroying myself\n");
+    // Door destroys itself.
+    TCompCollider *collider = get<TCompCollider>();
+    collider->actor->release();
     CHandle(this).getOwner().destroy();
-
 }

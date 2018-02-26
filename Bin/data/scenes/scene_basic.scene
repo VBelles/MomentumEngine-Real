@@ -63,11 +63,19 @@
 			"name": "door",
 			"render": [
 				{
-					"mesh": "data/meshes/Teapot001.mesh"
+					"mesh": "data/meshes/door.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
 				}
 			],
 			"transform": {
 				"pos": "6 0 25"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"halfExtent": "2.5 3.5 1.0"
 			},
 			"destroyCondition": {}
 		}
