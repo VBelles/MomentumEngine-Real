@@ -19,8 +19,9 @@ class CApp {
 
   static CApp* app_instance;
 
+
 public:
-	bool resetMouse = false;
+  bool inDebugMode = false;
 
   static CApp& get() {
     assert(app_instance);

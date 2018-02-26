@@ -39,5 +39,6 @@ using json = nlohmann::json;
 #include "camera/camera.h"
 #include "engine.h"
 #include "resources/resources_manager.h"
+#include "windows/app.h"
 
 #endif

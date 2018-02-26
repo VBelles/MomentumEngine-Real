@@ -42,7 +42,6 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 			int posX = GET_X_LPARAM(lParam);
 			int posY = GET_Y_LPARAM(lParam);
 			mouse->setPosition(static_cast<float>(posX), static_cast<float>(posY));
-			app_instance->resetMouse = true;
 		}
 	}
 	break;
@@ -180,7 +179,7 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 		return false;
 
 	ShowWindow(hWnd, nCmdShow);
-	//ShowCursor(false);
+	ShowCursor(false);
 
 #ifndef HID_USAGE_PAGE_GENERIC
 #define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
@@ -213,13 +212,16 @@ void CApp::mainLoop() {
 		}
 		else {
 			doFrame();
-
-		/*	if (resetMouse) {
+			if (EngineInput["debug_mode"].getsPressed()) {
+				inDebugMode = !inDebugMode;
+				ShowCursor(inDebugMode);
+			}
+			
+			if (!inDebugMode) {
 				RECT rect;
 				GetWindowRect(getWnd(), &rect);
 				SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
-				resetMouse = false;
-			}*/
+			}
 		}
 	}
 }

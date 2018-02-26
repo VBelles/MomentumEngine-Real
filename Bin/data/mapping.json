@@ -53,5 +53,10 @@
 		"name" : "strong_attack",
 		"all" : false,
 		"buttons" : ["pad_y", "mouse_right"]
+	},
+	{
+		"name" : "debug_mode",
+		"all" : false,
+		"buttons" : ["f2"]
 	}
 ]
