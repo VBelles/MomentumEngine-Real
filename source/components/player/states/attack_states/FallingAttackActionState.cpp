@@ -15,16 +15,12 @@ void FallingAttackActionState::update (float delta) {
 		collider = player->GetCollider();
 		PowerStats* currentPowerStats = player->GetPowerStats();
 
-		VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
-		VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
-
-		if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
-			float y, p, r;
-			playerTransform->getYawPitchRoll(&y, &p, &r);
-			float yMult = playerTransform->isInLeft(targetPos) ? 1.f : -1.f;
-			y += 10.f * delta * yMult;
-			playerTransform->setYawPitchRoll(y, p, r);
+		if (hasInput) {
+			VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
+			VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
+			RotatePlayerTowards(delta, targetPos, 10.f);
 		}
+
 		deltaMovement.y += 0.1f * delta;
 	}
 	else {
@@ -35,10 +31,9 @@ void FallingAttackActionState::update (float delta) {
 			hitbox->enable();
 		}
 
-		float verticalVelocityIncrement = fallingAcceleration * delta;
-		deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
+		deltaMovement.y = CalculateVerticalDeltaMovement(delta, fallingAcceleration, maxFallingVelocity);
 
-		velocityVector->y += verticalVelocityIncrement;
+		velocityVector->y += fallingAcceleration * delta;
 		velocityVector->y = clamp(velocityVector->y, -maxFallingVelocity, maxFallingVelocity);
 		//dbg("%f\n", velocityVector->y);
 	}

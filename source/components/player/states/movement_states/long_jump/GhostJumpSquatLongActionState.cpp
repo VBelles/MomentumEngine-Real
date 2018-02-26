@@ -37,14 +37,15 @@ void GhostJumpSquatLongActionState::update (float delta) {
 		deltaMovement.x = 0;
 		deltaMovement.z = 0;
 		if (hasInput) {
-			//usar entering velocity en vez de player->maxHorizontalSpeed (una vez el movimiento se haga con velocityVector)
 			deltaMovement = playerTransform->getFront() * enteringVelocity * delta;
 		}
 
+		//distancia vertical recorrida
 		currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-		float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-		deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
-		velocityVector->y += verticalVelocityIncrement;
+		deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
+
+		//Nueva velocidad vertical y clampeo
+		velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
 	}
 
 	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);

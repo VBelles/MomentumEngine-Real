@@ -13,51 +13,31 @@ void AirborneActionState::update (float delta) {
 	currentCamera = player->GetCamera();
 	collider = player->GetCollider();
 	PowerStats* currentPowerStats = player->GetPowerStats();
-
+	
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
-	VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
-
-	if (hasInput && abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
-		float y, p, r;
-		playerTransform->getYawPitchRoll(&y, &p, &r);
-		float yMult = playerTransform->isInLeft(targetPos) ? 1.f : -1.f;
-		y += 3.5f * delta * yMult;
-		playerTransform->setYawPitchRoll(y, p, r);
+	if (hasInput) {
+		VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
+		RotatePlayerTowards(delta, targetPos, 3.5f);
 	}
 
-	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
-	float currentSpeed = horizontalVelocity.Length();
-	//dbg("speed: %f\n", currentSpeed);
 	if (hasInput) {
-		VEC3 newVelocity = *velocityVector;
-		newVelocity.y = 0;
-		newVelocity += desiredDirection * currentPowerStats->acceleration * delta;
-
-		horizontalVelocity.x = newVelocity.x;
-		horizontalVelocity.y = newVelocity.z;
-
-		if (horizontalVelocity.Length() > currentPowerStats->maxHorizontalSpeed) {
-			horizontalVelocity.Normalize();
-			horizontalVelocity *= currentPowerStats->maxHorizontalSpeed;
-			newVelocity.x = horizontalVelocity.x;
-			newVelocity.z = horizontalVelocity.y;
-		}
-
-		deltaMovement = newVelocity * delta;
-
-		velocityVector->x = newVelocity.x;
-		velocityVector->z = newVelocity.z;
+		deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z},
+			desiredDirection, currentPowerStats->acceleration,
+			currentPowerStats->maxHorizontalSpeed);
+		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, currentPowerStats->acceleration);
+		ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 	}
 	else {
 		deltaMovement.x = velocityVector->x * delta;
 		deltaMovement.z = velocityVector->z * delta;
 	}
 
+	//distancia vertical recorrida
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-	float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-	deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
+	deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
 
-	velocityVector->y += verticalVelocityIncrement;
+	//Nueva velocidad vertical y clampeo
+	velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
 	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 }
 

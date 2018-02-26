@@ -31,10 +31,12 @@ void JumpSquatLongActionState::update (float delta) {
 	}
 	else {
 		deltaMovement = VEC3::Zero;
+		//distancia vertical recorrida
 		currentPowerStats->currentGravityMultiplier = currentPowerStats->normalGravityMultiplier;
-		float verticalVelocityIncrement = accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-		deltaMovement.y = velocityVector->y * delta + 0.5f * verticalVelocityIncrement * delta;
-		velocityVector->y += verticalVelocityIncrement;
+		deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
+
+		//Nueva velocidad vertical y clampeo
+		velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
 	}
 
 	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);

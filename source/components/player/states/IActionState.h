@@ -39,6 +39,8 @@ protected:
 		//Copiamos los ejes x/z del vector de velocidad en un VEC2, para trabajar sin tocar el eje y
 		VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 		float currentSpeed = horizontalVelocity.Length();
+		lastFrameDirection.Normalize();
+		newDirection.Normalize();
 		//Calculamos la distancia recorrida desde el último frame 
 		VEC3 resultingDeltaMovement = lastFrameDirection * currentSpeed * delta + 0.5f * newDirection * acceleration * delta * delta;
 		//Si ha recorrido más distancia que lo máximo permitido por la velocidad máxima, lo clampeamos a (maxSpeed * delta)
@@ -50,20 +52,20 @@ protected:
 	}
 
 	//Se transfiere toda la velocidad que se llevaba a una nueva dirección (opcional) y se recalcula velocityVector para el siguiente frame
-	void TransferVelocityToDirectionAndAccelerate(float delta, bool wantToTransfer, VEC3 newDirection, float acceleration) {
+	void TransferVelocityToDirectionAndAccelerate(float delta, bool wantToTransfer, VEC3 directionOfAcceleration, float acceleration) {
 		//Copiamos los ejes x/z del vector de velocidad en un VEC2, para trabajar sin tocar el eje y
 		VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 		float currentSpeed = horizontalVelocity.Length();
 		if (wantToTransfer) {
 			//Pasamos toda la velocidad que llevábamos a la nueva dirección
-			newDirection.Normalize();
-			horizontalVelocity.x = newDirection.x * currentSpeed;
-			horizontalVelocity.y = newDirection.z * currentSpeed;
+			directionOfAcceleration.Normalize();
+			horizontalVelocity.x = directionOfAcceleration.x * currentSpeed;
+			horizontalVelocity.y = directionOfAcceleration.z * currentSpeed;
 		}
 
 		//Actualizamos el vector de velocidad con la aceleración
-		velocityVector->x = horizontalVelocity.x + newDirection.x * acceleration * delta;
-		velocityVector->z = horizontalVelocity.y + newDirection.z * acceleration * delta;
+		velocityVector->x = horizontalVelocity.x + directionOfAcceleration.x * acceleration * delta;
+		velocityVector->z = horizontalVelocity.y + directionOfAcceleration.z * acceleration * delta;
 	}
 
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
