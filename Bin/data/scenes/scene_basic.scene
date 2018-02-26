@@ -40,9 +40,9 @@
 				},
 				"ssj3":{
 					"rotation_speed" : 17.0,
-					"maxSpeed" : 15.0,
+					"maxSpeed" : 14.0,
 					"jumpVelocity" : " 0 30 0",
-					"longJumpVelocity" : " 0 13 23",
+					"longJumpVelocity" : " 0 13 22.5",
 					"maxVelocityVertical" : 30.0,
 					"acceleration" : 35.0,
 					"airAcceleration" : 40.0,
