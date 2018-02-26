@@ -15,6 +15,73 @@
 	},
 	{
 		"entity": {
+			"prefab": "data/prefabs/crisalida.prefab",
+			"name": "crisalida1",
+			"transform": {
+				"pos": "6 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/crisalida.prefab",
+			"name": "crisalida2",
+			"transform": {
+				"pos": "6 0 4"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/crisalida.prefab",
+			"name": "crisalida3",
+			"transform": {
+				"pos": "6 0 12"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/crisalida.prefab",
+			"name": "crisalida4",
+			"transform": {
+				"pos": "-6 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/crisalida.prefab",
+			"name": "crisalida5",
+			"transform": {
+				"pos": "-6 0 7"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "door",
+			"render": [
+				{
+					"mesh": "data/meshes/door.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
+				}
+			],
+			"transform": {
+				"pos": "6 0 25"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"halfExtent": "2.5 3.5 1.0"
+			},
+			"destroyCondition": {}
+		}
+	},
+	{
+		"entity": {
 			"name": "The Player",
 			"render" : [
 				{

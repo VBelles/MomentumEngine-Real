@@ -11,7 +11,9 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.5 1.0 0.5"
+        "halfExtent": "1.5 1.0 0.5",
+        "group": "wall",
+        "mask": "scenario"
       }
     }
   },
@@ -126,7 +128,7 @@
           "mesh": "data/meshes/platform006.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -147,7 +149,7 @@
           "mesh": "data/meshes/platform007.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -168,7 +170,7 @@
           "mesh": "data/meshes/platform008.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -189,7 +191,7 @@
           "mesh": "data/meshes/platform009.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -210,7 +212,7 @@
           "mesh": "data/meshes/platform010.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/madera.material"
           ]
         }
       ]
@@ -231,7 +233,7 @@
           "mesh": "data/meshes/floor001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/baldosas.material"
           ]
         }
       ]
@@ -252,7 +254,7 @@
           "mesh": "data/meshes/Box003.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/piedras1.material"
           ]
         }
       ]

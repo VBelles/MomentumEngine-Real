@@ -5,27 +5,37 @@
 #include "geometry/transform.h"
 
 struct TMsgEntityCreated {
-  DECL_MSG_ID();
+    DECL_MSG_ID();
 };
 
 // Sent to all entities from a parsed file once all the entities
-// in that file has been created. Used to link entities between them
+// in that file have been created. Used to link entities between them
 struct TEntityParseContext;
 struct TMsgEntitiesGroupCreated {
-	const TEntityParseContext& ctx;
-	DECL_MSG_ID();
+    const TEntityParseContext& ctx;
+    DECL_MSG_ID();
 };
 
 struct TMsgAssignBulletOwner {
-  CHandle h_owner;
-  DECL_MSG_ID();
+    CHandle h_owner;
+    DECL_MSG_ID();
 };
 
 struct TMsgDamage {
-  CHandle h_sender;
-  CHandle h_bullet;
-  float damage;
-  DECL_MSG_ID();
+    CHandle h_sender;
+    CHandle h_bullet;
+    float damage;
+    DECL_MSG_ID();
+};
+
+struct TMsgCollect {
+    std::string type;
+    DECL_MSG_ID();
+};
+
+struct TMsgDestroy {
+    CHandle h_sender;
+    DECL_MSG_ID();
 };
 
 
@@ -61,4 +71,3 @@ struct TMsgSpawnAt {
 */
 
 #endif
-

@@ -11,6 +11,8 @@
 		"circular_controller",
 		"player_controller",
 		"bullet_controller",
+		"collectable",
+		"destroyCondition",
 		"ai_patrol",
     	"flyover_controller",
     	"hierarchy",

@@ -100,6 +100,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(TCompPlayerModel, TMsgAttackHit, OnAttackHit);
 	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, OnHitboxEnter);
+    	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -140,10 +141,16 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImVec4 color = powerGauge->powerLevel == 1 ? ImColor{ 255, 255, 0 } : powerGauge->powerLevel == 2 ? ImColor{ 255, 255/2, 0 } : ImColor{ 255, 0, 0 };
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
 		ImGui::ProgressBar((float)powerGauge->power / powerGauge->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
-		ImGui::PopStyleColor();
+        ImGui::PopStyleColor();
 
-		ImGui::End();
-		ImGui::PopStyleColor();
+        //Chrysalis counter
+        std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
+        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
+        ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
+        ImGui::PopStyleColor();
+
+        ImGui::End();
+        ImGui::PopStyleColor();
 
 		ImGui::Begin("Params Main Character", &showWindow);
 		ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
@@ -176,8 +183,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 			gravity = accelerationVector.y;
 		}
-		ImGui::End();
-	
+		ImGui::End();	
 	});
 	myTransform = get<TCompTransform>();
 
@@ -213,7 +219,24 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	currentPowerStats = ssj1;
 }
 
-
+void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
+    std::string type = msg.type;
+    if (type == "chrysalis") {
+        ++chrysalis;
+        if (chrysalis >= chrysalisTarget) {
+            // Open boss door.
+            CEntity* door = (CEntity*)getEntityByName("door");
+            TMsgDestroy msg;
+            door->sendMsg(msg);
+        }
+    }
+    else if (type == "coin") {
+        // add coin
+    }
+    else {
+        dbg("Collected unknown object %s\n", type);
+    }
+}
 
 void TCompPlayerModel::update(float dt) {
 	frame++;
@@ -264,7 +287,7 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	}
 }
 
-//Aquí llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
+//Aqu\ED llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
 		movementState->SetMovementInput(input);

@@ -183,4 +183,4 @@ function exportMeshObject given_obj outfilename = (
 
 
 --exportMeshObject $Box001
---exportMeshObject $ "c:\\code\\pep.mesh"
+exportMeshObject $ "d:/crisalida.mesh"

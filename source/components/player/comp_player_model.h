@@ -88,8 +88,11 @@ private:
 
 	int hp = 3;
 	int maxHp = 3;
+    int chrysalis = 0;
+    int chrysalisTarget = 5;
  
-	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+    void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+    void OnCollect(const TMsgCollect& msg);
 
 	PowerStats* loadPowerStats(const json& j);
 

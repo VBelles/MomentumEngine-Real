@@ -55,6 +55,8 @@
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_melee_enemy.cpp" />
+    <ClCompile Include="components\comp_collectable.cpp" />
+    <ClCompile Include="components\comp_destroy_condition.cpp" />
     <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\player\states\attack_states\StrongAttackActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\AirborneLongActionState.cpp" />
@@ -162,6 +164,8 @@
     <ClInclude Include="windows\app.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_melee_enemy.h" />
+    <ClInclude Include="components\comp_collectable.h" />
+    <ClInclude Include="components\comp_destroy_condition.h" />
     <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\player\states\attack_states\StrongAttackActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\AirborneLongActionState.h" />
