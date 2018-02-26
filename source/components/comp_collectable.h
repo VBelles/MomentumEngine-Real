@@ -6,9 +6,7 @@
 class TCompCollectable: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
-    CEntity* player;
-	float    collision_radius = 0.6f;
-    //CHandle h_collector;
+	bool collected = false;
 
 public:
     void debugInMenu();
@@ -18,5 +16,5 @@ public:
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void update(float dt);
 
-    //void onCollect(const TMsgTriggerEnter& msg);
+    void onCollect(const TMsgTriggerEnter& msg);
 };

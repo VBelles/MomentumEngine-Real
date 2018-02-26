@@ -8,11 +8,8 @@ public:
 	public:
 		virtual void OnLevelChange(int powerLevel) = 0;
 	};
+
 private:
-
-
-	void IncreasePower(float increment);
-
 	PowerListener* powerListener;
 
 public:
@@ -26,6 +23,5 @@ public:
 	void Update(float dt);
 	void ReleasePower();
 	void GainPower();
-	
-
+	void IncreasePower(float increment);
 };

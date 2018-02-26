@@ -77,9 +77,10 @@ void FallingAttackActionState::OnLanding() {
 }
 
 void FallingAttackActionState::OnHitboxEnter(CHandle entity) {
-	if (entity != CHandle(player).getOwner()) {
+	CHandle playerHandle = CHandle(player).getOwner();
+	if (entity != playerHandle) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ entity, damage });
+		otherEntity->sendMsg(TMsgAttackHit{ playerHandle, damage });
 		dbg("Falling attack hit for %i damage\n", damage);
 	}
 }

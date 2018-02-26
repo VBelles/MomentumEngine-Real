@@ -15,7 +15,7 @@ void CAIMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 
 void CAIMeleeEnemy::registerMsgs() {
 	DECL_MSG(CAIMeleeEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
-	DECL_MSG(CAIMeleeEnemy, TMsgDamage, OnHit);
+	DECL_MSG(CAIMeleeEnemy, TMsgAttackHit, OnHit);
 }
 
 void CAIMeleeEnemy::InitStates() {
@@ -24,14 +24,19 @@ void CAIMeleeEnemy::InitStates() {
 	AddState("recall", (statehandler)&CAIMeleeEnemy::RecallState);
 	AddState("idle_war", (statehandler)&CAIMeleeEnemy::IdleWarState);
 	AddState("attack", (statehandler)&CAIMeleeEnemy::AttackState);
+	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState);
 	ChangeState("idle");
 }
 
-void CAIMeleeEnemy::OnHit(const TMsgDamage& msg) {
+void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 	float damage = msg.damage;
 	health -= damage;
+
+	CEntity *attacker = msg.attacker;
+	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+
 	if (health < 0) {
-		CHandle(this).getOwner().destroy();
+		ChangeState("death");
 	}
 }
 
@@ -127,4 +132,8 @@ boolean CAIMeleeEnemy::IsPlayerInFov() {
 	return distance < smallChaseRadius || (distance < fovChaseDistance && transform->isInFov(playerTransform->getPosition(), attackFov));
 }
 
-
+void  CAIMeleeEnemy::DeathState(float delta) {
+	TCompCollider *collider = get<TCompCollider>();
+	collider->controller->release();
+	CHandle(this).getOwner().destroy();
+}
