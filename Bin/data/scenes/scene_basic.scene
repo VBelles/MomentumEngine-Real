@@ -92,6 +92,24 @@
 			}
 		}
 	},
+	{
+		"entity": {
+			"name": "Vertical launcher hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 0.5
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.6 0.7"
+			}
+		}
+	},
 		{
 		"entity": {
 			"name": "Falling attack hitbox",

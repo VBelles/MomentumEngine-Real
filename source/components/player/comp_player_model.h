@@ -32,7 +32,8 @@ public:
 	enum ActionStates{
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, AirborneNormal, JumpSquatLong, AirborneLong,
-		GhostJumpSquatLong, StrongAttack, FallingAttack
+		GhostJumpSquatLong, StrongAttack, FallingAttack,
+		VerticalLauncher
 	};
 	IActionState* movementState;
 	IActionState* attackState;
@@ -105,4 +106,5 @@ private:
 
 	CHandle strongAttackHitbox;
 	CHandle fallingAttackHitbox;
+	CHandle verticalLauncherHitbox;
 };

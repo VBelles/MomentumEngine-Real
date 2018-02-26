@@ -15,6 +15,7 @@
 #include "states/movement_states/long_jump/JumpSquatLongActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
 #include "states/attack_states/FallingAttackActionState.h"
+#include "states/attack_states/VerticalLauncherActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -213,11 +214,13 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	strongAttackHitbox = getEntityByName("Strong attack hitbox");
 	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
+	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
 
 	attackStates = {
 		{ ActionStates::Idle, nullptr },
-	{ ActionStates::StrongAttack, new StrongAttackActionState(this, strongAttackHitbox) },
-	{ ActionStates::FallingAttack, new FallingAttackActionState(this, fallingAttackHitbox) },
+		{ ActionStates::StrongAttack, new StrongAttackActionState(this, strongAttackHitbox) },
+		{ ActionStates::FallingAttack, new FallingAttackActionState(this, fallingAttackHitbox) },
+		{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(this, verticalLauncherHitbox) },
 	};
 	SetMovementState(ActionStates::Run);
 	SetAttackState(ActionStates::Idle);
