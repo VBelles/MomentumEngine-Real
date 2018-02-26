@@ -31,6 +31,10 @@ void CAIMeleeEnemy::InitStates() {
 void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 	float damage = msg.damage;
 	health -= damage;
+
+	CEntity *attacker = msg.attacker;
+	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+
 	if (health < 0) {
 		ChangeState("death");
 	}

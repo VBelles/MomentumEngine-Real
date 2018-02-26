@@ -13,6 +13,8 @@ private:
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 5.f;
 
+	float powerGiven = 7000;
+
 	float chaseFov = deg2rad(60);
 	float fovChaseDistance = 20.f;
 	float smallChaseRadius = 10.f;

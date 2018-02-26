@@ -100,7 +100,8 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(TCompPlayerModel, TMsgAttackHit, OnAttackHit);
 	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, OnHitboxEnter);
-    	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
+	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
+	DECL_MSG(TCompPlayerModel, TMsgGainPower, OnGainPower);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -122,35 +123,35 @@ void TCompPlayerModel::OnLevelChange(int powerLevel) {
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
-	
+
 	renderUI->registerOnRenderUI([&]() {
 		bool showWindow = true;
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor {0, 0, 0, 0});
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 25, 0 + 25));
 		ImGui::SetNextWindowSize(ImVec2(200, 70));
 		ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-		
+
 		//Hp bar
 		std::string hpProgressBarText = "HP: " + std::to_string(hp) + "/" + std::to_string(maxHp);
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 0, 255, 0 });
-		ImGui::ProgressBar((float) hp / maxHp, ImVec2(-1,0), hpProgressBarText.c_str());
+		ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		//Power bar
-		std::string powerProgressBarText ="Power: " + std::to_string((int) powerGauge->power) + "/" + std::to_string((int) powerGauge->maxPower);
-		ImVec4 color = powerGauge->powerLevel == 1 ? ImColor{ 255, 255, 0 } : powerGauge->powerLevel == 2 ? ImColor{ 255, 255/2, 0 } : ImColor{ 255, 0, 0 };
+		std::string powerProgressBarText = "Power: " + std::to_string((int)powerGauge->power) + "/" + std::to_string((int)powerGauge->maxPower);
+		ImVec4 color = powerGauge->powerLevel == 1 ? ImColor{ 255, 255, 0 } : powerGauge->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
 		ImGui::ProgressBar((float)powerGauge->power / powerGauge->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
-        ImGui::PopStyleColor();
+		ImGui::PopStyleColor();
 
-        //Chrysalis counter
-        std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
-        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
-        ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
-        ImGui::PopStyleColor();
+		//Chrysalis counter
+		std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
+		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
+		ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
+		ImGui::PopStyleColor();
 
-        ImGui::End();
-        ImGui::PopStyleColor();
+		ImGui::End();
+		ImGui::PopStyleColor();
 
 		ImGui::Begin("Params Main Character", &showWindow);
 		ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
@@ -183,7 +184,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 			gravity = accelerationVector.y;
 		}
-		ImGui::End();	
+		ImGui::End();
 	});
 	myTransform = get<TCompTransform>();
 
@@ -220,22 +221,22 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 }
 
 void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
-    std::string type = msg.type;
-    if (type == "chrysalis") {
-        ++chrysalis;
-        if (chrysalis >= chrysalisTarget) {
-            // Open boss door.
-            CEntity* door = (CEntity*)getEntityByName("door");
-            TMsgDestroy msg;
-            door->sendMsg(msg);
-        }
-    }
-    else if (type == "coin") {
-        // add coin
-    }
-    else {
-        dbg("Collected unknown object %s\n", type);
-    }
+	std::string type = msg.type;
+	if (type == "chrysalis") {
+		++chrysalis;
+		if (chrysalis >= chrysalisTarget) {
+			// Open boss door.
+			CEntity* door = (CEntity*)getEntityByName("door");
+			TMsgDestroy msg;
+			door->sendMsg(msg);
+		}
+	}
+	else if (type == "coin") {
+		// add coin
+	}
+	else {
+		dbg("Collected unknown object %s\n", type);
+	}
 }
 
 void TCompPlayerModel::update(float dt) {
@@ -247,7 +248,7 @@ void TCompPlayerModel::update(float dt) {
 		attackState->update(dt);
 	}
 	powerGauge->Update(dt);
-	if (!lockWalk) { 
+	if (!lockWalk) {
 		deltaMovement = movementState->GetDeltaMovement();
 	}
 	else {
@@ -370,4 +371,8 @@ void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (attackState != attackStates[ActionStates::Idle]) {
 		attackState->OnHitboxEnter(msg.h_other_entity);
 	}
+}
+
+void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
+	powerGauge->IncreasePower(msg.power);
 }

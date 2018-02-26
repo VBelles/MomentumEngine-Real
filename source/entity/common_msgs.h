@@ -50,6 +50,12 @@ struct TMsgAttackHit {
 	DECL_MSG_ID();
 };
 
+struct TMsgGainPower {
+	CHandle sender;
+	float power;
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();
