@@ -14,6 +14,7 @@ void TCompCollectable::registerMsgs() {
 }
 
 void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
+    type = j.value("type", "chrysalis");
 }
 
 void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -31,7 +32,7 @@ void TCompCollectable::update(float dt) {
                                             playerTransform->getPosition());
     if (distanceToPlayer < collision_radius) {
         CHandle(this).getOwner().destroy();
-        TMsgCollect msg{ "chrysalis" };
+        TMsgCollect msg{ type };
         player->sendMsg(msg);
     }
 }

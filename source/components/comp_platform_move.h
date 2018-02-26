@@ -3,13 +3,11 @@
 #include "comp_base.h"
 #include "entity/common_msgs.h"
 
-class TCompCollectable: public TCompBase {
+class TCompPlatformMove: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
     CEntity*    player;
-	float       collision_radius = 0.6f;
     std::string type = "";
-    //CHandle h_collector;
 
 public:
     void debugInMenu();

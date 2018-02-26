@@ -1,21 +1,21 @@
 [
 	{
 		"entity": {
-			"name": "crisalida_prefab",
+			"name": "platform_move_prefab",
 			"transform": {
 				"pos": "0 0 0"
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/crisalida.mesh",
+					"mesh": "data/meshes/Platform001.mesh",
 					"materials": [
 						"data/materials/madera.material"
 					],
-					"color": "0.5 0.5 1.0 1.0"
+					"color": "0.6 0.6 0.6 1.0"
 				}
 			],
-			"collectable": {
-				"type": "chrysalis"
+			"platform_move": {
+				"type": "up"
 			}
 		}
 	}

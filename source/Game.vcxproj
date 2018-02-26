@@ -98,6 +98,7 @@
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_render_ui.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_name.h" />
+    <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_render_ui.h" />
     <ClInclude Include="components\comp_tags.h" />
