@@ -23,7 +23,7 @@ void AirborneActionState::update (float delta) {
 	if (hasInput) {
 		//aceleración según sentido de movimiento
 		float appliedAcceleration = CalculateAccelerationAccordingToDirection(enterFront, desiredDirection,
-			currentPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
+			currentPowerStats->airAcceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
 			sidewaysAirDriftFactor);
 
 		deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z},
