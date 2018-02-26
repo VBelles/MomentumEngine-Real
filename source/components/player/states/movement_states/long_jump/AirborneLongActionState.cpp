@@ -14,10 +14,15 @@ void AirborneLongActionState::update (float delta) {
 	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
 
 	if (hasInput) {
+		//aceleración según sentido de movimiento
+		float appliedAcceleration = CalculateAccelerationAccordingToDirection(enterFront, desiredDirection,
+			currentPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
+			sidewaysAirDriftFactor);
+
 		deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
-			desiredDirection, currentPowerStats->acceleration,
-			currentPowerStats->longJumpVelocityVector.z);
-		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, currentPowerStats->acceleration);
+			desiredDirection, appliedAcceleration, currentPowerStats->longJumpVelocityVector.z);
+
+		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
 		ClampHorizontalVelocity(currentPowerStats->longJumpVelocityVector.z);
 	}
 	else {
@@ -35,6 +40,9 @@ void AirborneLongActionState::update (float delta) {
 void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	//dbg("Entrando en airborne long\n");
+	enterFront = playerTransform->getFront();
+	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
+	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 }
 
 void AirborneLongActionState::OnStateExit(IActionState * nextState) {

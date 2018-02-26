@@ -29,6 +29,21 @@ protected:
 		}
 	}
 
+	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
+	float CalculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
+		float backwardsMaxDotProduct, float sidewaysMaxDotProduct, float backwardsAirDriftFactor, float sidewaysAirDriftFactor
+		) 
+	{
+		float resultingAcceleration = baseAcceleration;
+		if (baseDirection.Dot(desiredDirection) <= backwardsMaxDotProduct) {
+			resultingAcceleration *= backwardsAirDriftFactor;
+		}
+		else if (baseDirection.Dot(desiredDirection) <= sidewaysMaxDotProduct) {
+			resultingAcceleration *= sidewaysAirDriftFactor;
+		}
+		return resultingAcceleration;
+	}
+
 	//Calcula el movimiento horizontal recorrido desde el último frame, teniendo en cuanta la posible nueva
 	//dirección y lo clampea con la máxima distancia recorrida posible en caso de ir a máxima velocidad
 	VEC3 CalculateHorizontalDeltaMovement(

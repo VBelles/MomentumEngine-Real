@@ -21,10 +21,15 @@ void AirborneActionState::update (float delta) {
 	}
 
 	if (hasInput) {
+		//aceleración según sentido de movimiento
+		float appliedAcceleration = CalculateAccelerationAccordingToDirection(enterFront, desiredDirection,
+			currentPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
+			sidewaysAirDriftFactor);
+
 		deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z},
-			desiredDirection, currentPowerStats->acceleration,
+			desiredDirection, appliedAcceleration,
 			currentPowerStats->maxHorizontalSpeed);
-		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, currentPowerStats->acceleration);
+		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
 		ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 	}
 	else {
@@ -43,6 +48,9 @@ void AirborneActionState::update (float delta) {
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
+	enterFront = playerTransform->getFront();
+	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
+	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 }
 
 void AirborneActionState::OnStateExit(IActionState * nextState) {
