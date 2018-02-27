@@ -3,7 +3,7 @@
 #include "components/player/comp_player_model.h"
 
 class AirborneActionState : public IActionState {
-private:
+protected:
 	VEC3 enterFront;
 	float sidewaysdMinAngle = 45.f;
 	float backwardsdMinAngle = 135.f;

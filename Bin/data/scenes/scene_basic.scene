@@ -19,6 +19,7 @@
 				"ssj1":{
 					"rotation_speed" : 11.0,
 					"maxSpeed" : 7.0,
+					"shortHopVelocity" : 16.0,
 					"jumpVelocity" : " 0 20 0",
 					"longJumpVelocity" : " 0 11 12",
 					"maxVelocityVertical" :  30.0,
@@ -30,6 +31,7 @@
 				"ssj2":{
 					"rotation_speed" : 14.0,
 					"maxSpeed" : 11.0,
+					"shortHopVelocity" : 18.0,
 					"jumpVelocity" : " 0 25 0",
 					"longJumpVelocity" : " 0 12 17",
 					"maxVelocityVertical" : 30.0,
@@ -41,6 +43,7 @@
 				"ssj3":{
 					"rotation_speed" : 17.0,
 					"maxSpeed" : 14.0,
+					"shortHopVelocity" : 20.0,
 					"jumpVelocity" : " 0 30 0",
 					"longJumpVelocity" : " 0 13 22.5",
 					"maxVelocityVertical" : 30.0,

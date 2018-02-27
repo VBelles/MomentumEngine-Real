@@ -5,8 +5,11 @@
 
 class JumpSquatActionState : public GroundedActionState {
 	CTimer timer;
-	int squatFrames = 4;
+	int squatFrames = 5;
 	float squatTime;
+
+	bool isShortHop = false;
+
 	float enteringVelocity = 0.f;
 public:
 	JumpSquatActionState(TCompPlayerModel* player);
@@ -15,5 +18,7 @@ public:
 	void OnStateExit(IActionState* nextState) override;
 	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
-	virtual void OnLeavingGround();
+	void OnJumpHighButtonReleased() override;
+
+	virtual void OnLeavingGround() override;
 };

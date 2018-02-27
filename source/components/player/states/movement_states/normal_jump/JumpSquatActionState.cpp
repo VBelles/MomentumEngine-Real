@@ -10,6 +10,7 @@ void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	//dbg("Entrando en JumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
+	isShortHop = false;
 	timer.reset();
 	enteringVelocity = player->GetVelocityVector()->Length();
 }
@@ -25,7 +26,7 @@ void JumpSquatActionState::update (float delta) {
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
+		velocityVector->y = isShortHop ? currentPowerStats->shortHopVelocity : currentPowerStats->jumpVelocityVector.y;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;
 	}
@@ -52,6 +53,10 @@ void JumpSquatActionState::SetMovementInput(VEC2 input) {
 
 //ni caso a este input
 void JumpSquatActionState::OnJumpHighButton() {}
+
+void JumpSquatActionState::OnJumpHighButtonReleased() {
+	isShortHop = true;
+}
 
 void JumpSquatActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
