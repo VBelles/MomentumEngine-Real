@@ -120,9 +120,12 @@ public:
 	virtual void SetMovementInput(VEC2 movementInput) {}
 	virtual VEC3 GetDeltaMovement() { return deltaMovement; }
 	virtual void OnJumpHighButton() {}
+	virtual void OnJumpHighButtonReleased() {}
 	virtual void OnJumpLongButton() {}
 	virtual void OnStrongAttackButton() {}
+	virtual void OnStrongAttackButtonReleased() {}
 	virtual void OnFastAttackButton() {}
+	virtual void OnFastAttackButtonReleased() {}
 
 	virtual void OnHitboxEnter(CHandle entity) {}
 };

@@ -50,9 +50,12 @@ public:
 	void UpdateMovement(float dt, VEC3 deltaMovement);
 	void SetMovementInput(VEC2 input, float delta);
 	void JumpButtonPressed();
+	void JumpButtonReleased();
 	void LongJumpButtonPressed();
 	void FastAttackButtonPressed();
+	void FastAttackButtonReleased();
 	void StrongAttackButtonPressed();
+	void StrongAttackButtonReleased();
 	void CenterCameraButtonPressed();
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();

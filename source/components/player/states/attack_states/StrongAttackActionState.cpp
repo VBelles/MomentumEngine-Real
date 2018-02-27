@@ -8,20 +8,26 @@ StrongAttackActionState::StrongAttackActionState(TCompPlayerModel * player, CHan
 }
 
 void StrongAttackActionState::update (float delta) {
-	if (timer.elapsed() > animationEndTime) {
-		player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-		player->lockMovementState = false;
-		player->lockWalk = false;
+	if (isLauncher && timer.elapsed() > beginLauncherTime) {
+		dbg("Cambio de strong attack a vertical launcher\n");
+		player->SetAttackState(TCompPlayerModel::ActionStates::VerticalLauncher);
 	}
-	else if (timer.elapsed() > hitEndTime) {
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
-	}
-	else if (timer.elapsed() > hitboxOutTime) {
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->enable();
+	else {
+		if (timer.elapsed() > animationEndTime) {
+			player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+			player->lockMovementState = false;
+			player->lockWalk = false;
+		}
+		else if (timer.elapsed() > hitEndTime) {
+			CEntity *hitboxEntity = hitboxHandle;
+			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+			hitbox->disable();
+		}
+		else if (timer.elapsed() > hitboxOutTime) {
+			CEntity *hitboxEntity = hitboxHandle;
+			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+			hitbox->enable();
+		}
 	}
 }
 
@@ -32,6 +38,8 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	hitEndTime = hitboxOutTime + activeFrames * (1.f / 60);
 	animationEndTime = hitEndTime + endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
+	beginLauncherTime = startLauncherFrames * (1.f / 60);
+	isLauncher = true;
 	timer.reset();
 	player->lockMovementState = true;
 	player->lockWalk = true;
@@ -49,6 +57,10 @@ void StrongAttackActionState::OnJumpHighButton() {
 }
 
 void StrongAttackActionState::OnJumpLongButton() {
+}
+
+void StrongAttackActionState::OnStrongAttackButtonReleased() {
+	isLauncher = false;
 }
 
 void StrongAttackActionState::OnLeavingGround() {

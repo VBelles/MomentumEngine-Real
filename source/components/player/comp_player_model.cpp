@@ -319,6 +319,17 @@ void TCompPlayerModel::JumpButtonPressed() {
 	}
 }
 
+void TCompPlayerModel::JumpButtonReleased() {
+	if (!lockMovementState) {
+		movementState->OnJumpHighButtonReleased();
+	}
+	else {
+		if (attackState != attackStates[ActionStates::Idle]) {
+			attackState->OnJumpHighButtonReleased();
+		}
+	}
+}
+
 void TCompPlayerModel::LongJumpButtonPressed() {
 	if (!lockMovementState) {
 		movementState->OnJumpLongButton();
@@ -332,10 +343,19 @@ void TCompPlayerModel::LongJumpButtonPressed() {
 
 void TCompPlayerModel::FastAttackButtonPressed() {
 	if (!lockAttackState) {
+		movementState->OnFastAttackButton();
 		if (attackState != attackStates[ActionStates::Idle]) {
 			attackState->OnFastAttackButton();
 		}
 	}
+}
+
+void TCompPlayerModel::FastAttackButtonReleased() {
+	//if (!lockAttackState) {
+		if (attackState != attackStates[ActionStates::Idle]) {
+			attackState->OnFastAttackButtonReleased();
+		}
+	//}
 }
 
 void TCompPlayerModel::StrongAttackButtonPressed() {
@@ -345,6 +365,14 @@ void TCompPlayerModel::StrongAttackButtonPressed() {
 			attackState->OnStrongAttackButton();
 		}
 	}
+}
+
+void TCompPlayerModel::StrongAttackButtonReleased() {
+	//if (!lockAttackState) {
+		if (attackState != attackStates[ActionStates::Idle]) {
+			attackState->OnStrongAttackButtonReleased();
+		}
+	//}
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {

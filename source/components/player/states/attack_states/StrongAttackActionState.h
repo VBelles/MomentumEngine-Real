@@ -16,6 +16,10 @@ class StrongAttackActionState : public GroundedActionState {
 	int IASAFrames = 60;//Interruptible As Soon As
 	float interruptibleTime;
 
+	int startLauncherFrames = 20;
+	float beginLauncherTime;
+	bool isLauncher = true;
+
 	CHandle hitboxHandle;
 	int damage = 2;
 
@@ -27,6 +31,7 @@ public:
 	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
+	void OnStrongAttackButtonReleased() override;
 
 	void OnLeavingGround() override;
 

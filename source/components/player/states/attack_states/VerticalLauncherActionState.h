@@ -6,14 +6,14 @@
 
 class VerticalLauncherActionState : public GroundedActionState {
 	CTimer timer;
-	int warmUpFrames = 10;
-	int activeFrames = 5;
-	int endingLagFrames = 20;
+	int warmUpFrames = 5;
+	int activeFrames = 8;
+	int endingLagFrames = 17;
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
 
-	int IASAFrames = 30;//Interruptible As Soon As
+	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;
 
 	CHandle hitboxHandle;
