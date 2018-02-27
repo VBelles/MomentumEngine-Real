@@ -121,13 +121,13 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 1.0
+				"radius" : 1.5
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
 			},
 			"hitbox" : {
-				"offset" : "0 0.6 0.7"
+				"offset" : "0 -0.3 0.5"
 			}
 		}
 	},
@@ -294,6 +294,18 @@
 				"halfExtent": "2.5 3.5 1.0"
 			},
 			"destroyCondition": {}
+		}
+	},
+	{
+		"entity": {
+			"name": "Plane",
+			"transform": {},
+			"collider": {
+				"shape": "plane",
+				"is_trigger" : false,
+				"is_dynamic" : false,
+				"planeDesc" : "0 1 0 10"
+			}
 		}
 	}
 ]
