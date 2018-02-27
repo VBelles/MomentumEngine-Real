@@ -63,5 +63,9 @@ void TCompPlatformMove::update(float dt) {
                                        myPosition.z + movement.z });
 
     // TO DO: The player should move with the platform.
-
+    if ( false /*player touches platform*/ ) {
+        
+        VEC3 playerPos = playerTransform->getPosition();
+        playerTransform->setPosition(playerPos + movement);
+    }
 }
