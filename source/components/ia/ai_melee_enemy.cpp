@@ -16,6 +16,7 @@ void CAIMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 void CAIMeleeEnemy::registerMsgs() {
 	DECL_MSG(CAIMeleeEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(CAIMeleeEnemy, TMsgAttackHit, OnHit);
+	DECL_MSG(CAIMeleeEnemy, TMsgGrabbed, OnGrabbed);
 }
 
 void CAIMeleeEnemy::InitStates() {
@@ -25,6 +26,7 @@ void CAIMeleeEnemy::InitStates() {
 	AddState("idle_war", (statehandler)&CAIMeleeEnemy::IdleWarState);
 	AddState("attack", (statehandler)&CAIMeleeEnemy::AttackState);
 	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState);
+	AddState("grabbed", (statehandler)&CAIMeleeEnemy::GrabbedState);
 	ChangeState("idle");
 }
 
@@ -35,9 +37,16 @@ void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 	CEntity *attacker = msg.attacker;
 	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
 
-	if (health < 0) {
+	if (health <= 0) {
 		ChangeState("death");
 	}
+}
+
+void CAIMeleeEnemy::OnGrabbed(const TMsgGrabbed& msg) {
+	dbg("grabbed\n");
+	ChangeState("grabbed");
+	CEntity *attacker = msg.attacker;
+	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
 }
 
 void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -136,4 +145,8 @@ void  CAIMeleeEnemy::DeathState(float delta) {
 	TCompCollider *collider = get<TCompCollider>();
 	collider->controller->release();
 	CHandle(this).getOwner().destroy();
+}
+
+void CAIMeleeEnemy::GrabbedState(float delta) {
+	dbg("En grabbed\n");
 }

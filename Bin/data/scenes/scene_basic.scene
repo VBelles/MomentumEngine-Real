@@ -127,7 +127,7 @@
 				"parent" : "The Player"
 			},
 			"hitbox" : {
-				"offset" : "0 0.6 0.7"
+				"offset" : "0 0.0 0.6"
 			}
 		}
 	},
@@ -199,7 +199,22 @@
 				"group": "Enemy"
 			}
 		}
-	},	{
+	},
+	{
+		"entity": {
+			"name": "FlyingEnemy01",
+			"prefab": "data/prefabs/enemy_flying.prefab",
+			"transform": {
+				"pos": "10 5 10"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.9,
+				"group": "Enemy"
+			}
+		}
+	},
+	{
 		"entity": {
 			"prefab": "data/prefabs/crisalida.prefab",
 			"name": "crisalida1",

@@ -50,6 +50,11 @@ struct TMsgAttackHit {
 	DECL_MSG_ID();
 };
 
+struct TMsgGrabbed {
+	CHandle attacker;
+	DECL_MSG_ID();
+};
+
 struct TMsgGainPower {
 	CHandle sender;
 	float power;

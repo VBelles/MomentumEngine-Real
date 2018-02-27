@@ -3,7 +3,7 @@
 #include "ai_controller.h"
 #include "entity/common_msgs.h"
 
-class CAIMeleeEnemy : public IAIController {
+class CAIFlyingEnemy : public IAIController {
 	DECL_SIBLING_ACCESS();
 
 private:
@@ -51,10 +51,6 @@ public:
 	void InitStates();
 	//States
 	void IdleState(float delta);
-	void ChaseState(float delta);
-	void RecallState(float delta);
-	void IdleWarState(float delta);
-	void AttackState(float delta);
 	void DeathState(float delta);
 	void GrabbedState(float delta);
 };
