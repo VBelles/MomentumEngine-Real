@@ -198,14 +198,14 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		}
 		ImGui::End();
 	});
-	myTransform = get<TCompTransform>();
+	myTransformHandle = get<TCompTransform>();
 
 	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
-	currentCamera = camera->get<TCompCamera>();
-	assert(currentCamera);
+	currentCameraHandle = camera->get<TCompCamera>();
+	assert(currentCameraHandle.isValid());
 
-	collider = get<TCompCollider>();
-	assert(collider);
+	colliderHandle = get<TCompCollider>();
+	assert(colliderHandle.isValid());
 
 	movementStates = {
 		{ ActionStates::Idle, nullptr },
@@ -277,7 +277,10 @@ void TCompPlayerModel::update(float dt) {
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
-	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
+	auto c = GetCollider();
+	assert(c);
+	assert(c->controller);
+	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (dynamic_cast<AirborneActionState*>(movementState)) {//NULL si no lo consigue
 		if (isGrounded) {
@@ -386,7 +389,7 @@ void TCompPlayerModel::StrongAttackButtonReleased() {
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
-	currentCamera->CenterCamera();
+	GetCamera()->CenterCamera();
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
@@ -428,6 +431,6 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 	SetAttackState(ActionStates::Idle);
 	SetMovementState(ActionStates::AirborneNormal);
 
-	collider->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 }

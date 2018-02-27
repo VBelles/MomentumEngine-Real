@@ -57,5 +57,7 @@ void TCompCollider::registerMsgs() {
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
+	CEntity* e = CHandle(this).getOwner();
+	dbg("CompCollider.OnCreate(%s)\n", e->getName());
     Engine.getPhysics().createActor(*this);
 }
