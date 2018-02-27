@@ -21,7 +21,9 @@ void TCompPlatformMove::debugInMenu() {
 }
 
 void TCompPlatformMove::registerMsgs() {
-    DECL_MSG(TCompPlatformMove, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompPlatformMove, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompPlatformMove, TMsgTriggerEnter, onTriggerEnter);
+	DECL_MSG(TCompPlatformMove, TMsgTriggerExit, onTriggerExit);
 }
 
 void TCompPlatformMove::load(const json& j, TEntityParseContext& ctx) {
@@ -40,6 +42,19 @@ void TCompPlatformMove::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 
     player = (CEntity *)getEntityByName("The Player");
     playerTransform = player->get<TCompTransform>();
+}
+
+void TCompPlatformMove::onTriggerEnter(const TMsgTriggerEnter & msg) {
+	CEntity *triggerer = msg.h_other_entity;
+	std::string triggererName = triggerer->getName();
+	dbg("Platform trigger enter by %s\n", triggererName.c_str());
+	if (triggererName == "The Player") {
+		
+	}
+}
+
+void TCompPlatformMove::onTriggerExit(const TMsgTriggerExit & msg)
+{
 }
 
 void TCompPlatformMove::update(float dt) {
@@ -62,9 +77,22 @@ void TCompPlatformMove::update(float dt) {
                                        myPosition.y + movement.y,
                                        myPosition.z + movement.z });
 
+	//// Parent is a trigger collider entity.
+	//TCompHierarchy* parent = get<TCompHierarchy>();
+	//TCompTransform* parentTransf = parent->h_parent_transform;
+	//VEC3 parentPos = parentTransf->getPosition();
+	//TCompCollider* parentCollider = parent->get<TCompCollider>();
+	//assert(parentCollider);
+	//PxRigidDynamic* parentRigidDynamic = (PxRigidDynamic*)parentCollider->actor;
+	//parentRigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
+	//rigidDynamic->setKinematicTarget({ parentPos.x + movement.x,
+	//								   parentPos.y + movement.y,
+	//								   parentPos.z + movement.z });
+
+
     // TO DO: The player should move with the platform.
     if ( false /*player touches platform*/ ) {
-        
+        // ¿Hacer al player hijo de la plataforma mientras esté sobre la plataforma?
         VEC3 playerPos = playerTransform->getPosition();
         playerTransform->setPosition(playerPos + movement);
     }

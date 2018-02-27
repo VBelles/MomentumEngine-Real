@@ -3,6 +3,7 @@
 #include "comp_base.h"
 #include "entity/common_msgs.h"
 #include "entity/entity_parser.h"
+#include "comp_hierarchy.h"
 #include "components/comp_transform.h"
 #include "PxPhysicsAPI.h"
 
@@ -25,6 +26,8 @@ public:
     void load(const json& j, TEntityParseContext& ctx);
 
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-    void update(float dt);
+	void onTriggerEnter(const TMsgTriggerEnter& msg);
+	void onTriggerExit(const TMsgTriggerExit& msg);
 
+    void update(float dt);
 };
