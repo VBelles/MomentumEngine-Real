@@ -46,6 +46,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
     if (config.shapeType == PxGeometryType::ePLANE) {
 		PxRigidStatic* plane = PxCreatePlane(*gPhysics, PxPlane(config.plane.x, config.plane.y, config.plane.z, config.plane.w), *gMaterial);
         actor = plane;
+
         setupFiltering(actor, config.group, config.mask);
         gScene->addActor(*actor);
     }
@@ -221,6 +222,23 @@ void CModulePhysics::update(float delta) {
             compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
         }
     }
+
+	releaseColliders();
+}
+
+void  CModulePhysics::releaseCollider(CHandle handle) {
+	toRelease.push_back(handle);
+}
+
+void CModulePhysics::releaseColliders() {
+	for (std::vector<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
+		TCompCollider *collider = *it;
+		collider->actor->release();
+
+		CEntity *parent = it->getOwner();
+		parent->sendMsg(TMsgColliderDestroyed{});
+	}
+	toRelease.clear();
 }
 
 void CModulePhysics::render() {
@@ -232,7 +250,7 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
             continue;
         }
         CHandle h_trigger_comp_collider;
-        h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
+		h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
 
         CHandle h_other_comp_collider;
         h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);

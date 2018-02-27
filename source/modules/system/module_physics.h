@@ -29,6 +29,7 @@ public:
     void createActor(TCompCollider& comp_collider);
     void setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask);
     void setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU32 filterMask);
+	void releaseCollider(CHandle handle);
 
 private:
     PxDefaultAllocator      gDefaultAllocatorCallback;
@@ -56,4 +57,7 @@ private:
     };
 
     CustomSimulationEventCallback customSimulationEventCallback;
+
+	std::vector<CHandle> toRelease;
+	void releaseColliders();
 };

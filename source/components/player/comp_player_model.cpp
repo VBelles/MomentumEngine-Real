@@ -107,6 +107,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, OnHitboxEnter);
 	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, OnGainPower);
+	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, OnOutOfBounds);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -419,4 +420,14 @@ void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
 
 void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
 	powerGauge->IncreasePower(msg.power);
+}
+
+void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
+	dbg("out of bounds \n");
+
+	SetAttackState(ActionStates::Idle);
+	SetMovementState(ActionStates::AirborneNormal);
+
+	collider->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+	velocityVector = VEC3(0, 0, 0);
 }

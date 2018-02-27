@@ -65,6 +65,7 @@ public:
 	void OnAttackHit(const TMsgAttackHit& msg);
 	void OnHitboxEnter(const TMsgHitboxEnter& msg);
 	void OnGainPower(const TMsgGainPower& msg);
+	void OnOutOfBounds(const TMsgOutOfBounds& msg);
 
 	TCompTransform* GetTransform() { return myTransform; }
 	TCompCamera* GetCamera() { return currentCamera; }
@@ -112,4 +113,6 @@ private:
 	CHandle fallingAttackHitbox;
 	CHandle verticalLauncherHitbox;
 	CHandle grabHitbox;
+
+	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre
 };

@@ -91,6 +91,7 @@
     <ClCompile Include="components\player\states\attack_states\GrabHighActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\GrabLongActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\GrabActionState.cpp" />
+    <ClCompile Include="components\comp_out_of_bounds.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="components\player\states\attack_states\GrabHighActionState.h" />
     <ClInclude Include="components\player\states\attack_states\GrabLongActionState.h" />
     <ClInclude Include="components\player\states\attack_states\GrabActionState.h" />
+    <ClInclude Include="components\comp_out_of_bounds.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
