@@ -34,7 +34,7 @@ public:
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, AirborneNormal, JumpSquatLong, AirborneLong,
 		GhostJumpSquatLong, StrongAttack, FallingAttack,
-		VerticalLauncher, GrabHigh
+		VerticalLauncher, GrabHigh, GrabLong
 	};
 	IActionState* movementState;
 	IActionState* attackState;

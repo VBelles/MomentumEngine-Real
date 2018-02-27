@@ -27,6 +27,10 @@ void AirborneNormalActionState::OnJumpHighButton() {
 	player->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
+void AirborneNormalActionState::OnJumpLongButton() {
+	player->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
+}
+
 void AirborneNormalActionState::OnLanding() {
 	//Ir a landing action state
 	player->SetMovementState(TCompPlayerModel::ActionStates::Run);

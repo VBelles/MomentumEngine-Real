@@ -5,8 +5,8 @@
 #include "GrabActionState.h"
 
 
-class GrabHighActionState : public GrabActionState {
+class GrabLongActionState : public GrabActionState {
 public:
-	GrabHighActionState(TCompPlayerModel* player, CHandle hitbox);
+	GrabLongActionState(TCompPlayerModel* player, CHandle hitbox);
 	void OnHitboxEnter(CHandle entity) override;
 };

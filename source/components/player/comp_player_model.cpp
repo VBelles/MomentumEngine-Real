@@ -17,6 +17,7 @@
 #include "states/attack_states/FallingAttackActionState.h"
 #include "states/attack_states/VerticalLauncherActionState.h"
 #include "states/attack_states/GrabHighActionState.h"
+#include "states/attack_states/GrabLongActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -228,6 +229,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::FallingAttack, new FallingAttackActionState(this, fallingAttackHitbox) },
 		{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(this, verticalLauncherHitbox) },
 		{ ActionStates::GrabHigh, new GrabHighActionState(this, grabHitbox) },
+		{ ActionStates::GrabLong, new GrabLongActionState(this, grabHitbox) },
 	};
 	SetMovementState(ActionStates::Run);
 	SetAttackState(ActionStates::Idle);
