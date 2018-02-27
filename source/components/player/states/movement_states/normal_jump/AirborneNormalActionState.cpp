@@ -24,7 +24,7 @@ void AirborneNormalActionState::SetMovementInput(VEC2 input) {
 }
 
 void AirborneNormalActionState::OnJumpHighButton() {
-	//grab
+	player->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void AirborneNormalActionState::OnLanding() {

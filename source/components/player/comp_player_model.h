@@ -34,7 +34,7 @@ public:
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, AirborneNormal, JumpSquatLong, AirborneLong,
 		GhostJumpSquatLong, StrongAttack, FallingAttack,
-		VerticalLauncher
+		VerticalLauncher, GrabHigh
 	};
 	IActionState* movementState;
 	IActionState* attackState;
@@ -111,4 +111,5 @@ private:
 	CHandle strongAttackHitbox;
 	CHandle fallingAttackHitbox;
 	CHandle verticalLauncherHitbox;
+	CHandle grabHitbox;
 };
