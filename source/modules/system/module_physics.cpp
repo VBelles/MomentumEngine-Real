@@ -233,8 +233,12 @@ void  CModulePhysics::releaseCollider(CHandle handle) {
 void CModulePhysics::releaseColliders() {
 	for (std::vector<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
 		TCompCollider *collider = *it;
-		collider->actor->release();
-
+		if (collider->controller) {
+			collider->controller->release();
+		}
+		else {
+			collider->actor->release();
+		}
 		CEntity *parent = it->getOwner();
 		parent->sendMsg(TMsgColliderDestroyed{});
 	}

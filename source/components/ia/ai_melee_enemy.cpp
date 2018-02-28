@@ -19,13 +19,18 @@ void CAIMeleeEnemy::registerMsgs() {
 	DECL_MSG(CAIMeleeEnemy, TMsgAttackHit, OnHit);
 	DECL_MSG(CAIMeleeEnemy, TMsgGrabbed, OnGrabbed);
 	DECL_MSG(CAIMeleeEnemy, TMsgPropelled, OnPropelled);
+	DECL_MSG(CAIMeleeEnemy, TMsgLaunchedVertically, OnLaunchedVertically);
+}
+
+void CAIMeleeEnemy::debugInMenu() {
+	IAIController::debugInMenu();
 }
 
 void CAIMeleeEnemy::update(float delta) {
 	IAIController::update(delta);
-	if (EngineInput["jump"].getsPressed()) { //For testing porpouses
+	/*if (EngineInput["jump"].getsPressed()) { //For testing porpouses
 		LaunchVertically();
-	}
+	}*/
 }
 
 void CAIMeleeEnemy::InitStates() {
@@ -38,7 +43,14 @@ void CAIMeleeEnemy::InitStates() {
 	AddState("vertical_launch", (statehandler)&CAIMeleeEnemy::VerticalLaunchState);
 	AddState("grabbed", (statehandler)&CAIMeleeEnemy::GrabbedState);
 	AddState("propelled", (statehandler)&CAIMeleeEnemy::PropelledState);
+	AddState("floating", (statehandler)&CAIMeleeEnemy::FloatingState);
 	ChangeState("idle");
+}
+
+
+void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+	spawnPosition = getTransform()->getPosition();
+	player = getEntityByName("The Player");
 }
 
 void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
@@ -58,31 +70,37 @@ void CAIMeleeEnemy::OnGrabbed(const TMsgGrabbed& msg) {
 	ChangeState("grabbed");
 	CEntity *attacker = msg.attacker;
 	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
-	//Quitar collider
+	getCollider()->disable();
 }
 
 void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
-	ChangeState("propelled");
 	CEntity *attacker = msg.attacker;
 	propelVelocityVector = msg.velocityVector;
+	getCollider()->enable();
+
+	propelTimer.reset();
+	ChangeState("propelled");
+
 }
 
-void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-	spawnPosition = getTransform()->getPosition();
-	player = getEntityByName("The Player");
+
+void CAIMeleeEnemy::OnLaunchedVertically(const TMsgLaunchedVertically& msg) {
+	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
+	PowerStats* powerStats = playerModel->GetPowerStats();
+	velocityVector.y = powerStats->jumpVelocityVector.y;
+	ChangeState("vertical_launch");
 }
 
-void CAIMeleeEnemy::debugInMenu() {
-	IAIController::debugInMenu();
-}
 
 void CAIMeleeEnemy::IdleState(float delta) {
+	UpdateGravity(delta);
 	if (IsPlayerInFov()) {
 		ChangeState("chase");
 	}
 }
 
 void CAIMeleeEnemy::ChaseState(float delta) {
+	UpdateGravity(delta);
 	//Rotate to the player
 	float y, r, p;
 	getTransform()->getYawPitchRoll(&y, &p, &r);
@@ -98,7 +116,7 @@ void CAIMeleeEnemy::ChaseState(float delta) {
 	//transform->setPosition(myPosition + deltaMovement);
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
-	if (!IsPlayerInFov()) {
+	if (VEC3::Distance(getTransform()->getPosition(), spawnPosition) > recallDistance) {
 		recallTimer.reset();
 		ChangeState("recall");
 	}
@@ -127,6 +145,7 @@ void CAIMeleeEnemy::RecallState(float delta) {
 }
 
 void CAIMeleeEnemy::IdleWarState(float delta) {
+	UpdateGravity(delta);
 	if (!IsPlayerInAttackRange()) {
 		ChangeState("idle");
 		return;
@@ -138,11 +157,46 @@ void CAIMeleeEnemy::IdleWarState(float delta) {
 }
 
 void CAIMeleeEnemy::AttackState(float delta) {
+	UpdateGravity(delta);
 	if (attackTimer.elapsed() > attackDuration) {
 		waitAttackTimer.reset();
 		ChangeState("idle_war");
 		TMsgAttackHit msg{ CHandle(this), 1 };
 		getPlayerEntity()->sendMsg(msg);
+	}
+}
+
+void CAIMeleeEnemy::DeathState(float delta) {
+	getCollider()->controller->release();
+	CHandle(this).getOwner().destroy();
+}
+
+void CAIMeleeEnemy::VerticalLaunchState(float delta) {
+	UpdateGravity(delta);
+	if (velocityVector.y <= 0) {
+		ChangeState("floating");
+		launchedFloatingTimer.reset();
+	}
+}
+
+void CAIMeleeEnemy::GrabbedState(float delta) {
+	dbg("En grabbed\n");
+}
+
+void CAIMeleeEnemy::PropelledState(float delta) {
+	dbg("On propelled\n");
+	if (propelTimer.elapsed() < propelDuration) {
+		getCollider()->controller->move(physx::PxVec3(propelVelocityVector.x * delta, propelVelocityVector.y * delta,
+			propelVelocityVector.z * delta), 0.f, delta, physx::PxControllerFilters());
+	}
+	else {
+		ChangeState("idle");
+	}
+}
+
+void CAIMeleeEnemy::FloatingState(float delta) {
+	if (launchedFloatingTimer.elapsed() > floatingDuration) {
+		ChangeState("idle");
 	}
 }
 
@@ -156,30 +210,15 @@ boolean CAIMeleeEnemy::IsPlayerInFov() {
 	return distance < smallChaseRadius || (distance < fovChaseDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov));
 }
 
-void CAIMeleeEnemy::DeathState(float delta) {
-	getCollider()->controller->release();
-	CHandle(this).getOwner().destroy();
-}
 
-void CAIMeleeEnemy::VerticalLaunchState(float delta) {
+void CAIMeleeEnemy::UpdateGravity(float delta) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	PowerStats* powerStats = playerModel->GetPowerStats();
 	float deltaY = CalculateVerticalDeltaMovement(delta,
 		playerModel->GetAccelerationVector()->y * powerStats->currentGravityMultiplier,
 		playerModel->GetPowerStats()->maxVelocityVertical);
-	//float deltaY = CalculateVerticalDeltaMovement(delta, playerModel->GetGravity(), 25); //TODO: fix random value
 	getCollider()->controller->move(physx::PxVec3(0, deltaY, 0), 0.f, delta, physx::PxControllerFilters());
 	velocityVector.y += playerModel->GetAccelerationVector()->y * powerStats->currentGravityMultiplier * delta;
-	//velocityVector.y += -9.8f * delta;
-	
-	
-}
-
-void CAIMeleeEnemy::LaunchVertically() {
-	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
-	PowerStats* powerStats = playerModel->GetPowerStats();
-	velocityVector.y = powerStats->jumpVelocityVector.y;
-	ChangeState("vertical_launch");
 }
 
 //Calcula el movimiento vertical desde el último frame y lo clampea con la máxima distancia 
@@ -192,12 +231,3 @@ float CAIMeleeEnemy::CalculateVerticalDeltaMovement(float delta, float accelerat
 	return resultingDeltaMovement;
 }
 
-void CAIMeleeEnemy::GrabbedState(float delta) {
-	dbg("En grabbed\n");
-}
-
-void CAIMeleeEnemy::PropelledState(float delta) {
-	dbg("On propelled\n");
-	//Si no ha pasado el timer
-	//mover propelVelocityVector * delta
-}

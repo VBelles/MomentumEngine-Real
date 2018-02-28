@@ -21,7 +21,7 @@ class StrongAttackActionState : public GroundedActionState {
 	bool isLauncher = true;
 
 	CHandle hitboxHandle;
-	int damage = 2;
+	float damage = 2;
 
 public:
 	StrongAttackActionState(TCompPlayerModel* player, CHandle hitbox);

@@ -15,6 +15,8 @@ private:
 
 	float powerGiven = 3400;
 
+	float recallDistance = 28.f;
+
 	float chaseFov = deg2rad(60);
 	float fovChaseDistance = 20.f;
 	float smallChaseRadius = 10.f;
@@ -23,6 +25,10 @@ private:
 	float attackRadius = 2.f;
 	float attackCooldown = 1.f;
 	float attackDuration = 1.f;
+
+	float propelDuration;
+
+	float floatingDuration = 3.f;
 
 	CHandle player;
 
@@ -34,15 +40,20 @@ private:
 	CTimer recallTimer;
 	CTimer waitAttackTimer;
 	CTimer attackTimer;
+	CTimer propelTimer;
+	CTimer launchedFloatingTimer;
 
 	//Mesage functions
 	void OnHit(const TMsgAttackHit& msg);
-	void OnGrabbed(const TMsgGrabbed & msg);
-	void OnPropelled(const TMsgPropelled & msg);
-	void OnGroupCreated(const TMsgEntitiesGroupCreated & msg);
+	void OnGrabbed(const TMsgGrabbed& msg);
+	void OnPropelled(const TMsgPropelled& msg);
+	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void OnLaunchedVertically(const TMsgLaunchedVertically& msg);
 
 	boolean IsPlayerInAttackRange();
 	boolean IsPlayerInFov();
+
+	void UpdateGravity(float delta);
 
 public:
 	void load(const json& j, TEntityParseContext& ctx);
@@ -59,8 +70,10 @@ public:
 	void AttackState(float delta);
 	void DeathState(float delta);
 	void VerticalLaunchState(float delta);
+	void GrabbedState(float delta);
+	void PropelledState(float delta);
 
-	void LaunchVertically();
+	void FloatingState(float delta);
 
 	float CalculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
 
@@ -69,8 +82,7 @@ public:
 	CEntity* getPlayerEntity() { return player; }
 	TCompTransform* getPlayerTransform() { return getPlayerEntity()->get<TCompTransform>(); }
 
-	void GrabbedState(float delta);
-	void PropelledState(float delta);
+
 };
 
 
