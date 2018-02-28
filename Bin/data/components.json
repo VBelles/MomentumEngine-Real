@@ -13,6 +13,8 @@
 		"bullet_controller",
 		"collectable",
 		"destroyCondition",
+		"platform_move",
+		"fwd_msg",
 		"ai_patrol",
     	"flyover_controller",
     	"hierarchy",
