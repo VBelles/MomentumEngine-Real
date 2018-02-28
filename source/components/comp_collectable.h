@@ -16,5 +16,6 @@ public:
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void update(float dt);
 
-    void onCollect(const TMsgTriggerEnter& msg);
+	void onCollect(const TMsgTriggerEnter& msg);
+	void OnColliderDestroyed(const TMsgColliderDestroyed& msg);
 };

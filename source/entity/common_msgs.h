@@ -61,6 +61,15 @@ struct TMsgGainPower {
 	DECL_MSG_ID();
 };
 
+struct TMsgOutOfBounds {
+	CHandle sender;
+	DECL_MSG_ID();
+};
+
+struct TMsgColliderDestroyed {
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

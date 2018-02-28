@@ -9,7 +9,8 @@ void TCompCollectable::debugInMenu() {
 
 void TCompCollectable::registerMsgs() {
     DECL_MSG(TCompCollectable, TMsgEntitiesGroupCreated, onGroupCreated);
-    DECL_MSG(TCompCollectable, TMsgTriggerEnter, onCollect);
+	DECL_MSG(TCompCollectable, TMsgTriggerEnter, onCollect);
+	DECL_MSG(TCompCollectable, TMsgColliderDestroyed, OnColliderDestroyed);
 }
 
 void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
@@ -19,15 +20,6 @@ void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompCollectable::update(float dt) {
-	if (collected) {
-		CEntity *player = (CEntity*)getEntityByName("The Player");
-		TMsgCollect msg{ "chrysalis" };
-		player->sendMsg(msg);
-
-		TCompCollider *collider = get<TCompCollider>();
-		collider->actor->release();
-		CHandle(this).getOwner().destroy();
-	}
 }
 
 void TCompCollectable::onCollect(const TMsgTriggerEnter & msg) {
@@ -37,6 +29,15 @@ void TCompCollectable::onCollect(const TMsgTriggerEnter & msg) {
 		dbg("Trigger enter by %s\n", collectorName.c_str());
 		if (collectorName == "The Player") {
 			collected = true;
+			TMsgCollect msg{ "chrysalis" };
+			collector->sendMsg(msg);
+
+			CHandle collider = get<TCompCollider>();
+			Engine.getPhysics().releaseCollider(collider);
 		}
 	}
+}
+
+void TCompCollectable::OnColliderDestroyed(const TMsgColliderDestroyed& msg) {
+	CHandle(this).getOwner().destroy();
 }

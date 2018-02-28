@@ -59,8 +59,8 @@ void TCompHitbox::onTriggerEnter(const TMsgTriggerEnter& msg) {
 void TCompHitbox::disable() {
 	if (enabled) {
 		enabled = false;
-		TCompCollider *collider = get<TCompCollider>();
-		collider->actor->release();
+		CHandle collider = get<TCompCollider>();
+		Engine.getPhysics().releaseCollider(collider);
 	}
 }
 
@@ -70,7 +70,6 @@ void TCompHitbox::enable() {
 		enabled = true;
 
 		TCompCollider *collider = get<TCompCollider>();
-
 		Engine.getPhysics().createActor(*collider);
 
 		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;

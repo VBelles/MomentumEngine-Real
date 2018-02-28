@@ -66,10 +66,11 @@ public:
 	void OnAttackHit(const TMsgAttackHit& msg);
 	void OnHitboxEnter(const TMsgHitboxEnter& msg);
 	void OnGainPower(const TMsgGainPower& msg);
+	void OnOutOfBounds(const TMsgOutOfBounds& msg);
 
-	TCompTransform* GetTransform() { return myTransform; }
-	TCompCamera* GetCamera() { return currentCamera; }
-	TCompCollider* GetCollider() { return collider; }
+	TCompTransform* GetTransform() { return myTransformHandle; }
+	TCompCamera* GetCamera() { return currentCameraHandle; }
+	TCompCollider* GetCollider() { return colliderHandle; }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
 	
@@ -84,9 +85,9 @@ public:
 
 private:
 	VEC3 deltaMovement;
-	TCompTransform *myTransform;
-	TCompCamera *currentCamera;
-	TCompCollider* collider;
+	CHandle myTransformHandle;
+	CHandle currentCameraHandle;
+	CHandle colliderHandle;
 	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
 	float gravity = 0;
@@ -115,4 +116,6 @@ private:
 	CHandle fallingAttackHitbox;
 	CHandle verticalLauncherHitbox;
 	CHandle grabHitbox;
+
+	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre
 };
