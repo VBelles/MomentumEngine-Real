@@ -9,6 +9,10 @@ PropelHighActionState::PropelHighActionState(CHandle playerHandle)
 void PropelHighActionState::update (float delta) {
 	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
 	if (timer.elapsed() >= endingTime) {
+		/*float newYaw = GetPlayerTransform()->getDeltaYawToAimTo();
+		float y, p, r;
+		GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+		GetPlayerTransform()->setYawPitchRoll(newYaw, p, r);*/
 		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
@@ -45,6 +49,7 @@ void PropelHighActionState::OnStateExit(IActionState * nextState) {
 }
 
 void PropelHighActionState::SetMovementInput(VEC2 input) {
+	movementInput = input;
 }
 
 void PropelHighActionState::OnJumpHighButton() {
