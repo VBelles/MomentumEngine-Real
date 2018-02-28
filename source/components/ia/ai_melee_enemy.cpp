@@ -4,6 +4,7 @@
 #include "entity/entity_parser.h"
 #include "components/comp_transform.h"
 #include "render/render_utils.h"
+#include "components/player/comp_player_model.h"
 
 DECL_OBJ_MANAGER("ai_melee_enemy", CAIMeleeEnemy);
 
@@ -20,7 +21,7 @@ void CAIMeleeEnemy::registerMsgs() {
 
 void CAIMeleeEnemy::update(float delta) {
 	IAIController::update(delta);
-	if (EngineInput["jump"].getsPressed()) {
+	if (EngineInput["jump"].getsPressed()) { //For testing porpouses
 		LaunchVertically();
 	}
 }
@@ -143,14 +144,23 @@ void CAIMeleeEnemy::DeathState(float delta) {
 }
 
 void CAIMeleeEnemy::VerticalLaunchState(float delta) {
-	float deltaY = CalculateVerticalDeltaMovement(delta, -9.8f, 25); //TODO: fix random value
+	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
+	PowerStats* powerStats = playerModel->GetPowerStats();
+	float deltaY = CalculateVerticalDeltaMovement(delta,
+		playerModel->GetAccelerationVector()->y * powerStats->currentGravityMultiplier,
+		playerModel->GetPowerStats()->maxVelocityVertical);
+	//float deltaY = CalculateVerticalDeltaMovement(delta, playerModel->GetGravity(), 25); //TODO: fix random value
 	getCollider()->controller->move(physx::PxVec3(0, deltaY, 0), 0.f, delta, physx::PxControllerFilters());
-	//Nueva velocidad vertical y clampeo
-	velocityVector.y += -9.8f * delta;
+	velocityVector.y += playerModel->GetAccelerationVector()->y * powerStats->currentGravityMultiplier * delta;
+	//velocityVector.y += -9.8f * delta;
+	
+	
 }
 
 void CAIMeleeEnemy::LaunchVertically() {
-	velocityVector.y = 10; //TODO: fix random value
+	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
+	PowerStats* powerStats = playerModel->GetPowerStats();
+	velocityVector.y = powerStats->jumpVelocityVector.y;
 	ChangeState("vertical_launch");
 }
 
