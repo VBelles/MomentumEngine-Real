@@ -118,7 +118,6 @@ public:
 	IActionState(CHandle playerModelHandle) {
 		this->playerModelHandle = playerModelHandle;
 		CEntity* playerEntity = playerModelHandle.getOwner();
-		//assert(playerModelHandle.isValid());
 		this->colliderHandle = playerEntity->get<TCompCollider>();
 		this->playerTransformHandle = playerEntity->get<TCompTransform>();
 	}
