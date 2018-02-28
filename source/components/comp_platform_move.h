@@ -17,7 +17,6 @@ class TCompPlatformMove: public TCompBase {
 
     CHandle             player;
     TCompCollider*      collider;
-    TCompHierarchy*     playerHierarchy;
     bool                isPlayerInTrigger = false;
 
 public:
