@@ -17,8 +17,7 @@ void GrabHighActionState::OnHitboxEnter(CHandle entity) {
 		if (tag && tag->hasTag(getID("enemy"))) {
 			otherEntity->sendMsg(TMsgGrabbed{ playerHandle});
 			dbg("Grab High\n");
-			TCompTransform* enemyTransform = otherEntity->get<TCompTransform>();
-			player->grabTarget = enemyTransform->getPosition() + VEC3::Up * 2.f;
+			player->grabTarget = entity;
 			player->SetAttackState(TCompPlayerModel::ActionStates::PropelHigh);
 		}
 	}

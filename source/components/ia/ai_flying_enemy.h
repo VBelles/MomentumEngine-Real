@@ -21,7 +21,7 @@ private:
 
 	float attackFov = deg2rad(60);
 	float attackRadius = 2.f;
-	float attackColdown = 1.f;
+	float attackCooldown = 1.f;
 	float attackDuration = 1.f;
 
 	TCompTransform* transform;
@@ -30,6 +30,7 @@ private:
 	TCompCollider* collider;
 
 	VEC3 spawnPosition;
+	VEC3 propelVelocityVector;
 
 	CTimer recallTimer;
 	CTimer waitAttackTimer;
@@ -38,6 +39,7 @@ private:
 	//Mesage functions
 	void OnHit(const TMsgAttackHit& msg);
 	void OnGrabbed(const TMsgGrabbed & msg);
+	void OnPropelled(const TMsgPropelled & msg);
 	void OnGroupCreated(const TMsgEntitiesGroupCreated & msg);
 
 	boolean IsPlayerInAttackRange();
@@ -53,6 +55,7 @@ public:
 	void IdleState(float delta);
 	void DeathState(float delta);
 	void GrabbedState(float delta);
+	void PropelledState(float delta);
 };
 
 

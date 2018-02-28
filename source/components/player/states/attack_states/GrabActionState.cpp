@@ -34,6 +34,9 @@ void GrabActionState::OnStateEnter(IActionState * lastState) {
 
 void GrabActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
+	CEntity *hitboxEntity = hitboxHandle;
+	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+	hitbox->disable();
 }
 
 void GrabActionState::SetMovementInput(VEC2 input) {

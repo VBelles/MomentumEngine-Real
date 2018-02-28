@@ -797,10 +797,10 @@ class Ray
 {
 public:
     Vector3 position;
-    Vector3 direction;
+    Vector3 velocityVector;
 
-    Ray() : position(0,0,0), direction(0,0,1) {}
-    Ray( const Vector3& pos, const Vector3& dir ) : position(pos), direction(dir) {}
+    Ray() : position(0,0,0), velocityVector(0,0,1) {}
+    Ray( const Vector3& pos, const Vector3& dir ) : position(pos), velocityVector(dir) {}
 
     // Comparison operators
     bool operator == ( const Ray& r ) const;
@@ -998,9 +998,9 @@ namespace std
             if (R1.position.y != R2.position.y) return R1.position.y < R2.position.y;
             if (R1.position.z != R2.position.z) return R1.position.z < R2.position.z;
 
-            if (R1.direction.x != R2.direction.x) return R1.direction.x < R2.direction.x;
-            if (R1.direction.y != R2.direction.y) return R1.direction.y < R2.direction.y;
-            if (R1.direction.z != R2.direction.z) return R1.direction.z < R2.direction.z;
+            if (R1.velocityVector.x != R2.velocityVector.x) return R1.velocityVector.x < R2.velocityVector.x;
+            if (R1.velocityVector.y != R2.velocityVector.y) return R1.velocityVector.y < R2.velocityVector.y;
+            if (R1.velocityVector.z != R2.velocityVector.z) return R1.velocityVector.z < R2.velocityVector.z;
 
             return false;
         }

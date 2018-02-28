@@ -17,12 +17,14 @@ void CAIFlyingEnemy::registerMsgs() {
 	DECL_MSG(CAIFlyingEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(CAIFlyingEnemy, TMsgAttackHit, OnHit);
 	DECL_MSG(CAIFlyingEnemy, TMsgGrabbed, OnGrabbed);
+	DECL_MSG(CAIFlyingEnemy, TMsgPropelled, OnPropelled);
 }
 
 void CAIFlyingEnemy::InitStates() {
 	AddState("idle", (statehandler)&CAIFlyingEnemy::IdleState);
 	AddState("death", (statehandler)&CAIFlyingEnemy::DeathState);
 	AddState("grabbed", (statehandler)&CAIFlyingEnemy::GrabbedState);
+	AddState("propelled", (statehandler)&CAIFlyingEnemy::PropelledState);
 	ChangeState("idle");
 }
 
@@ -43,6 +45,13 @@ void CAIFlyingEnemy::OnGrabbed(const TMsgGrabbed& msg) {
 	ChangeState("grabbed");
 	CEntity *attacker = msg.attacker;
 	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+	//Quitar collider
+}
+
+void CAIFlyingEnemy::OnPropelled(const TMsgPropelled& msg) {
+	ChangeState("propelled");
+	CEntity *attacker = msg.attacker;
+	propelVelocityVector = msg.velocityVector;
 }
 
 void CAIFlyingEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -58,9 +67,6 @@ void CAIFlyingEnemy::debugInMenu() {
 }
 
 void CAIFlyingEnemy::IdleState(float delta) {
-	if (IsPlayerInFov()) {
-		ChangeState("chase");
-	}
 }
 
 boolean CAIFlyingEnemy::IsPlayerInAttackRange() {
@@ -81,4 +87,10 @@ void  CAIFlyingEnemy::DeathState(float delta) {
 
 void CAIFlyingEnemy::GrabbedState(float delta) {
 	dbg("En grabbed\n");
+}
+
+void CAIFlyingEnemy::PropelledState(float delta) {
+	dbg("On propelled\n");
+	//Si no ha pasado el timer
+	//mover propelVelocityVector * delta
 }

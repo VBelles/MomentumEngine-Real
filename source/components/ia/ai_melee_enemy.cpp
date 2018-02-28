@@ -17,6 +17,7 @@ void CAIMeleeEnemy::registerMsgs() {
 	DECL_MSG(CAIMeleeEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(CAIMeleeEnemy, TMsgAttackHit, OnHit);
 	DECL_MSG(CAIMeleeEnemy, TMsgGrabbed, OnGrabbed);
+	DECL_MSG(CAIMeleeEnemy, TMsgPropelled, OnPropelled);
 }
 
 void CAIMeleeEnemy::InitStates() {
@@ -25,8 +26,9 @@ void CAIMeleeEnemy::InitStates() {
 	AddState("recall", (statehandler)&CAIMeleeEnemy::RecallState);
 	AddState("idle_war", (statehandler)&CAIMeleeEnemy::IdleWarState);
 	AddState("attack", (statehandler)&CAIMeleeEnemy::AttackState);
-	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState);
+	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState); 
 	AddState("grabbed", (statehandler)&CAIMeleeEnemy::GrabbedState);
+	AddState("propelled", (statehandler)&CAIMeleeEnemy::PropelledState);
 	ChangeState("idle");
 }
 
@@ -47,6 +49,13 @@ void CAIMeleeEnemy::OnGrabbed(const TMsgGrabbed& msg) {
 	ChangeState("grabbed");
 	CEntity *attacker = msg.attacker;
 	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+	//Quitar collider
+}
+
+void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
+	ChangeState("propelled");
+	CEntity *attacker = msg.attacker;
+	propelVelocityVector = msg.velocityVector;
 }
 
 void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -116,7 +125,7 @@ void CAIMeleeEnemy::IdleWarState(float delta) {
 		ChangeState("idle");
 		return;
 	}
-	if (waitAttackTimer.elapsed() > attackColdown) {
+	if (waitAttackTimer.elapsed() > attackCooldown) {
 		attackTimer.reset();
 		ChangeState("attack");
 	}
@@ -149,4 +158,10 @@ void  CAIMeleeEnemy::DeathState(float delta) {
 
 void CAIMeleeEnemy::GrabbedState(float delta) {
 	dbg("En grabbed\n");
+}
+
+void CAIMeleeEnemy::PropelledState(float delta) {
+	dbg("On propelled\n");
+	//Si no ha pasado el timer
+	//mover propelVelocityVector * delta
 }

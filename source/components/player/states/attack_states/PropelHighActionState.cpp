@@ -13,6 +13,11 @@ void PropelHighActionState::update (float delta) {
 		deltaMovement = *velocityVector * delta;
 		player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 		player->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+		//pasar mensaje a la otra entidad
+		CHandle playerHandle = CHandle(player).getOwner();
+		CEntity* targetEntity = propelTarget;
+		VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
+		targetEntity->sendMsg(TMsgPropelled{ playerHandle, propelVelocity });
 	}
 	else {
 		*velocityVector = VEC3::Zero;
@@ -23,7 +28,10 @@ void PropelHighActionState::update (float delta) {
 void PropelHighActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	endingTime = endingFrames * (1.f / 60);
-	movingVelocity = player->grabTarget - playerTransform->getPosition();
+	propelTarget = player->grabTarget;
+	CEntity* targetEntity = propelTarget;
+	TCompTransform* targetTransform = targetEntity->get<TCompTransform>();
+	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - playerTransform->getPosition();
 	movingVelocity /= endingTime;
 	timer.reset();
 	player->lockMovementState = true;

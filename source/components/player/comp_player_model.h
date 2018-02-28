@@ -81,7 +81,7 @@ public:
 
 	void OnLevelChange(int powerLevel);
 
-	VEC3 grabTarget;
+	CHandle grabTarget;
 
 private:
 	VEC3 deltaMovement;

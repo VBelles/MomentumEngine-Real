@@ -10,6 +10,7 @@ protected:
 	int endingFrames = 10;
 	float endingTime;
 	VEC3 movingVelocity;
+	CHandle propelTarget;
 
 public:
 	PropelHighActionState(TCompPlayerModel* player);

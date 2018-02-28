@@ -127,7 +127,7 @@
 				"parent" : "The Player"
 			},
 			"hitbox" : {
-				"offset" : "0.0 -0.3 0.5"
+				"offset" : "0.0 -0.3 0.7"
 			}
 		}
 	},
