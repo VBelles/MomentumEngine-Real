@@ -8,7 +8,7 @@ protected:
 	float backwardsdMinAngle = 135.f;
 	float backwardsMaxDotProduct;
 public:
-	GroundedActionState(CHandle playerHandle);
+	GroundedActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

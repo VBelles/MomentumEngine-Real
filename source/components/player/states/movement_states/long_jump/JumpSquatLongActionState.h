@@ -8,7 +8,7 @@ class JumpSquatLongActionState : public GroundedActionState {
 	int squatFrames = 8;
 	float squatTime;
 public:
-	JumpSquatLongActionState(CHandle playerHandle);
+	JumpSquatLongActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

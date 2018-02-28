@@ -14,7 +14,7 @@ class TurnAroundActionState : public GroundedActionState {
 	void RotateToFinalDirection();
 	void SetFinalVelocity();
 public:
-	TurnAroundActionState(CHandle playerHandle);
+	TurnAroundActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

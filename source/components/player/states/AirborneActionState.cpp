@@ -1,18 +1,18 @@
 #include "mcv_platform.h"
 #include "AirborneActionState.h"
 
-AirborneActionState::AirborneActionState(CHandle playerHandle)
-	: IActionState::IActionState(playerHandle) {
-	accelerationVector = GetPlayer()->GetAccelerationVector();
-	velocityVector = GetPlayer()->GetVelocityVector();
+AirborneActionState::AirborneActionState(CHandle playerModelHandle)
+	: IActionState::IActionState(playerModelHandle) {
+	accelerationVector = GetPlayerModel()->GetAccelerationVector();
+	velocityVector = GetPlayerModel()->GetVelocityVector();
 }
 
 void AirborneActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
 
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	
-	VEC3 desiredDirection = GetPlayer()->GetCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
 	
 	if (hasInput){// && enterFront.Dot(desiredDirection) > backwardsMaxDotProduct) {
 		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
@@ -69,8 +69,8 @@ void AirborneActionState::OnJumpLongButton() {
 }
 
 void AirborneActionState::OnStrongAttackButton() {
-	if (GetPlayer()->IsAttackFree()) {
-		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::FallingAttack);
+	if (GetPlayerModel()->IsAttackFree()) {
+		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::FallingAttack);
 	}
 }
 
@@ -80,5 +80,5 @@ void AirborneActionState::OnFastAttackButton() {
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

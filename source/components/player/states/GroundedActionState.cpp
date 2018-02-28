@@ -1,20 +1,20 @@
 #include "mcv_platform.h"
 #include "GroundedActionState.h"
 
-GroundedActionState::GroundedActionState(CHandle playerHandle)
-	: IActionState::IActionState(playerHandle) {
-	accelerationVector = GetPlayer()->GetAccelerationVector();
-	velocityVector = GetPlayer()->GetVelocityVector();
+GroundedActionState::GroundedActionState(CHandle adf)
+	: IActionState::IActionState(adf) {
+	accelerationVector = GetPlayerModel()->GetAccelerationVector();
+	velocityVector = GetPlayerModel()->GetVelocityVector();
 }
 
 void GroundedActionState::update(float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
-	VEC3 desiredDirection = GetPlayer()->GetCamera()->TransformToWorld(movementInput);
-	/*VEC3 front = GetPlayer()->GetTransform()->getFront();
+	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+	/*VEC3 front = GetPlayerModel()->GetTransform()->getFront();
 	if (front.Dot(desiredDirection) <= backwardsMaxDotProduct) {
-		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);*/
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);*/
 	if (false) {
 	}
 	else {
@@ -65,16 +65,16 @@ void GroundedActionState::SetMovementInput(VEC2 input) {
 }
 
 void GroundedActionState::OnJumpHighButton() {
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void GroundedActionState::OnJumpLongButton() {
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void GroundedActionState::OnStrongAttackButton() {
-	if (GetPlayer()->IsAttackFree()) {
-		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::StrongAttack);
+	if (GetPlayerModel()->IsAttackFree()) {
+		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::StrongAttack);
 	}
 }
 
@@ -83,5 +83,5 @@ void GroundedActionState::OnFastAttackButton() {
 
 void GroundedActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }

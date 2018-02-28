@@ -21,7 +21,7 @@ protected:
 	int damage = 0;
 
 public:
-	GrabActionState(CHandle playerHandle, CHandle hitbox);
+	GrabActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

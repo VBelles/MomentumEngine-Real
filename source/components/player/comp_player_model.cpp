@@ -210,9 +210,14 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	colliderHandle = get<TCompCollider>();
 	assert(colliderHandle.isValid());
 
+	assert(CHandle(this).isValid());
+
+	auto jumpSquat = new JumpSquatActionState(CHandle(this));
+	assert(jumpSquat);
+
 	movementStates = {
 		{ ActionStates::Idle, nullptr },
-		{ ActionStates::JumpSquat, new JumpSquatActionState(CHandle(this)) },
+		{ ActionStates::JumpSquat, jumpSquat },
 		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(CHandle(this)) },
 		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(CHandle(this)) },
 		{ ActionStates::Run, new RunActionState(CHandle(this)) },

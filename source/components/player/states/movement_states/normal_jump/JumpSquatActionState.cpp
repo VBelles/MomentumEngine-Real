@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "JumpSquatActionState.h"
 
-JumpSquatActionState::JumpSquatActionState(CHandle playerHandle)
-	: GroundedActionState::GroundedActionState(playerHandle) {
+JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
+	: GroundedActionState::GroundedActionState(playerModelHandle) {
 }
 
 
@@ -12,7 +12,7 @@ void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	squatTime = squatFrames * (1.f / 60);
 	isShortHop = false;
 	timer.reset();
-	enteringVelocity = GetPlayer()->GetVelocityVector()->Length();
+	enteringVelocity = GetPlayerModel()->GetVelocityVector()->Length();
 }
 
 void JumpSquatActionState::OnStateExit(IActionState * nextState) {
@@ -21,7 +21,7 @@ void JumpSquatActionState::OnStateExit(IActionState * nextState) {
 }
 
 void JumpSquatActionState::update (float delta) {
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -60,10 +60,10 @@ void JumpSquatActionState::OnJumpHighButtonReleased() {
 void JumpSquatActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquat);
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquat);
 	}
 }

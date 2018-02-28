@@ -3,12 +3,12 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_tags.h"
 
-GrabLongActionState::GrabLongActionState(CHandle playerHandle, CHandle hitbox)
-	: GrabActionState::GrabActionState(playerHandle, hitbox) {
+GrabLongActionState::GrabLongActionState(CHandle playerModelHandle, CHandle hitbox)
+	: GrabActionState::GrabActionState(playerModelHandle, hitbox) {
 }
 
 void GrabLongActionState::OnHitboxEnter(CHandle entity) {
-	CHandle playerEntity = playerHandle.getOwner();
+	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		//Si es enemigo transicionamos a propel long
 		CEntity *otherEntity = entity;
@@ -17,8 +17,8 @@ void GrabLongActionState::OnHitboxEnter(CHandle entity) {
 		if (tag && tag->hasTag(getID("enemy"))) {
 			otherEntity->sendMsg(TMsgGrabbed{ playerEntity });
 			dbg("Grab Long\n");
-			GetPlayer()->grabTarget = entity;
-			GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::PropelLong);
+			GetPlayerModel()->grabTarget = entity;
+			GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::PropelLong);
 		}
 	}
 }

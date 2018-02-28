@@ -2,21 +2,21 @@
 #include "StrongAttackActionState.h"
 #include "components/comp_hitbox.h"
 
-StrongAttackActionState::StrongAttackActionState(CHandle playerHandle, CHandle hitbox)
-	: GroundedActionState::GroundedActionState(playerHandle) {
+StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
+	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
 }
 
 void StrongAttackActionState::update (float delta) {
 	if (isLauncher && timer.elapsed() > beginLauncherTime) {
 		dbg("Cambio de strong attack a vertical launcher\n");
-		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::VerticalLauncher);
 	}
 	else {
 		if (timer.elapsed() > animationEndTime) {
-			GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-			GetPlayer()->lockMovementState = false;
-			GetPlayer()->lockWalk = false;
+			GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+			GetPlayerModel()->lockMovementState = false;
+			GetPlayerModel()->lockWalk = false;
 		}
 		else if (timer.elapsed() > hitEndTime) {
 			CEntity *hitboxEntity = hitboxHandle;
@@ -41,8 +41,8 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
 	isLauncher = true;
 	timer.reset();
-	GetPlayer()->lockMovementState = true;
-	GetPlayer()->lockWalk = true;
+	GetPlayerModel()->lockMovementState = true;
+	GetPlayerModel()->lockWalk = true;
 }
 
 void StrongAttackActionState::OnStateExit(IActionState * nextState) {
@@ -64,11 +64,11 @@ void StrongAttackActionState::OnStrongAttackButtonReleased() {
 }
 
 void StrongAttackActionState::OnLeavingGround() {
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void StrongAttackActionState::OnHitboxEnter(CHandle entity) {
-	CHandle playerEntity = playerHandle.getOwner();
+	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
 		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });

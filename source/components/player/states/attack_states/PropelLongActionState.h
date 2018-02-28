@@ -13,7 +13,7 @@ protected:
 	CHandle propelTarget;
 
 public:
-	PropelLongActionState(CHandle playerHandle);
+	PropelLongActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

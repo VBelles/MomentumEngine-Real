@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "GhostJumpWindowActionState.h"
 
-GhostJumpWindowActionState::GhostJumpWindowActionState(CHandle playerHandle)
-	: AirborneActionState::AirborneActionState(playerHandle) {
+GhostJumpWindowActionState::GhostJumpWindowActionState(CHandle playerModelHandle)
+	: AirborneActionState::AirborneActionState(playerModelHandle) {
 }
 
 
@@ -11,7 +11,7 @@ void GhostJumpWindowActionState::OnStateEnter(IActionState * lastState) {
 	//dbg("Entrando en GhostJumpWindow\n");
 	squatTime = frameWindow * (1.f / 60);
 	timer.reset();
-	enteringVelocity = GetPlayer()->GetVelocityVector()->Length();
+	enteringVelocity = GetPlayerModel()->GetVelocityVector()->Length();
 }
 
 void GhostJumpWindowActionState::OnStateExit(IActionState * nextState) {
@@ -22,7 +22,7 @@ void GhostJumpWindowActionState::OnStateExit(IActionState * nextState) {
 void GhostJumpWindowActionState::update (float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	AirborneActionState::update(delta);
 }
@@ -32,21 +32,21 @@ void GhostJumpWindowActionState::SetMovementInput(VEC2 input) {
 }
 
 void GhostJumpWindowActionState::OnJumpHighButton() {
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	velocityVector->y = 0.f;
 	*velocityVector += currentPowerStats->jumpVelocityVector;
 	//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
 }
 
 void GhostJumpWindowActionState::OnJumpLongButton() {
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 	velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
 }
 
 void GhostJumpWindowActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

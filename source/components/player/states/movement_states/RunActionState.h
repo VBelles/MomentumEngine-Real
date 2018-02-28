@@ -6,7 +6,7 @@
 
 class RunActionState : public GroundedActionState {
 public:
-	RunActionState(CHandle playerHandle);
+	RunActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

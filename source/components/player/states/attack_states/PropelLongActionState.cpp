@@ -2,19 +2,19 @@
 #include "PropelLongActionState.h"
 #include "components/comp_hitbox.h"
 
-PropelLongActionState::PropelLongActionState(CHandle playerHandle)
-	: AirborneActionState::AirborneActionState(playerHandle) {
+PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
+	: AirborneActionState::AirborneActionState(playerModelHandle) {
 }
 
 void PropelLongActionState::update (float delta) {
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (timer.elapsed() >= endingTime) {
 		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
-		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
 		//pasar mensaje a la otra entidad
-		CHandle playerEntity = playerHandle.getOwner();
+		CHandle playerEntity = playerModelHandle.getOwner();
 		CEntity* targetEntity = propelTarget;
 		VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
 		targetEntity->sendMsg(TMsgPropelled{ playerEntity, propelVelocity });
@@ -28,20 +28,20 @@ void PropelLongActionState::update (float delta) {
 void PropelLongActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	endingTime = endingFrames * (1.f / 60);
-	propelTarget = GetPlayer()->grabTarget;
+	propelTarget = GetPlayerModel()->grabTarget;
 	CEntity* targetEntity = propelTarget;
 	TCompTransform* targetTransform = targetEntity->get<TCompTransform>();
 	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - GetPlayerTransform()->getPosition();
 	movingVelocity /= endingTime;
 	timer.reset();
-	GetPlayer()->lockMovementState = true;
-	GetPlayer()->lockWalk = true;
+	GetPlayerModel()->lockMovementState = true;
+	GetPlayerModel()->lockWalk = true;
 }
 
 void PropelLongActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
-	GetPlayer()->lockMovementState = false;
-	GetPlayer()->lockWalk = false;
+	GetPlayerModel()->lockMovementState = false;
+	GetPlayerModel()->lockWalk = false;
 }
 
 void PropelLongActionState::SetMovementInput(VEC2 input) {
@@ -54,6 +54,6 @@ void PropelLongActionState::OnJumpLongButton() {
 }
 
 void PropelLongActionState::OnLanding() {
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
-	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 }

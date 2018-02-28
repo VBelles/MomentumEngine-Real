@@ -5,7 +5,7 @@
 
 class AirborneLongActionState : public AirborneActionState {
 public:
-	AirborneLongActionState(CHandle playerHandle);
+	AirborneLongActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

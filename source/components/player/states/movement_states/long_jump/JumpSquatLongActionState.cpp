@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "JumpSquatLongActionState.h"
 
-JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerHandle)
-	: GroundedActionState::GroundedActionState(playerHandle) {
+JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
+	: GroundedActionState::GroundedActionState(playerModelHandle) {
 }
 
 
@@ -19,7 +19,7 @@ void JumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 }
 
 void JumpSquatLongActionState::update (float delta) {
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -53,10 +53,10 @@ void JumpSquatLongActionState::OnJumpLongButton() {}
 void JumpSquatLongActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
 	}
 }
