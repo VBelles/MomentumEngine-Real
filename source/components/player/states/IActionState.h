@@ -26,7 +26,6 @@ protected:
 
 	TCompPlayerModel* GetPlayer() { return playerHandle; }
 	TCompTransform* GetPlayerTransform() { return playerTransformHandle; }
-	//TCompCamera* GetCamera() { return currentCameraHandle; }
 	TCompCollider* GetCollider() { return colliderHandle; }
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
@@ -119,7 +118,6 @@ public:
 	IActionState(CHandle playerHandle) {
 		this->playerHandle = playerHandle;
 		CEntity* playerEntity = playerHandle.getOwner();
-		//this->currentCameraHandle = GetPlayer()->GetCamera();
 		this->colliderHandle = playerEntity->get<TCompCollider>();
 		this->playerTransformHandle = playerEntity->get<TCompTransform>();
 	}
