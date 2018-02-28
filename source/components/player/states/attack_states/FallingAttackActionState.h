@@ -15,7 +15,7 @@ class FallingAttackActionState : public AirborneActionState {
 	float damage = 3;
 
 public:
-	FallingAttackActionState(TCompPlayerModel* player, CHandle hitbox);
+	FallingAttackActionState(CHandle playerHandle, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

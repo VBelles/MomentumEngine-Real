@@ -13,7 +13,7 @@ protected:
 	float backwardsAirDriftFactor = 0.8f;
 
 public:
-	AirborneActionState(TCompPlayerModel* player);
+	AirborneActionState(CHandle playerHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

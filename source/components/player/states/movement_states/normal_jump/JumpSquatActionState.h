@@ -12,7 +12,7 @@ class JumpSquatActionState : public GroundedActionState {
 
 	float enteringVelocity = 0.f;
 public:
-	JumpSquatActionState(TCompPlayerModel* player);
+	JumpSquatActionState(CHandle playerHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

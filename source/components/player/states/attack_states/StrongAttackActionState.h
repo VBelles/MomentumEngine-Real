@@ -24,7 +24,7 @@ class StrongAttackActionState : public GroundedActionState {
 	float damage = 2;
 
 public:
-	StrongAttackActionState(TCompPlayerModel* player, CHandle hitbox);
+	StrongAttackActionState(CHandle playerHandle, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "GhostJumpSquatLongActionState.h"
 
-GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(TCompPlayerModel * player)
-	: AirborneActionState::AirborneActionState(player) {
+GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(CHandle playerHandle)
+	: AirborneActionState::AirborneActionState(playerHandle) {
 }
 
 
@@ -19,25 +19,23 @@ void GhostJumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 }
 
 void GhostJumpSquatLongActionState::update (float delta) {
-	PowerStats* currentPowerStats = player->GetPowerStats();
-	collider = player->GetCollider();
+	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		*velocityVector = playerTransform->getFront() * currentPowerStats->longJumpVelocityVector.z;
+		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		player->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
+		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
-		playerTransform = player->GetTransform();
 
 		deltaMovement.x = 0;
 		deltaMovement.z = 0;
 		if (hasInput) {
-			deltaMovement = playerTransform->getFront() * enteringVelocity * delta;
+			deltaMovement = GetPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
 
 		//distancia vertical recorrida
@@ -62,5 +60,5 @@ void GhostJumpSquatLongActionState::OnJumpLongButton() {}
 
 void GhostJumpSquatLongActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

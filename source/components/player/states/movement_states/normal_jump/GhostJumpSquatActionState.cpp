@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "GhostJumpSquatActionState.h"
 
-GhostJumpSquatActionState::GhostJumpSquatActionState(TCompPlayerModel * player)
-	: AirborneActionState::AirborneActionState(player) {
+GhostJumpSquatActionState::GhostJumpSquatActionState(CHandle playerHandle)
+	: AirborneActionState::AirborneActionState(playerHandle) {
 }
 
 
@@ -11,7 +11,7 @@ void GhostJumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	//dbg("Entrando en GhostJumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
-	enteringVelocity = player->GetVelocityVector()->Length();
+	enteringVelocity = GetPlayer()->GetVelocityVector()->Length();
 }
 
 void GhostJumpSquatActionState::OnStateExit(IActionState * nextState) {
@@ -20,8 +20,7 @@ void GhostJumpSquatActionState::OnStateExit(IActionState * nextState) {
 }
 
 void GhostJumpSquatActionState::update (float delta) {
-	PowerStats* currentPowerStats = player->GetPowerStats();
-	collider = player->GetCollider();
+	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -29,17 +28,16 @@ void GhostJumpSquatActionState::update (float delta) {
 		*velocityVector += currentPowerStats->jumpVelocityVector;
 		deltaMovement = *velocityVector * delta;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		player->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
-		playerTransform = player->GetTransform();
 
 		deltaMovement.x = 0;
 		deltaMovement.z = 0;
 		if (hasInput) {
-			//usar entering velocity en vez de player->maxHorizontalSpeed (una vez el movimiento se haga con velocityVector)
-			deltaMovement = playerTransform->getFront() * enteringVelocity * delta;
+			//usar entering velocity en vez de GetPlayer()->maxHorizontalSpeed (una vez el movimiento se haga con velocityVector)
+			deltaMovement = GetPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
 
 		//distancia vertical recorrida
@@ -62,5 +60,5 @@ void GhostJumpSquatActionState::OnJumpHighButton() {}
 
 void GhostJumpSquatActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

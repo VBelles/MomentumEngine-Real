@@ -1,7 +1,11 @@
 #pragma once
 
 #include "mcv_platform.h"
+#include "components/comp_camera.h"
 #include "components/player/comp_player_model.h"
+#include "components/comp_collider.h"
+#include "components/comp_transform.h"
+
 
 class TCompPlayerModel;
 
@@ -9,31 +13,36 @@ class IActionState {
 protected:
 	IActionState* lastState;
 	IActionState* nextState;
-	TCompPlayerModel* player;
+
+	CHandle playerHandle;
+	CHandle playerTransformHandle;
+	CHandle currentCameraHandle;
+	CHandle colliderHandle;
+
 	VEC3 deltaMovement;
 	VEC2 movementInput;
-	TCompTransform* playerTransform;
-	TCompCamera* currentCamera;
-	TCompCollider* collider;
 	VEC3* accelerationVector;
 	VEC3* velocityVector;
 
+	TCompPlayerModel* GetPlayer() { return playerHandle; }
+	TCompTransform* GetPlayerTransform() { return playerTransformHandle; }
+	TCompCollider* GetCollider() { return colliderHandle; }
+
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void RotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
-		if (abs(playerTransform->getDeltaYawToAimTo(targetPos)) > 0.01f) {
+		if (abs(GetPlayerTransform()->getDeltaYawToAimTo(targetPos)) > 0.01f) {
 			float y, p, r;
-			playerTransform->getYawPitchRoll(&y, &p, &r);
-			float yMult = playerTransform->isInLeft(targetPos) ? 1.f : -1.f;
+			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+			float yMult = GetPlayerTransform()->isInLeft(targetPos) ? 1.f : -1.f;
 			y += rotationSpeed * delta * yMult;
-			playerTransform->setYawPitchRoll(y, p, r);
+			GetPlayerTransform()->setYawPitchRoll(y, p, r);
 		}
 	}
 
 	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
 	float CalculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
 		float backwardsMaxDotProduct, float sidewaysMaxDotProduct, float backwardsAirDriftFactor, float sidewaysAirDriftFactor
-		) 
-	{
+	) {
 		float resultingAcceleration = baseAcceleration;
 		if (baseDirection.Dot(desiredDirection) <= backwardsMaxDotProduct) {
 			resultingAcceleration *= backwardsAirDriftFactor;
@@ -49,8 +58,7 @@ protected:
 	VEC3 CalculateHorizontalDeltaMovement(
 		float delta, VEC3 lastFrameDirection, VEC3 newDirection,
 		float acceleration, float maxSpeed
-		) 
-	{
+	) {
 		//Copiamos los ejes x/z del vector de velocidad en un VEC2, para trabajar sin tocar el eje y
 		VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 		float currentSpeed = horizontalVelocity.Length();
@@ -107,18 +115,22 @@ protected:
 	}
 
 public:
-	IActionState(TCompPlayerModel* player) {
-		this->player = player;
+	IActionState(CHandle playerHandle) {
+		this->playerHandle = playerHandle;
+		CEntity* playerEntity = playerHandle.getOwner();
+		this->colliderHandle = playerEntity->get<TCompCollider>();
+		this->playerTransformHandle = playerEntity->get<TCompTransform>();
 	}
 	virtual void update(float delta) = 0;
 	virtual void OnStateEnter(IActionState* lastState) { this->lastState = lastState; }
-	virtual void OnStateExit(IActionState* nextState) { 
-		this->nextState = nextState; 
+	virtual void OnStateExit(IActionState* nextState) {
+		this->nextState = nextState;
 		deltaMovement = VEC3::Zero;
 		movementInput = VEC2::Zero;
 	}
 	virtual void SetMovementInput(VEC2 movementInput) {}
 	virtual VEC3 GetDeltaMovement() { return deltaMovement; }
+	virtual VEC2 GetMovementInput() { return movementInput; }
 	virtual void OnJumpHighButton() {}
 	virtual void OnJumpHighButtonReleased() {}
 	virtual void OnJumpLongButton() {}

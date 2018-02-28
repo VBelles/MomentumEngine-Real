@@ -35,7 +35,7 @@ public:
 		Run, AirborneNormal, JumpSquatLong, AirborneLong,
 		GhostJumpSquatLong, StrongAttack, FallingAttack,
 		VerticalLauncher, GrabHigh, GrabLong, PropelHigh,
-		PropelLong
+		PropelLong, TurnAround
 	};
 	IActionState* movementState;
 	IActionState* attackState;
