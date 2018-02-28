@@ -57,20 +57,16 @@ void TCompHitbox::onTriggerEnter(const TMsgTriggerEnter& msg) {
 }
 
 void TCompHitbox::disable() {
-	if (enabled) {
-		enabled = false;
-		CHandle collider = get<TCompCollider>();
-		Engine.getPhysics().releaseCollider(collider);
-	}
+	TCompCollider* collider = get<TCompCollider>();
+	collider->disable();
 }
 
 void TCompHitbox::enable() {
-	if (!enabled) {
+	TCompCollider* collider = get<TCompCollider>();
+	if (!collider->isEnabled()) {
 		handles.clear();
-		enabled = true;
 
-		TCompCollider *collider = get<TCompCollider>();
-		Engine.getPhysics().createActor(*collider);
+		collider->enable();
 
 		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
 		rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);

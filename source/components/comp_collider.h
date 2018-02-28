@@ -27,6 +27,7 @@ enum FilterGroups {
 
 class TCompCollider: public TCompBase {
 	DECL_SIBLING_ACCESS();
+	bool enabled = false;
 
 public:
     struct TConfig {
@@ -50,5 +51,9 @@ public:
     void debugInMenu();
     static void registerMsgs();
     void load(const json& j, TEntityParseContext& ctx);
-    void onCreate(const TMsgEntityCreated& msg);
+	void onCreate(const TMsgEntityCreated& msg);
+	void enable();
+	void disable();
+	bool isEnabled() { return enabled; }
+	
 };

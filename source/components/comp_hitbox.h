@@ -10,8 +10,8 @@
 class TCompHitbox : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
+private:
 	VEC3 offset = {0,0,0};
-	bool enabled = true;
 	std::set<CHandle> handles;
 
 public:
