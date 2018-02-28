@@ -7,6 +7,6 @@
 
 class GrabLongActionState : public GrabActionState {
 public:
-	GrabLongActionState(CHandle playerHandle, CHandle hitbox);
+	GrabLongActionState(CHandle playerModelHandle, CHandle hitbox);
 	void OnHitboxEnter(CHandle entity) override;
 };

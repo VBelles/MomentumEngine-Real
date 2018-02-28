@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "RunActionState.h"
 
-RunActionState::RunActionState(CHandle playerHandle)
-	: GroundedActionState::GroundedActionState(playerHandle) {
+RunActionState::RunActionState(CHandle playerModelHandle)
+	: GroundedActionState::GroundedActionState(playerModelHandle) {
 }
 
 void RunActionState::update (float delta) {
@@ -24,14 +24,14 @@ void RunActionState::SetMovementInput(VEC2 input) {
 }
 
 void RunActionState::OnJumpHighButton() {
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void RunActionState::OnJumpLongButton() {
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void RunActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }

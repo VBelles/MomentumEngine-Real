@@ -14,6 +14,7 @@ void TCompCollectable::registerMsgs() {
 }
 
 void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
+    type = j.value("type", "chrysalis");
 }
 
 void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -29,7 +30,7 @@ void TCompCollectable::onCollect(const TMsgTriggerEnter & msg) {
 		//dbg("Trigger enter by %s\n", collectorName.c_str());
 		if (collectorName == "The Player") {
 			collected = true;
-			TMsgCollect msg{ "chrysalis" };
+			TMsgCollect msg{ type };
 			collector->sendMsg(msg);
 
 			TCompCollider* collider = get<TCompCollider>();

@@ -14,7 +14,7 @@ protected:
 	IActionState* lastState;
 	IActionState* nextState;
 
-	CHandle playerHandle;
+	CHandle playerModelHandle;
 	CHandle playerTransformHandle;
 	CHandle currentCameraHandle;
 	CHandle colliderHandle;
@@ -24,7 +24,7 @@ protected:
 	VEC3* accelerationVector;
 	VEC3* velocityVector;
 
-	TCompPlayerModel* GetPlayer() { return playerHandle; }
+	TCompPlayerModel* GetPlayerModel() { return playerModelHandle; }
 	TCompTransform* GetPlayerTransform() { return playerTransformHandle; }
 	TCompCollider* GetCollider() { return colliderHandle; }
 
@@ -115,9 +115,9 @@ protected:
 	}
 
 public:
-	IActionState(CHandle playerHandle) {
-		this->playerHandle = playerHandle;
-		CEntity* playerEntity = playerHandle.getOwner();
+	IActionState(CHandle playerModelHandle) {
+		this->playerModelHandle = playerModelHandle;
+		CEntity* playerEntity = playerModelHandle.getOwner();
 		this->colliderHandle = playerEntity->get<TCompCollider>();
 		this->playerTransformHandle = playerEntity->get<TCompTransform>();
 	}

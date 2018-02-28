@@ -3,12 +3,12 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_tags.h"
 
-GrabHighActionState::GrabHighActionState(CHandle playerHandle, CHandle hitbox)
-	: GrabActionState::GrabActionState(playerHandle, hitbox) {
+GrabHighActionState::GrabHighActionState(CHandle playerModelHandle, CHandle hitbox)
+	: GrabActionState::GrabActionState(playerModelHandle, hitbox) {
 }
 
 void GrabHighActionState::OnHitboxEnter(CHandle entity) {
-	CHandle playerEntity = playerHandle.getOwner();
+	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		//Si es enemigo transicionamos a propel high
 		CEntity *otherEntity = entity;
@@ -17,8 +17,8 @@ void GrabHighActionState::OnHitboxEnter(CHandle entity) {
 		if (tag && tag->hasTag(getID("enemy"))) {
 			otherEntity->sendMsg(TMsgGrabbed{ playerEntity });
 			dbg("Grab High\n");
-			GetPlayer()->grabTarget = entity;
-			GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::PropelHigh);
+			GetPlayerModel()->grabTarget = entity;
+			GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::PropelHigh);
 		}
 	}
 }

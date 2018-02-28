@@ -9,7 +9,7 @@ class GhostJumpSquatActionState : public AirborneActionState {
 	float squatTime;
 	float enteringVelocity = 0.f;
 public:
-	GhostJumpSquatActionState(CHandle playerHandle);
+	GhostJumpSquatActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

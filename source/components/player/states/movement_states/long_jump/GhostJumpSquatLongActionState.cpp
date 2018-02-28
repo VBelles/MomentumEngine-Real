@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "GhostJumpSquatLongActionState.h"
 
-GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(CHandle playerHandle)
-	: AirborneActionState::AirborneActionState(playerHandle) {
+GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(CHandle playerModelHandle)
+	: AirborneActionState::AirborneActionState(playerModelHandle) {
 }
 
 
@@ -19,7 +19,7 @@ void GhostJumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 }
 
 void GhostJumpSquatLongActionState::update (float delta) {
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -27,7 +27,7 @@ void GhostJumpSquatLongActionState::update (float delta) {
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
@@ -60,5 +60,5 @@ void GhostJumpSquatLongActionState::OnJumpLongButton() {}
 
 void GhostJumpSquatLongActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

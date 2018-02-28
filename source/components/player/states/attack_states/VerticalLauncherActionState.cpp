@@ -2,16 +2,16 @@
 #include "VerticalLauncherActionState.h"
 #include "components/comp_hitbox.h"
 
-VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerHandle, CHandle hitbox)
-	: GroundedActionState::GroundedActionState(playerHandle) {
+VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
+	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
 }
 
 void VerticalLauncherActionState::update (float delta) {
 	if (timer.elapsed() > animationEndTime) {
-		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-		GetPlayer()->lockMovementState = false;
-		GetPlayer()->lockWalk = false;
+		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->lockMovementState = false;
+		GetPlayerModel()->lockWalk = false;
 	}
 	else if (timer.elapsed() > hitEndTime) {
 		CEntity *hitboxEntity = hitboxHandle;
@@ -33,8 +33,8 @@ void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = hitEndTime + endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
-	GetPlayer()->lockMovementState = true;
-	GetPlayer()->lockWalk = true;
+	GetPlayerModel()->lockMovementState = true;
+	GetPlayerModel()->lockWalk = true;
 }
 
 void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
@@ -52,11 +52,11 @@ void VerticalLauncherActionState::OnJumpLongButton() {
 }
 
 void VerticalLauncherActionState::OnLeavingGround() {
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
-	CHandle playerEntity = playerHandle.getOwner();
+	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
 		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });

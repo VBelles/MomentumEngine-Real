@@ -1,16 +1,16 @@
 #include "mcv_platform.h"
 #include "AirborneLongActionState.h"
 
-AirborneLongActionState::AirborneLongActionState(CHandle playerHandle)
-	: AirborneActionState::AirborneActionState(playerHandle) {
+AirborneLongActionState::AirborneLongActionState(CHandle playerModelHandle)
+	: AirborneActionState::AirborneActionState(playerModelHandle) {
 }
 
 void AirborneLongActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
 
-	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
-	VEC3 desiredDirection = GetPlayer()->GetCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
 
 	if (hasInput) {
 		//aceleración según sentido de movimiento
@@ -54,14 +54,14 @@ void AirborneLongActionState::SetMovementInput(VEC2 input) {
 }
 
 void AirborneLongActionState::OnJumpHighButton() {
-	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
+	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void AirborneLongActionState::OnJumpLongButton() {
-	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
+	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
 }
 
 void AirborneLongActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

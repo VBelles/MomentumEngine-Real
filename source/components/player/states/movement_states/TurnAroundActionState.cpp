@@ -2,8 +2,8 @@
 #include "TurnAroundActionState.h"
 
 
-TurnAroundActionState::TurnAroundActionState(CHandle playerHandle)
-	: GroundedActionState::GroundedActionState(playerHandle) {
+TurnAroundActionState::TurnAroundActionState(CHandle playerModelHandle)
+	: GroundedActionState::GroundedActionState(playerModelHandle) {
 }
 
 void TurnAroundActionState::update (float delta) {
@@ -26,7 +26,7 @@ void TurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	exitVelocityVector = VEC3::Zero;
 	exitVelocityVector.x = movementInput.x * enteringHorizontalVelocity;
 	exitVelocityVector.z = movementInput.y * enteringHorizontalVelocity;
-	rotationSpeed = GetPlayerTransform()->getDeltaYawToAimTo(GetPlayer()->GetCamera()->TransformToWorld(exitVelocityVector));
+	rotationSpeed = GetPlayerTransform()->getDeltaYawToAimTo(GetPlayerModel()->GetCamera()->TransformToWorld(exitVelocityVector));
 	rotationSpeed /= turnAroundTime;
 	//dbg("Entrando en turn around\n");
 }
@@ -44,23 +44,23 @@ void TurnAroundActionState::SetMovementInput(VEC2 input) {
 void TurnAroundActionState::OnJumpHighButton() {
 	RotateToFinalDirection();
 	SetFinalVelocity();
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void TurnAroundActionState::OnJumpLongButton() {
 	RotateToFinalDirection();
 	SetFinalVelocity();
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void TurnAroundActionState::OnLeavingGround() {
 	RotateToFinalDirection();
-	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void TurnAroundActionState::RotateToFinalDirection() {
 	//Rotar hasta el ángulo de salida
-	float newYaw = GetPlayerTransform()->getDeltaYawToAimTo(GetPlayer()->GetCamera()->TransformToWorld(exitVelocityVector));
+	float newYaw = GetPlayerTransform()->getDeltaYawToAimTo(GetPlayerModel()->GetCamera()->TransformToWorld(exitVelocityVector));
 	float y, p, r;
 	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	GetPlayerTransform()->setYawPitchRoll(newYaw, p, r);

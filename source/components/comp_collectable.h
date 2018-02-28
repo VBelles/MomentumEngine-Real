@@ -7,6 +7,7 @@ class TCompCollectable: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 	bool collected = false;
+	std::string type = "";
 
 public:
     void debugInMenu();
