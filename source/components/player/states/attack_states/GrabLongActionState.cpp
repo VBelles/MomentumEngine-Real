@@ -18,7 +18,7 @@ void GrabLongActionState::OnHitboxEnter(CHandle entity) {
 			otherEntity->sendMsg(TMsgGrabbed{ playerHandle });
 			dbg("Grab Long\n");
 			player->grabTarget = entity;
-			player->SetAttackState(TCompPlayerModel::ActionStates::PropelHigh);
+			player->SetAttackState(TCompPlayerModel::ActionStates::PropelLong);
 		}
 	}
 }

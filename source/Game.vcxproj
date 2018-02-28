@@ -115,6 +115,7 @@
     <ClCompile Include="components\player\states\attack_states\GrabHighActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\GrabLongActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\PropelHighActionState.cpp" />
+    <ClCompile Include="components\player\states\attack_states\PropelLongActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\StrongAttackActionState.cpp" />
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\VerticalLauncherActionState.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="components\player\states\attack_states\GrabHighActionState.h" />
     <ClInclude Include="components\player\states\attack_states\GrabLongActionState.h" />
     <ClInclude Include="components\player\states\attack_states\PropelHighActionState.h" />
+    <ClInclude Include="components\player\states\attack_states\PropelLongActionState.h" />
     <ClInclude Include="components\player\states\attack_states\StrongAttackActionState.h" />
     <ClInclude Include="components\player\states\attack_states\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
