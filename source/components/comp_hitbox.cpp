@@ -29,8 +29,8 @@ void TCompHitbox::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompHitbox::update(float dt) {
-	if (enabled) {
-		TCompCollider *collider = get<TCompCollider>();
+	TCompCollider *collider = get<TCompCollider>();
+	if (collider->isEnabled()) {
 		TCompTransform *transform = get<TCompTransform>();
 		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
 
