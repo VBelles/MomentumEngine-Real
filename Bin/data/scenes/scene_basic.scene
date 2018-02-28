@@ -121,13 +121,13 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 1.0
+				"radius" : 1.5
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
 			},
 			"hitbox" : {
-				"offset" : "0 0.0 0.6"
+				"offset" : "0.0 -0.2 0.5"
 			}
 		}
 	},
@@ -160,8 +160,8 @@
 			"collider": {
 				"shape": "capsule",
 				"is_character_controller": true,
-				"radius": 0.9,
-				"height": 0.85,
+				"radius": 0.95,
+				"height": 0.1,
 				"group": "Enemy"
 			}
 		}
@@ -177,8 +177,8 @@
 			"collider": {
 				"shape": "capsule",
 				"is_character_controller": true,
-				"radius": 0.9,
-				"height": 0.85,
+				"radius": 0.95,
+				"height": 0.1,
 				"group": "Enemy"
 			}
 		}
@@ -194,8 +194,8 @@
 			"collider": {
 				"shape": "capsule",
 				"is_character_controller": true,
-				"radius": 0.9,
-				"height": 0.85,
+				"radius": 0.95,
+				"height": 0.1,
 				"group": "Enemy"
 			}
 		}
@@ -209,7 +209,49 @@
 			},
 			"collider": {
 				"shape": "sphere",
-				"radius": 0.9,
+				"radius": 0.3,
+				"group": "Enemy"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "FlyingEnemy02",
+			"prefab": "data/prefabs/enemy_flying.prefab",
+			"transform": {
+				"pos": "-10 7 8"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.3,
+				"group": "Enemy"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "FlyingEnemy03",
+			"prefab": "data/prefabs/enemy_flying.prefab",
+			"transform": {
+				"pos": "-10 7 3"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.3,
+				"group": "Enemy"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "FlyingEnemy03",
+			"prefab": "data/prefabs/enemy_flying.prefab",
+			"transform": {
+				"pos": "-10 7 -2"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.3,
 				"group": "Enemy"
 			}
 		}

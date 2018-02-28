@@ -11,14 +11,15 @@ void GrabLongActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerHandle = CHandle(player).getOwner();
 	if (entity != playerHandle) {
 		//Si es enemigo transicionamos a propel long
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
 		CEntity *otherEntity = entity;
+
 		TCompTags* tag = otherEntity->get<TCompTags>();
 		if (tag && tag->hasTag(getID("enemy"))) {
 			otherEntity->sendMsg(TMsgGrabbed{ playerHandle });
 			dbg("Grab Long\n");
+			TCompTransform* enemyTransform = otherEntity->get<TCompTransform>();
+			player->grabTarget = enemyTransform->getPosition() + VEC3::Up * 2.f;
+			player->SetAttackState(TCompPlayerModel::ActionStates::PropelHigh);
 		}
 	}
 }
