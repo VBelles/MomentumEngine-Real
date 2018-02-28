@@ -32,8 +32,8 @@ void TCompCollectable::onCollect(const TMsgTriggerEnter & msg) {
 			TMsgCollect msg{ "chrysalis" };
 			collector->sendMsg(msg);
 
-			CHandle collider = get<TCompCollider>();
-			Engine.getPhysics().releaseCollider(collider);
+			TCompCollider* collider = get<TCompCollider>();
+			collider->disable();
 		}
 	}
 }

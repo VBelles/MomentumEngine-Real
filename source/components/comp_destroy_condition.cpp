@@ -25,6 +25,6 @@ void TCompDestroyCondition::update(float dt) {
 void TCompDestroyCondition::onDestroy(const TMsgDestroy & msg) {
     // Door destroys itself.
     TCompCollider *collider = get<TCompCollider>();
-    collider->actor->release();
+	collider->disable();
     CHandle(this).getOwner().destroy();
 }
