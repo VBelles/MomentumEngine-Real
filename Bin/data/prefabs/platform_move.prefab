@@ -7,7 +7,7 @@
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/Platform007.mesh",
+					"mesh": "data/meshes/PlatformMove.mesh",
 					"materials": [
 						"data/materials/madera.material"
 					],

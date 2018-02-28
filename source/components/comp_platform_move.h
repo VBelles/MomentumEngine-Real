@@ -15,10 +15,10 @@ class TCompPlatformMove: public TCompBase {
     size_t              currentWaypoint = 0;
     float               speed = 0.f;
 
-    TCompTransform*     transform;
-    CEntity*            player;
-    TCompTransform*     playerTransform;
+    CHandle             player;
     TCompCollider*      collider;
+    TCompHierarchy*     playerHierarchy;
+    bool                isPlayerInTrigger = false;
 
 public:
     void debugInMenu();

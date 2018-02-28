@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_platform_move.h"
 #include "render/render_utils.h"
+#include "player/comp_player_model.h"
 
 DECL_OBJ_MANAGER("platform_move", TCompPlatformMove);
 
@@ -38,26 +39,45 @@ void TCompPlatformMove::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlatformMove::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-    transform = get<TCompTransform>();
+    player = (CHandle)getEntityByName("The Player");
 
-    player = (CEntity *)getEntityByName("The Player");
-    playerTransform = player->get<TCompTransform>();
+    collider = get<TCompCollider>();
+    assert(collider);
 }
 
 void TCompPlatformMove::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	CEntity *triggerer = msg.h_other_entity;
 	std::string triggererName = triggerer->getName();
-	dbg("Platform trigger enter by %s\n", triggererName.c_str());
+	//dbg("Platform trigger enter by %s\n", triggererName.c_str());
 	if (triggererName == "The Player") {
-		
+        isPlayerInTrigger = true;
+
+        // Hacer al player hijo de la plataforma mientras esté sobre ella.
+        //CEntity* owner = CHandle(this).getOwner();
+        //CEntity* ePlayer = (CEntity*)player;
+        //assert(ePlayer);
+        //playerHierarchy = ePlayer->get<TCompHierarchy>();
+        //playerHierarchy->setParentEntity(owner);
 	}
 }
 
-void TCompPlatformMove::onTriggerExit(const TMsgTriggerExit & msg)
-{
+void TCompPlatformMove::onTriggerExit(const TMsgTriggerExit & msg) {
+    CEntity *triggerer = msg.h_other_entity;
+    std::string triggererName = triggerer->getName();
+    //dbg("Platform trigger exit by %s\n", triggererName.c_str());
+    if (triggererName == "The Player") {
+        isPlayerInTrigger = false;
+
+        // El player se independiza de la plataforma.
+        //CEntity* ePlayer = (CEntity*)player;
+        //assert(ePlayer);
+        //playerHierarchy = ePlayer->get<TCompHierarchy>();
+        //playerHierarchy->setParentEntity(CHandle());
+    }
 }
 
 void TCompPlatformMove::update(float dt) {
+    TCompTransform* transform = get<TCompTransform>();
     if (!transform) return;
     VEC3 myPosition = transform->getPosition();
 
@@ -69,31 +89,33 @@ void TCompPlatformMove::update(float dt) {
     direction.Normalize();
     VEC3 movement = direction * speed * dt;
 
-    collider = get<TCompCollider>();
-    assert(collider);
     PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
     rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
     rigidDynamic->setKinematicTarget({ myPosition.x + movement.x,
                                        myPosition.y + movement.y,
                                        myPosition.z + movement.z });
 
-	//// Parent is a trigger collider entity.
-	//TCompHierarchy* parent = get<TCompHierarchy>();
-	//TCompTransform* parentTransf = parent->h_parent_transform;
-	//VEC3 parentPos = parentTransf->getPosition();
-	//TCompCollider* parentCollider = parent->get<TCompCollider>();
-	//assert(parentCollider);
-	//PxRigidDynamic* parentRigidDynamic = (PxRigidDynamic*)parentCollider->actor;
-	//parentRigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
-	//rigidDynamic->setKinematicTarget({ parentPos.x + movement.x,
-	//								   parentPos.y + movement.y,
-	//								   parentPos.z + movement.z });
+	// Move also the parent.
+    CEntity* owner = CHandle(this).getOwner();
+	TCompHierarchy* hierarchy = owner->get<TCompHierarchy>();
+    CEntity* parent = hierarchy->h_parent;
+	TCompTransform* parentTransf = parent->get<TCompTransform>();
+	VEC3 parentPos = parentTransf->getPosition();
+	TCompCollider* parentCollider = parent->get<TCompCollider>();
+	assert(parentCollider);
+	PxRigidDynamic* parentRigidDynamic = (PxRigidDynamic*)parentCollider->actor;
+	parentRigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
+	parentRigidDynamic->setKinematicTarget({ parentPos.x + movement.x,
+									         parentPos.y + movement.y,
+									         parentPos.z + movement.z });
 
-
-    // TO DO: The player should move with the platform.
-    if ( false /*player touches platform*/ ) {
-        // ¿Hacer al player hijo de la plataforma mientras esté sobre la plataforma?
+    // Move the player with the platform.
+    if ( isPlayerInTrigger ) {
+        CEntity* ePlayer = (CEntity*)player;
+        TCompTransform* playerTransform = ePlayer->get<TCompTransform>();
         VEC3 playerPos = playerTransform->getPosition();
+        /*TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>;
+        playerModel->UpdateMovement(dt, movement);*/
         playerTransform->setPosition(playerPos + movement);
     }
 }
