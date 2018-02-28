@@ -93,11 +93,13 @@
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_destroy_condition.cpp" />
     <ClCompile Include="components\comp_flyover_controller.cpp" />
+    <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\comp_ground_sensor.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_render_ui.cpp" />
@@ -193,11 +195,13 @@
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_destroy_condition.h" />
     <ClInclude Include="components\comp_flyover_controller.h" />
+    <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\comp_ground_sensor.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_name.h" />
+    <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_render_ui.h" />

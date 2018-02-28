@@ -3,11 +3,11 @@
 #include "comp_base.h"
 #include "entity/common_msgs.h"
 
-class TCompCollectable: public TCompBase {
+// Takes trigger messages and forwards them to specified target.
+class TCompFwdMsg: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
-	bool collected = false;
-	std::string type = "";
+    CHandle     target;
 
 public:
     void debugInMenu();
@@ -15,8 +15,6 @@ public:
     void load(const json& j, TEntityParseContext& ctx);
 
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-    void update(float dt);
-
-	void onCollect(const TMsgTriggerEnter& msg);
-	void OnColliderDestroyed(const TMsgColliderDestroyed& msg);
+	void onTriggerEnter(const TMsgTriggerEnter& msg);
+	void onTriggerExit(const TMsgTriggerExit& msg);
 };
