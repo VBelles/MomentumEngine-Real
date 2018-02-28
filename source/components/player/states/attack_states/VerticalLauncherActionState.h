@@ -20,7 +20,7 @@ class VerticalLauncherActionState : public GroundedActionState {
 	float damage = 0;
 
 public:
-	VerticalLauncherActionState(TCompPlayerModel* player, CHandle hitbox);
+	VerticalLauncherActionState(CHandle playerHandle, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

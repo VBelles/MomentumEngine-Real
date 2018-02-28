@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "JumpSquatLongActionState.h"
 
-JumpSquatLongActionState::JumpSquatLongActionState(TCompPlayerModel * player)
-	: GroundedActionState::GroundedActionState(player) {
+JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerHandle)
+	: GroundedActionState::GroundedActionState(playerHandle) {
 }
 
 
@@ -19,12 +19,11 @@ void JumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 }
 
 void JumpSquatLongActionState::update (float delta) {
-	PowerStats* currentPowerStats = player->GetPowerStats();
-	collider = player->GetCollider();
-
+	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+	
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		*velocityVector = playerTransform->getFront() * currentPowerStats->longJumpVelocityVector.z;
+		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;
@@ -54,10 +53,10 @@ void JumpSquatLongActionState::OnJumpLongButton() {}
 void JumpSquatLongActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		player->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
+		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		player->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
+		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
 	}
 }

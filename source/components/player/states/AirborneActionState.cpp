@@ -1,23 +1,21 @@
 #include "mcv_platform.h"
 #include "AirborneActionState.h"
 
-AirborneActionState::AirborneActionState(TCompPlayerModel * player) 
-	: IActionState::IActionState(player) {
-	accelerationVector = player->GetAccelerationVector();
-	velocityVector = player->GetVelocityVector();
-	playerTransform = player->GetTransform();
+AirborneActionState::AirborneActionState(CHandle playerHandle)
+	: IActionState::IActionState(playerHandle) {
+	accelerationVector = GetPlayer()->GetAccelerationVector();
+	velocityVector = GetPlayer()->GetVelocityVector();
 }
 
 void AirborneActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
-	currentCamera = player->GetCamera();
-	collider = player->GetCollider();
-	PowerStats* currentPowerStats = player->GetPowerStats();
+
+	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
 	
-	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = GetPlayer()->GetCamera()->TransformToWorld(movementInput);
 	
 	if (hasInput){// && enterFront.Dot(desiredDirection) > backwardsMaxDotProduct) {
-		VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
+		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 		RotatePlayerTowards(delta, targetPos, 3.5f);
 	}
 
@@ -49,7 +47,7 @@ void AirborneActionState::update (float delta) {
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
-	enterFront = playerTransform->getFront();
+	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 }
@@ -71,8 +69,8 @@ void AirborneActionState::OnJumpLongButton() {
 }
 
 void AirborneActionState::OnStrongAttackButton() {
-	if (player->IsAttackFree()) {
-		player->SetAttackState(TCompPlayerModel::ActionStates::FallingAttack);
+	if (GetPlayer()->IsAttackFree()) {
+		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::FallingAttack);
 	}
 }
 
@@ -82,5 +80,5 @@ void AirborneActionState::OnFastAttackButton() {
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

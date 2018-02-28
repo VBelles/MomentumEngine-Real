@@ -2,21 +2,21 @@
 #include "StrongAttackActionState.h"
 #include "components/comp_hitbox.h"
 
-StrongAttackActionState::StrongAttackActionState(TCompPlayerModel * player, CHandle hitbox)
-	: GroundedActionState::GroundedActionState(player) {
+StrongAttackActionState::StrongAttackActionState(CHandle playerHandle, CHandle hitbox)
+	: GroundedActionState::GroundedActionState(playerHandle) {
 	hitboxHandle = hitbox;
 }
 
 void StrongAttackActionState::update (float delta) {
 	if (isLauncher && timer.elapsed() > beginLauncherTime) {
 		dbg("Cambio de strong attack a vertical launcher\n");
-		player->SetAttackState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::VerticalLauncher);
 	}
 	else {
 		if (timer.elapsed() > animationEndTime) {
-			player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-			player->lockMovementState = false;
-			player->lockWalk = false;
+			GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+			GetPlayer()->lockMovementState = false;
+			GetPlayer()->lockWalk = false;
 		}
 		else if (timer.elapsed() > hitEndTime) {
 			CEntity *hitboxEntity = hitboxHandle;
@@ -41,8 +41,8 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
 	isLauncher = true;
 	timer.reset();
-	player->lockMovementState = true;
-	player->lockWalk = true;
+	GetPlayer()->lockMovementState = true;
+	GetPlayer()->lockWalk = true;
 }
 
 void StrongAttackActionState::OnStateExit(IActionState * nextState) {
@@ -64,14 +64,14 @@ void StrongAttackActionState::OnStrongAttackButtonReleased() {
 }
 
 void StrongAttackActionState::OnLeavingGround() {
-	player->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void StrongAttackActionState::OnHitboxEnter(CHandle entity) {
-	CHandle playerHandle = CHandle(player).getOwner();
-	if (entity != playerHandle) {
+	CHandle playerEntity = playerHandle.getOwner();
+	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerHandle, damage });
+		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
 		dbg("Strong attack hit for %i damage\n", damage);
 	}
 }

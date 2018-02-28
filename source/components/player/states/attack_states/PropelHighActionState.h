@@ -13,7 +13,7 @@ protected:
 	CHandle propelTarget;
 
 public:
-	PropelHighActionState(TCompPlayerModel* player);
+	PropelHighActionState(CHandle playerHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

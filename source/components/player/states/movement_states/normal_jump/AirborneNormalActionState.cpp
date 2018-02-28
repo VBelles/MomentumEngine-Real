@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "AirborneNormalActionState.h"
 
-AirborneNormalActionState::AirborneNormalActionState(TCompPlayerModel * player)
-	: AirborneActionState::AirborneActionState(player) {
+AirborneNormalActionState::AirborneNormalActionState(CHandle playerHandle)
+	: AirborneActionState::AirborneActionState(playerHandle) {
 }
 
 void AirborneNormalActionState::update (float delta) {
@@ -24,14 +24,14 @@ void AirborneNormalActionState::SetMovementInput(VEC2 input) {
 }
 
 void AirborneNormalActionState::OnJumpHighButton() {
-	player->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
+	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void AirborneNormalActionState::OnJumpLongButton() {
-	player->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
+	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
 }
 
 void AirborneNormalActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

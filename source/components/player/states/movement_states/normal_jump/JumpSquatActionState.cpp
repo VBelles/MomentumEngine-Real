@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "JumpSquatActionState.h"
 
-JumpSquatActionState::JumpSquatActionState(TCompPlayerModel * player)
-	: GroundedActionState::GroundedActionState(player) {
+JumpSquatActionState::JumpSquatActionState(CHandle playerHandle)
+	: GroundedActionState::GroundedActionState(playerHandle) {
 }
 
 
@@ -12,7 +12,7 @@ void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	squatTime = squatFrames * (1.f / 60);
 	isShortHop = false;
 	timer.reset();
-	enteringVelocity = player->GetVelocityVector()->Length();
+	enteringVelocity = GetPlayer()->GetVelocityVector()->Length();
 }
 
 void JumpSquatActionState::OnStateExit(IActionState * nextState) {
@@ -21,8 +21,7 @@ void JumpSquatActionState::OnStateExit(IActionState * nextState) {
 }
 
 void JumpSquatActionState::update (float delta) {
-	PowerStats* currentPowerStats = player->GetPowerStats();
-	collider = player->GetCollider();
+	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -34,7 +33,7 @@ void JumpSquatActionState::update (float delta) {
 		bool hasInput = movementInput != VEC2::Zero;
 		deltaMovement = VEC3::Zero;
 		if (hasInput) {
-			deltaMovement = playerTransform->getFront() * enteringVelocity * delta;
+			deltaMovement = GetPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
 		//distancia vertical recorrida
 		currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
@@ -61,10 +60,10 @@ void JumpSquatActionState::OnJumpHighButtonReleased() {
 void JumpSquatActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		player->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		player->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquat);
+		GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquat);
 	}
 }
