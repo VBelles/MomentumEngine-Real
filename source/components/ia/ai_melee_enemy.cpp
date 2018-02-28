@@ -17,6 +17,8 @@ void CAIMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 void CAIMeleeEnemy::registerMsgs() {
 	DECL_MSG(CAIMeleeEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(CAIMeleeEnemy, TMsgAttackHit, OnHit);
+	DECL_MSG(CAIMeleeEnemy, TMsgGrabbed, OnGrabbed);
+	DECL_MSG(CAIMeleeEnemy, TMsgPropelled, OnPropelled);
 }
 
 void CAIMeleeEnemy::update(float delta) {
@@ -34,6 +36,9 @@ void CAIMeleeEnemy::InitStates() {
 	AddState("attack", (statehandler)&CAIMeleeEnemy::AttackState);
 	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState);
 	AddState("vertical_launch", (statehandler)&CAIMeleeEnemy::VerticalLaunchState);
+	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState); 
+	AddState("grabbed", (statehandler)&CAIMeleeEnemy::GrabbedState);
+	AddState("propelled", (statehandler)&CAIMeleeEnemy::PropelledState);
 	ChangeState("idle");
 }
 
@@ -47,6 +52,20 @@ void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 	if (health <= 0) {
 		ChangeState("death");
 	}
+}
+
+void CAIMeleeEnemy::OnGrabbed(const TMsgGrabbed& msg) {
+	dbg("grabbed\n");
+	ChangeState("grabbed");
+	CEntity *attacker = msg.attacker;
+	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+	//Quitar collider
+}
+
+void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
+	ChangeState("propelled");
+	CEntity *attacker = msg.attacker;
+	propelVelocityVector = msg.velocityVector;
 }
 
 void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -113,7 +132,7 @@ void CAIMeleeEnemy::IdleWarState(float delta) {
 		ChangeState("idle");
 		return;
 	}
-	if (waitAttackTimer.elapsed() > attackColdown) {
+	if (waitAttackTimer.elapsed() > attackCooldown) {
 		attackTimer.reset();
 		ChangeState("attack");
 	}
@@ -174,3 +193,12 @@ float CAIMeleeEnemy::CalculateVerticalDeltaMovement(float delta, float accelerat
 	return resultingDeltaMovement;
 }
 
+void CAIMeleeEnemy::GrabbedState(float delta) {
+	dbg("En grabbed\n");
+}
+
+void CAIMeleeEnemy::PropelledState(float delta) {
+	dbg("On propelled\n");
+	//Si no ha pasado el timer
+	//mover propelVelocityVector * delta
+}

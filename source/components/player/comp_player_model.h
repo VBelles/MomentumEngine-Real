@@ -34,7 +34,8 @@ public:
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, AirborneNormal, JumpSquatLong, AirborneLong,
 		GhostJumpSquatLong, StrongAttack, FallingAttack,
-		VerticalLauncher, GrabHigh, GrabLong
+		VerticalLauncher, GrabHigh, GrabLong, PropelHigh,
+		PropelLong
 	};
 	IActionState* movementState;
 	IActionState* attackState;
@@ -80,6 +81,8 @@ public:
 	bool isTouchingCeiling = false;
 
 	void OnLevelChange(int powerLevel);
+
+	CHandle grabTarget;
 
 private:
 	VEC3 deltaMovement;

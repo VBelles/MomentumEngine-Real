@@ -4,24 +4,16 @@
 #include "../AirborneActionState.h"
 
 
-class GrabActionState : public AirborneActionState {
+class PropelHighActionState : public AirborneActionState {
 protected:
 	CTimer timer;
-	int warmUpFrames = 2;
-	int activeFrames = 8;
-	int endingLagFrames = 15;
-	float hitboxOutTime;
-	float hitEndTime;
-	float animationEndTime;
-
-	int IASAFrames = 25;//Interruptible As Soon As
-	float interruptibleTime;
-
-	CHandle hitboxHandle;
-	int damage = 0;
+	int endingFrames = 10;
+	float endingTime;
+	VEC3 movingVelocity;
+	CHandle propelTarget;
 
 public:
-	GrabActionState(TCompPlayerModel* player, CHandle hitbox);
+	PropelHighActionState(TCompPlayerModel* player);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
@@ -30,6 +22,4 @@ public:
 	void OnJumpLongButton() override;
 
 	void OnLanding() override;
-
-	void OnHitboxEnter(CHandle entity) override;
 };

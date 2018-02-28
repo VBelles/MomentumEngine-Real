@@ -52,7 +52,7 @@ void CTransform::getYawPitchRoll(float* yaw, float* pitch, float* roll) const {
 }
 
 void CTransform::setYawPitchRoll(float new_yaw, float new_pitch, float new_roll ) {
-  // pitch goes in the opposite direction in SimpleMath
+  // pitch goes in the opposite velocityVector in SimpleMath
   rot = QUAT::CreateFromYawPitchRoll(new_yaw, -new_pitch, new_roll);
 }
 

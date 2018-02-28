@@ -127,7 +127,7 @@
 				"parent" : "The Player"
 			},
 			"hitbox" : {
-				"offset" : "0 -0.3 0.5"
+				"offset" : "0.0 0.0 0.7"
 			}
 		}
 	},
@@ -156,6 +156,14 @@
 			"transform": {
 				"pos": "0 0 10",
 				"lookat": "-1 0 -1"
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_character_controller": true,
+				"radius": 0.95,
+				"height": 0.1,
+				"group": "Enemy"
+
 			}
 		}
 	},
@@ -166,6 +174,13 @@
 			"transform": {
 				"pos": "10 0 0",
 				"lookat": "-1 0 -1"
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_character_controller": true,
+				"radius": 0.95,
+				"height": 0.1,
+				"group": "Enemy"
 			}
 		}
 	},
@@ -176,9 +191,73 @@
 			"transform": {
 				"pos": "10 0 10",
 				"lookat": "-1 0 -1"
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_character_controller": true,
+				"radius": 0.95,
+				"height": 0.1,
+				"group": "Enemy"
 			}
 		}
-	},	{
+	},
+	{
+		"entity": {
+			"name": "FlyingEnemy01",
+			"prefab": "data/prefabs/enemy_flying.prefab",
+			"transform": {
+				"pos": "10 5 10"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.3,
+				"group": "Enemy"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "FlyingEnemy02",
+			"prefab": "data/prefabs/enemy_flying.prefab",
+			"transform": {
+				"pos": "-10 7 8"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.3,
+				"group": "Enemy"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "FlyingEnemy03",
+			"prefab": "data/prefabs/enemy_flying.prefab",
+			"transform": {
+				"pos": "-10 7 3"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.3,
+				"group": "Enemy"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "FlyingEnemy03",
+			"prefab": "data/prefabs/enemy_flying.prefab",
+			"transform": {
+				"pos": "-10 7 -2"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.3,
+				"group": "Enemy"
+			}
+		}
+	},
+	{
 		"entity": {
 			"prefab": "data/prefabs/crisalida.prefab",
 			"name": "crisalida1",

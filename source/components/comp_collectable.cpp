@@ -26,7 +26,7 @@ void TCompCollectable::onCollect(const TMsgTriggerEnter & msg) {
 	if (!collected) {
 		CEntity *collector = msg.h_other_entity;
 		std::string collectorName = collector->getName();
-		dbg("Trigger enter by %s\n", collectorName.c_str());
+		//dbg("Trigger enter by %s\n", collectorName.c_str());
 		if (collectorName == "The Player") {
 			collected = true;
 			TMsgCollect msg{ "chrysalis" };
