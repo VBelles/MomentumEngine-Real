@@ -13,12 +13,14 @@
 #include "states/movement_states/long_jump/AirborneLongActionState.h"
 #include "states/movement_states/long_jump/GhostJumpSquatLongActionState.h"
 #include "states/movement_states/long_jump/JumpSquatLongActionState.h"
+#include "states/movement_states/TurnAroundActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
 #include "states/attack_states/FallingAttackActionState.h"
 #include "states/attack_states/VerticalLauncherActionState.h"
 #include "states/attack_states/GrabHighActionState.h"
 #include "states/attack_states/GrabLongActionState.h"
 #include "states/attack_states/PropelHighActionState.h"
+#include "states/attack_states/PropelLongActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -210,14 +212,15 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	movementStates = {
 		{ ActionStates::Idle, nullptr },
-		{ ActionStates::JumpSquat, new JumpSquatActionState(this) },
-		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(this) },
-		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(this) },
-		{ ActionStates::Run, new RunActionState(this) },
-		{ ActionStates::AirborneNormal, new AirborneNormalActionState(this) },
-		{ ActionStates::GhostJumpSquatLong, new GhostJumpSquatLongActionState(this) },
-		{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(this) },
-		{ ActionStates::AirborneLong, new AirborneLongActionState(this) },
+		{ ActionStates::JumpSquat, new JumpSquatActionState(CHandle(this)) },
+		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(CHandle(this)) },
+		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(CHandle(this)) },
+		{ ActionStates::Run, new RunActionState(CHandle(this)) },
+		{ ActionStates::AirborneNormal, new AirborneNormalActionState(CHandle(this)) },
+		{ ActionStates::GhostJumpSquatLong, new GhostJumpSquatLongActionState(CHandle(this)) },
+		{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(CHandle(this)) },
+		{ ActionStates::AirborneLong, new AirborneLongActionState(CHandle(this)) },
+		{ ActionStates::TurnAround, new TurnAroundActionState(CHandle(this)) },
 	};
 
 	strongAttackHitbox = getEntityByName("Strong attack hitbox");
@@ -227,12 +230,13 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	attackStates = {
 		{ ActionStates::Idle, nullptr },
-		{ ActionStates::StrongAttack, new StrongAttackActionState(this, strongAttackHitbox) },
-		{ ActionStates::FallingAttack, new FallingAttackActionState(this, fallingAttackHitbox) },
-		{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(this, verticalLauncherHitbox) },
-		{ ActionStates::GrabHigh, new GrabHighActionState(this, grabHitbox) },
-		{ ActionStates::GrabLong, new GrabLongActionState(this, grabHitbox) },
-		{ ActionStates::PropelHigh, new PropelHighActionState(this) },
+		{ ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
+		{ ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
+		{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
+		{ ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
+		{ ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
+		{ ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },
+		{ ActionStates::PropelLong, new PropelLongActionState(CHandle(this)) },
 	};
 	SetMovementState(ActionStates::Run);
 	SetAttackState(ActionStates::Idle);

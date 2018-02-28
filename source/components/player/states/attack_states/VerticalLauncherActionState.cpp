@@ -2,16 +2,16 @@
 #include "VerticalLauncherActionState.h"
 #include "components/comp_hitbox.h"
 
-VerticalLauncherActionState::VerticalLauncherActionState(TCompPlayerModel * player, CHandle hitbox)
-	: GroundedActionState::GroundedActionState(player) {
+VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerHandle, CHandle hitbox)
+	: GroundedActionState::GroundedActionState(playerHandle) {
 	hitboxHandle = hitbox;
 }
 
 void VerticalLauncherActionState::update (float delta) {
 	if (timer.elapsed() > animationEndTime) {
-		player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-		player->lockMovementState = false;
-		player->lockWalk = false;
+		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayer()->lockMovementState = false;
+		GetPlayer()->lockWalk = false;
 	}
 	else if (timer.elapsed() > hitEndTime) {
 		CEntity *hitboxEntity = hitboxHandle;
@@ -33,8 +33,8 @@ void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = hitEndTime + endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
-	player->lockMovementState = true;
-	player->lockWalk = true;
+	GetPlayer()->lockMovementState = true;
+	GetPlayer()->lockWalk = true;
 }
 
 void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
@@ -52,14 +52,14 @@ void VerticalLauncherActionState::OnJumpLongButton() {
 }
 
 void VerticalLauncherActionState::OnLeavingGround() {
-	player->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
-	CHandle playerHandle = CHandle(player).getOwner();
-	if (entity != playerHandle) {
+	CHandle playerEntity = playerHandle.getOwner();
+	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgLaunchedVertically{ playerHandle, damage });
+		otherEntity->sendMsg(TMsgLaunchedVertically{ playerEntity, damage });
 		dbg("Vertical Launcher hit for %i damage\n", damage);
 	}
 }

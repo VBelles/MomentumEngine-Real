@@ -91,9 +91,11 @@
     <ClCompile Include="components\player\states\attack_states\GrabHighActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\GrabLongActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\GrabActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\ia\ai_flying_enemy.cpp" />
     <ClCompile Include="components\player\states\attack_states\PropelHighActionState.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
+    <ClCompile Include="components\player\states\attack_states\PropelLongActionState.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
   </ItemGroup>
@@ -211,9 +213,11 @@
     <ClInclude Include="components\player\states\attack_states\GrabHighActionState.h" />
     <ClInclude Include="components\player\states\attack_states\GrabLongActionState.h" />
     <ClInclude Include="components\player\states\attack_states\GrabActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\TurnAroundActionState.h" />
     <ClInclude Include="components\ia\ai_flying_enemy.h" />
     <ClInclude Include="components\player\states\attack_states\PropelHighActionState.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
+    <ClInclude Include="components\player\states\attack_states\PropelLongActionState.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
   </ItemGroup>

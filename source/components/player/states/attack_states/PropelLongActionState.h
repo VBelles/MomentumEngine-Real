@@ -4,18 +4,16 @@
 #include "../AirborneActionState.h"
 
 
-class FallingAttackActionState : public AirborneActionState {
+class PropelLongActionState : public AirborneActionState {
+protected:
 	CTimer timer;
-	int warmUpFrames = 20;
-	float hitboxOutTime;
-	float fallingAcceleration = -70.f;
-	float maxFallingVelocity = 45.f;
-
-	CHandle hitboxHandle;
-	float damage = 3;
+	int endingFrames = 10;
+	float endingTime;
+	VEC3 movingVelocity;
+	CHandle propelTarget;
 
 public:
-	FallingAttackActionState(CHandle playerHandle, CHandle hitbox);
+	PropelLongActionState(CHandle playerHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
@@ -24,6 +22,4 @@ public:
 	void OnJumpLongButton() override;
 
 	void OnLanding() override;
-
-	void OnHitboxEnter(CHandle entity) override;
 };

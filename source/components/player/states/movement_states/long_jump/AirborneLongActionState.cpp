@@ -1,17 +1,16 @@
 #include "mcv_platform.h"
 #include "AirborneLongActionState.h"
 
-AirborneLongActionState::AirborneLongActionState(TCompPlayerModel * player)
-	: AirborneActionState::AirborneActionState(player) {
+AirborneLongActionState::AirborneLongActionState(CHandle playerHandle)
+	: AirborneActionState::AirborneActionState(playerHandle) {
 }
 
 void AirborneLongActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
-	currentCamera = player->GetCamera();
-	collider = player->GetCollider();	
-	PowerStats* currentPowerStats = player->GetPowerStats();
 
-	VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
+	PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
+
+	VEC3 desiredDirection = GetPlayer()->GetCamera()->TransformToWorld(movementInput);
 
 	if (hasInput) {
 		//aceleración según sentido de movimiento
@@ -40,7 +39,7 @@ void AirborneLongActionState::update (float delta) {
 void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	//dbg("Entrando en airborne long\n");
-	enterFront = playerTransform->getFront();
+	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 }
@@ -55,14 +54,14 @@ void AirborneLongActionState::SetMovementInput(VEC2 input) {
 }
 
 void AirborneLongActionState::OnJumpHighButton() {
-	player->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
+	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void AirborneLongActionState::OnJumpLongButton() {
-	player->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
+	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
 }
 
 void AirborneLongActionState::OnLanding() {
 	//Ir a landing action state
-	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 }

@@ -2,8 +2,8 @@
 #include "FallingAttackActionState.h"
 #include "components/comp_hitbox.h"
 
-FallingAttackActionState::FallingAttackActionState(TCompPlayerModel * player, CHandle hitbox)
-	: AirborneActionState::AirborneActionState(player) {
+FallingAttackActionState::FallingAttackActionState(CHandle playerHandle, CHandle hitbox)
+	: AirborneActionState::AirborneActionState(playerHandle) {
 	hitboxHandle = hitbox;
 }
 
@@ -11,13 +11,11 @@ void FallingAttackActionState::update (float delta) {
 	if (timer.elapsed() < hitboxOutTime) {
 		//posicionamiento
 		bool hasInput = movementInput != VEC2::Zero;
-		currentCamera = player->GetCamera();
-		collider = player->GetCollider();
-		PowerStats* currentPowerStats = player->GetPowerStats();
+		PowerStats* currentPowerStats = GetPlayer()->GetPowerStats();
 
 		if (hasInput) {
-			VEC3 desiredDirection = player->GetCamera()->TransformToWorld(movementInput);
-			VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
+			VEC3 desiredDirection = GetPlayer()->GetCamera()->TransformToWorld(movementInput);
+			VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 			RotatePlayerTowards(delta, targetPos, 10.f);
 		}
 
@@ -45,8 +43,8 @@ void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
-	player->lockMovementState = true;
-	player->lockWalk = true;
+	GetPlayer()->lockMovementState = true;
+	GetPlayer()->lockWalk = true;
 }
 
 void FallingAttackActionState::OnStateExit(IActionState * nextState) {
@@ -70,17 +68,17 @@ void FallingAttackActionState::OnLanding() {
 	hitbox->disable();
 
 	*velocityVector = VEC3::Zero;
-	player->lockMovementState = false;
-	player->lockWalk = false;
-	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
-	player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+	GetPlayer()->lockMovementState = false;
+	GetPlayer()->lockWalk = false;
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 }
 
 void FallingAttackActionState::OnHitboxEnter(CHandle entity) {
-	CHandle playerHandle = CHandle(player).getOwner();
-	if (entity != playerHandle) {
+	CHandle playerEntity = playerHandle.getOwner();
+	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerHandle, damage });
+		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
 		dbg("Falling attack hit for %i damage\n", damage);
 	}
 }

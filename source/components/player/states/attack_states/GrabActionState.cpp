@@ -2,14 +2,14 @@
 #include "GrabHighActionState.h"
 #include "components/comp_hitbox.h"
 
-GrabActionState::GrabActionState(TCompPlayerModel * player, CHandle hitbox)
-	: AirborneActionState::AirborneActionState(player) {
+GrabActionState::GrabActionState(CHandle playerHandle, CHandle hitbox)
+	: AirborneActionState::AirborneActionState(playerHandle) {
 	hitboxHandle = hitbox;
 }
 
 void GrabActionState::update (float delta) {
 	if (timer.elapsed() >= animationEndTime) {
-		player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (timer.elapsed() >= hitEndTime) {
 		CEntity *hitboxEntity = hitboxHandle;
@@ -53,8 +53,8 @@ void GrabActionState::OnLanding() {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 
-	player->SetMovementState(TCompPlayerModel::ActionStates::Run);
-	player->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+	GetPlayer()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayer()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 }
 
 void GrabActionState::OnHitboxEnter(CHandle entity) {
