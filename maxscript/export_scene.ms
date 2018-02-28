@@ -200,7 +200,7 @@ struct TMaterialExporter (
 
 fn isCollider obj = (
 	if obj.layer.name != "collisions" and obj.layer.name != "triggers" then return false
-	if classof obj != Box and classof obj != Sphere then throw "Collisions must be Spheres or Boxes."
+	if classof obj != Box and classof obj != Sphere and classof obj != Plane then throw "Collisions must be Spheres, Boxes or Planes."
 	-- if name starts with col_...
 	return true
 )
@@ -293,6 +293,11 @@ struct TSceneExporter (
 			fs.writeComma()
 			-- Warning, order might be incorrect!!!
 			fs.writeKeyValue "halfExtent" [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
+		) else if classof obj == Plane then (
+			fs.writeKeyValue "shape" "plane"
+			fs.writeComma()
+			-- Last value should be Y position.
+			fs.writeKeyValue "planeDesc" "0 1 0 0"
 		)
 
 		-- Add it in the user properties panel of max:     density = 10
@@ -379,5 +384,5 @@ struct TSceneExporter (
 	)
 )
 
-exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
+exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
 exporter.exportAll()
