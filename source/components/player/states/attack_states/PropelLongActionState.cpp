@@ -9,10 +9,19 @@ PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
 void PropelLongActionState::update (float delta) {
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (timer.elapsed() >= endingTime) {
-		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
+		if (movementInput != VEC2::Zero) {
+			VEC3 inputDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+			float newYaw = atan2(inputDirection.x, inputDirection.z);
+			float y, p, r;
+			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+			GetPlayerTransform()->setYawPitchRoll(newYaw, p, r);
+		}
+		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
+		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
+
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
 		//pasar mensaje a la otra entidad
 		CHandle playerEntity = playerModelHandle.getOwner();
 		CEntity* targetEntity = propelTarget;
@@ -45,6 +54,7 @@ void PropelLongActionState::OnStateExit(IActionState * nextState) {
 }
 
 void PropelLongActionState::SetMovementInput(VEC2 input) {
+	movementInput = input;
 }
 
 void PropelLongActionState::OnJumpHighButton() {

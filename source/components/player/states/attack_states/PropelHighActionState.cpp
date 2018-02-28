@@ -9,10 +9,13 @@ PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 void PropelHighActionState::update (float delta) {
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (timer.elapsed() >= endingTime) {
-		/*float newYaw = GetPlayerTransform()->getDeltaYawToAimTo();
-		float y, p, r;
-		GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-		GetPlayerTransform()->setYawPitchRoll(newYaw, p, r);*/
+		if (movementInput != VEC2::Zero) {
+			VEC3 inputDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+			float newYaw = atan2(inputDirection.x, inputDirection.z);
+			float y, p, r;
+			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+			GetPlayerTransform()->setYawPitchRoll(newYaw, p, r);
+		}
 		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
