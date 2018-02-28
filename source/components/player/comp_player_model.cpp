@@ -19,6 +19,7 @@
 #include "states/attack_states/VerticalLauncherActionState.h"
 #include "states/attack_states/GrabHighActionState.h"
 #include "states/attack_states/GrabLongActionState.h"
+#include "states/attack_states/PropelHighActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -108,6 +109,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, OnHitboxEnter);
 	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, OnGainPower);
+	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, OnOutOfBounds);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -198,14 +200,14 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		}
 		ImGui::End();
 	});
-	myTransform = get<TCompTransform>();
+	myTransformHandle = get<TCompTransform>();
 
 	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
-	currentCamera = camera->get<TCompCamera>();
-	assert(currentCamera);
+	currentCameraHandle = camera->get<TCompCamera>();
+	assert(currentCameraHandle.isValid());
 
-	collider = get<TCompCollider>();
-	assert(collider);
+	colliderHandle = get<TCompCollider>();
+	assert(colliderHandle.isValid());
 
 	movementStates = {
 		{ ActionStates::Idle, nullptr },
@@ -222,7 +224,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	strongAttackHitbox = getEntityByName("Strong attack hitbox");
 	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
-	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox"); 
+	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
 
 	attackStates = {
@@ -232,6 +234,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(this, verticalLauncherHitbox) },
 		{ ActionStates::GrabHigh, new GrabHighActionState(this, grabHitbox) },
 		{ ActionStates::GrabLong, new GrabLongActionState(this, grabHitbox) },
+		{ ActionStates::PropelHigh, new PropelHighActionState(this) },
 	};
 	SetMovementState(ActionStates::Run);
 	SetAttackState(ActionStates::Idle);
@@ -278,7 +281,10 @@ void TCompPlayerModel::update(float dt) {
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
-	physx::PxControllerCollisionFlags myFlags = collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
+	auto c = GetCollider();
+	assert(c);
+	assert(c->controller);
+	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (dynamic_cast<AirborneActionState*>(movementState)) {//NULL si no lo consigue
 		if (isGrounded) {
@@ -363,9 +369,9 @@ void TCompPlayerModel::FastAttackButtonPressed() {
 
 void TCompPlayerModel::FastAttackButtonReleased() {
 	//if (!lockAttackState) {
-		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnFastAttackButtonReleased();
-		}
+	if (attackState != attackStates[ActionStates::Idle]) {
+		attackState->OnFastAttackButtonReleased();
+	}
 	//}
 }
 
@@ -380,14 +386,14 @@ void TCompPlayerModel::StrongAttackButtonPressed() {
 
 void TCompPlayerModel::StrongAttackButtonReleased() {
 	//if (!lockAttackState) {
-		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnStrongAttackButtonReleased();
-		}
+	if (attackState != attackStates[ActionStates::Idle]) {
+		attackState->OnStrongAttackButtonReleased();
+	}
 	//}
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
-	currentCamera->CenterCamera();
+	GetCamera()->CenterCamera();
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
@@ -421,4 +427,14 @@ void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
 
 void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
 	powerGauge->IncreasePower(msg.power);
+}
+
+void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
+	dbg("out of bounds \n");
+
+	SetAttackState(ActionStates::Idle);
+	SetMovementState(ActionStates::AirborneNormal);
+
+	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+	velocityVector = VEC3(0, 0, 0);
 }

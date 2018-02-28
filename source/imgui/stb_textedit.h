@@ -326,7 +326,7 @@ typedef struct
    // selection start and end point in characters; if equal, no selection.
    // note that start may be less than or greater than end (e.g. when
    // dragging the mouse, start is where the initial click was, and you
-   // can drag in either direction)
+   // can drag in either velocityVector)
 
    unsigned char insert_mode;
    // each textfield keeps its own insert mode state. to keep an app-wide

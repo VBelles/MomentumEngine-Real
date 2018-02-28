@@ -14,7 +14,13 @@
 					"color": "0.5 0.5 1.0 1.0"
 				}
 			],
-			"collectable": { }
+			"collectable": { },
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : false,
+				"radius" : 0.5
+			}
 		}
 	}
 ]

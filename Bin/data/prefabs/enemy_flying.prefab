@@ -1,0 +1,19 @@
+[
+	{
+		"entity": {
+			"transform":{},
+			"render": [
+				{
+					"mesh": "data/meshes/crisalida.mesh",
+					"materials": [
+						"data/materials/solid.material"
+					]
+				}
+			],
+			"tags": [
+				"enemy"
+			],
+			"ai_flying_enemy": {}
+		}
+	}
+]

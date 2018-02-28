@@ -59,7 +59,7 @@ void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerHandle = CHandle(player).getOwner();
 	if (entity != playerHandle) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerHandle, damage });
+		otherEntity->sendMsg(TMsgLaunchedVertically{ playerHandle, damage });
 		dbg("Vertical Launcher hit for %i damage\n", damage);
 	}
 }

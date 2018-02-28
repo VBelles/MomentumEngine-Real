@@ -46,13 +46,39 @@ struct TMsgHitboxEnter {
 
 struct TMsgAttackHit {
 	CHandle attacker;
-	int damage;
+	float damage;
+	DECL_MSG_ID();
+};
+
+struct TMsgGrabbed {
+	CHandle attacker;
+	DECL_MSG_ID();
+};
+
+struct TMsgPropelled {
+	CHandle attacker;
+	VEC3 velocityVector;
+	DECL_MSG_ID();
+};
+
+struct TMsgLaunchedVertically {
+	CHandle attacker;
+	float damage;
 	DECL_MSG_ID();
 };
 
 struct TMsgGainPower {
 	CHandle sender;
 	float power;
+	DECL_MSG_ID();
+};
+
+struct TMsgOutOfBounds {
+	CHandle sender;
+	DECL_MSG_ID();
+};
+
+struct TMsgColliderDestroyed {
 	DECL_MSG_ID();
 };
 

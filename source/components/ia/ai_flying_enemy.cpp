@@ -1,0 +1,96 @@
+#include "mcv_platform.h"
+#include "handle/handle.h"
+#include "ai_flying_enemy.h"
+#include "entity/entity_parser.h"
+#include "components/comp_transform.h"
+#include "render/render_utils.h"
+
+DECL_OBJ_MANAGER("ai_flying_enemy", CAIFlyingEnemy);
+
+
+void CAIFlyingEnemy::load(const json& j, TEntityParseContext& ctx) {
+	setEntity(ctx.current_entity);
+	InitStates();
+}
+
+void CAIFlyingEnemy::registerMsgs() {
+	DECL_MSG(CAIFlyingEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
+	DECL_MSG(CAIFlyingEnemy, TMsgAttackHit, OnHit);
+	DECL_MSG(CAIFlyingEnemy, TMsgGrabbed, OnGrabbed);
+	DECL_MSG(CAIFlyingEnemy, TMsgPropelled, OnPropelled);
+}
+
+void CAIFlyingEnemy::InitStates() {
+	AddState("idle", (statehandler)&CAIFlyingEnemy::IdleState);
+	AddState("death", (statehandler)&CAIFlyingEnemy::DeathState);
+	AddState("grabbed", (statehandler)&CAIFlyingEnemy::GrabbedState);
+	AddState("propelled", (statehandler)&CAIFlyingEnemy::PropelledState);
+	ChangeState("idle");
+}
+
+void CAIFlyingEnemy::OnHit(const TMsgAttackHit& msg) {
+	float damage = msg.damage;
+	health -= damage;
+
+	CEntity *attacker = msg.attacker;
+	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+
+	if (health <= 0) {
+		ChangeState("death");
+	}
+}
+
+void CAIFlyingEnemy::OnGrabbed(const TMsgGrabbed& msg) {
+	dbg("grabbed\n");
+	ChangeState("grabbed");
+	CEntity *attacker = msg.attacker;
+	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+	//Quitar collider
+}
+
+void CAIFlyingEnemy::OnPropelled(const TMsgPropelled& msg) {
+	ChangeState("propelled");
+	CEntity *attacker = msg.attacker;
+	propelVelocityVector = msg.velocityVector;
+}
+
+void CAIFlyingEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+	transform = getMyTransform();
+	spawnPosition = transform->getPosition();
+	player = (CEntity *)getEntityByName("The Player");
+	playerTransform = player->get<TCompTransform>();
+	collider = get<TCompCollider>();
+}
+
+void CAIFlyingEnemy::debugInMenu() {
+	IAIController::debugInMenu();
+}
+
+void CAIFlyingEnemy::IdleState(float delta) {
+}
+
+boolean CAIFlyingEnemy::IsPlayerInAttackRange() {
+	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
+	return distance < attackRadius && transform->isInFov(playerTransform->getPosition(), chaseFov);
+}
+
+boolean CAIFlyingEnemy::IsPlayerInFov() {
+	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
+	return distance < smallChaseRadius || (distance < fovChaseDistance && transform->isInFov(playerTransform->getPosition(), attackFov));
+}
+
+void  CAIFlyingEnemy::DeathState(float delta) {
+	TCompCollider *collider = get<TCompCollider>();
+	collider->controller->release();
+	CHandle(this).getOwner().destroy();
+}
+
+void CAIFlyingEnemy::GrabbedState(float delta) {
+	dbg("En grabbed\n");
+}
+
+void CAIFlyingEnemy::PropelledState(float delta) {
+	dbg("On propelled\n");
+	//Si no ha pasado el timer
+	//mover propelVelocityVector * delta
+}

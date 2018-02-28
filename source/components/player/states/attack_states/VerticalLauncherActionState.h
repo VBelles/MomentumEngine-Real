@@ -17,7 +17,7 @@ class VerticalLauncherActionState : public GroundedActionState {
 	float interruptibleTime;
 
 	CHandle hitboxHandle;
-	int damage = 0;
+	float damage = 0;
 
 public:
 	VerticalLauncherActionState(TCompPlayerModel* player, CHandle hitbox);

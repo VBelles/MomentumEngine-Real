@@ -11,6 +11,7 @@ void TCompDestroyCondition::debugInMenu() {
 void TCompDestroyCondition::registerMsgs() {
     DECL_MSG(TCompDestroyCondition, TMsgEntitiesGroupCreated, onGroupCreated);
     DECL_MSG(TCompDestroyCondition, TMsgDestroy, onDestroy);
+	DECL_MSG(TCompDestroyCondition, TMsgColliderDestroyed, OnColliderDestroyed);
 }
 
 void TCompDestroyCondition::load(const json& j, TEntityParseContext& ctx) {
@@ -25,6 +26,9 @@ void TCompDestroyCondition::update(float dt) {
 void TCompDestroyCondition::onDestroy(const TMsgDestroy & msg) {
     // Door destroys itself.
     TCompCollider *collider = get<TCompCollider>();
-    collider->actor->release();
-    CHandle(this).getOwner().destroy();
+	collider->disable();
+}
+
+void  TCompDestroyCondition::OnColliderDestroyed(const TMsgColliderDestroyed& msg) {
+	CHandle(this).getOwner().destroy();
 }

@@ -13,7 +13,14 @@
 			"tags": [
 				"enemy"
 			],
-			"ai_melee_enemy": {}
+			"ai_melee_enemy": {},
+			"collider": {
+				"shape": "capsule",
+				"is_character_controller": true,
+				"radius": 0.9,
+				"height": 0.85,
+				"group": "Enemy"
+			}
 		}
 	}
 ]

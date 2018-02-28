@@ -44,8 +44,9 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
 
     PxRigidActor* actor = nullptr;
     if (config.shapeType == PxGeometryType::ePLANE) {
-        PxRigidStatic* plane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
+		PxRigidStatic* plane = PxCreatePlane(*gPhysics, PxPlane(config.plane.x, config.plane.y, config.plane.z, config.plane.w), *gMaterial);
         actor = plane;
+
         setupFiltering(actor, config.group, config.mask);
         gScene->addActor(*actor);
     }
@@ -58,6 +59,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
         capsuleDesc.height = config.height;
         capsuleDesc.radius = config.radius;
         capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
+		capsuleDesc.stepOffset = config.step;
         cDesc = &capsuleDesc;
 
         cDesc->material = gMaterial;
@@ -71,14 +73,12 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
     }
     else {
         PxShape* shape = nullptr;
-        PxTransform offset(PxVec3(0.f, 0.f, 0.f));
+        PxTransform offset(PxVec3(config.offset.x, config.offset.y, config.offset.z));
         if (config.shapeType == PxGeometryType::eBOX) {
             shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
-            offset.p.y = config.halfExtent.y;
         }
         else if (config.shapeType == PxGeometryType::eSPHERE) {
             shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
-            offset.p.y = config.radius;
         }
         //....todo: more shapes
 
@@ -222,6 +222,27 @@ void CModulePhysics::update(float delta) {
             compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
         }
     }
+
+	releaseColliders();
+}
+
+void  CModulePhysics::releaseCollider(CHandle handle) {
+	toRelease.push_back(handle);
+}
+
+void CModulePhysics::releaseColliders() {
+	for (std::vector<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
+		TCompCollider *collider = *it;
+		if (collider->controller) {
+			collider->controller->release();
+		}
+		else {
+			collider->actor->release();
+		}
+		CEntity *parent = it->getOwner();
+		parent->sendMsg(TMsgColliderDestroyed{});
+	}
+	toRelease.clear();
 }
 
 void CModulePhysics::render() {
@@ -233,7 +254,7 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
             continue;
         }
         CHandle h_trigger_comp_collider;
-        h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
+		h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
 
         CHandle h_other_comp_collider;
         h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);

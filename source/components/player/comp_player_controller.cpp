@@ -25,6 +25,7 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 }
 
 void TCompPlayerController::update(float dt) {
+	assert(playerModel);
 	VEC2 translationInput = VEC2::Zero;
 	VEC2 leftAnalogInput = VEC2::Zero;
 	float leftTrigger = 0.f;

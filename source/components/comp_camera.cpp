@@ -93,13 +93,13 @@ void TCompCamera::CalculateVerticalOffsetVector() {
 
 void TCompCamera::CenterCamera() {
 	centeredPosition = targetTransform->getPosition() - targetTransform->getFront() * distanceToTarget;
-	VEC3 direction = targetTransform->getPosition() - centeredPosition;
-	direction.Normalize();
+	VEC3 velocityVector = targetTransform->getPosition() - centeredPosition;
+	velocityVector.Normalize();
 	myTransform->setPosition(centeredPosition);
 	float y, p, r;
 	myTransform->getYawPitchRoll(&y, &p, &r);
-	y = atan2(direction.x, direction.z);
-	//p = asin(-direction.y); //No nos interesa el pitch
+	y = atan2(velocityVector.x, velocityVector.z);
+	//p = asin(-velocityVector.y); //No nos interesa el pitch
 	myTransform->setYawPitchRoll(y, p, r);
 
 }

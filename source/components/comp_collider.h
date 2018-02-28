@@ -27,14 +27,14 @@ enum FilterGroups {
 
 class TCompCollider: public TCompBase {
 	DECL_SIBLING_ACCESS();
+	bool enabled = false;
 
 public:
     struct TConfig {
         VEC3 halfExtent;
-
-        //todo implement
-        VEC3 offset;
-
+		VEC3 offset = {0, 0, 0};
+		VEC4 plane;
+		float step;
         float radius;
         float height;
         PxGeometryType::Enum shapeType;
@@ -51,5 +51,9 @@ public:
     void debugInMenu();
     static void registerMsgs();
     void load(const json& j, TEntityParseContext& ctx);
-    void onCreate(const TMsgEntityCreated& msg);
+	void onCreate(const TMsgEntityCreated& msg);
+	void enable();
+	void disable();
+	bool isEnabled() { return enabled; }
+	
 };
