@@ -1,22 +1,26 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
+#include "../GroundedActionState.h"
 
 
-class GroundedActionState : public IActionState {
-protected:
-	float backwardsdMinAngle = 135.f;
-	float backwardsMaxDotProduct;
+class TurnAroundActionState : public GroundedActionState {
+	CTimer timer;
+	int turnAroundFrames = 4;
+	float turnAroundTime;
+	VEC3 exitVelocityVector;
+	float rotationSpeed;
+
+	void RotateToFinalDirection();
+	void SetFinalVelocity();
 public:
-	GroundedActionState(TCompPlayerModel* player);
+	TurnAroundActionState(TCompPlayerModel* player);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
 	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
-	void OnStrongAttackButton() override;
-	void OnFastAttackButton() override;
 
 	virtual void OnLeavingGround();
 };

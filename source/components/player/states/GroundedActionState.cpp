@@ -14,29 +14,36 @@ void GroundedActionState::update (float delta) {
 	collider = player->GetCollider();
 	PowerStats* currentPowerStats = player->GetPowerStats();
 
-	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
-	if (hasInput) {
-		VEC3 desiredDirection = currentCamera->TransformToWorld(movementInput);
-		VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
-		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
-	}
-
-	deltaMovement = VEC3::Zero;
-	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
-	if (hasInput) {
-		deltaMovement = CalculateHorizontalDeltaMovement(delta, playerTransform->getFront(),
-						playerTransform->getFront(), currentPowerStats->acceleration,
-						currentPowerStats->maxHorizontalSpeed);
-
-		TransferVelocityToDirectionAndAccelerate(delta, true, playerTransform->getFront(), currentPowerStats->acceleration);
-		ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
+	VEC3 desiredDirection = currentCamera->TransformToWorld(movementInput);
+	/*VEC3 front = player->GetTransform()->getFront();
+	if (front.Dot(desiredDirection) <= backwardsMaxDotProduct) {
+		player->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);*/
+	if(false){
 	}
 	else {
-		//Cuando no hay input se frena (TODO no frenar de golpe, desacelerar)
-		velocityVector->x = 0.f;
-		velocityVector->z = 0.f;
-	}
 
+		//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
+		if (hasInput) {
+			VEC3 targetPos = playerTransform->getPosition() + desiredDirection;
+			RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
+		}
+
+		deltaMovement = VEC3::Zero;
+		//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
+		if (hasInput) {
+			deltaMovement = CalculateHorizontalDeltaMovement(delta, playerTransform->getFront(),
+				playerTransform->getFront(), currentPowerStats->acceleration,
+				currentPowerStats->maxHorizontalSpeed);
+
+			TransferVelocityToDirectionAndAccelerate(delta, true, playerTransform->getFront(), currentPowerStats->acceleration);
+			ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
+		}
+		else {
+			//Cuando no hay input se frena (TODO no frenar de golpe, desacelerar)
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
+		}
+	}
 	//distancia vertical recorrida
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
 	deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
@@ -48,6 +55,7 @@ void GroundedActionState::update (float delta) {
 
 void GroundedActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
+	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 	//dbg("Entrando en grounded\n");
 }
 
