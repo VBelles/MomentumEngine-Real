@@ -36,7 +36,6 @@ void CAIMeleeEnemy::InitStates() {
 	AddState("attack", (statehandler)&CAIMeleeEnemy::AttackState);
 	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState);
 	AddState("vertical_launch", (statehandler)&CAIMeleeEnemy::VerticalLaunchState);
-	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState); 
 	AddState("grabbed", (statehandler)&CAIMeleeEnemy::GrabbedState);
 	AddState("propelled", (statehandler)&CAIMeleeEnemy::PropelledState);
 	ChangeState("idle");
