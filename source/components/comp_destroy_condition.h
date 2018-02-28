@@ -15,4 +15,5 @@ public:
     void update(float dt);
 
     void onDestroy(const TMsgDestroy& msg);
+	void OnColliderDestroyed(const TMsgColliderDestroyed& msg);
 };
