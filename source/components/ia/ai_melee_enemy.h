@@ -24,12 +24,11 @@ private:
 	float attackColdown = 1.f;
 	float attackDuration = 1.f;
 
-	TCompTransform* transform;
-	CEntity* player;
-	TCompTransform* playerTransform;
-	TCompCollider* collider;
+	CHandle player;
 
 	VEC3 spawnPosition;
+
+	VEC3 velocityVector;
 
 	CTimer recallTimer;
 	CTimer waitAttackTimer;
@@ -46,6 +45,7 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void debugInMenu();
 	static void registerMsgs();
+	void update(float delta);
 
 	void InitStates();
 	//States
@@ -55,6 +55,16 @@ public:
 	void IdleWarState(float delta);
 	void AttackState(float delta);
 	void DeathState(float delta);
+	void VerticalLaunchState(float delta);
+
+	void LaunchVertically();
+
+	float CalculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
+
+	TCompTransform* getTransform() { return get<TCompTransform>(); }
+	TCompCollider* getCollider() { return get<TCompCollider>(); }
+	CEntity* getPlayerEntity() { return player; }
+	TCompTransform* getPlayerTransform() { return getPlayerEntity()->get<TCompTransform>(); }
 };
 
 

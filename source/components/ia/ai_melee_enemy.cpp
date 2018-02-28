@@ -18,6 +18,13 @@ void CAIMeleeEnemy::registerMsgs() {
 	DECL_MSG(CAIMeleeEnemy, TMsgAttackHit, OnHit);
 }
 
+void CAIMeleeEnemy::update(float delta) {
+	IAIController::update(delta);
+	if (EngineInput["jump"].getsPressed()) {
+		LaunchVertically();
+	}
+}
+
 void CAIMeleeEnemy::InitStates() {
 	AddState("idle", (statehandler)&CAIMeleeEnemy::IdleState);
 	AddState("chase", (statehandler)&CAIMeleeEnemy::ChaseState);
@@ -25,6 +32,7 @@ void CAIMeleeEnemy::InitStates() {
 	AddState("idle_war", (statehandler)&CAIMeleeEnemy::IdleWarState);
 	AddState("attack", (statehandler)&CAIMeleeEnemy::AttackState);
 	AddState("death", (statehandler)&CAIMeleeEnemy::DeathState);
+	AddState("vertical_launch", (statehandler)&CAIMeleeEnemy::VerticalLaunchState);
 	ChangeState("idle");
 }
 
@@ -35,17 +43,14 @@ void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 	CEntity *attacker = msg.attacker;
 	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
 
-	if (health < 0) {
+	if (health <= 0) {
 		ChangeState("death");
 	}
 }
 
 void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-	transform = getMyTransform();
-	spawnPosition = transform->getPosition();
-	player = (CEntity *)getEntityByName("The Player");
-	playerTransform = player->get<TCompTransform>();
-	collider = get<TCompCollider>();
+	spawnPosition = getTransform()->getPosition();
+	player = getEntityByName("The Player");
 }
 
 void CAIMeleeEnemy::debugInMenu() {
@@ -61,18 +66,18 @@ void CAIMeleeEnemy::IdleState(float delta) {
 void CAIMeleeEnemy::ChaseState(float delta) {
 	//Rotate to the player
 	float y, r, p;
-	transform->getYawPitchRoll(&y, &p, &r);
-	int dir = transform->isInLeft(playerTransform->getPosition()) ? 1 : -1;
+	getTransform()->getYawPitchRoll(&y, &p, &r);
+	int dir = getTransform()->isInLeft(getPlayerTransform()->getPosition()) ? 1 : -1;
 	y += dir * rotationSpeed * delta;
-	transform->setYawPitchRoll(y, p, r);
+	getTransform()->setYawPitchRoll(y, p, r);
 
 	//Move forward
-	VEC3 myPosition = transform->getPosition();
-	VEC3 myFront = transform->getFront();
+	VEC3 myPosition = getTransform()->getPosition();
+	VEC3 myFront = getTransform()->getFront();
 	myFront.Normalize();
 	VEC3 deltaMovement = myFront * movementSpeed * delta;
 	//transform->setPosition(myPosition + deltaMovement);
-	collider->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
 	if (!IsPlayerInFov()) {
 		recallTimer.reset();
@@ -86,18 +91,18 @@ void CAIMeleeEnemy::ChaseState(float delta) {
 void CAIMeleeEnemy::RecallState(float delta) {
 	if (recallTimer.elapsed() <= 2.f) {
 		float y, r, p;
-		transform->getYawPitchRoll(&y, &p, &r);
+		getTransform()->getYawPitchRoll(&y, &p, &r);
 		y += 35 * delta;
-		transform->setYawPitchRoll(y, p, r);
+		getTransform()->setYawPitchRoll(y, p, r);
 		if (recallTimer.elapsed() > 1.f) {
 			VEC3 deltaMovement = VEC3::Up * 25.f * delta;
 			//transform->setPosition(transform->getPosition() + VEC3::Up * 25.f * delta);
-			collider->controller->move(PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, PxControllerFilters());
+			getCollider()->controller->move(PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, PxControllerFilters());
 		}
 	}
 	else {
-		transform->setPosition(spawnPosition);
-		collider->controller->setPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
+		getTransform()->setPosition(spawnPosition);
+		getCollider()->controller->setPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
 		ChangeState("idle");
 	}
 }
@@ -118,22 +123,44 @@ void CAIMeleeEnemy::AttackState(float delta) {
 		waitAttackTimer.reset();
 		ChangeState("idle_war");
 		TMsgAttackHit msg{ CHandle(this), 1 };
-		player->sendMsg(msg);
+		getPlayerEntity()->sendMsg(msg);
 	}
 }
 
 boolean CAIMeleeEnemy::IsPlayerInAttackRange() {
-	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
-	return distance < attackRadius && transform->isInFov(playerTransform->getPosition(), chaseFov);
+	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	return distance < attackRadius && getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
 }
 
 boolean CAIMeleeEnemy::IsPlayerInFov() {
-	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
-	return distance < smallChaseRadius || (distance < fovChaseDistance && transform->isInFov(playerTransform->getPosition(), attackFov));
+	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	return distance < smallChaseRadius || (distance < fovChaseDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov));
 }
 
-void  CAIMeleeEnemy::DeathState(float delta) {
-	TCompCollider *collider = get<TCompCollider>();
-	collider->controller->release();
+void CAIMeleeEnemy::DeathState(float delta) {
+	getCollider()->controller->release();
 	CHandle(this).getOwner().destroy();
 }
+
+void CAIMeleeEnemy::VerticalLaunchState(float delta) {
+	float deltaY = CalculateVerticalDeltaMovement(delta, -9.8f, 25); //TODO: fix random value
+	getCollider()->controller->move(physx::PxVec3(0, deltaY, 0), 0.f, delta, physx::PxControllerFilters());
+	//Nueva velocidad vertical y clampeo
+	velocityVector.y += -9.8f * delta;
+}
+
+void CAIMeleeEnemy::LaunchVertically() {
+	velocityVector.y = 10; //TODO: fix random value
+	ChangeState("vertical_launch");
+}
+
+//Calcula el movimiento vertical desde el último frame y lo clampea con la máxima distancia 
+//recorrida posible en caso de ir a máxima velocidad
+float CAIMeleeEnemy::CalculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical) {
+	float resultingDeltaMovement;
+	resultingDeltaMovement = velocityVector.y * delta + 0.5f * acceleration * delta * delta;
+	//clampear distancia vertical
+	resultingDeltaMovement = resultingDeltaMovement > maxVelocityVertical * delta ? maxVelocityVertical * delta : resultingDeltaMovement;
+	return resultingDeltaMovement;
+}
+
