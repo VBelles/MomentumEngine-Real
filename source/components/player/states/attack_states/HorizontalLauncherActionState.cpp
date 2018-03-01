@@ -60,7 +60,7 @@ void HorizontalLauncherActionState::OnHitboxEnter(CHandle entity) {
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
 		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
-		otherEntity->sendMsg(TMsgLaunchedHorizontally{ playerEntity, damage });
+		otherEntity->sendMsg(TMsgLaunchedHorizontally{ playerEntity, damage, GetPlayerTransform()->getFront()});
 		dbg("Horizontal Launcher hit for %f damage\n", damage);
 	}
 }
