@@ -67,6 +67,13 @@ struct TMsgLaunchedVertically {
 	DECL_MSG_ID();
 };
 
+struct TMsgLaunchedHorizontally {
+	CHandle attacker;
+	float damage;
+	VEC3 direction;
+	DECL_MSG_ID();
+};
+
 struct TMsgGainPower {
 	CHandle sender;
 	float power;

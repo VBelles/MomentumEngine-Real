@@ -3,6 +3,8 @@
 #include "ai_controller.h"
 #include "entity/common_msgs.h"
 
+class PowerStats;
+
 class CAIMeleeEnemy : public IAIController {
 	DECL_SIBLING_ACCESS();
 
@@ -28,7 +30,12 @@ private:
 
 	float propelDuration;
 
-	float floatingDuration = 3.f;
+	float floatingDuration = 1.5f;
+
+	//WARNING: GUARRADA MÁXIMA!!!
+	float initialHorizontalLaunchY = 0.f;
+	CTimer horizontalLaunchTimer;
+	float minHorizontalLaunchDuration = 0.5f;
 
 	CHandle player;
 
@@ -43,12 +50,16 @@ private:
 	CTimer propelTimer;
 	CTimer launchedFloatingTimer;
 
+	PowerStats* launchPowerStats;
+
 	//Mesage functions
 	void OnHit(const TMsgAttackHit& msg);
 	void OnGrabbed(const TMsgGrabbed& msg);
 	void OnPropelled(const TMsgPropelled& msg);
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void OnLaunchedVertically(const TMsgLaunchedVertically& msg);
+
+	void OnLaunchedHorizontally(const TMsgLaunchedHorizontally & msg);
 
 	boolean IsPlayerInAttackRange();
 	boolean IsPlayerInFov();
@@ -70,6 +81,7 @@ public:
 	void AttackState(float delta);
 	void DeathState(float delta);
 	void VerticalLaunchState(float delta);
+	void HorizontalLaunchState(float delta);
 	void GrabbedState(float delta);
 	void PropelledState(float delta);
 

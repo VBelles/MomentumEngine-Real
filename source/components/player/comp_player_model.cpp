@@ -14,8 +14,10 @@
 #include "states/movement_states/long_jump/GhostJumpSquatLongActionState.h"
 #include "states/movement_states/long_jump/JumpSquatLongActionState.h"
 #include "states/movement_states/TurnAroundActionState.h"
+#include "states/attack_states/FastAttackActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
 #include "states/attack_states/FallingAttackActionState.h"
+#include "states/attack_states/HorizontalLauncherActionState.h"
 #include "states/attack_states/VerticalLauncherActionState.h"
 #include "states/attack_states/GrabHighActionState.h"
 #include "states/attack_states/GrabLongActionState.h"
@@ -230,9 +232,11 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	attackStates = {
 		{ ActionStates::Idle, nullptr },
+		{ ActionStates::FastAttack, new FastAttackActionState(CHandle(this), strongAttackHitbox) },
 		{ ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
 		{ ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
 		{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
+		{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
 		{ ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
 		{ ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
 		{ ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },

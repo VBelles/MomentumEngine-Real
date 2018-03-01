@@ -33,9 +33,9 @@ public:
 	enum ActionStates{
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, AirborneNormal, JumpSquatLong, AirborneLong,
-		GhostJumpSquatLong, StrongAttack, FallingAttack,
-		VerticalLauncher, GrabHigh, GrabLong, PropelHigh,
-		PropelLong, TurnAround
+		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack, 
+		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong, 
+		PropelHigh, PropelLong, TurnAround
 	};
 	IActionState* movementState;
 	IActionState* attackState;
