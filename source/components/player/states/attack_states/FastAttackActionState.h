@@ -6,22 +6,23 @@
 
 class FastAttackActionState : public GroundedActionState {
 	CTimer timer;
-	int warmUpFrames = 20;
+	int warmUpFrames = 5;
 	int activeFrames = 5;
-	int endingLagFrames = 40;
+	int endingLagFrames = 10;
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
 
-	int IASAFrames = 60;//Interruptible As Soon As
+	int IASAFrames = 13;//Interruptible As Soon As
 	float interruptibleTime;
 
-	int startLauncherFrames = 20;
+	int startLauncherFrames = 15;
 	float beginLauncherTime;
 	bool isLauncher = true;
 
 	CHandle hitboxHandle;
 	float damage = 2;
+	AttackPhases phase = AttackPhases::Launch;
 
 public:
 	FastAttackActionState(CHandle playerModelHandle, CHandle hitbox);

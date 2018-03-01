@@ -7,42 +7,44 @@ FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle 
 	hitboxHandle = hitbox;
 }
 
-void FastAttackActionState::update (float delta) {
-	if (isLauncher && timer.elapsed() > beginLauncherTime) {
+void FastAttackActionState::update(float delta) {
+	if (phase == AttackPhases::Launch && timer.elapsed() > beginLauncherTime) {
 		dbg("Cambio de strong attack a vertical launcher\n");
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::HorizontalLauncher);
 	}
-	else {
-		if (timer.elapsed() > animationEndTime) {
-			GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-			GetPlayerModel()->lockMovementState = false;
-			GetPlayerModel()->lockWalk = false;
-		}
-		else if (timer.elapsed() > hitEndTime) {
-			CEntity *hitboxEntity = hitboxHandle;
-			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-			hitbox->disable();
-		}
-		else if (timer.elapsed() > hitboxOutTime) {
-			CEntity *hitboxEntity = hitboxHandle;
-			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-			hitbox->enable();
-		}
+	else if (phase == AttackPhases::Recovery && timer.elapsed() > animationEndTime) {
+		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->lockMovementState = false;
+		GetPlayerModel()->lockWalk = false;
+	}
+	else if (phase == AttackPhases::Active && timer.elapsed() > hitEndTime) {
+		timer.reset();
+		CEntity *hitboxEntity = hitboxHandle;
+		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+		hitbox->disable();
+		phase = AttackPhases::Recovery;
+	}
+	else if (phase == AttackPhases::Startup && timer.elapsed() > hitboxOutTime) {
+		timer.reset();
+		CEntity *hitboxEntity = hitboxHandle;
+		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+		hitbox->enable();
+		phase = AttackPhases::Active;
 	}
 }
 
 void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	dbg("Strong Attack\n");
+	phase = AttackPhases::Launch;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = hitboxOutTime + activeFrames * (1.f / 60);
-	animationEndTime = hitEndTime + endingLagFrames * (1.f / 60);
+	hitEndTime = activeFrames * (1.f / 60);
+	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
-	isLauncher = true;
 	timer.reset();
 	GetPlayerModel()->lockMovementState = true;
-	GetPlayerModel()->lockWalk = true;
+	GetPlayerModel()->lockWalk = false;
 }
 
 void FastAttackActionState::OnStateExit(IActionState * nextState) {
@@ -60,7 +62,8 @@ void FastAttackActionState::OnJumpLongButton() {
 }
 
 void FastAttackActionState::OnFastAttackButtonReleased() {
-	isLauncher = false;
+	phase = AttackPhases::Startup;
+
 }
 
 void FastAttackActionState::OnLeavingGround() {
