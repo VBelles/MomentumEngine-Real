@@ -136,6 +136,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
 	renderUI->registerOnRenderUI([&]() {
+		
 		bool showWindow = true;
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 25, 0 + 25));
@@ -163,6 +164,8 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 		ImGui::End();
 		ImGui::PopStyleColor();
+
+		if (!CApp::get().showDebug) return;
 
 		ImGui::Begin("Params Main Character", &showWindow);
 		ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);

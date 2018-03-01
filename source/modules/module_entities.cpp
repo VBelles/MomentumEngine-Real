@@ -95,11 +95,6 @@ void CModuleEntities::render() {
 			ImGui::TreePop();
 		}
 		CTagsManager::get().debugInMenu();
-
-		auto om_render_ui = getObjectManager<TCompRenderUI>();
-		om_render_ui->forEach([](TCompRenderUI* c) {
-			c->renderUI();
-		});
 	}
 
 	//static bool is_open = false;
@@ -122,6 +117,11 @@ void CModuleEntities::render() {
 		for (auto& m : c->materials)
 			m->activate();
 		c->mesh->activateAndRender();
+	});
+
+	auto om_render_ui = getObjectManager<TCompRenderUI>();
+	om_render_ui->forEach([](TCompRenderUI* c) {
+		c->renderUI();
 	});
 
 
