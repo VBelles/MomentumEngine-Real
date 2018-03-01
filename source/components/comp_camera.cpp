@@ -59,7 +59,7 @@ VEC2 TCompCamera::GetIncrementFromInput(float delta) {
 		increment.x -= padInput.x * cameraSpeed.x * delta;
 		increment.y += padInput.y * cameraSpeed.y * delta;
 	}
-	else if(!CApp::get().inDebugMode){
+	else if(!CApp::get().showDebug){
 		auto& mouse = EngineInput.host(Input::PLAYER_1).mouse();
 		increment.x -= mouse._position_delta.x * cameraSpeed.x * delta;
 		increment.y -= mouse._position_delta.y * cameraSpeed.y * delta;

@@ -1,6 +1,7 @@
 #ifndef INC_MCV_PLATFORM_
 #define INC_MCV_PLATFORM_
 
+
 // Global settings
 #define _CRT_SECURE_NO_WARNINGS     // Don't warn about using fopen..
 #define WIN32_LEAN_AND_MEAN         // Reduce the size of things included in windows.h

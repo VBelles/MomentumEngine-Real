@@ -169,17 +169,25 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 		return false;
 
 	// Create window
-	RECT rc = { 0, 0, xres, yres };
-	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-	hWnd = CreateWindow("MCVWindowsClass", "Direct3D 11 MCV Project",
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
-		NULL);
+	if (!fullscreen) {
+		RECT rc = { 0, 0, resolution.x, resolution.y };
+		AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+		hWnd = CreateWindow("MCVWindowsClass", "Momentum",
+			WS_OVERLAPPEDWINDOW,
+			CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
+			NULL);
+	}
+	else {
+		hWnd = CreateWindow("MCVWindowsClass", "Momentum", 
+			WS_POPUP,
+			0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN),
+			NULL, NULL, hInstance, NULL);
+	}
+
 	if (!hWnd)
 		return false;
 
 	ShowWindow(hWnd, nCmdShow);
-	ShowCursor(false);
 
 #ifndef HID_USAGE_PAGE_GENERIC
 #define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
@@ -213,11 +221,11 @@ void CApp::mainLoop() {
 		else {
 			doFrame();
 			if (EngineInput["debug_mode"].getsPressed()) {
-				inDebugMode = !inDebugMode;
-				ShowCursor(inDebugMode);
+				showDebug = !showDebug;
+				ShowCursor(showDebug);
 			}
 			
-			if (!inDebugMode) {
+			if (!showDebug) {
 				RECT rect;
 				GetWindowRect(getWnd(), &rect);
 				SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
@@ -230,9 +238,14 @@ void CApp::mainLoop() {
 // Read any basic configuration required to boot, initial resolution, full screen, modules, ...
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
-	// ...
-	xres = 1280;
-	yres = 720;
+
+	json j = loadJson("data/configuration.json");
+	json& jScreen = j["screen"];
+
+	resolution = loadVEC2(jScreen["resolution"]);
+	fullscreen = jScreen["fullscreen"];
+	showDebug = j["showDebug"];
+	ShowCursor(showDebug);
 	//16:9 resolutions:
 	//1280x720  = 720p HD
 	//1920x1080 = 1080p HD
@@ -243,7 +256,7 @@ bool CApp::readConfig() {
 
 	time_since_last_render.reset();
 
-	CEngine::get().getRender().configure(xres, yres);
+	CEngine::get().getRender().configure(resolution.x, resolution.y);
 	return true;
 }
 
