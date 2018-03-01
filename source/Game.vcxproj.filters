@@ -98,6 +98,8 @@
     <ClCompile Include="components\player\states\attack_states\PropelLongActionState.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
+    <ClCompile Include="components\player\states\attack_states\FastAttackActionState.cpp" />
+    <ClCompile Include="components\player\states\attack_states\HorizontalLauncherActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -220,6 +222,8 @@
     <ClInclude Include="components\player\states\attack_states\PropelLongActionState.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
+    <ClInclude Include="components\player\states\attack_states\FastAttackActionState.h" />
+    <ClInclude Include="components\player\states\attack_states\HorizontalLauncherActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
