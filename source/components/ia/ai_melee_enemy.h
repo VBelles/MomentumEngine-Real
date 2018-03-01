@@ -35,7 +35,7 @@ private:
 	//WARNING: GUARRADA MÁXIMA!!!
 	float initialHorizontalLaunchY = 0.f;
 	CTimer horizontalLaunchTimer;
-	float minHorizontalLaunchDuration = 0.5f;
+	float minHorizontalLaunchDuration = 0.15f;
 
 	CHandle player;
 
