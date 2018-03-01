@@ -6,49 +6,51 @@
 
 class CApp {
 
-  // Windows stuff
-  HWND hWnd;
-  HINSTANCE hInstance;
-  static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	// Windows stuff
+	HWND hWnd;
+	HINSTANCE hInstance;
+	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-  // 
-  int              xres = 0;
-  int              yres = 0;
-  CTimer           time_since_last_render;
-  CDirectoyWatcher resources_dir_watcher;
+	//
+	CTimer           time_since_last_render;
+	CDirectoyWatcher resources_dir_watcher;
 
-  static CApp* app_instance;
+	static CApp* app_instance;
 
 
 public:
-  bool inDebugMode = false;
+	VEC2 resolution;
+	bool fullscreen = false;
+	bool showDebug = false;
 
-  static CApp& get() {
-    assert(app_instance);
-    return *app_instance;
-  }
+	bool inDebugMode = false;
 
-  HWND getWnd() const { return hWnd; }
+	static CApp& get() {
+		assert(app_instance);
+		return *app_instance;
+	}
 
-  CApp() {
-    assert(app_instance == nullptr);
-    app_instance = this;
-  }
+	HWND getWnd() const { return hWnd; }
 
-  ~CApp() {
-    assert(app_instance == this);
-    app_instance = nullptr;
-  }
+	CApp() {
+		assert(app_instance == nullptr);
+		app_instance = this;
+	}
 
-  // Remove copy ctor
-  CApp(const CApp&) = delete;
+	~CApp() {
+		assert(app_instance == this);
+		app_instance = nullptr;
+	}
 
-  bool readConfig();
-  bool createWindow(HINSTANCE new_hInstance, int nCmdShow);
-  bool start();
-  void mainLoop();
-  void doFrame();
-  bool stop();
+	// Remove copy ctor
+	CApp(const CApp&) = delete;
+
+	bool readConfig();
+	bool createWindow(HINSTANCE new_hInstance, int nCmdShow);
+	bool start();
+	void mainLoop();
+	void doFrame();
+	bool stop();
 };
 
 #endif

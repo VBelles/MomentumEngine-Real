@@ -10,118 +10,119 @@
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 
-bool CModuleEntities::start()
-{
-  json j = loadJson("data/components.json");
-  
-  // Initialize the ObjManager preregistered in their constructors
-  // with the amount of components defined in the data/components.json
-  std::map< std::string, int > comp_sizes = j["sizes"];;
-  int default_size = comp_sizes["default"];
+bool CModuleEntities::start() {
+	json j = loadJson("data/components.json");
 
-  // Reorder the init manager based on the json
-  // The bigger the number in the init_order section, the lower comp_type id you get
-  std::map< std::string, int > init_order = j["init_order"];;
-  std::sort( CHandleManager::predefined_managers
-           , CHandleManager::predefined_managers + CHandleManager::npredefined_managers
-    , [&init_order](CHandleManager* m1, CHandleManager* m2) {
-    int priority_m1 = init_order[m1->getName()];
-    int priority_m2 = init_order[m2->getName()];
-    return priority_m1 > priority_m2;
-  });
-  // Important that the entity is the first one for the chain destruction of components
-  assert(strcmp(CHandleManager::predefined_managers[0]->getName(), "entity") == 0);
+	// Initialize the ObjManager preregistered in their constructors
+	// with the amount of components defined in the data/components.json
+	std::map< std::string, int > comp_sizes = j["sizes"];;
+	int default_size = comp_sizes["default"];
 
-  // Now with the sorted array
-  for (size_t i = 0; i < CHandleManager::npredefined_managers; ++i) {
-    auto om = CHandleManager::predefined_managers[i];
-    auto it = comp_sizes.find(om->getName());
-    int sz = (it == comp_sizes.end()) ? default_size : it->second;
-    dbg("Initializing obj manager %s with %d\n", om->getName(), sz);
-    om->init(sz, false);
-  }
+	// Reorder the init manager based on the json
+	// The bigger the number in the init_order section, the lower comp_type id you get
+	std::map< std::string, int > init_order = j["init_order"];;
+	std::sort(CHandleManager::predefined_managers,
+		CHandleManager::predefined_managers + CHandleManager::npredefined_managers,
+		[&init_order](CHandleManager* m1, CHandleManager* m2) {
+		int priority_m1 = init_order[m1->getName()];
+		int priority_m2 = init_order[m2->getName()];
+		return priority_m1 > priority_m2;
+	});
+	// Important that the entity is the first one for the chain destruction of components
+	assert(strcmp(CHandleManager::predefined_managers[0]->getName(), "entity") == 0);
 
-  // For each entry in j["update"] add entry to om_to_update
-  std::vector< std::string > names = j["update"];
-  for (auto& n : names) {
-    auto om = CHandleManager::getByName(n.c_str());
-    assert(om || fatal( "Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
-    om_to_update.push_back(om);
-  }
+	// Now with the sorted array
+	for (size_t i = 0; i < CHandleManager::npredefined_managers; ++i) {
+		auto om = CHandleManager::predefined_managers[i];
+		auto it = comp_sizes.find(om->getName());
+		int sz = (it == comp_sizes.end()) ? default_size : it->second;
+		dbg("Initializing obj manager %s with %d\n", om->getName(), sz);
+		om->init(sz, false);
+	}
 
-  return true;
+	// For each entry in j["update"] add entry to om_to_update
+	std::vector< std::string > names = j["update"];
+	for (auto& n : names) {
+		auto om = CHandleManager::getByName(n.c_str());
+		assert(om || fatal("Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
+		om_to_update.push_back(om);
+	}
+
+	return true;
 }
 
-void CModuleEntities::update(float delta)
-{
-  for (auto om : om_to_update)
-    om->updateAll(delta);
+void CModuleEntities::update(float delta) {
+	for (auto om : om_to_update)
+		om->updateAll(delta);
 
-  CHandleManager::destroyAllPendingObjects();
+	CHandleManager::destroyAllPendingObjects();
 }
 
-void CModuleEntities::render()
-{
-  Resources.debugInMenu();
+void CModuleEntities::render() {
 
-  if (ImGui::TreeNode("All Entities...")) {
+	if (CApp::get().showDebug) {
 
-    ImGui::SameLine();
-    static bool flat = false;
-    ImGui::Checkbox("Flat", &flat);
+		Resources.debugInMenu();
 
-    static ImGuiTextFilter Filter;
-    ImGui::SameLine();
-    Filter.Draw("Filter");
+		if (ImGui::TreeNode("All Entities...")) {
 
-    auto om = getObjectManager<CEntity>();
-    om->forEach([](CEntity* e) {
-      CHandle h_e(e);
-      if (!flat && h_e.getOwner().isValid())
-        return;
-      if (Filter.IsActive() && !Filter.PassFilter(e->getName()))
-        return;
-      ImGui::PushID(e);
-      e->debugInMenu();
-      ImGui::PopID();
-    });
-    ImGui::TreePop();
-  }
+			ImGui::SameLine();
+			static bool flat = false;
+			ImGui::Checkbox("Flat", &flat);
+
+			static ImGuiTextFilter Filter;
+			ImGui::SameLine();
+			Filter.Draw("Filter");
+
+			auto om = getObjectManager<CEntity>();
+			om->forEach([](CEntity* e) {
+				CHandle h_e(e);
+				if (!flat && h_e.getOwner().isValid())
+					return;
+				if (Filter.IsActive() && !Filter.PassFilter(e->getName()))
+					return;
+				ImGui::PushID(e);
+				e->debugInMenu();
+				ImGui::PopID();
+			});
+			ImGui::TreePop();
+		}
 
 
-  if (ImGui::TreeNode("All Components...")) {
-    for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i)
-      CHandleManager::getByType(i)->debugInMenuAll();
-    ImGui::TreePop();
-  }
+		if (ImGui::TreeNode("All Components...")) {
+			for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i)
+				CHandleManager::getByType(i)->debugInMenuAll();
+			ImGui::TreePop();
+		}
+		CTagsManager::get().debugInMenu();
 
-  CTagsManager::get().debugInMenu();
+		auto om_render_ui = getObjectManager<TCompRenderUI>();
+		om_render_ui->forEach([](TCompRenderUI* c) {
+			c->renderUI();
+		});
+	}
 
-  //static bool is_open = false;
-  //ImGui::Checkbox("ImGui Demo", &is_open);
-  //ImGui::ShowDemoWindow(&is_open);
-   
-  // ------------------------------------------
-  // Do the basic render
-  auto om_render = getObjectManager<TCompRender>();
-  om_render->forEach([](TCompRender* c) {
+	//static bool is_open = false;
+	//ImGui::Checkbox("ImGui Demo", &is_open);
+	//ImGui::ShowDemoWindow(&is_open);
 
-    TCompTransform* c_transform = c->get<TCompTransform>();
-    if (!c_transform)
-      return;
+	// ------------------------------------------
+	// Do the basic render
+	auto om_render = getObjectManager<TCompRender>();
+	om_render->forEach([](TCompRender* c) {
 
-    cb_object.obj_world = c_transform->asMatrix();
-    cb_object.obj_color = c->color;
-    cb_object.updateGPU();
+		TCompTransform* c_transform = c->get<TCompTransform>();
+		if (!c_transform)
+			return;
 
-    for (auto& m : c->materials)
-      m->activate();
-    c->mesh->activateAndRender();
-  });
+		cb_object.obj_world = c_transform->asMatrix();
+		cb_object.obj_color = c->color;
+		cb_object.updateGPU();
 
-  auto om_render_ui = getObjectManager<TCompRenderUI>();
-  om_render_ui->forEach([](TCompRenderUI* c) {
-	  c->renderUI();
-  });
+		for (auto& m : c->materials)
+			m->activate();
+		c->mesh->activateAndRender();
+	});
+
 
 }

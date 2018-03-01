@@ -169,12 +169,21 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 		return false;
 
 	// Create window
-	RECT rc = { 0, 0, xres, yres };
-	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-	hWnd = CreateWindow("MCVWindowsClass", "Direct3D 11 MCV Project",
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
-		NULL);
+	if (!fullscreen) {
+		RECT rc = { 0, 0, resolution.x, resolution.y };
+		AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+		hWnd = CreateWindow("MCVWindowsClass", "Momentum",
+			WS_OVERLAPPEDWINDOW,
+			CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
+			NULL);
+	}
+	else {
+		hWnd = CreateWindow("MCVWindowsClass", "Momentum", 
+			WS_POPUP,
+			0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN),
+			NULL, NULL, hInstance, NULL);
+	}
+
 	if (!hWnd)
 		return false;
 
@@ -230,9 +239,13 @@ void CApp::mainLoop() {
 // Read any basic configuration required to boot, initial resolution, full screen, modules, ...
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
-	// ...
-	xres = 1280;
-	yres = 720;
+
+	json j = loadJson("data/configuration.json");
+	json& jScreen = j["screen"];
+
+	resolution = loadVEC2(jScreen["resolution"]);
+	fullscreen = jScreen["fullscreen"];
+	showDebug = j["showDebug"];
 	//16:9 resolutions:
 	//1280x720  = 720p HD
 	//1920x1080 = 1080p HD
@@ -243,7 +256,7 @@ bool CApp::readConfig() {
 
 	time_since_last_render.reset();
 
-	CEngine::get().getRender().configure(xres, yres);
+	CEngine::get().getRender().configure(resolution.x, resolution.y);
 	return true;
 }
 

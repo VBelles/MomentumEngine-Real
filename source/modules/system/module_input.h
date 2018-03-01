@@ -4,18 +4,16 @@
 #include "input/enums.h"
 #include "input/host.h"
 
-namespace Input
-{
+namespace Input {
 	class IDevice;
 }
 
-class CModuleInput : public IModule
-{
+class CModuleInput : public IModule {
 public:
 	CModuleInput(const std::string& name);
-  bool start() override;
-  bool stop() override;
-  void update(float delta) override;
+	bool start() override;
+	bool stop() override;
+	void update(float delta) override;
 	void render() override;
 
 	void assignDevice(int hostIdx, Input::IDevice* device);

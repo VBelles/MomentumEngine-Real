@@ -12,11 +12,10 @@ using json = nlohmann::json;
 
 
 CModuleInput::CModuleInput(const std::string& name)
-	: IModule(name)
-{}
+	: IModule(name) {
+}
 
-bool CModuleInput::start()
-{
+bool CModuleInput::start() {
 	loadButtonDefinitions("data/keyboard_keys.json");
 
 	static Input::CKeyboard keyboard("keyboard");
@@ -29,115 +28,96 @@ bool CModuleInput::start()
 	assignDevice(Input::PLAYER_1, &pad);
 	assignMapping(Input::PLAYER_1, &mapping);
 
-  return true;
+	return true;
 }
 
-void CModuleInput::render()
-{
-	renderInMenu();
+void CModuleInput::render() {
+	if (CApp::get().showDebug) {
+		renderInMenu();
+	}
+
 }
 
-bool CModuleInput::stop()
-{
-  return true;
+bool CModuleInput::stop() {
+	return true;
 }
 
-void CModuleInput::update(float delta)
-{
-	for (auto& host : _hosts)
-	{
+void CModuleInput::update(float delta) {
+	for (auto& host : _hosts) {
 		host.update(delta);
 	}
 }
 
-void CModuleInput::assignDevice(int hostIdx, Input::IDevice* device)
-{
+void CModuleInput::assignDevice(int hostIdx, Input::IDevice* device) {
 	_hosts[hostIdx].assignDevice(device);
 	_registeredDevices.push_back(device);
 }
 
-void CModuleInput::assignMapping(int hostIdx, Input::CMapping* mapping)
-{
+void CModuleInput::assignMapping(int hostIdx, Input::CMapping* mapping) {
 	_hosts[hostIdx].assignMapping(mapping);
 }
 
-Input::IDevice* CModuleInput::getDevice(const std::string& name)
-{
-	for (auto& dev : _registeredDevices)
-	{
-		if (dev->getName() == name)
-		{
+Input::IDevice* CModuleInput::getDevice(const std::string& name) {
+	for (auto& dev : _registeredDevices) {
+		if (dev->getName() == name) {
 			return dev;
 		}
 	}
 	return nullptr;
 }
 
-const Input::CHost& CModuleInput::host(Input::PlayerID playerId) const
-{
+const Input::CHost& CModuleInput::host(Input::PlayerID playerId) const {
 	return _hosts[playerId];
 }
 
-const Input::CHost& CModuleInput::operator[](Input::PlayerID playerId) const
-{
+const Input::CHost& CModuleInput::operator[](Input::PlayerID playerId) const {
 	return host(playerId);
 }
 
-void CModuleInput::feedback(const Input::TInterface_Feedback& data)
-{
+void CModuleInput::feedback(const Input::TInterface_Feedback& data) {
 	_hosts[Input::PLAYER_1].feedback(data);
 }
 
-const Input::TInterface_Keyboard& CModuleInput::keyboard() const
-{
+const Input::TInterface_Keyboard& CModuleInput::keyboard() const {
 	return host(Input::PLAYER_1).keyboard();
 }
 
-const Input::TInterface_Mouse& CModuleInput::mouse() const
-{
+const Input::TInterface_Mouse& CModuleInput::mouse() const {
 	return host(Input::PLAYER_1).mouse();
 }
 
-const Input::TInterface_Pad& CModuleInput::pad() const
-{
+const Input::TInterface_Pad& CModuleInput::pad() const {
 	return host(Input::PLAYER_1).pad();
 }
 
-const Input::TInterface_Mapping& CModuleInput::mapping() const
-{
+const Input::TInterface_Mapping& CModuleInput::mapping() const {
 	return host(Input::PLAYER_1).mapping();
 }
 
-const Input::TButton& CModuleInput::operator[](Input::KeyID key) const
-{
+const Input::TButton& CModuleInput::operator[](Input::KeyID key) const {
 	return keyboard().key(key);
 }
 
-const Input::TButton& CModuleInput::operator[](Input::EMouseButton bt) const
-{
+const Input::TButton& CModuleInput::operator[](Input::EMouseButton bt) const {
 	return mouse().button(bt);
 }
 
-const Input::TButton& CModuleInput::operator[](Input::EPadButton bt) const
-{
+const Input::TButton& CModuleInput::operator[](Input::EPadButton bt) const {
 	return pad().button(bt);
 }
 
-const Input::TButton& CModuleInput::operator[](const std::string& name) const
-{
+const Input::TButton& CModuleInput::operator[](const std::string& name) const {
 	return mapping().button(name);
 }
 
-void CModuleInput::loadButtonDefinitions(const std::string& filename)
-{
+void CModuleInput::loadButtonDefinitions(const std::string& filename) {
 	std::ifstream file_json(filename);
 	json json_data;
 	file_json >> json_data;
 
 	// parse keyboard keys
 	int i = 0;
-	for (auto& btName : json_data)
-	{
+	for (auto& btName : json_data) {
 		const std::string& str = btName.get<std::string>();
 		_buttonDefinitions[str] = Input::TButtonDef({ Input::EInterface::KEYBOARD, i++ });
 	}
@@ -170,22 +150,17 @@ void CModuleInput::loadButtonDefinitions(const std::string& filename)
 	_buttonDefinitions["pad_ranalogy"] = Input::TButtonDef({ Input::EInterface::PAD, Input::PAD_RANALOG_Y });
 }
 
-const Input::TButtonDef* CModuleInput::getButtonDefinition(const std::string& name) const
-{
+const Input::TButtonDef* CModuleInput::getButtonDefinition(const std::string& name) const {
 	auto& btDef = _buttonDefinitions.find(name);
-	if (btDef != _buttonDefinitions.end())
-	{
+	if (btDef != _buttonDefinitions.end()) {
 		return &btDef->second;
 	}
 	return nullptr;
 }
 
-const std::string& CModuleInput::getButtonName(Input::EInterface type, int id) const
-{
-	for (auto& def : _buttonDefinitions)
-	{
-		if (def.second.type == type && def.second.id == id)
-		{
+const std::string& CModuleInput::getButtonName(Input::EInterface type, int id) const {
+	for (auto& def : _buttonDefinitions) {
+		if (def.second.type == type && def.second.id == id) {
 			return def.first;
 		}
 	}
@@ -193,38 +168,29 @@ const std::string& CModuleInput::getButtonName(Input::EInterface type, int id) c
 	return dummy;
 }
 
-void CModuleInput::renderInMenu()
-{
-	if (ImGui::TreeNode("Input"))
-	{
+void CModuleInput::renderInMenu() {
+	if (ImGui::TreeNode("Input")) {
 		// hosts
-		for (int i = 0; i < Input::NUM_PLAYERS; ++i)
-		{
+		for (int i = 0; i < Input::NUM_PLAYERS; ++i) {
 			auto& host = _hosts[i];
 			ImGui::PushID(&host);
 
-			if (ImGui::TreeNode("Host"))
-			{
+			if (ImGui::TreeNode("Host")) {
 				// devices
-				if (ImGui::TreeNode("Devices"))
-				{
+				if (ImGui::TreeNode("Devices")) {
 					auto& devices = host.devices();
-					for (auto& dev : devices)
-					{
+					for (auto& dev : devices) {
 						ImGui::Text("%s", dev->getName().c_str());
 					}
 					ImGui::TreePop();
 				}
 
 				// keyboard
-				if (ImGui::TreeNode("Keyboard"))
-				{
+				if (ImGui::TreeNode("Keyboard")) {
 					auto& keyboard = host.keyboard();
-					for (int i = 0; i < Input::NUM_KEYBOARD_KEYS; ++i)
-					{
+					for (int i = 0; i < Input::NUM_KEYBOARD_KEYS; ++i) {
 						const std::string& keyName = getButtonName(Input::KEYBOARD, i);
-						if (!keyName.empty())
-						{
+						if (!keyName.empty()) {
 							ImGui::Text("%20s", keyName.c_str());
 							ImGui::SameLine();
 							ImGui::ProgressBar(keyboard.key(i).value);
@@ -234,8 +200,7 @@ void CModuleInput::renderInMenu()
 				}
 
 				// mouse
-				if (ImGui::TreeNode("Mouse"))
-				{
+				if (ImGui::TreeNode("Mouse")) {
 					auto& mouse = host.mouse();
 					ImGui::Text("Position");
 					ImGui::SameLine();
@@ -243,8 +208,7 @@ void CModuleInput::renderInMenu()
 					ImGui::SameLine();
 					ImGui::Value("Y", mouse._position.y);
 					ImGui::Value("Wheel", mouse._wheel_delta);
-					for (int i = 0; i < Input::MOUSE_BUTTONS; ++i)
-					{
+					for (int i = 0; i < Input::MOUSE_BUTTONS; ++i) {
 						const std::string& btName = getButtonName(Input::MOUSE, i);
 						ImGui::Text("%20s", btName.c_str());
 						ImGui::SameLine();
@@ -254,20 +218,16 @@ void CModuleInput::renderInMenu()
 				}
 
 				// pad
-				if (ImGui::TreeNode("Pad"))
-				{
+				if (ImGui::TreeNode("Pad")) {
 					auto& pad = host.pad();
-					for (int i = 0; i < Input::PAD_BUTTONS; ++i)
-					{
+					for (int i = 0; i < Input::PAD_BUTTONS; ++i) {
 						const std::string& btName = getButtonName(Input::PAD, i);
 						ImGui::Text("%20s", btName.c_str());
 						ImGui::SameLine();
-						if (i < Input::PAD_LANALOG_X)
-						{
+						if (i < Input::PAD_LANALOG_X) {
 							ImGui::ProgressBar(pad.button(Input::EPadButton(i)).value);
 						}
-						else
-						{
+						else {
 							ImGui::ProgressBar(0.5f + 0.5f * pad.button(Input::EPadButton(i)).value);
 						}
 					}
@@ -275,12 +235,10 @@ void CModuleInput::renderInMenu()
 				}
 
 				// mapping
-				if (ImGui::TreeNode("Mapping"))
-				{
+				if (ImGui::TreeNode("Mapping")) {
 					auto& mapping = host.mapping();
 
-					for (auto& map : mapping.buttons())
-					{
+					for (auto& map : mapping.buttons()) {
 						ImGui::Text("%20s", map.first.c_str());
 						ImGui::SameLine();
 						ImGui::ProgressBar(0.5f + 0.5f * map.second.result.value);
