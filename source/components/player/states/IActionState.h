@@ -26,7 +26,6 @@ protected:
 	VEC2 movementInput;
 	VEC3* accelerationVector;
 	VEC3* velocityVector;
-	float deceleration = 40;
 
 	TCompPlayerModel* GetPlayerModel() { return playerModelHandle; }
 	TCompTransform* GetPlayerTransform() { return playerTransformHandle; }

@@ -26,7 +26,7 @@ void TurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 	//No coge bien la velocidad que llevaba
 	VEC2 enteringHorizontalVelocityVector = { velocityVector->x, velocityVector->z };
-	//*velocityVector = VEC3::Zero;
+	*velocityVector = VEC3::Zero;
 	float enteringHorizontalVelocity = enteringHorizontalVelocityVector.Length();
 	movementInput = lastState->GetMovementInput();
 	movementInput.Normalize();
