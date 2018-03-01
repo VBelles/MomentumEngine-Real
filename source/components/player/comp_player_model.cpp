@@ -282,6 +282,7 @@ void TCompPlayerModel::update(float dt) {
 			deltaMovement = attackState->GetDeltaMovement();
 		}
 	}
+	dbg("%f, %f, %f\n", velocityVector.x, velocityVector.y, velocityVector.z);
 	UpdateMovement(dt, deltaMovement);
 }
 
