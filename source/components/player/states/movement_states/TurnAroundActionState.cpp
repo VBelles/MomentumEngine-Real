@@ -7,6 +7,8 @@ TurnAroundActionState::TurnAroundActionState(CHandle playerModelHandle)
 }
 
 void TurnAroundActionState::update (float delta) {
+	deltaMovement.x = 0.f;
+	deltaMovement.z = 0.f;
 	if (timer.elapsed() >= turnAroundTime) {
 		RotateToFinalDirection();
 		SetFinalVelocity();
@@ -24,9 +26,8 @@ void TurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	turnAroundTime = turnAroundFrames * (1.f / 60);
 	timer.reset();
-	//No coge bien la velocidad que llevaba
 	VEC2 enteringHorizontalVelocityVector = { velocityVector->x, velocityVector->z };
-	//*velocityVector = VEC3::Zero;
+	*velocityVector = VEC3::Zero;
 	float enteringHorizontalVelocity = enteringHorizontalVelocityVector.Length();
 	movementInput = lastState->GetMovementInput();
 	movementInput.Normalize();
@@ -37,7 +38,6 @@ void TurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	rotationSpeed = (exitYaw - y) / turnAroundTime;
 	dbg("Entrando en turn around: %d\n", GetPlayerModel()->frame);
-	dbg("enteringVelocity: %f, movementInput: %f, %f\n", enteringHorizontalVelocity, movementInput.x, movementInput.y);
 	deltaMovement = lastState->GetDeltaMovement();
 }
 
