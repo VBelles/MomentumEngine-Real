@@ -10,7 +10,7 @@ struct TJsonFormatter (
 	-- --------------------
 	fn begin new_ofilename = (
 		ofilename = new_ofilename
-		fs = createFile  ofilename
+		fs = createFile ofilename
 	),
 
 	-- --------------------
@@ -73,7 +73,7 @@ struct TJsonFormatter (
 			-- Quats rotate in the opposite direction
 			format "\"%\": \"% % % %\"" key_str val.x val.y val.z -val.w to:fs
 		) else (
-			format "\"%\": %\n" key_str val to:fs
+			format "\"%\": %" key_str val to:fs
 		)
 	),
 
@@ -102,13 +102,14 @@ fn cleanMaterialName oldName = (
 -- ----------------------------------------------------------
 struct TMaterialExporter (
 	fs = TJsonFormatter(),
-	project_path,              -- Asigned in the ctor
-	base_path,                 -- Asigned in the ctor
+	project_path,              -- Assigned in the ctor
+	base_path,                 -- Assigned in the ctor
 
+	-- TODO: Avoid exporting material if it already exists.
+	
 	fn exportMap map alias = (
-		-- "C:\mcv\code\bin\data\textures\bricks.DDS"
-
-		-- "C:\users\pep\desktop\download\bricks.dds"
+		-- "C:\engine\bin\data\textures\bricks.dds"
+		-- "C:\download\bricks.dds"
 		local map_filename = map.filename
 
 		-- bricks
@@ -117,7 +118,7 @@ struct TMaterialExporter (
 		-- data\textures\bricks.dds"
 		local json_filename = base_path + "textures/" + base_name + ".dds"
 
-		--
+		-- "C:\engine\bin\data\textures\bricks.dds"
 		local ofull_path = project_path + json_filename
 
 		-- Check if ofull_path exists
@@ -163,7 +164,6 @@ struct TMaterialExporter (
 
 	-- Will return an array of all the materials names used by obj and exported by us
 	fn exportMaterial mat mat_path obj = (
-
 		local exported_materials = #()
 
 		if mat == undefined then (
@@ -198,10 +198,32 @@ struct TMaterialExporter (
 	)
 )
 
+fn collisionCheck obj = (
+	if classof obj != Box and classof obj != Sphere and classof obj != Plane then throw "Collisions must be Spheres, Boxes or Planes."
+)
+
 fn isCollider obj = (
 	if obj.layer.name != "collisions" and obj.layer.name != "triggers" then return false
-	if classof obj != Box and classof obj != Sphere and classof obj != Plane then throw "Collisions must be Spheres, Boxes or Planes."
+	collisionCheck obj
 	-- if name starts with col_...
+	return true
+)
+
+fn isEnemy obj = (
+	if obj.layer.name != "enemyAir" and obj.layer.name != "enemyLand" then return false
+	collisionCheck obj
+	return true
+)
+
+fn isChrysalis obj = (
+	if obj.layer.name != "chrysalis" then return false
+	collisionCheck obj
+	return true
+)
+
+fn isMovablePlatform obj = (
+	if obj.layer.name != "movables" then return false
+	collisionCheck obj
 	return true
 )
 
@@ -212,20 +234,19 @@ struct TSceneExporter (
 	fs = TJsonFormatter(),
 	project_path = "",
 	base_path = "data/",
-	scenes_path = base_path + "scenes/",
-	mesh_path = base_path + "meshes/",
+	scenes_path = base_path + "scenes/whitebox/",
+	mesh_path = base_path + "meshes/whitebox/",
 	mats_path = base_path + "materials/",
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
 	),
 
-
 	fn isValidName aname = (
 		return findString aname " " == undefined
 	),
 
-	-- ----------------------------------------------------------
+	-- --TRANSFORM-----------------------------------------------
 	fn exportTransform obj = (
 		fs.writeKey "transform"
 
@@ -246,7 +267,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- ----------------------------------------------------------
+	-- --RENDER MESH---------------------------------------------
 	fn exportRenderMesh obj = (
 		local mat = obj.material
 		if mat == undefined then (
@@ -279,7 +300,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- ----------------------------------------------------------
+	-- --COMP COLLIDER------------------------------------------
 	fn exportCompCollider obj = (
 		fs.writeKey "collider"
 		fs.beginObj()
@@ -315,9 +336,8 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- ----------------------------------------------------------
+	-- --EDITABLE MESH-------------------------------------------
 	fn exportEditableMesh obj = (
-
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -328,18 +348,17 @@ struct TSceneExporter (
 		fs.endArray()
 
 		for child in obj.children do (
-
 			if isCollider child then (
 				fs.writeComma()
 				exportCompCollider child
 			)
-
 		)
 	),
 
-	-- ----------------------------------------------------------
+	-- --ENTITY COLLIDER-----------------------------------------
 	fn exportEntityCollider obj = (
-		-- It will be exported as part of the parent. Ejemplo del cofre y su caja de colision.
+		-- It will be exported as part of the parent.
+		-- Ejemplo del cofre y su caja de colision.
 		if obj.parent != undefined then return false
 		exportName obj
 		fs.writeComma()
@@ -348,7 +367,139 @@ struct TSceneExporter (
 		exportCompCollider obj
 	),
 
-	-- ----------------------------------------------------------
+	-- --ENEMY---------------------------------------------------
+	fn exportEnemy obj = (
+		local enemyAirPrefabName = "enemy_flying"
+		local enemyLandPrefabName = "enemy_melee"
+		local prefabName = enemyAirPrefabName
+		if obj.layer.name == "enemyLand" then prefabName = enemyLandPrefabName
+		local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
+		
+		fs.writeKeyValue "name" obj.name
+		fs.writeComma()
+		local prefabPath = prefabPath
+		fs.writeKeyValue "prefab" prefabPath
+		fs.writeComma()
+		fs.writeKey "transform"
+		fs.beginObj()
+			local objPos = obj.position * (rotateXMatrix -90)
+			fs.writeKeyValue "pos" objPos
+			fs.writeComma()
+			fs.writeKeyValue "lookAt" "-1 0 -1"
+		fs.endObj()
+		
+		if obj.layer.name == "enemyAir" then (
+			fs.writeComma()
+			fs.writeKey "collider"
+			fs.beginObj()
+				fs.writeKeyValue "shape" "sphere"
+				fs.writeComma()
+				fs.writeKeyValue "radius" 0.3
+				fs.writeComma()
+				fs.writeKeyValue "group" "Enemy"
+			fs.endObj()
+		)
+	),
+	
+	-- --CHRYSALIS-----------------------------------------------
+	fn exportChrysalis obj = (
+		local prefabPath = base_path + "prefabs/crisalida.prefab"
+		fs.writeKeyValue "name" obj.name
+		fs.writeComma()
+		fs.writeKeyValue "prefab" prefabPath
+		fs.writeComma()
+		fs.writeKey "transform"
+		fs.beginObj()
+			local objPos = obj.position * (rotateXMatrix -90)
+			fs.writeKeyValue "pos" objPos
+		fs.endObj()
+	),
+
+	-- --MOVABLE-------------------------------------------------
+	-- TO DO: this object should be nested with associated trigger,
+	-- right now we do two entities at once, manually.
+	fn exportMovablePlatform obj = (
+		local prefabPath = base_path + "prefabs/platform_move.prefab"
+		
+		fs.writeKeyValue "name" obj.name
+		fs.writeComma()
+		fs.writeKeyValue "prefab" prefabPath
+		fs.writeComma()
+		fs.writeKey "transform"
+		fs.beginObj()
+			local objPos = obj.position * (rotateXMatrix -90)
+			fs.writeKeyValue "pos" objPos
+		fs.endObj()
+		fs.writeComma()
+		-- collider
+		fs.writeKey "collider"
+		fs.beginObj()
+			fs.writeKeyValue "shape" "box"
+			fs.writeComma()
+			fs.writeKeyValue "is_dynamic" true
+			fs.writeComma()
+			fs.writeKeyValue "halfExtent" "2.0 0.25 2.0"-- TODO: get from object
+			fs.writeComma()
+			fs.writeKeyValue "group" "scenario"
+		fs.endObj()
+		fs.writeComma()
+		-- platform_move
+		fs.writeKey "platform_move"
+		fs.beginObj()
+			fs.writeKeyValue "type" "up"
+			fs.writeComma()
+			fs.writeKeyValue "speed" 4.0
+			fs.writeComma()
+			fs.writeKey "waypoints"
+			fs.beginArray()
+				fs.writeKey "ENTER WAYPOINTS HERE" -- TODO: Pick from spline?
+			fs.endArray()
+		fs.endObj()
+		fs.writeComma()
+		-- hierarchy
+		fs.writeKey "hierarchy"
+		fs.beginObj()
+			fs.writeKeyValue "parent" "WRITE PARENT TRIGGER HERE"-- TODO: detect parent.
+		fs.endObj()
+		-- entity trigger
+		fs.endObj()-- end previous entity
+		fs.endObj()
+		fs.writeComma()
+		fs.beginObj()
+		fs.writeKey "entity"
+		fs.beginObj()-- begin trigger entity
+		fs.writeKeyValue "name" "TRIGGER NAME HERE" -- TODO: get from detected parent.
+		fs.writeComma()
+		fs.writeKey "transform"
+		fs.beginObj()
+			local objPos = obj.position * (rotateXMatrix -90)
+			fs.writeKeyValue "pos" objPos --TODO: adjust Y position
+		fs.endObj()
+		fs.writeComma()
+		-- collider
+		fs.writeKey "collider"
+		fs.beginObj()
+			fs.writeKeyValue "shape" "box"
+			fs.writeComma()
+			fs.writeKeyValue "is_dynamic" true
+			fs.writeComma()
+			fs.writeKeyValue "is_trigger" true
+			fs.writeComma()
+			fs.writeKeyValue "halfExtent" "2.0 0.25 2.0"-- TODO: get form object.
+			fs.writeComma()
+			fs.writeKeyValue "group" "scenario"
+			fs.writeComma()
+			fs.writeKeyValue "mask" "player"
+		fs.endObj()
+		fs.writeComma()
+		-- fwd_msg
+		fs.writeKey "fwd_msg"
+		fs.beginObj()
+			fs.writeKeyValue "target" obj.name
+		fs.endObj()
+	),
+	
+	-- --ENTITY--------------------------------------------------
 	fn exportEntity obj = (
 		fs.beginObj()
 		fs.writeKey "entity"
@@ -356,6 +507,9 @@ struct TSceneExporter (
 			--if classof obj == Camera then exportCamera obj
 			if classof obj == Editable_Mesh then exportEditableMesh obj
 			else if isCollider obj then exportEntityCollider obj
+			else if isEnemy obj then exportEnemy obj
+			else if isChrysalis obj then exportChrysalis obj
+			else if isMovablePlatform obj then exportMovablePlatform obj
 			else (
 				format "Warning. Don't know how to export obj % of class %\n" obj.name ((classof obj) as string)
 			)
@@ -384,5 +538,10 @@ struct TSceneExporter (
 	)
 )
 
-exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
+-- !!! TODO: avoid empty entities, ¿?
+
+-- en linea ~235 añado carpeta /whitebox para probar
+exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
 exporter.exportAll()
