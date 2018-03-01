@@ -96,6 +96,8 @@ void CAIMeleeEnemy::OnLaunchedVertically(const TMsgLaunchedVertically& msg) {
 void CAIMeleeEnemy::OnLaunchedHorizontally(const TMsgLaunchedHorizontally& msg) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
+	initialHorizontalLaunchY = getTransform()->getPosition().y + 0.0001f;
+	dbg("Y: %f", initialHorizontalLaunchY);
 	float horizontalVelocity = launchPowerStats->longJumpVelocityVector.z;
 	velocityVector = msg.direction * horizontalVelocity;
 	velocityVector.y = launchPowerStats->longJumpVelocityVector.y;
