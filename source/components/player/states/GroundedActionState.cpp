@@ -12,10 +12,10 @@ void GroundedActionState::update(float delta) {
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
 	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
-	/*VEC3 front = GetPlayerModel()->GetTransform()->getFront();
+	VEC3 front = GetPlayerModel()->GetTransform()->getFront();
 	if (front.Dot(desiredDirection) <= backwardsMaxDotProduct) {
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);*/
-	if (false) {
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);
+	//if (false) {
 	}
 	else {
 		//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
@@ -39,14 +39,14 @@ void GroundedActionState::update(float delta) {
 			velocityVector->x = 0.f;
 			velocityVector->z = 0.f;
 		}
-	}
-	//distancia vertical recorrida
-	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-	deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
+		//distancia vertical recorrida
+		currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
+		deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
 
-	//Nueva velocidad vertical y clampeo
-	velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
+		//Nueva velocidad vertical y clampeo
+		velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
+		velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
+	}
 }
 
 void GroundedActionState::OnStateEnter(IActionState * lastState) {

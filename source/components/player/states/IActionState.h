@@ -122,11 +122,13 @@ public:
 		this->playerTransformHandle = playerEntity->get<TCompTransform>();
 	}
 	virtual void update(float delta) = 0;
-	virtual void OnStateEnter(IActionState* lastState) { this->lastState = lastState; }
-	virtual void OnStateExit(IActionState* nextState) {
-		this->nextState = nextState;
+	virtual void OnStateEnter(IActionState* lastState) { 
+		this->lastState = lastState;
 		deltaMovement = VEC3::Zero;
 		movementInput = VEC2::Zero;
+	}
+	virtual void OnStateExit(IActionState* nextState) {
+		this->nextState = nextState;
 	}
 	virtual void SetMovementInput(VEC2 movementInput) {}
 	virtual VEC3 GetDeltaMovement() { return deltaMovement; }
