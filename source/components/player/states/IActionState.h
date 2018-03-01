@@ -11,6 +11,9 @@ class TCompPlayerModel;
 
 class IActionState {
 protected:
+	enum AttackPhases {
+		Launch, Startup, Active, Recovery
+	};
 	IActionState* lastState;
 	IActionState* nextState;
 

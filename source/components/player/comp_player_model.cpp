@@ -268,9 +268,8 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 
 void TCompPlayerModel::update(float dt) {
 	frame++;
-	if (!lockMovementState) {
-		movementState->update(dt);
-	}
+
+	movementState->update(dt);
 	if (attackState != attackStates[ActionStates::Idle]) {
 		attackState->update(dt);
 	}
