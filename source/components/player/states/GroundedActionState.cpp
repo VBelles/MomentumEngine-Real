@@ -30,8 +30,18 @@ void GroundedActionState::update(float delta) {
 	}
 	else {
 		//Cuando no hay input se frena (TODO no frenar de golpe, desacelerar)
-		velocityVector->x = 0.f;
-		velocityVector->z = 0.f;
+		//TODO pasar deceleration a PowerStats
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		if (deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = CalculateHorizontalDeltaMovement(delta, GetPlayerTransform()->getFront(),
+				-GetPlayerTransform()->getFront(), deceleration, currentPowerStats->maxHorizontalSpeed);
+			
+			TransferVelocityToDirectionAndAccelerate(delta, false, -GetPlayerTransform()->getFront(), deceleration);
+		}
+		else {
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
+		}
 	}
 	//distancia vertical recorrida
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
