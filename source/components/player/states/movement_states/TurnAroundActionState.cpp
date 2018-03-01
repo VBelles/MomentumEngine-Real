@@ -7,7 +7,6 @@ TurnAroundActionState::TurnAroundActionState(CHandle playerModelHandle)
 }
 
 void TurnAroundActionState::update (float delta) {
-	dbg("UPDATE turn around: %d\n", GetPlayerModel()->frame);
 	if (timer.elapsed() >= turnAroundTime) {
 		RotateToFinalDirection();
 		SetFinalVelocity();
@@ -25,6 +24,7 @@ void TurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	turnAroundTime = turnAroundFrames * (1.f / 60);
 	timer.reset();
+	//No coge bien la velocidad que llevaba
 	VEC2 enteringHorizontalVelocityVector = { velocityVector->x, velocityVector->z };
 	*velocityVector = VEC3::Zero;
 	float enteringHorizontalVelocity = enteringHorizontalVelocityVector.Length();
@@ -38,19 +38,19 @@ void TurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	rotationSpeed = (exitYaw - y) / turnAroundTime;
 	dbg("Entrando en turn around: %d\n", GetPlayerModel()->frame);
 	dbg("enteringVelocity: %f, movementInput: %f, %f\n", enteringHorizontalVelocity, movementInput.x, movementInput.y);
+	deltaMovement = lastState->GetDeltaMovement();
 }
 
 void TurnAroundActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	//poner velocidad a la misma de entrada, en la dirección de movementInput
-	dbg("Saliendo de turn around: %d\n", GetPlayerModel()->frame);
 }
 
 void TurnAroundActionState::SetMovementInput(VEC2 input) {
-	//movementInput = input;
 }
 
 void TurnAroundActionState::OnJumpHighButton() {
+	//Quizás se puede usar una variable para decir que saldrá en salto y que no salga directamente desde aquí 
+	//(que se coma todos los frames si quiere saltar)
 	RotateToFinalDirection();
 	SetFinalVelocity();
 	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);

@@ -11,41 +11,38 @@ void GroundedActionState::update(float delta) {
 	bool hasInput = movementInput != VEC2::Zero;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
+	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
 	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
-	VEC3 front = GetPlayerModel()->GetTransform()->getFront();
-	if (front.Dot(desiredDirection) <= backwardsMaxDotProduct) {
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);
-	//if (false) {
+	if (hasInput) {
+		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
+		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
+	}
+
+	deltaMovement = VEC3::Zero;
+	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
+	if (hasInput) {
+		deltaMovement = CalculateHorizontalDeltaMovement(delta, GetPlayerTransform()->getFront(),
+			GetPlayerTransform()->getFront(), currentPowerStats->acceleration,
+			currentPowerStats->maxHorizontalSpeed);
+
+		TransferVelocityToDirectionAndAccelerate(delta, true, GetPlayerTransform()->getFront(), currentPowerStats->acceleration);
+		ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 	}
 	else {
-		//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
-		if (hasInput) {
-			VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
-			RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
-		}
+		//Cuando no hay input se frena (TODO no frenar de golpe, desacelerar)
+		velocityVector->x = 0.f;
+		velocityVector->z = 0.f;
+	}
+	//distancia vertical recorrida
+	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
+	deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
 
-		deltaMovement = VEC3::Zero;
-		//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
-		if (hasInput) {
-			deltaMovement = CalculateHorizontalDeltaMovement(delta, GetPlayerTransform()->getFront(),
-				GetPlayerTransform()->getFront(), currentPowerStats->acceleration,
-				currentPowerStats->maxHorizontalSpeed);
+	//Nueva velocidad vertical y clampeo
+	velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
+	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 
-			TransferVelocityToDirectionAndAccelerate(delta, true, GetPlayerTransform()->getFront(), currentPowerStats->acceleration);
-			ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
-		}
-		else {
-			//Cuando no hay input se frena (TODO no frenar de golpe, desacelerar)
-			velocityVector->x = 0.f;
-			velocityVector->z = 0.f;
-		}
-		//distancia vertical recorrida
-		currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-		deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
-
-		//Nueva velocidad vertical y clampeo
-		velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-		velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
+	if (GetPlayerModel()->GetTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct) {
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);
 	}
 }
 

@@ -6,7 +6,7 @@
 
 class TurnAroundActionState : public GroundedActionState {
 	CTimer timer;
-	int turnAroundFrames = 90;
+	int turnAroundFrames = 6;
 	float turnAroundTime;
 	VEC3 exitVelocityVector;
 	float exitYaw;
