@@ -222,11 +222,11 @@ void CApp::mainLoop() {
 		else {
 			doFrame();
 			if (EngineInput["debug_mode"].getsPressed()) {
-				inDebugMode = !inDebugMode;
-				ShowCursor(inDebugMode);
+				showDebug = !showDebug;
+				ShowCursor(showDebug);
 			}
 			
-			if (!inDebugMode) {
+			if (!showDebug) {
 				RECT rect;
 				GetWindowRect(getWnd(), &rect);
 				SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
@@ -246,6 +246,7 @@ bool CApp::readConfig() {
 	resolution = loadVEC2(jScreen["resolution"]);
 	fullscreen = jScreen["fullscreen"];
 	showDebug = j["showDebug"];
+	ShowCursor(showDebug);
 	//16:9 resolutions:
 	//1280x720  = 720p HD
 	//1920x1080 = 1080p HD

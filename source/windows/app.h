@@ -23,8 +23,6 @@ public:
 	bool fullscreen = false;
 	bool showDebug = false;
 
-	bool inDebugMode = false;
-
 	static CApp& get() {
 		assert(app_instance);
 		return *app_instance;
