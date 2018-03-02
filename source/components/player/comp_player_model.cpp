@@ -312,7 +312,8 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	auto c = GetCollider();
 	assert(c);
 	assert(c->controller);
-	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
+	GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, 0.f, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
+	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(physx::PxVec3(0.f, deltaMovement.y, 0.f), 0.f, dt, physx::PxControllerFilters());
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (dynamic_cast<AirborneActionState*>(movementState)) {//NULL si no lo consigue
 		if (isGrounded) {
