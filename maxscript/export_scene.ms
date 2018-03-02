@@ -589,7 +589,7 @@ struct TSceneExporter (
 --  bin/data/materials
 -------------------------------------------------------------------------------------
 
---exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
-exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
+exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
 exporter.exportAll()
