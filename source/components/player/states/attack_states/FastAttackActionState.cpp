@@ -51,6 +51,7 @@ void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 void FastAttackActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 	dbg("Finish strong Attack\n");
+	GetRender()->setMesh("data/meshes/pose_run.mesh");
 }
 
 void FastAttackActionState::SetMovementInput(VEC2 input) {

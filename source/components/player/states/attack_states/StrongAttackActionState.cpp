@@ -41,6 +41,8 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
 	isLauncher = true;
+	velocityVector->x = 0.f;
+	velocityVector->z = 0.f;
 	timer.reset();
 	GetPlayerModel()->lockMovementState = true;
 	GetPlayerModel()->lockWalk = true;
