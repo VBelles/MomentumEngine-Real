@@ -48,3 +48,7 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
   }
 
 }
+
+void TCompRender::setMesh(std::string meshName) {
+	mesh = Resources.get(meshName)->as<CRenderMesh>();
+}
