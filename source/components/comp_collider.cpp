@@ -35,6 +35,10 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 		if (j.count("planeDesc")) {
 			config.plane = loadVEC4(j["planeDesc"]);
 		}
+		else
+		{
+			config.plane = VEC4(0, 1, 0, 0);
+		}
 	}
 	else if (strcmp("capsule", shape.c_str()) == 0) {
 		config.shapeType = PxGeometryType::eCAPSULE;

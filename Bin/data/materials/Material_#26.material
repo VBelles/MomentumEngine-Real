@@ -1,7 +1,6 @@
 {
   "technique": "textured.tech",
-  "shadows": true
-,
+  "shadows": true,
   "textures":
   {
     "albedo": "data/textures/empty-texture.dds"
