@@ -109,6 +109,7 @@ void CAIMeleeEnemy::OnLaunchedHorizontally(const TMsgLaunchedHorizontally& msg) 
 
 void CAIMeleeEnemy::OnRespawn(const TMsgRespawn & msg) {
 	if (isDead) {
+		ChangeState("idle");
 		isDead = false;
 		health = 5.f;
 		TCompRender *render = get<TCompRender>();

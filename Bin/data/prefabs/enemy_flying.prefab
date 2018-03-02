@@ -15,7 +15,7 @@
 			],
 			"ai_flying_enemy": {},
 			"respawner" : {
-				"respawnTime" : 5.0
+				"respawnTime" : 10.0
 			}
 		}
 	}

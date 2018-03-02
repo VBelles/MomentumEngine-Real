@@ -25,6 +25,7 @@ void FastAttackActionState::update(float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() > hitboxOutTime) {
+		GetRender()->setMesh("data/meshes/pose_punch.mesh");
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -45,7 +46,6 @@ void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 	GetPlayerModel()->lockMovementState = true;
 	GetPlayerModel()->lockWalk = false;
-	GetRender()->setMesh("data/meshes/pose_punch.mesh");
 }
 
 void FastAttackActionState::OnStateExit(IActionState * nextState) {

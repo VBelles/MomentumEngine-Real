@@ -3,7 +3,6 @@
 		"entity": {
 			"name": "The Player",
 			"render" : [
-				{"mesh": "data/meshes/Player.mesh"},
 				{"mesh": "data/meshes/pose_run.mesh"},
 				{"mesh": "data/meshes/pose_jump.mesh"},
 				{"mesh": "data/meshes/pose_long_jump.mesh"},

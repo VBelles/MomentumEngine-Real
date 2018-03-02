@@ -23,7 +23,7 @@
 				"group": "Enemy"
 			},
 			"respawner" : {
-				"respawnTime" : 2.0
+				"respawnTime" : 10.0
 			}
 		}
 	}

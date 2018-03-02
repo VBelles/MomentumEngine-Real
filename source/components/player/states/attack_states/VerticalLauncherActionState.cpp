@@ -19,6 +19,7 @@ void VerticalLauncherActionState::update (float delta) {
 		hitbox->disable();
 	}
 	else if (timer.elapsed() > hitboxOutTime) {
+		GetRender()->setMesh("data/meshes/pose_punch.mesh");
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->enable();

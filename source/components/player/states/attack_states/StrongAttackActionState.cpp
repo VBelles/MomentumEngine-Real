@@ -24,6 +24,7 @@ void StrongAttackActionState::update (float delta) {
 			hitbox->disable();
 		}
 		else if (timer.elapsed() > hitboxOutTime) {
+			GetRender()->setMesh("data/meshes/pose_punch.mesh");
 			CEntity *hitboxEntity = hitboxHandle;
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->enable();
@@ -43,7 +44,6 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 	GetPlayerModel()->lockMovementState = true;
 	GetPlayerModel()->lockWalk = true;
-	GetRender()->setMesh("data/meshes/pose_punch.mesh");
 }
 
 void StrongAttackActionState::OnStateExit(IActionState * nextState) {
