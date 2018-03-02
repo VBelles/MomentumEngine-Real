@@ -24,6 +24,7 @@
 					"longJumpVelocity" : " 0 11 12",
 					"maxVelocityVertical" :  30.0,
 					"acceleration" : 30.0,
+					"deceleration" : 40.0,
 					"airAcceleration" : 30.0,
 					"falling_multiplier" : 1.05,
 					"long_gravity_multiplier" : 0.60
@@ -36,6 +37,7 @@
 					"longJumpVelocity" : " 0 12 17",
 					"maxVelocityVertical" : 30.0,
 					"acceleration" : 32.0,
+					"deceleration" : 42.0,
 					"airAcceleration" : 35.0,
 					"falling_multiplier" : 1.05,
 					"long_gravity_multiplier" : 0.60
@@ -48,6 +50,7 @@
 					"longJumpVelocity" : " 0 13 22.5",
 					"maxVelocityVertical" : 30.0,
 					"acceleration" : 35.0,
+					"deceleration" : 45.0,
 					"airAcceleration" : 40.0,
 					"falling_multiplier" : 1.05,
 					"long_gravity_multiplier" : 0.60

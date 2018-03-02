@@ -11,6 +11,7 @@ class TurnAroundActionState : public GroundedActionState {
 	VEC3 exitVelocityVector;
 	float exitYaw;
 	float rotationSpeed;
+	float velocityLossMultiplier = 0.7f;
 
 	void RotateToFinalDirection();
 	void SetFinalVelocity();

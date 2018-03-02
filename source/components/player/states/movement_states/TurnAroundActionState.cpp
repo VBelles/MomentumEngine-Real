@@ -76,6 +76,6 @@ void TurnAroundActionState::RotateToFinalDirection() {
 
 void TurnAroundActionState::SetFinalVelocity() {
 	//Poner velocidad final
-	velocityVector->x = exitVelocityVector.x;
-	velocityVector->z = exitVelocityVector.z;
+	velocityVector->x = exitVelocityVector.x * velocityLossMultiplier;
+	velocityVector->z = exitVelocityVector.z * velocityLossMultiplier;
 }

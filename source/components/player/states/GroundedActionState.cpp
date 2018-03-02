@@ -13,7 +13,8 @@ void GroundedActionState::update(float delta) {
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
 	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
-	if (hasInput) {
+	bool isTurnAround = GetPlayerModel()->GetTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
+	if (hasInput && !isTurnAround) {
 		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
@@ -29,15 +30,14 @@ void GroundedActionState::update(float delta) {
 		ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 	}
 	else {
-		//TODO pasar deceleration a PowerStats
-		/*VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
-		if (deceleration * delta < horizontalVelocity.Length()) {
-			deltaMovement = CalculateHorizontalDeltaMovement(delta, GetPlayerTransform()->getFront(),
-				-GetPlayerTransform()->getFront(), deceleration, currentPowerStats->maxHorizontalSpeed);
-			
-			TransferVelocityToDirectionAndAccelerate(delta, false, -GetPlayerTransform()->getFront(), deceleration);
-		}
-		else {*/
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		//dbg("velocity: %f, velocity loss: %f\n", horizontalVelocity.Length(), currentPowerStats->deceleration * delta);
+		//if (horizontalVelocity.Length() > currentPowerStats->deceleration * delta) {
+		//	deltaMovement = CalculateHorizontalDeltaMovement(delta, GetPlayerTransform()->getFront(),
+		//		-GetPlayerTransform()->getFront(), currentPowerStats->deceleration, currentPowerStats->maxHorizontalSpeed);
+		//	TransferVelocityToDirectionAndAccelerate(delta, false, -GetPlayerTransform()->getFront(), currentPowerStats->deceleration);
+		//}
+		//else {
 			velocityVector->x = 0.f;
 			velocityVector->z = 0.f;
 		/*}*/
@@ -50,7 +50,7 @@ void GroundedActionState::update(float delta) {
 	velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
 	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 
-	if (GetPlayerModel()->GetTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct) {
+	if (isTurnAround) {
 		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);
 	}
 }

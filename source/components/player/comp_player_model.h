@@ -18,6 +18,7 @@ struct PowerStats {
 	float currentGravityMultiplier = 1.f;
 	float maxVelocityVertical = 30.f;
 	float acceleration = 30.f;
+	float deceleration = 40.f;
 	float airAcceleration = 40.f;
 	float shortHopVelocity = 6.f;
 	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
