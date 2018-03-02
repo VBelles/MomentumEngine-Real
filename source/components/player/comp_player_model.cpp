@@ -91,6 +91,11 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 }
 
 void TCompPlayerModel::SetMovementState(ActionStates newState) {
+	//dbg("Frame: %d\n", frame);
+	nextMovementState = newState;
+}
+
+void TCompPlayerModel::ChangeMovementState(ActionStates newState) {
 	IActionState* exitingState = movementState;
 	movementState = movementStates[newState];
 	if (exitingState) exitingState->OnStateExit(movementState);
@@ -98,12 +103,15 @@ void TCompPlayerModel::SetMovementState(ActionStates newState) {
 }
 
 void TCompPlayerModel::SetAttackState(ActionStates newState) {
+	nextAttackState = newState;
+}
+
+void TCompPlayerModel::ChangeAttackState(ActionStates newState) {
 	IActionState* exitingState = attackState;
 	attackState = attackStates[newState];
 	if (exitingState) exitingState->OnStateExit(attackState);
 	if (attackState) attackState->OnStateEnter(exitingState);
 }
-
 
 
 void TCompPlayerModel::registerMsgs() {
@@ -136,7 +144,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
 	renderUI->registerOnRenderUI([&]() {
-		
+
 		bool showWindow = true;
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 25, 0 + 25));
@@ -248,8 +256,10 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },
 		{ ActionStates::PropelLong, new PropelLongActionState(CHandle(this)) },
 	};
-	SetMovementState(ActionStates::Run);
-	SetAttackState(ActionStates::Idle);
+	nextMovementState = ActionStates::Run;
+	nextAttackState = ActionStates::Idle;
+	ChangeMovementState(ActionStates::Run);
+	ChangeAttackState(ActionStates::Idle);
 	currentPowerStats = ssj1;
 }
 
@@ -289,6 +299,13 @@ void TCompPlayerModel::update(float dt) {
 		}
 	}
 	UpdateMovement(dt, deltaMovement);
+	
+	if (movementState != movementStates[nextMovementState]) {
+		ChangeMovementState(nextMovementState);
+	}
+	if (attackState != attackStates[nextAttackState]) {
+		ChangeAttackState(nextAttackState);
+	}
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {

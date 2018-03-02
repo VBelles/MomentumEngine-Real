@@ -22,7 +22,7 @@ void GroundedActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
 	if (hasInput) {
-		deltaMovement = CalculateHorizontalDeltaMovement(delta, GetPlayerTransform()->getFront(),
+		deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3( velocityVector->x, 0, velocityVector ->z),
 			GetPlayerTransform()->getFront(), currentPowerStats->acceleration,
 			currentPowerStats->maxHorizontalSpeed);
 
@@ -31,16 +31,16 @@ void GroundedActionState::update(float delta) {
 	}
 	else {
 		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
-		//dbg("velocity: %f, velocity loss: %f\n", horizontalVelocity.Length(), currentPowerStats->deceleration * delta);
-		//if (horizontalVelocity.Length() > currentPowerStats->deceleration * delta) {
-		//	deltaMovement = CalculateHorizontalDeltaMovement(delta, GetPlayerTransform()->getFront(),
-		//		-GetPlayerTransform()->getFront(), currentPowerStats->deceleration, currentPowerStats->maxHorizontalSpeed);
-		//	TransferVelocityToDirectionAndAccelerate(delta, false, -GetPlayerTransform()->getFront(), currentPowerStats->deceleration);
-		//}
-		//else {
+		if (currentPowerStats->deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+				-VEC3(velocityVector->x, 0, velocityVector->z), currentPowerStats->deceleration, currentPowerStats->maxHorizontalSpeed);
+			
+			TransferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), currentPowerStats->deceleration);
+		}
+		else {
 			velocityVector->x = 0.f;
 			velocityVector->z = 0.f;
-		/*}*/
+		}
 	}
 	//distancia vertical recorrida
 	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <set>
+
 #include "modules/module.h"
 #include "components/comp_collider.h"
 #include "PxPhysicsAPI.h"
@@ -58,6 +60,6 @@ private:
 
     CustomSimulationEventCallback customSimulationEventCallback;
 
-	std::vector<CHandle> toRelease;
+	std::set<CHandle> toRelease;
 	void releaseColliders();
 };

@@ -45,6 +45,7 @@ void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 	GetPlayerModel()->lockMovementState = true;
 	GetPlayerModel()->lockWalk = false;
+	GetRender()->setMesh("data/meshes/pose_punch.mesh");
 }
 
 void FastAttackActionState::OnStateExit(IActionState * nextState) {

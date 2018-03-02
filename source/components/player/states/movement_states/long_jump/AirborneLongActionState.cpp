@@ -42,6 +42,7 @@ void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
+	GetRender()->setMesh("data/meshes/pose_long_jump.mesh");
 }
 
 void AirborneLongActionState::OnStateExit(IActionState * nextState) {

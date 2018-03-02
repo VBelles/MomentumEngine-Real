@@ -5,6 +5,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_collider.h"
 #include "components/comp_transform.h"
+#include "components/comp_render.h"
 
 
 class TCompPlayerModel;
@@ -21,6 +22,8 @@ protected:
 	CHandle playerTransformHandle;
 	CHandle currentCameraHandle;
 	CHandle colliderHandle;
+	CHandle renderHandle;
+
 
 	VEC3 deltaMovement;
 	VEC2 movementInput;
@@ -30,6 +33,7 @@ protected:
 	TCompPlayerModel* GetPlayerModel() { return playerModelHandle; }
 	TCompTransform* GetPlayerTransform() { return playerTransformHandle; }
 	TCompCollider* GetCollider() { return colliderHandle; }
+	TCompRender* GetRender() { return renderHandle; }
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void RotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
@@ -123,6 +127,7 @@ public:
 		CEntity* playerEntity = playerModelHandle.getOwner();
 		this->colliderHandle = playerEntity->get<TCompCollider>();
 		this->playerTransformHandle = playerEntity->get<TCompTransform>();
+		this->renderHandle = playerEntity->get<TCompRender>();
 	}
 	virtual void update(float delta) = 0;
 	virtual void OnStateEnter(IActionState* lastState) { 

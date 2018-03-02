@@ -43,6 +43,7 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 	GetPlayerModel()->lockMovementState = true;
 	GetPlayerModel()->lockWalk = true;
+	GetRender()->setMesh("data/meshes/pose_punch.mesh");
 }
 
 void StrongAttackActionState::OnStateExit(IActionState * nextState) {

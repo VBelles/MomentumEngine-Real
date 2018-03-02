@@ -120,4 +120,9 @@ private:
 	CHandle grabHitbox;
 
 	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre
+
+	ActionStates nextMovementState;
+	ActionStates nextAttackState;
+	void ChangeMovementState(ActionStates newState);
+	void ChangeAttackState(ActionStates newState);
 };

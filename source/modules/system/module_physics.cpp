@@ -227,11 +227,11 @@ void CModulePhysics::update(float delta) {
 }
 
 void  CModulePhysics::releaseCollider(CHandle handle) {
-	toRelease.push_back(handle);
+	toRelease.insert(handle);
 }
 
 void CModulePhysics::releaseColliders() {
-	for (std::vector<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
+	for (std::set<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
 		TCompCollider *collider = *it;
 		if (collider->controller) {
 			collider->controller->release();

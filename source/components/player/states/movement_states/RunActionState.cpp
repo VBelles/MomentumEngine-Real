@@ -11,6 +11,7 @@ void RunActionState::update (float delta) {
 
 void RunActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
+	GetRender()->setMesh("data/meshes/pose_run.mesh");
 	//dbg("Entrando en run\n");
 }
 

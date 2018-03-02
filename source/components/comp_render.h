@@ -19,6 +19,7 @@ public:
 
   void debugInMenu();
   void load(const json& j, TEntityParseContext& ctx);
+  void setMesh(std::string meshName);
 
   DECL_SIBLING_ACCESS();
 };
