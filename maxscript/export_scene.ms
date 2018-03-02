@@ -63,18 +63,23 @@ struct TJsonFormatter (
 		format "\"%\":\n" key_str to:fs
 	),
 		-- --------------------
-	fn writeKeyValue key_str val = (
-		indent()
+	fn writeValue val = (
 		if classof val == string then (
-			format "\"%\": \"%\"" key_str val to:fs
+			format " \"%\"" val to:fs
 		) else if classof val == Point3 then (
-			format "\"%\": \"% % %\"" key_str val.x val.y val.z to:fs
+			format " \"% % %\"" val.x val.y val.z to:fs
 		) else if classof val == quat then (
 			-- Quats rotate in the opposite direction
-			format "\"%\": \"% % % %\"" key_str val.x val.y val.z -val.w to:fs
+			format " \"% % % %\"" val.x val.y val.z -val.w to:fs
 		) else (
-			format "\"%\": %" key_str val to:fs
+			format " %" val to:fs
 		)
+	),
+	
+	fn writeKeyValue key_str val = (
+		indent()
+		format "\"%\":" key_str to:fs
+		writeValue val
 	),
 
 	-- --------------------
@@ -132,7 +137,7 @@ struct TMaterialExporter (
 
 	-- Exports a single std material to a json format
 	fn exportStdMaterial mat mat_name = (
-		format "Exporting material % % %\n" mat_name mat (classof mat as string)
+		--format "Exporting material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
 			fs.writeKeyValue "technique" "textured.tech"
@@ -199,7 +204,9 @@ struct TMaterialExporter (
 )
 
 fn collisionCheck obj = (
-	if classof obj != Box and classof obj != Sphere and classof obj != Plane then throw "Collisions must be Spheres, Boxes or Planes."
+	if classof obj != Box and classof obj != Sphere and classof obj != Plane then (
+		throw "Collisions must be Spheres, Boxes or Planes."
+	)
 )
 
 fn isCollider obj = (
@@ -234,8 +241,8 @@ struct TSceneExporter (
 	fs = TJsonFormatter(),
 	project_path = "",
 	base_path = "data/",
-	scenes_path = base_path + "scenes/whitebox/",
-	mesh_path = base_path + "meshes/whitebox/",
+	scenes_path = base_path + "scenes/",
+	mesh_path = base_path + "meshes/",
 	mats_path = base_path + "materials/",
 	
 	fn exportName obj = (
@@ -338,6 +345,7 @@ struct TSceneExporter (
 
 	-- --EDITABLE MESH-------------------------------------------
 	fn exportEditableMesh obj = (
+		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -350,6 +358,7 @@ struct TSceneExporter (
 		for child in obj.children do (
 			if isCollider child then (
 				fs.writeComma()
+				--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
 				exportCompCollider child
 			)
 		)
@@ -359,7 +368,10 @@ struct TSceneExporter (
 	fn exportEntityCollider obj = (
 		-- It will be exported as part of the parent.
 		-- Ejemplo del cofre y su caja de colision.
-		if obj.parent != undefined then return false
+		if obj.parent != undefined then (
+			--format "NOT Exporting entity collider obj % of class %\n" obj.name ((classof obj) as string)	
+			return false
+		)
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -438,7 +450,8 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKeyValue "is_dynamic" true
 			fs.writeComma()
-			fs.writeKeyValue "halfExtent" "2.0 0.25 2.0"-- TODO: get from object
+			local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
+			fs.writeKeyValue "halfExtent" platformHalfExtent
 			fs.writeComma()
 			fs.writeKeyValue "group" "scenario"
 		fs.endObj()
@@ -452,14 +465,18 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKey "waypoints"
 			fs.beginArray()
-				fs.writeKey "ENTER WAYPOINTS HERE" -- TODO: Pick from spline?
+				fs.writeValue objPos -- First point is position
+				fs.writeComma()
+				local nextPos = objPos + [0, 10, 0]
+				fs.writeValue nextPos -- TODO: Pick from spline?
 			fs.endArray()
 		fs.endObj()
 		fs.writeComma()
 		-- hierarchy
 		fs.writeKey "hierarchy"
 		fs.beginObj()
-			fs.writeKeyValue "parent" "WRITE PARENT TRIGGER HERE"-- TODO: detect parent.
+			local parentName = "TRIGGER_NAME_HERE"
+			fs.writeKeyValue "parent" parentName -- TODO: detect parent.
 		fs.endObj()
 		-- entity trigger
 		fs.endObj()-- end previous entity
@@ -468,12 +485,15 @@ struct TSceneExporter (
 		fs.beginObj()
 		fs.writeKey "entity"
 		fs.beginObj()-- begin trigger entity
-		fs.writeKeyValue "name" "TRIGGER NAME HERE" -- TODO: get from detected parent.
+		fs.writeKeyValue "name" parentName -- TODO: get from detected parent.
 		fs.writeComma()
 		fs.writeKey "transform"
 		fs.beginObj()
 			local objPos = obj.position * (rotateXMatrix -90)
-			fs.writeKeyValue "pos" objPos --TODO: adjust Y position
+			local objY = objPos.y
+			local adjustedPos = objY + platformHalfExtent[2] / 2
+			objPos.y = adjustedPos --TODO: adjust trigger Y position better?
+			fs.writeKeyValue "pos" objPos 
 		fs.endObj()
 		fs.writeComma()
 		-- collider
@@ -485,7 +505,7 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKeyValue "is_trigger" true
 			fs.writeComma()
-			fs.writeKeyValue "halfExtent" "2.0 0.25 2.0"-- TODO: get form object.
+			fs.writeKeyValue "halfExtent" platformHalfExtent -- Adjustment required?
 			fs.writeComma()
 			fs.writeKeyValue "group" "scenario"
 			fs.writeComma()
@@ -500,47 +520,75 @@ struct TSceneExporter (
 	),
 	
 	-- --ENTITY--------------------------------------------------
-	fn exportEntity obj = (
-		fs.beginObj()
-		fs.writeKey "entity"
+	fn exportEntity obj nValidObjs = (
+		-- Avoid empty entities if it's a child collider.
+		if (obj.parent == undefined and not isCollider obj) then (
+			if nValidObjs != 0 then fs.writeComma()
 			fs.beginObj()
-			--if classof obj == Camera then exportCamera obj
-			if classof obj == Editable_Mesh then exportEditableMesh obj
-			else if isCollider obj then exportEntityCollider obj
-			else if isEnemy obj then exportEnemy obj
-			else if isChrysalis obj then exportChrysalis obj
-			else if isMovablePlatform obj then exportMovablePlatform obj
-			else (
-				format "Warning. Don't know how to export obj % of class %\n" obj.name ((classof obj) as string)
-			)
+			fs.writeKey "entity"
+				--format "Obj created, name: %\t\tClass: %\t\tLayer: %\n" obj.name ((classof obj) as string) obj.layer.name
+				fs.beginObj()
+				--if classof obj == Camera then exportCamera obj
+				if classof obj == Editable_Mesh then exportEditableMesh obj
+				else if isCollider obj then exportEntityCollider obj
+				else if isEnemy obj then exportEnemy obj
+				else if isChrysalis obj then exportChrysalis obj
+				else if isMovablePlatform obj then exportMovablePlatform obj
+				else (
+					format "Warning: Don't know how to export obj % of class %. Empty entity generated.\n" obj.name ((classof obj) as string) 
+				)
+				fs.endObj()
 			fs.endObj()
-		fs.endObj()
+			return true
+		) else return false -- It was not a valid entity.
 	),
 
 	fn exportAll = (
-
-		-- Decide output filename based on .max filename
+		-- Output filename based on .max filename
 		local ofilename = getFilenameFile maxFileName
 		local full_path = project_path + scenes_path + ofilename + ".scene"
 		format "Exporting to %\n" full_path
+		format "Please wait...\n"
 		fs.begin full_path
 		fs.beginArray()
-
-		local nitems = 0
-		for obj in $* do (
-			if nitems > 0 then  fs.writeComma()
-			exportEntity obj
-			nitems = nitems + 1
-		)
-
+			local nValidObjs = 0
+			for obj in objects do (
+				--format "Obj Name: %\t\tClass: %\t\tLayer: %\n" obj.name ((classof obj) as string) obj.layer.name
+				if exportEntity obj nValidObjs then (
+					nValidObjs = nValidObjs + 1
+				)
+			)
 		fs.endArray()
 		fs.end()
+		format "Export finished.\n"
 	)
 )
 
--- !!! TODO: avoid empty entities, ¿?
+-- TODO: ¿Interpretar automáticamente colliders sin parent como triggers invisibles?
+--       Ahora mismo no los exporta.
+-- TODO: Poder exportar triggers sin parent.
+-- TODO: Exportar enemigos, crisálidas y plataformas móviles en escena separada.
 
--- en linea ~235 añado carpeta /whitebox para probar
+-------------------------------------------------------------------------------------
+-- Notas de uso:
+-------------------------------------------------------------------------------------
+-- Lo visible como Editable Mesh.
+-- Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
+-- Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
+--  incluidas las que son hijas de Meshes visibles.
+-- Los enemigos de aire    deben estar en una layer llamada "enemyAir".
+-- Los enemigos terrestres deben estar en una layer llamada "enemyLand".
+-- Las crisálidas 		   deben estar en una layer llamada "chrysalis".
+-- Las plataformas móviles deben estar en una layer llamada "movables".
+-- Los triggers			   deben estar en una layer llamada "triggers", pero ahora
+--  mismo no se exportan.
+-- Aquí abajo en exporter se debe poner la ruta correcta al proyecto.
+-- El proyecto debe tener las siguientes carpetas:
+--  bin/data/scenes
+--  bin/data/meshes
+--  bin/data/materials
+-------------------------------------------------------------------------------------
+
 exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
