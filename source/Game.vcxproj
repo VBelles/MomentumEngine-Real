@@ -105,6 +105,7 @@
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_render_ui.cpp" />
+    <ClCompile Include="components\comp_respawner.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="components\comp_out_of_bounds.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_render_ui.h" />
+    <ClInclude Include="components\comp_respawner.h" />
     <ClInclude Include="components\comp_tags.h" />
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\ia\ai_controller.h" />

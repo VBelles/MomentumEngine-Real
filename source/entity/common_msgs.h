@@ -89,6 +89,10 @@ struct TMsgColliderDestroyed {
 	DECL_MSG_ID();
 };
 
+struct TMsgRespawn {
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

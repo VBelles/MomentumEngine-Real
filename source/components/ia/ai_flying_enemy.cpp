@@ -81,7 +81,7 @@ boolean CAIFlyingEnemy::IsPlayerInFov() {
 
 void  CAIFlyingEnemy::DeathState(float delta) {
 	TCompCollider *collider = get<TCompCollider>();
-	collider->controller->release();
+	collider->disable();
 	CHandle(this).getOwner().destroy();
 }
 

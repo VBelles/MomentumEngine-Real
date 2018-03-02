@@ -21,6 +21,7 @@ void CAIMeleeEnemy::registerMsgs() {
 	DECL_MSG(CAIMeleeEnemy, TMsgPropelled, OnPropelled);
 	DECL_MSG(CAIMeleeEnemy, TMsgLaunchedVertically, OnLaunchedVertically);
 	DECL_MSG(CAIMeleeEnemy, TMsgLaunchedHorizontally, OnLaunchedHorizontally);
+	DECL_MSG(CAIMeleeEnemy, TMsgRespawn, OnRespawn);
 }
 
 void CAIMeleeEnemy::debugInMenu() {
@@ -106,6 +107,16 @@ void CAIMeleeEnemy::OnLaunchedHorizontally(const TMsgLaunchedHorizontally& msg) 
 	horizontalLaunchTimer.reset();
 }
 
+void CAIMeleeEnemy::OnRespawn(const TMsgRespawn & msg) {
+	if (isDead) {
+		isDead = false;
+		health = 5.f;
+		TCompRender *render = get<TCompRender>();
+		render->setMesh(originalMeshPath);
+		getCollider()->enable();
+	}
+}
+
 
 void CAIMeleeEnemy::IdleState(float delta) {
 	UpdateGravity(delta);
@@ -181,8 +192,11 @@ void CAIMeleeEnemy::AttackState(float delta) {
 }
 
 void CAIMeleeEnemy::DeathState(float delta) {
-	getCollider()->controller->release();
-	CHandle(this).getOwner().destroy();
+	getCollider()->disable();
+	//CHandle(this).getOwner().destroy();
+	TCompRender *render = get<TCompRender>();
+	render->setMesh("data/meshes/nada.mesh");
+	isDead = true;
 }
 
 void CAIMeleeEnemy::VerticalLaunchState(float delta) {

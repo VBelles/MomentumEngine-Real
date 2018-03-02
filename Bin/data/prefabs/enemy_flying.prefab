@@ -13,7 +13,10 @@
 			"tags": [
 				"enemy"
 			],
-			"ai_flying_enemy": {}
+			"ai_flying_enemy": {},
+			"respawner" : {
+				"respawnTime" : 5.0
+			}
 		}
 	}
 ]

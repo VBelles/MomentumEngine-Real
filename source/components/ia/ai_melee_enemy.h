@@ -32,6 +32,9 @@ private:
 
 	float floatingDuration = 1.5f;
 
+	bool isDead = false;
+	std::string originalMeshPath = "data/meshes/enemy.mesh";
+
 	//WARNING: GUARRADA MÁXIMA!!!
 	float initialHorizontalLaunchY = 0.f;
 	CTimer horizontalLaunchTimer;
@@ -58,8 +61,8 @@ private:
 	void OnPropelled(const TMsgPropelled& msg);
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void OnLaunchedVertically(const TMsgLaunchedVertically& msg);
-
 	void OnLaunchedHorizontally(const TMsgLaunchedHorizontally & msg);
+	void OnRespawn(const TMsgRespawn & msg);
 
 	boolean IsPlayerInAttackRange();
 	boolean IsPlayerInFov();

@@ -100,6 +100,7 @@
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\player\states\attack_states\FastAttackActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\HorizontalLauncherActionState.cpp" />
+    <ClCompile Include="components\comp_respawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -224,6 +225,7 @@
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\player\states\attack_states\FastAttackActionState.h" />
     <ClInclude Include="components\player\states\attack_states\HorizontalLauncherActionState.h" />
+    <ClInclude Include="components\comp_respawner.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
