@@ -50,6 +50,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.radius = j.value("radius", 0.f);
 	config.height = j.value("height", 0.f);
 	config.step = j.value("step", 0.5f);
+	config.slope = j.value("slope", 0.0f);
 
 	// todo: extend this be able to parse more than group and mask
 	config.group = Engine.getPhysics().getFilterByName(j.value("group", "all"));

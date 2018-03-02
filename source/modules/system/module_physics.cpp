@@ -60,6 +60,8 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
         capsuleDesc.radius = config.radius;
         capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
 		capsuleDesc.stepOffset = config.step;
+		capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
+		capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
         cDesc = &capsuleDesc;
 
         cDesc->material = gMaterial;

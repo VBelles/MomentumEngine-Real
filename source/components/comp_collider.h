@@ -37,6 +37,7 @@ public:
 		float step;
         float radius;
         float height;
+		float slope;
         PxGeometryType::Enum shapeType;
         unsigned int group;
         unsigned int mask;

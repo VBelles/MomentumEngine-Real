@@ -312,8 +312,11 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	auto c = GetCollider();
 	assert(c);
 	assert(c->controller);
-	GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, 0.f, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
-	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(physx::PxVec3(0.f, deltaMovement.y, 0.f), 0.f, dt, physx::PxControllerFilters());
+	/*physx::PxControllerCollisionFlags myFlags2 = GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, 0.f, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
+	dbg("%s\n", myFlags2.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN) ? "True" : "False");*/
+	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
+	/*dbg("down: %s\n", myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN) ? "True" : "False");
+	dbg("sides: %s\n", myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_SIDES) ? "True" : "False");*/
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (dynamic_cast<AirborneActionState*>(movementState)) {//NULL si no lo consigue
 		if (isGrounded) {
