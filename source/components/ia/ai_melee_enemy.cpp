@@ -70,10 +70,19 @@ void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 
 void CAIMeleeEnemy::OnGrabbed(const TMsgGrabbed& msg) {
 	dbg("grabbed\n");
+	grabbedTimer.reset();
 	ChangeState("grabbed");
 	CEntity *attacker = msg.attacker;
-	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });//Si agarras a dos ganas doble poder
 	getCollider()->disable();
+}
+
+void CAIMeleeEnemy::GrabbedState(float delta) {
+	//dbg("En grabbed\n");
+	if (grabbedTimer.elapsed() >= grabbedDuration) {
+		getCollider()->enable();
+		ChangeState("idle");
+	}
 }
 
 void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
@@ -113,9 +122,11 @@ void CAIMeleeEnemy::OnRespawn(const TMsgRespawn & msg) {
 		ChangeState("idle");
 		isDead = false;
 		health = 5.f;
+		getCollider()->enable();
+		getTransform()->setPosition(spawnPosition);
+		getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
 		TCompRender *render = get<TCompRender>();
 		render->setMesh(originalMeshPath);
-		getCollider()->enable();
 	}
 }
 
@@ -226,9 +237,6 @@ void CAIMeleeEnemy::HorizontalLaunchState(float delta) {
 	}
 }
 
-void CAIMeleeEnemy::GrabbedState(float delta) {
-	dbg("En grabbed\n");
-}
 
 
 void CAIMeleeEnemy::PropelledState(float delta) {

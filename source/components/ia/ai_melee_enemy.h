@@ -31,6 +31,7 @@ private:
 	float propelDuration;
 
 	float floatingDuration = 1.5f;
+	float grabbedDuration = 0.5f;
 
 	bool isDead = false;
 	std::string originalMeshPath = "data/meshes/enemy.mesh";
@@ -52,6 +53,7 @@ private:
 	CTimer attackTimer;
 	CTimer propelTimer;
 	CTimer launchedFloatingTimer;
+	CTimer grabbedTimer;
 
 	PowerStats* launchPowerStats;
 
