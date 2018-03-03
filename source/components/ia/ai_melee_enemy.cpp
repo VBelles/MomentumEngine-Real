@@ -5,6 +5,7 @@
 #include "components/comp_transform.h"
 #include "render/render_utils.h"
 #include "components/player/comp_player_model.h"
+#include "components/comp_respawner.h"
 
 DECL_OBJ_MANAGER("ai_melee_enemy", CAIMeleeEnemy);
 
@@ -197,7 +198,12 @@ void CAIMeleeEnemy::DeathState(float delta) {
 	//CHandle(this).getOwner().destroy();
 	TCompRender *render = get<TCompRender>();
 	render->setMesh("data/meshes/nada.mesh");
-	isDead = true;
+	TCompRespawner* spawner = get<TCompRespawner>();
+	if (!isDead) {
+		spawner->OnDead();
+		isDead = true;
+	}
+	
 }
 
 void CAIMeleeEnemy::VerticalLaunchState(float delta) {

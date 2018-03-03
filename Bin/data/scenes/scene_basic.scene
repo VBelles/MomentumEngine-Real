@@ -72,7 +72,7 @@
 			"name": "xthe_camera",
 			"transform": {},
 			"camera" : {
-				"distance_to_target": 4.5,
+				"distance_to_target": 6.0,
 				"fov" : 90,
 				"target" : "The Player",
 				"active": true
@@ -157,6 +157,46 @@
 			"prefab": "data/prefabs/enemy_melee.prefab",
 			"transform": {
 				"pos": "0 0 10",
+				"lookat": "-1 0 -1"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "MeleeEnemy02",
+			"prefab": "data/prefabs/enemy_melee.prefab",
+			"transform": {
+				"pos": "0 20 -30",
+				"lookat": "-1 20 -1"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "MeleeEnemy03",
+			"prefab": "data/prefabs/enemy_melee.prefab",
+			"transform": {
+				"pos": "15 30 -36",
+				"lookat": "-1 30 -1"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "MeleeEnemy04",
+			"prefab": "data/prefabs/enemy_melee.prefab",
+			"transform": {
+				"pos": "-20 40 -70",
+				"lookat": "-1 40 -1"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "MeleeEnemy05",
+			"prefab": "data/prefabs/enemy_melee.prefab",
+			"transform": {
+				"pos": "0 0 -70",
 				"lookat": "-1 0 -1"
 			}
 		}

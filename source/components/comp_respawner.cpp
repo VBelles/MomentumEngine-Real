@@ -13,9 +13,15 @@ void TCompRespawner::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompRespawner::update(float delta) {
-	if (timer.elapsed() >= respawnTime) {
+	if (isDead && timer.elapsed() >= respawnTime) {
 		CEntity* entity = CHandle(this).getOwner();
 		entity->sendMsg(TMsgRespawn{});
 		timer.reset();
+		isDead = false;
 	}
+}
+
+void TCompRespawner::OnDead() {
+	timer.reset();
+	isDead = true;
 }

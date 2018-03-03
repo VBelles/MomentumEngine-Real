@@ -46,7 +46,7 @@ void TCompCamera::update(float delta) {
 	UpdateMovement(increment, delta);
 	CalculateVerticalOffsetVector();
 	setPerspective(deg2rad(fovInDegrees), zNear, zFar);
-	this->lookAt(myTransform->getPosition(), targetTransform->getPosition() /*+ verticalOffsetVector*/ , myTransform->getUp());
+	this->lookAt(myTransform->getPosition(), targetTransform->getPosition() + VEC3::Up * 1.5f /*+ verticalOffsetVector*/ , myTransform->getUp());
 }
 
 VEC2 TCompCamera::GetIncrementFromInput(float delta) {

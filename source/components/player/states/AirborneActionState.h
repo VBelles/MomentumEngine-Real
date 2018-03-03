@@ -10,7 +10,7 @@ protected:
 	float sidewaysMaxDotProduct;
 	float backwardsMaxDotProduct;
 	float sidewaysAirDriftFactor = 0.5f;
-	float backwardsAirDriftFactor = 0.8f;
+	float backwardsAirDriftFactor = 1.0f;
 
 public:
 	AirborneActionState(CHandle playerModelHandle);
