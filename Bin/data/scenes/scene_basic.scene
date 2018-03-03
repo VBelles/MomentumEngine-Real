@@ -64,7 +64,15 @@
 				"group" : "Player",
 				"slope" : 45
 			},
-			"render_ui":{}
+			"render_ui":{},
+			"shadow":
+			{
+				"mesh": "data/meshes/Teapot001.mesh",
+				"materials":
+				[
+					"data/materials/madera.material"
+				]
+			}
 		}
 	},
 	{
@@ -77,26 +85,6 @@
 				"target" : "The Player",
 				"active": true
 			}
-		}
-	},
-	{
-		"entity": {
-			"name": "Player shadow",
-			"transform": {},
-			"hierarchy" : {
-				"parent" : "The Player"
-			},
-			"shadow" : {},
-			"render":
-			[
-				{
-					"mesh": "data/meshes/Teapot001.mesh",
-					"materials":
-					[
-						"data/materials/madera.material"
-					]
-				}
-			]
 		}
 	},
 	{
@@ -201,11 +189,6 @@
 			"prefab": "data/prefabs/enemy_flying.prefab",
 			"transform": {
 				"pos": "-10 7 8"
-			},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.3,
-				"group": "Enemy"
 			}
 		}
 	},
@@ -215,11 +198,6 @@
 			"prefab": "data/prefabs/enemy_flying.prefab",
 			"transform": {
 				"pos": "-10 7 3"
-			},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.3,
-				"group": "Enemy"
 			}
 		}
 	},
@@ -229,11 +207,6 @@
 			"prefab": "data/prefabs/enemy_flying.prefab",
 			"transform": {
 				"pos": "-10 7 -2"
-			},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.3,
-				"group": "Enemy"
 			}
 		}
 	},
