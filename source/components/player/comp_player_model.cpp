@@ -14,6 +14,7 @@
 #include "states/movement_states/long_jump/GhostJumpSquatLongActionState.h"
 #include "states/movement_states/long_jump/JumpSquatLongActionState.h"
 #include "states/movement_states/TurnAroundActionState.h"
+#include "states/movement_states/IdleActionState.h"
 #include "states/attack_states/FastAttackActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
 #include "states/attack_states/FallingAttackActionState.h"
@@ -226,8 +227,8 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	colliderHandle = get<TCompCollider>();
 	assert(colliderHandle.isValid());
 
-	movementStates = {
-		{ ActionStates::Idle, nullptr },
+	movementStates = { 
+		{ ActionStates::Idle, new IdleActionState(CHandle(this)) },
 		{ ActionStates::JumpSquat, new JumpSquatActionState(CHandle(this)) },
 		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(CHandle(this)) },
 		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(CHandle(this)) },
@@ -256,9 +257,9 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },
 		{ ActionStates::PropelLong, new PropelLongActionState(CHandle(this)) },
 	};
-	nextMovementState = ActionStates::Run;
+	nextMovementState = ActionStates::Idle;
 	nextAttackState = ActionStates::Idle;
-	ChangeMovementState(ActionStates::Run);
+	ChangeMovementState(ActionStates::Idle);
 	ChangeAttackState(ActionStates::Idle);
 	currentPowerStats = ssj1;
 }

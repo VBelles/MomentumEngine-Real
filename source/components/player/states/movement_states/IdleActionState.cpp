@@ -1,41 +1,41 @@
 #include "mcv_platform.h"
-#include "RunActionState.h"
+#include "IdleActionState.h"
 
-RunActionState::RunActionState(CHandle playerModelHandle)
+IdleActionState::IdleActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 }
 
-void RunActionState::update (float delta) {
+void IdleActionState::update (float delta) {
 	GroundedActionState::update(delta);
-	if (velocityVector->x == 0.f && velocityVector->z == 0.f) {
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
+	if (velocityVector->x > 0.f || velocityVector->z > 0.f) {
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 	}
 }
 
-void RunActionState::OnStateEnter(IActionState * lastState) {
+void IdleActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	GetRender()->setMesh("data/meshes/pose_run.mesh");
-	dbg("Entrando en run\n");
+	dbg("Entrando en idle\n");
 }
 
-void RunActionState::OnStateExit(IActionState * nextState) {
+void IdleActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de run\n");
+	dbg("Saliendo de idle\n");
 }
 
-void RunActionState::SetMovementInput(VEC2 input) {
+void IdleActionState::SetMovementInput(VEC2 input) {
 	movementInput = input;
 }
 
-void RunActionState::OnJumpHighButton() {
+void IdleActionState::OnJumpHighButton() {
 	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
-void RunActionState::OnJumpLongButton() {
+void IdleActionState::OnJumpLongButton() {
 	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
-void RunActionState::OnLeavingGround() {
+void IdleActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
 	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
