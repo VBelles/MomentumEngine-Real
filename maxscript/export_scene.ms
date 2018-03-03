@@ -397,7 +397,8 @@ struct TSceneExporter (
 			local objPos = obj.position * (rotateXMatrix -90)
 			fs.writeKeyValue "pos" objPos
 			fs.writeComma()
-			fs.writeKeyValue "lookAt" "-1 0 -1"
+			local lookAtPos = [-1, objPos.y, -1]
+			fs.writeKeyValue "lookAt" lookAtPos
 		fs.endObj()
 		
 		if obj.layer.name == "enemyAir" then (
@@ -475,8 +476,8 @@ struct TSceneExporter (
 		-- hierarchy
 		fs.writeKey "hierarchy"
 		fs.beginObj()
-			local parentName = "TRIGGER_NAME_HERE"
-			fs.writeKeyValue "parent" parentName -- TODO: detect parent.
+			local parentName = obj.name + "_trigger"
+			fs.writeKeyValue "parent" parentName
 		fs.endObj()
 		-- entity trigger
 		fs.endObj()-- end previous entity
@@ -485,7 +486,7 @@ struct TSceneExporter (
 		fs.beginObj()
 		fs.writeKey "entity"
 		fs.beginObj()-- begin trigger entity
-		fs.writeKeyValue "name" parentName -- TODO: get from detected parent.
+		fs.writeKeyValue "name" parentName
 		fs.writeComma()
 		fs.writeKey "transform"
 		fs.beginObj()
