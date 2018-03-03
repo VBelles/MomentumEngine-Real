@@ -25,6 +25,15 @@
 			},
 			"respawner" : {
 				"respawnTime" : 10.0
+			},
+			"shadow":
+			{
+				"offset": "0 0.1 0",
+				"mesh": "data/meshes/Teapot001.mesh",
+				"materials":
+				[
+					"data/materials/madera.material"
+				]
 			}
 		}
 	}

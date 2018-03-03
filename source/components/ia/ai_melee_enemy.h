@@ -35,6 +35,7 @@ private:
 
 	bool isDead = false;
 	std::string originalMeshPath = "data/meshes/enemy.mesh";
+	std::string originalShadowMesh;
 
 	//WARNING: GUARRADA MÁXIMA!!!
 	float initialHorizontalLaunchY = 0.f;

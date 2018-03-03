@@ -3,27 +3,83 @@
 #include "comp_transform.h"
 #include "comp_hierarchy.h"
 
+#include "render/render_objects.h"
+#include "render/texture/texture.h"
+#include "render/texture/material.h"
+
 DECL_OBJ_MANAGER("shadow", TCompShadow);
 
 void TCompShadow::debugInMenu() {
 }
 
 void TCompShadow::load(const json& j, TEntityParseContext& ctx) {
+	if (j.count("offset")) {
+		offset = loadVEC3(j["offset"]);
+	}
+
+	std::string name_mesh = j.value("mesh", "axis.mesh");
+	mesh = Resources.get(name_mesh)->as<CRenderMesh>();
+
+	if (j.count("materials")) {
+		auto& j_mats = j["materials"];
+		assert(j_mats.is_array());
+		for (size_t i = 0; i < j_mats.size(); ++i) {
+			std::string name_material = j_mats[i];
+			const CMaterial* material = Resources.get(name_material)->as<CMaterial>();
+			materials.push_back(material);
+		}
+	}
+	else {
+		const CMaterial* material = Resources.get("data/materials/solid.material")->as<CMaterial>();
+		materials.push_back(material);
+	}
+}
+
+void TCompShadow::registerMsgs() {
+	DECL_MSG(TCompShadow, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompShadow, TMsgEntitiesGroupCreated, onGroupCreated);
+}
+
+void TCompShadow::onCreate(const TMsgEntityCreated& msg) {
+	auto om_transform = getObjectManager<TCompTransform>();
+	transformHandle = om_transform->createHandle();
+}
+
+void TCompShadow::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+	CEntity *parent = CHandle(this).getOwner();
+	parentTransformHandle = parent->get<TCompTransform>();
 }
 
 void TCompShadow::update(float dt) {
-	TCompHierarchy *hierarchy = get<TCompHierarchy>();
-	TCompTransform *parentTransform = hierarchy->h_parent_transform;
+	TCompTransform *parentTransform = parentTransformHandle;
+	TCompTransform *transform = transformHandle;
 
 	PxScene* scene = Engine.getPhysics().getScene();
-	PxVec3 origin = { parentTransform->getPosition().x, parentTransform->getPosition().y + 0.1f, parentTransform->getPosition().z };
-	PxVec3 unitDir = { 0,-1, 0};
-	PxReal maxDistance = 1000;
-	PxRaycastBuffer hit;
-	bool status = scene->raycast(origin, unitDir, maxDistance, hit);
+	PxVec3 origin = { parentTransform->getPosition().x + offset.x, parentTransform->getPosition().y + offset.y, parentTransform->getPosition().z + offset.z };
 
-	if (status) {
-		TCompTransform *transform = get<TCompTransform>();
-		transform->setPosition({ hit.block.position.x, hit.block.position.y, hit.block.position.z });
+
+	const PxU32 bufferSize = 256;
+	PxRaycastHit hitBuffer[bufferSize];
+	PxRaycastBuffer buf(hitBuffer, bufferSize);
+
+
+	bool status = scene->raycast(origin, unitDir, maxDistance, buf);
+	PxRaycastHit nearest = buf.touches[0];
+	nearest.distance = maxDistance + 1;
+	for (PxU32 i = 0; i < buf.nbTouches; i++) {
+		if (!buf.touches[i].shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
+			if (buf.touches[i].distance < nearest.distance) {
+				nearest = buf.touches[i];
+			}
+		}
 	}
+	transform->setPosition({ nearest.position.x, nearest.position.y, nearest.position.z });
+}
+
+TCompTransform* TCompShadow::getTransform() {
+	return transformHandle;
+}
+
+void TCompShadow::setMesh(std::string meshName) {
+	mesh = Resources.get(meshName)->as<CRenderMesh>();
 }

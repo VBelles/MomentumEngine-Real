@@ -68,7 +68,16 @@
 				"step"  : 0.5,
 				"slope" : 45
 			},
-			"render_ui":{}
+			"render_ui":{},
+			"shadow":
+			{
+				"offset": "0 0.1 0",
+				"mesh": "data/meshes/Teapot001.mesh",
+				"materials":
+				[
+					"data/materials/madera.material"
+				]
+			}
 		}
 	},
 	{

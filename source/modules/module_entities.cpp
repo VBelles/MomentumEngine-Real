@@ -9,6 +9,7 @@
 #include "components/comp_render_ui.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
+#include "components/comp_shadow.h"
 
 bool CModuleEntities::start() {
 	json j = loadJson("data/components.json");
@@ -124,5 +125,19 @@ void CModuleEntities::render() {
 		c->renderUI();
 	});
 
+	auto om_shadow = getObjectManager<TCompShadow>();
+	om_shadow->forEach([](TCompShadow* c) {
 
+		TCompTransform* c_transform = c->getTransform();
+		if (!c_transform)
+			return;
+
+		cb_object.obj_world = c_transform->asMatrix();
+		cb_object.updateGPU();
+
+		for (auto& m : c->materials) {
+			m->activate();
+		}
+		c->mesh->activateAndRender();
+	});
 }

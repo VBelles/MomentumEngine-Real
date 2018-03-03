@@ -17,6 +17,20 @@
 			"ai_flying_enemy": {},
 			"respawner" : {
 				"respawnTime" : 10.0
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.3,
+				"group": "Enemy"
+			},
+			"shadow":
+			{
+				"offset": "0 -0.4 0",
+				"mesh": "data/meshes/Teapot001.mesh",
+				"materials":
+				[
+					"data/materials/madera.material"
+				]
 			}
 		}
 	}
