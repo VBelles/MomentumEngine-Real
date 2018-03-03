@@ -57,12 +57,23 @@ void TCompShadow::update(float dt) {
 	PxScene* scene = Engine.getPhysics().getScene();
 	PxVec3 origin = { parentTransform->getPosition().x + offset.x, parentTransform->getPosition().y + offset.y, parentTransform->getPosition().z + offset.z };
 
-	PxRaycastBuffer hit;
-	bool status = scene->raycast(origin, unitDir, maxDistance, hit);
 
-	if (status) {
-		transform->setPosition({ hit.block.position.x, hit.block.position.y, hit.block.position.z });
+	const PxU32 bufferSize = 256;
+	PxRaycastHit hitBuffer[bufferSize];
+	PxRaycastBuffer buf(hitBuffer, bufferSize);
+
+
+	bool status = scene->raycast(origin, unitDir, maxDistance, buf);
+	PxRaycastHit nearest = buf.touches[0];
+	nearest.distance = maxDistance + 1;
+	for (PxU32 i = 0; i < buf.nbTouches; i++) {
+		if (!buf.touches[i].shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
+			if (buf.touches[i].distance < nearest.distance) {
+				nearest = buf.touches[i];
+			}
+		}
 	}
+	transform->setPosition({ nearest.position.x, nearest.position.y, nearest.position.z });
 }
 
 TCompTransform* TCompShadow::getTransform() {
