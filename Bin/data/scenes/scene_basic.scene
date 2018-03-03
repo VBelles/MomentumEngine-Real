@@ -6,10 +6,13 @@
 				{"mesh": "data/meshes/pose_run.mesh"},
 				{"mesh": "data/meshes/pose_jump.mesh"},
 				{"mesh": "data/meshes/pose_long_jump.mesh"},
-				{"mesh": "data/meshes/pose_punch.mesh"}
+				{"mesh": "data/meshes/pose_punch.mesh"},
+				{"materials": [
+					"data/materials/white.material"
+				]}
 			],
 			"transform": {
-				"pos": "0 0 0"
+				"pos": "-83 22 -56"
 			}, 
 			"player_controller" : {},
 			"player_model" : {
@@ -31,7 +34,7 @@
 					"rotation_speed" : 14.0,
 					"maxSpeed" : 11.0,
 					"shortHopVelocity" : 18.0,
-					"jumpVelocity" : " 0 25 0",
+					"jumpVelocity" : "0 25 0",
 					"longJumpVelocity" : " 0 12 17",
 					"maxVelocityVertical" : 30.0,
 					"acceleration" : 32.0,
@@ -44,8 +47,8 @@
 					"rotation_speed" : 17.0,
 					"maxSpeed" : 14.0,
 					"shortHopVelocity" : 20.0,
-					"jumpVelocity" : " 0 30 0",
-					"longJumpVelocity" : " 0 13 22.5",
+					"jumpVelocity" : "0 30 0",
+					"longJumpVelocity" : "0 13 22.5",
 					"maxVelocityVertical" : 30.0,
 					"acceleration" : 35.0,
 					"deceleration" : 9.0,
@@ -62,6 +65,7 @@
 				"radius": 0.3,
 				"height": 0.76,
 				"group" : "Player",
+				"step"  : 0.5,
 				"slope" : 45
 			},
 			"render_ui":{}
@@ -90,10 +94,10 @@
 			"render":
 			[
 				{
-					"mesh": "data/meshes/Teapot001.mesh",
+					"mesh": "data/meshes/shadow.mesh",
 					"materials":
 					[
-						"data/materials/madera.material"
+						"data/materials/black.material"
 					]
 				}
 			]
@@ -173,81 +177,6 @@
 	},
 	{
 		"entity": {
-			"name": "MeleeEnemy01",
-			"prefab": "data/prefabs/enemy_melee.prefab",
-			"transform": {
-				"pos": "0 0 10",
-				"lookat": "-1 0 -1"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "FlyingEnemy01",
-			"prefab": "data/prefabs/enemy_flying.prefab",
-			"transform": {
-				"pos": "10 5 10"
-			},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.3,
-				"group": "Enemy"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "FlyingEnemy02",
-			"prefab": "data/prefabs/enemy_flying.prefab",
-			"transform": {
-				"pos": "-10 7 8"
-			},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.3,
-				"group": "Enemy"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "FlyingEnemy03",
-			"prefab": "data/prefabs/enemy_flying.prefab",
-			"transform": {
-				"pos": "-10 7 3"
-			},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.3,
-				"group": "Enemy"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "FlyingEnemy03",
-			"prefab": "data/prefabs/enemy_flying.prefab",
-			"transform": {
-				"pos": "-10 7 -2"
-			},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.3,
-				"group": "Enemy"
-			}
-		}
-	},
-	{
-		"entity": {
-			"prefab": "data/prefabs/crisalida.prefab",
-			"name": "crisalida1",
-			"transform": {
-				"pos": "6 0.5 0"
-			}
-		}
-	},
-	{
-		"entity": {
 			"name": "door",
 			"render": [
 				{
@@ -258,7 +187,7 @@
 				}
 			],
 			"transform": {
-				"pos": "6 0 25"
+				"pos": "-40 22 -22"
 			},
 			"collider":
 			{
@@ -281,54 +210,6 @@
 				"halfExtent" : "100000 0.000001 100000"
 			},
 			"outOfBounds" : {}
-		}
-
-	},
-	{
-		"entity": {
-			"prefab": "data/prefabs/platform_move.prefab",
-			"name": "platform_move1",
-			"transform": {
-				"pos": "1 2 10"
-			},
-			"collider": {
-				"shape": "box",
-				"is_dynamic" : true,
-				"halfExtent": "2.0 0.25 2.0",
-				"group": "scenario"
-			},
-			"platform_move" : {
-				"type": "up",
-				"speed": 4.0,
-				"waypoints": [
-					"1 2 10",
-					"1 12 10",
-					"10 12 10",
-					"18 27 6"
-				]
-			},
-			"hierarchy" : {
-				"parent" : "platform_trigger1"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "platform_trigger1",
-			"transform": {
-				"pos": "1 2.55 10"
-			},
-			"collider": {
-				"shape": "box",
-				"is_trigger" : true,
-				"is_dynamic" : true,
-				"halfExtent": "2.0 0.25 2.0",
-				"group": "scenario",
-				"mask": "player"
-			},
-			"fwd_msg": {
-				"target": "platform_move1"
-			}
 		}
 	}
 ]

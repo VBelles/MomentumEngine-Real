@@ -25,7 +25,7 @@ bool CModuleTestAxis::start() {
     {
         TEntityParseContext ctx;
         //parseScene("data/scenes/level1.scene", ctx);
-        parseScene("data/scenes/whitebox17.scene", ctx);
+        parseScene("data/scenes/whitebox20.scene", ctx);
     }
 
     camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
@@ -74,8 +74,8 @@ void CModuleTestAxis::render() {
     auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
     solid->activate();
 
-    auto grid = Resources.get("grid.mesh")->as<CRenderMesh>();
+    /*auto grid = Resources.get("grid.mesh")->as<CRenderMesh>();
     grid->activateAndRender();
     auto axis = Resources.get("axis.mesh")->as<CRenderMesh>();
-    axis->activateAndRender();
+    axis->activateAndRender();*/
 }

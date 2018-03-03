@@ -1,0 +1,8 @@
+{
+  "technique": "textured.tech",
+  "shadows": false,
+  "textures":
+  {
+    "albedo": "data/textures/black.dds"
+  }
+}

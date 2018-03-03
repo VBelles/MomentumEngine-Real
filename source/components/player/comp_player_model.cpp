@@ -145,6 +145,9 @@ void TCompPlayerModel::OnLevelChange(int powerLevel) {
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
+	TCompTransform* transf = get<TCompTransform>();
+	respawnPosition = transf->getPosition();
+
 	renderUI->registerOnRenderUI([&]() {
 
 		bool showWindow = true;
@@ -274,7 +277,7 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 			// Open boss door.
 			CEntity* door = (CEntity*)getEntityByName("door");
 			TMsgDestroy msg;
-			door->sendMsg(msg);
+			if (door) door->sendMsg(msg);
 		}
 	}
 	else if (type == "coin") {

@@ -6,8 +6,9 @@
 				{
 					"mesh": "data/meshes/crisalida.mesh",
 					"materials": [
-						"data/materials/solid.material"
-					]
+						"data/materials/baldosas.material"
+					],
+					"color": "0.45 0.28 0.8 1.0"
 				}
 			],
 			"tags": [

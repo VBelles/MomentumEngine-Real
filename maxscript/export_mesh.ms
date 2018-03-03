@@ -183,4 +183,4 @@ function exportMeshObject given_obj outfilename = (
 
 
 --exportMeshObject $Box001
-exportMeshObject $ "D:/Dev/MomentumEngine-Real/Bin/data/meshes/"
+exportMeshObject $ "C:/Code/MomentumEngine-Real/Bin/data/meshes/plat_move.mesh"

@@ -11,7 +11,7 @@
 					"materials": [
 						"data/materials/madera.material"
 					],
-					"color": "0.5 0.5 1.0 1.0"
+					"color": "1 0.6 0.2 1.0"
 				}
 			],
 			"collectable": {
