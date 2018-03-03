@@ -6,6 +6,7 @@
 #include "render/render_utils.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_respawner.h"
+#include "components/comp_shadow.h"
 
 DECL_OBJ_MANAGER("ai_melee_enemy", CAIMeleeEnemy);
 
@@ -54,6 +55,9 @@ void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	player = getEntityByName("The Player");
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
+
+	TCompShadow *shadow = get<TCompShadow>();
+	originalShadowMesh = shadow->mesh->getName();
 }
 
 void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
@@ -127,6 +131,8 @@ void CAIMeleeEnemy::OnRespawn(const TMsgRespawn & msg) {
 		getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
 		TCompRender *render = get<TCompRender>();
 		render->setMesh(originalMeshPath);
+		TCompShadow *shadow = get<TCompShadow>();
+		shadow->setMesh(originalShadowMesh);
 	}
 }
 
@@ -205,12 +211,14 @@ void CAIMeleeEnemy::AttackState(float delta) {
 }
 
 void CAIMeleeEnemy::DeathState(float delta) {
-	getCollider()->disable();
-	//CHandle(this).getOwner().destroy();
-	TCompRender *render = get<TCompRender>();
-	render->setMesh("data/meshes/nada.mesh");
-	TCompRespawner* spawner = get<TCompRespawner>();
 	if (!isDead) {
+		getCollider()->disable();
+		//CHandle(this).getOwner().destroy();
+		TCompRender *render = get<TCompRender>();
+		render->setMesh("data/meshes/nada.mesh");
+		TCompRespawner* spawner = get<TCompRespawner>();
+		TCompShadow *shadow = get<TCompShadow>();
+		shadow->setMesh("data/meshes/nada.mesh");
 		spawner->OnDead();
 		isDead = true;
 	}

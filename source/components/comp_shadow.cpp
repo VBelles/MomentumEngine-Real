@@ -51,7 +51,7 @@ void TCompShadow::update(float dt) {
 	TCompTransform *transform = transformHandle;
 
 	PxScene* scene = Engine.getPhysics().getScene();
-	PxVec3 origin = { parentTransform->getPosition().x, parentTransform->getPosition().y + 0.001f, parentTransform->getPosition().z };
+	PxVec3 origin = { parentTransform->getPosition().x, parentTransform->getPosition().y + 0.1f, parentTransform->getPosition().z };
 
 	PxRaycastBuffer hit;
 	bool status = scene->raycast(origin, unitDir, maxDistance, hit);
@@ -63,4 +63,8 @@ void TCompShadow::update(float dt) {
 
 TCompTransform* TCompShadow::getTransform() {
 	return transformHandle;
+}
+
+void TCompShadow::setMesh(std::string meshName) {
+	mesh = Resources.get(meshName)->as<CRenderMesh>();
 }

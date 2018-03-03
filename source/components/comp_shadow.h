@@ -27,5 +27,7 @@ public:
 	void onCreate(const TMsgEntityCreated& msg);
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
+	void setMesh(std::string meshName);
+
 	TCompTransform* getTransform();
 };

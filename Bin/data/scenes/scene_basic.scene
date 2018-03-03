@@ -185,33 +185,6 @@
 	},
 	{
 		"entity": {
-			"name": "FlyingEnemy02",
-			"prefab": "data/prefabs/enemy_flying.prefab",
-			"transform": {
-				"pos": "-10 7 8"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "FlyingEnemy03",
-			"prefab": "data/prefabs/enemy_flying.prefab",
-			"transform": {
-				"pos": "-10 7 3"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "FlyingEnemy03",
-			"prefab": "data/prefabs/enemy_flying.prefab",
-			"transform": {
-				"pos": "-10 7 -2"
-			}
-		}
-	},
-	{
-		"entity": {
 			"prefab": "data/prefabs/crisalida.prefab",
 			"name": "crisalida1",
 			"transform": {
