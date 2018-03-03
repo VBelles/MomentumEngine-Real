@@ -13,6 +13,10 @@ void TCompShadow::debugInMenu() {
 }
 
 void TCompShadow::load(const json& j, TEntityParseContext& ctx) {
+	if (j.count("offset")) {
+		offset = loadVEC3(j["offset"]);
+	}
+
 	std::string name_mesh = j.value("mesh", "axis.mesh");
 	mesh = Resources.get(name_mesh)->as<CRenderMesh>();
 
@@ -51,7 +55,7 @@ void TCompShadow::update(float dt) {
 	TCompTransform *transform = transformHandle;
 
 	PxScene* scene = Engine.getPhysics().getScene();
-	PxVec3 origin = { parentTransform->getPosition().x, parentTransform->getPosition().y + 0.1f, parentTransform->getPosition().z };
+	PxVec3 origin = { parentTransform->getPosition().x + offset.x, parentTransform->getPosition().y + offset.y, parentTransform->getPosition().z + offset.z };
 
 	PxRaycastBuffer hit;
 	bool status = scene->raycast(origin, unitDir, maxDistance, hit);

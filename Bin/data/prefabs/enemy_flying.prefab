@@ -24,6 +24,7 @@
 			},
 			"shadow":
 			{
+				"offset": "0 -0.4 0",
 				"mesh": "data/meshes/Teapot001.mesh",
 				"materials":
 				[

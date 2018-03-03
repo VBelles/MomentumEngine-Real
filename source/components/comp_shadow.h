@@ -15,6 +15,8 @@ class TCompShadow : public TCompBase {
 	CHandle transformHandle;
 	CHandle parentTransformHandle;
 
+	VEC3 offset = { 0, 0, 0 };
+
 public:
 	const CRenderMesh* mesh = nullptr;
 	std::vector<const CMaterial*> materials;

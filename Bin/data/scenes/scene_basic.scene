@@ -67,6 +67,7 @@
 			"render_ui":{},
 			"shadow":
 			{
+				"offset": "0 0.1 0",
 				"mesh": "data/meshes/Teapot001.mesh",
 				"materials":
 				[
