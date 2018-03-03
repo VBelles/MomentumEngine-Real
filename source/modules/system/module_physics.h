@@ -33,6 +33,8 @@ public:
     void setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU32 filterMask);
 	void releaseCollider(CHandle handle);
 
+	PxScene* getScene();
+
 private:
     PxDefaultAllocator      gDefaultAllocatorCallback;
     PxDefaultErrorCallback  gDefaultErrorCallback;

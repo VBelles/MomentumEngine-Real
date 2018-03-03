@@ -102,6 +102,7 @@
     <ClCompile Include="components\player\states\attack_states\HorizontalLauncherActionState.cpp" />
     <ClCompile Include="components\comp_respawner.cpp" />
     <ClCompile Include="components\player\states\movement_states\IdleActionState.cpp" />
+    <ClCompile Include="components\comp_shadow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -228,6 +229,7 @@
     <ClInclude Include="components\player\states\attack_states\HorizontalLauncherActionState.h" />
     <ClInclude Include="components\comp_respawner.h" />
     <ClInclude Include="components\player\states\movement_states\IdleActionState.h" />
+    <ClInclude Include="components\comp_shadow.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

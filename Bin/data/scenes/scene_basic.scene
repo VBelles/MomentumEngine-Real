@@ -81,6 +81,26 @@
 	},
 	{
 		"entity": {
+			"name": "Player shadow",
+			"transform": {},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"shadow" : {},
+			"render":
+			[
+				{
+					"mesh": "data/meshes/Teapot001.mesh",
+					"materials":
+					[
+						"data/materials/madera.material"
+					]
+				}
+			]
+		}
+	},
+	{
+		"entity": {
 			"name": "Strong attack hitbox",
 			"transform": {},
 			"collider": {
