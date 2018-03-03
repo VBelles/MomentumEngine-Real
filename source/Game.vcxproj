@@ -129,6 +129,7 @@
     <ClCompile Include="components\player\states\movement_states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\IdleActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\LandingActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\AirborneLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\GhostJumpSquatLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\JumpSquatLongActionState.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="components\player\states\movement_states\GhostJumpWindowActionState.h" />
     <ClInclude Include="components\player\states\GroundedActionState.h" />
     <ClInclude Include="components\player\states\movement_states\IdleActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\LandingActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\AirborneLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\GhostJumpSquatLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\JumpSquatLongActionState.h" />

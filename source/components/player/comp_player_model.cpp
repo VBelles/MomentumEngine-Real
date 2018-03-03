@@ -15,6 +15,7 @@
 #include "states/movement_states/long_jump/JumpSquatLongActionState.h"
 #include "states/movement_states/TurnAroundActionState.h"
 #include "states/movement_states/IdleActionState.h"
+#include "states/movement_states/LandingActionState.h"
 #include "states/attack_states/FastAttackActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
 #include "states/attack_states/FallingAttackActionState.h"
@@ -238,6 +239,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(CHandle(this)) },
 		{ ActionStates::AirborneLong, new AirborneLongActionState(CHandle(this)) },
 		{ ActionStates::TurnAround, new TurnAroundActionState(CHandle(this)) },
+		{ ActionStates::Landing, new LandingActionState(CHandle(this)) },
 	};
 
 	strongAttackHitbox = getEntityByName("Strong attack hitbox");

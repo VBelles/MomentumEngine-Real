@@ -60,5 +60,5 @@ void GhostJumpSquatLongActionState::OnJumpLongButton() {}
 
 void GhostJumpSquatLongActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
 }

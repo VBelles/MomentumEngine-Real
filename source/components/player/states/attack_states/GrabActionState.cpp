@@ -53,7 +53,7 @@ void GrabActionState::OnLanding() {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
 	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 }
 

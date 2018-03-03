@@ -62,6 +62,6 @@ void PropelHighActionState::OnJumpLongButton() {
 }
 
 void PropelHighActionState::OnLanding() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
 	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 }

@@ -70,7 +70,7 @@ void FallingAttackActionState::OnLanding() {
 	*velocityVector = VEC3::Zero;
 	GetPlayerModel()->lockMovementState = false;
 	GetPlayerModel()->lockWalk = false;
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
 	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 }
 

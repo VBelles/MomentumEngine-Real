@@ -64,5 +64,5 @@ void AirborneLongActionState::OnJumpLongButton() {
 
 void AirborneLongActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
 }
