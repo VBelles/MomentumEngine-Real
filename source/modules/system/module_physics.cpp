@@ -270,3 +270,7 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
         }
     }
 }
+
+PxScene* CModulePhysics::getScene() {
+	return gScene;
+}

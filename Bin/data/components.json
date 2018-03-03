@@ -23,6 +23,7 @@
 		"ground_sensor",
 		"ai_melee_enemy",
 		"hitbox",
-		"respawner"
+		"respawner",
+		"shadow"
 	]
 }
