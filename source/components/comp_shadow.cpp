@@ -73,7 +73,8 @@ void TCompShadow::update(float dt) {
 			}
 		}
 	}
-	transform->setPosition({ nearest.position.x, nearest.position.y, nearest.position.z });
+	//Sumamos 0.001 a position.y para evitar z fighting
+	transform->setPosition({ nearest.position.x, nearest.position.y + 0.001f, nearest.position.z });
 }
 
 TCompTransform* TCompShadow::getTransform() {

@@ -29,10 +29,10 @@
 			"shadow":
 			{
 				"offset": "0 0.1 0",
-				"mesh": "data/meshes/Teapot001.mesh",
+				"mesh": "data/meshes/shadow.mesh",
 				"materials":
 				[
-					"data/materials/madera.material"
+					"data/materials/black.material"
 				]
 			}
 		}
