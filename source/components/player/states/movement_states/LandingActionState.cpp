@@ -15,7 +15,7 @@ void LandingActionState::update (float delta) {
 	}
 
 	if (timer.elapsed() >= landingLagTime) {
-		if (!hasInput || enteringSpeed == 0.f) {
+		if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
 			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else {
