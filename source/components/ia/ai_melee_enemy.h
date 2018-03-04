@@ -25,8 +25,8 @@ private:
 
 	float attackFov = deg2rad(60);
 	float attackRadius = 2.f;
-	float attackCooldown = 1.f;
-	float attackDuration = 1.f;
+	float attackCooldown = 2.f;
+	float attackDuration = 1.5f;
 
 	float propelDuration;
 

@@ -70,6 +70,9 @@ void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 	if (health <= 0) {
 		ChangeState("death");
 	}
+	else {
+		ChangeState("idle");
+	}
 }
 
 void CAIMeleeEnemy::OnGrabbed(const TMsgGrabbed& msg) {

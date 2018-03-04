@@ -99,8 +99,8 @@ private:
 	PowerStats* ssj3;
 	PowerStats* currentPowerStats;
 
-	int hp = 3;
-	int maxHp = 3;
+	int hp = 8;
+	int maxHp = 8;
     int chrysalis = 0;
     int chrysalisTarget = 5;
  
