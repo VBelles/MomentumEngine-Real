@@ -34,6 +34,6 @@ public:
 	void OnStrongAttackButtonReleased() override;
 
 	void OnLeavingGround() override;
-
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_knee.mesh"); }
 	void OnHitboxEnter(CHandle entity) override;
 };

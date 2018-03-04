@@ -13,5 +13,7 @@ public:
 	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
+
 	virtual void OnLeavingGround();
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_run.mesh"); }
 };

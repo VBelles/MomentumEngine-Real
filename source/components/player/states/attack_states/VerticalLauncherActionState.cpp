@@ -19,7 +19,7 @@ void VerticalLauncherActionState::update (float delta) {
 		hitbox->disable();
 	}
 	else if (timer.elapsed() > hitboxOutTime) {
-		GetRender()->setMesh("data/meshes/pose_punch.mesh");
+		SetPose();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->enable();
@@ -40,6 +40,7 @@ void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 
 void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
+	GetPlayerModel()->movementState->SetPose();
 	dbg("Finish Vertical Launcher\n");
 }
 

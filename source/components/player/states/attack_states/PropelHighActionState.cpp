@@ -34,6 +34,7 @@ void PropelHighActionState::update (float delta) {
 
 void PropelHighActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
+	SetPose();
 	endingTime = endingFrames * (1.f / 60);
 	propelTarget = GetPlayerModel()->grabTarget;
 	CEntity* targetEntity = propelTarget;
@@ -47,6 +48,7 @@ void PropelHighActionState::OnStateEnter(IActionState * lastState) {
 
 void PropelHighActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
+	GetPlayerModel()->movementState->SetPose();
 	GetPlayerModel()->lockMovementState = false;
 	GetPlayerModel()->lockWalk = false;
 }

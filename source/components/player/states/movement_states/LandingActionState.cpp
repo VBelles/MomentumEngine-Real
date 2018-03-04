@@ -34,7 +34,7 @@ void LandingActionState::update (float delta) {
 
 void LandingActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	GetRender()->setMesh("data/meshes/pose_punch.mesh");
+	SetPose();
 
 	VEC3 enteringVelocityVector = { velocityVector->x, 0.f, velocityVector->z };
 	enteringSpeed = enteringVelocityVector.Length();

@@ -11,7 +11,7 @@ void AirborneNormalActionState::update (float delta) {
 
 void AirborneNormalActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
-	GetRender()->setMesh("data/meshes/pose_jump.mesh");
+	SetPose();
 	//dbg("Entrando en airborne normal\n");
 }
 

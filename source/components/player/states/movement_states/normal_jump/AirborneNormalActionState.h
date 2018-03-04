@@ -15,6 +15,8 @@ public:
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
 
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_jump.mesh"); }
+
 	virtual void OnLanding() override;
 
 };

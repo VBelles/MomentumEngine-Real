@@ -8,6 +8,7 @@ JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
 
 void JumpSquatLongActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
+	SetPose();
 	//dbg("Entrando en JumpSquatLong\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();

@@ -19,7 +19,7 @@ void HorizontalLauncherActionState::update (float delta) {
 		hitbox->disable();
 	}
 	else if (timer.elapsed() > hitboxOutTime) {
-		GetRender()->setMesh("data/meshes/pose_punch.mesh");
+		SetPose();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->enable();
@@ -42,6 +42,7 @@ void HorizontalLauncherActionState::OnStateEnter(IActionState * lastState) {
 
 void HorizontalLauncherActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
+	GetPlayerModel()->movementState->SetPose();
 	dbg("Finish Horizontal Launcher\n");
 }
 
