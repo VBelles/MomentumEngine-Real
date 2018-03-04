@@ -115,7 +115,6 @@ void TCompPlayerModel::ChangeAttackState(ActionStates newState) {
 	if (attackState) attackState->OnStateEnter(exitingState);
 }
 
-
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(TCompPlayerModel, TMsgAttackHit, OnAttackHit);
@@ -452,8 +451,7 @@ bool TCompPlayerModel::IsAttackFree() {
 void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
 	hp -= msg.damage;
 	if (hp <= 0) {
-		dbg("YOU DIED!\n");
-		hp = 0;
+		OnDead();
 	}
 }
 
@@ -469,10 +467,28 @@ void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
 
 void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 	dbg("out of bounds \n");
+	hp -= 1;
+	if (hp <= 0) {
+		OnDead();
+	}
+	else {
+		GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+		velocityVector = VEC3(0, 0, 0);
+
+		SetAttackState(ActionStates::Idle);
+		SetMovementState(ActionStates::AirborneNormal);
+	}
+
+}
+
+void TCompPlayerModel::OnDead() {
+	dbg("YOU DIED!\n");
+	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+	velocityVector = VEC3(0, 0, 0);
 
 	SetAttackState(ActionStates::Idle);
 	SetMovementState(ActionStates::AirborneNormal);
-
-	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
-	velocityVector = VEC3(0, 0, 0);
+	hp = maxHp;
+	powerGauge->ResetPower();
 }
+

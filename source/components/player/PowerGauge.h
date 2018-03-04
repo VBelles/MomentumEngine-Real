@@ -24,4 +24,5 @@ public:
 	void ReleasePower();
 	void GainPower();
 	void IncreasePower(float increment);
+	void ResetPower();
 };

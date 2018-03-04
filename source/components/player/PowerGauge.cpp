@@ -23,3 +23,7 @@ void PowerGauge::IncreasePower(float increment) {
 	powerLevel = power < powerPerLevel ? 1 : power < powerPerLevel * 2 ? 2 : 3;
 	if (lastPowerLevel != powerLevel) powerListener->OnLevelChange(powerLevel);
 }
+
+void PowerGauge::ResetPower() {
+	IncreasePower(-maxPower);
+}

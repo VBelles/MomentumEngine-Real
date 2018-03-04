@@ -125,4 +125,5 @@ private:
 	ActionStates nextAttackState;
 	void ChangeMovementState(ActionStates newState);
 	void ChangeAttackState(ActionStates newState);
+	void OnDead();
 };
