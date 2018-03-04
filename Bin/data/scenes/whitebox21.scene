@@ -198,7 +198,7 @@
           "mesh": "data/meshes/WWw_Box208.mesh",
           "materials":
           [
-            "data/materials/mat_white.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -978,7 +978,7 @@
           "mesh": "data/meshes/WWw_Box172.mesh",
           "materials":
           [
-            "data/materials/mat_dark_gray.material"
+            "data/materials/Material_#29.material"
           ]
         }
       ],
@@ -1229,7 +1229,7 @@
       "name": "WWw_Box160",
       "transform":
       {
-        "pos": "-11.4972 -0.580916 -23.2883",
+        "pos": "-11.4972 3.48459 -23.2883",
         "rotation": "0.0 0.707106 0.0 -0.707107"
       },
       "render":
@@ -1238,7 +1238,7 @@
           "mesh": "data/meshes/WWw_Box160.mesh",
           "materials":
           [
-            "data/materials/mat_dark_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -1255,7 +1255,7 @@
       "name": "WWw_Box159",
       "transform":
       {
-        "pos": "-9.22046 4.90562 -25.4203",
+        "pos": "-9.22046 7.65325 -25.4203",
         "rotation": "0.0 0.707106 0.0 -0.707107"
       },
       "render":
@@ -1264,7 +1264,7 @@
           "mesh": "data/meshes/WWw_Box159.mesh",
           "materials":
           [
-            "data/materials/mat_light_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -1281,7 +1281,7 @@
       "name": "WWw_Box158",
       "transform":
       {
-        "pos": "-7.14079 9.83492 -27.2407",
+        "pos": "-7.14079 11.3967 -27.2407",
         "rotation": "0.0 0.707106 0.0 -0.707107"
       },
       "render":
@@ -1290,7 +1290,7 @@
           "mesh": "data/meshes/WWw_Box158.mesh",
           "materials":
           [
-            "data/materials/mat_dark_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -1333,7 +1333,7 @@
       "name": "WWw_Box156",
       "transform":
       {
-        "pos": "-51.7982 -0.604297 -30.2387",
+        "pos": "-51.7982 3.46121 -30.2387",
         "rotation": "0.0 0.819152 0.0 -0.573577"
       },
       "render":
@@ -1342,7 +1342,7 @@
           "mesh": "data/meshes/WWw_Box156.mesh",
           "materials":
           [
-            "data/materials/mat_dark_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -1359,7 +1359,7 @@
       "name": "WWw_Box155",
       "transform":
       {
-        "pos": "-49.5476 4.88224 -32.2012",
+        "pos": "-49.5476 7.62987 -32.2012",
         "rotation": "0.0 0.819152 0.0 -0.573577"
       },
       "render":
@@ -1368,7 +1368,7 @@
           "mesh": "data/meshes/WWw_Box155.mesh",
           "materials":
           [
-            "data/materials/mat_light_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -1385,7 +1385,7 @@
       "name": "WWw_Box154",
       "transform":
       {
-        "pos": "-47.5076 9.81154 -34.0107",
+        "pos": "-47.5076 11.3733 -34.0107",
         "rotation": "0.0 0.819152 0.0 -0.573577"
       },
       "render":
@@ -1394,7 +1394,7 @@
           "mesh": "data/meshes/WWw_Box154.mesh",
           "materials":
           [
-            "data/materials/mat_dark_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -1437,7 +1437,7 @@
       "name": "WWw_Box152",
       "transform":
       {
-        "pos": "-81.2473 -0.620964 -52.5388",
+        "pos": "-81.2473 3.44454 -52.5388",
         "rotation": "0.0 -0.953717 0.0 0.300706"
       },
       "render":
@@ -1446,7 +1446,7 @@
           "mesh": "data/meshes/WWw_Box152.mesh",
           "materials":
           [
-            "data/materials/mat_dark_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -1463,7 +1463,7 @@
       "name": "WWw_Box151",
       "transform":
       {
-        "pos": "-78.9706 4.86557 -54.5164",
+        "pos": "-78.9706 7.6132 -54.5164",
         "rotation": "0.0 -0.953717 0.0 0.300706"
       },
       "render":
@@ -1472,7 +1472,7 @@
           "mesh": "data/meshes/WWw_Box151.mesh",
           "materials":
           [
-            "data/materials/mat_light_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -1489,7 +1489,7 @@
       "name": "WWw_Box150",
       "transform":
       {
-        "pos": "-76.8042 9.79488 -56.4364",
+        "pos": "-76.8042 11.3566 -56.4364",
         "rotation": "0.0 -0.953717 0.0 0.300706"
       },
       "render":
@@ -1498,7 +1498,7 @@
           "mesh": "data/meshes/WWw_Box150.mesh",
           "materials":
           [
-            "data/materials/mat_dark_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -2252,7 +2252,7 @@
           "mesh": "data/meshes/WWw_Box121.mesh",
           "materials":
           [
-            "data/materials/mat_light_gray.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -2278,7 +2278,7 @@
           "mesh": "data/meshes/WWw_Box120.mesh",
           "materials":
           [
-            "data/materials/mat_white.material"
+            "data/materials/Material_#26.material"
           ]
         }
       ],
@@ -2789,7 +2789,7 @@
       "name": "WWBox049",
       "transform":
       {
-        "pos": "28.8964 20.7811 -51.5161",
+        "pos": "28.8964 20.7126 -51.5161",
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       },
       "render":
@@ -2841,7 +2841,7 @@
       "name": "WWBox047",
       "transform":
       {
-        "pos": "24.7448 20.8487 -61.3325",
+        "pos": "24.7448 20.7348 -61.3325",
         "rotation": "0.0 -0.92388 0.0 0.382683"
       },
       "render":
@@ -2945,7 +2945,7 @@
       "name": "WWBox043",
       "transform":
       {
-        "pos": "14.7874 20.7608 -37.4521",
+        "pos": "14.7874 20.7202 -37.4521",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -3484,18 +3484,6 @@
       "transform":
       {
         "pos": "14.7817 50.457 -97.8721",
-        "lookAt": "-1.0 50.457 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "WWw_enemyLand007",
-      "prefab": "data/prefabs/enemy_melee.prefab",
-      "transform":
-      {
-        "pos": "24.4347 50.457 -100.13",
         "lookAt": "-1.0 50.457 -1.0"
       }
     }
@@ -4780,7 +4768,7 @@
         "waypoints":
         [
  "52.3778 2.65323 -28.7096",
- "47.2148 2.65323 -36.0832"
+ "52.3778 12.6532 -28.7096"
         ]
       },
       "hierarchy":
@@ -4837,7 +4825,7 @@
         "waypoints":
         [
  "47.2148 6.15079 -36.0832",
- "52.3778 6.15079 -28.7096"
+ "47.2148 16.1508 -36.0832"
         ]
       },
       "hierarchy":
@@ -4894,7 +4882,7 @@
         "waypoints":
         [
  "52.3778 9.66229 -28.7096",
- "47.2148 9.66229 -36.0832"
+ "52.3778 19.6623 -28.7096"
         ]
       },
       "hierarchy":
@@ -4951,7 +4939,7 @@
         "waypoints":
         [
  "47.2148 13.1598 -36.0832",
- "52.3778 13.1598 -28.7096"
+ "47.2148 23.1598 -36.0832"
         ]
       },
       "hierarchy":
