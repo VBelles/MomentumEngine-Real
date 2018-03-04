@@ -254,17 +254,23 @@ struct TSceneExporter (
 	),
 
 	-- --TRANSFORM-----------------------------------------------
-	fn exportTransform obj = (
+	fn exportTransform obj yShift = (
 		fs.writeKey "transform"
-
+	
 		local max2mcv = rotateXMatrix -90
 		local mcv2max = rotateXMatrix 90
 		local mcv_position = obj.position * max2mcv
-
+		
+		if yShift != 0 then (
+			local objY = mcv_position.y
+			local adjustedPos = objY + yShift
+			mcv_position.y = adjustedPos
+		)
+		
 		-- From mcv, we will go to max, apply the max transform and go back to mcv coord system
 		local mcv_transform = mcv2max * obj.transform * max2mcv
 
-		-- Take just the rotation as quaterion
+		-- Take just the rotation as quaternion
 		local mcv_quat = mcv_transform.rotationPart as quat
 
 		fs.beginObj()
@@ -348,7 +354,7 @@ struct TSceneExporter (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
 		exportName obj
 		fs.writeComma()
-		exportTransform obj
+		exportTransform obj 0
 		fs.writeComma()
 		fs.writeKey "render"
 		fs.beginArray()
@@ -374,7 +380,7 @@ struct TSceneExporter (
 		)
 		exportName obj
 		fs.writeComma()
-		exportTransform obj
+		exportTransform obj 0
 		fs.writeComma()
 		exportCompCollider obj
 	),
@@ -438,11 +444,8 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "prefab" prefabPath
 		fs.writeComma()
-		fs.writeKey "transform"
-		fs.beginObj()
-			local objPos = obj.position * (rotateXMatrix -90)
-			fs.writeKeyValue "pos" objPos
-		fs.endObj()
+		local objPos = obj.position * (rotateXMatrix -90)
+		exportTransform obj 0
 		fs.writeComma()
 		-- collider
 		fs.writeKey "collider"
@@ -488,14 +491,8 @@ struct TSceneExporter (
 		fs.beginObj()-- begin trigger entity
 		fs.writeKeyValue "name" parentName
 		fs.writeComma()
-		fs.writeKey "transform"
-		fs.beginObj()
-			local objPos = obj.position * (rotateXMatrix -90)
-			local objY = objPos.y
-			local adjustedPos = objY + platformHalfExtent[2] / 2
-			objPos.y = adjustedPos --TODO: adjust trigger Y position better?
-			fs.writeKeyValue "pos" objPos 
-		fs.endObj()
+		local yShift = platformHalfExtent[2] / 2
+		exportTransform obj yShift
 		fs.writeComma()
 		-- collider
 		fs.writeKey "collider"
@@ -590,8 +587,8 @@ struct TSceneExporter (
 --  bin/data/materials
 -------------------------------------------------------------------------------------
 
-exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/"
---exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/"
+exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
 exporter.exportAll()

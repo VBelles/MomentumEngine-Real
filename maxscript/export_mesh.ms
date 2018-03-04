@@ -181,6 +181,5 @@ function exportMeshObject given_obj outfilename = (
 	
 )
 
-
---exportMeshObject $Box001
-exportMeshObject $ "C:/Code/MomentumEngine-Real/Bin/data/meshes/plat_move.mesh"
+-- This path has to include file name.
+exportMeshObject $ "C:/CPPprojects/MomentumEngine-Real/Bin/data/meshes/plat_move.mesh"
