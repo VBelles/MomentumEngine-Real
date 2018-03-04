@@ -154,7 +154,7 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 0.5
+				"radius" : 0.7
 			},
 			"hierarchy" : {
 				"parent" : "The Player"

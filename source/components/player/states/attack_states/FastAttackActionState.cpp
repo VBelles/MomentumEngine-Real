@@ -36,7 +36,7 @@ void FastAttackActionState::update(float delta) {
 
 void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	dbg("Strong Attack\n");
+	dbg("Fast Attack\n");
 	phase = AttackPhases::Launch;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
@@ -51,7 +51,7 @@ void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 void FastAttackActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 	GetPlayerModel()->movementState->SetPose();
-	dbg("Finish strong Attack\n");
+	dbg("Finish fast Attack\n");
 }
 
 void FastAttackActionState::SetMovementInput(VEC2 input) {
