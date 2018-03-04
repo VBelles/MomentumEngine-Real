@@ -63,7 +63,8 @@ void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 	float damage = msg.damage;
 	health -= damage;
-
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 	CEntity *attacker = msg.attacker;
 	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
 
@@ -100,6 +101,8 @@ void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
 	propelTimer.reset();
 	ChangeState("propelled");
 
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 }
 
 

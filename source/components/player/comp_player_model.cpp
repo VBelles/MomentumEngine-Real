@@ -450,6 +450,8 @@ bool TCompPlayerModel::IsAttackFree() {
 
 void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
 	hp -= msg.damage;
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 	if (hp <= 0) {
 		OnDead();
 	}
@@ -468,6 +470,8 @@ void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
 void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 	dbg("out of bounds \n");
 	hp -= 1;
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 	if (hp <= 0) {
 		OnDead();
 	}

@@ -24,6 +24,7 @@
 		"ai_melee_enemy",
 		"hitbox",
 		"respawner",
-		"shadow"
+		"shadow",
+		"render"
 	]
 }

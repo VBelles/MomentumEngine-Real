@@ -3,6 +3,7 @@
 #include "ai_flying_enemy.h"
 #include "entity/entity_parser.h"
 #include "components/comp_transform.h"
+#include "components/comp_render.h"
 #include "render/render_utils.h"
 
 DECL_OBJ_MANAGER("ai_flying_enemy", CAIFlyingEnemy);
@@ -31,6 +32,8 @@ void CAIFlyingEnemy::InitStates() {
 void CAIFlyingEnemy::OnHit(const TMsgAttackHit& msg) {
 	float damage = msg.damage;
 	health -= damage;
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 
 	CEntity *attacker = msg.attacker;
 	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
@@ -52,6 +55,8 @@ void CAIFlyingEnemy::OnPropelled(const TMsgPropelled& msg) {
 	ChangeState("propelled");
 	CEntity *attacker = msg.attacker;
 	propelVelocityVector = msg.velocityVector;
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 }
 
 void CAIFlyingEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
