@@ -20,7 +20,7 @@ private:
 	float smallChaseRadius = 10.f;
 
 	float attackFov = deg2rad(60);
-	float attackRadius = 2.f;
+	float startAttackingRadius = 2.f;
 	float attackCooldown = 1.f;
 	float attackDuration = 1.f;
 

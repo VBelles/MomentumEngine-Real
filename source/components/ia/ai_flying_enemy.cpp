@@ -71,7 +71,7 @@ void CAIFlyingEnemy::IdleState(float delta) {
 
 boolean CAIFlyingEnemy::IsPlayerInAttackRange() {
 	float distance = VEC3::Distance(transform->getPosition(), playerTransform->getPosition());
-	return distance < attackRadius && transform->isInFov(playerTransform->getPosition(), chaseFov);
+	return distance < startAttackingRadius && transform->isInFov(playerTransform->getPosition(), chaseFov);
 }
 
 boolean CAIFlyingEnemy::IsPlayerInFov() {

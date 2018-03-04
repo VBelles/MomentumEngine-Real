@@ -168,7 +168,7 @@ void CAIMeleeEnemy::ChaseState(float delta) {
 		recallTimer.reset();
 		ChangeState("recall");
 	}
-	if (IsPlayerInAttackRange()) {
+	if (IsPlayerInAttackRange(startAttackingRadius)) {
 		ChangeState("idle_war");
 	}
 }
@@ -193,7 +193,7 @@ void CAIMeleeEnemy::RecallState(float delta) {
 
 void CAIMeleeEnemy::IdleWarState(float delta) {
 	UpdateGravity(delta);
-	if (!IsPlayerInAttackRange()) {
+	if (!IsPlayerInAttackRange(startAttackingRadius)) {
 		ChangeState("idle");
 		return;
 	}
@@ -208,8 +208,10 @@ void CAIMeleeEnemy::AttackState(float delta) {
 	if (attackTimer.elapsed() > attackDuration) {
 		waitAttackTimer.reset();
 		ChangeState("idle_war");
-		TMsgAttackHit msg{ CHandle(this), 1 };
-		getPlayerEntity()->sendMsg(msg);
+		if(IsPlayerInAttackRange(rangeRadius)) {
+			TMsgAttackHit msg{ CHandle(this), 1 };
+			getPlayerEntity()->sendMsg(msg);
+		}
 	}
 }
 
@@ -267,9 +269,9 @@ void CAIMeleeEnemy::FloatingState(float delta) {
 	}
 }
 
-boolean CAIMeleeEnemy::IsPlayerInAttackRange() {
+boolean CAIMeleeEnemy::IsPlayerInAttackRange(float range) {
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distance < attackRadius && getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
+	return distance < range && getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
 }
 
 boolean CAIMeleeEnemy::IsPlayerInFov() {
