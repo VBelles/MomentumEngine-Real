@@ -32,12 +32,12 @@
 	{
 		"name" : "release_power",
 		"all" : false,
-		"buttons" : ["pad_l1", "r"]
+		"buttons" : ["pad_l1", "e"]
 	},
 	{
 		"name" : "gain_power",
 		"all" : false,
-		"buttons" : ["pad_r1", "e"]
+		"buttons" : ["pad_r1", "r"]
 	},
 	{
 		"name" : "long_jump",

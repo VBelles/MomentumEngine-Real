@@ -6,12 +6,15 @@ Hay enemigos terrestres y aéreos, ambos de color azul. Los aéreos son esferas.
 
 Explora y diviértete.
 
+---
+En data/configuration.json se puede activar/desactivar la pantalla completa y cambiar la resolución.
+
 ----------
 Controles:
 
 -PAD-
 Cruz / A:                   Salto
-Cruz / A (en el aire):      Impulso vertical sobre enemigo
+Cruz / A (en el aire):      Impulso vertical sobre enemigo (antes de tocar al enemigo)
 L1 / LB:                    Liberar energía
 Cuadrado / X:               Salto largo
 Cuadrado / X (en el aire):  Impulso horizontal sobre enemigo

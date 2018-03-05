@@ -8,23 +8,18 @@
 		"transform": 90
 	},
 	"update": [
-		"circular_controller",
 		"player_controller",
-		"bullet_controller",
 		"collectable",
 		"destroyCondition",
 		"platform_move",
 		"fwd_msg",
-		"ai_patrol",
-    	"flyover_controller",
     	"hierarchy",
-		"camera",
 		"player_model",
-		"ground_sensor",
 		"ai_melee_enemy",
 		"hitbox",
 		"respawner",
 		"shadow",
+		"camera",
 		"render"
 	]
 }
