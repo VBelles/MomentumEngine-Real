@@ -29,7 +29,7 @@ void CAIPatrol::registerMsgs() {
 }
 
 void CAIPatrol::OnHit(const TMsgDamage& msg) {
-	float damage = msg.damage;
+	int damage = msg.damage;
 	health -= damage;
 	if (health < 0) {
 		CHandle(this).getOwner().destroy();

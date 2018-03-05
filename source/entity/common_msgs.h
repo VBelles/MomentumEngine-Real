@@ -24,7 +24,7 @@ struct TMsgAssignBulletOwner {
 struct TMsgDamage {
     CHandle h_sender;
     CHandle h_bullet;
-    float damage;
+    int damage;
     DECL_MSG_ID();
 };
 
