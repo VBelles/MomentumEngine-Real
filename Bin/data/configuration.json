@@ -1,7 +1,7 @@
 {
     "screen": {
-        "fullscreen": false,
-        "resolution": "800 600"
+        "fullscreen": true,
+        "resolution": "1920 1080"
     },
     "showDebug": false
 }
