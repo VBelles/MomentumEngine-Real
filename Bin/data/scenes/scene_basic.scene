@@ -13,7 +13,7 @@
 			],
 			"transform": {
 				"pos": "-83 22 -56"
-			}, 
+			},
 			"player_controller" : {},
 			"player_model" : {
 				"gravity" : -55,
