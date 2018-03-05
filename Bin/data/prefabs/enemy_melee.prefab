@@ -4,7 +4,7 @@
 			"transform":{},
 			"render": [
 				{
-					"mesh": "data/meshes/enemy.mesh",
+					"mesh": "data/meshes/enemyMelee.mesh",
 					"materials": [
 						"data/materials/piedras1.material"
 					],
