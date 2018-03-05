@@ -1,0 +1,47 @@
+.-~ INSTRUCCIONES ~-.
+
+El objetivo es recoger 5 de las 7 crisálidas (esferas de color ámbar) para abrir el camino hacia el Boss.
+
+Hay enemigos terrestres y aéreos, ambos de color azul. Los aéreos son esferas.
+
+Explora y diviértete.
+
+----------
+Controles:
+
+-PAD-
+Cruz / A:                   Salto
+Cruz / A (en el aire):      Impulso vertical sobre enemigo
+L1 / LB:                    Liberar energía
+Cuadrado / X:               Salto largo
+Cuadrado / X (en el aire):  Impulso horizontal sobre enemigo
+R2 / LT:                    Centrar cámara
+
+Triángulo / Y:              Golpe fuerte
+Triángulo / Y (mantenido):  Lanzamiento vertical
+Triángulo / Y (en al aire): Ataque caída
+Stick izquierdo:            Movimiento
+Círculo / B:                Golpe rápido (se puede hacer en carrera)
+Círculo / B (mantneido):    Lanzamiento horizontal
+Stick derecho:              Movimiento cámara
+
+-TECLADO + RATÓN-
+
+Espacio:                Salto
+Espacio (en el aire):   Impulso vertical sobre enemigo
+E:                      Liberar energía
+Shift:                  Salto largo
+Shift (en el aire):     Impulso horizontal sobre enemigo
+MMB:                    Centrar cámara
+
+RMB:                    Golpe fuerte
+RMB (mantenido):        Lanzamiento vertical
+WASD:                   Movimiento
+LMB:                    Golpe rápido (se puede hacer en carrera)
+LMB (mantenido):        Lanzamiento horizontal
+Ratón:                  Movimiento cámara
+
+BUGS CONOCIDOS:
+
+1. Si caes al vacío con ataque caída, al revivir hay que hacer un ataque para poder moverse.
+2. Las plataformas móviles a veces no te dejan saltar.
