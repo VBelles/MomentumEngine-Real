@@ -491,7 +491,7 @@ struct TSceneExporter (
 		fs.beginObj()-- begin trigger entity
 		fs.writeKeyValue "name" parentName
 		fs.writeComma()
-		local yShift = platformHalfExtent[2] / 2
+		local yShift = platformHalfExtent[2]
 		exportTransform obj yShift
 		fs.writeComma()
 		-- collider

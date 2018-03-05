@@ -101,6 +101,8 @@ void TCompPlatformMove::update(float dt) {
         CEntity* ePlayer = (CEntity*)player;
 		TCompCollider* playerCollider = ePlayer->get<TCompCollider>();
 		using namespace physx;
-		playerCollider->controller->move(PxVec3(movement.x, movement.y, movement.z), 0.f, dt, PxControllerFilters());
+        PxExtendedVec3 move = { movement.x, movement.y, movement.z };
+        //playerCollider->controller->setPosition(playerCollider->controller->getPosition() + move);
+        playerCollider->controller->move(PxVec3(movement.x, movement.y, movement.z), 0.f, dt, PxControllerFilters());
     }
 }

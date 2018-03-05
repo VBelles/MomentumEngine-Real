@@ -1,0 +1,149 @@
+[
+  {
+    "entity":
+    {
+      "name": "plano",
+      "transform":
+      {
+      },
+      "collider": {
+        "shape": "plane"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plane002",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plane002.mesh",
+          "materials":
+          [
+            "data/materials/Material_#26.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "platMove",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "-85.0 1.65323 -58.0",
+        "rotation": "0.0 -0.887011 0.0 -0.461749"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "is_dynamic": true,
+        "halfExtent": "1.5 0.5 1.5",
+        "group": "scenario"
+      },
+      "platform_move":
+      {
+        "type": "up",
+        "speed": 4.0,
+        "waypoints":
+        [
+ "-85.0 2.65323 -58.0",
+ "-85.0 12.6532 -58.0"
+        ]
+      },
+      "hierarchy":
+      {
+        "parent": "platMove_trigger"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "platMove_trigger",
+      "transform":
+      {
+        "pos": "-85.0 2.15323 -58.0",
+        "rotation": "0.0 -0.887011 0.0 -0.461749"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "is_dynamic": true,
+        "is_trigger": true,
+        "halfExtent": "1.5 0.5 1.5",
+        "group": "scenario",
+        "mask": "player"
+      },
+      "fwd_msg":
+      {
+        "target": "platMove"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "platMove2",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "-75.0 1.65323 -58.0",
+        "rotation": "0.0 -0.887011 0.0 -0.461749"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "is_dynamic": true,
+        "halfExtent": "1.5 0.5 1.5",
+        "group": "scenario"
+      },
+      "platform_move":
+      {
+        "type": "up",
+        "speed": 4.0,
+        "waypoints":
+        [
+ "-75.0 1.65323 -58.0",
+ "-65.0 1.6532 -58.0"
+        ]
+      },
+      "hierarchy":
+      {
+        "parent": "platMove_trigger2"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "platMove_trigger2",
+      "transform":
+      {
+        "pos": "-75.0 2.15323 -58.0",
+        "rotation": "0.0 -0.887011 0.0 -0.461749"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "is_dynamic": true,
+        "is_trigger": true,
+        "halfExtent": "1.5 0.5 1.5",
+        "group": "scenario",
+        "mask": "player"
+      },
+      "fwd_msg":
+      {
+        "target": "platMove"
+      }
+    }
+  }
+]
