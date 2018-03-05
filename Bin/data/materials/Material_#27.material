@@ -3,6 +3,6 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/empty-texture-red.dds"
+    "albedo": "data/textures/rocas-red.dds"
   }
 }
