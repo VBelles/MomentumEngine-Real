@@ -51,6 +51,10 @@ void TCompPlatformMove::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	//dbg("Platform trigger enter by %s\n", triggererName.c_str());
 	if (triggererName == "The Player") {
         isPlayerInTrigger = true;
+
+		CEntity* ePlayer = (CEntity*)player;
+		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
+		playerModel->isAttachedToPlatform = true;
 	}
 }
 
@@ -60,6 +64,9 @@ void TCompPlatformMove::onTriggerExit(const TMsgTriggerExit & msg) {
     //dbg("Platform trigger exit by %s\n", triggererName.c_str());
     if (triggererName == "The Player") {
         isPlayerInTrigger = false;
+		CEntity* ePlayer = (CEntity*)player;
+		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
+		playerModel->isAttachedToPlatform = false;
     }
 }
 
@@ -99,10 +106,11 @@ void TCompPlatformMove::update(float dt) {
     // Move the player with the platform.
     if ( isPlayerInTrigger ) {
         CEntity* ePlayer = (CEntity*)player;
-		TCompCollider* playerCollider = ePlayer->get<TCompCollider>();
+		/*TCompCollider* playerCollider = ePlayer->get<TCompCollider>();
 		using namespace physx;
         PxExtendedVec3 move = { movement.x, movement.y, movement.z };
-        //playerCollider->controller->setPosition(playerCollider->controller->getPosition() + move);
-        playerCollider->controller->move(PxVec3(movement.x, movement.y, movement.z), 0.f, dt, PxControllerFilters());
+        playerCollider->controller->move(PxVec3(movement.x, movement.y, movement.z), 0.f, dt, PxControllerFilters());*/
+		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
+		playerModel->platformMovementOffset = movement;
     }
 }

@@ -322,6 +322,7 @@ void TCompPlayerModel::update(float dt) {
 			deltaMovement = attackState->GetDeltaMovement();
 		}
 	}
+	AddMovementOffset();
 	UpdateMovement(dt, deltaMovement);
 	
 	if (movementState != movementStates[nextMovementState]) {
@@ -366,6 +367,14 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 			velocityVector.y = 0.f;
 		}
 	}
+}
+
+void TCompPlayerModel::AddMovementOffset() {
+	if (isAttachedToPlatform) {
+		//dbg("fgdfgdfg\n");
+		deltaMovement += platformMovementOffset;
+	}
+	
 }
 
 //Aqu\ED llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar

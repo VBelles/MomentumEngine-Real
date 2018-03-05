@@ -26,6 +26,7 @@ void JumpSquatActionState::update (float delta) {
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
+		GetPlayerModel()->isAttachedToPlatform = false;
 		velocityVector->y = isShortHop ? currentPowerStats->shortHopVelocity : currentPowerStats->jumpVelocityVector.y;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;

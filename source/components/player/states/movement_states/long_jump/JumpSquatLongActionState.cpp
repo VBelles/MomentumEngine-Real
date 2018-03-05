@@ -24,6 +24,7 @@ void JumpSquatLongActionState::update (float delta) {
 	
 	if (timer.elapsed() >= squatTime) {
 		//saltar
+		GetPlayerModel()->isAttachedToPlatform = false;
 		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
