@@ -25,6 +25,7 @@ void GrabActionState::update (float delta) {
 
 void GrabActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
+	SetPose();
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = hitboxOutTime + activeFrames * (1.f / 60);
 	animationEndTime = hitEndTime + endingLagFrames * (1.f / 60);
@@ -34,6 +35,7 @@ void GrabActionState::OnStateEnter(IActionState * lastState) {
 
 void GrabActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
+	GetPlayerModel()->movementState->SetPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();

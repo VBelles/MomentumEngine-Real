@@ -38,11 +38,11 @@ void AirborneLongActionState::update (float delta) {
 
 void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
+	SetPose();
 	//dbg("Entrando en airborne long\n");
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
-	GetRender()->setMesh("data/meshes/pose_long_jump.mesh");
 }
 
 void AirborneLongActionState::OnStateExit(IActionState * nextState) {

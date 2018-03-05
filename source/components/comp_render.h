@@ -9,7 +9,10 @@ class CMaterial;
 
 class TCompRender : public TCompBase {
   void loadMesh(const json& j, TEntityParseContext& ctx);
-
+  CTimer timer;
+  float timeToNormal;
+  bool isColorChanged = false;
+  VEC4 originalColor;
 public:
   VEC4               color = VEC4(1, 1, 1, 1);
 
@@ -20,6 +23,9 @@ public:
   void debugInMenu();
   void load(const json& j, TEntityParseContext& ctx);
   void setMesh(std::string meshName);
+
+  void update(float delta);
+  void TurnRed(float time);
 
   DECL_SIBLING_ACCESS();
 };

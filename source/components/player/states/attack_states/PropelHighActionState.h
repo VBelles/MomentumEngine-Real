@@ -22,4 +22,5 @@ public:
 	void OnJumpLongButton() override;
 
 	void OnLanding() override;
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_propel.mesh"); }
 };

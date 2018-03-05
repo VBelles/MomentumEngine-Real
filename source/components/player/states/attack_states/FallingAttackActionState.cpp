@@ -39,6 +39,7 @@ void FallingAttackActionState::update (float delta) {
 
 void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
+	SetPose();
 	dbg("ENTER Falling Attack\n");
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
@@ -49,6 +50,7 @@ void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 
 void FallingAttackActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
+	GetPlayerModel()->movementState->SetPose();
 	dbg("FINISH falling Attack\n");
 }
 

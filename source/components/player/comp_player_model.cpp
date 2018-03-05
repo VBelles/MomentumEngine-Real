@@ -115,7 +115,6 @@ void TCompPlayerModel::ChangeAttackState(ActionStates newState) {
 	if (attackState) attackState->OnStateEnter(exitingState);
 }
 
-
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(TCompPlayerModel, TMsgAttackHit, OnAttackHit);
@@ -175,8 +174,21 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
+
 		ImGui::End();
 		ImGui::PopStyleColor();
+
+		if (showVictoryDialog) {
+			//-------- WIN DIALOG --------------------------------
+			ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 255 });
+			ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - 200, ImGui::GetIO().DisplaySize.y / 4));
+			ImGui::SetNextWindowSize(ImVec2(300, 200));
+			ImGui::Begin("victoryWindow", &showVictoryDialog, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
+			ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path to the final boss!\n\n\n");
+			ImGui::TextUnformatted("You can keep exploring and see\n\nif you can collect the other two.\n");
+			ImGui::End();
+			ImGui::PopStyleColor();
+		}
 
 		if (!CApp::get().showDebug) return;
 
@@ -273,11 +285,13 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 	std::string type = msg.type;
 	if (type == "chrysalis") {
 		++chrysalis;
-		if (chrysalis >= chrysalisTarget) {
+		if (chrysalis == chrysalisTarget) {
 			// Open boss door.
 			CEntity* door = (CEntity*)getEntityByName("door");
 			TMsgDestroy msg;
 			if (door) door->sendMsg(msg);
+			dialogTimer.reset();
+			showVictoryDialog = true;
 		}
 	}
 	else if (type == "coin") {
@@ -290,6 +304,10 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 
 void TCompPlayerModel::update(float dt) {
 	frame++;
+
+	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
+		showVictoryDialog = false;
+	}
 
 	movementState->update(dt);
 	if (attackState != attackStates[ActionStates::Idle]) {
@@ -451,9 +469,10 @@ bool TCompPlayerModel::IsAttackFree() {
 
 void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
 	hp -= msg.damage;
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 	if (hp <= 0) {
-		dbg("YOU DIED!\n");
-		hp = 0;
+		OnDead();
 	}
 }
 
@@ -469,10 +488,30 @@ void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
 
 void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 	dbg("out of bounds \n");
+	hp -= 1;
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
+	if (hp <= 0) {
+		OnDead();
+	}
+	else {
+		GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+		velocityVector = VEC3(0, 0, 0);
+
+		SetAttackState(ActionStates::Idle);
+		SetMovementState(ActionStates::AirborneNormal);
+	}
+
+}
+
+void TCompPlayerModel::OnDead() {
+	dbg("YOU DIED!\n");
+	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+	velocityVector = VEC3(0, 0, 0);
 
 	SetAttackState(ActionStates::Idle);
 	SetMovementState(ActionStates::AirborneNormal);
-
-	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
-	velocityVector = VEC3(0, 0, 0);
+	hp = maxHp;
+	powerGauge->ResetPower();
 }
+

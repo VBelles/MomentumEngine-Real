@@ -138,6 +138,9 @@ public:
 	virtual void OnStateExit(IActionState* nextState) {
 		this->nextState = nextState;
 	}
+
+	virtual void SetPose() { GetRender()->setMesh("data/meshes/pose_idle.mesh"); }
+
 	virtual void SetMovementInput(VEC2 movementInput) {}
 	virtual VEC3 GetDeltaMovement() { return deltaMovement; }
 	virtual VEC2 GetMovementInput() { return movementInput; }

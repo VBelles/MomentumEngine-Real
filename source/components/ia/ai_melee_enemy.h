@@ -24,9 +24,10 @@ private:
 	float smallChaseRadius = 10.f;
 
 	float attackFov = deg2rad(60);
-	float attackRadius = 2.f;
-	float attackCooldown = 1.f;
-	float attackDuration = 1.f;
+	float startAttackingRadius = 2.f;
+	float rangeRadius = 4.f;
+	float attackCooldown = 1.8f;
+	float attackDuration = 0.8f;
 
 	float propelDuration;
 
@@ -67,7 +68,7 @@ private:
 	void OnLaunchedHorizontally(const TMsgLaunchedHorizontally & msg);
 	void OnRespawn(const TMsgRespawn & msg);
 
-	boolean IsPlayerInAttackRange();
+	boolean IsPlayerInAttackRange(float range);
 	boolean IsPlayerInFov();
 
 	void UpdateGravity(float delta);

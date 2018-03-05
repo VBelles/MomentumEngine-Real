@@ -99,10 +99,14 @@ private:
 	PowerStats* ssj3;
 	PowerStats* currentPowerStats;
 
-	int hp = 3;
-	int maxHp = 3;
+	int hp = 8;
+	int maxHp = 8;
     int chrysalis = 0;
     int chrysalisTarget = 5;
+	bool showVictoryDialog = false;
+
+	CTimer dialogTimer;
+	float dialogTime = 15.0f;
  
     void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void OnCollect(const TMsgCollect& msg);
@@ -125,4 +129,5 @@ private:
 	ActionStates nextAttackState;
 	void ChangeMovementState(ActionStates newState);
 	void ChangeAttackState(ActionStates newState);
+	void OnDead();
 };

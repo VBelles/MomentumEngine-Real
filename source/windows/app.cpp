@@ -170,7 +170,7 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 
 	// Create window
 	if (!fullscreen) {
-		RECT rc = { 0, 0, resolution.x, resolution.y };
+		RECT rc = { 0, 0, static_cast<LONG>(resolution.x), static_cast<LONG>(resolution.y) };
 		AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 		hWnd = CreateWindow("MCVWindowsClass", "Momentum",
 			WS_OVERLAPPEDWINDOW,
@@ -256,7 +256,7 @@ bool CApp::readConfig() {
 
 	time_since_last_render.reset();
 
-	CEngine::get().getRender().configure(resolution.x, resolution.y);
+	CEngine::get().getRender().configure(static_cast<int>(resolution.x), static_cast<int>(resolution.y));
 	return true;
 }
 

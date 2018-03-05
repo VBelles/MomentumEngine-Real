@@ -21,7 +21,7 @@ class FastAttackActionState : public GroundedActionState {
 	bool isLauncher = true;
 
 	CHandle hitboxHandle;
-	float damage = 2;
+	float damage = 1.f;
 	AttackPhases phase = AttackPhases::Launch;
 
 public:
@@ -35,6 +35,6 @@ public:
 	void OnFastAttackButtonReleased() override;
 
 	void OnLeavingGround() override;
-
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_punch.mesh"); }
 	void OnHitboxEnter(CHandle entity) override;
 };

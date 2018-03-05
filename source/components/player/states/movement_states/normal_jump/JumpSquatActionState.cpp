@@ -8,6 +8,7 @@ JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
 
 void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
+	SetPose();
 	//dbg("Entrando en JumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
 	isShortHop = false;

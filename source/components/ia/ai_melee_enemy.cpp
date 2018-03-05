@@ -63,12 +63,16 @@ void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
 	float damage = msg.damage;
 	health -= damage;
-
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 	CEntity *attacker = msg.attacker;
 	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
 
 	if (health <= 0) {
 		ChangeState("death");
+	}
+	else {
+		ChangeState("idle");
 	}
 }
 
@@ -97,6 +101,8 @@ void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
 	propelTimer.reset();
 	ChangeState("propelled");
 
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 }
 
 
@@ -165,7 +171,7 @@ void CAIMeleeEnemy::ChaseState(float delta) {
 		recallTimer.reset();
 		ChangeState("recall");
 	}
-	if (IsPlayerInAttackRange()) {
+	if (IsPlayerInAttackRange(startAttackingRadius)) {
 		ChangeState("idle_war");
 	}
 }
@@ -190,7 +196,7 @@ void CAIMeleeEnemy::RecallState(float delta) {
 
 void CAIMeleeEnemy::IdleWarState(float delta) {
 	UpdateGravity(delta);
-	if (!IsPlayerInAttackRange()) {
+	if (!IsPlayerInAttackRange(startAttackingRadius)) {
 		ChangeState("idle");
 		return;
 	}
@@ -205,8 +211,10 @@ void CAIMeleeEnemy::AttackState(float delta) {
 	if (attackTimer.elapsed() > attackDuration) {
 		waitAttackTimer.reset();
 		ChangeState("idle_war");
-		TMsgAttackHit msg{ CHandle(this), 1 };
-		getPlayerEntity()->sendMsg(msg);
+		if(IsPlayerInAttackRange(rangeRadius)) {
+			TMsgAttackHit msg{ CHandle(this), 1 };
+			getPlayerEntity()->sendMsg(msg);
+		}
 	}
 }
 
@@ -264,9 +272,9 @@ void CAIMeleeEnemy::FloatingState(float delta) {
 	}
 }
 
-boolean CAIMeleeEnemy::IsPlayerInAttackRange() {
+boolean CAIMeleeEnemy::IsPlayerInAttackRange(float range) {
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distance < attackRadius && getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
+	return distance < range && getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
 }
 
 boolean CAIMeleeEnemy::IsPlayerInFov() {

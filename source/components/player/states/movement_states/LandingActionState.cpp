@@ -15,7 +15,7 @@ void LandingActionState::update (float delta) {
 	}
 
 	if (timer.elapsed() >= landingLagTime) {
-		if (!hasInput || enteringSpeed == 0.f) {
+		if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
 			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else {
@@ -34,7 +34,7 @@ void LandingActionState::update (float delta) {
 
 void LandingActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	GetRender()->setMesh("data/meshes/pose_punch.mesh");
+	SetPose();
 
 	VEC3 enteringVelocityVector = { velocityVector->x, 0.f, velocityVector->z };
 	enteringSpeed = enteringVelocityVector.Length();

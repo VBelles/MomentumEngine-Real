@@ -154,7 +154,7 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 0.5
+				"radius" : 0.7
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -176,7 +176,8 @@
 				}
 			],
 			"transform": {
-				"pos": "-40 22 -22"
+				"pos": "-64 40 -135",
+				"rotation": "0 0.574 0 0.819"
 			},
 			"collider":
 			{

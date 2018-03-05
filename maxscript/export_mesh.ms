@@ -182,4 +182,4 @@ function exportMeshObject given_obj outfilename = (
 )
 
 -- This path has to include file name.
-exportMeshObject $ "C:/CPPprojects/MomentumEngine-Real/Bin/data/meshes/plat_move.mesh"
+exportMeshObject $ "D:/DirectX Projects/MomentumEngineReal/Bin/data/meshes/pose_long_jump.mesh"

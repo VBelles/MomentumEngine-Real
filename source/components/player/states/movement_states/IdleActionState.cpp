@@ -14,7 +14,7 @@ void IdleActionState::update (float delta) {
 
 void IdleActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	GetRender()->setMesh("data/meshes/pose_run.mesh");
+	SetPose();
 	dbg("Entrando en idle\n");
 }
 

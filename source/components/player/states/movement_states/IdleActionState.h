@@ -14,4 +14,5 @@ public:
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
 	virtual void OnLeavingGround();
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_idle.mesh"); }
 };

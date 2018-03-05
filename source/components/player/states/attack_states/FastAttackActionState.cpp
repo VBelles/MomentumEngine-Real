@@ -25,7 +25,7 @@ void FastAttackActionState::update(float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() > hitboxOutTime) {
-		GetRender()->setMesh("data/meshes/pose_punch.mesh");
+		SetPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -36,7 +36,7 @@ void FastAttackActionState::update(float delta) {
 
 void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	dbg("Strong Attack\n");
+	dbg("Fast Attack\n");
 	phase = AttackPhases::Launch;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
@@ -50,8 +50,8 @@ void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 
 void FastAttackActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	dbg("Finish strong Attack\n");
-	GetRender()->setMesh("data/meshes/pose_run.mesh");
+	GetPlayerModel()->movementState->SetPose();
+	dbg("Finish fast Attack\n");
 }
 
 void FastAttackActionState::SetMovementInput(VEC2 input) {
