@@ -103,6 +103,10 @@ private:
 	int maxHp = 8;
     int chrysalis = 0;
     int chrysalisTarget = 5;
+	bool showVictoryDialog = false;
+
+	CTimer dialogTimer;
+	float dialogTime = 15.0f;
  
     void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void OnCollect(const TMsgCollect& msg);

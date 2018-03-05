@@ -174,8 +174,21 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
+
 		ImGui::End();
 		ImGui::PopStyleColor();
+
+		if (showVictoryDialog) {
+			//-------- WIN DIALOG --------------------------------
+			ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 255 });
+			ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - 200, ImGui::GetIO().DisplaySize.y / 4));
+			ImGui::SetNextWindowSize(ImVec2(300, 200));
+			ImGui::Begin("victoryWindow", &showVictoryDialog, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
+			ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path to the final boss!\n\n\n");
+			ImGui::TextUnformatted("You can keep exploring and see\n\nif you can collect the other two.\n");
+			ImGui::End();
+			ImGui::PopStyleColor();
+		}
 
 		if (!CApp::get().showDebug) return;
 
@@ -272,11 +285,13 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 	std::string type = msg.type;
 	if (type == "chrysalis") {
 		++chrysalis;
-		if (chrysalis >= chrysalisTarget) {
+		if (chrysalis == chrysalisTarget) {
 			// Open boss door.
 			CEntity* door = (CEntity*)getEntityByName("door");
 			TMsgDestroy msg;
 			if (door) door->sendMsg(msg);
+			dialogTimer.reset();
+			showVictoryDialog = true;
 		}
 	}
 	else if (type == "coin") {
@@ -289,6 +304,10 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 
 void TCompPlayerModel::update(float dt) {
 	frame++;
+
+	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
+		showVictoryDialog = false;
+	}
 
 	movementState->update(dt);
 	if (attackState != attackStates[ActionStates::Idle]) {
