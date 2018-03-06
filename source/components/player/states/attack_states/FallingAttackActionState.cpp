@@ -23,7 +23,7 @@ void FallingAttackActionState::update (float delta) {
 	}
 	else {
 		//ataque caída
-		if (timer.elapsed() > hitboxOutTime) {
+		if (timer.elapsed() >= hitboxOutTime) {
 			CEntity *hitboxEntity = hitboxHandle;
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->enable();

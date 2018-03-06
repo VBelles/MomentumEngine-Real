@@ -19,8 +19,8 @@ void LandingActionState::update (float delta) {
 			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else {
-			velocityVector->x = GetPlayerTransform()->getFront().x * enteringSpeed;
-			velocityVector->z = GetPlayerTransform()->getFront().z * enteringSpeed;
+			velocityVector->x = GetPlayerTransform()->getFront().x * enteringSpeed * 0.7f;
+			velocityVector->z = GetPlayerTransform()->getFront().z * enteringSpeed * 0.7f;
 			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 		}
 	}
