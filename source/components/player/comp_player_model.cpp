@@ -324,6 +324,7 @@ void TCompPlayerModel::update(float dt) {
 		}
 	}
 	AddMovementOffset();
+	ApplyGravity(dt);
 	UpdateMovement(dt, deltaMovement);
 	
 	if (movementState != movementStates[nextMovementState]) {
@@ -332,6 +333,15 @@ void TCompPlayerModel::update(float dt) {
 	if (attackState != attackStates[nextAttackState]) {
 		ChangeAttackState(nextAttackState);
 	}
+}
+
+void TCompPlayerModel::ApplyGravity(float delta) {
+	float resultingDeltaMovement;
+	resultingDeltaMovement = velocityVector.y * delta + 0.5f * currentGravity * delta * delta;
+	dbg("currentGravity: %f", currentGravity);
+	//clampear distancia vertical
+	resultingDeltaMovement = resultingDeltaMovement > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : resultingDeltaMovement;
+	deltaMovement.y += resultingDeltaMovement;
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {

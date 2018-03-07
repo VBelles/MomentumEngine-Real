@@ -84,6 +84,7 @@ public:
 	bool isTouchingCeiling = false;
 	bool isAttachedToPlatform = false;
 	VEC3 platformMovementOffset;
+	float maxVerticalSpeed = 0.f;
 
 	void OnLevelChange(int powerLevel);
 
@@ -135,4 +136,5 @@ private:
 	void ChangeMovementState(ActionStates newState);
 	void ChangeAttackState(ActionStates newState);
 	void OnDead();
+	void ApplyGravity(float delta);
 };
