@@ -46,7 +46,7 @@ struct TMsgHitboxEnter {
 
 struct TMsgAttackHit {
 	CHandle attacker;
-	float damage;
+	int damage;
 	DECL_MSG_ID();
 };
 
@@ -63,13 +63,13 @@ struct TMsgPropelled {
 
 struct TMsgLaunchedVertically {
 	CHandle attacker;
-	float damage;
+	int damage;
 	DECL_MSG_ID();
 };
 
 struct TMsgLaunchedHorizontally {
 	CHandle attacker;
-	float damage;
+	int damage;
 	VEC3 direction;
 	DECL_MSG_ID();
 };
@@ -93,17 +93,17 @@ struct TMsgRespawn {
 	DECL_MSG_ID();
 };
 
+struct TMsgDefineLocalAABB {
+  AABB* aabb;
+  DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();
 };
 
 struct TMsgSpawn {
-  DECL_MSG_ID();
-};
-
-struct TMsgDefineLocalAABB {
-  AABB* aabb;
   DECL_MSG_ID();
 };
 

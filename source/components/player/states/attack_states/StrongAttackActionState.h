@@ -21,7 +21,7 @@ class StrongAttackActionState : public GroundedActionState {
 	bool isLauncher = true;
 
 	CHandle hitboxHandle;
-	float damage = 5.f;
+	int damage = 5;
 
 public:
 	StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox);

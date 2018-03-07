@@ -88,11 +88,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
+    <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_bullet_controller.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
+    <ClCompile Include="components\comp_culling.cpp" />
     <ClCompile Include="components\comp_destroy_condition.cpp" />
     <ClCompile Include="components\comp_flyover_controller.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
@@ -109,6 +111,8 @@
     <ClCompile Include="components\comp_shadow.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
+    <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
+    <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_flying_enemy.cpp" />
     <ClCompile Include="components\ia\ai_melee_enemy.cpp" />
@@ -143,6 +147,7 @@
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
     <ClCompile Include="geometry\angular.cpp" />
+    <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="geometry\geometry.cpp" />
     <ClCompile Include="geometry\SimpleMath.cpp" />
     <ClCompile Include="geometry\transform.cpp" />
@@ -172,12 +177,16 @@
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\module_render.cpp" />
+    <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
+    <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
     <ClCompile Include="render\render.cpp" />
+    <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="render\render_objects.cpp" />
     <ClCompile Include="render\render_utils.cpp" />
     <ClCompile Include="render\shaders\pixel_shader.cpp" />
@@ -197,12 +206,14 @@
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
     <ClInclude Include="camera\camera.h" />
+    <ClInclude Include="components\comp_aabb.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_bullet_controller.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_circular_controller.h" />
     <ClInclude Include="components\comp_collectable.h" />
     <ClInclude Include="components\comp_collider.h" />
+    <ClInclude Include="components\comp_culling.h" />
     <ClInclude Include="components\comp_destroy_condition.h" />
     <ClInclude Include="components\comp_flyover_controller.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
@@ -219,6 +230,8 @@
     <ClInclude Include="components\comp_shadow.h" />
     <ClInclude Include="components\comp_tags.h" />
     <ClInclude Include="components\comp_transform.h" />
+    <ClInclude Include="components\controllers\comp_camera_flyover.h" />
+    <ClInclude Include="components\controllers\comp_camera_orbit.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_flying_enemy.h" />
     <ClInclude Include="components\ia\ai_melee_enemy.h" />
@@ -256,7 +269,9 @@
     <ClInclude Include="entity\entity_parser.h" />
     <ClInclude Include="entity\msgs.h" />
     <ClInclude Include="geometry\angular.h" />
+    <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\geometry.h" />
+    <ClInclude Include="geometry\interpolators.h" />
     <ClInclude Include="geometry\SimpleMath.h" />
     <ClInclude Include="geometry\transform.h" />
     <ClInclude Include="handle\handle.h" />
@@ -293,14 +308,20 @@
     <ClInclude Include="modules\module_entities.h" />
     <ClInclude Include="modules\module_ia.h" />
     <ClInclude Include="modules\module_manager.h" />
+    <ClInclude Include="modules\system\module_cameras.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\module_render.h" />
     <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
+    <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\cte_buffer.h" />
+    <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
+    <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\render.h" />
+    <ClInclude Include="render\render_manager.h" />
     <ClInclude Include="render\render_objects.h" />
     <ClInclude Include="render\render_utils.h" />
     <ClInclude Include="render\shaders\pixel_shader.h" />

@@ -10,6 +10,18 @@
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 #include "components/comp_shadow.h"
+#include "render/render_manager.h"
+
+void CModuleEntities::loadListOfManagers( const json& j, std::vector< CHandleManager* > &managers) {
+  managers.clear();
+  // For each entry in j["update"] add entry to om_to_update
+  std::vector< std::string > names = j;
+  for (auto& n : names) {
+    auto om = CHandleManager::getByName(n.c_str());
+    assert(om || fatal("Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
+    managers.push_back(om);
+  }
+}
 
 bool CModuleEntities::start() {
 	json j = loadJson("data/components.json");
@@ -41,25 +53,23 @@ bool CModuleEntities::start() {
 		om->init(sz, false);
 	}
 
-	// For each entry in j["update"] add entry to om_to_update
-	std::vector< std::string > names = j["update"];
-	for (auto& n : names) {
-		auto om = CHandleManager::getByName(n.c_str());
-		assert(om || fatal("Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
-		om_to_update.push_back(om);
-	}
+  loadListOfManagers(j["update"], om_to_update);
+  loadListOfManagers(j["render_debug"], om_to_render_debug);
 
 	return true;
 }
 
 void CModuleEntities::update(float delta) {
-	for (auto om : om_to_update)
-		om->updateAll(delta);
+  for (auto om : om_to_update) {
+    PROFILE_FUNCTION(om->getName());
+    om->updateAll(delta);
+  }
 
 	CHandleManager::destroyAllPendingObjects();
 }
 
 void CModuleEntities::render() {
+  Resources.debugInMenu();
 
 	if (CApp::get().showDebug) {
 
@@ -101,7 +111,7 @@ void CModuleEntities::render() {
 	//static bool is_open = false;
 	//ImGui::Checkbox("ImGui Demo", &is_open);
 	//ImGui::ShowDemoWindow(&is_open);
-
+/*
 	// ------------------------------------------
 	// Do the basic render
 	auto om_render = getObjectManager<TCompRender>();
@@ -115,10 +125,15 @@ void CModuleEntities::render() {
 		cb_object.obj_color = c->color;
 		cb_object.updateGPU();
 
-		for (auto& m : c->materials)
-			m->activate();
-		c->mesh->activateAndRender();
-	});
+    int idx = 0;
+    c->mesh->activate();
+    for (auto& m : c->materials) {
+      if (m) {
+        m->activate();
+        c->mesh->renderSubMesh(idx);
+      }
+      ++idx;
+    }
 
 	auto om_render_ui = getObjectManager<TCompRenderUI>();
 	om_render_ui->forEach([](TCompRenderUI* c) {
@@ -140,4 +155,20 @@ void CModuleEntities::render() {
 		}
 		c->mesh->activateAndRender();
 	});
+*/
+
+  CRenderManager::get().renderCategory("default");
+  CRenderManager::get().debugInMenu();
+}
+
+void CModuleEntities::renderDebugOfComponents() {
+  CTraceScoped gpu_scope("renderDebugOfComponents");
+  PROFILE_FUNCTION("renderDebugOfComponents");
+  // Change the technique to some debug solid
+  auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
+  solid->activate();
+  for (auto om : om_to_render_debug) {
+    PROFILE_FUNCTION(om->getName());
+    om->renderDebugAll();
+  }
 }

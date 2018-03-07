@@ -3,14 +3,13 @@
 #include "ai_controller.h"
 #include "entity/common_msgs.h"
 
-class PowerStats;
+struct PowerStats;
 
 class CAIMeleeEnemy : public IAIController {
 	DECL_SIBLING_ACCESS();
 
 private:
-
-	float health = 5.f;
+	int health = 5;
 	float speed = 25.f;
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 5.f;

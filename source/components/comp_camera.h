@@ -42,15 +42,14 @@ private:
 
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void CalculateVerticalOffsetVector();
-	
 
 public:
 	static void registerMsgs();
 	void debugInMenu();
+	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	VEC2 GetIncrementFromInput(float delta);
 	void UpdateMovement(VEC2 increment, float delta);
 	void CenterCamera();
-	
 };

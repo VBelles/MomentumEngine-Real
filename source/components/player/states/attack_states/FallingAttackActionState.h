@@ -12,7 +12,7 @@ class FallingAttackActionState : public AirborneActionState {
 	float maxFallingVelocity = 45.f;
 
 	CHandle hitboxHandle;
-	float damage = 3.f;
+	int damage = 3;
 
 public:
 	FallingAttackActionState(CHandle playerModelHandle, CHandle hitbox);

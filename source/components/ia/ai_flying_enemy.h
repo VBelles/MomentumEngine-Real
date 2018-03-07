@@ -7,8 +7,7 @@ class CAIFlyingEnemy : public IAIController {
 	DECL_SIBLING_ACCESS();
 
 private:
-
-	float health = 5.f;
+	int health = 5;
 	float speed = 25.f;
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 5.f;
@@ -57,5 +56,3 @@ public:
 	void GrabbedState(float delta);
 	void PropelledState(float delta);
 };
-
-

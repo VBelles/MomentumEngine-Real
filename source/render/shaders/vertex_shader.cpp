@@ -26,12 +26,12 @@ bool CVertexShader::create(const std::string& filename, const std::string& fn_en
     return false;
   }
 
-  // 
-  auto vtx_decl = CVertexDeclManager::get().getByName(vtx_decl_name);
-  assert(vtx_decl);
+  // Save vtx_declaration used by me
+  vtx_declaration = CVertexDeclManager::get().getByName(vtx_decl_name);
+  assert(vtx_declaration);
 
   // 
-  hr = Render.device->CreateInputLayout(vtx_decl->cpu_layout, vtx_decl->numElements, pVSBlob->GetBufferPointer(),
+  hr = Render.device->CreateInputLayout(vtx_declaration->cpu_layout, vtx_declaration->numElements, pVSBlob->GetBufferPointer(),
     pVSBlob->GetBufferSize(), &vertex_layout);
   if (FAILED(hr)) 
   {
@@ -44,8 +44,10 @@ bool CVertexShader::create(const std::string& filename, const std::string& fn_en
   if (FAILED(hr))
     return false;
 
-  return true;
+  setDXName(vertex_layout, vtx_decl_name.c_str());
+  setDXName(vs, (filename + ":" + fn_entry_name).c_str());
 
+  return true;
 }
 
 void CVertexShader::destroy() {

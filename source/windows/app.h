@@ -23,6 +23,8 @@ public:
 	bool fullscreen = false;
 	bool showDebug = false;
 
+    bool resetMouse = false;
+
 	static CApp& get() {
 		assert(app_instance);
 		return *app_instance;

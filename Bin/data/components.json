@@ -1,25 +1,30 @@
 {
-	"sizes": {
-		"default": 512,
-		"transform": 512
+	"sizes" : {
+		"default" : 1024,
+		"transform" : 1024
 	},
-	"init_order": {
-		"entity": 100,
-		"transform": 90
-	},
-	"update": [
+  "init_order" : {
+    "entity" : 100,
+    "transform" : 90
+  },
+	"update" : [
 		"player_controller",
 		"collectable",
 		"destroyCondition",
 		"platform_move",
 		"fwd_msg",
-    	"hierarchy",
+	    "hierarchy",
 		"player_model",
 		"ai_melee_enemy",
 		"hitbox",
 		"respawner",
 		"shadow",
+	    "local_aabb",
 		"camera",
-		"render"
+		"culling"
+	],
+	"render_debug" : 
+	[
+		"transform"
 	]
 }

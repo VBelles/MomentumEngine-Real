@@ -46,9 +46,12 @@ LRESULT CModuleManager::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 void CModuleManager::update(float delta) {
 	applyRequestedGameState();
 
-	for (auto& mod : _update_modules) {
-		if (mod->isActive()) {
-			mod->update(delta);
+	for (auto& mod : _update_modules)
+	{
+		if (mod->isActive()) 
+		{
+      PROFILE_FUNCTION(mod->getName().c_str());
+      mod->update(delta);
 		}
 	}
 }
@@ -56,7 +59,8 @@ void CModuleManager::update(float delta) {
 void CModuleManager::render() {
 	for (auto& mod : _render_modules) {
 		if (mod->isActive()) {
-			mod->render();
+      PROFILE_FUNCTION(mod->getName().c_str());
+      mod->render();
 		}
 	}
 	if (CApp::get().showDebug) {
@@ -200,7 +204,8 @@ void CModuleManager::loadGamestates(const std::string& filename) {
 }
 
 void CModuleManager::applyRequestedGameState() {
-	if (_requested_gs) {
+  PROFILE_FUNCTION("CModuleManager::applyRequestedGameState");
+  if (_requested_gs) {
 		// stop current game modules
 		if (_current_gs) {
 			stopModules(*_current_gs);
@@ -215,8 +220,8 @@ void CModuleManager::applyRequestedGameState() {
 }
 
 void CModuleManager::renderDebug() {
-
-	if (ImGui::TreeNode("Modules")) {
+  PROFILE_FUNCTION("CModuleManager::renderDebug");
+  if (ImGui::TreeNode("Modules")) {
 		for (auto& mod : _registered_modules) {
 			bool active = mod->isActive();
 			if (ImGui::Checkbox(mod->getName().c_str(), &active)) {

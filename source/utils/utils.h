@@ -17,11 +17,6 @@ bool fatal(const char* fmt, ...);
 
 bool isPressed(int key);
 
-template <typename T>
-T clamp(const T& n, const T& lower, const T& upper) {
-	return std::max(lower, std::min(n, upper));
-}
-
 json loadJson(const std::string& filename);
 
 #endif

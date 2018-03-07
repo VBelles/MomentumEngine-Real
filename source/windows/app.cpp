@@ -2,6 +2,7 @@
 #include "app.h"
 #include "render/render.h"
 #include "input/devices/mouse.h"
+#include "profiling/profiling.h"
 #include <windowsx.h>
 
 CApp* CApp::app_instance = nullptr;
@@ -9,27 +10,29 @@ CApp* CApp::app_instance = nullptr;
 // 
 //--------------------------------------------------------------------------------------
 LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
-	PAINTSTRUCT ps;
-	HDC hdc;
+  PAINTSTRUCT ps;
+  HDC hdc;
 
-	// If the OS processes it, do not process anymore
-	if (CEngine::get().getModules().OnOSMsg(hWnd, message, wParam, lParam))
-		return 1;
+  // If the OS processes it, do not process anymore
+  if (CEngine::get().getModules().OnOSMsg(hWnd, message, wParam, lParam))
+    return 1;
 
-	switch (message) {
-	case WM_PAINT:
-		// Validate screen repaint in os/windows 
-		hdc = BeginPaint(hWnd, &ps);
-		EndPaint(hWnd, &ps);
-		break;
+  switch (message)
+  {
 
-    case CDirectoyWatcher::WM_FILE_CHANGED: {
-        const char* filename = (const char*)lParam;
-        dbg("File has changed! %s (%d)\n", filename, wParam);
-        Resources.onFileChanged(filename);
-        delete[] filename;
-        break;
-    }
+  case CDirectoyWatcher::WM_FILE_CHANGED: {
+    const char* filename = (const char*)lParam;
+    dbg("File has changed! %s (%d)\n", filename, wParam);
+    Resources.onFileChanged(filename);
+    delete[] filename;
+    break;
+  }
+
+  case WM_PAINT:
+    // Validate screen repaint in os/windows 
+    hdc = BeginPaint(hWnd, &ps);
+    EndPaint(hWnd, &ps);
+    break;
 
   case WM_DESTROY:
     PostQuitMessage(0);
@@ -38,18 +41,21 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	case WM_MOUSEMOVE:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse) {
+		if (mouse)
+		{
 			int posX = GET_X_LPARAM(lParam);
 			int posY = GET_Y_LPARAM(lParam);
 			mouse->setPosition(static_cast<float>(posX), static_cast<float>(posY));
+			app_instance->resetMouse = true;
 		}
 	}
-	break;
+		break;
 
 	case WM_MBUTTONDOWN:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse) {
+		if (mouse)
+		{
 			mouse->setButton(Input::MOUSE_MIDDLE, true);
 			SetCapture(hWnd);
 		}
@@ -59,7 +65,8 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	case WM_MBUTTONUP:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse) {
+		if (mouse)
+		{
 			mouse->setButton(Input::MOUSE_MIDDLE, false);
 			ReleaseCapture();
 		}
@@ -69,7 +76,8 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	case WM_LBUTTONDOWN:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse) {
+		if (mouse)
+		{
 			mouse->setButton(Input::MOUSE_LEFT, true);
 			SetCapture(hWnd);
 		}
@@ -79,7 +87,8 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	case WM_LBUTTONUP:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse) {
+		if (mouse)
+		{
 			mouse->setButton(Input::MOUSE_LEFT, false);
 			ReleaseCapture();
 		}
@@ -89,7 +98,8 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	case WM_RBUTTONDOWN:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse) {
+		if (mouse)
+		{
 			mouse->setButton(Input::MOUSE_RIGHT, true);
 			SetCapture(hWnd);
 		}
@@ -99,7 +109,8 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	case WM_RBUTTONUP:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse) {
+		if (mouse)
+		{
 			mouse->setButton(Input::MOUSE_RIGHT, false);
 			ReleaseCapture();
 		}
@@ -109,7 +120,8 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	case WM_MOUSEWHEEL:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse) {
+		if (mouse)
+		{
 			float wheel_delta = static_cast<float>(GET_WHEEL_DELTA_WPARAM(wParam)) / WHEEL_DELTA;
 			mouse->setWheelDelta(wheel_delta);
 		}
@@ -238,7 +250,6 @@ void CApp::mainLoop() {
 // Read any basic configuration required to boot, initial resolution, full screen, modules, ...
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
-
 	json j = loadJson("data/configuration.json");
 	json& jScreen = j["screen"];
 
@@ -270,13 +281,15 @@ bool CApp::start() {
 
 //--------------------------------------------------------------------------------------
 bool CApp::stop() {
-	return CEngine::get().stop();
+  return CEngine::get().stop();
 }
 
 //--------------------------------------------------------------------------------------
 void CApp::doFrame() {
-	float dt = time_since_last_render.elapsedAndReset();
-	CEngine::get().update(dt);
-	CEngine::get().render();
+  PROFILE_FRAME_BEGINS();
+  PROFILE_FUNCTION("App::doFrame");
+  float dt = time_since_last_render.elapsedAndReset();
+  CEngine::get().update(dt);
+  CEngine::get().render();
 }
 

@@ -8,8 +8,7 @@
 		"main_menu",
 		"splash",
 		"game_over",
-	    "test_input",
-	    "test_axis"
+		"test_axis"
 	],
 	"render" : 
 	[
