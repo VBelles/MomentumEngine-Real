@@ -30,18 +30,15 @@ void FallingAttackActionState::update (float delta) {
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->enable();
 		}
-
-		deltaMovement.y = CalculateVerticalDeltaMovement(delta, fallingAcceleration, maxFallingVelocity);
-
-		velocityVector->y += fallingAcceleration * delta;
-		velocityVector->y = clamp(velocityVector->y, -maxFallingVelocity, maxFallingVelocity);
-		//dbg("%f\n", velocityVector->y);
+		GetPlayerModel()->SetGravity(fallingAcceleration);
 	}
 }
 
 void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	SetPose();
+	GetPlayerModel()->maxVerticalSpeed = maxFallingVelocity;
+	GetPlayerModel()->SetGravity(0.f);
 	dbg("ENTER Falling Attack\n");
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
@@ -52,6 +49,7 @@ void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 
 void FallingAttackActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
+	GetPlayerModel()->ResetGravity();
 	GetPlayerModel()->movementState->SetPose();
 	dbg("FINISH falling Attack\n");
 }

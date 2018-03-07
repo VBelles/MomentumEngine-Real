@@ -76,7 +76,9 @@ public:
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
 	float GetGravity() { return currentGravity; }
+	void SetGravity(float newGravity) { currentGravity = newGravity; }
 	void SetGravityMultiplier(float multiplier) { currentGravity = baseGravity * multiplier; }
+	void ResetGravity() { currentGravity = baseGravity; }
 
 	PowerStats* GetPowerStats();
 	
