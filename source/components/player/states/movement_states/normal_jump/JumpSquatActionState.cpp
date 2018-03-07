@@ -23,7 +23,6 @@ void JumpSquatActionState::OnStateExit(IActionState * nextState) {
 
 void JumpSquatActionState::update (float delta) {
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
-
 	if (timer.elapsed() >= squatTime) {
 		//saltar
 		GetPlayerModel()->isAttachedToPlatform = false;

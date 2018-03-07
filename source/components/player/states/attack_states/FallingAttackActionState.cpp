@@ -8,6 +8,8 @@ FallingAttackActionState::FallingAttackActionState(CHandle playerModelHandle, CH
 }
 
 void FallingAttackActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
+
 	if (timer.elapsed() < hitboxOutTime) {
 		//posicionamiento
 		bool hasInput = movementInput != VEC2::Zero;
@@ -19,7 +21,7 @@ void FallingAttackActionState::update (float delta) {
 			RotatePlayerTowards(delta, targetPos, 10.f);
 		}
 
-		deltaMovement.y += 0.1f * delta;
+		deltaMovement.y += 5.f * delta;
 	}
 	else {
 		//ataque caída
