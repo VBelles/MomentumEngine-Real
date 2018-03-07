@@ -11,8 +11,13 @@ void TurnAroundActionState::update (float delta) {
 	deltaMovement.z = 0.f;
 	if (timer.elapsed() >= turnAroundTime) {
 		RotateToFinalDirection();
-		SetFinalVelocity();
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+		if (movementInput.Length() < 0.8f) {
+			SetFinalVelocity();
+			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+		}
+		else {
+			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
+		}
 	}
 	else {
 		float y, p, r;
