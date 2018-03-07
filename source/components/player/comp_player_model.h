@@ -75,8 +75,9 @@ public:
 	TCompCollider* GetCollider() { return colliderHandle; }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
-	float GetGravity() { return gravity; }
-	
+	float GetGravity() { return currentGravity; }
+	void SetGravityMultiplier(float multiplier) { currentGravity = baseGravity * multiplier; }
+
 	PowerStats* GetPowerStats();
 	
 	bool isGrounded = false;
@@ -95,7 +96,8 @@ private:
 	CHandle colliderHandle;
 	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
-	float gravity = 0;
+	float baseGravity = 0.f;
+	float currentGravity = 0.f;
 
 	PowerStats* ssj1;
 	PowerStats* ssj2;

@@ -59,14 +59,15 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
-		gravity = accelerationVector.y;
+		baseGravity = accelerationVector.y;
+		currentGravity = baseGravity;
 	}
 
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
-	gravity = j.value("gravity", 0.0f);
-	accelerationVector.y = gravity;
+	baseGravity = j.value("gravity", 0.0f);
+	accelerationVector.y = baseGravity;
 
 	ssj1 = loadPowerStats(j["ssj1"]);
 	ssj2 = loadPowerStats(j["ssj2"]);
@@ -230,7 +231,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 		if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
-			gravity = accelerationVector.y;
+			baseGravity = accelerationVector.y;
 		}
 		ImGui::End();
 	});
