@@ -1,9 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_render.h"
 #include "comp_transform.h"
-
-DECL_OBJ_MANAGER("render", TCompRender);
-
 #include "render/render_objects.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
@@ -11,13 +8,13 @@ DECL_OBJ_MANAGER("render", TCompRender);
 #include "render/render_manager.h"
 #include "entity/entity_parser.h"
 
-// --------------------------------------------
+DECL_OBJ_MANAGER("render", TCompRender);
+
 TCompRender::~TCompRender() {
     // Delete all references of me in the render manager
     CRenderManager::get().delRenderKeys(CHandle(this));
 }
 
-// --------------------------------------------
 void TCompRender::onDefineLocalAABB(const TMsgDefineLocalAABB& msg) {
     AABB::CreateMerged(*msg.aabb, *msg.aabb, aabb);
 }
@@ -26,7 +23,6 @@ void TCompRender::registerMsgs() {
     DECL_MSG(TCompRender, TMsgDefineLocalAABB, onDefineLocalAABB);
 }
 
-// --------------------------------------------
 void TCompRender::debugInMenu() {
     ImGui::ColorEdit4("Color", &color.x);
 
@@ -54,23 +50,19 @@ void TCompRender::renderDebug() {
     assert(transform);
 
     for (auto& mwm : meshes) {
-        if (!mwm.enabled)
-            continue;
+        if (!mwm.enabled) continue;
         renderMesh(mwm.mesh, transform->asMatrix(), color);
     }
     activateRSConfig(RSCFG_DEFAULT);
 }
 
-// --------------------------------------------
 void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
-
     CHandle(this).setOwner(ctx.current_entity);
 
     CMeshWithMaterials mwm;
 
     std::string name_mesh = j.value("mesh", "axis.mesh");
     mwm.mesh = Resources.get(name_mesh)->as<CRenderMesh>();
-
 
     if (j.count("materials")) {
         auto& j_mats = j["materials"];
