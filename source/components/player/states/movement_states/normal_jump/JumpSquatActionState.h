@@ -18,6 +18,8 @@ public:
 	void OnStateExit(IActionState* nextState) override;
 	void OnJumpHighButton() override;
 	void OnJumpHighButtonReleased() override;
+	void OnStrongAttackButton() override;
+	void OnFastAttackButton() override;
 
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_jump_squat.mesh"); }
 	virtual void OnLeavingGround() override;

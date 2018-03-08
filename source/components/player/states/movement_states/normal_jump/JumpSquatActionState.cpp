@@ -46,6 +46,12 @@ void JumpSquatActionState::OnJumpHighButtonReleased() {
 	isShortHop = true;
 }
 
+void JumpSquatActionState::OnStrongAttackButton() {
+}
+
+void JumpSquatActionState::OnFastAttackButton() {
+}
+
 void JumpSquatActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
