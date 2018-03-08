@@ -40,7 +40,7 @@ const IResource* CResourceManager::get(const std::string& res_name) {
     if (it != all_resources.end())
         return it->second;
 
-    // si no .. lo creo...
+    // Si no, lo creo.
     // Find extension of the name, will identify the type of resource
     std::string::size_type str_pos = res_name.find_last_of(".");
     if (str_pos == std::string::npos) {

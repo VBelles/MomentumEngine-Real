@@ -40,8 +40,7 @@ void TCompRender::debugInMenu() {
     }
 
     // Notify the rendermanager that we should regenerate our contents
-    if (changed)
-        refreshMeshesInRenderManager();
+    if (changed) refreshMeshesInRenderManager();
 }
 
 void TCompRender::renderDebug() {
@@ -86,8 +85,9 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
     mwm.enabled = j.value("enabled", true);
 
     // If there is a color in the json, read it
-    if (j.count("color"))
-        color = loadVEC4(j["color"]);
+    if (j.count("color")) color = loadVEC4(j["color"]);
+
+    originalColor = color;
 
     AABB::CreateMerged(aabb, aabb, mwm.mesh->getAABB());
 
@@ -95,7 +95,6 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompRender::load(const json& j, TEntityParseContext& ctx) {
-
     // Reset the AABB
     aabb.Center = VEC3(0, 0, 0);
     aabb.Extents = VEC3(0, 0, 0);
@@ -113,8 +112,21 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
     refreshMeshesInRenderManager();
 }
 
-void TCompRender::setMesh(std::string meshName) {
+// Esta función está caduca, la mantengo para que funcionen cosas viejas.
+void TCompRender::setMesh(std::string meshName, std::string materialName) {
+    meshes.clear(); // !!! Asumo mesh única.
     mesh = Resources.get(meshName)->as<CRenderMesh>();
+    if (materialName == "") {
+        material = Resources.get("data/materials/white.material")->as<CMaterial>();
+    }
+    else {
+        material = Resources.get(materialName)->as<CMaterial>();
+    }
+    materials.clear();
+    materials.push_back(material);
+    CMeshWithMaterials meshWithMat{true, mesh, materials};
+    meshes.push_back(meshWithMat);
+    refreshMeshesInRenderManager();
 }
 
 void TCompRender::update(float delta) {
@@ -137,7 +149,6 @@ void TCompRender::refreshMeshesInRenderManager() {
 
     // The house and the trees..
     for (auto& mwm : meshes) {
-
         // Do not register disabled meshes
         if (!mwm.enabled) continue;
 

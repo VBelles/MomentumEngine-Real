@@ -21,7 +21,8 @@
 		"shadow",
 	    "local_aabb",
 		"camera",
-		"culling"
+		"culling",
+		"render"
 	],
 	"render_debug" : 
 	[

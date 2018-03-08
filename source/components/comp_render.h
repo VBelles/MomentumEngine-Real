@@ -7,8 +7,7 @@ class CTexture;
 class CRenderTechnique;
 class CMaterial;
 
-class TCompRender : public TCompBase
-{
+class TCompRender : public TCompBase {
     void loadMesh(const json& j, TEntityParseContext& ctx);
     void onDefineLocalAABB(const TMsgDefineLocalAABB& msg);
 
@@ -18,7 +17,6 @@ class TCompRender : public TCompBase
     VEC4 originalColor;
 
 public:
-
     ~TCompRender();
 
     VEC4               color = VEC4(1, 1, 1, 1);
@@ -29,14 +27,17 @@ public:
         const CRenderMesh* mesh = nullptr;
         std::vector<const CMaterial*> materials;
     };
-    const CRenderMesh* mesh = nullptr; // Esto ahora debería ser reemplazado por la struct de arriba.
+    const CRenderMesh* mesh = nullptr; // !!! Esto ahora debería ser reemplazado por la struct de arriba.
+    const CMaterial* material = nullptr; // !!! Esto ahora debería ser reemplazado por la struct de arriba.
+    std::vector<const CMaterial*> materials; // !!! Esto ahora debería ser reemplazado por la struct de arriba.
+
     std::vector<CMeshWithMaterials> meshes;
 
     void refreshMeshesInRenderManager();
     void debugInMenu();
     void renderDebug();
     void load(const json& j, TEntityParseContext& ctx);
-    void setMesh(std::string meshName);
+    void setMesh(std::string meshName, std::string materialName = "");
 
     void update(float delta);
     void TurnRed(float time);

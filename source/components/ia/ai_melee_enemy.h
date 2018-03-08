@@ -9,7 +9,8 @@ class CAIMeleeEnemy : public IAIController {
 	DECL_SIBLING_ACCESS();
 
 private:
-	int health = 5;
+    const int maxHealth = 5;
+	int health = maxHealth;
 	float speed = 25.f;
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 5.f;
@@ -34,8 +35,9 @@ private:
 	float grabbedDuration = 0.5f;
 
 	bool isDead = false;
-	std::string originalMeshPath = "data/meshes/enemy.mesh";
-	std::string originalShadowMesh;
+	std::string originalMeshPath = "data/meshes/enemyMelee.mesh";
+    std::string originalShadowMesh;
+    std::string originalMaterialPath = "data/materials/piedras1.material";
 
 	//WARNING: GUARRADA MÁXIMA!!!
 	float initialHorizontalLaunchY = 0.f;
@@ -99,8 +101,4 @@ public:
 	TCompCollider* getCollider() { return get<TCompCollider>(); }
 	CEntity* getPlayerEntity() { return player; }
 	TCompTransform* getPlayerTransform() { return getPlayerEntity()->get<TCompTransform>(); }
-
-
 };
-
-

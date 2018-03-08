@@ -55,12 +55,10 @@ void CRenderManager::delRenderKeys(CHandle h_owner) {
     render_keys.deleteByOwner(h_owner);
 }
 
-void CRenderManager::addRenderKey(
-    CHandle h_comp_render_owner,
-    const CRenderMesh* mesh,
-    const CMaterial* material,
-    uint32_t subgroup_idx) {
-
+void CRenderManager::addRenderKey(CHandle h_comp_render_owner,
+                                  const CRenderMesh* mesh,
+                                  const CMaterial* material,
+                                  uint32_t subgroup_idx) {
     CEntity* e_owner = h_comp_render_owner.getOwner();
     assert(e_owner);
 
@@ -98,7 +96,6 @@ void CRenderManager::TRenderKey::debugInMenu() {
     std::string mat_name = material->getName();
     snprintf(key_name, 255, "%s %s %s [%d]", material->tech->getCategory().c_str(), mat_name.c_str(), mesh->getName().c_str(), subgroup_idx);
     if (ImGui::TreeNode(key_name)) {
-
         auto ncmaterial = const_cast<CMaterial*>(material);
         if (ImGui::TreeNode(material->getName().c_str())) {
             ncmaterial->debugInMenu();
