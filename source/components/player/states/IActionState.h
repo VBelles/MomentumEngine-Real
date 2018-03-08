@@ -141,7 +141,7 @@ public:
 
 	virtual void SetPose() { GetRender()->setMesh("data/meshes/pose_idle.mesh"); }
 
-	virtual void SetMovementInput(VEC2 movementInput) {}
+	virtual void SetMovementInput(VEC2 input) { movementInput = input; }
 	virtual VEC3 GetDeltaMovement() { return deltaMovement; }
 	virtual VEC2 GetMovementInput() { return movementInput; }
 	virtual void OnJumpHighButton() {}

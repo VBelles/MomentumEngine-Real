@@ -8,6 +8,7 @@ AirborneActionState::AirborneActionState(CHandle playerModelHandle)
 }
 
 void AirborneActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
 	bool hasInput = movementInput != VEC2::Zero;
 
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
@@ -54,10 +55,6 @@ void AirborneActionState::OnStateEnter(IActionState * lastState) {
 
 void AirborneActionState::OnStateExit(IActionState * nextState) {
 	IActionState::OnStateExit(nextState);
-}
-
-void AirborneActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
 }
 
 void AirborneActionState::OnJumpHighButton() {

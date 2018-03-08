@@ -8,6 +8,7 @@ GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 }
 
 void GrabActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
 	if (timer.elapsed() >= animationEndTime) {
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 	}

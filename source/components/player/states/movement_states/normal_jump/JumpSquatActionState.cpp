@@ -5,23 +5,8 @@ JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 }
 
-
-void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
-	SetPose();
-	//dbg("Entrando en JumpSquat\n");
-	squatTime = squatFrames * (1.f / 60);
-	isShortHop = false;
-	timer.reset();
-	enteringVelocity = GetPlayerModel()->GetVelocityVector()->Length();
-}
-
-void JumpSquatActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
-	//dbg("Saliendo de JumpSquat\n");
-}
-
 void JumpSquatActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -32,7 +17,6 @@ void JumpSquatActionState::update (float delta) {
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
-		deltaMovement = VEC3::Zero;
 		if (hasInput) {
 			deltaMovement = GetPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
@@ -47,8 +31,19 @@ void JumpSquatActionState::update (float delta) {
 	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 }
 
-void JumpSquatActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
+void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
+	GroundedActionState::OnStateEnter(lastState);
+	SetPose();
+	//dbg("Entrando en JumpSquat\n");
+	squatTime = squatFrames * (1.f / 60);
+	isShortHop = false;
+	timer.reset();
+	enteringVelocity = GetPlayerModel()->GetVelocityVector()->Length();
+}
+
+void JumpSquatActionState::OnStateExit(IActionState * nextState) {
+	GroundedActionState::OnStateExit(nextState);
+	//dbg("Saliendo de JumpSquat\n");
 }
 
 //ni caso a este input

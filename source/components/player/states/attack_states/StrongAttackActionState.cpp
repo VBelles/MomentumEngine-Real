@@ -8,6 +8,8 @@ StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHan
 }
 
 void StrongAttackActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
+
 	if (isLauncher && timer.elapsed() > beginLauncherTime) {
 		dbg("Cambio de strong attack a vertical launcher\n");
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::VerticalLauncher);

@@ -5,6 +5,18 @@ JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 }
 
+void JumpSquatLongActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	
+	if (timer.elapsed() >= squatTime) {
+		//saltar
+		GetPlayerModel()->isAttachedToPlatform = false;
+		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
+		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
+		deltaMovement = *velocityVector * delta;
+	}
+}
 
 void JumpSquatLongActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
@@ -17,34 +29,6 @@ void JumpSquatLongActionState::OnStateEnter(IActionState * lastState) {
 void JumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 	//dbg("Saliendo de JumpSquatLong\n");
-}
-
-void JumpSquatLongActionState::update (float delta) {
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
-	
-	if (timer.elapsed() >= squatTime) {
-		//saltar
-		GetPlayerModel()->isAttachedToPlatform = false;
-		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
-		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
-		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
-		deltaMovement = *velocityVector * delta;
-	}
-	else {
-		deltaMovement = VEC3::Zero;
-		//distancia vertical recorrida
-		currentPowerStats->currentGravityMultiplier = currentPowerStats->normalGravityMultiplier;
-		deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
-
-		//Nueva velocidad vertical y clampeo
-		velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-	}
-
-	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
-}
-
-void JumpSquatLongActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
 }
 
 //ni caso a este input

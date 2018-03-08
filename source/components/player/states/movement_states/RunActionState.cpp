@@ -23,10 +23,6 @@ void RunActionState::OnStateExit(IActionState * nextState) {
 	dbg("Saliendo de run\n");
 }
 
-void RunActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
-}
-
 void RunActionState::OnJumpHighButton() {
 	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
 }

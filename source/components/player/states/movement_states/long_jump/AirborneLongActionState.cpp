@@ -6,6 +6,7 @@ AirborneLongActionState::AirborneLongActionState(CHandle playerModelHandle)
 }
 
 void AirborneLongActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
 	bool hasInput = movementInput != VEC2::Zero;
 
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
@@ -48,10 +49,6 @@ void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 void AirborneLongActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
 	//dbg("Saliendo de airborne long\n");
-}
-
-void AirborneLongActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
 }
 
 void AirborneLongActionState::OnJumpHighButton() {

@@ -20,10 +20,6 @@ void AirborneNormalActionState::OnStateExit(IActionState * nextState) {
 	//dbg("Saliendo de airborne normal\n");
 }
 
-void AirborneNormalActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
-}
-
 void AirborneNormalActionState::OnJumpHighButton() {
 	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
 }

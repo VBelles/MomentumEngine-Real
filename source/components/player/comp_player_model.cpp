@@ -60,7 +60,6 @@ void TCompPlayerModel::debugInMenu() {
 
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		baseGravity = accelerationVector.y;
-		currentGravity = baseGravity;
 	}
 
 }
@@ -68,6 +67,7 @@ void TCompPlayerModel::debugInMenu() {
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	baseGravity = j.value("gravity", 0.0f);
 	accelerationVector.y = baseGravity;
+	currentGravity = baseGravity;
 
 	ssj1 = loadPowerStats(j["ssj1"]);
 	ssj2 = loadPowerStats(j["ssj2"]);
@@ -318,11 +318,10 @@ void TCompPlayerModel::update(float dt) {
 	if (!lockWalk) {
 		deltaMovement = movementState->GetDeltaMovement();
 	}
-	else {
-		if (attackState != attackStates[ActionStates::Idle]) {
-			deltaMovement = attackState->GetDeltaMovement();
-		}
+	else if (attackState != attackStates[ActionStates::Idle]) {
+			deltaMovement = attackState->GetDeltaMovement();	
 	}
+
 	AddMovementOffset();
 	ApplyGravity(dt);
 	UpdateMovement(dt, deltaMovement);
@@ -338,10 +337,12 @@ void TCompPlayerModel::update(float dt) {
 void TCompPlayerModel::ApplyGravity(float delta) {
 	float resultingDeltaMovement;
 	resultingDeltaMovement = velocityVector.y * delta + 0.5f * currentGravity * delta * delta;
-	dbg("currentGravity: %f", currentGravity);
+	//dbg("currentGravity: %f\n", currentGravity);
 	//clampear distancia vertical
 	resultingDeltaMovement = resultingDeltaMovement > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : resultingDeltaMovement;
+	//dbg("1  deltaMovement: %f\n", deltaMovement.y);
 	deltaMovement.y += resultingDeltaMovement;
+	//dbg("2  deltaMovement: %f\n", deltaMovement.y);
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {

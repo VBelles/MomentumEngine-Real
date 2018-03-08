@@ -6,6 +6,7 @@ LandingActionState::LandingActionState(CHandle playerModelHandle)
 }
 
 void LandingActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
 	bool hasInput = movementInput != VEC2::Zero;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
@@ -51,10 +52,6 @@ void LandingActionState::OnStateEnter(IActionState * lastState) {
 void LandingActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 	dbg("Saliendo de landing\n");
-}
-
-void LandingActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
 }
 
 void LandingActionState::OnJumpHighButton() {

@@ -23,10 +23,6 @@ void IdleActionState::OnStateExit(IActionState * nextState) {
 	dbg("Saliendo de idle\n");
 }
 
-void IdleActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
-}
-
 void IdleActionState::OnJumpHighButton() {
 	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
 }

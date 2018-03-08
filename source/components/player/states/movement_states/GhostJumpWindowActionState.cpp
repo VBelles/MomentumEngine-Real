@@ -5,6 +5,13 @@ GhostJumpWindowActionState::GhostJumpWindowActionState(CHandle playerModelHandle
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 }
 
+void GhostJumpWindowActionState::update (float delta) {
+	if (timer.elapsed() >= squatTime) {
+		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
+		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+	}
+	AirborneActionState::update(delta);
+}
 
 void GhostJumpWindowActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
@@ -17,18 +24,6 @@ void GhostJumpWindowActionState::OnStateEnter(IActionState * lastState) {
 void GhostJumpWindowActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
 	//dbg("Saliendo de GhostJumpWindow\n");
-}
-
-void GhostJumpWindowActionState::update (float delta) {
-	if (timer.elapsed() >= squatTime) {
-		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
-	}
-	AirborneActionState::update(delta);
-}
-
-void GhostJumpWindowActionState::SetMovementInput(VEC2 input) {
-	AirborneActionState::SetMovementInput(input);
 }
 
 void GhostJumpWindowActionState::OnJumpHighButton() {

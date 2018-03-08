@@ -8,6 +8,7 @@ FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle 
 }
 
 void FastAttackActionState::update(float delta) {
+	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Launch && timer.elapsed() > beginLauncherTime) {
 		dbg("Cambio de strong attack a vertical launcher\n");
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::HorizontalLauncher);

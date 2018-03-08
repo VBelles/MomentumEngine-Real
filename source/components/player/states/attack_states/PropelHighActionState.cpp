@@ -7,6 +7,7 @@ PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 }
 
 void PropelHighActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (timer.elapsed() >= endingTime) {
 		if (movementInput != VEC2::Zero) {
@@ -51,10 +52,6 @@ void PropelHighActionState::OnStateExit(IActionState * nextState) {
 	GetPlayerModel()->movementState->SetPose();
 	GetPlayerModel()->lockMovementState = false;
 	GetPlayerModel()->lockWalk = false;
-}
-
-void PropelHighActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
 }
 
 void PropelHighActionState::OnJumpHighButton() {

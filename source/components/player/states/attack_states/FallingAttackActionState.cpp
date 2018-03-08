@@ -21,7 +21,7 @@ void FallingAttackActionState::update (float delta) {
 			RotatePlayerTowards(delta, targetPos, 10.f);
 		}
 
-		deltaMovement.y += 5.f * delta;
+		deltaMovement.y += 50.f * delta;
 	}
 	else {
 		//ataque caída
@@ -52,10 +52,6 @@ void FallingAttackActionState::OnStateExit(IActionState * nextState) {
 	GetPlayerModel()->ResetGravity();
 	GetPlayerModel()->movementState->SetPose();
 	dbg("FINISH falling Attack\n");
-}
-
-void FallingAttackActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
 }
 
 void FallingAttackActionState::OnJumpHighButton() {
