@@ -305,7 +305,6 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 
 void TCompPlayerModel::update(float dt) {
 	frame++;
-
 	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
 		showVictoryDialog = false;
 	}
@@ -341,8 +340,10 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 	//clampear distancia vertical
 	resultingDeltaMovement = resultingDeltaMovement > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : resultingDeltaMovement;
 	//dbg("1  deltaMovement: %f\n", deltaMovement.y);
-	deltaMovement.y += resultingDeltaMovement;
+	deltaMovement.y = resultingDeltaMovement;
 	//dbg("2  deltaMovement: %f\n", deltaMovement.y);
+	velocityVector.y += currentGravity * delta;
+	velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {

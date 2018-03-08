@@ -24,8 +24,6 @@ void GhostJumpSquatActionState::update (float delta) {
 			//usar entering velocity en vez de GetPlayerModel()->maxHorizontalSpeed (una vez el movimiento se haga con velocityVector)
 			deltaMovement = GetPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
-
-		currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
 	}
 }
 

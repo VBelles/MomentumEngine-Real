@@ -29,17 +29,14 @@ void AirborneLongActionState::update (float delta) {
 		deltaMovement.x = velocityVector->x * delta;
 		deltaMovement.z = velocityVector->z * delta;
 	}
-
-	currentPowerStats->currentGravityMultiplier = currentPowerStats->longGravityMultiplier;
-	deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
-
-	velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 }
 
 void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	SetPose();
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
+	GetPlayerModel()->SetGravityMultiplier(currentPowerStats->longGravityMultiplier);
 	//dbg("Entrando en airborne long\n");
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));

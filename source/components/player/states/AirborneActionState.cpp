@@ -37,17 +37,16 @@ void AirborneActionState::update (float delta) {
 		deltaMovement.z = velocityVector->z * delta;
 	}
 
-	//distancia vertical recorrida
-	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-	deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
-
-	//Nueva velocidad vertical y clampeo
-	velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
+	if(velocityVector->y < 0){
+		GetPlayerModel()->SetGravityMultiplier(currentPowerStats->fallingMultiplier);
+	}
 }
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
+	GetPlayerModel()->ResetGravity();
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));

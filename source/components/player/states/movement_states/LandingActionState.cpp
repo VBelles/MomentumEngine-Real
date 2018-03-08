@@ -25,12 +25,6 @@ void LandingActionState::update (float delta) {
 			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
 		}
 	}
-
-	currentPowerStats->currentGravityMultiplier = velocityVector->y < 0 ? currentPowerStats->fallingMultiplier : currentPowerStats->normalGravityMultiplier;
-	deltaMovement.y = CalculateVerticalDeltaMovement(delta, accelerationVector->y * currentPowerStats->currentGravityMultiplier, currentPowerStats->maxVelocityVertical);
-
-	velocityVector->y += accelerationVector->y * currentPowerStats->currentGravityMultiplier * delta;
-	velocityVector->y = clamp(velocityVector->y, -currentPowerStats->maxVelocityVertical, currentPowerStats->maxVelocityVertical);
 }
 
 void LandingActionState::OnStateEnter(IActionState * lastState) {

@@ -50,8 +50,10 @@ void GroundedActionState::update(float delta) {
 
 void GroundedActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
+	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	if (currentPowerStats) GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
+	GetPlayerModel()->ResetGravity();
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
-
 	//dbg("Entrando en grounded\n");
 }
 
