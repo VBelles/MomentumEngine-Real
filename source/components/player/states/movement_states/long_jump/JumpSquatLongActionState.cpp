@@ -7,6 +7,7 @@ JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
 
 void JumpSquatLongActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	
 	if (timer.elapsed() >= squatTime) {

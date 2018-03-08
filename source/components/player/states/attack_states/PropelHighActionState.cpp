@@ -8,6 +8,7 @@ PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 
 void PropelHighActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (timer.elapsed() >= endingTime) {
 		if (movementInput != VEC2::Zero) {

@@ -7,6 +7,7 @@ GhostJumpSquatActionState::GhostJumpSquatActionState(CHandle playerModelHandle)
 
 void GhostJumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
@@ -21,8 +22,7 @@ void GhostJumpSquatActionState::update (float delta) {
 		bool hasInput = movementInput != VEC2::Zero;
 
 		if (hasInput) {
-			//usar entering velocity en vez de GetPlayerModel()->maxHorizontalSpeed (una vez el movimiento se haga con velocityVector)
-			deltaMovement = GetPlayerTransform()->getFront() * enteringVelocity * delta;
+			deltaMovement += GetPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
 	}
 }

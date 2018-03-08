@@ -8,6 +8,7 @@ TurnAroundActionState::TurnAroundActionState(CHandle playerModelHandle)
 
 void TurnAroundActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
 		RotateToFinalDirection();
 		if (movementInput.Length() > 0.8f) {

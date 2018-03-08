@@ -7,6 +7,7 @@ JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
 
 void JumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -18,7 +19,7 @@ void JumpSquatActionState::update (float delta) {
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
 		if (hasInput) {
-			deltaMovement = GetPlayerTransform()->getFront() * enteringVelocity * delta;
+			deltaMovement += GetPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
 	}
 }

@@ -7,6 +7,7 @@ LandingActionState::LandingActionState(CHandle playerModelHandle)
 
 void LandingActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);

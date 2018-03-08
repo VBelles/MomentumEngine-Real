@@ -334,13 +334,13 @@ void TCompPlayerModel::update(float dt) {
 }
 
 void TCompPlayerModel::ApplyGravity(float delta) {
-	float resultingDeltaMovement;
-	resultingDeltaMovement = velocityVector.y * delta + 0.5f * currentGravity * delta * delta;
+	float deltaMovementDueToGravity;
+	deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
 	//dbg("currentGravity: %f\n", currentGravity);
 	//clampear distancia vertical
-	resultingDeltaMovement = resultingDeltaMovement > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : resultingDeltaMovement;
+	deltaMovement.y += deltaMovementDueToGravity;
+	deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
 	//dbg("1  deltaMovement: %f\n", deltaMovement.y);
-	deltaMovement.y = resultingDeltaMovement;
 	//dbg("2  deltaMovement: %f\n", deltaMovement.y);
 	velocityVector.y += currentGravity * delta;
 	velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
@@ -373,7 +373,8 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	}
 	else if (dynamic_cast<GroundedActionState*>(movementState)) {
 		if (!isGrounded) {
-			(static_cast<GroundedActionState*>(movementState))->OnLeavingGround();
+			if (!isAttachedToPlatform)//Qué hack más hermoso
+				(static_cast<GroundedActionState*>(movementState))->OnLeavingGround();
 		}
 		else {
 			//Si sigue en el suelo anulamos la velocidad ganada por la gravedad

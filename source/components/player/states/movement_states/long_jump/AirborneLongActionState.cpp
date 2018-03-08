@@ -7,6 +7,7 @@ AirborneLongActionState::AirborneLongActionState(CHandle playerModelHandle)
 
 void AirborneLongActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
@@ -19,7 +20,7 @@ void AirborneLongActionState::update (float delta) {
 			currentPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
 			sidewaysAirDriftFactor);
 
-		deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
+		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
 			desiredDirection, appliedAcceleration, currentPowerStats->longJumpVelocityVector.z);
 
 		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);

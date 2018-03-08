@@ -9,6 +9,7 @@ GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(CHandle playerModel
 
 void GhostJumpSquatLongActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
@@ -25,7 +26,7 @@ void GhostJumpSquatLongActionState::update(float delta) {
 		deltaMovement.x = 0;
 		deltaMovement.z = 0;
 		if (hasInput) {
-			deltaMovement = GetPlayerTransform()->getFront() * enteringVelocity * delta;
+			deltaMovement += GetPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
 	}
 }

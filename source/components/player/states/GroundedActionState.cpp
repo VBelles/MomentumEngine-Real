@@ -9,6 +9,7 @@ GroundedActionState::GroundedActionState(CHandle adf)
 
 void GroundedActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
@@ -22,7 +23,7 @@ void GroundedActionState::update(float delta) {
 
 	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
 	if (hasInput) {
-		deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3( velocityVector->x, 0, velocityVector ->z),
+		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3( velocityVector->x, 0, velocityVector ->z),
 			GetPlayerTransform()->getFront(), currentPowerStats->acceleration,
 			currentPowerStats->maxHorizontalSpeed);
 

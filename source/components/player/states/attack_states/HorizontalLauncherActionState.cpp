@@ -9,6 +9,7 @@ HorizontalLauncherActionState::HorizontalLauncherActionState(CHandle playerModel
 
 void HorizontalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() > animationEndTime) {
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 		GetPlayerModel()->lockMovementState = false;
