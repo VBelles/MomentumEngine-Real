@@ -50,9 +50,6 @@ void TurnAroundActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 }
 
-void TurnAroundActionState::SetMovementInput(VEC2 input) {
-}
-
 void TurnAroundActionState::OnJumpHighButton() {
 	//Quizás se puede usar una variable para decir que saldrá en salto y que no salga directamente desde aquí 
 	//(que se coma todos los frames si quiere saltar)

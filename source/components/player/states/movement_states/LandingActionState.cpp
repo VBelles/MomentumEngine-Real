@@ -36,9 +36,7 @@ void LandingActionState::OnStateEnter(IActionState * lastState) {
 	enteringSpeed = enteringVelocityVector.Length();
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
-	deltaMovement = lastState->GetDeltaMovement();
-	deltaMovement.x = 0.f;
-	deltaMovement.z = 0.f;
+	//deltaMovement = lastState->GetDeltaMovement();
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
 	dbg("Entrando en landing\n");
