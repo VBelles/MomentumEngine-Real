@@ -30,7 +30,7 @@ void CAIFlyingEnemy::InitStates() {
 }
 
 void CAIFlyingEnemy::OnHit(const TMsgAttackHit& msg) {
-	float damage = msg.damage;
+	int damage = msg.damage;
 	health -= damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);

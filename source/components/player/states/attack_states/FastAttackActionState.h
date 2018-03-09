@@ -21,7 +21,7 @@ class FastAttackActionState : public GroundedActionState {
 	bool isLauncher = true;
 
 	CHandle hitboxHandle;
-	float damage = 1.f;
+	int damage = 1;
 	AttackPhases phase = AttackPhases::Launch;
 
 public:

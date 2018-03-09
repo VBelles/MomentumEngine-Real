@@ -10,7 +10,6 @@
 
 DECL_OBJ_MANAGER("ai_melee_enemy", CAIMeleeEnemy);
 
-
 void CAIMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 	setEntity(ctx.current_entity);
 	InitStates();
@@ -49,7 +48,6 @@ void CAIMeleeEnemy::InitStates() {
 	ChangeState("idle");
 }
 
-
 void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
 	player = getEntityByName("The Player");
@@ -61,7 +59,7 @@ void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 }
 
 void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
-	float damage = msg.damage;
+	int damage = msg.damage;
 	health -= damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -105,7 +103,6 @@ void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
 	render->TurnRed(0.5f);
 }
 
-
 void CAIMeleeEnemy::OnLaunchedVertically(const TMsgLaunchedVertically& msg) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
@@ -131,17 +128,16 @@ void CAIMeleeEnemy::OnRespawn(const TMsgRespawn & msg) {
 	if (isDead) {
 		ChangeState("idle");
 		isDead = false;
-		health = 5.f;
+		health = maxHealth;
 		getCollider()->enable();
 		getTransform()->setPosition(spawnPosition);
 		getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
 		TCompRender *render = get<TCompRender>();
-		render->setMesh(originalMeshPath);
+		render->setMesh(originalMeshPath, originalMaterialPath);
 		TCompShadow *shadow = get<TCompShadow>();
 		shadow->setMesh(originalShadowMesh);
 	}
 }
-
 
 void CAIMeleeEnemy::IdleState(float delta) {
 	UpdateGravity(delta);
@@ -222,15 +218,14 @@ void CAIMeleeEnemy::DeathState(float delta) {
 	if (!isDead) {
 		getCollider()->disable();
 		//CHandle(this).getOwner().destroy();
-		TCompRender *render = get<TCompRender>();
-		render->setMesh("data/meshes/nada.mesh");
+		TCompRender* render = get<TCompRender>();
+		render->setMesh("data/meshes/nada.mesh"); // Ahora coge lo que hay en meshes, no lo de mesh.
 		TCompRespawner* spawner = get<TCompRespawner>();
-		TCompShadow *shadow = get<TCompShadow>();
+		TCompShadow* shadow = get<TCompShadow>();
 		shadow->setMesh("data/meshes/nada.mesh");
 		spawner->OnDead();
 		isDead = true;
 	}
-	
 }
 
 void CAIMeleeEnemy::VerticalLaunchState(float delta) {
@@ -252,8 +247,6 @@ void CAIMeleeEnemy::HorizontalLaunchState(float delta) {
 		launchedFloatingTimer.reset();
 	}
 }
-
-
 
 void CAIMeleeEnemy::PropelledState(float delta) {
 	dbg("On propelled\n");
@@ -282,7 +275,6 @@ boolean CAIMeleeEnemy::IsPlayerInFov() {
 	return distance < smallChaseRadius || (distance < fovChaseDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov));
 }
 
-
 void CAIMeleeEnemy::UpdateGravity(float delta) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	float deltaY = CalculateVerticalDeltaMovement(delta,
@@ -301,4 +293,3 @@ float CAIMeleeEnemy::CalculateVerticalDeltaMovement(float delta, float accelerat
 	resultingDeltaMovement = resultingDeltaMovement > maxVelocityVertical * delta ? maxVelocityVertical * delta : resultingDeltaMovement;
 	return resultingDeltaMovement;
 }
-

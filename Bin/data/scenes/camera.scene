@@ -6,10 +6,10 @@
 				"pos": "0 3 3"
 			},
 			"render" : {},
-			"flyover_controller" : {},
-			"camera" : {
-				"fov" : 60 
-			}
+			"camera_flyover" : {},
+		      "camera": {
+			"fov": 60
+		      }
 		}
 	}
 ]

@@ -5,23 +5,22 @@
 #include "utils/directory_watcher.h"
 
 class CApp {
-
 	// Windows stuff
 	HWND hWnd;
 	HINSTANCE hInstance;
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-	//
 	CTimer           time_since_last_render;
 	CDirectoyWatcher resources_dir_watcher;
 
 	static CApp* app_instance;
 
-
 public:
 	VEC2 resolution;
 	bool fullscreen = false;
 	bool showDebug = false;
+
+    bool resetMouse = false;
 
 	static CApp& get() {
 		assert(app_instance);

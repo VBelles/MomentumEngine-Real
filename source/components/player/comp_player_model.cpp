@@ -61,7 +61,6 @@ void TCompPlayerModel::debugInMenu() {
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		baseGravity = accelerationVector.y;
 	}
-
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
@@ -74,7 +73,6 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	ssj3 = loadPowerStats(j["ssj3"]);
 
 	powerGauge = new PowerGauge(this);
-
 }
 
 PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
@@ -385,10 +383,8 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 
 void TCompPlayerModel::AddMovementOffset() {
 	if (isAttachedToPlatform) {
-		//dbg("fgdfgdfg\n");
 		deltaMovement += platformMovementOffset;
 	}
-	
 }
 
 //Aqu\ED llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
@@ -524,7 +520,6 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 		SetAttackState(ActionStates::Idle);
 		SetMovementState(ActionStates::AirborneNormal);
 	}
-
 }
 
 void TCompPlayerModel::OnDead() {
@@ -537,4 +532,3 @@ void TCompPlayerModel::OnDead() {
 	hp = maxHp;
 	powerGauge->ResetPower();
 }
-

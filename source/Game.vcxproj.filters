@@ -104,6 +104,15 @@
     <ClCompile Include="components\player\states\movement_states\IdleActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\LandingActionState.cpp" />
     <ClCompile Include="components\comp_shadow.cpp" />
+    <ClCompile Include="components\comp_aabb.cpp" />
+    <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
+    <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
+    <ClCompile Include="geometry\curve.cpp" />
+    <ClCompile Include="modules\system\module_cameras.cpp" />
+    <ClCompile Include="modules\test\module_test_cameras.cpp" />
+    <ClCompile Include="profiling\profiling.cpp" />
+    <ClCompile Include="render\render_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -232,6 +241,18 @@
     <ClInclude Include="components\player\states\movement_states\IdleActionState.h" />
     <ClInclude Include="components\player\states\movement_states\LandingActionState.h" />
     <ClInclude Include="components\comp_shadow.h" />
+    <ClInclude Include="components\comp_aabb.h" />
+    <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\controllers\comp_camera_flyover.h" />
+    <ClInclude Include="components\controllers\comp_camera_orbit.h" />
+    <ClInclude Include="geometry\curve.h" />
+    <ClInclude Include="geometry\interpolators.h" />
+    <ClInclude Include="modules\system\module_cameras.h" />
+    <ClInclude Include="modules\test\module_test_cameras.h" />
+    <ClInclude Include="profiling\profiling.h" />
+    <ClInclude Include="render\mesh\mesh_subgroup.h" />
+    <ClInclude Include="render\gpu_trace.h" />
+    <ClInclude Include="render\render_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
