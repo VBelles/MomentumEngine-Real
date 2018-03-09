@@ -113,6 +113,7 @@
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
+    <ClCompile Include="components\controllers\comp_camera_player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -253,6 +254,7 @@
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\render_manager.h" />
+    <ClInclude Include="components\controllers\comp_camera_player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

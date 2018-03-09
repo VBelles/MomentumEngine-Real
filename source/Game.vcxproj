@@ -113,6 +113,7 @@
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
     <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
+    <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_flying_enemy.cpp" />
     <ClCompile Include="components\ia\ai_melee_enemy.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\controllers\comp_camera_flyover.h" />
     <ClInclude Include="components\controllers\comp_camera_orbit.h" />
+    <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_flying_enemy.h" />
     <ClInclude Include="components\ia\ai_melee_enemy.h" />

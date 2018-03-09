@@ -2,6 +2,7 @@
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
+#include "components/controllers/comp_camera_player.h"
 #include "PowerGauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
@@ -235,7 +236,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	});
 	myTransformHandle = get<TCompTransform>();
 
-	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
+	CEntity* camera = (CEntity*)getEntityByName("xthe_camera");
 	currentCameraHandle = camera->get<TCompCamera>();
 	assert(currentCameraHandle.isValid());
 
@@ -468,7 +469,9 @@ void TCompPlayerModel::StrongAttackButtonReleased() {
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
-	GetCamera()->CenterCamera();
+	CEntity* camera = (CEntity*)currentCameraHandle; // !!! Falla.
+	TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
+	playerCamera->CenterCamera();
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
