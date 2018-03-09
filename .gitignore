@@ -9,4 +9,4 @@ source/.vs/
 source/ipch/
 *.db
 source/.vs/Game/v15
-/Bin/imgui.ini
+Bin/imgui.ini
