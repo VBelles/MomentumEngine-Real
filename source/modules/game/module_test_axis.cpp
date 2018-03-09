@@ -30,14 +30,9 @@ bool CModuleTestAxis::start() {
         TEntityParseContext ctx;
         parseScene("data/scenes/whitebox23.scene", ctx);
     }
-
 /*{
     TEntityParseContext ctx;
     parseScene("data/scenes/multimaterial.scene", ctx);
-  }
-  {
-    TEntityParseContext ctx;
-    parseScene("data/scenes/player.scene", ctx);
   }
   {
     TEntityParseContext ctx;
