@@ -181,6 +181,8 @@ bool CModulePhysics::start() {
     sceneDesc.filterShader = CustomFilterShader;
     gScene = gPhysics->createScene(sceneDesc);
     gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
+	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
+	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_PAIRS, true);
     PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
     if (pvdClient) {
         pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
@@ -275,4 +277,13 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 
 PxScene* CModulePhysics::getScene() {
     return gScene;
+}
+
+physx::PxQueryHitType::Enum CModulePhysics::CustomQueryFilterCallback::preFilter(const physx::PxFilterData & filterData, const physx::PxShape * shape, const physx::PxRigidActor * actor, physx::PxHitFlags & queryFlags) {
+	const physx::PxFilterData& filterData1 = shape->getQueryFilterData();
+
+	if ((filterData.word0 & filterData1.word1) && (filterData1.word0 & filterData.word1)) {
+		return PxQueryHitType::eBLOCK;
+	}
+	return PxQueryHitType::eNONE;
 }
