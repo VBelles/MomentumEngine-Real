@@ -262,13 +262,21 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 
         CHandle h_other_comp_collider;
         h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
+
+        CEntity* e_other = h_other_comp_collider.getOwner();
         CEntity* e_trigger = h_trigger_comp_collider.getOwner();
 
+        /*if (strcmp(e_other->getName(), "WWw_Box220") != 0 &&
+            strcmp(e_other->getName(), "WWw_platformMove002") != 0) {
+            dbg("other: %s\n", e_other->getName());
+            dbg("trigger: %s\n", e_trigger->getName());
+        }*/
+
         if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND) {
-            e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });
+            e_trigger->sendMsg(TMsgTriggerEnter{ e_other });
         }
         else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST) {
-            e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
+            e_trigger->sendMsg(TMsgTriggerExit{ e_other });
         }
     }
 }
