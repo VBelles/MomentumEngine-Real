@@ -323,7 +323,6 @@ void TCompPlayerModel::update(float dt) {
 	if (attackState != attackStates[ActionStates::Idle]) {
 		attackState->update(dt);
 	}
-	powerGauge->Update(dt);
 	if (!lockWalk) {
 		deltaMovement = movementState->GetDeltaMovement();
 	}
@@ -341,6 +340,7 @@ void TCompPlayerModel::update(float dt) {
 	if (attackState != attackStates[nextAttackState]) {
 		ChangeAttackState(nextAttackState);
 	}
+	powerGauge->Update(dt);
 }
 
 void TCompPlayerModel::ApplyGravity(float delta) {

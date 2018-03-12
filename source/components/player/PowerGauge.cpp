@@ -4,6 +4,10 @@
   
 void PowerGauge::Update(float delta) {
 	IncreasePower(-dropSpeed * delta);
+
+	int lastPowerLevel = powerLevel;
+	powerLevel = power < powerPerLevel ? 1 : power < powerPerLevel * 2 ? 2 : 3;
+	if (lastPowerLevel != powerLevel) powerListener->OnLevelChange(powerLevel);
 }
 
 void PowerGauge::ReleasePower() {
@@ -17,9 +21,6 @@ void PowerGauge::GainPower() {
 void PowerGauge::IncreasePower(float increment) {
 	power += increment;
 	power = clamp(power, 0.f, maxPower);
-	int lastPowerLevel = powerLevel;
-	powerLevel = power < powerPerLevel ? 1 : power < powerPerLevel * 2 ? 2 : 3;
-	if (lastPowerLevel != powerLevel) powerListener->OnLevelChange(powerLevel);
 }
 
 void PowerGauge::ResetPower() {
