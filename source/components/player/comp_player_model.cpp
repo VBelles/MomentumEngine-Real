@@ -2,6 +2,7 @@
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
+#include "../comp_tags.h"
 #include "PowerGauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
@@ -129,6 +130,7 @@ PowerStats* TCompPlayerModel::GetPowerStats() {
 
 void TCompPlayerModel::OnLevelChange(int powerLevel) {
 	dbg("Power changed: %d\n", powerLevel);
+
 	if (powerLevel == 1) {
 		currentPowerStats = ssj1;
 	}
@@ -138,6 +140,16 @@ void TCompPlayerModel::OnLevelChange(int powerLevel) {
 	else if (powerLevel == 3) {
 		currentPowerStats = ssj3;
 	}
+
+    // Inform 'pure' entities of the change.
+    TMsgPowerLvlChange msg;
+    msg.powerLvl = powerLevel;
+    // Get all entities with the tag 'pure'
+    auto& pureEntitiesHandles = CTagsManager::get().getAllEntitiesByTag(getID("pure"));
+    for (auto handle : pureEntitiesHandles) {
+        CEntity* e = handle;
+        if (e) e->sendMsg(msg);
+    }
 }
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {

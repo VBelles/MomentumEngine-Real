@@ -16,7 +16,6 @@ class TCompPlatformMove: public TCompBase {
     float               speed = 0.f;
 
     CHandle             player;
-    TCompCollider*      collider;
     bool                isPlayerInTrigger = false;
 
 public:

@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "PowerGauge.h"
 #include "utils/utils.h"
-
-
   
 void PowerGauge::Update(float delta) {
 	IncreasePower(-dropSpeed * delta);

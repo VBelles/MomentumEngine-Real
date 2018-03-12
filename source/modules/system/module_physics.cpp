@@ -84,6 +84,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
             //offset.p.y = config.radius;
         }
         //....todo: more shapes
+        assert(shape);
 
         setupFiltering(shape, config.group, config.mask);
         shape->setLocalPose(offset);
@@ -103,7 +104,6 @@ void CModulePhysics::createActor(TCompCollider& comp_collider) {
             shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
             actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
         }
-        assert(shape);
         assert(actor);
         actor->attachShape(*shape);
         shape->release();

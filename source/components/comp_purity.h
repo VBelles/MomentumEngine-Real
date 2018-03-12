@@ -11,7 +11,6 @@ class TCompPurity: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
     CHandle             player;
-    TCompCollider*      collider;
 
 public:
     void debugInMenu();
