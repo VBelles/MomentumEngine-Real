@@ -340,12 +340,11 @@ void TCompPlayerModel::update(float dt) {
 void TCompPlayerModel::ApplyGravity(float delta) {
 	float deltaMovementDueToGravity;
 	deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-	//dbg("currentGravity: %f\n", currentGravity);
+
 	//clampear distancia vertical
 	deltaMovement.y += deltaMovementDueToGravity;
 	deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
-	//dbg("1  deltaMovement: %f\n", deltaMovement.y);
-	//dbg("2  deltaMovement: %f\n", deltaMovement.y);
+
 	velocityVector.y += currentGravity * delta;
 	velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
 }
@@ -357,7 +356,7 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	/*physx::PxControllerCollisionFlags myFlags2 = GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, 0.f, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
 	dbg("%s\n", myFlags2.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN) ? "True" : "False");*/
 	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(
-		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters(NULL, NULL, playerFilterCallback));
+		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters(NULL, playerFilterCallback, playerFilterCallback));
 	/*dbg("down: %s\n", myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN) ? "True" : "False");
 	dbg("sides: %s\n", myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_SIDES) ? "True" : "False");*/
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
