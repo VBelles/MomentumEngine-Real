@@ -57,13 +57,7 @@ private:
         virtual void onAdvance(const PxRigidBody*const* bodyBuffer, const PxTransform* poseBuffer, const PxU32 count) override {};
     };
 
-	class CustomQueryFilterCallback : public PxControllerFilters {
-		physx::PxQueryHitType::Enum	preFilter(const physx::PxFilterData& filterData, 
-			const physx::PxShape* shape, const physx::PxRigidActor* actor,
-			physx::PxHitFlags& queryFlags);
-	};
-
-
+	
     CustomSimulationEventCallback customSimulationEventCallback;
 
     std::set<CHandle> toRelease;

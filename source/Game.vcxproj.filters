@@ -114,6 +114,7 @@
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
+    <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -255,6 +256,7 @@
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\render_manager.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
+    <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

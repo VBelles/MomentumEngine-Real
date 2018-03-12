@@ -8,6 +8,8 @@
 #include "states/IActionState.h"
 #include "PowerGauge.h"
 
+class PlayerFilterCallback;
+
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
 	float rotationSpeed = 0.f;
@@ -120,6 +122,8 @@ private:
 	PowerStats* loadPowerStats(const json& j);
 
 	PowerGauge* powerGauge;
+
+	PlayerFilterCallback* playerFilterCallback;
 
 	std::map<ActionStates, IActionState*> movementStates;
 	std::map<ActionStates, IActionState*> attackStates;

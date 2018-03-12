@@ -26,6 +26,7 @@
 #include "states/attack_states/GrabLongActionState.h"
 #include "states/attack_states/PropelHighActionState.h"
 #include "states/attack_states/PropelLongActionState.h"
+#include "components/player/filters/PlayerFilterCallback.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -279,6 +280,10 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	ChangeMovementState(ActionStates::Idle);
 	ChangeAttackState(ActionStates::Idle);
 	currentPowerStats = ssj1;
+
+	playerFilterCallback = new PlayerFilterCallback(CHandle(this));
+
+
 }
 
 void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
@@ -351,7 +356,8 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	assert(c->controller);
 	/*physx::PxControllerCollisionFlags myFlags2 = GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, 0.f, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
 	dbg("%s\n", myFlags2.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN) ? "True" : "False");*/
-	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters());
+	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(
+		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt, physx::PxControllerFilters(NULL, NULL, playerFilterCallback));
 	/*dbg("down: %s\n", myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN) ? "True" : "False");
 	dbg("sides: %s\n", myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_SIDES) ? "True" : "False");*/
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
