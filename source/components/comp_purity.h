@@ -10,7 +10,9 @@
 class TCompPurity: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
-    CHandle             player;
+    CHandle		player;
+	std::string	originalMeshPath = "data/meshes/.mesh";
+	std::string	originalMaterialPath = "data/materials/piedras1.material";
 
 public:
     void debugInMenu();

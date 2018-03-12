@@ -25,12 +25,16 @@ void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 void TCompPurity::onPowerLvlChange(const TMsgPowerLvlChange & msg) {
     TCompCollider* collider = get<TCompCollider>();
     assert(collider);
+	TCompRender *render = get<TCompRender>();
+	assert(render);
  
     if (msg.powerLvl == 1) {
 		collider->enable();
+		//render->setMesh(originalMeshPath, originalMaterialPath);
     }
     else {
 		collider->disable();
+		//render->setMesh("data/meshes/.mesh");
     }
 }
 
