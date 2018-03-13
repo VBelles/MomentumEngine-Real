@@ -65,5 +65,24 @@
 				"fov" : 60 
 			}
 		}
+	},
+	{
+		"entity": {
+			"name": "test_camera_curve",
+			"transform": {
+				"pos": "5 25 0",
+				"lookat": "0 0 0"
+			},
+			"curve_controller" :
+			{
+				"curve" : "data/curves/test_curve.curve",
+				"speed" : 0.25,
+				"target" : "game_camera"
+			},
+			"render" : {},
+			"camera" : {
+				"fov" : 60 
+			}
+		}
 	}
 ]

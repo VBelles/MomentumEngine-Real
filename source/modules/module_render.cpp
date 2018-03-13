@@ -8,6 +8,7 @@
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
 #include "camera/camera.h"
+#include "geometry/curve.h"
 
 CModuleRender::CModuleRender(const std::string& name)
     : IModule(name) {
@@ -25,7 +26,6 @@ bool parseTechniques() {
         if (!tech->create(tech_name, tech_j)) return false;
         Resources.registerResource(tech);
     }
-
     return true;
 }
 
@@ -40,6 +40,7 @@ bool CModuleRender::start() {
     Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
     Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
     Resources.registerResourceClass(getResourceClassOf<CMaterial>());
+    Resources.registerResourceClass(getResourceClassOf<CCurve>());
 
     if (!createRenderObjects()) return false;
 

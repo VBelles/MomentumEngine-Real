@@ -116,6 +116,7 @@
     <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\player\states\movement_states\WalkActionState.cpp" />
+    <ClCompile Include="components\controllers\comp_curve.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -259,6 +260,7 @@
     <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\player\states\movement_states\WalkActionState.h" />
+    <ClInclude Include="components\controllers\comp_curve.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -12,6 +12,7 @@
 		"collectable",
 		"destroyCondition",
 		"platform_move",
+		"curve_controller",
 		"fwd_msg",
 		"camera_flyover",
 		"hierarchy",
