@@ -5,18 +5,14 @@
 #include "entity/entity_parser.h"
 #include "comp_hierarchy.h"
 #include "components/comp_transform.h"
-#include "PxPhysicsAPI.h"
 
-class TCompPlatformMove: public TCompBase {
+// If the player is in lvl power 1, enables collider. Else, disables it.
+class TCompPurity: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
-    std::string         type = "";
-    std::vector<VEC3>   waypoints;
-    size_t              currentWaypoint = 0;
-    float               speed = 0.f;
-
-    CHandle             player;
-    bool                isPlayerInTrigger = false;
+    CHandle		player;
+	std::string	originalMeshPath = "";
+	std::string	originalMaterialPath = "";
 
 public:
     void debugInMenu();
@@ -24,8 +20,7 @@ public:
     void load(const json& j, TEntityParseContext& ctx);
 
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	void onTriggerEnter(const TMsgTriggerEnter& msg);
-	void onTriggerExit(const TMsgTriggerExit& msg);
+	void onPowerLvlChange(const TMsgPowerLvlChange& msg);
 
     void update(float dt);
 };
