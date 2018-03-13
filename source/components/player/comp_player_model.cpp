@@ -62,12 +62,15 @@ void TCompPlayerModel::debugInMenu() {
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		baseGravity = accelerationVector.y;
 	}
+	ImGui::DragFloat("WalkingSpeed", &walkingSpeed, 0.1f, 0.1f, 7.f);
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	baseGravity = j.value("gravity", 0.0f);
 	accelerationVector.y = baseGravity;
 	currentGravity = baseGravity;
+
+	walkingSpeed = j.value("walkingSpeed", 5.0f);
 
 	ssj1 = loadPowerStats(j["ssj1"]);
 	ssj2 = loadPowerStats(j["ssj2"]);

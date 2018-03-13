@@ -158,7 +158,7 @@
 				"active": true
 			},
 			"camera_player": {
-				"distance_to_target": 6.0,
+				"distance_to_target": 5.5,
 				"target" : "The Player"
 			}
 		}

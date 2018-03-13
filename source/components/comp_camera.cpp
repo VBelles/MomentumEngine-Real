@@ -49,10 +49,20 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompCamera::update(float dt) {
-
+	float verticalOffset = 1.5f;
 	TCompTransform* c = get<TCompTransform>();
 	assert(c);
-	this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
+	if (hasTarget) {
+		this->lookAt(c->getPosition(), target, c->getUp());
+	}
+	else {
+		this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
+	}
 
+}
+
+void TCompCamera::SetTarget(VEC3 target) {
+	hasTarget = true;
+	this->target = target;
 }
 

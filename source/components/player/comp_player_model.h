@@ -86,6 +86,8 @@ public:
 	VEC3 platformMovementOffset;
 	float maxVerticalSpeed = 0.f;
 
+	float walkingSpeed = 0.f;
+
 	void OnLevelChange(int powerLevel);
 
 	CHandle grabTarget;
