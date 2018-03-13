@@ -50,6 +50,9 @@ void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 
 void FallingAttackActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
+	CEntity *hitboxEntity = hitboxHandle;
+	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+	hitbox->disable();
 	GetPlayerModel()->ResetGravity();
 	GetPlayerModel()->movementState->SetPose();
 	dbg("FINISH falling Attack\n");

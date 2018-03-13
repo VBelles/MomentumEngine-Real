@@ -19,6 +19,7 @@ protected:
 
 	CHandle hitboxHandle;
 	int damage = 0;
+	AttackPhases phase = AttackPhases::Startup;
 
 public:
 	GrabActionState(CHandle playerModelHandle, CHandle hitbox);
