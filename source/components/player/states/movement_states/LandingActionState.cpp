@@ -21,9 +21,9 @@ void LandingActionState::update (float delta) {
 			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else {
-			velocityVector->x = GetPlayerTransform()->getFront().x * enteringSpeed * 0.7f;
-			velocityVector->z = GetPlayerTransform()->getFront().z * enteringSpeed * 0.7f;
-			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+			velocityVector->x = GetPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
+			velocityVector->z = GetPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
+			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Walk);
 		}
 	}
 }
@@ -31,12 +31,10 @@ void LandingActionState::update (float delta) {
 void LandingActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	SetPose();
-
 	VEC3 enteringVelocityVector = { velocityVector->x, 0.f, velocityVector->z };
 	enteringSpeed = enteringVelocityVector.Length();
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
-	//deltaMovement = lastState->GetDeltaMovement();
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
 	dbg("Entrando en landing\n");
