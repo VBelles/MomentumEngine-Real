@@ -1,23 +1,24 @@
 [
 	{
-		"name" : "kb_w",
+		"name" : "forward",
 		"all" : false,
 		"buttons" : ["w"]
 	},
 	{
-		"name" : "kb_a",
+		"name" : "left",
 		"all" : false,
 		"buttons" : ["a"]
 	},
 	{
-		"name" : "kb_s",
+		"name" : "backwards",
 		"all" : false,
 		"buttons" : ["s"]
 	},
+	
 	{
-		"name" : "kb_d",
+		"name" : "walk",
 		"all" : false,
-		"buttons" : ["d"]
+		"buttons" : ["lcontrol"]
 	},
 	{
 		"name" : "jump",
