@@ -14,7 +14,11 @@
 		"all" : false,
 		"buttons" : ["s"]
 	},
-	
+	{
+		"name" : "right",
+		"all" : false,
+		"buttons" : ["d"]
+	},
 	{
 		"name" : "walk",
 		"all" : false,
