@@ -10,6 +10,7 @@
 #include "states/movement_states/normal_jump/GhostJumpSquatActionState.h"
 #include "states/movement_states/GhostJumpWindowActionState.h"
 #include "states/movement_states/RunActionState.h"
+#include "states/movement_states/WalkActionState.h"
 #include "states/movement_states/normal_jump/AirborneNormalActionState.h"
 #include "states/movement_states/long_jump/AirborneLongActionState.h"
 #include "states/movement_states/long_jump/GhostJumpSquatLongActionState.h"
@@ -252,6 +253,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(CHandle(this)) },
 		{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(CHandle(this)) },
 		{ ActionStates::Run, new RunActionState(CHandle(this)) },
+		{ ActionStates::Walk, new WalkActionState(CHandle(this)) },
 		{ ActionStates::AirborneNormal, new AirborneNormalActionState(CHandle(this)) },
 		{ ActionStates::GhostJumpSquatLong, new GhostJumpSquatLongActionState(CHandle(this)) },
 		{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(CHandle(this)) },

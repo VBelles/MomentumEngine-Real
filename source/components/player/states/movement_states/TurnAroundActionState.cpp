@@ -13,7 +13,7 @@ void TurnAroundActionState::update (float delta) {
 		RotateToFinalDirection();
 		if (movementInput.Length() > 0.8f) {
 			SetFinalVelocity();
-			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Walk);
 		}
 		else {
 			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);

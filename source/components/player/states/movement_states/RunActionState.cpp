@@ -10,6 +10,10 @@ void RunActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	bool wantToWalk = false;
+	if (movementInput.Length() < 0.8f) {
+		wantToWalk = true;
+	}
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
 	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
@@ -20,7 +24,7 @@ void RunActionState::update (float delta) {
 	}
 
 	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
-	if (hasInput) {
+	if (hasInput && !wantToWalk) {
 		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
 			GetPlayerTransform()->getFront(), currentPowerStats->acceleration,
 			currentPowerStats->maxHorizontalSpeed);
@@ -45,10 +49,17 @@ void RunActionState::update (float delta) {
 	if (isTurnAround) {
 		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);
 	}
+	else {
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 
-	if (velocityVector->x == 0.f && velocityVector->z == 0.f) {
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
+		if (horizontalVelocity.Length() == 0.f) {
+			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
+		}
+		else if (horizontalVelocity.Length() <= GetPlayerModel()->walkingSpeed) {
+			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Walk);
+		}
 	}
+
 }
 
 void RunActionState::OnStateEnter(IActionState * lastState) {

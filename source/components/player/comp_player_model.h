@@ -31,7 +31,7 @@ public:
 	int frame = 0;
 	enum ActionStates{
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
-		Run, AirborneNormal, JumpSquatLong, AirborneLong,
+		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
 		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack, 
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong, 
 		PropelHigh, PropelLong, TurnAround, Landing
