@@ -39,8 +39,6 @@ public:
     void load(const json& j, TEntityParseContext& ctx);
 
     void setMesh(std::string meshName, std::string materialName = "");
-    const CRenderMesh* getMesh() { return mesh; }
-    const CMaterial* getMaterial() { return material; }
 
     void update(float delta);
     void TurnRed(float time);
