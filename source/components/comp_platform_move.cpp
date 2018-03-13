@@ -40,9 +40,6 @@ void TCompPlatformMove::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlatformMove::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
     player = (CHandle)getEntityByName("The Player");
-
-    collider = get<TCompCollider>();
-    assert(collider);
 }
 
 void TCompPlatformMove::onTriggerEnter(const TMsgTriggerEnter & msg) {
@@ -83,11 +80,15 @@ void TCompPlatformMove::update(float dt) {
     direction.Normalize();
     VEC3 movement = direction * speed * dt;
 
+    TCompCollider* collider = get<TCompCollider>();
+    assert(collider);
     PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-    rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
-    rigidDynamic->setKinematicTarget({ myPosition.x + movement.x,
-                                       myPosition.y + movement.y,
-                                       myPosition.z + movement.z });
+    if (rigidDynamic && collider->isEnabled()) {
+        rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
+        rigidDynamic->setKinematicTarget({ myPosition.x + movement.x,
+                                           myPosition.y + movement.y,
+                                           myPosition.z + movement.z });
+    }
 
 	// Move also the parent.
     CEntity* owner = CHandle(this).getOwner();
@@ -98,10 +99,12 @@ void TCompPlatformMove::update(float dt) {
 	TCompCollider* parentCollider = parent->get<TCompCollider>();
 	assert(parentCollider);
 	PxRigidDynamic* parentRigidDynamic = (PxRigidDynamic*)parentCollider->actor;
-	parentRigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
-	parentRigidDynamic->setKinematicTarget({ parentPos.x + movement.x,
-									         parentPos.y + movement.y,
-									         parentPos.z + movement.z });
+    if (parentRigidDynamic && parentCollider->isEnabled()) {
+	    parentRigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
+	    parentRigidDynamic->setKinematicTarget({ parentPos.x + movement.x,
+									             parentPos.y + movement.y,
+									             parentPos.z + movement.z });
+    }
 
     // Move the player with the platform.
     if ( isPlayerInTrigger ) {

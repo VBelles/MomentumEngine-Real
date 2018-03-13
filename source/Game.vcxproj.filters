@@ -113,6 +113,7 @@
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
+    <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\player\states\movement_states\WalkActionState.cpp" />
   </ItemGroup>
@@ -255,6 +256,7 @@
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\render_manager.h" />
+    <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\player\states\movement_states\WalkActionState.h" />
   </ItemGroup>

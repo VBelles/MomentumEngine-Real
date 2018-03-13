@@ -105,6 +105,7 @@
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
+    <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_render_ui.cpp" />
     <ClCompile Include="components\comp_respawner.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
+    <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_render_ui.h" />
     <ClInclude Include="components\comp_respawner.h" />
