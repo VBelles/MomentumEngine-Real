@@ -77,11 +77,11 @@ bool CModuleRender::stop() {
 
 void CModuleRender::update(float delta) {
     (void)delta;
-    // Notify ImGUI that we are starting a new frame
-    ImGui_ImplDX11_NewFrame();
 }
 
 void CModuleRender::render() {
+    // Notify ImGUI that we are starting a new frame
+    ImGui_ImplDX11_NewFrame();
     if (CApp::get().showDebug) {
         static int nframes = 5;
         ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
