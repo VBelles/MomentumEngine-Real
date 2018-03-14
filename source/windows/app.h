@@ -5,6 +5,7 @@
 #include "utils/directory_watcher.h"
 
 class CApp {
+private:
 	// Windows stuff
 	HWND hWnd;
 	HINSTANCE hInstance;
@@ -14,6 +15,9 @@ class CApp {
 	CDirectoyWatcher resources_dir_watcher;
 
 	static CApp* app_instance;
+
+	double dt = 1.f / 60.f;
+	double accumulator = 0.0;
 
 public:
 	VEC2 resolution;
