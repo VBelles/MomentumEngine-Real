@@ -40,6 +40,10 @@ void TCompPlatformMove::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlatformMove::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
     player = (CHandle)getEntityByName("The Player");
+	TCompCollider* collider = get<TCompCollider>();
+	assert(collider);
+	PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+	rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
 }
 
 void TCompPlatformMove::onTriggerEnter(const TMsgTriggerEnter & msg) {
@@ -78,42 +82,27 @@ void TCompPlatformMove::update(float dt) {
 
     VEC3 direction = waypoints[currentWaypoint] - myPosition;
     direction.Normalize();
-    VEC3 movement = direction * speed * dt;
+
+	VEC3 movement = direction * speed * dt;
 
     TCompCollider* collider = get<TCompCollider>();
     assert(collider);
     PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
     if (rigidDynamic && collider->isEnabled()) {
-        rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
         rigidDynamic->setKinematicTarget({ myPosition.x + movement.x,
                                            myPosition.y + movement.y,
-                                           myPosition.z + movement.z });
-    }
-
-	// Move also the parent.
-    CEntity* owner = CHandle(this).getOwner();
-	TCompHierarchy* hierarchy = owner->get<TCompHierarchy>();
-    CEntity* parent = hierarchy->h_parent;
-	TCompTransform* parentTransf = parent->get<TCompTransform>();
-	VEC3 parentPos = parentTransf->getPosition();
-	TCompCollider* parentCollider = parent->get<TCompCollider>();
-	assert(parentCollider);
-	PxRigidDynamic* parentRigidDynamic = (PxRigidDynamic*)parentCollider->actor;
-    if (parentRigidDynamic && parentCollider->isEnabled()) {
-	    parentRigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
-	    parentRigidDynamic->setKinematicTarget({ parentPos.x + movement.x,
-									             parentPos.y + movement.y,
-									             parentPos.z + movement.z });
+                                           myPosition.z + movement.z});
     }
 
     // Move the player with the platform.
     if ( isPlayerInTrigger ) {
         CEntity* ePlayer = (CEntity*)player;
-		/*TCompCollider* playerCollider = ePlayer->get<TCompCollider>();
-		using namespace physx;
-        PxExtendedVec3 move = { movement.x, movement.y, movement.z };
-        playerCollider->controller->move(PxVec3(movement.x, movement.y, movement.z), 0.f, dt, PxControllerFilters());*/
+		TCompTransform* playerTransform = ePlayer->get<TCompTransform>();
 		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
-		playerModel->platformMovementOffset = movement;
+		playerModel->GetCollider()->controller->setFootPosition({
+			playerTransform->getPosition().x + movement.x,
+			playerTransform->getPosition().y + movement.y,
+			playerTransform->getPosition().z + movement.z,
+			});
     }
 }
