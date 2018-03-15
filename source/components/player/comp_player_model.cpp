@@ -486,7 +486,7 @@ void TCompPlayerModel::StrongAttackButtonReleased() {
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
-    CEntity* camera = (CEntity*)getEntityByName("xthe_camera");
+    CEntity* camera = (CEntity*)getEntityByName("game_camera");
     TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
     playerCamera->CenterCamera();
 }

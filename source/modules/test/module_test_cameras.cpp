@@ -33,21 +33,12 @@ CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
 }
 
 bool CModuleTestCameras::start() {
-    //{
-    //    TEntityParseContext ctx;
-    //    parseScene("data/scenes/test_cameras.scene", ctx);
-    //}
-
-    /*CHandle h_camera = getEntityByName("test_camera_flyover");
-    Engine.getCameras().setDefaultCamera(h_camera);*/
-
-    CHandle h_camera = getEntityByName("xthe_camera");
+    CHandle h_camera = getEntityByName("game_camera");
     Engine.getCameras().setDefaultCamera(h_camera);
     Engine.getCameras().setOutputCamera(h_camera);
 
     //_curve.addKnot(VEC3(8, 3, 5));
     //_curve.addKnot(VEC3(10, 3, 5));
-
     //registerMesh(createCurveMesh(_curve, 100), "curve.mesh");
 
     const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
@@ -58,9 +49,11 @@ bool CModuleTestCameras::start() {
 
 void CModuleTestCameras::update(float delta) {
     if (EngineInput['1'].getsPressed()) {
-        CHandle h_camera = getEntityByName("xthe_camera");
-        // TODO: Al volver aquí se le queda el fov de la otra cámara.
-        // La cámara buena debería ser game_camera de todas formas.
+        CHandle h_camera = getEntityByName("game_camera");
+		// !!! Coge el fov de la cámara anterior.
+		//CEntity* e_cam = (CEntity*)h_camera;
+		//TCompCamera* compCam = e_cam->get<TCompCamera>();
+		//dbg("cam fov: %f\n", rad2deg(compCam->getFov()));
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
     //if (EngineInput['2'].getsPressed()) {
@@ -101,8 +94,8 @@ void CModuleTestCameras::update(float delta) {
 }
 
 void CModuleTestCameras::render() {
-    // Find the entity with name 'the_camera'
-    CHandle h_e_camera = getEntityByName("the_camera");
+    // Find the entity with name 'game_camera'
+    CHandle h_e_camera = getEntityByName("game_camera");
     if (h_e_camera.isValid()) {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get<TCompCamera>();

@@ -30,17 +30,9 @@ bool CModuleTestAxis::start() {
         TEntityParseContext ctx;
         parseScene("data/scenes/whitebox23.scene", ctx);
     }
-    //{
-    //    TEntityParseContext ctx;
-    //    parseScene("data/scenes/multimaterial.scene", ctx);
-    //}
     {
         TEntityParseContext ctx;
         parseScene("data/scenes/test_cameras.scene", ctx);
-    }
-    {
-        TEntityParseContext ctx;
-        parseScene("data/scenes/camera.scene", ctx);
     }
     {
         TEntityParseContext ctx;
@@ -101,8 +93,8 @@ void CModuleTestAxis::update(float delta) {
 }
 
 void CModuleTestAxis::render() {
-    // Find the entity with name 'the_camera'
-    CHandle h_e_camera = getEntityByName("xthe_camera");
+    // Find the entity with name 'game_camera'
+    CHandle h_e_camera = getEntityByName("game_camera");
     if (h_e_camera.isValid()) {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get< TCompCamera >();
