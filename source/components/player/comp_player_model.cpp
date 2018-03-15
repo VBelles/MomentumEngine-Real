@@ -349,7 +349,7 @@ void TCompPlayerModel::update(float dt) {
 }
 
 void TCompPlayerModel::ApplyGravity(float delta) {
-	if (isAttachedToPlatform) {
+	if (isAttachedToPlatform && isGrounded) {
 		velocityVector.y = 0;
 	}
 	else {
