@@ -37,3 +37,5 @@ private:
 
 #define Engine CEngine::get()
 #define EngineInput CEngine::get().getInput()
+#define EnginePhysics CEngine::get().getPhysics()
+#define EngineRender CEngine::get().getRender()

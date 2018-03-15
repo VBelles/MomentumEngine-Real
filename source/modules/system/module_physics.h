@@ -10,14 +10,14 @@ using namespace physx;
 
 class CModulePhysics : public IModule {
 public:
-    enum FilterGroup {
-        Wall = 1 << 0,
-        Floor = 1 << 1,
-        Player = 1 << 2,
-        Enemy = 1 << 3,
-        Scenario = Wall | Floor,
-        Characters = Player | Enemy,
-        All = -1
+	enum FilterGroup {
+		Wall = 1 << 0,
+		Floor = 1 << 1,
+		Player = 1 << 2,
+		Enemy = 1 << 3,
+		Scenario = Wall | Floor,
+		Characters = Player | Enemy,
+		All = Wall | Floor | Player | Enemy
     };
 
     CModulePhysics(const std::string& aname) : IModule(aname) {}

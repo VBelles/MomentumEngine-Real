@@ -73,6 +73,7 @@ public:
 	TCompTransform* GetTransform() { return myTransformHandle; }
 	TCompCamera* GetCamera() { return currentCameraHandle; }
 	TCompCollider* GetCollider() { return colliderHandle; }
+	PxCapsuleController* GetController() { return static_cast<PxCapsuleController*>(GetCollider()->controller); }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
 	float GetGravity() { return currentGravity; }

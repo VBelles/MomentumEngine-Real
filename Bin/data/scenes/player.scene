@@ -62,7 +62,8 @@
 				"is_character_controller": true,
 				"radius": 0.3,
 				"height": 0.76,
-				"group" : "Player",
+				"group" : ["player"],
+				"mask" : ["all"],
 				"step"  : 0.5,
 				"slope" : 45
 			},

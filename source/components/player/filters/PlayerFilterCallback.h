@@ -15,7 +15,7 @@ public:
 	}
 
 	bool filter(const PxController& a, const PxController& b) override;
-	physx::PxQueryHitType::Enum preFilter(const physx::PxFilterData& filterData, 
+	PxQueryHitType::Enum preFilter(const physx::PxFilterData& filterData, 
 		const physx::PxShape* shape, const physx::PxRigidActor* actor, physx::PxHitFlags& queryFlags);
 	PxQueryHitType::Enum postFilter(const PxFilterData& filterData, const PxQueryHit& hit);
 	
