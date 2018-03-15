@@ -18,6 +18,7 @@ class VerticalLauncherActionState : public GroundedActionState {
 
 	CHandle hitboxHandle;
 	int damage = 0;
+	AttackPhases phase = AttackPhases::Startup;
 
 public:
 	VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);

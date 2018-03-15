@@ -22,13 +22,13 @@ class StrongAttackActionState : public GroundedActionState {
 
 	CHandle hitboxHandle;
 	int damage = 5;
+	AttackPhases phase = AttackPhases::Launch;
 
 public:
 	StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
-	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
 	void OnStrongAttackButtonReleased() override;

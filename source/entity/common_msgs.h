@@ -80,6 +80,12 @@ struct TMsgGainPower {
 	DECL_MSG_ID();
 };
 
+struct TMsgPowerLvlChange {
+    CHandle sender;
+    int powerLvl;
+    DECL_MSG_ID();
+};
+
 struct TMsgOutOfBounds {
 	CHandle sender;
 	DECL_MSG_ID();

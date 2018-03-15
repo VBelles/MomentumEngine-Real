@@ -37,13 +37,17 @@ protected:
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void RotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
-		if (abs(GetPlayerTransform()->getDeltaYawToAimTo(targetPos)) > 0.01f) {
-			float y, p, r;
-			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-			float yMult = GetPlayerTransform()->isInLeft(targetPos) ? 1.f : -1.f;
-			y += rotationSpeed * delta * yMult;
-			GetPlayerTransform()->setYawPitchRoll(y, p, r);
+		float rotationIncrement = rotationSpeed * delta;
+		float deltaYaw = GetPlayerTransform()->getDeltaYawToAimTo(targetPos);
+		float y, p, r;
+		GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+		if (abs(deltaYaw) >= rotationIncrement) { 
+			y = (deltaYaw > 0) ? (y + rotationIncrement) : (y - rotationIncrement);
 		}
+		else {
+			y += deltaYaw;
+		}
+		GetPlayerTransform()->setYawPitchRoll(y, p, r);
 	}
 
 	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
@@ -130,7 +134,7 @@ public:
 		this->renderHandle = playerEntity->get<TCompRender>();
 	}
 	virtual void update(float delta) = 0;
-	virtual void OnStateEnter(IActionState* lastState) { 
+	virtual void OnStateEnter(IActionState* lastState) {
 		this->lastState = lastState;
 		deltaMovement = VEC3::Zero;
 		movementInput = VEC2::Zero;

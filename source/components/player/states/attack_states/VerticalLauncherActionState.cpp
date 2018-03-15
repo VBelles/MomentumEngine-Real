@@ -10,30 +10,35 @@ VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHand
 void VerticalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	if (timer.elapsed() > animationEndTime) {
+	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 		GetPlayerModel()->lockMovementState = false;
 		GetPlayerModel()->lockWalk = false;
 	}
-	else if (timer.elapsed() > hitEndTime) {
+	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
+		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->disable();
+		phase = AttackPhases::Recovery;
 	}
-	else if (timer.elapsed() > hitboxOutTime) {
+	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		SetPose();
+		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->enable();
+		phase = AttackPhases::Active;
 	}
 }
 
 void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	dbg("Vertical Launcher\n");
+	phase = AttackPhases::Startup;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = hitboxOutTime + activeFrames * (1.f / 60);
-	animationEndTime = hitEndTime + endingLagFrames * (1.f / 60);
+	hitEndTime = activeFrames * (1.f / 60);
+	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	GetPlayerModel()->lockMovementState = true;
@@ -43,6 +48,9 @@ void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 	GetPlayerModel()->movementState->SetPose();
+	CEntity *hitboxEntity = hitboxHandle;
+	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+	hitbox->disable();
 	dbg("Finish Vertical Launcher\n");
 }
 

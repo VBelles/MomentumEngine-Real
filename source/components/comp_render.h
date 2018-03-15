@@ -37,6 +37,7 @@ public:
     void debugInMenu();
     void renderDebug();
     void load(const json& j, TEntityParseContext& ctx);
+
     void setMesh(std::string meshName, std::string materialName = "");
 
     void update(float delta);

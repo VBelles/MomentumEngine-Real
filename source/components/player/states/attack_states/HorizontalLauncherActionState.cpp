@@ -10,30 +10,36 @@ HorizontalLauncherActionState::HorizontalLauncherActionState(CHandle playerModel
 void HorizontalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	if (timer.elapsed() > animationEndTime) {
+	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 		GetPlayerModel()->lockMovementState = false;
 		GetPlayerModel()->lockWalk = false;
 	}
-	else if (timer.elapsed() > hitEndTime) {
+	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
+		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->disable();
+		phase = AttackPhases::Recovery;
 	}
-	else if (timer.elapsed() > hitboxOutTime) {
+	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		SetPose();
+		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->enable();
+		phase = AttackPhases::Active;
 	}
+
 }
 
 void HorizontalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	dbg("Horizontal Launcher\n");
+	phase = AttackPhases::Startup;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = hitboxOutTime + activeFrames * (1.f / 60);
-	animationEndTime = hitEndTime + endingLagFrames * (1.f / 60);
+	hitEndTime = activeFrames * (1.f / 60);
+	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
@@ -45,10 +51,10 @@ void HorizontalLauncherActionState::OnStateEnter(IActionState * lastState) {
 void HorizontalLauncherActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 	GetPlayerModel()->movementState->SetPose();
+	CEntity *hitboxEntity = hitboxHandle;
+	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+	hitbox->disable();
 	dbg("Finish Horizontal Launcher\n");
-}
-
-void HorizontalLauncherActionState::SetMovementInput(VEC2 input) {
 }
 
 void HorizontalLauncherActionState::OnJumpHighButton() {

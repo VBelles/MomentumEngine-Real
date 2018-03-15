@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_camera_player.h"
+#include "../comp_camera.h"
 #include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("camera_player", TCompCameraPlayer);
@@ -39,6 +40,12 @@ void TCompCameraPlayer::update(float delta) {
 	VEC2 increment = GetIncrementFromInput(delta);
 	UpdateMovement(increment, delta);
 	CalculateVerticalOffsetVector();
+	//Decirle a TCompCamera donde tiene que mirar
+	CEntity* entity = CHandle(this).getOwner();
+	TCompCamera* cameraComp = entity->get<TCompCamera>();
+	CEntity *playerEntity = target;
+	TCompTransform* targetTransform = playerEntity->get<TCompTransform>();
+	cameraComp->SetTarget(targetTransform->getPosition() + VEC3::Up * 2.0f);
 }
 
 VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {

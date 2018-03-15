@@ -18,13 +18,13 @@ class HorizontalLauncherActionState : public GroundedActionState {
 
 	CHandle hitboxHandle;
 	int damage = 0;
+	AttackPhases phase = AttackPhases::Startup;
 
 public:
 	HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
-	void SetMovementInput(VEC2 input) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
 

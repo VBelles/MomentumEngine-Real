@@ -10,16 +10,18 @@ void TurnAroundActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
-		RotateToFinalDirection();
+		if (!GetPlayerModel()->lockWalk) {
+			RotateToFinalDirection();
+		}
 		if (movementInput.Length() > 0.8f) {
 			SetFinalVelocity();
-			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Run);
+			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Walk);
 		}
 		else {
 			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
 		}
 	}
-	else {
+	else if (!GetPlayerModel()->lockWalk) {
 		float y, p, r;
 		GetPlayerTransform()->getYawPitchRoll(&y,&p,&r);
 		y += rotationSpeed * delta;

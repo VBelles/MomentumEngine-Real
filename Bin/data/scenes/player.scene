@@ -14,6 +14,7 @@
 			"player_controller" : {},
 			"player_model" : {
 				"gravity" : -55,
+				"walkingSpeed" : 3.0,
 				"ssj1":{
 					"rotation_speed" : 11.0,
 					"maxSpeed" : 7.0,
@@ -158,7 +159,7 @@
 				"active": true
 			},
 			"camera_player": {
-				"distance_to_target": 6.0,
+				"distance_to_target": 5.5,
 				"target" : "The Player"
 			}
 		}

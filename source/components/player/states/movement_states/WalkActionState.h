@@ -4,13 +4,9 @@
 #include "../GroundedActionState.h"
 
 
-class LandingActionState : public GroundedActionState {
-	CTimer timer;
-	int landingLagFrames = 9;
-	float landingLagTime;
-	float enteringSpeed;
+class WalkActionState : public GroundedActionState {
 public:
-	LandingActionState(CHandle playerModelHandle);
+	WalkActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
@@ -18,6 +14,5 @@ public:
 	void OnJumpLongButton() override;
 
 	virtual void OnLeavingGround();
-	void SetFinalRotationAndVelocity();
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_landing.mesh"); }
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_run.mesh"); }
 };

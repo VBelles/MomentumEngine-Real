@@ -9,27 +9,32 @@ GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 
 void GrabActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
-	if (timer.elapsed() >= animationEndTime) {
+	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 	}
-	else if (timer.elapsed() >= hitEndTime) {
+	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
+		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->disable();
+		phase = AttackPhases::Recovery;
 	}
-	else if (timer.elapsed() >= hitboxOutTime) {
+	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
+		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->enable();
+		phase = AttackPhases::Active;
 	}
 }
 
 void GrabActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
+	phase = AttackPhases::Startup;
 	SetPose();
 	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = hitboxOutTime + activeFrames * (1.f / 60);
-	animationEndTime = hitEndTime + endingLagFrames * (1.f / 60);
+	hitEndTime = activeFrames * (1.f / 60);
+	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 }
