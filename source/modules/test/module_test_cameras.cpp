@@ -33,59 +33,53 @@ CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
 }
 
 bool CModuleTestCameras::start() {
-    {
-        TEntityParseContext ctx;
-        parseScene("data/scenes/test_cameras.scene", ctx);
-    }
+    //{
+    //    TEntityParseContext ctx;
+    //    parseScene("data/scenes/test_cameras.scene", ctx);
+    //}
 
-    CHandle h_camera = getEntityByName("test_camera_flyover");
+    /*CHandle h_camera = getEntityByName("test_camera_flyover");
+    Engine.getCameras().setDefaultCamera(h_camera);*/
+
+    CHandle h_camera = getEntityByName("xthe_camera");
     Engine.getCameras().setDefaultCamera(h_camera);
-
-    h_camera = getEntityByName("the_camera");
     Engine.getCameras().setOutputCamera(h_camera);
 
-    _curve.addKnot(VEC3(-10, -3, 5));
-    _curve.addKnot(VEC3(-8, 3, 5));
-    _curve.addKnot(VEC3(-6, 3, 5));
-    _curve.addKnot(VEC3(-4, -3, 5));
-    _curve.addKnot(VEC3(-2, -3, 5));
-    _curve.addKnot(VEC3(0, 3, 5));
-    _curve.addKnot(VEC3(2, 3, 5));
-    _curve.addKnot(VEC3(4, -3, 5));
-    _curve.addKnot(VEC3(6, -3, 5));
-    _curve.addKnot(VEC3(8, 3, 5));
-    _curve.addKnot(VEC3(10, 3, 5));
+    //_curve.addKnot(VEC3(8, 3, 5));
+    //_curve.addKnot(VEC3(10, 3, 5));
 
-    registerMesh(createCurveMesh(_curve, 100), "curve.mesh");
+    //registerMesh(createCurveMesh(_curve, 100), "curve.mesh");
 
-    /*const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
-    registerMesh(createCurveMesh(*curve, 100), "curve.mesh");*/
+    const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
+    registerMesh(createCurveMesh(*curve, 100), "curve.mesh");
 
     return true;
 }
 
 void CModuleTestCameras::update(float delta) {
     if (EngineInput['1'].getsPressed()) {
-        CHandle h_camera = getEntityByName("test_camera_orbit");
+        CHandle h_camera = getEntityByName("xthe_camera");
+        // TODO: Al volver aquí se le queda el fov de la otra cámara.
+        // La cámara buena debería ser game_camera de todas formas.
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
-    if (EngineInput['2'].getsPressed()) {
-        CHandle h_camera = getEntityByName("test_camera_fixed_A");
-        Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-    }
-    if (EngineInput['3'].getsPressed()) {
-        CHandle h_camera = getEntityByName("test_camera_fixed_B");
-        Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-    }
-    if (EngineInput['4'].getsPressed()) {
-        static Interpolator::TCubicInOutInterpolator interpolator;
-        CHandle h_camera = getEntityByName("test_camera_fixed_C");
-        Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::TEMPORARY, &interpolator);
-    }
-    if (EngineInput['5'].getsPressed()) {
-        CHandle h_camera = getEntityByName("test_camera_fixed_C");
-        Engine.getCameras().blendOutCamera(h_camera, 0.f);
-    }
+    //if (EngineInput['2'].getsPressed()) {
+    //    CHandle h_camera = getEntityByName("test_camera_fixed_A");
+    //    Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
+    //}
+    //if (EngineInput['3'].getsPressed()) {
+    //    CHandle h_camera = getEntityByName("test_camera_fixed_B");
+    //    Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
+    //}
+    //if (EngineInput['4'].getsPressed()) {
+    //    static Interpolator::TCubicInOutInterpolator interpolator;
+    //    CHandle h_camera = getEntityByName("test_camera_fixed_C");
+    //    Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::TEMPORARY, &interpolator);
+    //}
+    //if (EngineInput['5'].getsPressed()) {
+    //    CHandle h_camera = getEntityByName("test_camera_fixed_C");
+    //    Engine.getCameras().blendOutCamera(h_camera, 0.f);
+    //}
     if (EngineInput['6'].getsPressed()) {
         CHandle h_camera = getEntityByName("test_camera_curve");
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
@@ -126,6 +120,6 @@ void CModuleTestCameras::render() {
 
     auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
     solid->activate();
-    auto curve = Resources.get("curve.mesh")->as<CRenderMesh>();
-    curve->activateAndRender();
+    //auto curve = Resources.get("curve.mesh")->as<CRenderMesh>();
+    //curve->activateAndRender();
 }

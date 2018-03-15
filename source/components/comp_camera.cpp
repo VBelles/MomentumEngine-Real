@@ -7,7 +7,6 @@ DECL_OBJ_MANAGER("camera", TCompCamera);
 
 // -------------------------------------------------
 void TCompCamera::debugInMenu() {
-
 	float fov_deg = rad2deg(getFov());
 	float new_znear = getZNear();
 	float new_zfar = getZFar();
@@ -34,18 +33,14 @@ void TCompCamera::renderDebug() {
 		setWorldTransform(world, VEC4(1, 1, 1, 1));
 		mesh->render();
 	}
-
 }
 
 // -------------------------------------------------
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
-
-	// ..
 	float fov_deg = j.value("fov", rad2deg(getFov()));
 	float z_near = j.value("z_near", 1.f /*getZNear()*/);
 	float z_far = j.value("z_far", 1000.f /*getZFar()*/);
 	setPerspective(deg2rad(fov_deg), z_near, z_far);
-
 }
 
 void TCompCamera::update(float dt) {
@@ -58,11 +53,9 @@ void TCompCamera::update(float dt) {
 	else {
 		this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
 	}
-
 }
 
 void TCompCamera::SetTarget(VEC3 target) {
 	hasTarget = true;
 	this->target = target;
 }
-
