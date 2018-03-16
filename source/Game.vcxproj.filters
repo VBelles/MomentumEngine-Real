@@ -22,9 +22,6 @@
     <ClCompile Include="input\interfaces\interface_mapping.cpp" />
     <ClCompile Include="input\mapping.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="windows\app.cpp">
-      <Filter>windows</Filter>
-    </ClCompile>
     <ClCompile Include="mcv_platform.cpp" />
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
@@ -77,7 +74,6 @@
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
-    <ClCompile Include="components\comp_flyover_controller.cpp" />
     <ClCompile Include="components\comp_ground_sensor.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
@@ -115,9 +111,9 @@
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
-	<ClCompile Include="skeleton\game_core_skeleton.cpp" />
+    <ClCompile Include="skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="skeleton\comp_skeleton.cpp" />
-	<ClCompile Include="skeleton\comp_bone_tracker.cpp" />
+    <ClCompile Include="skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\comp_purity.cpp" />
@@ -125,6 +121,7 @@
     <ClCompile Include="components\player\states\movement_states\WalkActionState.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
+    <ClCompile Include="windows\app.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -223,7 +220,6 @@
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_circular_controller.h" />
     <ClInclude Include="components\comp_collider.h" />
-    <ClInclude Include="components\comp_flyover_controller.h" />
     <ClInclude Include="components\comp_ground_sensor.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
@@ -264,7 +260,7 @@
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\gpu_trace.h" />
-	<ClInclude Include="skeleton\game_core_skeleton.h" />
+    <ClInclude Include="skeleton\game_core_skeleton.h" />
     <ClInclude Include="skeleton\comp_skeleton.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="render\render_manager.h" />
@@ -272,7 +268,7 @@
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\player\states\movement_states\WalkActionState.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />
-	<ClInclude Include="skeleton\comp_bone_tracker.h" />
+    <ClInclude Include="skeleton\comp_bone_tracker.h" />
     <ClInclude Include="skeleton\cal3d2engine.h" />
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="render\texture\texture_slots.h" />
