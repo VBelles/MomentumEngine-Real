@@ -18,30 +18,21 @@
 CCamera camera;
 
 bool CModuleTestAxis::start() {
-    {
+    json jboot = loadJson("data/boot.json");
+
+    // Auto load some scenes
+    std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
+    for (auto& scene_name : scenes_to_auto_load) {
+        dbg("Autoloading scene %s\n", scene_name.c_str());
         TEntityParseContext ctx;
-        parseScene("data/scenes/player.scene", ctx);
-    }
-    {
-        TEntityParseContext ctx;
-        parseScene("data/scenes/scene_basic.scene", ctx);
-    }
-    {
-        TEntityParseContext ctx;
-        parseScene("data/scenes/whitebox23.scene", ctx);
-    }
-    {
-        TEntityParseContext ctx;
-        parseScene("data/scenes/test_cameras.scene", ctx);
-    }
-    {
-        TEntityParseContext ctx;
-        parseScene("data/scenes/game_camera.scene", ctx);
+        parseScene(scene_name, ctx);
     }
 
-	if (!cb_camera.create(CB_CAMERA)) return false;
+    if (!cb_camera.create(CB_CAMERA)) return false;
     if (!cb_object.create(CB_OBJECT)) return false;
+    if (!cb_light.create(CB_LIGHT))   return false;
 
+    cb_light.activate();
     cb_object.activate();
     cb_camera.activate();
 
@@ -49,6 +40,7 @@ bool CModuleTestAxis::start() {
 }
 
 bool CModuleTestAxis::stop() {
+    cb_light.destroy();
     cb_camera.destroy();
     cb_object.destroy();
     return true;
@@ -65,4 +57,9 @@ void CModuleTestAxis::render() {
 
     auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
     solid->activate();
+
+    /*auto grid = Resources.get("grid.mesh")->as<CRenderMesh>();
+  grid->activateAndRender();
+  auto axis = Resources.get("axis.mesh")->as<CRenderMesh>();
+    axis->activateAndRender();*/
 }

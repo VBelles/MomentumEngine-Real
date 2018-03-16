@@ -36,23 +36,23 @@ protected:
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void RotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
-	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
+	//Factor a baseAcceleration segï¿½n el ï¿½ngulo entre baseDirection y desiredDirection
 	float CalculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
 		float backwardsMaxDotProduct, float sidewaysMaxDotProduct, float backwardsAirDriftFactor, float sidewaysAirDriftFactor);
 
-	//Calcula el movimiento horizontal recorrido desde el último frame, teniendo en cuanta la posible nueva
-	//dirección y lo clampea con la máxima distancia recorrida posible en caso de ir a máxima velocidad
+	//Calcula el movimiento horizontal recorrido desde el ï¿½ltimo frame, teniendo en cuanta la posible nueva
+	//direcciï¿½n y lo clampea con la mï¿½xima distancia recorrida posible en caso de ir a mï¿½xima velocidad
 	VEC3 CalculateHorizontalDeltaMovement(float delta, VEC3 lastFrameDirection, VEC3 newDirection,
 		float acceleration, float maxSpeed);
 
-	//Se transfiere toda la velocidad que se llevaba a una nueva dirección (opcional) y se recalcula velocityVector para el siguiente frame
+	//Se transfiere toda la velocidad que se llevaba a una nueva direcciï¿½n (opcional) y se recalcula velocityVector para el siguiente frame
 	void TransferVelocityToDirectionAndAccelerate(float delta, bool wantToTransfer, VEC3 directionOfAcceleration, float acceleration);
 
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void ClampHorizontalVelocity(float maxHorizontalSpeed);
 
-	//Calcula el movimiento vertical desde el último frame y lo clampea con la máxima distancia 
-	//recorrida posible en caso de ir a máxima velocidad
+	//Calcula el movimiento vertical desde el ï¿½ltimo frame y lo clampea con la mï¿½xima distancia 
+	//recorrida posible en caso de ir a mï¿½xima velocidad
 	float CalculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
 
 public:

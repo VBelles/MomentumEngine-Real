@@ -1,0 +1,16 @@
+{
+  "boot_scenes": [
+    "data/scenes/player.scene",
+    "data/scenes/camera.scene",
+    "data/scenes/game_camera.scene",
+    "data/scenes/scene_basic.scene",
+    "data/scenes/skeleton_demo.scene",
+    "data/scenes/whitebox23.scene"
+  ],
+  "unused_scenes": [
+    "data/scenes/lights.scene",
+    "data/scenes/level1.scene",
+    "data/scenes/multimaterial.scene",
+    "dummy"
+  ]
+}

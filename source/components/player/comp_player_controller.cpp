@@ -38,17 +38,21 @@ void TCompPlayerController::update(float dt) {
 	}
 	else {
 		//Detecto el teclado
-		if (EngineInput["kb_a"].isPressed()) {
+		if (EngineInput["left"].isPressed()) {
 			translationInput.x -= 1.f;
 		}
-		if (EngineInput["kb_d"].isPressed()) {
+		if (EngineInput["right"].isPressed()) {
 			translationInput.x += 1.f;
 		}
-		if (EngineInput["kb_s"].isPressed()) {
+		if (EngineInput["backwards"].isPressed()) {
 			translationInput.y -= 1.f;
 		}
-		if (EngineInput["kb_w"].isPressed()) {
+		if (EngineInput["forward"].isPressed()) {
 			translationInput.y += 1.f;
+		}
+		if (EngineInput["walk"].isPressed()) {
+			translationInput.Normalize();
+			translationInput *= 0.5f;
 		}
 	}
 

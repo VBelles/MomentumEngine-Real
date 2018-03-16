@@ -49,7 +49,6 @@ public:
 	void SetAttackState(ActionStates newState);
 	void update(float dt);
 	void UpdateMovement(float dt, VEC3 deltaMovement);
-	void AddMovementOffset();
 	void SetMovementInput(VEC2 input, float delta);
 	void JumpButtonPressed();
 	void JumpButtonReleased();
@@ -82,7 +81,6 @@ public:
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;
 	bool isAttachedToPlatform = false;
-	VEC3 platformMovementOffset;
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;

@@ -10,19 +10,20 @@ struct TMsgEntitiesGroupCreated;
 // our transform based on my parent transform.
 // Do not use it for static meshes
 struct TCompHierarchy : public CTransform, public TCompBase {
-  CHandle     h_parent_transform;
-  CHandle     h_my_transform;
-  CHandle     h_parent;
-  std::string parent_name;          // entity name as search in the ctx
+	CHandle h_parent_transform;
+	CHandle h_my_transform;
+	CHandle h_my_collider;
+	CHandle h_parent;
+	std::string parent_name;          // entity name as search in the ctx
 
-  void setParentEntity(CHandle new_h_parent);
+	void setParentEntity(CHandle new_h_parent);
 
-  void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-  void load(const json& j, TEntityParseContext& ctx);
-  void update(float dt);
-  void debugInMenu();
-  static void registerMsgs();
-  DECL_SIBLING_ACCESS();
+	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void load(const json& j, TEntityParseContext& ctx);
+	void update(float dt);
+	void debugInMenu();
+	static void registerMsgs();
+	DECL_SIBLING_ACCESS();
 };
 
 

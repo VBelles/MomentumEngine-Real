@@ -51,7 +51,7 @@ bool CModuleTestCameras::start() {
 void CModuleTestCameras::update(float delta) {
     if (EngineInput['1'].getsPressed()) {
         CHandle h_camera = getEntityByName("player_camera");
-		// !!! Coge el fov de la cámara anterior.
+		// !!! Coge el fov de la cï¿½mara anterior.
 		//CEntity* e_cam = (CEntity*)h_camera;
 		//TCompCamera* compCam = e_cam->get<TCompCamera>();
 		//dbg("cam fov: %f\n", rad2deg(compCam->getFov()));

@@ -9,23 +9,22 @@ FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle 
 
 void FastAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
-	if (phase == AttackPhases::Launch && timer.elapsed() > beginLauncherTime) {
-		dbg("Cambio de strong attack a vertical launcher\n");
+	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::HorizontalLauncher);
 	}
-	else if (phase == AttackPhases::Recovery && timer.elapsed() > animationEndTime) {
+	else if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 		GetPlayerModel()->lockMovementState = false;
 		GetPlayerModel()->lockWalk = false;
 	}
-	else if (phase == AttackPhases::Active && timer.elapsed() > hitEndTime) {
+	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->disable();
 		phase = AttackPhases::Recovery;
 	}
-	else if (phase == AttackPhases::Startup && timer.elapsed() > hitboxOutTime) {
+	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		SetPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
@@ -52,6 +51,9 @@ void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 void FastAttackActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 	GetPlayerModel()->movementState->SetPose();
+	CEntity *hitboxEntity = hitboxHandle;
+	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+	hitbox->disable();
 	dbg("Finish fast Attack\n");
 }
 

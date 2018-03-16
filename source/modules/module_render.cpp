@@ -7,6 +7,7 @@
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
+#include "skeleton/game_core_skeleton.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
 
@@ -41,6 +42,7 @@ bool CModuleRender::start() {
     Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
     Resources.registerResourceClass(getResourceClassOf<CMaterial>());
     Resources.registerResourceClass(getResourceClassOf<CCurve>());
+    Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 
     if (!createRenderObjects()) return false;
 
@@ -78,11 +80,11 @@ bool CModuleRender::stop() {
 
 void CModuleRender::update(float delta) {
     (void)delta;
-    // Notify ImGUI that we are starting a new frame
-    ImGui_ImplDX11_NewFrame();
 }
 
 void CModuleRender::render() {
+    // Notify ImGUI that we are starting a new frame
+    ImGui_ImplDX11_NewFrame();
     if (CApp::get().showDebug) {
         static int nframes = 5;
         ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
@@ -94,7 +96,7 @@ void CModuleRender::render() {
     Render.startRenderInBackbuffer();
 
     // Clear the back buffer 
-    float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
+    float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
     Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
     Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
@@ -117,7 +119,6 @@ void CModuleRender::generateFrame() {
         CTraceScoped gpu_scope("Frame");
         Engine.getModules().render();
     }
-
     {
         PROFILE_FUNCTION("ImGui::Render");
         CTraceScoped gpu_scope("ImGui");

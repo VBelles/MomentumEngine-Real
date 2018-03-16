@@ -22,6 +22,9 @@
     <ClCompile Include="input\interfaces\interface_mapping.cpp" />
     <ClCompile Include="input\mapping.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="windows\app.cpp">
+      <Filter>windows</Filter>
+    </ClCompile>
     <ClCompile Include="mcv_platform.cpp" />
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
@@ -112,6 +115,10 @@
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
+	<ClCompile Include="skeleton\game_core_skeleton.cpp" />
+    <ClCompile Include="skeleton\comp_skeleton.cpp" />
+	<ClCompile Include="skeleton\comp_bone_tracker.cpp" />
+    <ClCompile Include="components\comp_light_dir.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
@@ -257,11 +264,18 @@
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\gpu_trace.h" />
+	<ClInclude Include="skeleton\game_core_skeleton.h" />
+    <ClInclude Include="skeleton\comp_skeleton.h" />
+    <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="render\render_manager.h" />
     <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\player\states\movement_states\WalkActionState.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />
+	<ClInclude Include="skeleton\comp_bone_tracker.h" />
+    <ClInclude Include="skeleton\cal3d2engine.h" />
+    <ClInclude Include="components\comp_light_dir.h" />
+    <ClInclude Include="render\texture\texture_slots.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

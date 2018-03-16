@@ -20,8 +20,7 @@ CEngine::CEngine()
     , _module_physics("physics")
   , _module_ia("ia")
   , _module_input("input")
-  , _module_cameras("cameras")
-{}
+	, _module_cameras("cameras") {}
 
 bool CEngine::start() {
 
@@ -58,14 +57,13 @@ bool CEngine::stop() {
   return ok;
 }
 
-void CEngine::update(float delta)
-{
+void CEngine::update(float delta) {
   PROFILE_FUNCTION("CEngine::update");
+  current_unscaled_delta_time = delta;
   _modules.update(delta);
 }
 
-void CEngine::render()
-{
+void CEngine::render() {
   PROFILE_FUNCTION("CEngine::render");
   _module_render.generateFrame();
 }
