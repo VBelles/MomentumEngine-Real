@@ -7,6 +7,7 @@ Build
 .vs/Game/v15
 source/.vs/
 source/ipch/
+source/x64/
 *.db
 source/.vs/Game/v15
 Bin/imgui.ini
