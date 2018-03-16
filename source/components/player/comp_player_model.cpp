@@ -252,7 +252,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
     });
     myTransformHandle = get<TCompTransform>();
 
-    CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
+    CEntity *camera = (CEntity *)getEntityByName("game_camera");
     currentCameraHandle = camera->get<TCompCamera>();
     assert(currentCameraHandle.isValid());
 
@@ -486,7 +486,7 @@ void TCompPlayerModel::StrongAttackButtonReleased() {
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
-    CEntity* camera = (CEntity*)getEntityByName("game_camera");
+    CEntity* camera = (CEntity*)getEntityByName("player_camera");
     TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
     playerCamera->CenterCamera();
 }

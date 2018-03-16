@@ -17,5 +17,18 @@
 				"fov" : 40 
 			}
 		}
+	},
+	{
+		"entity": {
+			"name": "fixed_camera",
+			"transform": {
+				"pos": "-78 26 -59",
+				"lookat": "-83 24 -56"
+			},
+			"render" : {},
+			"camera" : {
+				"fov" : 40 
+			}
+		}
 	}
 ]

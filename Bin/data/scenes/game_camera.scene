@@ -1,7 +1,7 @@
 [
 	{
 		"entity": {
-			"name": "game_camera",
+			"name": "game_camera2",
 			"transform": {
 				"pos": "3 0 -5"
 			},

@@ -33,8 +33,9 @@ CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
 }
 
 bool CModuleTestCameras::start() {
-    CHandle h_camera = getEntityByName("game_camera");
-    Engine.getCameras().setDefaultCamera(h_camera);
+	CHandle h_playerCamera = getEntityByName("player_camera");
+    Engine.getCameras().setDefaultCamera(h_playerCamera);
+	CHandle h_camera = getEntityByName("game_camera");
     Engine.getCameras().setOutputCamera(h_camera);
 
     //_curve.addKnot(VEC3(8, 3, 5));
@@ -49,17 +50,17 @@ bool CModuleTestCameras::start() {
 
 void CModuleTestCameras::update(float delta) {
     if (EngineInput['1'].getsPressed()) {
-        CHandle h_camera = getEntityByName("game_camera");
+        CHandle h_camera = getEntityByName("player_camera");
 		// !!! Coge el fov de la cámara anterior.
 		//CEntity* e_cam = (CEntity*)h_camera;
 		//TCompCamera* compCam = e_cam->get<TCompCamera>();
 		//dbg("cam fov: %f\n", rad2deg(compCam->getFov()));
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
-    //if (EngineInput['2'].getsPressed()) {
-    //    CHandle h_camera = getEntityByName("test_camera_fixed_A");
-    //    Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-    //}
+    if (EngineInput['2'].getsPressed()) {
+        CHandle h_camera = getEntityByName("fixed_camera");
+        Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
+    }
     //if (EngineInput['3'].getsPressed()) {
     //    CHandle h_camera = getEntityByName("test_camera_fixed_B");
     //    Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
