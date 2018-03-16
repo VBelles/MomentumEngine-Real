@@ -252,10 +252,6 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
     });
     myTransformHandle = get<TCompTransform>();
 
-    CEntity *camera = (CEntity *)getEntityByName("game_camera");
-    currentCameraHandle = camera->get<TCompCamera>();
-    assert(currentCameraHandle.isValid());
-
     colliderHandle = get<TCompCollider>();
     assert(colliderHandle.isValid());
 
@@ -540,6 +536,13 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
         SetAttackState(ActionStates::Idle);
         SetMovementState(ActionStates::AirborneNormal);
     }
+}
+
+TCompCamera* TCompPlayerModel::GetCamera() {
+	CEntity* camera = (CEntity *)getEntityByName("game_camera");
+	TCompCamera* currentCamera = camera->get<TCompCamera>();
+	assert(currentCamera);
+	return currentCamera;
 }
 
 void TCompPlayerModel::OnDead() {

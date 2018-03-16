@@ -69,7 +69,7 @@ public:
 	void OnOutOfBounds(const TMsgOutOfBounds& msg);
 
 	TCompTransform* GetTransform() { return myTransformHandle; }
-	TCompCamera* GetCamera() { return currentCameraHandle; }
+	TCompCamera* GetCamera();
 	TCompCollider* GetCollider() { return colliderHandle; }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
@@ -95,7 +95,6 @@ public:
 private:
 	VEC3 deltaMovement;
 	CHandle myTransformHandle;
-	CHandle currentCameraHandle;
 	CHandle colliderHandle;
 	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };

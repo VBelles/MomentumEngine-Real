@@ -1,17 +1,12 @@
 [
 	{
 		"entity": {
-			"name": "game_camera2",
+			"name": "game_camera",
 			"transform": {
 				"pos": "3 0 -5"
 			},
-			"render" : {},
 			"camera" : {
 				"fov" : 90 
-			},
-			"camera_player": {
-				"distance_to_target": 5.5,
-				"target" : "The Player"
 			}
 		}
 	}
