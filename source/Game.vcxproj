@@ -134,6 +134,7 @@
     <ClCompile Include="components\player\states\attack_states\StrongAttackActionState.cpp" />
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\VerticalLauncherActionState.cpp" />
+    <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\IdleActionState.cpp" />

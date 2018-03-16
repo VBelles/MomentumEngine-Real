@@ -1,5 +1,31 @@
 #include "mcv_platform.h"
 #include "IActionState.h"
+#include "components/player/comp_player_model.h"
+
+IActionState::IActionState(CHandle playerModelHandle) {
+	this->playerModelHandle = playerModelHandle;
+	CEntity* playerEntity = playerModelHandle.getOwner();
+	this->colliderHandle = playerEntity->get<TCompCollider>();
+	this->playerTransformHandle = playerEntity->get<TCompTransform>();
+	this->renderHandle = playerEntity->get<TCompRender>();
+}
+
+void IActionState::OnStateEnter(IActionState* lastState) {
+	this->lastState = lastState;
+	deltaMovement = VEC3::Zero;
+	movementInput = VEC2::Zero;
+}
+void IActionState::OnStateExit(IActionState* nextState) {
+	this->nextState = nextState;
+}
+
+void IActionState::SetPose() {
+	GetRender()->setMesh("data/meshes/pose_idle.mesh");
+}
+
+void IActionState::SetMovementInput(VEC2 input) {
+	movementInput = input;
+}
 
 TCompCamera* IActionState::GetCamera() {
 	CEntity* camera = (CEntity *)getEntityByName("game_camera");
@@ -30,8 +56,7 @@ float IActionState::CalculateAccelerationAccordingToDirection(VEC3 baseDirection
 	return resultingAcceleration;
 }
 
-VEC3 IActionState::CalculateHorizontalDeltaMovement(
-	float delta, VEC3 lastFrameDirection, VEC3 newDirection,
+VEC3 IActionState::CalculateHorizontalDeltaMovement(float delta, VEC3 lastFrameDirection, VEC3 newDirection,
 	float acceleration, float maxSpeed) {
 	//Copiamos los ejes x/z del vector de velocidad en un VEC2, para trabajar sin tocar el eje y
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
@@ -82,21 +107,4 @@ float IActionState::CalculateVerticalDeltaMovement(float delta, float accelerati
 	//clampear distancia vertical
 	resultingDeltaMovement = resultingDeltaMovement > maxVelocityVertical * delta ? maxVelocityVertical * delta : resultingDeltaMovement;
 	return resultingDeltaMovement;
-}
-
-void IActionState::OnStateEnter(IActionState* lastState) {
-	this->lastState = lastState;
-	deltaMovement = VEC3::Zero;
-	movementInput = VEC2::Zero;
-}
-void IActionState::OnStateExit(IActionState* nextState) {
-	this->nextState = nextState;
-}
-
-void IActionState::SetPose() {
-	GetRender()->setMesh("data/meshes/pose_idle.mesh");
-}
-
-void IActionState::SetMovementInput(VEC2 input) {
-	movementInput = input;
 }

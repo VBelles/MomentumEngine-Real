@@ -117,6 +117,7 @@
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\player\states\movement_states\WalkActionState.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
+    <ClCompile Include="components\player\states\IActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
