@@ -69,7 +69,6 @@ public:
 	void OnOutOfBounds(const TMsgOutOfBounds& msg);
 
 	TCompTransform* GetTransform() { return myTransformHandle; }
-	TCompCamera* GetCamera();
 	TCompCollider* GetCollider() { return colliderHandle; }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }

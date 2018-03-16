@@ -538,13 +538,6 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
     }
 }
 
-TCompCamera* TCompPlayerModel::GetCamera() {
-	CEntity* camera = (CEntity *)getEntityByName("game_camera");
-	TCompCamera* currentCamera = camera->get<TCompCamera>();
-	assert(currentCamera);
-	return currentCamera;
-}
-
 void TCompPlayerModel::OnDead() {
     dbg("YOU DIED!\n");
     GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });

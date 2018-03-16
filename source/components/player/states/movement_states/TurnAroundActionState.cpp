@@ -36,7 +36,7 @@ void TurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	float enteringHorizontalVelocity = enteringHorizontalVelocityVector.Length();
 	movementInput = lastState->GetMovementInput();
 	movementInput.Normalize();
-	VEC3 movementInputWorldSpace = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+	VEC3 movementInputWorldSpace = GetCamera()->TransformToWorld(movementInput);
 	exitVelocityVector = movementInputWorldSpace * enteringHorizontalVelocity;
 	exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 	float y, p, r;

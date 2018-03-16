@@ -10,7 +10,7 @@ void LandingActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
-	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
 	if (hasInput) {
 		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
@@ -66,7 +66,7 @@ void LandingActionState::SetFinalRotationAndVelocity() {
 	bool hasInput = movementInput != VEC2::Zero;
 	if (hasInput) {
 		movementInput.Normalize();
-		VEC3 movementInputWorldSpace = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+		VEC3 movementInputWorldSpace = GetCamera()->TransformToWorld(movementInput);
 		float exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 		float y, p, r;
 		GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);

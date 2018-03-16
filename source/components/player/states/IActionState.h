@@ -35,6 +35,13 @@ protected:
 	TCompCollider* GetCollider() { return colliderHandle; }
 	TCompRender* GetRender() { return renderHandle; }
 
+	TCompCamera* GetCamera() {
+		CEntity* camera = (CEntity *)getEntityByName("game_camera");
+		TCompCamera* currentCamera = camera->get<TCompCamera>();
+		assert(currentCamera);
+		return currentCamera;
+	}
+
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void RotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 		if (abs(GetPlayerTransform()->getDeltaYawToAimTo(targetPos)) > 0.01f) {
