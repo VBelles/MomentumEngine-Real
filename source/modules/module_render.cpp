@@ -7,6 +7,7 @@
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
+#include "skeleton/game_core_skeleton.h"
 #include "camera/camera.h"
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -25,7 +26,6 @@ bool parseTechniques() {
         if (!tech->create(tech_name, tech_j)) return false;
         Resources.registerResource(tech);
     }
-
     return true;
 }
 
@@ -40,6 +40,7 @@ bool CModuleRender::start() {
     Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
     Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
     Resources.registerResourceClass(getResourceClassOf<CMaterial>());
+    Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 
     if (!createRenderObjects()) return false;
 
@@ -93,7 +94,7 @@ void CModuleRender::render() {
     Render.startRenderInBackbuffer();
 
     // Clear the back buffer 
-    float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
+    float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
     Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
     Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
@@ -116,7 +117,6 @@ void CModuleRender::generateFrame() {
         CTraceScoped gpu_scope("Frame");
         Engine.getModules().render();
     }
-
     {
         PROFILE_FUNCTION("ImGui::Render");
         CTraceScoped gpu_scope("ImGui");

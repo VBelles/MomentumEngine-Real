@@ -10,29 +10,33 @@
 
 class CEngine {
 public:
-    CEngine();
-    static CEngine& get();
+	CEngine();
+  static CEngine& get();
 
-    bool start();
-    bool stop();
-    void update(float delta);
-    void render();
+  bool start();
+  bool stop();
+  void update(float delta);
+  void render();
 
-    CModuleManager& getModules() { return _modules; }
-    CModuleRender& getRender() { return _module_render; }
-    CModuleIA& getIA() { return _module_ia; }
-    CModuleInput& getInput() { return _module_input; }
-    CModulePhysics& getPhysics() { return _module_physics; }
-    CModuleCameras& getCameras() { return _module_cameras; }
+  CModuleManager& getModules() { return _modules; }
+  CModuleRender& getRender() { return _module_render; }
+  CModuleIA& getIA() { return _module_ia; }
+  CModuleInput& getInput() { return _module_input; }
+  CModulePhysics& getPhysics() { return _module_physics; }
+  CModuleCameras& getCameras() { return _module_cameras; }
+
+  float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 
 private:
-    CModuleManager  _modules;
-    CModuleRender   _module_render;
-    CModuleEntities _module_entities;
-    CModulePhysics _module_physics;
-    CModuleIA       _module_ia;
-    CModuleInput    _module_input;
-    CModuleCameras  _module_cameras;
+  CModuleManager  _modules;
+  CModuleRender   _module_render;
+  CModuleEntities _module_entities;
+  CModulePhysics _module_physics;
+	CModuleIA       _module_ia;
+	CModuleInput    _module_input;
+  CModuleCameras  _module_cameras;
+
+  float           current_unscaled_delta_time = 0.f;
 };
 
 #define Engine CEngine::get()
