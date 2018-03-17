@@ -2,8 +2,8 @@
   "boot_scenes": [
     "data/scenes/player.scene",
     "data/scenes/game_camera.scene",
-    "data/scenes/test_cameras.scene",
     "data/scenes/scene_basic.scene",
+    "data/scenes/test_cameras.scene",
     "data/scenes/skeleton_demo.scene",
     "data/scenes/whitebox23.scene"
   ],

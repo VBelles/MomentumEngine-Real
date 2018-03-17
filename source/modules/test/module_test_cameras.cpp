@@ -16,21 +16,21 @@ struct TVtxPosClr {
     TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
 };
 
-// ---------------------------------------------------
-CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
-    CRenderMesh* mesh = new CRenderMesh;
-
-    std::vector<TVtxPosClr> vtxs;
-    VEC4 clr(1.f, 1.f, 1.f, 1.0f);
-    for (int i = 0; i < nsteps; ++i) {
-        vtxs.emplace_back(curve.evaluateAsCatmull((float)i / (float)nsteps), clr);
-        vtxs.emplace_back(curve.evaluateAsCatmull((float)(i + 1) / (float)nsteps), clr);
-    }
-
-    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::LINE_LIST))
-        return nullptr;
-    return mesh;
-}
+//// ---------------------------------------------------
+//CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
+//    CRenderMesh* mesh = new CRenderMesh;
+//
+//    std::vector<TVtxPosClr> vtxs;
+//    VEC4 clr(1.f, 1.f, 1.f, 1.0f);
+//    for (int i = 0; i < nsteps; ++i) {
+//        vtxs.emplace_back(curve.evaluateAsCatmull((float)i / (float)nsteps), clr);
+//        vtxs.emplace_back(curve.evaluateAsCatmull((float)(i + 1) / (float)nsteps), clr);
+//    }
+//
+//    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::LINE_LIST))
+//        return nullptr;
+//    return mesh;
+//}
 
 bool CModuleTestCameras::start() {
 	CHandle h_playerCamera = getEntityByName("player_camera");
@@ -42,8 +42,8 @@ bool CModuleTestCameras::start() {
     //_curve.addKnot(VEC3(10, 3, 5));
     //registerMesh(createCurveMesh(_curve, 100), "curve.mesh");
 
-    const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
-    registerMesh(createCurveMesh(*curve, 100), "curve.mesh");
+    /*const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
+    registerMesh(createCurveMesh(*curve, 100), "curve.mesh");*/
 
     return true;
 }
@@ -51,30 +51,13 @@ bool CModuleTestCameras::start() {
 void CModuleTestCameras::update(float delta) {
     if (EngineInput['1'].getsPressed()) {
         CHandle h_camera = getEntityByName("player_camera");
-		// !!! Coge el fov de la c�mara anterior.
-		//CEntity* e_cam = (CEntity*)h_camera;
-		//TCompCamera* compCam = e_cam->get<TCompCamera>();
-		//dbg("cam fov: %f\n", rad2deg(compCam->getFov()));
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
     if (EngineInput['2'].getsPressed()) {
         CHandle h_camera = getEntityByName("fixed_camera");
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
-    //if (EngineInput['3'].getsPressed()) {
-    //    CHandle h_camera = getEntityByName("test_camera_fixed_B");
-    //    Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-    //}
-    //if (EngineInput['4'].getsPressed()) {
-    //    static Interpolator::TCubicInOutInterpolator interpolator;
-    //    CHandle h_camera = getEntityByName("test_camera_fixed_C");
-    //    Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::TEMPORARY, &interpolator);
-    //}
-    //if (EngineInput['5'].getsPressed()) {
-    //    CHandle h_camera = getEntityByName("test_camera_fixed_C");
-    //    Engine.getCameras().blendOutCamera(h_camera, 0.f);
-    //}
-    if (EngineInput['6'].getsPressed()) {
+    if (EngineInput['3'].getsPressed()) {
         CHandle h_camera = getEntityByName("test_camera_curve");
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
@@ -106,14 +89,4 @@ void CModuleTestCameras::render() {
     else {
         activateCamera(camera);
     }
-
-    // Render the grid
-    cb_object.obj_world = MAT44::Identity;
-    cb_object.obj_color = VEC4(1, 1, 1, 1);
-    cb_object.updateGPU();
-
-    auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
-    solid->activate();
-    //auto curve = Resources.get("curve.mesh")->as<CRenderMesh>();
-    //curve->activateAndRender();
 }
