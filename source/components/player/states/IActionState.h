@@ -36,12 +36,12 @@ protected:
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void RotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
-	//Factor a baseAcceleration seg�n el �ngulo entre baseDirection y desiredDirection
+	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
 	float CalculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
 		float backwardsMaxDotProduct, float sidewaysMaxDotProduct, float backwardsAirDriftFactor, float sidewaysAirDriftFactor);
 
-	//Calcula el movimiento horizontal recorrido desde el �ltimo frame, teniendo en cuanta la posible nueva
-	//direcci�n y lo clampea con la m�xima distancia recorrida posible en caso de ir a m�xima velocidad
+	//Calcula el movimiento horizontal recorrido desde el último frame, teniendo en cuanta la posible nueva
+	//dirección y lo clampea con la máxima distancia recorrida posible en caso de ir a máxima velocidad
 	VEC3 CalculateHorizontalDeltaMovement(float delta, VEC3 lastFrameDirection, VEC3 newDirection,
 		float acceleration, float maxSpeed);
 
@@ -51,8 +51,8 @@ protected:
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void ClampHorizontalVelocity(float maxHorizontalSpeed);
 
-	//Calcula el movimiento vertical desde el �ltimo frame y lo clampea con la m�xima distancia 
-	//recorrida posible en caso de ir a m�xima velocidad
+	//Calcula el movimiento vertical desde el último frame y lo clampea con la m�xima distancia 
+	//recorrida posible en caso de ir a máxima velocidad
 	float CalculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
 
 public:
