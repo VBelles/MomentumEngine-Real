@@ -24,6 +24,7 @@
 	    "local_aabb",
 		"camera_player",
 		"camera",
+		"curve_controller",
 		"culling",
 		"light_dir",
 		"render"

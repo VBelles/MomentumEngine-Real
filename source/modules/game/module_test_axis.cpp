@@ -91,8 +91,7 @@ void CModuleTestAxis::update(float delta) {
         CHandle h_camera = getEntityByName("test_camera_curve");
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
-
-
+    
     static float time = 0.f;
     time += delta;
     VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));

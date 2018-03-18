@@ -13,8 +13,8 @@
   "render": [
     "render",
     "test_axis",
+    "cameras",
     "entities",
-    "input",
-    "cameras"
+    "input"
   ]
 }
