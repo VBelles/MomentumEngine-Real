@@ -58,7 +58,6 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
-	isLauncher = true;
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	deltaMovement.y = GetPlayerModel()->movementState->GetDeltaMovement().y;

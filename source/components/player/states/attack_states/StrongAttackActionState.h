@@ -18,7 +18,6 @@ class StrongAttackActionState : public GroundedActionState {
 
 	int startLauncherFrames = 20;
 	float beginLauncherTime;
-	bool isLauncher = true;
 
 	CHandle hitboxHandle;
 	int damage = 5;

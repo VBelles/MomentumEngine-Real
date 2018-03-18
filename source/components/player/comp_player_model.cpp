@@ -19,6 +19,7 @@
 #include "states/movement_states/TurnAroundActionState.h"
 #include "states/movement_states/IdleActionState.h"
 #include "states/movement_states/LandingActionState.h"
+#include "states/movement_states/FallingAttackLandingActionState.h"
 #include "states/attack_states/FastAttackActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
 #include "states/attack_states/FallingAttackActionState.h"
@@ -259,6 +260,12 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
     colliderHandle = get<TCompCollider>();
     assert(colliderHandle.isValid());
 
+	strongAttackHitbox = getEntityByName("Strong attack hitbox");
+	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
+	fallingAttackLandingHitbox = getEntityByName("Falling attack landing hitbox");
+	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
+	grabHitbox = getEntityByName("Grab hitbox");
+
     movementStates = {
         { ActionStates::Idle, new IdleActionState(CHandle(this)) },
     { ActionStates::JumpSquat, new JumpSquatActionState(CHandle(this)) },
@@ -271,13 +278,9 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
     { ActionStates::JumpSquatLong, new JumpSquatLongActionState(CHandle(this)) },
     { ActionStates::AirborneLong, new AirborneLongActionState(CHandle(this)) },
     { ActionStates::TurnAround, new TurnAroundActionState(CHandle(this)) },
-    { ActionStates::Landing, new LandingActionState(CHandle(this)) },
+	{ ActionStates::Landing, new LandingActionState(CHandle(this)) },
+	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(CHandle(this), fallingAttackLandingHitbox) },
     };
-
-    strongAttackHitbox = getEntityByName("Strong attack hitbox");
-    fallingAttackHitbox = getEntityByName("Falling attack hitbox");
-    verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
-    grabHitbox = getEntityByName("Grab hitbox");
 
     attackStates = {
         { ActionStates::Idle, nullptr },

@@ -146,9 +146,27 @@
 				"parent" : "The Player"
 			},
 			"hitbox" : {
-				"offset" : "0 -0.5 0"
+				"offset" : "0 -0.7 0"
 			}
 		}
+	},
+	{
+	"entity": {
+		"name": "Falling attack landing hitbox",
+		"transform": {},
+		"collider": {
+			"shape": "sphere",
+			"is_trigger" : true,
+			"is_dynamic" : true,
+			"radius" : 40.0
+		},
+		"hierarchy" : {
+			"parent" : "The Player"
+		},
+		"hitbox" : {
+			"offset" : "0 0 0"
+		}
+	}
 	},
 	{
 		"entity": {

@@ -34,7 +34,7 @@ public:
 		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
 		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack, 
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong, 
-		PropelHigh, PropelLong, TurnAround, Landing
+		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack
 	};
 	IActionState* movementState;
 	IActionState* attackState;
@@ -128,6 +128,7 @@ private:
 
 	CHandle strongAttackHitbox;
 	CHandle fallingAttackHitbox;
+	CHandle fallingAttackLandingHitbox;
 	CHandle verticalLauncherHitbox;
 	CHandle grabHitbox;
 
