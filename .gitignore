@@ -13,3 +13,4 @@ source/x64/Debug/*.pdb
 *.db
 source/.vs/Game/v15
 Bin/imgui.ini
+Bin/*.cpuprofile
