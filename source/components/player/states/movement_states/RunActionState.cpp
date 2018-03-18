@@ -16,7 +16,7 @@ void RunActionState::update (float delta) {
 	}
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
-	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
 	bool isTurnAround = GetPlayerModel()->GetTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
 	if (hasInput && !isTurnAround) {
 		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;

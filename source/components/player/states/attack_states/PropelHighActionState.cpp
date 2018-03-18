@@ -12,7 +12,7 @@ void PropelHighActionState::update (float delta) {
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (timer.elapsed() >= endingTime) {
 		if (movementInput != VEC2::Zero) {
-			VEC3 inputDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+			VEC3 inputDirection = GetCamera()->TransformToWorld(movementInput);
 			float newYaw = atan2(inputDirection.x, inputDirection.z);
 			float y, p, r;
 			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);

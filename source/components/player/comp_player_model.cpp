@@ -253,10 +253,6 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
     });
     myTransformHandle = get<TCompTransform>();
 
-    CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
-    currentCameraHandle = camera->get<TCompCamera>();
-    assert(currentCameraHandle.isValid());
-
     colliderHandle = get<TCompCollider>();
     assert(colliderHandle.isValid());
 
@@ -339,7 +335,6 @@ void TCompPlayerModel::update(float dt) {
         deltaMovement = attackState->GetDeltaMovement();
     }
 
-    AddMovementOffset();
     ApplyGravity(dt);
     UpdateMovement(dt, deltaMovement);
 
@@ -353,16 +348,21 @@ void TCompPlayerModel::update(float dt) {
 }
 
 void TCompPlayerModel::ApplyGravity(float delta) {
-    float deltaMovementDueToGravity;
-    deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-    //dbg("currentGravity: %f\n", currentGravity);
-    //clampear distancia vertical
-    deltaMovement.y += deltaMovementDueToGravity;
-    deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
-    //dbg("1  deltaMovement: %f\n", deltaMovement.y);
-    //dbg("2  deltaMovement: %f\n", deltaMovement.y);
-    velocityVector.y += currentGravity * delta;
-    velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
+	if (isAttachedToPlatform) {
+		velocityVector.y = 0;
+	}
+	else {
+		float deltaMovementDueToGravity;
+		deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
+		//dbg("currentGravity: %f\n", currentGravity);
+		//clampear distancia vertical
+		deltaMovement.y += deltaMovementDueToGravity;
+		deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
+		//dbg("1  deltaMovement: %f\n", deltaMovement.y);
+		//dbg("2  deltaMovement: %f\n", deltaMovement.y);
+		velocityVector.y += currentGravity * delta;
+		velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
+	}
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
@@ -399,12 +399,6 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
             //Si sigue en el suelo anulamos la velocidad ganada por la gravedad
             velocityVector.y = 0.f;
         }
-    }
-}
-
-void TCompPlayerModel::AddMovementOffset() {
-    if (isAttachedToPlatform) {
-        deltaMovement += platformMovementOffset;
     }
 }
 
@@ -489,7 +483,7 @@ void TCompPlayerModel::StrongAttackButtonReleased() {
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
-    CEntity* camera = (CEntity*)getEntityByName("xthe_camera");
+    CEntity* camera = (CEntity*)getEntityByName("player_camera");
     TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
     playerCamera->CenterCamera();
 }

@@ -1,24 +1,20 @@
 {
-	"update" : 
-	[
-		"input",
-		"entities",
-		"physics",
-		"render",
-		"cameras",
-		"main_menu",
-		"splash",
-		"game_over",
-		"test_axis",
-		"test_cameras"
-	],
-	"render" : 
-	[
-		"render",
-		"test_axis",
-		"entities",
-		"input",
-		"cameras",
-		"test_cameras"
-	]
+  "update": [
+    "input",
+    "physics",
+    "entities",
+    "render",
+    "cameras",
+    "main_menu",
+    "splash",
+    "game_over",
+    "test_axis"
+  ],
+  "render": [
+    "render",
+    "test_axis",
+    "cameras",
+    "entities",
+    "input"
+  ]
 }

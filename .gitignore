@@ -7,6 +7,10 @@ Build
 .vs/Game/v15
 source/.vs/
 source/ipch/
+source/x64/
+source/x64/Debug/*.lib
+source/x64/Debug/*.pdb
 *.db
 source/.vs/Game/v15
 Bin/imgui.ini
+Bin/*.cpuprofile

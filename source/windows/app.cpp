@@ -219,16 +219,6 @@ void CApp::mainLoop() {
         }
         else {
             doFrame();
-            if (EngineInput["debug_mode"].getsPressed()) {
-                showDebug = !showDebug;
-                ShowCursor(showDebug);
-            }
-
-            if (!showDebug) {
-                RECT rect;
-                GetWindowRect(getWnd(), &rect);
-                SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
-            }
         }
     }
 }
@@ -272,9 +262,30 @@ bool CApp::stop() {
 
 //--------------------------------------------------------------------------------------
 void CApp::doFrame() {
-    PROFILE_FRAME_BEGINS();
-    PROFILE_FUNCTION("App::doFrame");
-    float dt = time_since_last_render.elapsedAndReset();
-    Engine.update(dt);
-    Engine.render();
+	PROFILE_FRAME_BEGINS();
+	PROFILE_FUNCTION("App::doFrame");
+
+	double frameTime = time_since_last_render.elapsedAndReset();
+	if (frameTime > 0.25)
+		frameTime = 0.25;
+
+	accumulator += frameTime;
+
+	while (accumulator >= dt) {
+		Engine.update(dt);
+		accumulator -= dt;
+
+		if (EngineInput["debug_mode"].getsPressed()) {
+			showDebug = !showDebug;
+			ShowCursor(showDebug);
+		}
+
+		if (!showDebug) {
+			RECT rect;
+			GetWindowRect(getWnd(), &rect);
+			SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
+		}
+	}
+
+	Engine.render();
 }

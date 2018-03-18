@@ -49,7 +49,6 @@ public:
 	void SetAttackState(ActionStates newState);
 	void update(float dt);
 	void UpdateMovement(float dt, VEC3 deltaMovement);
-	void AddMovementOffset();
 	void SetMovementInput(VEC2 input, float delta);
 	void JumpButtonPressed();
 	void JumpButtonReleased();
@@ -69,7 +68,6 @@ public:
 	void OnOutOfBounds(const TMsgOutOfBounds& msg);
 
 	TCompTransform* GetTransform() { return myTransformHandle; }
-	TCompCamera* GetCamera() { return currentCameraHandle; }
 	TCompCollider* GetCollider() { return colliderHandle; }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
@@ -83,7 +81,6 @@ public:
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;
 	bool isAttachedToPlatform = false;
-	VEC3 platformMovementOffset;
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;
@@ -95,7 +92,6 @@ public:
 private:
 	VEC3 deltaMovement;
 	CHandle myTransformHandle;
-	CHandle currentCameraHandle;
 	CHandle colliderHandle;
 	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };

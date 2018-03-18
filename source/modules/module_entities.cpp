@@ -10,6 +10,7 @@
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 #include "components/comp_shadow.h"
+#include "components/comp_light_dir.h"
 #include "render/render_manager.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
@@ -60,20 +61,34 @@ bool CModuleEntities::start() {
 }
 
 void CModuleEntities::update(float delta) {
+    float scaled_time = delta * time_scale_factor;
+
     for (auto om : om_to_update) {
         PROFILE_FUNCTION(om->getName());
-        om->updateAll(delta);
+        om->updateAll(scaled_time);
     }
 
     CHandleManager::destroyAllPendingObjects();
+}
+
+bool CModuleEntities::stop() {
+    // Destroy all entities, should destroy all components in chain
+    auto hm = getObjectManager<CEntity>();
+    hm->forEach([](CEntity* e) {
+        CHandle h(e);
+        h.destroy();
+    });
+    CHandleManager::destroyAllPendingObjects();
+    return true;
 }
 
 void CModuleEntities::render() {
     if (CApp::get().showDebug) {
         Resources.debugInMenu();
 
-        if (ImGui::TreeNode("All Entities...")) {
+        ImGui::DragFloat("Time Factor", &time_scale_factor, 0.01f, 0.f, 1.0f);
 
+        if (ImGui::TreeNode("All Entities...")) {
             ImGui::SameLine();
             static bool flat = false;
             ImGui::Checkbox("Flat", &flat);
@@ -104,30 +119,40 @@ void CModuleEntities::render() {
         CTagsManager::get().debugInMenu();
     }
 
-/*
+    // I just need to activate one light... but at this moment...
+    getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+        c->activate();
+    });
+
+
+    //static bool is_open = false;
+    //ImGui::Checkbox("ImGui Demo", &is_open);
+    //ImGui::ShowDemoWindow(&is_open);
+
+    /*
     // ------------------------------------------
     // Do the basic render
     auto om_render = getObjectManager<TCompRender>();
     om_render->forEach([](TCompRender* c) {
 
-        TCompTransform* c_transform = c->get<TCompTransform>();
-        if (!c_transform)
-            return;
+      TCompTransform* c_transform = c->get<TCompTransform>();
+      if (!c_transform)
+        return;
 
-        cb_object.obj_world = c_transform->asMatrix();
-        cb_object.obj_color = c->color;
-        cb_object.updateGPU();
+      cb_object.obj_world = c_transform->asMatrix();
+      cb_object.obj_color = c->color;
+      cb_object.updateGPU();
 
-    int idx = 0;
-    c->mesh->activate();
-    for (auto& m : c->materials) {
-      if (m) {
-        m->activate();
-        c->mesh->renderSubMesh(idx);
+      int idx = 0;
+      c->mesh->activate();
+      for (auto& m : c->materials) {
+        if (m) {
+          m->activate();
+          c->mesh->renderSubMesh(idx);
+        }
+        ++idx;
       }
-      ++idx;
-    }
- */
+   */
     auto om_render_ui = getObjectManager<TCompRenderUI>();
     om_render_ui->forEach([](TCompRenderUI* c) {
         c->renderUI();

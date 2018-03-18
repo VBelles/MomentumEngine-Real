@@ -1,68 +1,32 @@
 [
 	{
 		"entity": {
-			"name": "test_camera_flyover",
-			"transform": {
-				"pos": "5 5 0",
-				"lookat" : "0 0 0"
-			},
-			"render" : {},
-			"camera_flyover" : {},
-			"camera" : {
-				"fov" : 80 
-			},
-			"culling": true
-		}
-	},
-	{
-		"entity": {
-			"name": "test_camera_orbit",
-			"transform": {
-				"pos": "0 5 5"
-			},
-			"render" : {},
-			"camera_orbit" : {},
-			"camera" : {
-				"fov" : 60 
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "test_camera_fixed_A",
-			"transform": {
-				"pos": "10 5 10",
-				"lookat": "0 0 0"
-			},
-			"render" : {},
-			"camera" : {
-				"fov" : 60 
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "test_camera_fixed_B",
-			"transform": {
-				"pos": "-10 5 -10",
-				"lookat": "0 0 0"
-			},
-			"render" : {},
-			"camera" : {
-				"fov" : 60 
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "test_camera_fixed_C",
+			"name": "test_camera_curve",
 			"transform": {
 				"pos": "5 25 0",
 				"lookat": "0 0 0"
 			},
+			"curve_controller" :
+			{
+				"curve" : "data/curves/test_curve.curve",
+				"speed" : 0.25,
+				"target" : "The Player"
+			},
 			"render" : {},
 			"camera" : {
 				"fov" : 60 
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "fixed_camera",
+			"transform": {
+				"pos": "-78 26 -59",
+				"lookat": "-83 24 -56"
+			},
+			"camera" : {
+				"fov" : 40 
 			}
 		}
 	}

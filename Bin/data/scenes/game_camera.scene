@@ -5,9 +5,8 @@
 			"transform": {
 				"pos": "3 0 -5"
 			},
-			"render" : {},
 			"camera" : {
-				"fov" : 80 
+				"fov" : 90 
 			}
 		}
 	}
