@@ -14,7 +14,7 @@ void AirborneActionState::update (float delta) {
 
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	
-	VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
 	
 	if (hasInput){// && enterFront.Dot(desiredDirection) > backwardsMaxDotProduct) {
 		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;

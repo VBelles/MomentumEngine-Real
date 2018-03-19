@@ -17,7 +17,7 @@ void FallingAttackActionState::update (float delta) {
 		PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 
 		if (hasInput) {
-			VEC3 desiredDirection = GetPlayerModel()->GetCamera()->TransformToWorld(movementInput);
+			VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
 			VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 			RotatePlayerTowards(delta, targetPos, 10.f);
 		}

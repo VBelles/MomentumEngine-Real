@@ -38,5 +38,39 @@
 			},
 			"outOfBounds" : {}
 		}
+	},
+	{
+		"entity":
+		{
+			"name": "LightDir00",
+			"transform": {
+				"pos": "-76 65 -60",
+				"lookat": "-83 22 -56"
+			},
+			"light_dir": {
+				"intensity": 2,
+				"color" :  "1 1 1 1",
+				"projector" : "data/textures/white.dds",
+				"z_far" : 500,
+				"fov": 150
+			}
+		}
+	},
+	{
+		"entity":
+		{
+			"name": "LightDir01",
+			"transform": {
+				"pos": "10 50 30",
+				"lookat": "-83 22 -56"
+			},
+			"light_dir": {
+				"intensity": 2,
+				"color" :  "1 1 1 1",
+				"projector" : "data/textures/white.dds",
+				"z_far" : 300,
+				"fov": 150
+			}
+		}
 	}
 ]

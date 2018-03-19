@@ -22,6 +22,13 @@ void TCompHierarchy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	// I prefer to wait until the group is loaded to resolve my parent
 	h_parent = msg.ctx.findEntityByName(parent_name);
 	setParentEntity(h_parent);
+
+	h_my_collider = get<TCompCollider>();
+	if (h_my_collider.isValid()) {
+		TCompCollider *collider = h_my_collider;
+		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+		rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
+	}
 }
 
 void TCompHierarchy::debugInMenu() {
@@ -60,4 +67,13 @@ void TCompHierarchy::update(float dt) {
 
 	// Combine the current world transform with my 
 	c_my_transform->set(c_parent_transform->combineWith(*this));
+
+	if (h_my_collider.isValid()) {
+		TCompCollider *collider = h_my_collider;
+		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+		if (collider->isEnabled()) rigidDynamic->setKinematicTarget({
+			c_my_transform->getPosition().x + collider->config.offset.x,
+			c_my_transform->getPosition().y + collider->config.offset.y,
+			c_my_transform->getPosition().z + collider->config.offset.z });
+	}
 }
