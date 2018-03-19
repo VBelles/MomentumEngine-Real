@@ -267,7 +267,8 @@ struct TSceneExporter (
 			mcv_position.y = adjustedPos
 		)
 		
-		-- From mcv, we will go to max, apply the max transform and go back to mcv coord system
+		-- From mcv, we will go to max, apply the max transform
+		-- and go back to mcv coord system.
 		local mcv_transform = mcv2max * obj.transform * max2mcv
 
 		-- Take just the rotation as quaternion
@@ -385,6 +386,39 @@ struct TSceneExporter (
 		exportCompCollider obj
 	),
 
+	-- --CAMERA--------------------------------------------------
+	fn exportCamera obj = (
+		fs.writeKeyValue "name" obj.name
+		fs.writeComma()
+		exportTransform obj 0
+
+		--if (classof obj == FreeCamera or
+		--classof obj == TargetCamera) then format "Exporting camera\n"
+	--format "Camera % x:% y:% z:%\n" obj.name obj.pos.x obj.pos.y obj.pos.z
+	--format "Camera % fov: % target distance: %\n" obj.name obj.fov obj.targetDistance
+	--format "Camera % target pos x:% y:% z:% \n" obj.name obj.target.x obj.target.y obj.target.z
+		
+	),
+	
+	-- --SPLINE--------------------------------------------------
+	fn exportSpline obj = (
+		fs.writeKeyValue "type" "catmull-rom"
+		fs.writeComma()
+		fs.writeKeyValue "loop" false
+		fs.writeComma()
+		fs.writeKey "knots"
+		fs.beginArray()
+			knotsInSpline = numKnots obj
+			for i = 1 to (knotsInSpline) do (
+				if i > 1 then fs.writeComma()
+				-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
+				local knotPos = getKnotPoint obj 1 i
+				local mcvKnotPos = knotPos * rotateXMatrix -90
+				fs.writeValue mcvKnotPos
+			)
+		fs.endArray()
+	),
+	
 	-- --ENEMY---------------------------------------------------
 	fn exportEnemy obj = (
 		local enemyAirPrefabName = "enemy_flying"
@@ -528,6 +562,7 @@ struct TSceneExporter (
 				fs.beginObj()
 				--if classof obj == Camera then exportCamera obj
 				if classof obj == Editable_Mesh then exportEditableMesh obj
+				if classof obj == Line then exportSpline obj
 				else if isCollider obj then exportEntityCollider obj
 				else if isEnemy obj then exportEnemy obj
 				else if isChrysalis obj then exportChrysalis obj
@@ -567,9 +602,9 @@ struct TSceneExporter (
 -- TODO: Poder exportar triggers sin parent.
 -- TODO: Exportar enemigos, crisálidas y plataformas móviles en escena separada.
 
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 -- Notas de uso:
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 -- Lo visible como Editable Mesh.
 -- Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
 -- Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
@@ -585,10 +620,10 @@ struct TSceneExporter (
 --  bin/data/scenes
 --  bin/data/meshes
 --  bin/data/materials
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 
 --exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/"
-exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
---exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
+exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
 exporter.exportAll()
