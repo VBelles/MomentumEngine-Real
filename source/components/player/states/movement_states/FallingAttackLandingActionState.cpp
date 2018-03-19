@@ -14,11 +14,11 @@ void FallingAttackLandingActionState::update (float delta) {
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->disable();
 	}
-	else {
+	/*else {
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->enable();
-	}
+	}*/
 }
 
 void FallingAttackLandingActionState::OnStateEnter(IActionState * lastState) {
