@@ -118,6 +118,7 @@
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
+    <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
     <ClCompile Include="components\player\states\movement_states\WalkActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\FallingAttackLandingActionState.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
@@ -267,6 +268,7 @@
     <ClInclude Include="render\render_manager.h" />
     <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
+    <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
     <ClInclude Include="components\player\states\movement_states\WalkActionState.h" />
     <ClInclude Include="components\player\states\movement_states\FallingAttackLandingActionState.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />

@@ -8,6 +8,8 @@
 #include "states/IActionState.h"
 #include "PowerGauge.h"
 
+class PlayerFilterCallback;
+
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
 	float rotationSpeed = 0.f;
@@ -69,6 +71,7 @@ public:
 
 	TCompTransform* GetTransform() { return myTransformHandle; }
 	TCompCollider* GetCollider() { return colliderHandle; }
+	PxCapsuleController* GetController() { return static_cast<PxCapsuleController*>(GetCollider()->controller); }
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
 	float GetGravity() { return currentGravity; }
@@ -119,6 +122,8 @@ private:
 
 	PowerGauge* powerGauge;
 
+	PlayerFilterCallback* playerFilterCallback;
+
 	std::map<ActionStates, IActionState*> movementStates;
 	std::map<ActionStates, IActionState*> attackStates;
 
@@ -135,5 +140,6 @@ private:
 	void ChangeMovementState(ActionStates newState);
 	void ChangeAttackState(ActionStates newState);
 	void OnDead();
+	void OnShapeHit(const TMsgOnShapeHit & msg);
 	void ApplyGravity(float delta);
 };

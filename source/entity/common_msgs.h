@@ -139,6 +139,13 @@ struct TMsgDefineLocalAABB {
   DECL_MSG_ID();
 };
 
+
+
+struct TMsgOnShapeHit {
+	physx::PxControllerShapeHit hit;
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();
