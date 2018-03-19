@@ -71,8 +71,16 @@ void HorizontalLauncherActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
-		otherEntity->sendMsg(TMsgLaunchedHorizontally{ playerEntity, damage, GetPlayerTransform()->getFront()});
-		dbg("Horizontal Launcher hit for %f damage\n", damage);
+		TMsgAttackHit msgAtackHit = {};
+		msgAtackHit.attacker = playerEntity;
+		msgAtackHit.info = {};
+		msgAtackHit.info.givesPower = true;
+		VEC3 launchVelocity = GetPlayerTransform()->getFront() * GetPlayerModel()->GetPowerStats()->longJumpVelocityVector.z;
+		launchVelocity.y = GetPlayerModel()->GetPowerStats()->longJumpVelocityVector.y;
+		msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+			suspensionTime,
+			launchVelocity
+		};
+		otherEntity->sendMsg(msgAtackHit);
 	}
 }

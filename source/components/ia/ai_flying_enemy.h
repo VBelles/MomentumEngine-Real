@@ -37,8 +37,8 @@ private:
 
 	//Mesage functions
 	void OnHit(const TMsgAttackHit& msg);
-	void OnGrabbed(const TMsgGrabbed & msg);
-	void OnPropelled(const TMsgPropelled & msg);
+	void OnGrabbed(float duration);
+	void OnPropelled(VEC3 velocity);
 	void OnGroupCreated(const TMsgEntitiesGroupCreated & msg);
 
 	boolean IsPlayerInAttackRange();

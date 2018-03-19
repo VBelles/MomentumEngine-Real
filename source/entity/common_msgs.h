@@ -20,15 +20,26 @@ struct AttackInfo {
 		float suspensionDuration;
 		VEC3 velocity;
 	};
-	float damage;
+	struct Grab {
+		float duration;
+	};
+	struct Propel {
+		VEC3 velocity;
+	};
+	float damage = 0.f;
+	bool givesPower = false;
 	Stun* stun = nullptr;
 	VerticalLauncher* verticalLauncher = nullptr;
 	HorizontalLauncher* horizontalLauncher = nullptr;
+	Grab* grab = nullptr;
+	Propel* propel = nullptr;
 
 	~AttackInfo() {
 		delete stun;
 		delete verticalLauncher;
 		delete horizontalLauncher;
+		delete grab;
+		delete propel;
 	}
 };
 
@@ -70,33 +81,33 @@ struct TMsgHitboxEnter {
 
 struct TMsgAttackHit {
 	CHandle attacker;
-	int damage;
+	AttackInfo info;
 	DECL_MSG_ID();
 };
 
-struct TMsgGrabbed {
-	CHandle attacker;
-	DECL_MSG_ID();
-};
-
-struct TMsgPropelled {
-	CHandle attacker;
-	VEC3 velocityVector;
-	DECL_MSG_ID();
-};
-
-struct TMsgLaunchedVertically {
-	CHandle attacker;
-	int damage;
-	DECL_MSG_ID();
-};
-
-struct TMsgLaunchedHorizontally {
-	CHandle attacker;
-	int damage;
-	VEC3 direction;
-	DECL_MSG_ID();
-};
+//struct TMsgGrabbed {
+//	CHandle attacker;
+//	DECL_MSG_ID();
+//};
+//
+//struct TMsgPropelled {
+//	CHandle attacker;
+//	VEC3 velocityVector;
+//	DECL_MSG_ID();
+//};
+//
+//struct TMsgLaunchedVertically {
+//	CHandle attacker;
+//	int damage;
+//	DECL_MSG_ID();
+//};
+//
+//struct TMsgLaunchedHorizontally {
+//	CHandle attacker;
+//	int damage;
+//	VEC3 direction;
+//	DECL_MSG_ID();
+//};
 
 struct TMsgGainPower {
 	CHandle sender;

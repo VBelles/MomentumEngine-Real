@@ -36,6 +36,9 @@ void FallingAttackLandingActionState::OnStateEnter(IActionState * lastState) {
 void FallingAttackLandingActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 	dbg("Saliendo de falling attack landing\n");
+	CEntity *hitboxEntity = hitboxHandle;
+	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
+	hitbox->disable();
 }
 
 void FallingAttackLandingActionState::SetMovementInput(VEC2 input) {
@@ -51,6 +54,10 @@ void FallingAttackLandingActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
+		TMsgAttackHit msgAtackHit = {};
+		msgAtackHit.attacker = playerEntity;
+		msgAtackHit.info = {};
+		msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
+		otherEntity->sendMsg(msgAtackHit);
 	}
 }

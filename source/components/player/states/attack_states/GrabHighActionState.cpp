@@ -15,8 +15,14 @@ void GrabHighActionState::OnHitboxEnter(CHandle entity) {
 
 		TCompTags* tag = otherEntity->get<TCompTags>();
 		if (tag && tag->hasTag(getID("enemy"))) {
-			otherEntity->sendMsg(TMsgGrabbed{ playerEntity });
-			dbg("Grab High\n");
+			TMsgAttackHit msgAtackHit = {};
+			msgAtackHit.attacker = playerEntity;
+			msgAtackHit.info = {};
+			msgAtackHit.info.givesPower = true;
+			msgAtackHit.info.grab = new AttackInfo::Grab{
+				lockDuration
+			};
+			otherEntity->sendMsg(msgAtackHit);
 			GetPlayerModel()->grabTarget = entity;
 			GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::PropelHigh);
 		}

@@ -26,7 +26,13 @@ void PropelHighActionState::update (float delta) {
 		CHandle playerEntity = CHandle(playerModelHandle).getOwner();
 		CEntity* targetEntity = propelTarget;
 		VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
-		targetEntity->sendMsg(TMsgPropelled{ playerEntity, propelVelocity });
+		TMsgAttackHit msgAtackHit = {};
+		msgAtackHit.attacker = playerEntity;
+		msgAtackHit.info = {};
+		msgAtackHit.info.propel = new AttackInfo::Propel{
+			propelVelocity
+		};
+		targetEntity->sendMsg(msgAtackHit);
 	}
 	else {
 		*velocityVector = VEC3::Zero;

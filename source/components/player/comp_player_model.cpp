@@ -504,7 +504,7 @@ bool TCompPlayerModel::IsAttackFree() {
 }
 
 void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
-    hp -= msg.damage;
+    hp -= msg.info.damage;
     TCompRender* render = get<TCompRender>();
     render->TurnRed(0.5f);
     if (hp <= 0) {

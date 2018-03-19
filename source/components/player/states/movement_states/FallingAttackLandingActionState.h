@@ -9,6 +9,7 @@ class FallingAttackLandingActionState : public LandingActionState {
 	int impactAttackDurationFrames = 3;
 	float impactAttackDurationTime;
 	int newLandingLagFrames = 40;
+	float stunTime = 1.5f;
 
 	CHandle hitboxHandle;
 	int damage = 0;

@@ -17,8 +17,6 @@ void CAIFlyingEnemy::load(const json& j, TEntityParseContext& ctx) {
 void CAIFlyingEnemy::registerMsgs() {
 	DECL_MSG(CAIFlyingEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(CAIFlyingEnemy, TMsgAttackHit, OnHit);
-	DECL_MSG(CAIFlyingEnemy, TMsgGrabbed, OnGrabbed);
-	DECL_MSG(CAIFlyingEnemy, TMsgPropelled, OnPropelled);
 }
 
 void CAIFlyingEnemy::InitStates() {
@@ -30,31 +28,37 @@ void CAIFlyingEnemy::InitStates() {
 }
 
 void CAIFlyingEnemy::OnHit(const TMsgAttackHit& msg) {
-	int damage = msg.damage;
+	float damage = msg.info.damage;
 	health -= damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
-
 	CEntity *attacker = msg.attacker;
-	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
-
+	if (msg.info.givesPower) {
+		//esto se tendría que hacer antes de enviar el mensaje, para subir de nivel antes
+		attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+	}
 	if (health <= 0) {
 		ChangeState("death");
 	}
+	else {
+		if (msg.info.grab) {
+			OnGrabbed(msg.info.grab->duration);
+		}
+		if (msg.info.propel) {
+			OnPropelled(msg.info.propel->velocity);
+		}
+	}
+
 }
 
-void CAIFlyingEnemy::OnGrabbed(const TMsgGrabbed& msg) {
-	dbg("grabbed\n");
+void CAIFlyingEnemy::OnGrabbed(float duration) {
 	ChangeState("grabbed");
-	CEntity *attacker = msg.attacker;
-	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
 	//Quitar collider
 }
 
-void CAIFlyingEnemy::OnPropelled(const TMsgPropelled& msg) {
+void CAIFlyingEnemy::OnPropelled(VEC3 velocity) {
 	ChangeState("propelled");
-	CEntity *attacker = msg.attacker;
-	propelVelocityVector = msg.velocityVector;
+	propelVelocityVector = velocity;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
 }
