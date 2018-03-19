@@ -11,7 +11,7 @@ class FallingAttackLandingActionState : public LandingActionState {
 	int newLandingLagFrames = 40;
 
 	CHandle hitboxHandle;
-	int damage = 3;
+	int damage = 0;
 public:
 	FallingAttackLandingActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;

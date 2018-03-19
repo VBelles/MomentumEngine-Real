@@ -8,6 +8,30 @@ struct TMsgEntityCreated {
     DECL_MSG_ID();
 };
 
+struct AttackInfo {
+	struct Stun {
+		float duration;
+	};
+	struct VerticalLauncher {
+		float suspensionDuration;
+		VEC3 velocity;
+	};
+	struct HorizontalLauncher {
+		float suspensionDuration;
+		VEC3 velocity;
+	};
+	float damage;
+	Stun* stun = nullptr;
+	VerticalLauncher* verticalLauncher = nullptr;
+	HorizontalLauncher* horizontalLauncher = nullptr;
+
+	~AttackInfo() {
+		delete stun;
+		delete verticalLauncher;
+		delete horizontalLauncher;
+	}
+};
+
 // Sent to all entities from a parsed file once all the entities
 // in that file have been created. Used to link entities between them
 struct TEntityParseContext;
