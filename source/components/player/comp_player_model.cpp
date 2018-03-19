@@ -159,7 +159,6 @@ void TCompPlayerModel::OnLevelChange(int powerLevel) {
 }
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-<<<<<<< HEAD
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
 	TCompTransform* transf = get<TCompTransform>();
@@ -253,11 +252,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::End();
 	});
 	myTransformHandle = get<TCompTransform>();
-
-	CEntity *camera = (CEntity *)getEntityByName("xthe_camera");
-	currentCameraHandle = camera->get<TCompCamera>();
-	assert(currentCameraHandle.isValid());
-
+	
 	colliderHandle = get<TCompCollider>();
 	assert(colliderHandle.isValid());
 
@@ -301,142 +296,6 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	playerFilterCallback = new PlayerFilterCallback(CHandle(this));
 
-=======
-    TCompRenderUI* renderUI = get<TCompRenderUI>();
-
-    TCompTransform* transf = get<TCompTransform>();
-    respawnPosition = transf->getPosition();
-
-    renderUI->registerOnRenderUI([&]() {
-
-        bool showWindow = true;
-        ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
-        ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 25, 0 + 25));
-        ImGui::SetNextWindowSize(ImVec2(200, 70));
-        ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-
-        //Hp bar
-        std::string hpProgressBarText = "HP: " + std::to_string(hp) + "/" + std::to_string(maxHp);
-        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 0, 255, 0 });
-        ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
-        ImGui::PopStyleColor();
-
-        //Power bar
-        std::string powerProgressBarText = "Power: " + std::to_string((int)powerGauge->power) + "/" + std::to_string((int)powerGauge->maxPower);
-        ImVec4 color = powerGauge->powerLevel == 1 ? ImColor{ 255, 255, 0 } : powerGauge->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
-        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-        ImGui::ProgressBar((float)powerGauge->power / powerGauge->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
-        ImGui::PopStyleColor();
-
-        //Chrysalis counter
-        std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
-        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
-        ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
-        ImGui::PopStyleColor();
-
-
-        ImGui::End();
-        ImGui::PopStyleColor();
-
-        if (showVictoryDialog) {
-            //-------- WIN DIALOG --------------------------------
-            ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 255 });
-            ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - 200, ImGui::GetIO().DisplaySize.y / 4));
-            ImGui::SetNextWindowSize(ImVec2(300, 200));
-            ImGui::Begin("victoryWindow", &showVictoryDialog, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-            ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path to the final boss!\n\n\n");
-            ImGui::TextUnformatted("You can keep exploring and see\n\nif you can collect the other two.\n");
-            ImGui::End();
-            ImGui::PopStyleColor();
-        }
-
-        if (!CApp::get().showDebug) return;
-
-        ImGui::Begin("Params Main Character", &showWindow);
-        ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
-        ImGui::DragFloat("Rotation_Ssj1", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
-        ImGui::DragFloat("FallingMultiplier_Ssj1", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
-        ImGui::DragFloat("LongGravityMultiplier_Ssj1", &ssj1->longGravityMultiplier, 1.f, 0.f, 2.f);
-        ImGui::DragFloat("MaxVerticalVelocity_Ssj1", &ssj1->maxVelocityVertical, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("Acceleration_Ssj1", &ssj1->acceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("Deceleration_Ssj1", &ssj1->deceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("AirAcceleration_Ssj1", &ssj1->airAcceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("ShortHopVelocity_Ssj1", &ssj1->shortHopVelocity, 1.f, 0.f, 100.f);
-        ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-        ImGui::DragFloat3("LongJumpVelocity_Ssj1", &ssj1->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-
-        ImGui::DragFloat("Speed_Ssj2", &ssj2->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
-        ImGui::DragFloat("Rotation_Ssj2", &ssj2->rotationSpeed, 0.1f, 0.f, 20.f);
-        ImGui::DragFloat("FallingMultiplier_Ssj2", &ssj2->fallingMultiplier, 0.01f, 1.f, 2.f);
-        ImGui::DragFloat("LongGravityMultiplier_Ssj2", &ssj2->longGravityMultiplier, 1.f, 0.f, 2.f);
-        ImGui::DragFloat("MaxVerticalVelocity_Ssj2", &ssj2->maxVelocityVertical, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("Acceleration_Ssj2", &ssj2->acceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("Deceleration_Ssj2", &ssj2->deceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("AirAcceleration_Ssj2", &ssj2->airAcceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("ShortHopVelocity_Ssj2", &ssj2->shortHopVelocity, 1.f, 0.f, 100.f);
-        ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-        ImGui::DragFloat3("LongJumpVelocity_Ssj2", &ssj2->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-
-        ImGui::DragFloat("Speed_Ssj3", &ssj3->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
-        ImGui::DragFloat("Rotation_Ssj3", &ssj3->rotationSpeed, 0.1f, 0.f, 20.f);
-        ImGui::DragFloat("FallingMultiplier_Ssj3", &ssj3->fallingMultiplier, 0.01f, 1.f, 2.f);
-        ImGui::DragFloat("LongGravityMultiplier_Ssj3", &ssj3->longGravityMultiplier, 1.f, 0.f, 2.f);
-        ImGui::DragFloat("MaxVerticalVelocity_Ssj3", &ssj3->maxVelocityVertical, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("Acceleration_Ssj3", &ssj3->acceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("Deceleration_Ssj3", &ssj3->deceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("AirAcceleration_Ssj3", &ssj3->airAcceleration, 1.f, 0.f, 100.f);
-        ImGui::DragFloat("ShortHopVelocity_Ssj3", &ssj3->shortHopVelocity, 1.f, 0.f, 100.f);
-        ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-        ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-
-        if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
-            baseGravity = accelerationVector.y;
-        }
-        ImGui::End();
-    });
-    myTransformHandle = get<TCompTransform>();
-
-    colliderHandle = get<TCompCollider>();
-    assert(colliderHandle.isValid());
-
-    movementStates = {
-        { ActionStates::Idle, new IdleActionState(CHandle(this)) },
-    { ActionStates::JumpSquat, new JumpSquatActionState(CHandle(this)) },
-    { ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(CHandle(this)) },
-    { ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(CHandle(this)) },
-    { ActionStates::Run, new RunActionState(CHandle(this)) },
-    { ActionStates::Walk, new WalkActionState(CHandle(this)) },
-    { ActionStates::AirborneNormal, new AirborneNormalActionState(CHandle(this)) },
-    { ActionStates::GhostJumpSquatLong, new GhostJumpSquatLongActionState(CHandle(this)) },
-    { ActionStates::JumpSquatLong, new JumpSquatLongActionState(CHandle(this)) },
-    { ActionStates::AirborneLong, new AirborneLongActionState(CHandle(this)) },
-    { ActionStates::TurnAround, new TurnAroundActionState(CHandle(this)) },
-    { ActionStates::Landing, new LandingActionState(CHandle(this)) },
-    };
-
-    strongAttackHitbox = getEntityByName("Strong attack hitbox");
-    fallingAttackHitbox = getEntityByName("Falling attack hitbox");
-    verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
-    grabHitbox = getEntityByName("Grab hitbox");
-
-    attackStates = {
-        { ActionStates::Idle, nullptr },
-    { ActionStates::FastAttack, new FastAttackActionState(CHandle(this), strongAttackHitbox) },
-    { ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
-    { ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
-    { ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
-    { ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
-    { ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
-    { ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
-    { ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },
-    { ActionStates::PropelLong, new PropelLongActionState(CHandle(this)) },
-    };
-    nextMovementState = ActionStates::Idle;
-    nextAttackState = ActionStates::Idle;
-    ChangeMovementState(ActionStates::Idle);
-    ChangeAttackState(ActionStates::Idle);
-    currentPowerStats = ssj1;
->>>>>>> master
 }
 
 void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
@@ -461,45 +320,6 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 }
 
 void TCompPlayerModel::update(float dt) {
-<<<<<<< HEAD
-	frame++;
-	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
-		showVictoryDialog = false;
-	}
-
-	movementState->update(dt);
-	if (attackState != attackStates[ActionStates::Idle]) {
-		attackState->update(dt);
-	}
-	if (!lockWalk) {
-		deltaMovement = movementState->GetDeltaMovement();
-	}
-	else if (attackState != attackStates[ActionStates::Idle]) {
-		deltaMovement = attackState->GetDeltaMovement();
-	}
-
-	AddMovementOffset();
-	ApplyGravity(dt);
-	UpdateMovement(dt, deltaMovement);
-
-	if (movementState != movementStates[nextMovementState]) {
-		ChangeMovementState(nextMovementState);
-	}
-	if (attackState != attackStates[nextAttackState]) {
-		ChangeAttackState(nextAttackState);
-	}
-	powerGauge->Update(dt);
-}
-
-void TCompPlayerModel::ApplyGravity(float delta) {
-	float deltaMovementDueToGravity;
-	deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-	//clampear distancia vertical
-	deltaMovement.y += deltaMovementDueToGravity;
-	deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
-	velocityVector.y += currentGravity * delta;
-	velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
-=======
     frame++;
     if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
         showVictoryDialog = false;
@@ -544,7 +364,6 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 		velocityVector.y += currentGravity * delta;
 		velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
 	}
->>>>>>> master
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
@@ -580,15 +399,6 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	}
 }
 
-<<<<<<< HEAD
-void TCompPlayerModel::AddMovementOffset() {
-	if (isAttachedToPlatform) {
-		deltaMovement += platformMovementOffset;
-	}
-}
-
-=======
->>>>>>> master
 //Aqu\ED llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
@@ -670,15 +480,9 @@ void TCompPlayerModel::StrongAttackButtonReleased() {
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
-<<<<<<< HEAD
-	CEntity* camera = (CEntity*)getEntityByName("xthe_camera");
-	TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
-	playerCamera->CenterCamera();
-=======
     CEntity* camera = (CEntity*)getEntityByName("player_camera");
     TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
     playerCamera->CenterCamera();
->>>>>>> master
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
