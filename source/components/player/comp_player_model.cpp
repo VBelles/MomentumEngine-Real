@@ -128,6 +128,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, OnGainPower);
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, OnOutOfBounds);
+	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, OnShapeHit);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -545,4 +546,9 @@ void TCompPlayerModel::OnDead() {
 	SetMovementState(ActionStates::AirborneNormal);
 	hp = maxHp;
 	powerGauge->ResetPower();
+}
+
+
+void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
+	
 }

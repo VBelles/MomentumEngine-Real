@@ -139,5 +139,6 @@ private:
 	void ChangeMovementState(ActionStates newState);
 	void ChangeAttackState(ActionStates newState);
 	void OnDead();
+	void OnShapeHit(const TMsgOnShapeHit & msg);
 	void ApplyGravity(float delta);
 };
