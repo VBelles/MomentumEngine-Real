@@ -212,8 +212,13 @@ fn collisionCheck obj = (
 fn isCollider obj = (
 	if obj.layer.name != "collisions" and obj.layer.name != "triggers" then return false
 	collisionCheck obj
-	-- if name starts with col_...
+	-- If name starts with col_...
 	return true
+)
+
+fn excludeFromExport obj = (
+	-- Add here all object classes we don't want to export.
+	return classof obj == Targetobject
 )
 
 fn isEnemy obj = (
@@ -280,7 +285,7 @@ struct TSceneExporter (
 			if lookAtCoord == unsupplied then (
 				fs.writeKeyValue "rotation" mcv_quat
 			) else (
-				fs.writeKeyValue "lookat" lookAtCoord
+				fs.writeKeyValue "lookat" lookAtCoord[3].pos --[3] is the Transform.
 			)
 		fs.endObj()
 	),
@@ -392,17 +397,14 @@ struct TSceneExporter (
 
 	-- --CAMERA--------------------------------------------------
 	fn exportCamera obj = (
-		fs.writeKeyValue "name" obj.name
-		if (classof obj == FreeCamera or
-			classof obj == TargetCamera) then (
-				fs.writeComma()
-				exportTransform obj 0 obj.Target
-				format "Exporting camera\n"
-				fs.writeKey "camera"
-				fs.beginObj()
-					fs.writeKeyValue "fov" obj.fov
-				fs.endObj()
-		)
+		exportName obj
+		fs.writeComma()
+		exportTransform obj lookAtCoord:obj.Target
+		fs.writeComma()
+		fs.writeKey "camera"
+		fs.beginObj()
+			fs.writeKeyValue "fov" obj.fov
+		fs.endObj()
 	--format "Camera % target distance: %\n" obj.name obj.targetDistance
 	),
 	
@@ -433,14 +435,14 @@ struct TSceneExporter (
 		if obj.layer.name == "enemyLand" then prefabName = enemyLandPrefabName
 		local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
 		
-		fs.writeKeyValue "name" obj.name
+		exportName obj
 		fs.writeComma()
 		local prefabPath = prefabPath
 		fs.writeKeyValue "prefab" prefabPath
 		fs.writeComma()
 		
 		local lookAtPos = [-1, objPos.y, -1]
-		exportTransform obj 0 lookAtPos
+		exportTransform obj lookAtCoord:lookAtPos
 		
 		if obj.layer.name == "enemyAir" then (
 			fs.writeComma()
@@ -458,15 +460,11 @@ struct TSceneExporter (
 	-- --CHRYSALIS-----------------------------------------------
 	fn exportChrysalis obj = (
 		local prefabPath = base_path + "prefabs/crisalida.prefab"
-		fs.writeKeyValue "name" obj.name
+		exportName obj
 		fs.writeComma()
 		fs.writeKeyValue "prefab" prefabPath
 		fs.writeComma()
-		fs.writeKey "transform"
-		fs.beginObj()
-			local objPos = obj.position * (rotateXMatrix -90)
-			fs.writeKeyValue "pos" objPos
-		fs.endObj()
+		exportTransform obj
 	),
 
 	-- --MOVABLE-------------------------------------------------
@@ -475,7 +473,7 @@ struct TSceneExporter (
 	fn exportMovablePlatform obj = (
 		local prefabPath = base_path + "prefabs/platform_move.prefab"
 		
-		fs.writeKeyValue "name" obj.name
+		exportName obj
 		fs.writeComma()
 		fs.writeKeyValue "prefab" prefabPath
 		fs.writeComma()
@@ -527,7 +525,7 @@ struct TSceneExporter (
 		fs.writeKeyValue "name" parentName
 		fs.writeComma()
 		local yShift = platformHalfExtent[2]
-		exportTransform obj yShift
+		exportTransform obj yShift:yShift
 		fs.writeComma()
 		-- collider
 		fs.writeKey "collider"
@@ -555,16 +553,18 @@ struct TSceneExporter (
 	-- --ENTITY--------------------------------------------------
 	fn exportEntity obj nValidObjs = (
 		-- Avoid empty entities if it's a child collider.
-		if (obj.parent == undefined and not isCollider obj) then (
+		if (obj.parent == undefined and
+			not isCollider obj		and
+			not excludeFromExport obj) then (
 			if nValidObjs != 0 then fs.writeComma()
 			fs.beginObj()
 			fs.writeKey "entity"
 				--format "Obj created, name: %\t\tClass: %\t\tLayer: %\n" obj.name ((classof obj) as string) obj.layer.name
 				fs.beginObj()
 				if (classof obj == FreeCamera or
-					classof obj == TargetCamera) then exportCamera obj
-				if classof obj == Editable_Mesh then exportEditableMesh obj
-				if classof obj == Line then exportSpline obj
+					classof obj == Targetcamera) then exportCamera obj
+				else if classof obj == Editable_Mesh then exportEditableMesh obj
+				else if classof obj == Line then exportSpline obj
 				else if isCollider obj then exportEntityCollider obj
 				else if isEnemy obj then exportEnemy obj
 				else if isChrysalis obj then exportChrysalis obj
@@ -599,33 +599,79 @@ struct TSceneExporter (
 	)
 )
 
--- TODO: ¿Interpretar automáticamente colliders sin parent como triggers invisibles?
---       Ahora mismo no los exporta.
--- TODO: Poder exportar triggers sin parent.
--- TODO: Exportar enemigos, crisálidas y plataformas móviles en escena separada.
+/*
+-- Loop over all layers.
+for i = 0 to LayerManager.count - 1 do (
+	-- Get the layer by index.
+	local layer = LayerManager.getLayer i
+	local layerNodes
+	layer.nodes &layerNodes
+	
+	-- Avoid creating scenes if layer is empty.
+	if layerNodes.count >= 1 then (
+		format "Layer: %, nodes: %\n" layer.name layerNodes
+		-- TODO: Add base path.
+		local ofilename = getFilenameFile maxFileName
+		local scenePath = ofilename + "-" + layer.name + ".scene"
 
-------------------------------------------------------------------------------------
+		fs.begin scenePath
+			fs.beginArray()
+				for node in layerNodes do (
+					local nodeName = node.name
+					format "Node name: %\n" nodeName
+					
+					if nodeName == "enemyAir" or
+					   nodeName == "enemyLand" then (
+						
+					) else if nodeName == "chrysalis" then (
+						
+					) else if nodeName == "movables" then (
+						
+					) else if nodeName == "triggers" then (
+						
+					) else if nodeName == "cameras" then (
+						
+					) else if nodeName == "lights" then (
+						
+					) else ()
+				)
+			fs.endArray()
+		fs.end()
+	) else format "WARNING: Layer % was empty, % NOT exported.\n" layer.name scenePath
+)
+*/
+/*
+TODO: ¿Interpretar automáticamente colliders sin parent como triggers invisibles?
+      Ahora mismo no los exporta.
+TODO: Poder exportar triggers sin parent.
+TODO: Exportar enemigos, crisálidas, cámaras y plataformas móviles en escena separada.
+TODO: Que las splines tengan que ser hijas de otro objeto y se exporten como tal.
+TODO: Si un objeto tiene hijo spline, hacerlo móvil.
+TODO: Exportar luces.
+*/
+
+/*----------------------------------------------------------------------------------
 -- Notas de uso:
 ------------------------------------------------------------------------------------
--- Lo visible como Editable Mesh.
--- Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
--- Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
---  incluidas las que son hijas de Meshes visibles.
--- Los enemigos de aire    deben estar en una layer llamada "enemyAir".
--- Los enemigos terrestres deben estar en una layer llamada "enemyLand".
--- Las crisálidas 		   deben estar en una layer llamada "chrysalis".
--- Las plataformas móviles deben estar en una layer llamada "movables".
--- Los triggers			   deben estar en una layer llamada "triggers", pero ahora
---  mismo no se exportan.
--- Aquí abajo en exporter se debe poner la ruta correcta al proyecto.
--- El proyecto debe tener las siguientes carpetas:
---  bin/data/scenes
---  bin/data/meshes
---  bin/data/materials
-------------------------------------------------------------------------------------
+Lo visible como Editable Mesh.
+Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
+Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
+incluidas las que son hijas de Meshes visibles.
+Los enemigos de aire    deben estar en una layer llamada "enemyAir".
+Los enemigos terrestres deben estar en una layer llamada "enemyLand".
+Las crisálidas 		    deben estar en una layer llamada "chrysalis".
+Las plataformas móviles deben estar en una layer llamada "movables".
+Los triggers			deben estar en una layer llamada "triggers", pero ahora
+ mismo no se exportan.
+Aquí abajo en exporter se debe poner la ruta correcta al proyecto.
+El proyecto debe tener las siguientes carpetas:
+ bin/data/scenes
+ bin/data/meshes
+ bin/data/materials
+----------------------------------------------------------------------------------*/
 
 --exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/"
-exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
---exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
+exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
 exporter.exportAll()
