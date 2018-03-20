@@ -60,6 +60,7 @@
       <AdditionalIncludeDirectories>.;../bin/data/shaders</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mcv_platform.h</PrecompiledHeaderFile>
+      <AdditionalOptions>-Zm120 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -389,11 +390,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
+    <None Include="x64\Debug\Cal3D.pdb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Cal3D\Cal3D.vcxproj">
       <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="x64\Debug\Cal3D.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -115,8 +115,8 @@
     <ClCompile Include="skeleton\comp_skeleton.cpp" />
     <ClCompile Include="skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
-	<ClCompile Include="fsm\fsm.cpp" />
-	<ClCompile Include="fsm\context.cpp" />
+    <ClCompile Include="fsm\fsm.cpp" />
+    <ClCompile Include="fsm\context.cpp" />
     <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="fsm\custom_states.cpp" />
@@ -286,21 +286,25 @@
     <ClInclude Include="skeleton\cal3d2engine.h" />
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="render\texture\texture_slots.h" />
-	<ClInclude Include="fsm\fsm.h" />
-	<ClInclude Include="fsm\state.h" />
-	<ClInclude Include="fsm\transition.h" />
-	<ClInclude Include="fsm\context.h" />
-	<ClInclude Include="fsm\custom_states.h" />
-	<ClInclude Include="utils\variant.h" />
-	<ClInclude Include="modules\system\module_fsm.h" />
-	<ClInclude Include="fsm\factory.h" />
-	<ClInclude Include="fsm\custom_transitions.h" />
-	<ClInclude Include="components\comp_fsm.h" />
-	<ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
-	<ClInclude Include="components\controllers\comp_player_input.h" />
-	<ClInclude Include="modules\gamestate.h" />
+    <ClInclude Include="fsm\fsm.h" />
+    <ClInclude Include="fsm\state.h" />
+    <ClInclude Include="fsm\transition.h" />
+    <ClInclude Include="fsm\context.h" />
+    <ClInclude Include="fsm\custom_states.h" />
+    <ClInclude Include="utils\variant.h" />
+    <ClInclude Include="modules\system\module_fsm.h" />
+    <ClInclude Include="fsm\factory.h" />
+    <ClInclude Include="fsm\custom_transitions.h" />
+    <ClInclude Include="components\comp_fsm.h" />
+    <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
+    <ClInclude Include="components\controllers\comp_player_input.h" />
+    <ClInclude Include="modules\gamestate.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
+    <None Include="x64\Debug\Cal3D.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="x64\Debug\Cal3D.lib" />
   </ItemGroup>
 </Project>

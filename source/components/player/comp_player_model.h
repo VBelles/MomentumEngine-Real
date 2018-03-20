@@ -13,6 +13,7 @@ class PlayerFilterCallback;
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
 	float rotationSpeed = 0.f;
+	float landingLag = 0.f;
 	float fallingMultiplier = 1.1f;
 	float longGravityMultiplier = 1.f;
 	float normalGravityMultiplier = 1.f;
