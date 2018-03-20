@@ -6,11 +6,15 @@ HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 }
 
 void HuggingWallActionState::update (float delta) {
-	
+
 }
 
 void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
+	float y, p, r;
+	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+	y = atan2(hit.worldNormal.x, hit.worldNormal.z);
+	GetPlayerTransform()->setYawPitchRoll(y, p, r);
 	SetPose();
 }
 
@@ -19,7 +23,8 @@ void HuggingWallActionState::OnStateExit(IActionState * nextState) {
 }
 
 void HuggingWallActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
+	
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::HuggingWallJumpSquat);
 }
 
 void HuggingWallActionState::OnJumpLongButton() {

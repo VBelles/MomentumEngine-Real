@@ -134,7 +134,8 @@
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="windows\app.cpp" />
-    <ClCompile Include="components\player\states\movement_states\HuggingWallActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\wall_jump\HuggingWallActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\wall_jump\HuggingWallJumpSquatActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -300,7 +301,8 @@
     <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
     <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="modules\gamestate.h" />
-    <ClInclude Include="components\player\states\movement_states\HuggingWallActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\wall_jump\HuggingWallActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\wall_jump\HuggingWallJumpSquatActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

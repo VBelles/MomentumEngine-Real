@@ -9,6 +9,7 @@
 #include "PowerGauge.h"
 
 class PlayerFilterCallback;
+//typedef TCompPlayerModel::ActionStates ActionStates;
 
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
@@ -37,10 +38,12 @@ public:
 		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack, 
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong, 
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack, 
-		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquatu
+		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat
 	};
 	IActionState* movementState;
 	IActionState* attackState;
+
+	
 	
 	bool lockMovementState = false;
 	bool lockWalk = false;
@@ -64,7 +67,7 @@ public:
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();
 	bool IsAttackFree();
-
+	
 	void OnAttackHit(const TMsgAttackHit& msg);
 	void OnHitboxEnter(const TMsgHitboxEnter& msg);
 	void OnGainPower(const TMsgGainPower& msg);
@@ -83,6 +86,10 @@ public:
 	PowerStats* GetPowerStats();
 
 	bool isInState(ActionStates state);
+	template <typename T>
+	T GetMovementState(TCompPlayerModel::ActionStates state) { return static_cast<T>(movementStates[state]); }
+	template <typename T >
+	T GetAttackState(TCompPlayerModel::ActionStates state) { return static_cast<T>(attackStates[state]); }
 	
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;

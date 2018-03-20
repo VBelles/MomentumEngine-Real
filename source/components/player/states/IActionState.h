@@ -1,11 +1,11 @@
 #pragma once
 
-#include "components/comp_camera.h"
 #include "components/comp_collider.h"
 #include "components/comp_transform.h"
 #include "components/comp_render.h"
 
 class TCompPlayerModel;
+class TCompCamera;
 
 class IActionState {
 protected:
@@ -75,4 +75,5 @@ public:
 	virtual void OnFastAttackButtonReleased() {}
 
 	virtual void OnHitboxEnter(CHandle entity) {}
+
 };

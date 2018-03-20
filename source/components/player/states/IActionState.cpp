@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "IActionState.h"
 #include "components/player/comp_player_model.h"
+#include "components/comp_camera.h"
 
 IActionState::IActionState(CHandle playerModelHandle) {
 	this->playerModelHandle = playerModelHandle;

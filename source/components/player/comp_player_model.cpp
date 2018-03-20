@@ -20,7 +20,8 @@
 #include "states/movement_states/IdleActionState.h"
 #include "states/movement_states/LandingActionState.h"
 #include "states/movement_states/FallingAttackLandingActionState.h"
-#include "states/movement_states/HuggingWallActionState.h"
+#include "states/movement_states/wall_jump/HuggingWallActionState.h"
+#include "states/movement_states/wall_jump/HuggingWallJumpSquatActionState.h"
 #include "states/attack_states/FastAttackActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
 #include "states/attack_states/FallingAttackActionState.h"
@@ -289,6 +290,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::Landing, new LandingActionState(CHandle(this)) },
 	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(CHandle(this), fallingAttackLandingHitbox) },
 	{ ActionStates::HuggingWall, new HuggingWallActionState(CHandle(this)) },
+	{ ActionStates::HuggingWallJumpSquat, new HuggingWallJumpSquatActionState(CHandle(this)) },
 	};
 
 	attackStates = {
@@ -570,6 +572,8 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 		//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 		//dbg("%f\n", deg2rad(pitch));
 		if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
+			HuggingWallActionState* actionState = GetMovementState<HuggingWallActionState*>(ActionStates::HuggingWall);
+			actionState->SetHit(msg.hit);
 			SetMovementState(ActionStates::HuggingWall);
 		}
 	}
