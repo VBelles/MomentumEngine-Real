@@ -134,8 +134,6 @@
     <ClCompile Include="components\player\states\attack_states\GrabHighActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\GrabLongActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\HorizontalLauncherActionState.cpp" />
-    <ClCompile Include="components\player\states\attack_states\PropelHighActionState.cpp" />
-    <ClCompile Include="components\player\states\attack_states\PropelLongActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\StrongAttackActionState.cpp" />
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\VerticalLauncherActionState.cpp" />
@@ -148,9 +146,11 @@
     <ClCompile Include="components\player\states\movement_states\long_jump\AirborneLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\GhostJumpSquatLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\JumpSquatLongActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\long_jump\PropelLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\normal_jump\AirborneNormalActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\normal_jump\GhostJumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\normal_jump\JumpSquatActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\normal_jump\PropelHighActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\RunActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\WalkActionState.cpp" />
@@ -273,8 +273,6 @@
     <ClInclude Include="components\player\states\attack_states\GrabHighActionState.h" />
     <ClInclude Include="components\player\states\attack_states\GrabLongActionState.h" />
     <ClInclude Include="components\player\states\attack_states\HorizontalLauncherActionState.h" />
-    <ClInclude Include="components\player\states\attack_states\PropelHighActionState.h" />
-    <ClInclude Include="components\player\states\attack_states\PropelLongActionState.h" />
     <ClInclude Include="components\player\states\attack_states\StrongAttackActionState.h" />
     <ClInclude Include="components\player\states\attack_states\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
@@ -287,9 +285,11 @@
     <ClInclude Include="components\player\states\movement_states\long_jump\AirborneLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\GhostJumpSquatLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\JumpSquatLongActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\long_jump\PropelLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\normal_jump\AirborneNormalActionState.h" />
     <ClInclude Include="components\player\states\movement_states\normal_jump\GhostJumpSquatActionState.h" />
     <ClInclude Include="components\player\states\movement_states\normal_jump\JumpSquatActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\normal_jump\PropelHighActionState.h" />
     <ClInclude Include="components\player\states\movement_states\RunActionState.h" />
     <ClInclude Include="components\player\states\movement_states\TurnAroundActionState.h" />
     <ClInclude Include="components\player\states\movement_states\WalkActionState.h" />

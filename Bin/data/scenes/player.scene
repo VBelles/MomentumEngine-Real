@@ -56,8 +56,6 @@
 					"airAcceleration" : 40.0,
 					"falling_multiplier" : 1.05,
 					"long_gravity_multiplier" : 0.60
-				},
-				"power_gauge":{
 				}
 			},
 			"collider": {

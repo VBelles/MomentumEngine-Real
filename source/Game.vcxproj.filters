@@ -92,9 +92,7 @@
     <ClCompile Include="components\player\states\attack_states\GrabActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\ia\ai_flying_enemy.cpp" />
-    <ClCompile Include="components\player\states\attack_states\PropelHighActionState.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
-    <ClCompile Include="components\player\states\attack_states\PropelLongActionState.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\player\states\attack_states\FastAttackActionState.cpp" />
@@ -134,6 +132,8 @@
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="windows\app.cpp" />
+    <ClCompile Include="components\player\states\movement_states\long_jump\PropelLongActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\normal_jump\PropelHighActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -250,9 +250,7 @@
     <ClInclude Include="components\player\states\attack_states\GrabActionState.h" />
     <ClInclude Include="components\player\states\movement_states\TurnAroundActionState.h" />
     <ClInclude Include="components\ia\ai_flying_enemy.h" />
-    <ClInclude Include="components\player\states\attack_states\PropelHighActionState.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
-    <ClInclude Include="components\player\states\attack_states\PropelLongActionState.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\player\states\attack_states\FastAttackActionState.h" />
@@ -299,6 +297,8 @@
     <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
     <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="modules\gamestate.h" />
+    <ClInclude Include="components\player\states\movement_states\long_jump\PropelLongActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\normal_jump\PropelHighActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
