@@ -12,7 +12,7 @@ void AirborneActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	
 	
 	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
 	
@@ -24,14 +24,14 @@ void AirborneActionState::update (float delta) {
 	if (hasInput) {
 		//aceleración según sentido de movimiento
 		float appliedAcceleration = CalculateAccelerationAccordingToDirection(enterFront, desiredDirection,
-			currentPowerStats->airAcceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
+			enteringPowerStats->airAcceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
 			sidewaysAirDriftFactor);
 
 		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z},
 			desiredDirection, appliedAcceleration,
-			currentPowerStats->maxHorizontalSpeed);
+			enteringPowerStats->maxHorizontalSpeed);
 		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
-		ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
+		ClampHorizontalVelocity(enteringPowerStats->maxHorizontalSpeed);
 	}
 	else {
 		deltaMovement.x = velocityVector->x * delta;
@@ -39,14 +39,14 @@ void AirborneActionState::update (float delta) {
 	}
 
 	if(velocityVector->y < 0){
-		GetPlayerModel()->SetGravityMultiplier(currentPowerStats->fallingMultiplier);
+		GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->fallingMultiplier);
 	}
 }
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
-	GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
+	enteringPowerStats = &*GetPlayerModel()->GetPowerStats();
+	GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 	GetPlayerModel()->ResetGravity();
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));

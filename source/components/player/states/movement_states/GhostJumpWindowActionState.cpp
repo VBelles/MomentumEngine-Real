@@ -15,7 +15,6 @@ void GhostJumpWindowActionState::update (float delta) {
 
 void GhostJumpWindowActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
-	//dbg("Entrando en GhostJumpWindow\n");
 	squatTime = frameWindow * (1.f / 60);
 	timer.reset();
 	enteringVelocity = GetPlayerModel()->GetVelocityVector()->Length();
@@ -23,7 +22,6 @@ void GhostJumpWindowActionState::OnStateEnter(IActionState * lastState) {
 
 void GhostJumpWindowActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
-	//dbg("Saliendo de GhostJumpWindow\n");
 }
 
 void GhostJumpWindowActionState::OnJumpHighButton() {

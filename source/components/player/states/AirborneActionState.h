@@ -11,6 +11,7 @@ protected:
 	float backwardsMaxDotProduct;
 	float sidewaysAirDriftFactor = 0.5f;
 	float backwardsAirDriftFactor = 1.0f;
+	PowerStats* enteringPowerStats;
 
 public:
 	AirborneActionState(CHandle playerModelHandle);
