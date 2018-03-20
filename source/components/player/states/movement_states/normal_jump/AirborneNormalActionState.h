@@ -4,8 +4,6 @@
 #include "../../AirborneActionState.h"
 
 class AirborneNormalActionState : public AirborneActionState {
-private:
-	bool isTouching = false;
 public:
 	AirborneNormalActionState(CHandle playerModelHandle);
 	void update(float delta) override;

@@ -10,15 +10,43 @@ AirborneActionState::AirborneActionState(CHandle playerModelHandle)
 void AirborneActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	bool hasInput = movementInput != VEC2::Zero;
-
-	
+	bool hasInput = movementInput != VEC2::Zero;	
 	
 	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
-	
-	if (hasInput){// && enterFront.Dot(desiredDirection) > backwardsMaxDotProduct) {
-		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
-		RotatePlayerTowards(delta, targetPos, 3.5f);
+	if (!GetPlayerModel()->lockWalk) {
+		if (!isTurnAround) {
+			if (hasInput) {
+				if (GetPlayerTransform()->getFront().Dot(desiredDirection) > backwardsMaxDotProduct) {
+					VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
+					RotatePlayerTowards(delta, targetPos, rotationSpeed);
+				}
+				else {
+					isTurnAround = true;
+					//calculate rotation speed
+					exitYaw = atan2(desiredDirection.x, desiredDirection.z);
+					float y, p, r;
+					GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+					turnAroundRotationSpeed = (exitYaw - y) / turnAroundTime;
+					turnAroundTimer.reset();
+				}
+			}
+		}
+		if (isTurnAround) {
+			//rotate at rotation speed and set isTurnAround to false when timer arrives
+			float y, p, r;
+			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+			if (abs(turnAroundRotationSpeed * delta) < abs(exitYaw - y)) {
+				y += turnAroundRotationSpeed * delta;
+				GetPlayerTransform()->setYawPitchRoll(y, p, r);
+			}
+			else {
+				GetPlayerTransform()->setYawPitchRoll(exitYaw, p, r);
+			}
+
+			if (turnAroundTimer.elapsed() >= turnAroundTime) {
+				isTurnAround = false;
+			}
+		}
 	}
 
 	if (hasInput) {
@@ -46,6 +74,8 @@ void AirborneActionState::update (float delta) {
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
 	enteringPowerStats = &*GetPlayerModel()->GetPowerStats();
+	isTurnAround = false;
+	turnAroundTime = turnAroundFrames * (1.f / 60);
 	GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 	GetPlayerModel()->ResetGravity();
 	enterFront = GetPlayerTransform()->getFront();
