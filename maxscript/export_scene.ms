@@ -179,7 +179,7 @@ struct TMaterialExporter (
 		)
 
 		if classof mat == StandardMaterial then (
-			local mat_name = mat_path + cleanMaterialName mat.name + ".material"
+			local mat_name = mat_path + (cleanMaterialName mat.name) + ".material"
 			append exported_materials mat_name
 			exportStdMaterial mat mat_name
 
@@ -254,14 +254,14 @@ struct TSceneExporter (
 	),
 
 	-- --TRANSFORM-----------------------------------------------
-	fn exportTransform obj yShift = (
+	fn exportTransform obj yShift: lookAtCoord: = (
 		fs.writeKey "transform"
 	
 		local max2mcv = rotateXMatrix -90
 		local mcv2max = rotateXMatrix 90
 		local mcv_position = obj.position * max2mcv
 		
-		if yShift != 0 then (
+		if yShift != unsupplied then (
 			local objY = mcv_position.y
 			local adjustedPos = objY + yShift
 			mcv_position.y = adjustedPos
@@ -277,7 +277,11 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKeyValue "pos" mcv_position
 			fs.writeComma()
-			fs.writeKeyValue "rotation" mcv_quat
+			if lookAtCoord == unsupplied then (
+				fs.writeKeyValue "rotation" mcv_quat
+			) else (
+				fs.writeKeyValue "lookat" lookAtCoord
+			)
 		fs.endObj()
 	),
 
@@ -355,7 +359,7 @@ struct TSceneExporter (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
 		exportName obj
 		fs.writeComma()
-		exportTransform obj 0
+		exportTransform obj
 		fs.writeComma()
 		fs.writeKey "render"
 		fs.beginArray()
@@ -381,7 +385,7 @@ struct TSceneExporter (
 		)
 		exportName obj
 		fs.writeComma()
-		exportTransform obj 0
+		exportTransform obj
 		fs.writeComma()
 		exportCompCollider obj
 	),
@@ -389,15 +393,17 @@ struct TSceneExporter (
 	-- --CAMERA--------------------------------------------------
 	fn exportCamera obj = (
 		fs.writeKeyValue "name" obj.name
-		fs.writeComma()
-		exportTransform obj 0
-
-		--if (classof obj == FreeCamera or
-		--classof obj == TargetCamera) then format "Exporting camera\n"
-	--format "Camera % x:% y:% z:%\n" obj.name obj.pos.x obj.pos.y obj.pos.z
-	--format "Camera % fov: % target distance: %\n" obj.name obj.fov obj.targetDistance
-	--format "Camera % target pos x:% y:% z:% \n" obj.name obj.target.x obj.target.y obj.target.z
-		
+		if (classof obj == FreeCamera or
+			classof obj == TargetCamera) then (
+				fs.writeComma()
+				exportTransform obj 0 obj.Target
+				format "Exporting camera\n"
+				fs.writeKey "camera"
+				fs.beginObj()
+					fs.writeKeyValue "fov" obj.fov
+				fs.endObj()
+		)
+	--format "Camera % target distance: %\n" obj.name obj.targetDistance
 	),
 	
 	-- --SPLINE--------------------------------------------------
@@ -432,14 +438,9 @@ struct TSceneExporter (
 		local prefabPath = prefabPath
 		fs.writeKeyValue "prefab" prefabPath
 		fs.writeComma()
-		fs.writeKey "transform"
-		fs.beginObj()
-			local objPos = obj.position * (rotateXMatrix -90)
-			fs.writeKeyValue "pos" objPos
-			fs.writeComma()
-			local lookAtPos = [-1, objPos.y, -1]
-			fs.writeKeyValue "lookAt" lookAtPos
-		fs.endObj()
+		
+		local lookAtPos = [-1, objPos.y, -1]
+		exportTransform obj 0 lookAtPos
 		
 		if obj.layer.name == "enemyAir" then (
 			fs.writeComma()
@@ -479,7 +480,7 @@ struct TSceneExporter (
 		fs.writeKeyValue "prefab" prefabPath
 		fs.writeComma()
 		local objPos = obj.position * (rotateXMatrix -90)
-		exportTransform obj 0
+		exportTransform obj
 		fs.writeComma()
 		-- collider
 		fs.writeKey "collider"
@@ -560,7 +561,8 @@ struct TSceneExporter (
 			fs.writeKey "entity"
 				--format "Obj created, name: %\t\tClass: %\t\tLayer: %\n" obj.name ((classof obj) as string) obj.layer.name
 				fs.beginObj()
-				--if classof obj == Camera then exportCamera obj
+				if (classof obj == FreeCamera or
+					classof obj == TargetCamera) then exportCamera obj
 				if classof obj == Editable_Mesh then exportEditableMesh obj
 				if classof obj == Line then exportSpline obj
 				else if isCollider obj then exportEntityCollider obj
@@ -623,7 +625,7 @@ struct TSceneExporter (
 ------------------------------------------------------------------------------------
 
 --exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/"
---exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
-exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
+exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
 exporter.exportAll()
