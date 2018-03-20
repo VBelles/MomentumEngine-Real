@@ -5,27 +5,27 @@
 
 class IBehaviorTree;
 
-enum BehaviorTreeNodeType { Random, Sequence, Priority, Action };
-enum BehaviorTreeNodeEndAction { Stay, Leave };
+enum EBehaviorTreeNodeType { Random, Sequence, Priority, Action };
+enum EBehaviorTreeNodeEndAction { Stay, Leave };
 
-class BehaviorTreeNode {
+class CBehaviorTreeNode {
 private:
 	std::string name;
-	BehaviorTreeNodeType type;
-	std::vector<BehaviorTreeNode *>children;
-	BehaviorTreeNode *parent;
-	BehaviorTreeNode *right;
+	EBehaviorTreeNodeType type;
+	std::vector<CBehaviorTreeNode *>children;
+	CBehaviorTreeNode *parent;
+	CBehaviorTreeNode *right;
 
 public:
-	BehaviorTreeNode(std::string name);
+	CBehaviorTreeNode(std::string name);
 
 	std::string getName();
 	bool isRoot();
 
-	void setType(BehaviorTreeNodeType type);
-	void setParent(BehaviorTreeNode *parent);
-	void setRight(BehaviorTreeNode *right);
-	void addChild(BehaviorTreeNode *child);
+	void setType(EBehaviorTreeNodeType type);
+	void setParent(CBehaviorTreeNode *parent);
+	void setRight(CBehaviorTreeNode *right);
+	void addChild(CBehaviorTreeNode *child);
 
 	void recalc(IBehaviorTree *behaviorTree);
 	void recalcRandom(IBehaviorTree *behaviorTree);

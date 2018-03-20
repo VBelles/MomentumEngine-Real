@@ -11,25 +11,25 @@ class IBehaviorTree {
 private:
 	std::string name;
 
-	std::map<std::string, BehaviorTreeNode *>tree;
+	std::map<std::string, CBehaviorTreeNode *>tree;
 	std::map<std::string, BehaviorTreeCondition> conditions;
 	std::map<std::string, BehaviorTreeAction> actions;
 
-	BehaviorTreeNode *root;
-	BehaviorTreeNode *current;
+	CBehaviorTreeNode *root;
+	CBehaviorTreeNode *current;
 
-	BehaviorTreeNode *createNode(std::string name);
-	BehaviorTreeNode *findNode(std::string name);
+	CBehaviorTreeNode *createNode(std::string name);
+	CBehaviorTreeNode *findNode(std::string name);
 
 public:
 	IBehaviorTree(std::string name);
 
 	std::string getName();
 
-	BehaviorTreeNode *createRoot(std::string rootName, BehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
-	BehaviorTreeNode *addChild(std::string parentName, std::string childName, BehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
+	CBehaviorTreeNode *createRoot(std::string rootName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
+	CBehaviorTreeNode *addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
 
-	void setCurrent(BehaviorTreeNode *newCurrent);
+	void setCurrent(CBehaviorTreeNode *newCurrent);
 
 	void addCondition(std::string conditionName, BehaviorTreeCondition condition);
 	bool testCondition(std::string conditionName);

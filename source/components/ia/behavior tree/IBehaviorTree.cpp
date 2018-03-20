@@ -9,19 +9,19 @@ std::string IBehaviorTree::getName() {
 	return name;
 }
 
-BehaviorTreeNode* IBehaviorTree::createNode(std::string name) {
+CBehaviorTreeNode* IBehaviorTree::createNode(std::string name) {
 	if (findNode(name)) {
 		printf("Error: node %s already exists\n", name.c_str());
 		return nullptr;
 	}
 	else {
-		BehaviorTreeNode *btn = new BehaviorTreeNode(name);
+		CBehaviorTreeNode *btn = new CBehaviorTreeNode(name);
 		tree[name] = btn;
 		return btn;
 	}
 }
 
-BehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
+CBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
 	if (tree.find(name) == tree.end()) {
 		return nullptr;
 	}
@@ -30,8 +30,8 @@ BehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
 	}
 }
 
-BehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, BehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action) {
-	BehaviorTreeNode *rootNode = createNode(rootName);
+CBehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action) {
+	CBehaviorTreeNode *rootNode = createNode(rootName);
 	rootNode->setParent(nullptr);
 	rootNode->setType(type);
 	root = rootNode;
@@ -42,9 +42,11 @@ BehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, BehaviorTreeNo
 	return rootNode;
 }
 
-BehaviorTreeNode* IBehaviorTree::addChild(std::string parentName, std::string childName, BehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action) {
-	BehaviorTreeNode *parent = findNode(parentName);
-	BehaviorTreeNode *child = createNode(childName);
+CBehaviorTreeNode* IBehaviorTree::addChild(
+	std::string parentName, std::string childName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action
+) {
+	CBehaviorTreeNode *parent = findNode(parentName);
+	CBehaviorTreeNode *child = createNode(childName);
 	parent->addChild(child);
 	child->setParent(parent);
 	child->setType(type);
@@ -53,7 +55,7 @@ BehaviorTreeNode* IBehaviorTree::addChild(std::string parentName, std::string ch
 	return child;
 }
 
-void IBehaviorTree::setCurrent(BehaviorTreeNode *newCurrent) {
+void IBehaviorTree::setCurrent(CBehaviorTreeNode *newCurrent) {
 	current = newCurrent;
 }
 

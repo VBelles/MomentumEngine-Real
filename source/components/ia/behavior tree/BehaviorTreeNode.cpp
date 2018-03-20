@@ -2,31 +2,31 @@
 #include "BehaviorTreeNode.h"
 #include "IBehaviorTree.h"
 
-BehaviorTreeNode::BehaviorTreeNode(std::string name) {
+CBehaviorTreeNode::CBehaviorTreeNode(std::string name) {
 	this->name = name;
 }
 
-std::string BehaviorTreeNode::getName() {
+std::string CBehaviorTreeNode::getName() {
 	return name;
 }
 
-bool BehaviorTreeNode::isRoot() {
+bool CBehaviorTreeNode::isRoot() {
 	return (parent == nullptr);
 }
 
-void BehaviorTreeNode::setType(BehaviorTreeNodeType type) {
+void CBehaviorTreeNode::setType(EBehaviorTreeNodeType type) {
 	this->type = type;
 }
 
-void BehaviorTreeNode::setParent(BehaviorTreeNode *parent) {
+void CBehaviorTreeNode::setParent(CBehaviorTreeNode *parent) {
 	this->parent = parent;
 }
 
-void BehaviorTreeNode::setRight(BehaviorTreeNode *right) {
+void CBehaviorTreeNode::setRight(CBehaviorTreeNode *right) {
 	this->right = right;
 }
 
-void BehaviorTreeNode::addChild(BehaviorTreeNode *child) {
+void CBehaviorTreeNode::addChild(CBehaviorTreeNode *child) {
 	if (!children.empty()) { // if this node already had children, connect the last one to this
 		children.back()->setRight(child);  // new one so the new one is to the RIGHT of the last one
 	}
@@ -34,7 +34,7 @@ void BehaviorTreeNode::addChild(BehaviorTreeNode *child) {
 	child->right = nullptr; // as we're adding from the right make sure right points to NULL
 }
 
-void BehaviorTreeNode::recalc(IBehaviorTree *behaviorTree) {
+void CBehaviorTreeNode::recalc(IBehaviorTree *behaviorTree) {
 	switch (type) {
 	case Random:
 	{
@@ -59,16 +59,16 @@ void BehaviorTreeNode::recalc(IBehaviorTree *behaviorTree) {
 	}
 }
 
-void BehaviorTreeNode::recalcRandom(IBehaviorTree *behaviorTree) {
+void CBehaviorTreeNode::recalcRandom(IBehaviorTree *behaviorTree) {
 	int random = rand() % children.size();
 	children[random]->recalc(behaviorTree);
 }
 
-void BehaviorTreeNode::recalcSequence(IBehaviorTree *behaviorTree) {
+void CBehaviorTreeNode::recalcSequence(IBehaviorTree *behaviorTree) {
 	children[0]->recalc(behaviorTree);
 }
 
-void BehaviorTreeNode::recalcPriority(IBehaviorTree *behaviorTree) {
+void CBehaviorTreeNode::recalcPriority(IBehaviorTree *behaviorTree) {
 	for (int i = 0; i < children.size(); i++) {
 		if (behaviorTree->testCondition(children[i]->getName())) {
 			children[i]->recalc(behaviorTree);
@@ -77,16 +77,16 @@ void BehaviorTreeNode::recalcPriority(IBehaviorTree *behaviorTree) {
 	}
 }
 
-void BehaviorTreeNode::recalcAction(IBehaviorTree *behaviorTree) {
+void CBehaviorTreeNode::recalcAction(IBehaviorTree *behaviorTree) {
 	int res = behaviorTree->execAction(name);
 	if (res == Stay) {
 		behaviorTree->setCurrent(this);
 		return;
 	}
 	else {
-		BehaviorTreeNode *candidate = this;
+		CBehaviorTreeNode *candidate = this;
 		while (candidate->parent != nullptr) {
-			BehaviorTreeNode *parent = candidate->parent;
+			CBehaviorTreeNode *parent = candidate->parent;
 			if (parent->type == Sequence) {
 				if (candidate->right != nullptr) {
 					behaviorTree->setCurrent(candidate->right);
