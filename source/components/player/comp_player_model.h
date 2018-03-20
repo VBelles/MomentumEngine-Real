@@ -36,7 +36,8 @@ public:
 		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
 		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack, 
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong, 
-		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack
+		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack, 
+		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquatu
 	};
 	IActionState* movementState;
 	IActionState* attackState;
@@ -80,6 +81,8 @@ public:
 	void ResetGravity() { currentGravity = baseGravity; }
 
 	PowerStats* GetPowerStats();
+
+	bool isInState(ActionStates state);
 	
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;
@@ -88,9 +91,14 @@ public:
 
 	float walkingSpeed = 0.f;
 
+	float huggingWallMinPitch = deg2rad(-25);
+	float huggingWallMaxPitch = deg2rad(5);
+
 	void OnLevelChange(int powerLevel);
 
 	CHandle grabTarget;
+
+	
 
 private:
 	VEC3 deltaMovement;
@@ -126,6 +134,8 @@ private:
 
 	std::map<ActionStates, IActionState*> movementStates;
 	std::map<ActionStates, IActionState*> attackStates;
+	ActionStates nextMovementState;
+	ActionStates nextAttackState;
 
 	CHandle strongAttackHitbox;
 	CHandle fallingAttackHitbox;
@@ -135,8 +145,7 @@ private:
 
 	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre
 
-	ActionStates nextMovementState;
-	ActionStates nextAttackState;
+
 	void ChangeMovementState(ActionStates newState);
 	void ChangeAttackState(ActionStates newState);
 	void OnDead();
