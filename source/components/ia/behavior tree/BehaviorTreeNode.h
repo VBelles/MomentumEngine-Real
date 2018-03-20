@@ -5,31 +5,29 @@
 
 class IBehaviorTree;
 
-#define RANDOM 0
-#define SEQUENCE 1
-#define PRIORITY 2
-#define ACTION 3
-
-#define STAY 0
-#define LEAVE 1
+enum BehaviorTreeNodeType { Random, Sequence, Priority, Action };
+enum BehaviorTreeNodeEndAction { Stay, Leave };
 
 class BehaviorTreeNode {
 private:
 	std::string name;
-	int type;
+	BehaviorTreeNodeType type;
 	std::vector<BehaviorTreeNode *>children;
 	BehaviorTreeNode *parent;
 	BehaviorTreeNode *right;
+
 public:
 	BehaviorTreeNode(std::string name);
+
+	std::string getName();
 	bool isRoot();
+
+	void setType(BehaviorTreeNodeType type);
 	void setParent(BehaviorTreeNode *parent);
 	void setRight(BehaviorTreeNode *right);
 	void addChild(BehaviorTreeNode *child);
-	void setType(int type);
-	void recalc(IBehaviorTree *behaviorTree);
-	std::string getName();
 
+	void recalc(IBehaviorTree *behaviorTree);
 	void recalcRandom(IBehaviorTree *behaviorTree);
 	void recalcSequence(IBehaviorTree *behaviorTree);
 	void recalcPriority(IBehaviorTree *behaviorTree);

@@ -9,6 +9,8 @@ typedef int (IBehaviorTree::*BehaviorTreeAction)();
 
 class IBehaviorTree {
 private:
+	std::string name;
+
 	std::map<std::string, BehaviorTreeNode *>tree;
 	std::map<std::string, BehaviorTreeCondition> conditions;
 	std::map<std::string, BehaviorTreeAction> actions;
@@ -16,19 +18,24 @@ private:
 	BehaviorTreeNode *root;
 	BehaviorTreeNode *current;
 
-	BehaviorTreeNode *createNode(std::string);
-	BehaviorTreeNode *findNode(std::string);
-public:
-	std::string name;
-	virtual void create(std::string);
-	BehaviorTreeNode *createRoot(std::string, int, BehaviorTreeCondition, BehaviorTreeAction);
-	BehaviorTreeNode *addChild(std::string, std::string, int, BehaviorTreeCondition, BehaviorTreeAction);
+	BehaviorTreeNode *createNode(std::string name);
+	BehaviorTreeNode *findNode(std::string name);
 
-	void addCondition(std::string, BehaviorTreeCondition);
-	bool testCondition(std::string);
-	void addAction(std::string, BehaviorTreeAction);
-	int execAction(std::string);
-	void setCurrent(BehaviorTreeNode *);
+public:
+	IBehaviorTree(std::string name);
+
+	std::string getName();
+
+	BehaviorTreeNode *createRoot(std::string rootName, BehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
+	BehaviorTreeNode *addChild(std::string parentName, std::string childName, BehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
+
+	void setCurrent(BehaviorTreeNode *newCurrent);
+
+	void addCondition(std::string conditionName, BehaviorTreeCondition condition);
+	bool testCondition(std::string conditionName);
+
+	void addAction(std::string actionName, BehaviorTreeAction action);
+	int execAction(std::string actionName);
 
 	void recalc();
 };

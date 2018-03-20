@@ -1,84 +1,104 @@
 #include "mcv_platform.h"
 #include "IBehaviorTree.h"
 
-void IBehaviorTree::create(std::string s) {
-	name = s;
+IBehaviorTree::IBehaviorTree(std::string name) {
+	this->name = name;
 }
 
-BehaviorTreeNode *IBehaviorTree::createNode(std::string s) {
-	if (findNode(s) != NULL) {
-		printf("Error: node %s already exists\n", s.c_str());
-		return NULL;	// error: node already exists
+std::string IBehaviorTree::getName() {
+	return name;
+}
+
+BehaviorTreeNode* IBehaviorTree::createNode(std::string name) {
+	if (findNode(name)) {
+		printf("Error: node %s already exists\n", name.c_str());
+		return nullptr;
 	}
-	BehaviorTreeNode *btn = new BehaviorTreeNode(s);
-	tree[s] = btn;
-	return btn;
+	else {
+		BehaviorTreeNode *btn = new BehaviorTreeNode(name);
+		tree[name] = btn;
+		return btn;
+	}
 }
 
-BehaviorTreeNode *IBehaviorTree::findNode(std::string s) {
-	if (tree.find(s) == tree.end()) return NULL;
-	else return tree[s];
+BehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
+	if (tree.find(name) == tree.end()) {
+		return nullptr;
+	}
+	else {
+		return tree[name];
+	}
 }
 
-BehaviorTreeNode *IBehaviorTree::createRoot(std::string s, int type, BehaviorTreeCondition btc, BehaviorTreeAction bta) {
-	BehaviorTreeNode *r = createNode(s);
-	r->setParent(NULL);
-	root = r;
-	r->setType(type);
-	if (btc != NULL) addCondition(s, btc);
-	if (bta != NULL) addAction(s, bta);
+BehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, BehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action) {
+	BehaviorTreeNode *rootNode = createNode(rootName);
+	rootNode->setParent(nullptr);
+	rootNode->setType(type);
+	root = rootNode;
+	if (condition != nullptr) addCondition(rootName, condition);
+	if (action != nullptr) addAction(rootName, action);
 
-	current = NULL;
-	return r;
+	current = nullptr;
+	return rootNode;
 }
 
-BehaviorTreeNode *IBehaviorTree::addChild(std::string parent, std::string son, int type, BehaviorTreeCondition btc, BehaviorTreeAction bta) {
-	BehaviorTreeNode *p = findNode(parent);
-	BehaviorTreeNode *s = createNode(son);
-	p->addChild(s);
-	s->setParent(p);
-	s->setType(type);
-	if (btc != NULL) addCondition(son, btc);
-	if (bta != NULL) addAction(son, bta);
-	return s;
+BehaviorTreeNode* IBehaviorTree::addChild(std::string parentName, std::string childName, BehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action) {
+	BehaviorTreeNode *parent = findNode(parentName);
+	BehaviorTreeNode *child = createNode(childName);
+	parent->addChild(child);
+	child->setParent(parent);
+	child->setType(type);
+	if (condition != nullptr) addCondition(childName, condition);
+	if (action != nullptr) addAction(childName, action);
+	return child;
+}
+
+void IBehaviorTree::setCurrent(BehaviorTreeNode *newCurrent) {
+	current = newCurrent;
+}
+
+void IBehaviorTree::addCondition(std::string conditionName, BehaviorTreeCondition condition) {
+	if (conditions.find(conditionName) != conditions.end()) {
+		printf("Error: node %s already has a condition\n", conditionName.c_str());
+	}
+	else {
+		conditions[conditionName] = condition;
+	}
+}
+
+bool IBehaviorTree::testCondition(std::string conditionName) {
+	if (conditions.find(conditionName) == conditions.end()) {
+		return true;	// error: no condition defined, we assume TRUE
+	}
+	else {
+		return (this->*conditions[conditionName])();
+	}
+}
+
+void IBehaviorTree::addAction(std::string actionName, BehaviorTreeAction action) {
+	if (actions.find(actionName) != actions.end()) {
+		printf("Error: node %s already has an action\n", actionName.c_str());
+	}
+	else {
+		actions[actionName] = action;
+	}
+}
+
+int IBehaviorTree::execAction(std::string actionName) {
+	if (actions.find(actionName) == actions.end()) {
+		printf("ERROR: Missing node action for node %s\n", actionName.c_str());
+		return Leave; // error: action does not exist
+	}
+	else {
+		return (this->*actions[actionName])();
+	}
 }
 
 void IBehaviorTree::recalc() {
-	if (current == NULL) root->recalc(this);	// I'm not in a sequence, start from the root
-	else current->recalc(this);				// I'm in a sequence. Continue where I left
-}
-
-void IBehaviorTree::setCurrent(BehaviorTreeNode *nc) {
-	current = nc;
-}
-
-void IBehaviorTree::addCondition(std::string s, BehaviorTreeCondition cond) {
-	if (conditions.find(s) != conditions.end()) {
-		printf("Error: node %s already has a condition\n", s.c_str());
-		return;	// if condition already exists don't insert again...
+	if (current == nullptr) {
+		root->recalc(this);
 	}
-	conditions[s] = cond;
-}
-
-bool IBehaviorTree::testCondition(std::string s) {
-	if (conditions.find(s) == conditions.end()) {
-		return true;	// error: no condition defined, we assume TRUE
+	else {
+		current->recalc(this);
 	}
-	return (this->*conditions[s])();
-}
-
-void IBehaviorTree::addAction(std::string s, BehaviorTreeAction act) {
-	if (actions.find(s) != actions.end()) {
-		printf("Error: node %s already has an action\n", s.c_str());
-		return;	// if action already exists don't insert again...
-	}
-	actions[s] = act;
-}
-
-int IBehaviorTree::execAction(std::string s) {
-	if (actions.find(s) == actions.end()) {
-		printf("ERROR: Missing node action for node %s\n", s.c_str());
-		return LEAVE; // error: action does not exist
-	}
-	return (this->*actions[s])();
 }
