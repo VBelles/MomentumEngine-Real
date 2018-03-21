@@ -1,5 +1,9 @@
 #include "mcv_platform.h"
 #include "IBehaviorTree.h"
+#include "BehaviorTreeNodeRandom.h"
+#include "BehaviorTreeNodeSequence.h"
+#include "BehaviorTreeNodePriority.h"
+#include "BehaviorTreeNodeAction.h"
 
 IBehaviorTree::IBehaviorTree(std::string name) {
 	this->name = name;
@@ -9,19 +13,32 @@ std::string IBehaviorTree::getName() {
 	return name;
 }
 
-CBehaviorTreeNode* IBehaviorTree::createNode(std::string name) {
+IBehaviorTreeNode* IBehaviorTree::createNode(std::string name, EBehaviorTreeNodeType type) {
 	if (findNode(name)) {
 		printf("Error: node %s already exists\n", name.c_str());
 		return nullptr;
 	}
 	else {
-		CBehaviorTreeNode *btn = new CBehaviorTreeNode(name);
-		tree[name] = btn;
-		return btn;
+		IBehaviorTreeNode *behaviorTreeNode;
+		if (type == Random) {
+			behaviorTreeNode = new BehaviorTreeNodeRandom(name);
+		}
+		else if (type == Sequence) {
+			behaviorTreeNode = new BehaviorTreeNodeSequence(name);
+		}
+		else if (type == Priority) {
+			behaviorTreeNode = new BehaviorTreeNodePriority(name);
+		}
+		else if (type == Action) {
+			behaviorTreeNode = new BehaviorTreeNodeAction(name);
+		}
+
+		tree[name] = behaviorTreeNode;
+		return behaviorTreeNode;
 	}
 }
 
-CBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
+IBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
 	if (tree.find(name) == tree.end()) {
 		return nullptr;
 	}
@@ -30,10 +47,9 @@ CBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
 	}
 }
 
-CBehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action) {
-	CBehaviorTreeNode *rootNode = createNode(rootName);
+IBehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action) {
+	IBehaviorTreeNode *rootNode = createNode(rootName, type);
 	rootNode->setParent(nullptr);
-	rootNode->setType(type);
 	root = rootNode;
 	if (condition != nullptr) addCondition(rootName, condition);
 	if (action != nullptr) addAction(rootName, action);
@@ -42,20 +58,19 @@ CBehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, EBehaviorTree
 	return rootNode;
 }
 
-CBehaviorTreeNode* IBehaviorTree::addChild(
+IBehaviorTreeNode* IBehaviorTree::addChild(
 	std::string parentName, std::string childName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action
 ) {
-	CBehaviorTreeNode *parent = findNode(parentName);
-	CBehaviorTreeNode *child = createNode(childName);
+	IBehaviorTreeNode *parent = findNode(parentName);
+	IBehaviorTreeNode *child = createNode(childName, type);
 	parent->addChild(child);
 	child->setParent(parent);
-	child->setType(type);
 	if (condition != nullptr) addCondition(childName, condition);
 	if (action != nullptr) addAction(childName, action);
 	return child;
 }
 
-void IBehaviorTree::setCurrent(CBehaviorTreeNode *newCurrent) {
+void IBehaviorTree::setCurrent(IBehaviorTreeNode *newCurrent) {
 	current = newCurrent;
 }
 

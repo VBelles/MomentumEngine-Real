@@ -123,7 +123,11 @@
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="components\ia\behavior tree\IBehaviorTree.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNode.cpp" />
+    <ClCompile Include="components\ia\behavior tree\IBehaviorTreeNode.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeAction.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeSequence.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodePriority.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeRandom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -275,7 +279,11 @@
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="components\ia\behavior tree\IBehaviorTree.h" />
-    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNode.h" />
+    <ClInclude Include="components\ia\behavior tree\IBehaviorTreeNode.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeAction.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeSequence.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodePriority.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeRandom.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
