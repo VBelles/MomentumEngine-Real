@@ -18,10 +18,6 @@ void CAIMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 void CAIMeleeEnemy::registerMsgs() {
 	DECL_MSG(CAIMeleeEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
 	DECL_MSG(CAIMeleeEnemy, TMsgAttackHit, OnHit);
-	DECL_MSG(CAIMeleeEnemy, TMsgGrabbed, OnGrabbed);
-	DECL_MSG(CAIMeleeEnemy, TMsgPropelled, OnPropelled);
-	DECL_MSG(CAIMeleeEnemy, TMsgLaunchedVertically, OnLaunchedVertically);
-	DECL_MSG(CAIMeleeEnemy, TMsgLaunchedHorizontally, OnLaunchedHorizontally);
 	DECL_MSG(CAIMeleeEnemy, TMsgRespawn, OnRespawn);
 }
 
@@ -59,41 +55,54 @@ void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 }
 
 void CAIMeleeEnemy::OnHit(const TMsgAttackHit& msg) {
-	int damage = msg.damage;
+	float damage = msg.info.damage;
 	health -= damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
 	CEntity *attacker = msg.attacker;
-	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
-
+	if (msg.info.givesPower) {
+		//esto se tendría que hacer antes de enviar el mensaje, para subir de nivel antes
+		attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });
+		ChangeState("idle");//interrupción
+	}
 	if (health <= 0) {
 		ChangeState("death");
 	}
 	else {
-		ChangeState("idle");
+		if (msg.info.grab) {
+			OnGrabbed(msg.info.grab->duration);
+		}
+		if (msg.info.propel) {
+			OnPropelled(msg.info.propel->velocity);
+		}
+		if (msg.info.horizontalLauncher) {
+			OnLaunchedHorizontally(msg.info.horizontalLauncher->suspensionDuration, msg.info.horizontalLauncher->velocity);
+		}
+		if (msg.info.verticalLauncher) {
+			OnLaunchedVertically(msg.info.verticalLauncher->suspensionDuration, msg.info.verticalLauncher->velocity);
+		}
+		if (msg.info.stun) {
+			//
+		}
 	}
 }
 
-void CAIMeleeEnemy::OnGrabbed(const TMsgGrabbed& msg) {
-	dbg("grabbed\n");
+void CAIMeleeEnemy::OnGrabbed(float duration) {
 	grabbedTimer.reset();
+	grabbedDuration = duration;
 	ChangeState("grabbed");
-	CEntity *attacker = msg.attacker;
-	attacker->sendMsg(TMsgGainPower{ CHandle(this), powerGiven });//Si agarras a dos ganas doble poder
 	getCollider()->disable();
 }
 
 void CAIMeleeEnemy::GrabbedState(float delta) {
-	//dbg("En grabbed\n");
 	if (grabbedTimer.elapsed() >= grabbedDuration) {
 		getCollider()->enable();
 		ChangeState("idle");
 	}
 }
 
-void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
-	CEntity *attacker = msg.attacker;
-	propelVelocityVector = msg.velocityVector;
+void CAIMeleeEnemy::OnPropelled(VEC3 velocity) {
+	propelVelocityVector = velocity;
 	getCollider()->enable();
 
 	propelTimer.reset();
@@ -103,21 +112,33 @@ void CAIMeleeEnemy::OnPropelled(const TMsgPropelled& msg) {
 	render->TurnRed(0.5f);
 }
 
-void CAIMeleeEnemy::OnLaunchedVertically(const TMsgLaunchedVertically& msg) {
+void CAIMeleeEnemy::PropelledState(float delta) {
+	if (propelTimer.elapsed() < propelDuration) {
+		VEC3 deltaMovement = propelVelocityVector * delta;
+		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	}
+	else {
+		ChangeState("idle");
+	}
+}
+
+void CAIMeleeEnemy::OnLaunchedVertically(float suspensionTime, VEC3 velocity) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
-	velocityVector.y = launchPowerStats->jumpVelocityVector.y;
+	floatingDuration = suspensionTime;
+	velocityVector.y = velocity.y;
 	launchPowerStats->currentGravityMultiplier = launchPowerStats->normalGravityMultiplier;
 	ChangeState("vertical_launch");
 }
 
-void CAIMeleeEnemy::OnLaunchedHorizontally(const TMsgLaunchedHorizontally& msg) {
+void CAIMeleeEnemy::OnLaunchedHorizontally(float suspensionTime, VEC3 velocity) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
+	floatingDuration = suspensionTime;
 	initialHorizontalLaunchY = getTransform()->getPosition().y + 0.001f;
-	dbg("Y: %f", initialHorizontalLaunchY);
+	//dbg("Y: %f", initialHorizontalLaunchY);
 	float horizontalVelocity = launchPowerStats->longJumpVelocityVector.z;
-	velocityVector = msg.direction * horizontalVelocity;
+	velocityVector = velocity;
 	velocityVector.y = launchPowerStats->longJumpVelocityVector.y;
 	launchPowerStats->currentGravityMultiplier = launchPowerStats->longGravityMultiplier;
 	ChangeState("horizontal_launch");
@@ -208,7 +229,9 @@ void CAIMeleeEnemy::AttackState(float delta) {
 		waitAttackTimer.reset();
 		ChangeState("idle_war");
 		if(IsPlayerInAttackRange(rangeRadius)) {
-			TMsgAttackHit msg{ CHandle(this), 1 };
+			TMsgAttackHit msg = {};
+			msg.attacker = CHandle(this);
+			msg.info.damage = 1.f;
 			getPlayerEntity()->sendMsg(msg);
 		}
 	}
@@ -245,17 +268,6 @@ void CAIMeleeEnemy::HorizontalLaunchState(float delta) {
 		velocityVector.z = 0;
 		ChangeState("floating");
 		launchedFloatingTimer.reset();
-	}
-}
-
-void CAIMeleeEnemy::PropelledState(float delta) {
-	dbg("On propelled\n");
-	if (propelTimer.elapsed() < propelDuration) {
-		VEC3 deltaMovement = propelVelocityVector * delta;
-		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	}
-	else {
-		ChangeState("idle");
 	}
 }
 

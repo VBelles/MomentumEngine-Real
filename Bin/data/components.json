@@ -7,28 +7,32 @@
     "entity" : 100,
     "transform" : 90
   },
-	"update" : [
+  "update": [
 		"fwd_msg",
 		"hierarchy",
 		"platform_move",
 		"collectable",
 		"destroyCondition",
-		"skeleton",
-		"bone_tracker",
+    "skeleton",
+    "bone_tracker",
 		"ai_melee_enemy",
+		"ai_flying_enemy",
 		"respawner",
 		"player_controller",
 		"player_model",
 		"hitbox",
 		"shadow",
-	    "local_aabb",
+    "local_aabb",
 		"camera_player",
-		"camera",
+    "camera",
 		"curve_controller",
 		"culling",
 		"light_dir",
-		"render"
-	],
+		"render",
+		"fsm",
+		"fake_animation",
+		"player_input"
+  ],
 	"render_debug" : 
 	[
 		"transform"

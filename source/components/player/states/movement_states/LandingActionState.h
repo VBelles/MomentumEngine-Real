@@ -5,6 +5,7 @@
 
 
 class LandingActionState : public GroundedActionState {
+protected:
 	CTimer timer;
 	int landingLagFrames = 9;
 	float landingLagTime;

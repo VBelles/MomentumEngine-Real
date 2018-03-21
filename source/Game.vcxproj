@@ -96,6 +96,7 @@
     <ClCompile Include="components\comp_collectable.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_destroy_condition.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\comp_ground_sensor.cpp" />
@@ -115,6 +116,8 @@
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
     <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
+    <ClCompile Include="components\controllers\comp_fake_animation_controller.cpp" />
+    <ClCompile Include="components\controllers\comp_player_input.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
@@ -130,6 +133,7 @@
     <ClCompile Include="components\ia\behavior tree\IBehaviorTree.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
+    <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
     <ClCompile Include="components\player\PowerGauge.cpp" />
     <ClCompile Include="components\player\states\attack_states\FallingAttackActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\FastAttackActionState.cpp" />
@@ -137,11 +141,10 @@
     <ClCompile Include="components\player\states\attack_states\GrabHighActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\GrabLongActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\HorizontalLauncherActionState.cpp" />
-    <ClCompile Include="components\player\states\attack_states\PropelHighActionState.cpp" />
-    <ClCompile Include="components\player\states\attack_states\PropelLongActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\StrongAttackActionState.cpp" />
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\VerticalLauncherActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\FallingAttackLandingActionState.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
@@ -150,15 +153,22 @@
     <ClCompile Include="components\player\states\movement_states\long_jump\AirborneLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\GhostJumpSquatLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\JumpSquatLongActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\long_jump\PropelLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\normal_jump\AirborneNormalActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\normal_jump\GhostJumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\normal_jump\JumpSquatActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\normal_jump\PropelHighActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\RunActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\WalkActionState.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
+    <ClCompile Include="fsm\context.cpp" />
+    <ClCompile Include="fsm\custom_states.cpp" />
+    <ClCompile Include="fsm\custom_transitions.cpp" />
+    <ClCompile Include="fsm\factory.cpp" />
+    <ClCompile Include="fsm\fsm.cpp" />
     <ClCompile Include="geometry\angular.cpp" />
     <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="geometry\geometry.cpp" />
@@ -191,6 +201,7 @@
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\module_render.cpp" />
     <ClCompile Include="modules\system\module_cameras.cpp" />
+    <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
@@ -217,6 +228,7 @@
     <ClCompile Include="skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
+    <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="windows\app.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +242,7 @@
     <ClInclude Include="components\comp_collectable.h" />
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_destroy_condition.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\comp_ground_sensor.h" />
@@ -249,6 +262,8 @@
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\controllers\comp_camera_flyover.h" />
     <ClInclude Include="components\controllers\comp_camera_orbit.h" />
+    <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
+    <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
@@ -264,6 +279,7 @@
     <ClInclude Include="components\ia\behavior tree\IBehaviorTree.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
+    <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
     <ClInclude Include="components\player\PowerGauge.h" />
     <ClInclude Include="components\player\states\attack_states\FallingAttackActionState.h" />
     <ClInclude Include="components\player\states\attack_states\FastAttackActionState.h" />
@@ -271,12 +287,11 @@
     <ClInclude Include="components\player\states\attack_states\GrabHighActionState.h" />
     <ClInclude Include="components\player\states\attack_states\GrabLongActionState.h" />
     <ClInclude Include="components\player\states\attack_states\HorizontalLauncherActionState.h" />
-    <ClInclude Include="components\player\states\attack_states\PropelHighActionState.h" />
-    <ClInclude Include="components\player\states\attack_states\PropelLongActionState.h" />
     <ClInclude Include="components\player\states\attack_states\StrongAttackActionState.h" />
     <ClInclude Include="components\player\states\attack_states\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\states\AirborneActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\FallingAttackLandingActionState.h" />
     <ClInclude Include="components\player\states\movement_states\GhostJumpWindowActionState.h" />
     <ClInclude Include="components\player\states\GroundedActionState.h" />
     <ClInclude Include="components\player\states\movement_states\IdleActionState.h" />
@@ -284,9 +299,11 @@
     <ClInclude Include="components\player\states\movement_states\long_jump\AirborneLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\GhostJumpSquatLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\JumpSquatLongActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\long_jump\PropelLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\normal_jump\AirborneNormalActionState.h" />
     <ClInclude Include="components\player\states\movement_states\normal_jump\GhostJumpSquatActionState.h" />
     <ClInclude Include="components\player\states\movement_states\normal_jump\JumpSquatActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\normal_jump\PropelHighActionState.h" />
     <ClInclude Include="components\player\states\movement_states\RunActionState.h" />
     <ClInclude Include="components\player\states\movement_states\TurnAroundActionState.h" />
     <ClInclude Include="components\player\states\movement_states\WalkActionState.h" />
@@ -295,6 +312,13 @@
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\entity_parser.h" />
     <ClInclude Include="entity\msgs.h" />
+    <ClInclude Include="fsm\context.h" />
+    <ClInclude Include="fsm\custom_states.h" />
+    <ClInclude Include="fsm\custom_transitions.h" />
+    <ClInclude Include="fsm\factory.h" />
+    <ClInclude Include="fsm\fsm.h" />
+    <ClInclude Include="fsm\state.h" />
+    <ClInclude Include="fsm\transition.h" />
     <ClInclude Include="geometry\angular.h" />
     <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\geometry.h" />
@@ -336,6 +360,7 @@
     <ClInclude Include="modules\module_ia.h" />
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\system\module_cameras.h" />
+    <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\module_render.h" />
     <ClInclude Include="modules\system\module_input.h" />
@@ -374,15 +399,20 @@
     <ClInclude Include="utils\murmur3\murmur3.h" />
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\utils.h" />
+    <ClInclude Include="utils\variant.h" />
     <ClInclude Include="windows\app.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
+    <None Include="x64\Debug\Cal3D.pdb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Cal3D\Cal3D.vcxproj">
       <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="x64\Debug\Cal3D.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

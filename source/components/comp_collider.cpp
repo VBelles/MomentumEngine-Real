@@ -35,8 +35,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 		if (j.count("planeDesc")) {
 			config.plane = loadVEC4(j["planeDesc"]);
 		}
-		else
-		{
+		else {
 			config.plane = VEC4(0, 1, 0, 0);
 		}
 	}
@@ -51,10 +50,35 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.height = j.value("height", 0.f);
 	config.step = j.value("step", 0.5f);
 	config.slope = j.value("slope", 0.0f);
+	
+	if (j.count("group")) {
+		for (std::string group : j["group"]) {
+			dbg("group: %s\n", group.c_str());
+			transform(group.begin(), group.end(), group.begin(), ::tolower);
+			config.group = config.group | EnginePhysics.getFilterByName(group);
+		}
+	}
+	
+	else {
+		config.group = CModulePhysics::FilterGroup::Scenario;
+	}
 
-	// todo: extend this be able to parse more than group and mask
-	config.group = Engine.getPhysics().getFilterByName(j.value("group", "all"));
-	config.mask = Engine.getPhysics().getFilterByName(j.value("mask", "all"));
+	if (j.count("mask")) {
+		for (std::string mask : j["mask"]) {
+			transform(mask.begin(), mask.end(), mask.begin(), ::tolower);
+			config.mask = config.mask | EnginePhysics.getFilterByName(mask);
+		}
+	}
+	else {
+		config.mask = CModulePhysics::FilterGroup::All;
+	}
+
+
+	config.filterData.word0 = config.group;
+	config.filterData.word1 = config.mask;
+
+	//config.group = EnginePhysics.getFilterByName(j.value("group", "all"));
+	//config.mask = EnginePhysics.getFilterByName(j.value("mask", "all"));
 }
 
 void TCompCollider::registerMsgs() {

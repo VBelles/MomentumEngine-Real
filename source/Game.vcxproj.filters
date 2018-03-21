@@ -92,9 +92,7 @@
     <ClCompile Include="components\player\states\attack_states\GrabActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\ia\ai_flying_enemy.cpp" />
-    <ClCompile Include="components\player\states\attack_states\PropelHighActionState.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
-    <ClCompile Include="components\player\states\attack_states\PropelLongActionState.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\player\states\attack_states\FastAttackActionState.cpp" />
@@ -115,13 +113,27 @@
     <ClCompile Include="skeleton\comp_skeleton.cpp" />
     <ClCompile Include="skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
+    <ClCompile Include="fsm\fsm.cpp" />
+    <ClCompile Include="fsm\context.cpp" />
+    <ClCompile Include="utils\variant.cpp" />
+    <ClCompile Include="modules\system\module_fsm.cpp" />
+    <ClCompile Include="fsm\custom_states.cpp" />
+    <ClCompile Include="fsm\factory.cpp" />
+    <ClCompile Include="fsm\custom_transitions.cpp" />
+    <ClCompile Include="components\comp_fsm.cpp" />
+    <ClCompile Include="components\controllers\comp_fake_animation_controller.cpp" />
+    <ClCompile Include="components\controllers\comp_player_input.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
+    <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
     <ClCompile Include="components\player\states\movement_states\WalkActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\FallingAttackLandingActionState.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="windows\app.cpp" />
+    <ClCompile Include="components\player\states\movement_states\long_jump\PropelLongActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\normal_jump\PropelHighActionState.cpp" />
     <ClCompile Include="components\ia\behavior tree\IBehaviorTree.cpp" />
     <ClCompile Include="components\ia\behavior tree\IBehaviorTreeNode.cpp" />
     <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeAction.cpp" />
@@ -245,9 +257,7 @@
     <ClInclude Include="components\player\states\attack_states\GrabActionState.h" />
     <ClInclude Include="components\player\states\movement_states\TurnAroundActionState.h" />
     <ClInclude Include="components\ia\ai_flying_enemy.h" />
-    <ClInclude Include="components\player\states\attack_states\PropelHighActionState.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
-    <ClInclude Include="components\player\states\attack_states\PropelLongActionState.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\player\states\attack_states\FastAttackActionState.h" />
@@ -273,12 +283,29 @@
     <ClInclude Include="render\render_manager.h" />
     <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
+    <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
     <ClInclude Include="components\player\states\movement_states\WalkActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\FallingAttackLandingActionState.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />
     <ClInclude Include="skeleton\comp_bone_tracker.h" />
     <ClInclude Include="skeleton\cal3d2engine.h" />
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="render\texture\texture_slots.h" />
+    <ClInclude Include="fsm\fsm.h" />
+    <ClInclude Include="fsm\state.h" />
+    <ClInclude Include="fsm\transition.h" />
+    <ClInclude Include="fsm\context.h" />
+    <ClInclude Include="fsm\custom_states.h" />
+    <ClInclude Include="utils\variant.h" />
+    <ClInclude Include="modules\system\module_fsm.h" />
+    <ClInclude Include="fsm\factory.h" />
+    <ClInclude Include="fsm\custom_transitions.h" />
+    <ClInclude Include="components\comp_fsm.h" />
+    <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
+    <ClInclude Include="components\controllers\comp_player_input.h" />
+    <ClInclude Include="modules\gamestate.h" />
+    <ClInclude Include="components\player\states\movement_states\long_jump\PropelLongActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\normal_jump\PropelHighActionState.h" />
     <ClInclude Include="components\ia\behavior tree\IBehaviorTree.h" />
     <ClInclude Include="components\ia\behavior tree\IBehaviorTreeNode.h" />
     <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeAction.h" />
@@ -289,5 +316,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
+    <None Include="x64\Debug\Cal3D.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="x64\Debug\Cal3D.lib" />
   </ItemGroup>
 </Project>

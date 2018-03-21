@@ -40,7 +40,6 @@ void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 	SetPose();
 	GetPlayerModel()->maxVerticalSpeed = maxFallingVelocity;
 	GetPlayerModel()->SetGravity(0.f);
-	dbg("ENTER Falling Attack\n");
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
@@ -55,7 +54,6 @@ void FallingAttackActionState::OnStateExit(IActionState * nextState) {
 	hitbox->disable();
 	GetPlayerModel()->ResetGravity();
 	GetPlayerModel()->movementState->SetPose();
-	dbg("FINISH falling Attack\n");
 }
 
 void FallingAttackActionState::OnJumpHighButton() {
@@ -72,7 +70,7 @@ void FallingAttackActionState::OnLanding() {
 	*velocityVector = VEC3::Zero;
 	GetPlayerModel()->lockMovementState = false;
 	GetPlayerModel()->lockWalk = false;
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
+	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::LandingFallingAttack);
 	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
 }
 
@@ -80,7 +78,15 @@ void FallingAttackActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
-		dbg("Falling attack hit for %i damage\n", damage);
+		VEC3 propelVelocity = { 0, -maxFallingVelocity, 0 };
+		TMsgAttackHit msgAtackHit = {};
+		msgAtackHit.attacker = playerEntity;
+		msgAtackHit.info = {};
+		msgAtackHit.info.givesPower = true;
+		msgAtackHit.info.damage = damage;
+		msgAtackHit.info.propel = new AttackInfo::Propel{
+			propelVelocity
+		};
+		otherEntity->sendMsg(msgAtackHit);
 	}
 }

@@ -12,6 +12,7 @@ class VerticalLauncherActionState : public GroundedActionState {
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
+	float suspensionTime = 1.5f;
 
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;

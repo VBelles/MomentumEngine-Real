@@ -8,6 +8,41 @@ struct TMsgEntityCreated {
     DECL_MSG_ID();
 };
 
+struct AttackInfo {
+	struct Stun {
+		float duration;
+	};
+	struct VerticalLauncher {
+		float suspensionDuration;
+		VEC3 velocity;
+	};
+	struct HorizontalLauncher {
+		float suspensionDuration;
+		VEC3 velocity;
+	};
+	struct Grab {
+		float duration;
+	};
+	struct Propel {
+		VEC3 velocity;
+	};
+	float damage = 0.f;
+	bool givesPower = false;
+	Stun* stun = nullptr;
+	VerticalLauncher* verticalLauncher = nullptr;
+	HorizontalLauncher* horizontalLauncher = nullptr;
+	Grab* grab = nullptr;
+	Propel* propel = nullptr;
+
+	~AttackInfo() {
+		delete stun;
+		delete verticalLauncher;
+		delete horizontalLauncher;
+		delete grab;
+		delete propel;
+	}
+};
+
 // Sent to all entities from a parsed file once all the entities
 // in that file have been created. Used to link entities between them
 struct TEntityParseContext;
@@ -46,33 +81,33 @@ struct TMsgHitboxEnter {
 
 struct TMsgAttackHit {
 	CHandle attacker;
-	int damage;
+	AttackInfo info;
 	DECL_MSG_ID();
 };
 
-struct TMsgGrabbed {
-	CHandle attacker;
-	DECL_MSG_ID();
-};
-
-struct TMsgPropelled {
-	CHandle attacker;
-	VEC3 velocityVector;
-	DECL_MSG_ID();
-};
-
-struct TMsgLaunchedVertically {
-	CHandle attacker;
-	int damage;
-	DECL_MSG_ID();
-};
-
-struct TMsgLaunchedHorizontally {
-	CHandle attacker;
-	int damage;
-	VEC3 direction;
-	DECL_MSG_ID();
-};
+//struct TMsgGrabbed {
+//	CHandle attacker;
+//	DECL_MSG_ID();
+//};
+//
+//struct TMsgPropelled {
+//	CHandle attacker;
+//	VEC3 velocityVector;
+//	DECL_MSG_ID();
+//};
+//
+//struct TMsgLaunchedVertically {
+//	CHandle attacker;
+//	int damage;
+//	DECL_MSG_ID();
+//};
+//
+//struct TMsgLaunchedHorizontally {
+//	CHandle attacker;
+//	int damage;
+//	VEC3 direction;
+//	DECL_MSG_ID();
+//};
 
 struct TMsgGainPower {
 	CHandle sender;
@@ -102,6 +137,13 @@ struct TMsgRespawn {
 struct TMsgDefineLocalAABB {
   AABB* aabb;
   DECL_MSG_ID();
+};
+
+
+
+struct TMsgOnShapeHit {
+	physx::PxControllerShapeHit hit;
+	DECL_MSG_ID();
 };
 
 /*

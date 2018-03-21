@@ -10,21 +10,19 @@ void AirborneLongActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
-
 	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
 
 	if (hasInput) {
 		//aceleración según sentido de movimiento
 		float appliedAcceleration = CalculateAccelerationAccordingToDirection(enterFront, desiredDirection,
-			currentPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
-			sidewaysAirDriftFactor);
+			enteringPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct,
+			backwardsAirDriftFactorLong, sidewaysAirDriftFactorLong);
 
 		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
-			desiredDirection, appliedAcceleration, currentPowerStats->longJumpVelocityVector.z);
+			desiredDirection, appliedAcceleration, enteringPowerStats->longJumpVelocityVector.z);
 
 		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
-		ClampHorizontalVelocity(currentPowerStats->longJumpVelocityVector.z);
+		ClampHorizontalVelocity(enteringPowerStats->longJumpVelocityVector.z);
 	}
 	else {
 		deltaMovement.x = velocityVector->x * delta;
@@ -35,9 +33,8 @@ void AirborneLongActionState::update (float delta) {
 void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	SetPose();
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
-	GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
-	GetPlayerModel()->SetGravityMultiplier(currentPowerStats->longGravityMultiplier);
+	GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
+	GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->longGravityMultiplier);
 	//dbg("Entrando en airborne long\n");
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
