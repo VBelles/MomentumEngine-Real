@@ -95,7 +95,6 @@ void CAIMeleeEnemy::OnGrabbed(float duration) {
 }
 
 void CAIMeleeEnemy::GrabbedState(float delta) {
-	//dbg("En grabbed\n");
 	if (grabbedTimer.elapsed() >= grabbedDuration) {
 		getCollider()->enable();
 		ChangeState("idle");
@@ -113,6 +112,16 @@ void CAIMeleeEnemy::OnPropelled(VEC3 velocity) {
 	render->TurnRed(0.5f);
 }
 
+void CAIMeleeEnemy::PropelledState(float delta) {
+	if (propelTimer.elapsed() < propelDuration) {
+		VEC3 deltaMovement = propelVelocityVector * delta;
+		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	}
+	else {
+		ChangeState("idle");
+	}
+}
+
 void CAIMeleeEnemy::OnLaunchedVertically(float suspensionTime, VEC3 velocity) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
@@ -127,7 +136,7 @@ void CAIMeleeEnemy::OnLaunchedHorizontally(float suspensionTime, VEC3 velocity) 
 	launchPowerStats = &*playerModel->GetPowerStats();
 	floatingDuration = suspensionTime;
 	initialHorizontalLaunchY = getTransform()->getPosition().y + 0.001f;
-	dbg("Y: %f", initialHorizontalLaunchY);
+	//dbg("Y: %f", initialHorizontalLaunchY);
 	float horizontalVelocity = launchPowerStats->longJumpVelocityVector.z;
 	velocityVector = velocity;
 	velocityVector.y = launchPowerStats->longJumpVelocityVector.y;
@@ -259,17 +268,6 @@ void CAIMeleeEnemy::HorizontalLaunchState(float delta) {
 		velocityVector.z = 0;
 		ChangeState("floating");
 		launchedFloatingTimer.reset();
-	}
-}
-
-void CAIMeleeEnemy::PropelledState(float delta) {
-	dbg("On propelled\n");
-	if (propelTimer.elapsed() < propelDuration) {
-		VEC3 deltaMovement = propelVelocityVector * delta;
-		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	}
-	else {
-		ChangeState("idle");
 	}
 }
 

@@ -41,12 +41,10 @@ void IdleActionState::update (float delta) {
 void IdleActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	SetPose();
-	dbg("Entrando en idle\n");
 }
 
 void IdleActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de idle\n");
 }
 
 void IdleActionState::OnJumpHighButton() {

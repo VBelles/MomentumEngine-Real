@@ -60,6 +60,11 @@
 		"buttons" : ["pad_y", "mouse_right"]
 	},
 	{
+		"name" : "pause",
+		"all" : false,
+		"buttons" : ["pad_start", "escape"]
+	},
+	{
 		"name" : "debug_mode",
 		"all" : false,
 		"buttons" : ["f2"]

@@ -21,6 +21,7 @@ public:
 
   CModuleManager& getModules() { return _modules; }
   CModuleRender& getRender() { return _module_render; }
+  CModuleEntities& getEntities() { return _module_entities; }
   CModuleIA& getIA() { return _module_ia; }
   CModuleInput& getInput() { return _module_input; }
   CModulePhysics& getPhysics() { return _module_physics; }

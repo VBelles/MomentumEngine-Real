@@ -1,10 +1,10 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
-#include "../AirborneActionState.h"
+#include "../../AirborneActionState.h"
 
 
-class PropelLongActionState : public AirborneActionState {
+class PropelHighActionState : public AirborneActionState {
 protected:
 	CTimer timer;
 	int endingFrames = 10;
@@ -13,7 +13,7 @@ protected:
 	CHandle propelTarget;
 
 public:
-	PropelLongActionState(CHandle playerModelHandle);
+	PropelHighActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
