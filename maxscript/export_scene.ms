@@ -203,23 +203,31 @@ struct TMaterialExporter (
 	)
 )
 
+fn isCollisionObj obj = (
+	return classof obj == Box and classof obj == Sphere and classof obj == Plane
+)
+
 fn collisionCheck obj = (
-	if classof obj != Box and classof obj != Sphere and classof obj != Plane then (
+	if not isCollisionObj obj then (
 		throw "Collisions must be Spheres, Boxes or Planes."
 	)
+)
+
+fn isChildLine obj = (
+	return obj.parent != undefined and classOf obj == line	
+)
+
+fn isChildCollider obj = (
+	return obj.parent != undefined and isColliderObj obj	
 )
 
 fn isCollider obj = (
 	if obj.layer.name != "collisions" and obj.layer.name != "triggers" then return false
 	collisionCheck obj
-	-- If name starts with col_...
 	return true
 )
 
-fn excludeFromExport obj = (
-	-- Add here all object classes we don't want to export.
-	return classof obj == Targetobject
-)
+global hadChild = false
 
 -- ----------------------------------------------------------
 -- ----------------------------------------------------------
@@ -377,6 +385,29 @@ struct TSceneExporter (
 		exportCompCollider obj
 	),
 
+	-- --SPLINE--------------------------------------------------
+	fn exportSpline obj = (
+		fs.writeKey "move"
+		fs.beginObj()
+			fs.writeKeyValue "type" "catmull-rom"
+			fs.writeComma()
+			fs.writeKeyValue "loop" false
+			fs.writeComma()
+			fs.writeKey "knots"
+			fs.beginArray()
+				knotsInSpline = numKnots obj
+				for i = 1 to (knotsInSpline) do (
+					if i > 1 then fs.writeComma()
+					-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
+					local knotPos = getKnotPoint obj 1 i
+					local mcvKnotPos = knotPos * rotateXMatrix -90
+					fs.writeValue mcvKnotPos
+				)
+			fs.endArray()
+		fs.endObj()
+		--fs.writeComma() -- It should always have the parent object after, so we need this comma.
+	),
+		
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 
@@ -398,17 +429,32 @@ struct TSceneExporter (
 	-- --CAMERA--------------------------------------------------
 	fn exportCamera obj nValidObjs = (
 		local objClass = classOf obj
-		if objClass != TargetCamera then (
-			format "Warning: invalid object % of class % in cameras layer, not exported.\n" obj.name objClass
+		if ( isChildLine obj ) then (
+			fs.beginObj()
+			fs.writeComma()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			exportSpline obj
+			hadChild = true
+			return false
+		)
+		else if objClass != TargetCamera and
+				objClass != FreeCamera  then (
+			if objClass != Targetobject then format "Warning: invalid object % of class % in cameras layer, not exported.\n" obj.name objClass
 			return false
 		)
 		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			if not hadChild then (
+				fs.beginObj()
+				fs.writeKey "entity"
+				fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			)
 				exportName obj
 				fs.writeComma()
-				exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+				if objClass == TargetCamera then (
+					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+				) else exportTransform obj
+				
 				fs.writeComma()
 				fs.writeKey "camera"
 				fs.beginObj()
@@ -417,6 +463,7 @@ struct TSceneExporter (
 			--format "Camera % target distance: %\n" obj.name obj.targetDistance
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
+		hadChild = false
 		return true
 	),
 
@@ -483,7 +530,7 @@ struct TSceneExporter (
 		   objClass != freeSpot				  and
 		   objClass != Omnilight			  and
 		   objClass != targetSpot			then (
-			format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
+			if objClass != Targetobject then format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
 			return false
 		)
 		if nValidObjs > 0 then fs.writeComma()
@@ -618,52 +665,7 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --SPLINE--------------------------------------------------
-	fn exportSpline obj = (
-		fs.writeKeyValue "type" "catmull-rom"
-		fs.writeComma()
-		fs.writeKeyValue "loop" false
-		fs.writeComma()
-		fs.writeKey "knots"
-		fs.beginArray()
-			knotsInSpline = numKnots obj
-			for i = 1 to (knotsInSpline) do (
-				if i > 1 then fs.writeComma()
-				-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
-				local knotPos = getKnotPoint obj 1 i
-				local mcvKnotPos = knotPos * rotateXMatrix -90
-				fs.writeValue mcvKnotPos
-			)
-		fs.endArray()
-	),
-	
-	-- --ENTITY--------------------------------------------------
-	fn exportEntity obj nValidObjs = (
-		-- Avoid empty entities if it's a child collider.
-		if (obj.parent == undefined and
-			not isCollider obj		and
-			not excludeFromExport obj) then (
-			if nValidObjs > 0 then fs.writeComma()
-			fs.beginObj()
-			fs.writeKey "entity"
-				--format "Obj created, name: %\t\tClass: %\t\tLayer: %\n" obj.name ((classof obj) as string) obj.layer.name
-				fs.beginObj()
-				if (classof obj == FreeCamera or
-					classof obj == Targetcamera) then exportCamera obj
-				else if classof obj == Editable_Mesh then exportEditableMesh obj
-				else if classof obj == Line then exportSpline obj
-				else if isCollider obj then exportEntityCollider obj
-				else if isEnemy obj then exportEnemy obj
-				else if isChrysalis obj then exportChrysalis obj
-				else if isMovablePlatform obj then exportMovablePlatform obj
-				else (
-					format "Warning: Don't know how to export obj % of class %. Empty entity generated.\n" obj.name ((classof obj) as string) 
-				)
-				fs.endObj()
-			fs.endObj()
-			return true
-		) else return false -- It was not a valid entity.
-	),
+--if (obj.parent == undefined and not isCollider obj)
 
 	fn exportAll = (
 		-- Loop over all layers.
@@ -717,10 +719,9 @@ struct TSceneExporter (
 TODO: ¿Interpretar automáticamente colliders sin parent como triggers invisibles?
       Ahora mismo no los exporta.
 TODO: Poder exportar triggers sin parent.
-TODO: Exportar enemigos, crisálidas, cámaras y plataformas móviles en escena separada.
 TODO: Que las splines tengan que ser hijas de otro objeto y se exporten como tal.
 TODO: Si un objeto tiene hijo spline, hacerlo móvil.
-TODO: Exportar otros tipos de luces.
+TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora mismo siempre le pongo 40.
 */
 
 /*----------------------------------------------------------------------------------
@@ -746,8 +747,9 @@ El proyecto debe tener las siguientes carpetas:
  bin/data/materials
 ----------------------------------------------------------------------------------*/
 
---exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/"
-exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
---exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
---exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/" -- Vicent
+--exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/" -- Jose
+--exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/" --NesCasa
+exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/" -- Néstor
+
 exporter.exportAll()
