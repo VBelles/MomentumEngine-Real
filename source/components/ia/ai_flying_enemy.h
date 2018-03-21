@@ -22,11 +22,9 @@ private:
 	float startAttackingRadius = 2.f;
 	float attackCooldown = 1.f;
 	float attackDuration = 1.f;
+	float grabbedDuration = 0.5f;
 
-	TCompTransform* transform;
-	CEntity* player;
-	TCompTransform* playerTransform;
-	TCompCollider* collider;
+	CHandle player;
 
 	VEC3 spawnPosition;
 	VEC3 propelVelocityVector;
@@ -34,6 +32,7 @@ private:
 	CTimer recallTimer;
 	CTimer waitAttackTimer;
 	CTimer attackTimer;
+	CTimer grabbedTimer;
 
 	//Mesage functions
 	void OnHit(const TMsgAttackHit& msg);
@@ -48,6 +47,7 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void debugInMenu();
 	static void registerMsgs();
+	void update(float delta);
 
 	void InitStates();
 	//States
@@ -55,4 +55,9 @@ public:
 	void DeathState(float delta);
 	void GrabbedState(float delta);
 	void PropelledState(float delta);
+
+	TCompTransform* getTransform() { return get<TCompTransform>(); }
+	TCompCollider* getCollider() { return get<TCompCollider>(); }
+	CEntity* getPlayerEntity() { return player; }
+	TCompTransform* getPlayerTransform() { return getPlayerEntity()->get<TCompTransform>(); }
 };

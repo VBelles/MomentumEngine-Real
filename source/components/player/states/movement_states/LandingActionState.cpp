@@ -38,12 +38,12 @@ void LandingActionState::OnStateEnter(IActionState * lastState) {
 	landingLagFrames = GetPlayerModel()->GetPowerStats()->landingLag;
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
-	dbg("Entrando en landing\n");
+	//dbg("Entrando en landing\n");
 }
 
 void LandingActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de landing\n");
+	//dbg("Saliendo de landing\n");
 }
 
 void LandingActionState::OnJumpHighButton() {

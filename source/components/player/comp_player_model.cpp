@@ -114,7 +114,6 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 }
 
 void TCompPlayerModel::SetMovementState(ActionStates newState) {
-	//dbg("Frame: %d\n", frame);
 	nextMovementState = newState;
 }
 
@@ -334,12 +333,9 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 	else {
 		float deltaMovementDueToGravity;
 		deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-		//dbg("currentGravity: %f\n", currentGravity);
 		//clampear distancia vertical
 		deltaMovement.y += deltaMovementDueToGravity;
 		deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
-		//dbg("1  deltaMovement: %f\n", deltaMovement.y);
-		//dbg("2  deltaMovement: %f\n", deltaMovement.y);
 		velocityVector.y += currentGravity * delta;
 		velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
 	}

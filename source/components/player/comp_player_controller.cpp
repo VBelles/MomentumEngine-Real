@@ -83,6 +83,9 @@ void TCompPlayerController::update(float dt) {
 	if (EngineInput["gain_power"].getsPressed()) {
 		playerModel->GainPowerButtonPressed();
 	}
+	if (EngineInput["pause"].getsPressed()) {
+		//playerModel->PauseButtonPressed();
+	}
 
 	playerModel->SetMovementInput(translationInput, dt);//Dejar este para el final
 }
