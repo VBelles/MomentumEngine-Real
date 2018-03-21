@@ -88,11 +88,11 @@ void AirborneActionState::OnStateExit(IActionState * nextState) {
 }
 
 void AirborneActionState::OnJumpHighButton() {
-	//grab high
+	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void AirborneActionState::OnJumpLongButton() {
-	//grab long
+	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
 }
 
 void AirborneActionState::OnStrongAttackButton() {

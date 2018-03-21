@@ -1,11 +1,11 @@
 #include "mcv_platform.h"
-#include "AirborneLongActionState.h"
+#include "AirborneWallJumpActionState.h"
 
-AirborneLongActionState::AirborneLongActionState(CHandle playerModelHandle)
+AirborneWallJumpActionState::AirborneWallJumpActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 }
 
-void AirborneLongActionState::update (float delta) {
+void AirborneWallJumpActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
@@ -30,15 +30,18 @@ void AirborneLongActionState::update (float delta) {
 	}
 }
 
-void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
+void AirborneWallJumpActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	SetPose();
+	GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 	GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->longGravityMultiplier);
 	//dbg("Entrando en airborne long\n");
-	
+	enterFront = GetPlayerTransform()->getFront();
+	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
+	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 }
 
-void AirborneLongActionState::OnStateExit(IActionState * nextState) {
+void AirborneWallJumpActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
 	//dbg("Saliendo de airborne long\n");
 }

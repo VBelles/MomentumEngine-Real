@@ -142,6 +142,7 @@
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\wall_jump\AirborneWallJumpActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\wall_jump\HuggingWallActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\IdleActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\LandingActionState.cpp" />
@@ -283,6 +284,7 @@
     <ClInclude Include="components\player\states\movement_states\FallingAttackLandingActionState.h" />
     <ClInclude Include="components\player\states\movement_states\GhostJumpWindowActionState.h" />
     <ClInclude Include="components\player\states\GroundedActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\wall_jump\AirborneWallJumpActionState.h" />
     <ClInclude Include="components\player\states\movement_states\wall_jump\HuggingWallActionState.h" />
     <ClInclude Include="components\player\states\movement_states\IdleActionState.h" />
     <ClInclude Include="components\player\states\movement_states\LandingActionState.h" />

@@ -20,15 +20,3 @@ void AirborneNormalActionState::OnStateExit(IActionState * nextState) {
 	//dbg("Saliendo de airborne normal\n");
 }
 
-void AirborneNormalActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
-}
-
-void AirborneNormalActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
-}
-
-void AirborneNormalActionState::OnLanding() {
-	//Ir a landing action state
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
-}

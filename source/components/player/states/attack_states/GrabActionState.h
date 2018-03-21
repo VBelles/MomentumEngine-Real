@@ -22,6 +22,8 @@ protected:
 	int damage = 0;
 	AttackPhases phase = AttackPhases::Startup;
 
+	uint32_t enemyId = getID("enemy");
+
 public:
 	GrabActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;

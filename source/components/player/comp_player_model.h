@@ -32,13 +32,13 @@ class TCompPlayerModel : public TCompBase, PowerGauge::PowerListener {
 
 public:
 	int frame = 0;
-	enum ActionStates{
+	enum ActionStates {
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
-		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack, 
-		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong, 
-		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack, 
-		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat
+		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack,
+		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
+		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
+		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump
 	};
 	IActionState* movementState;
 	IActionState* attackState;
@@ -76,6 +76,8 @@ public:
 	TCompTransform* GetTransform() { return myTransformHandle; }
 	TCompCollider* GetCollider() { return colliderHandle; }
 	PxCapsuleController* GetController() { return static_cast<PxCapsuleController*>(GetCollider()->controller); }
+	TCompCamera* GetCamera();
+	
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
 	float GetGravity() { return currentGravity; }
@@ -100,6 +102,7 @@ public:
 
 	float huggingWallMinPitch = deg2rad(-25);
 	float huggingWallMaxPitch = deg2rad(5);
+	float huggingWallAttachThreshold = 0.8f;
 
 	void OnLevelChange(int powerLevel);
 

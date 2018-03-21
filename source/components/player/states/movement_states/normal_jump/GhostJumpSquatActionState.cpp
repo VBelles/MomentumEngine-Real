@@ -43,7 +43,4 @@ void GhostJumpSquatActionState::OnStateExit(IActionState * nextState) {
 //ni caso a este input
 void GhostJumpSquatActionState::OnJumpHighButton() {}
 
-void GhostJumpSquatActionState::OnLanding() {
-	//Ir a landing action state
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
-}
+

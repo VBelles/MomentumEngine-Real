@@ -4,6 +4,7 @@
 #include "../../GroundedActionState.h"
 
 class JumpSquatActionState : public GroundedActionState {
+private:
 	CTimer timer;
 	int squatFrames = 5;
 	float squatTime;

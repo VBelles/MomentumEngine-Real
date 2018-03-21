@@ -22,6 +22,7 @@
 #include "states/movement_states/FallingAttackLandingActionState.h"
 #include "states/movement_states/wall_jump/HuggingWallActionState.h"
 #include "states/movement_states/wall_jump/HuggingWallJumpSquatActionState.h"
+#include "states/movement_states/wall_jump/AirborneWallJumpActionState.h"
 #include "states/attack_states/FastAttackActionState.h"
 #include "states/attack_states/StrongAttackActionState.h"
 #include "states/attack_states/FallingAttackActionState.h"
@@ -291,6 +292,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(CHandle(this), fallingAttackLandingHitbox) },
 	{ ActionStates::HuggingWall, new HuggingWallActionState(CHandle(this)) },
 	{ ActionStates::HuggingWallJumpSquat, new HuggingWallJumpSquatActionState(CHandle(this)) },
+	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(CHandle(this)) },
 	};
 
 	attackStates = {
@@ -427,6 +429,14 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 		(static_cast<AirborneActionState*>(attackState))->SetMovementInput(input);
 	}
 }
+
+TCompCamera* TCompPlayerModel::GetCamera() {
+	CEntity* camera = (CEntity *)getEntityByName("game_camera");
+	TCompCamera* currentCamera = camera->get<TCompCamera>();
+	assert(currentCamera);
+	return currentCamera;
+}
+
 
 void TCompPlayerModel::JumpButtonPressed() {
 	if (!lockMovementState) {
@@ -568,13 +578,19 @@ void TCompPlayerModel::OnDead() {
 void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 
 	if (!isGrounded) {
-		float pitch = asin(-msg.hit.worldNormal.y);
+		VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
+		
 		//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 		//dbg("%f\n", deg2rad(pitch));
-		if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
-			HuggingWallActionState* actionState = GetMovementState<HuggingWallActionState*>(ActionStates::HuggingWall);
-			actionState->SetHit(msg.hit);
-			SetMovementState(ActionStates::HuggingWall);
+		
+		VEC3 worldInput = GetCamera()->TransformToWorld(movementState->GetMovementInput());
+		if (worldInput.Dot(-hitNormal) >= huggingWallAttachThreshold) {
+			float pitch = asin(-msg.hit.worldNormal.y);
+			if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
+				HuggingWallActionState* actionState = GetMovementState<HuggingWallActionState*>(ActionStates::HuggingWall);
+				actionState->SetHit(msg.hit);
+				SetMovementState(ActionStates::HuggingWall);
+			}
 		}
 	}
 

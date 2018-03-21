@@ -4,6 +4,7 @@
 #include "../../AirborneActionState.h"
 
 class GhostJumpSquatActionState : public AirborneActionState {
+private:
 	CTimer timer;
 	int squatFrames = 2;
 	float squatTime;
@@ -14,5 +15,4 @@ public:
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
 	void OnJumpHighButton() override;
-	void OnLanding() override;
 };

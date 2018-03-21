@@ -136,6 +136,7 @@
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="components\player\states\movement_states\wall_jump\HuggingWallActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\wall_jump\HuggingWallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\wall_jump\AirborneWallJumpActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -303,6 +304,7 @@
     <ClInclude Include="modules\gamestate.h" />
     <ClInclude Include="components\player\states\movement_states\wall_jump\HuggingWallActionState.h" />
     <ClInclude Include="components\player\states\movement_states\wall_jump\HuggingWallJumpSquatActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\wall_jump\AirborneWallJumpActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
