@@ -10,6 +10,14 @@ std::string IBehaviorTreeNode::getName() {
 	return name;
 }
 
+IBehaviorTreeNode* IBehaviorTreeNode::getParent() {
+	return parent;
+}
+
+IBehaviorTreeNode* IBehaviorTreeNode::getRight() {
+	return right;
+}
+
 bool IBehaviorTreeNode::isRoot() {
 	return (parent == nullptr);
 }

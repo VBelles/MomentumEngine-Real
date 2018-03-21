@@ -2,11 +2,11 @@
 #include "BehaviorTreeNodeRandom.h"
 #include "IBehaviorTree.h"
 
-BehaviorTreeNodeRandom::BehaviorTreeNodeRandom(std::string name)
+CBehaviorTreeNodeRandom::CBehaviorTreeNodeRandom(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
 }
 
-void BehaviorTreeNodeRandom::recalc(IBehaviorTree *behaviorTree) {
+void CBehaviorTreeNodeRandom::recalc(IBehaviorTree *behaviorTree) {
 	int random = rand() % children.size();
 	children[random]->recalc(behaviorTree);
 }

@@ -5,12 +5,7 @@
 #include "BehaviorTreeNodePriority.h"
 #include "BehaviorTreeNodeAction.h"
 
-IBehaviorTree::IBehaviorTree(std::string name) {
-	this->name = name;
-}
-
-std::string IBehaviorTree::getName() {
-	return name;
+IBehaviorTree::IBehaviorTree() {
 }
 
 IBehaviorTreeNode* IBehaviorTree::createNode(std::string name, EBehaviorTreeNodeType type) {
@@ -19,18 +14,18 @@ IBehaviorTreeNode* IBehaviorTree::createNode(std::string name, EBehaviorTreeNode
 		return nullptr;
 	}
 	else {
-		IBehaviorTreeNode *behaviorTreeNode;
+		IBehaviorTreeNode *behaviorTreeNode = nullptr;
 		if (type == Random) {
-			behaviorTreeNode = new BehaviorTreeNodeRandom(name);
+			behaviorTreeNode = new CBehaviorTreeNodeRandom(name);
 		}
 		else if (type == Sequence) {
-			behaviorTreeNode = new BehaviorTreeNodeSequence(name);
+			behaviorTreeNode = new CBehaviorTreeNodeSequence(name);
 		}
 		else if (type == Priority) {
-			behaviorTreeNode = new BehaviorTreeNodePriority(name);
+			behaviorTreeNode = new CBehaviorTreeNodePriority(name);
 		}
 		else if (type == Action) {
-			behaviorTreeNode = new BehaviorTreeNodeAction(name);
+			behaviorTreeNode = new CBehaviorTreeNodeAction(name);
 		}
 
 		tree[name] = behaviorTreeNode;

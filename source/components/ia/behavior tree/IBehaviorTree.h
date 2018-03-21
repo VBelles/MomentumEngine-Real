@@ -8,9 +8,7 @@ typedef bool (IBehaviorTree::*BehaviorTreeCondition)();
 typedef int (IBehaviorTree::*BehaviorTreeAction)();
 
 class IBehaviorTree {
-private:
-	std::string name;
-
+protected:
 	std::map<std::string, IBehaviorTreeNode *>tree;
 	std::map<std::string, BehaviorTreeCondition> conditions;
 	std::map<std::string, BehaviorTreeAction> actions;
@@ -22,9 +20,7 @@ private:
 	IBehaviorTreeNode *findNode(std::string name);
 
 public:
-	IBehaviorTree(std::string name);
-
-	std::string getName();
+	IBehaviorTree();
 
 	IBehaviorTreeNode *createRoot(std::string rootName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
 	IBehaviorTreeNode *addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);

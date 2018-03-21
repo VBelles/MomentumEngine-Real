@@ -2,9 +2,9 @@
 
 #include "IBehaviorTreeNode.h"
 
-class BehaviorTreeNodeSequence : public IBehaviorTreeNode {
+class CBehaviorTreeNodeSequence : public IBehaviorTreeNode {
 public:
-	BehaviorTreeNodeSequence(std::string name);
+	CBehaviorTreeNodeSequence(std::string name);
 
 	void recalc(IBehaviorTree *behaviorTree) override;
 };

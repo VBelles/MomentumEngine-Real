@@ -10,15 +10,17 @@ enum EBehaviorTreeNodeEndAction { Stay, Leave };
 
 class IBehaviorTreeNode {
 protected:
-public:
 	std::string name;
 	std::vector<IBehaviorTreeNode *>children;
 	IBehaviorTreeNode *parent;
 	IBehaviorTreeNode *right;
 
+public:
 	IBehaviorTreeNode(std::string name);
 
 	std::string getName();
+	IBehaviorTreeNode* getParent();
+	IBehaviorTreeNode* getRight();
 	bool isRoot();
 
 	void setParent(IBehaviorTreeNode *parent);

@@ -2,10 +2,10 @@
 #include "BehaviorTreeNodeSequence.h"
 #include "IBehaviorTree.h"
 
-BehaviorTreeNodeSequence::BehaviorTreeNodeSequence(std::string name)
+CBehaviorTreeNodeSequence::CBehaviorTreeNodeSequence(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
 }
 
-void BehaviorTreeNodeSequence::recalc(IBehaviorTree *behaviorTree) {
+void CBehaviorTreeNodeSequence::recalc(IBehaviorTree *behaviorTree) {
 	children[0]->recalc(behaviorTree);
 }
