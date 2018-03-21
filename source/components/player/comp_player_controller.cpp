@@ -24,7 +24,13 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 	assert(playerModel);
 }
 
-void TCompPlayerController::update(float dt) {
+void TCompPlayerController::update(float dt) {	
+	if (EngineInput["pause"].getsPressed()) {
+		//cutre, deberíamos cambiar de game mode y usar los inputs según éste
+		bool isPaused = Engine.getEntities().time_scale_factor == 0.f;
+		Engine.getEntities().time_scale_factor =
+			isPaused ? 1.f : 0.f;
+	}
 	assert(playerModel);
 	VEC2 translationInput = VEC2::Zero;
 	VEC2 leftAnalogInput = VEC2::Zero;
@@ -82,9 +88,6 @@ void TCompPlayerController::update(float dt) {
 	}
 	if (EngineInput["gain_power"].getsPressed()) {
 		playerModel->GainPowerButtonPressed();
-	}
-	if (EngineInput["pause"].getsPressed()) {
-		//playerModel->PauseButtonPressed();
 	}
 
 	playerModel->SetMovementInput(translationInput, dt);//Dejar este para el final
