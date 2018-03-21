@@ -221,24 +221,6 @@ fn excludeFromExport obj = (
 	return classof obj == Targetobject
 )
 
-fn isEnemy obj = (
-	if obj.layer.name != "enemyAir" and obj.layer.name != "enemyLand" then return false
-	collisionCheck obj
-	return true
-)
-
-fn isChrysalis obj = (
-	if obj.layer.name != "chrysalis" then return false
-	collisionCheck obj
-	return true
-)
-
-fn isMovablePlatform obj = (
-	if obj.layer.name != "movables" then return false
-	collisionCheck obj
-	return true
-)
-
 -- ----------------------------------------------------------
 -- ----------------------------------------------------------
 -- ----------------------------------------------------------
@@ -285,7 +267,7 @@ struct TSceneExporter (
 			if lookAtCoord == unsupplied then (
 				fs.writeKeyValue "rotation" mcv_quat
 			) else (
-				fs.writeKeyValue "lookat" lookAtCoord[3].pos --[3] is the Transform.
+				fs.writeKeyValue "lookat" lookAtCoord
 			)
 		fs.endObj()
 	),
@@ -395,76 +377,147 @@ struct TSceneExporter (
 		exportCompCollider obj
 	),
 
-	-- --CAMERA--------------------------------------------------
-	fn exportCamera obj = (
-		exportName obj
-		fs.writeComma()
-		exportTransform obj lookAtCoord:obj.Target
-		fs.writeComma()
-		fs.writeKey "camera"
+	-- ----------------------------------------------------------
+	-- ----------------------------------------------------------
+
+	-- --DEFAULT (TODO) !!! -------------------------------------
+	fn exportDefault obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
 		fs.beginObj()
-			fs.writeKeyValue "fov" obj.fov
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				exportTransform obj
+				-- TODO: FINISH THIS
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
-	--format "Camera % target distance: %\n" obj.name obj.targetDistance
+		return true
 	),
-	
-	-- --SPLINE--------------------------------------------------
-	fn exportSpline obj = (
-		fs.writeKeyValue "type" "catmull-rom"
-		fs.writeComma()
-		fs.writeKeyValue "loop" false
-		fs.writeComma()
-		fs.writeKey "knots"
-		fs.beginArray()
-			knotsInSpline = numKnots obj
-			for i = 1 to (knotsInSpline) do (
-				if i > 1 then fs.writeComma()
-				-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
-				local knotPos = getKnotPoint obj 1 i
-				local mcvKnotPos = knotPos * rotateXMatrix -90
-				fs.writeValue mcvKnotPos
-			)
-		fs.endArray()
-	),
-	
-	-- --ENEMY---------------------------------------------------
-	fn exportEnemy obj = (
-		local enemyAirPrefabName = "enemy_flying"
-		local enemyLandPrefabName = "enemy_melee"
-		local prefabName = enemyAirPrefabName
-		if obj.layer.name == "enemyLand" then prefabName = enemyLandPrefabName
-		local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
-		
-		exportName obj
-		fs.writeComma()
-		local prefabPath = prefabPath
-		fs.writeKeyValue "prefab" prefabPath
-		fs.writeComma()
-		
-		local lookAtPos = [-1, objPos.y, -1]
-		exportTransform obj lookAtCoord:lookAtPos
-		
-		if obj.layer.name == "enemyAir" then (
-			fs.writeComma()
-			fs.writeKey "collider"
-			fs.beginObj()
-				fs.writeKeyValue "shape" "sphere"
-				fs.writeComma()
-				fs.writeKeyValue "radius" 0.3
-				fs.writeComma()
-				fs.writeKeyValue "group" "Enemy"
-			fs.endObj()
+
+	-- --CAMERA--------------------------------------------------
+	fn exportCamera obj nValidObjs = (
+		local objClass = classOf obj
+		if objClass != TargetCamera then (
+			format "Warning: invalid object % of class % in cameras layer, not exported.\n" obj.name objClass
+			return false
 		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+				fs.writeComma()
+				fs.writeKey "camera"
+				fs.beginObj()
+					fs.writeKeyValue "fov" obj.fov
+				fs.endObj()
+			--format "Camera % target distance: %\n" obj.name obj.targetDistance
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
 	),
-	
+
 	-- --CHRYSALIS-----------------------------------------------
-	fn exportChrysalis obj = (
-		local prefabPath = base_path + "prefabs/crisalida.prefab"
-		exportName obj
-		fs.writeComma()
-		fs.writeKeyValue "prefab" prefabPath
-		fs.writeComma()
-		exportTransform obj
+	fn exportChrysalis obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				local prefabPath = base_path + "prefabs/crisalida.prefab"
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" prefabPath
+				fs.writeComma()
+				exportTransform obj
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+
+	-- --ENEMY---------------------------------------------------
+	fn exportEnemy obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				local enemyAirPrefabName = "enemy_flying"
+				local enemyLandPrefabName = "enemy_melee"
+				local prefabName = enemyAirPrefabName -- Flying by default.
+				if findString obj.name "melee" != undefined then prefabName = enemyLandPrefabName
+				local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
+				
+				exportName obj
+				fs.writeComma()
+				local prefabPath = prefabPath
+				fs.writeKeyValue "prefab" prefabPath
+				fs.writeComma()
+				local objPos = obj.position * (rotateXMatrix -90)
+				local lookAtPos = [-1, objPos.y, -1]
+				exportTransform obj lookAtCoord:lookAtPos
+				
+				-- If it's flying enemy.
+				if prefabName != enemyLandPrefabName then (
+					fs.writeComma()
+					fs.writeKey "collider"
+					fs.beginObj()
+						fs.writeKeyValue "shape" "sphere"
+						fs.writeComma()
+						fs.writeKeyValue "radius" 0.3
+						fs.writeComma()
+						fs.writeKeyValue "group" "Enemy"
+					fs.endObj()
+				)
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+
+	-- --LIGHT---------------------------------------------------
+	fn exportLight obj nValidObjs = (
+		local objClass = classOf obj
+		if objClass != TargetDirectionallight and
+		   objClass != Directionallight		  and
+		   objClass != freeSpot				  and
+		   objClass != Omnilight			  and
+		   objClass != targetSpot			then (
+			format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
+			return false
+		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			-- Target Direct light. TODO: add more types.
+			-- http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_E6767B0D_B5BA_4422_A59F_FD5673FE550E_htm
+				exportName obj
+				
+				if objClass == TargetDirectionallight or
+				   objClass == targetSpot then (
+					fs.writeComma()
+					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+				)
+				fs.writeComma()
+				fs.writeKey "light_dir"
+				fs.beginObj()
+					fs.writeKeyValue "intensity" obj.multiplier
+					fs.writeComma()
+					fs.writeKeyValue "color" (obj.color as point3)
+					if obj.projector then (
+						fs.writeComma()
+						fs.writeKeyValue "projector" obj.projectorMap
+					)
+					fs.writeComma()
+					-- obj.nearAttenEnd for z_near
+					fs.writeKeyValue "z_far" obj.farAttenEnd
+					fs.writeComma()
+					fs.writeKeyValue "fov" 40 -- TODO: ¿Pick from some light parameter?
+				fs.endObj()
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
 	),
 
 	-- --MOVABLE-------------------------------------------------
@@ -549,6 +602,40 @@ struct TSceneExporter (
 			fs.writeKeyValue "target" obj.name
 		fs.endObj()
 	),
+
+	-- --TRIGGERS (TODO) ----------------------------------------
+	fn exportTrigger obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				exportTransform obj
+				-- TODO: FINISH THIS
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+
+	-- --SPLINE--------------------------------------------------
+	fn exportSpline obj = (
+		fs.writeKeyValue "type" "catmull-rom"
+		fs.writeComma()
+		fs.writeKeyValue "loop" false
+		fs.writeComma()
+		fs.writeKey "knots"
+		fs.beginArray()
+			knotsInSpline = numKnots obj
+			for i = 1 to (knotsInSpline) do (
+				if i > 1 then fs.writeComma()
+				-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
+				local knotPos = getKnotPoint obj 1 i
+				local mcvKnotPos = knotPos * rotateXMatrix -90
+				fs.writeValue mcvKnotPos
+			)
+		fs.endArray()
+	),
 	
 	-- --ENTITY--------------------------------------------------
 	fn exportEntity obj nValidObjs = (
@@ -556,7 +643,7 @@ struct TSceneExporter (
 		if (obj.parent == undefined and
 			not isCollider obj		and
 			not excludeFromExport obj) then (
-			if nValidObjs != 0 then fs.writeComma()
+			if nValidObjs > 0 then fs.writeComma()
 			fs.beginObj()
 			fs.writeKey "entity"
 				--format "Obj created, name: %\t\tClass: %\t\tLayer: %\n" obj.name ((classof obj) as string) obj.layer.name
@@ -579,67 +666,53 @@ struct TSceneExporter (
 	),
 
 	fn exportAll = (
-		-- Output filename based on .max filename
-		local ofilename = getFilenameFile maxFileName
-		local full_path = project_path + scenes_path + ofilename + ".scene"
-		format "Exporting to %\n" full_path
-		format "Please wait...\n"
-		fs.begin full_path
-		fs.beginArray()
-			local nValidObjs = 0
-			for obj in objects do (
-				--format "Obj Name: %\t\tClass: %\t\tLayer: %\n" obj.name ((classof obj) as string) obj.layer.name
-				if exportEntity obj nValidObjs then (
-					nValidObjs = nValidObjs + 1
+		-- Loop over all layers.
+		for i = 0 to LayerManager.count - 1 do (
+			-- Get the layer by index.
+			local layer = LayerManager.getLayer i
+			local layerName = layer.name
+			local layerObjs
+			layer.nodes &layerObjs
+			-- Output filename based on .max filename.
+			--format "Layer: %, objs: %\n" layerName layerObjs --DEBUG
+			local ofilename = getFilenameFile maxFileName
+			local scenePath = project_path + scenes_path + ofilename + "-" + layerName + ".scene"
+			
+			-- Avoid creating scenes if layer is empty.
+			if layerObjs.count >= 1 then (
+				format "Exporting to %\n" scenePath
+				format "Please wait...\n"
+				local nValidObjs = 0
+				local wasValid = false
+				-- Create scene file.
+				fs.begin scenePath
+				fs.beginArray()
+				for object in layerObjs do (
+					local objectName = object.name
+					format "Layer: %\t\tClass: %\t\tObject name: %\n" layerName ((classof object) as string) objectName --DEBUG
+					case layerName of (
+						"cameras":   ( wasValid = exportCamera    object nValidObjs )
+						"chrysalis": ( wasValid = exportChrysalis object nValidObjs )
+						"enemies":   ( wasValid = exportEnemy     object nValidObjs )
+						"lights":    ( wasValid = exportLight     object nValidObjs )
+						"movables":  ( wasValid = exportMovable   object nValidObjs )
+						"triggers":  ( wasValid = exportTrigger   object nValidObjs )
+						default:     ( wasValid = exportDefault   object nValidObjs )
+					)
+					if wasValid then (
+						nValidObjs = nValidObjs + 1
+					)
 				)
-			)
-		fs.endArray()
-		fs.end()
-		format "Export finished.\n"
+				fs.endArray()
+				fs.end()
+				format "Export finished.\n"
+
+			) else format "WARNING: Layer % was empty, % NOT exported.\n" layerName scenePath
+		format "---------------------------------------------------------------------\n"
+		)
 	)
 )
 
-/*
--- Loop over all layers.
-for i = 0 to LayerManager.count - 1 do (
-	-- Get the layer by index.
-	local layer = LayerManager.getLayer i
-	local layerNodes
-	layer.nodes &layerNodes
-	
-	-- Avoid creating scenes if layer is empty.
-	if layerNodes.count >= 1 then (
-		format "Layer: %, nodes: %\n" layer.name layerNodes
-		-- TODO: Add base path.
-		local ofilename = getFilenameFile maxFileName
-		local scenePath = ofilename + "-" + layer.name + ".scene"
-
-		fs.begin scenePath
-			fs.beginArray()
-				for node in layerNodes do (
-					local nodeName = node.name
-					format "Node name: %\n" nodeName
-					
-					if nodeName == "enemyAir" or
-					   nodeName == "enemyLand" then (
-						
-					) else if nodeName == "chrysalis" then (
-						
-					) else if nodeName == "movables" then (
-						
-					) else if nodeName == "triggers" then (
-						
-					) else if nodeName == "cameras" then (
-						
-					) else if nodeName == "lights" then (
-						
-					) else ()
-				)
-			fs.endArray()
-		fs.end()
-	) else format "WARNING: Layer % was empty, % NOT exported.\n" layer.name scenePath
-)
-*/
 /*
 TODO: ¿Interpretar automáticamente colliders sin parent como triggers invisibles?
       Ahora mismo no los exporta.
@@ -647,7 +720,7 @@ TODO: Poder exportar triggers sin parent.
 TODO: Exportar enemigos, crisálidas, cámaras y plataformas móviles en escena separada.
 TODO: Que las splines tengan que ser hijas de otro objeto y se exporten como tal.
 TODO: Si un objeto tiene hijo spline, hacerlo móvil.
-TODO: Exportar luces.
+TODO: Exportar otros tipos de luces.
 */
 
 /*----------------------------------------------------------------------------------
@@ -657,12 +730,15 @@ Lo visible como Editable Mesh.
 Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
 Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
 incluidas las que son hijas de Meshes visibles.
-Los enemigos de aire    deben estar en una layer llamada "enemyAir".
-Los enemigos terrestres deben estar en una layer llamada "enemyLand".
+Los enemigos		    deben estar en una layer llamada "enemies".
 Las crisálidas 		    deben estar en una layer llamada "chrysalis".
 Las plataformas móviles deben estar en una layer llamada "movables".
+Las cámaras				deben estar en una layer llamada "cameras".
+Las luces				deben estar en una layer llamada "lights".
 Los triggers			deben estar en una layer llamada "triggers", pero ahora
  mismo no se exportan.
+Todos los demás			deben estar en una layer llamada "0".
+Los enemigos que no tengan "melee" en el nombre son considerados voladores.
 Aquí abajo en exporter se debe poner la ruta correcta al proyecto.
 El proyecto debe tener las siguientes carpetas:
  bin/data/scenes
@@ -671,7 +747,7 @@ El proyecto debe tener las siguientes carpetas:
 ----------------------------------------------------------------------------------*/
 
 --exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/"
---exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
-exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
+exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/"
+--exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/"
 --exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/"
 exporter.exportAll()
