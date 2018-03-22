@@ -207,16 +207,6 @@ struct TMaterialExporter (
 	)
 )
 
-fn isCollisionObj obj = (
-	return classof obj == Box and classof obj == Sphere and classof obj == Plane
-)
-
-fn collisionCheck obj = (
-	if not isCollisionObj obj then (
-		throw "Collisions must be Spheres, Boxes or Planes."
-	)
-)
-
 fn hasChildLine obj = (
 	if obj.children == undefined then return false
 	for child in obj.children do (
@@ -225,13 +215,13 @@ fn hasChildLine obj = (
 	return false
 )
 
-fn isChildCollider obj = (
-	return obj.parent != undefined and isColliderObj obj	
-)
-
 fn isCollider obj = (
-	if obj.layer.name != "collisions" and obj.layer.name != "triggers" then return false
-	collisionCheck obj
+		if classof obj != Box 	 and
+			 classof obj != Sphere and
+			 classof obj != Plane then (
+		format "Wrong object %. Collisions must be Spheres, Boxes or Planes.\n" obj.name
+		return false
+	)
 	return true
 )
 
@@ -290,12 +280,10 @@ struct TSceneExporter (
 	fn exportRenderMesh obj = (
 		local mat = obj.material
 		if mat == undefined then (
-			--throw ("Obj " + obj.name + " does NOT have a material")
 			format "Warning: Obj doesn't have a material, a default will be assigned.\n"
 			-- TODO: assign default material.
 		)
 		else if not (isValidName mat.name) then (
-			--throw ("Obj " + obj.name + " has a material with an invalid name " + mat.name )
 			mat.name = cleanMaterialName mat.name
 			format "Warning: material had invalid name, changed spaces to underscores.\n"
 		)
@@ -340,7 +328,7 @@ struct TSceneExporter (
 			fs.writeKeyValue "planeDesc" "0 1 0 0"
 		)
 
-		-- Add it in the user properties panel of max:     density = 10
+		-- Add it in the user properties panel of max:  density = 10
 		local density = getUserProp obj "density"
 		if density != undefined then (
 			fs.writeComma()
@@ -378,12 +366,6 @@ struct TSceneExporter (
 
 	-- --ENTITY COLLIDER-----------------------------------------
 	fn exportEntityCollider obj = (
-		-- It will be exported as part of the parent.
-		-- Ejemplo del cofre y su caja de colision.
-		if obj.parent != undefined then (
-			--format "NOT Exporting entity collider obj % of class %\n" obj.name ((classof obj) as string)	
-			return false
-		)
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -392,12 +374,14 @@ struct TSceneExporter (
 	),
 
 	-- --SPLINE--------------------------------------------------
-	fn exportSpline obj = (
+	fn exportSpline obj type: = (
 		-- Executed only if we already know it has a child line.
 		for child in obj.children do (
 			if classOf child == line then (
 				fs.writeComma()
-				fs.writeKey "move"
+				if type == unsupplied then fs.writeKey "move"
+				else fs.writeKey type
+				
 				fs.beginObj()
 					fs.writeKeyValue "type" "catmull-rom"
 					fs.writeComma()
@@ -423,21 +407,35 @@ struct TSceneExporter (
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 
-	-- --DEFAULT (TODO) !!! -------------------------------------
+	-- --DEFAULT ------------------------------------------------
 	fn exportDefault obj nValidObjs = (
+		if classOf obj != Editable_mesh then (
+			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
+			return false
+		)
 		if nValidObjs > 0 then fs.writeComma()
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				exportTransform obj
-				-- TODO: FINISH THIS
+				exportEditableMesh obj
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		return true
 	),
 
+	-- --COLLISION ----------------------------------------------
+	fn exportCollision obj nValidObjs = (
+		if not isCollider obj then return false
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportEntityCollider obj
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
 	-- --CAMERA--------------------------------------------------
 	fn exportCamera obj nValidObjs = (
 		local objClass = classOf obj
@@ -528,7 +526,7 @@ struct TSceneExporter (
 				)
 				-- Add child spline if it exists.
 				if hasChildLine obj then (
-					exportSpline obj
+					exportSpline obj type:"patrolPath"
 				)
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
@@ -667,16 +665,13 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- --TRIGGERS (TODO) ----------------------------------------
+	-- --TRIGGERS -----------------------------------------------
 	fn exportTrigger obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				exportTransform obj
-				-- TODO: FINISH THIS
+				exportEntityCollider obj
 				-- Add child spline if it exists.
 				if hasChildLine obj then (
 					exportSpline obj
@@ -685,8 +680,6 @@ struct TSceneExporter (
 		fs.endObj()
 		return true
 	),
-
---if (obj.parent == undefined and not isCollider obj)
 
 	fn exportAll = (
 		-- Loop over all layers.
@@ -701,8 +694,8 @@ struct TSceneExporter (
 			local ofilename = getFilenameFile maxFileName
 			local scenePath = project_path + scenes_path + ofilename + "-" + layerName + ".scene"
 			
-			-- Avoid creating scenes if layer is empty.
-			if layerObjs.count >= 1 then (
+			-- Avoid creating scenes if layer is empty or invisible.
+			if layerObjs.count >= 1 and not layer.isHidden then (
 				format "Exporting to %\n" scenePath
 				format "Please wait...\n"
 				local nValidObjs = 0
@@ -714,15 +707,17 @@ struct TSceneExporter (
 					-- Avoid child objects, they will be added through parent.
 					if object.parent == undefined then (
 						local objectName = object.name
-						format "Layer: %\t\tClass: %\t\tObject name: %\n" layerName ((classof object) as string) objectName --DEBUG
+						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof object) as string) objectName --DEBUG
 						case layerName of (
 							"cameras":   ( wasValid = exportCamera    object nValidObjs )
-							"chrysalis": ( wasValid = exportChrysalis object nValidObjs )
+							"chrysalis": ( wasValid = exportChrysalis	object nValidObjs )
+							"collisions":( wasValid = exportCollision object nValidObjs )
 							"enemies":   ( wasValid = exportEnemy     object nValidObjs )
 							"lights":    ( wasValid = exportLight     object nValidObjs )
 							"movables":  ( wasValid = exportMovable   object nValidObjs )
 							"triggers":  ( wasValid = exportTrigger   object nValidObjs )
-							default:     ( wasValid = exportDefault   object nValidObjs )
+							"0":		     ( wasValid = exportDefault   object nValidObjs )
+							default:     ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
 						if wasValid then (
 							nValidObjs = nValidObjs + 1
@@ -733,36 +728,33 @@ struct TSceneExporter (
 				fs.end()
 				format "Export finished.\n"
 
-			) else format "WARNING: Layer % was empty, % NOT exported.\n" layerName scenePath
+			) else format "WARNING: Layer % [%] NOT exported.\n" layerName scenePath
 		format "---------------------------------------------------------------------\n"
 		)
 	)
 )
 
 /*
-TODO: ¿Interpretar automáticamente colliders sin parent como triggers invisibles?
-			Ahora mismo no los exporta.
-TODO: Poder exportar triggers sin parent.
-TODO: Que las splines tengan que ser hijas de otro objeto y se exporten como tal.
-TODO: Si un objeto tiene hijo spline, hacerlo móvil.
-TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora mismo siempre le pongo 40.
+TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 */
 
 /*----------------------------------------------------------------------------------
 -- Notas de uso:
 ------------------------------------------------------------------------------------
+Las layers invisibles o vacías no se exportan.
 Lo visible como Editable Mesh.
 Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
 Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
 incluidas las que son hijas de Meshes visibles.
-Los enemigos		    deben estar en una layer llamada "enemies".
-Las crisálidas 		    deben estar en una layer llamada "chrysalis".
-Las plataformas móviles deben estar en una layer llamada "movables".
-Las cámaras				deben estar en una layer llamada "cameras".
-Las luces				deben estar en una layer llamada "lights".
-Los triggers			deben estar en una layer llamada "triggers", pero ahora
- mismo no se exportan.
-Todos los demás			deben estar en una layer llamada "0".
+Los enemigos		    		 deben estar en una layer llamada "enemies".
+Las crisálidas 		    	 deben estar en una layer llamada "chrysalis".
+Las plataformas móviles  deben estar en una layer llamada "movables".
+Las cámaras							 deben estar en una layer llamada "cameras".
+Las luces								 deben estar en una layer llamada "lights".
+Los triggers						 deben estar en una layer llamada "triggers".
+Las meshes							 deben estar en una layer llamada "0".
+Los colliders invisibles deben estar en una layer llamada "collisions".
+
 Los enemigos que no tengan "melee" en el nombre son considerados voladores.
 Aquí abajo en exporter se debe poner la ruta correcta al proyecto.
 El proyecto debe tener las siguientes carpetas:
