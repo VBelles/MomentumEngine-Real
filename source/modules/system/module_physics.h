@@ -52,8 +52,8 @@ private:
 		virtual void onConstraintBreak(PxConstraintInfo* constraints, PxU32 count) override {};
 		virtual void onWake(PxActor** actors, PxU32 count) override {};
 		virtual void onSleep(PxActor** actors, PxU32 count) override {};
-		virtual void onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 nbPairs) override {};
-		virtual void onTrigger(physx::PxTriggerPair* pairs, PxU32 count);
+		virtual void onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 nbPairs) override;
+		virtual void onTrigger(physx::PxTriggerPair* pairs, PxU32 count) override;
 		virtual void onAdvance(const PxRigidBody*const* bodyBuffer, const PxTransform* poseBuffer, const PxU32 count) override {};
 	};
 	
@@ -61,8 +61,8 @@ private:
 
 	class CustomUserControllerHitReport : public PxUserControllerHitReport {
 		virtual void onShapeHit(const PxControllerShapeHit& hit) override;
-		virtual void onControllerHit(const PxControllersHit& hit) override;
-		virtual void onObstacleHit(const PxControllerObstacleHit& hit) override;
+		virtual void onControllerHit(const PxControllersHit& hit) override {};
+		virtual void onObstacleHit(const PxControllerObstacleHit& hit) override {};
 	};
 
 	CustomUserControllerHitReport defaultReportCallback;

@@ -182,10 +182,14 @@ bool CModulePhysics::start() {
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = CustomFilterShader;
+	sceneDesc.simulationEventCallback = &customSimulationEventCallback;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS | PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
+
 	gScene = gPhysics->createScene(sceneDesc);
-	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
+	/*gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
 	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
-	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_PAIRS, true);
+	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_PAIRS, true);*/
+
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 	if (pvdClient) {
 		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
@@ -196,7 +200,7 @@ bool CModulePhysics::start() {
 
 	mControllerManager = PxCreateControllerManager(*gScene);
 
-	gScene->setSimulationEventCallback(&customSimulationEventCallback);
+
 	return true;
 }
 
@@ -290,6 +294,23 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 	}
 }
 
+void CModulePhysics::CustomSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 count) {
+	dbg("on contact\n");
+	for (PxU32 i = 0; i < count; ++i) {
+		CHandle colliderHandle;
+		
+		colliderHandle.fromVoidPtr(pairHeader.actors[0]->userData);
+		dbg("%d: %s\n", i, colliderHandle.getTypeName());
+		
+		if (colliderHandle.isValid()) {
+			CEntity* e = colliderHandle.getOwner();
+			if (e->getName() == "The Player") {
+				dbg("THE PLAYER!!\n");
+			}
+		}
+	}
+}
+
 
 void CModulePhysics::CustomUserControllerHitReport::onShapeHit(const PxControllerShapeHit& hit) {
 	CHandle controllerHandle;
@@ -299,9 +320,4 @@ void CModulePhysics::CustomUserControllerHitReport::onShapeHit(const PxControlle
 
 }
 
-void CModulePhysics::CustomUserControllerHitReport::onControllerHit(const PxControllersHit & hit) {
-}
-
-void CModulePhysics::CustomUserControllerHitReport::onObstacleHit(const PxControllerObstacleHit & hit) {
-}
 
