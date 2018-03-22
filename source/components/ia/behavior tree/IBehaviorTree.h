@@ -19,6 +19,9 @@ protected:
 	IBehaviorTreeNode *createNode(std::string name, EBehaviorTreeNodeType type);
 	IBehaviorTreeNode *findNode(std::string name);
 
+	bool falseCondition();
+	bool trueCondition();
+
 public:
 	IBehaviorTree();
 

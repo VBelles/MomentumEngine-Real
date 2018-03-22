@@ -42,6 +42,13 @@ IBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
 	}
 }
 
+bool IBehaviorTree::falseCondition() {
+	return false;
+}
+bool IBehaviorTree::trueCondition() {
+	return true;
+}
+
 IBehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action) {
 	IBehaviorTreeNode *rootNode = createNode(rootName, type);
 	rootNode->setParent(nullptr);
