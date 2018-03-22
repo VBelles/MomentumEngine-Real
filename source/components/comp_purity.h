@@ -10,6 +10,7 @@
 class TCompPurity: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
+private:
     CHandle		player;
 	std::string	originalMeshPath = "";
 	std::string	originalMaterialPath = "";
@@ -20,7 +21,6 @@ public:
     void load(const json& j, TEntityParseContext& ctx);
 
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	void onPowerLvlChange(const TMsgPowerLvlChange& msg);
+	void onPurityChange(const TMsgPurityChange & msg);
 
-    void update(float dt);
 };

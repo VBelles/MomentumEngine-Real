@@ -69,7 +69,6 @@
     <ClCompile Include="components\player\states\movement_states\RunActionState.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
-    <ClCompile Include="components\player\PowerGauge.cpp" />
     <ClCompile Include="components\comp_bullet_controller.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
@@ -137,6 +136,7 @@
     <ClCompile Include="components\player\states\movement_states\wall_jump\AirborneWallJumpActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\long_jump\PropelLongActionState.cpp" />
     <ClCompile Include="components\player\states\movement_states\normal_jump\PropelHighActionState.cpp" />
+    <ClCompile Include="components\player\comp_power_gauge.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -229,7 +229,6 @@
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
-    <ClInclude Include="components\player\PowerGauge.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_bullet_controller.h" />
     <ClInclude Include="components\comp_camera.h" />
@@ -305,6 +304,7 @@
     <ClInclude Include="components\player\states\movement_states\wall_jump\AirborneWallJumpActionState.h" />
     <ClInclude Include="components\player\states\movement_states\long_jump\PropelLongActionState.h" />
     <ClInclude Include="components\player\states\movement_states\normal_jump\PropelHighActionState.h" />
+    <ClInclude Include="components\player\comp_power_gauge.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

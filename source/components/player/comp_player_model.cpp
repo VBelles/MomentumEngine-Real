@@ -2,9 +2,8 @@
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
-#include "../comp_tags.h"
+#include "components/comp_tags.h"
 #include "components/controllers/comp_camera_player.h"
-#include "PowerGauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/movement_states/GhostJumpWindowActionState.h"
@@ -96,7 +95,6 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	ssj2 = loadPowerStats(j["ssj2"]);
 	ssj3 = loadPowerStats(j["ssj3"]);
 
-	powerGauge = new PowerGauge(this);
 }
 
 PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
@@ -146,6 +144,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, OnGainPower);
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, OnOutOfBounds);
 	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, OnShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, OnLevelChange);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -161,35 +160,28 @@ bool TCompPlayerModel::isInState(ActionStates state) {
 	return false;
 }
 
-void TCompPlayerModel::OnLevelChange(int powerLevel) {
-	dbg("Power changed: %d\n", powerLevel);
+void TCompPlayerModel::OnLevelChange(const TMsgPowerLvlChange& msg) {
+	dbg("Power changed: %d\n", msg.powerLvl);
 
-	if (powerLevel == 1) {
+	if (msg.powerLvl == 1) {
 		currentPowerStats = ssj1;
 	}
-	else if (powerLevel == 2) {
+	else if (msg.powerLvl == 2) {
 		currentPowerStats = ssj2;
 	}
-	else if (powerLevel == 3) {
+	else if (msg.powerLvl == 3) {
 		currentPowerStats = ssj3;
-	}
-
-	// Inform 'pure' entities of the change.
-	TMsgPowerLvlChange msg;
-	msg.powerLvl = powerLevel;
-	// Get all entities with the tag 'pure'
-	auto& pureEntitiesHandles = CTagsManager::get().getAllEntitiesByTag(getID("pure"));
-	for (auto handle : pureEntitiesHandles) {
-		CEntity* e = handle;
-		if (e) e->sendMsg(msg);
 	}
 }
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-    TCompRenderUI* renderUI = get<TCompRenderUI>();
+    TCompRenderUI* renderUI = get<TCompRenderUI>(); 
 
-    TCompTransform* transf = get<TCompTransform>();
-    respawnPosition = transf->getPosition();
+	myTransformHandle = get<TCompTransform>();
+	colliderHandle = get<TCompCollider>();
+	powerGaugeHandle = get<TCompPowerGauge>();
+
+	respawnPosition = GetTransform()->getPosition();
 
     renderUI->registerOnRenderUI([&]() {
 
@@ -206,10 +198,10 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
         ImGui::PopStyleColor();
 
         //Power bar
-        std::string powerProgressBarText = "Power: " + std::to_string((int)powerGauge->power) + "/" + std::to_string((int)powerGauge->maxPower);
-        ImVec4 color = powerGauge->powerLevel == 1 ? ImColor{ 255, 255, 0 } : powerGauge->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
+        std::string powerProgressBarText = "Power: " + std::to_string((int)GetPowerGauge()->power) + "/" + std::to_string((int)GetPowerGauge()->maxPower);
+        ImVec4 color = GetPowerGauge()->powerLevel == 1 ? ImColor{ 255, 255, 0 } : GetPowerGauge()->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
         ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-        ImGui::ProgressBar((float)powerGauge->power / powerGauge->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
+        ImGui::ProgressBar((float)GetPowerGauge()->power / GetPowerGauge()->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
         ImGui::PopStyleColor();
 
         //Chrysalis counter
@@ -240,10 +232,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		debugInMenu();
         ImGui::End();
     });
-    myTransformHandle = get<TCompTransform>();
-
-    colliderHandle = get<TCompCollider>();
-    assert(colliderHandle.isValid());
+   
 
 	strongAttackHitbox = getEntityByName("Strong attack hitbox");
 	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
@@ -338,7 +327,7 @@ void TCompPlayerModel::update(float dt) {
 	if (attackState != attackStates[nextAttackState]) {
 		ChangeAttackState(nextAttackState);
 	}
-	powerGauge->Update(dt);
+
 }
 
 void TCompPlayerModel::ApplyGravity(float delta) {
@@ -357,9 +346,10 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
+	PxFilterData filterData = { GetCollider()->config.group, GetCollider()->config.mask, 0, 0 };
 	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(
 		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt,
-		physx::PxControllerFilters(&GetCollider()->config.filterData, playerFilterCallback, playerFilterCallback));
+		physx::PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (dynamic_cast<AirborneActionState*>(movementState)) {//NULL si no lo consigue
@@ -486,12 +476,12 @@ void TCompPlayerModel::CenterCameraButtonPressed() {
 void TCompPlayerModel::ReleasePowerButtonPressed() {
 	if (!lockAttackState) {
 		//attackState->OnReleasePower();
-		powerGauge->ReleasePower();
+		GetPowerGauge()->ReleasePower();
 	}
 }
 
 void TCompPlayerModel::GainPowerButtonPressed() {
-	powerGauge->GainPower();
+	GetPowerGauge()->GainPower();
 }
 
 bool TCompPlayerModel::IsAttackFree() {
@@ -515,7 +505,7 @@ void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
 }
 
 void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
-	powerGauge->IncreasePower(msg.power);
+	GetPowerGauge()->IncreasePower(msg.power);
 }
 
 void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
@@ -543,7 +533,7 @@ void TCompPlayerModel::OnDead() {
 	SetAttackState(ActionStates::Idle);
 	SetMovementState(ActionStates::AirborneNormal);
 	hp = maxHp;
-	this->powerGauge->ResetPower();
+	GetPowerGauge()->ResetPower();
 }
 
 

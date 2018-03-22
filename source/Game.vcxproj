@@ -127,7 +127,7 @@
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
     <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
-    <ClCompile Include="components\player\PowerGauge.cpp" />
+    <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\states\attack_states\FallingAttackActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\FastAttackActionState.cpp" />
     <ClCompile Include="components\player\states\attack_states\GrabActionState.cpp" />
@@ -269,7 +269,7 @@
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
     <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
-    <ClInclude Include="components\player\PowerGauge.h" />
+    <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\states\attack_states\FallingAttackActionState.h" />
     <ClInclude Include="components\player\states\attack_states\FastAttackActionState.h" />
     <ClInclude Include="components\player\states\attack_states\GrabActionState.h" />

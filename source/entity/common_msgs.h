@@ -85,29 +85,6 @@ struct TMsgAttackHit {
 	DECL_MSG_ID();
 };
 
-//struct TMsgGrabbed {
-//	CHandle attacker;
-//	DECL_MSG_ID();
-//};
-//
-//struct TMsgPropelled {
-//	CHandle attacker;
-//	VEC3 velocityVector;
-//	DECL_MSG_ID();
-//};
-//
-//struct TMsgLaunchedVertically {
-//	CHandle attacker;
-//	int damage;
-//	DECL_MSG_ID();
-//};
-//
-//struct TMsgLaunchedHorizontally {
-//	CHandle attacker;
-//	int damage;
-//	VEC3 direction;
-//	DECL_MSG_ID();
-//};
 
 struct TMsgGainPower {
 	CHandle sender;
@@ -119,6 +96,12 @@ struct TMsgPowerLvlChange {
     CHandle sender;
     int powerLvl;
     DECL_MSG_ID();
+};
+
+struct TMsgPurityChange {
+	CHandle sender;
+	bool isPure;
+	DECL_MSG_ID();
 };
 
 struct TMsgOutOfBounds {
@@ -139,26 +122,11 @@ struct TMsgDefineLocalAABB {
   DECL_MSG_ID();
 };
 
-
-
 struct TMsgOnShapeHit {
 	physx::PxControllerShapeHit hit;
 	DECL_MSG_ID();
 };
 
-/*
-struct TMsgTimeOut {
-  DECL_MSG_ID();
-};
 
-struct TMsgSpawn {
-  DECL_MSG_ID();
-};
-
-struct TMsgSpawnAt {
-  CTransform where;
-  DECL_MSG_ID();
-};
-*/
 
 #endif

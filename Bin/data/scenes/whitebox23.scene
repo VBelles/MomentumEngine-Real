@@ -2014,7 +2014,9 @@
       ],
       "collider": {
         "shape": "box",
-        "halfExtent": "1.89692 0.254831 1.51308"
+        "halfExtent": "1.89692 0.254831 1.51308",
+        "group" : ["scenario"],
+			  "mask" : ["all"]
       },
       "tags": [ "pure" ],
       "purity": {}

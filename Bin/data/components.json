@@ -20,6 +20,7 @@
 		"respawner",
 		"player_controller",
 		"player_model",
+		"power_gauge",
 		"hitbox",
 		"shadow",
     "local_aabb",

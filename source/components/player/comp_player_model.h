@@ -6,7 +6,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "states/IActionState.h"
-#include "PowerGauge.h"
+#include "comp_power_gauge.h"
 
 class PlayerFilterCallback;
 //typedef TCompPlayerModel::ActionStates ActionStates;
@@ -28,7 +28,7 @@ struct PowerStats {
 	VEC3 longJumpVelocityVector = { 0.f, 6.f, 12.f };
 };
 
-class TCompPlayerModel : public TCompBase, PowerGauge::PowerListener {
+class TCompPlayerModel : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 public:
@@ -78,6 +78,7 @@ public:
 	TCompCollider* GetCollider() { return colliderHandle; }
 	PxCapsuleController* GetController() { return static_cast<PxCapsuleController*>(GetCollider()->controller); }
 	TCompCamera* GetCamera();
+	TCompPowerGauge* GetPowerGauge() { return powerGaugeHandle; }
 	
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
@@ -105,7 +106,6 @@ public:
 	float huggingWallMaxPitch = deg2rad(5);
 	float huggingWallAttachThreshold = 0.8f;
 
-	void OnLevelChange(int powerLevel);
 
 	CHandle grabTarget;
 
@@ -115,6 +115,8 @@ private:
 	VEC3 deltaMovement;
 	CHandle myTransformHandle;
 	CHandle colliderHandle;
+	CHandle powerGaugeHandle;
+
 	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
 	float baseGravity = 0.f;
@@ -136,10 +138,11 @@ private:
  
     void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void OnCollect(const TMsgCollect& msg);
+	void OnShapeHit(const TMsgOnShapeHit & msg);
+	void OnLevelChange(const TMsgPowerLvlChange& msg);
 
 	PowerStats* loadPowerStats(const json& j);
 
-	PowerGauge* powerGauge;
 
 	PlayerFilterCallback* playerFilterCallback;
 
@@ -154,12 +157,14 @@ private:
 	CHandle verticalLauncherHitbox;
 	CHandle grabHitbox;
 
+
 	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre
 
 
 	void ChangeMovementState(ActionStates newState);
 	void ChangeAttackState(ActionStates newState);
 	void OnDead();
-	void OnShapeHit(const TMsgOnShapeHit & msg);
+	
 	void ApplyGravity(float delta);
+	
 };

@@ -77,6 +77,9 @@
 				[
 					"data/materials/black.material"
 				]
+			},
+			"power_gauge":{
+				
 			}
 		}
 	},
