@@ -15,7 +15,7 @@ bool PlayerFilterCallback::filter(const PxController& a, const PxController& b) 
 	CHandle colliderHandle1;
 	colliderHandle1.fromVoidPtr(b.getActor()->userData);
 	TCompCollider* collider1 = colliderHandle1;
-	PxFilterData filterData1 = { collider1->config.group, collider->config.mask, 0, 0 };
+	PxFilterData filterData1 = { collider1->config.group, collider1->config.mask, 0, 0 };
 
 	if ((filterData.word0 & filterData1.word1) && (filterData1.word0 & filterData.word1)) {
 		return true;
