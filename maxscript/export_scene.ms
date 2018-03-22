@@ -537,10 +537,10 @@ struct TSceneExporter (
 	fn exportLight obj nValidObjs = (
 		local objClass = classOf obj
 		if objClass != TargetDirectionallight and
-			 objClass != Directionallight		  and
-			 objClass != freeSpot				  and
-			 objClass != Omnilight			  and
-			 objClass != targetSpot			then (
+		   objClass != Directionallight	  	  and
+		   objClass != freeSpot			  	  and
+		   objClass != Omnilight			  and
+		   objClass != targetSpot			then (
 			if objClass != Targetobject then format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
 			return false
 		)
@@ -710,13 +710,13 @@ struct TSceneExporter (
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof object) as string) objectName --DEBUG
 						case layerName of (
 							"cameras":   ( wasValid = exportCamera    object nValidObjs )
-							"chrysalis": ( wasValid = exportChrysalis	object nValidObjs )
+							"chrysalis": ( wasValid = exportChrysalis object nValidObjs )
 							"collisions":( wasValid = exportCollision object nValidObjs )
 							"enemies":   ( wasValid = exportEnemy     object nValidObjs )
 							"lights":    ( wasValid = exportLight     object nValidObjs )
 							"movables":  ( wasValid = exportMovable   object nValidObjs )
 							"triggers":  ( wasValid = exportTrigger   object nValidObjs )
-							"0":		     ( wasValid = exportDefault   object nValidObjs )
+							"0":		 ( wasValid = exportDefault   object nValidObjs )
 							default:     ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
 						if wasValid then (
@@ -736,36 +736,48 @@ struct TSceneExporter (
 
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
+TODO: Decidir qué hacer con las plataformas móviles.
 */
 
 /*----------------------------------------------------------------------------------
 -- Notas de uso:
 ------------------------------------------------------------------------------------
+Pasos para instalar los scripts:
+------------------------------------------
+1. Customize > Configure System Paths... > Additional Startup Scripts > Modify...
+2. Seleccionar Proyecto\Bin\maxscript\autoboot\
+3. Darle a Use Path.
+4. Reiniciar Max.
+5. Ir a pestaña Utilities, en el desplegable Utilities seleccionar MCV Exporter.
+6. Ya se pueden usar los scripts dándole a los botones que han aparecido debajo.
+-------------------------------
+Condiciones de exportación:
+-------------------------------
 Las layers invisibles o vacías no se exportan.
 Lo visible como Editable Mesh.
 Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
 Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
 incluidas las que son hijas de Meshes visibles.
-Los enemigos		    		 deben estar en una layer llamada "enemies".
-Las crisálidas 		    	 deben estar en una layer llamada "chrysalis".
+Los enemigos		     deben estar en una layer llamada "enemies".
+Las crisálidas 		     deben estar en una layer llamada "chrysalis".
 Las plataformas móviles  deben estar en una layer llamada "movables".
-Las cámaras							 deben estar en una layer llamada "cameras".
-Las luces								 deben estar en una layer llamada "lights".
-Los triggers						 deben estar en una layer llamada "triggers".
-Las meshes							 deben estar en una layer llamada "0".
+Las cámaras				 deben estar en una layer llamada "cameras".
+Las luces				 deben estar en una layer llamada "lights".
+Los triggers			 deben estar en una layer llamada "triggers".
+Las meshes				 deben estar en una layer llamada "0".
 Los colliders invisibles deben estar en una layer llamada "collisions".
 
 Los enemigos que no tengan "melee" en el nombre son considerados voladores.
 Aquí abajo en exporter se debe poner la ruta correcta al proyecto.
 El proyecto debe tener las siguientes carpetas:
- bin/data/scenes
- bin/data/meshes
- bin/data/materials
+ bin/data/scenes/
+ bin/data/meshes/
+ bin/data/materials/
+ maxscript/  --> Aquí tienen que estar estos scripts.
 ----------------------------------------------------------------------------------*/
 
---exporter = TSceneExporter project_path: "D:/Dev/MomentumEngine-Real/Bin/" -- Vicent
---exporter = TSceneExporter project_path: "C:/Code/MomentumEngine-Real/Bin/" -- Jose
-exporter = TSceneExporter project_path: "C:/CPPprojects/MomentumEngine-Real/Bin/" --NesCasa
---exporter = TSceneExporter project_path: "D:/MomentumEngine-Real/Bin/" -- Néstor
+-- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
+global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "") + "Bin\\"
+exporter = TSceneExporter project_path: exportPath
 
 exporter.exportAll()
