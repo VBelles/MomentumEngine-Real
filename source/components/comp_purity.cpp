@@ -17,6 +17,7 @@ void TCompPurity::registerMsgs() {
 }
 
 void TCompPurity::load(const json& j, TEntityParseContext& ctx) {
+	
 }
 
 void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -34,13 +35,13 @@ void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
 		
 	TCompRender *render = get<TCompRender>();
 	assert(render);
- 
+	
     if (msg.isPure) {
-		collider->setupFiltering(collider->config.group, EnginePhysics.All);
+		collider->setupFiltering(collider->config.group, collider->config.mask | EnginePhysics.Player);
 		render->setMesh(originalMeshPath, originalMaterialPath);
     }
     else {
-		collider->setupFiltering(collider->config.group, EnginePhysics.Enemy);
+		collider->setupFiltering(collider->config.group, collider->config.mask & !EnginePhysics.Player);
         // Falta decidir qué efecto aplicar cuando la plataforma está intangible,
         // de momento la dejo con material blanco.
 		render->setMesh(originalMeshPath, "data/materials/white.material");

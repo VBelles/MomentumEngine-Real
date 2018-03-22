@@ -99,7 +99,8 @@ void TCompCollider::disable() {
 void TCompCollider::setupFiltering(PxU32 filterGroup, PxU32 filterMask) {
 	config.group = filterGroup;
 	config.mask = filterMask;
-	EnginePhysics.setupFiltering(static_cast<PxRigidActor*>(actor), filterGroup, filterMask);
+	//TODO: hacer que esto funcione realmente
+	//EnginePhysics.setupFiltering(static_cast<PxRigidActor*>(actor), filterGroup, filterMask);
 }
 
 
