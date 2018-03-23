@@ -265,7 +265,7 @@ void CApp::doFrame() {
 	PROFILE_FRAME_BEGINS();
 	PROFILE_FUNCTION("App::doFrame");
 
-	double frameTime = time_since_last_render.elapsedAndReset();
+	/*double frameTime = time_since_last_render.elapsedAndReset();
 	if (frameTime > 0.25)
 		frameTime = 0.25;
 
@@ -287,5 +287,9 @@ void CApp::doFrame() {
 		}
 	}
 
+	Engine.render();*/
+
+	double frameTime = time_since_last_render.elapsedAndReset();
+	Engine.update(frameTime);
 	Engine.render();
 }

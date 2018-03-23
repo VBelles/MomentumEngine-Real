@@ -127,10 +127,11 @@ PxFilterFlags CustomFilterShader(
 	PxFilterObjectAttributes attributes0, PxFilterData filterData0,
 	PxFilterObjectAttributes attributes1, PxFilterData filterData1,
 	PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize) {
-	if ((filterData0.word0 & filterData1.word1) &&
-		(filterData1.word0 & filterData0.word1)) {
-		if (PxFilterObjectIsTrigger(attributes0) ||
-			PxFilterObjectIsTrigger(attributes1)) {
+	if ((filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1)) {
+		if (PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1)) {
+			pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
+		}
+		else if (PxFilterObjectIsKinematic(attributes0) && PxFilterObjectIsKinematic(attributes1)) {
 			pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
 		}
 		else {
@@ -265,11 +266,6 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		CEntity* e_other = h_other_comp_collider.getOwner();
 		CEntity* e_trigger = h_trigger_comp_collider.getOwner();
 
-		/*if (strcmp(e_other->getName(), "WWw_Box220") != 0 &&
-			strcmp(e_other->getName(), "WWw_platformMove002") != 0) {
-			dbg("other: %s\n", e_other->getName());
-			dbg("trigger: %s\n", e_trigger->getName());
-		}*/
 
 		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND) {
 			e_trigger->sendMsg(TMsgTriggerEnter{ e_other });
@@ -281,13 +277,10 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 }
 
 void CModulePhysics::CustomSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 count) {
-	//dbg("on contact\n");
 	for (PxU32 i = 0; i < count; ++i) {
 		CHandle colliderHandle;
-
 		colliderHandle.fromVoidPtr(pairHeader.actors[0]->userData);
-		//dbg("%d: %s\n", i, colliderHandle.getTypeName());
-
+	
 		if (colliderHandle.isValid()) {
 			CEntity* e = colliderHandle.getOwner();
 			if (strcmp(e->getName(), "The Player") != 0) {
