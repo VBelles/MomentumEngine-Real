@@ -21,13 +21,15 @@ void TCompAppear::update(float dt) {
 }
 
 void TCompAppear::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
+	TCompCollider *collider = get<TCompCollider>();
+	collider->disable();
 	TCompRender *render = get<TCompRender>();
-	//render->disable();
+	render->disable();
 }
 
 void TCompAppear::onActivate(const TMsgMechanismSystemActivated & msg) {
     TCompCollider *collider = get<TCompCollider>();
 	collider->enable();
 	TCompRender *render = get<TCompRender>();
-	//render->enable();
+	render->enable();
 }
