@@ -730,6 +730,7 @@ struct TSceneExporter (
 							"lights":    ( wasValid = exportLight     object nValidObjs )
 							"movables":  ( wasValid = exportMovable   object nValidObjs )
 							"triggers":  ( wasValid = exportTrigger   object nValidObjs )
+							--"mechanisms":( wasValid = exportMechanism object nValidObjs )
 							"0":		 ( wasValid = exportDefault   object nValidObjs )
 							default:     ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
@@ -751,6 +752,7 @@ struct TSceneExporter (
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles.
+TODO: Comprobar que el exportMeshObject de export_mesh.ms está accesible antes de usarlo.
 */
 
 /*----------------------------------------------------------------------------------
