@@ -116,7 +116,13 @@ struct TMaterialExporter (
 
 	-- TODO: Avoid exporting material if it already exists.
 	
-	fn exportMap map alias = (
+	fn exportMap map alias default_value = (
+		if map == undefined then (
+			local json_filename = base_path + "textures/" + default_value + ".dds"
+			fs.writeKeyValue alias json_filename
+			return false
+		)
+
 		-- "C:\engine\bin\data\textures\bricks.dds"
 		-- "C:\download\bricks.dds"
 		local map_filename = map.filename
@@ -150,9 +156,11 @@ struct TMaterialExporter (
 			fs.writeComma()
 			fs.writeKey "textures"
 			fs.beginObj()
-
+		
 			if classof mat == Standardmaterial then (
-				exportMap mat.diffusemap "albedo"
+				exportMap mat.diffusemap "albedo" "null_albedo"
+			    fs.writeComma()
+				exportMap mat.bumpMap "normal" "null_normal"
 				-- ... other maps..
 			)
 
@@ -161,33 +169,39 @@ struct TMaterialExporter (
 		fs.end()
 	),
 	-- Exports an empty solid material to a json format
-	fn exportEmptyMaterial mat_name = (
-		fs.begin (project_path + mat_name )
-		fs.beginObj()
-			fs.writeKeyValue "technique" "solid.tech"
+		fn exportEmptyMaterial mat_name = (
+			/*exportMap undefined "albedo" "null_albedo"
 			fs.writeComma()
-			fs.writeKeyValue "shadows" false
-		fs.endObj()
-		fs.end()
+			exportMap undefined "normal" "null_normal"*/
+			
+			fs.begin (project_path + mat_name )
+			fs.beginObj()
+				fs.writeKeyValue "technique" "solid.tech"
+				fs.writeComma()
+				fs.writeKeyValue "shadows" false
+			fs.endObj()
+			fs.end()
 	),
-
+	
 	-- Will return an array of all the materials names used by obj and exported by us
 	fn exportMaterial mat mat_path obj = (
 		local exported_materials = #()
-
+		local matClass = classof mat
+		--format "material class: %\n" matClass as string
+		
 		if mat == undefined then (
 			--throw ("Obj " + obj.name + " does NOT have a material")
 			local mat_name = mat_path + "empty.material"
 			append exported_materials mat_name
 			exportEmptyMaterial mat_name
 		)
-
-		if classof mat == StandardMaterial then (
+		
+		if matClass == StandardMaterial then (
 			local mat_name = mat_path + (cleanMaterialName mat.name) + ".material"
 			append exported_materials mat_name
 			exportStdMaterial mat mat_name
 
-		) else if classof mat == MultiMaterial then (
+		) else if matClass == MultiMaterial then (
 			local multi_mat = mat
 
 			local materials_of_mesh = getMaterialsUsedByMesh obj
@@ -217,8 +231,8 @@ fn hasChildLine obj = (
 
 fn isCollider obj = (
 		if classof obj != Box 	 and
-			 classof obj != Sphere and
-			 classof obj != Plane then (
+		   classof obj != Sphere and
+		   classof obj != Plane then (
 		format "Wrong object %. Collisions must be Spheres, Boxes or Planes.\n" obj.name
 		return false
 	)
@@ -280,7 +294,7 @@ struct TSceneExporter (
 	fn exportRenderMesh obj = (
 		local mat = obj.material
 		if mat == undefined then (
-			format "Warning: Obj doesn't have a material, a default will be assigned.\n"
+			format "Warning: Obj % doesn't have a material, a default will be assigned.\n" obj.name
 			-- TODO: assign default material.
 		)
 		else if not (isValidName mat.name) then (
@@ -292,7 +306,7 @@ struct TSceneExporter (
 			-- Export Mesh
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
-			exportMeshObject obj (project_path + mesh_name )
+			exportMeshObject obj (project_path + mesh_name)
 
 			fs.writeComma()
 
@@ -766,7 +780,7 @@ Las luces				 deben estar en una layer llamada "lights".
 Los triggers			 deben estar en una layer llamada "triggers".
 Las meshes				 deben estar en una layer llamada "0".
 Los colliders invisibles deben estar en una layer llamada "collisions".
-
+ 
 Los enemigos que no tengan "melee" en el nombre son considerados voladores.
 Aquí abajo en exporter se debe poner la ruta correcta al proyecto.
 El proyecto debe tener las siguientes carpetas:
@@ -778,6 +792,7 @@ El proyecto debe tener las siguientes carpetas:
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "") + "Bin\\"
+exportPath = substituteString exportPath "\\" "/"
 exporter = TSceneExporter project_path: exportPath
 
 exporter.exportAll()

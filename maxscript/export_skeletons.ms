@@ -81,7 +81,7 @@ struct  TSkeletonsExporter (
 			format "Bone Skel is %\n" b.name
 		)
 		
-		
+		format "Exporting cal csf to %\n" skel_file
 		local rc = ExportCalSkel skel_file bones_to_export off
 		
 		-- Export la mesh...
