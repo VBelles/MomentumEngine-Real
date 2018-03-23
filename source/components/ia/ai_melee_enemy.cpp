@@ -153,8 +153,11 @@ void CAIMeleeEnemy::OnRespawn(const TMsgRespawn & msg) {
 		getCollider()->enable();
 		getTransform()->setPosition(spawnPosition);
 		getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
+
 		TCompRender *render = get<TCompRender>();
-		render->setMesh(originalMeshPath, originalMaterialPath);
+		//render->setMesh(originalMeshPath, originalMaterialPath);
+		render->enable();
+
 		TCompShadow *shadow = get<TCompShadow>();
 		shadow->setMesh(originalShadowMesh);
 	}
@@ -242,10 +245,13 @@ void CAIMeleeEnemy::DeathState(float delta) {
 		getCollider()->disable();
 		//CHandle(this).getOwner().destroy();
 		TCompRender* render = get<TCompRender>();
-		render->setMesh("data/meshes/nada.mesh"); // Ahora coge lo que hay en meshes, no lo de mesh.
-		TCompRespawner* spawner = get<TCompRespawner>();
+		//render->setMesh("data/meshes/nada.mesh"); // Ahora coge lo que hay en meshes, no lo de mesh.
+		render->disable();
+
 		TCompShadow* shadow = get<TCompShadow>();
 		shadow->setMesh("data/meshes/nada.mesh");
+
+		TCompRespawner* spawner = get<TCompRespawner>();
 		spawner->OnDead();
 		isDead = true;
 	}

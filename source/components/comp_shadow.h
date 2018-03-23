@@ -9,6 +9,10 @@ class TCompTransform;
 class TCompShadow : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
+	std::string shadowMeshName;
+	std::string disabledMeshName = "data/meshes/nada.mesh";
+	bool enabled = true;
+
 	PxReal maxDistance = 10000;
 	PxVec3 unitDir = { 0,-1, 0 };
 
@@ -32,4 +36,7 @@ public:
 	void setMesh(std::string meshName);
 
 	TCompTransform* getTransform();
+
+	void enable();
+	void disable();
 };

@@ -15,7 +15,8 @@
 		"mechanism",
 		"destroyCondition",
     "skeleton",
-    "bone_tracker",
+		"bone_tracker",
+		"behaviorTree_melee_enemy",
 		"ai_melee_enemy",
 		"ai_flying_enemy",
 		"respawner",
@@ -25,15 +26,15 @@
 		"hitbox",
 		"shadow",
     "local_aabb",
-		"camera_player",
+    "camera_player",
     "camera",
-		"curve_controller",
-		"culling",
-		"light_dir",
-		"render",
-		"fsm",
-		"fake_animation",
-		"player_input"
+    "curve_controller",
+    "culling",
+    "light_dir",
+    "render",
+    "fsm",
+    "fake_animation",
+    "player_input"
   ],
 	"render_debug" : 
 	[
