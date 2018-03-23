@@ -39,17 +39,8 @@ void JumpSquatActionState::OnStateExit(IActionState * nextState) {
 	//dbg("Saliendo de JumpSquat\n");
 }
 
-//ni caso a este input
-void JumpSquatActionState::OnJumpHighButton() {}
-
 void JumpSquatActionState::OnJumpHighButtonReleased() {
 	isShortHop = true;
-}
-
-void JumpSquatActionState::OnStrongAttackButton() {
-}
-
-void JumpSquatActionState::OnFastAttackButton() {
 }
 
 void JumpSquatActionState::OnLeavingGround() {

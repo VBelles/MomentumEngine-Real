@@ -138,6 +138,7 @@
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\VerticalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackLandingActionState.cpp" />
+    <ClCompile Include="components\player\states\concurrent_states\ReleasePowerAirActionState.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
@@ -278,6 +279,7 @@
     <ClInclude Include="components\player\states\base_states\HorizontalLauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\StrongAttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\VerticalLauncherActionState.h" />
+    <ClInclude Include="components\player\states\concurrent_states\ReleasePowerAirActionState.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\states\AirborneActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackLandingActionState.h" />

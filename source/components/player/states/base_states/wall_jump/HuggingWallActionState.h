@@ -14,7 +14,7 @@ public:
 	void OnStateExit(IActionState* nextState) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
-	void SetPose() override { /*GetRender()->setMesh("data/meshes/pose_landing.mesh");*/ }
 
+	void SetPose() override { /*GetRender()->setMesh("data/meshes/pose_landing.mesh");*/ }
 	void SetHit(PxControllerShapeHit hit) { this->hit = hit; }
 };

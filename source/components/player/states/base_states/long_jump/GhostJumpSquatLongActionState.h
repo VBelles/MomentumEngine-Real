@@ -13,7 +13,9 @@ public:
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override;
-	void OnJumpLongButton() override;
-	void OnLanding() override;
+	void OnJumpHighButton() override {}
+	void OnJumpLongButton() override {}
+	void OnFastAttackButton() override {}
+	void OnStrongAttackButton() override {}
+	void OnReleasePowerButton() override {}
 };

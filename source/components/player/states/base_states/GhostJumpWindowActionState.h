@@ -15,5 +15,4 @@ public:
 	void OnStateExit(IActionState* nextState) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
-	void OnLanding() override;
 };

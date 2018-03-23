@@ -40,7 +40,4 @@ void GhostJumpSquatActionState::OnStateExit(IActionState * nextState) {
 	//dbg("Saliendo de GhostJumpSquat\n");
 }
 
-//ni caso a este input
-void GhostJumpSquatActionState::OnJumpHighButton() {}
-
 

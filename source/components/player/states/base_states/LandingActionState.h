@@ -17,8 +17,10 @@ public:
 	void OnStateExit(IActionState* nextState) override;
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override;
+	void OnFastAttackButton() override {}
+	void OnStrongAttackButton() override {}
+	void OnReleasePowerButton() override {}
 
-	virtual void OnLeavingGround();
 	void SetFinalRotationAndVelocity();
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_landing.mesh"); }
 };

@@ -38,8 +38,3 @@ void GhostJumpWindowActionState::OnJumpLongButton() {
 	velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneLong);
 }
-
-void GhostJumpWindowActionState::OnLanding() {
-	//Ir a landing action state
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
-}

@@ -56,11 +56,6 @@ void LandingActionState::OnJumpLongButton() {
 	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
-void LandingActionState::OnLeavingGround() {
-	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
-}
-
 void LandingActionState::SetFinalRotationAndVelocity() {
 	bool hasInput = movementInput != VEC2::Zero;
 	if (hasInput) {

@@ -55,14 +55,3 @@ void PropelHighActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
 	GetPlayerModel()->baseState->SetPose();
 }
-
-void PropelHighActionState::OnJumpHighButton() {
-}
-
-void PropelHighActionState::OnJumpLongButton() {
-}
-
-void PropelHighActionState::OnLanding() {
-	//GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
-	//GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
-}

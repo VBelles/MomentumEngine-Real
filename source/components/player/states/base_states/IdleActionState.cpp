@@ -46,16 +46,3 @@ void IdleActionState::OnStateEnter(IActionState * lastState) {
 void IdleActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 }
-
-void IdleActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
-}
-
-void IdleActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
-}
-
-void IdleActionState::OnLeavingGround() {
-	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
-}

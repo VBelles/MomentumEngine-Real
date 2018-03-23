@@ -38,9 +38,12 @@ void GroundedActionState::OnStrongAttackButton() {
 }
 
 void GroundedActionState::OnFastAttackButton() {
-	if (GetPlayerModel()->IsAttackFree()) {
+	if (GetPlayerModel()->IsConcurrentActionFree()) {
 		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::FastAttack);
 	}
+}
+
+void GroundedActionState::OnReleasePowerButton() {
 }
 
 void GroundedActionState::OnLeavingGround() {

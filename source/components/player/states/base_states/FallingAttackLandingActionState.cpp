@@ -14,11 +14,6 @@ void FallingAttackLandingActionState::update (float delta) {
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 		hitbox->disable();
 	}
-	/*else {
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->enable();
-	}*/
 }
 
 void FallingAttackLandingActionState::OnStateEnter(IActionState * lastState) {
@@ -39,15 +34,6 @@ void FallingAttackLandingActionState::OnStateExit(IActionState * nextState) {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-}
-
-void FallingAttackLandingActionState::SetMovementInput(VEC2 input) {
-}
-
-void FallingAttackLandingActionState::OnJumpHighButton() {
-}
-
-void FallingAttackLandingActionState::OnJumpLongButton() {
 }
 
 void FallingAttackLandingActionState::OnHitboxEnter(CHandle entity) {

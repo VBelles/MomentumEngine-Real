@@ -33,6 +33,7 @@ public:
 	void OnStrongAttackButton() override {}
 	void OnStrongAttackButtonReleased() override;
 	void OnFastAttackButton() override {}
+	void OnReleasePowerButton() override {};
 
 	void OnLeavingGround() override;
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_knee.mesh"); }

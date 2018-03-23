@@ -32,17 +32,6 @@ void JumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 	//dbg("Saliendo de JumpSquatLong\n");
 }
 
-//ni caso a este input
-void JumpSquatLongActionState::OnJumpHighButton() {}
-
-void JumpSquatLongActionState::OnJumpLongButton() {}
-
-void JumpSquatLongActionState::OnStrongAttackButton() {
-}
-
-void JumpSquatLongActionState::OnFastAttackButton() {
-}
-
 void JumpSquatLongActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();

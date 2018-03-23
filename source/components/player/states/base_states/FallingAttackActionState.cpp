@@ -54,12 +54,6 @@ void FallingAttackActionState::OnStateExit(IActionState * nextState) {
 	GetPlayerModel()->baseState->SetPose();
 }
 
-void FallingAttackActionState::OnJumpHighButton() {
-}
-
-void FallingAttackActionState::OnJumpLongButton() {
-}
-
 void FallingAttackActionState::OnLanding() {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();

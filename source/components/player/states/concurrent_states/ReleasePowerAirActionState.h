@@ -1,38 +1,46 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
+#include "../AirborneActionState.h"
 
 
-class HorizontalLauncherActionState : public GroundedActionState {
+class ReleasePowerAirActionState : public AirborneActionState {
+protected:
 	CTimer timer;
-	int warmUpFrames = 5;
+	int warmUpFrames = 2;
 	int activeFrames = 8;
-	int endingLagFrames = 17;
+	int endingLagFrames = 15;
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
-	float suspensionTime = 1.5f;
+	float lockDuration = 0.5f;
 
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;
 
-	CHandle hitboxHandle;
+	CHandle hitboxSmallHandle;
+	CHandle hitboxBigHandle;
 	int damage = 0;
 	AttackPhases phase = AttackPhases::Startup;
 
+	uint32_t enemyId = getID("enemy");
+
 public:
-	HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);
+	ReleasePowerAirActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
+	void SetMovementInput(VEC2 input) override {}
 	void OnJumpHighButton() override {}
 	void OnJumpLongButton() override {}
-	void OnStrongAttackButton() override {}
 	void OnFastAttackButton() override {}
-	void OnReleasePowerButton() override {}
+	void OnStrongAttackButton() override {}
+	void OnReleasePowerButton() override;
 
-	void OnLeavingGround() override;
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_horizontal_launcher.mesh"); }
+
+	void OnLanding() override;
+
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_grab.mesh"); }
+
 	void OnHitboxEnter(CHandle entity) override;
 };

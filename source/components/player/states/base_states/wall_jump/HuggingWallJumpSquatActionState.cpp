@@ -32,8 +32,3 @@ void HuggingWallJumpSquatActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
 	//dbg("Saliendo de JumpSquatLong\n");
 }
-
-//ni caso a este input
-void HuggingWallJumpSquatActionState::OnJumpHighButton() {}
-
-void HuggingWallJumpSquatActionState::OnJumpLongButton() {}

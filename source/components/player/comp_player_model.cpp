@@ -4,6 +4,7 @@
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
 #include "components/controllers/comp_camera_player.h"
+#include "components/player/filters/PlayerFilterCallback.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/base_states/GhostJumpWindowActionState.h"
@@ -31,7 +32,7 @@
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
 #include "states/concurrent_states/GrabLongActionState.h"
-#include "components/player/filters/PlayerFilterCallback.h"
+#include "states/concurrent_states/ReleasePowerAirActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -240,6 +241,8 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	fallingAttackLandingHitbox = getEntityByName("Falling attack landing hitbox");
 	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
+	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
+	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
 
 	baseStates = {
 		{ ActionStates::Idle, new IdleActionState(CHandle(this)) },
@@ -271,6 +274,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::FastAttack, new FastAttackActionState(CHandle(this), strongAttackHitbox) },
 	{ ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
 	{ ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
+	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
 	};
 	nextBaseState = ActionStates::Idle;
 	nextConcurrentState = ActionStates::Idle;
@@ -477,9 +481,10 @@ void TCompPlayerModel::CenterCameraButtonPressed() {
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
-	GetPowerGauge()->ReleasePower();
+	//GetPowerGauge()->ReleasePower();
+	baseState->OnReleasePowerButton();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		//concurrentState->OnReleasePower();
+		concurrentState->OnReleasePowerButton();
 	}
 }
 
@@ -487,7 +492,7 @@ void TCompPlayerModel::GainPowerButtonPressed() {
 	GetPowerGauge()->GainPower();
 }
 
-bool TCompPlayerModel::IsAttackFree() {
+bool TCompPlayerModel::IsConcurrentActionFree() {
 	return (concurrentState == concurrentStates[ActionStates::Idle]);
 }
 

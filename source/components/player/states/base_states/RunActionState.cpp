@@ -70,16 +70,3 @@ void RunActionState::OnStateEnter(IActionState * lastState) {
 void RunActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
 }
-
-void RunActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
-}
-
-void RunActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
-}
-
-void RunActionState::OnLeavingGround() {
-	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
-}

@@ -42,13 +42,3 @@ void GhostJumpSquatLongActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
 	//dbg("Saliendo de GhostJumpSquat\n");
 }
-
-//ni caso a este input
-void GhostJumpSquatLongActionState::OnJumpHighButton() {}
-
-void GhostJumpSquatLongActionState::OnJumpLongButton() {}
-
-void GhostJumpSquatLongActionState::OnLanding() {
-	//Ir a landing action state
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
-}

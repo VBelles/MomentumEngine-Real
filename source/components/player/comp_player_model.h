@@ -39,7 +39,8 @@ public:
 		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack,
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
-		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump
+		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
+		ReleasePowerAir, ReleasePowerGround
 	};
 	IActionState* baseState;
 	IActionState* concurrentState;
@@ -67,7 +68,7 @@ public:
 	void CenterCameraButtonPressed();
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();
-	bool IsAttackFree();
+	bool IsConcurrentActionFree();
 	
 	void OnAttackHit(const TMsgAttackHit& msg);
 	void OnHitboxEnter(const TMsgHitboxEnter& msg);
@@ -156,6 +157,8 @@ private:
 	CHandle fallingAttackLandingHitbox;
 	CHandle verticalLauncherHitbox;
 	CHandle grabHitbox;
+	CHandle releasePowerSmallHitbox;
+	CHandle releasePowerBigHitbox;
 
 
 	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre

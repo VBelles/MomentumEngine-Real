@@ -31,6 +31,7 @@ public:
 	void OnJumpLongButton() override {}
 	void OnStrongAttackButton() override {}
 	void OnFastAttackButton() override {}
+	void OnReleasePowerButton() override {}
 
 	void OnLeavingGround() override;
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_vertical_launcher.mesh"); }

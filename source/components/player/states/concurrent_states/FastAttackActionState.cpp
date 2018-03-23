@@ -58,15 +58,6 @@ void FastAttackActionState::OnStateExit(IActionState * nextState) {
 	dbg("Finish fast Attack\n");
 }
 
-void FastAttackActionState::SetMovementInput(VEC2 input) {
-}
-
-void FastAttackActionState::OnJumpHighButton() {
-}
-
-void FastAttackActionState::OnJumpLongButton() {
-}
-
 void FastAttackActionState::OnFastAttackButtonReleased() {
 	phase = AttackPhases::Startup;
 

@@ -47,15 +47,6 @@ void GrabActionState::OnStateExit(IActionState * nextState) {
 	hitbox->disable();
 }
 
-void GrabActionState::SetMovementInput(VEC2 input) {
-}
-
-void GrabActionState::OnJumpHighButton() {
-}
-
-void GrabActionState::OnJumpLongButton() {
-}
-
 void GrabActionState::OnLanding() {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();

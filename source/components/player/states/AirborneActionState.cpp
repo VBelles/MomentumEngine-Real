@@ -103,6 +103,12 @@ void AirborneActionState::OnFastAttackButton() {
 	//TODO Ataque rápido aire
 }
 
+void AirborneActionState::OnReleasePowerButton() {
+	if (GetPlayerModel()->IsConcurrentActionFree()) {
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::ReleasePowerAir);
+	}
+}
+
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state

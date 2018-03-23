@@ -9,7 +9,6 @@ public:
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
+
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_long_jump.mesh"); }
-
-
 };
