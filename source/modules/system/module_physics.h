@@ -20,6 +20,15 @@ public:
 		All = Wall | Floor | Player | Enemy
 	};
 
+	std::map<std::string, FilterGroup> filterGroupByName = {
+		{ "wall", Wall },
+		{ "floor", Floor },
+		{ "player", Player },
+		{ "scenario", Scenario },
+		{ "characters", Characters },
+		{ "all", All }
+	};
+
 	CModulePhysics(const std::string& aname) : IModule(aname) {}
 	virtual bool start() override;
 	virtual void update(float delta) override;
@@ -48,6 +57,10 @@ private:
 	PxFoundation*			gFoundation;
 	PxControllerManager*    mControllerManager;
 
+	std::set<CHandle> toRelease;
+
+
+
 	class CustomSimulationEventCallback : public PxSimulationEventCallback {
 		virtual void onConstraintBreak(PxConstraintInfo* constraints, PxU32 count) override {};
 		virtual void onWake(PxActor** actors, PxU32 count) override {};
@@ -56,7 +69,7 @@ private:
 		virtual void onTrigger(physx::PxTriggerPair* pairs, PxU32 count) override;
 		virtual void onAdvance(const PxRigidBody*const* bodyBuffer, const PxTransform* poseBuffer, const PxU32 count) override {};
 	};
-	
+
 	CustomSimulationEventCallback customSimulationEventCallback;
 
 	class CustomUserControllerHitReport : public PxUserControllerHitReport {
@@ -67,6 +80,5 @@ private:
 
 	CustomUserControllerHitReport defaultReportCallback;
 
-	std::set<CHandle> toRelease;
 	void releaseColliders();
 };

@@ -11,25 +11,10 @@
 #pragma comment(lib, "PhysX3CharacterKinematic_x64.lib")
 
 CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
-	if (strcmp("player", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Player;
+	auto it = filterGroupByName.find(name);
+	if (it != filterGroupByName.end()) {
+		return filterGroupByName[name];
 	}
-	else if (strcmp("enemy", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Enemy;
-	}
-	else if (strcmp("characters", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Characters;
-	}
-	else if (strcmp("wall", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Wall;
-	}
-	else if (strcmp("floor", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Floor;
-	}
-	else if (strcmp("scenario", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Scenario;
-	}
-	return CModulePhysics::FilterGroup::All;
 }
 
 void CModulePhysics::createActor(TCompCollider& comp_collider) {
@@ -177,18 +162,19 @@ bool CModulePhysics::start() {
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
 	if (!gPhysics) fatal("PxCreatePhysics failed");
 
+	//Create scene
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = CustomFilterShader;
 	sceneDesc.simulationEventCallback = &customSimulationEventCallback;
-	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS | PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_CCD;
 
 	gScene = gPhysics->createScene(sceneDesc);
-	/*gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
-	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
-	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_PAIRS, true);*/
 
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 	if (pvdClient) {
@@ -295,16 +281,16 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 }
 
 void CModulePhysics::CustomSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 count) {
-	dbg("on contact\n");
+	//dbg("on contact\n");
 	for (PxU32 i = 0; i < count; ++i) {
 		CHandle colliderHandle;
-		
+
 		colliderHandle.fromVoidPtr(pairHeader.actors[0]->userData);
-		dbg("%d: %s\n", i, colliderHandle.getTypeName());
-		
+		//dbg("%d: %s\n", i, colliderHandle.getTypeName());
+
 		if (colliderHandle.isValid()) {
 			CEntity* e = colliderHandle.getOwner();
-			if (e->getName() == "The Player") {
+			if (strcmp(e->getName(), "The Player") != 0) {
 				dbg("THE PLAYER!!\n");
 			}
 		}
