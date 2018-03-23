@@ -12,6 +12,7 @@
 		"hierarchy",
 		"platform_move",
 		"collectable",
+		"mechanism",
 		"destroyCondition",
     "skeleton",
     "bone_tracker",

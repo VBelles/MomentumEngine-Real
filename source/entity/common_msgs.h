@@ -53,7 +53,14 @@ struct TMsgEntitiesGroupCreated {
 };
 
 struct TMsgAllScenesCreated {
-	const TEntityParseContext& ctx;
+	DECL_MSG_ID();
+};
+
+struct TMsgMechanismActivated {
+	DECL_MSG_ID();
+};
+
+struct TMsgMechanismDeactivated {
 	DECL_MSG_ID();
 };
 
