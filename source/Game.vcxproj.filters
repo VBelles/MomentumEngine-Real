@@ -139,6 +139,7 @@
     <ClCompile Include="components\player\states\base_states\VerticalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\ReleasePowerAirActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\ReleasePowerGroundActionState.cpp" />
+    <ClCompile Include="components\comp_mechanism.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -309,6 +310,7 @@
     <ClInclude Include="components\player\states\base_states\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\ReleasePowerAirActionState.h" />
     <ClInclude Include="components\player\states\base_states\ReleasePowerGroundActionState.h" />
+    <ClInclude Include="components\comp_mechanism.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

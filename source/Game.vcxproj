@@ -104,6 +104,7 @@
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
+    <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="components\comp_hitbox.h" />
+    <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />

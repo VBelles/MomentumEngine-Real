@@ -51,6 +51,7 @@ bool CModuleTestAxis::start() {
         TEntityParseContext ctx;
         parseScene(scene_name, ctx);
     }
+	//All scenes created
 
     CHandle h_playerCamera = getEntityByName("player_camera");
     Engine.getCameras().setDefaultCamera(h_playerCamera);

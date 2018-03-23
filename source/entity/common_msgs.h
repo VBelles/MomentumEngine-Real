@@ -52,6 +52,11 @@ struct TMsgEntitiesGroupCreated {
     DECL_MSG_ID();
 };
 
+struct TMsgAllScenesCreated {
+	const TEntityParseContext& ctx;
+	DECL_MSG_ID();
+};
+
 struct TMsgAssignBulletOwner {
     CHandle h_owner;
     DECL_MSG_ID();
