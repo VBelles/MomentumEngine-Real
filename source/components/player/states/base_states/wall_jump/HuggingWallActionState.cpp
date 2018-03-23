@@ -11,6 +11,8 @@ void HuggingWallActionState::update (float delta) {
 
 void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
+	//TODO tirar rayo para atrás y coger la normal real de la pared, rotarse correctamente
+	//y guardar esa dirección para poder desengancharse poniendo el stick en dirección opuesta
 	float y, p, r;
 	GetPlayerModel()->SetGravityMultiplier(8.f);
 	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);

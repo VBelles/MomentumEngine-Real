@@ -55,7 +55,3 @@ void GrabActionState::OnLanding() {
 	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
 	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }
-
-void GrabActionState::OnHitboxEnter(CHandle entity) {
-
-}

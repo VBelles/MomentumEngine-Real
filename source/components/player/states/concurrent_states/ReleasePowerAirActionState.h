@@ -14,6 +14,7 @@ protected:
 	float hitEndTime;
 	float animationEndTime;
 	int buttonPresses = 1;
+	float stunDuration = 3.f;
 
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;

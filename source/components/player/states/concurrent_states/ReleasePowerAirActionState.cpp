@@ -105,5 +105,18 @@ void ReleasePowerAirActionState::OnLanding() {
 }
 
 void ReleasePowerAirActionState::OnHitboxEnter(CHandle entity) {
-
+	CHandle playerEntity = playerModelHandle.getOwner();
+	if (entity != playerEntity) {
+		CEntity *otherEntity = entity;
+		TMsgAttackHit msgAtackHit = {};
+		msgAtackHit.attacker = playerEntity;
+		msgAtackHit.info = {};
+		msgAtackHit.info.givesPower = false;
+		msgAtackHit.info.damage = damage;
+		msgAtackHit.info.stun = new AttackInfo::Stun{
+			stunDuration
+		};
+		msgAtackHit.info.activatesMechanism = true;
+		otherEntity->sendMsg(msgAtackHit);
+	}
 }
