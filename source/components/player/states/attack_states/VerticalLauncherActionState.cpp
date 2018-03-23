@@ -75,7 +75,7 @@ void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
 		msgAtackHit.attacker = playerEntity;
 		msgAtackHit.info = {};
 		msgAtackHit.info.givesPower = true;
-		msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{ 
+		msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
 			suspensionTime,
 			GetPlayerModel()->GetPowerStats()->jumpVelocityVector
 		};

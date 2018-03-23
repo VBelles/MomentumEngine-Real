@@ -6,10 +6,10 @@ CBehaviorTreeNodePriority::CBehaviorTreeNodePriority(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
 }
 
-void CBehaviorTreeNodePriority::recalc(IBehaviorTree *behaviorTree) {
+void CBehaviorTreeNodePriority::recalc(IBehaviorTree *behaviorTree, float delta) {
 	for (int i = 0; i < children.size(); i++) {
-		if (behaviorTree->testCondition(children[i]->getName())) {
-			children[i]->recalc(behaviorTree);
+		if (behaviorTree->testCondition(children[i]->getName(), delta)) {
+			children[i]->recalc(behaviorTree, delta);
 			break;
 		}
 	}

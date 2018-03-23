@@ -27,5 +27,5 @@ public:
 	void setRight(IBehaviorTreeNode *right);
 	void addChild(IBehaviorTreeNode *child);
 
-	virtual void recalc(IBehaviorTree *behaviorTree) {}
+	virtual void recalc(IBehaviorTree *behaviorTree, float delta = 0.f) {}
 };

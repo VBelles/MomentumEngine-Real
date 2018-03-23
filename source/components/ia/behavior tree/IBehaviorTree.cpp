@@ -42,10 +42,10 @@ IBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
 	}
 }
 
-bool IBehaviorTree::falseCondition() {
+bool IBehaviorTree::falseCondition(float delta) {
 	return false;
 }
-bool IBehaviorTree::trueCondition() {
+bool IBehaviorTree::trueCondition(float delta) {
 	return true;
 }
 
@@ -85,12 +85,12 @@ void IBehaviorTree::addCondition(std::string conditionName, BehaviorTreeConditio
 	}
 }
 
-bool IBehaviorTree::testCondition(std::string conditionName) {
+bool IBehaviorTree::testCondition(std::string conditionName, float delta) {
 	if (conditions.find(conditionName) == conditions.end()) {
 		return true;	// error: no condition defined, we assume TRUE
 	}
 	else {
-		return (this->*conditions[conditionName])();
+		return (this->*conditions[conditionName])(delta);
 	}
 }
 
@@ -103,21 +103,21 @@ void IBehaviorTree::addAction(std::string actionName, BehaviorTreeAction action)
 	}
 }
 
-int IBehaviorTree::execAction(std::string actionName) {
+int IBehaviorTree::execAction(std::string actionName, float delta) {
 	if (actions.find(actionName) == actions.end()) {
 		printf("ERROR: Missing node action for node %s\n", actionName.c_str());
 		return Leave; // error: action does not exist
 	}
 	else {
-		return (this->*actions[actionName])();
+		return (this->*actions[actionName])(delta);
 	}
 }
 
-void IBehaviorTree::recalc() {
+void IBehaviorTree::recalc(float delta) {
 	if (current == nullptr) {
-		root->recalc(this);
+		root->recalc(this, delta);
 	}
 	else {
-		current->recalc(this);
+		current->recalc(this, delta);
 	}
 }

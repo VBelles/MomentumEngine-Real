@@ -36,7 +36,7 @@
 			  ]
 		  },
 		  "transform": {
-			"pos": "-80 21.5 -60",
+			"pos": "-80 50 -60",
 			"lookAt": "-1.0 30.0 -1.0"
 		  },
 		  "behaviorTree_melee_enemy" : {}

@@ -7,6 +7,7 @@
 class CEntity;
 class TCompTransform;
 class TCompCollider;
+class PowerStats;
 
 class CBehaviorTreeMeleeEnemy : public IBehaviorTree, public TCompBase {
 	DECL_SIBLING_ACCESS();
@@ -40,13 +41,20 @@ private:
 	bool isDead = false;
 
 	bool isStunned = false;
+	float stunDuration;
+
+	VEC3 initialLaunchPos;
 
 	CHandle playerHandle;
 
 	VEC3 spawnPosition;
-	VEC3 propelVelocityVector;
 
 	VEC3 velocityVector;
+
+	bool grounded = true;
+
+	float gravity = -50.f;
+	VEC3 maxVelocity = { 30, 30, 30 };
 
 	CTimer recallTimer;
 	CTimer waitAttackTimer;
@@ -54,39 +62,44 @@ private:
 	CTimer propelTimer;
 	CTimer launchedFloatingTimer;
 	CTimer grabbedTimer;
+	CTimer stunTimer;
 
 	AttackInfo receivedAttack;
 
-	int damageCalc();
-	int onDeath();
-	int dead();
-	int onGrab();
-	int grabbed();
-	int onPropel();
-	int propelled();
-	int onHorizontalLaunch();
-	int horizontalLaunched();
-	int onVerticalLaunch();
-	int verticalLaunched();
-	int onStun();
-	int stunned();
-	int respawn();
-	int returnToSpawn();
-	int chase();
-	int idleWar();
-	int attack();
-	int idle();
+	int damageCalc(float delta = 0.f);
+	int onDeath(float delta = 0.f);
+	int dead(float delta = 0.f);
+	int onGrab(float delta = 0.f);
+	int grabbed(float delta = 0.f);
+	int onPropel(float delta = 0.f);
+	int propelled(float delta = 0.f);
+	int onHorizontalLaunch(float delta = 0.f);
+	int horizontalLaunched(float delta = 0.f);
+	int onVerticalLaunch(float delta = 0.f);
+	int verticalLaunched(float delta = 0.f);
+	int floating(float delta = 0.f);
+	int onStun(float delta = 0.f);
+	int stunned(float delta = 0.f);
+	int airborne(float delta = 0.f);
+	int respawn(float delta = 0.f);
+	int returnToSpawn(float delta = 0.f);
+	int chase(float delta = 0.f);
+	int idleWar(float delta = 0.f);
+	int attack(float delta = 0.f);
+	int idle(float delta = 0.f);
 
-	bool deathCondition();
-	bool deadCondition();
-	bool grabCondition();
-	bool propelCondition();
-	bool horizontalLaunchCondition();
-	bool verticalLaunchCondition();
-	bool stunCondition();
-	bool returnToSpawnCondition();
-	bool chaseCondition();
-	bool combatCondition();
+	bool deathCondition(float delta = 0.f);
+	bool deadCondition(float delta = 0.f);
+	bool grabCondition(float delta = 0.f);
+	bool propelCondition(float delta = 0.f);
+	bool horizontalLaunchCondition(float delta = 0.f);
+	bool verticalLaunchCondition(float delta = 0.f);
+	bool onStunCondition(float delta = 0.f);
+	bool stunCondition(float delta = 0.f);
+	bool airborneCondition(float delta = 0.f);
+	bool returnToSpawnCondition(float delta = 0.f);
+	bool chaseCondition(float delta = 0.f);
+	bool combatCondition(float delta = 0.f);
 
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();
@@ -94,6 +107,9 @@ private:
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);
+
+	void updateGravity(float delta);
+	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
 
 public:
 	CBehaviorTreeMeleeEnemy();

@@ -7,8 +7,8 @@ CBehaviorTreeNodeAction::CBehaviorTreeNodeAction(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
 }
 
-void CBehaviorTreeNodeAction::recalc(IBehaviorTree *behaviorTree) {
-	int res = behaviorTree->execAction(name);
+void CBehaviorTreeNodeAction::recalc(IBehaviorTree *behaviorTree, float delta) {
+	int res = behaviorTree->execAction(name, delta);
 	if (res == Stay) {
 		behaviorTree->setCurrent(this);
 	}

@@ -6,5 +6,5 @@ class CBehaviorTreeNodePriority : public IBehaviorTreeNode {
 public:
 	CBehaviorTreeNodePriority(std::string name);
 
-	void recalc(IBehaviorTree *behaviorTree) override;
+	void recalc(IBehaviorTree *behaviorTree, float delta = 0.f) override;
 };

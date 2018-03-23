@@ -4,8 +4,8 @@
 #include <map>
 #include "IBehaviorTreeNode.h"
 
-typedef bool (IBehaviorTree::*BehaviorTreeCondition)();
-typedef int (IBehaviorTree::*BehaviorTreeAction)();
+typedef bool (IBehaviorTree::*BehaviorTreeCondition)(float delta);
+typedef int (IBehaviorTree::*BehaviorTreeAction)(float delta);
 
 class IBehaviorTree {
 protected:
@@ -19,8 +19,8 @@ protected:
 	IBehaviorTreeNode *createNode(std::string name, EBehaviorTreeNodeType type);
 	IBehaviorTreeNode *findNode(std::string name);
 
-	bool falseCondition();
-	bool trueCondition();
+	bool falseCondition(float delta = 0.f);
+	bool trueCondition(float delta = 0.f);
 
 public:
 	IBehaviorTree();
@@ -31,10 +31,10 @@ public:
 	void setCurrent(IBehaviorTreeNode *newCurrent);
 
 	void addCondition(std::string conditionName, BehaviorTreeCondition condition);
-	bool testCondition(std::string conditionName);
+	bool testCondition(std::string conditionName, float delta = 0.f);
 
 	void addAction(std::string actionName, BehaviorTreeAction action);
-	int execAction(std::string actionName);
+	int execAction(std::string actionName, float delta = 0.f);
 
-	void recalc();
+	void recalc(float delta = 0.f);
 };
