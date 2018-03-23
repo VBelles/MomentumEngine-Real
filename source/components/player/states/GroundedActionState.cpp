@@ -34,7 +34,7 @@ void GroundedActionState::OnJumpLongButton() {
 }
 
 void GroundedActionState::OnStrongAttackButton() {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::StrongAttack);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::StrongAttack);
 }
 
 void GroundedActionState::OnFastAttackButton() {
@@ -44,6 +44,7 @@ void GroundedActionState::OnFastAttackButton() {
 }
 
 void GroundedActionState::OnReleasePowerButton() {
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::ReleasePowerGround);
 }
 
 void GroundedActionState::OnLeavingGround() {

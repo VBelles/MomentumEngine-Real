@@ -1,18 +1,17 @@
 #include "mcv_platform.h"
-#include "ReleasePowerAirActionState.h"
+#include "ReleasePowerGroundActionState.h"
 #include "components/comp_hitbox.h"
 
-ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
+ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
+	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
 }
 
-void ReleasePowerAirActionState::update (float delta) {
+void ReleasePowerGroundActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
-	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -33,36 +32,37 @@ void ReleasePowerAirActionState::update (float delta) {
 		TCompHitbox *hitboxBig = hitboxBigEntity->get<TCompHitbox>();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
 		switch (GetPlayerModel()->GetPowerGauge()->powerLevel) {
-			case 1:
+		case 1:
+			GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			break;
+		case 2:
+			GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			hitboxSmall->enable();
+			if (buttonPresses > 1) GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			break;
+		case 3:
+			GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			if (buttonPresses > 1) {
 				GetPlayerModel()->GetPowerGauge()->ReleasePower();
-				break;
-			case 2:
-				GetPlayerModel()->GetPowerGauge()->ReleasePower();
+				//bola grande
+				hitboxBig->enable();
+				if (buttonPresses > 2) GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			}
+			else {
+				//bola pequeña
 				hitboxSmall->enable();
-				if (buttonPresses > 1) GetPlayerModel()->GetPowerGauge()->ReleasePower();
-				break;
-			case 3:
-				GetPlayerModel()->GetPowerGauge()->ReleasePower();
-				if (buttonPresses > 1) {
-					GetPlayerModel()->GetPowerGauge()->ReleasePower();
-					//bola grande
-					hitboxBig->enable();
-					if (buttonPresses > 2) GetPlayerModel()->GetPowerGauge()->ReleasePower();
-				}
-				else {
-					//bola pequeña
-					hitboxSmall->enable();
-				}
-				break;
+			}
+			break;
 		}
 		SetPose();
 		phase = AttackPhases::Active;
 	}
 }
 
-void ReleasePowerAirActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
+void ReleasePowerGroundActionState::OnStateEnter(IActionState * lastState) {
+	GroundedActionState::OnStateEnter(lastState);
 	phase = AttackPhases::Startup;
+	*velocityVector = VEC3::Zero;
 	buttonPresses = 1;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
@@ -71,18 +71,17 @@ void ReleasePowerAirActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 }
 
-void ReleasePowerAirActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
+void ReleasePowerGroundActionState::OnStateExit(IActionState * nextState) {
+	GroundedActionState::OnStateExit(nextState);
 	CEntity *hitboxEntity = hitboxSmallHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 	hitboxEntity = hitboxBigHandle;
 	hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	GetPlayerModel()->baseState->SetPose();
 }
 
-void ReleasePowerAirActionState::OnReleasePowerButton() {
+void ReleasePowerGroundActionState::OnReleasePowerButton() {
 	buttonPresses++;
 	//Si está en active, release energy
 	if (phase == AttackPhases::Active) {
@@ -100,12 +99,7 @@ void ReleasePowerAirActionState::OnReleasePowerButton() {
 	if (phase == AttackPhases::Recovery) GetPlayerModel()->GetPowerGauge()->ReleasePower();
 }
 
-void ReleasePowerAirActionState::OnLanding() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
-}
-
-void ReleasePowerAirActionState::OnHitboxEnter(CHandle entity) {
+void ReleasePowerGroundActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;

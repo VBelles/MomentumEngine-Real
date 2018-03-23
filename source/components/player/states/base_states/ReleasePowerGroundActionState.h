@@ -1,10 +1,10 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
-#include "../AirborneActionState.h"
+#include "../GroundedActionState.h"
 
 
-class ReleasePowerAirActionState : public AirborneActionState {
+class ReleasePowerGroundActionState : public GroundedActionState {
 private:
 	CTimer timer;
 	int warmUpFrames = 7;
@@ -27,7 +27,7 @@ private:
 	uint32_t enemyId = getID("enemy");
 
 public:
-	ReleasePowerAirActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig);
+	ReleasePowerGroundActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
@@ -37,9 +37,6 @@ public:
 	void OnFastAttackButton() override {}
 	void OnStrongAttackButton() override {}
 	void OnReleasePowerButton() override;
-
-
-	void OnLanding() override;
 
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_grab.mesh"); }
 

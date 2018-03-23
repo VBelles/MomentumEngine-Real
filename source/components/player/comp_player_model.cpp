@@ -29,6 +29,7 @@
 #include "states/base_states/StrongAttackActionState.h"
 #include "states/base_states/HorizontalLauncherActionState.h"
 #include "states/base_states/VerticalLauncherActionState.h"
+#include "states/base_states/ReleasePowerGroundActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
 #include "states/concurrent_states/GrabLongActionState.h"
@@ -267,6 +268,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
 	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
 	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
+	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
 	};
 
 	concurrentStates = {
