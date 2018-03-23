@@ -86,9 +86,8 @@ void ReleasePowerAirActionState::OnReleasePowerButton() {
 	buttonPresses++;
 	//Si está en active, release energy
 	if (phase == AttackPhases::Active) {
-		GetPlayerModel()->GetPowerGauge()->ReleasePower();
 		//si además button presses es == 2 y ssj2, agrandar bola
-		if (buttonPresses == 2 && GetPlayerModel()->GetPowerGauge()->powerLevel == 2) {
+		if (GetPlayerModel()->GetPowerGauge()->powerLevel == 2) {
 			CEntity *hitboxEntity = hitboxSmallHandle;
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->disable();
@@ -96,6 +95,7 @@ void ReleasePowerAirActionState::OnReleasePowerButton() {
 			hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->enable();
 		}
+		GetPlayerModel()->GetPowerGauge()->ReleasePower();
 	}
 	if (phase == AttackPhases::Recovery) GetPlayerModel()->GetPowerGauge()->ReleasePower();
 }
