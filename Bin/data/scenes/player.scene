@@ -175,6 +175,42 @@
 	},
 	{
 		"entity": {
+			"name": "Release power small hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 4.0
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.75 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Release power big hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 7.0
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.75 0"
+			}
+		}
+	},
+	{
+		"entity": {
 			"name": "player_camera",
 			"transform": {},
 			"camera" : {

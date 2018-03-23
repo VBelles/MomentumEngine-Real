@@ -39,21 +39,22 @@ public:
 		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack,
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
-		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump
+		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
+		ReleasePowerAir, ReleasePowerGround
 	};
-	IActionState* movementState;
-	IActionState* attackState;
+	IActionState* baseState;
+	IActionState* concurrentState;
 
 	
 	
-	bool lockMovementState = false;
+	bool lockBaseState = false;
 	bool lockWalk = false;
-	bool lockAttackState = false;
+	bool lockConcurrentState = false;
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
-	void SetMovementState(ActionStates newState);
-	void SetAttackState(ActionStates newState);
+	void SetBaseState(ActionStates newState);
+	void SetConcurrentState(ActionStates newState);
 	void update(float dt);
 	void UpdateMovement(float dt, VEC3 deltaMovement);
 	void SetMovementInput(VEC2 input, float delta);
@@ -67,7 +68,7 @@ public:
 	void CenterCameraButtonPressed();
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();
-	bool IsAttackFree();
+	bool IsConcurrentActionFree();
 	
 	void OnAttackHit(const TMsgAttackHit& msg);
 	void OnHitboxEnter(const TMsgHitboxEnter& msg);
@@ -91,9 +92,9 @@ public:
 
 	bool isInState(ActionStates state);
 	template <typename T>
-	T GetMovementState(TCompPlayerModel::ActionStates state) { return static_cast<T>(movementStates[state]); }
+	T GetBaseState(TCompPlayerModel::ActionStates state) { return static_cast<T>(baseStates[state]); }
 	template <typename T >
-	T GetAttackState(TCompPlayerModel::ActionStates state) { return static_cast<T>(attackStates[state]); }
+	T GetConcurrentState(TCompPlayerModel::ActionStates state) { return static_cast<T>(concurrentStates[state]); }
 	
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;
@@ -146,23 +147,25 @@ private:
 
 	PlayerFilterCallback* playerFilterCallback;
 
-	std::map<ActionStates, IActionState*> movementStates;
-	std::map<ActionStates, IActionState*> attackStates;
-	ActionStates nextMovementState;
-	ActionStates nextAttackState;
+	std::map<ActionStates, IActionState*> baseStates;
+	std::map<ActionStates, IActionState*> concurrentStates;
+	ActionStates nextBaseState;
+	ActionStates nextConcurrentState;
 
 	CHandle strongAttackHitbox;
 	CHandle fallingAttackHitbox;
 	CHandle fallingAttackLandingHitbox;
 	CHandle verticalLauncherHitbox;
 	CHandle grabHitbox;
+	CHandle releasePowerSmallHitbox;
+	CHandle releasePowerBigHitbox;
 
 
 	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre
 
 
-	void ChangeMovementState(ActionStates newState);
-	void ChangeAttackState(ActionStates newState);
+	void ChangeBaseState(ActionStates newState);
+	void ChangeConcurrentState(ActionStates newState);
 	void OnDead();
 	
 	void ApplyGravity(float delta);

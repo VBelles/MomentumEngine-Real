@@ -16,6 +16,7 @@ public:
 	void OnJumpLongButton() override;
 	void OnStrongAttackButton() override;
 	void OnFastAttackButton() override;
+	void OnReleasePowerButton() override;
 
 	virtual void OnLeavingGround();
 };
