@@ -14,6 +14,8 @@ void TCompMechanism::registerMsgs() {
 
 void TCompMechanism::load(const json& j, TEntityParseContext& ctx) {
     deactivationTime = j.value("deactivationTime", 0.f);
+	isResettable = j.value("isResettable", true);
+	reactivationTime = j.value("reactivationTime", 0.f);
 	if(j.count("systems")) {
 		auto& systems = j["systems"];
 		assert(systems.is_array());
@@ -29,11 +31,13 @@ void TCompMechanism::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 	for (auto& systemName : mechanismSystemsNames) {
 		mechanismSystems.push_back(getEntityByName(systemName));
 	}
+	reactivationTimer.reset();
 }
 
 void TCompMechanism::update(float dt) {
 	if (isActivated && deactivationTimer.elapsed() >= deactivationTime) {
 		isActivated = false;
+		reactivationTimer.reset();
 		for (auto& system : mechanismSystems) {
 			CEntity* entity = system;
 			dbg("Sending deactivating msg.\n");
@@ -44,13 +48,20 @@ void TCompMechanism::update(float dt) {
 
 void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 	if (msg.info.activatesMechanism) {
-		//activate
-		isActivated = true;
-		deactivationTimer.reset();
-		for (auto& system : mechanismSystems) {
-			CEntity* entity = system;
-			dbg("Sending activating msg.\n");
-			entity->sendMsg(TMsgMechanismActivated{});
+		if (!isActivated) {
+			if (reactivationTimer.elapsed() >= reactivationTime) {
+				deactivationTimer.reset();
+				//activate
+				isActivated = true;
+				for (auto& system : mechanismSystems) {
+					CEntity* entity = system;
+					dbg("Sending activating msg.\n");
+					entity->sendMsg(TMsgMechanismActivated{});
+				}
+			}
+		}
+		else if (isResettable) {
+			deactivationTimer.reset();
 		}
 	}
 }

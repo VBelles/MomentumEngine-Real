@@ -60,7 +60,12 @@ struct TMsgMechanismActivated {
 	DECL_MSG_ID();
 };
 
+
 struct TMsgMechanismDeactivated {
+	DECL_MSG_ID();
+};
+
+struct TMsgMechanismSystemActivated {
 	DECL_MSG_ID();
 };
 

@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
+    <ClCompile Include="components\comp_appear.cpp" />
     <ClCompile Include="components\comp_bullet_controller.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="components\comp_light_dir.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_mechanism.cpp" />
+    <ClCompile Include="components\comp_mechanism_system.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
@@ -234,6 +236,7 @@
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
     <ClInclude Include="camera\camera.h" />
     <ClInclude Include="components\comp_aabb.h" />
+    <ClInclude Include="components\comp_appear.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_bullet_controller.h" />
     <ClInclude Include="components\comp_camera.h" />
@@ -250,6 +253,7 @@
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_mechanism.h" />
+    <ClInclude Include="components\comp_mechanism_system.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />

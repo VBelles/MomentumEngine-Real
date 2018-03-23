@@ -3,17 +3,17 @@
 #include "comp_base.h"
 #include "entity/common_msgs.h"
 
-class TCompMechanism: public TCompBase {
+class TCompMechanismSystem: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 	CTimer deactivationTimer;
-	CTimer reactivationTimer;
 	float deactivationTime;
 	bool isActivated = false;
-	bool isResettable = true;
-	float reactivationTime = 0.f;
-	std::vector<std::string> mechanismSystemsNames;
-	std::vector<CHandle> mechanismSystems;
+	size_t numberOfMechanisms = 0;
+	size_t numberOfMechanismsActivated = 0;
+
+	std::vector<std::string> mechanismsNames;
+	std::vector<CHandle> mechanisms;
 
 public:
     void debugInMenu();
@@ -23,5 +23,6 @@ public:
     void onAllScenesCreated(const TMsgAllScenesCreated& msg);
     void update(float dt);
 
-	void onHit(const TMsgAttackHit& msg);
+	void onActivate(const TMsgMechanismActivated& msg);
+	void onDeactivate(const TMsgMechanismDeactivated& msg);
 };
