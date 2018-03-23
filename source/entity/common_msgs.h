@@ -28,6 +28,7 @@ struct AttackInfo {
 	};
 	float damage = 0.f;
 	bool givesPower = false;
+	bool activatesMechanism = false;
 	Stun* stun = nullptr;
 	VerticalLauncher* verticalLauncher = nullptr;
 	HorizontalLauncher* horizontalLauncher = nullptr;

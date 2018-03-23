@@ -73,7 +73,7 @@ public:
 	virtual void OnStrongAttackButtonReleased() {}
 	virtual void OnFastAttackButton() {}
 	virtual void OnFastAttackButtonReleased() {}
-	virtual void OnReleasePower() {}
+	virtual void OnReleasePowerButton() {}
 
 	virtual void OnHitboxEnter(CHandle entity) {}
 
