@@ -7,13 +7,13 @@
 class ReleasePowerAirActionState : public AirborneActionState {
 protected:
 	CTimer timer;
-	int warmUpFrames = 2;
-	int activeFrames = 8;
-	int endingLagFrames = 15;
+	int warmUpFrames = 7;
+	int activeFrames = 13;
+	int endingLagFrames = 10;
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
-	float lockDuration = 0.5f;
+	int buttonPresses = 1;
 
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;

@@ -6,7 +6,7 @@
 class HuggingWallJumpSquatActionState : public AirborneActionState {
 protected:
 	CTimer timer;
-	int endingFrames = 10;
+	int endingFrames = 4;
 	float endingTime;
 	VEC3 movingVelocity;
 	CHandle propelTarget;

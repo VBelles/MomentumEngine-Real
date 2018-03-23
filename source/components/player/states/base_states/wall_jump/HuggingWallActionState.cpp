@@ -6,12 +6,13 @@ HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 }
 
 void HuggingWallActionState::update (float delta) {
-
+	deltaMovement = VEC3::Zero;
 }
 
 void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	float y, p, r;
+	GetPlayerModel()->SetGravityMultiplier(8.f);
 	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	y = atan2(hit.worldNormal.x, hit.worldNormal.z);
 	GetPlayerTransform()->setYawPitchRoll(y, p, r);
@@ -22,8 +23,7 @@ void HuggingWallActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
 }
 
-void HuggingWallActionState::OnJumpHighButton() {
-	
+void HuggingWallActionState::OnJumpHighButton() {	
 	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::HuggingWallJumpSquat);
 }
 
