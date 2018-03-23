@@ -11,9 +11,7 @@ void VerticalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-		GetPlayerModel()->lockMovementState = false;
-		GetPlayerModel()->lockWalk = false;
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -41,13 +39,10 @@ void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
-	GetPlayerModel()->lockMovementState = true;
-	GetPlayerModel()->lockWalk = true;
 }
 
 void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	GetPlayerModel()->movementState->SetPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
@@ -57,14 +52,8 @@ void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
 void VerticalLauncherActionState::SetMovementInput(VEC2 input) {
 }
 
-void VerticalLauncherActionState::OnJumpHighButton() {
-}
-
-void VerticalLauncherActionState::OnJumpLongButton() {
-}
-
 void VerticalLauncherActionState::OnLeavingGround() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {

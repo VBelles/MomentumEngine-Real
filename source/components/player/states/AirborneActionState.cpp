@@ -88,24 +88,23 @@ void AirborneActionState::OnStateExit(IActionState * nextState) {
 }
 
 void AirborneActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabHigh);
+	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void AirborneActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::GrabLong);
+	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::GrabLong);
 }
 
 void AirborneActionState::OnStrongAttackButton() {
-	if (GetPlayerModel()->IsAttackFree()) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::FallingAttack);
-	}
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::FallingAttack);
 }
 
 void AirborneActionState::OnFastAttackButton() {
+	//TODO Ataque rápido aire
 }
 
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
 }

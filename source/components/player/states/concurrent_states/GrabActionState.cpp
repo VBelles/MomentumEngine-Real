@@ -10,7 +10,7 @@ GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 void GrabActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -41,7 +41,7 @@ void GrabActionState::OnStateEnter(IActionState * lastState) {
 
 void GrabActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
-	GetPlayerModel()->movementState->SetPose();
+	GetPlayerModel()->baseState->SetPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
@@ -61,8 +61,8 @@ void GrabActionState::OnLanding() {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
-	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
+	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }
 
 void GrabActionState::OnHitboxEnter(CHandle entity) {

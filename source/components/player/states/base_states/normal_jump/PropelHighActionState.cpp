@@ -1,12 +1,12 @@
 #include "mcv_platform.h"
-#include "PropelLongActionState.h"
+#include "PropelHighActionState.h"
 #include "components/comp_hitbox.h"
 
-PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
+PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 }
 
-void PropelLongActionState::update (float delta) {
+void PropelHighActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
@@ -18,13 +18,11 @@ void PropelLongActionState::update (float delta) {
 			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 			GetPlayerTransform()->setYawPitchRoll(newYaw, p, r);
 		}
-		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
-		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
+		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
-
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneLong);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 		//pasar mensaje a la otra entidad
-		CHandle playerEntity = playerModelHandle.getOwner();
+		CHandle playerEntity = CHandle(playerModelHandle).getOwner();
 		CEntity* targetEntity = propelTarget;
 		VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
 		TMsgAttackHit msgAtackHit = {};
@@ -41,7 +39,7 @@ void PropelLongActionState::update (float delta) {
 	}
 }
 
-void PropelLongActionState::OnStateEnter(IActionState * lastState) {
+void PropelHighActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	SetPose();
 	endingTime = endingFrames * (1.f / 60);
@@ -53,18 +51,18 @@ void PropelLongActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 }
 
-void PropelLongActionState::OnStateExit(IActionState * nextState) {
+void PropelHighActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
-	GetPlayerModel()->movementState->SetPose();
+	GetPlayerModel()->baseState->SetPose();
 }
 
-void PropelLongActionState::OnJumpHighButton() {
+void PropelHighActionState::OnJumpHighButton() {
 }
 
-void PropelLongActionState::OnJumpLongButton() {
+void PropelHighActionState::OnJumpLongButton() {
 }
 
-void PropelLongActionState::OnLanding() {
-	//GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
-	//GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+void PropelHighActionState::OnLanding() {
+	//GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
+	//GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }

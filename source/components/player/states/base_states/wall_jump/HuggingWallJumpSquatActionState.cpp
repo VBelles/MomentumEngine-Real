@@ -16,7 +16,7 @@ void HuggingWallJumpSquatActionState::update (float delta) {
 		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
 		
 		deltaMovement = *velocityVector * delta;
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneWallJump);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneWallJump);
 	}
 }
 

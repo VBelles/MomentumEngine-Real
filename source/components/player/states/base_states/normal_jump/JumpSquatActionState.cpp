@@ -55,10 +55,10 @@ void JumpSquatActionState::OnFastAttackButton() {
 void JumpSquatActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpSquat);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
 	}
 }

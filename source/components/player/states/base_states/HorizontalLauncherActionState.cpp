@@ -11,9 +11,7 @@ void HorizontalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-		GetPlayerModel()->lockMovementState = false;
-		GetPlayerModel()->lockWalk = false;
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -44,27 +42,18 @@ void HorizontalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	timer.reset();
-	GetPlayerModel()->lockMovementState = true;
-	GetPlayerModel()->lockWalk = true;
 }
 
 void HorizontalLauncherActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	GetPlayerModel()->movementState->SetPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 	dbg("Finish Horizontal Launcher\n");
 }
 
-void HorizontalLauncherActionState::OnJumpHighButton() {
-}
-
-void HorizontalLauncherActionState::OnJumpLongButton() {
-}
-
 void HorizontalLauncherActionState::OnLeavingGround() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void HorizontalLauncherActionState::OnHitboxEnter(CHandle entity) {

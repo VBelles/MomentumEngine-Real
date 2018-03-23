@@ -15,10 +15,10 @@ void TurnAroundActionState::update (float delta) {
 		}
 		if (movementInput.Length() > 0.8f) {
 			SetFinalVelocity();
-			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Walk);
+			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Walk);
 		}
 		else {
-			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
+			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
 		}
 	}
 	else if (!GetPlayerModel()->lockWalk) {
@@ -57,18 +57,18 @@ void TurnAroundActionState::OnJumpHighButton() {
 	//(que se coma todos los frames si quiere saltar)
 	RotateToFinalDirection();
 	SetFinalVelocity();
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void TurnAroundActionState::OnJumpLongButton() {
 	RotateToFinalDirection();
 	SetFinalVelocity();
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void TurnAroundActionState::OnLeavingGround() {
 	RotateToFinalDirection();
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void TurnAroundActionState::RotateToFinalDirection() {

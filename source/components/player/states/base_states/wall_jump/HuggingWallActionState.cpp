@@ -24,9 +24,9 @@ void HuggingWallActionState::OnStateExit(IActionState * nextState) {
 
 void HuggingWallActionState::OnJumpHighButton() {
 	
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::HuggingWallJumpSquat);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::HuggingWallJumpSquat);
 }
 
 void HuggingWallActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }

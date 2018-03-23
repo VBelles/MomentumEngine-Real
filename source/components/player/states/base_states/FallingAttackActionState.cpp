@@ -43,8 +43,6 @@ void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
-	GetPlayerModel()->lockMovementState = true;
-	GetPlayerModel()->lockWalk = true;
 }
 
 void FallingAttackActionState::OnStateExit(IActionState * nextState) {
@@ -53,7 +51,7 @@ void FallingAttackActionState::OnStateExit(IActionState * nextState) {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 	GetPlayerModel()->ResetGravity();
-	GetPlayerModel()->movementState->SetPose();
+	GetPlayerModel()->baseState->SetPose();
 }
 
 void FallingAttackActionState::OnJumpHighButton() {
@@ -68,10 +66,8 @@ void FallingAttackActionState::OnLanding() {
 	hitbox->disable();
 
 	*velocityVector = VEC3::Zero;
-	GetPlayerModel()->lockMovementState = false;
-	GetPlayerModel()->lockWalk = false;
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::LandingFallingAttack);
-	GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
+	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }
 
 void FallingAttackActionState::OnHitboxEnter(CHandle entity) {

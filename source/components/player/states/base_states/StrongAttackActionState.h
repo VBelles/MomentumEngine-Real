@@ -28,9 +28,11 @@ public:
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override;
-	void OnJumpLongButton() override;
+	void OnJumpHighButton() override {}
+	void OnJumpLongButton() override {}
+	void OnStrongAttackButton() override {}
 	void OnStrongAttackButtonReleased() override;
+	void OnFastAttackButton() override {}
 
 	void OnLeavingGround() override;
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_knee.mesh"); }

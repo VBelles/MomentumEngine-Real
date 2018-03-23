@@ -18,12 +18,12 @@ void LandingActionState::update (float delta) {
 
 	if (timer.elapsed() >= landingLagTime) {
 		if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
-			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Idle);
+			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else {
 			velocityVector->x = GetPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
 			velocityVector->z = GetPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
-			GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Walk);
+			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Walk);
 		}
 	}
 }
@@ -48,17 +48,17 @@ void LandingActionState::OnStateExit(IActionState * nextState) {
 
 void LandingActionState::OnJumpHighButton() {
 	SetFinalRotationAndVelocity();
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void LandingActionState::OnJumpLongButton() {
 	SetFinalRotationAndVelocity();
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void LandingActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void LandingActionState::SetFinalRotationAndVelocity() {

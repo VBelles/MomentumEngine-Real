@@ -12,13 +12,11 @@ void StrongAttackActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
 	}
 	else {
 		if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-			GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-			GetPlayerModel()->lockMovementState = false;
-			GetPlayerModel()->lockWalk = false;
+			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 			timer.reset();
@@ -60,25 +58,15 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
-	deltaMovement.y = GetPlayerModel()->movementState->GetDeltaMovement().y;
 	timer.reset();
-	GetPlayerModel()->lockMovementState = true;
-	GetPlayerModel()->lockWalk = true;
 }
 
 void StrongAttackActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	GetPlayerModel()->movementState->SetPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 	dbg("Finish strong Attack\n");
-}
-
-void StrongAttackActionState::OnJumpHighButton() {
-}
-
-void StrongAttackActionState::OnJumpLongButton() {
 }
 
 void StrongAttackActionState::OnStrongAttackButtonReleased() {
@@ -86,7 +74,7 @@ void StrongAttackActionState::OnStrongAttackButtonReleased() {
 }
 
 void StrongAttackActionState::OnLeavingGround() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void StrongAttackActionState::OnHitboxEnter(CHandle entity) {

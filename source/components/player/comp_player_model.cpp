@@ -6,31 +6,31 @@
 #include "components/controllers/comp_camera_player.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
-#include "states/movement_states/GhostJumpWindowActionState.h"
-#include "states/movement_states/RunActionState.h"
-#include "states/movement_states/WalkActionState.h"
-#include "states/movement_states/normal_jump/JumpSquatActionState.h"
-#include "states/movement_states/normal_jump/GhostJumpSquatActionState.h"
-#include "states/movement_states/normal_jump/PropelHighActionState.h"
-#include "states/movement_states/normal_jump/AirborneNormalActionState.h"
-#include "states/movement_states/long_jump/AirborneLongActionState.h"
-#include "states/movement_states/long_jump/GhostJumpSquatLongActionState.h"
-#include "states/movement_states/long_jump/JumpSquatLongActionState.h"
-#include "states/movement_states/long_jump/PropelLongActionState.h"
-#include "states/movement_states/TurnAroundActionState.h"
-#include "states/movement_states/IdleActionState.h"
-#include "states/movement_states/LandingActionState.h"
-#include "states/movement_states/FallingAttackLandingActionState.h"
-#include "states/movement_states/wall_jump/HuggingWallActionState.h"
-#include "states/movement_states/wall_jump/HuggingWallJumpSquatActionState.h"
-#include "states/movement_states/wall_jump/AirborneWallJumpActionState.h"
-#include "states/attack_states/FastAttackActionState.h"
-#include "states/attack_states/StrongAttackActionState.h"
-#include "states/attack_states/FallingAttackActionState.h"
-#include "states/attack_states/HorizontalLauncherActionState.h"
-#include "states/attack_states/VerticalLauncherActionState.h"
-#include "states/attack_states/GrabHighActionState.h"
-#include "states/attack_states/GrabLongActionState.h"
+#include "states/base_states/GhostJumpWindowActionState.h"
+#include "states/base_states/RunActionState.h"
+#include "states/base_states/WalkActionState.h"
+#include "states/base_states/normal_jump/JumpSquatActionState.h"
+#include "states/base_states/normal_jump/GhostJumpSquatActionState.h"
+#include "states/base_states/normal_jump/PropelHighActionState.h"
+#include "states/base_states/normal_jump/AirborneNormalActionState.h"
+#include "states/base_states/long_jump/AirborneLongActionState.h"
+#include "states/base_states/long_jump/GhostJumpSquatLongActionState.h"
+#include "states/base_states/long_jump/JumpSquatLongActionState.h"
+#include "states/base_states/long_jump/PropelLongActionState.h"
+#include "states/base_states/TurnAroundActionState.h"
+#include "states/base_states/IdleActionState.h"
+#include "states/base_states/LandingActionState.h"
+#include "states/base_states/FallingAttackLandingActionState.h"
+#include "states/base_states/wall_jump/HuggingWallActionState.h"
+#include "states/base_states/wall_jump/HuggingWallJumpSquatActionState.h"
+#include "states/base_states/wall_jump/AirborneWallJumpActionState.h"
+#include "states/base_states/FallingAttackActionState.h"
+#include "states/base_states/StrongAttackActionState.h"
+#include "states/base_states/HorizontalLauncherActionState.h"
+#include "states/base_states/VerticalLauncherActionState.h"
+#include "states/concurrent_states/FastAttackActionState.h"
+#include "states/concurrent_states/GrabHighActionState.h"
+#include "states/concurrent_states/GrabLongActionState.h"
 #include "components/player/filters/PlayerFilterCallback.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
@@ -114,26 +114,26 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	return ssj;
 }
 
-void TCompPlayerModel::SetMovementState(ActionStates newState) {
-	nextMovementState = newState;
+void TCompPlayerModel::SetBaseState(ActionStates newState) {
+	nextBaseState = newState;
 }
 
-void TCompPlayerModel::ChangeMovementState(ActionStates newState) {
-	IActionState* exitingState = movementState;
-	movementState = movementStates[newState];
-	if (exitingState) exitingState->OnStateExit(movementState);
-	if (movementState) movementState->OnStateEnter(exitingState);
+void TCompPlayerModel::ChangeBaseState(ActionStates newState) {
+	IActionState* exitingState = baseState;
+	baseState = baseStates[newState];
+	if (exitingState) exitingState->OnStateExit(baseState);
+	if (baseState) baseState->OnStateEnter(exitingState);
 }
 
-void TCompPlayerModel::SetAttackState(ActionStates newState) {
-	nextAttackState = newState;
+void TCompPlayerModel::SetConcurrentState(ActionStates newState) {
+	nextConcurrentState = newState;
 }
 
-void TCompPlayerModel::ChangeAttackState(ActionStates newState) {
-	IActionState* exitingState = attackState;
-	attackState = attackStates[newState];
-	if (exitingState) exitingState->OnStateExit(attackState);
-	if (attackState) attackState->OnStateEnter(exitingState);
+void TCompPlayerModel::ChangeConcurrentState(ActionStates newState) {
+	IActionState* exitingState = concurrentState;
+	concurrentState = concurrentStates[newState];
+	if (exitingState) exitingState->OnStateExit(concurrentState);
+	if (concurrentState) concurrentState->OnStateEnter(exitingState);
 }
 
 void TCompPlayerModel::registerMsgs() {
@@ -152,10 +152,11 @@ PowerStats* TCompPlayerModel::GetPowerStats() {
 }
 
 bool TCompPlayerModel::isInState(ActionStates state) {
-	if (movementStates[state] != nullptr) {
-		return movementState == movementStates[state];
-	}else if (attackStates[state] != nullptr) {
-		return attackState == attackStates[state];
+	if (baseStates[state] != nullptr) {
+		return baseState == baseStates[state];
+	}
+	else if (concurrentStates[state] != nullptr) {
+		return concurrentState == concurrentStates[state];
 	}
 	return false;
 }
@@ -175,7 +176,7 @@ void TCompPlayerModel::OnLevelChange(const TMsgPowerLvlChange& msg) {
 }
 
 void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-    TCompRenderUI* renderUI = get<TCompRenderUI>(); 
+	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
 	myTransformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
@@ -183,56 +184,56 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	respawnPosition = GetTransform()->getPosition();
 
-    renderUI->registerOnRenderUI([&]() {
+	renderUI->registerOnRenderUI([&]() {
 
-        bool showWindow = true;
-        ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
-        ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 25, 0 + 25));
-        ImGui::SetNextWindowSize(ImVec2(200, 70));
-        ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
+		bool showWindow = true;
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
+		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 25, 0 + 25));
+		ImGui::SetNextWindowSize(ImVec2(200, 70));
+		ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 
-        //Hp bar
-        std::string hpProgressBarText = "HP: " + std::to_string(hp) + "/" + std::to_string(maxHp);
-        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 0, 255, 0 });
-        ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
-        ImGui::PopStyleColor();
+		//Hp bar
+		std::string hpProgressBarText = "HP: " + std::to_string(hp) + "/" + std::to_string(maxHp);
+		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 0, 255, 0 });
+		ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
+		ImGui::PopStyleColor();
 
-        //Power bar
-        std::string powerProgressBarText = "Power: " + std::to_string((int)GetPowerGauge()->power) + "/" + std::to_string((int)GetPowerGauge()->maxPower);
-        ImVec4 color = GetPowerGauge()->powerLevel == 1 ? ImColor{ 255, 255, 0 } : GetPowerGauge()->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
-        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-        ImGui::ProgressBar((float)GetPowerGauge()->power / GetPowerGauge()->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
-        ImGui::PopStyleColor();
+		//Power bar
+		std::string powerProgressBarText = "Power: " + std::to_string((int)GetPowerGauge()->power) + "/" + std::to_string((int)GetPowerGauge()->maxPower);
+		ImVec4 color = GetPowerGauge()->powerLevel == 1 ? ImColor{ 255, 255, 0 } : GetPowerGauge()->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
+		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
+		ImGui::ProgressBar((float)GetPowerGauge()->power / GetPowerGauge()->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
+		ImGui::PopStyleColor();
 
-        //Chrysalis counter
-        std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
-        ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
-        ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
-        ImGui::PopStyleColor();
+		//Chrysalis counter
+		std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
+		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
+		ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
+		ImGui::PopStyleColor();
 
 
-        ImGui::End();
-        ImGui::PopStyleColor();
+		ImGui::End();
+		ImGui::PopStyleColor();
 
-        if (showVictoryDialog) {
-            //-------- WIN DIALOG --------------------------------
-            ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 255 });
-            ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - 200, ImGui::GetIO().DisplaySize.y / 4));
-            ImGui::SetNextWindowSize(ImVec2(300, 200));
-            ImGui::Begin("victoryWindow", &showVictoryDialog, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-            ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path to the final boss!\n\n\n");
-            ImGui::TextUnformatted("You can keep exploring and see\n\nif you can collect the other two.\n");
-            ImGui::End();
-            ImGui::PopStyleColor();
-        }
+		if (showVictoryDialog) {
+			//-------- WIN DIALOG --------------------------------
+			ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 255 });
+			ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - 200, ImGui::GetIO().DisplaySize.y / 4));
+			ImGui::SetNextWindowSize(ImVec2(300, 200));
+			ImGui::Begin("victoryWindow", &showVictoryDialog, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
+			ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path to the final boss!\n\n\n");
+			ImGui::TextUnformatted("You can keep exploring and see\n\nif you can collect the other two.\n");
+			ImGui::End();
+			ImGui::PopStyleColor();
+		}
 
-        if (!CApp::get().showDebug) return;
+		if (!CApp::get().showDebug) return;
 
-        ImGui::Begin("Params Main Character", &showWindow);
+		ImGui::Begin("Params Main Character", &showWindow);
 		debugInMenu();
-        ImGui::End();
-    });
-   
+		ImGui::End();
+	});
+
 
 	strongAttackHitbox = getEntityByName("Strong attack hitbox");
 	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
@@ -240,7 +241,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
 
-	movementStates = {
+	baseStates = {
 		{ ActionStates::Idle, new IdleActionState(CHandle(this)) },
 	{ ActionStates::JumpSquat, new JumpSquatActionState(CHandle(this)) },
 	{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(CHandle(this)) },
@@ -254,28 +255,28 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::TurnAround, new TurnAroundActionState(CHandle(this)) },
 	{ ActionStates::Landing, new LandingActionState(CHandle(this)) },
 	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(CHandle(this), fallingAttackLandingHitbox) },
-    { ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },
-    { ActionStates::PropelLong, new PropelLongActionState(CHandle(this)) },
+	{ ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },
+	{ ActionStates::PropelLong, new PropelLongActionState(CHandle(this)) },
 	{ ActionStates::HuggingWall, new HuggingWallActionState(CHandle(this)) },
 	{ ActionStates::HuggingWallJumpSquat, new HuggingWallJumpSquatActionState(CHandle(this)) },
 	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(CHandle(this)) },
-    };
+	{ ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
+	{ ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
+	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
+	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
+	};
 
-    attackStates = {
-        { ActionStates::Idle, nullptr },
-    { ActionStates::FastAttack, new FastAttackActionState(CHandle(this), strongAttackHitbox) },
-    { ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
-    { ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
-    { ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
-    { ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
-    { ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
-    { ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
-    };
-    nextMovementState = ActionStates::Idle;
-    nextAttackState = ActionStates::Idle;
-    ChangeMovementState(ActionStates::Idle);
-    ChangeAttackState(ActionStates::Idle);
-    currentPowerStats = ssj1;
+	concurrentStates = {
+		{ ActionStates::Idle, nullptr },
+	{ ActionStates::FastAttack, new FastAttackActionState(CHandle(this), strongAttackHitbox) },
+	{ ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
+	{ ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
+	};
+	nextBaseState = ActionStates::Idle;
+	nextConcurrentState = ActionStates::Idle;
+	ChangeBaseState(ActionStates::Idle);
+	ChangeConcurrentState(ActionStates::Idle);
+	currentPowerStats = ssj1;
 
 	playerFilterCallback = new PlayerFilterCallback(CHandle(this));
 }
@@ -307,25 +308,25 @@ void TCompPlayerModel::update(float dt) {
 		showVictoryDialog = false;
 	}
 
-	movementState->update(dt);
-	if (attackState != attackStates[ActionStates::Idle]) {
-		attackState->update(dt);
+	baseState->update(dt);
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->update(dt);
 	}
 	if (!lockWalk) {
-		deltaMovement = movementState->GetDeltaMovement();
+		deltaMovement = baseState->GetDeltaMovement();
 	}
-	else if (attackState != attackStates[ActionStates::Idle]) {
-		deltaMovement = attackState->GetDeltaMovement();
+	else if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		deltaMovement = concurrentState->GetDeltaMovement();
 	}
 
 	ApplyGravity(dt);
 	UpdateMovement(dt, deltaMovement);
 
-	if (movementState != movementStates[nextMovementState]) {
-		ChangeMovementState(nextMovementState);
+	if (baseState != baseStates[nextBaseState]) {
+		ChangeBaseState(nextBaseState);
 	}
-	if (attackState != attackStates[nextAttackState]) {
-		ChangeAttackState(nextAttackState);
+	if (concurrentState != concurrentStates[nextConcurrentState]) {
+		ChangeConcurrentState(nextConcurrentState);
 	}
 
 }
@@ -352,12 +353,12 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 		physx::PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
-	if (dynamic_cast<AirborneActionState*>(movementState)) {//NULL si no lo consigue
+	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue
 		if (isGrounded) {
 			isTouchingCeiling = false;
-			(static_cast<AirborneActionState*>(movementState))->OnLanding();
-			if (attackState != attackStates[ActionStates::Idle]) {
-				(static_cast<AirborneActionState*>(attackState))->OnLanding();
+			(static_cast<AirborneActionState*>(baseState))->OnLanding();
+			if (concurrentState != concurrentStates[ActionStates::Idle]) {
+				(static_cast<AirborneActionState*>(concurrentState))->OnLanding();
 			}
 		}
 		if (!isTouchingCeiling) {
@@ -367,10 +368,10 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 			}
 		}
 	}
-	else if (dynamic_cast<GroundedActionState*>(movementState)) {
+	else if (dynamic_cast<GroundedActionState*>(baseState)) {
 		if (!isGrounded) {
 			if (!isAttachedToPlatform)//What a beautiful hack
-				(static_cast<GroundedActionState*>(movementState))->OnLeavingGround();
+				(static_cast<GroundedActionState*>(baseState))->OnLeavingGround();
 		}
 		else {
 			//Si sigue en el suelo anulamos la velocidad ganada por la gravedad
@@ -382,13 +383,13 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 //Aqu\ED llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
-		movementState->SetMovementInput(input);
+		baseState->SetMovementInput(input);
 	}
 	else {
-		movementState->SetMovementInput(VEC2::Zero);
+		baseState->SetMovementInput(VEC2::Zero);
 	}
-	if (!lockAttackState && attackState != attackStates[ActionStates::Idle]) {
-		(static_cast<AirborneActionState*>(attackState))->SetMovementInput(input);
+	if (!lockConcurrentState && concurrentState != concurrentStates[ActionStates::Idle]) {
+		(static_cast<AirborneActionState*>(concurrentState))->SetMovementInput(input);
 	}
 }
 
@@ -401,70 +402,72 @@ TCompCamera* TCompPlayerModel::GetCamera() {
 
 
 void TCompPlayerModel::JumpButtonPressed() {
-	if (!lockMovementState) {
-		movementState->OnJumpHighButton();
+	if (!lockBaseState) {
+		baseState->OnJumpHighButton();
 	}
 	else {
-		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnJumpHighButton();
+		if (concurrentState != concurrentStates[ActionStates::Idle]) {
+			concurrentState->OnJumpHighButton();
 		}
 	}
 }
 
 void TCompPlayerModel::JumpButtonReleased() {
-	if (!lockMovementState) {
-		movementState->OnJumpHighButtonReleased();
+	if (!lockBaseState) {
+		baseState->OnJumpHighButtonReleased();
 	}
 	else {
-		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnJumpHighButtonReleased();
+		if (concurrentState != concurrentStates[ActionStates::Idle]) {
+			concurrentState->OnJumpHighButtonReleased();
 		}
 	}
 }
 
 void TCompPlayerModel::LongJumpButtonPressed() {
-	if (!lockMovementState) {
-		movementState->OnJumpLongButton();
+	if (!lockBaseState) {
+		baseState->OnJumpLongButton();
 	}
 	else {
-		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnJumpLongButton();
+		if (concurrentState != concurrentStates[ActionStates::Idle]) {
+			concurrentState->OnJumpLongButton();
 		}
 	}
 }
 
 void TCompPlayerModel::FastAttackButtonPressed() {
-	if (!lockAttackState) {
-		movementState->OnFastAttackButton();
-		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnFastAttackButton();
-		}
+	if (!lockBaseState) {
+		baseState->OnFastAttackButton();
+	}
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->OnFastAttackButton();
 	}
 }
 
 void TCompPlayerModel::FastAttackButtonReleased() {
-	//if (!lockAttackState) {
-	if (attackState != attackStates[ActionStates::Idle]) {
-		attackState->OnFastAttackButtonReleased();
+	if (!lockBaseState) {
+		baseState->OnFastAttackButtonReleased();
 	}
-	//}
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->OnFastAttackButtonReleased();
+	}
 }
 
 void TCompPlayerModel::StrongAttackButtonPressed() {
-	if (!lockAttackState) {
-		movementState->OnStrongAttackButton();
-		if (attackState != attackStates[ActionStates::Idle]) {
-			attackState->OnStrongAttackButton();
-		}
+	if (!lockBaseState) {
+		baseState->OnStrongAttackButton();
+	}
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->OnStrongAttackButton();
 	}
 }
 
 void TCompPlayerModel::StrongAttackButtonReleased() {
-	//if (!lockAttackState) {
-	if (attackState != attackStates[ActionStates::Idle]) {
-		attackState->OnStrongAttackButtonReleased();
+	if (!lockBaseState) {
+		baseState->OnStrongAttackButtonReleased();
 	}
-	//}
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->OnStrongAttackButtonReleased();
+	}
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
@@ -474,9 +477,9 @@ void TCompPlayerModel::CenterCameraButtonPressed() {
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
-	if (!lockAttackState) {
-		//attackState->OnReleasePower();
-		GetPowerGauge()->ReleasePower();
+	GetPowerGauge()->ReleasePower();
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		//concurrentState->OnReleasePower();
 	}
 }
 
@@ -485,7 +488,7 @@ void TCompPlayerModel::GainPowerButtonPressed() {
 }
 
 bool TCompPlayerModel::IsAttackFree() {
-	return (attackState == attackStates[ActionStates::Idle]);
+	return (concurrentState == concurrentStates[ActionStates::Idle]);
 }
 
 void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
@@ -498,10 +501,10 @@ void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
 }
 
 void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
-	if (attackState != attackStates[ActionStates::Idle]) {
-		attackState->OnHitboxEnter(msg.h_other_entity);
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->OnHitboxEnter(msg.h_other_entity);
 	}
-	movementState->OnHitboxEnter(msg.h_other_entity);
+	baseState->OnHitboxEnter(msg.h_other_entity);
 }
 
 void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
@@ -520,8 +523,8 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 		GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 		velocityVector = VEC3(0, 0, 0);
 
-		SetAttackState(ActionStates::Idle);
-		SetMovementState(ActionStates::AirborneNormal);
+		SetConcurrentState(ActionStates::Idle);
+		SetBaseState(ActionStates::AirborneNormal);
 	}
 }
 
@@ -530,8 +533,8 @@ void TCompPlayerModel::OnDead() {
 	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 
-	SetAttackState(ActionStates::Idle);
-	SetMovementState(ActionStates::AirborneNormal);
+	SetConcurrentState(ActionStates::Idle);
+	SetBaseState(ActionStates::AirborneNormal);
 	hp = maxHp;
 	GetPowerGauge()->ResetPower();
 }
@@ -541,17 +544,17 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 
 	if (!isGrounded) {
 		VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
-		
+
 		//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 		//dbg("%f\n", deg2rad(pitch));
-		
-		VEC3 worldInput = GetCamera()->TransformToWorld(movementState->GetMovementInput());
+
+		VEC3 worldInput = GetCamera()->TransformToWorld(baseState->GetMovementInput());
 		if (worldInput.Dot(-hitNormal) >= huggingWallAttachThreshold) {
 			float pitch = asin(-msg.hit.worldNormal.y);
 			if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
-				HuggingWallActionState* actionState = GetMovementState<HuggingWallActionState*>(ActionStates::HuggingWall);
+				HuggingWallActionState* actionState = GetBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
 				actionState->SetHit(msg.hit);
-				SetMovementState(ActionStates::HuggingWall);
+				SetBaseState(ActionStates::HuggingWall);
 			}
 		}
 	}

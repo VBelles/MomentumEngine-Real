@@ -31,10 +31,10 @@ void IdleActionState::update (float delta) {
 
 	VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 	if (isTurnAround) {
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::TurnAround);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::TurnAround);
 	}
 	else if (horizontalVelocity.Length() > 0.f) {
-		GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Walk);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Walk);
 	}
 }
 
@@ -48,14 +48,14 @@ void IdleActionState::OnStateExit(IActionState * nextState) {
 }
 
 void IdleActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void IdleActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void IdleActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }

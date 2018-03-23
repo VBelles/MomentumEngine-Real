@@ -4,7 +4,7 @@
 #include "../GroundedActionState.h"
 
 
-class VerticalLauncherActionState : public GroundedActionState {
+class HorizontalLauncherActionState : public GroundedActionState {
 	CTimer timer;
 	int warmUpFrames = 5;
 	int activeFrames = 8;
@@ -22,15 +22,16 @@ class VerticalLauncherActionState : public GroundedActionState {
 	AttackPhases phase = AttackPhases::Startup;
 
 public:
-	VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);
+	HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
-	void SetMovementInput(VEC2 input) override;
-	void OnJumpHighButton() override;
-	void OnJumpLongButton() override;
+	void OnJumpHighButton() override {}
+	void OnJumpLongButton() override {}
+	void OnStrongAttackButton() override {}
+	void OnFastAttackButton() override {}
 
 	void OnLeavingGround() override;
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_vertical_launcher.mesh"); }
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_horizontal_launcher.mesh"); }
 	void OnHitboxEnter(CHandle entity) override;
 };

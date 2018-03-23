@@ -10,12 +10,11 @@ FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle 
 void FastAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::HorizontalLauncher);
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::HorizontalLauncher);
 	}
 	else if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::Idle);
-		GetPlayerModel()->lockMovementState = false;
-		GetPlayerModel()->lockWalk = false;
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -44,16 +43,18 @@ void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
 	timer.reset();
-	GetPlayerModel()->lockMovementState = true;
+	GetPlayerModel()->lockBaseState = true;
 	GetPlayerModel()->lockWalk = false;
 }
 
 void FastAttackActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	GetPlayerModel()->movementState->SetPose();
+	GetPlayerModel()->baseState->SetPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
+	GetPlayerModel()->lockBaseState = false;
+	GetPlayerModel()->lockWalk = false;
 	dbg("Finish fast Attack\n");
 }
 
@@ -72,7 +73,7 @@ void FastAttackActionState::OnFastAttackButtonReleased() {
 }
 
 void FastAttackActionState::OnLeavingGround() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void FastAttackActionState::OnHitboxEnter(CHandle entity) {
