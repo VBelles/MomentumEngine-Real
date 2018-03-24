@@ -35,7 +35,7 @@ struct AttackInfo {
 	Grab* grab = nullptr;
 	Propel* propel = nullptr;
 
-	~AttackInfo() {
+	void release() {
 		delete stun;
 		delete verticalLauncher;
 		delete horizontalLauncher;

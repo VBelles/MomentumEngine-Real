@@ -124,6 +124,13 @@
     <ClCompile Include="components\ia\ai_flying_enemy.cpp" />
     <ClCompile Include="components\ia\ai_melee_enemy.cpp" />
     <ClCompile Include="components\ia\ai_patrol.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeAction.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodePriority.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeRandom.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeSequence.cpp" />
+    <ClCompile Include="components\ia\behavior tree\IBehaviorTreeNode.cpp" />
+    <ClCompile Include="components\ia\behavior tree\IBehaviorTree.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
     <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
@@ -268,6 +275,13 @@
     <ClInclude Include="components\ia\ai_flying_enemy.h" />
     <ClInclude Include="components\ia\ai_melee_enemy.h" />
     <ClInclude Include="components\ia\ai_patrol.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeAction.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodePriority.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeRandom.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeSequence.h" />
+    <ClInclude Include="components\ia\behavior tree\IBehaviorTreeNode.h" />
+    <ClInclude Include="components\ia\behavior tree\IBehaviorTree.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
     <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />

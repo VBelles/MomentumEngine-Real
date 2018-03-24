@@ -110,6 +110,15 @@
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="windows\app.cpp" />
+    <ClCompile Include="components\player\states\movement_states\long_jump\PropelLongActionState.cpp" />
+    <ClCompile Include="components\player\states\movement_states\normal_jump\PropelHighActionState.cpp" />
+    <ClCompile Include="components\ia\behavior tree\IBehaviorTree.cpp" />
+    <ClCompile Include="components\ia\behavior tree\IBehaviorTreeNode.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeAction.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeSequence.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodePriority.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeRandom.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabActionState.cpp" />
@@ -309,6 +318,15 @@
     <ClInclude Include="components\player\states\base_states\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\ReleasePowerAirActionState.h" />
     <ClInclude Include="components\player\states\base_states\ReleasePowerGroundActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\long_jump\PropelLongActionState.h" />
+    <ClInclude Include="components\player\states\movement_states\normal_jump\PropelHighActionState.h" />
+    <ClInclude Include="components\ia\behavior tree\IBehaviorTree.h" />
+    <ClInclude Include="components\ia\behavior tree\IBehaviorTreeNode.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeAction.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeSequence.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodePriority.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeRandom.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
