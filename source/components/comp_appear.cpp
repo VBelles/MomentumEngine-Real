@@ -10,7 +10,7 @@ void TCompAppear::debugInMenu() {
 }
 
 void TCompAppear::registerMsgs() {
-	DECL_MSG(TCompAppear, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompAppear, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(TCompAppear, TMsgMechanismSystemActivated, onActivate);
 }
 
@@ -20,11 +20,12 @@ void TCompAppear::load(const json& j, TEntityParseContext& ctx) {
 void TCompAppear::update(float dt) {
 }
 
-void TCompAppear::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-	TCompCollider *collider = get<TCompCollider>();
-	collider->disable();
+void TCompAppear::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 	TCompRender *render = get<TCompRender>();
 	render->disable();
+	//Si se hace disable del collider aquí la escena se vuelve oscura
+	//TCompCollider *collider = get<TCompCollider>();
+	//collider->disable();
 }
 
 void TCompAppear::onActivate(const TMsgMechanismSystemActivated & msg) {

@@ -13,6 +13,8 @@
 		"platform_move",
 		"collectable",
 		"mechanism",
+		"mechanism_system",
+		"appear",
 		"destroyCondition",
     "skeleton",
 		"bone_tracker",

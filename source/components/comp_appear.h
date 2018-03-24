@@ -12,6 +12,6 @@ public:
     void load(const json& j, TEntityParseContext& ctx);
     void update(float dt);
 
-	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onActivate(const TMsgMechanismSystemActivated & msg);
 };
