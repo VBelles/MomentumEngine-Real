@@ -39,16 +39,16 @@ CBehaviorTreeMeleeEnemy::CBehaviorTreeMeleeEnemy()
 	addChild("meleeEnemy", "dead", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::deadCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::dead);
 
 	addChild("meleeEnemy", "stunned", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::stunCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::stunned);
-	
+
 	addChild("meleeEnemy", "airborne", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::airborneCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::airborne);
 
-	//addChild("meleeEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::returnToSpawn);
+	addChild("meleeEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::returnToSpawn);
 
-	//addChild("meleeEnemy", "chase", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::chaseCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::chase);
+	addChild("meleeEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::combatCondition, nullptr);
+	addChild("combat", "idleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::idleWar);
+	addChild("combat", "attack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::attack);
 
-	//addChild("meleeEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::combatCondition, nullptr);
-	//addChild("combat", "idleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::idleWar);
-	//addChild("combat", "attack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::attack);
+	addChild("meleeEnemy", "chase", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::chaseCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::chase);
 
 	addChild("meleeEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::idle);
 }
@@ -99,15 +99,13 @@ int CBehaviorTreeMeleeEnemy::dead(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
-	grabbedTimer.reset();
+	timer.reset();
 	grabbedDuration = receivedAttack.grab->duration;
-	getCollider()->disable();
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
-	if (grabbedTimer.elapsed() >= grabbedDuration) {
-		getCollider()->enable();
+	if (timer.elapsed() >= grabbedDuration) {
 		return Leave;
 	}
 	else {
@@ -117,9 +115,8 @@ int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 
 int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
 	velocityVector = receivedAttack.propel->velocity;
-	getCollider()->enable();
 
-	propelTimer.reset();
+	timer.reset();
 
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -127,7 +124,7 @@ int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::propelled(float delta) {
-	if (propelTimer.elapsed() < propelDuration) {
+	if (timer.elapsed() < propelDuration) {
 		VEC3 deltaMovement = velocityVector * delta;
 		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 		return Stay;
@@ -148,10 +145,10 @@ int CBehaviorTreeMeleeEnemy::horizontalLaunched(float delta) {
 	updateGravity(delta);
 	VEC3 deltaMovement = velocityVector * delta;
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, 0, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	if (getTransform()->getPosition().y + deltaMovement.y - initialLaunchPos.y <= 0.001) {
+	if (getTransform()->getPosition().y + deltaMovement.y - initialLaunchPos.y <= 0.001 || grounded) {
 		velocityVector.x = 0;
 		velocityVector.z = 0;
-		launchedFloatingTimer.reset();
+		timer.reset();
 		return Leave;
 	}
 	else {
@@ -168,7 +165,7 @@ int CBehaviorTreeMeleeEnemy::onVerticalLaunch(float delta) {
 int CBehaviorTreeMeleeEnemy::verticalLaunched(float delta) {
 	updateGravity(delta);
 	if (velocityVector.y <= 0) {
-		launchedFloatingTimer.reset();
+		timer.reset();
 		return Leave;
 	}
 	else {
@@ -177,7 +174,7 @@ int CBehaviorTreeMeleeEnemy::verticalLaunched(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::floating(float delta) {
-	if (launchedFloatingTimer.elapsed() > floatingDuration) {
+	if (timer.elapsed() > floatingDuration) {
 		return Leave;
 	}
 	else {
@@ -222,22 +219,61 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 
 	TCompRender *render = get<TCompRender>();
 	render->enable();
+
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
-	return Leave;
+	updateGravity(delta);
+
+	rotateTowards(delta, spawnPosition, rotationSpeed);
+
+	//Move forward
+	VEC3 myPosition = getTransform()->getPosition();
+	VEC3 myFront = getTransform()->getFront();
+	myFront.Normalize();
+	VEC3 deltaMovement = myFront * movementSpeed * delta;
+	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+
+	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	if (VEC3::Distance(myPosition, spawnPosition) < 2.f || (distance < fovChaseDistance + 5.f && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
+		return Leave;
+	}
+	else {
+		return Stay;
+	}
 }
 
 int CBehaviorTreeMeleeEnemy::chase(float delta) {
+	updateGravity(delta);
+
+	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
+
+	//Move forward
+	VEC3 myPosition = getTransform()->getPosition();
+	VEC3 myFront = getTransform()->getFront();
+	myFront.Normalize();
+	VEC3 deltaMovement = myFront * movementSpeed * delta;
+	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
+	updateGravity(delta);
+	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::attack(float delta) {
+	updateGravity(delta);
+	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
+	if (attackTimer.elapsed() > attackCooldown) {
+		attackTimer.reset();
+		TMsgAttackHit msg = {};
+		msg.attacker = CHandle(this);
+		msg.info.damage = 1.f;
+		getPlayerEntity()->sendMsg(msg);
+	}
 	return Leave;
 }
 
@@ -288,12 +324,13 @@ bool CBehaviorTreeMeleeEnemy::returnToSpawnCondition(float delta) {
 
 bool CBehaviorTreeMeleeEnemy::chaseCondition(float delta) {
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distance < smallChaseRadius || (distance < fovChaseDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov));
+	bool isPlayerInFov = getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
+	return distance > minCombatDistance && (distance < smallChaseRadius || (distance < fovChaseDistance && isPlayerInFov));
 }
 
 bool CBehaviorTreeMeleeEnemy::combatCondition(float delta) {
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distance < rangeRadius && getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
+	return distance < maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
 }
 
 void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -316,8 +353,14 @@ void CBehaviorTreeMeleeEnemy::onRespawn(const TMsgRespawn& msg) {
 void CBehaviorTreeMeleeEnemy::updateGravity(float delta) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	float deltaY = calculateVerticalDeltaMovement(delta, gravity, maxVelocity.y);
-	getCollider()->controller->move(physx::PxVec3(0, deltaY, 0), 0.f, delta, physx::PxControllerFilters());
-	velocityVector.y += gravity * delta;
+	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(physx::PxVec3(0, deltaY, 0), 0.f, delta, physx::PxControllerFilters());
+	grounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
+	if (grounded) {
+		velocityVector.y = 0;
+	}
+	else {
+		velocityVector.y += gravity * delta;
+	}
 }
 
 float CBehaviorTreeMeleeEnemy::calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical) {
@@ -326,6 +369,20 @@ float CBehaviorTreeMeleeEnemy::calculateVerticalDeltaMovement(float delta, float
 	//clampear distancia vertical
 	resultingDeltaMovement = resultingDeltaMovement > maxVelocityVertical * delta ? maxVelocityVertical * delta : resultingDeltaMovement;
 	return resultingDeltaMovement;
+}
+
+void CBehaviorTreeMeleeEnemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
+	float deltaYaw = getTransform()->getDeltaYawToAimTo(targetPos);
+	float y, p, r;
+	getTransform()->getYawPitchRoll(&y, &p, &r);
+	float rotationIncrement = rotationSpeed * delta;
+	if (abs(deltaYaw) >= rotationIncrement) {
+		y += (deltaYaw > 0) ? (y + rotationIncrement) : (y - rotationIncrement);
+	}
+	else {
+		y += deltaYaw;
+	}
+	getTransform()->setYawPitchRoll(y, p, r);
 }
 
 TCompTransform* CBehaviorTreeMeleeEnemy::getTransform() {
