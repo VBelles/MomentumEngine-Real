@@ -32,7 +32,7 @@ void VerticalLauncherActionState::update (float delta) {
 
 void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	dbg("Vertical Launcher\n");
+	//dbg("Vertical Launcher\n");
 	phase = AttackPhases::Startup;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
@@ -46,7 +46,7 @@ void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	dbg("Finish Vertical Launcher\n");
+	//dbg("Finish Vertical Launcher\n");
 }
 
 void VerticalLauncherActionState::SetMovementInput(VEC2 input) {

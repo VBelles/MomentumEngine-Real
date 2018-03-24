@@ -35,7 +35,7 @@ void FastAttackActionState::update(float delta) {
 
 void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	dbg("Fast Attack\n");
+	//dbg("Fast Attack\n");
 	phase = AttackPhases::Launch;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
@@ -55,7 +55,7 @@ void FastAttackActionState::OnStateExit(IActionState * nextState) {
 	hitbox->disable();
 	GetPlayerModel()->lockBaseState = false;
 	GetPlayerModel()->lockWalk = false;
-	dbg("Finish fast Attack\n");
+	//dbg("Finish fast Attack\n");
 }
 
 void FastAttackActionState::OnFastAttackButtonReleased() {

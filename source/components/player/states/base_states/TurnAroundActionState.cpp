@@ -44,7 +44,7 @@ void TurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	float y, p, r;
 	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	rotationSpeed = (exitYaw - y) / turnAroundTime;
-	dbg("Entrando en turn around: %d\n", GetPlayerModel()->frame);
+	
 	//deltaMovement = lastState->GetDeltaMovement();
 }
 

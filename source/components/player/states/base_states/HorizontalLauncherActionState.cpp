@@ -33,7 +33,7 @@ void HorizontalLauncherActionState::update (float delta) {
 
 void HorizontalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	dbg("Horizontal Launcher\n");
+	//dbg("Horizontal Launcher\n");
 	phase = AttackPhases::Startup;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
@@ -49,7 +49,7 @@ void HorizontalLauncherActionState::OnStateExit(IActionState * nextState) {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	dbg("Finish Horizontal Launcher\n");
+	//dbg("Finish Horizontal Launcher\n");
 }
 
 void HorizontalLauncherActionState::OnLeavingGround() {

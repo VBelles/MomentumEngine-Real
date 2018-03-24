@@ -25,12 +25,12 @@ void FallingAttackLandingActionState::OnStateEnter(IActionState * lastState) {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->enable();
 	hitboxTimer.reset();
-	dbg("Entrando en falling attack landing\n");
+	//dbg("Entrando en falling attack landing\n");
 }
 
 void FallingAttackLandingActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de falling attack landing\n");
+	//dbg("Saliendo de falling attack landing\n");
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();

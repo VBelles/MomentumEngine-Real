@@ -164,16 +164,10 @@ bool TCompPlayerModel::isInState(ActionStates state) {
 }
 
 void TCompPlayerModel::OnLevelChange(const TMsgPowerLvlChange& msg) {
-	dbg("Power changed: %d\n", msg.powerLvl);
-
-	if (msg.powerLvl == 1) {
-		currentPowerStats = ssj1;
-	}
-	else if (msg.powerLvl == 2) {
-		currentPowerStats = ssj2;
-	}
-	else if (msg.powerLvl == 3) {
-		currentPowerStats = ssj3;
+	switch (msg.powerLvl) {
+	case 1: currentPowerStats = ssj1; break;
+	case 2: currentPowerStats = ssj2; break;
+	case 3: currentPowerStats = ssj3; break;
 	}
 }
 
@@ -285,6 +279,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	currentPowerStats = ssj1;
 
 	playerFilterCallback = new PlayerFilterCallback(CHandle(this));
+
 }
 
 void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
@@ -309,7 +304,7 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 }
 
 void TCompPlayerModel::update(float dt) {
-	frame++;
+
 	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
 		showVictoryDialog = false;
 	}
@@ -519,7 +514,7 @@ void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
 }
 
 void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
-	dbg("out of bounds \n");
+	//dbg("out of bounds \n");
 	hp -= 1;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -536,7 +531,7 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 }
 
 void TCompPlayerModel::OnDead() {
-	dbg("YOU DIED!\n");
+	//dbg("YOU DIED!\n");
 	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 

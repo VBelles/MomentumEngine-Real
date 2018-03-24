@@ -49,7 +49,7 @@ void StrongAttackActionState::update (float delta) {
 
 void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
-	dbg("Strong Attack\n");
+	//dbg("Strong Attack\n");
 	phase = AttackPhases::Launch;
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
@@ -67,7 +67,7 @@ void StrongAttackActionState::OnStateExit(IActionState * nextState) {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	dbg("Finish strong Attack\n");
+	//dbg("Finish strong Attack\n");
 }
 
 void StrongAttackActionState::OnStrongAttackButtonReleased() {

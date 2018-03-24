@@ -284,7 +284,7 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const PxContactPai
 		if (colliderHandle.isValid()) {
 			CEntity* e = colliderHandle.getOwner();
 			if (strcmp(e->getName(), "The Player") != 0) {
-				dbg("THE PLAYER!!\n");
+				
 			}
 		}
 	}
