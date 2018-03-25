@@ -9,6 +9,10 @@ private:
 	bool isClimbing = true;
 	CTimer climbTimer;
 	float climbTime = 0.4f;
+	CTimer releaseWallTimer;
+	float releaseWallTime = 0.14f;
+	float releaseWallMinDotProduct = 0.5f;
+	bool isTryingToRelease = false;
 
 	PxControllerShapeHit hit;
 	PxVec3 wallNormal;
