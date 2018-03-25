@@ -28,13 +28,13 @@ void HuggingWallActionState::update (float delta) {
 			if(climbTimer.elapsed() >= climbTime){
 				isClimbing = false;
 				TurnAround();
-				GetPlayerModel()->SetGravityMultiplier(8.f);
-				GetPlayerModel()->maxVerticalSpeed = 5.f;
+				GetPlayerModel()->SetGravityMultiplier(slideGravityMultiplier);
+				GetPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
 			}
 		}
 	}
 	else {
-		if (isClimbing) *velocityVector += GetPlayerTransform()->getFront() * 2.2f;
+		if (isClimbing) *velocityVector += GetPlayerTransform()->getFront() * climbLedgeExitSpeed;
 		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 }
@@ -46,8 +46,8 @@ void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 	if (CheckIfHuggingWall(wallDirection)) {
 		*velocityVector = VEC3::Zero;
 		isClimbing = true;
-		GetPlayerModel()->SetGravityMultiplier(-4.f);
-		GetPlayerModel()->maxVerticalSpeed = 6.f;
+		GetPlayerModel()->SetGravityMultiplier(climbingGravityMultiplier);
+		GetPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
 		SetPose();
 		climbTimer.reset();
 	}
@@ -80,12 +80,11 @@ bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	PxRaycastHit hitBuffer[bufferSize];
 	PxRaycastBuffer buf(hitBuffer, bufferSize);
 
-	PxReal maxDistance = 1.f;
 	PxVec3 unitDir = { wallDirection.x, 0.f, wallDirection.z};
 
-	bool status = scene->raycast(origin, unitDir, maxDistance, buf);
+	bool status = scene->raycast(origin, unitDir, maxRaycastDistance, buf);
 	PxRaycastHit nearest = buf.touches[0];
-	nearest.distance = maxDistance + 1;
+	nearest.distance = maxRaycastDistance + 1;
 	for (PxU32 i = 0; i < buf.nbTouches; i++) {
 		if (!buf.touches[i].shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
 			if (buf.touches[i].distance < nearest.distance) {

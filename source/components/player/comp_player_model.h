@@ -110,6 +110,7 @@ public:
 
 
 	CHandle grabTarget;
+	PxRigidActor* lastWallEntered;
 
 	
 
@@ -144,7 +145,6 @@ private:
 	void OnLevelChange(const TMsgPowerLvlChange& msg);
 
 	PowerStats* loadPowerStats(const json& j);
-
 
 	PlayerFilterCallback* playerFilterCallback;
 

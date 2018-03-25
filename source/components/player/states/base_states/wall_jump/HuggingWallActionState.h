@@ -14,6 +14,14 @@ private:
 	float releaseWallMinDotProduct = 0.5f;
 	bool isTryingToRelease = false;
 
+	float climbingGravityMultiplier = -4.f;//Negativo
+	float climbingMaxSpeed = 6.f;
+	float slideGravityMultiplier = 8.f;
+	float slideMaxSpeed = 5.f;
+
+	float climbLedgeExitSpeed = 2.2f;
+
+	PxReal maxRaycastDistance = 1.f;
 	PxControllerShapeHit hit;
 	PxVec3 wallNormal;
 	VEC3 wallDirection;//Front or back
