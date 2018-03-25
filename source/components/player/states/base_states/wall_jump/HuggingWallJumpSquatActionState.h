@@ -8,8 +8,6 @@ protected:
 	CTimer timer;
 	int endingFrames = 4;
 	float endingTime;
-	VEC3 movingVelocity;
-	CHandle propelTarget;
 
 public:
 	HuggingWallJumpSquatActionState(CHandle playerModelHandle);

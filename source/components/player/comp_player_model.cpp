@@ -53,6 +53,7 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("ShortHopVelocity_Ssj1", &ssj1->shortHopVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj1", &ssj1->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("WallJumpVelocity_Ssj1", &ssj1->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	ImGui::DragFloat("Speed_Ssj2", &ssj2->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj2", &ssj2->rotationSpeed, 0.1f, 0.f, 20.f);
@@ -66,6 +67,7 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("ShortHopVelocity_Ssj2", &ssj2->shortHopVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj2", &ssj2->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("WallJumpVelocity_Ssj2", &ssj2->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	ImGui::DragFloat("Speed_Ssj3", &ssj3->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj3", &ssj3->rotationSpeed, 0.1f, 0.f, 20.f);
@@ -79,6 +81,7 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("ShortHopVelocity_Ssj3", &ssj3->shortHopVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("WallJumpVelocity_Ssj3", &ssj3->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		baseGravity = accelerationVector.y;
@@ -110,6 +113,7 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	ssj->maxVelocityVertical = j.value("maxVelocityVertical", 0.0f);
 	ssj->jumpVelocityVector = loadVEC3(j["jumpVelocity"]);
 	ssj->longJumpVelocityVector = loadVEC3(j["longJumpVelocity"]);
+	ssj->wallJumpVelocityVector = loadVEC3(j["wallJumpVelocity"]);
 	ssj->acceleration = j.value("acceleration", 0.0f);
 	ssj->deceleration = j.value("deceleration", 0.0f);
 	ssj->airAcceleration = j.value("airAcceleration", 0.0f);
@@ -370,7 +374,7 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 		if (!isTouchingCeiling) {
 			isTouchingCeiling = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
 			if (isTouchingCeiling) {
-				velocityVector.y = 0.f;
+				velocityVector.y = -1.f;
 			}
 		}
 	}
