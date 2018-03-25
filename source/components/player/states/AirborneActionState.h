@@ -18,8 +18,10 @@ protected:
 	float backwardsMaxDotProduct;
 	float sidewaysAirDriftFactor = 0.7f;
 	float sidewaysAirDriftFactorLong = 0.5f;
+	float sidewaysAirDriftFactorWall = 0.5f;
 	float backwardsAirDriftFactor = 1.0f;
 	float backwardsAirDriftFactorLong = 0.8f;
+	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
 
 public:

@@ -395,7 +395,7 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 		baseState->SetMovementInput(VEC2::Zero);
 	}
 	if (!lockConcurrentState && concurrentState != concurrentStates[ActionStates::Idle]) {
-		/*(static_cast<AirborneActionState*>(*/concurrentState/*))*/->SetMovementInput(input);
+		concurrentState->SetMovementInput(input);
 	}
 }
 
@@ -483,14 +483,13 @@ void TCompPlayerModel::CenterCameraButtonPressed() {
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
-	//GetPowerGauge()->ReleasePower();
 	baseState->OnReleasePowerButton();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->OnReleasePowerButton();
 	}
 }
 
-void TCompPlayerModel::GainPowerButtonPressed() {
+void TCompPlayerModel::GainPowerButtonPressed() {//Debug Only
 	GetPowerGauge()->GainPower();
 }
 
@@ -499,6 +498,7 @@ bool TCompPlayerModel::IsConcurrentActionFree() {
 }
 
 void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
+	//TODO Esto lo tendría que procesar el estado en concreto, por si tiene armor o algo
 	hp -= msg.info.damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -519,7 +519,6 @@ void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
 }
 
 void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
-	//dbg("out of bounds \n");
 	hp -= 1;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -529,14 +528,12 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 	else {
 		GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 		velocityVector = VEC3(0, 0, 0);
-
 		SetConcurrentState(ActionStates::Idle);
 		SetBaseState(ActionStates::AirborneNormal);
 	}
 }
 
 void TCompPlayerModel::OnDead() {
-	//dbg("YOU DIED!\n");
 	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 
@@ -548,7 +545,6 @@ void TCompPlayerModel::OnDead() {
 
 
 void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
-
 	if (!isGrounded) {
 		VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 
@@ -565,10 +561,5 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 			}
 		}
 	}
-
-
-
-
-
 }
 
