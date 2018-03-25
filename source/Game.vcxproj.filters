@@ -148,6 +148,7 @@
     <ClCompile Include="components\player\states\base_states\ReleasePowerGroundActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -327,6 +328,7 @@
     <ClInclude Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
     <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
+    <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

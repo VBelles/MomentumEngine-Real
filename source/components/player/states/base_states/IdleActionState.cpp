@@ -31,7 +31,7 @@ void IdleActionState::update (float delta) {
 
 	VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 	if (isTurnAround) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::TurnAround);
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::IdleTurnAround);
 	}
 	else if (horizontalVelocity.Length() > 0.f) {
 		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Walk);

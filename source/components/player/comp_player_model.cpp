@@ -31,6 +31,7 @@
 #include "states/base_states/VerticalLauncherActionState.h"
 #include "states/base_states/ReleasePowerGroundActionState.h"
 #include "states/base_states/JumpSquatSpringActionState.h"
+#include "states/base_states/IdleTurnAroundActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
@@ -279,6 +280,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), horizontalLauncherHitbox) },
 	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
 	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(CHandle(this)) },
+	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(CHandle(this)) },
 	};
 
 	concurrentStates = {
