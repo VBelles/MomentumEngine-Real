@@ -1,6 +1,8 @@
 clearListener()
 gc()
 
+fileIn "export_mesh.ms" -- To avoid error on first execution.
+
 -- 
 struct TJsonFormatter (
 	ofilename,			-- Name of output file
@@ -11,6 +13,11 @@ struct TJsonFormatter (
 	fn begin new_ofilename = (
 		ofilename = new_ofilename
 		fs = createFile ofilename
+		if fs == undefined then (
+			-- Avoid error if the file didn't close properly last time.
+			flush fs
+			fs = createFile ofilename
+		)
 	),
 
 	-- --------------------
@@ -752,7 +759,8 @@ struct TSceneExporter (
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles.
-TODO: Comprobar que el exportMeshObject de export_mesh.ms está accesible antes de usarlo.
+TODO: Añadir parámetros -attributes- a los objetos. Ej: HP para enemigos.
+http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_ADFD29E4_9751_4F55_98CC_F7C721C9AEE2_htm
 */
 
 /*----------------------------------------------------------------------------------
