@@ -30,6 +30,7 @@
 #include "states/base_states/HorizontalLauncherActionState.h"
 #include "states/base_states/VerticalLauncherActionState.h"
 #include "states/base_states/ReleasePowerGroundActionState.h"
+#include "states/base_states/JumpSquatSpringActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
@@ -51,6 +52,7 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Deceleration_Ssj1", &ssj1->deceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("AirAcceleration_Ssj1", &ssj1->airAcceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("ShortHopVelocity_Ssj1", &ssj1->shortHopVelocity, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("SpringJumpVelocity_Ssj1", &ssj1->springJumpVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj1", &ssj1->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("WallJumpVelocity_Ssj1", &ssj1->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
@@ -65,6 +67,7 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Deceleration_Ssj2", &ssj2->deceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("AirAcceleration_Ssj2", &ssj2->airAcceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("ShortHopVelocity_Ssj2", &ssj2->shortHopVelocity, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("SpringJumpVelocity_Ssj2", &ssj2->springJumpVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj2", &ssj2->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("WallJumpVelocity_Ssj2", &ssj2->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
@@ -79,6 +82,7 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Deceleration_Ssj3", &ssj3->deceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("AirAcceleration_Ssj3", &ssj3->airAcceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("ShortHopVelocity_Ssj3", &ssj3->shortHopVelocity, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("SpringJumpVelocity_Ssj3", &ssj3->springJumpVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("WallJumpVelocity_Ssj3", &ssj3->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
@@ -88,6 +92,7 @@ void TCompPlayerModel::debugInMenu() {
 	}
 
 	ImGui::DragFloat("WalkingSpeed", &walkingSpeed, 0.1f, 0.1f, 7.f);
+	ImGui::DragFloat("MaxVelocityUpwards", &maxVelocityUpwards, 0.1f, 10.f, 60.f);
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
@@ -96,6 +101,7 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	currentGravity = baseGravity;
 
 	walkingSpeed = j.value("walkingSpeed", 5.0f);
+	maxVelocityUpwards = j.value("maxVelocityUpwards", 45.0f);
 
 	ssj1 = loadPowerStats(j["ssj1"]);
 	ssj2 = loadPowerStats(j["ssj2"]);
@@ -118,6 +124,7 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	ssj->deceleration = j.value("deceleration", 0.0f);
 	ssj->airAcceleration = j.value("airAcceleration", 0.0f);
 	ssj->shortHopVelocity = j.value("shortHopVelocity", 0.0f);
+	ssj->springJumpVelocity = j.value("springJumpVelocity", 0.0f);
 	return ssj;
 }
 
@@ -271,6 +278,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
 	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), horizontalLauncherHitbox) },
 	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
+	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(CHandle(this)) },
 	};
 
 	concurrentStates = {

@@ -24,6 +24,7 @@ struct PowerStats {
 	float deceleration = 40.f;
 	float airAcceleration = 40.f;
 	float shortHopVelocity = 6.f;
+	float springJumpVelocity = 23.f;
 	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
 	VEC3 longJumpVelocityVector = { 0.f, 6.f, 12.f };
 	VEC3 wallJumpVelocityVector = { 0.f, 20.f, 7.f };
@@ -41,7 +42,8 @@ public:
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
 		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
-		ReleasePowerAir, ReleasePowerGround, FastAttackAir
+		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
+		IdleTurnAround
 	};
 	IActionState* baseState;
 	IActionState* concurrentState;
@@ -104,6 +106,7 @@ public:
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;
+	float maxVelocityUpwards = 45.f;
 
 	float huggingWallMinPitch = deg2rad(-25);
 	float huggingWallMaxPitch = deg2rad(5);

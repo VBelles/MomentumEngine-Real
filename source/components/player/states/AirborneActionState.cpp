@@ -67,6 +67,7 @@ void AirborneActionState::update (float delta) {
 	}
 
 	if(velocityVector->y < 0){
+		GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 		GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->fallingMultiplier);
 	}
 }
@@ -76,7 +77,7 @@ void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	enteringPowerStats = &*GetPlayerModel()->GetPowerStats();
 	isTurnAround = false;
 	turnAroundTime = turnAroundFrames * (1.f / 60);
-	GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
+	GetPlayerModel()->maxVerticalSpeed = GetPlayerModel()->maxVelocityUpwards;
 	GetPlayerModel()->ResetGravity();
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
