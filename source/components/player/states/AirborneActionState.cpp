@@ -13,7 +13,7 @@ void AirborneActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;	
 	
 	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
-	if (!GetPlayerModel()->lockWalk) {
+	if (!GetPlayerModel()->lockTurning) {
 		if (!isTurnAround) {
 			if (hasInput) {
 				if (GetPlayerTransform()->getFront().Dot(desiredDirection) > backwardsMaxDotProduct) {
@@ -100,7 +100,9 @@ void AirborneActionState::OnStrongAttackButton() {
 }
 
 void AirborneActionState::OnFastAttackButton() {
-	//TODO Ataque rápido aire
+	if (GetPlayerModel()->IsConcurrentActionFree()) {
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::FastAttackAir);
+	}
 }
 
 void AirborneActionState::OnReleasePowerButton() {

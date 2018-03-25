@@ -8,7 +8,7 @@ class GrabActionState : public AirborneActionState {
 protected:
 	CTimer timer;
 	int warmUpFrames = 2;
-	int activeFrames = 8;
+	int activeFrames = 12;
 	int endingLagFrames = 15;
 	float hitboxOutTime;
 	float hitEndTime;

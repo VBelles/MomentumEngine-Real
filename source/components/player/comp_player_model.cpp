@@ -31,6 +31,7 @@
 #include "states/base_states/VerticalLauncherActionState.h"
 #include "states/base_states/ReleasePowerGroundActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
+#include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
 #include "states/concurrent_states/GrabLongActionState.h"
 #include "states/concurrent_states/ReleasePowerAirActionState.h"
@@ -232,9 +233,12 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 
 	strongAttackHitbox = getEntityByName("Strong attack hitbox");
+	fastAttackHitbox = getEntityByName("Fast attack hitbox");
+	fastAttackAirHitbox = getEntityByName("Fast attack air hitbox");
 	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
 	fallingAttackLandingHitbox = getEntityByName("Falling attack landing hitbox");
 	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
+	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
 	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
 	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
@@ -261,13 +265,14 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
 	{ ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
 	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
-	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
+	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), horizontalLauncherHitbox) },
 	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
 	};
 
 	concurrentStates = {
 		{ ActionStates::Idle, nullptr },
-	{ ActionStates::FastAttack, new FastAttackActionState(CHandle(this), strongAttackHitbox) },
+	{ ActionStates::FastAttack, new FastAttackActionState(CHandle(this), fastAttackHitbox) },
+	{ ActionStates::FastAttackAir, new FastAttackAirActionState(CHandle(this), fastAttackAirHitbox) },
 	{ ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
 	{ ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
 	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
@@ -381,7 +386,7 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	}
 }
 
-//Aqu\ED llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
+//Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
 		baseState->SetMovementInput(input);
@@ -390,7 +395,7 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 		baseState->SetMovementInput(VEC2::Zero);
 	}
 	if (!lockConcurrentState && concurrentState != concurrentStates[ActionStates::Idle]) {
-		(static_cast<AirborneActionState*>(concurrentState))->SetMovementInput(input);
+		/*(static_cast<AirborneActionState*>(*/concurrentState/*))*/->SetMovementInput(input);
 	}
 }
 

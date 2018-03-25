@@ -103,7 +103,61 @@
 	},
 	{
 		"entity": {
+			"name": "Fast attack hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 0.7
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.6 0.7"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Fast attack air hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 0.7
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.6 0.7"
+			}
+		}
+	},
+	{
+		"entity": {
 			"name": "Vertical launcher hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 0.9
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.6 0.7"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Horizontal launcher hitbox",
 			"transform": {},
 			"collider": {
 				"shape": "sphere",

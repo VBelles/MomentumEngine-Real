@@ -17,12 +17,10 @@ void GroundedActionState::OnStateEnter(IActionState * lastState) {
 	if (currentPowerStats) GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
 	GetPlayerModel()->ResetGravity();
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
-	//dbg("Entrando en grounded\n");
 }
 
 void GroundedActionState::OnStateExit(IActionState * nextState) {
 	IActionState::OnStateExit(nextState);
-	//dbg("Saliendo de grounded\n");
 }
 
 void GroundedActionState::OnJumpHighButton() {

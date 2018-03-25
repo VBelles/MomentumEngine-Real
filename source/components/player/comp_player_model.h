@@ -40,7 +40,7 @@ public:
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
 		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
-		ReleasePowerAir, ReleasePowerGround
+		ReleasePowerAir, ReleasePowerGround, FastAttackAir
 	};
 	IActionState* baseState;
 	IActionState* concurrentState;
@@ -49,6 +49,7 @@ public:
 	
 	bool lockBaseState = false;
 	bool lockWalk = false;
+	bool lockTurning = false;
 	bool lockConcurrentState = false;
 	static void registerMsgs();
 	void debugInMenu();
@@ -153,9 +154,12 @@ private:
 	ActionStates nextConcurrentState;
 
 	CHandle strongAttackHitbox;
+	CHandle fastAttackHitbox;
+	CHandle fastAttackAirHitbox;
 	CHandle fallingAttackHitbox;
 	CHandle fallingAttackLandingHitbox;
 	CHandle verticalLauncherHitbox;
+	CHandle horizontalLauncherHitbox;
 	CHandle grabHitbox;
 	CHandle releasePowerSmallHitbox;
 	CHandle releasePowerBigHitbox;
