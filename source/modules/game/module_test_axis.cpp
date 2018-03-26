@@ -51,12 +51,6 @@ bool CModuleTestAxis::start() {
         TEntityParseContext ctx;
         parseScene(scene_name, ctx);
     }
-	//All scenes created
-	TMsgAllScenesCreated msg;
-	for (auto& comp : TCompName::all_names) {
-		CEntity* entity = comp.second.getOwner();
-		entity->sendMsg(msg);
-	}
 
     CHandle h_playerCamera = getEntityByName("player_camera");
     Engine.getCameras().setDefaultCamera(h_playerCamera);
@@ -73,6 +67,13 @@ bool CModuleTestAxis::start() {
     cb_light.activate();
     cb_object.activate();
     cb_camera.activate();
+
+	//All scenes created
+	TMsgAllScenesCreated msg;
+	for (auto& comp : TCompName::all_names) {
+		CEntity* entity = comp.second.getOwner();
+		entity->sendMsg(msg);
+	}
 
     return true;
 }

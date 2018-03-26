@@ -6,6 +6,8 @@
 class TCompDestroyCondition: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
+	bool toDestroy = false;
+
 public:
     void debugInMenu();
     static void registerMsgs();
