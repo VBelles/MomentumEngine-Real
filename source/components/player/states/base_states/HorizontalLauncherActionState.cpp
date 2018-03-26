@@ -60,6 +60,9 @@ void HorizontalLauncherActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
+
+		otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+
 		TMsgAttackHit msgAtackHit = {};
 		msgAtackHit.attacker = playerEntity;
 		msgAtackHit.info = {};

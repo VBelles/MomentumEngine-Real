@@ -3,6 +3,10 @@
 #include <string>
 #include <map>
 #include "IBehaviorTreeNode.h"
+#include "BehaviorTreeNodeRandom.h"
+#include "BehaviorTreeNodeSequence.h"
+#include "BehaviorTreeNodePriority.h"
+#include "BehaviorTreeNodeAction.h"
 
 typedef bool (IBehaviorTree::*BehaviorTreeCondition)(float delta);
 typedef int (IBehaviorTree::*BehaviorTreeAction)(float delta);

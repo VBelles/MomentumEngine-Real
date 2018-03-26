@@ -15,6 +15,8 @@ class FallingAttackActionState : public AirborneActionState {
 	CHandle hitboxHandle;
 	int damage = 3;
 
+	float powerToGet = 5000.f;
+
 public:
 	FallingAttackActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;

@@ -159,6 +159,7 @@
     <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
+    <ClCompile Include="components\comp_give_power.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -342,6 +343,7 @@
     <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
     <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
+    <ClInclude Include="components\comp_give_power.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

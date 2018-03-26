@@ -23,6 +23,8 @@ class FastAttackActionState : public GroundedActionState {
 	int damage = 1;
 	AttackPhases phase = AttackPhases::Launch;
 
+	float powerToGet = 5000.f;
+
 public:
 	FastAttackActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;

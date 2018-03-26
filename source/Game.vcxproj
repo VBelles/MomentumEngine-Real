@@ -100,6 +100,7 @@
     <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_destroy_condition.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
+    <ClCompile Include="components\comp_give_power.cpp" />
     <ClCompile Include="components\comp_ground_sensor.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
@@ -257,6 +258,7 @@
     <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_destroy_condition.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
+    <ClInclude Include="components\comp_give_power.h" />
     <ClInclude Include="components\comp_ground_sensor.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />

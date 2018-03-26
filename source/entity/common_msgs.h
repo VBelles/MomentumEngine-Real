@@ -5,7 +5,7 @@
 #include "geometry/transform.h"
 
 struct TMsgEntityCreated {
-    DECL_MSG_ID();
+	DECL_MSG_ID();
 };
 
 struct AttackInfo {
@@ -48,8 +48,8 @@ struct AttackInfo {
 // in that file have been created. Used to link entities between them
 struct TEntityParseContext;
 struct TMsgEntitiesGroupCreated {
-    const TEntityParseContext& ctx;
-    DECL_MSG_ID();
+	const TEntityParseContext& ctx;
+	DECL_MSG_ID();
 };
 
 struct TMsgAllScenesCreated {
@@ -70,27 +70,26 @@ struct TMsgMechanismSystemActivated {
 };
 
 struct TMsgAssignBulletOwner {
-    CHandle h_owner;
-    DECL_MSG_ID();
+	CHandle h_owner;
+	DECL_MSG_ID();
 };
 
 struct TMsgDamage {
-    CHandle h_sender;
-    CHandle h_bullet;
-    int damage;
-    DECL_MSG_ID();
+	CHandle h_sender;
+	CHandle h_bullet;
+	int damage;
+	DECL_MSG_ID();
 };
 
 struct TMsgCollect {
-    std::string type;
-    DECL_MSG_ID();
+	std::string type;
+	DECL_MSG_ID();
 };
 
 struct TMsgDestroy {
-    CHandle h_sender;
-    DECL_MSG_ID();
+	CHandle h_sender;
+	DECL_MSG_ID();
 };
-
 
 struct TMsgHitboxEnter {
 	CHandle h_other_entity;
@@ -103,6 +102,11 @@ struct TMsgAttackHit {
 	DECL_MSG_ID();
 };
 
+struct TMsgGetPower {
+	CHandle sender;
+	float power;
+	DECL_MSG_ID();
+};
 
 struct TMsgGainPower {
 	CHandle sender;
@@ -111,9 +115,9 @@ struct TMsgGainPower {
 };
 
 struct TMsgPowerLvlChange {
-    CHandle sender;
-    int powerLvl;
-    DECL_MSG_ID();
+	CHandle sender;
+	int powerLvl;
+	DECL_MSG_ID();
 };
 
 struct TMsgPurityChange {
@@ -136,15 +140,13 @@ struct TMsgRespawn {
 };
 
 struct TMsgDefineLocalAABB {
-  AABB* aabb;
-  DECL_MSG_ID();
+	AABB* aabb;
+	DECL_MSG_ID();
 };
 
 struct TMsgOnShapeHit {
 	physx::PxControllerShapeHit hit;
 	DECL_MSG_ID();
 };
-
-
 
 #endif
