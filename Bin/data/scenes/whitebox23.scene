@@ -1,5 +1,59 @@
 [
   {
+    "entity":
+    {
+      "name": "render_rampa_1",
+      "transform":
+      {
+        "pos": "-81.3563 22.678 -40.6679",
+        "rotation": "0.154028 0.454734 0.0801818 -0.873535"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/render_rampa_1.mesh",
+          "materials":
+          [
+            "data/materials/rocas-red.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "8.62794 2.70275 7.793",
+        "offset" : "0 -2.70275 0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "render_rampa_2",
+      "transform":
+      {
+        "pos": "-93.3483 22.677 -32.271",
+        "rotation": "-0.154028 0.454734 -0.0801818 -0.873535"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/render_rampa_2.mesh",
+          "materials":
+          [
+            "data/materials/rocas-red.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "8.62794 2.70275 7.793",
+        "offset" : "0 -2.70275 0"
+      }
+    }
+  },
+  {
     "entity": {
       "name": "WWw_Box213",
       "transform": {
