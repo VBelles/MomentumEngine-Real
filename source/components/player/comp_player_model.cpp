@@ -559,7 +559,7 @@ void TCompPlayerModel::OnDead() {
 
 
 void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
-	if (!isGrounded && msg.hit.actor != lastWallEntered) {
+	if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
 		lastWallEntered = &*msg.hit.actor; 
 
 		VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
