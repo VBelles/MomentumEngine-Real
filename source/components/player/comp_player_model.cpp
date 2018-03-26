@@ -158,8 +158,9 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, OnGainPower);
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, OnOutOfBounds);
-	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, OnShapeHit);
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, OnLevelChange);
+	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, OnShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgOnContact, OnContact);
 }
 
 PowerStats* TCompPlayerModel::GetPowerStats() {
@@ -560,7 +561,7 @@ void TCompPlayerModel::OnDead() {
 
 void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 	if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
-		lastWallEntered = msg.hit.actor; 
+		lastWallEntered = msg.hit.actor;
 
 		VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 
@@ -579,3 +580,14 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 	}
 }
 
+
+void TCompPlayerModel::OnContact(const TMsgOnContact& msg) {
+	//dbg("ON CONTACT\n");
+	if (msg.pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_FOUND)) {
+		//dbg("TOUCH FOUND\n");
+	}
+	if (msg.pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_LOST)) {
+		//dbg("TOUCH LOST\n");
+	}
+
+}

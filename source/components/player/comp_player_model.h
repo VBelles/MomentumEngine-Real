@@ -146,6 +146,7 @@ private:
     void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void OnCollect(const TMsgCollect& msg);
 	void OnShapeHit(const TMsgOnShapeHit & msg);
+	void OnContact(const TMsgOnContact & msg);
 	void OnLevelChange(const TMsgPowerLvlChange& msg);
 
 	PowerStats* loadPowerStats(const json& j);

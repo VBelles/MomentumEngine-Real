@@ -145,6 +145,12 @@ struct TMsgOnShapeHit {
 	DECL_MSG_ID();
 };
 
+struct TMsgOnContact {
+	CHandle otherEntity;
+	physx::PxContactPair pair;
+	DECL_MSG_ID();
+};
+
 
 
 #endif

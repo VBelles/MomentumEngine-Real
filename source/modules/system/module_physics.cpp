@@ -127,19 +127,29 @@ PxFilterFlags CustomFilterShader(
 	PxFilterObjectAttributes attributes0, PxFilterData filterData0,
 	PxFilterObjectAttributes attributes1, PxFilterData filterData1,
 	PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize) {
-	if ((filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1)) {
-		if (PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1)) {
-			pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
-		}
-		else if (PxFilterObjectIsKinematic(attributes0) && PxFilterObjectIsKinematic(attributes1)) {
-			pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
-		}
-		else {
-			pairFlags = PxPairFlag::eCONTACT_DEFAULT | PxPairFlag::eNOTIFY_TOUCH_FOUND;
-		}
+
+	// let triggers through
+	if (PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1)) {
+		pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
 		return PxFilterFlag::eDEFAULT;
 	}
+	// generate contacts for all that were not filtered above
+	pairFlags = PxPairFlag::eCONTACT_DEFAULT;
+
+	// trigger the contact callback for pairs (A,B) where
+	// the filtermask of A contains the ID of B and vice versa.
+	if ((filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1)) {
+		if (PxFilterObjectIsKinematic(attributes0) && PxFilterObjectIsKinematic(attributes1)) {
+			return PxFilterFlag::eSUPPRESS;
+		}
+		pairFlags |= PxPairFlag::eNOTIFY_TOUCH_FOUND;
+		pairFlags |= PxPairFlag::eNOTIFY_TOUCH_LOST;
+		pairFlags |= PxPairFlag::eNOTIFY_CONTACT_POINTS;
+		return PxFilterFlag::eDEFAULT;
+	}
+
 	return PxFilterFlag::eSUPPRESS;
+
 }
 
 
@@ -173,7 +183,6 @@ bool CModulePhysics::start() {
 	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
-	sceneDesc.flags |= PxSceneFlag::eENABLE_CCD;
 
 	gScene = gPhysics->createScene(sceneDesc);
 
@@ -277,17 +286,38 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 }
 
 void CModulePhysics::CustomSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 count) {
+	//dbg("Contact\n");
+	/*if (pairHeader.flags & (PxContactPairHeaderFlag::eREMOVED_ACTOR_0 | PxContactPairHeaderFlag::eREMOVED_ACTOR_1))
+		return;
 	for (PxU32 i = 0; i < count; ++i) {
-		CHandle colliderHandle;
-		colliderHandle.fromVoidPtr(pairHeader.actors[0]->userData);
-	
-		if (colliderHandle.isValid()) {
-			CEntity* e = colliderHandle.getOwner();
-			if (strcmp(e->getName(), "The Player") != 0) {
-				
+		PxContactPair pair = pairs[i];
+
+		CHandle colliderHandle1;
+		colliderHandle1.fromVoidPtr(pairHeader.actors[0]->userData);
+		CHandle colliderHandle2;
+		colliderHandle2.fromVoidPtr(pairHeader.actors[1]->userData);
+
+		CEntity* e1 = colliderHandle1.getOwner();
+		CEntity* e2 = colliderHandle2.getOwner();
+
+		if (pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_FOUND)) {
+			if (strcmp(e1->getName(), "The Player") != 0
+				|| strcmp(e2->getName(), "The Player") != 0) {
+				//dbg("TOUCH FOUND\n");
 			}
+			e1->sendMsg(TMsgOnContact{ CHandle(e2), pair });
+			e2->sendMsg(TMsgOnContact{ CHandle(e1), pair });
 		}
-	}
+		if (pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_LOST)) {
+			if (strcmp(e1->getName(), "The Player") != 0
+				|| strcmp(e2->getName(), "The Player") != 0) {
+				//dbg("TOUCH LOST\n");
+
+			}
+			e1->sendMsg(TMsgOnContact{ CHandle(e2), pair });
+			e2->sendMsg(TMsgOnContact{ CHandle(e1), pair });
+		}
+	}*/
 }
 
 
