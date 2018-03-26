@@ -18,9 +18,6 @@ private:
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 90.f;
 
-	const float maxPowerToGive = 5000.f;
-	float powerToGive = maxPowerToGive;
-
 	float recallDistance = 28.f;
 
 	float chaseFov = deg2rad(60);
@@ -96,6 +93,7 @@ private:
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);
+	void onOutOfBounds(const TMsgOutOfBounds& msg);
 
 	void updateGravity(float delta);
 	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);

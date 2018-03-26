@@ -55,6 +55,7 @@ CBehaviorTreeMeleeEnemy::CBehaviorTreeMeleeEnemy()
 }
 
 void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
+
 }
 
 void CBehaviorTreeMeleeEnemy::debugInMenu() {
@@ -64,6 +65,7 @@ void CBehaviorTreeMeleeEnemy::registerMsgs() {
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgAttackHit, onAttackHit);
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgRespawn, onRespawn);
+	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgOutOfBounds, onOutOfBounds);
 }
 
 void CBehaviorTreeMeleeEnemy::update(float delta) {
@@ -208,7 +210,6 @@ int CBehaviorTreeMeleeEnemy::airborne(float delta) {
 
 int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 	health = maxHealth;
-	powerToGive = maxPowerToGive;
 	isDead = false;
 
 	getCollider()->enable();
@@ -260,14 +261,12 @@ int CBehaviorTreeMeleeEnemy::chase(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
-	dbg("idleWar \n");
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::attack(float delta) {
-	dbg("attack \n");
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() > attackCooldown) {
@@ -351,6 +350,10 @@ void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
 
 void CBehaviorTreeMeleeEnemy::onRespawn(const TMsgRespawn& msg) {
 	current = tree["onRespawn"];
+}
+
+void CBehaviorTreeMeleeEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
+	current = tree["onDeath"];
 }
 
 void CBehaviorTreeMeleeEnemy::updateGravity(float delta) {
