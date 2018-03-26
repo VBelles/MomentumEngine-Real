@@ -1,9 +1,5 @@
 #include "mcv_platform.h"
 #include "IBehaviorTree.h"
-#include "BehaviorTreeNodeRandom.h"
-#include "BehaviorTreeNodeSequence.h"
-#include "BehaviorTreeNodePriority.h"
-#include "BehaviorTreeNodeAction.h"
 
 IBehaviorTree::IBehaviorTree() {
 }

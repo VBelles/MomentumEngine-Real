@@ -12,14 +12,10 @@ class PowerStats;
 class CBehaviorTreeMeleeEnemy : public IBehaviorTree, public TCompBase {
 	DECL_SIBLING_ACCESS();
 private:
-	const float maxHealth = 5.f;
+	float maxHealth = 5.f;
 	float health = maxHealth;
-	float speed = 25.f;
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 90.f;
-
-	const float maxPowerToGive = 5000.f;
-	float powerToGive = maxPowerToGive;
 
 	float recallDistance = 28.f;
 
@@ -31,6 +27,9 @@ private:
 	float minCombatDistance = 2.f;
 	float maxCombatDistance = 4.f;
 	float attackCooldown = 2.f;
+
+	float gravity = -50.f;
+	VEC3 maxVelocity = { 30, 30, 30 };
 
 	float propelDuration;
 	float floatingDuration = 1.5f;
@@ -46,8 +45,6 @@ private:
 	VEC3 spawnPosition;
 	VEC3 velocityVector;
 	bool grounded = true;
-	float gravity = -50.f;
-	VEC3 maxVelocity = { 30, 30, 30 };
 
 	CTimer timer;
 	CTimer attackTimer;
@@ -96,6 +93,7 @@ private:
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);
+	void onOutOfBounds(const TMsgOutOfBounds& msg);
 
 	void updateGravity(float delta);
 	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);

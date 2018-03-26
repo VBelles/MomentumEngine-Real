@@ -39,7 +39,11 @@
 			"pos": "-80 22 -60",
 			"lookAt": "-1.0 30.0 -1.0"
 		  },
-		  "behaviorTree_melee_enemy" : {}
+		  "behaviorTree_melee_enemy" : {},
+		  "givePower" : {
+			  "maxPowerToGive" : 50000.0,
+			  "baseMultiplier" : 1.0
+		  }
 		}
 	}
 ]
