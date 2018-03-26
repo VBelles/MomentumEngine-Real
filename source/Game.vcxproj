@@ -139,8 +139,11 @@
     <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\ReleasePowerGroundActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackActionState.cpp" />
+    <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabHighActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabLongActionState.cpp" />
@@ -293,8 +296,11 @@
     <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />
+    <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\ReleasePowerGroundActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackActionState.h" />
+    <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\GrabActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\GrabHighActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\GrabLongActionState.h" />

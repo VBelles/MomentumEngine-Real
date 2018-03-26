@@ -13,7 +13,7 @@ void AirborneActionState::update (float delta) {
 	bool hasInput = movementInput != VEC2::Zero;	
 	
 	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
-	if (!GetPlayerModel()->lockWalk) {
+	if (!GetPlayerModel()->lockTurning) {
 		if (!isTurnAround) {
 			if (hasInput) {
 				if (GetPlayerTransform()->getFront().Dot(desiredDirection) > backwardsMaxDotProduct) {
@@ -67,6 +67,7 @@ void AirborneActionState::update (float delta) {
 	}
 
 	if(velocityVector->y < 0){
+		GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 		GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->fallingMultiplier);
 	}
 }
@@ -76,7 +77,7 @@ void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	enteringPowerStats = &*GetPlayerModel()->GetPowerStats();
 	isTurnAround = false;
 	turnAroundTime = turnAroundFrames * (1.f / 60);
-	GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
+	GetPlayerModel()->maxVerticalSpeed = GetPlayerModel()->maxVelocityUpwards;
 	GetPlayerModel()->ResetGravity();
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
@@ -100,7 +101,9 @@ void AirborneActionState::OnStrongAttackButton() {
 }
 
 void AirborneActionState::OnFastAttackButton() {
-	//TODO Ataque rápido aire
+	if (GetPlayerModel()->IsConcurrentActionFree()) {
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::FastAttackAir);
+	}
 }
 
 void AirborneActionState::OnReleasePowerButton() {

@@ -110,6 +110,13 @@
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="windows\app.cpp" />
+    <ClCompile Include="components\ia\behavior tree\IBehaviorTree.cpp" />
+    <ClCompile Include="components\ia\behavior tree\IBehaviorTreeNode.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeAction.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeSequence.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodePriority.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeRandom.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabActionState.cpp" />
@@ -149,6 +156,9 @@
     <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodePriority.cpp" />
     <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeRandom.cpp" />
     <ClCompile Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.cpp" />
+    <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -329,6 +339,9 @@
     <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodePriority.h" />
     <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeRandom.h" />
     <ClInclude Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.h" />
+    <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
+    <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
+    <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

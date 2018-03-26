@@ -1,6 +1,29 @@
 [
   {
     "entity": {
+      "name": "WWw_Box213",
+      "transform": {
+        "pos": "-20 60 -70.8728"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/WWw_Box213.mesh",
+          "materials": [
+            "data/materials/rocas-red.material"
+          ]
+        }
+      ],
+      "collider": {
+        "is_dynamic":true,
+        "shape": "box",
+        "halfExtent": "1 1 1",
+        "group" : ["scenario"],
+				"mask" : ["all"]
+      }
+    }
+  },
+  {
+    "entity": {
       "name": "WWw_enemy015",
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform": {

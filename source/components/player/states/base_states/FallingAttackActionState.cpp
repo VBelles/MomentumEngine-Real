@@ -22,7 +22,7 @@ void FallingAttackActionState::update (float delta) {
 			RotatePlayerTowards(delta, targetPos, 10.f);
 		}
 		velocityVector->y = 0.f;
-		deltaMovement.y = 10.f * delta;
+		deltaMovement.y = upwardsVelocity * delta;
 	}
 	else {
 		//ataque caída
@@ -31,7 +31,7 @@ void FallingAttackActionState::update (float delta) {
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->enable();
 		}
-		GetPlayerModel()->SetGravity(fallingAcceleration);
+		GetPlayerModel()->SetGravityMultiplier(fallingMultiplier);
 	}
 }
 

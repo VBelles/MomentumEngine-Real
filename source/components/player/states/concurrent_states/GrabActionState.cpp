@@ -37,6 +37,7 @@ void GrabActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
+	GetPlayerModel()->lockTurning = true;
 }
 
 void GrabActionState::OnStateExit(IActionState * nextState) {
@@ -45,6 +46,7 @@ void GrabActionState::OnStateExit(IActionState * nextState) {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
+	GetPlayerModel()->lockTurning = false;
 }
 
 void GrabActionState::OnLanding() {

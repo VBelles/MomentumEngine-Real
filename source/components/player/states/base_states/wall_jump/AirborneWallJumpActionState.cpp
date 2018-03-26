@@ -12,17 +12,21 @@ void AirborneWallJumpActionState::update(float delta) {
 
 	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
 
-	if (hasInput) {
+	if (hasInput && velocityVector->y < 0) {
+
+	/*	VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
+		RotatePlayerTowards(delta, targetPos, rotationSpeed);*/
+
 		//aceleración según sentido de movimiento
 		float appliedAcceleration = CalculateAccelerationAccordingToDirection(enterFront, desiredDirection,
 			enteringPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct,
-			backwardsAirDriftFactorLong, sidewaysAirDriftFactorLong);
+			backwardsAirDriftFactorWall, sidewaysAirDriftFactorWall);
 
 		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
-			desiredDirection, appliedAcceleration, enteringPowerStats->longJumpVelocityVector.z);
+			desiredDirection, appliedAcceleration, enteringPowerStats->wallJumpVelocityVector.z);
 
 		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
-		ClampHorizontalVelocity(enteringPowerStats->longJumpVelocityVector.z);
+		ClampHorizontalVelocity(enteringPowerStats->wallJumpVelocityVector.z);
 	}
 	else {
 		deltaMovement.x = velocityVector->x * delta;

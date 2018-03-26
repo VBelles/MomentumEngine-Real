@@ -58,11 +58,9 @@ void TCompShadow::update(float dt) {
 		PxScene* scene = Engine.getPhysics().getScene();
 		PxVec3 origin = { parentTransform->getPosition().x + offset.x, parentTransform->getPosition().y + offset.y, parentTransform->getPosition().z + offset.z };
 
-
 		const PxU32 bufferSize = 256;
 		PxRaycastHit hitBuffer[bufferSize];
 		PxRaycastBuffer buf(hitBuffer, bufferSize);
-
 
 		bool status = scene->raycast(origin, unitDir, maxDistance, buf);
 		PxRaycastHit nearest = buf.touches[0];

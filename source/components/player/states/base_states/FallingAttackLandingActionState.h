@@ -10,6 +10,12 @@ class FallingAttackLandingActionState : public LandingActionState {
 	float impactAttackDurationTime;
 	int newLandingLagFrames = 40;
 	float stunTime = 1.5f;
+	CTimer springJumpTimer;
+	int springJumpWindowStartFrame = 8;
+	float springJumpWindowStartTime;
+	int springJumpWindowEndFrame = 28;
+	float springJumpWindowEndTime;
+	bool hasTriedSpringJump = false;
 
 	CHandle hitboxHandle;
 	int damage = 0;
@@ -19,7 +25,7 @@ public:
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
 	void SetMovementInput(VEC2 input) override {}
-	void OnJumpHighButton() override {}
+	void OnJumpHighButton() override;
 	void OnJumpLongButton() override {}
 
 	void OnHitboxEnter(CHandle entity) override;

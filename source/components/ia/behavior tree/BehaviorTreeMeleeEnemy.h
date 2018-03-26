@@ -16,7 +16,7 @@ private:
 	float health = maxHealth;
 	float speed = 25.f;
 	float movementSpeed = 2.5f;
-	float rotationSpeed = 5.f;
+	float rotationSpeed = 90.f;
 
 	const float maxPowerToGive = 5000.f;
 	float powerToGive = maxPowerToGive;
@@ -24,44 +24,33 @@ private:
 	float recallDistance = 28.f;
 
 	float chaseFov = deg2rad(60);
-	float fovChaseDistance = 20.f;
+	float fovChaseDistance = 25.f;
 	float smallChaseRadius = 10.f;
 
 	float attackFov = deg2rad(60);
-	float startAttackingRadius = 2.f;
-	float rangeRadius = 4.f;
-	float attackCooldown = 1.8f;
-	float attackDuration = 0.8f;
+	float minCombatDistance = 2.f;
+	float maxCombatDistance = 4.f;
+	float attackCooldown = 2.f;
 
 	float propelDuration;
-
 	float floatingDuration = 1.5f;
 	float grabbedDuration = 0.5f;
 
 	bool isDead = false;
-
 	bool isStunned = false;
 	float stunDuration;
 
-	VEC3 initialLaunchPos;
-
 	CHandle playerHandle;
 
+	VEC3 initialLaunchPos;
 	VEC3 spawnPosition;
-
 	VEC3 velocityVector;
-
 	bool grounded = true;
-
 	float gravity = -50.f;
 	VEC3 maxVelocity = { 30, 30, 30 };
 
-	CTimer recallTimer;
-	CTimer waitAttackTimer;
+	CTimer timer;
 	CTimer attackTimer;
-	CTimer propelTimer;
-	CTimer launchedFloatingTimer;
-	CTimer grabbedTimer;
 	CTimer stunTimer;
 
 	AttackInfo receivedAttack;
@@ -110,6 +99,7 @@ private:
 
 	void updateGravity(float delta);
 	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
+	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
 public:
 	CBehaviorTreeMeleeEnemy();

@@ -69,6 +69,7 @@ void ReleasePowerAirActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
+	GetPlayerModel()->lockTurning = true;
 }
 
 void ReleasePowerAirActionState::OnStateExit(IActionState * nextState) {
@@ -80,6 +81,7 @@ void ReleasePowerAirActionState::OnStateExit(IActionState * nextState) {
 	hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 	GetPlayerModel()->baseState->SetPose();
+	GetPlayerModel()->lockTurning = false;
 }
 
 void ReleasePowerAirActionState::OnReleasePowerButton() {

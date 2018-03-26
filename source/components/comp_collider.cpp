@@ -53,7 +53,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
 	if (j.count("group")) {
 		for (std::string group : j["group"]) {
-			dbg("group: %s\n", group.c_str());
 			transform(group.begin(), group.end(), group.begin(), ::tolower);
 			config.group = config.group | EnginePhysics.getFilterByName(group);
 		}

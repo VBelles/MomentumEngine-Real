@@ -83,6 +83,15 @@ void CModuleInput::update(float delta) {
     for (auto& host : _hosts) {
         host.update(delta);
     }
+	if (EngineInput["debug_mode"].getsPressed()) {
+		CApp::get().showDebug = !CApp::get().showDebug;
+		ShowCursor(CApp::get().showDebug);
+	}
+	if (!CApp::get().showDebug && CApp::get().isWindowFocused) {
+		RECT rect;
+		GetWindowRect(CApp::get().getWnd(), &rect);
+		SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
+	}
 }
 
 void CModuleInput::assignDevice(int hostIdx, Input::IDevice* device) {

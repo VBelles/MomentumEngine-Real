@@ -1,16 +1,16 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
-#include "components/player/states/AirborneActionState.h"
+#include "../GroundedActionState.h"
 
-class HuggingWallJumpSquatActionState : public AirborneActionState {
-protected:
+class JumpSquatSpringActionState : public GroundedActionState {
+private:
 	CTimer timer;
-	int endingFrames = 4;
-	float endingTime;
+	int squatFrames = 12;
+	float squatTime;
 
 public:
-	HuggingWallJumpSquatActionState(CHandle playerModelHandle);
+	JumpSquatSpringActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
@@ -20,5 +20,6 @@ public:
 	void OnStrongAttackButton() override {}
 	void OnReleasePowerButton() override {}
 
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_propel.mesh"); }
+	void SetPose() override { GetRender()->setMesh("data/meshes/pose_jump_squat.mesh"); }
+	virtual void OnLeavingGround() override;
 };

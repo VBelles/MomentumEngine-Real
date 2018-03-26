@@ -7,7 +7,7 @@ FallingAttackLandingActionState::FallingAttackLandingActionState(CHandle playerM
 	hitboxHandle = hitbox;
 }
 
-void FallingAttackLandingActionState::update (float delta) {
+void FallingAttackLandingActionState::update(float delta) {
 	LandingActionState::update(delta);
 	if (hitboxTimer.elapsed() >= impactAttackDurationTime) {
 		CEntity *hitboxEntity = hitboxHandle;
@@ -20,20 +20,30 @@ void FallingAttackLandingActionState::OnStateEnter(IActionState * lastState) {
 	LandingActionState::OnStateEnter(lastState);
 	landingLagTime = newLandingLagFrames * (1.f / 60);
 	impactAttackDurationTime = impactAttackDurationFrames * (1.f / 60);
+	springJumpWindowStartTime = springJumpWindowStartFrame * (1.f / 60);
+	springJumpWindowEndTime = springJumpWindowEndFrame * (1.f / 60);
+	hasTriedSpringJump = false;
 	movementInput = VEC2::Zero;
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->enable();
 	hitboxTimer.reset();
-	dbg("Entrando en falling attack landing\n");
+	springJumpTimer.reset();
 }
 
 void FallingAttackLandingActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de falling attack landing\n");
+	//dbg("Saliendo de falling attack landing\n");
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
+}
+
+void FallingAttackLandingActionState::OnJumpHighButton() {
+	if (!hasTriedSpringJump && springJumpTimer.elapsed() >= springJumpWindowStartTime && springJumpTimer.elapsed() <= springJumpWindowEndTime) {
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatSpring);
+	}
+	hasTriedSpringJump = true;
 }
 
 void FallingAttackLandingActionState::OnHitboxEnter(CHandle entity) {

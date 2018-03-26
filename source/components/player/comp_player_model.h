@@ -24,15 +24,17 @@ struct PowerStats {
 	float deceleration = 40.f;
 	float airAcceleration = 40.f;
 	float shortHopVelocity = 6.f;
+	float springJumpVelocity = 23.f;
 	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
 	VEC3 longJumpVelocityVector = { 0.f, 6.f, 12.f };
+	VEC3 wallJumpVelocityVector = { 0.f, 20.f, 7.f };
 };
 
 class TCompPlayerModel : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 public:
-	int frame = 0;
+	
 	enum ActionStates {
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
@@ -40,7 +42,8 @@ public:
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
 		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
-		ReleasePowerAir, ReleasePowerGround
+		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
+		IdleTurnAround
 	};
 	IActionState* baseState;
 	IActionState* concurrentState;
@@ -49,6 +52,7 @@ public:
 	
 	bool lockBaseState = false;
 	bool lockWalk = false;
+	bool lockTurning = false;
 	bool lockConcurrentState = false;
 	static void registerMsgs();
 	void debugInMenu();
@@ -102,6 +106,7 @@ public:
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;
+	float maxVelocityUpwards = 45.f;
 
 	float huggingWallMinPitch = deg2rad(-25);
 	float huggingWallMaxPitch = deg2rad(5);
@@ -109,6 +114,7 @@ public:
 
 
 	CHandle grabTarget;
+	PxRigidActor* lastWallEntered;
 
 	
 
@@ -144,7 +150,6 @@ private:
 
 	PowerStats* loadPowerStats(const json& j);
 
-
 	PlayerFilterCallback* playerFilterCallback;
 
 	std::map<ActionStates, IActionState*> baseStates;
@@ -153,9 +158,12 @@ private:
 	ActionStates nextConcurrentState;
 
 	CHandle strongAttackHitbox;
+	CHandle fastAttackHitbox;
+	CHandle fastAttackAirHitbox;
 	CHandle fallingAttackHitbox;
 	CHandle fallingAttackLandingHitbox;
 	CHandle verticalLauncherHitbox;
+	CHandle horizontalLauncherHitbox;
 	CHandle grabHitbox;
 	CHandle releasePowerSmallHitbox;
 	CHandle releasePowerBigHitbox;

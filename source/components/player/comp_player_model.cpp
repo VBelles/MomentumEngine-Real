@@ -30,7 +30,10 @@
 #include "states/base_states/HorizontalLauncherActionState.h"
 #include "states/base_states/VerticalLauncherActionState.h"
 #include "states/base_states/ReleasePowerGroundActionState.h"
+#include "states/base_states/JumpSquatSpringActionState.h"
+#include "states/base_states/IdleTurnAroundActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
+#include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
 #include "states/concurrent_states/GrabLongActionState.h"
 #include "states/concurrent_states/ReleasePowerAirActionState.h"
@@ -50,8 +53,10 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Deceleration_Ssj1", &ssj1->deceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("AirAcceleration_Ssj1", &ssj1->airAcceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("ShortHopVelocity_Ssj1", &ssj1->shortHopVelocity, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("SpringJumpVelocity_Ssj1", &ssj1->springJumpVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj1", &ssj1->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("WallJumpVelocity_Ssj1", &ssj1->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	ImGui::DragFloat("Speed_Ssj2", &ssj2->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj2", &ssj2->rotationSpeed, 0.1f, 0.f, 20.f);
@@ -63,8 +68,10 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Deceleration_Ssj2", &ssj2->deceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("AirAcceleration_Ssj2", &ssj2->airAcceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("ShortHopVelocity_Ssj2", &ssj2->shortHopVelocity, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("SpringJumpVelocity_Ssj2", &ssj2->springJumpVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj2", &ssj2->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("WallJumpVelocity_Ssj2", &ssj2->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	ImGui::DragFloat("Speed_Ssj3", &ssj3->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
 	ImGui::DragFloat("Rotation_Ssj3", &ssj3->rotationSpeed, 0.1f, 0.f, 20.f);
@@ -76,14 +83,17 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("Deceleration_Ssj3", &ssj3->deceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("AirAcceleration_Ssj3", &ssj3->airAcceleration, 1.f, 0.f, 100.f);
 	ImGui::DragFloat("ShortHopVelocity_Ssj3", &ssj3->shortHopVelocity, 1.f, 0.f, 100.f);
+	ImGui::DragFloat("SpringJumpVelocity_Ssj3", &ssj3->springJumpVelocity, 1.f, 0.f, 100.f);
 	ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 	ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3("WallJumpVelocity_Ssj3", &ssj3->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		baseGravity = accelerationVector.y;
 	}
 
 	ImGui::DragFloat("WalkingSpeed", &walkingSpeed, 0.1f, 0.1f, 7.f);
+	ImGui::DragFloat("MaxVelocityUpwards", &maxVelocityUpwards, 0.1f, 10.f, 60.f);
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
@@ -92,6 +102,7 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	currentGravity = baseGravity;
 
 	walkingSpeed = j.value("walkingSpeed", 5.0f);
+	maxVelocityUpwards = j.value("maxVelocityUpwards", 45.0f);
 
 	ssj1 = loadPowerStats(j["ssj1"]);
 	ssj2 = loadPowerStats(j["ssj2"]);
@@ -109,10 +120,12 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	ssj->maxVelocityVertical = j.value("maxVelocityVertical", 0.0f);
 	ssj->jumpVelocityVector = loadVEC3(j["jumpVelocity"]);
 	ssj->longJumpVelocityVector = loadVEC3(j["longJumpVelocity"]);
+	ssj->wallJumpVelocityVector = loadVEC3(j["wallJumpVelocity"]);
 	ssj->acceleration = j.value("acceleration", 0.0f);
 	ssj->deceleration = j.value("deceleration", 0.0f);
 	ssj->airAcceleration = j.value("airAcceleration", 0.0f);
 	ssj->shortHopVelocity = j.value("shortHopVelocity", 0.0f);
+	ssj->springJumpVelocity = j.value("springJumpVelocity", 0.0f);
 	return ssj;
 }
 
@@ -164,16 +177,10 @@ bool TCompPlayerModel::isInState(ActionStates state) {
 }
 
 void TCompPlayerModel::OnLevelChange(const TMsgPowerLvlChange& msg) {
-	dbg("Power changed: %d\n", msg.powerLvl);
-
-	if (msg.powerLvl == 1) {
-		currentPowerStats = ssj1;
-	}
-	else if (msg.powerLvl == 2) {
-		currentPowerStats = ssj2;
-	}
-	else if (msg.powerLvl == 3) {
-		currentPowerStats = ssj3;
+	switch (msg.powerLvl) {
+	case 1: currentPowerStats = ssj1; break;
+	case 2: currentPowerStats = ssj2; break;
+	case 3: currentPowerStats = ssj3; break;
 	}
 }
 
@@ -238,9 +245,12 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 
 	strongAttackHitbox = getEntityByName("Strong attack hitbox");
+	fastAttackHitbox = getEntityByName("Fast attack hitbox");
+	fastAttackAirHitbox = getEntityByName("Fast attack air hitbox");
 	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
 	fallingAttackLandingHitbox = getEntityByName("Falling attack landing hitbox");
 	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
+	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
 	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
 	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
@@ -267,13 +277,16 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
 	{ ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
 	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
-	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
+	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), horizontalLauncherHitbox) },
 	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
+	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(CHandle(this)) },
+	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(CHandle(this)) },
 	};
 
 	concurrentStates = {
 		{ ActionStates::Idle, nullptr },
-	{ ActionStates::FastAttack, new FastAttackActionState(CHandle(this), strongAttackHitbox) },
+	{ ActionStates::FastAttack, new FastAttackActionState(CHandle(this), fastAttackHitbox) },
+	{ ActionStates::FastAttackAir, new FastAttackAirActionState(CHandle(this), fastAttackAirHitbox) },
 	{ ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
 	{ ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
 	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
@@ -285,6 +298,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	currentPowerStats = ssj1;
 
 	playerFilterCallback = new PlayerFilterCallback(CHandle(this));
+
 }
 
 void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
@@ -309,7 +323,7 @@ void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
 }
 
 void TCompPlayerModel::update(float dt) {
-	frame++;
+
 	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
 		showVictoryDialog = false;
 	}
@@ -370,7 +384,7 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 		if (!isTouchingCeiling) {
 			isTouchingCeiling = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
 			if (isTouchingCeiling) {
-				velocityVector.y = 0.f;
+				velocityVector.y = -1.f;
 			}
 		}
 	}
@@ -386,7 +400,7 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	}
 }
 
-//Aqu\ED llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
+//Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
 		baseState->SetMovementInput(input);
@@ -395,7 +409,7 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 		baseState->SetMovementInput(VEC2::Zero);
 	}
 	if (!lockConcurrentState && concurrentState != concurrentStates[ActionStates::Idle]) {
-		(static_cast<AirborneActionState*>(concurrentState))->SetMovementInput(input);
+		concurrentState->SetMovementInput(input);
 	}
 }
 
@@ -483,14 +497,13 @@ void TCompPlayerModel::CenterCameraButtonPressed() {
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
-	//GetPowerGauge()->ReleasePower();
 	baseState->OnReleasePowerButton();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->OnReleasePowerButton();
 	}
 }
 
-void TCompPlayerModel::GainPowerButtonPressed() {
+void TCompPlayerModel::GainPowerButtonPressed() {//Debug Only
 	GetPowerGauge()->GainPower();
 }
 
@@ -499,6 +512,7 @@ bool TCompPlayerModel::IsConcurrentActionFree() {
 }
 
 void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
+	//TODO Esto lo tendría que procesar el estado en concreto, por si tiene armor o algo
 	hp -= msg.info.damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -519,7 +533,6 @@ void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
 }
 
 void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
-	dbg("out of bounds \n");
 	hp -= 1;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -529,14 +542,12 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 	else {
 		GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 		velocityVector = VEC3(0, 0, 0);
-
 		SetConcurrentState(ActionStates::Idle);
 		SetBaseState(ActionStates::AirborneNormal);
 	}
 }
 
 void TCompPlayerModel::OnDead() {
-	dbg("YOU DIED!\n");
 	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 
@@ -548,8 +559,9 @@ void TCompPlayerModel::OnDead() {
 
 
 void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
+	if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
+		lastWallEntered = &*msg.hit.actor; 
 
-	if (!isGrounded) {
 		VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 
 		//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
@@ -565,10 +577,5 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 			}
 		}
 	}
-
-
-
-
-
 }
 

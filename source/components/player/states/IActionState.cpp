@@ -105,11 +105,3 @@ void IActionState::ClampHorizontalVelocity(float maxHorizontalSpeed) {
 		velocityVector->z = horizontalVelocity.y;
 	}
 }
-
-float IActionState::CalculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical) {
-	float resultingDeltaMovement;
-	resultingDeltaMovement = velocityVector->y * delta + 0.5f * acceleration * delta * delta;
-	//clampear distancia vertical
-	resultingDeltaMovement = resultingDeltaMovement > maxVelocityVertical * delta ? maxVelocityVertical * delta : resultingDeltaMovement;
-	return resultingDeltaMovement;
-}

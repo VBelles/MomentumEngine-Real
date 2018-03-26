@@ -51,10 +51,6 @@ protected:
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void ClampHorizontalVelocity(float maxHorizontalSpeed);
 
-	//Calcula el movimiento vertical desde el último frame y lo clampea con la m�xima distancia 
-	//recorrida posible en caso de ir a máxima velocidad
-	float CalculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
-
 public:
 	IActionState(CHandle playerModelHandle);
 	virtual void update(float delta) = 0;
