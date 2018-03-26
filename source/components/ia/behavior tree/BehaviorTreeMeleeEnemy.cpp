@@ -44,9 +44,10 @@ CBehaviorTreeMeleeEnemy::CBehaviorTreeMeleeEnemy()
 
 	addChild("meleeEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::returnToSpawn);
 
-	addChild("meleeEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::combatCondition, nullptr);
+	CBehaviorTreeNodeRandom *node = (CBehaviorTreeNodeRandom*)addChild("meleeEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::combatCondition, nullptr);
 	addChild("combat", "idleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::idleWar);
 	addChild("combat", "attack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::attack);
+	node->setProbability(std::vector<float>{ 0.99f, 0.01f });
 
 	addChild("meleeEnemy", "chase", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::chaseCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::chase);
 
@@ -259,12 +260,14 @@ int CBehaviorTreeMeleeEnemy::chase(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
+	dbg("idleWar \n");
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::attack(float delta) {
+	dbg("attack \n");
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() > attackCooldown) {
