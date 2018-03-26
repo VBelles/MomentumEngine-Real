@@ -7,7 +7,7 @@ StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHan
 	hitboxHandle = hitbox;
 }
 
-void StrongAttackActionState::update (float delta) {
+void StrongAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 
@@ -82,6 +82,9 @@ void StrongAttackActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
+
+		otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+
 		TMsgAttackHit msgAtackHit = {};
 		msgAtackHit.attacker = playerEntity;
 		msgAtackHit.info = {};

@@ -24,6 +24,8 @@ protected:
 
 	uint32_t enemyId = getID("enemy");
 
+	float powerToGet = 5000.f;
+
 public:
 	GrabActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;

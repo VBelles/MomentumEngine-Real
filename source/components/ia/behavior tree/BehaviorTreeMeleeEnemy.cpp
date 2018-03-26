@@ -5,6 +5,7 @@
 #include "components/comp_render.h"
 #include "components/comp_respawner.h"
 #include "components/comp_shadow.h"
+#include "components/comp_give_power.h"
 #include "components/player/comp_player_model.h"
 
 DECL_OBJ_MANAGER("behaviorTree_melee_enemy", CBehaviorTreeMeleeEnemy);
@@ -55,7 +56,22 @@ CBehaviorTreeMeleeEnemy::CBehaviorTreeMeleeEnemy()
 }
 
 void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
-
+	maxHealth = j.value("maxHealth", 5.0f);
+	health = maxHealth;
+	movementSpeed = j.value("movementSpeed", 2.5f);
+	rotationSpeed = j.value("rotationSpeed", 90.f);
+	recallDistance = j.value("recallDistance", 28.f);
+	chaseFov = deg2rad(j.value("chaseFov", 60.f));
+	fovChaseDistance = j.value("fovChaseDistance", 25.f);
+	smallChaseRadius = j.value("smallChaseRadius", 10.f);
+	attackFov = deg2rad(j.value("attackFov", 60.f));
+	minCombatDistance = j.value("minCombatDistance", 2.f);
+	maxCombatDistance = j.value("maxCombatDistance", 4.f);
+	attackCooldown = j.value("attackCooldown", 2.f);
+	gravity = j.value("gravity", -50.f);
+	if (j.count("maxVelocity")) {
+		maxVelocity = loadVEC3(j["maxVelocity"]);
+	}
 }
 
 void CBehaviorTreeMeleeEnemy::debugInMenu() {
@@ -221,6 +237,9 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 
 	TCompRender *render = get<TCompRender>();
 	render->enable();
+
+	TCompGivePower *power = get<TCompGivePower>();
+	power->reset();
 
 	return Leave;
 }

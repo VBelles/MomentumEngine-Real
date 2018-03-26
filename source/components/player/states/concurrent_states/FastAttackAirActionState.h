@@ -20,6 +20,8 @@ class FastAttackAirActionState : public AirborneActionState {
 	int damage = 1;
 	AttackPhases phase = AttackPhases::Launch;
 
+	float powerToGet = 5000.f;
+
 public:
 	FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;

@@ -68,6 +68,9 @@ void FallingAttackActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
+
+		otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+
 		VEC3 propelVelocity = { 0, -maxFallingVelocity, 0 };
 		TMsgAttackHit msgAtackHit = {};
 		msgAtackHit.attacker = playerEntity;

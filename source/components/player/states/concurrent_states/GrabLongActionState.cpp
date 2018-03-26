@@ -15,6 +15,8 @@ void GrabLongActionState::OnHitboxEnter(CHandle entity) {
 
 		TCompTags* tag = otherEntity->get<TCompTags>();
 		if (tag && tag->hasTag(enemyId)) {
+			otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+
 			TMsgAttackHit msgAtackHit = {};
 			msgAtackHit.attacker = playerEntity;
 			msgAtackHit.info = {};
