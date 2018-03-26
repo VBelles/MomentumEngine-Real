@@ -11,7 +11,6 @@ public:
     void debugInMenu();
     static void registerMsgs();
     void load(const json& j, TEntityParseContext& ctx);
-    void update(float dt);
 
 	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);

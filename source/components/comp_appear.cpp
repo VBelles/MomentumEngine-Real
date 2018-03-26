@@ -18,13 +18,6 @@ void TCompAppear::registerMsgs() {
 void TCompAppear::load(const json& j, TEntityParseContext& ctx) {
 }
 
-void TCompAppear::update(float dt) {
-	//if (cutreTimer.elapsed() >= cutreTime) {
-	//	TCompCollider *collider = get<TCompCollider>();
-	//	collider->disable();
-	//}
-}
-
 void TCompAppear::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 }
 

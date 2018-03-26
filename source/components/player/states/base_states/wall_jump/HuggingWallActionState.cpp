@@ -41,7 +41,6 @@ void HuggingWallActionState::update (float delta) {
 
 void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
-	//TODO desengancharse poniendo el stick en dirección opuesta
 	FaceWall();
 	if (CheckIfHuggingWall(wallDirection)) {
 		*velocityVector = VEC3::Zero;
