@@ -16,6 +16,8 @@
     "skeleton",
     "bone_tracker",
     "behaviorTree_melee_enemy",
+    "behaviorTree_flying_ranged_enemy",
+    "ranged_attack",
     "ai_melee_enemy",
     "ai_flying_enemy",
     "respawner",

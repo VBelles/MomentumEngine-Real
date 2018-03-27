@@ -57,6 +57,14 @@ struct TMsgAssignBulletOwner {
 	DECL_MSG_ID();
 };
 
+struct TMsgAssignRangedAttackOwner {
+	CHandle ownerHandle;
+	AttackInfo attackInfo;
+	VEC3 initialPos;
+	VEC3 direction;
+	DECL_MSG_ID();
+};
+
 struct TMsgDamage {
 	CHandle h_sender;
 	CHandle h_bullet;

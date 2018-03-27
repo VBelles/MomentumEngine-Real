@@ -36,10 +36,13 @@
 			  ]
 		  },
 		  "transform": {
-			"pos": "-80 22 -60",
+			"pos": "-80 30 -60",
 			"lookAt": "-1.0 30.0 -1.0"
 		  },
-		  "behaviorTree_melee_enemy" : {},
+		  "behaviorTree_flying_ranged_enemy" : {
+			  "attackSpawnOffset": "0.0 0.1 0.5",
+			  "attackTargetOffset": "0.0 0.76 0.0"
+		  },
 		  "givePower" : {
 			  "maxPowerToGive" : 50000.0,
 			  "baseMultiplier" : 1.0
