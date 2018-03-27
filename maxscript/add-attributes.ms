@@ -17,81 +17,77 @@ global enemiesData = attributes enemyData (
 )
 -- -----------------------------------------------------------
 
--- Adds Attribute Holder if it doesn't have one. Just to keep attributes separated in some special modifier.
-fn addAttributeHolderModifier obj = (
-	local emptyModif = EmptyModifier()
-	if not validModifier obj emptyModif or
-	   obj.modifiers.count <= 0 then (
-		-- If it doesn't have any modifier validModifier returns true, so we also have to check that.
-		format "Doesn't have Attribute Holder empty modifier.\n"
-		addModifier obj emptyModif
-	)
-)
-
-fn hasAttribute obj defName = (
-	local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
-	for objdef in objDefs do (
-		format "objdef: %\n" (custAttributes.getDefClass objdef) as string -- DEBUG
-		format "objdef.name: %\n" objdef.name -- DEBUG
-		if objdef.name == defName then return true
-	)
-	return false
-)
-
-fn findAttribute obj defName = (
-	local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
-	for i = 1 to objDefs.count do (
-		if objDefs[i].name == defName then return i
-	)
-	return undefined
-)
-
--- Adds attribute of type defName to object's Attribute Holder modifier.
-fn addAttribute obj defName = (
-	addAttributeHolderModifier obj
-	local attr = custAttributes.get obj.modifiers[#Attribute_Holder] 1
-	if hasAttribute obj defName then format "hasAttribute=TRUE\n" else format "hasAttribute=FALSE\n" -- DEBUG
-	if attr == undefined then format "attr=UNDEFINED\n" else format "attr=OK\n" -- DEBUG
-	if /*attr != undefined and*/
-	   not hasAttribute obj defName then (
-		case defName of (
-			enemyData: attrDef = enemiesData
-			default: format "ERROR: invalid attribute definition for object %.\n" obj.name
+struct TAttributeManager (
+	-- Adds Attribute Holder if it doesn't have one. Just to keep attributes separated in some special modifier.
+	fn addAttributeHolderModifier obj = (
+		local emptyModif = EmptyModifier()
+		if not validModifier obj emptyModif or
+		   obj.modifiers.count <= 0 then (
+			-- If it doesn't have any modifier validModifier returns true, so we also have to check that.
+			format "Doesn't have Attribute Holder empty modifier.\n"
+			addModifier obj emptyModif
 		)
-		--TODO: Problema si no tiene ningún attribute, aunque tenga el Holder.
-		--Type error: custAttributes.add requires MSCustAttribDef, got: undefined
-		custAttributes.add obj.modifiers[#Attribute_Holder] attrDef
-		format "Added attribute to %.\n" object.name -- DEBUG
-	) else format "Attribute % not added.\n" defName -- DEBUG
-)
+	),
 
--- Deletes attribute if it exists (inside #Attribute_Holder).
-fn delAttribute obj defName = (
-	local idxFound = findAttribute obj defName
-	if idxFound != undefined then (
-		custAttributes.delete obj.modifiers[#Attribute_Holder] idxFound
+	fn hasAttribute obj defName = (
+		local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
+		for objdef in objDefs do (
+			format "objdef: %\n" (custAttributes.getDefClass objdef) as string -- DEBUG
+			format "objdef.name: %\n" objdef.name -- DEBUG
+			if objdef.name == defName then return true
+		)
+		return false
+	),
+
+	fn findAttribute obj defName = (
+		local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
+		for i = 1 to objDefs.count do (
+			if objDefs[i].name == defName then return i
+		)
+		return undefined
+	),
+
+	-- Adds attribute of type defName to object's Attribute Holder modifier.
+	fn addAttribute obj defName = (
+		addAttributeHolderModifier obj
+		format "------------\n"
+		--if hasAttribute obj defName then format "hasAttribute=TRUE\n" else format "hasAttribute=FALSE\n" -- DEBUG
+		if not hasAttribute obj defName then (
+			case defName of (
+				#enemyData: ( attrDef = enemiesData )
+				default:    ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
+			)
+			--format "defName: %.\n" defName -- DEBUG
+			--format "attrDef: %.\n" attrDef -- DEBUG
+			custAttributes.add obj.modifiers[#Attribute_Holder] attrDef
+			--format "Added attribute to %.\n" obj.name -- DEBUG
+		) else format "Attribute % not added.\n" defName -- DEBUG
+	),
+
+	-- Deletes attribute if it exists (inside #Attribute_Holder).
+	fn delAttribute obj defName = (
+		local idxFound = findAttribute obj defName
+		if idxFound != undefined then (
+			custAttributes.delete obj.modifiers[#Attribute_Holder] idxFound
+		)
+	),
+
+	fn addAttributeToSel defName = (
+		for obj in selection do (
+			addAttribute obj defName
+		)
+	),
+
+	fn delAttributeFromSel defName = (
+		for obj in selection do (
+			delAttribute obj defName
+		)
 	)
 )
 
-fn addAttributeToSel defName = (
-	for obj in selection do (
-		addAttribute obj defName
-	)
-)
-
-fn delAttributeFromSel defName = (
-	for obj in selection do (
-		delAttribute obj defName
-	)
-)
-
---deleteModifier obj 1
---custAttributes.getDef obj.modifiers[#Attribute_Holder] 1
---custAttributes.get obj.modifiers[#Attribute_Holder] 1
---hasAttribute $ #enemyData
-
-addAttributeToSel #enemyData
+--addAttributeToSel #enemyData
 --delAttributeFromSel #enemyData
 
-
---custAttributes.get obj.modifiers[#Attribute_Holder] 1
+attributeManager = TAttributeManager()
+attributeManager.addAttributeToSel(#enemyData)
+--attributeManager.delAttributeFromSel(#enemyData)

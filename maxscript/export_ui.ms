@@ -1,9 +1,10 @@
 utility MyMCVExporter "MCV Exporter" (
 	rollout exporter "The Exporter" (
 		button btn_scene "Export Scene"
-		button btn_mesh "Export Mesh"
+		button btn_mesh "Export Mesh" tooltip:"Exports the current selection mesh to file."
 		button btn_skeleton "Export Skeleton & Meshes"
 		button btn_skel_anims "Export Animation" tooltip:"Uses max animation range and frame rate to specify the range to export"
+		--button btn_add_attr_enemy "Add enemy attributes" tooltip:"Adds enemy attributes to selected objects."
 		
 		on btn_scene pressed do (
 			try (
