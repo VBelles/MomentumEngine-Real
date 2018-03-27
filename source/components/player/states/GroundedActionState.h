@@ -5,7 +5,7 @@
 
 class GroundedActionState : public IActionState {
 protected:
-	float backwardsdMinAngle = 130.f;
+	float backwardsdMinAngle = deg2rad(130.f);
 	float backwardsMaxDotProduct;
 public:
 	GroundedActionState(CHandle playerModelHandle);
