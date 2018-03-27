@@ -6,7 +6,7 @@
 DECL_OBJ_MANAGER("camera_player", TCompCameraPlayer);
 
 void TCompCameraPlayer::debugInMenu() {
-	ImGui::DragFloat("distanceToTarget", &distanceToTarget, 0.1f, 1.f, 1000.f);
+	ImGui::DragFloat("distanceToTarget", &defaultDistanceToTarget, 0.1f, 1.f, 1000.f);
 }
 
 // -------------------------------------------------
@@ -15,12 +15,10 @@ void TCompCameraPlayer::renderDebug() {
 
 // -------------------------------------------------
 void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
-	distanceToTarget = j.value("distance_to_target", 5.f);
-	distanceVector.z = -distanceToTarget;
-
-	if (j.count("target")) {
-		targetName = j.value("target", "");
-	}
+	defaultDistanceToTarget = j.value("distance_to_target", 5.f);
+	distanceVector.z = -defaultDistanceToTarget;
+	currentDistanceToTarget = defaultDistanceToTarget;
+	targetName = j.value("target", "");
 }
 
 void TCompCameraPlayer::registerMsgs() {
@@ -33,19 +31,80 @@ void TCompCameraPlayer::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	pitchAngleRange = Y_ANGLE_MAX - Y_ANGLE_MIN;
 
 	target = getEntityByName(targetName.c_str());
-	CEntity *playerEntity = target;
 }
 
 void TCompCameraPlayer::update(float delta) {
 	VEC2 increment = GetIncrementFromInput(delta);
 	UpdateMovement(increment, delta);
 	CalculateVerticalOffsetVector();
+
+	PxOverlapBuffer hitBuffer;            // [out] Overlap results
+	if (SphereCast(hitBuffer)) {
+		//PxOverlapHit firstHit = hitBuffer.getTouch(0);
+		//En teoria hauriem de passar a la següent funció la posició del hit
+		AproachToFreePosition();
+	}else{
+		currentDistanceToTarget = defaultDistanceToTarget;
+	}
+
 	//Decirle a TCompCamera donde tiene que mirar
 	CEntity* entity = CHandle(this).getOwner();
 	TCompCamera* cameraComp = entity->get<TCompCamera>();
 	CEntity *playerEntity = target;
 	TCompTransform* targetTransform = playerEntity->get<TCompTransform>();
 	cameraComp->SetTarget(targetTransform->getPosition() + VEC3::Up * 2.0f);
+
+	
+
+}
+
+bool TCompCameraPlayer::SphereCast(PxOverlapBuffer hit) {
+	TCompTransform* transform = get<TCompTransform>();
+
+	PxSphereGeometry sphereShape(sphereCastRadius);  // [in] shape to test for overlaps
+	PxTransform pxTransform;    // [in] initial shape pose (at distance=0)
+	pxTransform.p = PxVec3(transform->getPosition().x, transform->getPosition().y, transform->getPosition().z);
+	pxTransform.q = PxQuat(transform->getRotation().x, transform->getRotation().y, transform->getRotation().z, transform->getRotation().w);
+	PxQueryFilterData fd;
+	fd.flags |= PxQueryFlag::eANY_HIT;
+	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, hit, fd);
+
+	return status;
+}
+
+void TCompCameraPlayer::AproachToFreePosition() {
+	CEntity *targetEntity = target;
+	TCompTransform* targetTransform = targetEntity->get<TCompTransform>();
+	VEC3 targetPosition = targetTransform->getPosition() + VEC3::Up * 2.f;
+	PxVec3 origin = PxVec3(targetPosition.x, targetPosition.y, targetPosition.z);
+
+	const PxU32 bufferSize = 256;
+	PxRaycastHit hitBuffer[bufferSize];
+	PxRaycastBuffer buf(hitBuffer, bufferSize);
+
+	TCompTransform* transform = get<TCompTransform>();
+	PxVec3 unitDir = PxVec3(-transform->getFront().x, -transform->getFront().y, -transform->getFront().z);
+	PxReal maxRaycastDistance = VEC3::Distance(transform->getPosition(), targetPosition);
+
+	bool status = EnginePhysics.getScene()->raycast(origin, unitDir, maxRaycastDistance, buf);
+	if (!status) return;
+	float nearestDistance = maxRaycastDistance;
+	PxRaycastHit nearest;
+	for (PxU32 i = 0; i < buf.nbTouches; i++) {
+		PxRaycastHit& touch = buf.touches[i];
+		if (!touch.shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
+			if (touch.distance < nearestDistance) {
+				nearestDistance = touch.distance;
+				nearest = touch;
+			}
+		}
+	}
+	//PxVec3 pxDir = origin - nearest.position;
+	//VEC3 dir = VEC3(pxDir.x, pxDir.y, pxDir.z);
+	VEC3 dir = transform->getFront();
+	VEC3 newPosition = VEC3(nearest.position.x, nearest.position.y, nearest.position.z) + dir * (sphereCastRadius + 0.01f);
+	transform->setPosition(newPosition);
+	currentDistanceToTarget = VEC3::Distance(transform->getPosition(), targetPosition);
 }
 
 VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {
@@ -83,13 +142,13 @@ void TCompCameraPlayer::UpdateMovement(VEC2 increment, float delta) {
 	myTransform->setYawPitchRoll(y, p, r);
 
 	//Move the camera back
-	myTransform->setPosition(myTransform->getPosition() - myTransform->getFront() * distanceToTarget);
+	myTransform->setPosition(myTransform->getPosition() - myTransform->getFront() * currentDistanceToTarget);
 }
 
 void TCompCameraPlayer::CalculateVerticalOffsetVector() {
 	float y, p, r;
-	TCompTransform* myTransform = get<TCompTransform>();
-	myTransform->getYawPitchRoll(&y, &p, &r);
+	TCompTransform* transform = get<TCompTransform>();
+	transform->getYawPitchRoll(&y, &p, &r);
 	float currentOffset = ((pitchAngleRange - (y - Y_ANGLE_MIN)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
 	verticalOffsetVector.y = currentOffset;
 }
@@ -97,7 +156,7 @@ void TCompCameraPlayer::CalculateVerticalOffsetVector() {
 void TCompCameraPlayer::CenterCamera() {
 	CEntity *playerEntity = target;
 	TCompTransform* targetTransform = playerEntity->get<TCompTransform>();
-	centeredPosition = targetTransform->getPosition() - targetTransform->getFront() * distanceToTarget;
+	centeredPosition = targetTransform->getPosition() - targetTransform->getFront() * currentDistanceToTarget;
 	VEC3 velocityVector = targetTransform->getPosition() - centeredPosition;
 	velocityVector.Normalize();
 
