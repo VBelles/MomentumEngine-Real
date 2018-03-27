@@ -2,6 +2,7 @@ clearListener()
 gc()
 
 fileIn "export_mesh.ms" -- To avoid error on first execution.
+fileIn "add-attributes.ms" -- To avoid error on first execution.
 
 -- 
 struct TJsonFormatter (
@@ -428,6 +429,119 @@ struct TSceneExporter (
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 
+	-- --PLAYER --------------------------------------------------
+	fn exportPlayer obj nValidObjs = (
+		if classOf obj != Editable_mesh then (
+			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
+			return false
+		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				exportTransform obj
+				fs.writeComma()
+				fs.writeKey "render"
+				fs.beginArray()
+					exportRenderMesh obj
+				fs.endArray()
+				fs.writeComma()
+				fs.writeKey "player_controller"
+				fs.beginObj()
+				fs.endObj()
+				fs.writeComma()
+				fs.writeKey "player_model"
+				fs.beginObj()
+					fs.writeKeyValue "gravity" -55
+					fs.writeComma()
+					fs.writeKeyValue "walkingSpeed" 3
+					fs.writeComma()
+					fs.writeKey "ssj1"
+					fs.beginObj()
+						fs.writeKeyValue "rotation_speed" 11.0
+						fs.writeComma()
+						fs.writeKeyValue "maxSpeed" 7.0
+						fs.writeComma()
+						fs.writeKeyValue "shortHopVelocity" 16.0
+						fs.writeComma()
+						fs.writeKeyValue "jumpVelocity" " 0 20 0"
+						fs.writeComma()
+						fs.writeKeyValue "longJumpVelocity" " 0 11 12"
+						fs.writeComma()
+						fs.writeKeyValue "maxVelocityVertical"  30.0
+						fs.writeComma()
+						fs.writeKeyValue "acceleration" 30.0
+						fs.writeComma()
+						fs.writeKeyValue "deceleration" 7.0
+						fs.writeComma()
+						fs.writeKeyValue "airAcceleration" 30.0
+						fs.writeComma()
+						fs.writeKeyValue "falling_multiplier" 1.05
+						fs.writeComma()
+						fs.writeKeyValue "long_gravity_multiplier" 0.60
+					fs.endObj()
+					fs.writeComma()
+					fs.writeKey "ssj2"
+					fs.beginObj()
+						fs.writeKeyValue "rotation_speed" 14.0
+						fs.writeComma()
+						fs.writeKeyValue "maxSpeed" 11.0
+						fs.writeComma()
+						fs.writeKeyValue "shortHopVelocity" 18.0
+						fs.writeComma()
+						fs.writeKeyValue "jumpVelocity" "0 25 0"
+						fs.writeComma()
+						fs.writeKeyValue "longJumpVelocity" " 0 12 17"
+						fs.writeComma()
+						fs.writeKeyValue "maxVelocityVertical" 30.0
+						fs.writeComma()
+						fs.writeKeyValue "acceleration" 32.0
+						fs.writeComma()
+						fs.writeKeyValue "deceleration" 8.0
+						fs.writeComma()
+						fs.writeKeyValue "airAcceleration" 35.0
+						fs.writeComma()
+						fs.writeKeyValue "falling_multiplier" 1.05
+						fs.writeComma()
+						fs.writeKeyValue "long_gravity_multiplier" 0.60
+					fs.endObj()
+					fs.writeComma()
+					fs.writeKey "ssj3"
+					fs.beginObj()
+						fs.writeKeyValue "rotation_speed" 17.0
+						fs.writeComma()
+						fs.writeKeyValue "maxSpeed" 14.0
+						fs.writeComma()
+						fs.writeKeyValue "shortHopVelocity" 20.0
+						fs.writeComma()
+						fs.writeKeyValue "jumpVelocity" "0 30 0"
+						fs.writeComma()
+						fs.writeKeyValue "longJumpVelocity" "0 13 22.5"
+						fs.writeComma()
+						fs.writeKeyValue "maxVelocityVertical" 30.0
+						fs.writeComma()
+						fs.writeKeyValue "acceleration" 35.0
+						fs.writeComma()
+						fs.writeKeyValue "deceleration" 9.0
+						fs.writeComma()
+						fs.writeKeyValue "airAcceleration" 40.0
+						fs.writeComma()
+						fs.writeKeyValue "falling_multiplier" 1.05
+						fs.writeComma()
+						fs.writeKeyValue "long_gravity_multiplier" 0.60
+					fs.endObj()
+					fs.writeComma()
+					fs.writeKey "power_gauge"
+					fs.beginObj()
+					fs.endObj()
+				fs.endObj()
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
 	-- --DEFAULT ------------------------------------------------
 	fn exportDefault obj nValidObjs = (
 		if classOf obj != Editable_mesh then (
@@ -523,6 +637,10 @@ struct TSceneExporter (
 				if matchpattern obj.name pattern:"?*melee*" then
 					prefabName = enemyLandPrefabName
 				local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
+				
+				local attributeManager = TAttributeManager()
+				local hp = attributeManager.getAttributeValue obj #enemyData #hitPoints
+				if hp != undefined then format "would export hp: %\n" hp
 				
 				exportName obj
 				fs.writeComma()
@@ -714,6 +832,7 @@ struct TSceneExporter (
 			--format "Layer: %, objs: %\n" layerName layerObjs --DEBUG
 			local ofilename = getFilenameFile maxFileName
 			local scenePath = project_path + scenes_path + ofilename + "-" + layerName + ".scene"
+			if layerName == "player" then scenePath = project_path + scenes_path + "test_player.scene"
 			
 			-- Avoid creating scenes if layer is empty or invisible.
 			if layerObjs.count >= 1 and not layer.isHidden then (
@@ -736,6 +855,7 @@ struct TSceneExporter (
 							"enemies":   ( wasValid = exportEnemy     object nValidObjs )
 							"lights":    ( wasValid = exportLight     object nValidObjs )
 							"movables":  ( wasValid = exportMovable   object nValidObjs )
+							"player":    ( wasValid = exportPlayer    object nValidObjs )
 							"triggers":  ( wasValid = exportTrigger   object nValidObjs )
 							--"mechanisms":( wasValid = exportMechanism object nValidObjs )
 							"0":		 ( wasValid = exportDefault   object nValidObjs )

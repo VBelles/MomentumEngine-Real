@@ -1,10 +1,11 @@
+fileIn "add-attributes.ms" -- To avoid error on first execution.
+
 utility MyMCVExporter "MCV Exporter" (
-	rollout exporter "The Exporter" (
+	rollout exporter "Momentum Exporter" (
 		button btn_scene "Export Scene"
-		button btn_mesh "Export Mesh" tooltip:"Exports the current selection mesh to file."
+		button btn_mesh "Export Mesh" tooltip:"Exports the current selection mesh to file"
 		button btn_skeleton "Export Skeleton & Meshes"
 		button btn_skel_anims "Export Animation" tooltip:"Uses max animation range and frame rate to specify the range to export"
-		--button btn_add_attr_enemy "Add enemy attributes" tooltip:"Adds enemy attributes to selected objects."
 		
 		on btn_scene pressed do (
 			try (
@@ -51,15 +52,48 @@ utility MyMCVExporter "MCV Exporter" (
 			) catch (
 				MessageBox ("Error Exporting Skeleton Animation:\n" + getCurrentException())
 			)
-		)		
+		)
+	) -- end exporter rollout creator
+	
+	rollout attribute "Momentum Attributes" (
+		button btn_addAttrEnemy "+ enemy" across:2 tooltip:"Adds enemy attributes to selected objects"
+		button btn_delAttrEnemy "- enemy" tooltip:"Deletes enemy attributes from selected objects"
 		
-	) -- end rollout creator
 		
-	-- ...
+		fn addAttribute defName = (
+			try (
+				gc()
+				local attributeManager = TAttributeManager()
+				attributeManager.addAttributeToSel(defName)	
+				--MessageBox "Attributes added."
+			) catch (
+				MessageBox ("Error Exporting:\n" + getCurrentException())
+			)
+		)
+		
+		fn delAttribute defName = (
+			try (
+				gc()
+				local attributeManager = TAttributeManager()
+				attributeManager.delAttributeFromSel(defName)	
+				--MessageBox "Attributes deleted."
+			) catch (
+				MessageBox ("Error Exporting:\n" + getCurrentException())
+			)
+		)
+		
+		on btn_addAttrEnemy pressed do ( addAttribute #enemyData )
+		
+		on btn_delAttrEnemy pressed do ( delAttribute #enemyData )
+		
+	) -- end attribute rollout creator
+
 	on MyMCVExporter open do (
 		addRollout exporter
+		addRollout attribute
 	) 
 	on MyMCVExporter close do (
 		removeRollout exporter
+		removeRollout attribute
 	) 
 ) -- end utility MyMCVExporter 

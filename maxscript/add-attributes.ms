@@ -1,36 +1,53 @@
 clearListener()
 gc()
 
---http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=GUID-7EAA7D84-5775-4E4C-9936-D874EB7A42BB
---http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_ADFD29E4_9751_4F55_98CC_F7C721C9AEE2_htm
---http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_0A1E08F8_A8C5_4737_AA6F_39194AD16559_htm
-
+/*
+http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=GUID-7EAA7D84-5775-4E4C-9936-D874EB7A42BB
+http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_ADFD29E4_9751_4F55_98CC_F7C721C9AEE2_htm
+http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_0A1E08F8_A8C5_4737_AA6F_39194AD16559_htm
+*/
 global enemiesData = attributes enemyData (
 	parameters main rollout:params (
 		hitPoints type: #integer ui:HP default:5
+		moveSpeed type: #float ui:moveSpeed default:2.5
+		powerGiven type: #integer ui:powerGiven default:3400 
+		recallDistance type: #integer ui:recallDistance default:28
+		chaseFov type: #integer ui:chaseFov default:60
+		attackFov type: #integer ui:attackFov default:60
 		enemyType type: #string
 	)
 	rollout params "Enemy Data" (
 		spinner HP "Hit Points" type: #integer
+		spinner moveSpeed "Move Speed" type: #float
+		spinner powerGiven "Power Given" type: #integer range:[0, 100000, 3400]
+		spinner recallDistance "Recall distance" type: #integer
+		spinner chaseFov "Chase fov" type: #integer
+		spinner attackFov "Attack fov" type: #integer
 		dropdownlist enemyType "Enemy Type" items:# ("melee","air")
 	)
 )
+
 -- -----------------------------------------------------------
 
 struct TAttributeManager (
+	fn hasValidModifier obj = (
+		local emptyModif = EmptyModifier()
+		return validModifier obj emptyModif and obj.modifiers.count > 0
+	),
+	
 	-- Adds Attribute Holder if it doesn't have one. Just to keep attributes separated in some special modifier.
 	fn addAttributeHolderModifier obj = (
-		local emptyModif = EmptyModifier()
-		if not validModifier obj emptyModif or
-		   obj.modifiers.count <= 0 then (
+		if not hasValidModifier obj then (
 			-- If it doesn't have any modifier validModifier returns true, so we also have to check that.
 			format "Doesn't have Attribute Holder empty modifier.\n"
+			local emptyModif = EmptyModifier()
 			addModifier obj emptyModif
 		)
 	),
 
 	fn hasAttribute obj defName = (
 		local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
+		if objDefs == undefined then return false
 		for objdef in objDefs do (
 			format "objdef: %\n" (custAttributes.getDefClass objdef) as string -- DEBUG
 			format "objdef.name: %\n" objdef.name -- DEBUG
@@ -41,12 +58,25 @@ struct TAttributeManager (
 
 	fn findAttribute obj defName = (
 		local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
+		if objDefs == undefined then return undefined
 		for i = 1 to objDefs.count do (
 			if objDefs[i].name == defName then return i
 		)
 		return undefined
 	),
 
+	fn getAttributeValue obj defName attribute = (
+		if not hasValidModifier obj then return undefined
+		local idxFound = findAttribute obj defName
+		if idxFound != undefined then (
+			local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
+			a = custAttributes.get obj.modifiers[#Attribute_Holder] idxFound
+			return a[attribute].value
+			--return obj.modifiers[#Attribute_Holder].defName.attribute
+		)
+		return undefined
+	),
+	
 	-- Adds attribute of type defName to object's Attribute Holder modifier.
 	fn addAttribute obj defName = (
 		addAttributeHolderModifier obj
@@ -85,9 +115,9 @@ struct TAttributeManager (
 	)
 )
 
---addAttributeToSel #enemyData
---delAttributeFromSel #enemyData
-
-attributeManager = TAttributeManager()
-attributeManager.addAttributeToSel(#enemyData)
+--format "------------------------\n" -- DEBUG
+--attributeManager = TAttributeManager()
+--attributeManager.addAttributeToSel(#enemyData)
 --attributeManager.delAttributeFromSel(#enemyData)
+attributeManager.getAttributeValue $ #enemyData #hitPoints
+
