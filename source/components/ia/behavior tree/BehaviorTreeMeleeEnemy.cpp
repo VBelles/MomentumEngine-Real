@@ -68,6 +68,8 @@ void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 	minCombatDistance = j.value("minCombatDistance", 2.f);
 	maxCombatDistance = j.value("maxCombatDistance", 4.f);
 	attackCooldown = j.value("attackCooldown", 2.f);
+	attackDamage = j.value("attackDamage", 1.f);
+	propelDuration = j.value("propelDuration", 1.5f);
 	gravity = j.value("gravity", -50.f);
 	if (j.count("maxVelocity")) {
 		maxVelocity = loadVEC3(j["maxVelocity"]);
@@ -292,7 +294,7 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 		attackTimer.reset();
 		TMsgAttackHit msg = {};
 		msg.attacker = CHandle(this);
-		msg.info.damage = 1.f;
+		msg.info.damage = attackDamage;
 		getPlayerEntity()->sendMsg(msg);
 	}
 	return Leave;
@@ -345,19 +347,18 @@ bool CBehaviorTreeMeleeEnemy::returnToSpawnCondition(float delta) {
 
 bool CBehaviorTreeMeleeEnemy::chaseCondition(float delta) {
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	bool isPlayerInFov = getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
+	bool isPlayerInFov = getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
 	return distance > minCombatDistance && (distance < smallChaseRadius || (distance < fovChaseDistance && isPlayerInFov));
 }
 
 bool CBehaviorTreeMeleeEnemy::combatCondition(float delta) {
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distance < maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
+	return distance < maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
 }
 
 void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
 	playerHandle = getEntityByName("The Player");
-	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 }
 
 void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {

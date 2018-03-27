@@ -159,6 +159,8 @@
     <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
     <ClCompile Include="components\comp_give_power.cpp" />
+    <ClCompile Include="components\ia\behavior tree\BehaviorTreeFlyingRangedEnemy.cpp" />
+    <ClCompile Include="components\controllers\ranged_attacks\comp_ranged_attack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -342,6 +344,8 @@
     <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
     <ClInclude Include="components\comp_give_power.h" />
+    <ClInclude Include="components\ia\behavior tree\BehaviorTreeFlyingRangedEnemy.h" />
+    <ClInclude Include="components\controllers\ranged_attacks\comp_ranged_attack.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
