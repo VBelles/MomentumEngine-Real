@@ -3838,7 +3838,7 @@
       "prefab": "data/prefabs/platform_move.prefab",
       "transform": {
         "pos": "52.3778 2.65323 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3861,7 +3861,7 @@
       "name": "WWw_platformMove007_trigger",
       "transform": {
         "pos": "52.3778 2.90323 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3885,7 +3885,7 @@
       "prefab": "data/prefabs/platform_move.prefab",
       "transform": {
         "pos": "47.2148 6.15079 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3908,7 +3908,7 @@
       "name": "WWw_platformMove008_trigger",
       "transform": {
         "pos": "47.2148 6.40079 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3932,7 +3932,7 @@
       "prefab": "data/prefabs/platform_move.prefab",
       "transform": {
         "pos": "52.3778 9.66229 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3955,7 +3955,7 @@
       "name": "WWw_platformMove009_trigger",
       "transform": {
         "pos": "52.3778 9.91229 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3979,7 +3979,7 @@
       "prefab": "data/prefabs/platform_move.prefab",
       "transform": {
         "pos": "47.2148 13.1598 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -4002,7 +4002,7 @@
       "name": "WWw_platformMove010_trigger",
       "transform": {
         "pos": "47.2148 13.4098 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
