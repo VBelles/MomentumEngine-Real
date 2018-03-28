@@ -125,6 +125,7 @@ int CBehaviorTreeMeleeEnemy::dead(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
+	getCollider()->disable();
 	timer.reset();
 	grabbedDuration = receivedAttack.grab->duration;
 	return Leave;
@@ -132,6 +133,7 @@ int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
 
 int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 	if (timer.elapsed() >= grabbedDuration) {
+		getCollider()->enable();
 		return Leave;
 	}
 	else {
@@ -140,6 +142,7 @@ int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
+	getCollider()->enable();
 	velocityVector = receivedAttack.propel->velocity;
 
 	timer.reset();

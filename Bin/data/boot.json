@@ -5,8 +5,7 @@
     "data/scenes/game_camera.scene",
     "data/scenes/scene_basic.scene",
     "data/scenes/skeleton_demo.scene",
-    "data/scenes/whitebox23.scene",
-    "data/scenes/scene_testBehaviorTree.scene"
+    "data/scenes/whitebox23.scene"
   ],
   "unused_scenes": [
     "data/scenes/lights.scene",

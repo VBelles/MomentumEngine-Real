@@ -59,7 +59,7 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
 	rotationSpeed = j.value("rotationSpeed", 90.f);
-	recallDistance = j.value("recallDistance", 10.f);
+	recallDistance = j.value("recallDistance", 5.f);
 	attackFov = deg2rad(j.value("attackFov", 60.f));
 	minCombatDistance = j.value("minCombatDistance", 2.f);
 	maxCombatDistance = j.value("maxCombatDistance", 20.f);
@@ -122,6 +122,7 @@ int CBehaviorTreeFlyingRangedEnemy::dead(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onGrab(float delta) {
+	getCollider()->disable();
 	timer.reset();
 	grabbedDuration = receivedAttack.grab->duration;
 	return Leave;
@@ -129,6 +130,7 @@ int CBehaviorTreeFlyingRangedEnemy::onGrab(float delta) {
 
 int CBehaviorTreeFlyingRangedEnemy::grabbed(float delta) {
 	if (timer.elapsed() >= grabbedDuration) {
+		getCollider()->enable();
 		return Leave;
 	}
 	else {
@@ -137,6 +139,7 @@ int CBehaviorTreeFlyingRangedEnemy::grabbed(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onPropel(float delta) {
+	getCollider()->enable();
 	velocityVector = receivedAttack.propel->velocity;
 
 	timer.reset();
@@ -254,9 +257,8 @@ int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
 
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
-	dbg("returnToSpawn, %f \n", VEC3::Distance(myPosition, spawnPosition));
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	if (VEC3::Distance(myPosition, spawnPosition) < 2.f || (distance < maxCombatDistance + 5.f && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
+	if (VEC3::Distance(myPosition + deltaMovement, spawnPosition) < 0.1f || (distance < maxCombatDistance + 5.f && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
 		return Leave;
 	}
 	else {
