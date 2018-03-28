@@ -49,7 +49,7 @@ void TCompCameraPlayer::update(float delta) {
 	}
 }
 
-bool TCompCameraPlayer::SphereCast(PxOverlapBuffer hit) {
+bool TCompCameraPlayer::SphereCast(PxOverlapBuffer buf) {
 	VEC3 position = GetTransform()->getPosition();
 	QUAT rotation = GetTransform()->getRotation();
 
@@ -59,9 +59,15 @@ bool TCompCameraPlayer::SphereCast(PxOverlapBuffer hit) {
 	pxTransform.q = PxQuat(rotation.x, rotation.y, rotation.z, rotation.w);
 	PxQueryFilterData fd;
 	fd.flags |= PxQueryFlag::eANY_HIT;
-	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, hit, fd);
-
-	return status;
+	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, buf, fd);
+	bool touched = false;
+	for (PxU32 i = 0; i < buf.getNbAnyHits(); i++) {
+		auto& hit = buf.getAnyHit(i);
+		if (!hit.shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
+			touched = true;
+		}
+	}
+	return touched;
 }
 
 void TCompCameraPlayer::AproachToFreePosition() {
