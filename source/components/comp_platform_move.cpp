@@ -88,11 +88,11 @@ void TCompPlatformMove::update(float dt) {
     TCompCollider* collider = get<TCompCollider>();
     assert(collider);
     PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-    if (rigidDynamic && collider->isEnabled()) {
-        rigidDynamic->setKinematicTarget({ myPosition.x + movement.x,
-                                           myPosition.y + movement.y,
-                                           myPosition.z + movement.z});
-    }
+
+	PxTransform newTransform;
+	newTransform.p = { myPosition.x + movement.x, myPosition.y + movement.y, myPosition.z + movement.z };
+	newTransform.q = { transform->getRotation().x, transform->getRotation().y, transform->getRotation().z, transform->getRotation().w };
+	rigidDynamic->setKinematicTarget(newTransform);
 
     // Move the player with the platform.
     if ( isPlayerInTrigger ) {
