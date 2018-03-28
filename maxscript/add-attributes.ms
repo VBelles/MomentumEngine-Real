@@ -119,5 +119,5 @@ struct TAttributeManager (
 --attributeManager = TAttributeManager()
 --attributeManager.addAttributeToSel(#enemyData)
 --attributeManager.delAttributeFromSel(#enemyData)
-attributeManager.getAttributeValue $ #enemyData #hitPoints
+--attributeManager.getAttributeValue $ #enemyData #hitPoints
 

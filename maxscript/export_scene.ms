@@ -229,24 +229,6 @@ struct TMaterialExporter (
 	)
 )
 
-fn hasChildLine obj = (
-	if obj.children == undefined then return false
-	for child in obj.children do (
-		if classOf child == line then return true
-	)
-	return false
-)
-
-fn isCollider obj = (
-		if classof obj != Box 	 and
-		   classof obj != Sphere and
-		   classof obj != Plane then (
-		format "Wrong object %. Collisions must be Spheres, Boxes or Planes.\n" obj.name
-		return false
-	)
-	return true
-)
-
 -- ----------------------------------------------------------
 -- ----------------------------------------------------------
 -- ----------------------------------------------------------
@@ -266,6 +248,25 @@ struct TSceneExporter (
 		return findString aname " " == undefined
 	),
 
+	fn hasChildLine obj = (
+		if obj.children == undefined then return false
+		for child in obj.children do (
+			if classOf child == line then return true
+		)
+		return false
+	),
+
+	fn isCollider obj = (
+			if  classof obj != Box 	 and
+				classof obj != Sphere and
+				classof obj != Capsule and
+				classof obj != Plane then (
+			format "Wrong object %. Collisions must be Spheres, Boxes, Capsules or Planes.\n" obj.name
+			return false
+		)
+		return true
+	),
+	
 	-- --TRANSFORM-----------------------------------------------
 	fn exportTransform obj yShift: lookAtCoord: = (
 		fs.writeKey "transform"
@@ -348,6 +349,19 @@ struct TSceneExporter (
 			fs.writeComma()
 			-- Last value should be Y position.
 			fs.writeKeyValue "planeDesc" "0 1 0 0"
+		) else if classof obj == Capsule then (
+			fs.writeKeyValue "shape" "capsule"
+			fs.writeComma()
+			fs.writeKeyValue "is_character_controller" true
+			fs.writeComma()
+			fs.writeKeyValue "radius" obj.radius
+			fs.writeComma()
+			--Warning: Max capsule height is the real height, NOT HALF as in PhysX.
+			fs.writeKeyValue "height" (obj.height / 2)
+			fs.writeComma()
+			fs.writeKeyValue "step" 0.5
+			fs.writeComma()
+			fs.writeKeyValue "slope" 45
 		)
 
 		-- Add it in the user properties panel of max:  density = 10
@@ -466,9 +480,9 @@ struct TSceneExporter (
 						fs.writeComma()
 						fs.writeKeyValue "shortHopVelocity" 16.0
 						fs.writeComma()
-						fs.writeKeyValue "jumpVelocity" " 0 20 0"
+						fs.writeKeyValue "jumpVelocity" "0 20 0"
 						fs.writeComma()
-						fs.writeKeyValue "longJumpVelocity" " 0 11 12"
+						fs.writeKeyValue "longJumpVelocity" "0 11 12"
 						fs.writeComma()
 						fs.writeKeyValue "maxVelocityVertical"  30.0
 						fs.writeComma()
@@ -493,7 +507,7 @@ struct TSceneExporter (
 						fs.writeComma()
 						fs.writeKeyValue "jumpVelocity" "0 25 0"
 						fs.writeComma()
-						fs.writeKeyValue "longJumpVelocity" " 0 12 17"
+						fs.writeKeyValue "longJumpVelocity" "0 12 17"
 						fs.writeComma()
 						fs.writeKeyValue "maxVelocityVertical" 30.0
 						fs.writeComma()
@@ -536,9 +550,44 @@ struct TSceneExporter (
 					fs.writeKey "power_gauge"
 					fs.beginObj()
 					fs.endObj()
+				fs.endObj() -- End player_model
+				fs.writeComma()
+				exportCompCollider obj -- WRONG: main object is the mesh.
+				fs.writeComma()
+				fs.writeKey "render_ui"
+				fs.beginObj()
+				fs.endObj()
+				fs.writeComma()
+				fs.writeKey "shadow"
+				fs.beginObj()
+					fs.writeKeyValue "offset" "0 0.1 0"
+					fs.writeComma()
+					fs.writeKeyValue "mesh" "data/meshes/shadow.mesh"
+					fs.writeComma()
+					fs.writeKey "materials"
+					fs.beginArray()
+						fs.writeValue "data/materials/black.material"
+					fs.endArray()
 				fs.endObj()
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
+		-- Begin export Player child colliders
+		for child in obj.children do (
+			if  isCollider child and
+				-- Avoid the capsule, it has to be written before, inside "player_model".
+				classOf child != Capsule then (
+				fs.writeComma()
+				fs.beginObj()
+					fs.writeKey "entity"
+					fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
+						exportEntityCollider child
+						--TODO: Export spline if available.
+					fs.endObj() -- - - - - - - - - - - - - - - - - - - - -
+				fs.endObj()
+			)
+		)
+
 		return true
 	),
 	
