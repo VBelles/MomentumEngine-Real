@@ -1,0 +1,49 @@
+[
+	{
+    "entity": {
+      "name": "platformTest",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform": {
+        "pos": "-80 25 -60",
+        "rotation": "0.0 0.707 0.0 0.707"
+      },
+      "collider": {
+        "shape": "box",
+        "is_dynamic": true,
+        "halfExtent": "1.5 0.5 1.5",
+        "group": "scenario"
+      },
+      "platform_move": {
+        "type": "up",
+        "speed": 4.0,
+        "waypoints": [
+          "-80 25 -60",
+          "-80 30 -65"
+        ]
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "platformTestTrigger",
+      "transform": {
+        "pos": "-80 25 -60",
+        "rotation": "0.0 0.707 0.0 0.707"
+      },
+      "collider": {
+        "shape": "box",
+        "is_dynamic": true,
+        "is_trigger": true,
+        "halfExtent": "1.5 0.5 1.5",
+        "group": "scenario",
+        "mask": "player"
+      },
+      "fwd_msg": {
+        "target": "platformTest"
+      },
+      "hierarchy": {
+        "parent": "platformTest"
+      }
+    }
+  }
+]
