@@ -18,18 +18,25 @@ void TCompRangedAttack::registerMsgs() {
 
 void TCompRangedAttack::load(const json& j, TEntityParseContext& ctx) {
 	speed = j.value("speed", 0.01f);
+	lifetime = j.value("lifetime", 60.0f);
 }
 
 void TCompRangedAttack::update(float dt) {
 	if (!hit) {
-		TCompTransform *transform = get<TCompTransform>();
 		TCompCollider* collider = get<TCompCollider>();
-		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-		VEC3 newPos = transform->getPosition() + transform->getFront() * speed;
-		PxTransform newTransform;
-		newTransform.p = { newPos.x, newPos.y, newPos.z };
-		newTransform.q = { transform->getRotation().x, transform->getRotation().y, transform->getRotation().z, transform->getRotation().w };
-		rigidDynamic->setKinematicTarget(newTransform);
+		if (timer.elapsed() > lifetime) {
+			collider->disable();
+			hit = true;
+		}
+		else {
+			TCompTransform *transform = get<TCompTransform>();
+			PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+			VEC3 newPos = transform->getPosition() + transform->getFront() * speed;
+			PxTransform newTransform;
+			newTransform.p = { newPos.x, newPos.y, newPos.z };
+			newTransform.q = { transform->getRotation().x, transform->getRotation().y, transform->getRotation().z, transform->getRotation().w };
+			rigidDynamic->setKinematicTarget(newTransform);
+		}
 	}
 }
 
@@ -44,6 +51,7 @@ void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOw
 	attackInfo = msg.attackInfo;
 	TCompTransform *transform = get<TCompTransform>();
 	transform->lookAt(msg.initialPos, msg.initialPos + msg.direction);
+	timer.reset();
 }
 
 void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
