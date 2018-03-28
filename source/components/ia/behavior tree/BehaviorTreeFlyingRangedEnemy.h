@@ -44,6 +44,7 @@ private:
 	VEC3 velocityVector;
 
 	CTimer timer;
+	CTimer idleWarTimer;
 	CTimer attackTimer;
 	CTimer stunTimer;
 
@@ -65,6 +66,7 @@ private:
 	int stunned(float delta = 0.f);
 	int respawn(float delta = 0.f);
 	int returnToSpawn(float delta = 0.f);
+	int onIdleWar(float delta = 0.f);
 	int idleWar(float delta = 0.f);
 	int attack(float delta = 0.f);
 	int idle(float delta = 0.f);

@@ -15,6 +15,7 @@ private:
 	float maxHealth = 5.f;
 	float health = maxHealth;
 	float movementSpeed = 2.5f;
+	float stepBackSpeed = 3.5f;
 	float rotationSpeed = 90.f;
 
 	float recallDistance = 28.f;
@@ -48,6 +49,7 @@ private:
 	bool grounded = true;
 
 	CTimer timer;
+	CTimer idleWarTimer;
 	CTimer attackTimer;
 	CTimer stunTimer;
 
@@ -71,6 +73,8 @@ private:
 	int respawn(float delta = 0.f);
 	int returnToSpawn(float delta = 0.f);
 	int chase(float delta = 0.f);
+	int stepBack(float delta = 0.f);
+	int onIdleWar(float delta = 0.f);
 	int idleWar(float delta = 0.f);
 	int attack(float delta = 0.f);
 	int idle(float delta = 0.f);
@@ -87,6 +91,7 @@ private:
 	bool returnToSpawnCondition(float delta = 0.f);
 	bool chaseCondition(float delta = 0.f);
 	bool combatCondition(float delta = 0.f);
+	bool stepBackCondition(float delta = 0.f);
 
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();

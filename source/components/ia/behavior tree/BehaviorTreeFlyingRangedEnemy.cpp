@@ -45,9 +45,11 @@ CBehaviorTreeFlyingRangedEnemy::CBehaviorTreeFlyingRangedEnemy()
 	addChild("meleeEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::returnToSpawn);
 
 	CBehaviorTreeNodeRandom *node = (CBehaviorTreeNodeRandom*)addChild("meleeEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::combatCondition, nullptr);
-	addChild("combat", "idleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idleWar);
+	addChild("combat", "idleWar", Sequence, nullptr, nullptr);
+	addChild("idleWar", "onIdleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onIdleWar);
+	addChild("idleWar", "idleWarAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idleWar);
 	addChild("combat", "attack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::attack);
-	node->setProbability(std::vector<float>{ 0.99f, 0.01f });
+	node->setProbability(std::vector<float>{ 0.75f, 0.25f });
 
 	addChild("meleeEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idle);
 }
@@ -262,9 +264,19 @@ int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
 	}
 }
 
+int CBehaviorTreeFlyingRangedEnemy::onIdleWar(float delta) {
+	idleWarTimer.reset();
+	return Leave;
+}
+
 int CBehaviorTreeFlyingRangedEnemy::idleWar(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	return Leave;
+	if (idleWarTimer.elapsed() > 1.f) {
+		return Leave;
+	}
+	else {
+		return Stay;
+	}
 }
 
 int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
