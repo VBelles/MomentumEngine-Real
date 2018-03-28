@@ -16,7 +16,8 @@
 				"radius": 0.05
 			},
 			"ranged_attack": {
-				"speed": 0.3
+				"speed": 0.2,
+				"lifetime": 30
 			}
 		}
 	}

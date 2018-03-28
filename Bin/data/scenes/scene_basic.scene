@@ -99,7 +99,7 @@
 				"shape": "box",
 				"is_trigger" : true,
 				"is_dynamic" : false,
-				"halfExtent" : "100000 0.000001 100000",
+				"halfExtent" : "1000000 0.000001 1000000",
 				"group":["all"],
 				"mask":["characters"]
 			},

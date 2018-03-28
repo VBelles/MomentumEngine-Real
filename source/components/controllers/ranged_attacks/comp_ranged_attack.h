@@ -9,8 +9,9 @@ struct TCompRangedAttack : public TCompBase {
 private:
 	CHandle ownerHandle;
 	float speed = 1.0f;
+	float lifetime = 60.0f;
 	AttackInfo attackInfo;
-
+	CTimer timer;
 	bool hit = false;
 
 	void onCreate(const TMsgEntityCreated& msg);
