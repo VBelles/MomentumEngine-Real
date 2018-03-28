@@ -70,6 +70,11 @@ struct TJsonFormatter (
 		indent()
 		format "\"%\":\n" key_str to:fs
 	),
+	
+	fn writeKeyEmpty key_str = (
+		indent()
+		format "\"%\": {},\n" key_str to:fs
+	),
 		-- --------------------
 	fn writeValue val addIndent:false = (
 		if classof val == string then (
@@ -239,6 +244,7 @@ struct TSceneExporter (
 	scenes_path = base_path + "scenes/",
 	mesh_path = base_path + "meshes/",
 	mats_path = base_path + "materials/",
+	prefabPath = base_path + "prefabs/",
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -331,7 +337,7 @@ struct TSceneExporter (
 	),
 
 	-- --COMP COLLIDER------------------------------------------
-	fn exportCompCollider obj = (
+	fn exportCompCollider obj colliderGroup: trig: dyn: = (
 		fs.writeKey "collider"
 		fs.beginObj()
 
@@ -371,9 +377,20 @@ struct TSceneExporter (
 			fs.writeKeyValue "density" density
 		)
 
-		if obj.layer.name == "triggers" then (
+		if obj.layer.name == "triggers" or
+			trig != unsupplied then (
 			fs.writeComma()
-			fs.writeKeyValue "trigger" true
+			fs.writeKeyValue "is_trigger" trig
+		)
+		
+		if dyn != unsupplied then (
+			fs.writeComma()
+			fs.writeKeyValue "is_dynamic" dyn
+		)
+		
+		if colliderGroup != unsupplied then (
+			fs.writeComma()
+			fs.writeKeyValue "group" colliderGroup
 		)
 
 		fs.endObj()
@@ -401,12 +418,12 @@ struct TSceneExporter (
 	),
 
 	-- --ENTITY COLLIDER-----------------------------------------
-	fn exportEntityCollider obj = (
+	fn exportEntityCollider obj colliderGroup: trig: dyn: = (
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
-		exportCompCollider obj
+		exportCompCollider obj colliderGroup:colliderGroup trig:trig dyn:dyn
 	),
 
 	-- --SPLINE--------------------------------------------------
@@ -439,7 +456,32 @@ struct TSceneExporter (
 			)
 		)
 	),
-		
+	
+	-- --TAGS ----------------------------------------------------
+	fn exportTags tags = (
+		fs.writeKey "tags"
+		fs.beginArray()
+			for i = 1 to tags.count do (
+				if i > 1 then fs.writeComma()
+				fs.writeValue tags[i] addIndent:true
+			)
+		fs.endArray()
+	),
+	
+	-- --SHADOW --------------------------------------------------
+	fn exportShadow = (
+		fs.writeKey "shadow"
+		fs.beginObj()
+			fs.writeKeyValue "offset" "0 0.1 0"
+			fs.writeComma()
+			fs.writeKeyValue "mesh" "data/meshes/shadow.mesh"
+			fs.writeComma()
+			fs.writeKey "materials"
+			fs.beginArray()
+				fs.writeValue "data/materials/black.material" addIndent:true
+			fs.endArray()
+		fs.endObj()
+	),
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 
@@ -462,10 +504,7 @@ struct TSceneExporter (
 					exportRenderMesh obj
 				fs.endArray()
 				fs.writeComma()
-				fs.writeKey "player_controller"
-				fs.beginObj()
-				fs.endObj()
-				fs.writeComma()
+				fs.writeKeyEmpty "player_controller"
 				fs.writeKey "player_model"
 				fs.beginObj()
 					fs.writeKeyValue "gravity" -55
@@ -547,28 +586,21 @@ struct TSceneExporter (
 						fs.writeKeyValue "long_gravity_multiplier" 0.60
 					fs.endObj()
 					fs.writeComma()
-					fs.writeKey "power_gauge"
-					fs.beginObj()
-					fs.endObj()
+					fs.writeKeyEmpty "power_gauge"
 				fs.endObj() -- End player_model
 				fs.writeComma()
-				exportCompCollider obj -- WRONG: main object is the mesh.
+				local capsuleHeight = 0
+				for child in obj.children do (
+					if isCollider child and
+						-- Pick the capsule. Shouldn't have more than one.
+						classOf child == Capsule then (
+							exportCompCollider child colliderGroup:"Player"
+							capsuleHeight = child.height
+					)
+				)
 				fs.writeComma()
-				fs.writeKey "render_ui"
-				fs.beginObj()
-				fs.endObj()
-				fs.writeComma()
-				fs.writeKey "shadow"
-				fs.beginObj()
-					fs.writeKeyValue "offset" "0 0.1 0"
-					fs.writeComma()
-					fs.writeKeyValue "mesh" "data/meshes/shadow.mesh"
-					fs.writeComma()
-					fs.writeKey "materials"
-					fs.beginArray()
-						fs.writeValue "data/materials/black.material"
-					fs.endArray()
-				fs.endObj()
+				fs.writeKeyEmpty "render_ui"
+				exportShadow
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		-- Begin export Player child colliders
@@ -580,14 +612,78 @@ struct TSceneExporter (
 				fs.beginObj()
 					fs.writeKey "entity"
 					fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
-						exportEntityCollider child
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
+						exportEntityCollider child colliderGroup:"Hitbox" trig:true dyn:true
+						fs.writeComma()
+						fs.writeKey "hierarchy"
+						fs.beginObj()
+							fs.writeKeyValue "parent" obj.name
+						fs.endObj()
+						fs.writeComma()
+						fs.writeKey "hitbox"
+						fs.beginObj()
+							-- PhysX takes center of Capsule as pivot, so we have to correct it for the offset.
+							local correctedObjTransf = obj.transform
+							correctedObjTransf.pos.z += capsuleHeight / 2
+							local posInParentSpace = child.transform.pos * inverse correctedObjTransf
+							-- Change xyz order.
+							posInParentSpace = [posInParentSpace.y, posInParentSpace.z, posInParentSpace.x]
+							fs.writeKeyValue "offset" posInParentSpace
+						fs.endObj()
 						--TODO: Export spline if available.
 					fs.endObj() -- - - - - - - - - - - - - - - - - - - - -
 				fs.endObj()
 			)
 		)
 
+		return true
+	),
+	
+	-- --PREFAB -------------------------------------------------
+	fn exportPrefab obj nValidObjs = (
+		local meshPath = ""
+		local ai = ""
+		if 		classOf obj == Capsule then (
+			meshPath = "data/meshes/enemyMelee.mesh"
+			ai = "ai_melee_enemy"
+		)
+		else if classOf obj == Sphere  then (
+			meshPath = "data/meshes/crisalida.mesh"
+			ai = "ai_flying_enemy"
+		)
+		else return false
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				fs.writeKeyEmpty "transform"
+				fs.writeKey "render"
+				fs.beginArray()
+					fs.beginObj()
+						fs.writeKeyValue "mesh" meshPath
+						fs.writeComma()
+						fs.writeKey "materials"
+						fs.beginArray()
+							fs.writeValue "data/materials/piedras1.material" addIndent:true
+						fs.endArray()
+						fs.writeComma()
+						fs.writeKeyValue "color" "0.45 0.28 0.8 1.0"
+					fs.endObj()
+				fs.endArray() -- End render
+				fs.writeComma()
+				exportTags #("enemy")
+				fs.writeComma()
+				fs.writeKey "respawner"
+				fs.beginObj()
+					fs.writeKeyValue "respawnTime" 10
+				fs.endObj()
+				fs.writeComma()
+				exportShadow()
+				fs.writeComma()
+				fs.writeKeyEmpty ai
+				exportCompCollider obj colliderGroup:"Enemy"
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
 		return true
 	),
 	
@@ -882,7 +978,9 @@ struct TSceneExporter (
 			local ofilename = getFilenameFile maxFileName
 			local scenePath = project_path + scenes_path + ofilename + "-" + layerName + ".scene"
 			if layerName == "player" then scenePath = project_path + scenes_path + "test_player.scene"
-			
+			if layerName == "prefabMelee"  then scenePath = project_path + prefabPath + "test_enemyMelee.prefab"
+			if layerName == "prefabFlying" then scenePath = project_path + prefabPath + "test_enemyFlying.prefab"
+
 			-- Avoid creating scenes if layer is empty or invisible.
 			if layerObjs.count >= 1 and not layer.isHidden then (
 				format "Exporting to %\n" scenePath
@@ -898,17 +996,19 @@ struct TSceneExporter (
 						local objectName = object.name
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof object) as string) objectName --DEBUG
 						case layerName of (
-							"cameras":   ( wasValid = exportCamera    object nValidObjs )
-							"chrysalis": ( wasValid = exportChrysalis object nValidObjs )
-							"collisions":( wasValid = exportCollision object nValidObjs )
-							"enemies":   ( wasValid = exportEnemy     object nValidObjs )
-							"lights":    ( wasValid = exportLight     object nValidObjs )
-							"movables":  ( wasValid = exportMovable   object nValidObjs )
-							"player":    ( wasValid = exportPlayer    object nValidObjs )
-							"triggers":  ( wasValid = exportTrigger   object nValidObjs )
+							"cameras":      ( wasValid = exportCamera    object nValidObjs )
+							"chrysalis":    ( wasValid = exportChrysalis object nValidObjs )
+							"collisions":   ( wasValid = exportCollision object nValidObjs )
+							"enemies":      ( wasValid = exportEnemy     object nValidObjs )
+							"lights":       ( wasValid = exportLight     object nValidObjs )
+							"movables":     ( wasValid = exportMovable   object nValidObjs )
+							"player":       ( wasValid = exportPlayer    object nValidObjs )
+							"prefabMelee":  ( wasValid = exportPrefab    object nValidObjs )
+							"prefabFlying": ( wasValid = exportPrefab    object nValidObjs )
+							"triggers":     ( wasValid = exportTrigger   object nValidObjs )
 							--"mechanisms":( wasValid = exportMechanism object nValidObjs )
-							"0":		 ( wasValid = exportDefault   object nValidObjs )
-							default:     ( format "WARNING: Unknown layer %, not exported.\n" layerName )
+							"0":		    ( wasValid = exportDefault   object nValidObjs )
+							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
 						if wasValid then (
 							nValidObjs = nValidObjs + 1
@@ -928,8 +1028,6 @@ struct TSceneExporter (
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles.
-TODO: Añadir parámetros -attributes- a los objetos. Ej: HP para enemigos.
-http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_ADFD29E4_9751_4F55_98CC_F7C721C9AEE2_htm
 */
 
 /*----------------------------------------------------------------------------------
@@ -960,8 +1058,7 @@ Los triggers			 deben estar en una layer llamada "triggers".
 Las meshes				 deben estar en una layer llamada "0".
 Los colliders invisibles deben estar en una layer llamada "collisions".
  
-Los enemigos que no tengan "melee" en el nombre son considerados voladores.
-Aquí abajo en exporter se debe poner la ruta correcta al proyecto.
+Los enemigos que no tengan "melee" en el nombre son considerados voladores. --> CAMBIARÁ CON ATTRIBUTES.
 El proyecto debe tener las siguientes carpetas:
  bin/data/scenes/
  bin/data/meshes/
