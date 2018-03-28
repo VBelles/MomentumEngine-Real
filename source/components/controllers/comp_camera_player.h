@@ -2,12 +2,15 @@
 
 #include "components/comp_base.h"
 
-class TCompCameraPlayer : public TCompBase
-{
-  DECL_SIBLING_ACCESS();
+class CEntity;
+class TCompTransform;
+
+class TCompCameraPlayer : public TCompBase {
+	DECL_SIBLING_ACCESS();
 
 private:
-	CHandle target;
+	CHandle targetHandle;
+	CHandle transformHandle;
 
 	//General camera configuration
 	float fovInDegrees;
@@ -44,6 +47,11 @@ private:
 	void CalculateVerticalOffsetVector();
 	bool SphereCast(PxOverlapBuffer hit);
 	void AproachToFreePosition();
+
+	CEntity* GetTarget();
+	TCompTransform* GetTargetTransform();
+	VEC3 GetTargetPosition();
+	TCompTransform* GetTransform();
 
 public:
 	static void registerMsgs();

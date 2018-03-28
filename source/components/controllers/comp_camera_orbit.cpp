@@ -34,7 +34,7 @@ void TCompCameraOrbit::update(float dt)
   auto& mouse = EngineInput.mouse();
   if (mouse.button(Input::MOUSE_RIGHT).isPressed())
   {
-    VEC2 mOff = mouse._position_delta;
+    VEC2 mOff = mouse.position_delta;
     yaw += -mOff.x * _sensitivity;
     pitch += -mOff.y * _sensitivity;
     pitch = clamp(pitch, -_maxPitch, _maxPitch);
