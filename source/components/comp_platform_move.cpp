@@ -102,7 +102,7 @@ void TCompPlatformMove::update(float dt) {
 		playerModel->GetCollider()->controller->setFootPosition({
 			playerTransform->getPosition().x + movement.x,
 			playerTransform->getPosition().y + movement.y,
-			playerTransform->getPosition().z + movement.z,
+			playerTransform->getPosition().z + movement.z
 			});
     }
 }
