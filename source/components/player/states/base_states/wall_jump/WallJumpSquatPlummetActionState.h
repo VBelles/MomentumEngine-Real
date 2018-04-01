@@ -8,8 +8,8 @@ protected:
 	CTimer timer;
 	int endingFrames = 30;
 	float endingTime;
-	float frontVelocity = 20.f;
-	float verticalVelocity = -20.f;
+	float frontVelocity = 30.f;
+	float verticalVelocity = -30.f;
 
 public:
 	WallJumpSquatPlummetActionState(CHandle playerModelHandle);

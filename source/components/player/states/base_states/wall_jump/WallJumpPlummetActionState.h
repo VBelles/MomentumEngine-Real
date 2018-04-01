@@ -6,14 +6,15 @@
 class WallJumpPlummetActionState : public AirborneActionState {
 protected:
 	CTimer timer;
-	int endingFrames = 30;
 	float endingTime;
-	float frontVelocity = 20.f;
-	float verticalVelocity = -20.f;
-	float deceleration = 0.1f;
+	float deceleration = 0.5f;
+
+	CHandle hitboxHandle;
+	int damage = 3;
+	float powerToGet = 5000.f;
 
 public:
-	WallJumpPlummetActionState(CHandle playerModelHandle);
+	WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;
@@ -25,4 +26,5 @@ public:
 
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_long_jump.mesh"); }
 	virtual void OnLanding() override;
+	void OnHitboxEnter(CHandle entity) override;
 };

@@ -128,6 +128,8 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	ssj->airAcceleration = j.value("airAcceleration", 0.0f);
 	ssj->shortHopVelocity = j.value("shortHopVelocity", 0.0f);
 	ssj->springJumpVelocity = j.value("springJumpVelocity", 0.0f);
+	ssj->plummetTime = j.value("plummetTime", 0.0f);
+
 	return ssj;
 }
 
@@ -255,7 +257,8 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
 	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
-	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
+	releasePowerBigHitbox = getEntityByName("Wall jump plummet hitbox");
+	releasePowerSmallHitbox = getEntityByName("Release power small hitbox"); 
 	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
 
 	baseStates = {
@@ -285,7 +288,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(CHandle(this)) },
 	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(CHandle(this)) },
 	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(CHandle(this)) },
-	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(CHandle(this)) },
+	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(CHandle(this), releasePowerBigHitbox) },
 	};
 
 	concurrentStates = {

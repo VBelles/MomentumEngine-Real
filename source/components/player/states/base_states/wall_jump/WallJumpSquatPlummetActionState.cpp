@@ -21,6 +21,7 @@ void WallJumpSquatPlummetActionState::update (float delta) {
 void WallJumpSquatPlummetActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	GetPlayerModel()->SetGravityMultiplier(0.f);
+	GetPlayerModel()->maxVerticalSpeed = abs(verticalVelocity);
 	SetPose();
 	endingTime = endingFrames * (1.f / 60);
 	timer.reset();

@@ -29,7 +29,8 @@
 					"deceleration" : 7.0,
 					"airAcceleration" : 30.0,
 					"falling_multiplier" : 1.05,
-					"long_gravity_multiplier" : 0.60
+					"long_gravity_multiplier" : 0.60,
+					"plummetTime" : 0.4
 				},
 				"ssj2":{
 					"rotation_speed" : 14.0,
@@ -45,7 +46,8 @@
 					"deceleration" : 8.0,
 					"airAcceleration" : 35.0,
 					"falling_multiplier" : 1.05,
-					"long_gravity_multiplier" : 0.60
+					"long_gravity_multiplier" : 0.60,
+					"plummetTime" : 0.5
 				},
 				"ssj3":{
 					"rotation_speed" : 17.0,
@@ -61,7 +63,8 @@
 					"deceleration" : 9.0,
 					"airAcceleration" : 40.0,
 					"falling_multiplier" : 1.05,
-					"long_gravity_multiplier" : 0.60
+					"long_gravity_multiplier" : 0.60,
+					"plummetTime" : 0.6
 				}
 			},
 			"collider": {
@@ -224,6 +227,24 @@
 				"is_trigger" : true,
 				"is_dynamic" : true,
 				"radius" : 2.0
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Wall jump plummet hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 1.0
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
