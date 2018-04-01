@@ -111,7 +111,8 @@ public:
 
 	float huggingWallMinPitch = deg2rad(-25);
 	float huggingWallMaxPitch = deg2rad(5);
-	float huggingWallAttachThreshold = 0.3f;
+	float attachWallByInputMinDot = 0.3f;
+	float attachWallByFrontMinDot = 0.8f;
 
 
 	CHandle grabTarget;

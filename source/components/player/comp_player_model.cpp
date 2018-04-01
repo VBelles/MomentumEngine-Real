@@ -581,7 +581,7 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 		//dbg("%f\n", deg2rad(pitch));
 
 		VEC3 worldInput = GetCamera()->TransformToWorld(baseState->GetMovementInput());
-		if (worldInput.Dot(-hitNormal) >= huggingWallAttachThreshold) {
+		if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || GetTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
 			float pitch = asin(-msg.hit.worldNormal.y);
 			if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
 				HuggingWallActionState* actionState = GetBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
