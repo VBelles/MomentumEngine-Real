@@ -11,7 +11,7 @@ void HuggingWallActionState::update (float delta) {
 	if (CheckIfHuggingWall(wallDirection)) {
 		VEC3 worldInput = GetCamera()->TransformToWorld(movementInput);
 		VEC3 normal = { wallNormal.x, 0.f, wallNormal.z };
-		if (worldInput.Dot(normal) >= releaseWallMinDotProduct) {
+		if (worldInput.Dot(normal) >= releaseWallMinDotProduct && movementInput != VEC2::Zero) {
 			if (!isTryingToRelease) {
 				isTryingToRelease = true;
 				releaseWallTimer.reset();
@@ -21,7 +21,7 @@ void HuggingWallActionState::update (float delta) {
 			isTryingToRelease = false;
 		}
 		if (isTryingToRelease && releaseWallTimer.elapsed() >= releaseWallTime) {
-			TurnAround();
+			//TurnAround();
 			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 		}
 		else if (isClimbing) {

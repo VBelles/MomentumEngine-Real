@@ -11,7 +11,7 @@ private:
 	float climbTime = 0.4f;
 	CTimer releaseWallTimer;
 	float releaseWallTime = 0.14f;
-	float releaseWallMinDotProduct = 0.5f;
+	float releaseWallMinDotProduct = -0.2f;
 	bool isTryingToRelease = false;
 
 	float climbingGravityMultiplier = -4.f;//Negativo
