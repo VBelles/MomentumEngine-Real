@@ -23,8 +23,10 @@
 #include "states/base_states/LandingActionState.h"
 #include "states/base_states/FallingAttackLandingActionState.h"
 #include "states/base_states/wall_jump/HuggingWallActionState.h"
-#include "states/base_states/wall_jump/HuggingWallJumpSquatActionState.h"
+#include "states/base_states/wall_jump/WallJumpSquatActionState.h"
 #include "states/base_states/wall_jump/AirborneWallJumpActionState.h"
+#include "states/base_states/wall_jump/WallJumpSquatPlummetActionState.h"
+#include "states/base_states/wall_jump/WallJumpPlummetActionState.h"
 #include "states/base_states/FallingAttackActionState.h"
 #include "states/base_states/StrongAttackActionState.h"
 #include "states/base_states/HorizontalLauncherActionState.h"
@@ -273,7 +275,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },
 	{ ActionStates::PropelLong, new PropelLongActionState(CHandle(this)) },
 	{ ActionStates::HuggingWall, new HuggingWallActionState(CHandle(this)) },
-	{ ActionStates::HuggingWallJumpSquat, new HuggingWallJumpSquatActionState(CHandle(this)) },
+	{ ActionStates::WallJumpSquat, new WallJumpSquatActionState(CHandle(this)) },
 	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(CHandle(this)) },
 	{ ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
 	{ ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
@@ -282,6 +284,8 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
 	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(CHandle(this)) },
 	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(CHandle(this)) },
+	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(CHandle(this)) },
+	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(CHandle(this)) },
 	};
 
 	concurrentStates = {

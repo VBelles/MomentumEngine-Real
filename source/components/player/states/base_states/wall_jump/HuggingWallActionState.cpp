@@ -62,13 +62,13 @@ void HuggingWallActionState::OnStateExit(IActionState * nextState) {
 void HuggingWallActionState::OnJumpHighButton() {
 	TurnAround();
 	isClimbing = false;
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::HuggingWallJumpSquat);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::WallJumpSquat);
 }
 
 void HuggingWallActionState::OnJumpLongButton() {
-	/*TurnAround();
+	TurnAround();
 	isClimbing = false;
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);*/
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
 }
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {

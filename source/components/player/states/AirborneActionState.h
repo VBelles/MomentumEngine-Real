@@ -6,7 +6,7 @@ class AirborneActionState : public IActionState {
 protected:
 	CTimer turnAroundTimer;
 	bool isTurnAround = false;
-	int turnAroundFrames = 3;
+	int turnAroundFrames = 8;
 	float turnAroundTime;
 	float exitYaw;
 	float turnAroundRotationSpeed;

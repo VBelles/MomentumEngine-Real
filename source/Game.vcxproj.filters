@@ -131,7 +131,6 @@
     <ClCompile Include="components\player\states\base_states\normal_jump\PropelHighActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\AirborneWallJumpActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\HuggingWallActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\wall_jump\HuggingWallJumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackLandingActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\IdleActionState.cpp" />
@@ -161,6 +160,9 @@
     <ClCompile Include="components\comp_give_power.cpp" />
     <ClCompile Include="components\ia\behavior tree\BehaviorTreeFlyingRangedEnemy.cpp" />
     <ClCompile Include="components\controllers\ranged_attacks\comp_ranged_attack.cpp" />
+    <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -316,7 +318,6 @@
     <ClInclude Include="components\player\states\base_states\normal_jump\PropelHighActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\AirborneWallJumpActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\HuggingWallActionState.h" />
-    <ClInclude Include="components\player\states\base_states\wall_jump\HuggingWallJumpSquatActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackLandingActionState.h" />
     <ClInclude Include="components\player\states\base_states\GhostJumpWindowActionState.h" />
     <ClInclude Include="components\player\states\base_states\IdleActionState.h" />
@@ -346,6 +347,9 @@
     <ClInclude Include="components\comp_give_power.h" />
     <ClInclude Include="components\ia\behavior tree\BehaviorTreeFlyingRangedEnemy.h" />
     <ClInclude Include="components\controllers\ranged_attacks\comp_ranged_attack.h" />
+    <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
+    <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
+    <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

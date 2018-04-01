@@ -144,6 +144,8 @@
     <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\ReleasePowerGroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabActionState.cpp" />
@@ -173,7 +175,7 @@
     <ClCompile Include="components\player\states\base_states\RunActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\WalkActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\wall_jump\HuggingWallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -303,6 +305,8 @@
     <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
     <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\ReleasePowerGroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
+    <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\GrabActionState.h" />
@@ -332,7 +336,7 @@
     <ClInclude Include="components\player\states\base_states\RunActionState.h" />
     <ClInclude Include="components\player\states\base_states\TurnAroundActionState.h" />
     <ClInclude Include="components\player\states\base_states\WalkActionState.h" />
-    <ClInclude Include="components\player\states\base_states\wall_jump\HuggingWallJumpSquatActionState.h" />
+    <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />

@@ -41,9 +41,9 @@ public:
 		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack,
 		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
-		HuggingWall, HuggingWallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
+		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
 		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
-		IdleTurnAround
+		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet
 	};
 	IActionState* baseState;
 	IActionState* concurrentState;

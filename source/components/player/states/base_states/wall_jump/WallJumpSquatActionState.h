@@ -3,14 +3,14 @@
 #include "components/player/comp_player_model.h"
 #include "components/player/states/AirborneActionState.h"
 
-class HuggingWallJumpSquatActionState : public AirborneActionState {
+class WallJumpSquatActionState : public AirborneActionState {
 protected:
 	CTimer timer;
 	int endingFrames = 4;
 	float endingTime;
 
 public:
-	HuggingWallJumpSquatActionState(CHandle playerModelHandle);
+	WallJumpSquatActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void OnStateEnter(IActionState* lastState) override;
 	void OnStateExit(IActionState* nextState) override;

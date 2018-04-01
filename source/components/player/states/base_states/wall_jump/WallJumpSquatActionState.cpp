@@ -1,11 +1,11 @@
 #include "mcv_platform.h"
-#include "HuggingWallJumpSquatActionState.h"
+#include "WallJumpSquatActionState.h"
 
-HuggingWallJumpSquatActionState::HuggingWallJumpSquatActionState(CHandle playerModelHandle)
+WallJumpSquatActionState::WallJumpSquatActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 }
 
-void HuggingWallJumpSquatActionState::update (float delta) {
+void WallJumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
@@ -20,13 +20,13 @@ void HuggingWallJumpSquatActionState::update (float delta) {
 	}
 }
 
-void HuggingWallJumpSquatActionState::OnStateEnter(IActionState * lastState) {
+void WallJumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	SetPose();
 	endingTime = endingFrames * (1.f / 60);
 	timer.reset();
 }
 
-void HuggingWallJumpSquatActionState::OnStateExit(IActionState * nextState) {
+void WallJumpSquatActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
 }
