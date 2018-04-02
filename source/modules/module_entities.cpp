@@ -176,6 +176,7 @@ void CModuleEntities::render() {
 
     CRenderManager::get().renderCategory("default");
     CRenderManager::get().debugInMenu();
+	renderDebugOfComponents();
 }
 
 void CModuleEntities::renderDebugOfComponents() {

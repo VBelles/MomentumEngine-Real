@@ -4,8 +4,6 @@
 #include "components/comp_collider.h"
 #include "PxPhysicsAPI.h"
 
-
-
 using namespace physx;
 
 class CModulePhysics : public IModule {
@@ -58,7 +56,6 @@ private:
 	PxControllerManager*    mControllerManager;
 
 	std::set<CHandle> toRelease;
-
 
 
 	class CustomSimulationEventCallback : public PxSimulationEventCallback {

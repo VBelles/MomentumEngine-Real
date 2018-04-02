@@ -15,6 +15,7 @@ CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& n
 	if (it != filterGroupByName.end()) {
 		return filterGroupByName[name];
 	}
+    else return filterGroupByName["all"];
 }
 
 void CModulePhysics::createActor(TCompCollider& comp_collider) {

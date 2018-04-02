@@ -1,4 +1,4 @@
-﻿#include "mcv_platform.h"
+#include "mcv_platform.h"
 #include "module_test_axis.h"
 #include "camera/camera.h"
 #include "render/render_objects.h"
@@ -115,10 +115,10 @@ void CModuleTestAxis::render() {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get<TCompCamera>();
         assert(c_camera);
-        activateCamera(*c_camera);
+        activateCamera(*c_camera, Render.width, Render.height);
     }
     else {
-        activateCamera(camera);
+        activateCamera(camera, Render.width, Render.height);
     }
 
     // Render the grid

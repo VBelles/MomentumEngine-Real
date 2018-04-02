@@ -4,6 +4,8 @@
 #include "imgui/imgui_impl_dx11.h"
 #include "render/render_objects.h"
 #include "render/render_utils.h"
+#include "render/render_manager.h"
+#include "components/comp_light_dir.h"
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
@@ -57,6 +59,10 @@ bool CModuleRender::start() {
     if (!parseTechniques()) return false;
 
     setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
+
+    // Some camera in case there is no camera in the scene
+    camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
+    camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
     return true;
 }
@@ -113,12 +119,60 @@ void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
     _backgroundColor[3] = a;
 }
 
+// -------------------------------------------------
+void CModuleRender::activateMainCamera() {
+    CCamera* cam = &camera;
+
+    // Find the entity with name 'the_camera'
+    h_e_camera = getEntityByName("the_camera");
+    if (h_e_camera.isValid()) {
+        CEntity* e_camera = h_e_camera;
+        TCompCamera* c_camera = e_camera->get< TCompCamera >();
+        cam = c_camera;
+        assert(cam);
+        CRenderManager::get().setEntityCamera(h_e_camera);
+    }
+
+    activateCamera(*cam, Render.width, Render.height);
+}
+
+
 void CModuleRender::generateFrame() {
     {
-        PROFILE_FUNCTION("CModuleRender::generateFrame");
-        CTraceScoped gpu_scope("Frame");
-        Engine.getModules().render();
+        PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
+        CTraceScoped gpu_scope("shadowsMapsGeneration");
+        // Generate the shadow map for each active light
+        getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+            c->generateShadowMap();
+        });
     }
+
+    {
+        CTraceScoped gpu_scope("Frame");
+        PROFILE_FUNCTION("CModuleRender::generateFrame");
+        Render.startRenderInBackbuffer();
+
+        // Clear the back buffer 
+        float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
+        Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
+        Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+
+        activateMainCamera();
+
+        getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+            c->activate();
+        });
+
+        CRenderManager::get().renderCategory("default");
+
+        // Debug render
+        {
+            PROFILE_FUNCTION("Modules");
+            CTraceScoped gpu_scope("Modules");
+            CEngine::get().getModules().render();
+        }
+    }
+
     {
         PROFILE_FUNCTION("ImGui::Render");
         CTraceScoped gpu_scope("ImGui");
