@@ -61,13 +61,13 @@ private:
 	PowerStats* launchPowerStats;
 
 	//Mesage functions
-	void OnHit(const TMsgAttackHit& msg);
-	void OnGrabbed(const TMsgGrabbed& msg);
-	void OnPropelled(const TMsgPropelled& msg);
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	void OnLaunchedVertically(const TMsgLaunchedVertically& msg);
-	void OnLaunchedHorizontally(const TMsgLaunchedHorizontally & msg);
 	void OnRespawn(const TMsgRespawn & msg);
+	void OnHit(const TMsgAttackHit& msg);
+	void OnGrabbed(float duration);
+	void OnPropelled(VEC3 velocity);
+	void OnLaunchedVertically(float suspensionTime, VEC3 velocity);
+	void OnLaunchedHorizontally(float suspensionTime, VEC3 velocity);
 
 	boolean IsPlayerInAttackRange(float range);
 	boolean IsPlayerInFov();

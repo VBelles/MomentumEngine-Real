@@ -7,54 +7,48 @@
 using namespace physx;
 
 struct TMsgTriggerEnter {
-    CHandle h_other_entity;
-    DECL_MSG_ID();
+	CHandle h_other_entity;
+	DECL_MSG_ID();
 };
 
 struct TMsgTriggerExit {
-    CHandle h_other_entity;
-    DECL_MSG_ID();
+	CHandle h_other_entity;
+	DECL_MSG_ID();
 };
 
-enum FilterGroups {
-  Wall = 0 << 1,
-  Floor = 0 << 2,
-  Player = 0 << 3,
-  Enemy = 0 << 4,
-  Characters = Player | Enemy,
-  all = -1
-};
-
-class TCompCollider: public TCompBase {
+class TCompCollider : public TCompBase {
 	DECL_SIBLING_ACCESS();
+
+private:
 	bool enabled = false;
 
 public:
-    struct TConfig {
-        VEC3 halfExtent;
-		VEC3 offset = {0, 0, 0};
+	struct TConfig {
+		VEC3 halfExtent;
+		VEC3 offset = { 0, 0, 0 };
 		VEC4 plane;
 		float step;
-        float radius;
-        float height;
+		float radius;
+		float height;
 		float slope;
-        PxGeometryType::Enum shapeType;
-        unsigned int group;
-        unsigned int mask;
-        bool is_dynamic;
-        bool is_trigger;
-        bool is_character_controller;
-    };
+		PxGeometryType::Enum shapeType;
+		unsigned int group;
+		unsigned int mask;
+		bool is_dynamic;
+		bool is_trigger;
+		bool is_character_controller;
+		PxFilterData filterData;
+	};
 
-    TConfig config;
-    PxActor* actor;
-    PxController* controller;
-    void debugInMenu();
-    static void registerMsgs();
-    void load(const json& j, TEntityParseContext& ctx);
+	TConfig config;
+	PxActor* actor;
+	PxController* controller;
+	void debugInMenu();
+	static void registerMsgs();
+	void load(const json& j, TEntityParseContext& ctx);
 	void onCreate(const TMsgEntityCreated& msg);
 	void enable();
 	void disable();
 	bool isEnabled() { return enabled; }
-	
+
 };

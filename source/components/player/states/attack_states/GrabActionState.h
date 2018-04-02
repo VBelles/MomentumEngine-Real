@@ -13,6 +13,7 @@ protected:
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
+	float lockDuration = 0.5f;
 
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;

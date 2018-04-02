@@ -67,12 +67,10 @@ void WalkActionState::update (float delta) {
 void WalkActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	SetPose();
-	dbg("Entrando en walk\n");
 }
 
 void WalkActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de walk\n");
 }
 
 void WalkActionState::OnJumpHighButton() {

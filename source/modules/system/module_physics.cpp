@@ -11,276 +11,297 @@
 #pragma comment(lib, "PhysX3CharacterKinematic_x64.lib")
 
 CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
-    if (strcmp("player", name.c_str()) == 0) {
-        return CModulePhysics::FilterGroup::Player;
-    }
-    else if (strcmp("enemy", name.c_str()) == 0) {
-        return CModulePhysics::FilterGroup::Enemy;
-    }
-    else if (strcmp("characters", name.c_str()) == 0) {
-        return CModulePhysics::FilterGroup::Characters;
-    }
-    else if (strcmp("wall", name.c_str()) == 0) {
-        return CModulePhysics::FilterGroup::Wall;
-    }
-    else if (strcmp("floor", name.c_str()) == 0) {
-        return CModulePhysics::FilterGroup::Floor;
-    }
-    else if (strcmp("scenario", name.c_str()) == 0) {
-        return CModulePhysics::FilterGroup::Scenario;
-    }
-    return CModulePhysics::FilterGroup::All;
+	if (strcmp("player", name.c_str()) == 0) {
+		return CModulePhysics::FilterGroup::Player;
+	}
+	else if (strcmp("enemy", name.c_str()) == 0) {
+		return CModulePhysics::FilterGroup::Enemy;
+	}
+	else if (strcmp("characters", name.c_str()) == 0) {
+		return CModulePhysics::FilterGroup::Characters;
+	}
+	else if (strcmp("wall", name.c_str()) == 0) {
+		return CModulePhysics::FilterGroup::Wall;
+	}
+	else if (strcmp("floor", name.c_str()) == 0) {
+		return CModulePhysics::FilterGroup::Floor;
+	}
+	else if (strcmp("scenario", name.c_str()) == 0) {
+		return CModulePhysics::FilterGroup::Scenario;
+	}
+	return CModulePhysics::FilterGroup::All;
 }
 
 void CModulePhysics::createActor(TCompCollider& comp_collider) {
-    const TCompCollider::TConfig & config = comp_collider.config;
-    CHandle h_comp_collider(&comp_collider);
-    CEntity* e = h_comp_collider.getOwner();
-    TCompTransform * compTransform = e->get<TCompTransform>();
-    VEC3 pos = compTransform->getPosition();
-    QUAT quat = compTransform->getRotation();
+	const TCompCollider::TConfig & config = comp_collider.config;
+	CHandle h_comp_collider(&comp_collider);
+	CEntity* e = h_comp_collider.getOwner();
+	TCompTransform * compTransform = e->get<TCompTransform>();
+	VEC3 pos = compTransform->getPosition();
+	QUAT quat = compTransform->getRotation();
 
-    PxTransform initialTrans(PxVec3(pos.x, pos.y, pos.z), PxQuat(quat.x, quat.y, quat.z, quat.w));
+	PxTransform initialTrans(PxVec3(pos.x, pos.y, pos.z), PxQuat(quat.x, quat.y, quat.z, quat.w));
 
-    PxRigidActor* actor = nullptr;
-    if (config.shapeType == PxGeometryType::ePLANE) {
-        PxRigidStatic* plane = PxCreatePlane(*gPhysics, PxPlane(config.plane.x, config.plane.y, config.plane.z, config.plane.w), *gMaterial);
-        actor = plane;
+	PxRigidActor* actor = nullptr;
+	if (config.shapeType == PxGeometryType::ePLANE) {
+		PxRigidStatic* plane = PxCreatePlane(*gPhysics, PxPlane(config.plane.x, config.plane.y, config.plane.z, config.plane.w), *gMaterial);
+		actor = plane;
 
-        setupFiltering(actor, config.group, config.mask);
-        gScene->addActor(*actor);
-    }
-    else if (config.shapeType == PxGeometryType::eCAPSULE &&
-             config.is_character_controller) {
-        PxControllerDesc* cDesc;
-        PxCapsuleControllerDesc capsuleDesc;
+		setupFiltering(actor, config.group, config.mask);
+		gScene->addActor(*actor);
+	}
+	else if (config.shapeType == PxGeometryType::eCAPSULE &&
+		config.is_character_controller) {
+		PxControllerDesc* cDesc;
+		PxCapsuleControllerDesc capsuleDesc;
 
-        PX_ASSERT(desc.mType == PxControllerShapeType::eCAPSULE);
-        capsuleDesc.height = config.height;
-        capsuleDesc.radius = config.radius;
-        capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
-        capsuleDesc.stepOffset = config.step;
-        capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
-        capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
-        cDesc = &capsuleDesc;
+		PX_ASSERT(desc.mType == PxControllerShapeType::eCAPSULE);
+		capsuleDesc.height = config.height;
+		capsuleDesc.radius = config.radius;
+		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
+		capsuleDesc.stepOffset = config.step;
+		capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
+		capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
+		cDesc = &capsuleDesc;
 
-        cDesc->material = gMaterial;
+		cDesc->material = gMaterial;
+		cDesc->reportCallback = &defaultReportCallback;
 
-        PxCapsuleController* ctrl = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
-        PX_ASSERT(ctrl);
-        ctrl->setFootPosition(PxExtendedVec3(pos.x, pos.y, pos.z));
-        actor = ctrl->getActor();
-        comp_collider.controller = ctrl;
-        setupFiltering(actor, config.group, config.mask);
-    }
-    else {
-        PxShape* shape = nullptr;
-        PxTransform offset(PxVec3(config.offset.x, config.offset.y, config.offset.z));
-        if (config.shapeType == PxGeometryType::eBOX) {
-            shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
-        }
-        else if (config.shapeType == PxGeometryType::eSPHERE) {
-            shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
-            //offset.p.y = config.radius;
-        }
-        //....todo: more shapes
-        assert(shape);
+		PxCapsuleController* ctrl = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
+		PX_ASSERT(ctrl);
+		ctrl->setFootPosition(PxExtendedVec3(pos.x, pos.y, pos.z));
+		actor = ctrl->getActor();
+		comp_collider.controller = ctrl;
+		setupFiltering(actor, config.group, config.mask);
+	}
+	else {
+		PxShape* shape = nullptr;
+		PxTransform offset(PxVec3(config.offset.x, config.offset.y, config.offset.z));
+		if (config.shapeType == PxGeometryType::eBOX) {
+			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
+		}
+		else if (config.shapeType == PxGeometryType::eSPHERE) {
+			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
+			//offset.p.y = config.radius;
+		}
+		//....todo: more shapes
+		assert(shape);
 
-        setupFiltering(shape, config.group, config.mask);
-        shape->setLocalPose(offset);
+		setupFiltering(shape, config.group, config.mask);
+		shape->setLocalPose(offset);
 
-        if (config.is_dynamic) {
-            PxRigidDynamic* body = gPhysics->createRigidDynamic(initialTrans);
-            actor = body;
-            PxRigidBodyExt::updateMassAndInertia(*body, 10.0f);
-        }
-        else {
-            PxRigidStatic* body = gPhysics->createRigidStatic(initialTrans);
-            actor = body;
-        }
+		if (config.is_dynamic) {
+			PxRigidDynamic* body = gPhysics->createRigidDynamic(initialTrans);
+			actor = body;
+			PxRigidBodyExt::updateMassAndInertia(*body, 10.0f);
+		}
+		else {
+			PxRigidStatic* body = gPhysics->createRigidStatic(initialTrans);
+			actor = body;
+		}
 
-        if (config.is_trigger) {
-            shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
-            shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
-            actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-        }
-        assert(actor);
-        actor->attachShape(*shape);
-        shape->release();
-        gScene->addActor(*actor);
-    }
+		if (config.is_trigger) {
+			shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
+			shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
+			actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+		}
+		assert(actor);
+		actor->attachShape(*shape);
+		shape->release();
+		gScene->addActor(*actor);
+	}
 
-    comp_collider.actor = actor;
-    actor->userData = h_comp_collider.asVoidPtr();
+	comp_collider.actor = actor;
+	actor->userData = h_comp_collider.asVoidPtr();
 }
 
 void CModulePhysics::setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask) {
-    PxFilterData filterData;
-    filterData.word0 = filterGroup; // word0 = own ID
-    filterData.word1 = filterMask;	// word1 = ID mask to filter pairs that trigger a contact callback;
-    shape->setSimulationFilterData(filterData);
-    shape->setQueryFilterData(filterData);
+	PxFilterData filterData;
+	filterData.word0 = filterGroup; // word0 = own ID
+	filterData.word1 = filterMask;	// word1 = ID mask to filter pairs that trigger a contact callback;
+	shape->setSimulationFilterData(filterData);
+	shape->setQueryFilterData(filterData);
 }
 
 void CModulePhysics::setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU32 filterMask) {
-    PxFilterData filterData;
-    filterData.word0 = filterGroup; // word0 = own ID
-    filterData.word1 = filterMask;	// word1 = ID mask to filter pairs that trigger a contact callback;
-    const PxU32 numShapes = actor->getNbShapes();
-    std::vector<PxShape*> shapes;
-    shapes.resize(numShapes);
-    actor->getShapes(&shapes[0], numShapes);
-    for (PxU32 i = 0; i < numShapes; i++) {
-        PxShape* shape = shapes[i];
-        shape->setSimulationFilterData(filterData);
-        shape->setQueryFilterData(filterData);
-    }
+	PxFilterData filterData;
+	filterData.word0 = filterGroup; // word0 = own ID
+	filterData.word1 = filterMask;	// word1 = ID mask to filter pairs that trigger a contact callback;
+	const PxU32 numShapes = actor->getNbShapes();
+	std::vector<PxShape*> shapes;
+	shapes.resize(numShapes);
+	actor->getShapes(&shapes[0], numShapes);
+	for (PxU32 i = 0; i < numShapes; i++) {
+		PxShape* shape = shapes[i];
+		shape->setSimulationFilterData(filterData);
+		shape->setQueryFilterData(filterData);
+	}
 }
 
 PxFilterFlags CustomFilterShader(
-    PxFilterObjectAttributes attributes0, PxFilterData filterData0,
-    PxFilterObjectAttributes attributes1, PxFilterData filterData1,
-    PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize) {
-    if ((filterData0.word0 & filterData1.word1) &&
-        (filterData1.word0 & filterData0.word1)) {
-        if (PxFilterObjectIsTrigger(attributes0) ||
-            PxFilterObjectIsTrigger(attributes1)) {
-            pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
-        }
-        else {
-            pairFlags = PxPairFlag::eCONTACT_DEFAULT | PxPairFlag::eNOTIFY_TOUCH_FOUND;
-        }
-        return PxFilterFlag::eDEFAULT;
-    }
-    return PxFilterFlag::eSUPPRESS;
+	PxFilterObjectAttributes attributes0, PxFilterData filterData0,
+	PxFilterObjectAttributes attributes1, PxFilterData filterData1,
+	PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize) {
+	if ((filterData0.word0 & filterData1.word1) &&
+		(filterData1.word0 & filterData0.word1)) {
+		if (PxFilterObjectIsTrigger(attributes0) ||
+			PxFilterObjectIsTrigger(attributes1)) {
+			pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
+		}
+		else {
+			pairFlags = PxPairFlag::eCONTACT_DEFAULT | PxPairFlag::eNOTIFY_TOUCH_FOUND;
+		}
+		return PxFilterFlag::eDEFAULT;
+	}
+	return PxFilterFlag::eSUPPRESS;
 }
 
+
+
 bool CModulePhysics::start() {
-    gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gDefaultAllocatorCallback, gDefaultErrorCallback);
-    assert(gFoundation != nullptr);
+	gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gDefaultAllocatorCallback, gDefaultErrorCallback);
+	assert(gFoundation != nullptr);
 
-    if (!gFoundation) {
-        return false;
-    }
+	if (!gFoundation) {
+		return false;
+	}
 
-    gPvd = PxCreatePvd(*gFoundation);
-    if (!gPvd) {
-        return false;
-    }
+	gPvd = PxCreatePvd(*gFoundation);
+	if (!gPvd) {
+		return false;
+	}
 
-    PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
-    bool  is_ok = gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
+	PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
+	bool  is_ok = gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
 
-    gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
-    if (!gPhysics) fatal("PxCreatePhysics failed");
+	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
+	if (!gPhysics) fatal("PxCreatePhysics failed");
 
-    PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-    sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
-    gDispatcher = PxDefaultCpuDispatcherCreate(2);
-    sceneDesc.cpuDispatcher = gDispatcher;
-    sceneDesc.filterShader = CustomFilterShader;
-    gScene = gPhysics->createScene(sceneDesc);
-    gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
-    PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
-    if (pvdClient) {
-        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
-        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONTACTS, true);
-        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
-    }
-    gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
+	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
+	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
+	gDispatcher = PxDefaultCpuDispatcherCreate(2);
+	sceneDesc.cpuDispatcher = gDispatcher;
+	sceneDesc.filterShader = CustomFilterShader;
+	gScene = gPhysics->createScene(sceneDesc);
+	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
+	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
+	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_PAIRS, true);
+	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
+	if (pvdClient) {
+		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
+		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONTACTS, true);
+		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
+	}
+	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
 
-    mControllerManager = PxCreateControllerManager(*gScene);
+	mControllerManager = PxCreateControllerManager(*gScene);
 
-    gScene->setSimulationEventCallback(&customSimulationEventCallback);
-    return true;
+	gScene->setSimulationEventCallback(&customSimulationEventCallback);
+	return true;
 }
 
 void CModulePhysics::update(float delta) {
-    if (!gScene) return;
-    gScene->simulate(delta);
-    gScene->fetchResults(true);
+	if (!gScene) return;
+	gScene->simulate(delta);
+	gScene->fetchResults(true);
 
-    PxU32 nbActorsOut = 0;
-    PxActor**actors = gScene->getActiveActors(nbActorsOut);
+	PxU32 nbActorsOut = 0;
+	PxActor**actors = gScene->getActiveActors(nbActorsOut);
 
-    for (unsigned int i = 0; i < nbActorsOut; ++i) {
-        if (actors[i]->is<PxRigidActor>()) {
-            PxRigidActor* rigidActor = ((PxRigidActor*)actors[i]);
-            PxTransform PxTrans = rigidActor->getGlobalPose();
-            PxVec3 pxpos = PxTrans.p;
-            PxQuat pxq = PxTrans.q;
-            CHandle h_comp_collider;
-            h_comp_collider.fromVoidPtr(rigidActor->userData);
-            CEntity* e = h_comp_collider.getOwner();
-            TCompTransform * compTransform = e->get<TCompTransform>();
-            TCompCollider* compCollider = h_comp_collider;
-            if (compCollider->controller) {
-                PxExtendedVec3 pxpos_ext = compCollider->controller->getFootPosition();
-                pxpos.x = static_cast<float>(pxpos_ext.x);
-                pxpos.y = static_cast<float>(pxpos_ext.y);
-                pxpos.z = static_cast<float>(pxpos_ext.z);
-            }
-            else {
-                compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
-            }
-            compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
-        }
-    }
+	for (unsigned int i = 0; i < nbActorsOut; ++i) {
+		if (actors[i]->is<PxRigidActor>()) {
+			PxRigidActor* rigidActor = ((PxRigidActor*)actors[i]);
+			PxTransform PxTrans = rigidActor->getGlobalPose();
+			PxVec3 pxpos = PxTrans.p;
+			PxQuat pxq = PxTrans.q;
+			CHandle h_comp_collider;
+			h_comp_collider.fromVoidPtr(rigidActor->userData);
+			CEntity* e = h_comp_collider.getOwner();
+			TCompTransform * compTransform = e->get<TCompTransform>();
+			TCompCollider* compCollider = h_comp_collider;
+			if (compCollider->controller) {
+				PxExtendedVec3 pxpos_ext = compCollider->controller->getFootPosition();
+				pxpos.x = static_cast<float>(pxpos_ext.x);
+				pxpos.y = static_cast<float>(pxpos_ext.y);
+				pxpos.z = static_cast<float>(pxpos_ext.z);
+			}
+			else {
+				compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
+			}
+			compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
+		}
+	}
 
-    releaseColliders();
+	releaseColliders();
 }
 
 void  CModulePhysics::releaseCollider(CHandle handle) {
-    toRelease.insert(handle);
+	toRelease.insert(handle);
 }
 
 void CModulePhysics::releaseColliders() {
-    for (std::set<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
-        TCompCollider *collider = *it;
-        if (collider->controller) {
-            collider->controller->release();
-        }
-        else {
-            collider->actor->release();
-        }
-        CEntity *parent = it->getOwner();
-        parent->sendMsg(TMsgColliderDestroyed{});
-    }
-    toRelease.clear();
+	for (std::set<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
+		TCompCollider *collider = *it;
+		if (collider->controller) {
+			collider->controller->release();
+		}
+		else {
+			collider->actor->release();
+		}
+		CEntity *parent = it->getOwner();
+		parent->sendMsg(TMsgColliderDestroyed{});
+	}
+	toRelease.clear();
 }
 
 void CModulePhysics::render() {
 }
 
-void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pairs, PxU32 count) {
-    for (PxU32 i = 0; i < count; ++i) {
-        if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER)) {
-            continue;
-        }
-        CHandle h_trigger_comp_collider;
-        h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
-
-        CHandle h_other_comp_collider;
-        h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
-
-        CEntity* e_other = h_other_comp_collider.getOwner();
-        CEntity* e_trigger = h_trigger_comp_collider.getOwner();
-
-        /*if (strcmp(e_other->getName(), "WWw_Box220") != 0 &&
-            strcmp(e_other->getName(), "WWw_platformMove002") != 0) {
-            dbg("other: %s\n", e_other->getName());
-            dbg("trigger: %s\n", e_trigger->getName());
-        }*/
-
-        if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND) {
-            e_trigger->sendMsg(TMsgTriggerEnter{ e_other });
-        }
-        else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST) {
-            e_trigger->sendMsg(TMsgTriggerExit{ e_other });
-        }
-    }
-}
-
 PxScene* CModulePhysics::getScene() {
-    return gScene;
+	return gScene;
 }
+
+void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pairs, PxU32 count) {
+	for (PxU32 i = 0; i < count; ++i) {
+		if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER)) {
+			continue;
+		}
+		CHandle h_trigger_comp_collider;
+		h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
+
+		CHandle h_other_comp_collider;
+		h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
+
+		CEntity* e_other = h_other_comp_collider.getOwner();
+		CEntity* e_trigger = h_trigger_comp_collider.getOwner();
+
+		/*if (strcmp(e_other->getName(), "WWw_Box220") != 0 &&
+			strcmp(e_other->getName(), "WWw_platformMove002") != 0) {
+			dbg("other: %s\n", e_other->getName());
+			dbg("trigger: %s\n", e_trigger->getName());
+		}*/
+
+		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND) {
+			e_trigger->sendMsg(TMsgTriggerEnter{ e_other });
+		}
+		else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST) {
+			e_trigger->sendMsg(TMsgTriggerExit{ e_other });
+		}
+	}
+}
+
+
+void CModulePhysics::CustomUserControllerHitReport::onShapeHit(const PxControllerShapeHit& hit) {
+	CHandle controllerHandle;
+	controllerHandle.fromVoidPtr(hit.controller->getActor()->userData);
+	CEntity* controllerEntity = controllerHandle.getOwner();
+	controllerEntity->sendMsg(TMsgOnShapeHit{ hit });
+
+}
+
+void CModulePhysics::CustomUserControllerHitReport::onControllerHit(const PxControllersHit & hit) {
+}
+
+void CModulePhysics::CustomUserControllerHitReport::onObstacleHit(const PxControllerObstacleHit & hit) {
+}
+

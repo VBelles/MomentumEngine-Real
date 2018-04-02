@@ -65,12 +65,10 @@ void RunActionState::update (float delta) {
 void RunActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	SetPose();
-	dbg("Entrando en run\n");
 }
 
 void RunActionState::OnStateExit(IActionState * nextState) {
 	GroundedActionState::OnStateExit(nextState);
-	dbg("Saliendo de run\n");
 }
 
 void RunActionState::OnJumpHighButton() {

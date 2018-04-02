@@ -58,7 +58,6 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
-	isLauncher = true;
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	deltaMovement.y = GetPlayerModel()->movementState->GetDeltaMovement().y;
@@ -94,7 +93,11 @@ void StrongAttackActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
-		dbg("Strong attack hit for %i damage\n", damage);
+		TMsgAttackHit msgAtackHit = {};
+		msgAtackHit.attacker = playerEntity;
+		msgAtackHit.info = {};
+		msgAtackHit.info.givesPower = true;
+		msgAtackHit.info.damage = damage;
+		otherEntity->sendMsg(msgAtackHit);
 	}
 }

@@ -71,8 +71,14 @@ void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
-		otherEntity->sendMsg(TMsgLaunchedVertically{ playerEntity, damage });
-		dbg("Vertical Launcher hit for %i damage\n", damage);
+		TMsgAttackHit msgAtackHit = {};
+		msgAtackHit.attacker = playerEntity;
+		msgAtackHit.info = {};
+		msgAtackHit.info.givesPower = true;
+		msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{ 
+			suspensionTime,
+			GetPlayerModel()->GetPowerStats()->jumpVelocityVector
+		};
+		otherEntity->sendMsg(msgAtackHit);
 	}
 }

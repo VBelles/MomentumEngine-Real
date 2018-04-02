@@ -79,7 +79,11 @@ void FastAttackActionState::OnHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
-		otherEntity->sendMsg(TMsgAttackHit{ playerEntity, damage });
-		dbg("Strong attack hit for %i damage\n", damage);
+		TMsgAttackHit msgAtackHit = {};
+		msgAtackHit.attacker = playerEntity;
+		msgAtackHit.info = {};
+		msgAtackHit.info.givesPower = true;
+		msgAtackHit.info.damage = damage;
+		otherEntity->sendMsg(msgAtackHit);
 	}
 }
