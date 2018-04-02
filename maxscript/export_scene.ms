@@ -869,84 +869,91 @@ struct TSceneExporter (
 	-- --MOVABLE-------------------------------------------------
 	-- TO DO: this object should be nested with associated trigger,
 	-- right now we do two entities at once, manually.
-	fn exportMovablePlatform obj = (
-		local prefabPath = base_path + "prefabs/platform_move.prefab"
-		
-		exportName obj
-		fs.writeComma()
-		fs.writeKeyValue "prefab" prefabPath
-		fs.writeComma()
-		local objPos = obj.position * (rotateXMatrix -90)
-		exportTransform obj
-		fs.writeComma()
-		-- collider
-		fs.writeKey "collider"
+	fn exportMovable obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
 		fs.beginObj()
-			fs.writeKeyValue "shape" "box"
-			fs.writeComma()
-			fs.writeKeyValue "is_dynamic" true
-			fs.writeComma()
-			local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
-			fs.writeKeyValue "halfExtent" platformHalfExtent
-			fs.writeComma()
-			fs.writeKeyValue "group" "scenario"
-		fs.endObj()
-		fs.writeComma()
-		-- platform_move
-		fs.writeKey "platform_move"
-		fs.beginObj()
-			fs.writeKeyValue "type" "up"
-			fs.writeComma()
-			fs.writeKeyValue "speed" 4.0
-			fs.writeComma()
-			fs.writeKey "waypoints"
-			fs.beginArray()
-				fs.writeValue objPos -- First point is position
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				local prefabPath = base_path + "prefabs/platform_move.prefab"
+				
+				exportName obj
 				fs.writeComma()
-				local nextPos = objPos + [0, 10, 0]
-				fs.writeValue nextPos -- TODO: Pick from spline?
-			fs.endArray()
+				fs.writeKeyValue "prefab" prefabPath
+				fs.writeComma()
+				local objPos = obj.position * (rotateXMatrix -90)
+				exportTransform obj
+				fs.writeComma()
+				-- collider
+				fs.writeKey "collider"
+				fs.beginObj()
+					fs.writeKeyValue "shape" "box"
+					fs.writeComma()
+					fs.writeKeyValue "is_dynamic" true
+					fs.writeComma()
+					local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
+					fs.writeKeyValue "halfExtent" platformHalfExtent
+					fs.writeComma()
+					fs.writeKeyValue "group" "scenario"
+				fs.endObj()
+				fs.writeComma()
+				-- platform_move
+				fs.writeKey "platform_move"
+				fs.beginObj()
+					fs.writeKeyValue "type" "up"
+					fs.writeComma()
+					fs.writeKeyValue "speed" 4.0
+					fs.writeComma()
+					fs.writeKey "waypoints"
+					fs.beginArray()
+						fs.writeValue objPos addIndent:true -- First point is position
+						fs.writeComma()
+						local nextPos = objPos + [0, 10, 0]
+						fs.writeValue nextPos addIndent:true -- TODO: Pick from spline?
+					fs.endArray()
+				fs.endObj()
+				fs.writeComma()
+				-- hierarchy
+				fs.writeKey "hierarchy"
+				fs.beginObj()
+					local parentName = obj.name + "_trigger"
+					fs.writeKeyValue "parent" parentName
+				fs.endObj()
+				-- entity trigger
+				fs.endObj()-- end previous entity
+				fs.endObj()
+				fs.writeComma()
+				fs.beginObj()
+				fs.writeKey "entity"
+				fs.beginObj()-- begin trigger entity
+				fs.writeKeyValue "name" parentName
+				fs.writeComma()
+				local yShift = platformHalfExtent[2]
+				exportTransform obj yShift:yShift
+				fs.writeComma()
+				-- collider
+				fs.writeKey "collider"
+				fs.beginObj()
+					fs.writeKeyValue "shape" "box"
+					fs.writeComma()
+					fs.writeKeyValue "is_dynamic" true
+					fs.writeComma()
+					fs.writeKeyValue "is_trigger" true
+					fs.writeComma()
+					fs.writeKeyValue "halfExtent" platformHalfExtent -- Adjustment required?
+					fs.writeComma()
+					fs.writeKeyValue "group" "scenario"
+					fs.writeComma()
+					fs.writeKeyValue "mask" "player"
+				fs.endObj()
+				fs.writeComma()
+				-- fwd_msg
+				fs.writeKey "fwd_msg"
+				fs.beginObj()
+					fs.writeKeyValue "target" obj.name
+				fs.endObj()
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
-		fs.writeComma()
-		-- hierarchy
-		fs.writeKey "hierarchy"
-		fs.beginObj()
-			local parentName = obj.name + "_trigger"
-			fs.writeKeyValue "parent" parentName
-		fs.endObj()
-		-- entity trigger
-		fs.endObj()-- end previous entity
-		fs.endObj()
-		fs.writeComma()
-		fs.beginObj()
-		fs.writeKey "entity"
-		fs.beginObj()-- begin trigger entity
-		fs.writeKeyValue "name" parentName
-		fs.writeComma()
-		local yShift = platformHalfExtent[2]
-		exportTransform obj yShift:yShift
-		fs.writeComma()
-		-- collider
-		fs.writeKey "collider"
-		fs.beginObj()
-			fs.writeKeyValue "shape" "box"
-			fs.writeComma()
-			fs.writeKeyValue "is_dynamic" true
-			fs.writeComma()
-			fs.writeKeyValue "is_trigger" true
-			fs.writeComma()
-			fs.writeKeyValue "halfExtent" platformHalfExtent -- Adjustment required?
-			fs.writeComma()
-			fs.writeKeyValue "group" "scenario"
-			fs.writeComma()
-			fs.writeKeyValue "mask" "player"
-		fs.endObj()
-		fs.writeComma()
-		-- fwd_msg
-		fs.writeKey "fwd_msg"
-		fs.beginObj()
-			fs.writeKeyValue "target" obj.name
-		fs.endObj()
+		return true
 	),
 
 	-- --TRIGGERS -----------------------------------------------
@@ -990,24 +997,24 @@ struct TSceneExporter (
 				-- Create scene file.
 				fs.begin scenePath
 				fs.beginArray()
-				for object in layerObjs do (
+				for obj in layerObjs do (
 					-- Avoid child objects, they will be added through parent.
-					if object.parent == undefined then (
-						local objectName = object.name
-						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof object) as string) objectName --DEBUG
+					if obj.parent == undefined then (
+						local objectName = obj.name
+						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof obj) as string) objectName --DEBUG
 						case layerName of (
-							"cameras":      ( wasValid = exportCamera    object nValidObjs )
-							"chrysalis":    ( wasValid = exportChrysalis object nValidObjs )
-							"collisions":   ( wasValid = exportCollision object nValidObjs )
-							"enemies":      ( wasValid = exportEnemy     object nValidObjs )
-							"lights":       ( wasValid = exportLight     object nValidObjs )
-							"movables":     ( wasValid = exportMovable   object nValidObjs )
-							"player":       ( wasValid = exportPlayer    object nValidObjs )
-							"prefabMelee":  ( wasValid = exportPrefab    object nValidObjs )
-							"prefabFlying": ( wasValid = exportPrefab    object nValidObjs )
-							"triggers":     ( wasValid = exportTrigger   object nValidObjs )
+							"cameras":      ( wasValid = exportCamera    obj nValidObjs )
+							"chrysalis":    ( wasValid = exportChrysalis obj nValidObjs )
+							"collisions":   ( wasValid = exportCollision obj nValidObjs )
+							"enemies":      ( wasValid = exportEnemy     obj nValidObjs )
+							"lights":       ( wasValid = exportLight     obj nValidObjs )
+							"movables":     ( wasValid = exportMovable   obj nValidObjs )
+							"player":       ( wasValid = exportPlayer    obj nValidObjs )
+							"prefabMelee":  ( wasValid = exportPrefab    obj nValidObjs )
+							"prefabFlying": ( wasValid = exportPrefab    obj nValidObjs )
+							"triggers":     ( wasValid = exportTrigger   obj nValidObjs )
 							--"mechanisms":( wasValid = exportMechanism object nValidObjs )
-							"0":		    ( wasValid = exportDefault   object nValidObjs )
+							"0":		    ( wasValid = exportDefault   obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
 						if wasValid then (
@@ -1027,7 +1034,8 @@ struct TSceneExporter (
 
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
-TODO: Decidir qué hacer con las plataformas móviles.
+TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
+TODO: Añadir spliens de ataque a los prefabs de enemigos.
 */
 
 /*----------------------------------------------------------------------------------

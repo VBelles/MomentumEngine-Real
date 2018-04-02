@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "transform": {},
+      "render":
+      [
+        {
+          "mesh": "data/meshes/crisalida.mesh",
+          "materials":
+          [
+             "data/materials/piedras1.material"
+          ],
+          "color": "0.45 0.28 0.8 1.0"
+        }
+      ],
+      "tags":
+      [
+         "enemy"
+      ],
+      "respawner":
+      {
+        "respawnTime": 10
+      },
+      "shadow":
+      {
+        "offset": "0 0.1 0",
+        "mesh": "data/meshes/shadow.mesh",
+        "materials":
+        [
+           "data/materials/black.material"
+        ]
+      },
+      "ai_flying_enemy": {},
+      "collider":
+      {
+        "shape": "sphere",
+        "radius": 0.3,
+        "group": "Enemy"
+      }
+    }
+  }
+]
