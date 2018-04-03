@@ -12,7 +12,7 @@
     "test_axis"
   ],
   "render": [
-    "render",
+    "render",    
     "test_axis",
     "cameras",
     "entities",

@@ -14,8 +14,8 @@ public:
 	const std::string& getName() const { return _name; }
 	bool isActive() const { return _active; }
 	void setActive(bool how) { _active = how; }
-	bool isRender() const { return _render; }
-	void setRender(bool how) { _active = how; }
+	bool toRender() const { return _render; }
+	void setRender(bool how) { _render = how; }
 
 	virtual LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) { return 0; }
 
