@@ -2,9 +2,6 @@
 
 #include "modules/module.h"
 #include "components/comp_collider.h"
-#include "PxPhysicsAPI.h"
-
-
 
 using namespace physx;
 
