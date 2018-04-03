@@ -163,6 +163,7 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
+    <ClCompile Include="utils\geometry_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -350,6 +351,7 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
+    <ClInclude Include="utils\geometry_utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
