@@ -201,8 +201,6 @@ function computeTangentSpace vertexs idxs = (
 )
 
 
-
-
 function areEqualVertexs v1 v2 = (
 	for id = 1 to v1.count do (
 		if v1[id] != v2[id] then return false
@@ -228,8 +226,8 @@ function findIndexOrRegister ht vtxs new_vtx = (
 
 
 function exportMeshObject given_obj outfilename = (
-	
 	-- Convert the given object to triangular mesh
+	format "exportMeshObject filename: %\n" outfilename
 	local obj = given_obj
 	if classof obj != TriMesh then (
 		obj = copy given_obj
@@ -330,7 +328,7 @@ function exportMeshObject given_obj outfilename = (
 		idx = idx + 1
 	)
 	*/
-
+	
 	computeTangentSpace vtxs idxs
 	
 	saveMeshToFile outfilename obj vtxs idxs "PosNUvUvT" subgroups
@@ -341,4 +339,4 @@ function exportMeshObject given_obj outfilename = (
 )
 
 -- This path has to include file name.
-exportMeshObject $ "D:/MomentumEngine Real/Bin/data/meshes/render_rampa_2.mesh"
+--exportMeshObject $ "C:/CPPprojects/MomentumEngine-Real/Bin/data/meshes/__test.mesh"

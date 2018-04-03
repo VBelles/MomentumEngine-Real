@@ -1,19 +1,19 @@
 [
-  {
-    "entity": {
-      "transform": {},
-      "render": [
-        {
-          "mesh": "data/meshes/enemyMelee.mesh",
-          "materials": [
-            "data/materials/piedras1.material"
-          ],
-          "color": "0.45 0.28 0.8 1.0"
-        }
-      ],
-      "tags": [
-        "enemy"
-      ],
+	{
+		"entity": {
+			"transform":{},
+			"render": [
+				{
+					"mesh": "data/meshes/enemyMelee.mesh",
+					"materials": [
+						"data/materials/piedras1.material"
+					],
+					"color": "0.45 0.28 0.8 1.0"
+				}
+			],
+			"tags": [
+				"enemy"
+			],
       "behaviorTree_melee_enemy": {},
       "givePower": {
         "maxPowerToGive": 50000.0,
@@ -28,16 +28,16 @@
         "group": [ "enemy" ],
         "mask": [ "all" ]
       },
-      "respawner": {
-        "respawnTime": 10.0
-      },
+			"respawner" : {
+				"respawnTime" : 10.0
+			},
       "shadow": {
-        "offset": "0 0.1 0",
-        "mesh": "data/meshes/shadow.mesh",
+				"offset": "0 0.1 0",
+				"mesh": "data/meshes/shadow.mesh",
         "materials": [
-          "data/materials/black.material"
-        ]
-      }
-    }
-  }
+					"data/materials/black.material"
+				]
+			}
+		}
+	}
 ]

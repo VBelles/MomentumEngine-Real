@@ -1,19 +1,19 @@
 [
-  {
-    "entity": {
-      "transform": {},
-      "render": [
-        {
-          "mesh": "data/meshes/crisalida.mesh",
-          "materials": [
-            "data/materials/baldosas.material"
-          ],
-          "color": "0.45 0.28 0.8 1.0"
-        }
-      ],
-      "tags": [
-        "enemy"
-      ],
+	{
+		"entity": {
+			"transform":{},
+			"render": [
+				{
+					"mesh": "data/meshes/crisalida.mesh",
+					"materials": [
+						"data/materials/baldosas.material"
+					],
+					"color": "0.45 0.28 0.8 1.0"
+				}
+			],
+			"tags": [
+				"enemy"
+			],
       "behaviorTree_flying_ranged_enemy": {
         "attackSpawnOffset": "0.0 0.1 0.5",
         "attackTargetOffset": "0.0 0.76 0.0"
@@ -22,9 +22,9 @@
         "maxPowerToGive": 50000.0,
         "baseMultiplier": 1.0
       },
-      "respawner": {
-        "respawnTime": 10.0
-      },
+			"respawner" : {
+				"respawnTime" : 10.0
+			},
       "collider": {
         "shape": "capsule",
         "is_character_controller": true,
@@ -35,12 +35,12 @@
         "mask": [ "all" ]
 	  },
       "shadow": {
-        "offset": "0 -0.4 0",
-        "mesh": "data/meshes/shadow.mesh",
+				"offset": "0 -0.4 0",
+				"mesh": "data/meshes/shadow.mesh",
         "materials": [
-          "data/materials/black.material"
-        ]
-      }
-    }
-  }
+					"data/materials/black.material"
+				]
+			}
+		}
+	}
 ]
