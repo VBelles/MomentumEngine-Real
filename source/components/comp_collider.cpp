@@ -50,15 +50,14 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.height = j.value("height", 0.f);
 	config.step = j.value("step", 0.5f);
 	config.slope = j.value("slope", 0.0f);
-	
+
 	if (j.count("group")) {
 		for (std::string group : j["group"]) {
-			dbg("group: %s\n", group.c_str());
 			transform(group.begin(), group.end(), group.begin(), ::tolower);
 			config.group = config.group | EnginePhysics.getFilterByName(group);
 		}
 	}
-	
+
 	else {
 		config.group = CModulePhysics::FilterGroup::Scenario;
 	}
@@ -72,13 +71,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	else {
 		config.mask = CModulePhysics::FilterGroup::All;
 	}
-
-
-	config.filterData.word0 = config.group;
-	config.filterData.word1 = config.mask;
-
-	//config.group = EnginePhysics.getFilterByName(j.value("group", "all"));
-	//config.mask = EnginePhysics.getFilterByName(j.value("mask", "all"));
 }
 
 void TCompCollider::registerMsgs() {
@@ -101,6 +93,13 @@ void TCompCollider::disable() {
 		Engine.getPhysics().releaseCollider(CHandle(this));
 		enabled = false;
 	}
+}
+
+void TCompCollider::setupFiltering(PxU32 filterGroup, PxU32 filterMask) {
+	config.group = filterGroup;
+	config.mask = filterMask;
+	//TODO: hacer que esto funcione realmente
+	//EnginePhysics.setupFiltering(static_cast<PxRigidActor*>(actor), filterGroup, filterMask);
 }
 
 

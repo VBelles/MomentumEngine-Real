@@ -4,6 +4,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "entity/common_msgs.h"
+#include "comp_player_model.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
@@ -20,17 +21,22 @@ void TCompPlayerController::registerMsgs() {
 }
 
 void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-	playerModel = get<TCompPlayerModel>();
-	assert(playerModel);
+
 }
 
 void TCompPlayerController::update(float dt) {
+	if (EngineInput["pause"].getsPressed()) {
+		//cutre, deberíamos cambiar de game mode y usar los inputs según éste
+		bool isPaused = Engine.getEntities().time_scale_factor == 0.f;
+		Engine.getEntities().time_scale_factor = isPaused ? 1.f : 0.f;
+	}
+	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 	assert(playerModel);
 	VEC2 translationInput = VEC2::Zero;
 	VEC2 leftAnalogInput = VEC2::Zero;
 	float leftTrigger = 0.f;
-    leftAnalogInput.x = EngineInput[Input::EPadButton::PAD_LANALOG_X].value;
-    leftAnalogInput.y = EngineInput[Input::EPadButton::PAD_LANALOG_Y].value;
+	leftAnalogInput.x = EngineInput[Input::EPadButton::PAD_LANALOG_X].value;
+	leftAnalogInput.y = EngineInput[Input::EPadButton::PAD_LANALOG_Y].value;
 
 	if (leftAnalogInput.Length() > padDeadZone) {
 		//Manda el input del pad
@@ -58,7 +64,8 @@ void TCompPlayerController::update(float dt) {
 
 	if (EngineInput["jump"].getsPressed()) {
 		playerModel->JumpButtonPressed();
-	} else if (EngineInput["jump"].getsReleased()) {
+	}
+	else if (EngineInput["jump"].getsReleased()) {
 		playerModel->JumpButtonReleased();
 	}
 	if (EngineInput["long_jump"].getsPressed()) {
@@ -66,12 +73,14 @@ void TCompPlayerController::update(float dt) {
 	}
 	if (EngineInput["fast_attack"].getsPressed()) {
 		playerModel->FastAttackButtonPressed();
-	}else if (EngineInput["fast_attack"].getsReleased()) {
+	}
+	else if (EngineInput["fast_attack"].getsReleased()) {
 		playerModel->FastAttackButtonReleased();
 	}
 	if (EngineInput["strong_attack"].getsPressed()) {
 		playerModel->StrongAttackButtonPressed();
-	}else if (EngineInput["strong_attack"].getsReleased()) {
+	}
+	else if (EngineInput["strong_attack"].getsReleased()) {
 		playerModel->StrongAttackButtonReleased();
 	}
 	if (EngineInput["center_camera"].getsPressed()) {

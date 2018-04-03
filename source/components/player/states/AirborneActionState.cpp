@@ -10,28 +10,56 @@ AirborneActionState::AirborneActionState(CHandle playerModelHandle)
 void AirborneActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	bool hasInput = movementInput != VEC2::Zero;
-
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	bool hasInput = movementInput != VEC2::Zero;	
 	
 	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
-	
-	if (hasInput){// && enterFront.Dot(desiredDirection) > backwardsMaxDotProduct) {
-		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
-		RotatePlayerTowards(delta, targetPos, 3.5f);
+	if (!GetPlayerModel()->lockTurning) {
+		if (!isTurnAround) {
+			if (hasInput) {
+				if (GetPlayerTransform()->getFront().Dot(desiredDirection) > backwardsMaxDotProduct) {
+					VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
+					RotatePlayerTowards(delta, targetPos, rotationSpeed);
+				}
+				else {
+					isTurnAround = true;
+					//calculate rotation speed
+					exitYaw = atan2(desiredDirection.x, desiredDirection.z);
+					float y, p, r;
+					GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+					turnAroundRotationSpeed = (exitYaw - y) / turnAroundTime;
+					turnAroundTimer.reset();
+				}
+			}
+		}
+		if (isTurnAround) {
+			//rotate at rotation speed and set isTurnAround to false when timer arrives
+			float y, p, r;
+			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+			if (abs(turnAroundRotationSpeed * delta) < abs(exitYaw - y)) {
+				y += turnAroundRotationSpeed * delta;
+				GetPlayerTransform()->setYawPitchRoll(y, p, r);
+			}
+			else {
+				GetPlayerTransform()->setYawPitchRoll(exitYaw, p, r);
+			}
+
+			if (turnAroundTimer.elapsed() >= turnAroundTime) {
+				isTurnAround = false;
+			}
+		}
 	}
 
 	if (hasInput) {
 		//aceleración según sentido de movimiento
 		float appliedAcceleration = CalculateAccelerationAccordingToDirection(enterFront, desiredDirection,
-			currentPowerStats->airAcceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
+			enteringPowerStats->airAcceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
 			sidewaysAirDriftFactor);
 
 		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z},
 			desiredDirection, appliedAcceleration,
-			currentPowerStats->maxHorizontalSpeed);
+			enteringPowerStats->maxHorizontalSpeed);
 		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
-		ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
+		ClampHorizontalVelocity(enteringPowerStats->maxHorizontalSpeed);
 	}
 	else {
 		deltaMovement.x = velocityVector->x * delta;
@@ -39,14 +67,17 @@ void AirborneActionState::update (float delta) {
 	}
 
 	if(velocityVector->y < 0){
-		GetPlayerModel()->SetGravityMultiplier(currentPowerStats->fallingMultiplier);
+		GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
+		GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->fallingMultiplier);
 	}
 }
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
-	GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
+	enteringPowerStats = &*GetPlayerModel()->GetPowerStats();
+	isTurnAround = false;
+	turnAroundTime = turnAroundFrames * (1.f / 60);
+	GetPlayerModel()->maxVerticalSpeed = GetPlayerModel()->maxVelocityUpwards;
 	GetPlayerModel()->ResetGravity();
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
@@ -58,24 +89,31 @@ void AirborneActionState::OnStateExit(IActionState * nextState) {
 }
 
 void AirborneActionState::OnJumpHighButton() {
-	//grab high
+	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void AirborneActionState::OnJumpLongButton() {
-	//grab long
+	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::GrabLong);
 }
 
 void AirborneActionState::OnStrongAttackButton() {
-	if (GetPlayerModel()->IsAttackFree()) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::FallingAttack);
-	}
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::FallingAttack);
 }
 
 void AirborneActionState::OnFastAttackButton() {
+	if (GetPlayerModel()->IsConcurrentActionFree()) {
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::FastAttackAir);
+	}
+}
+
+void AirborneActionState::OnReleasePowerButton() {
+	if (GetPlayerModel()->IsConcurrentActionFree()) {
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::ReleasePowerAir);
+	}
 }
 
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::Landing);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
 }

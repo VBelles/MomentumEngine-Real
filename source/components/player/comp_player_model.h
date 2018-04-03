@@ -6,13 +6,15 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "states/IActionState.h"
-#include "PowerGauge.h"
+#include "comp_power_gauge.h"
 
 class PlayerFilterCallback;
+//typedef TCompPlayerModel::ActionStates ActionStates;
 
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
 	float rotationSpeed = 0.f;
+	float landingLag = 0.f;
 	float fallingMultiplier = 1.1f;
 	float longGravityMultiplier = 1.f;
 	float normalGravityMultiplier = 1.f;
@@ -22,33 +24,42 @@ struct PowerStats {
 	float deceleration = 40.f;
 	float airAcceleration = 40.f;
 	float shortHopVelocity = 6.f;
+	float springJumpVelocity = 23.f;
+	float plummetTime = 0.5f;
 	VEC3 jumpVelocityVector = { 0.f, 8.f, 0.f };
 	VEC3 longJumpVelocityVector = { 0.f, 6.f, 12.f };
+	VEC3 wallJumpVelocityVector = { 0.f, 20.f, 7.f };
 };
 
-class TCompPlayerModel : public TCompBase, PowerGauge::PowerListener {
+class TCompPlayerModel : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 public:
-	int frame = 0;
-	enum ActionStates{
+	
+	enum ActionStates {
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
-		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack, 
-		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong, 
-		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack
+		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack,
+		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
+		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
+		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
+		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
+		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet
 	};
-	IActionState* movementState;
-	IActionState* attackState;
+	IActionState* baseState;
+	IActionState* concurrentState;
+
 	
-	bool lockMovementState = false;
+	
+	bool lockBaseState = false;
 	bool lockWalk = false;
-	bool lockAttackState = false;
+	bool lockTurning = false;
+	bool lockConcurrentState = false;
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
-	void SetMovementState(ActionStates newState);
-	void SetAttackState(ActionStates newState);
+	void SetBaseState(ActionStates newState);
+	void SetConcurrentState(ActionStates newState);
 	void update(float dt);
 	void UpdateMovement(float dt, VEC3 deltaMovement);
 	void SetMovementInput(VEC2 input, float delta);
@@ -62,8 +73,8 @@ public:
 	void CenterCameraButtonPressed();
 	void ReleasePowerButtonPressed();
 	void GainPowerButtonPressed();
-	bool IsAttackFree();
-
+	bool IsConcurrentActionFree();
+	
 	void OnAttackHit(const TMsgAttackHit& msg);
 	void OnHitboxEnter(const TMsgHitboxEnter& msg);
 	void OnGainPower(const TMsgGainPower& msg);
@@ -72,6 +83,9 @@ public:
 	TCompTransform* GetTransform() { return myTransformHandle; }
 	TCompCollider* GetCollider() { return colliderHandle; }
 	PxCapsuleController* GetController() { return static_cast<PxCapsuleController*>(GetCollider()->controller); }
+	TCompCamera* GetCamera();
+	TCompPowerGauge* GetPowerGauge() { return powerGaugeHandle; }
+	
 	VEC3* GetAccelerationVector() { return &accelerationVector; }
 	VEC3* GetVelocityVector() { return &velocityVector; }
 	float GetGravity() { return currentGravity; }
@@ -80,6 +94,12 @@ public:
 	void ResetGravity() { currentGravity = baseGravity; }
 
 	PowerStats* GetPowerStats();
+
+	bool isInState(ActionStates state);
+	template <typename T>
+	T GetBaseState(TCompPlayerModel::ActionStates state) { return static_cast<T>(baseStates[state]); }
+	template <typename T >
+	T GetConcurrentState(TCompPlayerModel::ActionStates state) { return static_cast<T>(concurrentStates[state]); }
 	
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;
@@ -87,15 +107,25 @@ public:
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;
+	float maxVelocityUpwards = 45.f;
 
-	void OnLevelChange(int powerLevel);
+	float huggingWallMinPitch = deg2rad(-25);
+	float huggingWallMaxPitch = deg2rad(5);
+	float attachWallByInputMinDot = 0.3f;
+	float attachWallByFrontMinDot = 0.8f;
+
 
 	CHandle grabTarget;
+	PxRigidActor* lastWallEntered;
+
+	
 
 private:
 	VEC3 deltaMovement;
 	CHandle myTransformHandle;
 	CHandle colliderHandle;
+	CHandle powerGaugeHandle;
+
 	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
 	float baseGravity = 0.f;
@@ -117,29 +147,38 @@ private:
  
     void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void OnCollect(const TMsgCollect& msg);
+	void OnShapeHit(const TMsgOnShapeHit & msg);
+	void OnContact(const TMsgOnContact & msg);
+	void OnLevelChange(const TMsgPowerLvlChange& msg);
 
 	PowerStats* loadPowerStats(const json& j);
 
-	PowerGauge* powerGauge;
-
 	PlayerFilterCallback* playerFilterCallback;
 
-	std::map<ActionStates, IActionState*> movementStates;
-	std::map<ActionStates, IActionState*> attackStates;
+	std::map<ActionStates, IActionState*> baseStates;
+	std::map<ActionStates, IActionState*> concurrentStates;
+	ActionStates nextBaseState;
+	ActionStates nextConcurrentState;
 
 	CHandle strongAttackHitbox;
+	CHandle fastAttackHitbox;
+	CHandle fastAttackAirHitbox;
 	CHandle fallingAttackHitbox;
 	CHandle fallingAttackLandingHitbox;
 	CHandle verticalLauncherHitbox;
+	CHandle horizontalLauncherHitbox;
 	CHandle grabHitbox;
+	CHandle releasePowerSmallHitbox;
+	CHandle releasePowerBigHitbox;
+
 
 	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre
 
-	ActionStates nextMovementState;
-	ActionStates nextAttackState;
-	void ChangeMovementState(ActionStates newState);
-	void ChangeAttackState(ActionStates newState);
+
+	void ChangeBaseState(ActionStates newState);
+	void ChangeConcurrentState(ActionStates newState);
 	void OnDead();
-	void OnShapeHit(const TMsgOnShapeHit & msg);
+	
 	void ApplyGravity(float delta);
+	
 };

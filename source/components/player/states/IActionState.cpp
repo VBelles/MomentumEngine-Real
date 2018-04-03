@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "IActionState.h"
 #include "components/player/comp_player_model.h"
+#include "components/comp_camera.h"
 
 IActionState::IActionState(CHandle playerModelHandle) {
 	this->playerModelHandle = playerModelHandle;
@@ -103,12 +104,4 @@ void IActionState::ClampHorizontalVelocity(float maxHorizontalSpeed) {
 		velocityVector->x = horizontalVelocity.x;
 		velocityVector->z = horizontalVelocity.y;
 	}
-}
-
-float IActionState::CalculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical) {
-	float resultingDeltaMovement;
-	resultingDeltaMovement = velocityVector->y * delta + 0.5f * acceleration * delta * delta;
-	//clampear distancia vertical
-	resultingDeltaMovement = resultingDeltaMovement > maxVelocityVertical * delta ? maxVelocityVertical * delta : resultingDeltaMovement;
-	return resultingDeltaMovement;
 }

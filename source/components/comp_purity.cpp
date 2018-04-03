@@ -13,10 +13,11 @@ void TCompPurity::debugInMenu() {
 
 void TCompPurity::registerMsgs() {
 	DECL_MSG(TCompPurity, TMsgEntitiesGroupCreated, onGroupCreated);
-	DECL_MSG(TCompPurity, TMsgPowerLvlChange, onPowerLvlChange);
+	DECL_MSG(TCompPurity, TMsgPurityChange, onPurityChange);
 }
 
 void TCompPurity::load(const json& j, TEntityParseContext& ctx) {
+	
 }
 
 void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -28,23 +29,24 @@ void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 // Pruebo en WWBox061, la tercera plataforma fija que hay al principio.
-void TCompPurity::onPowerLvlChange(const TMsgPowerLvlChange & msg) {
+void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
     TCompCollider* collider = get<TCompCollider>();
     assert(collider);
+		
 	TCompRender *render = get<TCompRender>();
 	assert(render);
- 
-    if (msg.powerLvl == 1) {
-		collider->enable();
+	
+    if (msg.isPure) {
+		collider->setupFiltering(collider->config.group, collider->config.mask | EnginePhysics.Player);
 		render->setMesh(originalMeshPath, originalMaterialPath);
     }
     else {
-		collider->disable();
+		collider->setupFiltering(collider->config.group, collider->config.mask & !EnginePhysics.Player);
         // Falta decidir qué efecto aplicar cuando la plataforma está intangible,
         // de momento la dejo con material blanco.
 		render->setMesh(originalMeshPath, "data/materials/white.material");
     }
 }
 
-void TCompPurity::update(float dt) {
-}
+
+

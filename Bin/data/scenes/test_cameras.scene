@@ -21,11 +21,11 @@
 		"entity": {
 			"name": "fixed_camera",
 			"transform": {
-				"pos": "-78 26 -59",
+				"pos": "-5 25 -20",
 				"lookat": "-83 24 -56"
 			},
 			"camera" : {
-				"fov" : 40 
+				"fov" : 80 
 			}
 		}
 	}

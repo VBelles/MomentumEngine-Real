@@ -13,17 +13,17 @@ namespace Input {
 
 	void CMouse::updateMouseData(float delta, TInterface_Mouse& data) {
 		// buttons
-		data._buttons[MOUSE_LEFT].update(delta, _buttons[MOUSE_LEFT] ? 1.f : 0.f);
-		data._buttons[MOUSE_MIDDLE].update(delta, _buttons[MOUSE_MIDDLE] ? 1.f : 0.f);
-		data._buttons[MOUSE_RIGHT].update(delta, _buttons[MOUSE_RIGHT] ? 1.f : 0.f);
+		data.buttons[MOUSE_LEFT].update(delta, _buttons[MOUSE_LEFT] ? 1.f : 0.f);
+		data.buttons[MOUSE_MIDDLE].update(delta, _buttons[MOUSE_MIDDLE] ? 1.f : 0.f);
+		data.buttons[MOUSE_RIGHT].update(delta, _buttons[MOUSE_RIGHT] ? 1.f : 0.f);
 
 		// position
-		data._position_delta = positionDelta;
+		data.position_delta = positionDelta;
 		positionDelta = VEC2::Zero;
-		data._position = _position;
+		data.position = _position;
 
 		// wheel
-		data._wheel_delta = _wheel_delta;
+		data.wheel_delta = _wheel_delta;
 		_wheel_delta = 0.f;
 	}
 

@@ -2,12 +2,15 @@
 
 #include "components/comp_base.h"
 
-class TCompCameraPlayer : public TCompBase
-{
-  DECL_SIBLING_ACCESS();
+class CEntity;
+class TCompTransform;
+
+class TCompCameraPlayer : public TCompBase {
+	DECL_SIBLING_ACCESS();
 
 private:
-	CHandle target;
+	CHandle targetHandle;
+	CHandle transformHandle;
 
 	//General camera configuration
 	float fovInDegrees;
@@ -25,7 +28,8 @@ private:
 	VEC3 verticalOffsetVector = VEC3::Zero;
 	float pitchAngleRange;
 
-	float distanceToTarget = 0.f;
+	float defaultDistanceToTarget = 0.f;
+	float currentDistanceToTarget;
 	VEC3 distanceVector = VEC3::Zero;
 
 	float speedFactor = 3.f;
@@ -37,8 +41,17 @@ private:
 	VEC3 centeredPosition;
 	bool centeringCamera = false;
 
+	float sphereCastRadius = 0.5f;
+
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void CalculateVerticalOffsetVector();
+	bool SphereCast(PxOverlapBuffer hit);
+	void AproachToFreePosition();
+
+	CEntity* GetTarget();
+	TCompTransform* GetTargetTransform();
+	VEC3 GetTargetPosition();
+	TCompTransform* GetTransform();
 
 public:
 	static void registerMsgs();

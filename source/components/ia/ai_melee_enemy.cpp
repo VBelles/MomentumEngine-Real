@@ -95,7 +95,6 @@ void CAIMeleeEnemy::OnGrabbed(float duration) {
 }
 
 void CAIMeleeEnemy::GrabbedState(float delta) {
-	//dbg("En grabbed\n");
 	if (grabbedTimer.elapsed() >= grabbedDuration) {
 		getCollider()->enable();
 		ChangeState("idle");
@@ -113,6 +112,16 @@ void CAIMeleeEnemy::OnPropelled(VEC3 velocity) {
 	render->TurnRed(0.5f);
 }
 
+void CAIMeleeEnemy::PropelledState(float delta) {
+	if (propelTimer.elapsed() < propelDuration) {
+		VEC3 deltaMovement = propelVelocityVector * delta;
+		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	}
+	else {
+		ChangeState("idle");
+	}
+}
+
 void CAIMeleeEnemy::OnLaunchedVertically(float suspensionTime, VEC3 velocity) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
@@ -127,7 +136,7 @@ void CAIMeleeEnemy::OnLaunchedHorizontally(float suspensionTime, VEC3 velocity) 
 	launchPowerStats = &*playerModel->GetPowerStats();
 	floatingDuration = suspensionTime;
 	initialHorizontalLaunchY = getTransform()->getPosition().y + 0.001f;
-	dbg("Y: %f", initialHorizontalLaunchY);
+	//dbg("Y: %f", initialHorizontalLaunchY);
 	float horizontalVelocity = launchPowerStats->longJumpVelocityVector.z;
 	velocityVector = velocity;
 	velocityVector.y = launchPowerStats->longJumpVelocityVector.y;
@@ -144,8 +153,11 @@ void CAIMeleeEnemy::OnRespawn(const TMsgRespawn & msg) {
 		getCollider()->enable();
 		getTransform()->setPosition(spawnPosition);
 		getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
+
 		TCompRender *render = get<TCompRender>();
-		render->setMesh(originalMeshPath, originalMaterialPath);
+		//render->setMesh(originalMeshPath, originalMaterialPath);
+		render->enable();
+
 		TCompShadow *shadow = get<TCompShadow>();
 		shadow->setMesh(originalShadowMesh);
 	}
@@ -233,10 +245,13 @@ void CAIMeleeEnemy::DeathState(float delta) {
 		getCollider()->disable();
 		//CHandle(this).getOwner().destroy();
 		TCompRender* render = get<TCompRender>();
-		render->setMesh("data/meshes/nada.mesh"); // Ahora coge lo que hay en meshes, no lo de mesh.
-		TCompRespawner* spawner = get<TCompRespawner>();
+		//render->setMesh("data/meshes/nada.mesh"); // Ahora coge lo que hay en meshes, no lo de mesh.
+		render->disable();
+
 		TCompShadow* shadow = get<TCompShadow>();
 		shadow->setMesh("data/meshes/nada.mesh");
+
+		TCompRespawner* spawner = get<TCompRespawner>();
 		spawner->OnDead();
 		isDead = true;
 	}
@@ -259,17 +274,6 @@ void CAIMeleeEnemy::HorizontalLaunchState(float delta) {
 		velocityVector.z = 0;
 		ChangeState("floating");
 		launchedFloatingTimer.reset();
-	}
-}
-
-void CAIMeleeEnemy::PropelledState(float delta) {
-	dbg("On propelled\n");
-	if (propelTimer.elapsed() < propelDuration) {
-		VEC3 deltaMovement = propelVelocityVector * delta;
-		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
-	}
-	else {
-		ChangeState("idle");
 	}
 }
 

@@ -9,8 +9,8 @@ void TCompDestroyCondition::debugInMenu() {
 }
 
 void TCompDestroyCondition::registerMsgs() {
-    DECL_MSG(TCompDestroyCondition, TMsgEntitiesGroupCreated, onGroupCreated);
-    DECL_MSG(TCompDestroyCondition, TMsgDestroy, onDestroy);
+	DECL_MSG(TCompDestroyCondition, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompDestroyCondition, TMsgDestroy, onDestroy);
 	DECL_MSG(TCompDestroyCondition, TMsgColliderDestroyed, OnColliderDestroyed);
 }
 
@@ -24,11 +24,14 @@ void TCompDestroyCondition::update(float dt) {
 }
 
 void TCompDestroyCondition::onDestroy(const TMsgDestroy & msg) {
-    // Door destroys itself.
-    TCompCollider *collider = get<TCompCollider>();
+	// Door destroys itself.
+	TCompCollider *collider = get<TCompCollider>();
 	collider->disable();
+	toDestroy = true;
 }
 
 void  TCompDestroyCondition::OnColliderDestroyed(const TMsgColliderDestroyed& msg) {
-	CHandle(this).getOwner().destroy();
+	if (toDestroy) {
+		CHandle(this).getOwner().destroy();
+	}
 }

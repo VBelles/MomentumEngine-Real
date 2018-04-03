@@ -18,43 +18,53 @@
 				"ssj1":{
 					"rotation_speed" : 11.0,
 					"maxSpeed" : 7.0,
+					"landingLag" : 1.0,
 					"shortHopVelocity" : 16.0,
-					"jumpVelocity" : " 0 20 0",
-					"longJumpVelocity" : " 0 11 12",
+					"jumpVelocity" : "0 20 0",
+					"longJumpVelocity" : "0 11 12",
+					"wallJumpVelocity" : "0 22 9",
+					"springJumpVelocity" : 27, 
 					"maxVelocityVertical" :  30.0,
 					"acceleration" : 30.0,
 					"deceleration" : 7.0,
 					"airAcceleration" : 30.0,
 					"falling_multiplier" : 1.05,
-					"long_gravity_multiplier" : 0.60
+					"long_gravity_multiplier" : 0.60,
+					"plummetTime" : 0.4
 				},
 				"ssj2":{
 					"rotation_speed" : 14.0,
 					"maxSpeed" : 11.0,
+					"landingLag" : 5.0,
 					"shortHopVelocity" : 18.0,
 					"jumpVelocity" : "0 25 0",
-					"longJumpVelocity" : " 0 12 17",
+					"longJumpVelocity" : "0 12 17",
+					"wallJumpVelocity" : "0 27 10",
+					"springJumpVelocity" : 32, 
 					"maxVelocityVertical" : 30.0,
 					"acceleration" : 32.0,
 					"deceleration" : 8.0,
 					"airAcceleration" : 35.0,
 					"falling_multiplier" : 1.05,
-					"long_gravity_multiplier" : 0.60
+					"long_gravity_multiplier" : 0.60,
+					"plummetTime" : 0.5
 				},
 				"ssj3":{
 					"rotation_speed" : 17.0,
 					"maxSpeed" : 14.0,
+					"landingLag" : 9.0,
 					"shortHopVelocity" : 20.0,
 					"jumpVelocity" : "0 30 0",
 					"longJumpVelocity" : "0 13 22.5",
+					"wallJumpVelocity" : "0 32 12",
+					"springJumpVelocity" : 37, 
 					"maxVelocityVertical" : 30.0,
 					"acceleration" : 35.0,
 					"deceleration" : 9.0,
 					"airAcceleration" : 40.0,
 					"falling_multiplier" : 1.05,
-					"long_gravity_multiplier" : 0.60
-				},
-				"power_gauge":{
+					"long_gravity_multiplier" : 0.60,
+					"plummetTime" : 0.6
 				}
 			},
 			"collider": {
@@ -76,6 +86,9 @@
 				[
 					"data/materials/black.material"
 				]
+			},
+			"power_gauge":{
+				
 			}
 		}
 	},
@@ -99,7 +112,61 @@
 	},
 	{
 		"entity": {
+			"name": "Fast attack hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 0.7
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.6 0.7"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Fast attack air hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 0.7
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.6 0.7"
+			}
+		}
+	},
+	{
+		"entity": {
 			"name": "Vertical launcher hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 0.9
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.6 0.7"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Horizontal launcher hitbox",
 			"transform": {},
 			"collider": {
 				"shape": "sphere",
@@ -171,10 +238,65 @@
 	},
 	{
 		"entity": {
+			"name": "Wall jump plummet hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 1.0
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Release power small hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 4.0
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.75 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Release power big hitbox",
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"is_dynamic" : true,
+				"radius" : 7.0
+			},
+			"hierarchy" : {
+				"parent" : "The Player"
+			},
+			"hitbox" : {
+				"offset" : "0 0.75 0"
+			}
+		}
+	},
+	{
+		"entity": {
 			"name": "player_camera",
 			"transform": {},
 			"camera" : {
 				"fov" : 90,
+				"z_near" : 0.5,
 				"active": true
 			},
 			"camera_player": {

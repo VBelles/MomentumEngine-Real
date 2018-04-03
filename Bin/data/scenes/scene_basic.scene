@@ -19,7 +19,74 @@
 				"shape": "box",
 				"halfExtent": "2.5 3.5 1.0"
 			},
+			"mechanism_system": {
+				"mechanisms": [
+					"door2",
+					"door3"
+				]
+			},
+			"appear": {},
 			"destroyCondition": {}
+		}
+	},
+	{
+		"entity": {
+			"name": "door2",
+			"render": [
+				{
+					"mesh": "data/meshes/door.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
+				}
+			],
+			"transform": {
+				"pos": "-40 40 -135",
+				"rotation": "0 0.574 0 0.819"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"halfExtent": "2.5 3.5 1.0"
+			},
+			"mechanism": {
+				"deactivationTime": 5,
+				"isResettable": true,
+				"reactivationTime": 3,
+				"systems": [
+					"door"
+				]
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "door3",
+			"render": [
+				{
+					"mesh": "data/meshes/door.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
+				}
+			],
+			"transform": {
+				"pos": "-40 40 -120",
+				"rotation": "0 0.574 0 0.819"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"halfExtent": "2.5 3.5 1.0"
+			},
+			"mechanism": {
+				"deactivationTime": 5,
+				"isResettable": true,
+				"reactivationTime": 3,
+				"systems": [
+					"door"
+				]
+			}
 		}
 	},
 	{
@@ -32,7 +99,7 @@
 				"shape": "box",
 				"is_trigger" : true,
 				"is_dynamic" : false,
-				"halfExtent" : "100000 0.000001 100000",
+				"halfExtent" : "1000000 0.000001 1000000",
 				"group":["all"],
 				"mask":["characters"]
 			},

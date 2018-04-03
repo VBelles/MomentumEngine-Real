@@ -11,25 +11,10 @@
 #pragma comment(lib, "PhysX3CharacterKinematic_x64.lib")
 
 CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
-	if (strcmp("player", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Player;
+	auto it = filterGroupByName.find(name);
+	if (it != filterGroupByName.end()) {
+		return filterGroupByName[name];
 	}
-	else if (strcmp("enemy", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Enemy;
-	}
-	else if (strcmp("characters", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Characters;
-	}
-	else if (strcmp("wall", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Wall;
-	}
-	else if (strcmp("floor", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Floor;
-	}
-	else if (strcmp("scenario", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Scenario;
-	}
-	return CModulePhysics::FilterGroup::All;
 }
 
 void CModulePhysics::createActor(TCompCollider& comp_collider) {
@@ -142,18 +127,29 @@ PxFilterFlags CustomFilterShader(
 	PxFilterObjectAttributes attributes0, PxFilterData filterData0,
 	PxFilterObjectAttributes attributes1, PxFilterData filterData1,
 	PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize) {
-	if ((filterData0.word0 & filterData1.word1) &&
-		(filterData1.word0 & filterData0.word1)) {
-		if (PxFilterObjectIsTrigger(attributes0) ||
-			PxFilterObjectIsTrigger(attributes1)) {
-			pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
-		}
-		else {
-			pairFlags = PxPairFlag::eCONTACT_DEFAULT | PxPairFlag::eNOTIFY_TOUCH_FOUND;
-		}
+
+	// let triggers through
+	if (PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1)) {
+		pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
 		return PxFilterFlag::eDEFAULT;
 	}
+	// generate contacts for all that were not filtered above
+	pairFlags = PxPairFlag::eCONTACT_DEFAULT;
+
+	// trigger the contact callback for pairs (A,B) where
+	// the filtermask of A contains the ID of B and vice versa.
+	if ((filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1)) {
+		if (PxFilterObjectIsKinematic(attributes0) && PxFilterObjectIsKinematic(attributes1)) {
+			return PxFilterFlag::eSUPPRESS;
+		}
+		pairFlags |= PxPairFlag::eNOTIFY_TOUCH_FOUND;
+		pairFlags |= PxPairFlag::eNOTIFY_TOUCH_LOST;
+		pairFlags |= PxPairFlag::eNOTIFY_CONTACT_POINTS;
+		return PxFilterFlag::eDEFAULT;
+	}
+
 	return PxFilterFlag::eSUPPRESS;
+
 }
 
 
@@ -177,15 +173,19 @@ bool CModulePhysics::start() {
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
 	if (!gPhysics) fatal("PxCreatePhysics failed");
 
+	//Create scene
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = CustomFilterShader;
+	sceneDesc.simulationEventCallback = &customSimulationEventCallback;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
+
 	gScene = gPhysics->createScene(sceneDesc);
-	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
-	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
-	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_PAIRS, true);
+
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 	if (pvdClient) {
 		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
@@ -196,7 +196,7 @@ bool CModulePhysics::start() {
 
 	mControllerManager = PxCreateControllerManager(*gScene);
 
-	gScene->setSimulationEventCallback(&customSimulationEventCallback);
+
 	return true;
 }
 
@@ -275,11 +275,6 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		CEntity* e_other = h_other_comp_collider.getOwner();
 		CEntity* e_trigger = h_trigger_comp_collider.getOwner();
 
-		/*if (strcmp(e_other->getName(), "WWw_Box220") != 0 &&
-			strcmp(e_other->getName(), "WWw_platformMove002") != 0) {
-			dbg("other: %s\n", e_other->getName());
-			dbg("trigger: %s\n", e_trigger->getName());
-		}*/
 
 		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND) {
 			e_trigger->sendMsg(TMsgTriggerEnter{ e_other });
@@ -288,6 +283,41 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 			e_trigger->sendMsg(TMsgTriggerExit{ e_other });
 		}
 	}
+}
+
+void CModulePhysics::CustomSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 count) {
+	//dbg("Contact\n");
+	/*if (pairHeader.flags & (PxContactPairHeaderFlag::eREMOVED_ACTOR_0 | PxContactPairHeaderFlag::eREMOVED_ACTOR_1))
+		return;
+	for (PxU32 i = 0; i < count; ++i) {
+		PxContactPair pair = pairs[i];
+
+		CHandle colliderHandle1;
+		colliderHandle1.fromVoidPtr(pairHeader.actors[0]->userData);
+		CHandle colliderHandle2;
+		colliderHandle2.fromVoidPtr(pairHeader.actors[1]->userData);
+
+		CEntity* e1 = colliderHandle1.getOwner();
+		CEntity* e2 = colliderHandle2.getOwner();
+
+		if (pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_FOUND)) {
+			if (strcmp(e1->getName(), "The Player") != 0
+				|| strcmp(e2->getName(), "The Player") != 0) {
+				//dbg("TOUCH FOUND\n");
+			}
+			e1->sendMsg(TMsgOnContact{ CHandle(e2), pair });
+			e2->sendMsg(TMsgOnContact{ CHandle(e1), pair });
+		}
+		if (pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_LOST)) {
+			if (strcmp(e1->getName(), "The Player") != 0
+				|| strcmp(e2->getName(), "The Player") != 0) {
+				//dbg("TOUCH LOST\n");
+
+			}
+			e1->sendMsg(TMsgOnContact{ CHandle(e2), pair });
+			e2->sendMsg(TMsgOnContact{ CHandle(e1), pair });
+		}
+	}*/
 }
 
 
@@ -299,9 +329,4 @@ void CModulePhysics::CustomUserControllerHitReport::onShapeHit(const PxControlle
 
 }
 
-void CModulePhysics::CustomUserControllerHitReport::onControllerHit(const PxControllersHit & hit) {
-}
-
-void CModulePhysics::CustomUserControllerHitReport::onObstacleHit(const PxControllerObstacleHit & hit) {
-}
 

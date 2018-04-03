@@ -45,5 +45,8 @@ public:
 
     static void registerMsgs();
 
+	void enable();
+	void disable();
+
     DECL_SIBLING_ACCESS();
 };

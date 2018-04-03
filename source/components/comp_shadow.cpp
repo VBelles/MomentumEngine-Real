@@ -17,8 +17,8 @@ void TCompShadow::load(const json& j, TEntityParseContext& ctx) {
 		offset = loadVEC3(j["offset"]);
 	}
 
-	std::string name_mesh = j.value("mesh", "axis.mesh");
-	mesh = Resources.get(name_mesh)->as<CRenderMesh>();
+	shadowMeshName = j.value("mesh", "axis.mesh");
+	mesh = Resources.get(shadowMeshName)->as<CRenderMesh>();
 
 	if (j.count("materials")) {
 		auto& j_mats = j["materials"];
@@ -51,30 +51,30 @@ void TCompShadow::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 }
 
 void TCompShadow::update(float dt) {
-	TCompTransform *parentTransform = parentTransformHandle;
-	TCompTransform *transform = transformHandle;
+	if (enabled) {
+		TCompTransform *parentTransform = parentTransformHandle;
+		TCompTransform *transform = transformHandle;
 
-	PxScene* scene = Engine.getPhysics().getScene();
-	PxVec3 origin = { parentTransform->getPosition().x + offset.x, parentTransform->getPosition().y + offset.y, parentTransform->getPosition().z + offset.z };
+		PxScene* scene = Engine.getPhysics().getScene();
+		PxVec3 origin = { parentTransform->getPosition().x + offset.x, parentTransform->getPosition().y + offset.y, parentTransform->getPosition().z + offset.z };
 
+		const PxU32 bufferSize = 256;
+		PxRaycastHit hitBuffer[bufferSize];
+		PxRaycastBuffer buf(hitBuffer, bufferSize);
 
-	const PxU32 bufferSize = 256;
-	PxRaycastHit hitBuffer[bufferSize];
-	PxRaycastBuffer buf(hitBuffer, bufferSize);
-
-
-	bool status = scene->raycast(origin, unitDir, maxDistance, buf);
-	PxRaycastHit nearest = buf.touches[0];
-	nearest.distance = maxDistance + 1;
-	for (PxU32 i = 0; i < buf.nbTouches; i++) {
-		if (!buf.touches[i].shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
-			if (buf.touches[i].distance < nearest.distance) {
-				nearest = buf.touches[i];
+		bool status = scene->raycast(origin, unitDir, maxDistance, buf);
+		PxRaycastHit nearest = buf.touches[0];
+		nearest.distance = maxDistance + 1;
+		for (PxU32 i = 0; i < buf.nbTouches; i++) {
+			if (!buf.touches[i].shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
+				if (buf.touches[i].distance < nearest.distance) {
+					nearest = buf.touches[i];
+				}
 			}
 		}
+		//Sumamos 0.001 a position.y para evitar z fighting
+		transform->setPosition({ nearest.position.x, nearest.position.y + 0.001f, nearest.position.z });
 	}
-	//Sumamos 0.001 a position.y para evitar z fighting
-	transform->setPosition({ nearest.position.x, nearest.position.y + 0.001f, nearest.position.z });
 }
 
 TCompTransform* TCompShadow::getTransform() {
@@ -83,4 +83,18 @@ TCompTransform* TCompShadow::getTransform() {
 
 void TCompShadow::setMesh(std::string meshName) {
 	mesh = Resources.get(meshName)->as<CRenderMesh>();
+}
+
+void TCompShadow::enable() {
+	if (!enabled) {
+		setMesh(shadowMeshName);
+		enabled = true;
+	}
+}
+
+void TCompShadow::disable() {
+	if (enabled) {
+		setMesh(disabledMeshName);
+		enabled = false;
+	}
 }

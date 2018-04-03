@@ -19,12 +19,16 @@ private:
 	double dt = 1.f / 60.f;
 	double accumulator = 0.0;
 
+	
+
 public:
 	VEC2 resolution;
 	bool fullscreen = false;
 	bool showDebug = false;
 
     bool resetMouse = false;
+
+	bool isWindowFocused = false;
 
 	static CApp& get() {
 		assert(app_instance);

@@ -10,12 +10,12 @@ bool PlayerFilterCallback::filter(const PxController& a, const PxController& b) 
 	CHandle colliderHandle;
 	colliderHandle.fromVoidPtr(a.getActor()->userData);
 	TCompCollider* collider = colliderHandle;
-	PxFilterData filterData = collider->config.filterData;
+	PxFilterData filterData = { collider->config.group, collider->config.mask, 0, 0 };
 
 	CHandle colliderHandle1;
 	colliderHandle1.fromVoidPtr(b.getActor()->userData);
 	TCompCollider* collider1 = colliderHandle1;
-	PxFilterData filterData1 = collider1->config.filterData;
+	PxFilterData filterData1 = { collider1->config.group, collider1->config.mask, 0, 0 };
 
 	if ((filterData.word0 & filterData1.word1) && (filterData1.word0 & filterData.word1)) {
 		return true;
@@ -26,8 +26,12 @@ bool PlayerFilterCallback::filter(const PxController& a, const PxController& b) 
 
 physx::PxQueryHitType::Enum PlayerFilterCallback::preFilter(const physx::PxFilterData& filterData,
 	const physx::PxShape* shape, const physx::PxRigidActor* actor, physx::PxHitFlags& queryFlags) {
+	CHandle colliderHandle;
+	colliderHandle.fromVoidPtr(actor->userData);
+	TCompCollider* collider = colliderHandle;
 
-	const physx::PxFilterData& filterData1 = shape->getSimulationFilterData();
+	//const physx::PxFilterData& filterData1 = shape->getSimulationFilterData();
+	const physx::PxFilterData& filterData1 = { collider->config.group, collider->config.mask, 0, 0 };
 	if ((filterData.word0 & filterData1.word1) && (filterData1.word0 & filterData.word1)) {
 		return PxQueryHitType::eBLOCK;
 	}

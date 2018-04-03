@@ -16,36 +16,37 @@ void GroundedActionState::OnStateEnter(IActionState * lastState) {
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	if (currentPowerStats) GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
 	GetPlayerModel()->ResetGravity();
-	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
-	//dbg("Entrando en grounded\n");
+	backwardsMaxDotProduct = cos(backwardsdMinAngle);
+	GetPlayerModel()->lastWallEntered = nullptr;//En realidad al tocar el suelo ya se sobreescribe la variable
 }
 
 void GroundedActionState::OnStateExit(IActionState * nextState) {
 	IActionState::OnStateExit(nextState);
-	//dbg("Saliendo de grounded\n");
 }
 
 void GroundedActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void GroundedActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void GroundedActionState::OnStrongAttackButton() {
-	if (GetPlayerModel()->IsAttackFree()) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::StrongAttack);
-	}
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::StrongAttack);
 }
 
 void GroundedActionState::OnFastAttackButton() {
-	if (GetPlayerModel()->IsAttackFree()) {
-		GetPlayerModel()->SetAttackState(TCompPlayerModel::ActionStates::FastAttack);
+	if (GetPlayerModel()->IsConcurrentActionFree()) {
+		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::FastAttack);
 	}
+}
+
+void GroundedActionState::OnReleasePowerButton() {
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::ReleasePowerGround);
 }
 
 void GroundedActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayerModel()->SetMovementState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }

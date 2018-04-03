@@ -5,7 +5,7 @@
 #include "geometry/transform.h"
 
 struct TMsgEntityCreated {
-    DECL_MSG_ID();
+	DECL_MSG_ID();
 };
 
 struct AttackInfo {
@@ -28,13 +28,14 @@ struct AttackInfo {
 	};
 	float damage = 0.f;
 	bool givesPower = false;
+	bool activatesMechanism = false;
 	Stun* stun = nullptr;
 	VerticalLauncher* verticalLauncher = nullptr;
 	HorizontalLauncher* horizontalLauncher = nullptr;
 	Grab* grab = nullptr;
 	Propel* propel = nullptr;
 
-	~AttackInfo() {
+	void release() {
 		delete stun;
 		delete verticalLauncher;
 		delete horizontalLauncher;
@@ -47,32 +48,56 @@ struct AttackInfo {
 // in that file have been created. Used to link entities between them
 struct TEntityParseContext;
 struct TMsgEntitiesGroupCreated {
-    const TEntityParseContext& ctx;
-    DECL_MSG_ID();
+	const TEntityParseContext& ctx;
+	DECL_MSG_ID();
+};
+
+struct TMsgAllScenesCreated {
+	DECL_MSG_ID();
+};
+
+struct TMsgMechanismActivated {
+	DECL_MSG_ID();
+};
+
+
+struct TMsgMechanismDeactivated {
+	DECL_MSG_ID();
+};
+
+struct TMsgMechanismSystemActivated {
+	DECL_MSG_ID();
 };
 
 struct TMsgAssignBulletOwner {
-    CHandle h_owner;
-    DECL_MSG_ID();
+	CHandle h_owner;
+	DECL_MSG_ID();
+};
+
+struct TMsgAssignRangedAttackOwner {
+	CHandle ownerHandle;
+	AttackInfo attackInfo;
+	VEC3 initialPos;
+	VEC3 direction;
+	DECL_MSG_ID();
 };
 
 struct TMsgDamage {
-    CHandle h_sender;
-    CHandle h_bullet;
-    int damage;
-    DECL_MSG_ID();
+	CHandle h_sender;
+	CHandle h_bullet;
+	int damage;
+	DECL_MSG_ID();
 };
 
 struct TMsgCollect {
-    std::string type;
-    DECL_MSG_ID();
+	std::string type;
+	DECL_MSG_ID();
 };
 
 struct TMsgDestroy {
-    CHandle h_sender;
-    DECL_MSG_ID();
+	CHandle h_sender;
+	DECL_MSG_ID();
 };
-
 
 struct TMsgHitboxEnter {
 	CHandle h_other_entity;
@@ -85,29 +110,11 @@ struct TMsgAttackHit {
 	DECL_MSG_ID();
 };
 
-//struct TMsgGrabbed {
-//	CHandle attacker;
-//	DECL_MSG_ID();
-//};
-//
-//struct TMsgPropelled {
-//	CHandle attacker;
-//	VEC3 velocityVector;
-//	DECL_MSG_ID();
-//};
-//
-//struct TMsgLaunchedVertically {
-//	CHandle attacker;
-//	int damage;
-//	DECL_MSG_ID();
-//};
-//
-//struct TMsgLaunchedHorizontally {
-//	CHandle attacker;
-//	int damage;
-//	VEC3 direction;
-//	DECL_MSG_ID();
-//};
+struct TMsgGetPower {
+	CHandle sender;
+	float power;
+	DECL_MSG_ID();
+};
 
 struct TMsgGainPower {
 	CHandle sender;
@@ -116,9 +123,15 @@ struct TMsgGainPower {
 };
 
 struct TMsgPowerLvlChange {
-    CHandle sender;
-    int powerLvl;
-    DECL_MSG_ID();
+	CHandle sender;
+	int powerLvl;
+	DECL_MSG_ID();
+};
+
+struct TMsgPurityChange {
+	CHandle sender;
+	bool isPure;
+	DECL_MSG_ID();
 };
 
 struct TMsgOutOfBounds {
@@ -135,30 +148,21 @@ struct TMsgRespawn {
 };
 
 struct TMsgDefineLocalAABB {
-  AABB* aabb;
-  DECL_MSG_ID();
+	AABB* aabb;
+	DECL_MSG_ID();
 };
-
-
 
 struct TMsgOnShapeHit {
 	physx::PxControllerShapeHit hit;
 	DECL_MSG_ID();
 };
 
-/*
-struct TMsgTimeOut {
-  DECL_MSG_ID();
+struct TMsgOnContact {
+	CHandle otherEntity;
+	physx::PxContactPair pair;
+	DECL_MSG_ID();
 };
 
-struct TMsgSpawn {
-  DECL_MSG_ID();
-};
 
-struct TMsgSpawnAt {
-  CTransform where;
-  DECL_MSG_ID();
-};
-*/
 
 #endif

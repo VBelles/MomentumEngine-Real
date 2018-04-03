@@ -2,15 +2,13 @@
 
 #include "components/comp_base.h"
 #include "geometry/transform.h"
-#include "comp_player_model.h"
 
 class TCompPlayerController : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
+private:
 	float padDeadZone = 0.1f;
-	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
-
-	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);	
+	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 public:
 	static void registerMsgs();

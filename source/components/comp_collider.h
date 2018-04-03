@@ -37,7 +37,6 @@ public:
 		bool is_dynamic;
 		bool is_trigger;
 		bool is_character_controller;
-		PxFilterData filterData;
 	};
 
 	TConfig config;
@@ -50,5 +49,6 @@ public:
 	void enable();
 	void disable();
 	bool isEnabled() { return enabled; }
+	void setupFiltering(PxU32 filterGroup, PxU32 filterMask);
 
 };

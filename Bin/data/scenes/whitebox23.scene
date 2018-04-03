@@ -1,16 +1,88 @@
 [
   {
+    "entity":
+    {
+      "name": "render_rampa_1",
+      "transform":
+      {
+        "pos": "-81.3563 22.678 -40.6679",
+        "rotation": "0.154028 0.454734 0.0801818 -0.873535"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/render_rampa_1.mesh",
+          "materials":
+          [
+            "data/materials/rocas-red.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "8.62794 2.70275 7.793",
+        "offset" : "0 -2.70275 0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "render_rampa_2",
+      "transform":
+      {
+        "pos": "-93.3483 22.677 -32.271",
+        "rotation": "-0.154028 0.454734 -0.0801818 -0.873535"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/render_rampa_2.mesh",
+          "materials":
+          [
+            "data/materials/rocas-red.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "8.62794 2.70275 7.793",
+        "offset" : "0 -2.70275 0"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "WWw_Box213",
+      "transform": {
+        "pos": "-20 60 -70.8728"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/WWw_Box213.mesh",
+          "materials": [
+            "data/materials/rocas-red.material"
+          ]
+        }
+      ],
+      "collider": {
+        "is_dynamic":true,
+        "shape": "box",
+        "halfExtent": "1 1 1",
+        "group" : ["scenario"],
+				"mask" : ["all"]
+      }
+    }
+  },
+  {
     "entity": {
       "name": "WWw_enemy015",
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform": {
         "pos": "-24.1171 41.794 -70.8728",
         "lookAt": "-1.0 41.794 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -21,11 +93,6 @@
       "transform": {
         "pos": "-16.1021 38.0483 -77.9137",
         "lookAt": "-1.0 38.0483 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -36,11 +103,6 @@
       "transform": {
         "pos": "-11.4407 43.8187 -87.9101",
         "lookAt": "-1.0 43.8187 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2014,7 +2076,9 @@
       ],
       "collider": {
         "shape": "box",
-        "halfExtent": "1.89692 0.254831 1.51308"
+        "halfExtent": "1.89692 0.254831 1.51308",
+        "group" : ["scenario"],
+			  "mask" : ["all"]
       },
       "tags": [ "pure" ],
       "purity": {}
@@ -2489,11 +2553,6 @@
       "transform": {
         "pos": "-47.5966 21.1911 -151.448",
         "lookAt": "-1.0 21.1911 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2504,11 +2563,6 @@
       "transform": {
         "pos": "-52.7417 21.1911 -146.303",
         "lookAt": "-1.0 21.1911 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2519,11 +2573,6 @@
       "transform": {
         "pos": "-47.9001 21.1911 -146.495",
         "lookAt": "-1.0 21.1911 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2534,11 +2583,6 @@
       "transform": {
         "pos": "-53.8642 21.1911 -152.459",
         "lookAt": "-1.0 21.1911 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2549,11 +2593,6 @@
       "transform": {
         "pos": "-57.0304 21.1911 -155.625",
         "lookAt": "-1.0 21.1911 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2564,11 +2603,6 @@
       "transform": {
         "pos": "-57.3823 21.1911 -148.869",
         "lookAt": "-1.0 21.1911 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2579,11 +2613,6 @@
       "transform": {
         "pos": "-50.2568 21.1911 -155.995",
         "lookAt": "-1.0 21.1911 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2594,11 +2623,6 @@
       "transform": {
         "pos": "-51.3837 21.1911 -149.979",
         "lookAt": "-1.0 21.1911 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2674,11 +2698,6 @@
       "transform": {
         "pos": "50.6939 65.9078 -129.596",
         "lookAt": "-1.0 65.9078 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2689,11 +2708,6 @@
       "transform": {
         "pos": "42.8947 60.1375 -121.796",
         "lookAt": "-1.0 60.1375 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2704,11 +2718,6 @@
       "transform": {
         "pos": "18.2636 47.4115 -85.9456",
         "lookAt": "-1.0 47.4115 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2719,11 +2728,6 @@
       "transform": {
         "pos": "35.3127 55.3215 -114.214",
         "lookAt": "-1.0 55.3215 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2846,11 +2850,6 @@
       "transform": {
         "pos": "1.20534 34.6967 -51.8641",
         "lookAt": "-1.0 34.6967 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2861,11 +2860,6 @@
       "transform": {
         "pos": "-63.4581 34.6967 -48.2636",
         "lookAt": "-1.0 34.6967 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2903,11 +2897,6 @@
       "transform": {
         "pos": "-107.485 23.028 -97.6235",
         "lookAt": "-1.0 23.028 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2958,11 +2947,6 @@
       "transform": {
         "pos": "-44.1863 34.6967 -93.1189",
         "lookAt": "-1.0 34.6967 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -2973,11 +2957,6 @@
       "transform": {
         "pos": "-47.3087 31.9241 -112.524",
         "lookAt": "-1.0 31.9241 -1.0"
-      },
-      "collider": {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -3859,7 +3838,7 @@
       "prefab": "data/prefabs/platform_move.prefab",
       "transform": {
         "pos": "52.3778 2.65323 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3882,7 +3861,7 @@
       "name": "WWw_platformMove007_trigger",
       "transform": {
         "pos": "52.3778 2.90323 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3906,7 +3885,7 @@
       "prefab": "data/prefabs/platform_move.prefab",
       "transform": {
         "pos": "47.2148 6.15079 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3929,7 +3908,7 @@
       "name": "WWw_platformMove008_trigger",
       "transform": {
         "pos": "47.2148 6.40079 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3953,7 +3932,7 @@
       "prefab": "data/prefabs/platform_move.prefab",
       "transform": {
         "pos": "52.3778 9.66229 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -3976,7 +3955,7 @@
       "name": "WWw_platformMove009_trigger",
       "transform": {
         "pos": "52.3778 9.91229 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -4000,7 +3979,7 @@
       "prefab": "data/prefabs/platform_move.prefab",
       "transform": {
         "pos": "47.2148 13.1598 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",
@@ -4023,7 +4002,7 @@
       "name": "WWw_platformMove010_trigger",
       "transform": {
         "pos": "47.2148 13.4098 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
+        "rotation": "0.0 0.383 0.0 0.924"
       },
       "collider": {
         "shape": "box",

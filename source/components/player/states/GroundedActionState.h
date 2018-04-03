@@ -5,7 +5,7 @@
 
 class GroundedActionState : public IActionState {
 protected:
-	float backwardsdMinAngle = 130.f;
+	float backwardsdMinAngle = deg2rad(130.f);
 	float backwardsMaxDotProduct;
 public:
 	GroundedActionState(CHandle playerModelHandle);
@@ -16,6 +16,7 @@ public:
 	void OnJumpLongButton() override;
 	void OnStrongAttackButton() override;
 	void OnFastAttackButton() override;
+	void OnReleasePowerButton() override;
 
 	virtual void OnLeavingGround();
 };

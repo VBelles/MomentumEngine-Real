@@ -71,9 +71,19 @@ void TCompHierarchy::update(float dt) {
 	if (h_my_collider.isValid()) {
 		TCompCollider *collider = h_my_collider;
 		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-		if (collider->isEnabled()) rigidDynamic->setKinematicTarget({
-			c_my_transform->getPosition().x + collider->config.offset.x,
-			c_my_transform->getPosition().y + collider->config.offset.y,
-			c_my_transform->getPosition().z + collider->config.offset.z });
+		if (collider->isEnabled()) {
+			VEC3 myPosition = c_my_transform->getPosition();
+			PxTransform newTransform;
+			newTransform.p = {
+				myPosition.x + collider->config.offset.x,
+				myPosition.y + collider->config.offset.y,
+				myPosition.z + collider->config.offset.z };
+
+			newTransform.q = {
+				c_my_transform->getRotation().x, c_my_transform->getRotation().y,
+				c_my_transform->getRotation().z, c_my_transform->getRotation().w };
+
+			rigidDynamic->setKinematicTarget(newTransform);
+		}
 	}
 }

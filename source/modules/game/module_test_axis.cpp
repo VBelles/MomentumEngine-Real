@@ -68,6 +68,13 @@ bool CModuleTestAxis::start() {
     cb_object.activate();
     cb_camera.activate();
 
+	//All scenes created
+	TMsgAllScenesCreated msg;
+	for (auto& comp : TCompName::all_names) {
+		CEntity* entity = comp.second.getOwner();
+		entity->sendMsg(msg);
+	}
+
     return true;
 }
 

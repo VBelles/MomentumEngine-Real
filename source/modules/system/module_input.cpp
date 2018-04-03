@@ -83,6 +83,15 @@ void CModuleInput::update(float delta) {
     for (auto& host : _hosts) {
         host.update(delta);
     }
+	if (EngineInput["debug_mode"].getsPressed()) {
+		CApp::get().showDebug = !CApp::get().showDebug;
+		ShowCursor(CApp::get().showDebug);
+	}
+	if (!CApp::get().showDebug && CApp::get().isWindowFocused) {
+		RECT rect;
+		GetWindowRect(CApp::get().getWnd(), &rect);
+		SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
+	}
 }
 
 void CModuleInput::assignDevice(int hostIdx, Input::IDevice* device) {
@@ -241,10 +250,10 @@ void CModuleInput::renderInMenu() {
                     auto& mouse = host.mouse();
                     ImGui::Text("Position");
                     ImGui::SameLine();
-                    ImGui::Value("X", mouse._position.x);
+                    ImGui::Value("X", mouse.position.x);
                     ImGui::SameLine();
-                    ImGui::Value("Y", mouse._position.y);
-                    ImGui::Value("Wheel", mouse._wheel_delta);
+                    ImGui::Value("Y", mouse.position.y);
+                    ImGui::Value("Wheel", mouse.wheel_delta);
                     for (int i = 0; i < Input::MOUSE_BUTTONS; ++i) {
                         const std::string& btName = getButtonName(Input::MOUSE, i);
                         ImGui::Text("%20s", btName.c_str());

@@ -1,0 +1,24 @@
+[
+	{
+		"entity": {
+			"name": "rangedAttack",
+			"transform": {},
+			"render" : {
+				"mesh": "data/meshes/Teapot001.mesh",
+				"materials" : [
+					"data/materials/madera.material"
+				]
+			},
+			"collider": {
+				"shape": "sphere",
+				"is_dynamic": true,
+				"is_trigger": true,
+				"radius": 0.05
+			},
+			"ranged_attack": {
+				"speed": 0.2,
+				"lifetime": 30
+			}
+		}
+	}
+]
