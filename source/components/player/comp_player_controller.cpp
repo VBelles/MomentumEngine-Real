@@ -25,11 +25,6 @@ void TCompPlayerController::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 }
 
 void TCompPlayerController::update(float dt) {
-	if (EngineInput["pause"].getsPressed()) {
-		//cutre, deberíamos cambiar de game mode y usar los inputs según éste
-		bool isPaused = Engine.getEntities().time_scale_factor == 0.f;
-		Engine.getEntities().time_scale_factor = isPaused ? 1.f : 0.f;
-	}
 	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 	assert(playerModel);
 	VEC2 translationInput = VEC2::Zero;

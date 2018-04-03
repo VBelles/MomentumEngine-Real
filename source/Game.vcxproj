@@ -208,6 +208,7 @@
     </ClCompile>
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
+    <ClCompile Include="modules\game\module_pause.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_test_axis.cpp" />
     <ClCompile Include="modules\module_entities.cpp" />
@@ -383,6 +384,7 @@
     <ClInclude Include="modules\gamestate.h" />
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
+    <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\module.h" />

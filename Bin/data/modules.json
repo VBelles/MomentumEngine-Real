@@ -1,6 +1,7 @@
 {
   "update": [
     "input",
+    "pause",
     "physics",
     "entities",
     "render",
