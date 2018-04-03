@@ -18,9 +18,10 @@ private:
 	float zFar;
 
 	VEC2 cameraSpeed = { 2.f, 1.f };
+	float zoomSpeed = 10.f;
 
 	const float Y_ANGLE_MIN = deg2rad(-60.f);
-	const float Y_ANGLE_MAX = deg2rad(-10.f);
+	const float Y_ANGLE_MAX = deg2rad(30.f);
 	const float DEFAULT_Y = deg2rad(-20.f);
 
 	float maxVerticalOffset = 3.0f;
@@ -31,8 +32,6 @@ private:
 	float defaultDistanceToTarget = 0.f;
 	float currentDistanceToTarget;
 	VEC3 distanceVector = VEC3::Zero;
-
-	float speedFactor = 3.f;
 
 	std::string targetName;
 

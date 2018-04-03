@@ -36,5 +36,6 @@ public:
 	void OnReleasePowerButton() override;
 
 	virtual void OnLanding();
+	virtual void OnShapeHit(const PxControllerShapeHit &hit) override;
 
 };

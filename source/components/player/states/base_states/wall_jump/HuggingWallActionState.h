@@ -38,4 +38,6 @@ public:
 	bool CheckIfHuggingWall(VEC3 wallDirection);
 	void FaceWall();
 	void TurnAround();
+
+	virtual void OnShapeHit(const PxControllerShapeHit &hit) override {}
 };

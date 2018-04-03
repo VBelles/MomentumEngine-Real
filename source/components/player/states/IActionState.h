@@ -7,6 +7,8 @@
 class TCompPlayerModel;
 class TCompCamera;
 
+using namespace physx;
+
 class IActionState {
 protected:
 	enum AttackPhases {
@@ -71,6 +73,7 @@ public:
 	virtual void OnFastAttackButtonReleased() {}
 	virtual void OnReleasePowerButton() {}
 
+	virtual void OnShapeHit(const PxControllerShapeHit &hit) {}
 	virtual void OnHitboxEnter(CHandle entity) {}
 
 };

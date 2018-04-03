@@ -38,14 +38,24 @@ void TCompCameraPlayer::update(float delta) {
 	UpdateMovement(increment, delta);
 	CalculateVerticalOffsetVector();
 
+	//Tirar cámara siempre hacia defaultDistance
+	if (currentDistanceToTarget != defaultDistanceToTarget) {
+		float difference = defaultDistanceToTarget - currentDistanceToTarget;
+		float zoomIncrement = zoomSpeed * delta;
+		if (difference <= zoomIncrement) {
+			currentDistanceToTarget = defaultDistanceToTarget;
+		}
+		else {
+			int dir = difference < 0 ? -1 : 1;
+			currentDistanceToTarget += zoomIncrement * dir;
+		}
+	}
+
 	PxOverlapBuffer hitBuffer;            // [out] Overlap results
 	if (SphereCast(hitBuffer)) {
 		//PxOverlapHit firstHit = hitBuffer.getTouch(0);
 		//En teoria hauriem de passar a la següent funció la posició del hit
 		AproachToFreePosition();
-	}
-	else {
-		currentDistanceToTarget = defaultDistanceToTarget;
 	}
 }
 
@@ -96,7 +106,7 @@ void TCompCameraPlayer::AproachToFreePosition() {
 		}
 	}
 
-	VEC3 newPosition = VEC3(nearestHit.position.x, nearestHit.position.y, nearestHit.position.z) + front * (sphereCastRadius + 0.01f);
+	VEC3 newPosition = VEC3(nearestHit.position.x, nearestHit.position.y, nearestHit.position.z) + front * (sphereCastRadius);
 	GetTransform()->setPosition(newPosition);
 	currentDistanceToTarget = VEC3::Distance(GetTransform()->getPosition(), targetPosition);
 }

@@ -168,6 +168,7 @@ private:
 	CHandle verticalLauncherHitbox;
 	CHandle horizontalLauncherHitbox;
 	CHandle grabHitbox;
+	CHandle wallJumpPlummetHitbox;
 	CHandle releasePowerSmallHitbox;
 	CHandle releasePowerBigHitbox;
 
