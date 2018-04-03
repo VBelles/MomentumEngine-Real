@@ -61,7 +61,12 @@
           "mesh": "data/meshes/_test_Box002mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material"
+            "data/materials/wood.material",
+            "data/materials/Material #13.material",
+            "data/materials/Material #14.material",
+            "data/materials/Material #15.material",
+            "data/materials/Material #13.material",
+            "data/materials/Material #14.material"
           ]
         }
       ]

@@ -91,6 +91,7 @@ struct TAttributeManager (
 			--format "attrDef: %.\n" attrDef -- DEBUG
 			custAttributes.add obj.modifiers[#Attribute_Holder] attrDef
 			--format "Added attribute to %.\n" obj.name -- DEBUG
+			obj.modifiers[#Attribute_Holder].enabled = false -- If it's enabled, the class of the object will be Editable_mesh.
 		) else format "Attribute % not added.\n" defName -- DEBUG
 	),
 
@@ -99,6 +100,7 @@ struct TAttributeManager (
 		local idxFound = findAttribute obj defName
 		if idxFound != undefined then (
 			custAttributes.delete obj.modifiers[#Attribute_Holder] idxFound
+			obj.modifiers[#Attribute_Holder].enabled = false
 		)
 	),
 

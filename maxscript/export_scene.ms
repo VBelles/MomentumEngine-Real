@@ -1043,7 +1043,6 @@ struct TSceneExporter (
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
 TODO: Añadir splines de ataque a los prefabs de enemigos.
-TODO: Que los objetos collider con Attribute Holder no los detecte como mesh. --> Hay que dejar el Attribute hidden.
 */
 
 /*----------------------------------------------------------------------------------
@@ -1062,7 +1061,8 @@ Condiciones de exportación:
 -------------------------------
 Las layers invisibles o vacías no se exportan.
 Lo visible como Editable Mesh.
-Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
+Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija. Si no es hija
+se exportará en la escena collisions.
 Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
 incluidas las que son hijas de Meshes visibles.
 Los enemigos		     deben estar en una layer llamada "enemies".
