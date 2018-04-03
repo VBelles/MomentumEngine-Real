@@ -1,0 +1,34 @@
+[
+  {
+    "entity":
+    {
+      "name": "_testPlane001",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "plane",
+        "planeDesc": "0 1 0 0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "_invisibleBox001",
+      "transform":
+      {
+        "pos": "-53.8111 -1.82255e-06 -41.6951",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 3.5 3.5"
+      }
+    }
+  }
+]

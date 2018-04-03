@@ -189,9 +189,16 @@ struct TMaterialExporter (
 			
 			fs.begin (project_path + mat_name )
 			fs.beginObj()
-				fs.writeKeyValue "technique" "solid.tech"
+				fs.writeKeyValue "technique" "textured.tech"
 				fs.writeComma()
-				fs.writeKeyValue "shadows" false
+				fs.writeKeyValue "shadows" true
+				fs.writeComma()
+				fs.writeKey "textures"
+				fs.beginObj()
+					fs.writeKeyValue "albedo" "data/textures/null_albedo.dds"
+					fs.writeComma()
+					fs.writeKeyValue "normal" "data/textures/null_normal.dds"
+				fs.endObj()
 			fs.endObj()
 			fs.end()
 	),
@@ -1035,7 +1042,8 @@ struct TSceneExporter (
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
-TODO: Añadir spliens de ataque a los prefabs de enemigos.
+TODO: Añadir splines de ataque a los prefabs de enemigos.
+TODO: Que los objetos collider con Attribute Holder no los detecte como mesh. --> Hay que dejar el Attribute hidden.
 */
 
 /*----------------------------------------------------------------------------------
