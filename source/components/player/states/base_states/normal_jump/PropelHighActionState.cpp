@@ -50,6 +50,7 @@ void PropelHighActionState::OnStateEnter(IActionState * lastState) {
 	movingVelocity /= endingTime;
 	timer.reset();
 	GetPlayerModel()->lastWallEntered = nullptr;
+	GetPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 }
 
 void PropelHighActionState::OnStateExit(IActionState * nextState) {

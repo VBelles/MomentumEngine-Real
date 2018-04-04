@@ -34,7 +34,10 @@ void HuggingWallActionState::update (float delta) {
 		}
 	}
 	else {
-		if (isClimbing) *velocityVector += GetPlayerTransform()->getFront() * climbLedgeExitSpeed;
+		if (isClimbing) {
+			*velocityVector += GetPlayerTransform()->getFront() * climbLedgeExitSpeed;
+			GetPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
+		}
 		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 }
@@ -43,6 +46,7 @@ void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	FaceWall();
 	if (CheckIfHuggingWall(wallDirection)) {
+		GetPlayerModel()->lastWallNormal = wallNormal;
 		*velocityVector = VEC3::Zero;
 		isClimbing = true;
 		GetPlayerModel()->SetGravityMultiplier(climbingGravityMultiplier);
@@ -57,6 +61,7 @@ void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 
 void HuggingWallActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
+	GetPlayerModel()->sameNormalReattachTimer.reset();
 }
 
 void HuggingWallActionState::OnJumpHighButton() {
@@ -82,6 +87,7 @@ bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	PxVec3 unitDir = { wallDirection.x, 0.f, wallDirection.z};
 
 	bool status = scene->raycast(origin, unitDir, maxRaycastDistance, buf);
+	if (!status) return false;
 	PxRaycastHit nearest = buf.touches[0];
 	nearest.distance = maxRaycastDistance + 1;
 	for (PxU32 i = 0; i < buf.nbTouches; i++) {
@@ -91,15 +97,15 @@ bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 			}
 		}
 	}
-	bool isHuggingWall = true;
-	if (nearest.actor == hit.actor) {
-		//dbg("same actor\n");
-		wallNormal = nearest.normal;
-	}
-	else {
-		//dbg("not hugging wall\n");
-		isHuggingWall = false;
-	}
+	bool isHuggingWall = status;
+	wallNormal = nearest.normal;
+	//if (nearest.actor == hit.actor) {
+	//	//dbg("same actor\n");
+	//}
+	//else {
+	//	//dbg("not hugging wall\n");
+	//	isHuggingWall = false;
+	//}
 	return isHuggingWall;
 }
 

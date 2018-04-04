@@ -24,6 +24,8 @@ protected:
 	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
 
+
+
 public:
 	AirborneActionState(CHandle playerModelHandle);
 	void update(float delta) override;

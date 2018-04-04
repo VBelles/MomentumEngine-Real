@@ -112,7 +112,10 @@ public:
 	float huggingWallMinPitch = deg2rad(-25);
 	float huggingWallMaxPitch = deg2rad(5);
 	float attachWallByInputMinDot = 0.3f;
-	float attachWallByFrontMinDot = 0.8f;
+	float attachWallByFrontMinDot = 0.7f;
+	CTimer sameNormalReattachTimer;
+	float sameNormalReattachTime = 0.8f;
+	PxVec3 lastWallNormal = {0,0,0};
 
 
 	CHandle grabTarget;

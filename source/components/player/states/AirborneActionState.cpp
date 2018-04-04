@@ -121,7 +121,12 @@ void AirborneActionState::OnLanding() {
 }
 
 void AirborneActionState::OnShapeHit(const PxControllerShapeHit& hit) {
-	if (velocityVector->y < 0.f && hit.actor != GetPlayerModel()->lastWallEntered) {
+
+	/*if (lastWallNormal.dot(wallNormal) >= 0.8f  && sameNormalReattachTimer.elapsed() < sameNormalReattachTime) {
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	}*/
+	/*&& hit.actor != GetPlayerModel()->lastWallEntered*/
+	if (velocityVector->y < 0.f && (GetPlayerModel()->lastWallNormal.dot(hit.worldNormal) < 0.8f || GetPlayerModel()->sameNormalReattachTimer.elapsed() >= GetPlayerModel()->sameNormalReattachTime)) {
 		GetPlayerModel()->lastWallEntered = hit.actor;
 
 		VEC3 hitNormal = VEC3(hit.worldNormal.x, hit.worldNormal.y, hit.worldNormal.z);
