@@ -7,6 +7,8 @@ class CModulePause : public IModule {
 private:
 	bool pause = false;
 
+	void onPausePressed();
+
 public:
 	CModulePause(const std::string& aname) : IModule(aname) {}
     bool start() override;

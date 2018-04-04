@@ -16,6 +16,7 @@
     "test_axis",
     "cameras",
     "entities",
+    "pause",
     "input"
   ]
 }
