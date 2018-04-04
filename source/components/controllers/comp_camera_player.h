@@ -40,7 +40,7 @@ private:
 	VEC3 centeredPosition;
 	bool centeringCamera = false;
 
-	float sphereCastRadius = 0.5f;
+	float sphereCastRadius = 0.2f;
 
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void CalculateVerticalOffsetVector();
