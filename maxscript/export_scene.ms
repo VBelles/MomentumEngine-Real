@@ -261,6 +261,10 @@ struct TSceneExporter (
 		return findString aname " " == undefined
 	),
 
+	fn stringContainsSubstring strng substrng = (
+		matchpattern strng pattern:("?*" + substrng + "*")
+	),
+	
 	fn hasChildLine obj = (
 		if obj.children == undefined then return false
 		for child in obj.children do (
@@ -278,6 +282,17 @@ struct TSceneExporter (
 			return false
 		)
 		return true
+	),
+	
+	-- --STRING ARRAY (generic for tags, groups, masks )---------
+	fn exportStringArray arrayName strings = (
+		fs.writeKey arrayName
+		fs.beginArray()
+			for i = 1 to strings.count do (
+				if i > 1 then fs.writeComma()
+				fs.writeValue strings[i] addIndent:true
+			)
+		fs.endArray()
 	),
 	
 	-- --TRANSFORM-----------------------------------------------
@@ -344,7 +359,7 @@ struct TSceneExporter (
 	),
 
 	-- --COMP COLLIDER------------------------------------------
-	fn exportCompCollider obj colliderGroup: trig: dyn: = (
+	fn exportCompCollider obj colliderGroups: masks: trig: dyn: = (
 		fs.writeKey "collider"
 		fs.beginObj()
 
@@ -395,9 +410,14 @@ struct TSceneExporter (
 			fs.writeKeyValue "is_dynamic" dyn
 		)
 		
-		if colliderGroup != unsupplied then (
+		if colliderGroups != unsupplied then (
 			fs.writeComma()
-			fs.writeKeyValue "group" colliderGroup
+			exportStringArray "group" colliderGroups
+		)
+		
+		if masks != unsupplied then (
+			fs.writeComma()
+			exportStringArray "mask" masks
 		)
 
 		fs.endObj()
@@ -425,12 +445,12 @@ struct TSceneExporter (
 	),
 
 	-- --ENTITY COLLIDER-----------------------------------------
-	fn exportEntityCollider obj colliderGroup: trig: dyn: = (
+	fn exportEntityCollider obj colliderGroups: trig: dyn: = (
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
-		exportCompCollider obj colliderGroup:colliderGroup trig:trig dyn:dyn
+		exportCompCollider obj colliderGroups:colliderGroups trig:trig dyn:dyn
 	),
 
 	-- --SPLINE--------------------------------------------------
@@ -463,18 +483,7 @@ struct TSceneExporter (
 			)
 		)
 	),
-	
-	-- --TAGS ----------------------------------------------------
-	fn exportTags tags = (
-		fs.writeKey "tags"
-		fs.beginArray()
-			for i = 1 to tags.count do (
-				if i > 1 then fs.writeComma()
-				fs.writeValue tags[i] addIndent:true
-			)
-		fs.endArray()
-	),
-	
+		
 	-- --SHADOW --------------------------------------------------
 	fn exportShadow = (
 		fs.writeKey "shadow"
@@ -489,10 +498,48 @@ struct TSceneExporter (
 			fs.endArray()
 		fs.endObj()
 	),
+	
+	fn exportChildHitboxes obj capsuleHeight = (
+		for child in obj.children do (
+			if isCollider child and
+			   classOf child != Capsule then (
+				fs.writeComma()
+				fs.beginObj()
+					fs.writeKey "entity"
+					fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
+						exportEntityCollider child colliderGroups:#("Hitbox") trig:true dyn:true
+						fs.writeComma()
+						fs.writeKey "hierarchy"
+						fs.beginObj()
+							fs.writeKeyValue "parent" obj.name
+						fs.endObj()
+						fs.writeComma()
+						fs.writeKey "hitbox"
+						fs.beginObj()
+							-- PhysX takes center of Capsule as pivot, so we have to correct it for the offset.
+							local correctedObjTransf = obj.transform
+							correctedObjTransf.pos.z += capsuleHeight / 2
+							local posInParentSpace = child.transform.pos * inverse correctedObjTransf
+							-- Change xyz order.
+							posInParentSpace = [posInParentSpace.y, posInParentSpace.z, posInParentSpace.x]
+							fs.writeKeyValue "offset" posInParentSpace
+						fs.endObj()
+						
+						-- Export spline if available.
+						if hasChildLine child then (
+							exportSpline child type:"hitboxPath"
+						)
+					fs.endObj() -- - - - - - - - - - - - - - - - - - - - -
+				fs.endObj()
+			)
+		)
+	),
+	
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 
-	-- --PLAYER --------------------------------------------------
+	-- --PLAYER ---------------------------------------------------
 	fn exportPlayer obj nValidObjs = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
@@ -601,69 +648,67 @@ struct TSceneExporter (
 					if isCollider child and
 						-- Pick the capsule. Shouldn't have more than one.
 						classOf child == Capsule then (
-							exportCompCollider child colliderGroup:"Player"
+							exportCompCollider child colliderGroups:#("Player")
 							capsuleHeight = child.height
 					)
 				)
 				fs.writeComma()
 				fs.writeKeyEmpty "render_ui"
-				exportShadow
+				exportShadow()
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
-		-- Begin export Player child colliders
-		for child in obj.children do (
-			if  isCollider child and
-				-- Avoid the capsule, it has to be written before, inside "player_model".
-				classOf child != Capsule then (
-				fs.writeComma()
-				fs.beginObj()
-					fs.writeKey "entity"
-					fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
-						exportEntityCollider child colliderGroup:"Hitbox" trig:true dyn:true
-						fs.writeComma()
-						fs.writeKey "hierarchy"
-						fs.beginObj()
-							fs.writeKeyValue "parent" obj.name
-						fs.endObj()
-						fs.writeComma()
-						fs.writeKey "hitbox"
-						fs.beginObj()
-							-- PhysX takes center of Capsule as pivot, so we have to correct it for the offset.
-							local correctedObjTransf = obj.transform
-							correctedObjTransf.pos.z += capsuleHeight / 2
-							local posInParentSpace = child.transform.pos * inverse correctedObjTransf
-							-- Change xyz order.
-							posInParentSpace = [posInParentSpace.y, posInParentSpace.z, posInParentSpace.x]
-							fs.writeKeyValue "offset" posInParentSpace
-						fs.endObj()
-						--TODO: Export spline if available.
-					fs.endObj() -- - - - - - - - - - - - - - - - - - - - -
-				fs.endObj()
-			)
-		)
+		
+		exportChildHitboxes obj capsuleHeight
 
 		return true
 	),
 	
-	-- --PREFAB -------------------------------------------------
-	fn exportPrefab obj nValidObjs = (
+	-- --Give power --
+	fn exportGivePower maxPow: multi: = (
+		fs.writeKey "givePower"
+		fs.beginObj()
+			if maxPow != unsupplied then (
+				fs.writeKeyValue "maxPowerToGive" maxPow
+				if multi != unsupplied then fs.writeComma()
+			)
+			if multi != unsupplied then fs.writeKeyValue "baseMultiplier" multi
+		fs.endObj()
+	),
+	
+	-- --Behavior tree --
+	fn exportBehaviorTree enemyType = (
+		if enemyType == "melee" then (
+			fs.writeKeyEmpty "behaviorTree_melee_enemy"
+		) else (
+			fs.writeKey "behaviorTree_flying_ranged_enemy"
+			fs.beginObj()
+				fs.writeKeyValue "attackSpawnOffset" "0.0 0.1 0.5"
+				fs.writeComma()
+				fs.writeKeyValue "attackTargetOffset" "0.0 0.76 0.0"
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	-- --ENEMY PREFAB ---------------------------------------
+	fn exportEnemyPrefab obj nValidObjs = (
+		if classOf obj != Capsule and classOf obj != Sphere then return false
+		if obj.parent != undefined then return false
 		local meshPath = ""
-		local ai = ""
-		if 		classOf obj == Capsule then (
+		local enemyType = "flying"
+		if stringContainsSubstring obj.layer.name "melee" then (
 			meshPath = "data/meshes/enemyMelee.mesh"
-			ai = "ai_melee_enemy"
+			enemyType = "melee"
 		)
-		else if classOf obj == Sphere  then (
+		else (
 			meshPath = "data/meshes/crisalida.mesh"
-			ai = "ai_flying_enemy"
 		)
-		else return false
 		if nValidObjs > 0 then fs.writeComma()
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				fs.writeKeyEmpty "transform"
+		
 				fs.writeKey "render"
 				fs.beginArray()
 					fs.beginObj()
@@ -678,19 +723,30 @@ struct TSceneExporter (
 					fs.endObj()
 				fs.endArray() -- End render
 				fs.writeComma()
-				exportTags #("enemy")
+		
+				exportStringArray "tags" #("enemy")
 				fs.writeComma()
+				
 				fs.writeKey "respawner"
 				fs.beginObj()
 					fs.writeKeyValue "respawnTime" 10
 				fs.endObj()
 				fs.writeComma()
+				
 				exportShadow()
 				fs.writeComma()
-				fs.writeKeyEmpty ai
-				exportCompCollider obj colliderGroup:"Enemy"
+				
+				exportGivePower maxPow:50000 multi:1
+				fs.writeComma()
+				
+				exportBehaviorTree enemyType
+				
+				exportCompCollider obj colliderGroups:#("enemy") masks:#("all")
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
+		
+		exportChildHitboxes obj obj.height
+		
 		return true
 	),
 	
@@ -777,6 +833,8 @@ struct TSceneExporter (
 		return true
 	),
 
+
+	
 	-- --ENEMY---------------------------------------------------
 	fn exportEnemy obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
@@ -786,7 +844,7 @@ struct TSceneExporter (
 				local enemyAirPrefabName = "enemy_flying"
 				local enemyLandPrefabName = "enemy_melee"
 				local prefabName = enemyAirPrefabName -- Flying by default.
-				if matchpattern obj.name pattern:"?*melee*" then
+				if stringContainsSubstring obj.name "melee" then
 					prefabName = enemyLandPrefabName
 				local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
 				
@@ -1010,18 +1068,18 @@ struct TSceneExporter (
 						local objectName = obj.name
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof obj) as string) objectName --DEBUG
 						case layerName of (
-							"cameras":      ( wasValid = exportCamera    obj nValidObjs )
-							"chrysalis":    ( wasValid = exportChrysalis obj nValidObjs )
-							"collisions":   ( wasValid = exportCollision obj nValidObjs )
-							"enemies":      ( wasValid = exportEnemy     obj nValidObjs )
-							"lights":       ( wasValid = exportLight     obj nValidObjs )
-							"movables":     ( wasValid = exportMovable   obj nValidObjs )
-							"player":       ( wasValid = exportPlayer    obj nValidObjs )
-							"prefabMelee":  ( wasValid = exportPrefab    obj nValidObjs )
-							"prefabFlying": ( wasValid = exportPrefab    obj nValidObjs )
-							"triggers":     ( wasValid = exportTrigger   obj nValidObjs )
-							--"mechanisms":( wasValid = exportMechanism object nValidObjs )
-							"0":		    ( wasValid = exportDefault   obj nValidObjs )
+							"cameras":      ( wasValid = exportCamera      obj nValidObjs )
+							"chrysalis":    ( wasValid = exportChrysalis   obj nValidObjs )
+							"collisions":   ( wasValid = exportCollision   obj nValidObjs )
+							"enemies":      ( wasValid = exportEnemy       obj nValidObjs )
+							"lights":       ( wasValid = exportLight       obj nValidObjs )
+							"movables":     ( wasValid = exportMovable     obj nValidObjs )
+							"player":       ( wasValid = exportPlayer      obj nValidObjs )
+							"prefabMelee":  ( wasValid = exportEnemyPrefab obj nValidObjs )
+							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
+							"triggers":     ( wasValid = exportTrigger     obj nValidObjs )
+							--"mechanisms":( wasValid = exportMechanism   obj nValidObjs )
+							"0":		    ( wasValid = exportDefault     obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
 						if wasValid then (
@@ -1042,7 +1100,7 @@ struct TSceneExporter (
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
-TODO: Añadir splines de ataque a los prefabs de enemigos.
+TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
 */
 
 /*----------------------------------------------------------------------------------
