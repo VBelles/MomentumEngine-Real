@@ -58,6 +58,7 @@ public:
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
+	void SweepBack();
 	bool SweepTest(VEC3 newPosition);
 	VEC2 GetIncrementFromInput(float delta);
 	CTransform CalculateNewTransform(VEC2 increment, float delta);

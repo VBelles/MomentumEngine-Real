@@ -63,6 +63,21 @@ void TCompCameraPlayer::update(float delta) {
 	}*/
 }
 
+void TCompCameraPlayer::SweepBack() {
+	VEC3 position = GetTargetPosition();
+	PxSphereGeometry geometry(sphereCastRadius);
+	PxTransform pxTransform = toPhysx(position, GetTransform()->getRotation());
+	PxVec3 direction = toPhysx(position - GetTransform()->getPosition()).getNormalized();
+	float distance = defaultDistanceToTarget;
+	PxSweepBuffer sweepBuffer;
+
+	PxQueryFilterData fd;
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
+	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+	bool status = EnginePhysics.getScene()->sweep(geometry, pxTransform, direction, distance, sweepBuffer,
+		PxHitFlag::eDEFAULT, fd, EnginePhysics.getGameQueryFilterCallback());
+
+}
 
 bool TCompCameraPlayer::SweepTest(VEC3 newPosition) {
 	VEC3 position = GetTransform()->getPosition();
