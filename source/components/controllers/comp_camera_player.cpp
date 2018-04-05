@@ -36,15 +36,15 @@ void TCompCameraPlayer::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 
 void TCompCameraPlayer::update(float delta) {
 	VEC2 increment = GetIncrementFromInput(delta);
-	UpdateMovement(increment, delta);
-	CalculateVerticalOffsetVector();
+	CTransform newTransform = CalculateNewTransform(increment, delta);
+	if (!SweepTest(newTransform.getPosition())) {
+		GetTransform()->set(newTransform);
+	}
+	//GetTransform()->set(newTransform);
+	/*CalculateVerticalOffsetVector();
 
-
-
-	PxOverlapBuffer hitBuffer;            // [out] Overlap results
+	PxOverlapBuffer hitBuffer;
 	if (SphereCast(hitBuffer)) {
-		//PxOverlapHit firstHit = hitBuffer.getTouch(0);
-		//En teoria hauriem de passar a la següent funció la posició del hit
 		AproachToFreePosition();
 	}
 	else {
@@ -60,7 +60,38 @@ void TCompCameraPlayer::update(float delta) {
 				currentDistanceToTarget += zoomIncrement * dir;
 			}
 		}
+	}*/
+}
+
+
+bool TCompCameraPlayer::SweepTest(VEC3 newPosition) {
+	VEC3 position = GetTransform()->getPosition();
+	float distance = VEC3::Distance(position, newPosition);
+	if (distance == 0.f)
+		return false;
+	
+	PxSphereGeometry geometry(sphereCastRadius);
+	PxTransform pxTransform = toPhysx(position, GetTransform()->getRotation());
+	PxVec3 direction = toPhysx(newPosition - position).getNormalized();
+	
+	
+	PxSweepBuffer sweepBuffer;
+
+	PxQueryFilterData fd;
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
+	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+
+	bool status = EnginePhysics.getScene()->sweep(geometry, pxTransform, direction, distance, sweepBuffer,
+		PxHitFlag::eDEFAULT, fd, EnginePhysics.getGameQueryFilterCallback());
+	
+	if (status) {
+		CHandle handle;
+		handle.fromVoidPtr(sweepBuffer.block.actor->userData);
+		CEntity* entity = handle.getOwner();
+		dbg("%s\n", entity->getName());
 	}
+
+	return status;
 }
 
 bool TCompCameraPlayer::SphereCast(PxOverlapBuffer buf) {
@@ -72,9 +103,11 @@ bool TCompCameraPlayer::SphereCast(PxOverlapBuffer buf) {
 	PxTransform pxTransform(toPhysx(nextPosition, GetTransform()->getRotation()));
 
 	PxQueryFilterData fd;
-	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0,0);
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
 	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+	//EnginePhysics.getScene()->sweep()
 	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, buf, fd, EnginePhysics.getGameQueryFilterCallback());
+
 	return status;
 }
 
@@ -94,11 +127,11 @@ void TCompCameraPlayer::AproachToFreePosition() {
 
 	bool status = EnginePhysics.getScene()->raycast(raycastOrigin, raycastDirection, raycastMaxDistance, rayCastBuffer,
 		PxHitFlag::eDEFAULT, fd, EnginePhysics.getGameQueryFilterCallback());
-	
+
 	if (!status) return;
 
 	PxRaycastHit nearestHit = rayCastBuffer.block;
-	
+
 	VEC3 newPosition = fromPhysx(nearestHit.position) + front * (sphereCastRadius);
 	GetTransform()->setPosition(newPosition);
 	currentDistanceToTarget = VEC3::Distance(GetTransform()->getPosition(), targetPosition);
@@ -122,21 +155,23 @@ VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {
 	return increment;
 }
 
-void TCompCameraPlayer::UpdateMovement(VEC2 increment, float delta) {
+CTransform TCompCameraPlayer::CalculateNewTransform(VEC2 increment, float delta) {
+	CTransform newTransform = CTransform();
+	newTransform.setPosition(GetTransform()->getPosition());
+	newTransform.setRotation(GetTransform()->getRotation());
+
 	float y, p, r;
-	GetTransform()->getYawPitchRoll(&y, &p, &r);
-
+	newTransform.getYawPitchRoll(&y, &p, &r);
+	newTransform.setPosition(GetTargetPosition());
 	//Move the camera to the target position
-	GetTransform()->setPosition(GetTargetPosition());
-
 	//Rotate the camera
 	y += increment.x;
 	p += increment.y;
 	p = clamp(p, Y_ANGLE_MIN, Y_ANGLE_MAX);
-	GetTransform()->setYawPitchRoll(y, p, r);
-
+	newTransform.setYawPitchRoll(y, p, r);
 	//Move the camera back
-	GetTransform()->setPosition(GetTransform()->getPosition() - GetTransform()->getFront() * currentDistanceToTarget);
+	newTransform.setPosition(newTransform.getPosition() - newTransform.getFront() * currentDistanceToTarget);
+	return newTransform;
 }
 
 void TCompCameraPlayer::CalculateVerticalOffsetVector() {

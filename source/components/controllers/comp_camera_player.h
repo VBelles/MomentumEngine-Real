@@ -58,8 +58,9 @@ public:
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
+	bool SweepTest(VEC3 newPosition);
 	VEC2 GetIncrementFromInput(float delta);
-	void UpdateMovement(VEC2 increment, float delta);
+	CTransform CalculateNewTransform(VEC2 increment, float delta);
 	void CenterCamera();
 };
 
