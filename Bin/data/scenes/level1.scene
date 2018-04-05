@@ -1,21 +1,4 @@
 [
-    {
-    "entity": {
-      "name": "Out of bounds",
-      "transform": {
-        "pos" : "0 -9 0"
-      },
-      "collider": {
-        "shape": "box",
-        "is_trigger" : true,
-        "is_dynamic" : false,
-        "halfExtent" : "1000000 0.000001 1000000",
-        "group":["all"],
-        "mask":["characters"]
-      },
-      "outOfBounds" : {}
-    }
-  },
   {
     "entity":
     {
@@ -104,48 +87,6 @@
   {
     "entity":
     {
-      "name": "Box005",
-      "transform":
-      {
-        "pos": "35.0 1.72707e-06 39.5107",
-        "rotation": "0.0 0.0 0.235476 -0.97188"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box005.mesh",
-          "materials":
-          [
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box006",
-      "transform":
-      {
-        "pos": "35.0 2.26277e-06 51.7661",
-        "rotation": "0.0 0.0 0.403221 -0.915103"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box006.mesh",
-          "materials":
-          [
-            "data/materials/madera.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "GeoSphere001",
       "transform":
       {
@@ -170,7 +111,7 @@
       "name": "Plane001",
       "transform":
       {
-        "pos": "0.0 2.78158e-06 20.0",
+        "pos": "0.0 0.0 20.0",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -184,8 +125,8 @@
         }
       ],
       "collider": {
-        "shape": "plane",
-        "planeDesc": "0 1 0 0"
+        "shape": "box",
+        "halfExtent": "95 1 95"
       }
     }
   },
