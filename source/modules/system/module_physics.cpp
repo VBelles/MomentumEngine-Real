@@ -53,7 +53,6 @@ bool CModulePhysics::createScene() {
 	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
-
 	gScene = gPhysics->createScene(sceneDesc);
 
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();

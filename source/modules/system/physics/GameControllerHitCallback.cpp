@@ -7,3 +7,9 @@ void GameControllerHitCallback::onShapeHit(const PxControllerShapeHit& hit) {
 	CEntity* controllerEntity = controllerHandle.getOwner();
 	controllerEntity->sendMsg(TMsgOnShapeHit{ hit });
 }
+
+void GameControllerHitCallback::onControllerHit(const PxControllersHit & hit) {
+}
+
+void GameControllerHitCallback::onObstacleHit(const PxControllerObstacleHit & hit) {
+}
