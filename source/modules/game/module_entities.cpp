@@ -80,6 +80,7 @@ bool CModuleEntities::stop() {
         h.destroy();
     });
     CHandleManager::destroyAllPendingObjects();
+	all_registered_msgs.clear();
     return true;
 }
 
