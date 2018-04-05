@@ -1,6 +1,6 @@
 #pragma once
 
-#include "module.h"
+#include "modules/module.h"
 
 class CModuleRender : public IModule
 {

@@ -27,11 +27,8 @@
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_test_axis.cpp" />
-    <ClCompile Include="modules\module_entities.cpp" />
     <ClCompile Include="modules\module_ia.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
-    <ClCompile Include="modules\system\module_physics.cpp" />
-    <ClCompile Include="modules\module_render.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -164,6 +161,9 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
     <ClCompile Include="modules\game\module_pause.cpp" />
+    <ClCompile Include="modules\game\module_physics.cpp" />
+    <ClCompile Include="modules\game\module_entities.cpp" />
+    <ClCompile Include="modules\system\module_render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -208,11 +208,8 @@
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\module.h" />
-    <ClInclude Include="modules\module_entities.h" />
     <ClInclude Include="modules\module_ia.h" />
     <ClInclude Include="modules\module_manager.h" />
-    <ClInclude Include="modules\system\module_physics.h" />
-    <ClInclude Include="modules\module_render.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="render\cte_buffer.h" />
@@ -352,6 +349,9 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
     <ClInclude Include="modules\game\module_pause.h" />
+    <ClInclude Include="modules\game\module_physics.h" />
+    <ClInclude Include="modules\game\module_entities.h" />
+    <ClInclude Include="modules\system\module_render.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

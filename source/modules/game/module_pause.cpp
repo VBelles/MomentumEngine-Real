@@ -7,8 +7,6 @@ bool CModulePause::start() {
 }
 
 bool CModulePause::stop() {
-	//Engine.getModules().getModule("entities")->setActive(true);
-	//Engine.getModules().getModule("physics")->setActive(true);
 	ShowCursor(false);
 	CApp::get().resetCursorPos = true;
 	return true;
@@ -23,9 +21,6 @@ void CModulePause::update(float delta) {
 void CModulePause::onPausePressed() {
 	pause = !pause;
 
-	//Engine.getModules().getModule("entities")->setActive(!pause);
-	//Engine.getModules().getModule("physics")->setActive(!pause);
-
 	CGameState* currentGamestate = Engine.getModules().getCurrentGameState();
 	for (auto& module : *currentGamestate) {
 		if (module != this) {
@@ -33,14 +28,8 @@ void CModulePause::onPausePressed() {
 		}
 	}
 
-	if (pause) {
-		ShowCursor(true);
-		CApp::get().resetCursorPos = false;
-	}
-	else {
-		CApp::get().resetCursorPos = true;
-		ShowCursor(CApp::get().showDebug);
-	}
+	ShowCursor(pause);
+	CApp::get().resetCursorPos = !pause;
 }
 
 void CModulePause::render() {
