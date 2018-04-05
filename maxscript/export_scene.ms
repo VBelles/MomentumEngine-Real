@@ -295,6 +295,30 @@ struct TSceneExporter (
 		fs.endArray()
 	),
 	
+	-- Converts a very small number to zero.
+	fn smallNumToZero num = (
+		if (num <  0.00001 and num > 0) or
+		   (num > -0.00001 and num < 0) then return 0
+		else return num
+	),
+	
+	fn roundSmallPosToZeros pos = (
+		local auxPos = pos
+		auxPos.x = smallNumToZero pos.x
+		auxPos.y = smallNumToZero pos.y
+		auxPos.z = smallNumToZero pos.z
+		return auxPos
+	),
+	
+	fn roundSmallQuatToZeros q = (
+		local auxQuat = q
+		auxQuat.x = smallNumToZero q.x
+		auxQuat.y = smallNumToZero q.y
+		auxQuat.z = smallNumToZero q.z
+		auxQuat.w = smallNumToZero q.w
+		return auxQuat
+	),
+	
 	-- --TRANSFORM-----------------------------------------------
 	fn exportTransform obj yShift: lookAtCoord: = (
 		fs.writeKey "transform"
@@ -315,6 +339,9 @@ struct TSceneExporter (
 
 		-- Take just the rotation as quaternion
 		local mcv_quat = mcv_transform.rotationPart as quat
+		
+		mcv_position = roundSmallPosToZeros mcv_position
+		mcv_quat = roundSmallQuatToZeros mcv_quat
 
 		fs.beginObj()
 			fs.writeKeyValue "pos" mcv_position
@@ -523,6 +550,7 @@ struct TSceneExporter (
 							local posInParentSpace = child.transform.pos * inverse correctedObjTransf
 							-- Change xyz order.
 							posInParentSpace = [posInParentSpace.y, posInParentSpace.z, posInParentSpace.x]
+							posInParentSpace = roundSmallPosToZeros posInParentSpace
 							fs.writeKeyValue "offset" posInParentSpace
 						fs.endObj()
 						
@@ -648,7 +676,7 @@ struct TSceneExporter (
 					if isCollider child and
 						-- Pick the capsule. Shouldn't have more than one.
 						classOf child == Capsule then (
-							exportCompCollider child colliderGroups:#("Player")
+							exportCompCollider child colliderGroups:#("Player") masks:#("all")
 							capsuleHeight = child.height
 					)
 				)
@@ -832,8 +860,6 @@ struct TSceneExporter (
 		fs.endObj()
 		return true
 	),
-
-
 	
 	-- --ENEMY---------------------------------------------------
 	fn exportEnemy obj nValidObjs = (
@@ -940,7 +966,7 @@ struct TSceneExporter (
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				local prefabPath = base_path + "prefabs/platform_move.prefab"
-				
+				local parentName = obj.name + "_trigger"
 				exportName obj
 				fs.writeComma()
 				fs.writeKeyValue "prefab" prefabPath
@@ -976,13 +1002,6 @@ struct TSceneExporter (
 						fs.writeValue nextPos addIndent:true -- TODO: Pick from spline?
 					fs.endArray()
 				fs.endObj()
-				fs.writeComma()
-				-- hierarchy
-				fs.writeKey "hierarchy"
-				fs.beginObj()
-					local parentName = obj.name + "_trigger"
-					fs.writeKeyValue "parent" parentName
-				fs.endObj()
 				-- entity trigger
 				fs.endObj()-- end previous entity
 				fs.endObj()
@@ -1015,6 +1034,12 @@ struct TSceneExporter (
 				fs.writeKey "fwd_msg"
 				fs.beginObj()
 					fs.writeKeyValue "target" obj.name
+				fs.endObj()
+				fs.writeComma()
+				-- hierarchy
+				fs.writeKey "hierarchy"
+				fs.beginObj()
+					fs.writeKeyValue "parent" obj.name
 				fs.endObj()
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
@@ -1101,6 +1126,8 @@ struct TSceneExporter (
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
+TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
+TODO: Añadir plataformas puras. "tags": [ "pure" ], "purity": {}
 */
 
 /*----------------------------------------------------------------------------------

@@ -17,7 +17,7 @@
 			},
 			"shadow": {
 				"offset": "0 -0.4 0",
-				"mesh": "data/meshes/shadow.mesh",
+				"mesh": "data/meshes/_testShadow.mesh",
 				"materials": [
 					"data/materials/black.material"
 				]
