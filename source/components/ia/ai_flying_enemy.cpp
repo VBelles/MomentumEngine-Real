@@ -58,19 +58,19 @@ void CAIFlyingEnemy::OnGrabbed(float duration) {
 	grabbedTimer.reset();
 	grabbedDuration = duration;
 	//Quitar collider
-	getCollider()->disable();
+	getCollider()->destroy();
 }
 
 void CAIFlyingEnemy::GrabbedState(float delta) {
 	if (grabbedTimer.elapsed() >= grabbedDuration) {
-		getCollider()->enable();
+		getCollider()->create();
 		ChangeState("idle");
 	}
 }
 
 void CAIFlyingEnemy::OnPropelled(VEC3 velocity) {
 	ChangeState("propelled");
-	getCollider()->enable();
+	getCollider()->create();
 	propelVelocityVector = velocity;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -107,6 +107,6 @@ boolean CAIFlyingEnemy::IsPlayerInFov() {
 
 void  CAIFlyingEnemy::DeathState(float delta) {
 	TCompCollider *collider = get<TCompCollider>();
-	collider->disable();
+	collider->destroy();
 	CHandle(this).getOwner().destroy();
 }

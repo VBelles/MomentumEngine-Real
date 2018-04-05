@@ -103,7 +103,7 @@ int CBehaviorTreeFlyingRangedEnemy::onDeath(float delta) {
 	health = 0.f;
 	isDead = true;
 
-	getCollider()->disable();
+	getCollider()->destroy();
 
 	TCompRender *render = get<TCompRender>();
 	render->disable();
@@ -122,7 +122,7 @@ int CBehaviorTreeFlyingRangedEnemy::dead(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onGrab(float delta) {
-	getCollider()->disable();
+	getCollider()->destroy();
 	timer.reset();
 	grabbedDuration = receivedAttack.grab->duration;
 	return Leave;
@@ -130,7 +130,7 @@ int CBehaviorTreeFlyingRangedEnemy::onGrab(float delta) {
 
 int CBehaviorTreeFlyingRangedEnemy::grabbed(float delta) {
 	if (timer.elapsed() >= grabbedDuration) {
-		getCollider()->enable();
+		getCollider()->create();
 		return Leave;
 	}
 	else {
@@ -139,7 +139,7 @@ int CBehaviorTreeFlyingRangedEnemy::grabbed(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onPropel(float delta) {
-	getCollider()->enable();
+	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
 
 	timer.reset();
@@ -231,7 +231,7 @@ int CBehaviorTreeFlyingRangedEnemy::respawn(float delta) {
 	health = maxHealth;
 	isDead = false;
 
-	getCollider()->enable();
+	getCollider()->create();
 	getTransform()->setPosition(spawnPosition);
 	getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
 

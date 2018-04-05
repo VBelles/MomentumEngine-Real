@@ -26,12 +26,12 @@ void TCompAppear::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	render->disable();
 	//Si se hace disable del collider aquí la escena se vuelve oscura
 	TCompCollider *collider = get<TCompCollider>();
-	collider->disable();
+	collider->destroy();
 }
 
 void TCompAppear::onActivate(const TMsgMechanismSystemActivated & msg) {
     TCompCollider *collider = get<TCompCollider>();
-	collider->enable();
+	collider->create();
 	TCompRender *render = get<TCompRender>();
 	render->enable();
 }

@@ -20,6 +20,7 @@ void TCompHitbox::onCreate(const TMsgEntityCreated& msg) {
 }
 
 void TCompHitbox::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+
 }
 
 void TCompHitbox::load(const json& j, TEntityParseContext& ctx) {
@@ -30,7 +31,7 @@ void TCompHitbox::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompHitbox::update(float dt) {
 	TCompCollider *collider = get<TCompCollider>();
-	if (collider->isEnabled()) {
+	if (collider->isCreated()) {
 		TCompTransform *transform = get<TCompTransform>();
 		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
 
@@ -58,15 +59,15 @@ void TCompHitbox::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 void TCompHitbox::disable() {
 	TCompCollider* collider = get<TCompCollider>();
-	collider->disable();
+	collider->destroy();
 }
 
 void TCompHitbox::enable() {
 	TCompCollider* collider = get<TCompCollider>();
-	if (!collider->isEnabled()) {
+	if (!collider->isCreated()) {
 		handles.clear();
 
-		collider->enable();
+		collider->create();
 
 		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
 		rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);

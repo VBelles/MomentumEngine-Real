@@ -25,7 +25,7 @@ void TCompRangedAttack::update(float dt) {
 	if (!hit) {
 		TCompCollider* collider = get<TCompCollider>();
 		if (timer.elapsed() > lifetime) {
-			collider->disable();
+			collider->destroy();
 			hit = true;
 		}
 		else {
@@ -57,7 +57,7 @@ void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOw
 void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
 	if (msg.h_other_entity != ownerHandle) {
 		TCompCollider* collider = get<TCompCollider>();
-		collider->disable();
+		collider->destroy();
 
 		CEntity *otherEntity = msg.h_other_entity;
 		otherEntity->sendMsg(TMsgAttackHit{ ownerHandle, attackInfo });

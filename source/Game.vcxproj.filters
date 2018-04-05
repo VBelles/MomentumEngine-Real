@@ -22,7 +22,6 @@
     <ClCompile Include="input\interfaces\interface_mapping.cpp" />
     <ClCompile Include="input\mapping.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mcv_platform.cpp" />
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
@@ -164,6 +163,10 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
     <ClCompile Include="utils\geometry_utils.cpp" />
+    <ClCompile Include="mcv_platform.cpp" />
+    <ClCompile Include="modules\system\physics\GameFilterShader.cpp" />
+    <ClCompile Include="modules\system\physics\GameSimulationEventCallback.cpp" />
+    <ClCompile Include="modules\system\physics\GameControllerHitCallback.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -352,12 +355,11 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
     <ClInclude Include="utils\geometry_utils.h" />
+    <ClInclude Include="modules\system\physics\GameFilterShader.h" />
+    <ClInclude Include="modules\system\physics\GameControllerHitCallback.h" />
+    <ClInclude Include="modules\system\physics\GameSimulationEventCallback.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
-    <None Include="x64\Debug\Cal3D.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="x64\Debug\Cal3D.lib" />
   </ItemGroup>
 </Project>

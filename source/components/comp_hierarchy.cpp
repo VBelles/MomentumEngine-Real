@@ -71,7 +71,7 @@ void TCompHierarchy::update(float dt) {
 	if (h_my_collider.isValid()) {
 		TCompCollider *collider = h_my_collider;
 		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-		if (collider->isEnabled()) {
+		if (collider->isCreated()) {
 			VEC3 myPosition = c_my_transform->getPosition();
 			PxTransform newTransform;
 			newTransform.p = {
