@@ -7,8 +7,10 @@ bool CModulePause::start() {
 }
 
 bool CModulePause::stop() {
-	Engine.getModules().getModule("entities")->setActive(true);
-	Engine.getModules().getModule("physics")->setActive(true);
+	//Engine.getModules().getModule("entities")->setActive(true);
+	//Engine.getModules().getModule("physics")->setActive(true);
+	ShowCursor(false);
+	CApp::get().resetCursorPos = true;
 	return true;
 }
 
@@ -21,8 +23,8 @@ void CModulePause::update(float delta) {
 void CModulePause::onPausePressed() {
 	pause = !pause;
 
-	Engine.getModules().getModule("entities")->setActive(!pause);
-	Engine.getModules().getModule("physics")->setActive(!pause);
+	//Engine.getModules().getModule("entities")->setActive(!pause);
+	//Engine.getModules().getModule("physics")->setActive(!pause);
 
 	CGameState* currentGamestate = Engine.getModules().getCurrentGameState();
 	for (auto& module : *currentGamestate) {
@@ -51,6 +53,15 @@ void CModulePause::render() {
 
 		if (ImGui::Button("Resume game")) {
 			onPausePressed();
+		}
+		if (ImGui::Button("Main menu")) {
+			CGameState* currentGamestate = Engine.getModules().getCurrentGameState();
+			for (auto& module : *currentGamestate) {
+				if (module != this) {
+					module->setActive(true);
+				}
+			}
+			Engine.getModules().changeGameState("main_menu");
 		}
 		if (ImGui::Button("Exit game")) {
 			CApp::get().stopMainLoop = true;

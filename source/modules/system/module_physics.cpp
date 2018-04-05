@@ -200,6 +200,17 @@ bool CModulePhysics::start() {
 	return true;
 }
 
+bool CModulePhysics::stop() {
+	mControllerManager->release();
+	gMaterial->release();
+	gScene->release();
+	gDispatcher->release();
+	gPhysics->release();
+	gPvd->release();
+	gFoundation->release();
+	return true;
+}
+
 void CModulePhysics::update(float delta) {
 	if (!gScene) return;
 	gScene->simulate(delta);

@@ -31,6 +31,7 @@ public:
 
 	CModulePhysics(const std::string& aname) : IModule(aname) {}
 	virtual bool start() override;
+	bool stop() override;
 	virtual void update(float delta) override;
 	virtual void render() override;
 	FilterGroup getFilterByName(const std::string& name);

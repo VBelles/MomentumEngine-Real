@@ -22,7 +22,7 @@ public:
 private:
 	std::string _name;
 	bool _active;
-	bool _render = true;
+	bool _render;
 };
 
 using VModules = std::vector<IModule*>;
