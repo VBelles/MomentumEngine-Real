@@ -1,6 +1,7 @@
 {
   "update": [
     "input",
+    "pause",
     "physics",
     "entities",
     "render",
@@ -11,10 +12,12 @@
     "test_axis"
   ],
   "render": [
-    "render",
+    "render",    
     "test_axis",
+    "main_menu",    
     "cameras",
     "entities",
+    "pause",
     "input"
   ]
 }

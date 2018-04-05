@@ -2,9 +2,9 @@
 #include "module_physics.h"
 #include "entity/entity.h"
 #include "components/comp_transform.h"
-#include "physics/GameFilterShader.h"
-#include "physics/GameSimulationEventCallback.h"
-#include "physics/GameControllerHitCallback.h"
+#include "GameFilterShader.h"
+#include "GameSimulationEventCallback.h"
+#include "GameControllerHitCallback.h"
 
 #pragma comment(lib, "PhysX3_x64.lib")
 #pragma comment(lib, "PhysX3Common_x64.lib")
@@ -19,6 +19,17 @@ bool CModulePhysics::start() {
 		return false;
 	if (!createScene())
 		return false;
+	return true;
+}
+
+bool CModulePhysics::stop() {
+	mControllerManager->release();
+	gMaterial->release();
+	gScene->release();
+	gDispatcher->release();
+	gPhysics->release();
+	gPvd->release();
+	gFoundation->release();
 	return true;
 }
 

@@ -24,11 +24,13 @@ private:
 public:
 	VEC2 resolution;
 	bool fullscreen = false;
-	bool showDebug = false;
 
-    bool resetMouse = false;
-
+	bool resetCursorPos = true;
 	bool isWindowFocused = false;
+
+	bool stopMainLoop = false;
+
+	bool showDebug = false;
 
 	static CApp& get() {
 		assert(app_instance);
