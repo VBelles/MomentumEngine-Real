@@ -59,7 +59,9 @@ void TCompHitbox::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 void TCompHitbox::disable() {
 	TCompCollider* collider = get<TCompCollider>();
-	collider->destroy();
+	if (collider->isCreated()) {
+		collider->destroy();
+	}
 }
 
 void TCompHitbox::enable() {
