@@ -116,6 +116,7 @@ void TCompCameraPlayer::AproachToFreePosition() {
 
 VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {
 	VEC2 increment = VEC2::Zero;
+	//Hacer sólo si la cámara está mixeada
 	VEC2 padInput = {
 		EngineInput[Input::EPadButton::PAD_RANALOG_X].value,
 		EngineInput[Input::EPadButton::PAD_RANALOG_Y].value

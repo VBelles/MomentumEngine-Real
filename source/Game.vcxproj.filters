@@ -164,6 +164,7 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
     <ClCompile Include="utils\geometry_utils.cpp" />
+    <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -352,6 +353,8 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
     <ClInclude Include="utils\geometry_utils.h" />
+    <ClInclude Include="components\comp_mix_camera_trigger.h" />
+    <ClInclude Include="game_constants.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
