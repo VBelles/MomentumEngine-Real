@@ -5,6 +5,7 @@
 #include "physics/GameFilterShader.h"
 #include "physics/GameSimulationEventCallback.h"
 #include "physics/GameControllerHitCallback.h"
+#include "physics/GameQueryFilterCallback.h"
 
 #pragma comment(lib, "PhysX3_x64.lib")
 #pragma comment(lib, "PhysX3Common_x64.lib")
@@ -65,6 +66,9 @@ bool CModulePhysics::createScene() {
 
 	mControllerManager = PxCreateControllerManager(*gScene);
 
+	gameQueryFilterCallback = new GameQueryFilterCallback();
+	gameControllerHitCallback =  new GameControllerHitCallback();
+
 	return true;
 }
 
@@ -98,7 +102,7 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 		capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
 		capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
 		capsuleDesc.material = gMaterial;
-		capsuleDesc.reportCallback = new GameControllerHitCallback();
+		capsuleDesc.reportCallback = gameControllerHitCallback;
 		cDesc = &capsuleDesc;
 
 		PxCapsuleController* controller = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));

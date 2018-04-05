@@ -75,7 +75,8 @@
 				"group" : ["player"],
 				"mask" : ["all"],
 				"step"  : 0.5,
-				"slope" : 45
+				"slope" : 45,
+				"hitboxes":[]
 			},
 			"render_ui":{},
 			"shadow":
@@ -262,7 +263,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 4.0
+				"radius" : 4.0,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -280,7 +283,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 7.0
+				"radius" : 7.0,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"

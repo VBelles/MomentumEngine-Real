@@ -2,6 +2,7 @@
 #include "comp_camera_player.h"
 #include "../comp_camera.h"
 #include "components/comp_transform.h"
+#include "modules/system/physics/GameQueryFilterCallback.h"
 
 DECL_OBJ_MANAGER("camera_player", TCompCameraPlayer);
 
@@ -64,52 +65,41 @@ void TCompCameraPlayer::update(float delta) {
 
 bool TCompCameraPlayer::SphereCast(PxOverlapBuffer buf) {
 	VEC3 position = GetTransform()->getPosition();
-	QUAT rotation = GetTransform()->getRotation();
-	VEC3 front = GetTransform()->getFront();
+	VEC3 increment = GetTransform()->getFront() * sphereCastRadius;
+	VEC3 nextPosition = GetTransform()->getPosition() + increment;
+
 	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
-	PxTransform pxTransform; // initial shape pose (at distance=0)
-	pxTransform.p = PxVec3(position.x + front.x * sphereCastRadius, position.y + front.x * sphereCastRadius, position.z + front.z * sphereCastRadius);
-	pxTransform.q = PxQuat(rotation.x, rotation.y, rotation.z, rotation.w);
+	PxTransform pxTransform(toPhysx(nextPosition, GetTransform()->getRotation()));
+
 	PxQueryFilterData fd;
-	fd.flags |= PxQueryFlag::eANY_HIT;
-	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, buf, fd);
-	bool touched = false;
-	for (PxU32 i = 0; i < buf.getNbAnyHits(); i++) {
-		auto& hit = buf.getAnyHit(i);
-		if (!hit.shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
-			touched = true;
-		}
-	}
-	return touched;
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0,0);
+	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, buf, fd, EnginePhysics.getGameQueryFilterCallback());
+	return status;
 }
 
 void TCompCameraPlayer::AproachToFreePosition() {
 	VEC3 targetPosition = GetTargetPosition();
 	VEC3 front = GetTransform()->getFront();
-	PxVec3 raycastOrigin = PxVec3(targetPosition.x, targetPosition.y, targetPosition.z);
-	PxVec3 raycastDirection = PxVec3(-front.x, -front.y, -front.z);
+	PxVec3 raycastOrigin = toPhysx(targetPosition);
+	PxVec3 raycastDirection = toPhysx(-front);
 	PxReal raycastMaxDistance = VEC3::Distance(GetTransform()->getPosition(), targetPosition);
 
-	const PxU32 bufferSize = 256;
-	PxRaycastHit hitBuffer[bufferSize];
-	PxRaycastBuffer buf(hitBuffer, bufferSize);
 
-	bool status = EnginePhysics.getScene()->raycast(raycastOrigin, raycastDirection, raycastMaxDistance, buf);
+	PxRaycastBuffer rayCastBuffer;
+
+	PxQueryFilterData fd;
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
+	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+
+	bool status = EnginePhysics.getScene()->raycast(raycastOrigin, raycastDirection, raycastMaxDistance, rayCastBuffer,
+		PxHitFlag::eDEFAULT, fd, EnginePhysics.getGameQueryFilterCallback());
+	
 	if (!status) return;
 
-	float nearestDistance = raycastMaxDistance;
-	PxRaycastHit nearestHit;
-	for (PxU32 i = 0; i < buf.nbTouches; i++) {
-		PxRaycastHit& touch = buf.touches[i];
-		if (!touch.shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
-			if (touch.distance < nearestDistance) {
-				nearestDistance = touch.distance;
-				nearestHit = touch;
-			}
-		}
-	}
-
-	VEC3 newPosition = VEC3(nearestHit.position.x, nearestHit.position.y, nearestHit.position.z) + front * (sphereCastRadius);
+	PxRaycastHit nearestHit = rayCastBuffer.block;
+	
+	VEC3 newPosition = fromPhysx(nearestHit.position) + front * (sphereCastRadius);
 	GetTransform()->setPosition(newPosition);
 	currentDistanceToTarget = VEC3::Distance(GetTransform()->getPosition(), targetPosition);
 }

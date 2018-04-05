@@ -167,6 +167,7 @@
     <ClCompile Include="modules\system\physics\GameFilterShader.cpp" />
     <ClCompile Include="modules\system\physics\GameSimulationEventCallback.cpp" />
     <ClCompile Include="modules\system\physics\GameControllerHitCallback.cpp" />
+    <ClCompile Include="modules\system\physics\GameQueryFilterCallback.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -358,6 +359,7 @@
     <ClInclude Include="modules\system\physics\GameFilterShader.h" />
     <ClInclude Include="modules\system\physics\GameControllerHitCallback.h" />
     <ClInclude Include="modules\system\physics\GameSimulationEventCallback.h" />
+    <ClInclude Include="modules\system\physics\GameQueryFilterCallback.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
