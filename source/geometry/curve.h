@@ -16,4 +16,5 @@ public:
 private:
     std::vector<VEC3> _knots;
     EType _type = EType::UNKNOWN;
+	bool _loop = false;
 };

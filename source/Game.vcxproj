@@ -120,6 +120,7 @@
     <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
     <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
     <ClCompile Include="components\controllers\comp_fake_animation_controller.cpp" />
+    <ClCompile Include="components\controllers\comp_follow_curve.cpp" />
     <ClCompile Include="components\controllers\comp_player_input.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
@@ -282,6 +283,7 @@
     <ClInclude Include="components\controllers\comp_camera_flyover.h" />
     <ClInclude Include="components\controllers\comp_camera_orbit.h" />
     <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
+    <ClInclude Include="components\controllers\comp_follow_curve.h" />
     <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />

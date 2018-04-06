@@ -163,6 +163,8 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
+    <ClCompile Include="render\texture\render_to_texture.cpp" />
+    <ClCompile Include="components\controllers\comp_follow_curve.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -289,7 +291,6 @@
     <ClInclude Include="skeleton\comp_bone_tracker.h" />
     <ClInclude Include="skeleton\cal3d2engine.h" />
     <ClInclude Include="components\comp_light_dir.h" />
-    <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="fsm\fsm.h" />
     <ClInclude Include="fsm\state.h" />
     <ClInclude Include="fsm\transition.h" />
@@ -350,6 +351,8 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
+    <ClInclude Include="render\texture\render_to_texture.h" />
+    <ClInclude Include="components\controllers\comp_follow_curve.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

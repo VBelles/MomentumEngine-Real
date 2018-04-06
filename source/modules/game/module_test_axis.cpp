@@ -98,14 +98,21 @@ void CModuleTestAxis::update(float delta) {
         CHandle h_camera = getEntityByName("test_camera_curve");
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
-    
-    static float time = 0.f;
+	
+    /*static float time = 0.f;
     time += delta;
     VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
     CEntity* e_curve = getEntityByName("test_camera_curve");
-    TCompCurve* c_curve = e_curve->get<TCompCurve>();
+	TCompCurve* c_curve = e_curve->get<TCompCurve>();
     float ratio = (pos.x + 10.f) / 20.f;
-    c_curve->setRatio(ratio);
+    c_curve->setRatio(ratio);*/
+
+	/*//DEBUG:
+	CEntity* e_curve = getEntityByName("test_camera_curve");
+	TCompTransform* t_curve = e_curve->get<TCompTransform>();
+	pos = t_curve->getPosition();
+	dbg("pos: x: %f y: %f z: %f\n", pos.x, pos.y, pos.z);*/
+	
 }
 
 void CModuleTestAxis::render() {

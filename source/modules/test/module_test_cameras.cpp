@@ -49,7 +49,7 @@ bool CModuleTestCameras::start() {
 }
 
 void CModuleTestCameras::update(float delta) {
-    if (EngineInput['1'].getsPressed()) {
+   /* if (EngineInput['1'].getsPressed()) {
         CHandle h_camera = getEntityByName("player_camera");
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
@@ -62,19 +62,19 @@ void CModuleTestCameras::update(float delta) {
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
 
-    CEntity* e_teapot = getEntityByName("game_camera");
-    if (e_teapot) {
+	CEntity* e_teapot = getEntityByName("game_camera");
+	if (e_teapot) {
         static float time = 0.f;
         time += delta;
         VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
         TCompTransform* c_transform = e_teapot->get<TCompTransform>();
         c_transform->setPosition(pos);
-
+		
         CEntity* e_curve = getEntityByName("test_camera_curve");
         TCompCurve* c_curve = e_curve->get<TCompCurve>();
         float ratio = (pos.x + 10.f) / 20.f;
         c_curve->setRatio(ratio);
-    }
+    }*/
 }
 
 void CModuleTestCameras::render() {

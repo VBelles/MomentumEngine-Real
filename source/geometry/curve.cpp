@@ -33,12 +33,17 @@ bool CCurve::load(const std::string& name) {
     if (typeName == "catmull-rom") {
         _type = EType::CATMULL_ROM;
     }
+	else {
+		_type = EType::UNKNOWN;
+	}
 
     auto& jKnots = jData["knots"];
     for (auto& jKnot : jKnots) {
         VEC3 knot = loadVEC3(jKnot);
         addKnot(knot);
     }
+
+	_loop = jData.value("loop", false); // TODO: Use this somewhere.
 
     return true;
 }
