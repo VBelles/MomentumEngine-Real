@@ -20,10 +20,10 @@ PxFilterFlags GameFilterShader(
 		if (PxFilterObjectIsKinematic(attributes0) && PxFilterObjectIsKinematic(attributes1)) {
 			return PxFilterFlag::eSUPPRESS;
 		}
-		pairFlags |= PxPairFlag::eNOTIFY_TOUCH_FOUND;
-		pairFlags |= PxPairFlag::eNOTIFY_TOUCH_LOST;
-		pairFlags |= PxPairFlag::eNOTIFY_CONTACT_POINTS;
-		return PxFilterFlag::eDEFAULT;
+        pairFlags |= PxPairFlag::eSOLVE_CONTACT;
+        pairFlags |= PxPairFlag::eNOTIFY_TOUCH_FOUND;
+        pairFlags |= PxPairFlag::eNOTIFY_CONTACT_POINTS;
+        return PxFilterFlag::eDEFAULT;
 	}
 
 	return PxFilterFlag::eSUPPRESS;

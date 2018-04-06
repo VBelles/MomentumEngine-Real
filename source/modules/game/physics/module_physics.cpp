@@ -210,11 +210,10 @@ void CModulePhysics::setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU3
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-	for (PxU32 i = 0; i < numShapes; i++) {
-		PxShape* shape = shapes[i];
-		shape->setSimulationFilterData(filterData);
-		shape->setQueryFilterData(filterData);
-	}
+    for (PxShape* shape : shapes) {
+        shape->setSimulationFilterData(filterData);
+        shape->setQueryFilterData(filterData);
+    }
 }
 
 void CModulePhysics::enableSimulation(PxRigidActor* actor, bool value) {
@@ -222,8 +221,7 @@ void CModulePhysics::enableSimulation(PxRigidActor* actor, bool value) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-	for (PxU32 i = 0; i < numShapes; i++) {
-		PxShape* shape = shapes[i];
+    for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, value);
 	}
 }
@@ -233,8 +231,7 @@ void CModulePhysics::enableSceneQuery(PxRigidActor* actor, bool value) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-	for (PxU32 i = 0; i < numShapes; i++) {
-		PxShape* shape = shapes[i];
+    for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, value);
 	}
 }
@@ -244,8 +241,7 @@ void CModulePhysics::makeActorTrigger(PxRigidActor* actor) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-	for (PxU32 i = 0; i < numShapes; i++) {
-		PxShape* shape = shapes[i];
+    for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
 		shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
 	}
