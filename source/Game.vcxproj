@@ -185,6 +185,8 @@
     <ClCompile Include="fsm\custom_transitions.cpp" />
     <ClCompile Include="fsm\factory.cpp" />
     <ClCompile Include="fsm\fsm.cpp" />
+    <ClCompile Include="modules\game\physics\GameControllerHitCallback.cpp" />
+    <ClCompile Include="modules\game\physics\GameFilterShader.cpp" />
     <ClCompile Include="geometry\angular.cpp" />
     <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="geometry\geometry.cpp" />
@@ -209,16 +211,18 @@
     </ClCompile>
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
+    <ClCompile Include="modules\game\module_pause.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_test_axis.cpp" />
-    <ClCompile Include="modules\module_entities.cpp" />
+    <ClCompile Include="modules\game\module_entities.cpp" />
     <ClCompile Include="modules\module_ia.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
-    <ClCompile Include="modules\system\module_physics.cpp" />
-    <ClCompile Include="modules\module_render.cpp" />
+    <ClCompile Include="modules\game\physics\module_physics.cpp" />
+    <ClCompile Include="modules\system\module_render.cpp" />
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\game\physics\GameSimulationEventCallback.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
@@ -353,6 +357,8 @@
     <ClInclude Include="fsm\state.h" />
     <ClInclude Include="fsm\transition.h" />
     <ClInclude Include="game_constants.h" />
+    <ClInclude Include="modules\game\physics\GameControllerHitCallback.h" />
+    <ClInclude Include="modules\game\physics\GameFilterShader.h" />
     <ClInclude Include="geometry\angular.h" />
     <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\geometry.h" />
@@ -387,17 +393,19 @@
     <ClInclude Include="modules\gamestate.h" />
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
+    <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\module.h" />
-    <ClInclude Include="modules\module_entities.h" />
+    <ClInclude Include="modules\game\module_entities.h" />
     <ClInclude Include="modules\module_ia.h" />
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\system\module_cameras.h" />
     <ClInclude Include="modules\system\module_fsm.h" />
-    <ClInclude Include="modules\system\module_physics.h" />
-    <ClInclude Include="modules\module_render.h" />
+    <ClInclude Include="modules\game\physics\module_physics.h" />
+    <ClInclude Include="modules\system\module_render.h" />
     <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\game\physics\GameSimulationEventCallback.h" />
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="profiling\profiling.h" />
@@ -439,15 +447,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
-    <None Include="x64\Debug\Cal3D.pdb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Cal3D\Cal3D.vcxproj">
       <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="x64\Debug\Cal3D.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -28,16 +28,20 @@ public:
 
 	CModulePhysics(const std::string& aname) : IModule(aname) {}
 	virtual bool start() override;
+	bool stop() override;
 	virtual void update(float delta) override;
-	virtual void render() override;
+	virtual void render() override {}
 	FilterGroup getFilterByName(const std::string& name);
 	void createActor(TCompCollider& comp_collider);
 	void setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask);
 	void setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU32 filterMask);
+	void enableSimulation(PxRigidActor* actor, bool value);
+	void enableSceneQuery(PxRigidActor* actor, bool value);
+	void makeActorTrigger(PxRigidActor * actor);
 
 	void releaseCollider(CHandle handle);
 
-	PxScene* getScene();
+	PxScene* getScene() { return gScene; }
 
 private:
 	PxDefaultAllocator      gDefaultAllocatorCallback;
@@ -56,26 +60,11 @@ private:
 
 	std::set<CHandle> toRelease;
 
-
-
-	class CustomSimulationEventCallback : public PxSimulationEventCallback {
-		virtual void onConstraintBreak(PxConstraintInfo* constraints, PxU32 count) override {};
-		virtual void onWake(PxActor** actors, PxU32 count) override {};
-		virtual void onSleep(PxActor** actors, PxU32 count) override {};
-		virtual void onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 nbPairs) override;
-		virtual void onTrigger(physx::PxTriggerPair* pairs, PxU32 count) override;
-		virtual void onAdvance(const PxRigidBody*const* bodyBuffer, const PxTransform* poseBuffer, const PxU32 count) override {};
-	};
-
-	CustomSimulationEventCallback customSimulationEventCallback;
-
-	class CustomUserControllerHitReport : public PxUserControllerHitReport {
-		virtual void onShapeHit(const PxControllerShapeHit& hit) override;
-		virtual void onControllerHit(const PxControllersHit& hit) override {};
-		virtual void onObstacleHit(const PxControllerObstacleHit& hit) override {};
-	};
-
-	CustomUserControllerHitReport defaultReportCallback;
+	bool createPhysx();
+	bool createScene();    
 
 	void releaseColliders();
+
+
+	
 };
