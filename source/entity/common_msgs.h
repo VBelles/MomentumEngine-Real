@@ -56,6 +56,11 @@ struct TMsgAllScenesCreated {
 	DECL_MSG_ID();
 };
 
+struct TMsgLockCameraInput {
+	DECL_MSG_ID();
+	bool isLocked;
+};
+
 struct TMsgMechanismActivated {
 	DECL_MSG_ID();
 };

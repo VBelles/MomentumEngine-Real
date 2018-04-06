@@ -30,6 +30,8 @@ void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	CEntity* entity = msg.h_other_entity;	
 	if (strcmp(PLAYER_NAME, entity->getName()) == 0) {
 		CHandle h_camera = getEntityByName(cameraToMix);
+		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+		playerCameraEntity->sendMsg(TMsgLockCameraInput{ true });
 		Engine.getCameras().blendInCamera(h_camera, timeToMixIn, CModuleCameras::EPriority::GAMEPLAY);
 	}
 }

@@ -23,6 +23,11 @@ void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompCameraPlayer::registerMsgs() {
 	DECL_MSG(TCompCameraPlayer, TMsgEntitiesGroupCreated, OnGroupCreated);
+	DECL_MSG(TCompCameraPlayer, TMsgLockCameraInput, OnLockCameraInput);
+}
+
+void TCompCameraPlayer::OnLockCameraInput(const TMsgLockCameraInput & msg) {
+	isMovementLocked = msg.isLocked;
 }
 
 void TCompCameraPlayer::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -117,18 +122,20 @@ void TCompCameraPlayer::AproachToFreePosition() {
 VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {
 	VEC2 increment = VEC2::Zero;
 	//Hacer sólo si la cámara está mixeada
-	VEC2 padInput = {
-		EngineInput[Input::EPadButton::PAD_RANALOG_X].value,
-		EngineInput[Input::EPadButton::PAD_RANALOG_Y].value
-	};
-	if (padInput.Length() > padDeadZone) {
-		increment.x -= padInput.x * cameraSpeed.x * delta;
-		increment.y += padInput.y * cameraSpeed.y * delta;
-	}
-	else if (!CApp::get().showDebug) {
-		auto& mouse = EngineInput[Input::PLAYER_1].mouse();
-		increment.x -= mouse.position_delta.x * cameraSpeed.x * delta;
-		increment.y -= mouse.position_delta.y * cameraSpeed.y * delta;
+	if (!isMovementLocked) {
+		VEC2 padInput = {
+			EngineInput[Input::EPadButton::PAD_RANALOG_X].value,
+			EngineInput[Input::EPadButton::PAD_RANALOG_Y].value
+		};
+		if (padInput.Length() > padDeadZone) {
+			increment.x -= padInput.x * cameraSpeed.x * delta;
+			increment.y += padInput.y * cameraSpeed.y * delta;
+		}
+		else if (!CApp::get().showDebug) {
+			auto& mouse = EngineInput[Input::PLAYER_1].mouse();
+			increment.x -= mouse.position_delta.x * cameraSpeed.x * delta;
+			increment.y -= mouse.position_delta.y * cameraSpeed.y * delta;
+		}
 	}
 	return increment;
 }
@@ -159,16 +166,18 @@ void TCompCameraPlayer::CalculateVerticalOffsetVector() {
 }
 
 void TCompCameraPlayer::CenterCamera() {
-	centeredPosition = GetTargetPosition() - GetTargetTransform()->getFront() * currentDistanceToTarget;
-	VEC3 velocityVector = GetTargetPosition() - centeredPosition;
-	velocityVector.Normalize();
+	if (!isMovementLocked) {
+		centeredPosition = GetTargetPosition() - GetTargetTransform()->getFront() * currentDistanceToTarget;
+		VEC3 velocityVector = GetTargetPosition() - centeredPosition;
+		velocityVector.Normalize();
 
-	GetTransform()->setPosition(centeredPosition);
-	float y, p, r;
-	GetTransform()->getYawPitchRoll(&y, &p, &r);
-	y = atan2(velocityVector.x, velocityVector.z);
-	//p = asin(-velocityVector.y); //No nos interesa el pitch
-	GetTransform()->setYawPitchRoll(y, p, r);
+		GetTransform()->setPosition(centeredPosition);
+		float y, p, r;
+		GetTransform()->getYawPitchRoll(&y, &p, &r);
+		y = atan2(velocityVector.x, velocityVector.z);
+		//p = asin(-velocityVector.y); //No nos interesa el pitch
+		GetTransform()->setYawPitchRoll(y, p, r);
+	}
 }
 
 CEntity* TCompCameraPlayer::GetTarget() {
