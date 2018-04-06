@@ -81,6 +81,7 @@ bool CModuleEntities::stop() {
     });
     CHandleManager::destroyAllPendingObjects();
 	all_registered_msgs.clear();
+	TCompName::all_names.clear();
     return true;
 }
 
