@@ -257,7 +257,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
 	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
-	releasePowerBigHitbox = getEntityByName("Wall jump plummet hitbox");
+	wallJumpPlummetHitbox = getEntityByName("Wall jump plummet hitbox");
 	releasePowerSmallHitbox = getEntityByName("Release power small hitbox"); 
 	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
 
@@ -288,7 +288,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(CHandle(this)) },
 	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(CHandle(this)) },
 	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(CHandle(this)) },
-	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(CHandle(this), releasePowerBigHitbox) },
+	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(CHandle(this), wallJumpPlummetHitbox) },
 	};
 
 	concurrentStates = {
@@ -572,24 +572,28 @@ void TCompPlayerModel::OnDead() {
 
 
 void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
-	if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
-		lastWallEntered = msg.hit.actor;
-
-		VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
-
-		//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
-		//dbg("%f\n", deg2rad(pitch));
-
-		VEC3 worldInput = GetCamera()->TransformToWorld(baseState->GetMovementInput());
-		if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || GetTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
-			float pitch = asin(-msg.hit.worldNormal.y);
-			if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
-				HuggingWallActionState* actionState = GetBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
-				actionState->SetHit(msg.hit);
-				SetBaseState(ActionStates::HuggingWall);
-			}
-		}
+	baseState->OnShapeHit(msg.hit);
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->OnShapeHit(msg.hit);
 	}
+	//if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
+	//	lastWallEntered = msg.hit.actor;
+
+	//	VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
+
+	//	//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
+	//	//dbg("%f\n", deg2rad(pitch));
+
+	//	VEC3 worldInput = GetCamera()->TransformToWorld(baseState->GetMovementInput());
+	//	if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || GetTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
+	//		float pitch = asin(-msg.hit.worldNormal.y);
+	//		if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
+	//			HuggingWallActionState* actionState = GetBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
+	//			actionState->SetHit(msg.hit);
+	//			SetBaseState(ActionStates::HuggingWall);
+	//		}
+	//	}
+	//}
 }
 
 

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "modules/module_manager.h"
-#include "modules/module_render.h"
-#include "modules/module_entities.h"
-#include "modules/system/module_physics.h"
+#include "modules/system/module_render.h"
+#include "modules/game/module_entities.h"
+#include "modules/game/physics/module_physics.h"
 #include "modules/module_ia.h"
 #include "modules/system/module_input.h"
 #include "modules/system/module_cameras.h"

@@ -1,5 +1,5 @@
 {
-	"startup" : "test_axis",
+	"startup" : "main_menu",
 	"gamestates" : 
 	[
 		{
@@ -16,7 +16,7 @@
 		},
 		{
 			"name" : "test_axis",
-			"modules" : [ "test_axis" ]
+			"modules" : [ "entities", "physics", "test_axis", "pause" ]
 		}
 	]
 }

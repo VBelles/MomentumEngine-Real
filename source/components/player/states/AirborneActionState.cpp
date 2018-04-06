@@ -1,5 +1,7 @@
 #include "mcv_platform.h"
 #include "AirborneActionState.h"
+//#include "../comp_player_model.h"
+#include "base_states/wall_jump/HuggingWallActionState.h"
 
 AirborneActionState::AirborneActionState(CHandle playerModelHandle)
 	: IActionState::IActionState(playerModelHandle) {
@@ -116,4 +118,27 @@ void AirborneActionState::OnReleasePowerButton() {
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state
 	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
+}
+
+void AirborneActionState::OnShapeHit(const PxControllerShapeHit& hit) {
+
+	/*if (lastWallNormal.dot(wallNormal) >= 0.8f  && sameNormalReattachTimer.elapsed() < sameNormalReattachTime) {
+		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	}*/
+	/*&& hit.actor != GetPlayerModel()->lastWallEntered*/
+	if (velocityVector->y < 0.f && (GetPlayerModel()->lastWallNormal.dot(hit.worldNormal) < 0.8f || GetPlayerModel()->sameNormalReattachTimer.elapsed() >= GetPlayerModel()->sameNormalReattachTime)) {
+		GetPlayerModel()->lastWallEntered = hit.actor;
+
+		VEC3 hitNormal = VEC3(hit.worldNormal.x, hit.worldNormal.y, hit.worldNormal.z);
+
+		VEC3 worldInput = GetCamera()->TransformToWorld(GetPlayerModel()->baseState->GetMovementInput());
+		if (worldInput.Dot(-hitNormal) >= GetPlayerModel()->attachWallByInputMinDot || GetPlayerTransform()->getFront().Dot(-hitNormal) >= GetPlayerModel()->attachWallByFrontMinDot) {
+			float pitch = asin(-hit.worldNormal.y);
+			if (pitch >= GetPlayerModel()->huggingWallMinPitch && pitch <= GetPlayerModel()->huggingWallMaxPitch) {
+				HuggingWallActionState* actionState = GetPlayerModel()->GetBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
+				actionState->SetHit(hit);
+				GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::HuggingWall);
+			}
+		}
+	}
 }

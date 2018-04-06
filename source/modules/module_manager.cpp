@@ -46,22 +46,20 @@ LRESULT CModuleManager::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 void CModuleManager::update(float delta) {
 	applyRequestedGameState();
 
-	for (auto& mod : _update_modules)
-	{
-		if (mod->isActive()) 
-		{
-      PROFILE_FUNCTION(mod->getName().c_str());
-      mod->update(delta);
+	for (auto& mod : _update_modules) {
+		if (mod->isActive()) {
+			PROFILE_FUNCTION(mod->getName().c_str());
+			mod->update(delta);
 		}
 	}
 }
 
 void CModuleManager::render() {
 	for (auto& mod : _render_modules) {
-		if (mod->isActive()) {
-      PROFILE_FUNCTION(mod->getName().c_str());
-      CTraceScoped gpu_scope(mod->getName().c_str());
-      mod->render();
+		if (mod->toRender()) {
+			PROFILE_FUNCTION(mod->getName().c_str());
+			CTraceScoped gpu_scope(mod->getName().c_str());
+			mod->render();
 		}
 	}
 	if (CApp::get().showDebug) {
@@ -103,6 +101,10 @@ CGameState* CModuleManager::getGameState(const std::string& gsName) {
 	return nullptr;
 }
 
+CGameState* CModuleManager::getCurrentGameState() {
+	return _current_gs;
+}
+
 void CModuleManager::changeGameState(const std::string& gsName) {
 	CGameState* gs = getGameState(gsName);
 	if (gs) {
@@ -113,6 +115,7 @@ void CModuleManager::changeGameState(const std::string& gsName) {
 bool CModuleManager::startModule(IModule* mod) {
 	if (mod && !mod->isActive() && mod->start()) {
 		mod->setActive(true);
+		mod->setRender(true);
 		return true;
 	}
 	return false;
@@ -121,6 +124,7 @@ bool CModuleManager::startModule(IModule* mod) {
 bool CModuleManager::stopModule(IModule* mod) {
 	if (mod && mod->isActive() && mod->stop()) {
 		mod->setActive(false);
+		mod->setRender(false);
 		return true;
 	}
 	return false;
@@ -205,8 +209,8 @@ void CModuleManager::loadGamestates(const std::string& filename) {
 }
 
 void CModuleManager::applyRequestedGameState() {
-  PROFILE_FUNCTION("CModuleManager::applyRequestedGameState");
-  if (_requested_gs) {
+	PROFILE_FUNCTION("CModuleManager::applyRequestedGameState");
+	if (_requested_gs) {
 		// stop current game modules
 		if (_current_gs) {
 			stopModules(*_current_gs);
@@ -221,8 +225,8 @@ void CModuleManager::applyRequestedGameState() {
 }
 
 void CModuleManager::renderDebug() {
-  PROFILE_FUNCTION("CModuleManager::renderDebug");
-  if (ImGui::TreeNode("Modules")) {
+	PROFILE_FUNCTION("CModuleManager::renderDebug");
+	if (ImGui::TreeNode("Modules")) {
 		for (auto& mod : _registered_modules) {
 			bool active = mod->isActive();
 			if (ImGui::Checkbox(mod->getName().c_str(), &active)) {

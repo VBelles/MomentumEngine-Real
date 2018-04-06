@@ -153,7 +153,7 @@ struct TMsgDefineLocalAABB {
 };
 
 struct TMsgOnShapeHit {
-	physx::PxControllerShapeHit hit;
+	const physx::PxControllerShapeHit& hit;
 	DECL_MSG_ID();
 };
 

@@ -20,7 +20,7 @@ class TCompCollider : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 private:
-	bool enabled = false;
+	bool created = false;
 
 public:
 	struct TConfig {
@@ -46,9 +46,14 @@ public:
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
 	void onCreate(const TMsgEntityCreated& msg);
-	void enable();
-	void disable();
-	bool isEnabled() { return enabled; }
+	void create();
+	void destroy();
+	void enableSimulation();
+	void disableSimulation();
+	void enableSceneQuery();
+	void disableSceneQuery();
+	bool isCreated() { return created; }
+	void setCreated(bool value) { created = value; }
 	void setupFiltering(PxU32 filterGroup, PxU32 filterMask);
 
 };

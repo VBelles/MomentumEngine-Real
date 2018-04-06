@@ -34,7 +34,7 @@ void TCompCollectable::onCollect(const TMsgTriggerEnter & msg) {
 			collector->sendMsg(msg);
 
 			TCompCollider* collider = get<TCompCollider>();
-			collider->disable();
+			collider->destroy();
 		}
 	}
 }

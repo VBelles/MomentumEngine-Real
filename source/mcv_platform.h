@@ -25,10 +25,14 @@
 #include <map>
 #include <fstream>
 
+
 // Windows/OS Platform
 #define NOMINMAX                    // To be able to use std::min without windows problems
 #include <windows.h>
 #include <d3d11.h>
+
+//Physx
+#include "PxPhysicsAPI.h"
 
 // Engine
 #include "utils/json.hpp"
@@ -40,6 +44,7 @@ using json = nlohmann::json;
 #include "render/shaders/vertex_declarations.h"
 #include "utils/utils.h"
 #include "utils/timer.h"
+#include "utils/geometry_utils.h"
 #include "imgui/imgui.h"
 #include "camera/camera.h"
 #include "engine.h"

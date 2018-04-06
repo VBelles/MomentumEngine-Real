@@ -85,9 +85,10 @@ void CModuleInput::update(float delta) {
     }
 	if (EngineInput["debug_mode"].getsPressed()) {
 		CApp::get().showDebug = !CApp::get().showDebug;
+		CApp::get().resetCursorPos = !CApp::get().resetCursorPos;
 		ShowCursor(CApp::get().showDebug);
 	}
-	if (!CApp::get().showDebug && CApp::get().isWindowFocused) {
+	if (CApp::get().resetCursorPos && CApp::get().isWindowFocused) {
 		RECT rect;
 		GetWindowRect(CApp::get().getWnd(), &rect);
 		SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
