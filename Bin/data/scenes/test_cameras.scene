@@ -29,5 +29,54 @@
 				"fov" : 80 
 			}
 		}
+	},
+	{
+		"entity":{
+			"name":"fixed_camera_trigger",
+			"transform":{
+				"pos": "-22 20 -26"
+			},
+			"collider":{
+				"shape": "box",
+				"halfExtent" : "5 5 5",
+				"is_trigger" : true
+			},
+			"mixCameraTrigger":{
+				"cameraToMix": "fixed_camera",
+				"timeToMixIn": 1.2,
+				"timeToMixOut": 1.4,
+				"modifyPlayerCameraRotation" : false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "fixed_camera_2",
+			"transform": {
+				"pos": "-76 55 -80",
+				"lookat": "-76 0 -86"
+			},
+			"camera" : {
+				"fov" : 60 
+			}
+		}
+	},
+	{
+		"entity":{
+			"name":"fixed_camera_2_trigger",
+			"transform":{
+				"pos": "-76 20 -82"
+			},
+			"collider":{
+				"shape": "box",
+				"halfExtent" : "10 6 10",
+				"is_trigger" : true
+			},
+			"mixCameraTrigger":{
+				"cameraToMix": "fixed_camera_2",
+				"timeToMixIn": 1,
+				"timeToMixOut": 1
+			}
+		}
 	}
 ]

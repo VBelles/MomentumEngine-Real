@@ -305,7 +305,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	ChangeConcurrentState(ActionStates::Idle);
 	currentPowerStats = ssj1;
 
-	playerFilterCallback = new PlayerFilterCallback(CHandle(this));
+	playerFilterCallback = new PlayerFilterCallback();
 
 }
 
