@@ -4,12 +4,12 @@
     "pause",
     "physics",
     "entities",
-    "render",
-    "cameras",
     "main_menu",
     "splash",
     "game_over",
-    "test_axis"
+    "test_axis",
+    "cameras",
+    "render"
   ],
   "render": [
     "render",    
