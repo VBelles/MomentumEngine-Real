@@ -5,6 +5,7 @@
 VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "kick";
 }
 
 void VerticalLauncherActionState::update (float delta) {
@@ -39,6 +40,7 @@ void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {

@@ -195,6 +195,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	myTransformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
+	skeletonHandle = get<TCompSkeleton>();
 
 	respawnPosition = GetTransform()->getPosition();
 

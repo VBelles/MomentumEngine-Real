@@ -5,6 +5,7 @@
 StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void StrongAttackActionState::update(float delta) {
@@ -72,6 +73,7 @@ void StrongAttackActionState::OnStateExit(IActionState * nextState) {
 
 void StrongAttackActionState::OnStrongAttackButtonReleased() {
 	phase = AttackPhases::Startup;
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void StrongAttackActionState::OnLeavingGround() {

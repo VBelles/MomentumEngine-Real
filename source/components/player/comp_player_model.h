@@ -7,6 +7,7 @@
 #include "components/comp_camera.h"
 #include "states/IActionState.h"
 #include "comp_power_gauge.h"
+#include "skeleton/comp_skeleton.h"
 
 class PlayerFilterCallback;
 //typedef TCompPlayerModel::ActionStates ActionStates;
@@ -121,13 +122,14 @@ public:
 	CHandle grabTarget;
 	PxRigidActor* lastWallEntered;
 
-	
+	TCompSkeleton* getSkeleton() { return skeletonHandle; }
 
 private:
 	VEC3 deltaMovement;
 	CHandle myTransformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
+	CHandle skeletonHandle;
 
 	VEC3 accelerationVector = {0.f, 0.f, 0.f};
 	VEC3 velocityVector = { 0.f, 0.f, 0.f };
