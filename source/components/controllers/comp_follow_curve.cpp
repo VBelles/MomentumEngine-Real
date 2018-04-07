@@ -6,6 +6,7 @@
 DECL_OBJ_MANAGER("follow_curve", TCompFollowCurve);
 
 void TCompFollowCurve::debugInMenu() {
+    ImGui::DragFloat("speed", &_speed, 0.01f, 0.f, 20.f);
 }
 
 void TCompFollowCurve::registerMsgs() {
@@ -13,8 +14,17 @@ void TCompFollowCurve::registerMsgs() {
 }
 
 void TCompFollowCurve::load(const json& j, TEntityParseContext& ctx) {
-    std::string curve_name = j["curve"];
-    _curve = Resources.get(curve_name)->as<CCurve>(); // TODO: Sacar esto del componente, no del archivo .curve !!!
+    //std::string curve_name = j["curve"];
+    //_curve = Resources.get(curve_name)->as<CCurve>();
+
+    _curve->setType(j["curve_type"]);
+    _curve->setLoop(j["loop"]);
+
+    auto& j_knots = j["knots"];
+    for (auto it = j_knots.begin(); it != j_knots.end(); ++it) {
+        VEC3 p = loadVEC3(it.value());
+        _curve->addKnot(p);
+    }
 
 	_speed = j.value<float>("speed", 0.f);
 	_automove = j.value("automove", false);

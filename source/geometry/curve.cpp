@@ -26,16 +26,16 @@ const CResourceClass* getResourceClassOf<CCurve>() {
 }
 // ----------------------------------------------
 
-bool CCurve::load(const std::string& name) {
-    auto jData = loadJson(name);
+bool CCurve::load(const std::string& fileName) {
+    auto jData = loadJson(fileName);
 
+    return load(jData);
+}
+
+bool CCurve::load(const json& jData) {
     std::string typeName = jData["type"];
-    if (typeName == "catmull-rom") {
-        _type = EType::CATMULL_ROM;
-    }
-	else {
-		_type = EType::UNKNOWN;
-	}
+
+    setType(typeName);
 
     auto& jKnots = jData["knots"];
     for (auto& jKnot : jKnots) {
@@ -43,7 +43,7 @@ bool CCurve::load(const std::string& name) {
         addKnot(knot);
     }
 
-	_loop = jData.value("loop", false); // TODO: Use this somewhere.
+	setLoop(jData.value("loop", false)); // TODO: Use this somewhere.
 
     return true;
 }
@@ -54,6 +54,19 @@ void CCurve::clear() {
 
 void CCurve::addKnot(const VEC3& point) {
     _knots.push_back(point);
+}
+
+void CCurve::setType(const std::string & typeName) {
+    if (typeName == "catmull-rom") {
+        _type = EType::CATMULL_ROM;
+    }
+    else {
+        _type = EType::UNKNOWN;
+    }
+}
+
+void CCurve::setLoop(const bool value) {
+    _loop = value;
 }
 
 VEC3 CCurve::evaluate(float ratio) const {
