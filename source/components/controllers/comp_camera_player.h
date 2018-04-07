@@ -33,7 +33,7 @@ private:
 	VEC2 desiredYawPitch;
 	bool centeringCamera = false;
 
-	float sphereCastRadius = 0.2f;
+	float sphereCastRadius = 0.0f;
 
 
 	//Msgs
