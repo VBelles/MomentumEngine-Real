@@ -100,7 +100,7 @@ void TCompCameraPlayer::updateMovement(float delta) {
 	p += input.y * delta;
 	p = clamp(p, minPitch, maxPitch);
 	transform->setYawPitchRoll(y, p, r);
-	
+
 	//Move the camera back
 	transform->setPosition(transform->getPosition() - transform->getFront() * defaultDistanceToTarget);
 }
@@ -114,17 +114,30 @@ void TCompCameraPlayer::updateCenteringCamera(float delta) {
 	transform->getYawPitchRoll(&yaw, &pitch, &r);
 
 	VEC2 increment = centeringCameraSpeed * delta;
+
 	//Center yaw
-	if (abs(desiredYawPitch.x - yaw) <= increment.x) {
+	float difference = atan2(sin(desiredYawPitch.x - yaw), cos(desiredYawPitch.x - yaw));
+	if (abs(difference) <= increment.x) {
 		yaw = desiredYawPitch.x;
-		centeringCamera = false;
 	}
 	else {
-		int dir = abs(desiredYawPitch.x) < abs(yaw) ? -1 : 1;
+		int dir = difference > 0 ? 1 : -1;
 		yaw += increment.x * dir;
 	}
-	//TODO Center pitch
-	
+	//Center pitch
+	if (abs(desiredYawPitch.y - pitch) <= increment.y) {
+		pitch = desiredYawPitch.y;
+
+	}
+	else {
+		int dir = pitch < desiredYawPitch.y ? 1 : -1;
+		pitch += increment.y * dir;
+	}
+
+	if (yaw == desiredYawPitch.x && pitch == desiredYawPitch.y) {
+		centeringCamera = false;
+	}
+
 	transform->setYawPitchRoll(yaw, pitch, r);
 
 	//Move the camera back
