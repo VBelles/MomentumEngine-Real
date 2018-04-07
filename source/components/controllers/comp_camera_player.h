@@ -11,6 +11,7 @@ class TCompCameraPlayer : public TCompBase {
 private:
 	CHandle targetHandle;
 	CHandle transformHandle;
+	CTransform targetTransform;
 
 	//General camera configuration
 	float fovInDegrees;
@@ -46,15 +47,13 @@ private:
 
 	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void CalculateVerticalOffsetVector();
+	void UpdateTargetTransform();
 	bool SphereCast();
 	void SweepBack();
-	void AproachToFreePosition();
 
 	void OnLockCameraInput(const TMsgLockCameraInput& msg);
 
 	CEntity* GetTarget();
-	TCompTransform* GetTargetTransform();
-	VEC3 GetTargetPosition();
 	TCompTransform* GetTransform();
 
 public:

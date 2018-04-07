@@ -40,15 +40,16 @@ void TCompCameraPlayer::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompCameraPlayer::update(float delta) {
+	UpdateTargetTransform();
 	VEC2 increment = GetIncrementFromInput(delta);
 	UpdateMovement(increment, delta);
-	if (SphereCast()) {
+	if (!isMovementLocked && SphereCast()) {
 		SweepBack();
 	}
 }
 
 void TCompCameraPlayer::SweepBack() {
-	VEC3 targetPosition = GetTargetPosition();
+	VEC3 targetPosition = targetTransform.getPosition();
 	VEC3 position = GetTransform()->getPosition();
 	QUAT rotation = GetTransform()->getRotation();
 	VEC3 direction = position - targetPosition;
@@ -83,31 +84,6 @@ bool TCompCameraPlayer::SphereCast() {
 	return status;
 }
 
-void TCompCameraPlayer::AproachToFreePosition() {
-	VEC3 targetPosition = GetTargetPosition();
-	VEC3 front = GetTransform()->getFront();
-	PxVec3 raycastOrigin = toPhysx(targetPosition);
-	PxVec3 raycastDirection = toPhysx(-front);
-	PxReal raycastMaxDistance = VEC3::Distance(GetTransform()->getPosition(), targetPosition);
-
-
-	PxRaycastBuffer rayCastBuffer;
-
-	PxQueryFilterData fd;
-	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
-	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
-
-	bool status = EnginePhysics.getScene()->raycast(raycastOrigin, raycastDirection, raycastMaxDistance, rayCastBuffer,
-		PxHitFlag::eDEFAULT, fd, EnginePhysics.getGameQueryFilterCallback());
-
-	if (!status) return;
-
-	PxRaycastHit nearestHit = rayCastBuffer.block;
-
-	VEC3 newPosition = fromPhysx(nearestHit.position) + front * (sphereCastRadius);
-	GetTransform()->setPosition(newPosition);
-	currentDistanceToTarget = VEC3::Distance(GetTransform()->getPosition(), targetPosition);
-}
 
 VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {
 	VEC2 increment = VEC2::Zero;
@@ -135,7 +111,7 @@ void TCompCameraPlayer::UpdateMovement(VEC2 increment, float delta) {
 
 	float y, p, r;
 	transform->getYawPitchRoll(&y, &p, &r);
-	transform->setPosition(GetTargetPosition());
+	transform->setPosition(targetTransform.getPosition());
 	//Move the camera to the target position
 	//Rotate the camera
 	y += increment.x;
@@ -155,10 +131,16 @@ void TCompCameraPlayer::CalculateVerticalOffsetVector() {
 	verticalOffsetVector.y = currentOffset;
 }
 
+void TCompCameraPlayer::UpdateTargetTransform() {
+	TCompTransform* transform = GetTarget()->get<TCompTransform>();
+	targetTransform.setPosition(transform->getPosition() + VEC3::Up * 2.f);
+	targetTransform.setRotation(transform->getRotation());
+}
+
 void TCompCameraPlayer::CenterCamera() {
 	if (!isMovementLocked) {
-		centeredPosition = GetTargetPosition() - GetTargetTransform()->getFront() * currentDistanceToTarget;
-		VEC3 velocityVector = GetTargetPosition() - centeredPosition;
+		centeredPosition = targetTransform.getPosition() - targetTransform.getFront() * currentDistanceToTarget;
+		VEC3 velocityVector = targetTransform.getPosition() - centeredPosition;
 		velocityVector.Normalize();
 
 		GetTransform()->setPosition(centeredPosition);
@@ -174,13 +156,6 @@ CEntity* TCompCameraPlayer::GetTarget() {
 	return targetHandle;
 }
 
-TCompTransform* TCompCameraPlayer::GetTargetTransform() {
-	return GetTarget()->get<TCompTransform>();
-}
-
-VEC3 TCompCameraPlayer::GetTargetPosition() {
-	return GetTargetTransform()->getPosition() + VEC3::Up * 2.f;
-}
 
 TCompTransform* TCompCameraPlayer::GetTransform() {
 	return transformHandle;
