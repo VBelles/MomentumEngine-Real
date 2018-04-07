@@ -94,10 +94,6 @@ struct TMsgDamage {
 	DECL_MSG_ID();
 };
 
-struct TMsgCollect {
-	std::string type;
-	DECL_MSG_ID();
-};
 
 struct TMsgDestroy {
 	CHandle h_sender;
