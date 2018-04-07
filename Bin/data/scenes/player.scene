@@ -308,6 +308,7 @@
 				"target" : "The Player",
 				"distance_to_target": 5.5,
 				"camera_speed": "2 1",
+				"centering_camera_speed": "30 15",
 				"max_pitch": 80,
 				"min_pitch": -80,
 				"yaw": 0,

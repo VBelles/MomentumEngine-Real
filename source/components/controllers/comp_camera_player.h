@@ -14,17 +14,12 @@ private:
 	std::string targetName;
 	float defaultDistanceToTarget = 0.f;
 	VEC2 cameraSpeed;
+	VEC2 centeringCameraSpeed;
 	float minPitch = 0.f;
 	float maxPitch = 0.f;
 	float initialYaw = 0.f;
 	float initialPitch = 0.f;
-
-	//TODO: adjust pitch
-	/*float maxVerticalOffset = 3.0f;
-	float minVerticalOffset = 0.2f;
-	VEC3 verticalOffsetVector = VEC3::Zero;
-	float pitchAngleRange = maxPitch - minPitch;*/
-
+	
 	CHandle targetHandle;
 	CHandle transformHandle;
 	CTransform targetTransform;
@@ -35,7 +30,7 @@ private:
 
 	float padDeadZone = 0.1f;
 
-	VEC3 centeredPosition;
+	VEC2 desiredYawPitch;
 	bool centeringCamera = false;
 
 	float sphereCastRadius = 0.2f;
@@ -48,7 +43,7 @@ private:
 	void updateTargetTransform();
 	void updateInput();
 	void updateMovement(float delta);
-	//void calculateVerticalOffsetVector();
+	void updateCenteringCamera(float delta);
 	bool sphereCast();
 	void sweepBack();
 
