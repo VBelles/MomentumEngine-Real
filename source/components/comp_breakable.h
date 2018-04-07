@@ -4,12 +4,14 @@
 #include "entity/common_msgs.h"
 
 
+class TCompTransform;
 
 class TCompBreakable : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 private:
 	CHandle colliderHandle;
+	CHandle transformHandle;
 	float hp = 0.f;
 
 	//Messages
@@ -21,6 +23,7 @@ private:
 	void dropLoot();
 
 	TCompCollider* getCollider() { return colliderHandle; }
+	TCompTransform* getTransform() { return transformHandle; }
 
 public:
 

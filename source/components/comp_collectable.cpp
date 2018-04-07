@@ -14,7 +14,7 @@ void TCompCollectable::registerMsgs() {
 }
 
 void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
-	std::string typeName = j.value("type", "chrysalis");
+	std::string typeName = j.value("type", "undefined");
 	type = getTypeByName(typeName);
 }
 

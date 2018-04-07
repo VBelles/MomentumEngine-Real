@@ -208,7 +208,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 
 		//Hp bar
-		std::string hpProgressBarText = "HP: " + std::to_string((int) hp) + "/" + std::to_string((int) maxHp);
+		std::string hpProgressBarText = "HP: " + std::to_string((int)hp) + "/" + std::to_string((int)maxHp);
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 0, 255, 0 });
 		ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
 		ImGui::PopStyleColor();
@@ -326,6 +326,7 @@ void TCompPlayerModel::OnCollect(const TMsgCollect& msg) {
 		}
 		break;
 	case TCompCollectable::Type::COIN:
+		dbg("Collection coin!\n");
 		collectable->collect();
 		break;
 	default:
