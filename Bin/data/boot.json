@@ -10,14 +10,14 @@
     "data/scenes/whitebox24-movables.scene",
     "data/scenes/whitebox24-enemies.scene",
     "data/scenes/scene_basic.scene",
-    "data/scenes/level1.scene",
-    "data/scenes/skeleton_demo.scene"
+    "data/scenes/level1.scene"
   ],
   "unused_scenes": [
     "data/scenes/testExporter-0.scene",
     "data/scenes/testExporter-collisions.scene",
     "data/scenes/whitebox23.scene",
     "data/scenes/multimaterial.scene",
+    "data/scenes/skeleton_demo.scene",
     "dummy"
   ]
 }
