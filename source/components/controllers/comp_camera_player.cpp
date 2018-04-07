@@ -46,6 +46,7 @@ void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompCameraPlayer::update(float delta) {
+	
 	updateTargetTransform();
 	updateInput();
 	if (centeringCamera) {

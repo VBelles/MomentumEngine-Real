@@ -258,7 +258,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
 	wallJumpPlummetHitbox = getEntityByName("Wall jump plummet hitbox");
-	releasePowerSmallHitbox = getEntityByName("Release power small hitbox"); 
+	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
 	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
 
 	baseStates = {
@@ -367,7 +367,7 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 		float deltaMovementDueToGravity;
 		deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
 		if (dynamic_cast<GroundedActionState*>(baseState)) {
-			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed/2 * delta;
+			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed / 2 * delta;
 		}
 		else {
 			deltaMovement.y += deltaMovementDueToGravity;
@@ -380,6 +380,8 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
+	VEC3 pos = GetTransform()->getPosition();
+	QUAT rot = GetTransform()->getRotation();
 	PxFilterData filterData = { GetCollider()->config.group, GetCollider()->config.mask, 0, 0 };
 	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(
 		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt,
