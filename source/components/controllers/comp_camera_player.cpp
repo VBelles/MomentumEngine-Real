@@ -16,42 +16,46 @@ void TCompCameraPlayer::renderDebug() {
 
 // -------------------------------------------------
 void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
-	defaultDistanceToTarget = j.value("distance_to_target", 5.f);
-	distanceVector.z = -defaultDistanceToTarget;
-	currentDistanceToTarget = defaultDistanceToTarget;
 	targetName = j.value("target", "");
+	defaultDistanceToTarget = j.value("distance_to_target", 5.f);
+	cameraSpeed = loadVEC2(j["camera_speed"]);
+	maxPitch = j.value("max_pitch", 80.f);
+	minPitch = j.value("min_pitch", -80.f);
+	initialYaw = j.value("yaw", 0.f);
+	initialPitch = j.value("pitch", -20.f);
 }
 
 void TCompCameraPlayer::registerMsgs() {
-	DECL_MSG(TCompCameraPlayer, TMsgEntitiesGroupCreated, OnGroupCreated);
-	DECL_MSG(TCompCameraPlayer, TMsgLockCameraInput, OnLockCameraInput);
+	DECL_MSG(TCompCameraPlayer, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompCameraPlayer, TMsgLockCameraInput, onLockCameraInput);
 }
 
-void TCompCameraPlayer::OnLockCameraInput(const TMsgLockCameraInput & msg) {
+void TCompCameraPlayer::onLockCameraInput(const TMsgLockCameraInput & msg) {
 	isMovementLocked = msg.isLocked;
 }
 
-void TCompCameraPlayer::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
+void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	targetHandle = getEntityByName(targetName.c_str());
 	transformHandle = get<TCompTransform>();
+	assert(targetHandle.isValid());
+	assert(transformHandle.isValid());
 
-	GetTransform()->setYawPitchRoll(0, DEFAULT_Y, 0);
-	pitchAngleRange = Y_ANGLE_MAX - Y_ANGLE_MIN;
+	getTransform()->setYawPitchRoll(initialYaw, initialPitch);
 }
 
 void TCompCameraPlayer::update(float delta) {
-	UpdateTargetTransform();
-	VEC2 increment = GetIncrementFromInput(delta);
-	UpdateMovement(increment, delta);
-	if (!isMovementLocked && SphereCast()) {
-		SweepBack();
+	updateTargetTransform();
+	updateInput();
+	updateMovement(delta);
+	if (!isMovementLocked && sphereCast()) {
+		sweepBack();
 	}
 }
 
-void TCompCameraPlayer::SweepBack() {
+void TCompCameraPlayer::sweepBack() {
 	VEC3 targetPosition = targetTransform.getPosition();
-	VEC3 position = GetTransform()->getPosition();
-	QUAT rotation = GetTransform()->getRotation();
+	VEC3 position = getTransform()->getPosition();
+	QUAT rotation = getTransform()->getRotation();
 	VEC3 direction = position - targetPosition;
 	direction.Normalize();
 	PxSphereGeometry geometry(sphereCastRadius);
@@ -68,14 +72,13 @@ void TCompCameraPlayer::SweepBack() {
 	if (status) {
 		PxSweepHit& hit = sweepBuffer.block;
 		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);
-		GetTransform()->setPosition(fromPhysx(newPosition));
+		getTransform()->setPosition(fromPhysx(newPosition));
 	}
 }
 
-bool TCompCameraPlayer::SphereCast() {
-
+bool TCompCameraPlayer::sphereCast() {
 	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
-	PxTransform pxTransform(toPhysx(GetTransform()));
+	PxTransform pxTransform(toPhysx(getTransform()));
 	PxOverlapBuffer buf;
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
@@ -85,8 +88,8 @@ bool TCompCameraPlayer::SphereCast() {
 }
 
 
-VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {
-	VEC2 increment = VEC2::Zero;
+void TCompCameraPlayer::updateInput() {
+	input = VEC2::Zero;
 	//Hacer sólo si la cámara está mixeada
 	if (!isMovementLocked) {
 		VEC2 padInput = {
@@ -94,70 +97,70 @@ VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {
 			EngineInput[Input::EPadButton::PAD_RANALOG_Y].value
 		};
 		if (padInput.Length() > padDeadZone) {
-			increment.x -= padInput.x * cameraSpeed.x * delta;
-			increment.y += padInput.y * cameraSpeed.y * delta;
+			input.x -= padInput.x * cameraSpeed.x;
+			input.y += padInput.y * cameraSpeed.y;
 		}
 		else if (!CApp::get().showDebug) {
 			auto& mouse = EngineInput[Input::PLAYER_1].mouse();
-			increment.x -= mouse.position_delta.x * cameraSpeed.x * delta;
-			increment.y -= mouse.position_delta.y * cameraSpeed.y * delta;
+			input.x -= mouse.position_delta.x * cameraSpeed.x;
+			input.y -= mouse.position_delta.y * cameraSpeed.y;
 		}
 	}
-	return increment;
 }
 
-void TCompCameraPlayer::UpdateMovement(VEC2 increment, float delta) {
-	TCompTransform* transform = GetTransform();
+void TCompCameraPlayer::updateMovement(float delta) {
+	TCompTransform* transform = getTransform();
 
+	//Move the camera to the target position
+	transform->setPosition(targetTransform.getPosition());
+
+	//Rotate the camera
 	float y, p, r;
 	transform->getYawPitchRoll(&y, &p, &r);
-	transform->setPosition(targetTransform.getPosition());
-	//Move the camera to the target position
-	//Rotate the camera
-	y += increment.x;
-	p += increment.y;
-	p = clamp(p, Y_ANGLE_MIN, Y_ANGLE_MAX);
-	//dbg("p: %f\n", rad2deg(p));
+	y += input.x * delta;
+	p += input.y * delta;
+	p = clamp(p, minPitch, maxPitch);
 	transform->setYawPitchRoll(y, p, r);
-	//Move the camera back
-	transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
 
+	//Move the camera back
+	transform->setPosition(transform->getPosition() - transform->getFront() * defaultDistanceToTarget);
 }
 
-void TCompCameraPlayer::CalculateVerticalOffsetVector() {
+/*void TCompCameraPlayer::calculateVerticalOffsetVector() {
 	float y, p, r;
 	TCompTransform* transform = get<TCompTransform>();
 	transform->getYawPitchRoll(&y, &p, &r);
-	float currentOffset = ((pitchAngleRange - (y - Y_ANGLE_MIN)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
+	float currentOffset = ((pitchAngleRange - (y - minPitch)) / pitchAngleRange) * (maxVerticalOffset - minVerticalOffset) + minVerticalOffset;
 	verticalOffsetVector.y = currentOffset;
-}
+}*/
 
-void TCompCameraPlayer::UpdateTargetTransform() {
-	TCompTransform* transform = GetTarget()->get<TCompTransform>();
+void TCompCameraPlayer::updateTargetTransform() {
+	//Target transform is player transform + 2y
+	TCompTransform* transform = getTarget()->get<TCompTransform>();
 	targetTransform.setPosition(transform->getPosition() + VEC3::Up * 2.f);
 	targetTransform.setRotation(transform->getRotation());
 }
 
 void TCompCameraPlayer::CenterCamera() {
 	if (!isMovementLocked) {
-		centeredPosition = targetTransform.getPosition() - targetTransform.getFront() * currentDistanceToTarget;
+		centeredPosition = targetTransform.getPosition() - targetTransform.getFront() * defaultDistanceToTarget;
 		VEC3 velocityVector = targetTransform.getPosition() - centeredPosition;
 		velocityVector.Normalize();
 
-		GetTransform()->setPosition(centeredPosition);
+		getTransform()->setPosition(centeredPosition);
 		float y, p, r;
-		GetTransform()->getYawPitchRoll(&y, &p, &r);
+		getTransform()->getYawPitchRoll(&y, &p, &r);
 		y = atan2(velocityVector.x, velocityVector.z);
 		//p = asin(-velocityVector.y); //No nos interesa el pitch
-		GetTransform()->setYawPitchRoll(y, p, r);
+		getTransform()->setYawPitchRoll(y, p, r);
 	}
 }
 
-CEntity* TCompCameraPlayer::GetTarget() {
+CEntity* TCompCameraPlayer::getTarget() {
 	return targetHandle;
 }
 
 
-TCompTransform* TCompCameraPlayer::GetTransform() {
+TCompTransform* TCompCameraPlayer::getTransform() {
 	return transformHandle;
 }

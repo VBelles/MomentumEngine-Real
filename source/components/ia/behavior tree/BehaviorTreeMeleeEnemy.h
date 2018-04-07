@@ -7,7 +7,7 @@
 class CEntity;
 class TCompTransform;
 class TCompCollider;
-class PowerStats;
+struct PowerStats;
 
 class CBehaviorTreeMeleeEnemy : public IBehaviorTree, public TCompBase {
 	DECL_SIBLING_ACCESS();
