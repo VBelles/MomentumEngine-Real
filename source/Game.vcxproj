@@ -91,6 +91,7 @@
     <ClCompile Include="camera\camera.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_appear.cpp" />
+    <ClCompile Include="components\comp_breakable.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="components\comp_aabb.h" />
     <ClInclude Include="components\comp_appear.h" />
     <ClInclude Include="components\comp_base.h" />
+    <ClInclude Include="components\comp_breakable.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_circular_controller.h" />
     <ClInclude Include="components\comp_collectable.h" />
