@@ -19,10 +19,10 @@ void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	targetName = j.value("target", "");
 	defaultDistanceToTarget = j.value("distance_to_target", 5.f);
 	cameraSpeed = loadVEC2(j["camera_speed"]);
-	maxPitch = j.value("max_pitch", 80.f);
-	minPitch = j.value("min_pitch", -80.f);
-	initialYaw = j.value("yaw", 0.f);
-	initialPitch = j.value("pitch", -20.f);
+	maxPitch = deg2rad(j.value("max_pitch", 80.f));
+	minPitch = deg2rad(j.value("min_pitch", -80.f));
+	initialYaw = deg2rad(j.value("yaw", 0.f));
+	initialPitch = deg2rad(j.value("pitch", -20.f));
 	centeringCameraSpeed = loadVEC2(j["centering_camera_speed"]);
 }
 
@@ -33,6 +33,7 @@ void TCompCameraPlayer::registerMsgs() {
 
 void TCompCameraPlayer::onLockCameraInput(const TMsgLockCameraInput & msg) {
 	isMovementLocked = msg.isLocked;
+	centeringCamera = false; //Avoid bugs
 }
 
 void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -47,7 +48,6 @@ void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 void TCompCameraPlayer::update(float delta) {
 	updateTargetTransform();
 	updateInput();
-
 	if (centeringCamera) {
 		updateCenteringCamera(delta);
 	}
@@ -100,7 +100,7 @@ void TCompCameraPlayer::updateMovement(float delta) {
 	p += input.y * delta;
 	p = clamp(p, minPitch, maxPitch);
 	transform->setYawPitchRoll(y, p, r);
-
+	
 	//Move the camera back
 	transform->setPosition(transform->getPosition() - transform->getFront() * defaultDistanceToTarget);
 }
@@ -110,19 +110,22 @@ void TCompCameraPlayer::updateCenteringCamera(float delta) {
 
 	//Move the camera to the target position
 	transform->setPosition(targetTransform.getPosition());
-	float yaw, p, r;
-	transform->getYawPitchRoll(&yaw, &p, &r);
-	
-	float increment =  centeringCameraSpeed.x * delta;
-	if (abs(desiredYawPitch.x - yaw) <= increment) {
+	float yaw, pitch, r;
+	transform->getYawPitchRoll(&yaw, &pitch, &r);
+
+	VEC2 increment = centeringCameraSpeed * delta;
+	//Center yaw
+	if (abs(desiredYawPitch.x - yaw) <= increment.x) {
 		yaw = desiredYawPitch.x;
 		centeringCamera = false;
 	}
 	else {
 		int dir = abs(desiredYawPitch.x) < abs(yaw) ? -1 : 1;
-		yaw += increment * dir;
+		yaw += increment.x * dir;
 	}
-	transform->setYawPitchRoll(yaw, p, r);
+	//TODO Center pitch
+	
+	transform->setYawPitchRoll(yaw, pitch, r);
 
 	//Move the camera back
 	transform->setPosition(transform->getPosition() - transform->getFront() * defaultDistanceToTarget);
