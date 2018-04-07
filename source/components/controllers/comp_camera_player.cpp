@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_camera_player.h"
-#include "../comp_camera.h"
+#include "components/comp_camera.h"
 #include "components/comp_transform.h"
 #include "modules/system/physics/GameQueryFilterCallback.h"
 
@@ -41,93 +41,45 @@ void TCompCameraPlayer::OnGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 
 void TCompCameraPlayer::update(float delta) {
 	VEC2 increment = GetIncrementFromInput(delta);
-	CTransform newTransform = CalculateNewTransform(increment, delta);
-	if (!SweepTest(newTransform.getPosition())) {
-		GetTransform()->set(newTransform);
+	UpdateMovement(increment, delta);
+	if (SphereCast()) {
+		SweepBack();
 	}
-	//GetTransform()->set(newTransform);
-	/*CalculateVerticalOffsetVector();
-
-	PxOverlapBuffer hitBuffer;
-	if (SphereCast(hitBuffer)) {
-		AproachToFreePosition();
-	}
-	else {
-		//Tirar cámara siempre hacia defaultDistance
-		if (currentDistanceToTarget != defaultDistanceToTarget) {
-			float difference = defaultDistanceToTarget - currentDistanceToTarget;
-			float zoomIncrement = zoomSpeed * delta;
-			if (difference <= zoomIncrement) {
-				currentDistanceToTarget = defaultDistanceToTarget;
-			}
-			else {
-				int dir = difference < 0 ? -1 : 1;
-				currentDistanceToTarget += zoomIncrement * dir;
-			}
-		}
-	}*/
 }
 
 void TCompCameraPlayer::SweepBack() {
-	VEC3 position = GetTargetPosition();
-	PxSphereGeometry geometry(sphereCastRadius);
-	PxTransform pxTransform = toPhysx(position, GetTransform()->getRotation());
-	PxVec3 direction = toPhysx(position - GetTransform()->getPosition()).getNormalized();
-	float distance = defaultDistanceToTarget;
-	PxSweepBuffer sweepBuffer;
-
-	PxQueryFilterData fd;
-	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
-	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
-	bool status = EnginePhysics.getScene()->sweep(geometry, pxTransform, direction, distance, sweepBuffer,
-		PxHitFlag::eDEFAULT, fd, EnginePhysics.getGameQueryFilterCallback());
-
-}
-
-bool TCompCameraPlayer::SweepTest(VEC3 newPosition) {
+	VEC3 targetPosition = GetTargetPosition();
 	VEC3 position = GetTransform()->getPosition();
-	float distance = VEC3::Distance(position, newPosition);
-	if (distance == 0.f)
-		return false;
-	
+	QUAT rotation = GetTransform()->getRotation();
+	VEC3 direction = position - targetPosition;
+	direction.Normalize();
 	PxSphereGeometry geometry(sphereCastRadius);
-	PxTransform pxTransform = toPhysx(position, GetTransform()->getRotation());
-	PxVec3 direction = toPhysx(newPosition - position).getNormalized();
-	
-	
+	PxReal distance = defaultDistanceToTarget;
 	PxSweepBuffer sweepBuffer;
-
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
 	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+	PxHitFlags hitFlags = PxHitFlag::eDEFAULT;
 
-	bool status = EnginePhysics.getScene()->sweep(geometry, pxTransform, direction, distance, sweepBuffer,
-		PxHitFlag::eDEFAULT, fd, EnginePhysics.getGameQueryFilterCallback());
-	
+	bool status = EnginePhysics.getScene()->sweep(geometry, toPhysx(targetPosition, rotation), toPhysx(direction), distance, sweepBuffer,
+		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
+
 	if (status) {
-		CHandle handle;
-		handle.fromVoidPtr(sweepBuffer.block.actor->userData);
-		CEntity* entity = handle.getOwner();
-		dbg("%s\n", entity->getName());
+		PxSweepHit& hit = sweepBuffer.block;
+		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);
+		GetTransform()->setPosition(fromPhysx(newPosition));
 	}
-
-	return status;
 }
 
-bool TCompCameraPlayer::SphereCast(PxOverlapBuffer buf) {
-	VEC3 position = GetTransform()->getPosition();
-	VEC3 increment = GetTransform()->getFront() * sphereCastRadius;
-	VEC3 nextPosition = GetTransform()->getPosition() + increment;
+bool TCompCameraPlayer::SphereCast() {
 
 	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
-	PxTransform pxTransform(toPhysx(nextPosition, GetTransform()->getRotation()));
-
+	PxTransform pxTransform(toPhysx(GetTransform()));
+	PxOverlapBuffer buf;
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
 	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
-	//EnginePhysics.getScene()->sweep()
 	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, buf, fd, EnginePhysics.getGameQueryFilterCallback());
-
 	return status;
 }
 
@@ -178,23 +130,21 @@ VEC2 TCompCameraPlayer::GetIncrementFromInput(float delta) {
 	return increment;
 }
 
-CTransform TCompCameraPlayer::CalculateNewTransform(VEC2 increment, float delta) {
-	CTransform newTransform = CTransform();
-	newTransform.setPosition(GetTransform()->getPosition());
-	newTransform.setRotation(GetTransform()->getRotation());
+void TCompCameraPlayer::UpdateMovement(VEC2 increment, float delta) {
+	TCompTransform* transform = GetTransform();
 
 	float y, p, r;
-	newTransform.getYawPitchRoll(&y, &p, &r);
-	newTransform.setPosition(GetTargetPosition());
+	transform->getYawPitchRoll(&y, &p, &r);
+	transform->setPosition(GetTargetPosition());
 	//Move the camera to the target position
 	//Rotate the camera
 	y += increment.x;
 	p += increment.y;
 	p = clamp(p, Y_ANGLE_MIN, Y_ANGLE_MAX);
-	newTransform.setYawPitchRoll(y, p, r);
+	transform->setYawPitchRoll(y, p, r);
 	//Move the camera back
-	newTransform.setPosition(newTransform.getPosition() - newTransform.getFront() * currentDistanceToTarget);
-	return newTransform;
+	transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
+
 }
 
 void TCompCameraPlayer::CalculateVerticalOffsetVector() {
