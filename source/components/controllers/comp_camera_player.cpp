@@ -117,6 +117,7 @@ void TCompCameraPlayer::UpdateMovement(VEC2 increment, float delta) {
 	y += increment.x;
 	p += increment.y;
 	p = clamp(p, Y_ANGLE_MIN, Y_ANGLE_MAX);
+	//dbg("p: %f\n", rad2deg(p));
 	transform->setYawPitchRoll(y, p, r);
 	//Move the camera back
 	transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);

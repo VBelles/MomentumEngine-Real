@@ -23,8 +23,8 @@ private:
 
 	bool isMovementLocked = false;
 
-	const float Y_ANGLE_MIN = deg2rad(-60.f);
-	const float Y_ANGLE_MAX = deg2rad(30.f);
+	const float Y_ANGLE_MIN = deg2rad(-80.f);
+	const float Y_ANGLE_MAX = deg2rad(80.f);
 	const float DEFAULT_Y = deg2rad(-20.f);
 
 	float maxVerticalOffset = 3.0f;
