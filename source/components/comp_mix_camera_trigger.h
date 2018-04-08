@@ -3,6 +3,8 @@
 #include "comp_base.h"
 #include "entity/common_msgs.h"
 
+using namespace Interpolator;
+
 class TCompMixCameraTrigger : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
@@ -11,6 +13,14 @@ private:
 	float timeToMixIn;
 	float timeToMixOut;
 	bool modifyPlayerCameraRotation = true;
+	//tipo de interpolator salida y entrada por json
+
+	TCubicInInterpolator* cubicInInterpolator;
+	TCubicOutInterpolator* cubicOutInterpolator;
+	TCubicInOutInterpolator* cubicInOutInterpolator;
+	TExpoInInterpolator* expoInInterpolator;
+	TExpoOutInterpolator* expoOutInterpolator;
+	TExpoInOutInterpolator* expoInOutInterpolator;
 
 public:	
 	void debugInMenu();

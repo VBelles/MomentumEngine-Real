@@ -18,6 +18,7 @@ void TCompFixedCamera::load(const json& j, TEntityParseContext& ctx) {
 	returnToPlayerCameraWithInput = j.value("returnToPlayerCameraWithInput", false);
 	panningSpeed = j.value("panningSpeed", 1.f);
 	timeToMixOut = j.value("timeToMixOut", 1.f);
+	modifyPlayerCameraRotation = j.value("modifyPlayerCameraRotation", true);
 }
 
 void TCompFixedCamera::registerMsgs() {
@@ -32,6 +33,7 @@ void TCompFixedCamera::onLockCameraInput(const TMsgLockCameraInput & msg) {
 void TCompFixedCamera::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	transformHandle = get<TCompTransform>();
 	assert(transformHandle.isValid());
+	cubicOutInterpolator = new TCubicOutInterpolator();
 }
 
 void TCompFixedCamera::update(float delta) {	
@@ -48,8 +50,11 @@ void TCompFixedCamera::updateInput() {
 		};
 		auto& mouse = EngineInput[Input::PLAYER_1].mouse();
 		if (returnToPlayerCameraWithInput && (padInput.Length() > PAD_DEAD_ZONE || mouse.position_delta != VEC2::Zero)) {
+			if (modifyPlayerCameraRotation) {
+				CopyRotationFromMixedCameraToPlayerCamera();
+			}
 			CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
-			Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY);
+			Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
 			isMovementLocked = true;
 		}
 		else {
@@ -67,4 +72,19 @@ void TCompFixedCamera::updateInput() {
 
 TCompTransform* TCompFixedCamera::getTransform() {
 	return transformHandle;
+}
+
+void TCompFixedCamera::CopyRotationFromMixedCameraToPlayerCamera() {
+	CHandle leavingCameraHandle = CHandle(this).getOwner();
+	CEntity* leavingCameraEntity = leavingCameraHandle;
+	TCompTransform* leavingCameraTransform = leavingCameraEntity->get<TCompTransform>();
+	CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
+	CEntity* playerCameraEntity = playerCameraHandle;
+	TCompTransform* playerCameraTransform = playerCameraEntity->get<TCompTransform>();
+	//playerCameraTransform->setPosition(leavingCameraTransform->getPosition());
+	float yPLayer, pPlayer, rPlayer;
+	playerCameraTransform->getYawPitchRoll(&yPLayer, &pPlayer, &rPlayer);
+	float yLeavingCamera, pLeavingCamera, rLeavingCamera;
+	leavingCameraTransform->getYawPitchRoll(&yLeavingCamera, &pLeavingCamera, &rLeavingCamera);
+	playerCameraTransform->setYawPitchRoll(yLeavingCamera, pLeavingCamera, rPlayer);
 }

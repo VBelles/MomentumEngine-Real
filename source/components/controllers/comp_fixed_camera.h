@@ -5,6 +5,8 @@
 class CEntity;
 class TCompTransform;
 
+using namespace Interpolator;
+
 class TCompFixedCamera : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
@@ -14,6 +16,7 @@ private:
 	float panningSpeed;
 	bool returnToPlayerCameraWithInput;
 	float timeToMixOut;
+	bool modifyPlayerCameraRotation = true;
 
 	CHandle transformHandle;
 
@@ -29,6 +32,9 @@ private:
 
 	TCompTransform* getTransform();
 
+	TCubicOutInterpolator* cubicOutInterpolator;
+
+	void CopyRotationFromMixedCameraToPlayerCamera();
 public:
 	static void registerMsgs();
 	void debugInMenu();

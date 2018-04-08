@@ -28,7 +28,8 @@
 				"fov" : 80 
 			},
 			"fixed_camera" : {
-				"returnToPlayerCameraWithInput" : true
+				"returnToPlayerCameraWithInput" : true,
+				"modifyPlayerCameraRotation" : true
 			}
 		}
 	},

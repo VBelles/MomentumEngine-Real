@@ -23,7 +23,12 @@ void TCompMixCameraTrigger::registerMsgs() {
 }
 
 void TCompMixCameraTrigger::onCreate(const TMsgEntityCreated& msg) {
-
+	cubicInInterpolator = new TCubicInInterpolator();
+	cubicOutInterpolator = new TCubicOutInterpolator();
+	cubicInOutInterpolator = new TCubicInOutInterpolator();
+	expoInInterpolator = new TExpoInInterpolator();
+	expoOutInterpolator = new TExpoOutInterpolator();
+	expoInOutInterpolator = new TExpoInOutInterpolator();
 }
 
 void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
@@ -32,7 +37,7 @@ void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		CHandle h_camera = getEntityByName(cameraToMix);
 		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 		playerCameraEntity->sendMsg(TMsgLockCameraInput{ true });
-		Engine.getCameras().blendInCamera(h_camera, timeToMixIn, CModuleCameras::EPriority::GAMEPLAY);
+		Engine.getCameras().blendInCamera(h_camera, timeToMixIn, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
 	}
 }
 
@@ -47,7 +52,7 @@ void TCompMixCameraTrigger::onTriggerExit(const TMsgTriggerExit & msg) {
 			}
 			CEntity* cameraToMixEntity = getEntityByName(cameraToMix);
 			cameraToMixEntity->sendMsg(TMsgLockCameraInput{ true });
-			Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY);
+			Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
 		}
 	}
 }

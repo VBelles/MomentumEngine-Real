@@ -302,7 +302,7 @@
 			"name": "player_camera",
 			"transform": {},
 			"camera" : {
-				"fov" : 90,
+				"fov" : 80,
 				"z_near" : 0.1,
 				"active": true
 			},
@@ -311,11 +311,10 @@
 				"distance_to_target": 5.5,
 				"camera_speed": "2 1",
 				"centering_camera_speed": "18 9",
-				"max_pitch": 80,
-				"min_pitch": -80,
+				"max_pitch": 60,
+				"min_pitch": -70,
 				"yaw": 125,
 				"pitch": -20
-
 			}
 		}
 	}

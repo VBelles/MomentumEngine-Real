@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
+#include "game_constants.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
 #include "components/controllers/comp_camera_player.h"
@@ -564,6 +565,8 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 		velocityVector = VEC3(0, 0, 0);
 		SetConcurrentState(ActionStates::Idle);
 		SetBaseState(ActionStates::AirborneNormal);
+		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+		Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
 	}
 }
 
@@ -575,6 +578,8 @@ void TCompPlayerModel::OnDead() {
 	SetBaseState(ActionStates::AirborneNormal);
 	hp = maxHp;
 	GetPowerGauge()->ResetPower();
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 
