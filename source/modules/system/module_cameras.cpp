@@ -116,18 +116,19 @@ void CModuleCameras::blendOutCamera(CHandle camera, float blendTime) {
 	}
 }
 
-bool CModuleCameras::IsCameraIdle(CHandle camera) {
+bool CModuleCameras::IsCameraAloneInMix(CHandle camera) {
 	bool result = false;
 	TMixedCamera* mc = getMixedCamera(camera);
+	
 	if (mc) {
-		result = mc->state == TMixedCamera::ST_IDLE;
-		if(result) dbg("Idle\n");
-		else dbg("Blending\n");
+		result = _mixedCameras.size() == 1;
+		if(result) dbg("Idle and alone\n");
+		else dbg("at least one camera blending in\n");
 	}
 	else {
-		dbg("Not mixed\n");
+		dbg("camera not mixed\n");
 	}
-
+	dbg("cameras in mix: %d\n",_mixedCameras.size());
 	return result;
 }
 
