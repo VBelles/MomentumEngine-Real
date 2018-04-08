@@ -40,11 +40,15 @@ void TCompMixCameraTrigger::onTriggerExit(const TMsgTriggerExit & msg) {
 	CEntity* entity = msg.h_other_entity;
 	std::string playerName = PLAYER_NAME;
 	if (strcmp(PLAYER_NAME, entity->getName()) == 0) {
-		if (modifyPlayerCameraRotation) {
-			CopyRotationFromMixedCameraToPlayerCamera();
-		}
 		CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
-		Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY);
+		if (!Engine.getCameras().IsCameraIdle(playerCameraHandle)) {
+			if (modifyPlayerCameraRotation) {
+				CopyRotationFromMixedCameraToPlayerCamera();
+			}
+			CEntity* cameraToMixEntity = getEntityByName(cameraToMix);
+			cameraToMixEntity->sendMsg(TMsgLockCameraInput{ true });
+			Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY);
+		}
 	}
 }
 

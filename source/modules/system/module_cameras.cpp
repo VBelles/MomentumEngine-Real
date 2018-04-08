@@ -97,7 +97,7 @@ void CModuleCameras::setOutputCamera(CHandle camera) {
 
 void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority priority, Interpolator::IInterpolator* interpolator) {
 	TMixedCamera* mc = getMixedCamera(camera);
-	//if (!mc)
+	//if (!mc) 
 		//Volver a blendear una que está a medio blendear
 		//de momento hago cómo si el if no existiera, qué problemas dará? ya se verá
 		TMixedCamera new_mc;
@@ -107,7 +107,6 @@ void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority pr
 		new_mc.blendIn(blendTime);
 
 		_mixedCameras.push_back(new_mc);
-
 }
 
 void CModuleCameras::blendOutCamera(CHandle camera, float blendTime) {

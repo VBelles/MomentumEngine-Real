@@ -26,6 +26,9 @@
 			},
 			"camera" : {
 				"fov" : 80 
+			},
+			"fixed_camera" : {
+				"returnToPlayerCameraWithInput" : true
 			}
 		}
 	},
@@ -44,7 +47,7 @@
 				"cameraToMix": "fixed_camera",
 				"timeToMixIn": 1.2,
 				"timeToMixOut": 1.4,
-				"modifyPlayerCameraRotation" : false
+				"modifyPlayerCameraRotation" : true
 			}
 		}
 	},
