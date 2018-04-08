@@ -16,6 +16,7 @@ public:
 		Player = 1 << 2,
 		Enemy = 1 << 3,
 		Mechanism = 1 << 4,
+		Trigger = 1 << 5,
 		Scenario = Wall | Floor,
 		Characters = Player | Enemy,
 		All = Wall | Floor | Player | Enemy | Mechanism
@@ -27,6 +28,7 @@ public:
 		{ "player", Player },
 		{ "enemy", Enemy },
 		{ "mechanism", Mechanism },
+		{ "trigger", Trigger },
 		{ "scenario", Scenario },
 		{ "characters", Characters },
 		{ "all", All }

@@ -42,7 +42,9 @@
 			"collider":{
 				"shape": "box",
 				"halfExtent" : "5 5 5",
-				"is_trigger" : true
+				"is_trigger" : true,
+				"group" : ["trigger"],
+				"mask" : ["player"]
 			},
 			"mixCameraTrigger":{
 				"cameraToMix": "fixed_camera",
@@ -73,7 +75,9 @@
 			"collider":{
 				"shape": "box",
 				"halfExtent" : "10 6 10",
-				"is_trigger" : true
+				"is_trigger" : true,
+				"group" : ["trigger"],
+				"mask" : ["player"]
 			},
 			"mixCameraTrigger":{
 				"cameraToMix": "fixed_camera_2",

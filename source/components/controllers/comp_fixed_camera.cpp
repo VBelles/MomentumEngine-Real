@@ -49,7 +49,7 @@ void TCompFixedCamera::updateInput() {
 			EngineInput[Input::EPadButton::PAD_RANALOG_Y].value
 		};
 		auto& mouse = EngineInput[Input::PLAYER_1].mouse();
-		if (returnToPlayerCameraWithInput && (padInput.Length() > PAD_DEAD_ZONE || mouse.position_delta != VEC2::Zero)) {
+		if (returnToPlayerCameraWithInput && (padInput.Length() > PAD_DEAD_ZONE || mouse.position_delta != VEC2::Zero || EngineInput["center_camera"].getsPressed())) {
 			if (modifyPlayerCameraRotation) {
 				CopyRotationFromMixedCameraToPlayerCamera();
 			}
