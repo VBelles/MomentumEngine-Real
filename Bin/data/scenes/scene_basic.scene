@@ -139,5 +139,30 @@
 				"fov": 150
 			}
 		}
+	},
+	{
+		"entity":
+		{
+			"name": "breakable_box_01",
+			"render": [
+				{
+					"mesh": "data/meshes/door.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
+				}
+			],
+			"transform": {
+				"pos": "-40 27 -47",
+				"lookat": "120 27 0"
+			},
+			"breakable":{
+				"hp": 1
+			},
+			"collider": {
+				"shape": "box",
+				"halfExtent": "2.5 3.5 1.0"
+			}
+		}
 	}
 ]

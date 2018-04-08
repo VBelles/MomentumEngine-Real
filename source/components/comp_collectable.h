@@ -26,16 +26,16 @@ private:
 
 public:
 
-	void debugInMenu();
 	static void registerMsgs();
+	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
-
-	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void update(float dt);
 
+	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onTriggerEnter(const TMsgTriggerEnter& msg);
-	void collect();
 	void OnColliderDestroyed(const TMsgColliderDestroyed& msg);
+
+	void collect();
 	Type getTypeByName(std::string name);
 };
 
