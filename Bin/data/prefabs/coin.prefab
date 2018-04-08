@@ -11,7 +11,7 @@
 					"materials": [
 						"data/materials/ambar.material"
 					],
-					"color": "1 0 0 1.0"
+					"color": "1 1 0 1"
 				}
 			],
 			"collectable": {
@@ -21,7 +21,7 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"radius" : 0.5,
-				"group": ["all"],
+				"group": ["scenario"],
 				"mask": ["player"]
 			}
 		}

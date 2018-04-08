@@ -25,7 +25,7 @@ void TCompBreakable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompBreakable::update(float dt) {
-
+	
 }
 
 void TCompBreakable::onHit(const TMsgAttackHit & msg) {
@@ -43,17 +43,21 @@ void TCompBreakable::onDie() {
 
 void TCompBreakable::dropLoot() {
 	TEntityParseContext ctx;
-	if (parseScene("data/prefabs/crisalida.prefab", ctx)) {
+	if (parseScene("data/prefabs/coin.prefab", ctx)) {
 		CEntity* coinEntity = ctx.current_entity;
 		TCompTransform* coinTransform = coinEntity->get<TCompTransform>();
 		TCompCollectable* collectable = coinEntity->get<TCompCollectable>();
-		coinTransform->setPosition(getTransform()->getPosition() + VEC3::Up * 1);
+		TCompCollider* collider = coinEntity->get<TCompCollider>();
+		VEC3 position = getTransform()->getPosition() + VEC3::Up * 1;
+		coinTransform->setPosition(position);
+		PxRigidActor* actor = (PxRigidActor*) collider->actor;
+		actor->setGlobalPose(PxTransform(toPhysx(position)));
 	}
 }
 
 void TCompBreakable::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
-	dropLoot();
 	CHandle(this).getOwner().destroy();
+	dropLoot();
 }
 
 
