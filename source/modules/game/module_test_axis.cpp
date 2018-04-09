@@ -60,14 +60,6 @@ bool CModuleTestAxis::start() {
 	//const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
 	//registerMesh(createCurveMesh(*curve, 100), "curve.mesh");
 
-	if (!cb_camera.create(CB_CAMERA)) return false;
-	if (!cb_object.create(CB_OBJECT)) return false;
-	if (!cb_light.create(CB_LIGHT))   return false;
-
-	cb_light.activate();
-	cb_object.activate();
-	cb_camera.activate();
-
 	//All scenes created
 	TMsgAllScenesCreated msg;
 	for (auto& comp : TCompName::all_names) {
@@ -79,9 +71,6 @@ bool CModuleTestAxis::start() {
 }
 
 bool CModuleTestAxis::stop() {
-	cb_light.destroy();
-	cb_camera.destroy();
-	cb_object.destroy();
 	return true;
 }
 
@@ -122,9 +111,9 @@ void CModuleTestAxis::render() {
     }
 
 	// Render the grid
-	cb_object.obj_world = MAT44::Identity;
+	/*cb_object.obj_world = MAT44::Identity;
 	cb_object.obj_color = VEC4(1, 1, 1, 1);
-	cb_object.updateGPU();
+	cb_object.updateGPU();*/
 
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
 	solid->activate();

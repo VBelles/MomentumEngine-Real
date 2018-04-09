@@ -64,6 +64,14 @@ bool CModuleRender::start() {
     camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
     camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
+	if (!cb_camera.create(CB_CAMERA)) return false;
+	if (!cb_object.create(CB_OBJECT)) return false;
+	if (!cb_light.create(CB_LIGHT))   return false;
+
+	cb_light.activate();
+	cb_object.activate();
+	cb_camera.activate();
+
     return true;
 }
 
@@ -73,6 +81,10 @@ LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 }
 
 bool CModuleRender::stop() {
+	cb_light.destroy();
+	cb_camera.destroy();
+	cb_object.destroy();
+
     ImGui_ImplDX11_Shutdown();
 
     destroyRenderUtils();
@@ -136,9 +148,8 @@ void CModuleRender::activateMainCamera() {
     activateCamera(*cam, Render.width, Render.height);
 }
 
-
 void CModuleRender::generateFrame() {
-    {
+    { // Esto tendría que ir en module_entities ¿?
         PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
         CTraceScoped gpu_scope("shadowsMapsGeneration");
         // Generate the shadow map for each active light
