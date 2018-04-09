@@ -16,7 +16,7 @@ void TCompFixedCamera::renderDebug() {
 // -------------------------------------------------
 void TCompFixedCamera::load(const json& j, TEntityParseContext& ctx) {
 	returnToPlayerCameraWithInput = j.value("returnToPlayerCameraWithInput", false);
-	panningSpeed = j.value("panningSpeed", 1.f);
+	panningSpeed = j.value("panningSpeed", 12.f);
 	timeToMixOut = j.value("timeToMixOut", 1.f);
 	modifyPlayerCameraRotation = j.value("modifyPlayerCameraRotation", true);
 }
@@ -34,10 +34,50 @@ void TCompFixedCamera::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	transformHandle = get<TCompTransform>();
 	assert(transformHandle.isValid());
 	cubicOutInterpolator = new TCubicOutInterpolator();
+	TCompTransform* transform = transformHandle;
+	originalPosition = transform->getPosition();
+	leftPosition = originalPosition + transform->getLeft() * positionRange;
+	rightPosition = originalPosition - transform->getLeft() * positionRange;
+	upperPosition = originalPosition + transform->getUp() * positionRange;
+	upperPosition = originalPosition - transform->getUp() * positionRange;
 }
 
 void TCompFixedCamera::update(float delta) {	
+	TCompTransform* transform = getTransform();
 	updateInput();
+	if (!countingForReposition) {
+		if (input == VEC2::Zero) {
+			countingForReposition = true;
+			repositionTimer.reset();
+		}
+	}
+	else {
+		if (input != VEC2::Zero) {
+			countingForReposition = false;
+			isRepositioning = false;
+		}
+		else if(!isRepositioning && repositionTimer.elapsed() >= repositionTime){
+			isRepositioning = true;
+		}
+	}
+	if (isRepositioning) {
+		if (panningSpeed * delta < VEC3::Distance(originalPosition, transform->getPosition())) {
+			VEC3 returnDirection = originalPosition - transform->getPosition();
+			transform->setPosition(transform->getPosition() + returnDirection * panningSpeed * delta);
+		}
+		else {
+			transform->setPosition(originalPosition);
+		}
+	}
+	else if (!returnToPlayerCameraWithInput) {
+		
+		input.Normalize();
+		VEC3 verticalMovement = transform->getUp() * input.y;
+		VEC3 horizontalMovement = transform->getLeft() * input.x;
+		VEC3 newPos = transform->getPosition() + (verticalMovement + horizontalMovement) * panningSpeed * delta;
+		
+		transform->setPosition(newPos);
+	}
 }
 
 void TCompFixedCamera::updateInput() {

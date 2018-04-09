@@ -48,7 +48,7 @@
 			},
 			"mixCameraTrigger":{
 				"cameraToMix": "fixed_camera",
-				"timeToMixIn": 1.2,
+				"timeToMixIn": 2.5,
 				"timeToMixOut": 1.4,
 				"modifyPlayerCameraRotation" : true
 			}
@@ -62,7 +62,11 @@
 				"lookat": "-76 0 -86"
 			},
 			"camera" : {
-				"fov" : 60 
+				"fov" : 80 
+			},
+			"fixed_camera" : {
+				"returnToPlayerCameraWithInput" : false,
+				"modifyPlayerCameraRotation" : true
 			}
 		}
 	},
@@ -81,7 +85,7 @@
 			},
 			"mixCameraTrigger":{
 				"cameraToMix": "fixed_camera_2",
-				"timeToMixIn": 1,
+				"timeToMixIn": 1.8,
 				"timeToMixOut": 1
 			}
 		}
