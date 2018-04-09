@@ -99,6 +99,8 @@ void TCompPlatformMove::update(float dt) {
                         transform->getRotation().w };
 	rigidDynamic->setKinematicTarget(newTransform);
 
+	transform->setPosition({ newTransform.p.x, newTransform.p.y, newTransform.p.z });
+
     // Move the player with the platform.
     if ( isPlayerInTrigger ) {
         CEntity* ePlayer = (CEntity*)player;

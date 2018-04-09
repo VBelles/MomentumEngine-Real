@@ -9,7 +9,6 @@
     },
     "update": [
         "fwd_msg",
-        "hierarchy",
         "platform_move",
         "collectable",
         "mechanism",
@@ -39,6 +38,7 @@
         "render",
         "fsm",
         "fake_animation",
+        "hierarchy",
         "player_input"
     ],
     "render_debug" : [

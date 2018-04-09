@@ -61,8 +61,6 @@ void TCompPlatform::update(float dt) {
     assert(collider);
     PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
 
-    // TODO: Los colliders no se mueven exactamente como el parent, hay un desfase. !!!
-
     // Get comp_follow_curve movement.
     TCompHierarchy* hierarchy = get<TCompHierarchy>();
     CEntity* parent = hierarchy->h_parent;

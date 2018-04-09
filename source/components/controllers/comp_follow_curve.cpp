@@ -63,6 +63,7 @@ void TCompFollowCurve::update(float dt) {
 
 	PxTransform newTransform;
     newTransform.p = { posToGo.x, posToGo.y, posToGo.z };
+	transform->setPosition({ posToGo.x, posToGo.y, posToGo.z }); // Avoid position shift.
     QUAT rotation = transform->getRotation();
 	newTransform.q = { rotation.x, rotation.y, rotation.z, rotation.w };
 	rigidDynamic->setKinematicTarget(newTransform);
