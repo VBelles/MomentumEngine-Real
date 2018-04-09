@@ -31,7 +31,7 @@
       },
       "follow_curve": {
         "curve_type" : "catmull-rom",
-        "loop" : false,
+        "loop" : true,
         "knots" : [
           "-93.361 19.3225 -46.7886",
           "-83.361 19.3225 -46.7886",
@@ -45,9 +45,32 @@
           "-83.361 19.3225 -46.7886",
           "-93.361 39.3225 -46.7886"
         ],
-        "speed" : 0.25,
+        "speed" : 0.2,
         "automove" : true
       }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "w24_rampa000_trigger",
+      "transform":
+      {
+        "pos": "-93.361 19.5725 -46.7886",
+        "rotation": "-0.0522171 -0.296138 -0.165611 -0.939228"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "is_dynamic": true,
+        "is_trigger": true,
+        "halfExtent": "4.75847 1.5174 4.98927",
+        "mask": ["player"]
+      },
+      "hierarchy": {
+        "parent": "w24_rampa000"
+      },
+      "platform": {}
     }
   },
   {

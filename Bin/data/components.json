@@ -32,6 +32,7 @@
         "camera_player",
         "camera",
         "follow_curve",
+        "platform",
         "curve_controller",
         "culling",
         "light_dir",

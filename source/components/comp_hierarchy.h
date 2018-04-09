@@ -1,5 +1,4 @@
-#ifndef INC_COMP_HIERARCHY_TRANSFORM_H_
-#define INC_COMP_HIERARCHY_TRANSFORM_H_
+#pragma once
 
 #include "geometry/transform.h"
 
@@ -10,11 +9,11 @@ struct TMsgEntitiesGroupCreated;
 // our transform based on my parent transform.
 // Do not use it for static meshes
 struct TCompHierarchy : public CTransform, public TCompBase {
-	CHandle h_parent_transform;
-	CHandle h_my_transform;
-	CHandle h_my_collider;
-	CHandle h_parent;
-	std::string parent_name;          // entity name as search in the ctx
+	CHandle     h_parent_transform;
+	CHandle     h_my_transform;
+	CHandle     h_my_collider;
+	CHandle     h_parent;
+	std::string parent_name;        // entity name as search in the ctx
 
 	void setParentEntity(CHandle new_h_parent);
 
@@ -25,6 +24,3 @@ struct TCompHierarchy : public CTransform, public TCompBase {
 	static void registerMsgs();
 	DECL_SIBLING_ACCESS();
 };
-
-
-#endif

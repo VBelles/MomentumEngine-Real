@@ -47,34 +47,26 @@ void TCompFollowCurve::update(float dt) {
     }
 
     // evaluar curva con dicho ratio
-    _pos = _curve->evaluate(_ratio);
-	//dbg("pos: x: %f y: %f z: %f\n", pos.x, pos.y, pos.z);
+    VEC3 posToGo = _curve->evaluate(_ratio);
+	dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
+
+    TCompTransform* transform = get<TCompTransform>();
+	if (!transform) return;
+    VEC3 myPosition = transform->getPosition();
+
+    _movement = posToGo - myPosition;
 
 	// Move the component.
-	TCompTransform* transform = get<TCompTransform>();
-	if (!transform) return;
-	/*VEC3 myPosition = transform->getPosition();
-
-	VEC3 direction = _pos - myPosition;
-	direction.Normalize();
-
-	VEC3 _movement = direction * _speed * dt;*/
-
 	TCompCollider* collider = get<TCompCollider>();
 	assert(collider);
 	PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
 
 	PxTransform newTransform;
-	/*newTransform.p = {  myPosition.x + _movement.x,
-                        myPosition.y + _movement.y,
-                        myPosition.z + _movement.z };*/
-    newTransform.p = { _pos.x, _pos.y, _pos.z };
+    newTransform.p = { posToGo.x, posToGo.y, posToGo.z };
     QUAT rotation = transform->getRotation();
 	newTransform.q = { rotation.x, rotation.y, rotation.z, rotation.w };
 	rigidDynamic->setKinematicTarget(newTransform);
 
-	// TODO: Que vuelva por donde ha venido, ahora mismo se teleporta al primer punto al acabar.
+	// TODO: Que vuelva por donde ha venido si loop = true, ahora mismo se teleporta al primer punto al acabar.
     // TODO: Añadir "is_dynamic": true al collider en el exportador de Max si tiene follow_curve.
-
-	// TODO: hacer otro componente que sea "plataforma" y sea el que comprueba si tiene algo (al player) encima y moverlo si hace falta.
 }

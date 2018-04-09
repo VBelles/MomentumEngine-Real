@@ -13,7 +13,7 @@ class TCompFollowCurve : public TCompBase {
     float _ratio = 0.f;
     float _speed = 0.f;
     bool _automove = false;
-    VEC3 _pos;
+    VEC3 _movement = {0.f, 0.f, 0.f};
 
 public:
     void debugInMenu();
@@ -24,4 +24,5 @@ public:
     void update(float dt);
 
     void setRatio(float ratio) { _ratio = ratio; }
+    VEC3 getMovement() { return _movement; }
 };

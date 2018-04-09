@@ -55,11 +55,9 @@ void TCompHierarchy::setParentEntity(CHandle new_h_parent) {
 }
 
 void TCompHierarchy::update(float dt) {
-
 	// My parent world transform
 	TCompTransform* c_parent_transform = h_parent_transform;
-	if (!c_parent_transform)
-		return;
+	if (!c_parent_transform) return;
 
 	// My Sibling comp transform
 	TCompTransform* c_my_transform = h_my_transform;
@@ -69,8 +67,8 @@ void TCompHierarchy::update(float dt) {
 	c_my_transform->set(c_parent_transform->combineWith(*this));
 
 	if (h_my_collider.isValid()) {
-		TCompCollider *collider = h_my_collider;
-		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+		TCompCollider* collider = h_my_collider;
+		PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
 		if (collider->isEnabled()) {
 			VEC3 myPosition = c_my_transform->getPosition();
 			PxTransform newTransform;
