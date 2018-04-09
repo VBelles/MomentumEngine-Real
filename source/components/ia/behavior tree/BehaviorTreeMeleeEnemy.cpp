@@ -399,8 +399,7 @@ void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg
 
 void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	isStunned = false;
-	receivedAttack.release();
-	receivedAttack = msg.info;
+	receivedAttack.copy(msg.info);
 	current = tree["onAttackHit"];
 }
 
