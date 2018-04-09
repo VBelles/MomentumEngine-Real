@@ -368,7 +368,7 @@ void CBehaviorTreeFlyingRangedEnemy::onGroupCreated(const TMsgEntitiesGroupCreat
 
 void CBehaviorTreeFlyingRangedEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	isStunned = false;
-	receivedAttack.copy(msg.info);
+	receivedAttack = msg.info;
 	current = tree["onAttackHit"];
 }
 

@@ -35,7 +35,7 @@ struct AttackInfo {
 	Grab* grab = nullptr;
 	Propel* propel = nullptr;
 
-	void copy(const AttackInfo &toCopy) {
+	AttackInfo& AttackInfo::operator=(const AttackInfo& toCopy) {
 		damage = toCopy.damage;
 		givesPower = toCopy.givesPower;
 		activatesMechanism = toCopy.activatesMechanism;
@@ -56,6 +56,7 @@ struct AttackInfo {
 		if (toCopy.propel) {
 			propel = new Propel{ toCopy.propel->velocity };
 		}
+		return *this;
 	}
 
 	void release() {

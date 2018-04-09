@@ -48,7 +48,7 @@ void TCompRangedAttack::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg) {
 	ownerHandle = msg.ownerHandle;
-	attackInfo.copy(msg.attackInfo);
+	attackInfo = msg.attackInfo;
 	TCompTransform *transform = get<TCompTransform>();
 	transform->lookAt(msg.initialPos, msg.initialPos + msg.direction);
 	timer.reset();
@@ -59,8 +59,7 @@ void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
 		TCompCollider* collider = get<TCompCollider>();
 		collider->destroy();
 
-		AttackInfo msgAttackInfo;
-		msgAttackInfo.copy(attackInfo);
+		AttackInfo msgAttackInfo = attackInfo;
 		CEntity *otherEntity = msg.h_other_entity;
 		otherEntity->sendMsg(TMsgAttackHit{ ownerHandle, msgAttackInfo });
 
