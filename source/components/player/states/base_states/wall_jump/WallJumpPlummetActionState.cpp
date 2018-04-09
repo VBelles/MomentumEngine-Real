@@ -5,6 +5,7 @@
 WallJumpPlummetActionState::WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void WallJumpPlummetActionState::update (float delta) {
@@ -36,6 +37,7 @@ void WallJumpPlummetActionState::OnStateEnter(IActionState * lastState) {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->enable();
 	timer.reset();
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void WallJumpPlummetActionState::OnStateExit(IActionState * nextState) {

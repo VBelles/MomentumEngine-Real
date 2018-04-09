@@ -5,6 +5,7 @@
 HorizontalLauncherActionState::HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "kick";
 }
 
 void HorizontalLauncherActionState::update (float delta) {
@@ -42,6 +43,7 @@ void HorizontalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	timer.reset();
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void HorizontalLauncherActionState::OnStateExit(IActionState * nextState) {

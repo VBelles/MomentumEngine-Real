@@ -6,6 +6,7 @@ ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModel
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
+	animation = "wave";
 }
 
 void ReleasePowerGroundActionState::update (float delta) {
@@ -69,6 +70,7 @@ void ReleasePowerGroundActionState::OnStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void ReleasePowerGroundActionState::OnStateExit(IActionState * nextState) {

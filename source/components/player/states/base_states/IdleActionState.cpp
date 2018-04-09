@@ -3,6 +3,7 @@
 
 IdleActionState::IdleActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void IdleActionState::update (float delta) {
@@ -41,6 +42,7 @@ void IdleActionState::update (float delta) {
 void IdleActionState::OnStateEnter(IActionState * lastState) {
 	GroundedActionState::OnStateEnter(lastState);
 	SetPose();
+	GetPlayerModel()->getSkeleton()->blendCycle(animation);
 }
 
 void IdleActionState::OnStateExit(IActionState * nextState) {

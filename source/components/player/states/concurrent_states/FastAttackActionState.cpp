@@ -5,6 +5,7 @@
 FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void FastAttackActionState::update(float delta) {
@@ -58,7 +59,7 @@ void FastAttackActionState::OnStateExit(IActionState * nextState) {
 
 void FastAttackActionState::OnFastAttackButtonReleased() {
 	phase = AttackPhases::Startup;
-
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void FastAttackActionState::OnLeavingGround() {

@@ -3,6 +3,7 @@
 
 AirborneLongActionState::AirborneLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void AirborneLongActionState::update (float delta) {
@@ -35,7 +36,7 @@ void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 	SetPose();
 	GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->longGravityMultiplier);
 	//dbg("Entrando en airborne long\n");
-	
+	GetPlayerModel()->getSkeleton()->blendCycle(animation);
 }
 
 void AirborneLongActionState::OnStateExit(IActionState * nextState) {

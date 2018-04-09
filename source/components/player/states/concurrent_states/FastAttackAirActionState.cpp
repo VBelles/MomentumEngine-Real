@@ -5,6 +5,7 @@
 FastAttackAirActionState::FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void FastAttackAirActionState::update(float delta) {
@@ -40,6 +41,7 @@ void FastAttackAirActionState::OnStateEnter(IActionState * lastState) {
 	GetPlayerModel()->lockBaseState = true;
 	GetPlayerModel()->lockWalk = false;
 	GetPlayerModel()->lockTurning = true;
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void FastAttackAirActionState::OnStateExit(IActionState * nextState) {

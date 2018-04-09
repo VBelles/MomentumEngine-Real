@@ -6,6 +6,7 @@ ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
+	animation = "wave";
 }
 
 void ReleasePowerAirActionState::update (float delta) {
@@ -70,6 +71,7 @@ void ReleasePowerAirActionState::OnStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	GetPlayerModel()->lockTurning = true;
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void ReleasePowerAirActionState::OnStateExit(IActionState * nextState) {

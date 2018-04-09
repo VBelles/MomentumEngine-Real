@@ -3,6 +3,7 @@
 
 JumpSquatSpringActionState::JumpSquatSpringActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "wave";
 }
 
 void JumpSquatSpringActionState::update (float delta) {
@@ -24,6 +25,7 @@ void JumpSquatSpringActionState::OnStateEnter(IActionState * lastState) {
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
 	GetPlayerModel()->maxVerticalSpeed = GetPlayerModel()->maxVelocityUpwards;
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void JumpSquatSpringActionState::OnStateExit(IActionState * nextState) {

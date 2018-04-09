@@ -5,6 +5,7 @@
 GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void GrabActionState::update (float delta) {
@@ -38,6 +39,7 @@ void GrabActionState::OnStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	GetPlayerModel()->lockTurning = true;
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void GrabActionState::OnStateExit(IActionState * nextState) {

@@ -20,8 +20,8 @@ public:
 	void renderDebug();
 	void updateCtesBones();
 
-	void blendCycle(std::string animation, float weight = 1.f, float in_delay = 0.3f, bool clearPrevious = true, float out_delay = 0.3f);
-	void executeAction(std::string animation, float in_delay = 0.3f, float out_delay = 0.3f, float weight = 1.0f, bool auto_lock = false);
+	void blendCycle(std::string animation, float weight = 1.f, float in_delay = 0.0f, bool clearPrevious = true, float out_delay = 0.0f);
+	void executeAction(std::string animation, float in_delay = 0.0f, float out_delay = 0.0f, float weight = 1.0f, bool auto_lock = false);
 };
 
 #endif

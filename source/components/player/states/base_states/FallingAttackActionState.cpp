@@ -5,6 +5,7 @@
 FallingAttackActionState::FallingAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void FallingAttackActionState::update (float delta) {
@@ -43,6 +44,7 @@ void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void FallingAttackActionState::OnStateExit(IActionState * nextState) {

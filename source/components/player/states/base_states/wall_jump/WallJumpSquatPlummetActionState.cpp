@@ -3,6 +3,7 @@
 
 WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void WallJumpSquatPlummetActionState::update (float delta) {
@@ -25,6 +26,7 @@ void WallJumpSquatPlummetActionState::OnStateEnter(IActionState * lastState) {
 	SetPose();
 	endingTime = endingFrames * (1.f / 60);
 	timer.reset();
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void WallJumpSquatPlummetActionState::OnStateExit(IActionState * nextState) {

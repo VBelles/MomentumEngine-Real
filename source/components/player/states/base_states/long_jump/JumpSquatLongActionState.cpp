@@ -3,6 +3,7 @@
 
 JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void JumpSquatLongActionState::update (float delta) {
@@ -25,6 +26,7 @@ void JumpSquatLongActionState::OnStateEnter(IActionState * lastState) {
 	//dbg("Entrando en JumpSquatLong\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void JumpSquatLongActionState::OnStateExit(IActionState * nextState) {

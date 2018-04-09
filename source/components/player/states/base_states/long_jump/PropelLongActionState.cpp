@@ -4,6 +4,7 @@
 
 PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void PropelLongActionState::update (float delta) {
@@ -53,6 +54,7 @@ void PropelLongActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 	GetPlayerModel()->lastWallEntered = nullptr;
 	GetPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void PropelLongActionState::OnStateExit(IActionState * nextState) {

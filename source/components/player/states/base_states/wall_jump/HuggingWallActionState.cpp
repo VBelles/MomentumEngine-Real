@@ -3,6 +3,7 @@
 
 HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 	:AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "animation";
 }
 
 void HuggingWallActionState::update (float delta) {
@@ -53,6 +54,7 @@ void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 		GetPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
 		SetPose();
 		climbTimer.reset();
+		GetPlayerModel()->getSkeleton()->executeAction(animation);
 	}
 	else {
 		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);

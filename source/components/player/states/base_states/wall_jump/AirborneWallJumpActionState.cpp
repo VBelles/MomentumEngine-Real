@@ -3,6 +3,7 @@
 
 AirborneWallJumpActionState::AirborneWallJumpActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void AirborneWallJumpActionState::update(float delta) {
@@ -49,6 +50,7 @@ void AirborneWallJumpActionState::OnStateEnter(IActionState * lastState) {
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void AirborneWallJumpActionState::OnStateExit(IActionState * nextState) {

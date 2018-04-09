@@ -3,6 +3,7 @@
 
 LandingActionState::LandingActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void LandingActionState::update (float delta) {
@@ -39,6 +40,7 @@ void LandingActionState::OnStateEnter(IActionState * lastState) {
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
 	//dbg("Entrando en landing\n");
+	GetPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void LandingActionState::OnStateExit(IActionState * nextState) {
