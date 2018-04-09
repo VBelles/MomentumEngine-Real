@@ -13,7 +13,7 @@ protected:
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
-	float lockDuration = 0.5f;
+	float lockDuration = 0.8f;
 
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;
@@ -24,7 +24,7 @@ protected:
 
 	uint32_t enemyId = getID("enemy");
 
-	float powerToGet = 5000.f;
+	float powerToGet = 1000.f;
 
 public:
 	GrabActionState(CHandle playerModelHandle, CHandle hitbox);

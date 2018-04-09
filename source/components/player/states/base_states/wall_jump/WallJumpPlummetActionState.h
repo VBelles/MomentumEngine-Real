@@ -11,7 +11,7 @@ protected:
 
 	CHandle hitboxHandle;
 	int damage = 3;
-	float powerToGet = 5000.f;
+	float powerToGet = 4000.f;
 
 public:
 	WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox);

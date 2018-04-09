@@ -58,7 +58,7 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	maxHealth = j.value("maxHealth", 5.0f);
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
-	rotationSpeed = j.value("rotationSpeed", 90.f);
+	rotationSpeed = j.value("rotationSpeed", 45.f);
 	recallDistance = j.value("recallDistance", 5.f);
 	attackFov = deg2rad(j.value("attackFov", 60.f));
 	minCombatDistance = j.value("minCombatDistance", 2.f);

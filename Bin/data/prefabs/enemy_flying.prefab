@@ -20,7 +20,7 @@
       },
       "givePower": {
         "maxPowerToGive": 50000.0,
-        "baseMultiplier": 1.0
+        "baseMultiplier": 3.4
       },
       "respawner": {
         "respawnTime": 10.0

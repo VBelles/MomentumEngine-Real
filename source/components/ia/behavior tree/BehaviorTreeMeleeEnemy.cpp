@@ -64,7 +64,7 @@ void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
 	stepBackSpeed = j.value("stepBackSpeed", 3.5f);
-	rotationSpeed = j.value("rotationSpeed", 90.f);
+	rotationSpeed = j.value("rotationSpeed", 20.f);
 	recallDistance = j.value("recallDistance", 28.f);
 	chaseFov = deg2rad(j.value("chaseFov", 60.f));
 	fovChaseDistance = j.value("fovChaseDistance", 25.f);

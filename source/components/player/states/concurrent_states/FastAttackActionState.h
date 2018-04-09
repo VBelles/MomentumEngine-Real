@@ -23,7 +23,7 @@ class FastAttackActionState : public GroundedActionState {
 	int damage = 1;
 	AttackPhases phase = AttackPhases::Launch;
 
-	float powerToGet = 5000.f;
+	float powerToGet = 2000.f;
 
 public:
 	FastAttackActionState(CHandle playerModelHandle, CHandle hitbox);

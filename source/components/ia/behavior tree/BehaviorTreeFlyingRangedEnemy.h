@@ -12,10 +12,10 @@ struct PowerStats;
 class CBehaviorTreeFlyingRangedEnemy : public IBehaviorTree, public TCompBase {
 	DECL_SIBLING_ACCESS();
 private:
-	float maxHealth = 5.f;
+	float maxHealth = 3.f;
 	float health = maxHealth;
 	float movementSpeed = 2.5f;
-	float rotationSpeed = 90.f;
+	float rotationSpeed;
 
 	float recallDistance = 28.f;
 
@@ -30,7 +30,7 @@ private:
 
 	float propelDuration = 1.5f;
 	float floatingDuration = 1.5f;
-	float grabbedDuration = 0.5f;
+	float grabbedDuration = 0.8f;
 
 	bool isDead = false;
 	bool isStunned = false;
@@ -38,7 +38,7 @@ private:
 
 	CHandle playerHandle;
 
-	float gravity = -50.f;
+	float gravity = -55.f;
 	VEC3 initialLaunchPos;
 	VEC3 spawnPosition;
 	VEC3 velocityVector;

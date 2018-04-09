@@ -20,7 +20,7 @@ class FastAttackAirActionState : public AirborneActionState {
 	int damage = 1;
 	AttackPhases phase = AttackPhases::Launch;
 
-	float powerToGet = 5000.f;
+	float powerToGet = 1000.f;
 
 public:
 	FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox);

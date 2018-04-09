@@ -21,7 +21,7 @@ class VerticalLauncherActionState : public GroundedActionState {
 	int damage = 0;
 	AttackPhases phase = AttackPhases::Startup;
 
-	float powerToGet = 5000.f;
+	float powerToGet = 2000.f;
 
 public:
 	VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);

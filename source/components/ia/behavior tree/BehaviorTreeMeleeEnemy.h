@@ -14,9 +14,9 @@ class CBehaviorTreeMeleeEnemy : public IBehaviorTree, public TCompBase {
 private:
 	float maxHealth = 5.f;
 	float health = maxHealth;
-	float movementSpeed = 2.5f;
-	float stepBackSpeed = 3.5f;
-	float rotationSpeed = 90.f;
+	float movementSpeed = 2.0f;
+	float stepBackSpeed = 2.5f;
+	float rotationSpeed;
 
 	float recallDistance = 28.f;
 
@@ -25,17 +25,17 @@ private:
 	float smallChaseRadius = 10.f;
 
 	float attackFov = deg2rad(60);
-	float minCombatDistance = 2.f;
+	float minCombatDistance = 1.5f;
 	float maxCombatDistance = 4.f;
 	float attackCooldown = 5.f;
 	float attackDamage = 1.f;
 
-	float gravity = -50.f;
+	float gravity = -55.f;
 	VEC3 maxVelocity = { 30, 30, 30 };
 
 	float propelDuration = 1.5f;
 	float floatingDuration = 1.5f;
-	float grabbedDuration = 0.5f;
+	float grabbedDuration = 0.8f;
 
 	bool isDead = false;
 	bool isStunned = false;
