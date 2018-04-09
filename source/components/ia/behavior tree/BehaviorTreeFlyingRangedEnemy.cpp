@@ -288,7 +288,7 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 		if (parseScene(attackPrefab, ctx)) {
 			assert(!ctx.entities_loaded.empty());
 
-			AttackInfo attackInfo = {};
+			AttackInfo attackInfo;
 			attackInfo.damage = attackDamage;
 
 			VEC3 front = getTransform()->getFront();
@@ -368,8 +368,7 @@ void CBehaviorTreeFlyingRangedEnemy::onGroupCreated(const TMsgEntitiesGroupCreat
 
 void CBehaviorTreeFlyingRangedEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	isStunned = false;
-	receivedAttack.release();
-	receivedAttack = msg.info;
+	receivedAttack.copy(msg.info);
 	current = tree["onAttackHit"];
 }
 
