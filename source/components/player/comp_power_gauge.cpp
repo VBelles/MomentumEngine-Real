@@ -15,10 +15,13 @@ void TCompPowerGauge::load(const json & j, TEntityParseContext & ctx) {
 	maxPower = j.value("max_power", 30000.f);
 	powerPerLevel = j.value("power_per_level", 10000.f);
 	dropSpeed = j.value("drop_speed", 5.f * 60.f);
+	freezeDropTime = j.value("freezeDropTime", 1.5f);
 }
 
 void TCompPowerGauge::update(float delta) {
-	IncreasePower(-dropSpeed * delta);
+	if (freezeDropTimer.elapsed() > freezeDropTime) {
+		IncreasePower(-dropSpeed * delta);
+	}
 }
 
 void TCompPowerGauge::ReleasePower() {
@@ -34,6 +37,9 @@ void TCompPowerGauge::ResetPower() {
 }
 
 void TCompPowerGauge::IncreasePower(float increment) {
+	if (increment > 0) {
+		freezeDropTimer.reset();
+	}
 	//Increase power
 	float lastPower = power;
 	power += increment;
@@ -60,9 +66,6 @@ void TCompPowerGauge::IncreasePower(float increment) {
 			if (e) e->sendMsg(msg);
 		}
 	}
-
-	
-	
 }
 
 

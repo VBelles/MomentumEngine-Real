@@ -13,6 +13,9 @@ public:
 	float powerPerLevel = 0.f;
 	float dropSpeed = 0.f;
 	bool isPure = true;
+	float freezeDropTime = 1.f;
+
+	CTimer freezeDropTimer;
 
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
