@@ -91,6 +91,7 @@
     <ClCompile Include="camera\camera.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_appear.cpp" />
+    <ClCompile Include="components\comp_breakable.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_mechanism_system.cpp" />
+    <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
@@ -120,6 +122,7 @@
     <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
     <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
     <ClCompile Include="components\controllers\comp_fake_animation_controller.cpp" />
+    <ClCompile Include="components\controllers\comp_fixed_camera.cpp" />
     <ClCompile Include="components\controllers\comp_player_input.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
@@ -221,6 +224,7 @@
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\game\physics\GameQueryFilterCallback.cpp" />
     <ClCompile Include="modules\game\physics\GameSimulationEventCallback.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
@@ -258,6 +262,7 @@
     <ClInclude Include="components\comp_aabb.h" />
     <ClInclude Include="components\comp_appear.h" />
     <ClInclude Include="components\comp_base.h" />
+    <ClInclude Include="components\comp_breakable.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_circular_controller.h" />
     <ClInclude Include="components\comp_collectable.h" />
@@ -274,6 +279,7 @@
     <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_mechanism_system.h" />
+    <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
@@ -287,6 +293,7 @@
     <ClInclude Include="components\controllers\comp_camera_flyover.h" />
     <ClInclude Include="components\controllers\comp_camera_orbit.h" />
     <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
+    <ClInclude Include="components\controllers\comp_fixed_camera.h" />
     <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />
@@ -355,6 +362,7 @@
     <ClInclude Include="fsm\fsm.h" />
     <ClInclude Include="fsm\state.h" />
     <ClInclude Include="fsm\transition.h" />
+    <ClInclude Include="game_constants.h" />
     <ClInclude Include="modules\game\physics\GameControllerHitCallback.h" />
     <ClInclude Include="modules\game\physics\GameFilterShader.h" />
     <ClInclude Include="geometry\angular.h" />
@@ -403,6 +411,7 @@
     <ClInclude Include="modules\game\physics\module_physics.h" />
     <ClInclude Include="modules\system\module_render.h" />
     <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\game\physics\GameQueryFilterCallback.h" />
     <ClInclude Include="modules\game\physics\GameSimulationEventCallback.h" />
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />

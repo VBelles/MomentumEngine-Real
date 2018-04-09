@@ -5,6 +5,9 @@
 
 using namespace physx;
 
+class GameControllerHitCallback;
+class GameQueryFilterCallback;
+
 class CModulePhysics : public IModule {
 public:
 	enum FilterGroup {
@@ -12,15 +15,20 @@ public:
 		Floor = 1 << 1,
 		Player = 1 << 2,
 		Enemy = 1 << 3,
+		Mechanism = 1 << 4,
+		Trigger = 1 << 5,
 		Scenario = Wall | Floor,
 		Characters = Player | Enemy,
-		All = Wall | Floor | Player | Enemy
+		All = Wall | Floor | Player | Enemy | Mechanism
 	};
 
 	std::map<std::string, FilterGroup> filterGroupByName = {
 		{ "wall", Wall },
 		{ "floor", Floor },
 		{ "player", Player },
+		{ "enemy", Enemy },
+		{ "mechanism", Mechanism },
+		{ "trigger", Trigger },
 		{ "scenario", Scenario },
 		{ "characters", Characters },
 		{ "all", All }
@@ -43,6 +51,10 @@ public:
 
 	PxScene* getScene() { return gScene; }
 
+	GameControllerHitCallback* getGameControllerHitCallback() { return gameControllerHitCallback; }
+	GameQueryFilterCallback* getGameQueryFilterCallback() { return gameQueryFilterCallback; }
+
+
 private:
 	PxDefaultAllocator      gDefaultAllocatorCallback;
 	PxDefaultErrorCallback  gDefaultErrorCallback;
@@ -61,10 +73,12 @@ private:
 	std::set<CHandle> toRelease;
 
 	bool createPhysx();
-	bool createScene();    
+	bool createScene();
 
 	void releaseColliders();
 
+	GameControllerHitCallback* gameControllerHitCallback;
+	GameQueryFilterCallback* gameQueryFilterCallback;
 
-	
+
 };

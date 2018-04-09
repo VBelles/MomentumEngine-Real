@@ -18,6 +18,7 @@
     "data/scenes/testExporter-collisions.scene",
     "data/scenes/whitebox23.scene",
     "data/scenes/multimaterial.scene",
+    "data/scenes/skeleton_demo.scene",
     "dummy"
   ]
 }

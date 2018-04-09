@@ -9,48 +9,46 @@ class TCompCameraPlayer : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 private:
+
+	//Json configuration
+	std::string targetName;
+	float defaultDistanceToTarget = 0.f;
+	VEC2 cameraSpeed;
+	VEC2 centeringCameraSpeed;
+	float minPitch = 0.f;
+	float maxPitch = 0.f;
+	float initialYaw = 0.f;
+	float initialPitch = 0.f;
+	
 	CHandle targetHandle;
 	CHandle transformHandle;
+	CTransform targetTransform;
 
-	//General camera configuration
-	float fovInDegrees;
-	float zNear;
-	float zFar;
+	VEC2 input;
 
-	VEC2 cameraSpeed = { 2.f, 1.f };
-	float zoomSpeed = 10.f;
-
-	const float Y_ANGLE_MIN = deg2rad(-60.f);
-	const float Y_ANGLE_MAX = deg2rad(30.f);
-	const float DEFAULT_Y = deg2rad(-20.f);
-
-	float maxVerticalOffset = 3.0f;
-	float minVerticalOffset = 0.2f;
-	VEC3 verticalOffsetVector = VEC3::Zero;
-	float pitchAngleRange;
-
-	float defaultDistanceToTarget = 0.f;
-	float currentDistanceToTarget;
-	VEC3 distanceVector = VEC3::Zero;
-
-	std::string targetName;
+	bool isMovementLocked = false;
 
 	float padDeadZone = 0.1f;
 
-	VEC3 centeredPosition;
+	VEC2 desiredYawPitch;
 	bool centeringCamera = false;
 
-	float sphereCastRadius = 0.2f;
+	float sphereCastRadius = 0.0f;
 
-	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	void CalculateVerticalOffsetVector();
-	bool SphereCast(PxOverlapBuffer hit);
-	void AproachToFreePosition();
 
-	CEntity* GetTarget();
-	TCompTransform* GetTargetTransform();
-	VEC3 GetTargetPosition();
-	TCompTransform* GetTransform();
+	//Msgs
+	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onLockCameraInput(const TMsgLockCameraInput& msg);
+
+	void updateTargetTransform();
+	void updateInput();
+	void updateMovement(float delta);
+	void updateCenteringCamera(float delta);
+	bool sphereCast();
+	void sweepBack();
+
+	CEntity* getTarget();
+	TCompTransform* getTransform();
 
 public:
 	static void registerMsgs();
@@ -58,8 +56,6 @@ public:
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
-	VEC2 GetIncrementFromInput(float delta);
-	void UpdateMovement(VEC2 increment, float delta);
 	void CenterCamera();
 };
 

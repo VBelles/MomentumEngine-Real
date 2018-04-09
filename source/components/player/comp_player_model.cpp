@@ -1,10 +1,12 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
+#include "game_constants.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/filters/PlayerFilterCallback.h"
+#include "components/comp_collectable.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/base_states/GhostJumpWindowActionState.h"
@@ -207,7 +209,7 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 
 		//Hp bar
-		std::string hpProgressBarText = "HP: " + std::to_string(hp) + "/" + std::to_string(maxHp);
+		std::string hpProgressBarText = "HP: " + std::to_string((int)hp) + "/" + std::to_string((int)maxHp);
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 0, 255, 0 });
 		ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
 		ImGui::PopStyleColor();
@@ -258,46 +260,47 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
 	grabHitbox = getEntityByName("Grab hitbox");
 	wallJumpPlummetHitbox = getEntityByName("Wall jump plummet hitbox");
-	releasePowerSmallHitbox = getEntityByName("Release power small hitbox"); 
+	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
 	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
 
+	CHandle playerModelHandle = CHandle(this);
 	baseStates = {
-		{ ActionStates::Idle, new IdleActionState(CHandle(this)) },
-	{ ActionStates::JumpSquat, new JumpSquatActionState(CHandle(this)) },
-	{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(CHandle(this)) },
-	{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(CHandle(this)) },
-	{ ActionStates::Run, new RunActionState(CHandle(this)) },
-	{ ActionStates::Walk, new WalkActionState(CHandle(this)) },
-	{ ActionStates::AirborneNormal, new AirborneNormalActionState(CHandle(this)) },
-	{ ActionStates::GhostJumpSquatLong, new GhostJumpSquatLongActionState(CHandle(this)) },
-	{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(CHandle(this)) },
-	{ ActionStates::AirborneLong, new AirborneLongActionState(CHandle(this)) },
-	{ ActionStates::TurnAround, new TurnAroundActionState(CHandle(this)) },
-	{ ActionStates::Landing, new LandingActionState(CHandle(this)) },
-	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(CHandle(this), fallingAttackLandingHitbox) },
-	{ ActionStates::PropelHigh, new PropelHighActionState(CHandle(this)) },
-	{ ActionStates::PropelLong, new PropelLongActionState(CHandle(this)) },
-	{ ActionStates::HuggingWall, new HuggingWallActionState(CHandle(this)) },
-	{ ActionStates::WallJumpSquat, new WallJumpSquatActionState(CHandle(this)) },
-	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(CHandle(this)) },
-	{ ActionStates::FallingAttack, new FallingAttackActionState(CHandle(this), fallingAttackHitbox) },
-	{ ActionStates::StrongAttack, new StrongAttackActionState(CHandle(this), strongAttackHitbox) },
-	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(CHandle(this), verticalLauncherHitbox) },
-	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(CHandle(this), horizontalLauncherHitbox) },
-	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
-	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(CHandle(this)) },
-	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(CHandle(this)) },
-	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(CHandle(this)) },
-	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(CHandle(this), wallJumpPlummetHitbox) },
+		{ ActionStates::Idle, new IdleActionState(playerModelHandle) },
+	{ ActionStates::JumpSquat, new JumpSquatActionState(playerModelHandle) },
+	{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(playerModelHandle) },
+	{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(playerModelHandle) },
+	{ ActionStates::Run, new RunActionState(playerModelHandle) },
+	{ ActionStates::Walk, new WalkActionState(playerModelHandle) },
+	{ ActionStates::AirborneNormal, new AirborneNormalActionState(playerModelHandle) },
+	{ ActionStates::GhostJumpSquatLong, new GhostJumpSquatLongActionState(playerModelHandle) },
+	{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(playerModelHandle) },
+	{ ActionStates::AirborneLong, new AirborneLongActionState(playerModelHandle) },
+	{ ActionStates::TurnAround, new TurnAroundActionState(playerModelHandle) },
+	{ ActionStates::Landing, new LandingActionState(playerModelHandle) },
+	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(playerModelHandle, fallingAttackLandingHitbox) },
+	{ ActionStates::PropelHigh, new PropelHighActionState(playerModelHandle) },
+	{ ActionStates::PropelLong, new PropelLongActionState(playerModelHandle) },
+	{ ActionStates::HuggingWall, new HuggingWallActionState(playerModelHandle) },
+	{ ActionStates::WallJumpSquat, new WallJumpSquatActionState(playerModelHandle) },
+	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(playerModelHandle) },
+	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle, fallingAttackHitbox) },
+	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle, strongAttackHitbox) },
+	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle, verticalLauncherHitbox) },
+	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle, horizontalLauncherHitbox) },
+	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
+	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(playerModelHandle) },
+	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(playerModelHandle) },
+	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(playerModelHandle) },
+	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle, wallJumpPlummetHitbox) },
 	};
 
 	concurrentStates = {
 		{ ActionStates::Idle, nullptr },
-	{ ActionStates::FastAttack, new FastAttackActionState(CHandle(this), fastAttackHitbox) },
-	{ ActionStates::FastAttackAir, new FastAttackAirActionState(CHandle(this), fastAttackAirHitbox) },
-	{ ActionStates::GrabHigh, new GrabHighActionState(CHandle(this), grabHitbox) },
-	{ ActionStates::GrabLong, new GrabLongActionState(CHandle(this), grabHitbox) },
-	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(CHandle(this), releasePowerSmallHitbox, releasePowerBigHitbox) },
+	{ ActionStates::FastAttack, new FastAttackActionState(playerModelHandle, fastAttackHitbox) },
+	{ ActionStates::FastAttackAir, new FastAttackAirActionState(playerModelHandle, fastAttackAirHitbox) },
+	{ ActionStates::GrabHigh, new GrabHighActionState(playerModelHandle, grabHitbox) },
+	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle, grabHitbox) },
+	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
 	};
 	nextBaseState = ActionStates::Idle;
 	nextConcurrentState = ActionStates::Idle;
@@ -305,28 +308,31 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	ChangeConcurrentState(ActionStates::Idle);
 	currentPowerStats = ssj1;
 
-	playerFilterCallback = new PlayerFilterCallback(CHandle(this));
+	playerFilterCallback = new PlayerFilterCallback();
 
 }
 
-void TCompPlayerModel::OnCollect(const TMsgCollect & msg) {
-	std::string type = msg.type;
-	if (type == "chrysalis") {
+void TCompPlayerModel::OnCollect(const TMsgCollect& msg) {
+	TCompCollectable* collectable = msg.collectableHandle;
+	switch (msg.type) {
+	case TCompCollectable::Type::CHRYSALIS:
+		collectable->collect();
 		++chrysalis;
 		if (chrysalis == chrysalisTarget) {
 			// Open boss door.
 			CEntity* door = (CEntity*)getEntityByName("door");
-			TMsgDestroy msg;
-			if (door) door->sendMsg(msg);
+			if (door) door->sendMsg(TMsgDestroy{});
 			dialogTimer.reset();
 			showVictoryDialog = true;
 		}
-	}
-	else if (type == "coin") {
-		// add coin
-	}
-	else {
-		dbg("Collected unknown object %s\n", type);
+		break;
+	case TCompCollectable::Type::COIN:
+		dbg("Collection coin!\n");
+		collectable->collect();
+		break;
+	default:
+		dbg("Collected unknown object %d\n", msg.type);
+		break;
 	}
 }
 
@@ -367,7 +373,7 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 		float deltaMovementDueToGravity;
 		deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
 		if (dynamic_cast<GroundedActionState*>(baseState)) {
-			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed/2 * delta;
+			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed / 2 * delta;
 		}
 		else {
 			deltaMovement.y += deltaMovementDueToGravity;
@@ -380,6 +386,8 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 }
 
 void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
+	VEC3 pos = GetTransform()->getPosition();
+	QUAT rot = GetTransform()->getRotation();
 	PxFilterData filterData = { GetCollider()->config.group, GetCollider()->config.mask, 0, 0 };
 	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(
 		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt,
@@ -557,6 +565,8 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 		velocityVector = VEC3(0, 0, 0);
 		SetConcurrentState(ActionStates::Idle);
 		SetBaseState(ActionStates::AirborneNormal);
+		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+		Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
 	}
 }
 
@@ -568,6 +578,8 @@ void TCompPlayerModel::OnDead() {
 	SetBaseState(ActionStates::AirborneNormal);
 	hp = maxHp;
 	GetPowerGauge()->ResetPower();
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 

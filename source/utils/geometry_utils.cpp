@@ -16,3 +16,13 @@ physx::PxQuat toPhysx(QUAT& quat) {
 	return physx::PxQuat(quat.x, quat.y, quat.z, quat.w);
 }
 
+physx::PxTransform toPhysx(CTransform* transform) {
+	VEC3& p = transform->getPosition();
+	QUAT& q = transform->getRotation();
+	return physx::PxTransform(physx::PxVec3(p.x, p.y, p.z), physx::PxQuat(q.x, q.y, q.z, q.w));
+}
+
+physx::PxTransform toPhysx(VEC3& p, QUAT& q) {
+	return physx::PxTransform(physx::PxVec3(p.x, p.y, p.z), physx::PxQuat(q.x, q.y, q.z, q.w));
+}
+

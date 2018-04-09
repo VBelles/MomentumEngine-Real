@@ -15,6 +15,7 @@
 #include "entity/entity_parser.h"
 #include "render/render_manager.h"
 #include "components/controllers/comp_curve.h"
+#include "game_constants.h"
 
 CCamera camera;
 extern void registerMesh(CRenderMesh* new_mesh, const char* name);
@@ -52,7 +53,7 @@ bool CModuleTestAxis::start() {
 		parseScene(scene_name, ctx);
 	}
 
-	CHandle h_playerCamera = getEntityByName("player_camera");
+	CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
 	Engine.getCameras().setDefaultCamera(h_playerCamera);
 	CHandle h_camera = getEntityByName("game_camera");
 	Engine.getCameras().setOutputCamera(h_camera);

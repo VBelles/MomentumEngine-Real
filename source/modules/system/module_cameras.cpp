@@ -46,6 +46,9 @@ void CModuleCameras::update(float delta) {
 				if (mc.weight >= 1.f) {
 					mc.state = TMixedCamera::ST_IDLE;
 					mc.time = 0.f;
+
+					CEntity* cameraEntity = mc.camera;
+					cameraEntity->sendMsg(TMsgLockCameraInput{ false });
 				}
 			}
 			else if (mc.state == TMixedCamera::ST_BLENDING_OUT) {
@@ -94,7 +97,9 @@ void CModuleCameras::setOutputCamera(CHandle camera) {
 
 void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority priority, Interpolator::IInterpolator* interpolator) {
 	TMixedCamera* mc = getMixedCamera(camera);
-	if (!mc) {
+	//if (!mc) 
+		//Volver a blendear una que está a medio blendear
+		//de momento hago cómo si el if no existiera, qué problemas dará? ya se verá
 		TMixedCamera new_mc;
 		new_mc.camera = camera;
 		new_mc.type = priority;
@@ -102,7 +107,6 @@ void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority pr
 		new_mc.blendIn(blendTime);
 
 		_mixedCameras.push_back(new_mc);
-	}
 }
 
 void CModuleCameras::blendOutCamera(CHandle camera, float blendTime) {
@@ -110,6 +114,22 @@ void CModuleCameras::blendOutCamera(CHandle camera, float blendTime) {
 	if (mc) {
 		mc->blendOut(blendTime);
 	}
+}
+
+bool CModuleCameras::IsCameraAloneInMix(CHandle camera) {
+	bool result = false;
+	TMixedCamera* mc = getMixedCamera(camera);
+	
+	if (mc) {
+		result = _mixedCameras.size() == 1;
+		if(result) dbg("Idle and alone\n");
+		else dbg("at least one camera blending in\n");
+	}
+	else {
+		dbg("camera not mixed\n");
+	}
+	dbg("cameras in mix: %d\n",_mixedCameras.size());
+	return result;
 }
 
 CModuleCameras::TMixedCamera* CModuleCameras::getMixedCamera(CHandle camera) {

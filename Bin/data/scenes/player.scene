@@ -9,7 +9,9 @@
 				]}
 			],
 			"transform": {
-				"pos": "-83 22 -56"
+				"pos": "-87.008759 25.298883 -36.278442",
+				"axis": "0 1 0",
+				"angle": 120
 			},
 			"player_controller" : {},
 			"player_model" : {
@@ -75,7 +77,8 @@
 				"group" : ["player"],
 				"mask" : ["all"],
 				"step"  : 0.5,
-				"slope" : 45
+				"slope" : 45,
+				"hitboxes":[]
 			},
 			"render_ui":{},
 			"shadow":
@@ -262,7 +265,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 4.0
+				"radius" : 4.0,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -280,7 +285,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 7.0
+				"radius" : 7.0,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -295,13 +302,19 @@
 			"name": "player_camera",
 			"transform": {},
 			"camera" : {
-				"fov" : 90,
+				"fov" : 80,
 				"z_near" : 0.1,
 				"active": true
 			},
 			"camera_player": {
+				"target" : "The Player",
 				"distance_to_target": 5.5,
-				"target" : "The Player"
+				"camera_speed": "2 1",
+				"centering_camera_speed": "18 9",
+				"max_pitch": 60,
+				"min_pitch": -70,
+				"yaw": 125,
+				"pitch": -20
 			}
 		}
 	}

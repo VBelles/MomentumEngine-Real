@@ -1,7 +1,7 @@
 [
 	{
 		"entity": {
-			"name": "chrysalis",
+			"name": "coin",
 			"transform": {
 				"pos": "0 0 0"
 			},
@@ -11,17 +11,17 @@
 					"materials": [
 						"data/materials/ambar.material"
 					],
-					"color": "1 0.6 0.2 1.0"
+					"color": "1 1 0 1"
 				}
 			],
 			"collectable": {
-				"type": "chrysalis"
+				"type": "coin"
 			},
 			"collider" : {
 				"shape": "sphere",
 				"is_trigger" : true,
 				"radius" : 0.5,
-				"group": ["all"],
+				"group": ["scenario"],
 				"mask": ["player"]
 			}
 		}

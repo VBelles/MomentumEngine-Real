@@ -9,7 +9,7 @@
 #include "comp_power_gauge.h"
 
 class PlayerFilterCallback;
-//typedef TCompPlayerModel::ActionStates ActionStates;
+struct TMsgCollect;
 
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
@@ -129,8 +129,8 @@ private:
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
 
-	VEC3 accelerationVector = {0.f, 0.f, 0.f};
-	VEC3 velocityVector = { 0.f, 0.f, 0.f };
+	VEC3 accelerationVector;
+	VEC3 velocityVector;
 	float baseGravity = 0.f;
 	float currentGravity = 0.f;
 
@@ -139,8 +139,8 @@ private:
 	PowerStats* ssj3;
 	PowerStats* currentPowerStats;
 
-	int hp = 8;
-	int maxHp = 8;
+	float hp = 8;
+	float maxHp = 8;
     int chrysalis = 0;
     int chrysalisTarget = 5;
 	bool showVictoryDialog = false;
@@ -176,7 +176,7 @@ private:
 	CHandle releasePowerBigHitbox;
 
 
-	VEC3 respawnPosition = {0, 3, 0}; //Asegurar que esta posición estará libre
+	VEC3 respawnPosition;
 
 
 	void ChangeBaseState(ActionStates newState);
