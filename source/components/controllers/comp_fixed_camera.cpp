@@ -18,6 +18,7 @@ void TCompFixedCamera::load(const json& j, TEntityParseContext& ctx) {
 	returnToPlayerCameraWithInput = j.value("returnToPlayerCameraWithInput", false);
 	panningSpeed = j.value("panningSpeed", 12.f);
 	timeToMixOut = j.value("timeToMixOut", 1.f);
+	panningRadius = j.value("panningRadius", 3.f);
 	modifyPlayerCameraRotation = j.value("modifyPlayerCameraRotation", true);
 }
 
@@ -36,10 +37,6 @@ void TCompFixedCamera::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	cubicOutInterpolator = new TCubicOutInterpolator();
 	TCompTransform* transform = transformHandle;
 	originalPosition = transform->getPosition();
-	leftPosition = originalPosition + transform->getLeft() * positionRange;
-	rightPosition = originalPosition - transform->getLeft() * positionRange;
-	upperPosition = originalPosition + transform->getUp() * positionRange;
-	upperPosition = originalPosition - transform->getUp() * positionRange;
 }
 
 void TCompFixedCamera::update(float delta) {	
@@ -75,7 +72,11 @@ void TCompFixedCamera::update(float delta) {
 		VEC3 verticalMovement = transform->getUp() * input.y;
 		VEC3 horizontalMovement = transform->getLeft() * input.x;
 		VEC3 newPos = transform->getPosition() + (verticalMovement + horizontalMovement) * panningSpeed * delta;
-		
+		if (VEC3::Distance(newPos, originalPosition) > panningRadius) {//Me molaría haber hecho el clampeo en rectángulo, pero ni zorra de cómo hacerlo, shhhhh
+			VEC3 direction = newPos - originalPosition;
+			direction.Normalize();
+			newPos = originalPosition + direction * panningRadius;
+		}
 		transform->setPosition(newPos);
 	}
 }

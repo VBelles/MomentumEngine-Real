@@ -58,7 +58,7 @@
 		"entity": {
 			"name": "fixed_camera_2",
 			"transform": {
-				"pos": "-76 55 -80",
+				"pos": "-76 55 -77",
 				"lookat": "-76 0 -86"
 			},
 			"camera" : {
@@ -78,7 +78,7 @@
 			},
 			"collider":{
 				"shape": "box",
-				"halfExtent" : "10 6 10",
+				"halfExtent" : "10 8.5 10",
 				"is_trigger" : true,
 				"group" : ["trigger"],
 				"mask" : ["player"]

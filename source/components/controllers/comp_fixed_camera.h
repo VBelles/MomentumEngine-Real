@@ -17,14 +17,10 @@ private:
 	bool returnToPlayerCameraWithInput;
 	float timeToMixOut;
 	bool modifyPlayerCameraRotation = true;
-	float positionRange = 1.f;
+	float panningRadius = 1.f;
 
 	CHandle transformHandle;
 	VEC3 originalPosition;
-	VEC3 leftPosition;
-	VEC3 rightPosition;
-	VEC3 upperPosition;
-	VEC3 lowerPosition;
 
 	CTimer repositionTimer;
 	float repositionTime = 0.04f;
