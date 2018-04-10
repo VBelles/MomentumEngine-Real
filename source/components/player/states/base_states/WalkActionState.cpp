@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "WalkActionState.h"
 #include "components/comp_render.h"
+#include "components/player/comp_player_model.h"
 
 WalkActionState::WalkActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

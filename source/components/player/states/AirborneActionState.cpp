@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "AirborneActionState.h"
-//#include "../comp_player_model.h"
-#include "base_states/wall_jump/HuggingWallActionState.h"
+#include "components/player/comp_player_model.h"
+#include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
 
 AirborneActionState::AirborneActionState(CHandle playerModelHandle)
 	: IActionState::IActionState(playerModelHandle) {

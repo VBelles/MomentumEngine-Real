@@ -1,6 +1,8 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
+#include "components/player/states/IActionState.h"
+
+struct PowerStats;
 
 class AirborneActionState : public IActionState {
 protected:
@@ -23,9 +25,6 @@ protected:
 	float backwardsAirDriftFactorLong = 0.8f;
 	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
-
-
-
 public:
 	AirborneActionState(CHandle playerModelHandle);
 	void update(float delta) override;
