@@ -2,7 +2,6 @@
 #include "comp_fixed_camera.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
-#include "game_constants.h"
 
 DECL_OBJ_MANAGER("fixed_camera", TCompFixedCamera);
 

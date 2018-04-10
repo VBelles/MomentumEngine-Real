@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
-#include "game_constants.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
 #include "components/controllers/comp_camera_player.h"
@@ -435,7 +434,7 @@ void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
 }
 
 TCompCamera* TCompPlayerModel::GetCamera() {
-	CEntity* camera = (CEntity *)getEntityByName("game_camera");
+	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
 	return currentCamera;
@@ -512,7 +511,7 @@ void TCompPlayerModel::StrongAttackButtonReleased() {
 }
 
 void TCompPlayerModel::CenterCameraButtonPressed() {
-	CEntity* camera = (CEntity*)getEntityByName("player_camera");
+	CEntity* camera = (CEntity*)getEntityByName(PLAYER_CAMERA);
 	TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
 	playerCamera->CenterCamera();
 }

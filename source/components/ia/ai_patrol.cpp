@@ -3,7 +3,7 @@
 #include "ai_patrol.h"
 #include "entity/entity_parser.h"
 #include "components/comp_transform.h"
-#include "render/render_utils.h"
+#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("ai_patrol", CAIPatrol);
 
@@ -67,7 +67,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 
 void CAIPatrol::IdleState(float delta)
 {
-	CEntity *player = (CEntity *)getEntityByName("The Player");
+	CEntity *player = (CEntity *)getEntityByName(PLAYER_NAME);
 	TCompTransform *mypos = getMyTransform();
 	TCompTransform *ppos = player->get<TCompTransform>();
 	bool in_fov = mypos->isInFov(ppos->getPosition(), deg2rad(60));
@@ -98,7 +98,7 @@ void CAIPatrol::SeekWptState(float delta)
 	if (VEC3::Distance(getWaypoint(), vp) < 1) ChangeState("nextwpt");
 
 	// chase
-	CEntity *player = (CEntity *)getEntityByName("The Player");
+	CEntity *player = (CEntity *)getEntityByName(PLAYER_NAME);
 	TCompTransform *ppos = player->get<TCompTransform>();
 	bool in_fov = mypos->isInFov(ppos->getPosition(), deg2rad(60));
 	if (in_fov) ChangeState("chase");
@@ -113,7 +113,7 @@ void CAIPatrol::NextWptState(float delta)
 void CAIPatrol::ChaseState(float delta)
 {
 	TCompTransform *myTransform = getMyTransform();
-	CEntity *player = (CEntity *)getEntityByName("The Player");
+	CEntity *player = (CEntity *)getEntityByName(PLAYER_NAME);
 	TCompTransform *playerTransform = player->get<TCompTransform>();
 	float y, r, p;
 	myTransform->getYawPitchRoll(&y, &p, &r);
@@ -144,7 +144,7 @@ void CAIPatrol::ChaseState(float delta)
 
 void CAIPatrol::IdleWar(float delta) {
 	TCompTransform *myTransform = getMyTransform();
-	CEntity *player = (CEntity *)getEntityByName("The Player");
+	CEntity *player = (CEntity *)getEntityByName(PLAYER_NAME);
 	TCompTransform *playerTransform = player->get<TCompTransform>();
 	VEC3 myPosition = myTransform->getPosition();
 	bool in_fov = myTransform->isInFov(playerTransform->getPosition(), deg2rad(60));
@@ -193,7 +193,7 @@ void CAIPatrol::OrbitRight(float delta) {
 
 void CAIPatrol::Orbit(float increment) {
 	TCompTransform *myTransform = getMyTransform();
-	CEntity *player = (CEntity *)getEntityByName("The Player");
+	CEntity *player = (CEntity *)getEntityByName(PLAYER_NAME);
 	TCompTransform *playerTransform = player->get<TCompTransform>();
 	float y, r, p;
 	myTransform->getYawPitchRoll(&y, &p, &r);
@@ -226,7 +226,7 @@ void CAIPatrol::Orbit(float increment) {
 
 void CAIPatrol::MoveBack(float delta) {
 	TCompTransform *myTransform = getMyTransform();
-	CEntity *player = (CEntity *)getEntityByName("The Player");
+	CEntity *player = (CEntity *)getEntityByName(PLAYER_NAME);
 	TCompTransform *playerTransform = player->get<TCompTransform>();
 	float y, r, p;
 	myTransform->getYawPitchRoll(&y, &p, &r);

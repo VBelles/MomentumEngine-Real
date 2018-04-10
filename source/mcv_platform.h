@@ -50,5 +50,6 @@ using json = nlohmann::json;
 #include "engine.h"
 #include "resources/resources_manager.h"
 #include "windows/app.h"
+#include "game_constants.h"
 
 #endif

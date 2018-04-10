@@ -46,7 +46,7 @@ void CAIMeleeEnemy::InitStates() {
 
 void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
-	player = getEntityByName("The Player");
+	player = getEntityByName(PLAYER_NAME);
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
 

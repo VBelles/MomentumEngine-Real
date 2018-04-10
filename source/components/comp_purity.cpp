@@ -4,7 +4,6 @@
 #include "player/comp_player_model.h"
 #include "entity/entity_parser.h"
 #include "render/texture/material.h"
-#include "PxPhysicsAPI.h"
 
 DECL_OBJ_MANAGER("purity", TCompPurity);
 
@@ -21,7 +20,7 @@ void TCompPurity::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-    player = (CHandle)getEntityByName("The Player");
+    player = (CHandle)getEntityByName(PLAYER_NAME);
 
     TCompRender* render = get<TCompRender>();
     originalMeshPath = render->meshes[0].mesh->getName();
@@ -47,6 +46,3 @@ void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
 		render->setMesh(originalMeshPath, "data/materials/white.material");
     }
 }
-
-
-

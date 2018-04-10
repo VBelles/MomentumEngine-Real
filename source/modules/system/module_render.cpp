@@ -58,19 +58,41 @@ bool CModuleRender::start() {
 
     if (!parseTechniques()) return false;
 
+    // Main render target before rendering in the backbuffer
+    rt_main = new CRenderToTexture;
+    if (!rt_main->createRT("rt_main.dds", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN, true))
+        return false;
+
+    if (!deferred.create(Render.width, Render.height))
+        return false;
+
     setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
 
     // Some camera in case there is no camera in the scene
     camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
     camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
-	if (!cb_camera.create(CB_CAMERA)) return false;
-	if (!cb_object.create(CB_OBJECT)) return false;
-	if (!cb_light.create(CB_LIGHT))   return false;
+    if (!cb_camera.create(CB_CAMERA))   return false;
+    if (!cb_object.create(CB_OBJECT))   return false;
+    if (!cb_light.create(CB_LIGHT))     return false;
+    if (!cb_globals.create(CB_GLOBALS)) return false;
 
-	cb_light.activate();
-	cb_object.activate();
-	cb_camera.activate();
+    cb_globals.global_exposure_adjustment = 1.f;
+    cb_globals.global_ambient_adjustment = 1.f;
+    cb_globals.global_world_time = 0.f;
+    cb_globals.global_hdr_enabled = 1.f;
+    cb_globals.global_gamma_correction_enabled = 1.f;
+    cb_globals.global_tone_mapping_mode = 1.f;
+
+    cb_light.activate();
+    cb_object.activate();
+    cb_camera.activate();
+    cb_globals.activate();
+
+    CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
+	Engine.getCameras().setDefaultCamera(h_playerCamera);
+	CHandle h_camera = getEntityByName(GAME_CAMERA);
+	Engine.getCameras().setOutputCamera(h_camera);
 
     return true;
 }
@@ -81,9 +103,10 @@ LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 }
 
 bool CModuleRender::stop() {
-	cb_light.destroy();
-	cb_camera.destroy();
-	cb_object.destroy();
+    cb_light.destroy();
+    cb_camera.destroy();
+    cb_object.destroy();
+    cb_globals.destroy();
 
     ImGui_ImplDX11_Shutdown();
 
@@ -98,6 +121,7 @@ bool CModuleRender::stop() {
 
 void CModuleRender::update(float delta) {
     (void)delta;
+    cb_globals.global_world_time += delta;
 }
 
 void CModuleRender::render() {
@@ -109,14 +133,23 @@ void CModuleRender::render() {
         if (ImGui::SmallButton("Start CPU Trace Capturing")) {
             PROFILE_SET_NFRAMES(nframes);
         }
+
+        if (ImGui::TreeNode("Render Control")) {
+            ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
+            ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
+            ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
+            ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
+            ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+            ImGui::TreePop();
+        }
     }
 
-    Render.startRenderInBackbuffer();
+    //Render.startRenderInBackbuffer(); // Nota de merge: esto Juan no lo tiene.
 
-    // Clear the back buffer 
+    /*// Clear the back buffer. // Nota de merge: esto Juan no lo hace.
     float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
     Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
-    Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+    Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);*/
 }
 
 void CModuleRender::configure(int xres, int yres) {
@@ -125,18 +158,18 @@ void CModuleRender::configure(int xres, int yres) {
 }
 
 void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
-    _backgroundColor[0] = r;
-    _backgroundColor[1] = g;
-    _backgroundColor[2] = b;
-    _backgroundColor[3] = a;
+    _backgroundColor.x = r;
+    _backgroundColor.y = g;
+    _backgroundColor.z = b;
+    _backgroundColor.w = a;
 }
 
 // -------------------------------------------------
 void CModuleRender::activateMainCamera() {
     CCamera* cam = &camera;
 
-    // Find the entity with name 'the_camera'
-    h_e_camera = getEntityByName("the_camera");
+    // Find the entity with name 'player_camera'
+    h_e_camera = getEntityByName(PLAYER_CAMERA);
     if (h_e_camera.isValid()) {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get< TCompCamera >();
@@ -161,20 +194,25 @@ void CModuleRender::generateFrame() {
     {
         CTraceScoped gpu_scope("Frame");
         PROFILE_FUNCTION("CModuleRender::generateFrame");
-        Render.startRenderInBackbuffer();
 
-        // Clear the back buffer 
+        /*// Clear the back buffer  // Nota de merge: esto Juan no lo hace.
         float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
         Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
-        Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+        Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);*/
 
         activateMainCamera();
+        cb_globals.updateGPU();
 
-        getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
-            c->activate();
-        });
+        deferred.render(rt_main);
+        Render.startRenderInBackbuffer();
 
-        CRenderManager::get().renderCategory("default");
+        renderFullScreenQuad("dump_texture.tech", rt_main);
+
+        /*getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+        c->activate();
+        });*/
+
+        //CRenderManager::get().renderCategory("default"); // Nota de merge: esto Juan no lo hace.
 
         // Debug render
         {

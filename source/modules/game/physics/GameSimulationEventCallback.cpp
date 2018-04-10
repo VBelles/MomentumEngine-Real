@@ -17,16 +17,16 @@ void GameSimulationEventCallback::onContact(const PxContactPairHeader& pairHeade
 		CEntity* e2 = colliderHandle2.getOwner();
 
 		if (pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_FOUND)) {
-			if (strcmp(e1->getName(), "The Player") != 0
-				|| strcmp(e2->getName(), "The Player") != 0) {
+			if (strcmp(e1->getName(), PLAYER_NAME) != 0
+				|| strcmp(e2->getName(), PLAYER_NAME) != 0) {
 				//dbg("TOUCH FOUND\n");
 			}
 			e1->sendMsg(TMsgOnContact{ CHandle(e2), pair });
 			e2->sendMsg(TMsgOnContact{ CHandle(e1), pair });
 		}
 		if (pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_LOST)) {
-			if (strcmp(e1->getName(), "The Player") != 0
-				|| strcmp(e2->getName(), "The Player") != 0) {
+			if (strcmp(e1->getName(), PLAYER_NAME) != 0
+				|| strcmp(e2->getName(), PLAYER_NAME) != 0) {
 				//dbg("TOUCH LOST\n");
 
 			}

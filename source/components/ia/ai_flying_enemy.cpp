@@ -85,7 +85,7 @@ void CAIFlyingEnemy::PropelledState(float delta) {
 void CAIFlyingEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompTransform* transform = getTransform();
 	spawnPosition = transform->getPosition();
-	player = getEntityByName("The Player");
+	player = getEntityByName(PLAYER_NAME);
 }
 
 void CAIFlyingEnemy::debugInMenu() {

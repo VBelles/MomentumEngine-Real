@@ -15,10 +15,9 @@
 #include "entity/entity_parser.h"
 #include "render/render_manager.h"
 #include "components/controllers/comp_curve.h"
-#include "game_constants.h"
 
 CCamera camera;
-extern void registerMesh(CRenderMesh* new_mesh, const char* name);
+//extern void registerMesh(CRenderMesh* new_mesh, const char* name);
 
 struct TVtxPosClr {
 	VEC3 pos;
@@ -53,11 +52,6 @@ bool CModuleTestAxis::start() {
 		parseScene(scene_name, ctx);
 	}
 
-	CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
-	Engine.getCameras().setDefaultCamera(h_playerCamera);
-	CHandle h_camera = getEntityByName("game_camera");
-	Engine.getCameras().setOutputCamera(h_camera);
-
 	//const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
 	//registerMesh(createCurveMesh(*curve, 100), "curve.mesh");
 
@@ -77,7 +71,7 @@ bool CModuleTestAxis::stop() {
 
 void CModuleTestAxis::update(float delta) {
 	if (EngineInput['1'].getsPressed()) {
-		CHandle h_camera = getEntityByName("player_camera");
+		CHandle h_camera = getEntityByName(PLAYER_CAMERA);
 		Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
 	}
 	if (EngineInput['2'].getsPressed()) {
@@ -99,23 +93,6 @@ void CModuleTestAxis::update(float delta) {
 }
 
 void CModuleTestAxis::render() {
-    // Find the entity with name 'game_camera'
-    CHandle h_e_camera = getEntityByName("game_camera");
-    if (h_e_camera.isValid()) {
-        CEntity* e_camera = h_e_camera;
-        TCompCamera* c_camera = e_camera->get<TCompCamera>();
-        assert(c_camera);
-        activateCamera(*c_camera, Render.width, Render.height);
-    }
-    else {
-        activateCamera(camera, Render.width, Render.height);
-    }
-
-	// Render the grid
-	/*cb_object.obj_world = MAT44::Identity;
-	cb_object.obj_color = VEC4(1, 1, 1, 1);
-	cb_object.updateGPU();*/
-
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
 	solid->activate();
 }
