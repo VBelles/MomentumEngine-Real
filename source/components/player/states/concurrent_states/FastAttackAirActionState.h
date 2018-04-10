@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../AirborneActionState.h"
-
+#include "components/player/states/AirborneActionState.h"
 
 class FastAttackAirActionState : public AirborneActionState {
 	CTimer timer;
@@ -25,16 +23,16 @@ class FastAttackAirActionState : public AirborneActionState {
 public:
 	FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void SetMovementInput(VEC2 input) override {}
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnFastAttackButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnReleasePowerButton() override {}
-	void OnFastAttackButtonReleased() override {} //posible comportamiento extra
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void setMovementInput(VEC2 input) override {}
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onFastAttackButton() override {}
+	void onStrongAttackButton() override {}
+	void onReleasePowerButton() override {}
+	void onFastAttackButtonReleased() override {} //posible comportamiento extra
 
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_punch.mesh"); }
-	void OnHitboxEnter(CHandle entity) override;
+	void setPose() override;
+	void onHitboxEnter(CHandle entity) override;
 };

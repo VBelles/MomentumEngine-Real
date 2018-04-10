@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
-
+#include "components/player/states/GroundedActionState.h"
 
 class TurnAroundActionState : public GroundedActionState {
 	CTimer timer;
@@ -13,15 +11,15 @@ class TurnAroundActionState : public GroundedActionState {
 	float rotationSpeed;
 	float velocityLossMultiplier = 0.7f;
 
-	void RotateToFinalDirection();
-	void SetFinalVelocity();
+	void rotateToFinalDirection();
+	void setFinalVelocity();
 public:
 	TurnAroundActionState(CHandle playerModelHandle);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override;
-	void OnJumpLongButton() override;
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void onJumpHighButton() override;
+	void onJumpLongButton() override;
 
-	virtual void OnLeavingGround();
+	virtual void onLeavingGround();
 };

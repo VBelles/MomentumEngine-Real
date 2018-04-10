@@ -61,7 +61,7 @@ private:
 	PowerStats* launchPowerStats;
 
 	//Mesage functions
-	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void OnRespawn(const TMsgRespawn & msg);
 	void OnHit(const TMsgAttackHit& msg);
 	void OnGrabbed(float duration);

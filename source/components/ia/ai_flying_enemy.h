@@ -38,7 +38,7 @@ private:
 	void OnHit(const TMsgAttackHit& msg);
 	void OnGrabbed(float duration);
 	void OnPropelled(VEC3 velocity);
-	void OnGroupCreated(const TMsgEntitiesGroupCreated & msg);
+	void onGroupCreated(const TMsgEntitiesGroupCreated & msg);
 
 	boolean IsPlayerInAttackRange();
 	boolean IsPlayerInFov();

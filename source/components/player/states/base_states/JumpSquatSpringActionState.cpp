@@ -1,5 +1,7 @@
 #include "mcv_platform.h"
 #include "JumpSquatSpringActionState.h"
+#include "components/player/comp_player_model.h"
+#include "components/comp_render.h"
 
 JumpSquatSpringActionState::JumpSquatSpringActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -8,35 +10,39 @@ JumpSquatSpringActionState::JumpSquatSpringActionState(CHandle playerModelHandle
 void JumpSquatSpringActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		GetPlayerModel()->isAttachedToPlatform = false;
+		getPlayerModel()->isAttachedToPlatform = false;
 		velocityVector->y = currentPowerStats->springJumpVelocity;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;
 	}
 }
 
-void JumpSquatSpringActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
-	SetPose();
+void JumpSquatSpringActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
+	setPose();
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
-	GetPlayerModel()->maxVerticalSpeed = GetPlayerModel()->maxVelocityUpwards;
+	getPlayerModel()->maxVerticalSpeed = getPlayerModel()->maxVelocityUpwards;
 }
 
-void JumpSquatSpringActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void JumpSquatSpringActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
 }
 
-void JumpSquatSpringActionState::OnLeavingGround() {
+void JumpSquatSpringActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
 	}
+}
+
+void JumpSquatSpringActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_jump_squat.mesh");
 }

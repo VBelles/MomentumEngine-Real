@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_shadow.h"
-#include "comp_transform.h"
-#include "comp_hierarchy.h"
+#include "components/comp_transform.h"
+#include "components/comp_hierarchy.h"
 
 #include "render/render_objects.h"
 #include "render/texture/texture.h"

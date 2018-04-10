@@ -1,7 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../AirborneActionState.h"
+#include "components/player/states/AirborneActionState.h"
 
 class GhostJumpWindowActionState : public AirborneActionState {
 	CTimer timer;
@@ -11,8 +10,8 @@ class GhostJumpWindowActionState : public AirborneActionState {
 public:
 	GhostJumpWindowActionState(CHandle playerModelHandle);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override;
-	void OnJumpLongButton() override;
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void onJumpHighButton() override;
+	void onJumpLongButton() override;
 };

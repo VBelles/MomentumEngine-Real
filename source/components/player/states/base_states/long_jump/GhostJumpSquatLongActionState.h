@@ -1,9 +1,9 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../../AirborneActionState.h"
+#include "components/player/states/AirborneActionState.h"
 
 class GhostJumpSquatLongActionState : public AirborneActionState {
+private:
 	CTimer timer;
 	int squatFrames = 2;
 	float squatTime;
@@ -11,11 +11,11 @@ class GhostJumpSquatLongActionState : public AirborneActionState {
 public:
 	GhostJumpSquatLongActionState(CHandle playerModelHandle);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnFastAttackButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnReleasePowerButton() override {}
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onFastAttackButton() override {}
+	void onStrongAttackButton() override {}
+	void onReleasePowerButton() override {}
 };

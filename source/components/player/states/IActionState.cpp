@@ -1,7 +1,10 @@
 #include "mcv_platform.h"
 #include "IActionState.h"
-#include "components/player/comp_player_model.h"
+#include "components/comp_render.h"
+#include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "components/comp_collider.h"
+#include "components/player/comp_player_model.h"
 
 IActionState::IActionState(CHandle playerModelHandle) {
 	this->playerModelHandle = playerModelHandle;
@@ -11,45 +14,45 @@ IActionState::IActionState(CHandle playerModelHandle) {
 	this->renderHandle = playerEntity->get<TCompRender>();
 }
 
-void IActionState::OnStateEnter(IActionState* lastState) {
+void IActionState::onStateEnter(IActionState* lastState) {
 	this->lastState = lastState;
 	deltaMovement = VEC3::Zero;
 	movementInput = VEC2::Zero;
 }
-void IActionState::OnStateExit(IActionState* nextState) {
+void IActionState::onStateExit(IActionState* nextState) {
 	this->nextState = nextState;
 }
 
-void IActionState::SetPose() {
-	GetRender()->setMesh("data/meshes/pose_idle.mesh");
+void IActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_idle.mesh");
 }
 
-void IActionState::SetMovementInput(VEC2 input) {
+void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }
 
-TCompCamera* IActionState::GetCamera() {
+TCompCamera* IActionState::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName("game_camera");
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
 	return currentCamera;
 }
 
-void IActionState::RotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
+void IActionState::rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
     float rotationIncrement = rotationSpeed * delta;
-    float deltaYaw = GetPlayerTransform()->getDeltaYawToAimTo(targetPos);
+    float deltaYaw = getPlayerTransform()->getDeltaYawToAimTo(targetPos);
     float y, p, r;
-    GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+    getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
     if (abs(deltaYaw) >= rotationIncrement) {
         y = (deltaYaw > 0) ? (y + rotationIncrement) : (y - rotationIncrement);
     }
     else {
         y += deltaYaw;
     }
-    GetPlayerTransform()->setYawPitchRoll(y, p, r);
+    getPlayerTransform()->setYawPitchRoll(y, p, r);
 }
 
-float IActionState::CalculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
+float IActionState::calculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
 	float backwardsMaxDotProduct, float sidewaysMaxDotProduct, float backwardsAirDriftFactor, float sidewaysAirDriftFactor) {
 	float resultingAcceleration = baseAcceleration;
 	if (baseDirection.Dot(desiredDirection) <= backwardsMaxDotProduct) {
@@ -61,7 +64,7 @@ float IActionState::CalculateAccelerationAccordingToDirection(VEC3 baseDirection
 	return resultingAcceleration;
 }
 
-VEC3 IActionState::CalculateHorizontalDeltaMovement(float delta, VEC3 lastFrameDirection, VEC3 newDirection,
+VEC3 IActionState::calculateHorizontalDeltaMovement(float delta, VEC3 lastFrameDirection, VEC3 newDirection,
 	float acceleration, float maxSpeed) {
 	//Copiamos los ejes x/z del vector de velocidad en un VEC2, para trabajar sin tocar el eje y
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
@@ -78,7 +81,7 @@ VEC3 IActionState::CalculateHorizontalDeltaMovement(float delta, VEC3 lastFrameD
 	return resultingDeltaMovement;
 }
 
-void IActionState::TransferVelocityToDirectionAndAccelerate(float delta, bool wantToTransfer, VEC3 directionOfAcceleration, float acceleration) {
+void IActionState::transferVelocityToDirectionAndAccelerate(float delta, bool wantToTransfer, VEC3 directionOfAcceleration, float acceleration) {
 	//Copiamos los ejes x/z del vector de velocidad en un VEC2, para trabajar sin tocar el eje y
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
@@ -94,7 +97,7 @@ void IActionState::TransferVelocityToDirectionAndAccelerate(float delta, bool wa
 	velocityVector->z = horizontalVelocity.y + directionOfAcceleration.z * acceleration * delta;
 }
 
-void IActionState::ClampHorizontalVelocity(float maxHorizontalSpeed) {
+void IActionState::clampHorizontalVelocity(float maxHorizontalSpeed) {
 	VEC2 horizontalVelocity;
 	horizontalVelocity.x = velocityVector->x;
 	horizontalVelocity.y = velocityVector->z;
@@ -105,3 +108,9 @@ void IActionState::ClampHorizontalVelocity(float maxHorizontalSpeed) {
 		velocityVector->z = horizontalVelocity.y;
 	}
 }
+
+
+TCompPlayerModel* IActionState::getPlayerModel() { return playerModelHandle; }
+TCompTransform* IActionState::getPlayerTransform() { return playerTransformHandle; }
+TCompCollider* IActionState::getCollider() { return colliderHandle; }
+TCompRender* IActionState::getRender() { return renderHandle; }

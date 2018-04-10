@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
 #include "LandingActionState.h"
-
 
 class FallingAttackLandingActionState : public LandingActionState {
 	CTimer hitboxTimer;
@@ -23,12 +21,12 @@ class FallingAttackLandingActionState : public LandingActionState {
 public:
 	FallingAttackLandingActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void SetMovementInput(VEC2 input) override {}
-	void OnJumpHighButton() override;
-	void OnJumpLongButton() override {}
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void setMovementInput(VEC2 input) override {}
+	void onJumpHighButton() override;
+	void onJumpLongButton() override {}
 
-	void OnHitboxEnter(CHandle entity) override;
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_landing.mesh"); }
+	void onHitboxEnter(CHandle entity) override;
+	void setPose() override;
 };

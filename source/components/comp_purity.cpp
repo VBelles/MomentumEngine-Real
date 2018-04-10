@@ -5,6 +5,7 @@
 #include "entity/entity_parser.h"
 #include "render/texture/material.h"
 #include "PxPhysicsAPI.h"
+#include "components/comp_render.h"
 
 DECL_OBJ_MANAGER("purity", TCompPurity);
 

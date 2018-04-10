@@ -1,6 +1,10 @@
 #include "mcv_platform.h"
 #include "PropelLongActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
+#include "components/player/comp_player_model.h"
 
 PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -9,20 +13,20 @@ PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
 void PropelLongActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= endingTime) {
 		if (movementInput != VEC2::Zero) {
-			VEC3 inputDirection = GetCamera()->TransformToWorld(movementInput);
+			VEC3 inputDirection = getCamera()->TransformToWorld(movementInput);
 			float newYaw = atan2(inputDirection.x, inputDirection.z);
 			float y, p, r;
-			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-			GetPlayerTransform()->setYawPitchRoll(newYaw, p, r);
+			getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+			getPlayerTransform()->setYawPitchRoll(newYaw, p, r);
 		}
-		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
+		*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
 		//pasar mensaje a la otra entidad
 		CHandle playerEntity = playerModelHandle.getOwner();
 		CEntity* targetEntity = propelTarget;
@@ -41,21 +45,25 @@ void PropelLongActionState::update (float delta) {
 	}
 }
 
-void PropelLongActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
-	SetPose();
+void PropelLongActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
+	setPose();
 	endingTime = endingFrames * (1.f / 60);
-	propelTarget = GetPlayerModel()->grabTarget;
+	propelTarget = getPlayerModel()->grabTarget;
 	CEntity* targetEntity = propelTarget;
 	TCompTransform* targetTransform = targetEntity->get<TCompTransform>();
-	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - GetPlayerTransform()->getPosition();
+	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - getPlayerTransform()->getPosition();
 	movingVelocity /= endingTime;
 	timer.reset();
-	GetPlayerModel()->lastWallEntered = nullptr;
-	GetPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
+	getPlayerModel()->lastWallEntered = nullptr;
+	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 }
 
-void PropelLongActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
-	GetPlayerModel()->baseState->SetPose();
+void PropelLongActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
+	getPlayerModel()->baseState->setPose();
+}
+
+void PropelLongActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_propel.mesh");
 }

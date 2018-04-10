@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
-
+#include "components/player/states/GroundedActionState.h"
 
 class VerticalLauncherActionState : public GroundedActionState {
 	CTimer timer;
@@ -26,16 +24,16 @@ class VerticalLauncherActionState : public GroundedActionState {
 public:
 	VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void SetMovementInput(VEC2 input) override;
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnFastAttackButton() override {}
-	void OnReleasePowerButton() override {}
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void setMovementInput(VEC2 input) override;
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onStrongAttackButton() override {}
+	void onFastAttackButton() override {}
+	void onReleasePowerButton() override {}
 
-	void OnLeavingGround() override;
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_vertical_launcher.mesh"); }
-	void OnHitboxEnter(CHandle entity) override;
+	void onLeavingGround() override;
+	void setPose() override;
+	void onHitboxEnter(CHandle entity) override;
 };

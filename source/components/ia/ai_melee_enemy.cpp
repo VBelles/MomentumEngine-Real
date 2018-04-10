@@ -7,6 +7,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_respawner.h"
 #include "components/comp_shadow.h"
+#include "components/comp_render.h"
 
 DECL_OBJ_MANAGER("ai_melee_enemy", CAIMeleeEnemy);
 
@@ -16,7 +17,7 @@ void CAIMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void CAIMeleeEnemy::registerMsgs() {
-	DECL_MSG(CAIMeleeEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
+	DECL_MSG(CAIMeleeEnemy, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(CAIMeleeEnemy, TMsgAttackHit, OnHit);
 	DECL_MSG(CAIMeleeEnemy, TMsgRespawn, OnRespawn);
 }
@@ -44,11 +45,11 @@ void CAIMeleeEnemy::InitStates() {
 	ChangeState("idle");
 }
 
-void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void CAIMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
 	player = getEntityByName("The Player");
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
-	launchPowerStats = &*playerModel->GetPowerStats();
+	launchPowerStats = &*playerModel->getPowerStats();
 
 	TCompShadow *shadow = get<TCompShadow>();
 	originalShadowMesh = shadow->mesh->getName();
@@ -124,7 +125,7 @@ void CAIMeleeEnemy::PropelledState(float delta) {
 
 void CAIMeleeEnemy::OnLaunchedVertically(float suspensionTime, VEC3 velocity) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
-	launchPowerStats = &*playerModel->GetPowerStats();
+	launchPowerStats = &*playerModel->getPowerStats();
 	floatingDuration = suspensionTime;
 	velocityVector.y = velocity.y;
 	launchPowerStats->currentGravityMultiplier = launchPowerStats->normalGravityMultiplier;
@@ -133,7 +134,7 @@ void CAIMeleeEnemy::OnLaunchedVertically(float suspensionTime, VEC3 velocity) {
 
 void CAIMeleeEnemy::OnLaunchedHorizontally(float suspensionTime, VEC3 velocity) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
-	launchPowerStats = &*playerModel->GetPowerStats();
+	launchPowerStats = &*playerModel->getPowerStats();
 	floatingDuration = suspensionTime;
 	initialHorizontalLaunchY = getTransform()->getPosition().y + 0.001f;
 	//dbg("Y: %f", initialHorizontalLaunchY);
@@ -296,10 +297,10 @@ boolean CAIMeleeEnemy::IsPlayerInFov() {
 void CAIMeleeEnemy::UpdateGravity(float delta) {
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	float deltaY = CalculateVerticalDeltaMovement(delta,
-		playerModel->GetAccelerationVector()->y * launchPowerStats->currentGravityMultiplier,
+		playerModel->getAccelerationVector()->y * launchPowerStats->currentGravityMultiplier,
 		launchPowerStats->maxVelocityVertical);
 	getCollider()->controller->move(physx::PxVec3(0, deltaY, 0), 0.f, delta, physx::PxControllerFilters());
-	velocityVector.y += playerModel->GetAccelerationVector()->y * launchPowerStats->currentGravityMultiplier * delta;
+	velocityVector.y += playerModel->getAccelerationVector()->y * launchPowerStats->currentGravityMultiplier * delta;
 }
 
 //Calcula el movimiento vertical desde el último frame y lo clampea con la máxima distancia 
