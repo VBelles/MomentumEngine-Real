@@ -1,49 +1,48 @@
 {
-	"sizes" : {
-		"default" : 1024,
-		"transform" : 1024
-	},
-  "init_order" : {
-    "entity" : 100,
-    "transform" : 90
-  },
-  "update": [
-		"fwd_msg",
-		"hierarchy",
-		"platform_move",
-    "collectable",
-    "breakable",
-		"mechanism",
-		"mechanism_system",
-		"destroyCondition",
-    "skeleton",
-    "bone_tracker",
-    "behaviorTree_melee_enemy",
-    "behaviorTree_flying_ranged_enemy",
-    "ranged_attack",
-    "ai_melee_enemy",
-    "ai_flying_enemy",
-    "respawner",
-    "player_controller",
-    "player_model",
-    "power_gauge",
-    "hitbox",
-    "shadow",
-    "local_aabb",
-    "camera_player",
-    "fixed_camera",
-    "camera",
-    "curve_controller",
-    "culling",
-    "light_dir",
-    "render",
-    "fsm",
-    "fake_animation",
-    "player_input"
-  ],
-	"render_debug" : 
-	[
-    "transform",
-    "light_dir"
-	]
+    "sizes" : {
+        "default" : 1024,
+        "transform" : 1024
+    },
+    "init_order" : {
+        "entity" : 100,
+        "transform" : 90
+    },
+    "update": [
+        "fwd_msg",
+        "hierarchy",
+        "platform_move",
+        "collectable",
+        "breakable",
+        "mechanism",
+        "mechanism_system",
+        "destroyCondition",
+        "skeleton",
+        "bone_tracker",
+        "behaviorTree_melee_enemy",
+        "behaviorTree_flying_ranged_enemy",
+        "ranged_attack",
+        "ai_melee_enemy",
+        "ai_flying_enemy",
+        "respawner",
+        "player_controller",
+        "player_model",
+        "power_gauge",
+        "hitbox",
+        "shadow",
+        "local_aabb",
+        "camera_player",
+        "fixed_camera",
+        "camera",
+        "curve_controller",
+        "culling",
+        "light_dir",
+        "render",
+        "fsm",
+        "fake_animation",
+        "player_input"
+    ],
+    "render_debug" : [
+        "transform",
+        "light_dir"
+    ]
 }
