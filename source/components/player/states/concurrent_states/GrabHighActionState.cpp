@@ -3,6 +3,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
 #include "components/comp_tags.h"
+#include "entity/common_msgs.h"
 
 GrabHighActionState::GrabHighActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GrabActionState::GrabActionState(playerModelHandle, hitbox) {

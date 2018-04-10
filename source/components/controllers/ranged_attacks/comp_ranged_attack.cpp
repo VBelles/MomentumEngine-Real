@@ -1,7 +1,9 @@
 #include "mcv_platform.h"
 #include "comp_ranged_attack.h"
 #include "entity/entity_parser.h"
-#include "components\comp_transform.h"
+#include "components/comp_transform.h"
+#include "components/comp_collider.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("ranged_attack", TCompRangedAttack);
 
@@ -13,7 +15,7 @@ void TCompRangedAttack::registerMsgs() {
 	DECL_MSG(TCompRangedAttack, TMsgEntityCreated, onCreate);
 	DECL_MSG(TCompRangedAttack, TMsgAssignRangedAttackOwner, onAssignRangedAttackOwner);
 	DECL_MSG(TCompRangedAttack, TMsgTriggerEnter, onTriggerEnter);
-	DECL_MSG(TCompRangedAttack, TMsgColliderDestroyed, OnColliderDestroyed);
+	DECL_MSG(TCompRangedAttack, TMsgColliderDestroyed, onColliderDestroyed);
 }
 
 void TCompRangedAttack::load(const json& j, TEntityParseContext& ctx) {
@@ -67,7 +69,7 @@ void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
 	}
 }
 
-void TCompRangedAttack::OnColliderDestroyed(const TMsgColliderDestroyed& msg) {
+void TCompRangedAttack::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	if (hit) {
 		CHandle(this).getOwner().destroy();
 	}

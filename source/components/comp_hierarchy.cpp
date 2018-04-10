@@ -3,6 +3,7 @@
 #include "entity/entity.h"
 #include "entity/entity_parser.h"
 #include "components/comp_transform.h"
+#include "components/comp_collider.h"
 #include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("hierarchy", TCompHierarchy);

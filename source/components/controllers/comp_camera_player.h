@@ -5,6 +5,9 @@
 class CEntity;
 class TCompTransform;
 
+struct TMsgEntitiesGroupCreated;
+struct TMsgLockCameraInput;
+
 class TCompCameraPlayer : public TCompBase {
 	DECL_SIBLING_ACCESS();
 

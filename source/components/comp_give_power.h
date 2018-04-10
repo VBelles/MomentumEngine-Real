@@ -2,6 +2,8 @@
 
 #include "comp_base.h"
 
+struct TMsgGetPower;
+
 class TCompGivePower : public TCompBase {
 	DECL_SIBLING_ACCESS();
 private:

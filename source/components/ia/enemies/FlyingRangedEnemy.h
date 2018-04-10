@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IBehaviorTree.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/comp_base.h"
 #include "entity/common_msgs.h"
 
@@ -11,6 +11,7 @@ struct PowerStats;
 
 class CBehaviorTreeFlyingRangedEnemy : public IBehaviorTree, public TCompBase {
 	DECL_SIBLING_ACCESS();
+
 private:
 	float maxHealth = 3.f;
 	float health = maxHealth;

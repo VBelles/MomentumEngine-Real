@@ -2,10 +2,11 @@
 #include "comp_shadow.h"
 #include "components/comp_transform.h"
 #include "components/comp_hierarchy.h"
-
+#include "components/comp_collider.h"
 #include "render/render_objects.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("shadow", TCompShadow);
 

@@ -3,6 +3,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
+#include "entity/common_msgs.h"
 
 WallJumpPlummetActionState::WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {

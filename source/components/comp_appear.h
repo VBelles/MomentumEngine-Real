@@ -1,7 +1,10 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
+
+struct TMsgAllScenesCreated;
+struct TMsgEntitiesGroupCreated;
+struct TMsgMechanismSystemActivated;
 
 class TCompAppear: public TCompBase {
 	DECL_SIBLING_ACCESS();

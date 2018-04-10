@@ -1,7 +1,9 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
+
+struct TMsgEntitiesGroupCreated;
+struct TMsgPurityChange;
 
 // If the player is in lvl power 1, enables collider. Else, disables it.
 class TCompPurity : public TCompBase {

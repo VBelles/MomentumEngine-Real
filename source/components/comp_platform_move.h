@@ -1,11 +1,10 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
-#include "entity/entity_parser.h"
-#include "comp_hierarchy.h"
-#include "components/comp_transform.h"
-#include "PxPhysicsAPI.h"
+
+struct TMsgEntitiesGroupCreated;
+struct TMsgTriggerEnter;
+struct TMsgTriggerExit;
 
 class TCompPlatformMove: public TCompBase {
 	DECL_SIBLING_ACCESS();

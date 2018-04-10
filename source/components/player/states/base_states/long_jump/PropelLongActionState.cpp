@@ -5,6 +5,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "components/player/comp_player_model.h"
+#include "entity/common_msgs.h"
 
 PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {

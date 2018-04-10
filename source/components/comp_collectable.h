@@ -1,7 +1,11 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
+#include "entity/msgs.h"
+
+struct TMsgEntitiesGroupCreated;
+struct TMsgTriggerEnter;
+struct TMsgColliderDestroyed;
 
 
 class TCompCollectable : public TCompBase {

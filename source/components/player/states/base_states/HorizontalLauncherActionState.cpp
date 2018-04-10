@@ -4,6 +4,7 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
+#include "entity/common_msgs.h"
 
 HorizontalLauncherActionState::HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

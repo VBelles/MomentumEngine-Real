@@ -2,8 +2,9 @@
 #include "comp_camera_player.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
-#include "modules/system/physics/GameQueryFilterCallback.h"
+#include "modules/game/physics/GameQueryFilterCallback.h"
 #include "game_constants.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("camera_player", TCompCameraPlayer);
 

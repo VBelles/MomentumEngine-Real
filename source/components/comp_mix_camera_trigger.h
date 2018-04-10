@@ -1,7 +1,10 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
+
+struct TMsgEntityCreated;
+struct TMsgTriggerEnter;
+struct TMsgTriggerExit;
 
 using namespace Interpolator;
 

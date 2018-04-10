@@ -7,10 +7,18 @@ class TCompCamera;
 class TCompCollider;
 class TCompTransform;
 class TCompPowerGauge;
-
-struct TMsgCollect;
 class PlayerFilterCallback;
 
+struct TMsgEntitiesGroupCreated;
+struct TMsgCollect;
+struct TMsgOnShapeHit;
+struct TMsgOnContact;
+struct TMsgPowerLvlChange;
+struct TMsgAttackHit;
+struct TMsgHitboxEnter;
+struct TMsgGainPower;
+struct TMsgGainPower;
+struct TMsgOutOfBounds;
 
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;

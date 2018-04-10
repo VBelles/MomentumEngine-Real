@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "PlayerFilterCallback.h"
+#include "components/comp_collider.h"
 
 
 bool PlayerFilterCallback::filter(const PxController& a, const PxController& b) {

@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "GameControllerHitCallback.h"
+#include "entity/common_msgs.h"
 
 void GameControllerHitCallback::onShapeHit(const PxControllerShapeHit& hit) {
 	CHandle controllerHandle;

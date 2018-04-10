@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
-#include "BehaviorTreeMeleeEnemy.h"
+#include "MeleeEnemy.h"
+#include "entity/common_msgs.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "components/comp_render.h"

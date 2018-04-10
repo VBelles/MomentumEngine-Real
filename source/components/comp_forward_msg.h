@@ -1,7 +1,10 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
+
+struct TMsgEntitiesGroupCreated;
+struct TMsgTriggerEnter;
+struct TMsgTriggerExit;
 
 // Takes trigger messages and forwards them to specified target.
 class TCompFwdMsg : public TCompBase {

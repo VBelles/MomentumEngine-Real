@@ -2,7 +2,7 @@
 
 #include "comp_base.h"
 #include "fsm/context.h"
-
+#include "entity/common_msgs.h"
 
 struct TMsgSetFSMVariable {
   CVariant variant;

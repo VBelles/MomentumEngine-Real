@@ -1,7 +1,6 @@
 #pragma once
 
 #include "comp_base.h"
-#include "PxPhysicsAPI.h"
 #include "entity/common_msgs.h"
 
 using namespace physx;
