@@ -21,7 +21,7 @@ private:
 
 	CHandle hitboxSmallHandle;
 	CHandle hitboxBigHandle;
-	int damage = 0;
+	float damage = 0.f;
 	AttackPhases phase = AttackPhases::Startup;
 
 	uint32_t enemyId = getID("enemy");

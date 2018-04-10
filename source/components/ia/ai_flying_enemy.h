@@ -7,7 +7,7 @@ class CAIFlyingEnemy : public IAIController {
 	DECL_SIBLING_ACCESS();
 
 private:
-	int health = 5;
+	float health = 5.f;
 	float speed = 25.f;
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 5.f;

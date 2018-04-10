@@ -9,8 +9,8 @@ class CAIMeleeEnemy : public IAIController {
 	DECL_SIBLING_ACCESS();
 
 private:
-    const int maxHealth = 5;
-	int health = maxHealth;
+    const float maxHealth = 5.f;
+	float health = maxHealth;
 	float speed = 25.f;
 	float movementSpeed = 2.5f;
 	float rotationSpeed = 5.f;

@@ -13,7 +13,7 @@ class FallingAttackActionState : public AirborneActionState {
 	float upwardsVelocity = 18.f;
 
 	CHandle hitboxHandle;
-	int damage = 2;
+	float damage = 2.f;
 
 	float powerToGet = 4000.f;
 
