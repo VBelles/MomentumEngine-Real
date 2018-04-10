@@ -8,7 +8,7 @@ JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
 void JumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= squatTime) {
 		//saltar
 		GetPlayerModel()->isAttachedToPlatform = false;
@@ -31,7 +31,7 @@ void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	squatTime = squatFrames * (1.f / 60);
 	isShortHop = false;
 	timer.reset();
-	enteringVelocity = GetPlayerModel()->GetVelocityVector()->Length();
+	enteringVelocity = GetPlayerModel()->getVelocityVector()->Length();
 }
 
 void JumpSquatActionState::OnStateExit(IActionState * nextState) {

@@ -10,7 +10,7 @@ void AirborneLongActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 
-	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 
 	if (hasInput) {
 		//aceleración según sentido de movimiento
@@ -33,7 +33,7 @@ void AirborneLongActionState::update (float delta) {
 void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	SetPose();
-	GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->longGravityMultiplier);
+	GetPlayerModel()->setGravityMultiplier(enteringPowerStats->longGravityMultiplier);
 	//dbg("Entrando en airborne long\n");
 	
 }

@@ -8,7 +8,7 @@ GhostJumpSquatActionState::GhostJumpSquatActionState(CHandle playerModelHandle)
 void GhostJumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
@@ -32,7 +32,7 @@ void GhostJumpSquatActionState::OnStateEnter(IActionState * lastState) {
 	//dbg("Entrando en GhostJumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
-	enteringVelocity = GetPlayerModel()->GetVelocityVector()->Length();
+	enteringVelocity = GetPlayerModel()->getVelocityVector()->Length();
 }
 
 void GhostJumpSquatActionState::OnStateExit(IActionState * nextState) {

@@ -139,7 +139,7 @@ void TCompPlayerModel::setBaseState(ActionStates newState) {
 	nextBaseState = newState;
 }
 
-void TCompPlayerModel::ChangeBaseState(ActionStates newState) {
+void TCompPlayerModel::changeBaseState(ActionStates newState) {
 	IActionState* exitingState = baseState;
 	baseState = baseStates[newState];
 	if (exitingState) exitingState->OnStateExit(baseState);
@@ -150,7 +150,7 @@ void TCompPlayerModel::setConcurrentState(ActionStates newState) {
 	nextConcurrentState = newState;
 }
 
-void TCompPlayerModel::ChangeConcurrentState(ActionStates newState) {
+void TCompPlayerModel::changeConcurrentState(ActionStates newState) {
 	IActionState* exitingState = concurrentState;
 	concurrentState = concurrentStates[newState];
 	if (exitingState) exitingState->OnStateExit(concurrentState);
@@ -158,22 +158,18 @@ void TCompPlayerModel::ChangeConcurrentState(ActionStates newState) {
 }
 
 void TCompPlayerModel::registerMsgs() {
-	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
-	DECL_MSG(TCompPlayerModel, TMsgAttackHit, OnAttackHit);
-	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, OnHitboxEnter);
-	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
-	DECL_MSG(TCompPlayerModel, TMsgGainPower, OnGainPower);
-	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, OnOutOfBounds);
-	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, OnLevelChange);
-	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, OnShapeHit);
-	DECL_MSG(TCompPlayerModel, TMsgOnContact, OnContact);
+	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompPlayerModel, TMsgAttackHit, onAttackHit);
+	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, onHitboxEnter);
+	DECL_MSG(TCompPlayerModel, TMsgCollect, onCollect);
+	DECL_MSG(TCompPlayerModel, TMsgGainPower, onGainPower);
+	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
+	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgOnContact, onContact);
 }
 
-PowerStats* TCompPlayerModel::GetPowerStats() {
-	return currentPowerStats;
-}
-
-void TCompPlayerModel::OnLevelChange(const TMsgPowerLvlChange& msg) {
+void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	switch (msg.powerLvl) {
 	case 1: currentPowerStats = ssj1; break;
 	case 2: currentPowerStats = ssj2; break;
@@ -181,14 +177,14 @@ void TCompPlayerModel::OnLevelChange(const TMsgPowerLvlChange& msg) {
 	}
 }
 
-void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
-	myTransformHandle = get<TCompTransform>();
+	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
 
-	respawnPosition = GetTransform()->getPosition();
+	respawnPosition = getTransform()->getPosition();
 
 	renderUI->registerOnRenderUI([&]() {
 
@@ -205,10 +201,10 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::PopStyleColor();
 
 		//Power bar
-		std::string powerProgressBarText = "Power: " + std::to_string((int)GetPowerGauge()->power) + "/" + std::to_string((int)GetPowerGauge()->maxPower);
-		ImVec4 color = GetPowerGauge()->powerLevel == 1 ? ImColor{ 255, 255, 0 } : GetPowerGauge()->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
+		std::string powerProgressBarText = "Power: " + std::to_string((int)getPowerGauge()->power) + "/" + std::to_string((int)getPowerGauge()->maxPower);
+		ImVec4 color = getPowerGauge()->powerLevel == 1 ? ImColor{ 255, 255, 0 } : getPowerGauge()->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-		ImGui::ProgressBar((float)GetPowerGauge()->power / GetPowerGauge()->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
+		ImGui::ProgressBar((float)getPowerGauge()->power / getPowerGauge()->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		//Chrysalis counter
@@ -294,15 +290,15 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	};
 	nextBaseState = ActionStates::Idle;
 	nextConcurrentState = ActionStates::Idle;
-	ChangeBaseState(ActionStates::Idle);
-	ChangeConcurrentState(ActionStates::Idle);
+	changeBaseState(ActionStates::Idle);
+	changeConcurrentState(ActionStates::Idle);
 	currentPowerStats = ssj1;
 
 	playerFilterCallback = new PlayerFilterCallback();
 
 }
 
-void TCompPlayerModel::OnCollect(const TMsgCollect& msg) {
+void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
 	TCompCollectable* collectable = msg.collectableHandle;
 	switch (msg.type) {
 	case TCompCollectable::Type::CHRYSALIS:
@@ -343,19 +339,19 @@ void TCompPlayerModel::update(float dt) {
 		deltaMovement = concurrentState->GetDeltaMovement();
 	}
 
-	ApplyGravity(dt);
+	applyGravity(dt);
 	updateMovement(dt, deltaMovement);
 
 	if (baseState != baseStates[nextBaseState]) {
-		ChangeBaseState(nextBaseState);
+		changeBaseState(nextBaseState);
 	}
 	if (concurrentState != concurrentStates[nextConcurrentState]) {
-		ChangeConcurrentState(nextConcurrentState);
+		changeConcurrentState(nextConcurrentState);
 	}
 
 }
 
-void TCompPlayerModel::ApplyGravity(float delta) {
+void TCompPlayerModel::applyGravity(float delta) {
 	if (isAttachedToPlatform) {
 		velocityVector.y = 0;
 	}
@@ -376,10 +372,10 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 }
 
 void TCompPlayerModel::updateMovement(float dt, VEC3 deltaMovement) {
-	VEC3 pos = GetTransform()->getPosition();
-	QUAT rot = GetTransform()->getRotation();
-	PxFilterData filterData = { GetCollider()->config.group, GetCollider()->config.mask, 0, 0 };
-	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(
+	VEC3 pos = getTransform()->getPosition();
+	QUAT rot = getTransform()->getRotation();
+	PxFilterData filterData = { getCollider()->config.group, getCollider()->config.mask, 0, 0 };
+	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(
 		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt,
 		physx::PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
@@ -424,7 +420,7 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	}
 }
 
-TCompCamera* TCompPlayerModel::GetCamera() {
+TCompCamera* TCompPlayerModel::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName("game_camera");
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
@@ -515,43 +511,43 @@ void TCompPlayerModel::releasePowerButtonPressed() {
 }
 
 void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only
-	GetPowerGauge()->gainPower();
+	getPowerGauge()->gainPower();
 }
 
 bool TCompPlayerModel::isConcurrentActionFree() {
 	return (concurrentState == concurrentStates[ActionStates::Idle]);
 }
 
-void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
+void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	//TODO Esto lo tendría que procesar el estado en concreto, por si tiene armor o algo
 	hp -= msg.info.damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
 	if (hp <= 0) {
-		OnDead();
+		onDead();
 	}
 }
 
-void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
+void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnHitboxEnter(msg.h_other_entity);
+		concurrentState->onHitboxEnter(msg.h_other_entity);
 	}
-	baseState->OnHitboxEnter(msg.h_other_entity);
+	baseState->onHitboxEnter(msg.h_other_entity);
 }
 
-void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
-	GetPowerGauge()->increasePower(msg.power);
+void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
+	getPowerGauge()->increasePower(msg.power);
 }
 
-void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
+void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	hp -= 1;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
 	if (hp <= 0) {
-		OnDead();
+		onDead();
 	}
 	else {
-		GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+		getCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 		velocityVector = VEC3(0, 0, 0);
 		setConcurrentState(ActionStates::Idle);
 		setBaseState(ActionStates::AirborneNormal);
@@ -560,23 +556,23 @@ void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
 	}
 }
 
-void TCompPlayerModel::OnDead() {
-	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+void TCompPlayerModel::onDead() {
+	getCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 
 	setConcurrentState(ActionStates::Idle);
 	setBaseState(ActionStates::AirborneNormal);
 	hp = maxHp;
-	GetPowerGauge()->resetPower();
+	getPowerGauge()->resetPower();
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 
-void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
-	baseState->OnShapeHit(msg.hit);
+void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
+	baseState->onShapeHit(msg.hit);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnShapeHit(msg.hit);
+		concurrentState->onShapeHit(msg.hit);
 	}
 	//if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
 	//	lastWallEntered = msg.hit.actor;
@@ -586,11 +582,11 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 	//	//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 	//	//dbg("%f\n", deg2rad(pitch));
 
-	//	VEC3 worldInput = GetCamera()->TransformToWorld(baseState->GetMovementInput());
-	//	if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || GetTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
+	//	VEC3 worldInput = getCamera()->TransformToWorld(baseState->GetMovementInput());
+	//	if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || getTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
 	//		float pitch = asin(-msg.hit.worldNormal.y);
 	//		if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
-	//			HuggingWallActionState* actionState = GetBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
+	//			HuggingWallActionState* actionState = getBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
 	//			actionState->SetHit(msg.hit);
 	//			setBaseState(ActionStates::HuggingWall);
 	//		}
@@ -599,7 +595,7 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 }
 
 
-void TCompPlayerModel::OnContact(const TMsgOnContact& msg) {
+void TCompPlayerModel::onContact(const TMsgOnContact& msg) {
 	//dbg("ON CONTACT\n");
 	if (msg.pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_FOUND)) {
 		//dbg("TOUCH FOUND\n");

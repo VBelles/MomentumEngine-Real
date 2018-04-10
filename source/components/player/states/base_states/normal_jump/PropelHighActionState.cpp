@@ -9,10 +9,10 @@ PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 void PropelHighActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= endingTime) {
 		if (movementInput != VEC2::Zero) {
-			VEC3 inputDirection = GetCamera()->TransformToWorld(movementInput);
+			VEC3 inputDirection = getCamera()->TransformToWorld(movementInput);
 			float newYaw = atan2(inputDirection.x, inputDirection.z);
 			float y, p, r;
 			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);

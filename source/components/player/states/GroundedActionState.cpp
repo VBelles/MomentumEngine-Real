@@ -3,8 +3,8 @@
 
 GroundedActionState::GroundedActionState(CHandle adf)
 	: IActionState::IActionState(adf) {
-	accelerationVector = GetPlayerModel()->GetAccelerationVector();
-	velocityVector = GetPlayerModel()->GetVelocityVector();
+	accelerationVector = GetPlayerModel()->getAccelerationVector();
+	velocityVector = GetPlayerModel()->getVelocityVector();
 }
 
 void GroundedActionState::update(float delta) {
@@ -13,9 +13,9 @@ void GroundedActionState::update(float delta) {
 
 void GroundedActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
 	if (currentPowerStats) GetPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
-	GetPlayerModel()->ResetGravity();
+	GetPlayerModel()->resetGravity();
 	backwardsMaxDotProduct = cos(backwardsdMinAngle);
 	GetPlayerModel()->lastWallEntered = nullptr;//En realidad al tocar el suelo ya se sobreescribe la variable
 }

@@ -65,7 +65,7 @@ void FastAttackActionState::OnLeavingGround() {
 	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void FastAttackActionState::OnHitboxEnter(CHandle entity) {
+void FastAttackActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;

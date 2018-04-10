@@ -26,10 +26,10 @@ void WallJumpPlummetActionState::update (float delta) {
 
 void WallJumpPlummetActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
-	GetPlayerModel()->SetGravityMultiplier(0.f);
+	GetPlayerModel()->setGravityMultiplier(0.f);
 	SetPose();
 	//Se calcula cada vez que se entra, ya que depende del poder
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
 	endingTime = currentPowerStats->plummetTime;
 
 	CEntity *hitboxEntity = hitboxHandle;
@@ -40,7 +40,7 @@ void WallJumpPlummetActionState::OnStateEnter(IActionState * lastState) {
 
 void WallJumpPlummetActionState::OnStateExit(IActionState * nextState) {
 	AirborneActionState::OnStateExit(nextState);
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
 	ClampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -71,7 +71,7 @@ void WallJumpPlummetActionState::OnLanding() {
 	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
 }
 
-void WallJumpPlummetActionState::OnHitboxEnter(CHandle entity) {
+void WallJumpPlummetActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;

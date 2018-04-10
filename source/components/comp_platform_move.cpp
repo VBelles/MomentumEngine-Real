@@ -99,7 +99,7 @@ void TCompPlatformMove::update(float dt) {
         CEntity* ePlayer = (CEntity*)player;
 		TCompTransform* playerTransform = ePlayer->get<TCompTransform>();
 		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
-		playerModel->GetCollider()->controller->setFootPosition({
+		playerModel->getCollider()->controller->setFootPosition({
 			playerTransform->getPosition().x + movement.x,
 			playerTransform->getPosition().y + movement.y,
 			playerTransform->getPosition().z + movement.z

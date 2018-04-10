@@ -17,7 +17,7 @@ void AirborneWallJumpActionState::update(float delta) {
 
 	//bool hasInput = movementInput != VEC2::Zero;
 
-	//VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
+	//VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 	//if (hasInput && velocityVector->y < 0) {
 	//	VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 	//	RotatePlayerTowards(delta, targetPos, rotationSpeed);
@@ -44,7 +44,7 @@ void AirborneWallJumpActionState::OnStateEnter(IActionState * lastState) {
 	AirborneActionState::OnStateEnter(lastState);
 	SetPose();
 	GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
-	GetPlayerModel()->SetGravityMultiplier(1.1f);
+	GetPlayerModel()->setGravityMultiplier(1.1f);
 	//dbg("Entrando en airborne long\n");
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));

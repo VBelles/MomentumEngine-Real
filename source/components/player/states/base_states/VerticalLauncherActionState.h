@@ -37,5 +37,5 @@ public:
 
 	void OnLeavingGround() override;
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_vertical_launcher.mesh"); }
-	void OnHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(CHandle entity) override;
 };

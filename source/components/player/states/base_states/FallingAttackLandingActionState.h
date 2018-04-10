@@ -29,6 +29,6 @@ public:
 	void OnJumpHighButton() override;
 	void OnJumpLongButton() override {}
 
-	void OnHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(CHandle entity) override;
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_landing.mesh"); }
 };

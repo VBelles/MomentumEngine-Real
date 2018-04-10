@@ -56,7 +56,7 @@ void HorizontalLauncherActionState::OnLeavingGround() {
 	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void HorizontalLauncherActionState::OnHitboxEnter(CHandle entity) {
+void HorizontalLauncherActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
@@ -67,8 +67,8 @@ void HorizontalLauncherActionState::OnHitboxEnter(CHandle entity) {
 		msgAtackHit.attacker = playerEntity;
 		msgAtackHit.info = {};
 		msgAtackHit.info.givesPower = true;
-		VEC3 launchVelocity = GetPlayerTransform()->getFront() * GetPlayerModel()->GetPowerStats()->longJumpVelocityVector.z;
-		launchVelocity.y = GetPlayerModel()->GetPowerStats()->longJumpVelocityVector.y;
+		VEC3 launchVelocity = GetPlayerTransform()->getFront() * GetPlayerModel()->getPowerStats()->longJumpVelocityVector.z;
+		launchVelocity.y = GetPlayerModel()->getPowerStats()->longJumpVelocityVector.y;
 		msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
 			suspensionTime,
 			launchVelocity

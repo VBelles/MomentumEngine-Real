@@ -40,5 +40,5 @@ public:
 
 	void OnLeavingGround() override;
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_punch.mesh"); }
-	void OnHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(CHandle entity) override;
 };

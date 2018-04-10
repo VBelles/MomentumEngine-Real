@@ -7,7 +7,7 @@ GrabLongActionState::GrabLongActionState(CHandle playerModelHandle, CHandle hitb
 	: GrabActionState::GrabActionState(playerModelHandle, hitbox) {
 }
 
-void GrabLongActionState::OnHitboxEnter(CHandle entity) {
+void GrabLongActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		//Si es enemigo transicionamos a propel long

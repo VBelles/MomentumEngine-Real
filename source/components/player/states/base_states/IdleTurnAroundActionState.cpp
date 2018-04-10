@@ -28,7 +28,7 @@ void IdleTurnAroundActionState::OnStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	movementInput = lastState->GetMovementInput();
 	movementInput.Normalize();
-	VEC3 movementInputWorldSpace = GetCamera()->TransformToWorld(movementInput);
+	VEC3 movementInputWorldSpace = getCamera()->TransformToWorld(movementInput);
 	exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 	float y, p, r;
 	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);

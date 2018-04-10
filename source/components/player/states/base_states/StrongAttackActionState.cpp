@@ -40,7 +40,7 @@ void StrongAttackActionState::update(float delta) {
 		bool hasInput = movementInput != VEC2::Zero;
 
 		if (hasInput) {
-			VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
+			VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 			VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 			RotatePlayerTowards(delta, targetPos, 3.f);
 		}
@@ -78,7 +78,7 @@ void StrongAttackActionState::OnLeavingGround() {
 	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void StrongAttackActionState::OnHitboxEnter(CHandle entity) {
+void StrongAttackActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;

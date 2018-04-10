@@ -46,7 +46,7 @@ void FallingAttackLandingActionState::OnJumpHighButton() {
 	hasTriedSpringJump = true;
 }
 
-void FallingAttackLandingActionState::OnHitboxEnter(CHandle entity) {
+void FallingAttackLandingActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;

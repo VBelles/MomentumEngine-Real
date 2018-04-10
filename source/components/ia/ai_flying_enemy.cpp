@@ -15,7 +15,7 @@ void CAIFlyingEnemy::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void CAIFlyingEnemy::registerMsgs() {
-	DECL_MSG(CAIFlyingEnemy, TMsgEntitiesGroupCreated, OnGroupCreated);
+	DECL_MSG(CAIFlyingEnemy, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(CAIFlyingEnemy, TMsgAttackHit, OnHit);
 }
 
@@ -82,7 +82,7 @@ void CAIFlyingEnemy::PropelledState(float delta) {
 	ChangeState("idle");
 }
 
-void CAIFlyingEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void CAIFlyingEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompTransform* transform = getTransform();
 	spawnPosition = transform->getPosition();
 	player = getEntityByName("The Player");

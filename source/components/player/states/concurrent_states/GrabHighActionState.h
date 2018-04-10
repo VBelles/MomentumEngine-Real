@@ -8,5 +8,5 @@
 class GrabHighActionState : public GrabActionState {
 public:
 	GrabHighActionState(CHandle playerModelHandle, CHandle hitbox);
-	void OnHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(CHandle entity) override;
 };

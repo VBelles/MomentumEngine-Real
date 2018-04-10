@@ -9,15 +9,15 @@ void RunActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
 	bool wantToWalk = false;
 	if (movementInput.Length() < 0.8f) {
 		wantToWalk = true;
 	}
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
-	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
-	bool isTurnAround = GetPlayerModel()->GetTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
+	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+	bool isTurnAround = GetPlayerModel()->getTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
 	if (hasInput && !isTurnAround) {
 		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);

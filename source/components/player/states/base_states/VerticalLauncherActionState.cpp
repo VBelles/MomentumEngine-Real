@@ -56,7 +56,7 @@ void VerticalLauncherActionState::OnLeavingGround() {
 	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
+void VerticalLauncherActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
@@ -69,7 +69,7 @@ void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
 		msgAtackHit.info.givesPower = true;
 		msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
 			suspensionTime,
-			GetPlayerModel()->GetPowerStats()->jumpVelocityVector
+			GetPlayerModel()->getPowerStats()->jumpVelocityVector
 		};
 		otherEntity->sendMsg(msgAtackHit);
 	}

@@ -5,8 +5,8 @@
 
 AirborneActionState::AirborneActionState(CHandle playerModelHandle)
 	: IActionState::IActionState(playerModelHandle) {
-	accelerationVector = GetPlayerModel()->GetAccelerationVector();
-	velocityVector = GetPlayerModel()->GetVelocityVector();
+	accelerationVector = GetPlayerModel()->getAccelerationVector();
+	velocityVector = GetPlayerModel()->getVelocityVector();
 }
 
 void AirborneActionState::update (float delta) {
@@ -14,7 +14,7 @@ void AirborneActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;	
 	
-	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 	if (!GetPlayerModel()->lockTurning) {
 		if (!isTurnAround) {
 			if (hasInput) {
@@ -70,17 +70,17 @@ void AirborneActionState::update (float delta) {
 
 	if(velocityVector->y < 0){
 		GetPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
-		GetPlayerModel()->SetGravityMultiplier(enteringPowerStats->fallingMultiplier);
+		GetPlayerModel()->setGravityMultiplier(enteringPowerStats->fallingMultiplier);
 	}
 }
 
 void AirborneActionState::OnStateEnter(IActionState * lastState) {
 	IActionState::OnStateEnter(lastState);
-	enteringPowerStats = &*GetPlayerModel()->GetPowerStats();
+	enteringPowerStats = &*GetPlayerModel()->getPowerStats();
 	isTurnAround = false;
 	turnAroundTime = turnAroundFrames * (1.f / 60);
 	GetPlayerModel()->maxVerticalSpeed = GetPlayerModel()->maxVelocityUpwards;
-	GetPlayerModel()->ResetGravity();
+	GetPlayerModel()->resetGravity();
 	enterFront = GetPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
@@ -120,7 +120,7 @@ void AirborneActionState::OnLanding() {
 	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
 }
 
-void AirborneActionState::OnShapeHit(const PxControllerShapeHit& hit) {
+void AirborneActionState::onShapeHit(const PxControllerShapeHit& hit) {
 	if (velocityVector->y < 0.f && (GetPlayerModel()->lastWallNormal.dot(hit.worldNormal) < 0.8f 
 		|| GetPlayerModel()->sameNormalReattachTimer.elapsed() >= GetPlayerModel()->sameNormalReattachTime)) {
 
@@ -128,12 +128,12 @@ void AirborneActionState::OnShapeHit(const PxControllerShapeHit& hit) {
 
 		VEC3 hitNormal = VEC3(hit.worldNormal.x, hit.worldNormal.y, hit.worldNormal.z);
 
-		VEC3 worldInput = GetCamera()->TransformToWorld(GetPlayerModel()->baseState->GetMovementInput());
+		VEC3 worldInput = getCamera()->TransformToWorld(GetPlayerModel()->baseState->GetMovementInput());
 		if (worldInput.Dot(-hitNormal) >= GetPlayerModel()->attachWallByInputMinDot 
 			|| GetPlayerTransform()->getFront().Dot(-hitNormal) >= GetPlayerModel()->attachWallByFrontMinDot) {
 			float pitch = asin(-hit.worldNormal.y);
 			if (pitch >= GetPlayerModel()->huggingWallMinPitch && pitch <= GetPlayerModel()->huggingWallMaxPitch) {
-				HuggingWallActionState* actionState = GetPlayerModel()->GetBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
+				HuggingWallActionState* actionState = GetPlayerModel()->getBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
 				actionState->SetHit(hit);
 				GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HuggingWall);
 			}

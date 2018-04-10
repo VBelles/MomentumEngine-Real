@@ -39,5 +39,5 @@ public:
 	void FaceWall();
 	void TurnAround();
 
-	virtual void OnShapeHit(const PxControllerShapeHit &hit) override {}
+	virtual void onShapeHit(const PxControllerShapeHit &hit) override {}
 };

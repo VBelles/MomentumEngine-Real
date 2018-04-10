@@ -10,7 +10,7 @@ GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(CHandle playerModel
 void GhostJumpSquatLongActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar

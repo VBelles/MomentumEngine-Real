@@ -30,10 +30,10 @@ protected:
 
 	TCompPlayerModel* GetPlayerModel() { return playerModelHandle; }
 	TCompTransform* GetPlayerTransform() { return playerTransformHandle; }
-	TCompCollider* GetCollider() { return colliderHandle; }
+	TCompCollider* getCollider() { return colliderHandle; }
 	TCompRender* GetRender() { return renderHandle; }
 
-	TCompCamera* GetCamera();
+	TCompCamera* getCamera();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void RotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
@@ -73,7 +73,7 @@ public:
 	virtual void OnFastAttackButtonReleased() {}
 	virtual void OnReleasePowerButton() {}
 
-	virtual void OnShapeHit(const PxControllerShapeHit &hit) {}
-	virtual void OnHitboxEnter(CHandle entity) {}
+	virtual void onShapeHit(const PxControllerShapeHit &hit) {}
+	virtual void onHitboxEnter(CHandle entity) {}
 
 };

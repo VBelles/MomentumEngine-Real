@@ -43,5 +43,5 @@ public:
 
 	void SetPose() override { GetRender()->setMesh("data/meshes/pose_grab.mesh"); }
 
-	void OnHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(CHandle entity) override;
 };

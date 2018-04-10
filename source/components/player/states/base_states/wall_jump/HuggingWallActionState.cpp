@@ -9,7 +9,7 @@ void HuggingWallActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (CheckIfHuggingWall(wallDirection)) {
-		VEC3 worldInput = GetCamera()->TransformToWorld(movementInput);
+		VEC3 worldInput = getCamera()->TransformToWorld(movementInput);
 		VEC3 normal = { wallNormal.x, 0.f, wallNormal.z };
 		if (worldInput.Dot(normal) >= releaseWallMinDotProduct && movementInput != VEC2::Zero) {
 			if (!isTryingToRelease) {
@@ -28,7 +28,7 @@ void HuggingWallActionState::update (float delta) {
 			if(climbTimer.elapsed() >= climbTime){
 				isClimbing = false;
 				TurnAround();
-				GetPlayerModel()->SetGravityMultiplier(slideGravityMultiplier);
+				GetPlayerModel()->setGravityMultiplier(slideGravityMultiplier);
 				GetPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
 			}
 		}
@@ -49,7 +49,7 @@ void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 		GetPlayerModel()->lastWallNormal = wallNormal;
 		*velocityVector = VEC3::Zero;
 		isClimbing = true;
-		GetPlayerModel()->SetGravityMultiplier(climbingGravityMultiplier);
+		GetPlayerModel()->setGravityMultiplier(climbingGravityMultiplier);
 		GetPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
 		SetPose();
 		climbTimer.reset();

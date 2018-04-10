@@ -31,22 +31,22 @@ void ReleasePowerGroundActionState::update (float delta) {
 		CEntity *hitboxBigEntity = hitboxBigHandle;
 		TCompHitbox *hitboxBig = hitboxBigEntity->get<TCompHitbox>();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
-		switch (GetPlayerModel()->GetPowerGauge()->powerLevel) {
+		switch (GetPlayerModel()->getPowerGauge()->powerLevel) {
 		case 1:
-			GetPlayerModel()->GetPowerGauge()->releasePower();
+			GetPlayerModel()->getPowerGauge()->releasePower();
 			break;
 		case 2:
-			GetPlayerModel()->GetPowerGauge()->releasePower();
+			GetPlayerModel()->getPowerGauge()->releasePower();
 			hitboxSmall->enable();
-			if (buttonPresses > 1) GetPlayerModel()->GetPowerGauge()->releasePower();
+			if (buttonPresses > 1) GetPlayerModel()->getPowerGauge()->releasePower();
 			break;
 		case 3:
-			GetPlayerModel()->GetPowerGauge()->releasePower();
+			GetPlayerModel()->getPowerGauge()->releasePower();
 			if (buttonPresses > 1) {
-				GetPlayerModel()->GetPowerGauge()->releasePower();
+				GetPlayerModel()->getPowerGauge()->releasePower();
 				//bola grande
 				hitboxBig->enable();
-				if (buttonPresses > 2) GetPlayerModel()->GetPowerGauge()->releasePower();
+				if (buttonPresses > 2) GetPlayerModel()->getPowerGauge()->releasePower();
 			}
 			else {
 				//bola pequeña
@@ -86,7 +86,7 @@ void ReleasePowerGroundActionState::OnReleasePowerButton() {
 	//Si está en active, release energy
 	if (phase == AttackPhases::Active) {
 		//si además button presses es == 2 y ssj2, agrandar bola
-		if (GetPlayerModel()->GetPowerGauge()->powerLevel == 2) {
+		if (GetPlayerModel()->getPowerGauge()->powerLevel == 2) {
 			CEntity *hitboxEntity = hitboxSmallHandle;
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->disable();
@@ -94,12 +94,12 @@ void ReleasePowerGroundActionState::OnReleasePowerButton() {
 			hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->enable();
 		}
-		GetPlayerModel()->GetPowerGauge()->releasePower();
+		GetPlayerModel()->getPowerGauge()->releasePower();
 	}
-	if (phase == AttackPhases::Recovery) GetPlayerModel()->GetPowerGauge()->releasePower();
+	if (phase == AttackPhases::Recovery) GetPlayerModel()->getPowerGauge()->releasePower();
 }
 
-void ReleasePowerGroundActionState::OnHitboxEnter(CHandle entity) {
+void ReleasePowerGroundActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;

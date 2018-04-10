@@ -9,8 +9,8 @@ void LandingActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
-	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
+	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
+	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 	if (hasInput) {
 		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
 		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
@@ -35,7 +35,7 @@ void LandingActionState::OnStateEnter(IActionState * lastState) {
 	enteringSpeed = enteringVelocityVector.Length();
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
-	landingLagFrames = GetPlayerModel()->GetPowerStats()->landingLag;
+	landingLagFrames = GetPlayerModel()->getPowerStats()->landingLag;
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
 	//dbg("Entrando en landing\n");
@@ -60,7 +60,7 @@ void LandingActionState::SetFinalRotationAndVelocity() {
 	bool hasInput = movementInput != VEC2::Zero;
 	if (hasInput) {
 		movementInput.Normalize();
-		VEC3 movementInputWorldSpace = GetCamera()->TransformToWorld(movementInput);
+		VEC3 movementInputWorldSpace = getCamera()->TransformToWorld(movementInput);
 		float exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 		float y, p, r;
 		GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
