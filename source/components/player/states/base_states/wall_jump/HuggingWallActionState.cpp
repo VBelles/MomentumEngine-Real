@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "HuggingWallActionState.h"
+#include "components/comp_render.h"
 
 HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 	:AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -74,6 +75,10 @@ void HuggingWallActionState::onJumpLongButton() {
 	TurnAround();
 	isClimbing = false;
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
+}
+
+void HuggingWallActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_jump.mesh");
 }
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {

@@ -20,5 +20,5 @@ public:
 	void onReleasePowerButton() override {}
 	
 	virtual void onLeavingGround();
-	void setPose() override { getRender()->setMesh("data/meshes/pose_jump_squat.mesh"); }
+	void setPose() override;
 };

@@ -24,7 +24,7 @@ public:
 	void onStrongAttackButton() override;
 	//void onReleasePowerButton() override {}
 
-	void setPose() override { getRender()->setMesh("data/meshes/pose_long_jump.mesh"); }
+	void setPose() override;
 	virtual void onLanding() override;
 	void onHitboxEnter(CHandle entity) override;
 };

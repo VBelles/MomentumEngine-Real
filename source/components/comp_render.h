@@ -6,6 +6,8 @@ class CRenderMesh;
 class CTexture;
 class CRenderTechnique;
 class CMaterial;
+struct TEntityParseContext;
+struct TMsgDefineLocalAABB;
 
 class TCompRender : public TCompBase {
     void loadMesh(const json& j, TEntityParseContext& ctx);

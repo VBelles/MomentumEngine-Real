@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "JumpSquatSpringActionState.h"
+#include "components/comp_render.h"
 
 JumpSquatSpringActionState::JumpSquatSpringActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -39,4 +40,8 @@ void JumpSquatSpringActionState::onLeavingGround() {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
 	}
+}
+
+void JumpSquatSpringActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_jump_squat.mesh");
 }

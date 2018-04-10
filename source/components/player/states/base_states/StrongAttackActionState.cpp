@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "StrongAttackActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -76,6 +77,10 @@ void StrongAttackActionState::onStrongAttackButtonReleased() {
 
 void StrongAttackActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+}
+
+void StrongAttackActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_knee.mesh");
 }
 
 void StrongAttackActionState::onHitboxEnter(CHandle entity) {

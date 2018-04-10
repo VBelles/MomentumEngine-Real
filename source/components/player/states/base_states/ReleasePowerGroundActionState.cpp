@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "ReleasePowerGroundActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -97,6 +98,10 @@ void ReleasePowerGroundActionState::onReleasePowerButton() {
 		getPlayerModel()->getPowerGauge()->releasePower();
 	}
 	if (phase == AttackPhases::Recovery) getPlayerModel()->getPowerGauge()->releasePower();
+}
+
+void ReleasePowerGroundActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_grab.mesh");
 }
 
 void ReleasePowerGroundActionState::onHitboxEnter(CHandle entity) {

@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "LandingActionState.h"
+#include "components/comp_render.h"
 
 LandingActionState::LandingActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -68,4 +69,8 @@ void LandingActionState::SetFinalRotationAndVelocity() {
 		velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed;
 		velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed;
 	}
+}
+
+void LandingActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_landing.mesh");
 }

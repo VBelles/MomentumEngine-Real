@@ -20,5 +20,5 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 
-	void setPose() override { getRender()->setMesh("data/meshes/pose_propel.mesh"); }
+	void setPose() override;
 };

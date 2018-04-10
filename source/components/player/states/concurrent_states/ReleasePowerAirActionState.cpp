@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "ReleasePowerAirActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -105,6 +106,10 @@ void ReleasePowerAirActionState::onReleasePowerButton() {
 void ReleasePowerAirActionState::onLanding() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
 	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+}
+
+void ReleasePowerAirActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_grab.mesh");
 }
 
 void ReleasePowerAirActionState::onHitboxEnter(CHandle entity) {

@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "WallJumpPlummetActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 WallJumpPlummetActionState::WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -65,6 +66,10 @@ void WallJumpPlummetActionState::onFastAttackButton() {
 
 void WallJumpPlummetActionState::onStrongAttackButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+}
+
+void WallJumpPlummetActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_long_jump.mesh");
 }
 
 void WallJumpPlummetActionState::onLanding() {

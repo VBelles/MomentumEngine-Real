@@ -4,6 +4,7 @@
 #include "game_constants.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
+#include "components/comp_render.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/filters/PlayerFilterCallback.h"
 #include "components/comp_collectable.h"

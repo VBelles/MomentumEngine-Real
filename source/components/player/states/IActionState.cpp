@@ -1,7 +1,12 @@
 #include "mcv_platform.h"
 #include "IActionState.h"
-#include "components/player/comp_player_model.h"
+#include "components/comp_render.h"
+#include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "components/comp_collider.h"
+#include "components/player/comp_player_model.h"
+
+
 
 IActionState::IActionState(CHandle playerModelHandle) {
 	this->playerModelHandle = playerModelHandle;
@@ -105,3 +110,9 @@ void IActionState::clampHorizontalVelocity(float maxHorizontalSpeed) {
 		velocityVector->z = horizontalVelocity.y;
 	}
 }
+
+
+TCompPlayerModel* IActionState::getPlayerModel() { return playerModelHandle; }
+TCompTransform* IActionState::getPlayerTransform() { return playerTransformHandle; }
+TCompCollider* IActionState::getCollider() { return colliderHandle; }
+TCompRender* IActionState::getRender() { return renderHandle; }

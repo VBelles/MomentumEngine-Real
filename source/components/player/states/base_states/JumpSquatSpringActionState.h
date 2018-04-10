@@ -20,6 +20,6 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 
-	void setPose() override { getRender()->setMesh("data/meshes/pose_jump_squat.mesh"); }
 	virtual void onLeavingGround() override;
+	void setPose() override;
 };

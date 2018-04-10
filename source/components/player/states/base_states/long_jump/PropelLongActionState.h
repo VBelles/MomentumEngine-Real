@@ -23,5 +23,5 @@ public:
 	void onReleasePowerButton() override {}
 
 	void onLanding() override {}
-	void setPose() override { getRender()->setMesh("data/meshes/pose_propel.mesh"); }
+	void setPose() override;
 };

@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "JumpSquatActionState.h"
+#include "components/comp_render.h"
 
 JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -41,6 +42,10 @@ void JumpSquatActionState::onStateExit(IActionState * nextState) {
 
 void JumpSquatActionState::onJumpHighButtonReleased() {
 	isShortHop = true;
+}
+
+void JumpSquatActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_jump_squat.mesh");
 }
 
 void JumpSquatActionState::onLeavingGround() {

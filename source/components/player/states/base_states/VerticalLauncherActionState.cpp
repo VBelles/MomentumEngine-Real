@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "VerticalLauncherActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -54,6 +55,10 @@ void VerticalLauncherActionState::setMovementInput(VEC2 input) {
 
 void VerticalLauncherActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+}
+
+void VerticalLauncherActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_vertical_launcher.mesh");
 }
 
 void VerticalLauncherActionState::onHitboxEnter(CHandle entity) {

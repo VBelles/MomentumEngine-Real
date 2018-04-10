@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "HorizontalLauncherActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 HorizontalLauncherActionState::HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -54,6 +55,10 @@ void HorizontalLauncherActionState::onStateExit(IActionState * nextState) {
 
 void HorizontalLauncherActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+}
+
+void HorizontalLauncherActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_horizontal_launcher.mesh");
 }
 
 void HorizontalLauncherActionState::onHitboxEnter(CHandle entity) {

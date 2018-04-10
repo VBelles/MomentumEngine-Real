@@ -35,6 +35,6 @@ public:
 	void onReleasePowerButton() override {}
 	void onFastAttackButtonReleased() override {} //posible comportamiento extra
 
-	void setPose() override { getRender()->setMesh("data/meshes/pose_punch.mesh"); }
+	void setPose() override;
 	void onHitboxEnter(CHandle entity) override;
 };

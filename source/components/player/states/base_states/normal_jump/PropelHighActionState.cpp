@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "PropelHighActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -56,4 +57,8 @@ void PropelHighActionState::onStateEnter(IActionState * lastState) {
 void PropelHighActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	getPlayerModel()->baseState->setPose();
+}
+
+void PropelHighActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_propel.mesh");
 }

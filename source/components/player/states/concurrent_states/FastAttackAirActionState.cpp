@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "FastAttackAirActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 FastAttackAirActionState::FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -51,6 +52,10 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->lockBaseState = false;
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = false;
+}
+
+void FastAttackAirActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_punch.mesh");
 }
 
 void FastAttackAirActionState::onHitboxEnter(CHandle entity) {

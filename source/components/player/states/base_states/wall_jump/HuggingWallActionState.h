@@ -33,7 +33,7 @@ public:
 	void onJumpHighButton() override;
 	void onJumpLongButton() override;
 
-	void setPose() override { getRender()->setMesh("data/meshes/pose_jump.mesh"); }
+	void setPose() override;
 	void SetHit(PxControllerShapeHit hit) { this->hit = hit; }
 	bool CheckIfHuggingWall(VEC3 wallDirection);
 	void FaceWall();

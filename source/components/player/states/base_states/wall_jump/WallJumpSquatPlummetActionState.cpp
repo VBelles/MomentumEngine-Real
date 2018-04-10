@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "WallJumpSquatPlummetActionState.h"
+#include "components/comp_render.h"
 
 WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -29,4 +30,8 @@ void WallJumpSquatPlummetActionState::onStateEnter(IActionState * lastState) {
 
 void WallJumpSquatPlummetActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
+}
+
+void WallJumpSquatPlummetActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_propel.mesh");
 }

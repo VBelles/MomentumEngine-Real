@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "PropelLongActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -58,4 +59,8 @@ void PropelLongActionState::onStateEnter(IActionState * lastState) {
 void PropelLongActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	getPlayerModel()->baseState->setPose();
+}
+
+void PropelLongActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_propel.mesh");
 }

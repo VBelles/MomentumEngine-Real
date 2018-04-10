@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "AirborneWallJumpActionState.h"
+#include "components/comp_render.h"
 
 AirborneWallJumpActionState::AirborneWallJumpActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -54,4 +55,8 @@ void AirborneWallJumpActionState::onStateEnter(IActionState * lastState) {
 void AirborneWallJumpActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	//dbg("Saliendo de airborne long\n");
+}
+
+void AirborneWallJumpActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_long_jump.mesh");
 }

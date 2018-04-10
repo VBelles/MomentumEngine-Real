@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "IdleActionState.h"
+#include "components/comp_render.h"
 
 IdleActionState::IdleActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -45,4 +46,8 @@ void IdleActionState::onStateEnter(IActionState * lastState) {
 
 void IdleActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+}
+
+void IdleActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_idle.mesh");
 }

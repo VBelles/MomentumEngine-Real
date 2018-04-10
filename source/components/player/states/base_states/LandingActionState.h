@@ -22,5 +22,5 @@ public:
 	void onReleasePowerButton() override {}
 
 	void SetFinalRotationAndVelocity();
-	void setPose() override { getRender()->setMesh("data/meshes/pose_landing.mesh"); }
+	void setPose() override;
 };

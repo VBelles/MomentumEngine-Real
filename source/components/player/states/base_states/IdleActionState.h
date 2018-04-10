@@ -11,5 +11,5 @@ public:
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 
-	void setPose() override { getRender()->setMesh("data/meshes/pose_idle.mesh"); }
+	void setPose() override;
 };

@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "GrabHighActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -56,4 +57,8 @@ void GrabActionState::onLanding() {
 
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
 	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+}
+
+void GrabActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_grab.mesh");
 }

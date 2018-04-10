@@ -1,11 +1,11 @@
 #pragma once
 
-#include "components/comp_collider.h"
-#include "components/comp_transform.h"
-#include "components/comp_render.h"
 
 class TCompPlayerModel;
 class TCompCamera;
+class TCompCollider;
+class TCompRender;
+class TCompTransform;
 
 using namespace physx;
 
@@ -30,11 +30,10 @@ protected:
 	VEC3* accelerationVector;
 	VEC3* velocityVector;
 
-	TCompPlayerModel* getPlayerModel() { return playerModelHandle; }
-	TCompTransform* getPlayerTransform() { return playerTransformHandle; }
-	TCompCollider* getCollider() { return colliderHandle; }
-	TCompRender* getRender() { return renderHandle; }
-
+	TCompPlayerModel* getPlayerModel();
+	TCompTransform* getPlayerTransform();
+	TCompCollider* getCollider();
+	TCompRender* getRender();
 	TCompCamera* getCamera();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta

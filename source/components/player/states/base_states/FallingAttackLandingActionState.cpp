@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "FallingAttackLandingActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 FallingAttackLandingActionState::FallingAttackLandingActionState(CHandle playerModelHandle, CHandle hitbox)
 	: LandingActionState::LandingActionState(playerModelHandle) {
@@ -56,4 +57,8 @@ void FallingAttackLandingActionState::onHitboxEnter(CHandle entity) {
 		msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
 		otherEntity->sendMsg(msgAtackHit);
 	}
+}
+
+void FallingAttackLandingActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_landing.mesh");
 }

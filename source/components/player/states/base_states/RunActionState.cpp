@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "RunActionState.h"
+#include "components/comp_render.h"
 
 RunActionState::RunActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -69,4 +70,8 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 
 void RunActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+}
+
+void RunActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_run.mesh");
 }

@@ -29,6 +29,6 @@ public:
 	void onReleasePowerButton() override {}
 
 	void onLanding() override;
-	void setPose() override { getRender()->setMesh("data/meshes/pose_falling_attack.mesh"); }
+	void setPose() override;
 	void onHitboxEnter(CHandle entity) override;
 };

@@ -7,6 +7,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_respawner.h"
 #include "components/comp_shadow.h"
+#include "components/comp_render.h"
 
 DECL_OBJ_MANAGER("ai_melee_enemy", CAIMeleeEnemy);
 

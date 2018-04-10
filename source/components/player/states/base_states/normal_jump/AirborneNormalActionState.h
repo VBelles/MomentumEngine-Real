@@ -10,7 +10,7 @@ public:
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 
-	void setPose() override { getRender()->setMesh("data/meshes/pose_jump.mesh"); }
+	void setPose() override;
 
 
 };

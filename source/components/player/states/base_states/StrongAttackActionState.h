@@ -38,6 +38,6 @@ public:
 	void onReleasePowerButton() override {};
 
 	void onLeavingGround() override;
-	void setPose() override { getRender()->setMesh("data/meshes/pose_knee.mesh"); }
 	void onHitboxEnter(CHandle entity) override;
+	void setPose() override;
 };

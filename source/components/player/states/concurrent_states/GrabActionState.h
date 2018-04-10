@@ -40,7 +40,7 @@ public:
 
 	void onLanding() override;
 
-	void setPose() override { getRender()->setMesh("data/meshes/pose_grab.mesh"); }
+	void setPose() override;
 
 	void onHitboxEnter(CHandle entity) override {}
 };

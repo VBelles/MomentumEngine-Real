@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "FallingAttackActionState.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 FallingAttackActionState::FallingAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -62,6 +63,10 @@ void FallingAttackActionState::onLanding() {
 	*velocityVector = VEC3::Zero;
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
 	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+}
+
+void FallingAttackActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_falling_attack.mesh");
 }
 
 void FallingAttackActionState::onHitboxEnter(CHandle entity) {
