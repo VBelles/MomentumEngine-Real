@@ -9,38 +9,38 @@ void WalkActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
-	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	float desiredVelocity = currentPowerStats->maxHorizontalSpeed;
 	bool wantToWalk = false;
 	if (movementInput.Length() < 0.8f) {
-		desiredVelocity = GetPlayerModel()->walkingSpeed;
+		desiredVelocity = getPlayerModel()->walkingSpeed;
 		wantToWalk = true;
 	}
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
 	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
-	bool isTurnAround = GetPlayerModel()->getTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
+	bool isTurnAround = getPlayerModel()->getTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
 	if (hasInput && !isTurnAround) {
-		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
-		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
+		VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
+		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
 
 	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
 	if (hasInput) {
-		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
-			GetPlayerTransform()->getFront(), currentPowerStats->acceleration,
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+			getPlayerTransform()->getFront(), currentPowerStats->acceleration,
 			desiredVelocity);
 
-		TransferVelocityToDirectionAndAccelerate(delta, true, GetPlayerTransform()->getFront(), currentPowerStats->acceleration);
-		ClampHorizontalVelocity(desiredVelocity);
+		transferVelocityToDirectionAndAccelerate(delta, true, getPlayerTransform()->getFront(), currentPowerStats->acceleration);
+		clampHorizontalVelocity(desiredVelocity);
 	}
 	else {
 		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 		if (currentPowerStats->deceleration * delta < horizontalVelocity.Length()) {
-			deltaMovement = CalculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+			deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
 				-VEC3(velocityVector->x, 0, velocityVector->z), currentPowerStats->deceleration, desiredVelocity);
 
-			TransferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), currentPowerStats->deceleration);
+			transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), currentPowerStats->deceleration);
 		}
 		else {
 			velocityVector->x = 0.f;
@@ -49,26 +49,26 @@ void WalkActionState::update (float delta) {
 	}
 	
 	if (isTurnAround) {
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::TurnAround);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::TurnAround);
 	}
 	else {
 		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 
 		if (horizontalVelocity.Length() == 0.f) {
-			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 		}
-		else if(!wantToWalk && horizontalVelocity.Length() > GetPlayerModel()->walkingSpeed){
-			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Run);
+		else if(!wantToWalk && horizontalVelocity.Length() > getPlayerModel()->walkingSpeed){
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Run);
 		}
 	}
 
 }
 
-void WalkActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
-	SetPose();
+void WalkActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
+	setPose();
 }
 
-void WalkActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void WalkActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
 }

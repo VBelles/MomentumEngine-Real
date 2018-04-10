@@ -9,18 +9,18 @@ PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 void PropelHighActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= endingTime) {
 		if (movementInput != VEC2::Zero) {
 			VEC3 inputDirection = getCamera()->TransformToWorld(movementInput);
 			float newYaw = atan2(inputDirection.x, inputDirection.z);
 			float y, p, r;
-			GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-			GetPlayerTransform()->setYawPitchRoll(newYaw, p, r);
+			getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+			getPlayerTransform()->setYawPitchRoll(newYaw, p, r);
 		}
 		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 		//pasar mensaje a la otra entidad
 		CHandle playerEntity = CHandle(playerModelHandle).getOwner();
 		CEntity* targetEntity = propelTarget;
@@ -39,21 +39,21 @@ void PropelHighActionState::update (float delta) {
 	}
 }
 
-void PropelHighActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
-	SetPose();
+void PropelHighActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
+	setPose();
 	endingTime = endingFrames * (1.f / 60);
-	propelTarget = GetPlayerModel()->grabTarget;
+	propelTarget = getPlayerModel()->grabTarget;
 	CEntity* targetEntity = propelTarget;
 	TCompTransform* targetTransform = targetEntity->get<TCompTransform>();
-	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - GetPlayerTransform()->getPosition();
+	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - getPlayerTransform()->getPosition();
 	movingVelocity /= endingTime;
 	timer.reset();
-	GetPlayerModel()->lastWallEntered = nullptr;
-	GetPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
+	getPlayerModel()->lastWallEntered = nullptr;
+	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 }
 
-void PropelHighActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
-	GetPlayerModel()->baseState->SetPose();
+void PropelHighActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
+	getPlayerModel()->baseState->setPose();
 }

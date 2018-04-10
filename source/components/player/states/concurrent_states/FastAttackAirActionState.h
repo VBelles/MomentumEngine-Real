@@ -25,16 +25,16 @@ class FastAttackAirActionState : public AirborneActionState {
 public:
 	FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
 	void setMovementInput(VEC2 input) override {}
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnFastAttackButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnReleasePowerButton() override {}
-	void OnFastAttackButtonReleased() override {} //posible comportamiento extra
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onFastAttackButton() override {}
+	void onStrongAttackButton() override {}
+	void onReleasePowerButton() override {}
+	void onFastAttackButtonReleased() override {} //posible comportamiento extra
 
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_punch.mesh"); }
+	void setPose() override { getRender()->setMesh("data/meshes/pose_punch.mesh"); }
 	void onHitboxEnter(CHandle entity) override;
 };

@@ -8,37 +8,37 @@ JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
 void JumpSquatLongActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		GetPlayerModel()->isAttachedToPlatform = false;
-		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
+		getPlayerModel()->isAttachedToPlatform = false;
+		*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 	}
 }
 
-void JumpSquatLongActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
-	SetPose();
+void JumpSquatLongActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
+	setPose();
 	//dbg("Entrando en JumpSquatLong\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
 }
 
-void JumpSquatLongActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void JumpSquatLongActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
 	//dbg("Saliendo de JumpSquatLong\n");
 }
 
 void JumpSquatLongActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
 	}
 }

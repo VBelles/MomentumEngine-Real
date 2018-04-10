@@ -9,12 +9,12 @@ void AirborneNormalActionState::update (float delta) {
 	AirborneActionState::update(delta);
 }
 
-void AirborneNormalActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
-	SetPose();
+void AirborneNormalActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
+	setPose();
 }
 
-void AirborneNormalActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
+void AirborneNormalActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
 }
 

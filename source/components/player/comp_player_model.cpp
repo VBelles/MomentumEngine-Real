@@ -142,8 +142,8 @@ void TCompPlayerModel::setBaseState(ActionStates newState) {
 void TCompPlayerModel::changeBaseState(ActionStates newState) {
 	IActionState* exitingState = baseState;
 	baseState = baseStates[newState];
-	if (exitingState) exitingState->OnStateExit(baseState);
-	if (baseState) baseState->OnStateEnter(exitingState);
+	if (exitingState) exitingState->onStateExit(baseState);
+	if (baseState) baseState->onStateEnter(exitingState);
 }
 
 void TCompPlayerModel::setConcurrentState(ActionStates newState) {
@@ -153,8 +153,8 @@ void TCompPlayerModel::setConcurrentState(ActionStates newState) {
 void TCompPlayerModel::changeConcurrentState(ActionStates newState) {
 	IActionState* exitingState = concurrentState;
 	concurrentState = concurrentStates[newState];
-	if (exitingState) exitingState->OnStateExit(concurrentState);
-	if (concurrentState) concurrentState->OnStateEnter(exitingState);
+	if (exitingState) exitingState->onStateExit(concurrentState);
+	if (concurrentState) concurrentState->onStateEnter(exitingState);
 }
 
 void TCompPlayerModel::registerMsgs() {
@@ -333,10 +333,10 @@ void TCompPlayerModel::update(float dt) {
 		concurrentState->update(dt);
 	}
 	if (!lockWalk) {
-		deltaMovement = baseState->GetDeltaMovement();
+		deltaMovement = baseState->getDeltaMovement();
 	}
 	else if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		deltaMovement = concurrentState->GetDeltaMovement();
+		deltaMovement = concurrentState->getDeltaMovement();
 	}
 
 	applyGravity(dt);
@@ -430,70 +430,70 @@ TCompCamera* TCompPlayerModel::getCamera() {
 
 void TCompPlayerModel::jumpButtonPressed() {
 	if (!lockBaseState) {
-		baseState->OnJumpHighButton();
+		baseState->onJumpHighButton();
 	}
 	else {
 		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->OnJumpHighButton();
+			concurrentState->onJumpHighButton();
 		}
 	}
 }
 
 void TCompPlayerModel::jumpButtonReleased() {
 	if (!lockBaseState) {
-		baseState->OnJumpHighButtonReleased();
+		baseState->onJumpHighButtonReleased();
 	}
 	else {
 		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->OnJumpHighButtonReleased();
+			concurrentState->onJumpHighButtonReleased();
 		}
 	}
 }
 
 void TCompPlayerModel::longJumpButtonPressed() {
 	if (!lockBaseState) {
-		baseState->OnJumpLongButton();
+		baseState->onJumpLongButton();
 	}
 	else {
 		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->OnJumpLongButton();
+			concurrentState->onJumpLongButton();
 		}
 	}
 }
 
 void TCompPlayerModel::fastAttackButtonPressed() {
 	if (!lockBaseState) {
-		baseState->OnFastAttackButton();
+		baseState->onFastAttackButton();
 	}
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnFastAttackButton();
+		concurrentState->onFastAttackButton();
 	}
 }
 
 void TCompPlayerModel::fastAttackButtonReleased() {
 	if (!lockBaseState) {
-		baseState->OnFastAttackButtonReleased();
+		baseState->onFastAttackButtonReleased();
 	}
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnFastAttackButtonReleased();
+		concurrentState->onFastAttackButtonReleased();
 	}
 }
 
 void TCompPlayerModel::strongAttackButtonPressed() {
 	if (!lockBaseState) {
-		baseState->OnStrongAttackButton();
+		baseState->onStrongAttackButton();
 	}
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnStrongAttackButton();
+		concurrentState->onStrongAttackButton();
 	}
 }
 
 void TCompPlayerModel::strongAttackButtonReleased() {
 	if (!lockBaseState) {
-		baseState->OnStrongAttackButtonReleased();
+		baseState->onStrongAttackButtonReleased();
 	}
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnStrongAttackButtonReleased();
+		concurrentState->onStrongAttackButtonReleased();
 	}
 }
 
@@ -504,9 +504,9 @@ void TCompPlayerModel::centerCameraButtonPressed() {
 }
 
 void TCompPlayerModel::releasePowerButtonPressed() {
-	baseState->OnReleasePowerButton();
+	baseState->onReleasePowerButton();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnReleasePowerButton();
+		concurrentState->onReleasePowerButton();
 	}
 }
 
@@ -582,7 +582,7 @@ void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 	//	//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 	//	//dbg("%f\n", deg2rad(pitch));
 
-	//	VEC3 worldInput = getCamera()->TransformToWorld(baseState->GetMovementInput());
+	//	VEC3 worldInput = getCamera()->TransformToWorld(baseState->getMovementInput());
 	//	if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || getTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
 	//		float pitch = asin(-msg.hit.worldNormal.y);
 	//		if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {

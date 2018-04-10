@@ -28,16 +28,16 @@ class StrongAttackActionState : public GroundedActionState {
 public:
 	StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnStrongAttackButtonReleased() override;
-	void OnFastAttackButton() override {}
-	void OnReleasePowerButton() override {};
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onStrongAttackButton() override {}
+	void onStrongAttackButtonReleased() override;
+	void onFastAttackButton() override {}
+	void onReleasePowerButton() override {};
 
 	void OnLeavingGround() override;
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_knee.mesh"); }
+	void setPose() override { getRender()->setMesh("data/meshes/pose_knee.mesh"); }
 	void onHitboxEnter(CHandle entity) override;
 };

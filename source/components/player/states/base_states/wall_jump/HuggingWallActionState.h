@@ -28,12 +28,12 @@ private:
 public:
 	HuggingWallActionState(CHandle playerModelHandle);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override;
-	void OnJumpLongButton() override;
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void onJumpHighButton() override;
+	void onJumpLongButton() override;
 
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_jump.mesh"); }
+	void setPose() override { getRender()->setMesh("data/meshes/pose_jump.mesh"); }
 	void SetHit(PxControllerShapeHit hit) { this->hit = hit; }
 	bool CheckIfHuggingWall(VEC3 wallDirection);
 	void FaceWall();

@@ -12,11 +12,11 @@ void StrongAttackActionState::update(float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
 	}
 	else {
 		if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 			timer.reset();
@@ -26,7 +26,7 @@ void StrongAttackActionState::update(float delta) {
 			phase = AttackPhases::Recovery;
 		}
 		else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-			SetPose();
+			setPose();
 			timer.reset();
 			CEntity *hitboxEntity = hitboxHandle;
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -41,14 +41,14 @@ void StrongAttackActionState::update(float delta) {
 
 		if (hasInput) {
 			VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
-			VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
-			RotatePlayerTowards(delta, targetPos, 3.f);
+			VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
+			rotatePlayerTowards(delta, targetPos, 3.f);
 		}
 	}
 }
 
-void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
+void StrongAttackActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
 	//dbg("Strong Attack\n");
 	phase = AttackPhases::Launch;
 	*velocityVector = VEC3::Zero;
@@ -62,20 +62,20 @@ void StrongAttackActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 }
 
-void StrongAttackActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void StrongAttackActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 	//dbg("Finish strong Attack\n");
 }
 
-void StrongAttackActionState::OnStrongAttackButtonReleased() {
+void StrongAttackActionState::onStrongAttackButtonReleased() {
 	phase = AttackPhases::Startup;
 }
 
 void StrongAttackActionState::OnLeavingGround() {
-	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void StrongAttackActionState::onHitboxEnter(CHandle entity) {

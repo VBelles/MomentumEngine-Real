@@ -14,15 +14,15 @@ void AirborneLongActionState::update (float delta) {
 
 	if (hasInput) {
 		//aceleración según sentido de movimiento
-		float appliedAcceleration = CalculateAccelerationAccordingToDirection(enterFront, desiredDirection,
+		float appliedAcceleration = calculateAccelerationAccordingToDirection(enterFront, desiredDirection,
 			enteringPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct,
 			backwardsAirDriftFactorLong, sidewaysAirDriftFactorLong);
 
-		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
 			desiredDirection, appliedAcceleration, enteringPowerStats->longJumpVelocityVector.z);
 
-		TransferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
-		ClampHorizontalVelocity(enteringPowerStats->longJumpVelocityVector.z);
+		transferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
+		clampHorizontalVelocity(enteringPowerStats->longJumpVelocityVector.z);
 	}
 	else {
 		deltaMovement.x = velocityVector->x * delta;
@@ -30,15 +30,15 @@ void AirborneLongActionState::update (float delta) {
 	}
 }
 
-void AirborneLongActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
-	SetPose();
-	GetPlayerModel()->setGravityMultiplier(enteringPowerStats->longGravityMultiplier);
+void AirborneLongActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
+	setPose();
+	getPlayerModel()->setGravityMultiplier(enteringPowerStats->longGravityMultiplier);
 	//dbg("Entrando en airborne long\n");
 	
 }
 
-void AirborneLongActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
+void AirborneLongActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
 	//dbg("Saliendo de airborne long\n");
 }

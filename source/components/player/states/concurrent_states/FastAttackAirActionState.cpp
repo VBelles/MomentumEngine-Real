@@ -10,7 +10,7 @@ FastAttackAirActionState::FastAttackAirActionState(CHandle playerModelHandle, CH
 void FastAttackAirActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -20,7 +20,7 @@ void FastAttackAirActionState::update(float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-		SetPose();
+		setPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -29,28 +29,28 @@ void FastAttackAirActionState::update(float delta) {
 	}
 }
 
-void FastAttackAirActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
+void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
-	GetPlayerModel()->lockBaseState = true;
-	GetPlayerModel()->lockWalk = false;
-	GetPlayerModel()->lockTurning = true;
+	getPlayerModel()->lockBaseState = true;
+	getPlayerModel()->lockWalk = false;
+	getPlayerModel()->lockTurning = true;
 }
 
-void FastAttackAirActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
-	GetPlayerModel()->baseState->SetPose();
+void FastAttackAirActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
+	getPlayerModel()->baseState->setPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	GetPlayerModel()->lockBaseState = false;
-	GetPlayerModel()->lockWalk = false;
-	GetPlayerModel()->lockTurning = false;
+	getPlayerModel()->lockBaseState = false;
+	getPlayerModel()->lockWalk = false;
+	getPlayerModel()->lockTurning = false;
 }
 
 void FastAttackAirActionState::onHitboxEnter(CHandle entity) {

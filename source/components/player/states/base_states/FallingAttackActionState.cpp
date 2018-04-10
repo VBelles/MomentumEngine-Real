@@ -14,12 +14,12 @@ void FallingAttackActionState::update (float delta) {
 	if (timer.elapsed() < hitboxOutTime) {
 		//posicionamiento
 		bool hasInput = movementInput != VEC2::Zero;
-		PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
+		PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 		if (hasInput) {
 			VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
-			VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
-			RotatePlayerTowards(delta, targetPos, 10.f);
+			VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
+			rotatePlayerTowards(delta, targetPos, 10.f);
 		}
 		velocityVector->y = 0.f;
 		deltaMovement.y = upwardsVelocity * delta;
@@ -31,27 +31,27 @@ void FallingAttackActionState::update (float delta) {
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->enable();
 		}
-		GetPlayerModel()->setGravityMultiplier(fallingMultiplier);
+		getPlayerModel()->setGravityMultiplier(fallingMultiplier);
 	}
 }
 
-void FallingAttackActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
-	SetPose();
-	GetPlayerModel()->maxVerticalSpeed = maxFallingVelocity;
-	GetPlayerModel()->setGravity(0.f);
+void FallingAttackActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
+	setPose();
+	getPlayerModel()->maxVerticalSpeed = maxFallingVelocity;
+	getPlayerModel()->setGravity(0.f);
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
 }
 
-void FallingAttackActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
+void FallingAttackActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	GetPlayerModel()->resetGravity();
-	GetPlayerModel()->baseState->SetPose();
+	getPlayerModel()->resetGravity();
+	getPlayerModel()->baseState->setPose();
 }
 
 void FallingAttackActionState::OnLanding() {
@@ -60,8 +60,8 @@ void FallingAttackActionState::OnLanding() {
 	hitbox->disable();
 
 	*velocityVector = VEC3::Zero;
-	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
-	GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
+	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }
 
 void FallingAttackActionState::onHitboxEnter(CHandle entity) {

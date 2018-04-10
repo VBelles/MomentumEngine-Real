@@ -8,10 +8,10 @@ JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
 void JumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		GetPlayerModel()->isAttachedToPlatform = false;
+		getPlayerModel()->isAttachedToPlatform = false;
 		velocityVector->y = isShortHop ? currentPowerStats->shortHopVelocity : currentPowerStats->jumpVelocityVector.y;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;
@@ -19,37 +19,37 @@ void JumpSquatActionState::update (float delta) {
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
 		if (hasInput) {
-			deltaMovement += GetPlayerTransform()->getFront() * enteringVelocity * delta;
+			deltaMovement += getPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
 	}
 }
 
-void JumpSquatActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
-	SetPose();
+void JumpSquatActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
+	setPose();
 	//dbg("Entrando en JumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
 	isShortHop = false;
 	timer.reset();
-	enteringVelocity = GetPlayerModel()->getVelocityVector()->Length();
+	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
 }
 
-void JumpSquatActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void JumpSquatActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
 	//dbg("Saliendo de JumpSquat\n");
 }
 
-void JumpSquatActionState::OnJumpHighButtonReleased() {
+void JumpSquatActionState::onJumpHighButtonReleased() {
 	isShortHop = true;
 }
 
 void JumpSquatActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
 	}
 }

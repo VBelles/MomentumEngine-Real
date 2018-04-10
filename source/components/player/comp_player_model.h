@@ -35,7 +35,6 @@ class TCompPlayerModel : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 public:
-
 	enum ActionStates {
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
 		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
@@ -92,15 +91,18 @@ private:
 	ActionStates nextBaseState;
 	ActionStates nextConcurrentState;
 
-	PowerStats* loadPowerStats(const json& j);
-
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onCollect(const TMsgCollect& msg);
 	void onShapeHit(const TMsgOnShapeHit & msg);
 	void onContact(const TMsgOnContact & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);
+	void onAttackHit(const TMsgAttackHit& msg);
+	void onHitboxEnter(const TMsgHitboxEnter& msg);
+	void onGainPower(const TMsgGainPower& msg);
+	void onOutOfBounds(const TMsgOutOfBounds& msg);
 
+	PowerStats* loadPowerStats(const json& j);
 	void changeBaseState(ActionStates newState);
 	void changeConcurrentState(ActionStates newState);
 	void onDead();
@@ -108,7 +110,7 @@ private:
 	void applyGravity(float delta);
 
 public:
-	IActionState * baseState;
+	IActionState* baseState;
 	IActionState* concurrentState;
 
 	bool lockBaseState = false;
@@ -156,11 +158,6 @@ public:
 	void releasePowerButtonPressed();
 	void gainPowerButtonPressed();
 	bool isConcurrentActionFree();
-
-	void onAttackHit(const TMsgAttackHit& msg);
-	void onHitboxEnter(const TMsgHitboxEnter& msg);
-	void onGainPower(const TMsgGainPower& msg);
-	void onOutOfBounds(const TMsgOutOfBounds& msg);
 
 	TCompTransform* getTransform() { return transformHandle; }
 	TCompCollider* getCollider() { return colliderHandle; }

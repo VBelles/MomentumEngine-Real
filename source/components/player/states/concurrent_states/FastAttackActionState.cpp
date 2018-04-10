@@ -10,11 +10,11 @@ FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle 
 void FastAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HorizontalLauncher);
+		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HorizontalLauncher);
 	}
 	else if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -24,7 +24,7 @@ void FastAttackActionState::update(float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-		SetPose();
+		setPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -33,8 +33,8 @@ void FastAttackActionState::update(float delta) {
 	}
 }
 
-void FastAttackActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
+void FastAttackActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
 	phase = AttackPhases::Launch;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
@@ -42,27 +42,27 @@ void FastAttackActionState::OnStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	beginLauncherTime = startLauncherFrames * (1.f / 60);
 	timer.reset();
-	GetPlayerModel()->lockBaseState = true;
-	GetPlayerModel()->lockWalk = false;
+	getPlayerModel()->lockBaseState = true;
+	getPlayerModel()->lockWalk = false;
 }
 
-void FastAttackActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
-	GetPlayerModel()->baseState->SetPose();
+void FastAttackActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
+	getPlayerModel()->baseState->setPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	GetPlayerModel()->lockBaseState = false;
-	GetPlayerModel()->lockWalk = false;
+	getPlayerModel()->lockBaseState = false;
+	getPlayerModel()->lockWalk = false;
 }
 
-void FastAttackActionState::OnFastAttackButtonReleased() {
+void FastAttackActionState::onFastAttackButtonReleased() {
 	phase = AttackPhases::Startup;
 
 }
 
 void FastAttackActionState::OnLeavingGround() {
-	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void FastAttackActionState::onHitboxEnter(CHandle entity) {

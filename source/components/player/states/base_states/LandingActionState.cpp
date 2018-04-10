@@ -9,51 +9,51 @@ void LandingActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
-	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 	if (hasInput) {
-		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
-		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
+		VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
+		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
 
 	if (timer.elapsed() >= landingLagTime) {
 		if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
-			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else {
-			velocityVector->x = GetPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
-			velocityVector->z = GetPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
-			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+			velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
+			velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 		}
 	}
 }
 
-void LandingActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
-	SetPose();
+void LandingActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
+	setPose();
 	VEC3 enteringVelocityVector = { velocityVector->x, 0.f, velocityVector->z };
 	enteringSpeed = enteringVelocityVector.Length();
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
-	landingLagFrames = GetPlayerModel()->getPowerStats()->landingLag;
+	landingLagFrames = getPlayerModel()->getPowerStats()->landingLag;
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
 	//dbg("Entrando en landing\n");
 }
 
-void LandingActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void LandingActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
 	//dbg("Saliendo de landing\n");
 }
 
-void LandingActionState::OnJumpHighButton() {
+void LandingActionState::onJumpHighButton() {
 	SetFinalRotationAndVelocity();
-	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
-void LandingActionState::OnJumpLongButton() {
+void LandingActionState::onJumpLongButton() {
 	SetFinalRotationAndVelocity();
-	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void LandingActionState::SetFinalRotationAndVelocity() {
@@ -63,9 +63,9 @@ void LandingActionState::SetFinalRotationAndVelocity() {
 		VEC3 movementInputWorldSpace = getCamera()->TransformToWorld(movementInput);
 		float exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 		float y, p, r;
-		GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-		GetPlayerTransform()->setYawPitchRoll(exitYaw, p, r);
-		velocityVector->x = GetPlayerTransform()->getFront().x * enteringSpeed;
-		velocityVector->z = GetPlayerTransform()->getFront().z * enteringSpeed;
+		getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+		getPlayerTransform()->setYawPitchRoll(exitYaw, p, r);
+		velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed;
+		velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed;
 	}
 }

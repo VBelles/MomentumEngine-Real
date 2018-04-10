@@ -10,15 +10,15 @@ GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(CHandle playerModel
 void GhostJumpSquatLongActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->getPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
+		*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
@@ -26,19 +26,19 @@ void GhostJumpSquatLongActionState::update(float delta) {
 		deltaMovement.x = 0;
 		deltaMovement.z = 0;
 		if (hasInput) {
-			deltaMovement += GetPlayerTransform()->getFront() * enteringVelocity * delta;
+			deltaMovement += getPlayerTransform()->getFront() * enteringVelocity * delta;
 		}
 	}
 }
 
-void GhostJumpSquatLongActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
+void GhostJumpSquatLongActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
 	//dbg("Entrando en GhostJumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
 }
 
-void GhostJumpSquatLongActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
+void GhostJumpSquatLongActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
 	//dbg("Saliendo de GhostJumpSquat\n");
 }

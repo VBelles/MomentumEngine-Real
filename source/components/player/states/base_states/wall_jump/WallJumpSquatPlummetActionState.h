@@ -14,13 +14,13 @@ protected:
 public:
 	WallJumpSquatPlummetActionState(CHandle playerModelHandle);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnFastAttackButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnReleasePowerButton() override {}
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onFastAttackButton() override {}
+	void onStrongAttackButton() override {}
+	void onReleasePowerButton() override {}
 
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_propel.mesh"); }
+	void setPose() override { getRender()->setMesh("data/meshes/pose_propel.mesh"); }
 };

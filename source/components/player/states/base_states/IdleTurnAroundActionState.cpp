@@ -11,52 +11,52 @@ void IdleTurnAroundActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
 		RotateToFinalDirection();
-		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else {
 		float y, p, r;
-		GetPlayerTransform()->getYawPitchRoll(&y,&p,&r);
+		getPlayerTransform()->getYawPitchRoll(&y,&p,&r);
 		y += rotationSpeed * delta;
-		GetPlayerTransform()->setYawPitchRoll(y, p, r);
+		getPlayerTransform()->setYawPitchRoll(y, p, r);
 	}
 }
 
-void IdleTurnAroundActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
+void IdleTurnAroundActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
 	turnAroundTime = turnAroundFrames * (1.f / 60);
 	timer.reset();
 	*velocityVector = VEC3::Zero;
-	movementInput = lastState->GetMovementInput();
+	movementInput = lastState->getMovementInput();
 	movementInput.Normalize();
 	VEC3 movementInputWorldSpace = getCamera()->TransformToWorld(movementInput);
 	exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 	float y, p, r;
-	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	rotationSpeed = (exitYaw - y) / turnAroundTime;
 }
 
-void IdleTurnAroundActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void IdleTurnAroundActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
 }
 
-void IdleTurnAroundActionState::OnJumpHighButton() {
+void IdleTurnAroundActionState::onJumpHighButton() {
 	RotateToFinalDirection();
-	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
-void IdleTurnAroundActionState::OnJumpLongButton() {
+void IdleTurnAroundActionState::onJumpLongButton() {
 	RotateToFinalDirection();
-	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void IdleTurnAroundActionState::OnLeavingGround() {
 	RotateToFinalDirection();
-	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void IdleTurnAroundActionState::RotateToFinalDirection() {
 	//Rotar hasta el ángulo de salida
 	float y, p, r;
-	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-	GetPlayerTransform()->setYawPitchRoll(exitYaw, p, r);
+	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+	getPlayerTransform()->setYawPitchRoll(exitYaw, p, r);
 }

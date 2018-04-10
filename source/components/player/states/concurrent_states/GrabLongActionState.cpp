@@ -25,9 +25,9 @@ void GrabLongActionState::onHitboxEnter(CHandle entity) {
 				lockDuration
 			};
 			otherEntity->sendMsg(msgAtackHit);
-			GetPlayerModel()->grabTarget = entity;
-			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::PropelLong);
-			GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+			getPlayerModel()->grabTarget = entity;
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::PropelLong);
+			getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 		}
 	}
 }
