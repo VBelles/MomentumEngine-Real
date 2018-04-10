@@ -1,8 +1,7 @@
 #pragma once
 
-#include "IBehaviorTree.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/comp_base.h"
-#include "entity/common_msgs.h"
 
 class CEntity;
 class TCompTransform;

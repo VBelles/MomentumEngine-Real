@@ -26,7 +26,6 @@
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_test_axis.cpp" />
-    <ClCompile Include="modules\module_ia.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
@@ -49,10 +48,7 @@
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
-    <ClCompile Include="components\ia\ai_controller.cpp" />
-    <ClCompile Include="components\ia\ai_melee_enemy.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
-    <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
@@ -67,7 +63,6 @@
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
-    <ClCompile Include="components\ia\ai_flying_enemy.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
@@ -101,13 +96,6 @@
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="windows\app.cpp" />
-    <ClCompile Include="components\ia\behavior tree\IBehaviorTree.cpp" />
-    <ClCompile Include="components\ia\behavior tree\IBehaviorTreeNode.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeAction.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeSequence.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodePriority.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeRandom.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabActionState.cpp" />
@@ -150,7 +138,6 @@
     <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
     <ClCompile Include="components\comp_give_power.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeFlyingRangedEnemy.cpp" />
     <ClCompile Include="components\controllers\ranged_attacks\comp_ranged_attack.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
@@ -172,6 +159,14 @@
     <ClCompile Include="components\unused\comp_circular_controller.cpp" />
     <ClCompile Include="components\unused\comp_destroy_condition.cpp" />
     <ClCompile Include="components\unused\comp_ground_sensor.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeAction.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodePriority.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeRandom.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeSequence.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNode.cpp" />
+    <ClCompile Include="components\ia\enemies\FlyingRangedEnemy.cpp" />
+    <ClCompile Include="components\ia\enemies\MeleeEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -216,7 +211,6 @@
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\module.h" />
-    <ClInclude Include="modules\module_ia.h" />
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
@@ -244,10 +238,7 @@
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="windows\app.h" />
-    <ClInclude Include="components\ia\ai_controller.h" />
-    <ClInclude Include="components\ia\ai_melee_enemy.h" />
     <ClInclude Include="components\comp_collectable.h" />
-    <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
@@ -264,7 +255,6 @@
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\player\states\AirborneActionState.h" />
     <ClInclude Include="components\player\states\GroundedActionState.h" />
-    <ClInclude Include="components\ia\ai_flying_enemy.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
@@ -336,18 +326,10 @@
     <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_mechanism_system.h" />
     <ClInclude Include="components\comp_appear.h" />
-    <ClInclude Include="components\ia\behavior tree\IBehaviorTree.h" />
-    <ClInclude Include="components\ia\behavior tree\IBehaviorTreeNode.h" />
-    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeAction.h" />
-    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeSequence.h" />
-    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodePriority.h" />
-    <ClInclude Include="components\ia\behavior tree\BehaviorTreeNodeRandom.h" />
-    <ClInclude Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
     <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
     <ClInclude Include="components\comp_give_power.h" />
-    <ClInclude Include="components\ia\behavior tree\BehaviorTreeFlyingRangedEnemy.h" />
     <ClInclude Include="components\controllers\ranged_attacks\comp_ranged_attack.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
@@ -369,6 +351,14 @@
     <ClInclude Include="components\unused\comp_circular_controller.h" />
     <ClInclude Include="components\unused\comp_destroy_condition.h" />
     <ClInclude Include="components\unused\comp_ground_sensor.h" />
+    <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeAction.h" />
+    <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodePriority.h" />
+    <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeRandom.h" />
+    <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeSequence.h" />
+    <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
+    <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNode.h" />
+    <ClInclude Include="components\ia\enemies\MeleeEnemy.h" />
+    <ClInclude Include="components\ia\enemies\FlyingRangedEnemy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
