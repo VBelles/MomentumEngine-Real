@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "AirborneWallJumpActionState.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
 
 AirborneWallJumpActionState::AirborneWallJumpActionState(CHandle playerModelHandle)
