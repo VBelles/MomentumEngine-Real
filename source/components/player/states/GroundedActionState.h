@@ -18,5 +18,5 @@ public:
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
 
-	virtual void OnLeavingGround();
+	virtual void onLeavingGround();
 };

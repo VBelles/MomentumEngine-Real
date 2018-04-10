@@ -30,7 +30,7 @@ void JumpSquatSpringActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 }
 
-void JumpSquatSpringActionState::OnLeavingGround() {
+void JumpSquatSpringActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);

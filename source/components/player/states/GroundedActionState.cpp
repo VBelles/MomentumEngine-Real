@@ -48,7 +48,7 @@ void GroundedActionState::onReleasePowerButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::ReleasePowerGround);
 }
 
-void GroundedActionState::OnLeavingGround() {
+void GroundedActionState::onLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }

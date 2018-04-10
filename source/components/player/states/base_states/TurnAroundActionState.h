@@ -23,5 +23,5 @@ public:
 	void onJumpHighButton() override;
 	void onJumpLongButton() override;
 
-	virtual void OnLeavingGround();
+	virtual void onLeavingGround();
 };

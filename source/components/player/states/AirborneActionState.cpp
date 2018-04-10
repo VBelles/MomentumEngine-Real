@@ -115,7 +115,7 @@ void AirborneActionState::onReleasePowerButton() {
 }
 
 
-void AirborneActionState::OnLanding() {
+void AirborneActionState::onLanding() {
 	//Ir a landing action state
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
 }

@@ -52,7 +52,7 @@ void HorizontalLauncherActionState::onStateExit(IActionState * nextState) {
 	//dbg("Finish Horizontal Launcher\n");
 }
 
-void HorizontalLauncherActionState::OnLeavingGround() {
+void HorizontalLauncherActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 

@@ -54,7 +54,7 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->baseState->setPose();
 }
 
-void FallingAttackActionState::OnLanding() {
+void FallingAttackActionState::onLanding() {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();

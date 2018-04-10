@@ -102,7 +102,7 @@ void ReleasePowerAirActionState::onReleasePowerButton() {
 	if (phase == AttackPhases::Recovery) getPlayerModel()->getPowerGauge()->releasePower();
 }
 
-void ReleasePowerAirActionState::OnLanding() {
+void ReleasePowerAirActionState::onLanding() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
 	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }

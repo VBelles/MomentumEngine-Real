@@ -62,7 +62,7 @@ void TurnAroundActionState::onJumpLongButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
-void TurnAroundActionState::OnLeavingGround() {
+void TurnAroundActionState::onLeavingGround() {
 	RotateToFinalDirection();
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }

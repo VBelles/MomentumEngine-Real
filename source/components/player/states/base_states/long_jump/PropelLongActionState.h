@@ -1,8 +1,7 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
-#include "../../AirborneActionState.h"
-
+#include "components/player/states/AirborneActionState.h"
 
 class PropelLongActionState : public AirborneActionState {
 protected:
@@ -23,6 +22,6 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 
-	void OnLanding() override {}
+	void onLanding() override {}
 	void setPose() override { getRender()->setMesh("data/meshes/pose_propel.mesh"); }
 };

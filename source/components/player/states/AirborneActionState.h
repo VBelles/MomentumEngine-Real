@@ -37,7 +37,7 @@ public:
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
 
-	virtual void OnLanding();
+	virtual void onLanding();
 	virtual void onShapeHit(const PxControllerShapeHit &hit) override;
 
 };

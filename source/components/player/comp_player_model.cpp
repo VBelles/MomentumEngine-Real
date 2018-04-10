@@ -383,9 +383,9 @@ void TCompPlayerModel::updateMovement(float dt, VEC3 deltaMovement) {
 	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue
 		if (isGrounded) {
 			isTouchingCeiling = false;
-			(static_cast<AirborneActionState*>(baseState))->OnLanding();
+			(static_cast<AirborneActionState*>(baseState))->onLanding();
 			if (concurrentState != concurrentStates[ActionStates::Idle]) {
-				(static_cast<AirborneActionState*>(concurrentState))->OnLanding();
+				(static_cast<AirborneActionState*>(concurrentState))->onLanding();
 			}
 		}
 		if (!isTouchingCeiling) {
@@ -398,7 +398,7 @@ void TCompPlayerModel::updateMovement(float dt, VEC3 deltaMovement) {
 	else if (dynamic_cast<GroundedActionState*>(baseState)) {
 		if (!isGrounded) {
 			if (!isAttachedToPlatform)//What a beautiful hack
-				(static_cast<GroundedActionState*>(baseState))->OnLeavingGround();
+				(static_cast<GroundedActionState*>(baseState))->onLeavingGround();
 		}
 		else {
 			//Si sigue en el suelo anulamos la velocidad ganada por la gravedad

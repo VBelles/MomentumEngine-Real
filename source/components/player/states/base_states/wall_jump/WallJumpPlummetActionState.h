@@ -25,6 +25,6 @@ public:
 	//void onReleasePowerButton() override {}
 
 	void setPose() override { getRender()->setMesh("data/meshes/pose_long_jump.mesh"); }
-	virtual void OnLanding() override;
+	virtual void onLanding() override;
 	void onHitboxEnter(CHandle entity) override;
 };

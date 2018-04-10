@@ -34,7 +34,7 @@ public:
 	void onFastAttackButton() override {}
 	void onReleasePowerButton() override {}
 
-	void OnLeavingGround() override;
+	void onLeavingGround() override;
 	void setPose() override { getRender()->setMesh("data/meshes/pose_horizontal_launcher.mesh"); }
 	void onHitboxEnter(CHandle entity) override;
 };

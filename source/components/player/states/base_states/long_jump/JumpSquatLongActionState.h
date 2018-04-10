@@ -4,6 +4,7 @@
 #include "../../GroundedActionState.h"
 
 class JumpSquatLongActionState : public GroundedActionState {
+private:
 	CTimer timer;
 	int squatFrames = 8;
 	float squatTime;
@@ -18,6 +19,6 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 	
-	virtual void OnLeavingGround();
+	virtual void onLeavingGround();
 	void setPose() override { getRender()->setMesh("data/meshes/pose_jump_squat.mesh"); }
 };

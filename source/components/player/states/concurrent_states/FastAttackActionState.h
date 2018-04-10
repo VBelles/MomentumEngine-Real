@@ -38,7 +38,7 @@ public:
 	void onReleasePowerButton() override {}
 	void onFastAttackButtonReleased() override;
 
-	void OnLeavingGround() override;
+	void onLeavingGround() override;
 	void setPose() override { getRender()->setMesh("data/meshes/pose_punch.mesh"); }
 	void onHitboxEnter(CHandle entity) override;
 };

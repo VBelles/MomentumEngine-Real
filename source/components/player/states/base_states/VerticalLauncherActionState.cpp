@@ -52,7 +52,7 @@ void VerticalLauncherActionState::onStateExit(IActionState * nextState) {
 void VerticalLauncherActionState::setMovementInput(VEC2 input) {
 }
 
-void VerticalLauncherActionState::OnLeavingGround() {
+void VerticalLauncherActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 

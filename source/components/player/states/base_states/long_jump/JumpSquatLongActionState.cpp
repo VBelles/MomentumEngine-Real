@@ -32,7 +32,7 @@ void JumpSquatLongActionState::onStateExit(IActionState * nextState) {
 	//dbg("Saliendo de JumpSquatLong\n");
 }
 
-void JumpSquatLongActionState::OnLeavingGround() {
+void JumpSquatLongActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);

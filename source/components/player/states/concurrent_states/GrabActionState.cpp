@@ -49,7 +49,7 @@ void GrabActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->lockTurning = false;
 }
 
-void GrabActionState::OnLanding() {
+void GrabActionState::onLanding() {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();

@@ -43,7 +43,7 @@ void JumpSquatActionState::onJumpHighButtonReleased() {
 	isShortHop = true;
 }
 
-void JumpSquatActionState::OnLeavingGround() {
+void JumpSquatActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);

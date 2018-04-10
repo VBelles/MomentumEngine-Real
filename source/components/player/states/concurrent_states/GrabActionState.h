@@ -38,7 +38,7 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 
-	void OnLanding() override;
+	void onLanding() override;
 
 	void setPose() override { getRender()->setMesh("data/meshes/pose_grab.mesh"); }
 

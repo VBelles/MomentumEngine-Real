@@ -74,7 +74,7 @@ void StrongAttackActionState::onStrongAttackButtonReleased() {
 	phase = AttackPhases::Startup;
 }
 
-void StrongAttackActionState::OnLeavingGround() {
+void StrongAttackActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 

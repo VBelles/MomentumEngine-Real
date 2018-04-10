@@ -1,9 +1,10 @@
 #pragma once
 
 #include "components/player/comp_player_model.h"
-#include "../../AirborneActionState.h"
+#include "components/player/states/AirborneActionState.h"
 
 class GhostJumpSquatLongActionState : public AirborneActionState {
+private:
 	CTimer timer;
 	int squatFrames = 2;
 	float squatTime;

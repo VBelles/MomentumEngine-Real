@@ -61,7 +61,7 @@ void FastAttackActionState::onFastAttackButtonReleased() {
 
 }
 
-void FastAttackActionState::OnLeavingGround() {
+void FastAttackActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 

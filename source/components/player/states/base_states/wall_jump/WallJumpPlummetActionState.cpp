@@ -67,7 +67,7 @@ void WallJumpPlummetActionState::onStrongAttackButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 }
 
-void WallJumpPlummetActionState::OnLanding() {
+void WallJumpPlummetActionState::onLanding() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
 }
 
