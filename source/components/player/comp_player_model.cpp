@@ -2,6 +2,7 @@
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
 #include "game_constants.h"
+#include "entity/common_msgs.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
