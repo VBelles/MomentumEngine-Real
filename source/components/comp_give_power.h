@@ -1,23 +1,21 @@
 #pragma once
 
 #include "comp_base.h"
- 
+
 class TCompGivePower : public TCompBase {
 	DECL_SIBLING_ACCESS();
-private:	
-	float maxPowerToGive = 5000.f;
+private:
+	float maxPowerToGive = 0.f;
 	float powerToGive = maxPowerToGive;
-	float baseMultiplier = 1.0f;
-	float stateMultiplier = 1.0f;
+	float baseMultiplier = 0.f;
+	float stateMultiplier = 0.f;
 
 	void onGetPower(const TMsgGetPower& msg);
 
 public:
-  void debugInMenu();
-  void load(const json& j, TEntityParseContext& ctx);
-  void update(float delta);
-  static void registerMsgs();
+	static void registerMsgs();
+	void load(const json& j, TEntityParseContext& ctx);
 
-  void setStateMultiplier(float multiplier);
-  void reset();
+	void setStateMultiplier(float multiplier);
+	void reset();
 };

@@ -33,20 +33,20 @@ void ReleasePowerGroundActionState::update (float delta) {
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
 		switch (GetPlayerModel()->GetPowerGauge()->powerLevel) {
 		case 1:
-			GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			GetPlayerModel()->GetPowerGauge()->releasePower();
 			break;
 		case 2:
-			GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			GetPlayerModel()->GetPowerGauge()->releasePower();
 			hitboxSmall->enable();
-			if (buttonPresses > 1) GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			if (buttonPresses > 1) GetPlayerModel()->GetPowerGauge()->releasePower();
 			break;
 		case 3:
-			GetPlayerModel()->GetPowerGauge()->ReleasePower();
+			GetPlayerModel()->GetPowerGauge()->releasePower();
 			if (buttonPresses > 1) {
-				GetPlayerModel()->GetPowerGauge()->ReleasePower();
+				GetPlayerModel()->GetPowerGauge()->releasePower();
 				//bola grande
 				hitboxBig->enable();
-				if (buttonPresses > 2) GetPlayerModel()->GetPowerGauge()->ReleasePower();
+				if (buttonPresses > 2) GetPlayerModel()->GetPowerGauge()->releasePower();
 			}
 			else {
 				//bola pequeña
@@ -94,9 +94,9 @@ void ReleasePowerGroundActionState::OnReleasePowerButton() {
 			hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->enable();
 		}
-		GetPlayerModel()->GetPowerGauge()->ReleasePower();
+		GetPlayerModel()->GetPowerGauge()->releasePower();
 	}
-	if (phase == AttackPhases::Recovery) GetPlayerModel()->GetPowerGauge()->ReleasePower();
+	if (phase == AttackPhases::Recovery) GetPlayerModel()->GetPowerGauge()->releasePower();
 }
 
 void ReleasePowerGroundActionState::OnHitboxEnter(CHandle entity) {

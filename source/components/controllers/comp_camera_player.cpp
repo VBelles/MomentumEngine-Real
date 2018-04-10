@@ -3,6 +3,7 @@
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
 #include "modules/system/physics/GameQueryFilterCallback.h"
+#include "game_constants.h"
 
 DECL_OBJ_MANAGER("camera_player", TCompCameraPlayer);
 
@@ -47,7 +48,7 @@ void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompCameraPlayer::update(float delta) {
-	
+
 	updateTargetTransform();
 	updateInput();
 	if (centeringCamera) {
@@ -73,11 +74,11 @@ void TCompCameraPlayer::updateInput() {
 	input = VEC2::Zero;
 	//Hacer sólo si la cámara está mixeada
 	if (!isMovementLocked) {
-		VEC2 padInput = {
+		VEC2 padInput = VEC2(
 			EngineInput[Input::EPadButton::PAD_RANALOG_X].value,
 			EngineInput[Input::EPadButton::PAD_RANALOG_Y].value
-		};
-		if (padInput.Length() > padDeadZone) {
+		);
+		if (padInput.Length() > PAD_DEAD_ZONE) {
 			input.x -= padInput.x * cameraSpeed.x;
 			input.y += padInput.y * cameraSpeed.y;
 		}
@@ -181,20 +182,10 @@ bool TCompCameraPlayer::sphereCast() {
 	return status;
 }
 
-
-void TCompCameraPlayer::CenterCamera() {
+void TCompCameraPlayer::centerCamera() {
 	if (!isMovementLocked) {
 		centeringCamera = true;
 		VEC3 front = targetTransform.getFront();
 		desiredYawPitch = VEC2(atan2(front.x, front.z), initialPitch);
 	}
-}
-
-CEntity* TCompCameraPlayer::getTarget() {
-	return targetHandle;
-}
-
-
-TCompTransform* TCompCameraPlayer::getTransform() {
-	return transformHandle;
 }

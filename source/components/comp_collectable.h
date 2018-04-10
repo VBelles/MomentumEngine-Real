@@ -4,7 +4,6 @@
 #include "entity/common_msgs.h"
 
 
-
 class TCompCollectable : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
@@ -33,7 +32,7 @@ public:
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onTriggerEnter(const TMsgTriggerEnter& msg);
-	void OnColliderDestroyed(const TMsgColliderDestroyed& msg);
+	void onColliderDestroyed(const TMsgColliderDestroyed& msg);
 
 	void collect();
 	Type getTypeByName(std::string name);

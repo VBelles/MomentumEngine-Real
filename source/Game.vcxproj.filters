@@ -52,14 +52,11 @@
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_melee_enemy.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
-    <ClCompile Include="components\comp_destroy_condition.cpp" />
     <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
-    <ClCompile Include="components\comp_circular_controller.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
-    <ClCompile Include="components\comp_ground_sensor.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
@@ -101,7 +98,6 @@
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
-    <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="windows\app.cpp" />
@@ -172,6 +168,10 @@
     <ClCompile Include="modules\game\physics\GameQueryFilterCallback.cpp" />
     <ClCompile Include="components\controllers\comp_fixed_camera.cpp" />
     <ClCompile Include="components\comp_breakable.cpp" />
+    <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
+    <ClCompile Include="components\unused\comp_circular_controller.cpp" />
+    <ClCompile Include="components\unused\comp_destroy_condition.cpp" />
+    <ClCompile Include="components\unused\comp_ground_sensor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -247,16 +247,13 @@
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_melee_enemy.h" />
     <ClInclude Include="components\comp_collectable.h" />
-    <ClInclude Include="components\comp_destroy_condition.h" />
     <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
-    <ClInclude Include="components\comp_circular_controller.h" />
     <ClInclude Include="components\comp_collider.h" />
-    <ClInclude Include="components\comp_ground_sensor.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_hitbox.h" />
@@ -290,7 +287,6 @@
     <ClInclude Include="render\render_manager.h" />
     <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
-    <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />
     <ClInclude Include="skeleton\comp_bone_tracker.h" />
     <ClInclude Include="skeleton\cal3d2engine.h" />
@@ -369,6 +365,10 @@
     <ClInclude Include="modules\game\physics\GameQueryFilterCallback.h" />
     <ClInclude Include="components\controllers\comp_fixed_camera.h" />
     <ClInclude Include="components\comp_breakable.h" />
+    <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
+    <ClInclude Include="components\unused\comp_circular_controller.h" />
+    <ClInclude Include="components\unused\comp_destroy_condition.h" />
+    <ClInclude Include="components\unused\comp_ground_sensor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

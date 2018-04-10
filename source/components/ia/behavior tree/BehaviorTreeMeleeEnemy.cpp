@@ -115,7 +115,7 @@ int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
 	shadow->disable();
 
 	TCompRespawner* spawner = get<TCompRespawner>();
-	spawner->OnDead();
+	spawner->onDead();
 
 	return Leave;
 }

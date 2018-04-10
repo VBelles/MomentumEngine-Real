@@ -3,7 +3,6 @@
 #include "comp_base.h"
 #include "entity/common_msgs.h"
 
-
 class TCompTransform;
 
 class TCompBreakable : public TCompBase {

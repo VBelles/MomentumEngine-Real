@@ -10,7 +10,7 @@ void TCompCollectable::debugInMenu() {
 void TCompCollectable::registerMsgs() {
 	DECL_MSG(TCompCollectable, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompCollectable, TMsgTriggerEnter, onTriggerEnter);
-	DECL_MSG(TCompCollectable, TMsgColliderDestroyed, OnColliderDestroyed);
+	DECL_MSG(TCompCollectable, TMsgColliderDestroyed, onColliderDestroyed);
 }
 
 void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
@@ -40,7 +40,7 @@ void TCompCollectable::collect() {
 
 }
 
-void TCompCollectable::OnColliderDestroyed(const TMsgColliderDestroyed& msg) {
+void TCompCollectable::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	CHandle(this).getOwner().destroy();
 }
 

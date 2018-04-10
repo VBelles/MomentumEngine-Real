@@ -42,9 +42,11 @@ public:
 	TConfig config;
 	PxActor* actor;
 	PxController* controller;
-	void debugInMenu();
+
+	//Parent methods
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
+
 	void onCreate(const TMsgEntityCreated& msg);
 	void create();
 	void destroy();

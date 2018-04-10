@@ -1,6 +1,6 @@
 #pragma once
 
-#include "comp_base.h"
+#include "components/comp_base.h"
 #include "entity/common_msgs.h"
 
 class TCompDestroyCondition: public TCompBase {
@@ -17,5 +17,5 @@ public:
     void update(float dt);
 
     void onDestroy(const TMsgDestroy& msg);
-	void OnColliderDestroyed(const TMsgColliderDestroyed& msg);
+	void onColliderDestroyed(const TMsgColliderDestroyed& msg);
 };

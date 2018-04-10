@@ -21,7 +21,9 @@ void TCompBreakable::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompBreakable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	colliderHandle = get<TCompCollider>();
+	assert(colliderHandle.isValid());
 	transformHandle = get<TCompTransform>();
+	assert(transformHandle.isValid());
 }
 
 void TCompBreakable::update(float dt) {

@@ -3,7 +3,8 @@
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
-void TCompCollider::debugInMenu() {
+void TCompCollider::registerMsgs() {
+	DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
 }
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
@@ -73,9 +74,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	}
 }
 
-void TCompCollider::registerMsgs() {
-	DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
-}
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 	create();

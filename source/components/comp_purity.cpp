@@ -8,44 +8,35 @@
 
 DECL_OBJ_MANAGER("purity", TCompPurity);
 
-void TCompPurity::debugInMenu() {
-}
-
 void TCompPurity::registerMsgs() {
 	DECL_MSG(TCompPurity, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompPurity, TMsgPurityChange, onPurityChange);
 }
 
-void TCompPurity::load(const json& j, TEntityParseContext& ctx) {
-	
-}
-
 void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-    player = (CHandle)getEntityByName("The Player");
-
-    TCompRender* render = get<TCompRender>();
-    originalMeshPath = render->meshes[0].mesh->getName();
-    originalMaterialPath = render->meshes[0].materials[0]->getName();
+	TCompRender* render = get<TCompRender>();
+	originalMeshPath = render->meshes[0].mesh->getName();
+	originalMaterialPath = render->meshes[0].materials[0]->getName();
 }
 
 // Pruebo en WWBox061, la tercera plataforma fija que hay al principio.
 void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
-    TCompCollider* collider = get<TCompCollider>();
-    assert(collider);
-		
+	TCompCollider* collider = get<TCompCollider>();
+	assert(collider);
+
 	TCompRender *render = get<TCompRender>();
 	assert(render);
-	
-    if (msg.isPure) {
+
+	if (msg.isPure) {
 		collider->setupFiltering(collider->config.group, collider->config.mask | EnginePhysics.Player);
 		render->setMesh(originalMeshPath, originalMaterialPath);
-    }
-    else {
+	}
+	else {
 		collider->setupFiltering(collider->config.group, collider->config.mask & !EnginePhysics.Player);
-        // Falta decidir qué efecto aplicar cuando la plataforma está intangible,
-        // de momento la dejo con material blanco.
+		// Falta decidir qué efecto aplicar cuando la plataforma está intangible,
+		// de momento la dejo con material blanco.
 		render->setMesh(originalMeshPath, "data/materials/white.material");
-    }
+	}
 }
 
 

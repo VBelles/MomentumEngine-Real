@@ -252,7 +252,7 @@ void CAIMeleeEnemy::DeathState(float delta) {
 		shadow->setMesh("data/meshes/nada.mesh");
 
 		TCompRespawner* spawner = get<TCompRespawner>();
-		spawner->OnDead();
+		spawner->onDead();
 		isDead = true;
 	}
 }

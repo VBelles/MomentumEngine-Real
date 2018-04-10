@@ -11,7 +11,7 @@ void TCompDestroyCondition::debugInMenu() {
 void TCompDestroyCondition::registerMsgs() {
 	DECL_MSG(TCompDestroyCondition, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompDestroyCondition, TMsgDestroy, onDestroy);
-	DECL_MSG(TCompDestroyCondition, TMsgColliderDestroyed, OnColliderDestroyed);
+	DECL_MSG(TCompDestroyCondition, TMsgColliderDestroyed, onColliderDestroyed);
 }
 
 void TCompDestroyCondition::load(const json& j, TEntityParseContext& ctx) {
@@ -30,7 +30,7 @@ void TCompDestroyCondition::onDestroy(const TMsgDestroy & msg) {
 	toDestroy = true;
 }
 
-void  TCompDestroyCondition::OnColliderDestroyed(const TMsgColliderDestroyed& msg) {
+void  TCompDestroyCondition::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	if (toDestroy) {
 		CHandle(this).getOwner().destroy();
 	}

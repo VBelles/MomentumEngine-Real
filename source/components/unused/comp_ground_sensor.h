@@ -1,9 +1,8 @@
 #pragma once
 
-#include "comp_base.h"
+#include "components/comp_base.h"
 #include "geometry/transform.h"
 #include "entity/common_msgs.h"
-#include "PxPhysicsAPI.h"
 
 class TCompGroundSensor : public TCompBase {
   DECL_SIBLING_ACCESS();

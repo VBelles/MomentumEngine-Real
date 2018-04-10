@@ -514,7 +514,7 @@ void TCompPlayerModel::StrongAttackButtonReleased() {
 void TCompPlayerModel::CenterCameraButtonPressed() {
 	CEntity* camera = (CEntity*)getEntityByName("player_camera");
 	TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
-	playerCamera->CenterCamera();
+	playerCamera->centerCamera();
 }
 
 void TCompPlayerModel::ReleasePowerButtonPressed() {
@@ -525,7 +525,7 @@ void TCompPlayerModel::ReleasePowerButtonPressed() {
 }
 
 void TCompPlayerModel::GainPowerButtonPressed() {//Debug Only
-	GetPowerGauge()->GainPower();
+	GetPowerGauge()->gainPower();
 }
 
 bool TCompPlayerModel::IsConcurrentActionFree() {
@@ -550,7 +550,7 @@ void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
 }
 
 void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
-	GetPowerGauge()->IncreasePower(msg.power);
+	GetPowerGauge()->increasePower(msg.power);
 }
 
 void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
@@ -577,7 +577,7 @@ void TCompPlayerModel::OnDead() {
 	SetConcurrentState(ActionStates::Idle);
 	SetBaseState(ActionStates::AirborneNormal);
 	hp = maxHp;
-	GetPowerGauge()->ResetPower();
+	GetPowerGauge()->resetPower();
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
 }

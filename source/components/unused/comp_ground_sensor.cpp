@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
-#include "entity/entity_parser.h"
 #include "comp_ground_sensor.h"
-#include "comp_transform.h"
+
+#include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("ground_sensor", TCompGroundSensor);
 
