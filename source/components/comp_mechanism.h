@@ -1,11 +1,11 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
 
 class TCompMechanism: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
+private:
 	CTimer deactivationTimer;
 	CTimer reactivationTimer;
 	float deactivationTime;

@@ -15,7 +15,6 @@
     "breakable",
 		"mechanism",
 		"mechanism_system",
-		"destroyCondition",
     "skeleton",
     "bone_tracker",
     "behaviorTree_melee_enemy",

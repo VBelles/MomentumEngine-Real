@@ -1,8 +1,6 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
-
 
 class TCompCollectable : public TCompBase {
 	DECL_SIBLING_ACCESS();

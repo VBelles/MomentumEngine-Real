@@ -156,9 +156,6 @@
     <ClCompile Include="components\controllers\comp_fixed_camera.cpp" />
     <ClCompile Include="components\comp_breakable.cpp" />
     <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
-    <ClCompile Include="components\unused\comp_circular_controller.cpp" />
-    <ClCompile Include="components\unused\comp_destroy_condition.cpp" />
-    <ClCompile Include="components\unused\comp_ground_sensor.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeAction.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodePriority.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeRandom.cpp" />
@@ -348,9 +345,6 @@
     <ClInclude Include="components\controllers\comp_fixed_camera.h" />
     <ClInclude Include="components\comp_breakable.h" />
     <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
-    <ClInclude Include="components\unused\comp_circular_controller.h" />
-    <ClInclude Include="components\unused\comp_destroy_condition.h" />
-    <ClInclude Include="components\unused\comp_ground_sensor.h" />
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeAction.h" />
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodePriority.h" />
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeRandom.h" />

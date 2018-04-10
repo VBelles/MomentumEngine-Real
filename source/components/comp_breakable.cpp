@@ -3,6 +3,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_collectable.h"
 #include "entity/entity_parser.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("breakable", TCompBreakable);
 

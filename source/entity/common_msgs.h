@@ -2,7 +2,6 @@
 #define INC_COMMON_ENTITY_MSGS_
 
 #include "msgs.h"
-#include "geometry/transform.h"
 
 struct TMsgEntityCreated {
 	DECL_MSG_ID();

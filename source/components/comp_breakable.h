@@ -1,7 +1,6 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
 
 class TCompTransform;
 
@@ -25,14 +24,8 @@ private:
 	TCompTransform* getTransform() { return transformHandle; }
 
 public:
-
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
-
-	
-
-	
-
 };

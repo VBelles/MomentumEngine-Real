@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_name.h"
-#include "handle/handle.h"
 
 DECL_OBJ_MANAGER("name", TCompName);
 

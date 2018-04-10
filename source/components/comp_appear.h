@@ -1,7 +1,6 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
 
 class TCompAppear: public TCompBase {
 	DECL_SIBLING_ACCESS();

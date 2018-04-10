@@ -1,7 +1,6 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
 
 // Takes trigger messages and forwards them to specified target.
 class TCompFwdMsg : public TCompBase {

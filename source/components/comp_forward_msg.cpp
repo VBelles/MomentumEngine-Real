@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_forward_msg.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("fwd_msg", TCompFwdMsg);
 
