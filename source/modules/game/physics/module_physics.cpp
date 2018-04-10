@@ -2,6 +2,7 @@
 #include "module_physics.h"
 #include "entity/entity.h"
 #include "components/comp_transform.h"
+#include "components/comp_collider.h"
 
 #include "GameFilterShader.h"
 #include "GameSimulationEventCallback.h"

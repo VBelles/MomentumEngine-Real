@@ -2,6 +2,9 @@
 
 #include "comp_base.h"
 
+struct TMsgAllScenesCreated;
+struct TMsgAttackHit;
+
 class TCompMechanism: public TCompBase {
 	DECL_SIBLING_ACCESS();
 

@@ -5,6 +5,10 @@
 class CRenderMesh;
 class CMaterial;
 class TCompTransform;
+class TCompCollider;
+
+struct TMsgEntityCreated;
+struct TMsgEntitiesGroupCreated;
 
 class TCompShadow : public TCompBase {
 	DECL_SIBLING_ACCESS();

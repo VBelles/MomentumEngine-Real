@@ -1,10 +1,10 @@
 #pragma once
 
 #include "modules/module.h"
-#include "components/comp_collider.h"
 
 using namespace physx;
 
+class TCompCollider;
 class GameControllerHitCallback;
 class GameQueryFilterCallback;
 
@@ -20,6 +20,7 @@ public:
 		Scenario = Wall | Floor,
 		Characters = Player | Enemy,
 		All = Wall | Floor | Player | Enemy | Mechanism
+		//All = std::numeric_limits<int>::max() //TODO: test this
 	};
 
 	std::map<std::string, FilterGroup> filterGroupByName = {

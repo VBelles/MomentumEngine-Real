@@ -3,6 +3,8 @@
 #include "render/render_utils.h"
 #include "player/comp_player_model.h"
 #include "components/comp_transform.h"
+#include "components/comp_collider.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("platform_move", TCompPlatformMove);
 

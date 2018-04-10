@@ -2,6 +2,8 @@
 #include "comp_mix_camera_trigger.h"
 #include "game_constants.h"
 #include "comp_transform.h"
+#include "entity/common_msgs.h"
+#include "components/comp_collider.h"
 
 DECL_OBJ_MANAGER("mixCameraTrigger", TCompMixCameraTrigger);
 

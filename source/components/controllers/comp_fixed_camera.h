@@ -5,6 +5,9 @@
 class CEntity;
 class TCompTransform;
 
+struct TMsgEntitiesGroupCreated;
+struct TMsgLockCameraInput;
+
 using namespace Interpolator;
 
 class TCompFixedCamera : public TCompBase {

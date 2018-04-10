@@ -2,6 +2,10 @@
 
 #include "comp_base.h"
 
+struct TMsgAllScenesCreated;
+struct TMsgEntitiesGroupCreated;
+struct TMsgMechanismSystemActivated;
+
 class TCompAppear: public TCompBase {
 	DECL_SIBLING_ACCESS();
 	CTimer cutreTimer;

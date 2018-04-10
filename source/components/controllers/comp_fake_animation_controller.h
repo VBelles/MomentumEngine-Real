@@ -1,6 +1,7 @@
 #pragma once
 
 #include "components/comp_base.h"
+#include "entity/msgs.h"
 
 struct TMsgAnimation {
 	std::string animationName;

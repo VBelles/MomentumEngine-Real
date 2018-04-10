@@ -6,6 +6,8 @@
 #include "render/texture/material.h"
 #include "PxPhysicsAPI.h"
 #include "components/comp_render.h"
+#include "components/comp_collider.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("purity", TCompPurity);
 

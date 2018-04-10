@@ -2,6 +2,10 @@
 
 #include "comp_base.h"
 
+struct TMsgEntitiesGroupCreated;
+struct TMsgTriggerEnter;
+struct TMsgTriggerExit;
+
 // Takes trigger messages and forwards them to specified target.
 class TCompFwdMsg : public TCompBase {
 	DECL_SIBLING_ACCESS();

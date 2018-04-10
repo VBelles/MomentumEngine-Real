@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_give_power.h"
-#include "handle/handle.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("givePower", TCompGivePower);
 

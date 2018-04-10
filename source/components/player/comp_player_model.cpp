@@ -8,6 +8,7 @@
 #include "components/comp_render.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
+#include "components/comp_collider.h"
 #include "components/comp_collectable.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/filters/PlayerFilterCallback.h"

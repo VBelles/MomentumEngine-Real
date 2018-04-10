@@ -2,6 +2,10 @@
 
 #include "comp_base.h"
 
+struct TMsgEntityCreated;
+struct TMsgTriggerEnter;
+struct TMsgTriggerExit;
+
 using namespace Interpolator;
 
 class TCompMixCameraTrigger : public TCompBase {

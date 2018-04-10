@@ -1,7 +1,8 @@
 #include "mcv_platform.h"
 #include "comp_ranged_attack.h"
 #include "entity/entity_parser.h"
-#include "components\comp_transform.h"
+#include "components/comp_transform.h"
+#include "components/comp_collider.h"
 
 DECL_OBJ_MANAGER("ranged_attack", TCompRangedAttack);
 

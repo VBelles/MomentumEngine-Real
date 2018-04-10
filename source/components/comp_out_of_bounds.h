@@ -2,6 +2,8 @@
 
 #include "comp_base.h"
 
+struct TMsgTriggerEnter;
+
 class TComputOfBounds : public TCompBase {
 	DECL_SIBLING_ACCESS();
 

@@ -2,6 +2,9 @@
 
 #include "comp_base.h"
 
+struct TMsgEntitiesGroupCreated;
+struct TMsgPurityChange;
+
 // If the player is in lvl power 1, enables collider. Else, disables it.
 class TCompPurity : public TCompBase {
 	DECL_SIBLING_ACCESS();

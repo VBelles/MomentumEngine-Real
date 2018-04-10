@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_respawner.h"
 #include "handle/handle.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("respawner", TCompRespawner);
 

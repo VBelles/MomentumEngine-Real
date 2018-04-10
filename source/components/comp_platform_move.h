@@ -2,6 +2,10 @@
 
 #include "comp_base.h"
 
+struct TMsgEntitiesGroupCreated;
+struct TMsgTriggerEnter;
+struct TMsgTriggerExit;
+
 class TCompPlatformMove: public TCompBase {
 	DECL_SIBLING_ACCESS();
 

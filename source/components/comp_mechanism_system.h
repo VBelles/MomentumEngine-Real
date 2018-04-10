@@ -2,6 +2,10 @@
 
 #include "comp_base.h"
 
+struct TMsgAllScenesCreated;
+struct TMsgMechanismActivated;
+struct TMsgMechanismDeactivated;
+
 class TCompMechanismSystem: public TCompBase {
 	DECL_SIBLING_ACCESS();
 
@@ -16,13 +20,12 @@ private:
 	std::vector<CHandle> mechanisms;
 
 public:
-    void debugInMenu();
     static void registerMsgs();
+    void debugInMenu();
     void load(const json& j, TEntityParseContext& ctx);
-
-    void onAllScenesCreated(const TMsgAllScenesCreated& msg);
     void update(float dt);
 
+    void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onActivate(const TMsgMechanismActivated& msg);
 	void onDeactivate(const TMsgMechanismDeactivated& msg);
 };

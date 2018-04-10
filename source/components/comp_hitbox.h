@@ -2,6 +2,10 @@
 
 #include "comp_base.h"
 
+struct TMsgEntityCreated;
+struct TMsgEntitiesGroupCreated;
+struct TMsgTriggerEnter;
+
 class TCompHitbox : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
