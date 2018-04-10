@@ -4,6 +4,7 @@ using namespace physx;
 
 class TCompCollider;
 class GameControllerHitCallback;
+class GameControllerBehaviorCallback;
 class GameQueryFilterCallback;
 
 class CModulePhysics : public IModule {
@@ -77,6 +78,7 @@ private:
 	void releaseColliders();
 
 	GameControllerHitCallback* gameControllerHitCallback;
+	GameControllerBehaviorCallback* gameControllerBehaviorCallback;
 	GameQueryFilterCallback* gameQueryFilterCallback;
 
 

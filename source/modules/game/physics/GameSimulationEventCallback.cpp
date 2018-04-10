@@ -3,6 +3,24 @@
 #include "components/comp_collider.h"
 
 void GameSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 count) {
+	for (PxU32 i = 0; i < count; i++) {
+		const PxContactPair& cp = pairs[i];
+		if (cp.events & PxPairFlag::eNOTIFY_TOUCH_FOUND) {
+			CHandle colliderHandle1;
+			colliderHandle1.fromVoidPtr(pairHeader.actors[0]->userData);
+			CEntity* e1 = colliderHandle1.getOwner();
+
+			CHandle colliderHandle2;
+			colliderHandle2.fromVoidPtr(pairHeader.actors[1]->userData);
+			CEntity* e2 = colliderHandle2.getOwner();
+
+			dbg("e1: %s\n", e1->getName());
+			dbg("e2: %s\n", e2->getName());
+			if (strcmp(e1->getName(), "The Player") == 0 || strcmp(e2->getName(), "The Player") == 0) {
+				dbg("TOUCH FOUND\n");
+			}
+		}
+	}
 	//dbg("Contact\n");
 	/*if (pairHeader.flags & (PxContactPairHeaderFlag::eREMOVED_ACTOR_0 | PxContactPairHeaderFlag::eREMOVED_ACTOR_1))
 		return;
@@ -43,20 +61,19 @@ void GameSimulationEventCallback::onTrigger(PxTriggerPair* pairs, PxU32 count) {
 		if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER)) {
 			continue;
 		}
-		CHandle h_trigger_comp_collider;
-		h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
+		CHandle triggerHandle;
+		triggerHandle.fromVoidPtr(pairs[i].triggerActor->userData);
+		CEntity* triggerEntity = triggerHandle.getOwner();
 
-		CHandle h_other_comp_collider;
-		h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
-
-		CEntity* e_other = h_other_comp_collider.getOwner();
-		CEntity* e_trigger = h_trigger_comp_collider.getOwner();
+		CHandle otherHandle;
+		otherHandle.fromVoidPtr(pairs[i].otherActor->userData);
+		CEntity* otherEntity = otherHandle.getOwner();
 
 		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND) {
-			e_trigger->sendMsg(TMsgTriggerEnter{ e_other });
+			triggerEntity->sendMsg(TMsgTriggerEnter{ otherEntity });
 		}
 		else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST) {
-			e_trigger->sendMsg(TMsgTriggerExit{ e_other });
+			triggerEntity->sendMsg(TMsgTriggerExit{ otherEntity });
 		}
 	}
 }

@@ -382,10 +382,14 @@ void TCompPlayerModel::applyGravity(float delta) {
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	VEC3 pos = getTransform()->getPosition();
 	QUAT rot = getTransform()->getRotation();
-	PxFilterData filterData = { getCollider()->config.group, getCollider()->config.mask, 0, 0 };
+
+	PxShape* tempShape;
+	getController()->getActor()->getShapes(&tempShape, 1);
+	PxFilterData filterData = tempShape->getSimulationFilterData();
+
 	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(
-		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta,
-		physx::PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
+		toPhysx(deltaMovement), 0.f, delta,
+		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue

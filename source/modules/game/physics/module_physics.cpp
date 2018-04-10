@@ -9,6 +9,7 @@
 #include "GameSimulationEventCallback.h"
 #include "GameControllerHitCallback.h"
 #include "GameQueryFilterCallback.h"
+#include "controller_behavior_callback.h"
 
 #pragma comment(lib, "PhysX3_x64.lib")
 #pragma comment(lib, "PhysX3Common_x64.lib")
@@ -81,7 +82,8 @@ bool CModulePhysics::createScene() {
 	mControllerManager = PxCreateControllerManager(*gScene);
 
 	gameQueryFilterCallback = new GameQueryFilterCallback();
-	gameControllerHitCallback =  new GameControllerHitCallback();
+	gameControllerHitCallback = new GameControllerHitCallback();
+	gameControllerBehaviorCallback = new GameControllerBehaviorCallback();
 
 	return true;
 }
@@ -117,6 +119,7 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 		capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
 		capsuleDesc.material = gMaterial;
 		capsuleDesc.reportCallback = gameControllerHitCallback;
+		capsuleDesc.behaviorCallback = gameControllerBehaviorCallback;
 		cDesc = &capsuleDesc;
 
 		PxCapsuleController* controller = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
@@ -217,10 +220,10 @@ void CModulePhysics::setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU3
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-    for (PxShape* shape : shapes) {
-        shape->setSimulationFilterData(filterData);
-        shape->setQueryFilterData(filterData);
-    }
+	for (PxShape* shape : shapes) {
+		shape->setSimulationFilterData(filterData);
+		shape->setQueryFilterData(filterData);
+	}
 }
 
 void CModulePhysics::enableSimulation(PxRigidActor* actor, bool value) {
@@ -228,7 +231,7 @@ void CModulePhysics::enableSimulation(PxRigidActor* actor, bool value) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-    for (PxShape* shape : shapes) {
+	for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, value);
 	}
 }
@@ -238,7 +241,7 @@ void CModulePhysics::enableSceneQuery(PxRigidActor* actor, bool value) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-    for (PxShape* shape : shapes) {
+	for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, value);
 	}
 }
@@ -248,7 +251,7 @@ void CModulePhysics::makeActorTrigger(PxRigidActor* actor) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-    for (PxShape* shape : shapes) {
+	for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
 		shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
 	}

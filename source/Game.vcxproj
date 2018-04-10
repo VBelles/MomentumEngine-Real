@@ -180,6 +180,7 @@
     <ClCompile Include="fsm\custom_transitions.cpp" />
     <ClCompile Include="fsm\factory.cpp" />
     <ClCompile Include="fsm\fsm.cpp" />
+    <ClCompile Include="modules\game\physics\controller_behavior_callback.cpp" />
     <ClCompile Include="modules\game\physics\GameControllerHitCallback.cpp" />
     <ClCompile Include="modules\game\physics\GameFilterShader.cpp" />
     <ClCompile Include="geometry\angular.cpp" />
@@ -347,6 +348,7 @@
     <ClInclude Include="fsm\state.h" />
     <ClInclude Include="fsm\transition.h" />
     <ClInclude Include="game_constants.h" />
+    <ClInclude Include="modules\game\physics\controller_behavior_callback.h" />
     <ClInclude Include="modules\game\physics\GameControllerHitCallback.h" />
     <ClInclude Include="modules\game\physics\GameFilterShader.h" />
     <ClInclude Include="geometry\angular.h" />
