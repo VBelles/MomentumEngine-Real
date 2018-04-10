@@ -1,15 +1,12 @@
 #pragma once
 
-#include "mcv_platform.h"
 #include "interfaces/interface_keyboard.h"
 #include "interfaces/interface_mouse.h"
 #include "interfaces/interface_pad.h"
 #include "interfaces/interface_feedback.h"
 
-namespace Input
-{
-	class IDevice
-	{
+namespace Input {
+	class IDevice {
 	public:
 		IDevice(const std::string& name) : _name(name) {}
 		const std::string& getName() const { return _name; }

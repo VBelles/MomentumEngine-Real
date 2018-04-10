@@ -2,15 +2,12 @@
 
 #include "input/button.h"
 
-namespace Input
-{
+namespace Input {
 	class CHost;
 	class CMapping;
 
-	struct TInterface_Mapping
-	{
-		struct TMappedButton
-		{
+	struct TInterface_Mapping {
+		struct TMappedButton {
 			std::vector<const TButton*> buttons;
 			bool all = false;
 			TButton result;
@@ -26,7 +23,7 @@ namespace Input
 		const MButtons& buttons() const { return _buttons; }
 
 	private:
-		CHost& _host;
+		CHost & _host;
 		MButtons _buttons;
 	};
 }

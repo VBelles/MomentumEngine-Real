@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
-#include "input/devices/mouse.h"
+#include "mouse.h"
+#include "input/device.h"
 
 namespace Input {
 	CMouse::CMouse(const std::string& name)

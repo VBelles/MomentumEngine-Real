@@ -1,60 +1,49 @@
 #pragma once
 
-namespace Input
-{
-	struct TButton
-	{
+namespace Input {
+	struct TButton {
 		float value = 0.f;
 		float prevValue = 0.f;
 		float time_pressed = 0.f;
 		float time_released = 0.f;
 
-		bool isPressed() const
-		{
+		bool isPressed() const {
 			return value != 0.f;
 		}
 
-		bool wasPressed() const
-		{
+		bool wasPressed() const {
 			return prevValue != 0.f;
 		}
 
-		bool getsPressed() const
-		{
+		bool getsPressed() const {
 			return !wasPressed() && isPressed();
 		}
 
-		bool getsReleased() const
-		{
+		bool getsReleased() const {
 			return wasPressed() && !isPressed();
 		}
 
-    bool hasChanged() const
-    {
-      return prevValue != value;
-    }
+		bool hasChanged() const {
+			return prevValue != value;
+		}
 
-		void update(float delta, float currentValue)
-		{
+		void update(float delta, float currentValue) {
 			time_pressed += delta;
 			time_released += delta;
 
 			prevValue = value;
 			value = currentValue;
 
-			if (wasPressed())
-			{
+			if (wasPressed()) {
 				time_released = 0.f;
 			}
-			else
-			{
+			else {
 				time_pressed = 0.f;
 			}
 		}
 
-    operator bool() const
-    {
-      return isPressed();
-    }
+		operator bool() const {
+			return isPressed();
+		}
 	};
 }

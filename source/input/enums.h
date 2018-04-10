@@ -1,14 +1,11 @@
 #pragma once
 
-namespace Input
-{
-	enum PlayerID
-	{
+namespace Input {
+	enum PlayerID {
 		PLAYER_1 = 0, PLAYER_2, PLAYER_3, PLAYER_4, NUM_PLAYERS
 	};
 
-	enum EInterface
-	{
+	enum EInterface {
 		KEYBOARD = 0,
 		MOUSE,
 		PAD,
@@ -19,16 +16,14 @@ namespace Input
 
 	static const int NUM_KEYBOARD_KEYS = 256;
 
-	enum EMouseButton
-	{
+	enum EMouseButton {
 		MOUSE_LEFT = 0,
 		MOUSE_RIGHT,
 		MOUSE_MIDDLE,
 		MOUSE_BUTTONS
 	};
 
-	enum EPadButton
-	{
+	enum EPadButton {
 		PAD_A = 0,
 		PAD_B,
 		PAD_X,
@@ -52,8 +47,7 @@ namespace Input
 		PAD_BUTTONS
 	};
 
-	struct TButtonDef
-	{
+	struct TButtonDef {
 		EInterface type;
 		int id;
 	};

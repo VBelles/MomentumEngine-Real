@@ -1,12 +1,9 @@
 #pragma once
 
-#include "input/device.h"
 #include <Xinput.h>
 
-namespace Input
-{
-	class CPadXbox : public IDevice
-	{
+namespace Input {
+	class CPadXbox : public IDevice {
 	public:
 		CPadXbox(const std::string& name, int controllerId);
 		virtual void updatePadData(float delta, TInterface_Pad& data) override;
