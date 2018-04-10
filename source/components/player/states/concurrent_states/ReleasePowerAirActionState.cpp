@@ -4,6 +4,7 @@
 #include "components/comp_render.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/comp_player_model.h"
+#include "entity/common_msgs.h"
 
 ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {

@@ -4,6 +4,7 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "components/player/comp_power_gauge.h"
+#include "entity/common_msgs.h"
 
 ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

@@ -12,8 +12,9 @@
 #include "components/comp_shadow.h"
 #include "components/comp_light_dir.h"
 #include "render/render_manager.h"
-
 #include "components/comp_group.h"
+#include "entity/msgs.h"
+
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
     managers.clear();
     // For each entry in j["update"] add entry to om_to_update

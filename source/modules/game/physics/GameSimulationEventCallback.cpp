@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "GameSimulationEventCallback.h"
+#include "components/comp_collider.h"
 
 void GameSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 count) {
 	//dbg("Contact\n");

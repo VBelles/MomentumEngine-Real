@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "module_cameras.h"
 #include "components/comp_camera.h"
+#include "entity/common_msgs.h"
 
 void CModuleCameras::TMixedCamera::blendIn(float duration) {
 	blendInTime = duration;
