@@ -4,9 +4,7 @@
 #include "entity/common_msgs.h"
 
 struct TMsgTriggerEnter;
-struct TMsgAssignRangedAttackOwner;
 struct TMsgTriggerEnter;
-struct TMsgColliderDestroyed;
 
 class TCompRangedAttack : public TCompBase {
 	DECL_SIBLING_ACCESS();

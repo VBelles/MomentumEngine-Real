@@ -1,7 +1,6 @@
 #ifndef INC_APP_H_
 #define INC_APP_H_
 
-#include "mcv_platform.h"
 #include "utils/directory_watcher.h"
 
 class CApp {
@@ -16,10 +15,10 @@ private:
 
 	static CApp* app_instance;
 
-	double dt = 1.f / 60.f;
-	double accumulator = 0.0;
+	//double dt = 1.f / 60.f;
+	//double accumulator = 0.0;
 
-	
+
 
 public:
 	VEC2 resolution;

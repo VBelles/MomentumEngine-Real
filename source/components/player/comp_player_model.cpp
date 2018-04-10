@@ -11,7 +11,7 @@
 #include "components/comp_collider.h"
 #include "components/comp_collectable.h"
 #include "components/controllers/comp_camera_player.h"
-#include "components/player/filters/PlayerFilterCallback.h"
+#include "components/player/filters/player_filter_callback.h"
 #include "components/player/comp_power_gauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
@@ -377,12 +377,14 @@ void TCompPlayerModel::applyGravity(float delta) {
 	}
 }
 
-void TCompPlayerModel::updateMovement(float dt, VEC3 deltaMovement) {
+
+
+void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	VEC3 pos = getTransform()->getPosition();
 	QUAT rot = getTransform()->getRotation();
 	PxFilterData filterData = { getCollider()->config.group, getCollider()->config.mask, 0, 0 };
 	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(
-		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt,
+		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta,
 		physx::PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
@@ -567,7 +569,7 @@ void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 }
 
 void TCompPlayerModel::onDead() {
-	getCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+	getController()->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 
 	setConcurrentState(ActionStates::Idle);
@@ -616,3 +618,15 @@ void TCompPlayerModel::onContact(const TMsgOnContact& msg) {
 
 }
 
+TCompPlayerModel::~TCompPlayerModel() {
+	SAFE_DELETE(ssj1);
+	SAFE_DELETE(ssj2);
+	SAFE_DELETE(ssj3);
+	for (auto& keyValue : baseStates) {
+		SAFE_DELETE(keyValue.second);
+	}
+	for (auto& keyValue : concurrentStates) {
+		SAFE_DELETE(keyValue.second);
+	}
+	SAFE_DELETE(playerFilterCallback);
+}

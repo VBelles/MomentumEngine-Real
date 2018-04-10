@@ -3,7 +3,7 @@
 
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
-	
+
 	CApp app;
 
 	if (!app.readConfig())

@@ -127,13 +127,6 @@
     <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_mechanism_system.cpp" />
     <ClCompile Include="components\comp_appear.cpp" />
-    <ClCompile Include="components\ia\behavior tree\IBehaviorTree.cpp" />
-    <ClCompile Include="components\ia\behavior tree\IBehaviorTreeNode.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeAction.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeSequence.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodePriority.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeNodeRandom.cpp" />
-    <ClCompile Include="components\ia\behavior tree\BehaviorTreeMeleeEnemy.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
@@ -155,7 +148,6 @@
     <ClCompile Include="modules\game\physics\GameQueryFilterCallback.cpp" />
     <ClCompile Include="components\controllers\comp_fixed_camera.cpp" />
     <ClCompile Include="components\comp_breakable.cpp" />
-    <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeAction.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodePriority.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeRandom.cpp" />
@@ -164,6 +156,7 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNode.cpp" />
     <ClCompile Include="components\ia\enemies\FlyingRangedEnemy.cpp" />
     <ClCompile Include="components\ia\enemies\MeleeEnemy.cpp" />
+    <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -344,7 +337,6 @@
     <ClInclude Include="modules\game\physics\GameQueryFilterCallback.h" />
     <ClInclude Include="components\controllers\comp_fixed_camera.h" />
     <ClInclude Include="components\comp_breakable.h" />
-    <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeAction.h" />
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodePriority.h" />
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeRandom.h" />
@@ -353,6 +345,7 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNode.h" />
     <ClInclude Include="components\ia\enemies\MeleeEnemy.h" />
     <ClInclude Include="components\ia\enemies\FlyingRangedEnemy.h" />
+    <ClInclude Include="components\player\filters\player_filter_callback.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

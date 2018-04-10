@@ -51,4 +51,6 @@ using json = nlohmann::json;
 #include "resources/resources_manager.h"
 #include "windows/app.h"
 
+#define SAFE_DELETE(x)  if(x) delete x, x = nullptr;
+
 #endif

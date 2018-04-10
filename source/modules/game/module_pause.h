@@ -1,8 +1,5 @@
 #pragma once
 
-#include "modules/module.h"
-#include "geometry/curve.h"
-
 class CModulePause : public IModule {
 private:
 	bool pause = false;

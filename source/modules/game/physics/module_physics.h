@@ -1,7 +1,5 @@
 #pragma once
 
-#include "modules/module.h"
-
 using namespace physx;
 
 class TCompCollider;

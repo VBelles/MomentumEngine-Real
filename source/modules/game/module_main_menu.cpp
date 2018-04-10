@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "module_main_menu.h"
+#include "modules/module.h"
 
 bool CModuleMainMenu::start() {
 	ShowCursor(true);

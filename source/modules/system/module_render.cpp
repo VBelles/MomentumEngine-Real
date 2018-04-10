@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "module_render.h"
+#include "modules/module.h"
 #include "windows/app.h"
 #include "imgui/imgui_impl_dx11.h"
 #include "render/render_objects.h"

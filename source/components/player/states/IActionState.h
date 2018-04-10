@@ -64,7 +64,7 @@ public:
 	virtual void setPose();
 
 	virtual void setMovementInput(VEC2 input);
-	
+
 	virtual void onJumpHighButton() {}
 	virtual void onJumpHighButtonReleased() {}
 	virtual void onJumpLongButton() {}
@@ -78,5 +78,6 @@ public:
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }
+
 
 };

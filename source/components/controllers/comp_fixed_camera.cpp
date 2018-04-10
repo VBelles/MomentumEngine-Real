@@ -40,7 +40,7 @@ void TCompFixedCamera::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	originalPosition = transform->getPosition();
 }
 
-void TCompFixedCamera::update(float delta) {	
+void TCompFixedCamera::update(float delta) {
 	TCompTransform* transform = getTransform();
 	updateInput();
 	if (!countingForReposition) {
@@ -54,7 +54,7 @@ void TCompFixedCamera::update(float delta) {
 			countingForReposition = false;
 			isRepositioning = false;
 		}
-		else if(!isRepositioning && repositionTimer.elapsed() >= repositionTime){
+		else if (!isRepositioning && repositionTimer.elapsed() >= repositionTime) {
 			isRepositioning = true;
 		}
 	}
@@ -68,7 +68,7 @@ void TCompFixedCamera::update(float delta) {
 		}
 	}
 	else if (!returnToPlayerCameraWithInput) {
-		
+
 		input.Normalize();
 		VEC3 verticalMovement = transform->getUp() * input.y;
 		VEC3 horizontalMovement = transform->getLeft() * input.x;
@@ -118,7 +118,7 @@ TCompTransform* TCompFixedCamera::getTransform() {
 
 void TCompFixedCamera::CopyRotationFromMixedCameraToPlayerCamera() {
 	CHandle leavingCameraHandle = getEntityByName(GAME_CAMERA);
-	CEntity* leavingCameraEntity = leavingCameraHandle; 
+	CEntity* leavingCameraEntity = leavingCameraHandle;
 	TCompCamera* leavingCamera = leavingCameraEntity->get<TCompCamera>();
 	CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
 	CEntity* playerCameraEntity = playerCameraHandle;

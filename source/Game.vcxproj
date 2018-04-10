@@ -134,7 +134,7 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
-    <ClCompile Include="components\player\filters\PlayerFilterCallback.cpp" />
+    <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
@@ -296,7 +296,7 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
-    <ClInclude Include="components\player\filters\PlayerFilterCallback.h" />
+    <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />

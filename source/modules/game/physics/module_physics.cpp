@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "module_physics.h"
+#include "modules/module.h"
 #include "entity/entity.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"

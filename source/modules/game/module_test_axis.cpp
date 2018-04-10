@@ -1,5 +1,6 @@
 ﻿#include "mcv_platform.h"
 #include "module_test_axis.h"
+#include "modules/module.h"
 #include "camera/camera.h"
 #include "render/render_objects.h"
 #include "entity/entity.h"
@@ -16,6 +17,7 @@
 #include "render/render_manager.h"
 #include "components/controllers/comp_curve.h"
 #include "game_constants.h"
+#include "geometry/curve.h"
 
 CCamera camera;
 extern void registerMesh(CRenderMesh* new_mesh, const char* name);

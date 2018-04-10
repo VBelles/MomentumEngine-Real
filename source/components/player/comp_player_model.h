@@ -119,7 +119,8 @@ private:
 	void applyGravity(float delta);
 
 public:
-	IActionState * baseState;
+	~TCompPlayerModel();
+	IActionState* baseState;
 	IActionState* concurrentState;
 
 	bool lockBaseState = false;
