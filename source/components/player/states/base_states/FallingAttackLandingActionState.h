@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
 #include "LandingActionState.h"
-
 
 class FallingAttackLandingActionState : public LandingActionState {
 	CTimer hitboxTimer;

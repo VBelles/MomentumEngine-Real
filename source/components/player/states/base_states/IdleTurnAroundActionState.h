@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
-
+#include "components/player/states/GroundedActionState.h"
 
 class IdleTurnAroundActionState : public GroundedActionState {
 	CTimer timer;
@@ -11,7 +9,7 @@ class IdleTurnAroundActionState : public GroundedActionState {
 	float exitYaw;
 	float rotationSpeed;
 
-	void RotateToFinalDirection();
+	void rotateToFinalDirection();
 public:
 	IdleTurnAroundActionState(CHandle playerModelHandle);
 	void update(float delta) override;

@@ -1,7 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
+#include "components/player/states/GroundedActionState.h"
 
 
 class TurnAroundActionState : public GroundedActionState {
@@ -13,8 +12,8 @@ class TurnAroundActionState : public GroundedActionState {
 	float rotationSpeed;
 	float velocityLossMultiplier = 0.7f;
 
-	void RotateToFinalDirection();
-	void SetFinalVelocity();
+	void rotateToFinalDirection();
+	void setFinalVelocity();
 public:
 	TurnAroundActionState(CHandle playerModelHandle);
 	void update(float delta) override;

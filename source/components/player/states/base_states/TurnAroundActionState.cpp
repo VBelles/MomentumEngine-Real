@@ -1,4 +1,5 @@
 #include "mcv_platform.h"
+#include "components/player/comp_player_model.h"
 #include "TurnAroundActionState.h"
 
 
@@ -10,9 +11,9 @@ void TurnAroundActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
-		RotateToFinalDirection();
+		rotateToFinalDirection();
 		if (movementInput.Length() > 0.8f) {
-			SetFinalVelocity();
+			setFinalVelocity();
 			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 		}
 		else {
@@ -51,30 +52,30 @@ void TurnAroundActionState::onStateExit(IActionState * nextState) {
 void TurnAroundActionState::onJumpHighButton() {
 	//Quizás se puede usar una variable para decir que saldrá en salto y que no salga directamente desde aquí 
 	//(que se coma todos los frames si quiere saltar)
-	RotateToFinalDirection();
-	SetFinalVelocity();
+	rotateToFinalDirection();
+	setFinalVelocity();
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void TurnAroundActionState::onJumpLongButton() {
-	RotateToFinalDirection();
-	SetFinalVelocity();
+	rotateToFinalDirection();
+	setFinalVelocity();
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void TurnAroundActionState::onLeavingGround() {
-	RotateToFinalDirection();
+	rotateToFinalDirection();
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void TurnAroundActionState::RotateToFinalDirection() {
+void TurnAroundActionState::rotateToFinalDirection() {
 	//Rotar hasta el ángulo de salida
 	float y, p, r;
 	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	getPlayerTransform()->setYawPitchRoll(exitYaw, p, r);
 }
 
-void TurnAroundActionState::SetFinalVelocity() {
+void TurnAroundActionState::setFinalVelocity() {
 	//Poner velocidad final
 	velocityVector->x = exitVelocityVector.x * velocityLossMultiplier;
 	velocityVector->z = exitVelocityVector.z * velocityLossMultiplier;

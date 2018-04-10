@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "GhostJumpWindowActionState.h"
+#include "components/player/comp_player_model.h"
 
 GhostJumpWindowActionState::GhostJumpWindowActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
