@@ -1,7 +1,8 @@
 #include "mcv_platform.h"
 #include "components/player/comp_player_model.h"
 #include "TurnAroundActionState.h"
-
+#include "components/comp_camera.h"
+#include "components/comp_transform.h"
 
 TurnAroundActionState::TurnAroundActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

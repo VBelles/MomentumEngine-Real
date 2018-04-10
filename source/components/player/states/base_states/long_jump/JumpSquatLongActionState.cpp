@@ -1,6 +1,8 @@
 #include "mcv_platform.h"
 #include "JumpSquatLongActionState.h"
 #include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "components/player/comp_player_model.h"
 
 JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

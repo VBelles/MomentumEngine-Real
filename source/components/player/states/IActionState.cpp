@@ -6,8 +6,6 @@
 #include "components/comp_collider.h"
 #include "components/player/comp_player_model.h"
 
-
-
 IActionState::IActionState(CHandle playerModelHandle) {
 	this->playerModelHandle = playerModelHandle;
 	CEntity* playerEntity = playerModelHandle.getOwner();

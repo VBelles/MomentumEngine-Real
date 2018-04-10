@@ -2,6 +2,9 @@
 #include "PropelLongActionState.h"
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
+#include "components/player/comp_player_model.h"
 
 PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {

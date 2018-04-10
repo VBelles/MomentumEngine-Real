@@ -3,6 +3,8 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
 
 StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

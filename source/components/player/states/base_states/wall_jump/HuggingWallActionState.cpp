@@ -2,6 +2,8 @@
 #include "HuggingWallActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
 
 HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 	:AirborneActionState::AirborneActionState(playerModelHandle) {

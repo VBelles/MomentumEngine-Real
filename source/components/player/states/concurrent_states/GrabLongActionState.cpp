@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "GrabLongActionState.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
 #include "components/comp_tags.h"
 

@@ -2,6 +2,8 @@
 #include "RunActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
+#include "components/comp_camera.h"
+#include "components/comp_transform.h"
 
 RunActionState::RunActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

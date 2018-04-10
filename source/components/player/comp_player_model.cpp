@@ -5,9 +5,12 @@
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
+#include "components/comp_camera.h"
+#include "components/comp_transform.h"
+#include "components/comp_collectable.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/filters/PlayerFilterCallback.h"
-#include "components/comp_collectable.h"
+#include "components/player/comp_power_gauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/base_states/GhostJumpWindowActionState.h"
@@ -421,6 +424,10 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	}
 }
 
+TCompTransform* TCompPlayerModel::getTransform() { return transformHandle; }
+TCompCollider* TCompPlayerModel::getCollider() { return colliderHandle; }
+PxCapsuleController* TCompPlayerModel::getController() { return static_cast<PxCapsuleController*>(getCollider()->controller); }
+TCompPowerGauge* TCompPlayerModel::getPowerGauge() { return powerGaugeHandle; }
 TCompCamera* TCompPlayerModel::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName("game_camera");
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
@@ -606,3 +613,4 @@ void TCompPlayerModel::onContact(const TMsgOnContact& msg) {
 	}
 
 }
+

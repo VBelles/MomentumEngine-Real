@@ -2,6 +2,8 @@
 #include "IdleActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
 
 IdleActionState::IdleActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

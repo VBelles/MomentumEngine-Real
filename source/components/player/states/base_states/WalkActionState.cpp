@@ -2,6 +2,8 @@
 #include "WalkActionState.h"
 #include "components/comp_render.h"
 #include "components/player/comp_player_model.h"
+#include "components/comp_camera.h"
+#include "components/comp_transform.h"
 
 WalkActionState::WalkActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {

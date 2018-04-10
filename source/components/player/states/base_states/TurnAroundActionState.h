@@ -2,7 +2,6 @@
 
 #include "components/player/states/GroundedActionState.h"
 
-
 class TurnAroundActionState : public GroundedActionState {
 	CTimer timer;
 	int turnAroundFrames = 9;

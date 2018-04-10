@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "components/player/states/GroundedActionState.h"
 
 class ReleasePowerGroundActionState : public GroundedActionState {

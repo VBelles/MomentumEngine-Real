@@ -1,15 +1,17 @@
 #pragma once
 
 #include "components/comp_base.h"
-#include "geometry/transform.h"
 #include "entity/common_msgs.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "states/IActionState.h"
-#include "comp_power_gauge.h"
 
-class PlayerFilterCallback;
+class IActionState;
+class TCompCamera;
+class TCompCollider;
+class TCompTransform;
+class TCompPowerGauge;
+
 struct TMsgCollect;
+class PlayerFilterCallback;
+
 
 struct PowerStats {
 	float maxHorizontalSpeed = 0.f;
@@ -110,7 +112,7 @@ private:
 	void applyGravity(float delta);
 
 public:
-	IActionState* baseState;
+	IActionState * baseState;
 	IActionState* concurrentState;
 
 	bool lockBaseState = false;
@@ -159,11 +161,11 @@ public:
 	void gainPowerButtonPressed();
 	bool isConcurrentActionFree();
 
-	TCompTransform* getTransform() { return transformHandle; }
-	TCompCollider* getCollider() { return colliderHandle; }
-	PxCapsuleController* getController() { return static_cast<PxCapsuleController*>(getCollider()->controller); }
+	TCompTransform* getTransform();
+	TCompCollider* getCollider();
+	PxCapsuleController* getController();
 	TCompCamera* getCamera();
-	TCompPowerGauge* getPowerGauge() { return powerGaugeHandle; }
+	TCompPowerGauge* getPowerGauge();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }
 	VEC3* getVelocityVector() { return &velocityVector; }

@@ -2,6 +2,8 @@
 #include "AirborneActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
 
 AirborneActionState::AirborneActionState(CHandle playerModelHandle)
 	: IActionState::IActionState(playerModelHandle) {
