@@ -55,7 +55,7 @@ bool CModuleTestAxis::start() {
 
 	CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
 	Engine.getCameras().setDefaultCamera(h_playerCamera);
-	CHandle h_camera = getEntityByName("game_camera");
+	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
 
 	//const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
@@ -111,7 +111,7 @@ void CModuleTestAxis::update(float delta) {
 
 void CModuleTestAxis::render() {
 	// Find the entity with name 'game_camera'
-	CHandle h_e_camera = getEntityByName("game_camera");
+	CHandle h_e_camera = getEntityByName(GAME_CAMERA);
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;
 		TCompCamera* c_camera = e_camera->get<TCompCamera>();

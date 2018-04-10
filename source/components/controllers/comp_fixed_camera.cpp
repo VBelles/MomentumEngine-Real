@@ -116,9 +116,9 @@ TCompTransform* TCompFixedCamera::getTransform() {
 }
 
 void TCompFixedCamera::CopyRotationFromMixedCameraToPlayerCamera() {
-	CHandle leavingCameraHandle = CHandle(this).getOwner();
-	CEntity* leavingCameraEntity = leavingCameraHandle;
-	TCompTransform* leavingCameraTransform = leavingCameraEntity->get<TCompTransform>();
+	CHandle leavingCameraHandle = getEntityByName(GAME_CAMERA);
+	CEntity* leavingCameraEntity = leavingCameraHandle; 
+	TCompCamera* leavingCamera = leavingCameraEntity->get<TCompCamera>();
 	CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
 	CEntity* playerCameraEntity = playerCameraHandle;
 	TCompTransform* playerCameraTransform = playerCameraEntity->get<TCompTransform>();
@@ -126,6 +126,6 @@ void TCompFixedCamera::CopyRotationFromMixedCameraToPlayerCamera() {
 	float yPLayer, pPlayer, rPlayer;
 	playerCameraTransform->getYawPitchRoll(&yPLayer, &pPlayer, &rPlayer);
 	float yLeavingCamera, pLeavingCamera, rLeavingCamera;
-	leavingCameraTransform->getYawPitchRoll(&yLeavingCamera, &pLeavingCamera, &rLeavingCamera);
+	leavingCamera->getYawPitchRoll(&yLeavingCamera, &pLeavingCamera, &rLeavingCamera);
 	playerCameraTransform->setYawPitchRoll(yLeavingCamera, pLeavingCamera, rPlayer);
 }
