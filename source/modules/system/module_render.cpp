@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "module_render.h"
-#include "windows/app.h"
 #include "imgui/imgui_impl_dx11.h"
 #include "render/render_objects.h"
 #include "render/render_utils.h"
@@ -88,13 +87,10 @@ bool CModuleRender::start() {
     cb_object.activate();
     cb_camera.activate();
     cb_globals.activate();
+    
+	//activateMainCamera();
 
-    CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
-	Engine.getCameras().setDefaultCamera(h_playerCamera);
-	CHandle h_camera = getEntityByName(GAME_CAMERA);
-	Engine.getCameras().setOutputCamera(h_camera);
-
-    return true;
+	return true;
 }
 
 // Forward the OS msg to the IMGUI
@@ -120,7 +116,6 @@ bool CModuleRender::stop() {
 }
 
 void CModuleRender::update(float delta) {
-    (void)delta;
     cb_globals.global_world_time += delta;
 }
 
@@ -143,13 +138,6 @@ void CModuleRender::render() {
             ImGui::TreePop();
         }
     }
-
-    //Render.startRenderInBackbuffer(); // Nota de merge: esto Juan no lo tiene.
-
-    /*// Clear the back buffer. // Nota de merge: esto Juan no lo hace.
-    float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
-    Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
-    Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);*/
 }
 
 void CModuleRender::configure(int xres, int yres) {
@@ -182,23 +170,9 @@ void CModuleRender::activateMainCamera() {
 }
 
 void CModuleRender::generateFrame() {
-    { // Esto tendría que ir en module_entities ¿?
-        PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
-        CTraceScoped gpu_scope("shadowsMapsGeneration");
-        // Generate the shadow map for each active light
-        getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
-            c->generateShadowMap();
-        });
-    }
-
     {
         CTraceScoped gpu_scope("Frame");
         PROFILE_FUNCTION("CModuleRender::generateFrame");
-
-        /*// Clear the back buffer  // Nota de merge: esto Juan no lo hace.
-        float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
-        Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
-        Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);*/
 
         activateMainCamera();
         cb_globals.updateGPU();
@@ -207,12 +181,6 @@ void CModuleRender::generateFrame() {
         Render.startRenderInBackbuffer();
 
         renderFullScreenQuad("dump_texture.tech", rt_main);
-
-        /*getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
-        c->activate();
-        });*/
-
-        //CRenderManager::get().renderCategory("default"); // Nota de merge: esto Juan no lo hace.
 
         // Debug render
         {

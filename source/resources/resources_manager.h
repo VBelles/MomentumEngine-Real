@@ -20,6 +20,7 @@ public:
 
   void debugInMenu();
   void destroyAll();
+  void destroyResource(const std::string& name);
 
   // 
   void registerResource( IResource* res );

@@ -23,6 +23,7 @@ bool CModuleCameras::start() {
 }
 
 bool CModuleCameras::stop() {
+	_mixedCameras.clear();
 	return true;
 }
 

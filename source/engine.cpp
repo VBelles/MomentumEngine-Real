@@ -39,7 +39,6 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_ia);
 	_modules.registerSystemModule(&_module_input);
-	_modules.registerSystemModule(&_module_cameras);
 	_modules.registerSystemModule(&_module_fsm);
 
 	_modules.registerGameModule(&_module_entities);
@@ -49,6 +48,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_test_axis);
 	_modules.registerGameModule(&module_test_input);
+	_modules.registerGameModule(&_module_cameras);
 	_modules.registerGameModule(&module_test_cameras);
 	_modules.registerGameModule(&module_pause);
 

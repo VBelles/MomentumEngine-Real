@@ -25,6 +25,7 @@ bool CModulePhysics::start() {
 }
 
 bool CModulePhysics::stop() {
+	toRelease.clear();
 	mControllerManager->release();
 	gMaterial->release();
 	gScene->release();

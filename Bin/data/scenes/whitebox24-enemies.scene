@@ -152,12 +152,6 @@
       {
         "pos": "-47.3087 31.9241 -112.524",
         "lookat": "-1.0 31.9241 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -170,12 +164,6 @@
       {
         "pos": "-44.1863 34.6967 -93.1189",
         "lookat": "-1.0 34.6967 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -188,12 +176,6 @@
       {
         "pos": "-107.485 23.028 -97.6235",
         "lookat": "-1.0 23.028 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -206,12 +188,6 @@
       {
         "pos": "-63.4581 34.6967 -48.2636",
         "lookat": "-1.0 34.6967 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -224,12 +200,6 @@
       {
         "pos": "1.20534 34.6967 -51.8641",
         "lookat": "-1.0 34.6967 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -242,12 +212,6 @@
       {
         "pos": "35.3127 55.3215 -114.214",
         "lookat": "-1.0 55.3215 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -260,12 +224,6 @@
       {
         "pos": "18.2636 47.4115 -85.9456",
         "lookat": "-1.0 47.4115 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -278,12 +236,6 @@
       {
         "pos": "42.8947 60.1375 -121.796",
         "lookat": "-1.0 60.1375 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -296,12 +248,6 @@
       {
         "pos": "50.6939 65.9078 -129.596",
         "lookat": "-1.0 65.9078 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -314,12 +260,6 @@
       {
         "pos": "-51.3837 21.1911 -149.979",
         "lookat": "-1.0 21.1911 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -332,12 +272,6 @@
       {
         "pos": "-50.2568 21.1911 -155.995",
         "lookat": "-1.0 21.1911 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -350,12 +284,6 @@
       {
         "pos": "-57.3823 21.1911 -148.869",
         "lookat": "-1.0 21.1911 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -368,12 +296,6 @@
       {
         "pos": "-57.0304 21.1911 -155.625",
         "lookat": "-1.0 21.1911 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -386,12 +308,6 @@
       {
         "pos": "-53.8642 21.1911 -152.459",
         "lookat": "-1.0 21.1911 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -404,12 +320,6 @@
       {
         "pos": "-47.9001 21.1911 -146.495",
         "lookat": "-1.0 21.1911 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -422,12 +332,6 @@
       {
         "pos": "-52.7417 21.1911 -146.303",
         "lookat": "-1.0 21.1911 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -440,12 +344,6 @@
       {
         "pos": "-47.5966 21.1911 -151.448",
         "lookat": "-1.0 21.1911 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -458,12 +356,6 @@
       {
         "pos": "-11.4407 43.8187 -87.9101",
         "lookat": "-1.0 43.8187 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -476,12 +368,6 @@
       {
         "pos": "-16.1021 38.0483 -77.9137",
         "lookat": "-1.0 38.0483 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   },
@@ -494,12 +380,6 @@
       {
         "pos": "-24.1171 41.794 -70.8728",
         "lookat": "-1.0 41.794 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-        "radius": 0.3,
-        "group": "Enemy"
       }
     }
   }
