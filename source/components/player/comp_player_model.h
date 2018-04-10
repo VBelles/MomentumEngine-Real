@@ -48,32 +48,33 @@ public:
 	};
 	IActionState* baseState;
 	IActionState* concurrentState;
-
-	
 	
 	bool lockBaseState = false;
 	bool lockWalk = false;
 	bool lockTurning = false;
 	bool lockConcurrentState = false;
+
+	//Parent methods
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
-	void SetBaseState(ActionStates newState);
-	void SetConcurrentState(ActionStates newState);
-	void update(float dt);
-	void UpdateMovement(float dt, VEC3 deltaMovement);
-	void SetMovementInput(VEC2 input, float delta);
-	void JumpButtonPressed();
-	void JumpButtonReleased();
-	void LongJumpButtonPressed();
-	void FastAttackButtonPressed();
-	void FastAttackButtonReleased();
-	void StrongAttackButtonPressed();
-	void StrongAttackButtonReleased();
-	void CenterCameraButtonPressed();
-	void ReleasePowerButtonPressed();
-	void GainPowerButtonPressed();
-	bool IsConcurrentActionFree();
+	void update(float delta);
+
+	void setBaseState(ActionStates newState);
+	void setConcurrentState(ActionStates newState);
+	void updateMovement(float delta, VEC3 deltaMovement);
+	void setMovementInput(VEC2 input, float delta);
+	void jumpButtonPressed();
+	void jumpButtonReleased();
+	void longJumpButtonPressed();
+	void fastAttackButtonPressed();
+	void fastAttackButtonReleased();
+	void strongAttackButtonPressed();
+	void strongAttackButtonReleased();
+	void centerCameraButtonPressed();
+	void releasePowerButtonPressed();
+	void gainPowerButtonPressed();
+	bool isConcurrentActionFree();
 	
 	void OnAttackHit(const TMsgAttackHit& msg);
 	void OnHitboxEnter(const TMsgHitboxEnter& msg);
@@ -95,7 +96,6 @@ public:
 
 	PowerStats* GetPowerStats();
 
-	bool isInState(ActionStates state);
 	template <typename T>
 	T GetBaseState(TCompPlayerModel::ActionStates state) { return static_cast<T>(baseStates[state]); }
 	template <typename T >
@@ -117,18 +117,18 @@ public:
 	float sameNormalReattachTime = 0.8f;
 	PxVec3 lastWallNormal = {0,0,0};
 
-
 	CHandle grabTarget;
 	PxRigidActor* lastWallEntered;
 
 	
-
 private:
-	VEC3 deltaMovement;
+	
 	CHandle myTransformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
 
+	VEC3 respawnPosition;
+	VEC3 deltaMovement;
 	VEC3 accelerationVector;
 	VEC3 velocityVector;
 	float baseGravity = 0.f;
@@ -148,14 +148,6 @@ private:
 	CTimer dialogTimer;
 	float dialogTime = 15.0f;
  
-    void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
-    void OnCollect(const TMsgCollect& msg);
-	void OnShapeHit(const TMsgOnShapeHit & msg);
-	void OnContact(const TMsgOnContact & msg);
-	void OnLevelChange(const TMsgPowerLvlChange& msg);
-
-	PowerStats* loadPowerStats(const json& j);
-
 	PlayerFilterCallback* playerFilterCallback;
 
 	std::map<ActionStates, IActionState*> baseStates;
@@ -175,9 +167,13 @@ private:
 	CHandle releasePowerSmallHitbox;
 	CHandle releasePowerBigHitbox;
 
+	PowerStats* loadPowerStats(const json& j);
 
-	VEC3 respawnPosition;
-
+	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void OnCollect(const TMsgCollect& msg);
+	void OnShapeHit(const TMsgOnShapeHit & msg);
+	void OnContact(const TMsgOnContact & msg);
+	void OnLevelChange(const TMsgPowerLvlChange& msg);
 
 	void ChangeBaseState(ActionStates newState);
 	void ChangeConcurrentState(ActionStates newState);

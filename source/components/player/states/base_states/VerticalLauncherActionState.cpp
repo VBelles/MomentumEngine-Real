@@ -11,7 +11,7 @@ void VerticalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -49,11 +49,11 @@ void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
 	//dbg("Finish Vertical Launcher\n");
 }
 
-void VerticalLauncherActionState::SetMovementInput(VEC2 input) {
+void VerticalLauncherActionState::setMovementInput(VEC2 input) {
 }
 
 void VerticalLauncherActionState::OnLeavingGround() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {

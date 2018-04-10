@@ -26,8 +26,8 @@ void GrabHighActionState::OnHitboxEnter(CHandle entity) {
 			};
 			otherEntity->sendMsg(msgAtackHit);
 			GetPlayerModel()->grabTarget = entity;
-			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::PropelHigh);
-			GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::PropelHigh);
+			GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 		}
 	}
 }

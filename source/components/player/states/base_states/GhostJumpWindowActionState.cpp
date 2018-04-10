@@ -8,7 +8,7 @@ GhostJumpWindowActionState::GhostJumpWindowActionState(CHandle playerModelHandle
 void GhostJumpWindowActionState::update (float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	AirborneActionState::update(delta);
 }
@@ -29,12 +29,12 @@ void GhostJumpWindowActionState::OnJumpHighButton() {
 	velocityVector->y = 0.f;
 	*velocityVector += currentPowerStats->jumpVelocityVector;
 	//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 }
 
 void GhostJumpWindowActionState::OnJumpLongButton() {
 	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
 	*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 	velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
 }

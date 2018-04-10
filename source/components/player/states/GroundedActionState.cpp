@@ -27,28 +27,28 @@ void GroundedActionState::OnStateExit(IActionState * nextState) {
 }
 
 void GroundedActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void GroundedActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void GroundedActionState::OnStrongAttackButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::StrongAttack);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::StrongAttack);
 }
 
 void GroundedActionState::OnFastAttackButton() {
-	if (GetPlayerModel()->IsConcurrentActionFree()) {
-		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::FastAttack);
+	if (GetPlayerModel()->isConcurrentActionFree()) {
+		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::FastAttack);
 	}
 }
 
 void GroundedActionState::OnReleasePowerButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::ReleasePowerGround);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::ReleasePowerGround);
 }
 
 void GroundedActionState::OnLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }

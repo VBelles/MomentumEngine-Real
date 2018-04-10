@@ -18,12 +18,12 @@ void LandingActionState::update (float delta) {
 
 	if (timer.elapsed() >= landingLagTime) {
 		if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
-			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
+			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else {
 			velocityVector->x = GetPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
 			velocityVector->z = GetPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
-			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Walk);
+			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 		}
 	}
 }
@@ -48,12 +48,12 @@ void LandingActionState::OnStateExit(IActionState * nextState) {
 
 void LandingActionState::OnJumpHighButton() {
 	SetFinalRotationAndVelocity();
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void LandingActionState::OnJumpLongButton() {
 	SetFinalRotationAndVelocity();
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void LandingActionState::SetFinalRotationAndVelocity() {

@@ -33,10 +33,10 @@ void JumpSquatSpringActionState::OnStateExit(IActionState * nextState) {
 void JumpSquatSpringActionState::OnLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
 	}
 }

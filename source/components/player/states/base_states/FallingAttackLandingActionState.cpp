@@ -41,7 +41,7 @@ void FallingAttackLandingActionState::OnStateExit(IActionState * nextState) {
 
 void FallingAttackLandingActionState::OnJumpHighButton() {
 	if (!hasTriedSpringJump && springJumpTimer.elapsed() >= springJumpWindowStartTime && springJumpTimer.elapsed() <= springJumpWindowEndTime) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatSpring);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatSpring);
 	}
 	hasTriedSpringJump = true;
 }

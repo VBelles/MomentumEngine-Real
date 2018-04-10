@@ -10,7 +10,7 @@ FastAttackAirActionState::FastAttackAirActionState(CHandle playerModelHandle, CH
 void FastAttackAirActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();

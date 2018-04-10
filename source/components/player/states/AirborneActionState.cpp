@@ -91,53 +91,51 @@ void AirborneActionState::OnStateExit(IActionState * nextState) {
 }
 
 void AirborneActionState::OnJumpHighButton() {
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::GrabHigh);
+	GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void AirborneActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::GrabLong);
+	GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::GrabLong);
 }
 
 void AirborneActionState::OnStrongAttackButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::FallingAttack);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::FallingAttack);
 }
 
 void AirborneActionState::OnFastAttackButton() {
-	if (GetPlayerModel()->IsConcurrentActionFree()) {
-		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::FastAttackAir);
+	if (GetPlayerModel()->isConcurrentActionFree()) {
+		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::FastAttackAir);
 	}
 }
 
 void AirborneActionState::OnReleasePowerButton() {
-	if (GetPlayerModel()->IsConcurrentActionFree()) {
-		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::ReleasePowerAir);
+	if (GetPlayerModel()->isConcurrentActionFree()) {
+		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::ReleasePowerAir);
 	}
 }
 
 
 void AirborneActionState::OnLanding() {
 	//Ir a landing action state
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
 }
 
 void AirborneActionState::OnShapeHit(const PxControllerShapeHit& hit) {
+	if (velocityVector->y < 0.f && (GetPlayerModel()->lastWallNormal.dot(hit.worldNormal) < 0.8f 
+		|| GetPlayerModel()->sameNormalReattachTimer.elapsed() >= GetPlayerModel()->sameNormalReattachTime)) {
 
-	/*if (lastWallNormal.dot(wallNormal) >= 0.8f  && sameNormalReattachTimer.elapsed() < sameNormalReattachTime) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
-	}*/
-	/*&& hit.actor != GetPlayerModel()->lastWallEntered*/
-	if (velocityVector->y < 0.f && (GetPlayerModel()->lastWallNormal.dot(hit.worldNormal) < 0.8f || GetPlayerModel()->sameNormalReattachTimer.elapsed() >= GetPlayerModel()->sameNormalReattachTime)) {
 		GetPlayerModel()->lastWallEntered = hit.actor;
 
 		VEC3 hitNormal = VEC3(hit.worldNormal.x, hit.worldNormal.y, hit.worldNormal.z);
 
 		VEC3 worldInput = GetCamera()->TransformToWorld(GetPlayerModel()->baseState->GetMovementInput());
-		if (worldInput.Dot(-hitNormal) >= GetPlayerModel()->attachWallByInputMinDot || GetPlayerTransform()->getFront().Dot(-hitNormal) >= GetPlayerModel()->attachWallByFrontMinDot) {
+		if (worldInput.Dot(-hitNormal) >= GetPlayerModel()->attachWallByInputMinDot 
+			|| GetPlayerTransform()->getFront().Dot(-hitNormal) >= GetPlayerModel()->attachWallByFrontMinDot) {
 			float pitch = asin(-hit.worldNormal.y);
 			if (pitch >= GetPlayerModel()->huggingWallMinPitch && pitch <= GetPlayerModel()->huggingWallMaxPitch) {
 				HuggingWallActionState* actionState = GetPlayerModel()->GetBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
 				actionState->SetHit(hit);
-				GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::HuggingWall);
+				GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HuggingWall);
 			}
 		}
 	}

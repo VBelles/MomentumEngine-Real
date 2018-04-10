@@ -11,7 +11,7 @@ void IdleTurnAroundActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
 		RotateToFinalDirection();
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else {
 		float y, p, r;
@@ -41,17 +41,17 @@ void IdleTurnAroundActionState::OnStateExit(IActionState * nextState) {
 
 void IdleTurnAroundActionState::OnJumpHighButton() {
 	RotateToFinalDirection();
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
 }
 
 void IdleTurnAroundActionState::OnJumpLongButton() {
 	RotateToFinalDirection();
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
 }
 
 void IdleTurnAroundActionState::OnLeavingGround() {
 	RotateToFinalDirection();
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void IdleTurnAroundActionState::RotateToFinalDirection() {

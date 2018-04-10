@@ -24,7 +24,7 @@ void IActionState::SetPose() {
 	GetRender()->setMesh("data/meshes/pose_idle.mesh");
 }
 
-void IActionState::SetMovementInput(VEC2 input) {
+void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }
 

@@ -18,7 +18,7 @@ void GhostJumpSquatLongActionState::update(float delta) {
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;

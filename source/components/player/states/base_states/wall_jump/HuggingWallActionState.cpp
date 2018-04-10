@@ -22,7 +22,7 @@ void HuggingWallActionState::update (float delta) {
 		}
 		if (isTryingToRelease && releaseWallTimer.elapsed() >= releaseWallTime) {
 			//TurnAround();
-			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 		}
 		else if (isClimbing) {
 			if(climbTimer.elapsed() >= climbTime){
@@ -38,7 +38,7 @@ void HuggingWallActionState::update (float delta) {
 			*velocityVector += GetPlayerTransform()->getFront() * climbLedgeExitSpeed;
 			GetPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 		}
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 }
 
@@ -55,7 +55,7 @@ void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
 		climbTimer.reset();
 	}
 	else {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 }
 
@@ -67,13 +67,13 @@ void HuggingWallActionState::OnStateExit(IActionState * nextState) {
 void HuggingWallActionState::OnJumpHighButton() {
 	TurnAround();
 	isClimbing = false;
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::WallJumpSquat);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquat);
 }
 
 void HuggingWallActionState::OnJumpLongButton() {
 	TurnAround();
 	isClimbing = false;
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
 }
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {

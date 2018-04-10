@@ -11,7 +11,7 @@ void HorizontalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -53,7 +53,7 @@ void HorizontalLauncherActionState::OnStateExit(IActionState * nextState) {
 }
 
 void HorizontalLauncherActionState::OnLeavingGround() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void HorizontalLauncherActionState::OnHitboxEnter(CHandle entity) {

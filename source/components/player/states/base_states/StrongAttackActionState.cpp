@@ -12,11 +12,11 @@ void StrongAttackActionState::update(float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
 	}
 	else {
 		if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
+			GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 		}
 		else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 			timer.reset();
@@ -75,7 +75,7 @@ void StrongAttackActionState::OnStrongAttackButtonReleased() {
 }
 
 void StrongAttackActionState::OnLeavingGround() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
 void StrongAttackActionState::OnHitboxEnter(CHandle entity) {

@@ -20,7 +20,7 @@ void PropelHighActionState::update (float delta) {
 		}
 		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 		//pasar mensaje a la otra entidad
 		CHandle playerEntity = CHandle(playerModelHandle).getOwner();
 		CEntity* targetEntity = propelTarget;

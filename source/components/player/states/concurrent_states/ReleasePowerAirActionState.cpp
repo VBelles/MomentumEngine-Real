@@ -12,7 +12,7 @@ void ReleasePowerAirActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -103,8 +103,8 @@ void ReleasePowerAirActionState::OnReleasePowerButton() {
 }
 
 void ReleasePowerAirActionState::OnLanding() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
+	GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }
 
 void ReleasePowerAirActionState::OnHitboxEnter(CHandle entity) {

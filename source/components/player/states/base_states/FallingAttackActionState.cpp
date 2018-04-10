@@ -60,8 +60,8 @@ void FallingAttackActionState::OnLanding() {
 	hitbox->disable();
 
 	*velocityVector = VEC3::Zero;
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
+	GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }
 
 void FallingAttackActionState::OnHitboxEnter(CHandle entity) {

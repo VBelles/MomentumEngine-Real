@@ -11,7 +11,7 @@ ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModel
 void ReleasePowerGroundActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();

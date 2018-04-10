@@ -61,7 +61,7 @@ public:
 
 	virtual void SetPose();
 
-	virtual void SetMovementInput(VEC2 input);
+	virtual void setMovementInput(VEC2 input);
 	virtual VEC3 GetDeltaMovement() { return deltaMovement; }
 	virtual VEC2 GetMovementInput() { return movementInput; }
 	virtual void OnJumpHighButton() {}

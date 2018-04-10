@@ -10,7 +10,7 @@ GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 void GrabActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -54,6 +54,6 @@ void GrabActionState::OnLanding() {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
+	GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }

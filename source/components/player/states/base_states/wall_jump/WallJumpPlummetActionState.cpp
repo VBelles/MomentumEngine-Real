@@ -20,7 +20,7 @@ void WallJumpPlummetActionState::update (float delta) {
 
 	deltaMovement = *velocityVector * delta;
 	if (timer.elapsed() >= endingTime) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 }
 
@@ -49,26 +49,26 @@ void WallJumpPlummetActionState::OnStateExit(IActionState * nextState) {
 
 void WallJumpPlummetActionState::OnJumpHighButton() {
 	//Se recupera y agarra
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::GrabHigh);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::GrabHigh);
 }
 
 void WallJumpPlummetActionState::OnJumpLongButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::GrabLong);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	GetPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::GrabLong);
 }
 
 void WallJumpPlummetActionState::OnFastAttackButton() {
 	//Se recupera
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 }
 
 void WallJumpPlummetActionState::OnStrongAttackButton() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 }
 
 void WallJumpPlummetActionState::OnLanding() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
+	GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
 }
 
 void WallJumpPlummetActionState::OnHitboxEnter(CHandle entity) {

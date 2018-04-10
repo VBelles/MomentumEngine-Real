@@ -48,35 +48,35 @@ void TCompPlayerController::update(float delta) {
 	}
 
 	if (EngineInput["jump"].getsPressed()) {
-		playerModel->JumpButtonPressed();
+		playerModel->jumpButtonPressed();
 	}
 	else if (EngineInput["jump"].getsReleased()) {
-		playerModel->JumpButtonReleased();
+		playerModel->jumpButtonReleased();
 	}
 	if (EngineInput["long_jump"].getsPressed()) {
-		playerModel->LongJumpButtonPressed();
+		playerModel->longJumpButtonPressed();
 	}
 	if (EngineInput["fast_attack"].getsPressed()) {
-		playerModel->FastAttackButtonPressed();
+		playerModel->fastAttackButtonPressed();
 	}
 	else if (EngineInput["fast_attack"].getsReleased()) {
-		playerModel->FastAttackButtonReleased();
+		playerModel->fastAttackButtonReleased();
 	}
 	if (EngineInput["strong_attack"].getsPressed()) {
-		playerModel->StrongAttackButtonPressed();
+		playerModel->strongAttackButtonPressed();
 	}
 	else if (EngineInput["strong_attack"].getsReleased()) {
-		playerModel->StrongAttackButtonReleased();
+		playerModel->strongAttackButtonReleased();
 	}
 	if (EngineInput["center_camera"].getsPressed()) {
-		playerModel->CenterCameraButtonPressed();
+		playerModel->centerCameraButtonPressed();
 	}
 	if (EngineInput["release_power"].getsPressed()) {
-		playerModel->ReleasePowerButtonPressed();
+		playerModel->releasePowerButtonPressed();
 	}
 	if (EngineInput["gain_power"].getsPressed()) {
-		playerModel->GainPowerButtonPressed();
+		playerModel->gainPowerButtonPressed();
 	}
 	//Dejar este para el final
-	playerModel->SetMovementInput(translationInput, delta);
+	playerModel->setMovementInput(translationInput, delta);
 }

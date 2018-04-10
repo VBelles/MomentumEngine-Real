@@ -14,7 +14,7 @@ void WallJumpSquatPlummetActionState::update (float delta) {
 		velocityVector->y = verticalVelocity;
 		
 		deltaMovement = *velocityVector * delta;
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::WallJumpPlummet);
+		GetPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpPlummet);
 	}
 }
 
