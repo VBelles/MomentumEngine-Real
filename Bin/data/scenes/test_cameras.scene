@@ -47,11 +47,13 @@
 				"group" : ["trigger"],
 				"mask" : ["player"]
 			},
-			"mixCameraTrigger":{
-				"cameraToMix": "fixed_camera",
-				"timeToMixIn": 1.0,
-				"timeToMixOut": 1.0,
-				"modifyPlayerCameraRotation" : true
+			"suggestCameraTrigger" :{
+				"cameraSuggestion" : "fixed_camera",
+				"distanceToCamera" : 8.0,
+				"suggestYaw" : true,
+				"suggestPitch" : true,
+				"forceDistance" : true,
+				"changeCenteringCamera" : true
 			}
 		}
 	},

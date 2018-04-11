@@ -114,6 +114,7 @@
     <ClCompile Include="components\comp_render_ui.cpp" />
     <ClCompile Include="components\comp_respawner.cpp" />
     <ClCompile Include="components\comp_shadow.cpp" />
+    <ClCompile Include="components\comp_suggest_camera_pos_trigger.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="components\comp_render_ui.h" />
     <ClInclude Include="components\comp_respawner.h" />
     <ClInclude Include="components\comp_shadow.h" />
+    <ClInclude Include="components\comp_suggest_camera_pos_trigger.h" />
     <ClInclude Include="components\comp_tags.h" />
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\controllers\comp_camera_flyover.h" />

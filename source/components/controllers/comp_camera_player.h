@@ -28,6 +28,8 @@ private:
 	CTransform targetTransform;
 
 	VEC2 input;
+	
+	float currentDistanceToTarget = 0.f;
 
 	bool isMovementLocked = false;
 
@@ -36,6 +38,14 @@ private:
 
 	float sphereCastRadius = 0.0f;
 
+	float suggestedYaw;
+	float suggestedPitch;
+	float forcedDistance;
+	
+	bool isYawSuggested = false;
+	bool isPitchSuggested = false;
+	bool isDistanceForced = false;
+	bool isCenteringCameraForced = false;
 
 	//Msgs
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -58,5 +68,8 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	void centerCamera();
+	void suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera);
+	void placeCameraOnSuggestedPosition();
+	void resetSuggested();
 };
 
