@@ -53,14 +53,6 @@ void TCompPlatform::onTriggerExit(const TMsgTriggerExit & msg) {
 }
 
 void TCompPlatform::update(float dt) {
-    TCompTransform* transform = get<TCompTransform>();
-    if (!transform) return;
-    VEC3 myPosition = transform->getPosition();
-
-    TCompCollider* collider = get<TCompCollider>();
-    assert(collider);
-    PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
-
     // Get comp_follow_curve movement.
     TCompHierarchy* hierarchy = get<TCompHierarchy>();
     CEntity* parent = hierarchy->h_parent;

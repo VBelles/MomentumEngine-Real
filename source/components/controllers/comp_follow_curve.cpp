@@ -48,7 +48,7 @@ void TCompFollowCurve::update(float dt) {
 
     // evaluar curva con dicho ratio
     VEC3 posToGo = _curve->evaluate(_ratio);
-	dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
+	//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
 
     TCompTransform* transform = get<TCompTransform>();
 	if (!transform) return;
@@ -69,5 +69,4 @@ void TCompFollowCurve::update(float dt) {
 	rigidDynamic->setKinematicTarget(newTransform);
 
 	// TODO: Que vuelva por donde ha venido si loop = true, ahora mismo se teleporta al primer punto al acabar.
-    // TODO: Añadir "is_dynamic": true al collider en el exportador de Max si tiene follow_curve.
 }

@@ -801,7 +801,7 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportEntityCollider obj
+				exportEntityCollider obj dyn:(hasChildLine obj)
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		return true
@@ -1128,6 +1128,7 @@ TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como es
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
 TODO: Añadir plataformas puras. "tags": [ "pure" ], "purity": {}
+TODO: Comprobar que exportCollision pone bien el dynamic si tiene child line.
 */
 
 /*----------------------------------------------------------------------------------
