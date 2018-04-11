@@ -387,7 +387,7 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	PxControllerCollisionFlags moveFlags = getCollider()->controller->move(toPhysx(deltaMovement), 0.f, delta,
 		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
-	isGrounded = moveFlags && PxControllerCollisionFlag::eCOLLISION_DOWN;
+	isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	//dbg("%d\n", isGrounded);
 	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue
 		if (isGrounded) {
