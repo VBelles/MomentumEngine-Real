@@ -1,28 +1,29 @@
 #include "mcv_platform.h"
 #include "curve.h"
+#include "resources/resource.h"
 
 // ----------------------------------------------
 class CCurveResourceClass : public CResourceClass {
 public:
-    CCurveResourceClass() {
-        class_name = "Curves";
-        extensions = { ".curve" };
-    }
-    IResource* create(const std::string& name) const override {
-        dbg("Creating curve %s\n", name.c_str());
-        CCurve* res = new CCurve();
-        bool is_ok = res->load(name);
-        assert(is_ok);
-        return res;
-    }
+	CCurveResourceClass() {
+		class_name = "Curves";
+		extensions = { ".curve" };
+	}
+	IResource* create(const std::string& name) const override {
+		dbg("Creating curve %s\n", name.c_str());
+		CCurve* res = new CCurve();
+		bool is_ok = res->load(name);
+		assert(is_ok);
+		return res;
+	}
 };
 
 // A specialization of the template defined at the top of this file
 // If someone class getResourceClassOf<CTexture>, use this function:
 template<>
 const CResourceClass* getResourceClassOf<CCurve>() {
-    static CCurveResourceClass the_resource_class;
-    return &the_resource_class;
+	static CCurveResourceClass the_resource_class;
+	return &the_resource_class;
 }
 // ----------------------------------------------
 
@@ -49,11 +50,11 @@ bool CCurve::load(const json& jData) {
 }
 
 void CCurve::clear() {
-    _knots.clear();
+	_knots.clear();
 }
 
 void CCurve::addKnot(const VEC3& point) {
-    _knots.push_back(point);
+	_knots.push_back(point);
 }
 
 void CCurve::setType(const std::string & typeName) {
@@ -70,10 +71,10 @@ void CCurve::setLoop(const bool value) {
 }
 
 VEC3 CCurve::evaluate(float ratio) const {
-    if (_type == EType::CATMULL_ROM) {
-        return evaluateAsCatmull(ratio);
-    }
-    return VEC3::Zero;
+	if (_type == EType::CATMULL_ROM) {
+		return evaluateAsCatmull(ratio);
+	}
+	return VEC3::Zero;
 }
 
 VEC3 CCurve::evaluateAsCatmull(float ratio) const {
@@ -83,12 +84,12 @@ VEC3 CCurve::evaluateAsCatmull(float ratio) const {
     int currentSegment = static_cast<int>(ratio / ratioPerSegment);
     float segmentRatio = fmodf(ratio, ratioPerSegment) / ratioPerSegment;
 
-    int idx = currentSegment + 1;
+	int idx = currentSegment + 1;
 
-    VEC3 p1 = _knots[idx - 1];
-    VEC3 p2 = _knots[idx];
-    VEC3 p3 = _knots[idx + 1];
-    VEC3 p4 = _knots[idx + 2];
+	VEC3 p1 = _knots[idx - 1];
+	VEC3 p2 = _knots[idx];
+	VEC3 p3 = _knots[idx + 1];
+	VEC3 p4 = _knots[idx + 2];
 
-    return VEC3::CatmullRom(p1, p2, p3, p4, segmentRatio);
+	return VEC3::CatmullRom(p1, p2, p3, p4, segmentRatio);
 }

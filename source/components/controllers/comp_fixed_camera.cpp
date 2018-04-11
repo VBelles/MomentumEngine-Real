@@ -38,7 +38,7 @@ void TCompFixedCamera::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	originalPosition = transform->getPosition();
 }
 
-void TCompFixedCamera::update(float delta) {	
+void TCompFixedCamera::update(float delta) {
 	TCompTransform* transform = getTransform();
 	updateInput();
 	if (!countingForReposition) {
@@ -52,7 +52,7 @@ void TCompFixedCamera::update(float delta) {
 			countingForReposition = false;
 			isRepositioning = false;
 		}
-		else if(!isRepositioning && repositionTimer.elapsed() >= repositionTime){
+		else if (!isRepositioning && repositionTimer.elapsed() >= repositionTime) {
 			isRepositioning = true;
 		}
 	}
@@ -66,12 +66,12 @@ void TCompFixedCamera::update(float delta) {
 		}
 	}
 	else if (!returnToPlayerCameraWithInput) {
-		
+
 		input.Normalize();
 		VEC3 verticalMovement = transform->getUp() * input.y;
 		VEC3 horizontalMovement = transform->getLeft() * input.x;
 		VEC3 newPos = transform->getPosition() + (verticalMovement + horizontalMovement) * panningSpeed * delta;
-		if (VEC3::Distance(newPos, originalPosition) > panningRadius) {//Me molaría haber hecho el clampeo en rectángulo, pero ni zorra de cómo hacerlo, shhhhh
+		if (VEC3::Distance(newPos, originalPosition) > panningRadius) {//Me molarï¿½a haber hecho el clampeo en rectï¿½ngulo, pero ni zorra de cï¿½mo hacerlo, shhhhh
 			VEC3 direction = newPos - originalPosition;
 			direction.Normalize();
 			newPos = originalPosition + direction * panningRadius;
@@ -82,7 +82,7 @@ void TCompFixedCamera::update(float delta) {
 
 void TCompFixedCamera::updateInput() {
 	input = VEC2::Zero;
-	//Hacer sólo si la cámara está mixeada
+	//Hacer sï¿½lo si la cï¿½mara estï¿½ mixeada
 	if (!isMovementLocked) {
 		VEC2 padInput = {
 			EngineInput[Input::EPadButton::PAD_RANALOG_X].value,
@@ -115,9 +115,9 @@ TCompTransform* TCompFixedCamera::getTransform() {
 }
 
 void TCompFixedCamera::CopyRotationFromMixedCameraToPlayerCamera() {
-	CHandle leavingCameraHandle = CHandle(this).getOwner();
+	CHandle leavingCameraHandle = getEntityByName(GAME_CAMERA);
 	CEntity* leavingCameraEntity = leavingCameraHandle;
-	TCompTransform* leavingCameraTransform = leavingCameraEntity->get<TCompTransform>();
+	TCompCamera* leavingCamera = leavingCameraEntity->get<TCompCamera>();
 	CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
 	CEntity* playerCameraEntity = playerCameraHandle;
 	TCompTransform* playerCameraTransform = playerCameraEntity->get<TCompTransform>();
@@ -125,6 +125,6 @@ void TCompFixedCamera::CopyRotationFromMixedCameraToPlayerCamera() {
 	float yPLayer, pPlayer, rPlayer;
 	playerCameraTransform->getYawPitchRoll(&yPLayer, &pPlayer, &rPlayer);
 	float yLeavingCamera, pLeavingCamera, rLeavingCamera;
-	leavingCameraTransform->getYawPitchRoll(&yLeavingCamera, &pLeavingCamera, &rLeavingCamera);
+	leavingCamera->getYawPitchRoll(&yLeavingCamera, &pLeavingCamera, &rLeavingCamera);
 	playerCameraTransform->setYawPitchRoll(yLeavingCamera, pLeavingCamera, rPlayer);
 }

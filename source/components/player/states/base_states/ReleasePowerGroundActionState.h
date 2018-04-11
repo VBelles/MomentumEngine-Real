@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
-
+#include "components/player/states/GroundedActionState.h"
 
 class ReleasePowerGroundActionState : public GroundedActionState {
 private:
@@ -21,7 +19,7 @@ private:
 
 	CHandle hitboxSmallHandle;
 	CHandle hitboxBigHandle;
-	int damage = 0;
+	float damage = 0.f;
 	AttackPhases phase = AttackPhases::Startup;
 
 	uint32_t enemyId = getID("enemy");
@@ -29,16 +27,16 @@ private:
 public:
 	ReleasePowerGroundActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void SetMovementInput(VEC2 input) override {}
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnFastAttackButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnReleasePowerButton() override;
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void setMovementInput(VEC2 input) override {}
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onFastAttackButton() override {}
+	void onStrongAttackButton() override {}
+	void onReleasePowerButton() override;
 
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_grab.mesh"); }
+	void setPose() override;
 
-	void OnHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(CHandle entity) override;
 };

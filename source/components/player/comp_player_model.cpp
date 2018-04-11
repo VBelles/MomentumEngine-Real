@@ -3,9 +3,14 @@
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
-#include "components/controllers/comp_camera_player.h"
-#include "components/player/filters/PlayerFilterCallback.h"
+#include "components/comp_render.h"
+#include "components/comp_camera.h"
+#include "components/comp_transform.h"
+#include "components/comp_collider.h"
 #include "components/comp_collectable.h"
+#include "components/controllers/comp_camera_player.h"
+#include "components/player/filters/player_filter_callback.h"
+#include "components/player/comp_power_gauge.h"
 #include "states/AirborneActionState.h"
 #include "states/GroundedActionState.h"
 #include "states/base_states/GhostJumpWindowActionState.h"
@@ -134,55 +139,41 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	return ssj;
 }
 
-void TCompPlayerModel::SetBaseState(ActionStates newState) {
+void TCompPlayerModel::setBaseState(ActionStates newState) {
 	nextBaseState = newState;
 }
 
-void TCompPlayerModel::ChangeBaseState(ActionStates newState) {
+void TCompPlayerModel::changeBaseState(ActionStates newState) {
 	IActionState* exitingState = baseState;
 	baseState = baseStates[newState];
-	if (exitingState) exitingState->OnStateExit(baseState);
-	if (baseState) baseState->OnStateEnter(exitingState);
+	if (exitingState) exitingState->onStateExit(baseState);
+	if (baseState) baseState->onStateEnter(exitingState);
 }
 
-void TCompPlayerModel::SetConcurrentState(ActionStates newState) {
+void TCompPlayerModel::setConcurrentState(ActionStates newState) {
 	nextConcurrentState = newState;
 }
 
-void TCompPlayerModel::ChangeConcurrentState(ActionStates newState) {
+void TCompPlayerModel::changeConcurrentState(ActionStates newState) {
 	IActionState* exitingState = concurrentState;
 	concurrentState = concurrentStates[newState];
-	if (exitingState) exitingState->OnStateExit(concurrentState);
-	if (concurrentState) concurrentState->OnStateEnter(exitingState);
+	if (exitingState) exitingState->onStateExit(concurrentState);
+	if (concurrentState) concurrentState->onStateEnter(exitingState);
 }
 
 void TCompPlayerModel::registerMsgs() {
-	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, OnGroupCreated);
-	DECL_MSG(TCompPlayerModel, TMsgAttackHit, OnAttackHit);
-	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, OnHitboxEnter);
-	DECL_MSG(TCompPlayerModel, TMsgCollect, OnCollect);
-	DECL_MSG(TCompPlayerModel, TMsgGainPower, OnGainPower);
-	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, OnOutOfBounds);
-	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, OnLevelChange);
-	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, OnShapeHit);
-	DECL_MSG(TCompPlayerModel, TMsgOnContact, OnContact);
+	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompPlayerModel, TMsgAttackHit, onAttackHit);
+	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, onHitboxEnter);
+	DECL_MSG(TCompPlayerModel, TMsgCollect, onCollect);
+	DECL_MSG(TCompPlayerModel, TMsgGainPower, onGainPower);
+	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
+	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgOnContact, onContact);
 }
 
-PowerStats* TCompPlayerModel::GetPowerStats() {
-	return currentPowerStats;
-}
-
-bool TCompPlayerModel::isInState(ActionStates state) {
-	if (baseStates[state] != nullptr) {
-		return baseState == baseStates[state];
-	}
-	else if (concurrentStates[state] != nullptr) {
-		return concurrentState == concurrentStates[state];
-	}
-	return false;
-}
-
-void TCompPlayerModel::OnLevelChange(const TMsgPowerLvlChange& msg) {
+void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	switch (msg.powerLvl) {
 	case 1: currentPowerStats = ssj1; break;
 	case 2: currentPowerStats = ssj2; break;
@@ -190,14 +181,14 @@ void TCompPlayerModel::OnLevelChange(const TMsgPowerLvlChange& msg) {
 	}
 }
 
-void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
-	myTransformHandle = get<TCompTransform>();
+	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
 
-	respawnPosition = GetTransform()->getPosition();
+	respawnPosition = getTransform()->getPosition();
 
 	renderUI->registerOnRenderUI([&]() {
 
@@ -214,10 +205,10 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::PopStyleColor();
 
 		//Power bar
-		std::string powerProgressBarText = "Power: " + std::to_string((int)GetPowerGauge()->power) + "/" + std::to_string((int)GetPowerGauge()->maxPower);
-		ImVec4 color = GetPowerGauge()->powerLevel == 1 ? ImColor{ 255, 255, 0 } : GetPowerGauge()->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
+		std::string powerProgressBarText = "Power: " + std::to_string((int)getPowerGauge()->power) + "/" + std::to_string((int)getPowerGauge()->maxPower);
+		ImVec4 color = getPowerGauge()->powerLevel == 1 ? ImColor{ 255, 255, 0 } : getPowerGauge()->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-		ImGui::ProgressBar((float)GetPowerGauge()->power / GetPowerGauge()->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
+		ImGui::ProgressBar((float)getPowerGauge()->power / getPowerGauge()->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		//Chrysalis counter
@@ -303,15 +294,15 @@ void TCompPlayerModel::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	};
 	nextBaseState = ActionStates::Idle;
 	nextConcurrentState = ActionStates::Idle;
-	ChangeBaseState(ActionStates::Idle);
-	ChangeConcurrentState(ActionStates::Idle);
+	changeBaseState(ActionStates::Idle);
+	changeConcurrentState(ActionStates::Idle);
 	currentPowerStats = ssj1;
 
 	playerFilterCallback = new PlayerFilterCallback();
 
 }
 
-void TCompPlayerModel::OnCollect(const TMsgCollect& msg) {
+void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
 	TCompCollectable* collectable = msg.collectableHandle;
 	switch (msg.type) {
 	case TCompCollectable::Type::CHRYSALIS:
@@ -346,25 +337,25 @@ void TCompPlayerModel::update(float dt) {
 		concurrentState->update(dt);
 	}
 	if (!lockWalk) {
-		deltaMovement = baseState->GetDeltaMovement();
+		deltaMovement = baseState->getDeltaMovement();
 	}
 	else if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		deltaMovement = concurrentState->GetDeltaMovement();
+		deltaMovement = concurrentState->getDeltaMovement();
 	}
 
-	ApplyGravity(dt);
-	UpdateMovement(dt, deltaMovement);
+	applyGravity(dt);
+	updateMovement(dt, deltaMovement);
 
 	if (baseState != baseStates[nextBaseState]) {
-		ChangeBaseState(nextBaseState);
+		changeBaseState(nextBaseState);
 	}
 	if (concurrentState != concurrentStates[nextConcurrentState]) {
-		ChangeConcurrentState(nextConcurrentState);
+		changeConcurrentState(nextConcurrentState);
 	}
 
 }
 
-void TCompPlayerModel::ApplyGravity(float delta) {
+void TCompPlayerModel::applyGravity(float delta) {
 	if (isAttachedToPlatform) {
 		velocityVector.y = 0;
 	}
@@ -384,21 +375,27 @@ void TCompPlayerModel::ApplyGravity(float delta) {
 	}
 }
 
-void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
-	VEC3 pos = GetTransform()->getPosition();
-	QUAT rot = GetTransform()->getRotation();
-	PxFilterData filterData = { GetCollider()->config.group, GetCollider()->config.mask, 0, 0 };
-	physx::PxControllerCollisionFlags myFlags = GetCollider()->controller->move(
-		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, dt,
-		physx::PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
+
+
+void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
+	VEC3 pos = getTransform()->getPosition();
+	QUAT rot = getTransform()->getRotation();
+
+	PxShape* tempShape;
+	getController()->getActor()->getShapes(&tempShape, 1);
+	PxFilterData filterData = tempShape->getSimulationFilterData();
+
+	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(
+		toPhysx(deltaMovement), 0.f, delta,
+		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
 	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue
 		if (isGrounded) {
 			isTouchingCeiling = false;
-			(static_cast<AirborneActionState*>(baseState))->OnLanding();
+			(static_cast<AirborneActionState*>(baseState))->onLanding();
 			if (concurrentState != concurrentStates[ActionStates::Idle]) {
-				(static_cast<AirborneActionState*>(concurrentState))->OnLanding();
+				(static_cast<AirborneActionState*>(concurrentState))->onLanding();
 			}
 		}
 		if (!isTouchingCeiling) {
@@ -411,7 +408,7 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 	else if (dynamic_cast<GroundedActionState*>(baseState)) {
 		if (!isGrounded) {
 			if (!isAttachedToPlatform)//What a beautiful hack
-				(static_cast<GroundedActionState*>(baseState))->OnLeavingGround();
+				(static_cast<GroundedActionState*>(baseState))->onLeavingGround();
 		}
 		else {
 			//Si sigue en el suelo anulamos la velocidad ganada por la gravedad
@@ -421,19 +418,24 @@ void TCompPlayerModel::UpdateMovement(float dt, VEC3 deltaMovement) {
 }
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
-void TCompPlayerModel::SetMovementInput(VEC2 input, float delta) {
+void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
-		baseState->SetMovementInput(input);
+		baseState->setMovementInput(input);
 	}
 	else {
-		baseState->SetMovementInput(VEC2::Zero);
+		baseState->setMovementInput(VEC2::Zero);
 	}
 	if (!lockConcurrentState && concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->SetMovementInput(input);
+		concurrentState->setMovementInput(input);
 	}
 }
 
-TCompCamera* TCompPlayerModel::GetCamera() {
+	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
+TCompTransform* TCompPlayerModel::getTransform() { return transformHandle; }
+TCompCollider* TCompPlayerModel::getCollider() { return colliderHandle; }
+PxCapsuleController* TCompPlayerModel::getController() { return static_cast<PxCapsuleController*>(getCollider()->controller); }
+TCompPowerGauge* TCompPlayerModel::getPowerGauge() { return powerGaugeHandle; }
+TCompCamera* TCompPlayerModel::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
@@ -441,151 +443,151 @@ TCompCamera* TCompPlayerModel::GetCamera() {
 }
 
 
-void TCompPlayerModel::JumpButtonPressed() {
+void TCompPlayerModel::jumpButtonPressed() {
 	if (!lockBaseState) {
-		baseState->OnJumpHighButton();
+		baseState->onJumpHighButton();
 	}
 	else {
 		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->OnJumpHighButton();
+			concurrentState->onJumpHighButton();
 		}
 	}
 }
 
-void TCompPlayerModel::JumpButtonReleased() {
+void TCompPlayerModel::jumpButtonReleased() {
 	if (!lockBaseState) {
-		baseState->OnJumpHighButtonReleased();
+		baseState->onJumpHighButtonReleased();
 	}
 	else {
 		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->OnJumpHighButtonReleased();
+			concurrentState->onJumpHighButtonReleased();
 		}
 	}
 }
 
-void TCompPlayerModel::LongJumpButtonPressed() {
+void TCompPlayerModel::longJumpButtonPressed() {
 	if (!lockBaseState) {
-		baseState->OnJumpLongButton();
+		baseState->onJumpLongButton();
 	}
 	else {
 		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->OnJumpLongButton();
+			concurrentState->onJumpLongButton();
 		}
 	}
 }
 
-void TCompPlayerModel::FastAttackButtonPressed() {
+void TCompPlayerModel::fastAttackButtonPressed() {
 	if (!lockBaseState) {
-		baseState->OnFastAttackButton();
+		baseState->onFastAttackButton();
 	}
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnFastAttackButton();
+		concurrentState->onFastAttackButton();
 	}
 }
 
-void TCompPlayerModel::FastAttackButtonReleased() {
+void TCompPlayerModel::fastAttackButtonReleased() {
 	if (!lockBaseState) {
-		baseState->OnFastAttackButtonReleased();
+		baseState->onFastAttackButtonReleased();
 	}
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnFastAttackButtonReleased();
+		concurrentState->onFastAttackButtonReleased();
 	}
 }
 
-void TCompPlayerModel::StrongAttackButtonPressed() {
+void TCompPlayerModel::strongAttackButtonPressed() {
 	if (!lockBaseState) {
-		baseState->OnStrongAttackButton();
+		baseState->onStrongAttackButton();
 	}
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnStrongAttackButton();
+		concurrentState->onStrongAttackButton();
 	}
 }
 
-void TCompPlayerModel::StrongAttackButtonReleased() {
+void TCompPlayerModel::strongAttackButtonReleased() {
 	if (!lockBaseState) {
-		baseState->OnStrongAttackButtonReleased();
+		baseState->onStrongAttackButtonReleased();
 	}
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnStrongAttackButtonReleased();
+		concurrentState->onStrongAttackButtonReleased();
 	}
 }
 
-void TCompPlayerModel::CenterCameraButtonPressed() {
+void TCompPlayerModel::centerCameraButtonPressed() {
 	CEntity* camera = (CEntity*)getEntityByName(PLAYER_CAMERA);
 	TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
-	playerCamera->CenterCamera();
+	playerCamera->centerCamera();
 }
 
-void TCompPlayerModel::ReleasePowerButtonPressed() {
-	baseState->OnReleasePowerButton();
+void TCompPlayerModel::releasePowerButtonPressed() {
+	baseState->onReleasePowerButton();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnReleasePowerButton();
+		concurrentState->onReleasePowerButton();
 	}
 }
 
-void TCompPlayerModel::GainPowerButtonPressed() {//Debug Only
-	GetPowerGauge()->GainPower();
+void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only
+	getPowerGauge()->gainPower();
 }
 
-bool TCompPlayerModel::IsConcurrentActionFree() {
+bool TCompPlayerModel::isConcurrentActionFree() {
 	return (concurrentState == concurrentStates[ActionStates::Idle]);
 }
 
-void TCompPlayerModel::OnAttackHit(const TMsgAttackHit& msg) {
-	//TODO Esto lo tendría que procesar el estado en concreto, por si tiene armor o algo
+void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
+	//TODO Esto lo tendrï¿½a que procesar el estado en concreto, por si tiene armor o algo
 	hp -= msg.info.damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
 	if (hp <= 0) {
-		OnDead();
+		onDead();
 	}
 }
 
-void TCompPlayerModel::OnHitboxEnter(const TMsgHitboxEnter& msg) {
+void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnHitboxEnter(msg.h_other_entity);
+		concurrentState->onHitboxEnter(msg.h_other_entity);
 	}
-	baseState->OnHitboxEnter(msg.h_other_entity);
+	baseState->onHitboxEnter(msg.h_other_entity);
 }
 
-void TCompPlayerModel::OnGainPower(const TMsgGainPower& msg) {
-	GetPowerGauge()->IncreasePower(msg.power);
+void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
+	getPowerGauge()->increasePower(msg.power);
 }
 
-void TCompPlayerModel::OnOutOfBounds(const TMsgOutOfBounds& msg) {
+void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	hp -= 1;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
 	if (hp <= 0) {
-		OnDead();
+		onDead();
 	}
 	else {
-		GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+		getCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 		velocityVector = VEC3(0, 0, 0);
-		SetConcurrentState(ActionStates::Idle);
-		SetBaseState(ActionStates::AirborneNormal);
+		setConcurrentState(ActionStates::Idle);
+		setBaseState(ActionStates::AirborneNormal);
 		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 		Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
 	}
 }
 
-void TCompPlayerModel::OnDead() {
-	GetCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+void TCompPlayerModel::onDead() {
+	getController()->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 
-	SetConcurrentState(ActionStates::Idle);
-	SetBaseState(ActionStates::AirborneNormal);
+	setConcurrentState(ActionStates::Idle);
+	setBaseState(ActionStates::AirborneNormal);
 	hp = maxHp;
-	GetPowerGauge()->ResetPower();
+	getPowerGauge()->resetPower();
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 
-void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
-	baseState->OnShapeHit(msg.hit);
+void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
+	baseState->onShapeHit(msg.hit);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->OnShapeHit(msg.hit);
+		concurrentState->onShapeHit(msg.hit);
 	}
 	//if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
 	//	lastWallEntered = msg.hit.actor;
@@ -595,20 +597,20 @@ void TCompPlayerModel::OnShapeHit(const TMsgOnShapeHit& msg) {
 	//	//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
 	//	//dbg("%f\n", deg2rad(pitch));
 
-	//	VEC3 worldInput = GetCamera()->TransformToWorld(baseState->GetMovementInput());
-	//	if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || GetTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
+	//	VEC3 worldInput = getCamera()->TransformToWorld(baseState->getMovementInput());
+	//	if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || getTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
 	//		float pitch = asin(-msg.hit.worldNormal.y);
 	//		if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
-	//			HuggingWallActionState* actionState = GetBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
+	//			HuggingWallActionState* actionState = getBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
 	//			actionState->SetHit(msg.hit);
-	//			SetBaseState(ActionStates::HuggingWall);
+	//			setBaseState(ActionStates::HuggingWall);
 	//		}
 	//	}
 	//}
 }
 
 
-void TCompPlayerModel::OnContact(const TMsgOnContact& msg) {
+void TCompPlayerModel::onContact(const TMsgOnContact& msg) {
 	//dbg("ON CONTACT\n");
 	if (msg.pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_FOUND)) {
 		//dbg("TOUCH FOUND\n");
@@ -617,4 +619,17 @@ void TCompPlayerModel::OnContact(const TMsgOnContact& msg) {
 		//dbg("TOUCH LOST\n");
 	}
 
+}
+
+TCompPlayerModel::~TCompPlayerModel() {
+	SAFE_DELETE(ssj1);
+	SAFE_DELETE(ssj2);
+	SAFE_DELETE(ssj3);
+	for (auto& keyValue : baseStates) {
+		SAFE_DELETE(keyValue.second);
+	}
+	for (auto& keyValue : concurrentStates) {
+		SAFE_DELETE(keyValue.second);
+	}
+	SAFE_DELETE(playerFilterCallback);
 }

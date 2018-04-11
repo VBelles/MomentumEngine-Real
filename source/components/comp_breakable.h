@@ -1,10 +1,11 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
-
 
 class TCompTransform;
+struct TMsgEntitiesGroupCreated;
+struct TMsgColliderDestroyed;
+struct TMsgAttackHit;
 
 class TCompBreakable : public TCompBase {
 	DECL_SIBLING_ACCESS();
@@ -26,14 +27,8 @@ private:
 	TCompTransform* getTransform() { return transformHandle; }
 
 public:
-
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
-
-	
-
-	
-
 };

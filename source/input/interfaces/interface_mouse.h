@@ -1,6 +1,5 @@
 #pragma once
 
-#include "mcv_platform.h"
 #include "input/button.h"
 
 namespace Input {

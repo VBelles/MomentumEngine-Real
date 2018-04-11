@@ -1,12 +1,15 @@
 #include "mcv_platform.h"
 #include "module_physics.h"
+#include "modules/module.h"
 #include "entity/entity.h"
 #include "components/comp_transform.h"
+#include "components/comp_collider.h"
 
-#include "GameFilterShader.h"
-#include "GameSimulationEventCallback.h"
-#include "GameControllerHitCallback.h"
-#include "GameQueryFilterCallback.h"
+#include "basic_filter_shader.h"
+#include "basic_query_filter_callback.h"
+#include "basic_simulation_event_callback.h"
+#include "basic_controller_hit_callback.h"
+#include "basic_controller_behavior.h"
 
 #pragma comment(lib, "PhysX3_x64.lib")
 #pragma comment(lib, "PhysX3Common_x64.lib")
@@ -62,8 +65,8 @@ bool CModulePhysics::createScene() {
 	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
-	sceneDesc.filterShader = GameFilterShader;
-	sceneDesc.simulationEventCallback = new GameSimulationEventCallback();
+	sceneDesc.filterShader = BasicFilterShader;
+	sceneDesc.simulationEventCallback = new BasicSimulationEventCallback();
 	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
@@ -79,8 +82,9 @@ bool CModulePhysics::createScene() {
 
 	mControllerManager = PxCreateControllerManager(*gScene);
 
-	gameQueryFilterCallback = new GameQueryFilterCallback();
-	gameControllerHitCallback =  new GameControllerHitCallback();
+	basicQueryFilterCallback = new BasicQueryFilterCallback();
+	basicControllerHitCallback = new BasicControllerHitCallback();
+	basicControllerBehavior = new BasicControllerBehavior();
 
 	return true;
 }
@@ -115,7 +119,8 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 		capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
 		capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
 		capsuleDesc.material = gMaterial;
-		capsuleDesc.reportCallback = gameControllerHitCallback;
+		capsuleDesc.reportCallback = basicControllerHitCallback;
+		capsuleDesc.behaviorCallback = basicControllerBehavior;
 		cDesc = &capsuleDesc;
 
 		PxCapsuleController* controller = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
@@ -216,10 +221,10 @@ void CModulePhysics::setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU3
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-    for (PxShape* shape : shapes) {
-        shape->setSimulationFilterData(filterData);
-        shape->setQueryFilterData(filterData);
-    }
+	for (PxShape* shape : shapes) {
+		shape->setSimulationFilterData(filterData);
+		shape->setQueryFilterData(filterData);
+	}
 }
 
 void CModulePhysics::enableSimulation(PxRigidActor* actor, bool value) {
@@ -227,7 +232,7 @@ void CModulePhysics::enableSimulation(PxRigidActor* actor, bool value) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-    for (PxShape* shape : shapes) {
+	for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, value);
 	}
 }
@@ -237,7 +242,7 @@ void CModulePhysics::enableSceneQuery(PxRigidActor* actor, bool value) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-    for (PxShape* shape : shapes) {
+	for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, value);
 	}
 }
@@ -247,7 +252,7 @@ void CModulePhysics::makeActorTrigger(PxRigidActor* actor) {
 	std::vector<PxShape*> shapes;
 	shapes.resize(numShapes);
 	actor->getShapes(&shapes[0], numShapes);
-    for (PxShape* shape : shapes) {
+	for (PxShape* shape : shapes) {
 		shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
 		shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
 	}

@@ -1,6 +1,5 @@
 #pragma once
 
-
 VEC3 fromPhysx(physx::PxVec3& v);
 QUAT fromPhysx(physx::PxQuat& quat);
 

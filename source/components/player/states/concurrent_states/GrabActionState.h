@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../AirborneActionState.h"
-
+#include "components/player/states/AirborneActionState.h"
 
 class GrabActionState : public AirborneActionState {
 protected:
@@ -13,7 +11,7 @@ protected:
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
-	float lockDuration = 0.5f;
+	float lockDuration = 0.8f;
 
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;
@@ -24,23 +22,23 @@ protected:
 
 	uint32_t enemyId = getID("enemy");
 
-	float powerToGet = 5000.f;
+	float powerToGet = 1000.f;
 
 public:
 	GrabActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void SetMovementInput(VEC2 input) override {}
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnFastAttackButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnReleasePowerButton() override {}
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void setMovementInput(VEC2 input) override {}
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onFastAttackButton() override {}
+	void onStrongAttackButton() override {}
+	void onReleasePowerButton() override {}
 
-	void OnLanding() override;
+	void onLanding() override;
 
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_grab.mesh"); }
+	void setPose() override;
 
-	void OnHitboxEnter(CHandle entity) override {}
+	void onHitboxEnter(CHandle entity) override {}
 };

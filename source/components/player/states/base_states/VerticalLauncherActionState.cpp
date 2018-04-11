@@ -1,6 +1,9 @@
 #include "mcv_platform.h"
 #include "VerticalLauncherActionState.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
+#include "entity/common_msgs.h"
 
 VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -11,7 +14,7 @@ void VerticalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Idle);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -21,7 +24,7 @@ void VerticalLauncherActionState::update (float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-		SetPose();
+		setPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -30,8 +33,8 @@ void VerticalLauncherActionState::update (float delta) {
 	}
 }
 
-void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
+void VerticalLauncherActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
 	//dbg("Vertical Launcher\n");
 	phase = AttackPhases::Startup;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
@@ -41,22 +44,26 @@ void VerticalLauncherActionState::OnStateEnter(IActionState * lastState) {
 	timer.reset();
 }
 
-void VerticalLauncherActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void VerticalLauncherActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 	//dbg("Finish Vertical Launcher\n");
 }
 
-void VerticalLauncherActionState::SetMovementInput(VEC2 input) {
+void VerticalLauncherActionState::setMovementInput(VEC2 input) {
 }
 
-void VerticalLauncherActionState::OnLeavingGround() {
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+void VerticalLauncherActionState::onLeavingGround() {
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
+void VerticalLauncherActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_vertical_launcher.mesh");
+}
+
+void VerticalLauncherActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		CEntity *otherEntity = entity;
@@ -69,7 +76,7 @@ void VerticalLauncherActionState::OnHitboxEnter(CHandle entity) {
 		msgAtackHit.info.givesPower = true;
 		msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
 			suspensionTime,
-			GetPlayerModel()->GetPowerStats()->jumpVelocityVector
+			getPlayerModel()->getPowerStats()->jumpVelocityVector
 		};
 		otherEntity->sendMsg(msgAtackHit);
 	}

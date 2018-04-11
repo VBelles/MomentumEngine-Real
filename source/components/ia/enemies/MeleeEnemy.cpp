@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
-#include "BehaviorTreeMeleeEnemy.h"
+#include "MeleeEnemy.h"
+#include "entity/common_msgs.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
@@ -64,7 +65,7 @@ void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
 	stepBackSpeed = j.value("stepBackSpeed", 3.5f);
-	rotationSpeed = j.value("rotationSpeed", 90.f);
+	rotationSpeed = j.value("rotationSpeed", 20.f);
 	recallDistance = j.value("recallDistance", 28.f);
 	chaseFov = deg2rad(j.value("chaseFov", 60.f));
 	fovChaseDistance = j.value("fovChaseDistance", 25.f);
@@ -115,7 +116,7 @@ int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
 	shadow->disable();
 
 	TCompRespawner* spawner = get<TCompRespawner>();
-	spawner->OnDead();
+	spawner->onDead();
 
 	return Leave;
 }
@@ -399,7 +400,6 @@ void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg
 
 void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	isStunned = false;
-	receivedAttack.release();
 	receivedAttack = msg.info;
 	current = tree["onAttackHit"];
 }

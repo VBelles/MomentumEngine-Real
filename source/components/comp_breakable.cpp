@@ -2,7 +2,10 @@
 #include "comp_breakable.h"
 #include "components/comp_transform.h"
 #include "components/comp_collectable.h"
+#include "components/comp_collider.h"
 #include "entity/entity_parser.h"
+#include "entity/common_msgs.h"
+
 
 DECL_OBJ_MANAGER("breakable", TCompBreakable);
 
@@ -21,7 +24,9 @@ void TCompBreakable::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompBreakable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	colliderHandle = get<TCompCollider>();
+	assert(colliderHandle.isValid());
 	transformHandle = get<TCompTransform>();
+	assert(transformHandle.isValid());
 }
 
 void TCompBreakable::update(float dt) {

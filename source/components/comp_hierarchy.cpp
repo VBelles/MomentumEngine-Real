@@ -3,19 +3,20 @@
 #include "entity/entity.h"
 #include "entity/entity_parser.h"
 #include "components/comp_transform.h"
+#include "components/comp_collider.h"
 #include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("hierarchy", TCompHierarchy);
+
+void TCompHierarchy::registerMsgs() {
+	DECL_MSG(TCompHierarchy, TMsgEntitiesGroupCreated, onGroupCreated);
+}
 
 void TCompHierarchy::load(const json& j, TEntityParseContext& ctx) {
 	assert(j.count("parent"));
 	parent_name = j.value("parent", "");
 	// Relative transform is loaded as any other json transform
 	CTransform::load(j);
-}
-
-void TCompHierarchy::registerMsgs() {
-	DECL_MSG(TCompHierarchy, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 void TCompHierarchy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {

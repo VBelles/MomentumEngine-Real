@@ -1,18 +1,19 @@
 #pragma once
 
 #include "components/comp_base.h"
-#include "geometry/transform.h"
+
+class TCompPlayerModel;
 
 class TCompPlayerController : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 private:
-	float padDeadZone = 0.1f;
-	void OnGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	CHandle playerModelHandle;
+
+	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	TCompPlayerModel* getPlayerModel() { return playerModelHandle; }
 
 public:
 	static void registerMsgs();
-	void debugInMenu();
-	void load(const json& j, TEntityParseContext& ctx);
-	void update(float dt);
+	void update(float delta);
 };

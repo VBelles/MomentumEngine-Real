@@ -1,11 +1,11 @@
 #pragma once
 
-#include "comp_base.h"
+#include "components/comp_base.h"
 #include "entity/common_msgs.h"
 #include "entity/entity_parser.h"
-#include "comp_hierarchy.h"
+#include "components/comp_hierarchy.h"
 #include "components/comp_transform.h"
-#include "PxPhysicsAPI.h"
+#include "components/comp_collider.h"
 
 /* Se pone en el trigger de una plataforma y mueve al player con
    ella si lo detecta encima. */

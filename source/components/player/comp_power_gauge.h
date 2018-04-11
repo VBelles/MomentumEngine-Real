@@ -4,8 +4,6 @@
 class TCompPowerGauge : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
-
-
 public:
 	int powerLevel = 1;	//Ex: 1, 2, 3 (ssj)
 	float power = 0.f;	//Ex: 2300
@@ -13,14 +11,17 @@ public:
 	float powerPerLevel = 0.f;
 	float dropSpeed = 0.f;
 	bool isPure = true;
+	float freezeDropTime = 1.f;
+
+	CTimer freezeDropTimer;
 
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
 
-	void ReleasePower();
-	void GainPower();
-	void ResetPower();
-	void IncreasePower(float increment);
+	void releasePower();
+	void gainPower();
+	void resetPower();
+	void increasePower(float increment);
 
 };

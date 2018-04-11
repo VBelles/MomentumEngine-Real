@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
-#include "BehaviorTreeFlyingRangedEnemy.h"
+#include "FlyingRangedEnemy.h"
+#include "entity/common_msgs.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
@@ -58,7 +59,7 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	maxHealth = j.value("maxHealth", 5.0f);
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
-	rotationSpeed = j.value("rotationSpeed", 90.f);
+	rotationSpeed = j.value("rotationSpeed", 45.f);
 	recallDistance = j.value("recallDistance", 5.f);
 	attackFov = deg2rad(j.value("attackFov", 60.f));
 	minCombatDistance = j.value("minCombatDistance", 2.f);
@@ -112,7 +113,7 @@ int CBehaviorTreeFlyingRangedEnemy::onDeath(float delta) {
 	shadow->disable();
 
 	TCompRespawner* spawner = get<TCompRespawner>();
-	spawner->OnDead();
+	spawner->onDead();
 
 	return Leave;
 }
@@ -288,7 +289,7 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 		if (parseScene(attackPrefab, ctx)) {
 			assert(!ctx.entities_loaded.empty());
 
-			AttackInfo attackInfo = {};
+			AttackInfo attackInfo;
 			attackInfo.damage = attackDamage;
 
 			VEC3 front = getTransform()->getFront();
@@ -368,7 +369,6 @@ void CBehaviorTreeFlyingRangedEnemy::onGroupCreated(const TMsgEntitiesGroupCreat
 
 void CBehaviorTreeFlyingRangedEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	isStunned = false;
-	receivedAttack.release();
 	receivedAttack = msg.info;
 	current = tree["onAttackHit"];
 }

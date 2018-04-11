@@ -1,10 +1,8 @@
 #pragma once
 
-#include "resources/resource.h"
-
 class CCurve : public IResource {
 public:
-    enum class EType { UNKNOWN = 0, CATMULL_ROM };
+	enum class EType { UNKNOWN = 0, CATMULL_ROM };
 
     CCurve() = default;
     bool load(const std::string& fileName);

@@ -5,10 +5,15 @@
 class CRenderMesh;
 class CMaterial;
 class TCompTransform;
+class TCompCollider;
+
+struct TMsgEntityCreated;
+struct TMsgEntitiesGroupCreated;
 
 class TCompShadow : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
+private:
 	std::string shadowMeshName;
 	std::string disabledMeshName = "data/meshes/nada.mesh";
 	bool enabled = true;
@@ -25,7 +30,6 @@ public:
 	const CRenderMesh* mesh = nullptr;
 	std::vector<const CMaterial*> materials;
 
-	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	static void registerMsgs();
@@ -35,7 +39,7 @@ public:
 
 	void setMesh(std::string meshName);
 
-	TCompTransform* getTransform();
+	TCompTransform* getTransform() { return transformHandle; }
 
 	void enable();
 	void disable();

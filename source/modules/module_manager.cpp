@@ -1,10 +1,7 @@
 #include "mcv_platform.h"
 #include "module_manager.h"
-#include "utils/json.hpp"
-#include <fstream>
-
-// for convenience
-using json = nlohmann::json;
+#include "module.h"
+#include "gamestate.h"
 
 bool CModuleManager::start() {
 	bool ok = startModules(_system_modules);

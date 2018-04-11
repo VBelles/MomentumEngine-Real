@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
-
+#include "components/player/states/GroundedActionState.h"
 
 class HorizontalLauncherActionState : public GroundedActionState {
 	CTimer timer;
@@ -21,20 +19,20 @@ class HorizontalLauncherActionState : public GroundedActionState {
 	int damage = 0;
 	AttackPhases phase = AttackPhases::Startup;
 
-	float powerToGet = 5000.f;
+	float powerToGet = 2000.f;
 
 public:
 	HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnFastAttackButton() override {}
-	void OnReleasePowerButton() override {}
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onStrongAttackButton() override {}
+	void onFastAttackButton() override {}
+	void onReleasePowerButton() override {}
 
-	void OnLeavingGround() override;
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_horizontal_launcher.mesh"); }
-	void OnHitboxEnter(CHandle entity) override;
+	void onLeavingGround() override;
+	void setPose() override;
+	void onHitboxEnter(CHandle entity) override;
 };

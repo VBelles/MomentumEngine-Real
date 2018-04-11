@@ -92,3 +92,17 @@ VEC3 CCamera::TransformToWorld(VEC2 velocityVector) {
     VEC3 direction3D = { velocityVector.x, 0, velocityVector.y };
     return TransformToWorld(direction3D);
 }
+
+void CCamera::getYawPitchRoll(float * yaw, float * pitch, float* roll) const {
+	getYawPitchFromVector(front, yaw, pitch);
+
+	// If requested...
+	if (roll) {
+		VEC3 roll_zero_left = VEC3(0, 1, 0).Cross(getFront());
+		VEC3 roll_zero_up = VEC3(getFront()).Cross(roll_zero_left);
+		VEC3 my_real_left = getLeft();
+		float rolled_left_on_up = my_real_left.Dot(roll_zero_up);
+		float rolled_left_on_left = my_real_left.Dot(roll_zero_left);
+		*roll = atan2f(rolled_left_on_up, rolled_left_on_left);
+	}
+}

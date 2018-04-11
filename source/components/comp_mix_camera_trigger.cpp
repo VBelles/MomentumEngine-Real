@@ -1,6 +1,9 @@
 #include "mcv_platform.h"
 #include "comp_mix_camera_trigger.h"
 #include "comp_transform.h"
+#include "comp_camera.h"
+#include "components/comp_collider.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("mixCameraTrigger", TCompMixCameraTrigger);
 
@@ -48,18 +51,18 @@ void TCompMixCameraTrigger::onTriggerExit(const TMsgTriggerExit & msg) {
 		if (!Engine.getCameras().IsCameraAloneInMix(playerCameraHandle)) {
 			if (modifyPlayerCameraRotation) {
 				CopyRotationFromMixedCameraToPlayerCamera();
+				CEntity* cameraToMixEntity = getEntityByName(cameraToMix);
+				cameraToMixEntity->sendMsg(TMsgLockCameraInput{ true }); 
+				Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
 			}
-		CEntity* cameraToMixEntity = getEntityByName(cameraToMix);
-		cameraToMixEntity->sendMsg(TMsgLockCameraInput{ true });
-		Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
 		}
 	}
 }
 
 void TCompMixCameraTrigger::CopyRotationFromMixedCameraToPlayerCamera() {
-	CHandle leavingCameraHandle = getEntityByName(cameraToMix);
+	CHandle leavingCameraHandle = getEntityByName(GAME_CAMERA);
 	CEntity* leavingCameraEntity = leavingCameraHandle;
-	TCompTransform* leavingCameraTransform = leavingCameraEntity->get<TCompTransform>();
+	TCompCamera* leavingCamera = leavingCameraEntity->get<TCompCamera>();
 	CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
 	CEntity* playerCameraEntity = playerCameraHandle;
 	TCompTransform* playerCameraTransform = playerCameraEntity->get<TCompTransform>();
@@ -67,7 +70,7 @@ void TCompMixCameraTrigger::CopyRotationFromMixedCameraToPlayerCamera() {
 	float yPLayer, pPlayer, rPlayer;
 	playerCameraTransform->getYawPitchRoll(&yPLayer, &pPlayer, &rPlayer);
 	float yLeavingCamera, pLeavingCamera, rLeavingCamera;
-	leavingCameraTransform->getYawPitchRoll(&yLeavingCamera, &pLeavingCamera, &rLeavingCamera);
+	leavingCamera->getYawPitchRoll(&yLeavingCamera, &pLeavingCamera, &rLeavingCamera);
 	playerCameraTransform->setYawPitchRoll(yLeavingCamera, pLeavingCamera, rPlayer);
 }
 

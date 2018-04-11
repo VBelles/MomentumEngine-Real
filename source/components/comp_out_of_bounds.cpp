@@ -1,8 +1,7 @@
 #include "mcv_platform.h"
-#include "entity/entity_parser.h"
-#include "comp_hitbox.h"
-#include "comp_transform.h"
 #include "comp_out_of_bounds.h"
+#include "components/comp_collider.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("outOfBounds", TComputOfBounds);
 

@@ -5,6 +5,9 @@
 class CEntity;
 class TCompTransform;
 
+struct TMsgEntitiesGroupCreated;
+struct TMsgLockCameraInput;
+
 class TCompCameraPlayer : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
@@ -28,8 +31,6 @@ private:
 
 	bool isMovementLocked = false;
 
-	float padDeadZone = 0.1f;
-
 	VEC2 desiredYawPitch;
 	bool centeringCamera = false;
 
@@ -47,8 +48,8 @@ private:
 	bool sphereCast();
 	void sweepBack();
 
-	CEntity* getTarget();
-	TCompTransform* getTransform();
+	CEntity* getTarget() { return targetHandle; }
+	TCompTransform* getTransform() { return transformHandle; }
 
 public:
 	static void registerMsgs();
@@ -56,6 +57,6 @@ public:
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
-	void CenterCamera();
+	void centerCamera();
 };
 

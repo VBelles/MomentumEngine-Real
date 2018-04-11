@@ -2,7 +2,6 @@
 #define INC_COMMON_ENTITY_MSGS_
 
 #include "msgs.h"
-#include "geometry/transform.h"
 
 struct TMsgEntityCreated {
 	DECL_MSG_ID();
@@ -35,12 +34,55 @@ struct AttackInfo {
 	Grab* grab = nullptr;
 	Propel* propel = nullptr;
 
+	AttackInfo& AttackInfo::operator=(const AttackInfo& toCopy) {
+		damage = toCopy.damage;
+		givesPower = toCopy.givesPower;
+		activatesMechanism = toCopy.activatesMechanism;
+		release();
+		if (toCopy.stun) {
+			stun = new Stun{ toCopy.stun->duration };
+		}
+		if (toCopy.verticalLauncher) {
+			dbg("attack info copy vertical launcher duration: %f\n", toCopy.verticalLauncher->suspensionDuration);
+			verticalLauncher = new VerticalLauncher{ toCopy.verticalLauncher->suspensionDuration, toCopy.verticalLauncher->velocity };
+		}
+		if (toCopy.horizontalLauncher) {
+			horizontalLauncher = new HorizontalLauncher{ toCopy.horizontalLauncher->suspensionDuration, toCopy.horizontalLauncher->velocity };
+		}
+		if (toCopy.grab) {
+			grab = new Grab{ toCopy.grab->duration };
+		}
+		if (toCopy.propel) {
+			propel = new Propel{ toCopy.propel->velocity };
+		}
+		return *this;
+	}
+
 	void release() {
-		delete stun;
-		delete verticalLauncher;
-		delete horizontalLauncher;
-		delete grab;
-		delete propel;
+		if (stun) {
+			delete stun;
+			stun = nullptr;
+		}
+		if (verticalLauncher) {
+			delete verticalLauncher;
+			verticalLauncher = nullptr;
+		}
+		if (horizontalLauncher) {
+			delete horizontalLauncher;
+			horizontalLauncher = nullptr;
+		}
+		if (grab) {
+			delete grab;
+			grab = nullptr;
+		}
+		if (propel) {
+			delete propel;
+			propel = nullptr;
+		}
+	}
+
+	~AttackInfo() {
+		release();
 	}
 };
 

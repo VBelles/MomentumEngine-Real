@@ -1,5 +1,9 @@
 #include "mcv_platform.h"
 #include "HuggingWallActionState.h"
+#include "components/player/comp_player_model.h"
+#include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
 
 HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 	:AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -9,7 +13,7 @@ void HuggingWallActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (CheckIfHuggingWall(wallDirection)) {
-		VEC3 worldInput = GetCamera()->TransformToWorld(movementInput);
+		VEC3 worldInput = getCamera()->TransformToWorld(movementInput);
 		VEC3 normal = { wallNormal.x, 0.f, wallNormal.z };
 		if (worldInput.Dot(normal) >= releaseWallMinDotProduct && movementInput != VEC2::Zero) {
 			if (!isTryingToRelease) {
@@ -22,63 +26,67 @@ void HuggingWallActionState::update (float delta) {
 		}
 		if (isTryingToRelease && releaseWallTimer.elapsed() >= releaseWallTime) {
 			//TurnAround();
-			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 		}
 		else if (isClimbing) {
 			if(climbTimer.elapsed() >= climbTime){
 				isClimbing = false;
 				TurnAround();
-				GetPlayerModel()->SetGravityMultiplier(slideGravityMultiplier);
-				GetPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
+				getPlayerModel()->setGravityMultiplier(slideGravityMultiplier);
+				getPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
 			}
 		}
 	}
 	else {
 		if (isClimbing) {
-			*velocityVector += GetPlayerTransform()->getFront() * climbLedgeExitSpeed;
-			GetPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
+			*velocityVector += getPlayerTransform()->getFront() * climbLedgeExitSpeed;
+			getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 		}
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 }
 
-void HuggingWallActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
+void HuggingWallActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
 	FaceWall();
 	if (CheckIfHuggingWall(wallDirection)) {
-		GetPlayerModel()->lastWallNormal = wallNormal;
+		getPlayerModel()->lastWallNormal = wallNormal;
 		*velocityVector = VEC3::Zero;
 		isClimbing = true;
-		GetPlayerModel()->SetGravityMultiplier(climbingGravityMultiplier);
-		GetPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
-		SetPose();
+		getPlayerModel()->setGravityMultiplier(climbingGravityMultiplier);
+		getPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
+		setPose();
 		climbTimer.reset();
 	}
 	else {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 }
 
-void HuggingWallActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
-	GetPlayerModel()->sameNormalReattachTimer.reset();
+void HuggingWallActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
+	getPlayerModel()->sameNormalReattachTimer.reset();
 }
 
-void HuggingWallActionState::OnJumpHighButton() {
+void HuggingWallActionState::onJumpHighButton() {
 	TurnAround();
 	isClimbing = false;
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::WallJumpSquat);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquat);
 }
 
-void HuggingWallActionState::OnJumpLongButton() {
+void HuggingWallActionState::onJumpLongButton() {
 	TurnAround();
 	isClimbing = false;
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
+}
+
+void HuggingWallActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_jump.mesh");
 }
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	PxScene* scene = Engine.getPhysics().getScene();
-	PxVec3 origin = { GetPlayerTransform()->getPosition().x,GetPlayerTransform()->getPosition().y, GetPlayerTransform()->getPosition().z };
+	PxVec3 origin = { getPlayerTransform()->getPosition().x,getPlayerTransform()->getPosition().y, getPlayerTransform()->getPosition().z };
 
 	const PxU32 bufferSize = 256;
 	PxRaycastHit hitBuffer[bufferSize];
@@ -111,16 +119,16 @@ bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 
 void HuggingWallActionState::FaceWall() {
 	float y, p, r;
-	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	y = atan2(-hit.worldNormal.x, -hit.worldNormal.z);
-	GetPlayerTransform()->setYawPitchRoll(y, p, r);
-	wallDirection = GetPlayerTransform()->getFront();
+	getPlayerTransform()->setYawPitchRoll(y, p, r);
+	wallDirection = getPlayerTransform()->getFront();
 }
 
 void HuggingWallActionState::TurnAround() {
 	float y, p, r;
-	GetPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	y = atan2(wallNormal.x, wallNormal.z);
-	GetPlayerTransform()->setYawPitchRoll(y, p, r);
-	wallDirection = -GetPlayerTransform()->getFront();
+	getPlayerTransform()->setYawPitchRoll(y, p, r);
+	wallDirection = -getPlayerTransform()->getFront();
 }

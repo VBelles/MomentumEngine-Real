@@ -1,14 +1,14 @@
 #pragma once
 
-#include "comp_base.h"
 #include "comp_camera.h"
 
 class CTexture;
 class CRenderToTexture;
 
 class TCompLightDir : public TCompCamera {
+	DECL_SIBLING_ACCESS();
 
-	// Light params
+private:
 	VEC4            color = VEC4(1, 1, 1, 1);
 	float           intensity = 1.0f;
 	const CTexture* projector = nullptr;
@@ -25,7 +25,6 @@ public:
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
-	DECL_SIBLING_ACCESS();
 
 	void activate();
 	void generateShadowMap();

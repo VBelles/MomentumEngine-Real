@@ -1,12 +1,11 @@
 #pragma once
 
-#include "modules/module.h"
-#include "components/comp_collider.h"
-
 using namespace physx;
 
-class GameControllerHitCallback;
-class GameQueryFilterCallback;
+class TCompCollider;
+class BasicControllerHitCallback;
+class BasicControllerBehavior;
+class BasicQueryFilterCallback;
 
 class CModulePhysics : public IModule {
 public:
@@ -20,6 +19,7 @@ public:
 		Scenario = Wall | Floor,
 		Characters = Player | Enemy,
 		All = Wall | Floor | Player | Enemy | Mechanism
+		//All = std::numeric_limits<int>::max() //TODO: test this
 	};
 
 	std::map<std::string, FilterGroup> filterGroupByName = {
@@ -51,8 +51,8 @@ public:
 
 	PxScene* getScene() { return gScene; }
 
-	GameControllerHitCallback* getGameControllerHitCallback() { return gameControllerHitCallback; }
-	GameQueryFilterCallback* getGameQueryFilterCallback() { return gameQueryFilterCallback; }
+	BasicControllerHitCallback* getGameControllerHitCallback() { return basicControllerHitCallback; }
+	BasicQueryFilterCallback* getGameQueryFilterCallback() { return basicQueryFilterCallback; }
 
 
 private:
@@ -77,8 +77,9 @@ private:
 
 	void releaseColliders();
 
-	GameControllerHitCallback* gameControllerHitCallback;
-	GameQueryFilterCallback* gameQueryFilterCallback;
+	BasicControllerHitCallback* basicControllerHitCallback;
+	BasicControllerBehavior* basicControllerBehavior;
+	BasicQueryFilterCallback* basicQueryFilterCallback;
 
 
 };

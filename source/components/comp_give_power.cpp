@@ -1,10 +1,11 @@
 #include "mcv_platform.h"
 #include "comp_give_power.h"
-#include "handle/handle.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("givePower", TCompGivePower);
 
-void TCompGivePower::debugInMenu() {
+void TCompGivePower::registerMsgs() {
+	DECL_MSG(TCompGivePower, TMsgGetPower, onGetPower);
 }
 
 void TCompGivePower::load(const json& j, TEntityParseContext& ctx) {
@@ -13,12 +14,6 @@ void TCompGivePower::load(const json& j, TEntityParseContext& ctx) {
 	baseMultiplier = j.value("baseMultiplier", 1.0f);
 }
 
-void TCompGivePower::update(float delta) {
-}
-
-void TCompGivePower::registerMsgs() {
-	DECL_MSG(TCompGivePower, TMsgGetPower, onGetPower);
-}
 
 void TCompGivePower::onGetPower(const TMsgGetPower& msg) {
 	float powerGiven = stateMultiplier * baseMultiplier * msg.power;

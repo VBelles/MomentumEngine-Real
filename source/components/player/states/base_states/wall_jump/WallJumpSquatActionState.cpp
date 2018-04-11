@@ -1,5 +1,8 @@
 #include "mcv_platform.h"
 #include "WallJumpSquatActionState.h"
+#include "components/player/comp_player_model.h"
+#include "components/comp_render.h"
+#include "components/comp_transform.h"
 
 WallJumpSquatActionState::WallJumpSquatActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -8,25 +11,29 @@ WallJumpSquatActionState::WallJumpSquatActionState(CHandle playerModelHandle)
 void WallJumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	
 	if (timer.elapsed() >= endingTime) {
 		//saltar
-		*velocityVector = GetPlayerTransform()->getFront() * currentPowerStats->wallJumpVelocityVector.z;
+		*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->wallJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->wallJumpVelocityVector.y;
 		
 		deltaMovement = *velocityVector * delta;
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::AirborneWallJump);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneWallJump);
 	}
 }
 
-void WallJumpSquatActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
-	SetPose();
+void WallJumpSquatActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
+	setPose();
 	endingTime = endingFrames * (1.f / 60);
 	timer.reset();
 }
 
-void WallJumpSquatActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
+void WallJumpSquatActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
+}
+
+void WallJumpSquatActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_propel.mesh");
 }

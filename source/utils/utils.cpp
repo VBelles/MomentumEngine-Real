@@ -1,37 +1,39 @@
 #include "mcv_platform.h"
+#include "utils.h"
+#include "murmur3/murmur3.h"
 
 void dbg(const char* format, ...) {
-  va_list argptr;
-  va_start(argptr, format);
-  char dest[1024 * 16];
-  _vsnprintf(dest, sizeof(dest), format, argptr);
-  va_end(argptr);
-  ::OutputDebugString(dest);
+	va_list argptr;
+	va_start(argptr, format);
+	char dest[1024 * 16];
+	_vsnprintf(dest, sizeof(dest), format, argptr);
+	va_end(argptr);
+	::OutputDebugString(dest);
 }
 
 bool fatal(const char* format, ...) {
-  va_list argptr;
-  va_start(argptr, format);
-  char dest[1024 * 16];
-  _vsnprintf(dest, sizeof(dest), format, argptr);
-  va_end(argptr);
-  ::OutputDebugString(dest);
-  MessageBox(nullptr, dest, "Error!", MB_OK);
-  return false;
+	va_list argptr;
+	va_start(argptr, format);
+	char dest[1024 * 16];
+	_vsnprintf(dest, sizeof(dest), format, argptr);
+	va_end(argptr);
+	::OutputDebugString(dest);
+	MessageBox(nullptr, dest, "Error!", MB_OK);
+	return false;
 }
 
 bool isPressed(int key) {
-  return(::GetAsyncKeyState(key) & 0x8000) == 0x8000;
+	return(::GetAsyncKeyState(key) & 0x8000) == 0x8000;
 }
 
 // --------------------------------------------------------
 // Quick and dirty..
 bool fileExists(const std::string& afilename) {
-  FILE* f = fopen(afilename.c_str(), "rb");
-  if (!f)
-    return false;
-  fclose(f);
-  return true;
+	FILE* f = fopen(afilename.c_str(), "rb");
+	if (!f)
+		return false;
+	fclose(f);
+	return true;
 }
 
 // --------------------------------------------------------
@@ -58,13 +60,11 @@ json loadJson(const std::string& filename) {
 
 #else
 
-		try
-		{
+		try {
 			// parsing input with a syntax error
 			j = json::parse(ifs);
 		}
-		catch (json::parse_error& e)
-		{
+		catch (json::parse_error& e) {
 			// output exception information
 			fatal("Failed to parse json file %s\n%s\nAt offset: %d"
 				, filename.c_str(), e.what(), e.byte);
@@ -73,8 +73,8 @@ json loadJson(const std::string& filename) {
 
 #endif
 
-    // The json is correct, we can leave the while loop
-    break;
+		// The json is correct, we can leave the while loop
+		break;
 	}
 
 	return j;
@@ -82,13 +82,13 @@ json loadJson(const std::string& filename) {
 
 // generate a hash from the input buffer
 uint32_t getID(const void* buff, size_t nbytes) {
-  uint32_t seed = 0;
-  uint32_t out_value = 0;
-  MurmurHash3_x86_32(buff, (uint32_t)nbytes, seed, &out_value);
-  assert(out_value != 0);
-  return out_value;
+	uint32_t seed = 0;
+	uint32_t out_value = 0;
+	MurmurHash3_x86_32(buff, (uint32_t)nbytes, seed, &out_value);
+	assert(out_value != 0);
+	return out_value;
 }
 
 uint32_t getID(const char* txt) {
-  return getID(txt, strlen(txt));
+	return getID(txt, strlen(txt));
 }

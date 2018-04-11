@@ -7,12 +7,10 @@
 #include "interfaces/interface_feedback.h"
 #include "interfaces/interface_mapping.h"
 
-namespace Input
-{
+namespace Input {
 	class CMapping;
 
-	class CHost
-	{
+	class CHost {
 	public:
 		CHost();
 

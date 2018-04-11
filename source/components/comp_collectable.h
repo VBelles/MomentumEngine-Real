@@ -1,8 +1,11 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
+#include "entity/msgs.h"
 
+struct TMsgEntitiesGroupCreated;
+struct TMsgTriggerEnter;
+struct TMsgColliderDestroyed;
 
 
 class TCompCollectable : public TCompBase {
@@ -33,7 +36,7 @@ public:
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onTriggerEnter(const TMsgTriggerEnter& msg);
-	void OnColliderDestroyed(const TMsgColliderDestroyed& msg);
+	void onColliderDestroyed(const TMsgColliderDestroyed& msg);
 
 	void collect();
 	Type getTypeByName(std::string name);

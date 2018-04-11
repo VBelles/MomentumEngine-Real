@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/player/comp_player_model.h"
-#include "../GroundedActionState.h"
-
+#include "components/player/states/GroundedActionState.h"
 
 class StrongAttackActionState : public GroundedActionState {
 	CTimer timer;
@@ -20,24 +18,24 @@ class StrongAttackActionState : public GroundedActionState {
 	float beginLauncherTime;
 
 	CHandle hitboxHandle;
-	int damage = 5;
+	float damage = 5.f;
 	AttackPhases phase = AttackPhases::Launch;
 
-	float powerToGet = 5000.f;
+	float powerToGet = 3000.f;
 
 public:
 	StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;
-	void OnStateEnter(IActionState* lastState) override;
-	void OnStateExit(IActionState* nextState) override;
-	void OnJumpHighButton() override {}
-	void OnJumpLongButton() override {}
-	void OnStrongAttackButton() override {}
-	void OnStrongAttackButtonReleased() override;
-	void OnFastAttackButton() override {}
-	void OnReleasePowerButton() override {};
+	void onStateEnter(IActionState* lastState) override;
+	void onStateExit(IActionState* nextState) override;
+	void onJumpHighButton() override {}
+	void onJumpLongButton() override {}
+	void onStrongAttackButton() override {}
+	void onStrongAttackButtonReleased() override;
+	void onFastAttackButton() override {}
+	void onReleasePowerButton() override {};
 
-	void OnLeavingGround() override;
-	void SetPose() override { GetRender()->setMesh("data/meshes/pose_knee.mesh"); }
-	void OnHitboxEnter(CHandle entity) override;
+	void onLeavingGround() override;
+	void onHitboxEnter(CHandle entity) override;
+	void setPose() override;
 };

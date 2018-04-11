@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_platform.h"
 #include "render/render_utils.h"
-#include "player/comp_player_model.h"
+#include "components/player/comp_player_model.h"
 #include "controllers/comp_follow_curve.h"
 #include "geometry/curve.h"
 
@@ -65,7 +65,7 @@ void TCompPlatform::update(float dt) {
             CEntity* ePlayer = (CEntity*)player;
 		    TCompTransform* playerTransform = ePlayer->get<TCompTransform>();
 		    TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
-		    playerModel->GetCollider()->controller->setFootPosition({
+		    playerModel->getCollider()->controller->setFootPosition({
 			    playerTransform->getPosition().x + movement.x,
 			    playerTransform->getPosition().y + movement.y,
 			    playerTransform->getPosition().z + movement.z });

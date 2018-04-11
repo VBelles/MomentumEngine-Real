@@ -42,6 +42,8 @@ public:
     VEC3 getUp() const { return up; }
     VEC3 getLeft() const { return left; }
 
+	void getYawPitchRoll(float* yaw, float* pitch, float* roll) const;
+
     // -------------------------------------
     MAT44 getView() const { return view; }
     MAT44 getProjection() const { return proj; }

@@ -3,6 +3,7 @@
 #include "comp_hitbox.h"
 #include "comp_transform.h"
 #include "comp_hierarchy.h"
+#include "components/comp_collider.h"
 
 DECL_OBJ_MANAGER("hitbox", TCompHitbox);
 

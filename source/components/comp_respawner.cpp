@@ -1,11 +1,9 @@
 #include "mcv_platform.h"
 #include "comp_respawner.h"
 #include "handle/handle.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("respawner", TCompRespawner);
-
-void TCompRespawner::debugInMenu() {
-}
 
 void TCompRespawner::load(const json& j, TEntityParseContext& ctx) {
 	respawnTime = j.value("respawnTime", 5.f);
@@ -21,7 +19,7 @@ void TCompRespawner::update(float delta) {
 	}
 }
 
-void TCompRespawner::OnDead() {
+void TCompRespawner::onDead() {
 	timer.reset();
 	isDead = true;
 }

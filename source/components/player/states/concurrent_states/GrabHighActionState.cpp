@@ -1,13 +1,15 @@
 #include "mcv_platform.h"
 #include "GrabHighActionState.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
 #include "components/comp_tags.h"
+#include "entity/common_msgs.h"
 
 GrabHighActionState::GrabHighActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GrabActionState::GrabActionState(playerModelHandle, hitbox) {
 }
 
-void GrabHighActionState::OnHitboxEnter(CHandle entity) {
+void GrabHighActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	if (entity != playerEntity) {
 		//Si es enemigo transicionamos a propel high
@@ -25,9 +27,9 @@ void GrabHighActionState::OnHitboxEnter(CHandle entity) {
 				lockDuration
 			};
 			otherEntity->sendMsg(msgAtackHit);
-			GetPlayerModel()->grabTarget = entity;
-			GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::PropelHigh);
-			GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+			getPlayerModel()->grabTarget = entity;
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::PropelHigh);
+			getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 		}
 	}
 }

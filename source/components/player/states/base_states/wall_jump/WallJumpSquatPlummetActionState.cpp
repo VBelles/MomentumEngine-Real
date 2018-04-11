@@ -1,5 +1,8 @@
 #include "mcv_platform.h"
 #include "WallJumpSquatPlummetActionState.h"
+#include "components/player/comp_player_model.h"
+#include "components/comp_render.h"
+#include "components/comp_transform.h"
 
 WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -10,23 +13,27 @@ void WallJumpSquatPlummetActionState::update (float delta) {
 	
 	if (timer.elapsed() >= endingTime) {
 		//saltar
-		*velocityVector = GetPlayerTransform()->getFront() * frontVelocity;
+		*velocityVector = getPlayerTransform()->getFront() * frontVelocity;
 		velocityVector->y = verticalVelocity;
 		
 		deltaMovement = *velocityVector * delta;
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::WallJumpPlummet);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpPlummet);
 	}
 }
 
-void WallJumpSquatPlummetActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
-	GetPlayerModel()->SetGravityMultiplier(0.f);
-	GetPlayerModel()->maxVerticalSpeed = abs(verticalVelocity);
-	SetPose();
+void WallJumpSquatPlummetActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
+	getPlayerModel()->setGravityMultiplier(0.f);
+	getPlayerModel()->maxVerticalSpeed = abs(verticalVelocity);
+	setPose();
 	endingTime = endingFrames * (1.f / 60);
 	timer.reset();
 }
 
-void WallJumpSquatPlummetActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
+void WallJumpSquatPlummetActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
+}
+
+void WallJumpSquatPlummetActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_propel.mesh");
 }

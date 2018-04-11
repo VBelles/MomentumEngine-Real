@@ -1,25 +1,22 @@
 #include "mcv_platform.h"
-#include "input/devices/pad_xbox.h"
+#include "pad_xbox.h"
+#include "input/device.h"
 
 #pragma comment(lib, "XINPUT9_1_0.lib")
 
-namespace Input
-{
+namespace Input {
 	CPadXbox::CPadXbox(const std::string& name, int controllerId)
 		: IDevice(name)
-		, _controllerId(controllerId)
-	{
+		, _controllerId(controllerId) {
 	}
 
-	void CPadXbox::updatePadData(float delta, TInterface_Pad& data)
-	{
+	void CPadXbox::updatePadData(float delta, TInterface_Pad& data) {
 		XINPUT_STATE state;
 		ZeroMemory(&state, sizeof(XINPUT_STATE));
 
 		// Simply get the state of the controller from XInput.
 		data.connected = XInputGetState(_controllerId, &state) == ERROR_SUCCESS;
-		if (data.connected)
-		{
+		if (data.connected) {
 			data._buttons[PAD_A].update(delta, getButtonValue(state, XINPUT_GAMEPAD_A));
 			data._buttons[PAD_B].update(delta, getButtonValue(state, XINPUT_GAMEPAD_B));
 			data._buttons[PAD_X].update(delta, getButtonValue(state, XINPUT_GAMEPAD_X));
@@ -47,29 +44,24 @@ namespace Input
 		}
 	}
 
-	float CPadXbox::getButtonValue(const XINPUT_STATE& state, int bt)
-	{
+	float CPadXbox::getButtonValue(const XINPUT_STATE& state, int bt) {
 		return (state.Gamepad.wButtons & bt) != 0 ? 1.f : 0.f;
 	}
 
-	float CPadXbox::getTriggerValue(const XINPUT_STATE& state, bool left)
-	{
+	float CPadXbox::getTriggerValue(const XINPUT_STATE& state, bool left) {
 		BYTE value = left ? state.Gamepad.bLeftTrigger : state.Gamepad.bRightTrigger;
 		return static_cast<float>(value) / std::numeric_limits<BYTE>::max();
 	}
 
-	VEC2 CPadXbox::getAnalogValues(const XINPUT_STATE& state, bool left)
-	{
+	VEC2 CPadXbox::getAnalogValues(const XINPUT_STATE& state, bool left) {
 		VEC2 value(0, 0);
 		float deadZone = 0.f;
-		if (left)
-		{
+		if (left) {
 			value.x = static_cast<float>(state.Gamepad.sThumbLX);
 			value.y = static_cast<float>(state.Gamepad.sThumbLY);
 			deadZone = static_cast<float>(XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE);
 		}
-		else
-		{
+		else {
 			value.x = static_cast<float>(state.Gamepad.sThumbRX);
 			value.y = static_cast<float>(state.Gamepad.sThumbRY);
 			deadZone = static_cast<float>(XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE); ;
@@ -80,12 +72,10 @@ namespace Input
 		deadZone = deadZone / std::numeric_limits<SHORT>().max();
 
 		float length = value.Length();
-		if (length <= deadZone)
-		{
+		if (length <= deadZone) {
 			value = VEC2(0.f, 0.f);
 		}
-		else
-		{
+		else {
 			value.Normalize();
 			value = value * ((length - deadZone) / (1.0f - deadZone));
 		}
@@ -93,8 +83,7 @@ namespace Input
 		return value;
 	}
 
-	void CPadXbox::feedback(const TInterface_Feedback& data)
-	{
+	void CPadXbox::feedback(const TInterface_Feedback& data) {
 		XINPUT_VIBRATION vibration;
 		vibration.wLeftMotorSpeed = static_cast<WORD>(data.leftRumble * std::numeric_limits<WORD>::max());
 		vibration.wRightMotorSpeed = static_cast<WORD>(data.rightRumble * std::numeric_limits<WORD>::max());

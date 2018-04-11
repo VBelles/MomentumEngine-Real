@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IBehaviorTree.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/comp_base.h"
 #include "entity/common_msgs.h"
 
@@ -9,33 +9,29 @@ class TCompTransform;
 class TCompCollider;
 struct PowerStats;
 
-class CBehaviorTreeMeleeEnemy : public IBehaviorTree, public TCompBase {
+class CBehaviorTreeFlyingRangedEnemy : public IBehaviorTree, public TCompBase {
 	DECL_SIBLING_ACCESS();
+
 private:
-	float maxHealth = 5.f;
+	float maxHealth = 3.f;
 	float health = maxHealth;
 	float movementSpeed = 2.5f;
-	float stepBackSpeed = 3.5f;
-	float rotationSpeed = 90.f;
+	float rotationSpeed;
 
 	float recallDistance = 28.f;
 
-	float chaseFov = deg2rad(60);
-	float fovChaseDistance = 25.f;
-	float smallChaseRadius = 10.f;
-
 	float attackFov = deg2rad(60);
 	float minCombatDistance = 2.f;
-	float maxCombatDistance = 4.f;
-	float attackCooldown = 5.f;
+	float maxCombatDistance = 20.f;
+	float attackCooldown = 7.f;
 	float attackDamage = 1.f;
-
-	float gravity = -50.f;
-	VEC3 maxVelocity = { 30, 30, 30 };
+	VEC3 attackSpawnOffset = VEC3(0, 2, 2);
+	VEC3 attackTargetOffset = VEC3(0, 0.76f, 0);
+	std::string attackPrefab = "data/prefabs/rangedAttack.prefab";
 
 	float propelDuration = 1.5f;
 	float floatingDuration = 1.5f;
-	float grabbedDuration = 0.5f;
+	float grabbedDuration = 0.8f;
 
 	bool isDead = false;
 	bool isStunned = false;
@@ -43,10 +39,10 @@ private:
 
 	CHandle playerHandle;
 
+	float gravity = -55.f;
 	VEC3 initialLaunchPos;
 	VEC3 spawnPosition;
 	VEC3 velocityVector;
-	bool grounded = true;
 
 	CTimer timer;
 	CTimer idleWarTimer;
@@ -69,11 +65,8 @@ private:
 	int floating(float delta = 0.f);
 	int onStun(float delta = 0.f);
 	int stunned(float delta = 0.f);
-	int airborne(float delta = 0.f);
 	int respawn(float delta = 0.f);
 	int returnToSpawn(float delta = 0.f);
-	int chase(float delta = 0.f);
-	int stepBack(float delta = 0.f);
 	int onIdleWar(float delta = 0.f);
 	int idleWar(float delta = 0.f);
 	int attack(float delta = 0.f);
@@ -87,11 +80,8 @@ private:
 	bool verticalLaunchCondition(float delta = 0.f);
 	bool onStunCondition(float delta = 0.f);
 	bool stunCondition(float delta = 0.f);
-	bool airborneCondition(float delta = 0.f);
 	bool returnToSpawnCondition(float delta = 0.f);
-	bool chaseCondition(float delta = 0.f);
 	bool combatCondition(float delta = 0.f);
-	bool stepBackCondition(float delta = 0.f);
 
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();
@@ -101,12 +91,10 @@ private:
 	void onRespawn(const TMsgRespawn& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
 
-	void updateGravity(float delta);
-	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
 public:
-	CBehaviorTreeMeleeEnemy();
+	CBehaviorTreeFlyingRangedEnemy();
 
 	void load(const json& j, TEntityParseContext& ctx);
 	void debugInMenu();

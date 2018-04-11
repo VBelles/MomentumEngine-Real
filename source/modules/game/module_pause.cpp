@@ -1,5 +1,7 @@
 ﻿#include "mcv_platform.h"
 #include "module_pause.h"
+#include "modules/module.h"
+#include "geometry/curve.h"
 
 bool CModulePause::start() {
 	pause = false;

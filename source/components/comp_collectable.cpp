@@ -1,6 +1,9 @@
 #include "mcv_platform.h"
 #include "comp_collectable.h"
 #include "components/comp_transform.h"
+#include "components/comp_collider.h"
+#include "entity/common_msgs.h"
+
 
 DECL_OBJ_MANAGER("collectable", TCompCollectable);
 
@@ -10,7 +13,7 @@ void TCompCollectable::debugInMenu() {
 void TCompCollectable::registerMsgs() {
 	DECL_MSG(TCompCollectable, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompCollectable, TMsgTriggerEnter, onTriggerEnter);
-	DECL_MSG(TCompCollectable, TMsgColliderDestroyed, OnColliderDestroyed);
+	DECL_MSG(TCompCollectable, TMsgColliderDestroyed, onColliderDestroyed);
 }
 
 void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
@@ -40,7 +43,7 @@ void TCompCollectable::collect() {
 
 }
 
-void TCompCollectable::OnColliderDestroyed(const TMsgColliderDestroyed& msg) {
+void TCompCollectable::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	CHandle(this).getOwner().destroy();
 }
 

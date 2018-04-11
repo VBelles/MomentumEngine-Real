@@ -1,5 +1,9 @@
 #include "mcv_platform.h"
 #include "IdleActionState.h"
+#include "components/player/comp_player_model.h"
+#include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
 
 IdleActionState::IdleActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -9,40 +13,44 @@ void IdleActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
-	PowerStats* currentPowerStats = GetPlayerModel()->GetPowerStats();
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
-	VEC3 desiredDirection = GetCamera()->TransformToWorld(movementInput);
-	bool isTurnAround = GetPlayerModel()->GetTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
+	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+	bool isTurnAround = getPlayerModel()->getTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
 	if (hasInput && !isTurnAround) {
-		VEC3 targetPos = GetPlayerTransform()->getPosition() + desiredDirection;
-		RotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
+		VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
+		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
 
 	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
 	if (hasInput) {
-		deltaMovement += CalculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
-			GetPlayerTransform()->getFront(), currentPowerStats->acceleration,
-			GetPlayerModel()->walkingSpeed);
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+			getPlayerTransform()->getFront(), currentPowerStats->acceleration,
+			getPlayerModel()->walkingSpeed);
 
-		TransferVelocityToDirectionAndAccelerate(delta, true, GetPlayerTransform()->getFront(), currentPowerStats->acceleration);
-		ClampHorizontalVelocity(GetPlayerModel()->walkingSpeed);
+		transferVelocityToDirectionAndAccelerate(delta, true, getPlayerTransform()->getFront(), currentPowerStats->acceleration);
+		clampHorizontalVelocity(getPlayerModel()->walkingSpeed);
 	}
 
 	VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 	if (isTurnAround) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::IdleTurnAround);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::IdleTurnAround);
 	}
 	else if (horizontalVelocity.Length() > 0.f) {
-		GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Walk);
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 	}
 }
 
-void IdleActionState::OnStateEnter(IActionState * lastState) {
-	GroundedActionState::OnStateEnter(lastState);
-	SetPose();
+void IdleActionState::onStateEnter(IActionState * lastState) {
+	GroundedActionState::onStateEnter(lastState);
+	setPose();
 }
 
-void IdleActionState::OnStateExit(IActionState * nextState) {
-	GroundedActionState::OnStateExit(nextState);
+void IdleActionState::onStateExit(IActionState * nextState) {
+	GroundedActionState::onStateExit(nextState);
+}
+
+void IdleActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_idle.mesh");
 }

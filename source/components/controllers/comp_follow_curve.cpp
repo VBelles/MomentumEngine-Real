@@ -2,6 +2,7 @@
 #include "comp_follow_curve.h"
 #include "components/comp_transform.h"
 #include "geometry/curve.h"
+#include "components/comp_collider.h"
 
 DECL_OBJ_MANAGER("follow_curve", TCompFollowCurve);
 

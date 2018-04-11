@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "module_input.h"
+#include "modules/module.h"
 #include "input/devices/keyboard.h"
 #include "input/devices/mouse.h"
 #include "input/devices/pad_xbox.h"

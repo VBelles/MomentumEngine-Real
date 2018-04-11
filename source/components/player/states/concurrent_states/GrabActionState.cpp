@@ -1,6 +1,8 @@
 #include "mcv_platform.h"
 #include "GrabHighActionState.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
+#include "components/comp_render.h"
 
 GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
@@ -10,7 +12,7 @@ GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 void GrabActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -28,32 +30,36 @@ void GrabActionState::update (float delta) {
 	}
 }
 
-void GrabActionState::OnStateEnter(IActionState * lastState) {
-	AirborneActionState::OnStateEnter(lastState);
+void GrabActionState::onStateEnter(IActionState * lastState) {
+	AirborneActionState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
-	SetPose();
+	setPose();
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
-	GetPlayerModel()->lockTurning = true;
+	getPlayerModel()->lockTurning = true;
 }
 
-void GrabActionState::OnStateExit(IActionState * nextState) {
-	AirborneActionState::OnStateExit(nextState);
-	GetPlayerModel()->baseState->SetPose();
+void GrabActionState::onStateExit(IActionState * nextState) {
+	AirborneActionState::onStateExit(nextState);
+	getPlayerModel()->baseState->setPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	GetPlayerModel()->lockTurning = false;
+	getPlayerModel()->lockTurning = false;
 }
 
-void GrabActionState::OnLanding() {
+void GrabActionState::onLanding() {
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 
-	GetPlayerModel()->SetBaseState(TCompPlayerModel::ActionStates::Landing);
-	GetPlayerModel()->SetConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
+	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+}
+
+void GrabActionState::setPose() {
+	getRender()->setMesh("data/meshes/pose_grab.mesh");
 }

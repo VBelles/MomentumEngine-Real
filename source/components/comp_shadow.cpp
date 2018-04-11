@@ -1,16 +1,15 @@
 #include "mcv_platform.h"
 #include "comp_shadow.h"
-#include "comp_transform.h"
-#include "comp_hierarchy.h"
-
+#include "components/comp_transform.h"
+#include "components/comp_hierarchy.h"
+#include "components/comp_collider.h"
 #include "render/render_objects.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("shadow", TCompShadow);
 
-void TCompShadow::debugInMenu() {
-}
 
 void TCompShadow::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("offset")) {
@@ -52,8 +51,8 @@ void TCompShadow::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 void TCompShadow::update(float dt) {
 	if (enabled) {
-		TCompTransform *parentTransform = parentTransformHandle;
-		TCompTransform *transform = transformHandle;
+		TCompTransform* parentTransform = parentTransformHandle;
+		TCompTransform* transform = transformHandle;
 
 		PxScene* scene = Engine.getPhysics().getScene();
 		PxVec3 origin = { parentTransform->getPosition().x + offset.x, parentTransform->getPosition().y + offset.y, parentTransform->getPosition().z + offset.z };
@@ -77,9 +76,6 @@ void TCompShadow::update(float dt) {
 	}
 }
 
-TCompTransform* TCompShadow::getTransform() {
-	return transformHandle;
-}
 
 void TCompShadow::setMesh(std::string meshName) {
 	mesh = Resources.get(meshName)->as<CRenderMesh>();

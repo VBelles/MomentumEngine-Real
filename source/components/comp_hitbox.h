@@ -1,11 +1,10 @@
 #pragma once
 
-#include <set>
-
 #include "comp_base.h"
-#include "geometry/transform.h"
-#include "entity/common_msgs.h"
 
+struct TMsgEntityCreated;
+struct TMsgEntitiesGroupCreated;
+struct TMsgTriggerEnter;
 
 class TCompHitbox : public TCompBase {
 	DECL_SIBLING_ACCESS();

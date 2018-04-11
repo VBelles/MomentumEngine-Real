@@ -1,6 +1,6 @@
 #pragma once
 
-class GameQueryFilterCallback : public PxQueryFilterCallback {
+class BasicQueryFilterCallback : public PxQueryFilterCallback {
 
 	virtual PxQueryHitType::Enum preFilter(const PxFilterData& filterData, const PxShape* shape,
 		const PxRigidActor* actor, PxHitFlags& queryFlags) override;

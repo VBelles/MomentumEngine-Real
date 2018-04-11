@@ -1,11 +1,7 @@
 #pragma once
 
-#include "input/device.h"
-
-namespace Input
-{
-	class CMouse : public IDevice
-	{
+namespace Input {
+	class CMouse : public IDevice {
 	public:
 		CMouse(const std::string& name);
 		virtual void updateMouseData(float delta, TInterface_Mouse& data) override;

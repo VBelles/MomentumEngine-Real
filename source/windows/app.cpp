@@ -138,7 +138,7 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		break;
 	}
 	case WM_SETFOCUS:
-		if(Engine.isStarted())
+		if (Engine.isStarted())
 			EngineInput.setActive(true);
 		app_instance->isWindowFocused = true;
 		break;
