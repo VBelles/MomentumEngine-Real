@@ -26,6 +26,7 @@ void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	initialYaw = deg2rad(j.value("yaw", 0.f));
 	initialPitch = deg2rad(j.value("pitch", -20.f));
 	centeringCameraSpeed = loadVEC2(j["centering_camera_speed"]);
+	currentCenteringCameraSpeed = centeringCameraSpeed;
 }
 
 void TCompCameraPlayer::registerMsgs() {
@@ -119,7 +120,7 @@ void TCompCameraPlayer::updateCenteringCamera(float delta) {
 	float yaw, pitch, r;
 	transform->getYawPitchRoll(&yaw, &pitch, &r);
 
-	VEC2 increment = centeringCameraSpeed * delta;
+	VEC2 increment = currentCenteringCameraSpeed * delta;
 
 	//Center yaw
 	float difference = atan2(sin(desiredYawPitch.x - yaw), cos(desiredYawPitch.x - yaw));
@@ -192,6 +193,7 @@ bool TCompCameraPlayer::sphereCast() {
 
 void TCompCameraPlayer::centerCamera() {
 	if (!isMovementLocked) {
+		currentCenteringCameraSpeed = centeringCameraSpeed;
 		centeringCamera = true;
 		VEC3 front = targetTransform.getFront();
 		if (isCenteringCameraForced) {
@@ -216,8 +218,9 @@ void TCompCameraPlayer::suggestYawPitchDistance(float yaw, float pitch, float di
 	isCenteringCameraForced = changeCenteringCamera;
 }
 
-void TCompCameraPlayer::placeCameraOnSuggestedPosition() {
+void TCompCameraPlayer::placeCameraOnSuggestedPosition(VEC2 centeringSpeed) {
 	if (!isMovementLocked) {
+		currentCenteringCameraSpeed = centeringSpeed;
 		centeringCamera = true;
 		VEC3 front = targetTransform.getFront();
 		float centeringYaw = isYawSuggested ? suggestedYaw : atan2(front.x, front.z);

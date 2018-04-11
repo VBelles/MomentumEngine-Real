@@ -53,7 +53,9 @@
 				"suggestYaw" : true,
 				"suggestPitch" : true,
 				"forceDistance" : true,
-				"changeCenteringCamera" : true
+				"changeCenteringCamera" : true,
+				"forcePositionOnEnter" : true,
+				"centeringCameraSpeed" : "5 5"
 			}
 		}
 	},

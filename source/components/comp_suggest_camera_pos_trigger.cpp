@@ -20,6 +20,10 @@ void TCompSuggestCameraPosTrigger::load(const json& j, TEntityParseContext& ctx)
 	forceDistance = j.value("forceDistance", false);
 	distanceToCamera = j.value("distanceToCamera", 5.5f);
 	changeCenteringCamera = j.value("changeCenteringCamera", false);
+	forcePositionOnEnter = j.value("forcePositionOnEnter", true);
+	if (j.count("centeringCameraSpeed")) {
+		centeringCameraSpeed = loadVEC2(j["centeringCameraSpeed"]);
+	}
 }
 
 void TCompSuggestCameraPosTrigger::registerMsgs() {
@@ -42,7 +46,9 @@ void TCompSuggestCameraPosTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) 
 		TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
 		//Llamar a funciones de player camera para cambiar yaw, pitch, distancia o si fuerza el centrar cámara
 		cameraPlayer->suggestYawPitchDistance(yawFromCamera, pitchFromCamera, distanceToCamera, suggestYaw, suggestPitch, forceDistance, changeCenteringCamera);
-		cameraPlayer->placeCameraOnSuggestedPosition();
+		if (forcePositionOnEnter) {
+			cameraPlayer->placeCameraOnSuggestedPosition(centeringCameraSpeed);
+		}
 	}
 }
 

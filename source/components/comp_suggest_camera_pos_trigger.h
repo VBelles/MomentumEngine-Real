@@ -16,7 +16,9 @@ private:
 	bool suggestPitch = false;
 	bool forceDistance = false;
 	bool changeCenteringCamera = false;
+	bool forcePositionOnEnter = true;
 	float distanceToCamera = 5.5f;
+	VEC2 centeringCameraSpeed = {5.f, 5.f};
 
 	float yawFromCamera;
 	float pitchFromCamera;

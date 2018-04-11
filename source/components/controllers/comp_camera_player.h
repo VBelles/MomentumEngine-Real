@@ -30,6 +30,7 @@ private:
 	VEC2 input;
 	
 	float currentDistanceToTarget = 0.f;
+	VEC2 currentCenteringCameraSpeed;
 
 	bool isMovementLocked = false;
 
@@ -69,7 +70,7 @@ public:
 	void update(float dt);
 	void centerCamera();
 	void suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera);
-	void placeCameraOnSuggestedPosition();
+	void placeCameraOnSuggestedPosition(VEC2 centeringSpeed);
 	void resetSuggested();
 };
 
