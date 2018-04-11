@@ -380,14 +380,15 @@ void TCompPlayerModel::applyGravity(float delta) {
 
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
-	VEC3 pos = getTransform()->getPosition();
-	QUAT rot = getTransform()->getRotation();
-	PxFilterData filterData = { getCollider()->config.group, getCollider()->config.mask, 0, 0 };
-	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(
-		physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta,
-		physx::PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
+	PxShape* tempShape;
+	getController()->getActor()->getShapes(&tempShape, 1);
+	PxFilterData filterData = tempShape->getSimulationFilterData();
 
-	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
+	PxControllerCollisionFlags moveFlags = getCollider()->controller->move(toPhysx(deltaMovement), 0.f, delta,
+		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
+
+	isGrounded = moveFlags && PxControllerCollisionFlag::eCOLLISION_DOWN;
+	//dbg("%d\n", isGrounded);
 	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue
 		if (isGrounded) {
 			isTouchingCeiling = false;
@@ -397,7 +398,7 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 			}
 		}
 		if (!isTouchingCeiling) {
-			isTouchingCeiling = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
+			isTouchingCeiling = moveFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
 			if (isTouchingCeiling) {
 				velocityVector.y = -1.f;
 			}

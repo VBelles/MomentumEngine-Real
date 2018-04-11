@@ -141,8 +141,7 @@
 		}
 	},
 	{
-		"entity":
-		{
+		"entity": {
 			"name": "breakable_box_01",
 			"render": [
 				{
@@ -163,6 +162,32 @@
 				"shape": "box",
 				"halfExtent": "2.5 3.5 1.0"
 			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform_rotative",
+			"render": [
+				{
+					"mesh": "data/meshes/plat_move.mesh",
+					"materials": [
+						"data/materials/madera.material"
+					],
+					"color": "1 0.5 0.5 1.0"
+				}
+			],
+			"transform": {
+				"pos": "-65 25 -35"
+			},
+			"collider": {
+				"shape": "box",
+				"halfExtent": "1.5 0.5 1.5",
+				"is_dynamic": true
+			},
+			"platform_rotative":{
+				"rotation_speed": "0 0 50"
+			}
+			
 		}
 	}
 ]

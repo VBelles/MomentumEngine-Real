@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_platform_move.h"
 #include "render/render_utils.h"
-#include "player/comp_player_model.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "entity/common_msgs.h"

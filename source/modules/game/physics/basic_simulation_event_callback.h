@@ -1,6 +1,6 @@
 #pragma once
 
-class GameSimulationEventCallback : public PxSimulationEventCallback {
+class BasicSimulationEventCallback : public PxSimulationEventCallback {
 	virtual void onConstraintBreak(PxConstraintInfo* constraints, PxU32 count) override {};
 	virtual void onWake(PxActor** actors, PxU32 count) override {};
 	virtual void onSleep(PxActor** actors, PxU32 count) override {};

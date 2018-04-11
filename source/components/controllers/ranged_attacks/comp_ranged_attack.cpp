@@ -33,11 +33,8 @@ void TCompRangedAttack::update(float dt) {
 		else {
 			TCompTransform *transform = get<TCompTransform>();
 			PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-			VEC3 newPos = transform->getPosition() + transform->getFront() * speed;
-			PxTransform newTransform;
-			newTransform.p = { newPos.x, newPos.y, newPos.z };
-			newTransform.q = { transform->getRotation().x, transform->getRotation().y, transform->getRotation().z, transform->getRotation().w };
-			rigidDynamic->setKinematicTarget(newTransform);
+			transform->setPosition(transform->getPosition() + transform->getFront() * speed);
+			rigidDynamic->setKinematicTarget(toPhysx(transform));
 		}
 	}
 }

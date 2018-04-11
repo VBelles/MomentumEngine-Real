@@ -64,7 +64,6 @@
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
-    <ClCompile Include="components\comp_platform_move.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\comp_respawner.cpp" />
     <ClCompile Include="components\comp_shadow.cpp" />
@@ -141,11 +140,7 @@
     <ClCompile Include="utils\geometry_utils.cpp" />
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="mcv_platform.cpp" />
-    <ClCompile Include="modules\game\physics\GameControllerHitCallback.cpp" />
-    <ClCompile Include="modules\game\physics\GameFilterShader.cpp" />
-    <ClCompile Include="modules\game\physics\GameSimulationEventCallback.cpp" />
     <ClCompile Include="modules\game\physics\module_physics.cpp" />
-    <ClCompile Include="modules\game\physics\GameQueryFilterCallback.cpp" />
     <ClCompile Include="components\controllers\comp_fixed_camera.cpp" />
     <ClCompile Include="components\comp_breakable.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeAction.cpp" />
@@ -158,6 +153,13 @@
     <ClCompile Include="components\ia\enemies\MeleeEnemy.cpp" />
     <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\comp_suggest_camera_pos_trigger.cpp" />
+    <ClCompile Include="modules\game\physics\basic_controller_behavior.cpp" />
+    <ClCompile Include="modules\game\physics\basic_controller_hit_callback.cpp" />
+    <ClCompile Include="modules\game\physics\basic_filter_shader.cpp" />
+    <ClCompile Include="modules\game\physics\basic_query_filter_callback.cpp" />
+    <ClCompile Include="modules\game\physics\basic_simulation_event_callback.cpp" />
+    <ClCompile Include="components\platforms\comp_platform_move.cpp" />
+    <ClCompile Include="components\platforms\comp_platform_rotative.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -247,7 +249,6 @@
     <ClInclude Include="components\player\states\AirborneActionState.h" />
     <ClInclude Include="components\player\states\GroundedActionState.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
-    <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\comp_respawner.h" />
     <ClInclude Include="components\comp_shadow.h" />
@@ -331,11 +332,7 @@
     <ClInclude Include="utils\geometry_utils.h" />
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="game_constants.h" />
-    <ClInclude Include="modules\game\physics\GameControllerHitCallback.h" />
-    <ClInclude Include="modules\game\physics\GameFilterShader.h" />
-    <ClInclude Include="modules\game\physics\GameSimulationEventCallback.h" />
     <ClInclude Include="modules\game\physics\module_physics.h" />
-    <ClInclude Include="modules\game\physics\GameQueryFilterCallback.h" />
     <ClInclude Include="components\controllers\comp_fixed_camera.h" />
     <ClInclude Include="components\comp_breakable.h" />
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeAction.h" />
@@ -348,6 +345,13 @@
     <ClInclude Include="components\ia\enemies\FlyingRangedEnemy.h" />
     <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\comp_suggest_camera_pos_trigger.h" />
+    <ClInclude Include="modules\game\physics\basic_controller_behavior.h" />
+    <ClInclude Include="modules\game\physics\basic_controller_hit_callback.h" />
+    <ClInclude Include="modules\game\physics\basic_filter_shader.h" />
+    <ClInclude Include="modules\game\physics\basic_query_filter_callback.h" />
+    <ClInclude Include="modules\game\physics\basic_simulation_event_callback.h" />
+    <ClInclude Include="components\platforms\comp_platform_move.h" />
+    <ClInclude Include="components\platforms\comp_platform_rotative.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

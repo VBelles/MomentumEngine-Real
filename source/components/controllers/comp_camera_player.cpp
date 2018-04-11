@@ -2,7 +2,7 @@
 #include "comp_camera_player.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
-#include "modules/game/physics/GameQueryFilterCallback.h"
+#include "modules/game/physics/basic_query_filter_callback.h"
 #include "game_constants.h"
 #include "entity/common_msgs.h"
 

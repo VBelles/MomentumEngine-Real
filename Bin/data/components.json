@@ -10,7 +10,8 @@
   "update": [
 		"fwd_msg",
 		"hierarchy",
-		"platform_move",
+    "platform_move",
+    "platform_rotative",
     "collectable",
     "breakable",
 		"mechanism",
