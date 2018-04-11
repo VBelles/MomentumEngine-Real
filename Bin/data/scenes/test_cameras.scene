@@ -55,7 +55,7 @@
 				"forceDistance" : true,
 				"changeCenteringCamera" : true,
 				"forcePositionOnEnter" : true,
-				"centeringCameraSpeed" : "5 5"
+				"centeringCameraSpeed" : "2 5"
 			}
 		}
 	},

@@ -310,6 +310,7 @@
 				"target" : "The Player",
 				"distance_to_target": 5.5,
 				"camera_speed": "2 1",
+				"zoomSpeed" : 20.0,
 				"centering_camera_speed": "18 9",
 				"max_pitch": 60,
 				"min_pitch": -70,

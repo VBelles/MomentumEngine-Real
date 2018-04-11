@@ -17,6 +17,7 @@ private:
 	std::string targetName;
 	float defaultDistanceToTarget = 0.f;
 	VEC2 cameraSpeed;
+	float zoomSpeed = 7.f;
 	VEC2 centeringCameraSpeed;
 	float minPitch = 0.f;
 	float maxPitch = 0.f;

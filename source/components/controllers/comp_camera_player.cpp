@@ -20,7 +20,9 @@ void TCompCameraPlayer::renderDebug() {
 void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	targetName = j.value("target", "");
 	defaultDistanceToTarget = j.value("distance_to_target", 5.f);
+	currentDistanceToTarget = defaultDistanceToTarget;
 	cameraSpeed = loadVEC2(j["camera_speed"]);
+	zoomSpeed = (j.value("zoomSpeed", 20.f));
 	maxPitch = deg2rad(j.value("max_pitch", 80.f));
 	minPitch = deg2rad(j.value("min_pitch", -80.f));
 	initialYaw = deg2rad(j.value("yaw", 0.f));
@@ -109,7 +111,17 @@ void TCompCameraPlayer::updateMovement(float delta) {
 	//Move the camera back
 	float distance;
 	distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
-	transform->setPosition(transform->getPosition() - transform->getFront() * distance);
+	//Tirar atrás sólo un poco
+	//comparar current distance con distance
+	//Si current distance < distance,  sumas current distance más velocidad zoom
+	int movementDirection = currentDistanceToTarget < distance ? 1 : -1;
+	if (zoomSpeed * delta < abs(currentDistanceToTarget - distance)) {
+		currentDistanceToTarget = currentDistanceToTarget + zoomSpeed * delta * movementDirection;
+		transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
+	}
+	else {
+		transform->setPosition(transform->getPosition() - transform->getFront() * distance);
+	}
 }
 
 void TCompCameraPlayer::updateCenteringCamera(float delta) {
@@ -148,8 +160,16 @@ void TCompCameraPlayer::updateCenteringCamera(float delta) {
 	transform->setYawPitchRoll(yaw, pitch, r);
 
 	//Move the camera back
-	transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
-
+	float distance;
+	distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
+	int movementDirection = currentDistanceToTarget < distance ? 1 : -1;
+	if (zoomSpeed * delta < abs(currentDistanceToTarget - distance)) {
+		currentDistanceToTarget = currentDistanceToTarget + zoomSpeed * delta * movementDirection;
+		transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
+	}
+	else {
+		transform->setPosition(transform->getPosition() - transform->getFront() * distance);
+	}
 }
 void TCompCameraPlayer::sweepBack() {
 	VEC3 targetPosition = targetTransform.getPosition();
