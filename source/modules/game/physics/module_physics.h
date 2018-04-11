@@ -3,9 +3,9 @@
 using namespace physx;
 
 class TCompCollider;
-class GameControllerHitCallback;
-class GameControllerBehaviorCallback;
-class GameQueryFilterCallback;
+class BasicControllerHitCallback;
+class BasicControllerBehavior;
+class BasicQueryFilterCallback;
 
 class CModulePhysics : public IModule {
 public:
@@ -51,8 +51,8 @@ public:
 
 	PxScene* getScene() { return gScene; }
 
-	GameControllerHitCallback* getGameControllerHitCallback() { return gameControllerHitCallback; }
-	GameQueryFilterCallback* getGameQueryFilterCallback() { return gameQueryFilterCallback; }
+	BasicControllerHitCallback* getGameControllerHitCallback() { return basicControllerHitCallback; }
+	BasicQueryFilterCallback* getGameQueryFilterCallback() { return basicQueryFilterCallback; }
 
 
 private:
@@ -77,9 +77,9 @@ private:
 
 	void releaseColliders();
 
-	GameControllerHitCallback* gameControllerHitCallback;
-	GameControllerBehaviorCallback* gameControllerBehaviorCallback;
-	GameQueryFilterCallback* gameQueryFilterCallback;
+	BasicControllerHitCallback* basicControllerHitCallback;
+	BasicControllerBehavior* basicControllerBehavior;
+	BasicQueryFilterCallback* basicQueryFilterCallback;
 
 
 };
