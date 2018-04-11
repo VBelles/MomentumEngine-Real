@@ -2077,6 +2077,7 @@
       "collider": {
         "shape": "box",
         "halfExtent": "1.89692 0.254831 1.51308",
+        "is_dynamic": true,
         "group" : ["scenario"],
 			  "mask" : ["all"]
       },
