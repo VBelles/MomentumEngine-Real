@@ -20,7 +20,7 @@ void TCompPlatform::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlatform::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-    player = (CHandle)getEntityByName("The Player");
+    player = (CHandle)getEntityByName(PLAYER_NAME);
 	TCompCollider* collider = get<TCompCollider>();
 	assert(collider);
 	PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
@@ -31,7 +31,7 @@ void TCompPlatform::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	CEntity *triggerer = msg.h_other_entity;
 	std::string triggererName = triggerer->getName();
 	//dbg("Platform trigger enter by %s\n", triggererName.c_str());
-	if (triggererName == "The Player") {
+	if (triggererName == PLAYER_NAME) {
         isPlayerInTrigger = true;
 
 		CEntity* ePlayer = (CEntity*)player;
@@ -44,7 +44,7 @@ void TCompPlatform::onTriggerExit(const TMsgTriggerExit & msg) {
     CEntity *triggerer = msg.h_other_entity;
     std::string triggererName = triggerer->getName();
     //dbg("Platform trigger exit by %s\n", triggererName.c_str());
-    if (triggererName == "The Player") {
+    if (triggererName == PLAYER_NAME) {
         isPlayerInTrigger = false;
 		CEntity* ePlayer = (CEntity*)player;
 		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();

@@ -1,20 +1,20 @@
 {
-	"sizes" : {
-		"default" : 1024,
-		"transform" : 1024
-	},
+  "sizes" : {
+    "default" : 1024,
+    "transform" : 1024
+  },
   "init_order" : {
     "entity" : 100,
     "transform" : 90
   },
   "update": [
-		"fwd_msg",
-		"platform_move",
-		"collectable",
-        "breakable",
-		"mechanism",
-		"mechanism_system",
-		"destroyCondition",
+    "fwd_msg",
+    "platform_move",
+    "collectable",
+    "breakable",
+    "mechanism",
+    "mechanism_system",
+    "destroyCondition",
     "skeleton",
     "bone_tracker",
     "behaviorTree_melee_enemy",
@@ -30,20 +30,20 @@
     "shadow",
     "local_aabb",
     "camera_player",
-        "fixed_camera",
+    "fixed_camera",
     "camera",
-        "follow_curve",
-        "platform",
+    "follow_curve",
+    "platform",
     "curve_controller",
     "culling",
     "light_dir",
     "render",
     "fsm",
     "fake_animation",
-        "hierarchy",
+    "hierarchy",
     "player_input"
   ],
-    "render_debug" : [
+  "render_debug" : [
     "transform",
     "light_dir"
 	]
