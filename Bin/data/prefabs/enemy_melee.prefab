@@ -17,6 +17,13 @@
 			"respawner" : {
 				"respawnTime" : 10.0
 			},
+			"shadow": {
+				"offset": "0 0.1 0",
+				"mesh": "data/meshes/_testShadow.mesh",
+				"materials": [
+					"data/materials/black.material"
+				]
+			},
 			"givePower": {
 				"maxPowerToGive": 50000.0,
 				"baseMultiplier": 1.0

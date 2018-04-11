@@ -16,7 +16,7 @@ void TCompShadow::load(const json& j, TEntityParseContext& ctx) {
 		offset = loadVEC3(j["offset"]);
 	}
 
-	shadowMeshName = j.value("mesh", "axis.mesh");
+	std::string shadowMeshName = j.value("mesh", "axis.mesh");
 	mesh = Resources.get(shadowMeshName)->as<CRenderMesh>();
 
 	if (j.count("materials")) {
@@ -82,15 +82,9 @@ void TCompShadow::setMesh(std::string meshName) {
 }
 
 void TCompShadow::enable() {
-	if (!enabled) {
-		setMesh(shadowMeshName);
-		enabled = true;
-	}
+	enabled = true;
 }
 
 void TCompShadow::disable() {
-	if (enabled) {
-		setMesh(disabledMeshName);
-		enabled = false;
-	}
+	enabled = false;
 }

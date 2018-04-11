@@ -173,25 +173,26 @@ void CModuleEntities::render() {
 
 	auto om_shadow = getObjectManager<TCompShadow>();
 	om_shadow->forEach([](TCompShadow* c) {
+		if (c->isEnabled()) {
+			TCompTransform* c_transform = c->getTransform();
+			if (!c_transform) return;
 
-		TCompTransform* c_transform = c->getTransform();
-		if (!c_transform)
-			return;
+			cb_object.obj_world = c_transform->asMatrix();
+			cb_object.updateGPU();
 
-		cb_object.obj_world = c_transform->asMatrix();
-		cb_object.updateGPU();
-
-		for (auto& m : c->materials) {
-			m->activate();
+			for (auto& m : c->materials) {
+				m->activate();
+			}
+			c->mesh->activateAndRender();
 		}
-		c->mesh->activateAndRender();
 	});
 
     CRenderManager::get().renderCategory("default");
     CRenderManager::get().debugInMenu();
-  	renderDebugOfComponents();
+  	//renderDebugOfComponents();
 }
 
+// Shows render debug of all components (axis and so on).
 void CModuleEntities::renderDebugOfComponents() {
 	CTraceScoped gpu_scope("renderDebugOfComponents");
 	PROFILE_FUNCTION("renderDebugOfComponents");
