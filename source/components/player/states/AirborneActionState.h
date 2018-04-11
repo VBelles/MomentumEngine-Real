@@ -24,6 +24,8 @@ protected:
 	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
 
+
+
 public:
 	AirborneActionState(CHandle playerModelHandle);
 	void update(float delta) override;
@@ -36,5 +38,6 @@ public:
 	void OnReleasePowerButton() override;
 
 	virtual void OnLanding();
+	virtual void OnShapeHit(const PxControllerShapeHit &hit) override;
 
 };

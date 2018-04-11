@@ -29,7 +29,7 @@ void IActionState::SetMovementInput(VEC2 input) {
 }
 
 TCompCamera* IActionState::GetCamera() {
-	CEntity* camera = (CEntity *)getEntityByName("game_camera");
+	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
 	return currentCamera;

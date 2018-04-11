@@ -91,6 +91,7 @@
     <ClCompile Include="camera\camera.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_appear.cpp" />
+    <ClCompile Include="components\comp_breakable.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
@@ -104,9 +105,11 @@
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
+    <ClCompile Include="components\comp_light_point.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_mechanism_system.cpp" />
+    <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_platform.cpp" />
     <ClCompile Include="components\comp_platform_move.cpp" />
@@ -121,6 +124,7 @@
     <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
     <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
     <ClCompile Include="components\controllers\comp_fake_animation_controller.cpp" />
+    <ClCompile Include="components\controllers\comp_fixed_camera.cpp" />
     <ClCompile Include="components\controllers\comp_follow_curve.cpp" />
     <ClCompile Include="components\controllers\comp_player_input.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
@@ -186,6 +190,8 @@
     <ClCompile Include="fsm\custom_transitions.cpp" />
     <ClCompile Include="fsm\factory.cpp" />
     <ClCompile Include="fsm\fsm.cpp" />
+    <ClCompile Include="modules\game\physics\GameControllerHitCallback.cpp" />
+    <ClCompile Include="modules\game\physics\GameFilterShader.cpp" />
     <ClCompile Include="geometry\angular.cpp" />
     <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="geometry\geometry.cpp" />
@@ -210,20 +216,24 @@
     </ClCompile>
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
+    <ClCompile Include="modules\game\module_pause.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_test_axis.cpp" />
-    <ClCompile Include="modules\module_entities.cpp" />
+    <ClCompile Include="modules\game\module_entities.cpp" />
     <ClCompile Include="modules\module_ia.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
-    <ClCompile Include="modules\system\module_physics.cpp" />
-    <ClCompile Include="modules\module_render.cpp" />
+    <ClCompile Include="modules\game\physics\module_physics.cpp" />
+    <ClCompile Include="modules\system\module_render.cpp" />
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\game\physics\GameQueryFilterCallback.cpp" />
+    <ClCompile Include="modules\game\physics\GameSimulationEventCallback.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
+    <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
     <ClCompile Include="render\render.cpp" />
@@ -244,6 +254,7 @@
     <ClCompile Include="skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="skeleton\comp_skeleton.cpp" />
     <ClCompile Include="skeleton\game_core_skeleton.cpp" />
+    <ClCompile Include="utils\geometry_utils.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="utils\variant.cpp" />
@@ -255,6 +266,7 @@
     <ClInclude Include="components\comp_aabb.h" />
     <ClInclude Include="components\comp_appear.h" />
     <ClInclude Include="components\comp_base.h" />
+    <ClInclude Include="components\comp_breakable.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_circular_controller.h" />
     <ClInclude Include="components\comp_collectable.h" />
@@ -268,11 +280,12 @@
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_light_dir.h" />
+    <ClInclude Include="components\comp_light_point.h" />
     <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_mechanism_system.h" />
+    <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="components\comp_name.h" />
-    <ClInclude Include="components\comp_platform.h" />
     <ClInclude Include="components\comp_platform_move.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
     <ClInclude Include="components\comp_purity.h" />
@@ -285,6 +298,7 @@
     <ClInclude Include="components\controllers\comp_camera_flyover.h" />
     <ClInclude Include="components\controllers\comp_camera_orbit.h" />
     <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
+    <ClInclude Include="components\controllers\comp_fixed_camera.h" />
     <ClInclude Include="components\controllers\comp_follow_curve.h" />
     <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
@@ -354,6 +368,9 @@
     <ClInclude Include="fsm\fsm.h" />
     <ClInclude Include="fsm\state.h" />
     <ClInclude Include="fsm\transition.h" />
+    <ClInclude Include="game_constants.h" />
+    <ClInclude Include="modules\game\physics\GameControllerHitCallback.h" />
+    <ClInclude Include="modules\game\physics\GameFilterShader.h" />
     <ClInclude Include="geometry\angular.h" />
     <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\geometry.h" />
@@ -388,21 +405,25 @@
     <ClInclude Include="modules\gamestate.h" />
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
+    <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\module.h" />
-    <ClInclude Include="modules\module_entities.h" />
+    <ClInclude Include="modules\game\module_entities.h" />
     <ClInclude Include="modules\module_ia.h" />
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\system\module_cameras.h" />
     <ClInclude Include="modules\system\module_fsm.h" />
-    <ClInclude Include="modules\system\module_physics.h" />
-    <ClInclude Include="modules\module_render.h" />
+    <ClInclude Include="modules\game\physics\module_physics.h" />
+    <ClInclude Include="modules\system\module_render.h" />
     <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\game\physics\GameQueryFilterCallback.h" />
+    <ClInclude Include="modules\game\physics\GameSimulationEventCallback.h" />
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\cte_buffer.h" />
+    <ClInclude Include="render\deferred_renderer.h" />
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
@@ -430,6 +451,7 @@
     <ClInclude Include="utils\data_provider.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />
+    <ClInclude Include="utils\geometry_utils.h" />
     <ClInclude Include="utils\json.hpp" />
     <ClInclude Include="utils\murmur3\murmur3.h" />
     <ClInclude Include="utils\timer.h" />
@@ -439,15 +461,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
-    <None Include="x64\Debug\Cal3D.pdb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Cal3D\Cal3D.vcxproj">
       <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="x64\Debug\Cal3D.lib" />
+    <ProjectReference Include="lua\LuaLib.vcxproj">
+      <Project>{9ed7c695-9ec5-46c2-8b7a-6d9ac59a09c3}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -99,7 +99,7 @@
 				"shape": "box",
 				"is_trigger" : true,
 				"is_dynamic" : false,
-				"halfExtent" : "1000000 0.000001 1000000",
+				"halfExtent" : "1000000 1 1000000",
 				"group":["all"],
 				"mask":["characters"]
 			},
@@ -145,6 +145,31 @@
 				"shadows_step" : 3.0,
 				"shadows_resolution" : 256,
 				"shadows_fmt" : "R32_TYPELESS"
+			}
+		}
+	},
+	{
+		"entity":
+		{
+			"name": "breakable_box_01",
+			"render": [
+				{
+					"mesh": "data/meshes/door.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
+				}
+			],
+			"transform": {
+				"pos": "-40 27 -47",
+				"lookat": "120 27 0"
+			},
+			"breakable":{
+				"hp": 1
+			},
+			"collider": {
+				"shape": "box",
+				"halfExtent": "2.5 3.5 1.0"
 			}
 		}
 	}

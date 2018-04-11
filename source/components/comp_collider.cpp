@@ -78,28 +78,49 @@ void TCompCollider::registerMsgs() {
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
-	enable();
+	create();
 }
 
-void TCompCollider::enable() {
-	if (!enabled) {
-		Engine.getPhysics().createActor(*this);
-		enabled = true;
+void TCompCollider::create() {
+	if (!isCreated()) {
+		EnginePhysics.createActor(*this);
+		setCreated(true);
 	}
 }
 
-void TCompCollider::disable() {
-	if (enabled) {
-		Engine.getPhysics().releaseCollider(CHandle(this));
-		enabled = false;
+void TCompCollider::destroy() {
+	if (isCreated()) {
+		EnginePhysics.releaseCollider(CHandle(this));
+		setCreated(false);
+	}
+}
+
+void TCompCollider::enableSimulation() {
+	if (isCreated()) {
+		EnginePhysics.enableSimulation(static_cast<PxRigidActor*>(actor), true);
+	}
+}
+
+void TCompCollider::disableSimulation() {
+	if (isCreated()) {
+		EnginePhysics.enableSimulation(static_cast<PxRigidActor*>(actor), false);
+	}
+}
+
+void TCompCollider::enableSceneQuery() {
+	if (isCreated()) {
+		EnginePhysics.enableSceneQuery(static_cast<PxRigidActor*>(actor), true);
+	}
+}
+
+void TCompCollider::disableSceneQuery() {
+	if (isCreated()) {
+		EnginePhysics.enableSceneQuery(static_cast<PxRigidActor*>(actor), false);
 	}
 }
 
 void TCompCollider::setupFiltering(PxU32 filterGroup, PxU32 filterMask) {
-	config.group = filterGroup;
-	config.mask = filterMask;
-	//TODO: hacer que esto funcione realmente
-	//EnginePhysics.setupFiltering(static_cast<PxRigidActor*>(actor), filterGroup, filterMask);
+	EnginePhysics.setupFiltering(static_cast<PxRigidActor*>(actor), filterGroup, filterMask);
 }
 
 

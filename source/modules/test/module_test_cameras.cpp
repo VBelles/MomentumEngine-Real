@@ -33,9 +33,9 @@ struct TVtxPosClr {
 //}
 
 bool CModuleTestCameras::start() {
-    CHandle h_playerCamera = getEntityByName("player_camera");
+    CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
     Engine.getCameras().setDefaultCamera(h_playerCamera);
-    CHandle h_camera = getEntityByName("game_camera");
+    CHandle h_camera = getEntityByName(GAME_CAMERA);
     Engine.getCameras().setOutputCamera(h_camera);
 
     //_curve.addKnot(VEC3(8, 3, 5));
@@ -49,8 +49,8 @@ bool CModuleTestCameras::start() {
 }
 
 void CModuleTestCameras::update(float delta) {
-   /* if (EngineInput['1'].getsPressed()) {
-        CHandle h_camera = getEntityByName("player_camera");
+    /*if (EngineInput['1'].getsPressed()) {
+        CHandle h_camera = getEntityByName(PLAYER_CAMERA);
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
     if (EngineInput['2'].getsPressed()) {
@@ -62,14 +62,14 @@ void CModuleTestCameras::update(float delta) {
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
 
-	CEntity* e_teapot = getEntityByName("game_camera");
-	if (e_teapot) {
+    CEntity* e_teapot = getEntityByName(GAME_CAMERA);
+    if (e_teapot) {
         static float time = 0.f;
         time += delta;
         VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
         TCompTransform* c_transform = e_teapot->get<TCompTransform>();
         c_transform->setPosition(pos);
-		
+
         CEntity* e_curve = getEntityByName("test_camera_curve");
         TCompCurve* c_curve = e_curve->get<TCompCurve>();
         float ratio = (pos.x + 10.f) / 20.f;
@@ -79,7 +79,7 @@ void CModuleTestCameras::update(float delta) {
 
 void CModuleTestCameras::render() {
     // Find the entity with name 'game_camera'
-    CHandle h_e_camera = getEntityByName("game_camera");
+    CHandle h_e_camera = getEntityByName(GAME_CAMERA);
     if (h_e_camera.isValid()) {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get<TCompCamera>();

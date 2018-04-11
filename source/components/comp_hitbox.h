@@ -5,7 +5,7 @@
 #include "comp_base.h"
 #include "geometry/transform.h"
 #include "entity/common_msgs.h"
-#include "PxPhysicsAPI.h"
+
 
 class TCompHitbox : public TCompBase {
 	DECL_SIBLING_ACCESS();
@@ -13,7 +13,7 @@ class TCompHitbox : public TCompBase {
 private:
 	VEC3 offset = {0,0,0};
 	std::set<CHandle> handles;
-
+	bool enabled = true;
 public:
 	static void registerMsgs();
 	void debugInMenu();

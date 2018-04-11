@@ -22,6 +22,8 @@ void GroundedActionState::OnStateEnter(IActionState * lastState) {
 
 void GroundedActionState::OnStateExit(IActionState * nextState) {
 	IActionState::OnStateExit(nextState);
+	GetPlayerModel()->lastWallEntered = nullptr;
+	GetPlayerModel()->lastWallNormal = PxVec3(0,0,0);
 }
 
 void GroundedActionState::OnJumpHighButton() {

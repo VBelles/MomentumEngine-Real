@@ -46,7 +46,7 @@ void CAIMeleeEnemy::InitStates() {
 
 void CAIMeleeEnemy::OnGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
-	player = getEntityByName("The Player");
+	player = getEntityByName(PLAYER_NAME);
 	TCompPlayerModel* playerModel = getPlayerEntity()->get<TCompPlayerModel>();
 	launchPowerStats = &*playerModel->GetPowerStats();
 
@@ -91,19 +91,19 @@ void CAIMeleeEnemy::OnGrabbed(float duration) {
 	grabbedTimer.reset();
 	grabbedDuration = duration;
 	ChangeState("grabbed");
-	getCollider()->disable();
+	getCollider()->destroy();
 }
 
 void CAIMeleeEnemy::GrabbedState(float delta) {
 	if (grabbedTimer.elapsed() >= grabbedDuration) {
-		getCollider()->enable();
+		getCollider()->create();
 		ChangeState("idle");
 	}
 }
 
 void CAIMeleeEnemy::OnPropelled(VEC3 velocity) {
 	propelVelocityVector = velocity;
-	getCollider()->enable();
+	getCollider()->create();
 
 	propelTimer.reset();
 	ChangeState("propelled");
@@ -150,7 +150,7 @@ void CAIMeleeEnemy::OnRespawn(const TMsgRespawn & msg) {
 		ChangeState("idle");
 		isDead = false;
 		health = maxHealth;
-		getCollider()->enable();
+		getCollider()->create();
 		getTransform()->setPosition(spawnPosition);
 		getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
 
@@ -242,7 +242,7 @@ void CAIMeleeEnemy::AttackState(float delta) {
 
 void CAIMeleeEnemy::DeathState(float delta) {
 	if (!isDead) {
-		getCollider()->disable();
+		getCollider()->destroy();
 		//CHandle(this).getOwner().destroy();
 		TCompRender* render = get<TCompRender>();
 		//render->setMesh("data/meshes/nada.mesh"); // Ahora coge lo que hay en meshes, no lo de mesh.

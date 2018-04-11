@@ -56,6 +56,11 @@ struct TMsgAllScenesCreated {
 	DECL_MSG_ID();
 };
 
+struct TMsgLockCameraInput {
+	DECL_MSG_ID();
+	bool isLocked;
+};
+
 struct TMsgMechanismActivated {
 	DECL_MSG_ID();
 };
@@ -89,10 +94,6 @@ struct TMsgDamage {
 	DECL_MSG_ID();
 };
 
-struct TMsgCollect {
-	std::string type;
-	DECL_MSG_ID();
-};
 
 struct TMsgDestroy {
 	CHandle h_sender;
@@ -153,7 +154,7 @@ struct TMsgDefineLocalAABB {
 };
 
 struct TMsgOnShapeHit {
-	physx::PxControllerShapeHit hit;
+	const physx::PxControllerShapeHit& hit;
 	DECL_MSG_ID();
 };
 

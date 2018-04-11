@@ -1,7 +1,8 @@
 #include "mcv_platform.h"
 #include "comp_platform_move.h"
-#include "render/render_utils.h"
+#include "render/render_objects.h"
 #include "player/comp_player_model.h"
+#include "game_constants.h"
 
 DECL_OBJ_MANAGER("platform_move", TCompPlatformMove);
 
@@ -39,7 +40,7 @@ void TCompPlatformMove::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlatformMove::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-    player = (CHandle)getEntityByName("The Player");
+    player = (CHandle)getEntityByName(PLAYER_NAME);
 	TCompCollider* collider = get<TCompCollider>();
 	assert(collider);
 	PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
@@ -50,7 +51,7 @@ void TCompPlatformMove::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	CEntity *triggerer = msg.h_other_entity;
 	std::string triggererName = triggerer->getName();
 	//dbg("Platform trigger enter by %s\n", triggererName.c_str());
-	if (triggererName == "The Player") {
+	if (triggererName == PLAYER_NAME) {
         isPlayerInTrigger = true;
 
 		CEntity* ePlayer = (CEntity*)player;
@@ -63,7 +64,7 @@ void TCompPlatformMove::onTriggerExit(const TMsgTriggerExit & msg) {
     CEntity *triggerer = msg.h_other_entity;
     std::string triggererName = triggerer->getName();
     //dbg("Platform trigger exit by %s\n", triggererName.c_str());
-    if (triggererName == "The Player") {
+    if (triggererName == PLAYER_NAME) {
         isPlayerInTrigger = false;
 		CEntity* ePlayer = (CEntity*)player;
 		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();

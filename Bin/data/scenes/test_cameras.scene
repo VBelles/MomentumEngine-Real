@@ -27,6 +27,67 @@
 			},
 			"camera" : {
 				"fov" : 80 
+			},
+			"fixed_camera" : {
+				"returnToPlayerCameraWithInput" : true,
+				"modifyPlayerCameraRotation" : true
+			}
+		}
+	},
+	{
+		"entity":{
+			"name":"fixed_camera_trigger",
+			"transform":{
+				"pos": "-22 20 -26"
+			},
+			"collider":{
+				"shape": "box",
+				"halfExtent" : "5 5 5",
+				"is_trigger" : true,
+				"group" : ["trigger"],
+				"mask" : ["player"]
+			},
+			"mixCameraTrigger":{
+				"cameraToMix": "fixed_camera",
+				"timeToMixIn": 2.5,
+				"timeToMixOut": 1.4,
+				"modifyPlayerCameraRotation" : true
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "fixed_camera_2",
+			"transform": {
+				"pos": "-76 55 -77",
+				"lookat": "-76 0 -86"
+			},
+			"camera" : {
+				"fov" : 80 
+			},
+			"fixed_camera" : {
+				"returnToPlayerCameraWithInput" : false,
+				"modifyPlayerCameraRotation" : true
+			}
+		}
+	},
+	{
+		"entity":{
+			"name":"fixed_camera_2_trigger",
+			"transform":{
+				"pos": "-76 20 -82"
+			},
+			"collider":{
+				"shape": "box",
+				"halfExtent" : "10 8.5 10",
+				"is_trigger" : true,
+				"group" : ["trigger"],
+				"mask" : ["player"]
+			},
+			"mixCameraTrigger":{
+				"cameraToMix": "fixed_camera_2",
+				"timeToMixIn": 1.8,
+				"timeToMixOut": 1
 			}
 		}
 	}

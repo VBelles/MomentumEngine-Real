@@ -106,7 +106,7 @@ int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
 	health = 0.f;
 	isDead = true;
 
-	getCollider()->disable();
+	getCollider()->destroy();
 
 	TCompRender *render = get<TCompRender>();
 	render->disable();
@@ -125,7 +125,7 @@ int CBehaviorTreeMeleeEnemy::dead(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
-	getCollider()->disable();
+	getCollider()->destroy();
 	timer.reset();
 	grabbedDuration = receivedAttack.grab->duration;
 	return Leave;
@@ -133,7 +133,7 @@ int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
 
 int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 	if (timer.elapsed() >= grabbedDuration) {
-		getCollider()->enable();
+		getCollider()->create();
 		return Leave;
 	}
 	else {
@@ -142,7 +142,7 @@ int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
-	getCollider()->enable();
+	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
 
 	timer.reset();
@@ -238,7 +238,7 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 	health = maxHealth;
 	isDead = false;
 
-	getCollider()->enable();
+	getCollider()->create();
 	getTransform()->setPosition(spawnPosition);
 	getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
 
@@ -394,7 +394,7 @@ bool CBehaviorTreeMeleeEnemy::stepBackCondition(float delta) {
 
 void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
-	playerHandle = getEntityByName("The Player");
+	playerHandle = getEntityByName(PLAYER_NAME);
 }
 
 void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {

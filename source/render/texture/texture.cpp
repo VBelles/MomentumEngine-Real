@@ -67,6 +67,10 @@ void CTexture::setNullTexture(int slot) {
   Render.ctx->PSSetShaderResources(slot, 1, &null_srv);
 }
 
+CTexture::~CTexture() {
+	Resources.destroyResource(getName());
+}
+
 void CTexture::activate(int slot) const {
   assert(texture && shader_resource_view);
 

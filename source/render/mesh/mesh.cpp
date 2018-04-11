@@ -31,14 +31,14 @@ void CRenderMesh::setNameAndClass(const std::string& new_name, const CResourceCl
     if (ib) setDXName(ib, new_name.c_str());
 }
 
-bool CRenderMesh::create(const void* vertex_data,
-                         size_t      num_bytes,
+bool CRenderMesh::create(const void*        vertex_data,
+                         size_t             num_bytes,
                          const std::string& vtx_decl_name,
-                         eTopology   new_topology,
-                         const void* index_data,
-                         size_t      num_index_bytes,
-                         size_t      bytes_per_index,
-                         VMeshSubGroups* new_subgroups) {
+                         eTopology          new_topology,
+                         const void*        index_data,
+                         size_t             num_index_bytes,
+                         size_t             bytes_per_index,
+                         VMeshSubGroups*    new_subgroups) {
     HRESULT hr;
 
     assert(vertex_data != nullptr);

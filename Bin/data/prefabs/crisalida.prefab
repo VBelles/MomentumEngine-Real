@@ -1,7 +1,7 @@
 [
 	{
 		"entity": {
-			"name": "crisalida_prefab",
+			"name": "chrysalis",
 			"transform": {
 				"pos": "0 0 0"
 			},
@@ -20,8 +20,9 @@
 			"collider" : {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : false,
-				"radius" : 0.5
+				"radius" : 0.5,
+				"group": ["all"],
+				"mask": ["player"]
 			}
 		}
 	}

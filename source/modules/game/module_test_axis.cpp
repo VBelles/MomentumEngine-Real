@@ -3,7 +3,7 @@
 #include "camera/camera.h"
 #include "render/render_objects.h"
 #include "entity/entity.h"
-#include "modules/module_entities.h"
+#include "modules/game/module_entities.h"
 #include "resources/resources_manager.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
@@ -17,7 +17,7 @@
 #include "components/controllers/comp_curve.h"
 
 CCamera camera;
-extern void registerMesh(CRenderMesh* new_mesh, const char* name);
+//extern void registerMesh(CRenderMesh* new_mesh, const char* name);
 
 struct TVtxPosClr {
     VEC3 pos;
@@ -52,21 +52,8 @@ bool CModuleTestAxis::start() {
         parseScene(scene_name, ctx);
     }
 
-    CHandle h_playerCamera = getEntityByName("player_camera");
-    Engine.getCameras().setDefaultCamera(h_playerCamera);
-    CHandle h_camera = getEntityByName("game_camera");
-    Engine.getCameras().setOutputCamera(h_camera);
-
-    const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
-    registerMesh(createCurveMesh(*curve, 100), "curve.mesh");
-
-    if (!cb_camera.create(CB_CAMERA)) return false;
-    if (!cb_object.create(CB_OBJECT)) return false;
-    if (!cb_light.create(CB_LIGHT))   return false;
-
-    cb_light.activate();
-    cb_object.activate();
-    cb_camera.activate();
+	//const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
+	//registerMesh(createCurveMesh(*curve, 100), "curve.mesh");
 
 	//All scenes created
 	TMsgAllScenesCreated msg;
@@ -75,19 +62,21 @@ bool CModuleTestAxis::start() {
 		entity->sendMsg(msg);
 	}
 
+	CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
+	Engine.getCameras().setDefaultCamera(h_playerCamera);
+	CHandle h_camera = getEntityByName(GAME_CAMERA);
+	Engine.getCameras().setOutputCamera(h_camera);
+
     return true;
 }
 
 bool CModuleTestAxis::stop() {
-    cb_light.destroy();
-    cb_camera.destroy();
-    cb_object.destroy();
     return true;
 }
 
 void CModuleTestAxis::update(float delta) {
     if (EngineInput['1'].getsPressed()) {
-        CHandle h_camera = getEntityByName("player_camera");
+		CHandle h_camera = getEntityByName(PLAYER_CAMERA);
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
     if (EngineInput['2'].getsPressed()) {
@@ -98,12 +87,12 @@ void CModuleTestAxis::update(float delta) {
         CHandle h_camera = getEntityByName("test_camera_curve");
         Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
     }
-	
+    
     /*static float time = 0.f;
     time += delta;
     VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
     CEntity* e_curve = getEntityByName("test_camera_curve");
-	TCompCurve* c_curve = e_curve->get<TCompCurve>();
+    TCompCurve* c_curve = e_curve->get<TCompCurve>();
     float ratio = (pos.x + 10.f) / 20.f;
     c_curve->setRatio(ratio);*/
 
@@ -117,7 +106,7 @@ void CModuleTestAxis::update(float delta) {
 
 void CModuleTestAxis::render() {
     // Find the entity with name 'game_camera'
-    CHandle h_e_camera = getEntityByName("game_camera");
+	CHandle h_e_camera = getEntityByName(GAME_CAMERA);
     if (h_e_camera.isValid()) {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get<TCompCamera>();
@@ -127,11 +116,6 @@ void CModuleTestAxis::render() {
     else {
         activateCamera(camera, Render.width, Render.height);
     }
-
-    // Render the grid
-    cb_object.obj_world = MAT44::Identity;
-    cb_object.obj_color = VEC4(1, 1, 1, 1);
-    cb_object.updateGPU();
 
     auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
     solid->activate();

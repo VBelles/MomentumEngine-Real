@@ -18,8 +18,8 @@ class CHandleManager {
     TExternalData()
       : internal_index(0)
       , current_age(0)
-      , next_external_index(0)
-    { }
+			, next_external_index(0) {
+		}
   };
 
 protected:
@@ -76,8 +76,8 @@ public:
     , num_objs_used(0)
     , next_free_handle_ext_index(0)
     , last_free_handle_ext_index(0)
-    , name(nullptr)
-  { }
+		, name(nullptr) {
+	}
 
   CHandleManager(const CHandleManager&) = delete;
 
@@ -88,9 +88,11 @@ public:
     assert(max_objects > 0);
 
     // Register this as the manager that will handle
-    // the type 'type' and has name 'getName()'
+    // the type 'type' and has name 'getName()' only the first time.
+		if (type == 0) {
     type = next_type_of_handle_manager;
     next_type_of_handle_manager++;
+		}
     all_managers[type] = this;
     // Registrarme por nombre
     all_manager_by_name[getName()] = this;

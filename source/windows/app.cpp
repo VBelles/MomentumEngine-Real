@@ -44,7 +44,6 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 			int posX = GET_X_LPARAM(lParam);
 			int posY = GET_Y_LPARAM(lParam);
 			mouse->setPosition(static_cast<float>(posX), static_cast<float>(posY));
-			app_instance->resetMouse = true;
 		}
 	}
 	break;
@@ -222,7 +221,7 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 void CApp::mainLoop() {
 	// Main message loop
 	MSG msg = { 0 };
-	while (WM_QUIT != msg.message) {
+	while (WM_QUIT != msg.message && !stopMainLoop) {
 		// Check if windows has some msg for us
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);

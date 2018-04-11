@@ -1,0 +1,29 @@
+[
+	{
+		"entity": {
+			"name": "coin",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/crisalida.mesh",
+					"materials": [
+						"data/materials/ambar.material"
+					],
+					"color": "1 1 0 1"
+				}
+			],
+			"collectable": {
+				"type": "coin"
+			},
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius" : 0.5,
+				"group": ["scenario"],
+				"mask": ["player"]
+			}
+		}
+	}
+]
