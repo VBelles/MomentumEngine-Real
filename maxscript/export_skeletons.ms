@@ -1,20 +1,21 @@
 clearListener()
 
 struct  TSkeletonsExporter (
-	project_path = "C:/mcv/Code/bin/data/",
-	skel_name = "unknown",			-- smurf
+	project_path = "C:/Users/mcv16_alumne/Desktop/MCV/MomentumEngine-Real/",
+	skel_name = "test",			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return classof obj == Biped_Object and obj.wireColor != Black
+		return classof obj == Dummy and obj.wireColor != Black
 	),
 	
 	-- Search the root bones in the scene to define the .csf
 	fn findSkelCandidates = (
 		local obj_bones = #()
 		for obj in $* do (
+			format "% % \n" obj.name (classof obj)
 			if isBone obj and obj.parent == undefined then (
 				format "% is a root bone\n" obj.name
 				append obj_bones obj
@@ -53,7 +54,7 @@ struct  TSkeletonsExporter (
 	
 	fn setSkelName new_name = (
 		skel_name = new_name
-		skel_root_path = project_path + "skeletons/" + skel_name + "/"
+		skel_root_path = project_path + "Bin/data/skeletons/" + skel_name + "/"
 		makedir skel_root_path 
 		skel_file = skel_root_path + skel_name + ".csf"
 	),
@@ -73,8 +74,8 @@ struct  TSkeletonsExporter (
 		local root = root_bones[1]
 		
 		-- Pasar a modo figura si esta en modo pose
-		local was_in_figure_mode = root.controller.figureMode
-		root.controller.figureMode = true
+		--local was_in_figure_mode = root.controller.figureMode
+		--root.controller.figureMode = true
 		local bones_to_export = findBoneCandidates()
 		
 		for b in bones_to_export do (
@@ -94,7 +95,7 @@ struct  TSkeletonsExporter (
 		)
 		
 		-- Restaurar el modo pose si es q estaba en modo pose inicialmente
-		if was_in_figure_mode == false then root.controller.figureMode = false
+		--if was_in_figure_mode == false then root.controller.figureMode = false
     ),
 	
 	fn exportAnim = (
@@ -116,7 +117,7 @@ struct  TSkeletonsExporter (
 	
 )
 
---gc()
---se = TSkeletonsExporter()
---se.exportSkelAndMeshes()
---se.exportAnim()
+gc()
+se = TSkeletonsExporter()
+se.exportSkelAndMeshes()
+se.exportAnim()

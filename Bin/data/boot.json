@@ -3,6 +3,7 @@
     "data/scenes/player.scene",
     "data/scenes/test_cameras.scene",
     "data/scenes/game_camera.scene",
+    "data/scenes/skeleton_demo2.scene",
     "data/scenes/scene_basic.scene",
     "data/scenes/whitebox23.scene"
   ],
