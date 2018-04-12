@@ -21,8 +21,9 @@ void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	targetName = j.value("target", "");
 	defaultDistanceToTarget = j.value("distance_to_target", 5.f);
 	currentDistanceToTarget = defaultDistanceToTarget;
-	cameraSpeed = loadVEC2(j["camera_speed"]);
-	zoomSpeed = (j.value("zoomSpeed", 20.f));
+	cameraSpeed = loadVEC2(j["camera_speed"]); 
+	zoomOutSpeed = (j.value("zoomOutSpeed", 20.f));
+	zoomInSpeed = (j.value("zoomInSpeed", 10.f));
 	maxPitch = deg2rad(j.value("max_pitch", 80.f));
 	minPitch = deg2rad(j.value("min_pitch", -80.f));
 	initialYaw = deg2rad(j.value("yaw", 0.f));
@@ -107,21 +108,8 @@ void TCompCameraPlayer::updateMovement(float delta) {
 	p += input.y * delta;
 	p = clamp(p, minPitch, maxPitch);
 	transform->setYawPitchRoll(y, p, r);
-
-	//Move the camera back
-	float distance;
-	distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
-	//Tirar atrás sólo un poco
-	//comparar current distance con distance
-	//Si current distance < distance,  sumas current distance más velocidad zoom
-	int movementDirection = currentDistanceToTarget < distance ? 1 : -1;
-	if (zoomSpeed * delta < abs(currentDistanceToTarget - distance)) {
-		currentDistanceToTarget = currentDistanceToTarget + zoomSpeed * delta * movementDirection;
-		transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
-	}
-	else {
-		transform->setPosition(transform->getPosition() - transform->getFront() * distance);
-	}
+	
+	moveCameraTowardsDefaultDistance(delta);
 }
 
 void TCompCameraPlayer::updateCenteringCamera(float delta) {
@@ -159,17 +147,7 @@ void TCompCameraPlayer::updateCenteringCamera(float delta) {
 
 	transform->setYawPitchRoll(yaw, pitch, r);
 
-	//Move the camera back
-	float distance;
-	distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
-	int movementDirection = currentDistanceToTarget < distance ? 1 : -1;
-	if (zoomSpeed * delta < abs(currentDistanceToTarget - distance)) {
-		currentDistanceToTarget = currentDistanceToTarget + zoomSpeed * delta * movementDirection;
-		transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
-	}
-	else {
-		transform->setPosition(transform->getPosition() - transform->getFront() * distance);
-	}
+	moveCameraTowardsDefaultDistance(delta);
 }
 void TCompCameraPlayer::sweepBack() {
 	VEC3 targetPosition = targetTransform.getPosition();
@@ -227,6 +205,30 @@ void TCompCameraPlayer::centerCamera() {
 	}
 }
 
+void TCompCameraPlayer::moveCameraTowardsDefaultDistance(float delta) {
+	float distance;
+	distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
+	bool isCloserThanDefault = currentDistanceToTarget < distance ? true : false;
+	if (isCloserThanDefault) {
+		if (zoomOutSpeed * delta < abs(currentDistanceToTarget - distance)) {
+			currentDistanceToTarget = currentDistanceToTarget + zoomOutSpeed * delta;
+		}
+		else {
+			currentDistanceToTarget = distance;
+		}
+	}
+	else {
+		if (zoomInSpeed * delta < abs(currentDistanceToTarget - distance)) {
+			currentDistanceToTarget = currentDistanceToTarget - zoomInSpeed * delta;
+		}
+		else {
+			currentDistanceToTarget = distance;
+		}
+	}
+	TCompTransform* transform = getTransform();
+	transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
+}
+
 void TCompCameraPlayer::suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera) {
 	suggestedYaw = yaw;
 	suggestedPitch = pitch;
@@ -254,4 +256,5 @@ void TCompCameraPlayer::resetSuggested() {
 	isPitchSuggested = false;
 	isDistanceForced = false;
 	isCenteringCameraForced = false;
+	centeringCamera = false;
 }
