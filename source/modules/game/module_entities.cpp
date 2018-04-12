@@ -171,7 +171,7 @@ void CModuleEntities::render() {
 		c->renderUI();
 	});
 
-	auto om_shadow = getObjectManager<TCompShadow>();
+	/*auto om_shadow = getObjectManager<TCompShadow>();
 	om_shadow->forEach([](TCompShadow* c) {
 		if (c->isEnabled()) {
 			TCompTransform* c_transform = c->getTransform();
@@ -185,9 +185,9 @@ void CModuleEntities::render() {
 			}
 			c->mesh->activateAndRender();
 		}
-	});
+	});*/
 
-    CRenderManager::get().renderCategory("default");
+    //CRenderManager::get().renderCategory("default"); // Ya no hace falta.
     CRenderManager::get().debugInMenu();
   	//renderDebugOfComponents();
 }
