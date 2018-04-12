@@ -329,6 +329,12 @@ void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
 }
 
 void TCompPlayerModel::update(float dt) {
+	if (baseState != baseStates[nextBaseState]) {
+		changeBaseState(nextBaseState);
+	}
+	if (concurrentState != concurrentStates[nextConcurrentState]) {
+		changeConcurrentState(nextConcurrentState);
+	}
 
 	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
 		showVictoryDialog = false;
@@ -347,13 +353,6 @@ void TCompPlayerModel::update(float dt) {
 
 	applyGravity(dt);
 	updateMovement(dt, deltaMovement);
-
-	if (baseState != baseStates[nextBaseState]) {
-		changeBaseState(nextBaseState);
-	}
-	if (concurrentState != concurrentStates[nextConcurrentState]) {
-		changeConcurrentState(nextConcurrentState);
-	}
 
 }
 
