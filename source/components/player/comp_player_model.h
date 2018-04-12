@@ -156,6 +156,7 @@ public:
 	void setBaseState(ActionStates newState);
 	void setConcurrentState(ActionStates newState);
 	void updateMovement(float delta, VEC3 deltaMovement);
+	void sweep(VEC3 deltaMovement);
 	void setMovementInput(VEC2 input, float delta);
 	void jumpButtonPressed();
 	void jumpButtonReleased();

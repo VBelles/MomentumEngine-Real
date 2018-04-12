@@ -47,6 +47,7 @@
 #include "states/concurrent_states/GrabHighActionState.h"
 #include "states/concurrent_states/GrabLongActionState.h"
 #include "states/concurrent_states/ReleasePowerAirActionState.h"
+#include "modules/game/physics/basic_query_filter_callback.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -384,6 +385,10 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	getController()->getActor()->getShapes(&tempShape, 1);
 	PxFilterData filterData = tempShape->getSimulationFilterData();
 
+	if (dynamic_cast<AirborneActionState*>(baseState)) {
+		sweep(deltaMovement);
+	}
+
 	PxControllerCollisionFlags moveFlags = getCollider()->controller->move(toPhysx(deltaMovement), 0.f, delta,
 		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
@@ -414,6 +419,48 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 			velocityVector.y = 0.f;
 		}
 	}
+}
+
+void TCompPlayerModel::sweep(VEC3 deltaMovement) {
+	PxShape* playerShape;
+	getController()->getActor()->getShapes(&playerShape, 1);
+	PxCapsuleGeometry geometry;
+	playerShape->getCapsuleGeometry(geometry);
+
+	PxTransform playerPxTransform = getController()->getActor()->getGlobalPose();
+	VEC3 position = fromPhysx(playerPxTransform.p);
+	VEC3 nextPosition = position + deltaMovement;
+	VEC3 direction = nextPosition - position;
+	direction.Normalize();
+	float distance = VEC3::Distance(nextPosition, position);
+
+	PxSweepBuffer sweepBuffer;
+	PxQueryFilterData fd;
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
+	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+	PxHitFlags hitFlags = PxHitFlag::eDEFAULT;
+
+	bool status = EnginePhysics.getScene()->sweep(geometry, playerPxTransform, toPhysx(direction), distance, sweepBuffer,
+		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
+	if (status) {
+		VEC2 normal = VEC2(sweepBuffer.block.normal.x, sweepBuffer.block.normal.z);
+		VEC2 velocity2 = VEC2(velocityVector.x, velocityVector.z);
+		VEC2 velocityNormal = VEC2(velocity2);
+		velocityNormal.Normalize();
+
+		VEC2 perpendicularNormal = VEC2(-normal.y, normal.x);
+
+		float dot = normal.Dot(velocityNormal);
+		float det = normal.x * velocityNormal.y - normal.y * velocityNormal.x;
+		float angle = atan2(det, dot);
+
+		velocity2 = perpendicularNormal * (sin(angle) * velocity2.Length());
+
+		velocityVector.x = velocity2.x;
+		velocityVector.z = velocity2.y;
+	}
+
+
 }
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
