@@ -245,8 +245,10 @@ void TCompCameraPlayer::placeCameraOnSuggestedPosition(VEC2 centeringSpeed) {
 		currentCenteringCameraSpeed = centeringSpeed;
 		centeringCamera = true;
 		VEC3 front = targetTransform.getFront();
-		float centeringYaw = isYawSuggested ? suggestedYaw : atan2(front.x, front.z);
-		float centeringPitch = isPitchSuggested ? suggestedPitch : initialPitch;
+		float yaw, pitch, roll;
+		getTransform()->getYawPitchRoll(&yaw, &pitch, &roll);
+		float centeringYaw = isYawSuggested ? suggestedYaw : yaw;
+		float centeringPitch = isPitchSuggested ? suggestedPitch : pitch;
 		desiredYawPitch = VEC2(centeringYaw, centeringPitch);
 	}
 }

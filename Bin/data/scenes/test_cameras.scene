@@ -21,7 +21,7 @@
 		"entity": {
 			"name": "fixed_camera",
 			"transform": {
-				"pos": "-5 25 -20",
+				"pos": "-5 80 -20",
 				"lookat": "-83 24 -56"
 			},
 			"camera" : {
@@ -49,13 +49,13 @@
 			},
 			"suggestCameraTrigger" :{
 				"cameraSuggestion" : "fixed_camera",
-				"distanceToCamera" : 8.0,
+				"distanceToCamera" : 8,
 				"suggestYaw" : true,
 				"suggestPitch" : true,
 				"forceDistance" : true,
 				"changeCenteringCamera" : true,
 				"forcePositionOnEnter" : true,
-				"centeringCameraSpeed" : "2 5"
+				"centeringCameraSpeed" : "2 3"
 			}
 		}
 	},
