@@ -19,11 +19,11 @@ void TCompRangedAttack::registerMsgs() {
 }
 
 void TCompRangedAttack::load(const json& j, TEntityParseContext& ctx) {
-	speed = j.value("speed", 0.01f);
-	lifetime = j.value("lifetime", 60.0f);
+	speed = j.value("speed", 10.f);
+	lifetime = j.value("lifetime", 30.0f);
 }
 
-void TCompRangedAttack::update(float dt) {
+void TCompRangedAttack::update(float delta) {
 	if (!hit) {
 		TCompCollider* collider = get<TCompCollider>();
 		if (timer.elapsed() > lifetime) {
@@ -31,9 +31,9 @@ void TCompRangedAttack::update(float dt) {
 			hit = true;
 		}
 		else {
-			TCompTransform *transform = get<TCompTransform>();
-			PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-			transform->setPosition(transform->getPosition() + transform->getFront() * speed);
+			TCompTransform* transform = get<TCompTransform>();
+			PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
+			transform->setPosition(transform->getPosition() + transform->getFront() * speed * delta);
 			rigidDynamic->setKinematicTarget(toPhysx(transform));
 		}
 	}
@@ -41,7 +41,7 @@ void TCompRangedAttack::update(float dt) {
 
 void TCompRangedAttack::onCreate(const TMsgEntityCreated& msg) {
 	TCompCollider* collider = get<TCompCollider>();
-	PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+	PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
 	rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
 }
 
