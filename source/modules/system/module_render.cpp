@@ -13,122 +13,123 @@
 #include "geometry/curve.h"
 
 CModuleRender::CModuleRender(const std::string& name)
-    : IModule(name) {
+	: IModule(name) {
 }
 
 // All techs are loaded from this json file
 bool parseTechniques() {
-    json j = loadJson("data/techniques.json");
-    for (auto it = j.begin(); it != j.end(); ++it) {
+	json j = loadJson("data/techniques.json");
+	for (auto it = j.begin(); it != j.end(); ++it) {
 
-        std::string tech_name = it.key() + ".tech";
-        json& tech_j = it.value();
+		std::string tech_name = it.key() + ".tech";
+		json& tech_j = it.value();
 
-        CRenderTechnique* tech = new CRenderTechnique();
-        if (!tech->create(tech_name, tech_j)) return false;
-        Resources.registerResource(tech);
-    }
-    return true;
+		CRenderTechnique* tech = new CRenderTechnique();
+		if (!tech->create(tech_name, tech_j)) return false;
+		Resources.registerResource(tech);
+	}
+	return true;
 }
 
 bool CModuleRender::start() {
-    if (!Render.createDevice(_xres, _yres)) return false;
+	if (!Render.createDevice(_xres, _yres)) return false;
 
-    if (!CVertexDeclManager::get().create()) return false;
+	if (!CVertexDeclManager::get().create()) return false;
 
-    // Register the resource types
-    Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
-    Resources.registerResourceClass(getResourceClassOf<CTexture>());
-    Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
-    Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
-    Resources.registerResourceClass(getResourceClassOf<CMaterial>());
-    Resources.registerResourceClass(getResourceClassOf<CCurve>());
-    Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
+	// Register the resource types
+	Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
+	Resources.registerResourceClass(getResourceClassOf<CTexture>());
+	Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
+	Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
+	Resources.registerResourceClass(getResourceClassOf<CMaterial>());
+	Resources.registerResourceClass(getResourceClassOf<CCurve>());
+	Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 
-    if (!createRenderObjects()) return false;
+	if (!createRenderObjects()) return false;
 
-    if (!createRenderUtils()) return false;
+	if (!createRenderUtils()) return false;
 
-    // --------------------------------------------
-    // ImGui
-    auto& app = CApp::get();
-    if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
-        return false;
+	// --------------------------------------------
+	// ImGui
+	auto& app = CApp::get();
+	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
+		return false;
 
-    if (!parseTechniques()) return false;
+	if (!parseTechniques()) return false;
 
-    setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
+	setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
 
-    return true;
+	return true;
 }
 
 // Forward the OS msg to the IMGUI
 LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
+	return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
 }
 
 bool CModuleRender::stop() {
-    ImGui_ImplDX11_Shutdown();
+	ImGui_ImplDX11_Shutdown();
 
-    destroyRenderUtils();
-    destroyRenderObjects();
+	destroyRenderUtils();
+	destroyRenderObjects();
 
-    Resources.destroyAll();
+	Resources.destroyAll();
 
-    Render.destroyDevice();
-    return true;
+	Render.destroyDevice();
+	return true;
 }
 
 void CModuleRender::update(float delta) {
-    (void)delta;
+	(void)delta;
 }
 
 void CModuleRender::render() {
-    // Notify ImGUI that we are starting a new frame
-    ImGui_ImplDX11_NewFrame();
-    if (CApp::get().showDebug) {
-        static int nframes = 5;
-        ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
-        if (ImGui::SmallButton("Start CPU Trace Capturing")) {
-            PROFILE_SET_NFRAMES(nframes);
-        }
-    }
+	// Notify ImGUI that we are starting a new frame
+	ImGui_ImplDX11_NewFrame();
+	if (CApp::get().showDebug) {
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		static int nframes = 5;
+		ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
+		if (ImGui::SmallButton("Start CPU Trace Capturing")) {
+			PROFILE_SET_NFRAMES(nframes);
+		}
+	}
 
-    Render.startRenderInBackbuffer();
+	Render.startRenderInBackbuffer();
 
-    // Clear the back buffer 
-    float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
-    Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
-    Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	// Clear the back buffer 
+	float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
+	Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
+	Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void CModuleRender::configure(int xres, int yres) {
-    _xres = xres;
-    _yres = yres;
+	_xres = xres;
+	_yres = yres;
 }
 
 void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
-    _backgroundColor[0] = r;
-    _backgroundColor[1] = g;
-    _backgroundColor[2] = b;
-    _backgroundColor[3] = a;
+	_backgroundColor[0] = r;
+	_backgroundColor[1] = g;
+	_backgroundColor[2] = b;
+	_backgroundColor[3] = a;
 }
 
 void CModuleRender::generateFrame() {
-    {
-        PROFILE_FUNCTION("CModuleRender::generateFrame");
-        CTraceScoped gpu_scope("Frame");
-        Engine.getModules().render();
-    }
-    {
-        PROFILE_FUNCTION("ImGui::Render");
-        CTraceScoped gpu_scope("ImGui");
-        ImGui::Render();
-    }
+	{
+		PROFILE_FUNCTION("CModuleRender::generateFrame");
+		CTraceScoped gpu_scope("Frame");
+		Engine.getModules().render();
+	}
+	{
+		PROFILE_FUNCTION("ImGui::Render");
+		CTraceScoped gpu_scope("ImGui");
+		ImGui::Render();
+	}
 
-    // Present the information rendered to the back buffer to the front buffer (the screen)
-    {
-        PROFILE_FUNCTION("Render.swapChain");
-        Render.swapChain->Present(0, 0);
-    }
+	// Present the information rendered to the back buffer to the front buffer (the screen)
+	{
+		PROFILE_FUNCTION("Render.swapChain");
+		Render.swapChain->Present(0, 0);
+	}
 }
