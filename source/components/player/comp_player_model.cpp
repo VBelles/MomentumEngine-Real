@@ -327,6 +327,12 @@ void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
 }
 
 void TCompPlayerModel::update(float dt) {
+	if (baseState != baseStates[nextBaseState]) {
+		changeBaseState(nextBaseState);
+	}
+	if (concurrentState != concurrentStates[nextConcurrentState]) {
+		changeConcurrentState(nextConcurrentState);
+	}
 
 	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
 		showVictoryDialog = false;
@@ -345,13 +351,6 @@ void TCompPlayerModel::update(float dt) {
 
 	applyGravity(dt);
 	updateMovement(dt, deltaMovement);
-
-	if (baseState != baseStates[nextBaseState]) {
-		changeBaseState(nextBaseState);
-	}
-	if (concurrentState != concurrentStates[nextConcurrentState]) {
-		changeConcurrentState(nextConcurrentState);
-	}
 
 }
 
@@ -378,18 +377,15 @@ void TCompPlayerModel::applyGravity(float delta) {
 
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
-	VEC3 pos = getTransform()->getPosition();
-	QUAT rot = getTransform()->getRotation();
-
 	PxShape* tempShape;
 	getController()->getActor()->getShapes(&tempShape, 1);
 	PxFilterData filterData = tempShape->getSimulationFilterData();
 
-	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(
-		toPhysx(deltaMovement), 0.f, delta,
+	PxControllerCollisionFlags moveFlags = getCollider()->controller->move(toPhysx(deltaMovement), 0.f, delta,
 		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
-	isGrounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
+	isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
+	//dbg("%d\n", isGrounded);
 	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue
 		if (isGrounded) {
 			isTouchingCeiling = false;
@@ -399,7 +395,7 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 			}
 		}
 		if (!isTouchingCeiling) {
-			isTouchingCeiling = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
+			isTouchingCeiling = moveFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
 			if (isTouchingCeiling) {
 				velocityVector.y = -1.f;
 			}

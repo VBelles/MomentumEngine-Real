@@ -2,6 +2,8 @@
 
 #include "comp_base.h"
 
+class TCompRender;
+class TCompCollider;
 struct TMsgEntitiesGroupCreated;
 struct TMsgPurityChange;
 
@@ -12,11 +14,18 @@ class TCompPurity : public TCompBase {
 private:
 	std::string	originalMeshPath = "";
 	std::string	originalMaterialPath = "";
+	CHandle colliderHandle;
+	CHandle renderHandle;
+
+	TCompRender* getRender();
+	TCompCollider* getCollider();
+	PxRigidDynamic* getRigidDynamic();
 
 public:
 	static void registerMsgs();
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onPurityChange(const TMsgPurityChange & msg);
+
 
 };

@@ -79,7 +79,6 @@ void FallingAttackActionState::onHitboxEnter(CHandle entity) {
 		CEntity *otherEntity = entity;
 
 		otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-
 		VEC3 propelVelocity = { 0, -maxFallingVelocity, 0 };
 		TMsgAttackHit msgAtackHit = {};
 		msgAtackHit.attacker = playerEntity;

@@ -15,49 +15,49 @@
 #include "geometry/curve.h"
 
 CModuleRender::CModuleRender(const std::string& name)
-    : IModule(name) {
+	: IModule(name) {
 }
 
 // All techs are loaded from this json file
 bool parseTechniques() {
-    json j = loadJson("data/techniques.json");
-    for (auto it = j.begin(); it != j.end(); ++it) {
+	json j = loadJson("data/techniques.json");
+	for (auto it = j.begin(); it != j.end(); ++it) {
 
-        std::string tech_name = it.key() + ".tech";
-        json& tech_j = it.value();
+		std::string tech_name = it.key() + ".tech";
+		json& tech_j = it.value();
 
-        CRenderTechnique* tech = new CRenderTechnique();
-        if (!tech->create(tech_name, tech_j)) return false;
-        Resources.registerResource(tech);
-    }
-    return true;
+		CRenderTechnique* tech = new CRenderTechnique();
+		if (!tech->create(tech_name, tech_j)) return false;
+		Resources.registerResource(tech);
+	}
+	return true;
 }
 
 bool CModuleRender::start() {
-    if (!Render.createDevice(_xres, _yres)) return false;
+	if (!Render.createDevice(_xres, _yres)) return false;
 
-    if (!CVertexDeclManager::get().create()) return false;
+	if (!CVertexDeclManager::get().create()) return false;
 
-    // Register the resource types
-    Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
-    Resources.registerResourceClass(getResourceClassOf<CTexture>());
-    Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
-    Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
-    Resources.registerResourceClass(getResourceClassOf<CMaterial>());
-    Resources.registerResourceClass(getResourceClassOf<CCurve>());
-    Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
+	// Register the resource types
+	Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
+	Resources.registerResourceClass(getResourceClassOf<CTexture>());
+	Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
+	Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
+	Resources.registerResourceClass(getResourceClassOf<CMaterial>());
+	Resources.registerResourceClass(getResourceClassOf<CCurve>());
+	Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 
-    if (!createRenderObjects()) return false;
+	if (!createRenderObjects()) return false;
 
-    if (!createRenderUtils()) return false;
+	if (!createRenderUtils()) return false;
 
-    // --------------------------------------------
-    // ImGui
-    auto& app = CApp::get();
-    if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
-        return false;
+	// --------------------------------------------
+	// ImGui
+	auto& app = CApp::get();
+	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
+		return false;
 
-    if (!parseTechniques()) return false;
+	if (!parseTechniques()) return false;
 
     // Main render target before rendering in the backbuffer
     rt_main = new CRenderToTexture;
@@ -97,7 +97,7 @@ bool CModuleRender::start() {
 
 // Forward the OS msg to the IMGUI
 LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
+	return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
 }
 
 bool CModuleRender::stop() {
@@ -108,13 +108,13 @@ bool CModuleRender::stop() {
 
     ImGui_ImplDX11_Shutdown();
 
-    destroyRenderUtils();
-    destroyRenderObjects();
+	destroyRenderUtils();
+	destroyRenderObjects();
 
-    Resources.destroyAll();
+	Resources.destroyAll();
 
-    Render.destroyDevice();
-    return true;
+	Render.destroyDevice();
+	return true;
 }
 
 void CModuleRender::update(float delta) {
@@ -143,8 +143,8 @@ void CModuleRender::render() {
 }
 
 void CModuleRender::configure(int xres, int yres) {
-    _xres = xres;
-    _yres = yres;
+	_xres = xres;
+	_yres = yres;
 }
 
 void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
@@ -198,9 +198,9 @@ void CModuleRender::generateFrame() {
         ImGui::Render();
     }
 
-    // Present the information rendered to the back buffer to the front buffer (the screen)
-    {
-        PROFILE_FUNCTION("Render.swapChain");
-        Render.swapChain->Present(0, 0);
-    }
+	// Present the information rendered to the back buffer to the front buffer (the screen)
+	{
+		PROFILE_FUNCTION("Render.swapChain");
+		Render.swapChain->Present(0, 0);
+	}
 }

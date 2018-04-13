@@ -59,7 +59,7 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	maxHealth = j.value("maxHealth", 5.0f);
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
-	rotationSpeed = j.value("rotationSpeed", 45.f);
+	rotationSpeed = j.value("rotationSpeed", 20.f);
 	recallDistance = j.value("recallDistance", 5.f);
 	attackFov = deg2rad(j.value("attackFov", 60.f));
 	minCombatDistance = j.value("minCombatDistance", 2.f);
@@ -259,7 +259,9 @@ int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	if (VEC3::Distance(myPosition + deltaMovement, spawnPosition) < 0.1f || (distance < maxCombatDistance + 5.f && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
+	if (VEC3::Distance(myPosition + deltaMovement, spawnPosition) < minCombatDistance 
+		|| (distance < maxCombatDistance + maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov)))
+	{
 		return Leave;
 	}
 	else {
@@ -387,7 +389,7 @@ void CBehaviorTreeFlyingRangedEnemy::rotateTowards(float delta, VEC3 targetPos, 
 	getTransform()->getYawPitchRoll(&y, &p, &r);
 	float rotationIncrement = rotationSpeed * delta;
 	if (abs(deltaYaw) >= rotationIncrement) {
-		y += (deltaYaw > 0) ? (y + rotationIncrement) : (y - rotationIncrement);
+		y += (deltaYaw > 0) ? (rotationIncrement) : (-rotationIncrement);
 	}
 	else {
 		y += deltaYaw;

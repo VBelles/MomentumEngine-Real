@@ -1,13 +1,15 @@
 #include "mcv_platform.h"
 #include "comp_purity.h"
-#include "render/render_utils.h"
-#include "player/comp_player_model.h"
 #include "entity/entity_parser.h"
+#include "entity/common_msgs.h"
+#include "render/render_utils.h"
 #include "render/texture/material.h"
 #include "components/comp_render.h"
 #include "components/comp_collider.h"
+#include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("purity", TCompPurity);
+
 
 void TCompPurity::registerMsgs() {
 	DECL_MSG(TCompPurity, TMsgEntitiesGroupCreated, onGroupCreated);
@@ -15,27 +17,44 @@ void TCompPurity::registerMsgs() {
 }
 
 void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-	TCompRender* render = get<TCompRender>();
-	originalMeshPath = render->meshes[0].mesh->getName();
-	originalMaterialPath = render->meshes[0].materials[0]->getName();
+	renderHandle = get<TCompRender>();
+	assert(renderHandle.isValid());
+	colliderHandle = get<TCompCollider>();
+	assert(colliderHandle.isValid());
+	assert(getRigidDynamic());
+	originalMeshPath = getRender()->meshes[0].mesh->getName();
+	originalMaterialPath = getRender()->meshes[0].materials[0]->getName();
+	getRigidDynamic()->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
 }
 
 // Pruebo en WWBox061, la tercera plataforma fija que hay al principio.
 void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
-	TCompCollider* collider = get<TCompCollider>();
-	assert(collider);
-
-	TCompRender *render = get<TCompRender>();
-	assert(render);
-
+	TCompCollider* collider = getCollider();
 	if (msg.isPure) {
+		//collider->create();
 		collider->setupFiltering(collider->config.group, collider->config.mask | EnginePhysics.Player);
-		render->setMesh(originalMeshPath, originalMaterialPath);
+		getRender()->setMesh(originalMeshPath, originalMaterialPath);
 	}
 	else {
+		//collider->destroy();
 		collider->setupFiltering(collider->config.group, collider->config.mask & !EnginePhysics.Player);
 		// Falta decidir qu� efecto aplicar cuando la plataforma est� intangible,
 		// de momento la dejo con material blanco.
-		render->setMesh(originalMeshPath, "data/materials/white.material");
+		getRender()->setMesh(originalMeshPath, "data/materials/white.material");
 	}
 }
+
+
+TCompRender* TCompPurity::getRender() {
+	return renderHandle;
+}
+
+TCompCollider* TCompPurity::getCollider() {
+	return colliderHandle;
+}
+
+PxRigidDynamic* TCompPurity::getRigidDynamic() {
+	return static_cast<PxRigidDynamic*>(getCollider()->actor);
+}
+
+

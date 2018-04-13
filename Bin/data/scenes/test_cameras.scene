@@ -22,7 +22,7 @@
 		"entity": {
 			"name": "fixed_camera",
 			"transform": {
-				"pos": "-5 25 -20",
+				"pos": "-5 80 -20",
 				"lookat": "-83 24 -56"
 			},
 			"camera" : {
@@ -48,11 +48,15 @@
 				"group" : ["trigger"],
 				"mask" : ["player"]
 			},
-			"mixCameraTrigger":{
-				"cameraToMix": "fixed_camera",
-				"timeToMixIn": 1.0,
-				"timeToMixOut": 1.0,
-				"modifyPlayerCameraRotation" : true
+			"suggestCameraTrigger" :{
+				"cameraSuggestion" : "fixed_camera",
+				"distanceToCamera" : 8,
+				"suggestYaw" : true,
+				"suggestPitch" : true,
+				"forceDistance" : true,
+				"changeCenteringCamera" : true,
+				"forcePositionOnEnter" : true,
+				"centeringCameraSpeed" : "2 3"
 			}
 		}
 	},

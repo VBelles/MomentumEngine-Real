@@ -17,6 +17,8 @@ private:
 	std::string targetName;
 	float defaultDistanceToTarget = 0.f;
 	VEC2 cameraSpeed;
+	float zoomOutSpeed = 20.f;
+	float zoomInSpeed = 10.f;
 	VEC2 centeringCameraSpeed;
 	float minPitch = 0.f;
 	float maxPitch = 0.f;
@@ -28,6 +30,9 @@ private:
 	CTransform targetTransform;
 
 	VEC2 input;
+	
+	float currentDistanceToTarget = 0.f;
+	VEC2 currentCenteringCameraSpeed;
 
 	bool isMovementLocked = false;
 
@@ -36,6 +41,14 @@ private:
 
 	float sphereCastRadius = 0.0f;
 
+	float suggestedYaw;
+	float suggestedPitch;
+	float forcedDistance;
+	
+	bool isYawSuggested = false;
+	bool isPitchSuggested = false;
+	bool isDistanceForced = false;
+	bool isCenteringCameraForced = false;
 
 	//Msgs
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -58,5 +71,9 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	void centerCamera();
+	void moveCameraTowardsDefaultDistance(float delta);
+	void suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera);
+	void placeCameraOnSuggestedPosition(VEC2 centeringSpeed);
+	void resetSuggested();
 };
 
