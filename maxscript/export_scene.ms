@@ -13,6 +13,7 @@ struct TJsonFormatter (
 	-- --------------------
 	fn begin new_ofilename = (
 		ofilename = new_ofilename
+		--fs = listener
 		fs = createFile ofilename
 		if fs == undefined then (
 			-- Avoid error if the file didn't close properly last time.
@@ -23,7 +24,7 @@ struct TJsonFormatter (
 
 	-- --------------------
 	fn end = (
-		if fs != undefined then close fs
+		if fs != undefined and fs != listener then close fs
 		fs = undefined
 	),
 
@@ -1172,5 +1173,8 @@ El proyecto debe tener las siguientes carpetas:
 global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "") + "Bin\\"
 exportPath = substituteString exportPath "\\" "/"
 exporter = TSceneExporter project_path: exportPath
+
+--mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"
+--mexporter.exportStdMaterial $.mat "pep" 
 
 exporter.exportAll()

@@ -72,7 +72,7 @@ void CModuleEntities::update(float delta) {
 
     CHandleManager::destroyAllPendingObjects();
 
-	{ // Esto tendr�a que ir en module_entities �?
+	{ // Esto Juan lo tiene en module_render.cpp
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
 		CTraceScoped gpu_scope("shadowsMapsGeneration");
 		// Generate the shadow map for each active light

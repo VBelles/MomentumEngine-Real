@@ -165,6 +165,9 @@
     <ClCompile Include="modules\game\physics\basic_simulation_event_callback.cpp" />
     <ClCompile Include="components\platforms\comp_platform_rotative.cpp" />
     <ClCompile Include="components\platforms\comp_platform_move.cpp" />
+    <ClCompile Include="render\blur_step.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -361,6 +364,9 @@
     <ClInclude Include="modules\game\physics\basic_simulation_event_callback.h" />
     <ClInclude Include="components\platforms\comp_platform_rotative.h" />
     <ClInclude Include="components\platforms\comp_platform_move.h" />
+    <ClInclude Include="render\blur_step.h" />
+    <ClInclude Include="components\postfx\comp_render_blur.h" />
+    <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

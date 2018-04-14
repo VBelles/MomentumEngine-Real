@@ -13,51 +13,56 @@
 #include "skeleton/game_core_skeleton.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_blur_radial.h"
 
 CModuleRender::CModuleRender(const std::string& name)
-	: IModule(name) {
+    : IModule(name) {
 }
 
 // All techs are loaded from this json file
 bool parseTechniques() {
-	json j = loadJson("data/techniques.json");
-	for (auto it = j.begin(); it != j.end(); ++it) {
+    json j = loadJson("data/techniques.json");
+    for (auto it = j.begin(); it != j.end(); ++it) {
 
-		std::string tech_name = it.key() + ".tech";
-		json& tech_j = it.value();
+        std::string tech_name = it.key() + ".tech";
+        json& tech_j = it.value();
 
-		CRenderTechnique* tech = new CRenderTechnique();
-		if (!tech->create(tech_name, tech_j)) return false;
-		Resources.registerResource(tech);
-	}
-	return true;
+        CRenderTechnique* tech = new CRenderTechnique();
+        if (!tech->create(tech_name, tech_j)) {
+            fatal("Failed to create tech '%s'\n", tech_name.c_str());
+            return false;
+        }
+        Resources.registerResource(tech);
+    }
+    return true;
 }
 
 bool CModuleRender::start() {
-	if (!Render.createDevice(_xres, _yres)) return false;
+    if (!Render.createDevice(_xres, _yres)) return false;
 
-	if (!CVertexDeclManager::get().create()) return false;
+    if (!CVertexDeclManager::get().create()) return false;
 
-	// Register the resource types
-	Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
-	Resources.registerResourceClass(getResourceClassOf<CTexture>());
-	Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
-	Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
-	Resources.registerResourceClass(getResourceClassOf<CMaterial>());
-	Resources.registerResourceClass(getResourceClassOf<CCurve>());
-	Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
+    // Register the resource types
+    Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
+    Resources.registerResourceClass(getResourceClassOf<CTexture>());
+    Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
+    Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
+    Resources.registerResourceClass(getResourceClassOf<CMaterial>());
+    Resources.registerResourceClass(getResourceClassOf<CCurve>());
+    Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 
-	if (!createRenderObjects()) return false;
+    if (!createRenderObjects()) return false;
 
-	if (!createRenderUtils()) return false;
+    if (!createRenderUtils()) return false;
 
-	// --------------------------------------------
-	// ImGui
-	auto& app = CApp::get();
-	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
-		return false;
+    // --------------------------------------------
+    // ImGui
+    auto& app = CApp::get();
+    if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
+        return false;
 
-	if (!parseTechniques()) return false;
+    if (!parseTechniques()) return false;
 
     // Main render target before rendering in the backbuffer
     rt_main = new CRenderToTexture;
@@ -77,6 +82,7 @@ bool CModuleRender::start() {
     if (!cb_object.create(CB_OBJECT))   return false;
     if (!cb_light.create(CB_LIGHT))     return false;
     if (!cb_globals.create(CB_GLOBALS)) return false;
+    if (!cb_blur.create(CB_BLUR))       return false;
 
     cb_globals.global_exposure_adjustment = 1.f;
     cb_globals.global_ambient_adjustment = 1.f;
@@ -89,15 +95,16 @@ bool CModuleRender::start() {
     cb_object.activate();
     cb_camera.activate();
     cb_globals.activate();
-    
-	//activateMainCamera();
+    cb_blur.activate();
 
-	return true;
+    //activateMainCamera();
+
+    return true;
 }
 
 // Forward the OS msg to the IMGUI
 LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-	return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
+    return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
 }
 
 bool CModuleRender::stop() {
@@ -105,16 +112,17 @@ bool CModuleRender::stop() {
     cb_camera.destroy();
     cb_object.destroy();
     cb_globals.destroy();
+    cb_blur.destroy();
 
     ImGui_ImplDX11_Shutdown();
 
-	destroyRenderUtils();
-	destroyRenderObjects();
+    destroyRenderUtils();
+    destroyRenderObjects();
 
-	Resources.destroyAll();
+    Resources.destroyAll();
 
-	Render.destroyDevice();
-	return true;
+    Render.destroyDevice();
+    return true;
 }
 
 void CModuleRender::update(float delta) {
@@ -143,8 +151,8 @@ void CModuleRender::render() {
 }
 
 void CModuleRender::configure(int xres, int yres) {
-	_xres = xres;
-	_yres = yres;
+    _xres = xres;
+    _yres = yres;
 }
 
 void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
@@ -180,9 +188,28 @@ void CModuleRender::generateFrame() {
         cb_globals.updateGPU();
 
         deferred.render(rt_main);
+
+        CRenderManager::get().renderCategory("distorsions");
+
+        // Apply postFX
+        CTexture* curr_rt = rt_main;
+        if (h_e_camera.isValid()) {
+            CEntity* e_cam = h_e_camera;
+
+            // Check if we have a render_fx component
+            TCompRenderBlur* c_render_blur = e_cam->get< TCompRenderBlur >();
+            if (c_render_blur)
+                curr_rt = c_render_blur->apply(curr_rt);
+
+            // Check if we have a render_fx component
+            TCompRenderBlurRadial* c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
+            if (c_render_blur_radial)
+                curr_rt = c_render_blur_radial->apply(curr_rt);
+        }
+
         Render.startRenderInBackbuffer();
 
-        renderFullScreenQuad("dump_texture.tech", rt_main);
+        renderFullScreenQuad("dump_texture.tech", curr_rt);
 
         // Debug render
         {
@@ -198,9 +225,9 @@ void CModuleRender::generateFrame() {
         ImGui::Render();
     }
 
-	// Present the information rendered to the back buffer to the front buffer (the screen)
-	{
-		PROFILE_FUNCTION("Render.swapChain");
-		Render.swapChain->Present(0, 0);
-	}
+    // Present the information rendered to the back buffer to the front buffer (the screen)
+    {
+        PROFILE_FUNCTION("Render.swapChain");
+        Render.swapChain->Present(0, 0);
+    }
 }
