@@ -6,10 +6,12 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void StrongAttackActionState::update(float delta) {
@@ -77,6 +79,7 @@ void StrongAttackActionState::onStateExit(IActionState * nextState) {
 
 void StrongAttackActionState::onStrongAttackButtonReleased() {
 	phase = AttackPhases::Startup;
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void StrongAttackActionState::onLeavingGround() {

@@ -5,11 +5,13 @@
 #include "components/player/comp_power_gauge.h"
 #include "components/player/comp_player_model.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
+	animation = "wave";
 }
 
 void ReleasePowerAirActionState::update (float delta) {
@@ -74,6 +76,7 @@ void ReleasePowerAirActionState::onStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->lockTurning = true;
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void ReleasePowerAirActionState::onStateExit(IActionState * nextState) {

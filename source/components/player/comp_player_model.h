@@ -7,6 +7,7 @@ class TCompCamera;
 class TCompCollider;
 class TCompTransform;
 class TCompPowerGauge;
+class TCompSkeleton;
 class PlayerFilterCallback;
 
 struct TMsgEntitiesGroupCreated;
@@ -71,6 +72,8 @@ private:
 	CHandle wallJumpPlummetHitbox;
 	CHandle releasePowerSmallHitbox;
 	CHandle releasePowerBigHitbox;
+
+	CHandle skeletonHandle;
 
 	VEC3 respawnPosition;
 	VEC3 deltaMovement;
@@ -174,6 +177,7 @@ public:
 	PxCapsuleController* getController();
 	TCompCamera* getCamera();
 	TCompPowerGauge* getPowerGauge();
+	TCompSkeleton* getSkeleton();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }
 	VEC3* getVelocityVector() { return &velocityVector; }
@@ -188,6 +192,4 @@ public:
 	T getBaseState(TCompPlayerModel::ActionStates state) { return static_cast<T>(baseStates[state]); }
 	template <typename T >
 	T getConcurrentState(TCompPlayerModel::ActionStates state) { return static_cast<T>(concurrentStates[state]); }
-
-
 };

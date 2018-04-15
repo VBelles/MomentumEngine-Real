@@ -1,0 +1,19 @@
+[
+  {
+    "entity":
+    {
+      "name": "cally"
+      ,
+      "transform":
+      {
+        "pos": "-300 0 100",
+        "rotation": "0.0 0.0 0.0 1.0"
+      },
+      "skeleton": {
+        "skeleton": "data/skeletons/cally/cally.skeleton"
+      },
+      "abs_aabb":true,
+      "local_aabb":true
+    }
+  }
+]

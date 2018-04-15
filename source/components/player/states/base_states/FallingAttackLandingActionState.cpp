@@ -4,10 +4,12 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 FallingAttackLandingActionState::FallingAttackLandingActionState(CHandle playerModelHandle, CHandle hitbox)
 	: LandingActionState::LandingActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "walk";
 }
 
 void FallingAttackLandingActionState::update(float delta) {
@@ -32,6 +34,7 @@ void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 	hitbox->enable();
 	hitboxTimer.reset();
 	springJumpTimer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void FallingAttackLandingActionState::onStateExit(IActionState * nextState) {

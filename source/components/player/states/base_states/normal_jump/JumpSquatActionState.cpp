@@ -3,9 +3,11 @@
 #include "components/comp_render.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_transform.h"
+#include "skeleton/comp_skeleton.h"
 
 JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void JumpSquatActionState::update (float delta) {
@@ -35,6 +37,7 @@ void JumpSquatActionState::onStateEnter(IActionState * lastState) {
 	isShortHop = false;
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void JumpSquatActionState::onStateExit(IActionState * nextState) {
