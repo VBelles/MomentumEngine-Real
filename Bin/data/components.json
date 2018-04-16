@@ -17,8 +17,6 @@
     "breakable",
     "mechanism",
     "mechanism_system",
-    "skeleton",
-    "bone_tracker",
     "behaviorTree_melee_enemy",
     "behaviorTree_flying_ranged_enemy",
     "ranged_attack",
@@ -39,6 +37,8 @@
     "render",
     "fsm",
     "fake_animation",
+    "skeleton",
+    "bone_tracker",
     "player_input"
   ],
   "render_debug" : [

@@ -1,0 +1,9 @@
+{
+	"name":"gorila",
+	"anims" : [
+		{ "name" : "gorila_idle"}
+	],
+  "bone_ids_to_debug" : [
+    3
+  ]
+}

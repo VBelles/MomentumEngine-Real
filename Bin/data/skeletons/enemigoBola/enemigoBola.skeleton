@@ -1,7 +1,9 @@
 {
 	"name":"enemigoBola",
 	"anims" : [
-		{ "name" : "EnemigoBolaIdle01"}
+		{ "name" : "EnemigoBolaIdle01"},
+		{ "name" : "EnemigoBolaRun"},
+		{ "name" : "EnemigoBolaMelee03"}
 	],
   "bone_ids_to_debug" : [
     3

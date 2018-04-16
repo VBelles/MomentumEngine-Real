@@ -20,7 +20,7 @@
           ,
           "materials":
           [
-            "data/materials/white.material"
+            "data/skeletons/enemigoBola/enemigoBola.material"
           ]
         }
       ]

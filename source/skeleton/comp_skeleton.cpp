@@ -3,7 +3,6 @@
 #include "game_core_skeleton.h"
 #include "cal3d/cal3d.h"
 #include "resources/resources_manager.h"
-#include "render/render_utils.h"
 #include "render/render_objects.h"
 #include "components/comp_transform.h"
 
@@ -178,9 +177,7 @@ void TCompSkeleton::renderDebug() {
 	TCompTransform* transform = get<TCompTransform>();
 	float scale = transform->getScale();
 	for (int currLine = 0; currLine < nrLines; currLine++) {
-		dbg("nrLines %i", nrLines);
-		dbg(", currLine %i \n", currLine);
-		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
+		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale * 1.0000001, VEC4(1, 1, 1, 1));
 	}
 }
 
