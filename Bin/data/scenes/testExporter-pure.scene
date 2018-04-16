@@ -1,0 +1,39 @@
+[
+  {
+    "entity":
+    {
+      "name": "_test_Box001mesh",
+      "transform":
+      {
+        "pos": "-57.4083 0.0 -1.92785",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/_test_Box001mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "4.0 0.5 4.5",
+        "is_dynamic": true
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
+      ]
+    }
+  }
+]

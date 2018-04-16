@@ -428,12 +428,12 @@ struct TSceneExporter (
 		)
 
 		if obj.layer.name == "triggers" or
-			trig != unsupplied then (
+		   (trig != unsupplied and trig) then (
 			fs.writeComma()
 			fs.writeKeyValue "is_trigger" trig
 		)
 		
-		if dyn != unsupplied then (
+		if dyn != unsupplied and dyn then (
 			fs.writeComma()
 			fs.writeKeyValue "is_dynamic" dyn
 		)
@@ -450,9 +450,15 @@ struct TSceneExporter (
 
 		fs.endObj()
 	),
-
+	
+	-- -- Purity ----------
+	fn exportPurity = (
+		fs.writeKeyEmpty "purity"
+		exportStringArray "tags" #("pure")		
+	),
+	
 	-- --EDITABLE MESH-------------------------------------------
-	fn exportEditableMesh obj = (
+	fn exportEditableMesh obj pure: breakable: = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
 		exportName obj
 		fs.writeComma()
@@ -467,7 +473,19 @@ struct TSceneExporter (
 			if isCollider child then (
 				fs.writeComma()
 				--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
-				exportCompCollider child
+				if pure == unsupplied then pure = false
+				exportCompCollider child dyn:(pure or (hasChildLine child))
+				if pure then (
+					fs.writeComma()
+					exportPurity()
+				)
+				if breakable != unsupplied and breakable then (
+					fs.writeComma()
+					fs.writeKey "breakable"
+					fs.beginObj()
+						fs.writeKeyValue "hp" 1
+					fs.endObj()
+				)
 			)
 		)
 	),
@@ -780,7 +798,7 @@ struct TSceneExporter (
 	),
 	
 	-- --DEFAULT ------------------------------------------------
-	fn exportDefault obj nValidObjs = (
+	fn exportDefault obj nValidObjs pure: breakable: = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -789,7 +807,7 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportEditableMesh obj
+				exportEditableMesh obj pure:pure breakable:breakable
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		return true
@@ -802,6 +820,7 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				--format "name: % childLine: %\n" obj.name ((hasChildLine obj) as string)
 				exportEntityCollider obj dyn:(hasChildLine obj)
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
@@ -1104,7 +1123,9 @@ struct TSceneExporter (
 							"prefabMelee":  ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"triggers":     ( wasValid = exportTrigger     obj nValidObjs )
-							--"mechanisms":( wasValid = exportMechanism   obj nValidObjs )
+							--"mech":( wasValid = exportMechanism   obj nValidObjs )
+							"pure":		    ( wasValid = exportDefault     obj nValidObjs pure:true )
+							"break":		( wasValid = exportDefault     obj nValidObjs breakable:true )
 							"0":		    ( wasValid = exportDefault     obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
@@ -1128,8 +1149,6 @@ TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
-TODO: Añadir plataformas puras. "tags": [ "pure" ], "purity": {}, dynamic: true.
-TODO: Comprobar que exportCollision pone bien el dynamic si tiene child line.
 */
 
 /*----------------------------------------------------------------------------------

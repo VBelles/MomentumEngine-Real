@@ -1,8 +1,9 @@
 {
-  "shadows": true
-  ,
+  "technique": "textured.tech",
+  "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/piedras_c.dds"
+    "albedo": "data/textures/piedras_c.dds",
+    "normal": "data/textures/piedras_n.dds"
   }
 }
