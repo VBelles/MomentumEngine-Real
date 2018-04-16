@@ -69,6 +69,7 @@
     "vs_file": "data/shaders/textured.fx",
     "vs_entry_point": "VS_Skin",
     "vertex_type": "PosNUvSkin",
+    "category": "textured",
     "uses_skin": true
   },
 

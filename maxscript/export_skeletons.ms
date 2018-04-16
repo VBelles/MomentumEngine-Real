@@ -41,7 +41,7 @@ struct  TSkeletonsExporter (
 	fn findMeshCandidates = (
 		local objs = #()
 		for obj in $* do (
-			if (classof obj == PolyMeshObject) or (classof obj == Editable_Mesh) then (
+			if ((classof obj == PolyMeshObject) or (classof obj == Editable_Mesh)) and obj.wireColor != Black then (
 				if obj.modifiers[#Skin] != undefined then (
 					format "% is a skinned mesh \n" obj.name
 					append objs obj
@@ -120,7 +120,7 @@ struct  TSkeletonsExporter (
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
 exportPath = substituteString exportPath "\\" "/"
-se = TSkeletonsExporter project_path: exportPath skel_name:"enemigoBola"
+se = TSkeletonsExporter project_path: exportPath skel_name:"gorila"
 
 --gc()
 --se = TSkeletonsExporter()

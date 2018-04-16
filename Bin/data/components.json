@@ -9,6 +9,8 @@
   },
   "update": [
     "fwd_msg",
+    "skeleton",
+    "bone_tracker",
     "platform_move",
     "follow_curve",
     "platform",
@@ -37,8 +39,6 @@
     "render",
     "fsm",
     "fake_animation",
-    "skeleton",
-    "bone_tracker",
     "player_input"
   ],
   "render_debug" : [
