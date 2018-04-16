@@ -1,7 +1,8 @@
 clearListener()
+gc()
 
-struct  TSkeletonsExporter (
-	project_path = "C:/Code/engine/bin/data/",
+struct TSkeletonsExporter (
+	project_path = "",
 	skel_name = "unknown",			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
@@ -49,7 +50,6 @@ struct  TSkeletonsExporter (
 		)
 		return objs
 	),
-	
 	
 	fn setSkelName new_name = (
 		skel_name = new_name
@@ -111,12 +111,14 @@ struct  TSkeletonsExporter (
 		local begin_time =  animationRange.start as integer * frameRate / 4800  
 		local end_time = animationRange.end as integer  * frameRate / 4800
 		local rc = ExportCalAnim animation_file skel_file bones_to_export begin_time end_time 0 frameRate
-		if rc != 0 then throw ("Failed to export cal3d anim: " + (rc as integer) )
+		if rc != 0 then throw ("Failed to export cal3d anim: " + (rc as string) )
 	)
-	
 )
 
---gc()
---se = TSkeletonsExporter()
---se.exportSkelAndMeshes()
+-- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
+global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "") + "Bin\\data\\"
+exportPath = substituteString exportPath "\\" "/"
+se = TSkeletonsExporter project_path: exportPath
+
+se.exportSkelAndMeshes()
 --se.exportAnim()
