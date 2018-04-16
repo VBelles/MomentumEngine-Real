@@ -1851,8 +1851,11 @@
       "collider":
       {
         "shape": "box",
+        "is_dynamic": true,
         "halfExtent": "1.89692 0.254831 1.51308"
-      }
+      },
+      "tags": [ "pure" ],
+      "purity": {}
     }
   },
   {

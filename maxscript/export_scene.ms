@@ -1128,7 +1128,7 @@ TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
-TODO: Añadir plataformas puras. "tags": [ "pure" ], "purity": {}
+TODO: Añadir plataformas puras. "tags": [ "pure" ], "purity": {}, dynamic: true.
 TODO: Comprobar que exportCollision pone bien el dynamic si tiene child line.
 */
 
