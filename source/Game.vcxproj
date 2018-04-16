@@ -177,8 +177,8 @@
     <ClCompile Include="components\player\states\base_states\WalkActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
-    <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />    
-	<ClCompile Include="engine.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
+    <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
     <ClCompile Include="fsm\context.cpp" />
@@ -461,9 +461,6 @@
   <ItemGroup>
     <ProjectReference Include="Cal3D\Cal3D.vcxproj">
       <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
-    </ProjectReference>
-    <ProjectReference Include="lua\LuaLib.vcxproj">
-      <Project>{9ed7c695-9ec5-46c2-8b7a-6d9ac59a09c3}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
