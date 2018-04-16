@@ -3,6 +3,7 @@
 #include "game_core_skeleton.h"
 #include "cal3d/cal3d.h"
 #include "resources/resources_manager.h"
+#include "render/render_utils.h"
 #include "render/render_objects.h"
 #include "components/comp_transform.h"
 
@@ -23,7 +24,7 @@ QUAT Cal2DX(CalQuaternion q) {
 	return QUAT(q.x, q.y, q.z, -q.w);
 }
 MAT44 Cal2DX(CalVector trans, CalQuaternion rot) {
-  return MAT44::CreateFromQuaternion(Cal2DX(rot)) * MAT44::CreateTranslation(Cal2DX(trans));
+	return MAT44::CreateFromQuaternion(Cal2DX(rot)) * MAT44::CreateTranslation(Cal2DX(trans));
 }
 
 // --------------------------------------------------------------------
@@ -176,8 +177,11 @@ void TCompSkeleton::renderDebug() {
 	int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
 	TCompTransform* transform = get<TCompTransform>();
 	float scale = transform->getScale();
-	for (int currLine = 0; currLine < nrLines; currLine++)
+	for (int currLine = 0; currLine < nrLines; currLine++) {
+		dbg("nrLines %i", nrLines);
+		dbg(", currLine %i \n", currLine);
 		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
+	}
 }
 
 void TCompSkeleton::blendCycle(std::string animation, float weight, float in_delay, bool clearPrevious, float out_delay) {

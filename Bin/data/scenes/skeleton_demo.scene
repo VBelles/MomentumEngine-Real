@@ -20,7 +20,7 @@
           ,
           "materials":
           [
-            "data/skeletons/paladin/paladin.material"
+            "data/materials/white.material"
           ]
         }
       ]

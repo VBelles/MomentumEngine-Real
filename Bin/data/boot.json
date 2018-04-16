@@ -10,12 +10,12 @@
     "data/scenes/whitebox24-movables.scene",
     "data/scenes/whitebox24-enemies.scene",
     "data/scenes/level_pbr.scene",
-    "data/scenes/scene_basic.scene"
-    "data/scenes/skeleton_demo2.scene",
+    "data/scenes/scene_basic.scene",
+    "data/scenes/skeleton_demo.scene",
+    "data/scenes/skeleton_demo2.scene"
   ],
   "unused_scenes": [
     "data/scenes/water_plane.scene",
-    "data/scenes/skeleton_demo.scene",
     "data/scenes/level1.scene",
     "data/scenes/donut.scene",
     "data/scenes/scene_basic.scene",

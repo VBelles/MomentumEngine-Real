@@ -2,21 +2,20 @@ clearListener()
 gc()
 
 struct  TSkeletonsExporter (
-	project_path = "C:/Users/mcv16_alumne/Desktop/MCV/MomentumEngine-Real/",
-	skel_name = "test",			-- smurf
+	project_path,
+	skel_name,			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return classof obj == Dummy and obj.wireColor != Black
+		return (classof obj == Biped_Object or classof obj == dummy) and obj.wireColor != Black
 	),
 	
 	-- Search the root bones in the scene to define the .csf
 	fn findSkelCandidates = (
 		local obj_bones = #()
 		for obj in $* do (
-			format "% % \n" obj.name (classof obj)
 			if isBone obj and obj.parent == undefined then (
 				format "% is a root bone\n" obj.name
 				append obj_bones obj
@@ -53,7 +52,7 @@ struct  TSkeletonsExporter (
 	),
 	
 	fn setSkelName new_name = (
-		skel_name = new_name
+		--skel_name = new_name
 		skel_root_path = project_path + "Bin/data/skeletons/" + skel_name + "/"
 		makedir skel_root_path 
 		skel_file = skel_root_path + skel_name + ".csf"
@@ -74,8 +73,8 @@ struct  TSkeletonsExporter (
 		local root = root_bones[1]
 		
 		-- Pasar a modo figura si esta en modo pose
-		--local was_in_figure_mode = root.controller.figureMode
-		--root.controller.figureMode = true
+		local was_in_figure_mode = root.controller.figureMode
+		root.controller.figureMode = true
 		local bones_to_export = findBoneCandidates()
 		
 		for b in bones_to_export do (
@@ -84,18 +83,20 @@ struct  TSkeletonsExporter (
 		
 		format "Exporting cal csf to %\n" skel_file
 		local rc = ExportCalSkel skel_file bones_to_export off
-	
+		if rc != 0 then throw ("Failed to export cal3d skel from object " + obj.name )
+		
 		-- Export la mesh...
 		local obj_meshes = findMeshCandidates()
 		for obj in obj_meshes do (
-			local mesh_file = skel_root_path + obj.name + ".cmf"
+			--local mesh_file = skel_root_path + obj.name + ".cmf"
+			local mesh_file = skel_root_path + skel_name + ".cmf"
 			-- 0.01 threshold, no LOD, no springs
 			local rc = ExportCalMesh mesh_file skel_file obj 4 0.01 false false
 			if rc != 0 then throw ("Failed to export cal3d mesh from object " + obj.name )
 		)
 		
 		-- Restaurar el modo pose si es q estaba en modo pose inicialmente
-		--if was_in_figure_mode == false then root.controller.figureMode = false
+		if was_in_figure_mode == false then root.controller.figureMode = false
     ),
 	
 	fn exportAnim = (
@@ -117,11 +118,11 @@ struct  TSkeletonsExporter (
 )
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
-global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "") + "Bin\\data\\"
+global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
 exportPath = substituteString exportPath "\\" "/"
-se = TSkeletonsExporter project_path: exportPath
+se = TSkeletonsExporter project_path: exportPath skel_name:"enemigoBola"
 
-gc()
-se = TSkeletonsExporter()
+--gc()
+--se = TSkeletonsExporter()
 se.exportSkelAndMeshes()
 se.exportAnim()

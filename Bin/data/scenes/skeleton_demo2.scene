@@ -2,18 +2,28 @@
   {
     "entity":
     {
-      "name": "Bip001"
+      "name": "EnemigoBola"
       ,
       "transform":
       {
-        "pos": "-87.008759 25.298883 -36.278442",
+        "pos": "-85 23.115 -65",
         "rotation": "0.0 0.0 0.0 1.0"
       },
       "skeleton": {
-        "skeleton": "data/skeletons/Bip001/Bip001.skeleton"
+        "skeleton": "data/skeletons/enemigoBola/enemigoBola.skeleton"
       },
       "abs_aabb":true,
-      "local_aabb":true
+      "local_aabb":true,
+      "render" : [
+        {
+          "mesh": "data/skeletons/enemigoBola/enemigoBola.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/white.material"
+          ]
+        }
+      ]
     }
   }
 ]
