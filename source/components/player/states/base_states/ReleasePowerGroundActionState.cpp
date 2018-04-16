@@ -5,11 +5,13 @@
 #include "components/comp_render.h"
 #include "components/player/comp_power_gauge.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
+	animation = "wave";
 }
 
 void ReleasePowerGroundActionState::update (float delta) {
@@ -73,6 +75,7 @@ void ReleasePowerGroundActionState::onStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {

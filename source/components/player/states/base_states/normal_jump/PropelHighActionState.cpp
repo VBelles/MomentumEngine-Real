@@ -6,9 +6,11 @@
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void PropelHighActionState::update (float delta) {
@@ -56,6 +58,7 @@ void PropelHighActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lastWallEntered = nullptr;
 	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void PropelHighActionState::onStateExit(IActionState * nextState) {

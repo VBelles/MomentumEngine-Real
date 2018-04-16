@@ -23,8 +23,7 @@ QUAT Cal2DX(CalQuaternion q) {
 	return QUAT(q.x, q.y, q.z, -q.w);
 }
 MAT44 Cal2DX(CalVector trans, CalQuaternion rot) {
-	return
-		MAT44::CreateFromQuaternion(Cal2DX(rot)) * MAT44::CreateTranslation(Cal2DX(trans));
+  return MAT44::CreateFromQuaternion(Cal2DX(rot)) * MAT44::CreateTranslation(Cal2DX(trans));
 }
 
 // --------------------------------------------------------------------
@@ -179,4 +178,23 @@ void TCompSkeleton::renderDebug() {
 	float scale = transform->getScale();
 	for (int currLine = 0; currLine < nrLines; currLine++)
 		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
+}
+
+void TCompSkeleton::blendCycle(std::string animation, float weight, float in_delay, bool clearPrevious, float out_delay) {
+	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
+	int animationId = core->getCoreAnimationId(animation);
+	model->getMixer()->blendCycle(animationId, weight, in_delay);
+
+	if (clearPrevious) {
+		for (auto a : model->getMixer()->getAnimationCycle()) {
+			int id = core->getCoreAnimationId(a->getCoreAnimation()->getName());
+			if (id != animationId) model->getMixer()->clearCycle(id, out_delay);
+		}
+	}
+}
+
+void TCompSkeleton::executeAction(std::string animation, float in_delay, float out_delay, float weight, bool auto_lock) {
+	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
+	int animationId = core->getCoreAnimationId(animation);
+	model->getMixer()->executeAction(animationId, in_delay, out_delay, weight, auto_lock);
 }

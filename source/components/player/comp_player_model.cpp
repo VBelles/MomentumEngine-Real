@@ -45,6 +45,7 @@
 #include "states/concurrent_states/GrabHighActionState.h"
 #include "states/concurrent_states/GrabLongActionState.h"
 #include "states/concurrent_states/ReleasePowerAirActionState.h"
+#include "skeleton/comp_skeleton.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -187,6 +188,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
+	skeletonHandle = get<TCompSkeleton>();
 
 	respawnPosition = getTransform()->getPosition();
 
@@ -426,18 +428,32 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	}
 }
 
-	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
-TCompTransform* TCompPlayerModel::getTransform() { return transformHandle; }
-TCompCollider* TCompPlayerModel::getCollider() { return colliderHandle; }
-PxCapsuleController* TCompPlayerModel::getController() { return static_cast<PxCapsuleController*>(getCollider()->controller); }
-TCompPowerGauge* TCompPlayerModel::getPowerGauge() { return powerGaugeHandle; }
+TCompTransform* TCompPlayerModel::getTransform() {
+	return transformHandle;
+}
+
+TCompCollider* TCompPlayerModel::getCollider() {
+	return colliderHandle;
+}
+
+PxCapsuleController* TCompPlayerModel::getController() {
+	return static_cast<PxCapsuleController*>(getCollider()->controller);
+}
+
+TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
+	return powerGaugeHandle;
+}
+
+TCompSkeleton* TCompPlayerModel::getSkeleton() {
+	return skeletonHandle;
+}
+
 TCompCamera* TCompPlayerModel::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
 	return currentCamera;
 }
-
 
 void TCompPlayerModel::jumpButtonPressed() {
 	if (!lockBaseState) {

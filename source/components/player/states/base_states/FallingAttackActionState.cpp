@@ -6,10 +6,12 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 FallingAttackActionState::FallingAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void FallingAttackActionState::update (float delta) {
@@ -48,6 +50,7 @@ void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void FallingAttackActionState::onStateExit(IActionState * nextState) {

@@ -3,10 +3,12 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
+#include "skeleton/comp_skeleton.h"
 
 GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void GrabActionState::update (float delta) {
@@ -40,6 +42,7 @@ void GrabActionState::onStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->lockTurning = true;
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void GrabActionState::onStateExit(IActionState * nextState) {

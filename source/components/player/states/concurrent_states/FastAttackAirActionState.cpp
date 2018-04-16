@@ -4,10 +4,12 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 FastAttackAirActionState::FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void FastAttackAirActionState::update(float delta) {
@@ -43,6 +45,7 @@ void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->lockBaseState = true;
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = true;
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void FastAttackAirActionState::onStateExit(IActionState * nextState) {

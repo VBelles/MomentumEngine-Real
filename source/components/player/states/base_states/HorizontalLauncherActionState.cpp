@@ -5,10 +5,12 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 HorizontalLauncherActionState::HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "kick";
 }
 
 void HorizontalLauncherActionState::update (float delta) {
@@ -46,6 +48,7 @@ void HorizontalLauncherActionState::onStateEnter(IActionState * lastState) {
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	timer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void HorizontalLauncherActionState::onStateExit(IActionState * nextState) {
