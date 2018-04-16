@@ -27,21 +27,26 @@ const CResourceClass* getResourceClassOf<CCurve>() {
 }
 // ----------------------------------------------
 
-bool CCurve::load(const std::string& name) {
-	auto jData = loadJson(name);
+bool CCurve::load(const std::string& fileName) {
+    auto jData = loadJson(fileName);
 
-	std::string typeName = jData["type"];
-	if (typeName == "catmull-rom") {
-		_type = EType::CATMULL_ROM;
-	}
+    return load(jData);
+}
 
-	auto& jKnots = jData["knots"];
-	for (auto& jKnot : jKnots) {
-		VEC3 knot = loadVEC3(jKnot);
-		addKnot(knot);
-	}
+bool CCurve::load(const json& jData) {
+    std::string typeName = jData["type"];
 
-	return true;
+    setType(typeName);
+
+    auto& jKnots = jData["knots"];
+    for (auto& jKnot : jKnots) {
+        VEC3 knot = loadVEC3(jKnot);
+        addKnot(knot);
+    }
+
+	setLoop(jData.value("loop", false)); // TODO: Use this somewhere.
+
+    return true;
 }
 
 void CCurve::clear() {
@@ -52,6 +57,19 @@ void CCurve::addKnot(const VEC3& point) {
 	_knots.push_back(point);
 }
 
+void CCurve::setType(const std::string & typeName) {
+    if (typeName == "catmull-rom") {
+        _type = EType::CATMULL_ROM;
+    }
+    else {
+        _type = EType::UNKNOWN;
+    }
+}
+
+void CCurve::setLoop(const bool value) {
+    _loop = value;
+}
+
 VEC3 CCurve::evaluate(float ratio) const {
 	if (_type == EType::CATMULL_ROM) {
 		return evaluateAsCatmull(ratio);
@@ -60,11 +78,11 @@ VEC3 CCurve::evaluate(float ratio) const {
 }
 
 VEC3 CCurve::evaluateAsCatmull(float ratio) const {
-	ratio = clamp(ratio, 0.f, 0.99999f);
-	int nsegments = (int)_knots.size() - 3;
-	float ratioPerSegment = 1.f / (float)nsegments;
-	int currentSegment = (int)(ratio / ratioPerSegment);
-	float segmentRatio = fmodf(ratio, ratioPerSegment) / ratioPerSegment;
+    ratio = clamp(ratio, 0.f, 0.99999f);
+    int nsegments = static_cast<int>(_knots.size()) - 3;
+    float ratioPerSegment = 1.f / static_cast<float>(nsegments);
+    int currentSegment = static_cast<int>(ratio / ratioPerSegment);
+    float segmentRatio = fmodf(ratio, ratioPerSegment) / ratioPerSegment;
 
 	int idx = currentSegment + 1;
 

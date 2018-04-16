@@ -9,9 +9,12 @@
 				]}
 			],
 			"transform": {
-				"pos": "-87.008759 25.298883 -36.278442",
+				"pos": "-74 22 -56",
 				"axis": "0 1 0",
 				"angle": 120
+			},
+			"skeleton": {
+				"skeleton": "data/skeletons/cally/cally.skeleton"
 			},
 			"player_controller" : {},
 			"player_model" : {
@@ -84,7 +87,7 @@
 			"shadow":
 			{
 				"offset": "0 0.1 0",
-				"mesh": "data/meshes/shadow.mesh",
+				"mesh": "data/meshes/_testShadow.mesh",
 				"materials":
 				[
 					"data/materials/black.material"

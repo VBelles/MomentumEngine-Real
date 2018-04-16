@@ -2,8 +2,6 @@
 #include "comp_fixed_camera.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
-#include "game_constants.h"
-#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("fixed_camera", TCompFixedCamera);
 
@@ -73,7 +71,7 @@ void TCompFixedCamera::update(float delta) {
 		VEC3 verticalMovement = transform->getUp() * input.y;
 		VEC3 horizontalMovement = transform->getLeft() * input.x;
 		VEC3 newPos = transform->getPosition() + (verticalMovement + horizontalMovement) * panningSpeed * delta;
-		if (VEC3::Distance(newPos, originalPosition) > panningRadius) {//Me molaría haber hecho el clampeo en rectángulo, pero ni zorra de cómo hacerlo, shhhhh
+		if (VEC3::Distance(newPos, originalPosition) > panningRadius) {//Me molarï¿½a haber hecho el clampeo en rectï¿½ngulo, pero ni zorra de cï¿½mo hacerlo, shhhhh
 			VEC3 direction = newPos - originalPosition;
 			direction.Normalize();
 			newPos = originalPosition + direction * panningRadius;
@@ -84,7 +82,7 @@ void TCompFixedCamera::update(float delta) {
 
 void TCompFixedCamera::updateInput() {
 	input = VEC2::Zero;
-	//Hacer sólo si la cámara está mixeada
+	//Hacer sï¿½lo si la cï¿½mara estï¿½ mixeada
 	if (!isMovementLocked) {
 		VEC2 padInput = {
 			EngineInput[Input::EPadButton::PAD_RANALOG_X].value,

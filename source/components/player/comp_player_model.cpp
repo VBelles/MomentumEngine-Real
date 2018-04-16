@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
-#include "game_constants.h"
-#include "entity/common_msgs.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
@@ -47,6 +45,7 @@
 #include "states/concurrent_states/GrabHighActionState.h"
 #include "states/concurrent_states/GrabLongActionState.h"
 #include "states/concurrent_states/ReleasePowerAirActionState.h"
+#include "skeleton/comp_skeleton.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -189,6 +188,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
+	skeletonHandle = get<TCompSkeleton>();
 
 	respawnPosition = getTransform()->getPosition();
 
@@ -428,17 +428,32 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	}
 }
 
-TCompTransform* TCompPlayerModel::getTransform() { return transformHandle; }
-TCompCollider* TCompPlayerModel::getCollider() { return colliderHandle; }
-PxCapsuleController* TCompPlayerModel::getController() { return static_cast<PxCapsuleController*>(getCollider()->controller); }
-TCompPowerGauge* TCompPlayerModel::getPowerGauge() { return powerGaugeHandle; }
+TCompTransform* TCompPlayerModel::getTransform() {
+	return transformHandle;
+}
+
+TCompCollider* TCompPlayerModel::getCollider() {
+	return colliderHandle;
+}
+
+PxCapsuleController* TCompPlayerModel::getController() {
+	return static_cast<PxCapsuleController*>(getCollider()->controller);
+}
+
+TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
+	return powerGaugeHandle;
+}
+
+TCompSkeleton* TCompPlayerModel::getSkeleton() {
+	return skeletonHandle;
+}
+
 TCompCamera* TCompPlayerModel::getCamera() {
-	CEntity* camera = (CEntity *)getEntityByName("game_camera");
+	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
 	return currentCamera;
 }
-
 
 void TCompPlayerModel::jumpButtonPressed() {
 	if (!lockBaseState) {
@@ -510,7 +525,7 @@ void TCompPlayerModel::strongAttackButtonReleased() {
 }
 
 void TCompPlayerModel::centerCameraButtonPressed() {
-	CEntity* camera = (CEntity*)getEntityByName("player_camera");
+	CEntity* camera = (CEntity*)getEntityByName(PLAYER_CAMERA);
 	TCompCameraPlayer* playerCamera = camera->get<TCompCameraPlayer>();
 	playerCamera->centerCamera();
 }
@@ -531,7 +546,7 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 }
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
-	//TODO Esto lo tendría que procesar el estado en concreto, por si tiene armor o algo
+	//TODO Esto lo tendrï¿½a que procesar el estado en concreto, por si tiene armor o algo
 	hp -= msg.info.damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);

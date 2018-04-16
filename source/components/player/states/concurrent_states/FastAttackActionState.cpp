@@ -4,10 +4,12 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void FastAttackActionState::update(float delta) {
@@ -61,7 +63,7 @@ void FastAttackActionState::onStateExit(IActionState * nextState) {
 
 void FastAttackActionState::onFastAttackButtonReleased() {
 	phase = AttackPhases::Startup;
-
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void FastAttackActionState::onLeavingGround() {

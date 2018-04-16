@@ -15,7 +15,8 @@ void TCompCurve::load(const json& j, TEntityParseContext& ctx) {
     std::string curve_name = j["curve"];
     _curve = Resources.get(curve_name)->as<CCurve>();
 
-    _speed = j.value<float>("speed", 0.f);
+	_speed = j.value<float>("speed", 0.f);
+	_automove = j.value("automove", false);
 
     _targetName = j["target"].get<std::string>();
 }
@@ -26,8 +27,8 @@ void TCompCurve::update(float dt) {
     // actualizar ratio
     if (_automove) {
         _ratio += _speed * dt;
-        if (_ratio >= 1.f)
-            _ratio = 0.f;
+        if (_ratio >= 1.f) _ratio = 0.f;
+
     }
 
     // evaluar curva con dicho ratio
@@ -35,6 +36,7 @@ void TCompCurve::update(float dt) {
 
     // obtener la posicion del target
     VEC3 targetPos = getTargetPos();
+	//dbg("pos: x: %f y: %f z: %f\n", pos.x, pos.y, pos.z);
 
     // actualizar la transform con la nueva posicion
     TCompTransform* c_transform = get<TCompTransform>();

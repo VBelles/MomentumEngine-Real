@@ -3,9 +3,11 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
+#include "skeleton/comp_skeleton.h"
 
 WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void WallJumpSquatPlummetActionState::update (float delta) {
@@ -28,6 +30,7 @@ void WallJumpSquatPlummetActionState::onStateEnter(IActionState * lastState) {
 	setPose();
 	endingTime = endingFrames * (1.f / 60);
 	timer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void WallJumpSquatPlummetActionState::onStateExit(IActionState * nextState) {

@@ -38,7 +38,7 @@ void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
 	else {
 		//collider->destroy();
 		collider->setupFiltering(collider->config.group, collider->config.mask & !EnginePhysics.Player);
-		// Falta decidir qué efecto aplicar cuando la plataforma está intangible,
+		// Falta decidir quï¿½ efecto aplicar cuando la plataforma estï¿½ intangible,
 		// de momento la dejo con material blanco.
 		getRender()->setMesh(originalMeshPath, "data/materials/white.material");
 	}

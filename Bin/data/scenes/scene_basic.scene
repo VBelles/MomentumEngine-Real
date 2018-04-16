@@ -119,7 +119,11 @@
 				"color" :  "1 1 1 1",
 				"projector" : "data/textures/white.dds",
 				"z_far" : 500,
-				"fov": 150
+				"fov": 150,
+				"casts_shadows" : true,
+				"shadows_step" : 3.0,
+				"shadows_resolution" : 256,
+				"shadows_fmt" : "R32_TYPELESS"
 			}
 		}
 	},
@@ -136,7 +140,11 @@
 				"color" :  "1 1 1 1",
 				"projector" : "data/textures/white.dds",
 				"z_far" : 300,
-				"fov": 150
+				"fov": 150,
+				"casts_shadows" : true,
+				"shadows_step" : 3.0,
+				"shadows_resolution" : 256,
+				"shadows_fmt" : "R32_TYPELESS"
 			}
 		}
 	},

@@ -4,9 +4,11 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "skeleton/comp_skeleton.h"
 
 HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 	:AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "animation";
 }
 
 void HuggingWallActionState::update (float delta) {
@@ -57,6 +59,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 		getPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
 		setPose();
 		climbTimer.reset();
+		getPlayerModel()->getSkeleton()->executeAction(animation);
 	}
 	else {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);

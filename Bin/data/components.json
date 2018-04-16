@@ -1,27 +1,29 @@
 {
-	"sizes" : {
-		"default" : 1024,
-		"transform" : 1024
-	},
+  "sizes" : {
+    "default" : 1024,
+    "transform" : 1024
+  },
   "init_order" : {
     "entity" : 100,
     "transform" : 90
   },
   "update": [
-		"fwd_msg",
-		"hierarchy",
+    "fwd_msg",
     "platform_move",
+    "follow_curve",
+    "platform",
     "platform_rotative",
     "collectable",
     "breakable",
-		"mechanism",
-		"mechanism_system",
+    "mechanism",
+    "mechanism_system",
     "skeleton",
     "bone_tracker",
     "behaviorTree_melee_enemy",
     "behaviorTree_flying_ranged_enemy",
     "ranged_attack",
     "respawner",
+    "hierarchy",
     "player_controller",
     "player_model",
     "power_gauge",
@@ -39,8 +41,8 @@
     "fake_animation",
     "player_input"
   ],
-	"render_debug" : 
-	[
-		"transform"
+  "render_debug" : [
+    "transform",
+    "light_dir"
 	]
 }

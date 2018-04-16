@@ -1,8 +1,8 @@
 {
-  "technique": "textured.tech",
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/rocas-blue.dds"
+    "albedo": "data/textures/rocas-blue.dds",
+    "normal": "data/textures/null_normal.dds"
   }
 }

@@ -55,6 +55,7 @@ void CModuleManager::render() {
 	for (auto& mod : _render_modules) {
 		if (mod->toRender()) {
 			PROFILE_FUNCTION(mod->getName().c_str());
+			CTraceScoped gpu_scope(mod->getName().c_str());
 			mod->render();
 		}
 	}

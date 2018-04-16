@@ -50,6 +50,7 @@ using json = nlohmann::json;
 #include "engine.h"
 #include "resources/resources_manager.h"
 #include "windows/app.h"
+#include "game_constants.h"
 
 #define SAFE_DELETE(x)  if(x) delete x, x = nullptr;
 
