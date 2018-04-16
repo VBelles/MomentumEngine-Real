@@ -190,7 +190,9 @@ void CModuleRender::generateFrame() {
 
         deferred.render(rt_main);
 
-        CRenderManager::get().renderCategory("distorsions");
+		CRenderManager::get().renderCategory("distorsions");
+		CRenderManager::get().renderCategory("textured");
+		CRenderManager::get().renderCategory("general");
 
         // Apply postFX
         CTexture* curr_rt = rt_main;

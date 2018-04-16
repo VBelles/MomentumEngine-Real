@@ -23,7 +23,7 @@ QUAT Cal2DX(CalQuaternion q) {
 	return QUAT(q.x, q.y, q.z, -q.w);
 }
 MAT44 Cal2DX(CalVector trans, CalQuaternion rot) {
-  return MAT44::CreateFromQuaternion(Cal2DX(rot)) * MAT44::CreateTranslation(Cal2DX(trans));
+	return MAT44::CreateFromQuaternion(Cal2DX(rot)) * MAT44::CreateTranslation(Cal2DX(trans));
 }
 
 // --------------------------------------------------------------------
@@ -176,8 +176,9 @@ void TCompSkeleton::renderDebug() {
 	int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
 	TCompTransform* transform = get<TCompTransform>();
 	float scale = transform->getScale();
-	for (int currLine = 0; currLine < nrLines; currLine++)
-		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
+	for (int currLine = 0; currLine < nrLines; currLine++) {
+		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale * 1.0000001, VEC4(1, 1, 1, 1));
+	}
 }
 
 void TCompSkeleton::blendCycle(std::string animation, float weight, float in_delay, bool clearPrevious, float out_delay) {

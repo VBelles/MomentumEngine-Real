@@ -5,7 +5,8 @@
     "vs_entry_point": "VS",
     "vertex_type": "PosClr",
     "ps_file": "data/shaders/solid.fx",
-    "ps_entry_point": "PS"
+    "ps_entry_point": "PS",
+    "category": "general"
   },
   "solid_objs": {
     "vs_file": "data/shaders/solid.fx",
@@ -13,7 +14,8 @@
     "vertex_type": "PosNUv",
     "ps_file": "data/shaders/solid.fx",
     "ps_entry_point": "PS",
-    "rs_config": "wireframe"
+    "rs_config": "wireframe",
+    "category": "general"
   },
   "solid_objs_uv2": {
     "vs_file": "data/shaders/solid.fx",
@@ -21,13 +23,15 @@
     "vertex_type": "PosNUvUvT",
     "ps_file": "data/shaders/solid.fx",
     "ps_entry_point": "PS",
-    "rs_config": "wireframe"
+    "rs_config": "wireframe",
+    "category": "general"
   },
   "solid_objs_skin": {
     "vs_file": "data/shaders/solid.fx",
     "vs_entry_point": "VS_Objs_Skin",
     "vertex_type": "PosNUvSkin",
-    "rs_config": "wireframe"
+    "rs_config": "wireframe",
+    "category": "general"
   },
 
 
@@ -63,12 +67,14 @@
     "vertex_type": "PosNUvUvT",
     "textures": {
       "environment": "data/textures/cubemaps/beach.dds"
-    }
+    },
+    "category": "textured"
   },
   "textured_skin": {
     "vs_file": "data/shaders/textured.fx",
     "vs_entry_point": "VS_Skin",
     "vertex_type": "PosNUvSkin",
+    "category": "textured",
     "uses_skin": true
   },
 

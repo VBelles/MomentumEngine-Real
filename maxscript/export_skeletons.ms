@@ -1,9 +1,9 @@
 clearListener()
 gc()
 
-struct TSkeletonsExporter (
-	project_path = "",
-	skel_name = "unknown",			-- smurf
+struct  TSkeletonsExporter (
+	project_path,
+	skel_name,			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
 	
@@ -41,7 +41,7 @@ struct TSkeletonsExporter (
 	fn findMeshCandidates = (
 		local objs = #()
 		for obj in $* do (
-			if (classof obj == PolyMeshObject) or (classof obj == Editable_Mesh) then (
+			if ((classof obj == PolyMeshObject) or (classof obj == Editable_Mesh)) and obj.wireColor != Black then (
 				if obj.modifiers[#Skin] != undefined then (
 					format "% is a skinned mesh \n" obj.name
 					append objs obj
@@ -52,8 +52,8 @@ struct TSkeletonsExporter (
 	),
 	
 	fn setSkelName new_name = (
-		skel_name = new_name
-		skel_root_path = project_path + "skeletons/" + skel_name + "/"
+		--skel_name = new_name
+		skel_root_path = project_path + "Bin/data/skeletons/" + skel_name + "/"
 		makedir skel_root_path 
 		skel_file = skel_root_path + skel_name + ".csf"
 	),
@@ -83,11 +83,13 @@ struct TSkeletonsExporter (
 		
 		format "Exporting cal csf to %\n" skel_file
 		local rc = ExportCalSkel skel_file bones_to_export off
-	
+		if rc != 0 then throw ("Failed to export cal3d skel from object " + obj.name )
+		
 		-- Export la mesh...
 		local obj_meshes = findMeshCandidates()
 		for obj in obj_meshes do (
-			local mesh_file = skel_root_path + obj.name + ".cmf"
+			--local mesh_file = skel_root_path + obj.name + ".cmf"
+			local mesh_file = skel_root_path + skel_name + ".cmf"
 			-- 0.01 threshold, no LOD, no springs
 			local rc = ExportCalMesh mesh_file skel_file obj 4 0.01 false false
 			if rc != 0 then throw ("Failed to export cal3d mesh from object " + obj.name )
@@ -116,9 +118,11 @@ struct TSkeletonsExporter (
 )
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
-global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "") + "Bin\\data\\"
+global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
 exportPath = substituteString exportPath "\\" "/"
-se = TSkeletonsExporter project_path: exportPath
+se = TSkeletonsExporter project_path: exportPath skel_name:"gorila"
 
+--gc()
+--se = TSkeletonsExporter()
 se.exportSkelAndMeshes()
---se.exportAnim()
+se.exportAnim()

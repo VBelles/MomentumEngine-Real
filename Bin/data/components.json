@@ -9,6 +9,8 @@
   },
   "update": [
     "fwd_msg",
+    "skeleton",
+    "bone_tracker",
     "platform_move",
     "follow_curve",
     "platform",
@@ -17,8 +19,6 @@
     "breakable",
     "mechanism",
     "mechanism_system",
-    "skeleton",
-    "bone_tracker",
     "behaviorTree_melee_enemy",
     "behaviorTree_flying_ranged_enemy",
     "ranged_attack",
