@@ -1,4 +1,5 @@
 clearListener()
+gc()
 
 struct  TSkeletonsExporter (
 	project_path = "C:/Users/mcv16_alumne/Desktop/MCV/MomentumEngine-Real/",
@@ -51,7 +52,6 @@ struct  TSkeletonsExporter (
 		return objs
 	),
 	
-	
 	fn setSkelName new_name = (
 		skel_name = new_name
 		skel_root_path = project_path + "Bin/data/skeletons/" + skel_name + "/"
@@ -82,9 +82,9 @@ struct  TSkeletonsExporter (
 			format "Bone Skel is %\n" b.name
 		)
 		
-		
+		format "Exporting cal csf to %\n" skel_file
 		local rc = ExportCalSkel skel_file bones_to_export off
-		
+	
 		-- Export la mesh...
 		local obj_meshes = findMeshCandidates()
 		for obj in obj_meshes do (
@@ -112,10 +112,14 @@ struct  TSkeletonsExporter (
 		local begin_time =  animationRange.start as integer * frameRate / 4800  
 		local end_time = animationRange.end as integer  * frameRate / 4800
 		local rc = ExportCalAnim animation_file skel_file bones_to_export begin_time end_time 0 frameRate
-		if rc != 0 then throw ("Failed to export cal3d anim: " + (rc as integer) )
+		if rc != 0 then throw ("Failed to export cal3d anim: " + (rc as string) )
 	)
-	
 )
+
+-- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
+global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "") + "Bin\\data\\"
+exportPath = substituteString exportPath "\\" "/"
+se = TSkeletonsExporter project_path: exportPath
 
 gc()
 se = TSkeletonsExporter()

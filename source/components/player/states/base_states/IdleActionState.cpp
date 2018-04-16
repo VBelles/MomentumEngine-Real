@@ -4,9 +4,11 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "skeleton/comp_skeleton.h"
 
 IdleActionState::IdleActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void IdleActionState::update (float delta) {
@@ -45,6 +47,7 @@ void IdleActionState::update (float delta) {
 void IdleActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	setPose();
+	getPlayerModel()->getSkeleton()->blendCycle(animation);
 }
 
 void IdleActionState::onStateExit(IActionState * nextState) {

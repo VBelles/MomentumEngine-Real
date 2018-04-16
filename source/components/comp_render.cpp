@@ -30,12 +30,11 @@ void TCompRender::debugInMenu() {
 	bool changed = false;
 	for (auto& mwm : meshes) {
 		ImGui::PushID(&mwm);
-		// if the users changed the 'enabled' flag, save it
+		// If the users changed the 'enabled' flag, save it
 		changed |= ImGui::Checkbox("Enabled", &mwm.enabled);
 		ImGui::LabelText("Mesh", "%s", mwm.mesh->getName().c_str());
 		for (auto &m : mwm.materials) {
-			if (m)
-				((CMaterial*)m)->debugInMenu();
+			if (m) ((CMaterial*)m)->debugInMenu();
 		}
 		ImGui::PopID();
 	}

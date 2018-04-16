@@ -14,7 +14,7 @@
   "render": [
     "render",    
     "test_axis",
-    "main_menu",    
+    "main_menu",
     "cameras",
     "entities",
     "pause",

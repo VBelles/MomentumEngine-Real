@@ -3,9 +3,11 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
+#include "skeleton/comp_skeleton.h"
 
 AirborneWallJumpActionState::AirborneWallJumpActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void AirborneWallJumpActionState::update(float delta) {
@@ -52,6 +54,7 @@ void AirborneWallJumpActionState::onStateEnter(IActionState * lastState) {
 	enterFront = getPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void AirborneWallJumpActionState::onStateExit(IActionState * nextState) {

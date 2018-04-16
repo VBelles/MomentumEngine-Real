@@ -14,8 +14,6 @@ class TCompShadow : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 private:
-	std::string shadowMeshName;
-	std::string disabledMeshName = "data/meshes/nada.mesh";
 	bool enabled = true;
 
 	PxReal maxDistance = 10000;
@@ -40,6 +38,8 @@ public:
 	void setMesh(std::string meshName);
 
 	TCompTransform* getTransform() { return transformHandle; }
+
+	bool isEnabled() { return enabled; }
 
 	void enable();
 	void disable();

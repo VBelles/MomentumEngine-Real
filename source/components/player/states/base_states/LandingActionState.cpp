@@ -4,9 +4,11 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "skeleton/comp_skeleton.h"
 
 LandingActionState::LandingActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void LandingActionState::update (float delta) {
@@ -43,6 +45,7 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
 	//dbg("Entrando en landing\n");
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void LandingActionState::onStateExit(IActionState * nextState) {

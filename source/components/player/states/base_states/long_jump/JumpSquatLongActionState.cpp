@@ -3,9 +3,11 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
+#include "skeleton/comp_skeleton.h"
 
 JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void JumpSquatLongActionState::update (float delta) {
@@ -28,6 +30,7 @@ void JumpSquatLongActionState::onStateEnter(IActionState * lastState) {
 	//dbg("Entrando en JumpSquatLong\n");
 	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void JumpSquatLongActionState::onStateExit(IActionState * nextState) {

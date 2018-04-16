@@ -1,0 +1,3 @@
+﻿input.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+     Creating library C:\CPPprojects\MomentumEngine-Real\tools\Coroutines\\bin\LuaTest.lib and object C:\CPPprojects\MomentumEngine-Real\tools\Coroutines\\bin\LuaTest.exp
+  LuaTest.vcxproj -> C:\CPPprojects\MomentumEngine-Real\tools\Coroutines\\bin\LuaTest.exe

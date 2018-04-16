@@ -3,9 +3,11 @@
 #include "components/comp_render.h"
 #include "components/comp_camera.h"
 #include "components/player/comp_player_model.h"
+#include "skeleton/comp_skeleton.h"
 
 AirborneLongActionState::AirborneLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void AirborneLongActionState::update (float delta) {
@@ -38,7 +40,7 @@ void AirborneLongActionState::onStateEnter(IActionState * lastState) {
 	setPose();
 	getPlayerModel()->setGravityMultiplier(enteringPowerStats->longGravityMultiplier);
 	//dbg("Entrando en airborne long\n");
-	
+	getPlayerModel()->getSkeleton()->blendCycle(animation);
 }
 
 void AirborneLongActionState::onStateExit(IActionState * nextState) {

@@ -1,10 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_platform_move.h"
-#include "render/render_utils.h"
+#include "render/render_objects.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
-#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("platform_move", TCompPlatformMove);
 
@@ -42,7 +39,7 @@ void TCompPlatformMove::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlatformMove::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-    player = (CHandle)getEntityByName("The Player");
+    player = (CHandle)getEntityByName(PLAYER_NAME);
 	TCompCollider* collider = get<TCompCollider>();
 	assert(collider);
 	PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
@@ -53,7 +50,7 @@ void TCompPlatformMove::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	CEntity *triggerer = msg.h_other_entity;
 	std::string triggererName = triggerer->getName();
 	//dbg("Platform trigger enter by %s\n", triggererName.c_str());
-	if (triggererName == "The Player") {
+	if (triggererName == PLAYER_NAME) {
         isPlayerInTrigger = true;
 
 		CEntity* ePlayer = (CEntity*)player;
@@ -66,7 +63,7 @@ void TCompPlatformMove::onTriggerExit(const TMsgTriggerExit & msg) {
     CEntity *triggerer = msg.h_other_entity;
     std::string triggererName = triggerer->getName();
     //dbg("Platform trigger exit by %s\n", triggererName.c_str());
-    if (triggererName == "The Player") {
+    if (triggererName == PLAYER_NAME) {
         isPlayerInTrigger = false;
 		CEntity* ePlayer = (CEntity*)player;
 		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
@@ -90,12 +87,19 @@ void TCompPlatformMove::update(float dt) {
 
     TCompCollider* collider = get<TCompCollider>();
     assert(collider);
-    PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+    PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
 
 	PxTransform newTransform;
-	newTransform.p = { myPosition.x + movement.x, myPosition.y + movement.y, myPosition.z + movement.z };
-	newTransform.q = { transform->getRotation().x, transform->getRotation().y, transform->getRotation().z, transform->getRotation().w };
+	newTransform.p = {  myPosition.x + movement.x,
+                        myPosition.y + movement.y,
+                        myPosition.z + movement.z };
+	newTransform.q = {  transform->getRotation().x,
+                        transform->getRotation().y,
+                        transform->getRotation().z,
+                        transform->getRotation().w };
 	rigidDynamic->setKinematicTarget(newTransform);
+
+	transform->setPosition({ newTransform.p.x, newTransform.p.y, newTransform.p.z });
 
     // Move the player with the platform.
     if ( isPlayerInTrigger ) {

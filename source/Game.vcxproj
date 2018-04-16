@@ -60,7 +60,6 @@
       <AdditionalIncludeDirectories>.;../bin/data/shaders</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mcv_platform.h</PrecompiledHeaderFile>
-      <AdditionalOptions>-Zm120 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -102,12 +101,13 @@
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
+    <ClCompile Include="components\comp_light_point.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_mechanism_system.cpp" />
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
-    <ClCompile Include="components\platforms\comp_platform_move.cpp" />
+    <ClCompile Include="components\comp_platform.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
     <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
@@ -121,6 +121,7 @@
     <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
     <ClCompile Include="components\controllers\comp_fake_animation_controller.cpp" />
     <ClCompile Include="components\controllers\comp_fixed_camera.cpp" />
+    <ClCompile Include="components\controllers\comp_follow_curve.cpp" />
     <ClCompile Include="components\controllers\comp_player_input.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeSequence.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNode.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
+    <ClCompile Include="components\platforms\comp_platform_move.cpp" />
     <ClCompile Include="components\platforms\comp_platform_rotative.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
@@ -174,6 +176,8 @@
     <ClCompile Include="components\player\states\base_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\WalkActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -224,7 +228,9 @@
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
+    <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
+    <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
     <ClCompile Include="render\render.cpp" />
@@ -238,6 +244,7 @@
     <ClCompile Include="render\shaders\vertex_shader.cpp" />
     <ClCompile Include="render\texture\DDSTextureLoader.cpp" />
     <ClCompile Include="render\texture\material.cpp" />
+    <ClCompile Include="render\texture\render_to_texture.cpp" />
     <ClCompile Include="render\texture\texture.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="resources\resources_manager.cpp" />
@@ -267,12 +274,13 @@
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_light_dir.h" />
+    <ClInclude Include="components\comp_light_point.h" />
     <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_mechanism_system.h" />
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="components\comp_name.h" />
-    <ClInclude Include="components\platforms\comp_platform_move.h" />
+    <ClInclude Include="components\comp_platform.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
     <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\comp_render.h" />
@@ -286,6 +294,7 @@
     <ClInclude Include="components\controllers\comp_camera_orbit.h" />
     <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
     <ClInclude Include="components\controllers\comp_fixed_camera.h" />
+    <ClInclude Include="components\controllers\comp_follow_curve.h" />
     <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />
@@ -298,6 +307,7 @@
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeSequence.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNode.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
+    <ClInclude Include="components\platforms\comp_platform_move.h" />
     <ClInclude Include="components\platforms\comp_platform_rotative.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
@@ -339,6 +349,8 @@
     <ClInclude Include="components\player\states\base_states\TurnAroundActionState.h" />
     <ClInclude Include="components\player\states\base_states\WalkActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
+    <ClInclude Include="components\postfx\comp_render_blur.h" />
+    <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -405,7 +417,9 @@
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="profiling\profiling.h" />
+    <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
+    <ClInclude Include="render\deferred_renderer.h" />
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
@@ -421,8 +435,8 @@
     <ClInclude Include="render\shaders\vertex_shader.h" />
     <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\material.h" />
+    <ClInclude Include="render\texture\render_to_texture.h" />
     <ClInclude Include="render\texture\texture.h" />
-    <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />

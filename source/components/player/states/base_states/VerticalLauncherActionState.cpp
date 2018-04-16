@@ -4,10 +4,12 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "kick";
 }
 
 void VerticalLauncherActionState::update (float delta) {
@@ -42,6 +44,7 @@ void VerticalLauncherActionState::onStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void VerticalLauncherActionState::onStateExit(IActionState * nextState) {
