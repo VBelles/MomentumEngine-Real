@@ -18,6 +18,7 @@ void IActionState::onStateEnter(IActionState* lastState) {
 	this->lastState = lastState;
 	deltaMovement = VEC3::Zero;
 	movementInput = VEC2::Zero;
+	isChangingBaseState = false;
 }
 void IActionState::onStateExit(IActionState* nextState) {
 	this->nextState = nextState;

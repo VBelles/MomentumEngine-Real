@@ -52,20 +52,21 @@ void RunActionState::update (float delta) {
 		}
 	}
 
-	if (isTurnAround) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::TurnAround);
-	}
-	else {
-		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
-
-		if (horizontalVelocity.Length() == 0.f) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+	if (!isChangingBaseState) {
+		if (isTurnAround) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::TurnAround);
 		}
-		else if (horizontalVelocity.Length() <= getPlayerModel()->walkingSpeed) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+		else {
+			VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+
+			if (horizontalVelocity.Length() == 0.f) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			}
+			else if (horizontalVelocity.Length() <= getPlayerModel()->walkingSpeed) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+			}
 		}
 	}
-
 }
 
 void RunActionState::onStateEnter(IActionState * lastState) {

@@ -15,13 +15,15 @@ void WallJumpSquatActionState::update (float delta) {
 	//deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	
-	if (timer.elapsed() >= endingTime) {
-		//saltar
-		*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->wallJumpVelocityVector.z;
-		velocityVector->y = currentPowerStats->wallJumpVelocityVector.y;
+	if (!isChangingBaseState) {
+		if (timer.elapsed() >= endingTime) {
+			//saltar
+			*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->wallJumpVelocityVector.z;
+			velocityVector->y = currentPowerStats->wallJumpVelocityVector.y;
 		
-		deltaMovement = *velocityVector * delta;
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneWallJump);
+			deltaMovement = *velocityVector * delta;
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneWallJump);
+		}
 	}
 }
 

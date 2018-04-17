@@ -142,6 +142,7 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 
 void TCompPlayerModel::setBaseState(ActionStates newState) {
 	nextBaseState = newState;
+	baseState->isChangingBaseState = true;
 }
 
 void TCompPlayerModel::changeBaseState(ActionStates newState) {
@@ -329,12 +330,6 @@ void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
 }
 
 void TCompPlayerModel::update(float dt) {
-	if (baseState != baseStates[nextBaseState]) {
-		changeBaseState(nextBaseState);
-	}
-	if (concurrentState != concurrentStates[nextConcurrentState]) {
-		changeConcurrentState(nextConcurrentState);
-	}
 
 	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
 		showVictoryDialog = false;
@@ -354,6 +349,12 @@ void TCompPlayerModel::update(float dt) {
 	applyGravity(dt);
 	updateMovement(dt, deltaMovement);
 
+	if (baseState != baseStates[nextBaseState]) {
+		changeBaseState(nextBaseState);
+	}
+	if (concurrentState != concurrentStates[nextConcurrentState]) {
+		changeConcurrentState(nextConcurrentState);
+	}
 }
 
 void TCompPlayerModel::applyGravity(float delta) {

@@ -13,7 +13,9 @@ void IdleTurnAroundActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
 		rotateToFinalDirection();
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		if (!isChangingBaseState) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		}
 	}
 	else {
 		float y, p, r;

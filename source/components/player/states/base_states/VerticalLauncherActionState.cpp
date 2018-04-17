@@ -16,7 +16,9 @@ void VerticalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		if (!isChangingBaseState) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		}
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();

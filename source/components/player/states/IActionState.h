@@ -80,6 +80,5 @@ public:
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }
-
-
+	bool isChangingBaseState = false;
 };

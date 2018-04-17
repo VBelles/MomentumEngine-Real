@@ -18,27 +18,29 @@ void PropelHighActionState::update (float delta) {
 	//deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= endingTime) {
-		if (movementInput != VEC2::Zero) {
-			VEC3 inputDirection = getCamera()->TransformToWorld(movementInput);
-			float newYaw = atan2(inputDirection.x, inputDirection.z);
-			float y, p, r;
-			getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-			getPlayerTransform()->setYawPitchRoll(newYaw, p, r);
+		if (!isChangingBaseState) {
+			if (movementInput != VEC2::Zero) {
+				VEC3 inputDirection = getCamera()->TransformToWorld(movementInput);
+				float newYaw = atan2(inputDirection.x, inputDirection.z);
+				float y, p, r;
+				getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+				getPlayerTransform()->setYawPitchRoll(newYaw, p, r);
+			}
+			velocityVector->y = currentPowerStats->jumpVelocityVector.y;
+			deltaMovement = *velocityVector * delta;
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			//pasar mensaje a la otra entidad
+			CHandle playerEntity = CHandle(playerModelHandle).getOwner();
+			CEntity* targetEntity = propelTarget;
+			VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
+			TMsgAttackHit msgAtackHit = {};
+			msgAtackHit.attacker = playerEntity;
+			msgAtackHit.info = {};
+			msgAtackHit.info.propel = new AttackInfo::Propel{
+				propelVelocity
+			};
+			targetEntity->sendMsg(msgAtackHit);
 		}
-		velocityVector->y = currentPowerStats->jumpVelocityVector.y;
-		deltaMovement = *velocityVector * delta;
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
-		//pasar mensaje a la otra entidad
-		CHandle playerEntity = CHandle(playerModelHandle).getOwner();
-		CEntity* targetEntity = propelTarget;
-		VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
-		TMsgAttackHit msgAtackHit = {};
-		msgAtackHit.attacker = playerEntity;
-		msgAtackHit.info = {};
-		msgAtackHit.info.propel = new AttackInfo::Propel{
-			propelVelocity
-		};
-		targetEntity->sendMsg(msgAtackHit);
 	}
 	else {
 		*velocityVector = VEC3::Zero;

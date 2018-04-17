@@ -22,14 +22,16 @@ void LandingActionState::update (float delta) {
 		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
 
-	if (timer.elapsed() >= landingLagTime) {
-		if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
-		}
-		else {
-			velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
-			velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+	if (!isChangingBaseState) {
+		if (timer.elapsed() >= landingLagTime) {
+			if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			}
+			else {
+				velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
+				velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+			}
 		}
 	}
 }

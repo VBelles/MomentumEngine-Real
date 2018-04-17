@@ -19,11 +19,15 @@ void StrongAttackActionState::update(float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		if (!isChangingBaseState) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		}
 	}
 	else {
 		if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			if (!isChangingBaseState) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			}
 		}
 		else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 			timer.reset();

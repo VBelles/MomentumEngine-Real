@@ -10,7 +10,9 @@ GhostJumpWindowActionState::GhostJumpWindowActionState(CHandle playerModelHandle
 void GhostJumpWindowActionState::update (float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		if (!isChangingBaseState) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		}
 	}
 	AirborneActionState::update(delta);
 }

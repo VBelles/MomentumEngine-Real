@@ -16,8 +16,10 @@ void AirborneWallJumpActionState::update(float delta) {
 
 	deltaMovement.x = velocityVector->x * delta;
 	deltaMovement.z = velocityVector->z * delta;
-	if (velocityVector->y < 0) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	if (!isChangingBaseState) {
+		if (velocityVector->y < 0) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		}
 	}
 
 	//bool hasInput = movementInput != VEC2::Zero;

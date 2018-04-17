@@ -24,8 +24,10 @@ void WallJumpPlummetActionState::update (float delta) {
 	}
 
 	deltaMovement = *velocityVector * delta;
-	if (timer.elapsed() >= endingTime) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	if (!isChangingBaseState) {
+		if (timer.elapsed() >= endingTime) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		}
 	}
 }
 

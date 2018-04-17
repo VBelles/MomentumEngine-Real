@@ -13,12 +13,14 @@ void TurnAroundActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
 		rotateToFinalDirection();
-		if (movementInput.Length() > 0.8f) {
-			setFinalVelocity();
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
-		}
-		else {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		if (!isChangingBaseState) {
+			if (movementInput.Length() > 0.8f) {
+				setFinalVelocity();
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+			}
+			else {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			}
 		}
 	}
 	else {

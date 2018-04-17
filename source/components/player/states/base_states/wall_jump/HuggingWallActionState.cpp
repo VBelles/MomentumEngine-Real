@@ -27,8 +27,10 @@ void HuggingWallActionState::update (float delta) {
 			isTryingToRelease = false;
 		}
 		if (isTryingToRelease && releaseWallTimer.elapsed() >= releaseWallTime) {
-			//TurnAround();
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			if (!isChangingBaseState) {
+				//TurnAround();
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			}
 		}
 		else if (isClimbing) {
 			if(climbTimer.elapsed() >= climbTime){
@@ -44,7 +46,9 @@ void HuggingWallActionState::update (float delta) {
 			*velocityVector += getPlayerTransform()->getFront() * climbLedgeExitSpeed;
 			getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 		}
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		if (!isChangingBaseState) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		}
 	}
 }
 
