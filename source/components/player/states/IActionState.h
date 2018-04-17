@@ -75,8 +75,9 @@ public:
 	virtual void onFastAttackButton() {}
 	virtual void onFastAttackButtonReleased() {}
 	virtual void onReleasePowerButton() {}
-	virtual void onShapeHit(const PxControllerShapeHit &hit) {}
 	virtual void onHitboxEnter(CHandle entity) {}
+	virtual void onShapeHit(const PxControllerShapeHit &hit) {}
+	virtual void onSweep(PxSweepBuffer& sweepBuffer) {}
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }

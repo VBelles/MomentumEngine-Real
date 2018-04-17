@@ -385,9 +385,7 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	getController()->getActor()->getShapes(&tempShape, 1);
 	PxFilterData filterData = tempShape->getSimulationFilterData();
 
-	if (dynamic_cast<AirborneActionState*>(baseState)) {
-		sweep(deltaMovement);
-	}
+	sweep(deltaMovement);
 
 	PxControllerCollisionFlags moveFlags = getCollider()->controller->move(toPhysx(deltaMovement), 0.f, delta,
 		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
@@ -438,30 +436,16 @@ void TCompPlayerModel::sweep(VEC3 deltaMovement) {
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
 	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
-	PxHitFlags hitFlags = PxHitFlag::eDEFAULT;
+	PxHitFlags hitFlags = PxHitFlag::eMESH_ANY| PxHitFlag::ePOSITION | PxHitFlag::eNORMAL | PxHitFlag::eDISTANCE;
 
 	bool status = EnginePhysics.getScene()->sweep(geometry, playerPxTransform, toPhysx(direction), distance, sweepBuffer,
 		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
+	
 	if (status) {
-		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);
-		
-		//float angle = acos(hitNormal.Dot(VEC3::Up));
-		
-		VEC2 normal = VEC2(sweepBuffer.block.normal.x, sweepBuffer.block.normal.z);
-		VEC2 velocity2 = VEC2(velocityVector.x, velocityVector.z);
-		VEC2 velocityNormal = VEC2(velocity2);
-		velocityNormal.Normalize();
-
-		VEC2 perpendicularNormal = VEC2(-normal.y, normal.x);
-
-		float dot = normal.Dot(velocityNormal);
-		float det = normal.x * velocityNormal.y - normal.y * velocityNormal.x;
-		float a = atan2(det, dot);
-
-		velocity2 = perpendicularNormal * (sin(a) * velocity2.Length());
-
-		velocityVector.x = velocity2.x;
-		velocityVector.z = velocity2.y;
+		baseState->onSweep(sweepBuffer);
+		if (concurrentState != concurrentStates[ActionStates::Idle]) {
+			concurrentState->onSweep(sweepBuffer);
+		}
 	}
 
 

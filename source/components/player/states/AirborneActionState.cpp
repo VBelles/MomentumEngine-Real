@@ -123,22 +123,48 @@ void AirborneActionState::onLanding() {
 }
 
 void AirborneActionState::onShapeHit(const PxControllerShapeHit& hit) {
-	if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hit.worldNormal) < 0.8f 
+	
+}
+
+void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
+	
+	if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(sweepBuffer.block.normal) < 0.8f
 		|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
+	
+		getPlayerModel()->lastWallEntered = sweepBuffer.block.actor;
 
-		getPlayerModel()->lastWallEntered = hit.actor;
-
-		VEC3 hitNormal = VEC3(hit.worldNormal.x, hit.worldNormal.y, hit.worldNormal.z);
+		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);
 
 		VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
-		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot 
+		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
 			|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
-			float pitch = asin(-hit.worldNormal.y);
+			float pitch = asin(-sweepBuffer.block.normal.y);
 			if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
 				HuggingWallActionState* actionState = getPlayerModel()->getBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
-				actionState->SetHit(hit);
+				actionState->setHuggingWallNormal(hitNormal);
 				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HuggingWall);
 			}
 		}
 	}
+	else {
+		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);
+
+		//float angle = acos(hitNormal.Dot(VEC3::Up));
+
+		VEC2 normal = VEC2(sweepBuffer.block.normal.x, sweepBuffer.block.normal.z);
+		VEC2 velocity2 = VEC2(getPlayerModel()->getVelocityVector()->x, getPlayerModel()->getVelocityVector()->z);
+		VEC2 velocityNormal = VEC2(velocity2);
+		velocityNormal.Normalize();
+
+		VEC2 perpendicularNormal = VEC2(-normal.y, normal.x);
+
+		float dot = normal.Dot(velocityNormal);
+		float det = normal.x * velocityNormal.y - normal.y * velocityNormal.x;
+		float a = atan2(det, dot);
+
+		velocity2 = perpendicularNormal * (sin(a) * velocity2.Length());
+		//getPlayerModel()->getVelocityVector()->x = velocity2.x;
+		//getPlayerModel()->getVelocityVector()->z = velocity2.y;
+	}
+
 }

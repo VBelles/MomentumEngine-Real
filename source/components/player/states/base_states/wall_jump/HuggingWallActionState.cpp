@@ -5,13 +5,14 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
+#include "modules/game/physics/basic_query_filter_callback.h"
 
 HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 	:AirborneActionState::AirborneActionState(playerModelHandle) {
 	animation = "animation";
 }
 
-void HuggingWallActionState::update (float delta) {
+void HuggingWallActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (CheckIfHuggingWall(wallDirection)) {
@@ -33,7 +34,7 @@ void HuggingWallActionState::update (float delta) {
 			}
 		}
 		else if (isClimbing) {
-			if(climbTimer.elapsed() >= climbTime){
+			if (climbTimer.elapsed() >= climbTime) {
 				isClimbing = false;
 				TurnAround();
 				getPlayerModel()->setGravityMultiplier(slideGravityMultiplier);
@@ -93,27 +94,18 @@ void HuggingWallActionState::setPose() {
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	PxScene* scene = Engine.getPhysics().getScene();
-	PxVec3 origin = { getPlayerTransform()->getPosition().x,getPlayerTransform()->getPosition().y, getPlayerTransform()->getPosition().z };
+	PxVec3 origin = toPhysx(getPlayerTransform()->getPosition());
+	PxVec3 unitDir = PxVec3(wallDirection.x, 0.f, wallDirection.z);
+	PxRaycastBuffer raycastBuffer;
+	PxQueryFilterData filterData;
+	filterData.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
+	filterData.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
 
-	const PxU32 bufferSize = 256;
-	PxRaycastHit hitBuffer[bufferSize];
-	PxRaycastBuffer buf(hitBuffer, bufferSize);
-
-	PxVec3 unitDir = { wallDirection.x, 0.f, wallDirection.z};
-
-	bool status = scene->raycast(origin, unitDir, maxRaycastDistance, buf);
+	bool status = scene->raycast(origin, unitDir, maxRaycastDistance, raycastBuffer, 
+		PxHitFlags(PxHitFlag::eDEFAULT), filterData, EnginePhysics.getGameQueryFilterCallback());
 	if (!status) return false;
-	PxRaycastHit nearest = buf.touches[0];
-	nearest.distance = maxRaycastDistance + 1;
-	for (PxU32 i = 0; i < buf.nbTouches; i++) {
-		if (!buf.touches[i].shape->getFlags().isSet(PxShapeFlag::eTRIGGER_SHAPE)) {
-			if (buf.touches[i].distance < nearest.distance) {
-				nearest = buf.touches[i];
-			}
-		}
-	}
-	bool isHuggingWall = status;
-	wallNormal = nearest.normal;
+
+	wallNormal = raycastBuffer.block.normal;
 	//if (nearest.actor == hit.actor) {
 	//	//dbg("same actor\n");
 	//}
@@ -121,13 +113,14 @@ bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	//	//dbg("not hugging wall\n");
 	//	isHuggingWall = false;
 	//}
-	return isHuggingWall;
+	return true;
 }
 
 void HuggingWallActionState::FaceWall() {
 	float y, p, r;
 	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-	y = atan2(-hit.worldNormal.x, -hit.worldNormal.z);
+	//y = atan2(-hit.worldNormal.x, -hit.worldNormal.z);
+	y = atan2(-huggingWallNormal.x, -huggingWallNormal.z);
 	getPlayerTransform()->setYawPitchRoll(y, p, r);
 	wallDirection = getPlayerTransform()->getFront();
 }

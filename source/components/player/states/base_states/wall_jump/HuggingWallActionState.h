@@ -23,6 +23,8 @@ private:
 	PxControllerShapeHit hit;
 	PxVec3 wallNormal;
 	VEC3 wallDirection;//Front or back
+
+	VEC3 huggingWallNormal;
 public:
 	HuggingWallActionState(CHandle playerModelHandle);
 	void update(float delta) override;
@@ -33,6 +35,7 @@ public:
 
 	void setPose() override;
 	void SetHit(PxControllerShapeHit hit) { this->hit = hit; }
+	void setHuggingWallNormal(VEC3 huggingWallNormal) { this->huggingWallNormal = huggingWallNormal; }
 	bool CheckIfHuggingWall(VEC3 wallDirection);
 	void FaceWall();
 	void TurnAround();
