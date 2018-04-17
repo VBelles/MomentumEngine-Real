@@ -9,7 +9,8 @@
     "game_over",
     "test_axis",
     "cameras",
-    "render"
+    "render",
+    "scripting"
   ],
   "render": [
     "render",    

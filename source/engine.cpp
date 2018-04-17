@@ -22,7 +22,8 @@ CEngine::CEngine()
 	, _module_physics("physics")
 	, _module_input("input")
 	, _module_cameras("cameras")
-	, _module_fsm("fsm") {
+	, _module_fsm("fsm")
+	, _module_scripting("scripting") {
 }
 
 bool CEngine::start() {
@@ -38,6 +39,7 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_fsm);
+	_modules.registerSystemModule(&_module_scripting);
 
 	_modules.registerGameModule(&_module_entities);
 	_modules.registerGameModule(&_module_physics);

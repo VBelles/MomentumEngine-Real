@@ -7,6 +7,7 @@
 #include "modules/system/module_input.h"
 #include "modules/system/module_cameras.h"
 #include "modules/system/module_fsm.h"
+#include "modules/system/module_scripting.h"
 
 class CEngine {
 public:
@@ -30,13 +31,14 @@ public:
 	bool isStarted() { return started; }
 
 private:
-	CModuleManager  _modules;
-	CModuleRender   _module_render;
-	CModuleEntities _module_entities;
-	CModulePhysics  _module_physics;
-	CModuleInput    _module_input;
-	CModuleCameras  _module_cameras;
-	CModuleFSM      _module_fsm;
+	CModuleManager   _modules;
+	CModuleRender    _module_render;
+	CModuleEntities  _module_entities;
+	CModulePhysics   _module_physics;
+	CModuleInput     _module_input;
+	CModuleCameras   _module_cameras;
+	CModuleFSM       _module_fsm;
+	CModuleScripting _module_scripting;
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
