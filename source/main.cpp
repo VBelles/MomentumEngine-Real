@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "windows/app.h"
-#include <SLB/lua.hpp>
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
 
