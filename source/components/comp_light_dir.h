@@ -16,7 +16,7 @@ private:
 	// Shadows params
 	bool              shadows_enabled = false;    // Dynamic
 	bool              casts_shadows = false;      // Static
-	int               shadows_resolution = 256;
+	int               shadows_resolution = 1024;
 	float             shadows_step = 1.f;
 	CRenderToTexture* shadows_rt = nullptr;
 
