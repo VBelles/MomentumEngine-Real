@@ -227,7 +227,8 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 	std::string name = json["name"];
 	root_path = "data/skeletons/" + name + "/";
 
-	CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS | LOADER_INVERT_V_COORD);
+	//CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS | LOADER_INVERT_V_COORD);
+	CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS);
 
 	// Read the core skeleton
 	std::string csf = root_path + name + ".csf";
