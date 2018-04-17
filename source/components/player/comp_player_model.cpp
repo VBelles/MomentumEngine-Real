@@ -443,6 +443,10 @@ void TCompPlayerModel::sweep(VEC3 deltaMovement) {
 	bool status = EnginePhysics.getScene()->sweep(geometry, playerPxTransform, toPhysx(direction), distance, sweepBuffer,
 		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
 	if (status) {
+		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);
+		
+		//float angle = acos(hitNormal.Dot(VEC3::Up));
+		
 		VEC2 normal = VEC2(sweepBuffer.block.normal.x, sweepBuffer.block.normal.z);
 		VEC2 velocity2 = VEC2(velocityVector.x, velocityVector.z);
 		VEC2 velocityNormal = VEC2(velocity2);
@@ -452,9 +456,9 @@ void TCompPlayerModel::sweep(VEC3 deltaMovement) {
 
 		float dot = normal.Dot(velocityNormal);
 		float det = normal.x * velocityNormal.y - normal.y * velocityNormal.x;
-		float angle = atan2(det, dot);
+		float a = atan2(det, dot);
 
-		velocity2 = perpendicularNormal * (sin(angle) * velocity2.Length());
+		velocity2 = perpendicularNormal * (sin(a) * velocity2.Length());
 
 		velocityVector.x = velocity2.x;
 		velocityVector.z = velocity2.y;
