@@ -9,9 +9,12 @@
 				]}
 			],
 			"transform": {
-				"pos": "-87.008759 25.298883 -36.278442",
+				"pos": "-74 22 -56",
 				"axis": "0 1 0",
 				"angle": 120
+			},
+			"skeleton": {
+				"skeleton": "data/skeletons/cally/cally.skeleton"
 			},
 			"player_controller" : {},
 			"player_model" : {
@@ -84,7 +87,7 @@
 			"shadow":
 			{
 				"offset": "0 0.1 0",
-				"mesh": "data/meshes/shadow.mesh",
+				"mesh": "data/meshes/_testShadow.mesh",
 				"materials":
 				[
 					"data/materials/black.material"
@@ -103,13 +106,15 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 0.7
+				"radius" : 0.8,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
 			},
 			"hitbox" : {
-				"offset" : "0 0.6 0.7"
+				"offset" : "0 0.6 0.8"
 			}
 		}
 	},
@@ -121,7 +126,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 0.7
+				"radius" : 0.7,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -139,7 +146,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 0.7
+				"radius" : 0.7,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -157,7 +166,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 0.9
+				"radius" : 0.9,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -175,7 +186,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 0.9
+				"radius" : 0.9,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -193,7 +206,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 1.5
+				"radius" : 1.5,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -211,7 +226,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 0.8
+				"radius" : 0.8,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -229,7 +246,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 2.0
+				"radius" : 2.0,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"
@@ -247,7 +266,9 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"is_dynamic" : true,
-				"radius" : 1.0
+				"radius" : 1.0,
+				"group" : ["player"],
+				"mask" : ["enemy"]
 			},
 			"hierarchy" : {
 				"parent" : "The Player"

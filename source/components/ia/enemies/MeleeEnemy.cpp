@@ -405,7 +405,7 @@ bool CBehaviorTreeMeleeEnemy::stepBackCondition(float delta) {
 
 void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
-	playerHandle = getEntityByName("The Player");
+	playerHandle = getEntityByName(PLAYER_NAME);
 }
 
 void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {

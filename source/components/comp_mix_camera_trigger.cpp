@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_mix_camera_trigger.h"
-#include "game_constants.h"
 #include "comp_transform.h"
 #include "comp_camera.h"
 #include "components/comp_collider.h"
@@ -13,7 +12,7 @@ void TCompMixCameraTrigger::debugInMenu() {
 
 void TCompMixCameraTrigger::load(const json& j, TEntityParseContext& ctx) {
 	assert(j.count("cameraToMix"));
-	cameraToMix = j.value("cameraToMix", "player_camera");
+	cameraToMix = j.value("cameraToMix", PLAYER_CAMERA);
 	timeToMixIn = j.value("timeToMixIn", 1.f);
 	timeToMixOut = j.value("timeToMixOut", 1.f);
 	modifyPlayerCameraRotation = j.value("modifyPlayerCameraRotation", true);

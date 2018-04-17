@@ -29,7 +29,7 @@ void TCompFakeAnimation::update(float dt) {
 		pitch = 0.f;
 	}
 	else if (_animationName == "idleAction") {
-		yaw = M_2_PI * _time;
+		yaw = (float)(M_2_PI) * _time;
 	}
 	else if (_animationName == "jump") {
 		const float duration = 1.f;

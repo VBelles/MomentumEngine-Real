@@ -13,12 +13,14 @@ void GhostJumpSquatActionState::update (float delta) {
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
-		//saltar
-		velocityVector->y = 0.f;
-		*velocityVector += currentPowerStats->jumpVelocityVector;
-		deltaMovement = *velocityVector * delta;
-		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		if (!isChangingBaseState) {
+			//saltar
+			velocityVector->y = 0.f;
+			*velocityVector += currentPowerStats->jumpVelocityVector;
+			deltaMovement = *velocityVector * delta;
+			//Como estamos ya en el aire, hacemos el cambio nosotros mismos
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		}
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "components/comp_base.h"
+#include "entity/common_msgs.h"
 
 class CEntity;
 class TCompTransform;
@@ -32,7 +33,7 @@ private:
 
 	VEC2 input;
 
-	bool isMovementLocked = false;
+	bool isMovementLocked = true;
 
 	//Msgs
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);

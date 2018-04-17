@@ -45,12 +45,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -64,7 +64,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(TargetDir);$(TargetDir)..\libs\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)$(Platform)\$(Configuration);$(TargetDir);$(TargetDir)..\libs\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Cal3D.lib;SLB.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -84,7 +85,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)../libs/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)$(Platform)\$(Configuration);$(SolutionDir)../libs/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Cal3D.lib;SLB.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -102,12 +104,13 @@
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
+    <ClCompile Include="components\comp_light_point.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_mechanism_system.cpp" />
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
-    <ClCompile Include="components\platforms\comp_platform_move.cpp" />
+    <ClCompile Include="components\comp_platform.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
     <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
@@ -121,6 +124,7 @@
     <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
     <ClCompile Include="components\controllers\comp_fake_animation_controller.cpp" />
     <ClCompile Include="components\controllers\comp_fixed_camera.cpp" />
+    <ClCompile Include="components\controllers\comp_follow_curve.cpp" />
     <ClCompile Include="components\controllers\comp_player_input.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
     <ClCompile Include="components\controllers\comp_curve.cpp" />
@@ -133,6 +137,7 @@
     <ClCompile Include="components\ia\behavior_tree\BehaviorTreeNodeSequence.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNode.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
+    <ClCompile Include="components\platforms\comp_platform_move.cpp" />
     <ClCompile Include="components\platforms\comp_platform_rotative.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
@@ -174,6 +179,8 @@
     <ClCompile Include="components\player\states\base_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\WalkActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -221,10 +228,13 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\game\physics\basic_query_filter_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_simulation_event_callback.cpp" />
+    <ClCompile Include="modules\system\module_scripting.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
+    <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
+    <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
     <ClCompile Include="render\render.cpp" />
@@ -238,6 +248,7 @@
     <ClCompile Include="render\shaders\vertex_shader.cpp" />
     <ClCompile Include="render\texture\DDSTextureLoader.cpp" />
     <ClCompile Include="render\texture\material.cpp" />
+    <ClCompile Include="render\texture\render_to_texture.cpp" />
     <ClCompile Include="render\texture\texture.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="resources\resources_manager.cpp" />
@@ -267,12 +278,13 @@
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_light_dir.h" />
+    <ClInclude Include="components\comp_light_point.h" />
     <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_mechanism_system.h" />
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="components\comp_name.h" />
-    <ClInclude Include="components\platforms\comp_platform_move.h" />
+    <ClInclude Include="components\comp_platform.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
     <ClInclude Include="components\comp_purity.h" />
     <ClInclude Include="components\comp_render.h" />
@@ -286,6 +298,7 @@
     <ClInclude Include="components\controllers\comp_camera_orbit.h" />
     <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
     <ClInclude Include="components\controllers\comp_fixed_camera.h" />
+    <ClInclude Include="components\controllers\comp_follow_curve.h" />
     <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="components\controllers\comp_camera_player.h" />
     <ClInclude Include="components\controllers\comp_curve.h" />
@@ -298,6 +311,7 @@
     <ClInclude Include="components\ia\behavior_tree\BehaviorTreeNodeSequence.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNode.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
+    <ClInclude Include="components\platforms\comp_platform_move.h" />
     <ClInclude Include="components\platforms\comp_platform_rotative.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
@@ -339,6 +353,8 @@
     <ClInclude Include="components\player\states\base_states\TurnAroundActionState.h" />
     <ClInclude Include="components\player\states\base_states\WalkActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
+    <ClInclude Include="components\postfx\comp_render_blur.h" />
+    <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -402,10 +418,13 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\game\physics\basic_query_filter_callback.h" />
     <ClInclude Include="modules\game\physics\basic_simulation_event_callback.h" />
+    <ClInclude Include="modules\system\module_scripting.h" />
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="profiling\profiling.h" />
+    <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
+    <ClInclude Include="render\deferred_renderer.h" />
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
@@ -421,8 +440,8 @@
     <ClInclude Include="render\shaders\vertex_shader.h" />
     <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\material.h" />
+    <ClInclude Include="render\texture\render_to_texture.h" />
     <ClInclude Include="render\texture\texture.h" />
-    <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />
@@ -443,11 +462,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Cal3D\Cal3D.vcxproj">
-      <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

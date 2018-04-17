@@ -9,12 +9,13 @@
     "game_over",
     "test_axis",
     "cameras",
-    "render"
+    "render",
+    "scripting"
   ],
   "render": [
     "render",    
     "test_axis",
-    "main_menu",    
+    "main_menu",
     "cameras",
     "entities",
     "pause",

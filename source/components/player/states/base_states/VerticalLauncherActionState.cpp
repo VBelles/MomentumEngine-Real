@@ -4,17 +4,21 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "kick";
 }
 
 void VerticalLauncherActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		if (!isChangingBaseState) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		}
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -42,6 +46,7 @@ void VerticalLauncherActionState::onStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void VerticalLauncherActionState::onStateExit(IActionState * nextState) {

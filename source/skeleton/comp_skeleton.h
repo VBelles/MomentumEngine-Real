@@ -1,26 +1,27 @@
 #ifndef INC_COMP_SKELETON_H_
 #define INC_COMP_SKELETON_H_
 
-#include "../components/comp_base.h"
+#include "components/comp_base.h"
 #include "render/cte_buffer.h"
 #include "ctes.h"
 
 class CalModel;
 
-struct TCompSkeleton : public TCompBase {
+class TCompSkeleton : public TCompBase {
 	DECL_SIBLING_ACCESS();
-
+public:
 	CRenderCte<CCteSkinBones> cb_bones;
 	CalModel* model = nullptr;
-
 	TCompSkeleton();
 	~TCompSkeleton();
-
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	void debugInMenu();
 	void renderDebug();
 	void updateCtesBones();
+
+	void blendCycle(std::string animation, float weight = 1.f, float in_delay = 0.0f, bool clearPrevious = true, float out_delay = 0.0f);
+	void executeAction(std::string animation, float in_delay = 0.0f, float out_delay = 0.0f, float weight = 1.0f, bool auto_lock = false);
 };
 
 #endif

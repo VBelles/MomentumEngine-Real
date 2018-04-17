@@ -4,10 +4,12 @@
 #include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 WallJumpPlummetActionState::WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void WallJumpPlummetActionState::update (float delta) {
@@ -22,8 +24,10 @@ void WallJumpPlummetActionState::update (float delta) {
 	}
 
 	deltaMovement = *velocityVector * delta;
-	if (timer.elapsed() >= endingTime) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	if (!isChangingBaseState) {
+		if (timer.elapsed() >= endingTime) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		}
 	}
 }
 
@@ -39,6 +43,7 @@ void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->enable();
 	timer.reset();
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {

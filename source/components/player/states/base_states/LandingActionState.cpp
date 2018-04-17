@@ -4,9 +4,11 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "skeleton/comp_skeleton.h"
 
 LandingActionState::LandingActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void LandingActionState::update (float delta) {
@@ -20,14 +22,16 @@ void LandingActionState::update (float delta) {
 		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
 
-	if (timer.elapsed() >= landingLagTime) {
-		if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
-		}
-		else {
-			velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
-			velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+	if (!isChangingBaseState) {
+		if (timer.elapsed() >= landingLagTime) {
+			if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			}
+			else {
+				velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
+				velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+			}
 		}
 	}
 }
@@ -43,6 +47,7 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
 	//dbg("Entrando en landing\n");
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void LandingActionState::onStateExit(IActionState * nextState) {

@@ -4,9 +4,11 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
+#include "skeleton/comp_skeleton.h"
 
 WalkActionState::WalkActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
+	animation = "walk";
 }
 
 void WalkActionState::update (float delta) {
@@ -51,18 +53,20 @@ void WalkActionState::update (float delta) {
 			velocityVector->z = 0.f;
 		}
 	}
-	
-	if (isTurnAround) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::TurnAround);
-	}
-	else {
-		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 
-		if (horizontalVelocity.Length() == 0.f) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+	if (!isChangingBaseState) {
+		if (isTurnAround) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::TurnAround);
 		}
-		else if(!wantToWalk && horizontalVelocity.Length() > getPlayerModel()->walkingSpeed){
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Run);
+		else {
+			VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+
+			if (horizontalVelocity.Length() == 0.f) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			}
+			else if(!wantToWalk && horizontalVelocity.Length() > getPlayerModel()->walkingSpeed){
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Run);
+			}
 		}
 	}
 
@@ -71,6 +75,7 @@ void WalkActionState::update (float delta) {
 void WalkActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	setPose();
+	getPlayerModel()->getSkeleton()->blendCycle(animation);
 }
 
 void WalkActionState::onStateExit(IActionState * nextState) {

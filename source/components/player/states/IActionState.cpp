@@ -18,6 +18,7 @@ void IActionState::onStateEnter(IActionState* lastState) {
 	this->lastState = lastState;
 	deltaMovement = VEC3::Zero;
 	movementInput = VEC2::Zero;
+	isChangingBaseState = false;
 }
 void IActionState::onStateExit(IActionState* nextState) {
 	this->nextState = nextState;
@@ -32,7 +33,7 @@ void IActionState::setMovementInput(VEC2 input) {
 }
 
 TCompCamera* IActionState::getCamera() {
-	CEntity* camera = (CEntity *)getEntityByName("game_camera");
+	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
 	return currentCamera;
@@ -71,9 +72,9 @@ VEC3 IActionState::calculateHorizontalDeltaMovement(float delta, VEC3 lastFrameD
 	float currentSpeed = horizontalVelocity.Length();
 	lastFrameDirection.Normalize();
 	newDirection.Normalize();
-	//Calculamos la distancia recorrida desde el último frame 
+	//Calculamos la distancia recorrida desde el ï¿½ltimo frame 
 	VEC3 resultingDeltaMovement = lastFrameDirection * currentSpeed * delta + 0.5f * newDirection * acceleration * delta * delta;
-	//Si ha recorrido más distancia que lo máximo permitido por la velocidad máxima, lo clampeamos a (maxSpeed * delta)
+	//Si ha recorrido mï¿½s distancia que lo mï¿½ximo permitido por la velocidad mï¿½xima, lo clampeamos a (maxSpeed * delta)
 	if (resultingDeltaMovement.Length() > maxSpeed * delta) {
 		resultingDeltaMovement.Normalize();
 		resultingDeltaMovement *= maxSpeed * delta;
@@ -86,13 +87,13 @@ void IActionState::transferVelocityToDirectionAndAccelerate(float delta, bool wa
 	VEC2 horizontalVelocity = { velocityVector->x , velocityVector->z };
 	float currentSpeed = horizontalVelocity.Length();
 	if (wantToTransfer) {
-		//Pasamos toda la velocidad que llevábamos a la nueva dirección
+		//Pasamos toda la velocidad que llevï¿½bamos a la nueva direcciï¿½n
 		directionOfAcceleration.Normalize();
 		horizontalVelocity.x = directionOfAcceleration.x * currentSpeed;
 		horizontalVelocity.y = directionOfAcceleration.z * currentSpeed;
 	}
 
-	//Actualizamos el vector de velocidad con la aceleración
+	//Actualizamos el vector de velocidad con la aceleraciï¿½n
 	velocityVector->x = horizontalVelocity.x + directionOfAcceleration.x * acceleration * delta;
 	velocityVector->z = horizontalVelocity.y + directionOfAcceleration.z * acceleration * delta;
 }

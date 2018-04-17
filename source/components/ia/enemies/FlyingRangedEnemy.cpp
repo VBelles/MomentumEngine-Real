@@ -366,7 +366,7 @@ bool CBehaviorTreeFlyingRangedEnemy::combatCondition(float delta) {
 
 void CBehaviorTreeFlyingRangedEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
-	playerHandle = getEntityByName("The Player");
+	playerHandle = getEntityByName(PLAYER_NAME);
 }
 
 void CBehaviorTreeFlyingRangedEnemy::onAttackHit(const TMsgAttackHit& msg) {

@@ -8,10 +8,47 @@
         "lookat": "0.0 0.0 0.0"
       },
       "light_dir": {
-        "intensity": 1,
-        "color" :  "1 0.5 0.5 1",
-        "projector" : "data/textures/batman.dds",
-        "z_far" : 50
+        "intensity": 10,
+        "color" :  "0.8 0.8 1.0 1",
+        "z_near" : 2,
+        "z_far" : 300,
+        "fov" : 90,
+        "casts_shadows" : true,
+        "shadows_step" : 3.0,
+        "shadows_resolution" : 256,
+        "shadows_fmt" : "R32_TYPELESS"
+      },
+      "camera_flyover" : {
+        "key" : "Z",
+        "enabled" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "LightPoint00",
+      "transform": {
+        "pos": "0 15 0"
+      },
+      "light_point": {
+        "intensity": 10,
+        "color" :  "0.2 0.2 1.0 1",
+        "radius" : 50
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "LightPoint01",
+      "transform": {
+        "pos": "30 15 0"
+      },
+      "light_point": {
+        "intensity": 10,
+        "color" :  "1.0 0.2 0.2 1",
+        "radius" : 50
       }
     }
   }

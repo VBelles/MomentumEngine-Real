@@ -68,12 +68,16 @@ const IResource* CResourceManager::get(const std::string& res_name) {
 }
 
 void CResourceManager::registerResource(IResource* new_res) {
-	assert(new_res);
-	assert(!new_res->getName().empty());
-	assert(new_res->getClass());
-	// The name must be unique
-	assert(all_resources.find(new_res->getName()) == all_resources.end());
-	all_resources[new_res->getName()] = new_res;
+    assert(new_res);
+    assert(!new_res->getName().empty());
+    assert(new_res->getClass());
+    // The name must be unique
+    //assert(all_resources.find(new_res->getName()) == all_resources.end()); // Cuidado !!!
+	auto it = all_resources.find(new_res->getName());
+	if (it != all_resources.end()) {
+		it->second->destroy();
+	}
+    all_resources[new_res->getName()] = new_res;
 }
 
 void CResourceManager::destroyAll() {
@@ -82,6 +86,14 @@ void CResourceManager::destroyAll() {
 		r->destroy();
 	}
 	all_resources.clear();
+}
+
+void CResourceManager::destroyResource(const std::string & name) {
+	auto it = all_resources.find(name);
+	if (it != all_resources.end()) {
+		it->second->destroy();
+		all_resources.erase(name);
+	}
 }
 
 void CResourceManager::debugInMenu() {

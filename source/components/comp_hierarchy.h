@@ -1,5 +1,4 @@
-#ifndef INC_COMP_HIERARCHY_TRANSFORM_H_
-#define INC_COMP_HIERARCHY_TRANSFORM_H_
+#pragma once
 
 #include "geometry/transform.h"
 
@@ -26,6 +25,3 @@ struct TCompHierarchy : public CTransform, public TCompBase {
 	void update(float dt);
 	void debugInMenu();
 };
-
-
-#endif

@@ -1,0 +1,90 @@
+﻿  Value.cpp
+  Type.cpp
+  Table.cpp
+  SLB.cpp
+  Script.cpp
+  Property.cpp
+  Object.cpp
+  Manager.cpp
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\include\slb\hybrid.hpp(53): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface struct 'SLB::InvalidMethod'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.12.25827\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  c:\cppprojects\momentumengine-real\tools\coroutines\slb\include\slb\hybrid.hpp(52): note: see declaration of 'SLB::InvalidMethod'
+  LuaCall.cpp
+  Iterator.cpp
+  Instance.cpp
+  Hybrid.cpp
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\include\slb\hybrid.hpp(53): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface struct 'SLB::InvalidMethod'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.12.25827\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  c:\cppprojects\momentumengine-real\tools\coroutines\slb\include\slb\hybrid.hpp(52): note: see declaration of 'SLB::InvalidMethod'
+  FuncCall.cpp
+  Error.cpp
+  Debug.cpp
+  ClassInfo.cpp
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\include\slb\hybrid.hpp(53): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface struct 'SLB::InvalidMethod'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.12.25827\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  c:\cppprojects\momentumengine-real\tools\coroutines\slb\include\slb\hybrid.hpp(52): note: see declaration of 'SLB::InvalidMethod'
+  ClassHelpers.cpp
+  Class.cpp
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\include\slb\hybrid.hpp(53): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface struct 'SLB::InvalidMethod'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.12.25827\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  c:\cppprojects\momentumengine-real\tools\coroutines\slb\include\slb\hybrid.hpp(52): note: see declaration of 'SLB::InvalidMethod'
+  Allocator.cpp
+  Generating Code...
+  lua.c
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lobject.c(210): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lvm.c(53): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lauxlib.c(216): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(181): note: see declaration of 'strerror'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lauxlib.c(218): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(181): note: see declaration of 'strerror'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lauxlib.c(586): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(181): note: see declaration of 'strerror'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lauxlib.c(637): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lauxlib.c(643): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(242): note: see declaration of 'freopen'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\liolib.c(64): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(181): note: see declaration of 'strerror'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\liolib.c(174): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\liolib.c(200): warning C4996: 'tmpfile': This function or variable may be unsafe. Consider using tmpfile_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(429): note: see declaration of 'tmpfile'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\liolib.c(220): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\liolib.c(281): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\liolib.c(301): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1195): note: see declaration of 'fscanf'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\loadlib.c(305): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\loadlib.c(582): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdlib.h(1199): note: see declaration of 'getenv'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\loadlib.c(584): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdlib.h(1199): note: see declaration of 'getenv'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\loslib.c(90): warning C4996: 'tmpnam': This function or variable may be unsafe. Consider using tmpnam_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(439): note: see declaration of 'tmpnam'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\loslib.c(99): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdlib.h(1199): note: see declaration of 'getenv'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\loslib.c(182): warning C4996: 'gmtime': This function or variable may be unsafe. Consider using gmtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(495): note: see declaration of 'gmtime'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\loslib.c(186): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(505): note: see declaration of 'localtime'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lstrlib.c(796): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lstrlib.c(798): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lstrlib.c(837): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lstrlib.c(865): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lstrlib.c(874): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lstrlib.c(883): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+c:\cppprojects\momentumengine-real\tools\coroutines\slb\src\lua\lstrlib.c(900): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+ClassHelpers.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+Class.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+  SLB.vcxproj -> C:\CPPprojects\MomentumEngine-Real\tools\Coroutines\\lib\SLB_d.lib

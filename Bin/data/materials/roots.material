@@ -1,8 +1,8 @@
 {
-  "technique": "textured.tech",
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/roots.dds"
+    "albedo": "data/textures/roots.dds",
+    "normal": "data/textures/null_normal.dds"
   }
 }

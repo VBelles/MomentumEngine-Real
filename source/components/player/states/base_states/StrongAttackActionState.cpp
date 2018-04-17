@@ -6,10 +6,12 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "entity/common_msgs.h"
+#include "skeleton/comp_skeleton.h"
 
 StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
+	animation = "wave";
 }
 
 void StrongAttackActionState::update(float delta) {
@@ -17,11 +19,15 @@ void StrongAttackActionState::update(float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		if (!isChangingBaseState) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
+		}
 	}
 	else {
 		if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			if (!isChangingBaseState) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			}
 		}
 		else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 			timer.reset();
@@ -77,6 +83,7 @@ void StrongAttackActionState::onStateExit(IActionState * nextState) {
 
 void StrongAttackActionState::onStrongAttackButtonReleased() {
 	phase = AttackPhases::Startup;
+	getPlayerModel()->getSkeleton()->executeAction(animation);
 }
 
 void StrongAttackActionState::onLeavingGround() {

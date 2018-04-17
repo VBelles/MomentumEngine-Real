@@ -70,7 +70,16 @@ void CModuleEntities::update(float delta) {
 		om->updateAll(scaled_time);
 	}
 
-	CHandleManager::destroyAllPendingObjects();
+    CHandleManager::destroyAllPendingObjects();
+
+	{ // Esto Juan lo tiene en module_render.cpp
+		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
+		CTraceScoped gpu_scope("shadowsMapsGeneration");
+		// Generate the shadow map for each active light
+		getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+			c->generateShadowMap();
+		});
+	}
 }
 
 bool CModuleEntities::stop() {
@@ -162,26 +171,28 @@ void CModuleEntities::render() {
 		c->renderUI();
 	});
 
-	auto om_shadow = getObjectManager<TCompShadow>();
+	/*auto om_shadow = getObjectManager<TCompShadow>();
 	om_shadow->forEach([](TCompShadow* c) {
+		if (c->isEnabled()) {
+			TCompTransform* c_transform = c->getTransform();
+			if (!c_transform) return;
 
-		TCompTransform* c_transform = c->getTransform();
-		if (!c_transform)
-			return;
+			cb_object.obj_world = c_transform->asMatrix();
+			cb_object.updateGPU();
 
-		cb_object.obj_world = c_transform->asMatrix();
-		cb_object.updateGPU();
-
-		for (auto& m : c->materials) {
-			m->activate();
+			for (auto& m : c->materials) {
+				m->activate();
+			}
+			c->mesh->activateAndRender();
 		}
-		c->mesh->activateAndRender();
-	});
+	});*/
 
-	CRenderManager::get().renderCategory("default");
-	CRenderManager::get().debugInMenu();
+    //CRenderManager::get().renderCategory("default"); // Ya no hace falta.
+    CRenderManager::get().debugInMenu();
+  	//renderDebugOfComponents();
 }
 
+// Shows render debug of all components (axis and so on).
 void CModuleEntities::renderDebugOfComponents() {
 	CTraceScoped gpu_scope("renderDebugOfComponents");
 	PROFILE_FUNCTION("renderDebugOfComponents");

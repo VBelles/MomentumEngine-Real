@@ -18,8 +18,9 @@ public:
 	void registerResourceClass(const CResourceClass* new_class);
 	const IResource* get(const std::string& res_name);
 
-	void debugInMenu();
-	void destroyAll();
+  void debugInMenu();
+  void destroyAll();
+  void destroyResource(const std::string& name);
 
 	// 
 	void registerResource(IResource* res);
