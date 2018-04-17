@@ -25,6 +25,8 @@ public:
 	void executeAction(int animationId, float in_delay = 0.0f, float out_delay = 0.0f, float weight = 1.0f, bool auto_lock = false);
 	void executeAction(std::string animation, float in_delay = 0.0f, float out_delay = 0.0f, float weight = 1.0f, bool auto_lock = false);
 	void setTimeFactor(float timeFactor);
+	float getAnimationTime();
+	float getAnimationDuration(int animationId);
 };
 
 #endif

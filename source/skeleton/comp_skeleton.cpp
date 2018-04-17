@@ -212,3 +212,10 @@ void TCompSkeleton::executeAction(std::string animation, float in_delay, float o
 void TCompSkeleton::setTimeFactor(float timeFactor) {
 	model->getMixer()->setTimeFactor(timeFactor);
 }
+
+float TCompSkeleton::getAnimationTime() {
+	return model->getMixer()->getAnimationTime();
+}
+float TCompSkeleton::getAnimationDuration(int animationId) {
+	return model->getCoreModel()->getCoreAnimation(animationId)->getDuration();
+}

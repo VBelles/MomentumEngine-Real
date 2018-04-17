@@ -53,7 +53,9 @@ CBehaviorTreeMeleeEnemy::CBehaviorTreeMeleeEnemy()
 	addChild("combat", "idleWar", Sequence, nullptr, nullptr);
 	addChild("idleWar", "onIdleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onIdleWar);
 	addChild("idleWar", "idleWarAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::idleWar);
-	addChild("combat", "attack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::attack);
+	addChild("combat", "attack", Sequence, nullptr, nullptr);
+	addChild("attack", "onAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onAttack);
+	addChild("attack", "attackAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::attack);
 	node->setProbability(std::vector<float>{ 0.75f, 0.25f });
 
 	addChild("meleeEnemy", "chase", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::chaseCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::chase);
@@ -245,7 +247,7 @@ int CBehaviorTreeMeleeEnemy::stunned(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::airborne(float delta) {
-	getSkeleton()->blendCycle(1);
+	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 	return Leave;
 }
@@ -274,7 +276,7 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
-	getSkeleton()->blendCycle(1);
+	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
 	rotateTowards(delta, spawnPosition, rotationSpeed);
@@ -300,7 +302,7 @@ int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::chase(float delta) {
-	getSkeleton()->blendCycle(1);
+	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
@@ -315,7 +317,7 @@ int CBehaviorTreeMeleeEnemy::chase(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::stepBack(float delta) {
-	getSkeleton()->blendCycle(1);
+	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
@@ -329,7 +331,9 @@ int CBehaviorTreeMeleeEnemy::stepBack(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onIdleWar(float delta) {
-	getSkeleton()->blendCycle(0);
+	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
+	updateGravity(delta);
+	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	idleWarTimer.reset();
 	return Leave;
 }
@@ -337,7 +341,7 @@ int CBehaviorTreeMeleeEnemy::onIdleWar(float delta) {
 int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	if (idleWarTimer.elapsed() > 1.f) {
+	if (idleWarTimer.elapsed() > getSkeleton()->getAnimationDuration(0)) {
 		return Leave;
 	}
 	else {
@@ -345,22 +349,36 @@ int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::attack(float delta) {
-	getSkeleton()->executeAction(2);
+int CBehaviorTreeMeleeEnemy::onAttack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	if (attackTimer.elapsed() > attackCooldown) {
-		attackTimer.reset();
-		TMsgAttackHit msg = {};
-		msg.attacker = CHandle(this);
-		msg.info.damage = attackDamage;
-		getPlayerEntity()->sendMsg(msg);
+	if (attackTimer.elapsed() < attackCooldown) {
+		current = nullptr;
+	}
+	else {
+		getSkeleton()->executeAction(2, 0.2f, 0.2f);
 	}
 	return Leave;
 }
 
+int CBehaviorTreeMeleeEnemy::attack(float delta) {
+	updateGravity(delta);
+	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
+	if (getSkeleton()->getAnimationTime() < (getSkeleton()->getAnimationDuration(2))) {
+		return Stay;
+	}
+	else {
+		TMsgAttackHit msg = {};
+		msg.attacker = CHandle(this);
+		msg.info.damage = attackDamage;
+		getPlayerEntity()->sendMsg(msg);
+		attackTimer.reset();
+		return Leave;
+	}
+}
+
 int CBehaviorTreeMeleeEnemy::idle(float delta) {
-	getSkeleton()->blendCycle(0);
+	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
 	updateGravity(delta);
 	return Leave;
 }
