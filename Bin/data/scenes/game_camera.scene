@@ -7,6 +7,12 @@
 			},
 			"camera" : {
 				"fov" : 90 
+			},
+			"render_blur" : {
+				"enabled" :  false
+			},
+			"render_blur_radial" : {
+				"enabled" :  false
 			}
 		}
 	}
