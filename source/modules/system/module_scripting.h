@@ -1,6 +1,6 @@
 #pragma once
 
-//struct lua_State;
+struct lua_State;
 
 class CModuleScripting : public IModule {
 public:
@@ -12,5 +12,5 @@ public:
 	void render() override;
 
 private:
-	//lua_State* state;
+	lua_State* state;
 };
