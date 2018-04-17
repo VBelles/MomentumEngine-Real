@@ -231,6 +231,7 @@
     <ClCompile Include="modules\system\module_scripting.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -421,6 +422,7 @@
     <ClInclude Include="modules\system\module_scripting.h" />
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
+    <ClInclude Include="modules\system\scripting\scripting_player.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
