@@ -7,6 +7,7 @@
 class CEntity;
 class TCompTransform;
 class TCompCollider;
+class TCompSkeleton;
 struct PowerStats;
 
 class CBehaviorTreeMeleeEnemy : public IBehaviorTree, public TCompBase {
@@ -18,15 +19,15 @@ private:
 	float stepBackSpeed = 2.5f;
 	float rotationSpeed;
 
-	float recallDistance = 28.f;
+	float recallDistanceSqrd = 28.f;
 
 	float chaseFov = deg2rad(60);
-	float fovChaseDistance = 25.f;
-	float smallChaseRadius = 10.f;
+	float fovChaseDistanceSqrd = 25.f;
+	float smallChaseRadiusSqrd = 10.f;
 
 	float attackFov = deg2rad(60);
-	float minCombatDistance = 1.5f;
-	float maxCombatDistance = 4.f;
+	float minCombatDistanceSqrd = 1.5f;
+	float maxCombatDistanceSqrd = 4.f;
 	float attackCooldown = 5.f;
 	float attackDamage = 1.f;
 
@@ -95,6 +96,7 @@ private:
 
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();
+	TCompSkeleton* getSkeleton();
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);

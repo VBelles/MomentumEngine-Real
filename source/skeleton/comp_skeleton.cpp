@@ -181,12 +181,11 @@ void TCompSkeleton::renderDebug() {
 	}
 }
 
-void TCompSkeleton::blendCycle(std::string animation, float weight, float in_delay, bool clearPrevious, float out_delay) {
-	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
-	int animationId = core->getCoreAnimationId(animation);
+void TCompSkeleton::blendCycle(int animationId, float weight, float in_delay, bool clearPrevious, float out_delay) {
 	model->getMixer()->blendCycle(animationId, weight, in_delay);
 
 	if (clearPrevious) {
+		CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
 		for (auto a : model->getMixer()->getAnimationCycle()) {
 			int id = core->getCoreAnimationId(a->getCoreAnimation()->getName());
 			if (id != animationId) model->getMixer()->clearCycle(id, out_delay);
@@ -194,8 +193,22 @@ void TCompSkeleton::blendCycle(std::string animation, float weight, float in_del
 	}
 }
 
+void TCompSkeleton::blendCycle(std::string animation, float weight, float in_delay, bool clearPrevious, float out_delay) {
+	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
+	int animationId = core->getCoreAnimationId(animation);
+	blendCycle(animationId, weight, in_delay, clearPrevious, out_delay);
+}
+
+void TCompSkeleton::executeAction(int animationId, float in_delay, float out_delay, float weight, bool auto_lock) {
+	model->getMixer()->executeAction(animationId, in_delay, out_delay, weight, auto_lock);
+}
+
 void TCompSkeleton::executeAction(std::string animation, float in_delay, float out_delay, float weight, bool auto_lock) {
 	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
 	int animationId = core->getCoreAnimationId(animation);
-	model->getMixer()->executeAction(animationId, in_delay, out_delay, weight, auto_lock);
+	executeAction(animationId, in_delay, out_delay, weight, auto_lock);
+}
+
+void TCompSkeleton::setTimeFactor(float timeFactor) {
+	model->getMixer()->setTimeFactor(timeFactor);
 }

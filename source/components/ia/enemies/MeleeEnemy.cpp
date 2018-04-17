@@ -8,6 +8,7 @@
 #include "components/comp_shadow.h"
 #include "components/comp_give_power.h"
 #include "components/player/comp_player_model.h"
+#include "skeleton/comp_skeleton.h"
 
 DECL_OBJ_MANAGER("behaviorTree_melee_enemy", CBehaviorTreeMeleeEnemy);
 
@@ -66,13 +67,13 @@ void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 	movementSpeed = j.value("movementSpeed", 2.5f);
 	stepBackSpeed = j.value("stepBackSpeed", 3.5f);
 	rotationSpeed = j.value("rotationSpeed", 20.f);
-	recallDistance = j.value("recallDistance", 28.f);
+	recallDistanceSqrd = j.value("recallDistanceSqrd", 784.f);
 	chaseFov = deg2rad(j.value("chaseFov", 60.f));
-	fovChaseDistance = j.value("fovChaseDistance", 25.f);
-	smallChaseRadius = j.value("smallChaseRadius", 10.f);
+	fovChaseDistanceSqrd = j.value("fovChaseDistanceSqrd", 625.f);
+	smallChaseRadiusSqrd = j.value("smallChaseRadiusSqrd", 100.f);
 	attackFov = deg2rad(j.value("attackFov", 60.f));
-	minCombatDistance = j.value("minCombatDistance", 1.f);
-	maxCombatDistance = j.value("maxCombatDistance", 2.5f);
+	minCombatDistanceSqrd = j.value("minCombatDistanceSqrd", 1.f);
+	maxCombatDistanceSqrd = j.value("maxCombatDistanceSqrd", 6.25f);
 	attackCooldown = j.value("attackCooldown", 2.f);
 	attackDamage = j.value("attackDamage", 1.f);
 	propelDuration = j.value("propelDuration", 1.5f);
@@ -126,6 +127,7 @@ int CBehaviorTreeMeleeEnemy::dead(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	getCollider()->destroy();
 	timer.reset();
 	grabbedDuration = receivedAttack.grab->duration;
@@ -135,6 +137,7 @@ int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
 int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 	if (timer.elapsed() >= grabbedDuration) {
 		getCollider()->create();
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -145,6 +148,8 @@ int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
 	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
+
+	getSkeleton()->setTimeFactor(0);
 
 	timer.reset();
 
@@ -160,11 +165,13 @@ int CBehaviorTreeMeleeEnemy::propelled(float delta) {
 		return Stay;
 	}
 	else {
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 }
 
 int CBehaviorTreeMeleeEnemy::onHorizontalLaunch(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	floatingDuration = receivedAttack.horizontalLauncher->suspensionDuration;
 	initialLaunchPos = getTransform()->getPosition();
 	velocityVector = receivedAttack.horizontalLauncher->velocity;
@@ -179,6 +186,7 @@ int CBehaviorTreeMeleeEnemy::horizontalLaunched(float delta) {
 		velocityVector.x = 0;
 		velocityVector.z = 0;
 		timer.reset();
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -187,6 +195,7 @@ int CBehaviorTreeMeleeEnemy::horizontalLaunched(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onVerticalLaunch(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	floatingDuration = receivedAttack.verticalLauncher->suspensionDuration;
 	velocityVector = receivedAttack.verticalLauncher->velocity;
 	return Leave;
@@ -196,6 +205,7 @@ int CBehaviorTreeMeleeEnemy::verticalLaunched(float delta) {
 	updateGravity(delta);
 	if (velocityVector.y <= 0) {
 		timer.reset();
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -204,7 +214,9 @@ int CBehaviorTreeMeleeEnemy::verticalLaunched(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::floating(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	if (timer.elapsed() > floatingDuration) {
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -213,6 +225,7 @@ int CBehaviorTreeMeleeEnemy::floating(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onStun(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	stunDuration = receivedAttack.stun->duration;
 	stunTimer.reset();
 	isStunned = true;
@@ -223,6 +236,7 @@ int CBehaviorTreeMeleeEnemy::stunned(float delta) {
 	updateGravity(delta);
 	if (stunTimer.elapsed() > stunDuration) {
 		isStunned = false;
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -231,6 +245,7 @@ int CBehaviorTreeMeleeEnemy::stunned(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::airborne(float delta) {
+	getSkeleton()->blendCycle(1);
 	updateGravity(delta);
 	return Leave;
 }
@@ -252,10 +267,14 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 	TCompGivePower *power = get<TCompGivePower>();
 	power->reset();
 
+	getSkeleton()->blendCycle(0);
+	getSkeleton()->setTimeFactor(1);
+
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
+	getSkeleton()->blendCycle(1);
 	updateGravity(delta);
 
 	rotateTowards(delta, spawnPosition, rotationSpeed);
@@ -270,10 +289,9 @@ int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
 	VEC3 deltaMovement = myFront * movementSpeed * delta;
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
-	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	if (VEC3::Distance(myPosition, spawnPosition) < minCombatDistance
-		|| (distance < fovChaseDistance + maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov)))
-	{
+	float distanceSquared = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	if (VEC3::DistanceSquared(myPosition, spawnPosition) < minCombatDistanceSqrd
+		|| (distanceSquared < fovChaseDistanceSqrd + minCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
 		return Leave;
 	}
 	else {
@@ -282,6 +300,7 @@ int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::chase(float delta) {
+	getSkeleton()->blendCycle(1);
 	updateGravity(delta);
 
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
@@ -296,6 +315,7 @@ int CBehaviorTreeMeleeEnemy::chase(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::stepBack(float delta) {
+	getSkeleton()->blendCycle(1);
 	updateGravity(delta);
 
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
@@ -309,6 +329,7 @@ int CBehaviorTreeMeleeEnemy::stepBack(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onIdleWar(float delta) {
+	getSkeleton()->blendCycle(0);
 	idleWarTimer.reset();
 	return Leave;
 }
@@ -325,6 +346,7 @@ int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::attack(float delta) {
+	getSkeleton()->executeAction(2);
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() > attackCooldown) {
@@ -338,6 +360,7 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::idle(float delta) {
+	getSkeleton()->blendCycle(0);
 	updateGravity(delta);
 	return Leave;
 }
@@ -379,18 +402,18 @@ bool CBehaviorTreeMeleeEnemy::airborneCondition(float delta) {
 }
 
 bool CBehaviorTreeMeleeEnemy::returnToSpawnCondition(float delta) {
-	return VEC3::Distance(getTransform()->getPosition(), spawnPosition) > recallDistance;
+	return VEC3::DistanceSquared(getTransform()->getPosition(), spawnPosition) > recallDistanceSqrd;
 }
 
 bool CBehaviorTreeMeleeEnemy::chaseCondition(float delta) {
-	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	float distanceSqrd = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
 	bool isPlayerInFov = getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
-	return distance > minCombatDistance && (distance < smallChaseRadius || (distance < fovChaseDistance && isPlayerInFov));
+	return distanceSqrd > minCombatDistanceSqrd && (distanceSqrd < smallChaseRadiusSqrd || (distanceSqrd < fovChaseDistanceSqrd && isPlayerInFov));
 }
 
 bool CBehaviorTreeMeleeEnemy::combatCondition(float delta) {
-	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distance < maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
+	float distanceSqrd = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	return distanceSqrd < maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
 }
 
 bool CBehaviorTreeMeleeEnemy::stepBackCondition(float delta) {
@@ -399,8 +422,8 @@ bool CBehaviorTreeMeleeEnemy::stepBackCondition(float delta) {
 	myPos.y = 0;
 	playerPos.y = 0;
 	//float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	float distance = VEC3::Distance(myPos, playerPos);
-	return distance < minCombatDistance;
+	float distanceSqrd = VEC3::DistanceSquared(myPos, playerPos);
+	return distanceSqrd < minCombatDistanceSqrd;
 }
 
 void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -409,6 +432,8 @@ void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg
 }
 
 void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
+	getSkeleton()->blendCycle(0);
+	getSkeleton()->setTimeFactor(1);
 	isStunned = false;
 	receivedAttack = msg.info;
 	current = tree["onAttackHit"];
@@ -462,6 +487,10 @@ TCompTransform* CBehaviorTreeMeleeEnemy::getTransform() {
 
 TCompCollider* CBehaviorTreeMeleeEnemy::getCollider() {
 	return get<TCompCollider>();
+}
+
+TCompSkeleton* CBehaviorTreeMeleeEnemy::getSkeleton() {
+	return get<TCompSkeleton>();
 }
 
 CEntity* CBehaviorTreeMeleeEnemy::getPlayerEntity() {
