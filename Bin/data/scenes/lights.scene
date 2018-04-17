@@ -4,18 +4,19 @@
 		{
 			"name": "LightDir00",
 			"transform": {
-				"pos": "-76 65 -60",
+				"pos": "-76 60 -60",
 				"lookat": "-83 22 -56"
 			},
 			"light_dir": {
-				"intensity": 2,
+				"intensity": 50,
 				"color" :  "1 1 1 1",
-				"projector" : "data/textures/white.dds",
-				"z_far" : 500,
-				"fov": 150,
+        "projector" : "data/textures/white.dds",
+        "z_near" : 5,
+				"z_far" : 300,
+				"fov": 50,
 				"casts_shadows" : true,
-				"shadows_step" : 3.0,
-				"shadows_resolution" : 256,
+				"shadows_step" : 1.5,
+				"shadows_resolution" : 1024,
 				"shadows_fmt" : "R32_TYPELESS"
 			}
 		}
