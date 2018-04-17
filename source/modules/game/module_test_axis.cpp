@@ -108,17 +108,17 @@ void CModuleTestAxis::update(float delta) {
 
 void CModuleTestAxis::render() {
     // Find the entity with name 'game_camera'
-	CHandle h_e_camera = getEntityByName(GAME_CAMERA);
-    if (h_e_camera.isValid()) {
-        CEntity* e_camera = h_e_camera;
-        TCompCamera* c_camera = e_camera->get<TCompCamera>();
-        assert(c_camera);
-        activateCamera(*c_camera, Render.width, Render.height);
-    }
-    else {
-        activateCamera(camera, Render.width, Render.height);
-    }
+	//CHandle h_e_camera = getEntityByName(GAME_CAMERA);
+ //   if (h_e_camera.isValid()) {
+ //       CEntity* e_camera = h_e_camera;
+ //       TCompCamera* c_camera = e_camera->get<TCompCamera>();
+ //       assert(c_camera);
+ //       activateCamera(*c_camera, Render.width, Render.height);
+ //   }
+ //   else {
+ //       activateCamera(camera, Render.width, Render.height);
+ //   }
 
-    auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
-    solid->activate();
+ //   auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
+ //   solid->activate();
 }

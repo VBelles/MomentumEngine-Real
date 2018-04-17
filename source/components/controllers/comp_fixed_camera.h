@@ -33,7 +33,7 @@ private:
 
 	VEC2 input;
 
-	bool isMovementLocked = false;
+	bool isMovementLocked = true;
 
 	//Msgs
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);

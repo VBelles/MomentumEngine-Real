@@ -167,8 +167,8 @@ void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
 void CModuleRender::activateMainCamera() {
     CCamera* cam = &camera;
 
-    // Find the entity with name 'player_camera'
-    h_e_camera = getEntityByName(PLAYER_CAMERA);
+    // Find the entity with name 'game_camera'
+    h_e_camera = getEntityByName(GAME_CAMERA);
     if (h_e_camera.isValid()) {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get< TCompCamera >();
