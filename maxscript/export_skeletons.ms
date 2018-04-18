@@ -9,7 +9,7 @@ struct  TSkeletonsExporter (
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return (classof obj == Biped_Object or classof obj == dummy) and obj.wireColor != Black
+		return (classof obj == Biped_Object or classof obj == Dummy) and obj.wireColor != Black
 	),
 	
 	-- Search the root bones in the scene to define the .csf
@@ -96,7 +96,7 @@ struct  TSkeletonsExporter (
 		)
 		
 		-- Restaurar el modo pose si es q estaba en modo pose inicialmente
-		if was_in_figure_mode == false then root.controller.figureMode = false
+		root.controller.figureMode = was_in_figure_mode
     ),
 	
 	fn exportAnim = (
