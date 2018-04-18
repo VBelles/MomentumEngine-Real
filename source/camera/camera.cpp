@@ -37,6 +37,7 @@ void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new
     fov_vertical = new_fov_vertical;
     z_near = new_z_near;
     z_far = new_z_far;
+    if (z_far <= z_near) z_far = z_near + 0.1f;
     assert(z_far > z_near);
     aspect_ratio = (float)Render.width / (float)Render.height;
     proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, aspect_ratio, new_z_near, new_z_far);
