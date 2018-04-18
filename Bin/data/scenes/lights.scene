@@ -10,8 +10,8 @@
 			"light_dir": {
 				"intensity": 50,
 				"color" :  "1 1 1 1",
-        "projector" : "data/textures/white.dds",
-        "z_near" : 5,
+        		"projector" : "data/textures/white.dds",
+        		"z_near" : 5,
 				"z_far" : 300,
 				"fov": 50,
 				"casts_shadows" : true,

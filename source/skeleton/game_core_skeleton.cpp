@@ -35,7 +35,8 @@ struct TSkinVertex {
 	VEC3 pos;
 	VEC3 normal;
 	VEC2 uv;
-	//VEC4 tangent;
+	VEC2 uv2;
+	VEC4 tangent;
 	uint8_t bone_ids[4];
 	uint8_t bone_weights[4];    // 0.255   -> 0..1
 };
@@ -127,6 +128,12 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 		}
 		auto& cal_uvs0 = cal_all_uvs[0];
 
+		cal_sm->enableTangents(0, true);
+		auto& cal_all_tangents = cal_sm->getVectorVectorTangentSpace();
+		assert(cal_all_tangents.size() > 0);
+		auto& cal_tangents = cal_all_tangents[0];
+		assert(cal_tangents.size()  == num_vtxs);
+
 		// Process the vtxs
 		for (int vid = 0; vid < num_vtxs; ++vid) {
 			CalCoreSubmesh::Vertex& cal_vtx = cal_vtxs[vid];
@@ -142,6 +149,13 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 			// Texture coords
 			skin_vtx.uv.x = cal_uvs0[vid].u;
 			skin_vtx.uv.y = cal_uvs0[vid].v;
+			skin_vtx.uv2.x = cal_uvs0[vid].u;
+			skin_vtx.uv2.y = cal_uvs0[vid].v;
+
+			skin_vtx.tangent.x = cal_tangents[vid].tangent.x;
+			skin_vtx.tangent.y = cal_tangents[vid].tangent.y;
+			skin_vtx.tangent.z = cal_tangents[vid].tangent.z;
+			skin_vtx.tangent.w = cal_tangents[vid].crossFactor;
 
 			// Weights...
 			int total_weight = 0;
@@ -203,7 +217,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 	header.num_indices = total_faces * 3;
 	header.num_vertexs = total_vtxs;
 	header.primitive_type = CRenderMesh::TRIANGLE_LIST;
-	strcpy(header.vertex_type_name, "PosNUvSkin");
+	strcpy(header.vertex_type_name, "PosNUvUvTSkin");
 
 	mesh_io.vtxs = mds_vtxs.buffer;
 	mesh_io.idxs = mds_idxs.buffer;
