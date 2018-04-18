@@ -2,6 +2,6 @@
   "technique": "textured_skin.tech",
   "shadows": true,
   "textures": {
-    "albedo": "data/textures/piedras_c.dds"
+    "albedo": "data/textures/gorila.dds"
   }
 }
