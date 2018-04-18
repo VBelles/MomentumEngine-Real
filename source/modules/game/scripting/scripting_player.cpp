@@ -4,6 +4,7 @@
 #include "components/comp_collider.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/comp_power_gauge.h"
+#include <SLB/SLB.hpp>
 
 ScriptingPlayer::ScriptingPlayer() {
 	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
@@ -19,6 +20,17 @@ ScriptingPlayer::ScriptingPlayer() {
 }
 
 ScriptingPlayer::~ScriptingPlayer() {
+}
+
+
+void ScriptingPlayer::bind(SLB::Manager* manager) {
+	SLB::Class<ScriptingPlayer>("Player", manager)
+		.constructor()
+		.set("getHp", &ScriptingPlayer::getHp)
+		.set("teleport", &ScriptingPlayer::teleport)
+		.set("tp", &ScriptingPlayer::teleport)
+		.set("move", &ScriptingPlayer::move)
+		.set("setPower", &ScriptingPlayer::setPower);
 }
 
 
@@ -38,6 +50,7 @@ void ScriptingPlayer::move(float dX, float dY, float dZ){
 void ScriptingPlayer::setPower(float power) {
 	getPowerGauge()->setPower(power);
 }
+
 
 TCompPlayerModel* ScriptingPlayer::getPlayerModel() {
 	return playerModelHandle;

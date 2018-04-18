@@ -4,6 +4,9 @@ class TCompPlayerModel;
 class TCompTransform;
 class TCompCollider;
 class TCompPowerGauge;
+namespace SLB{
+	class Manager;
+}
 
 class ScriptingPlayer {
 
@@ -24,5 +27,6 @@ public:
 	void teleport(float x, float y, float z);
 	void move(float dX, float dY, float dZ);
 	void setPower(float power);
+	static void bind(SLB::Manager* manager);
 };
 

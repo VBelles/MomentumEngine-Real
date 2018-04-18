@@ -9,24 +9,27 @@
 CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {}
 
 bool CModuleScripting::start() {
+
+	//Create console and console callback
 	console = new SimpleConsole([&](const char* command) {
-		if (!script->safeDoString(command)) {
+		if (_stricmp(command, "HELP") == 0) {
+			console->AddLog("- Bindings:");
+			script->safeDoString("print(player)");
+		}
+		else if (!script->safeDoString(command)) {
 			console->AddLog("[error]%s", script->getLastError());
 		}
 	});
+
+	//Init SLB
 	manager = new SLB::Manager();
 	script = new SLB::Script(manager);
 	script->setPrintCallback(&printCallback);
 
-	SLB::Class<ScriptingPlayer>("Player", manager)
-		.constructor()
-		.set("getHp", &ScriptingPlayer::getHp)
-		.set("teleport", &ScriptingPlayer::teleport)
-		.set("tp", &ScriptingPlayer::teleport)
-		.set("move", &ScriptingPlayer::move)
-		.set("setPower", &ScriptingPlayer::setPower);
+	//Bind clases
+	ScriptingPlayer::bind(manager);
 
-
+	//Create binded objects
 	script->doString("SLB.using(SLB)");
 	script->doString("player = Player()");
 
@@ -44,6 +47,7 @@ void CModuleScripting::update(float delta) {
 }
 
 void CModuleScripting::render() {
+	//Render console on debug
 	if (CApp::get().showDebug) {
 		bool open = true;
 		console->Draw("LUA Console", &open);

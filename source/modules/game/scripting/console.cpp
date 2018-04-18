@@ -6,10 +6,9 @@ SimpleConsole::SimpleConsole(std::function<void(const char *)> consoleListener) 
 	ClearLog();
 	memset(InputBuf, 0, sizeof(InputBuf));
 	HistoryPos = -1;
-	Commands.push_back("HELP");
-	Commands.push_back("HISTORY");
-	Commands.push_back("CLEAR");
-	Commands.push_back("CLASSIFY");  // "classify" is here to provide an example of "C"+[tab] completing to "CL" and displaying matches.
+	Commands.push_back("help");
+	Commands.push_back("history");
+	Commands.push_back("clear");
 	AddLog("Bienvenido a Momentum");
 }
 
@@ -152,17 +151,17 @@ void SimpleConsole::ExecCommand(const char* command_line) {
 	if (Stricmp(command_line, "CLEAR") == 0) {
 		ClearLog();
 	}
-	else if (Stricmp(command_line, "HELP") == 0) {
-		AddLog("Commands:");
-		for (int i = 0; i < Commands.Size; i++)
-			AddLog("- %s", Commands[i]);
-	}
 	else if (Stricmp(command_line, "HISTORY") == 0) {
 		int first = History.Size - 10;
 		for (int i = first > 0 ? first : 0; i < History.Size; i++)
 			AddLog("%3d: %s\n", i, History[i]);
 	}
 	else {
+		if (Stricmp(command_line, "HELP") == 0) {
+			AddLog("Commands:");
+			for (int i = 0; i < Commands.Size; i++)
+				AddLog("- %s", Commands[i]);
+		}
 		consoleListener(command_line);
 		//AddLog("Unknown command: '%s'\n", command_line);
 

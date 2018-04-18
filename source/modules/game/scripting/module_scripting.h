@@ -25,4 +25,5 @@ public:
 
 };
 
+//Callback for LUA print function
 void printCallback(SLB::Script* script, const char* str, size_t strSize);
