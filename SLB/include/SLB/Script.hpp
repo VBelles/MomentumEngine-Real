@@ -119,7 +119,7 @@ namespace SLB {
 
     // Changes the print callback. This callback will be called by the internal
     // print function from the scripts in order t
-    void setPrintCallback( PrintCallback );
+	void setPrintCallback(PrintCallback printCallback) { _printCallback = printCallback; }
 
   protected:
     virtual void onNewState(lua_State * /*L*/) {}

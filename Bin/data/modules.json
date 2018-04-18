@@ -19,6 +19,7 @@
     "cameras",
     "entities",
     "pause",
-    "input"
+    "input",
+    "scripting"
   ]
 }

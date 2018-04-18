@@ -193,4 +193,6 @@ public:
 	T getBaseState(TCompPlayerModel::ActionStates state) { return static_cast<T>(baseStates[state]); }
 	template <typename T >
 	T getConcurrentState(TCompPlayerModel::ActionStates state) { return static_cast<T>(concurrentStates[state]); }
+
+	float getHp() { return hp; }
 };

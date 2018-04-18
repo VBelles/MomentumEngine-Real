@@ -68,4 +68,8 @@ void TCompPowerGauge::increasePower(float increment) {
 	}
 }
 
+void TCompPowerGauge::setPower(float power) {
+	increasePower(power - this->power);
+}
+
 

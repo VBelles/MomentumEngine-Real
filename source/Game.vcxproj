@@ -220,6 +220,7 @@
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_test_axis.cpp" />
     <ClCompile Include="modules\game\module_entities.cpp" />
+    <ClCompile Include="modules\game\scripting\console.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\game\physics\module_physics.cpp" />
     <ClCompile Include="modules\system\module_render.cpp" />
@@ -228,9 +229,10 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\game\physics\basic_query_filter_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_simulation_event_callback.cpp" />
-    <ClCompile Include="modules\system\module_scripting.cpp" />
+    <ClCompile Include="modules\game\scripting\module_scripting.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
+    <ClCompile Include="modules\game\scripting\scripting_player.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -408,6 +410,7 @@
     <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
+    <ClInclude Include="modules\game\scripting\console.h" />
     <ClInclude Include="modules\module.h" />
     <ClInclude Include="modules\game\module_entities.h" />
     <ClInclude Include="modules\module_manager.h" />
@@ -418,9 +421,10 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\game\physics\basic_query_filter_callback.h" />
     <ClInclude Include="modules\game\physics\basic_simulation_event_callback.h" />
-    <ClInclude Include="modules\system\module_scripting.h" />
+    <ClInclude Include="modules\game\scripting\module_scripting.h" />
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
+    <ClInclude Include="modules\game\scripting\scripting_player.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />

@@ -23,5 +23,6 @@ public:
 	void gainPower();
 	void resetPower();
 	void increasePower(float increment);
+	void setPower(float power);
 
 };
