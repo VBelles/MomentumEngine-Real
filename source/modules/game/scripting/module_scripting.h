@@ -4,7 +4,7 @@ namespace SLB {
 	class Manager;
 	class Script;
 }
-struct SimpleConsole;
+class SimpleConsole;
 
 class CModuleScripting : public IModule {
 private:
@@ -19,10 +19,9 @@ public:
 	void update(float delta) override;
 	void render() override;
 
-	void onPrint(SLB::Script * script, const char * str, size_t strSize);
-
 	SLB::Manager* getManager() { return manager; }
 	SLB::Script* getScript() { return script; }
+	SimpleConsole* getConsole() { return console; }
 
 };
 

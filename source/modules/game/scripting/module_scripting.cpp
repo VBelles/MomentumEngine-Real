@@ -8,19 +8,15 @@
 
 CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {}
 
-
 bool CModuleScripting::start() {
 	console = new SimpleConsole([&](const char* command) {
-		try {
-			dbg("Executing command: %s\n", command);
-			script->safeDoString(command);
-		}
-		catch (std::exception e) {
-			console->AddLog("[error] Cant execute: ", command);
+		if (!script->safeDoString(command)) {
+			console->AddLog("[error]%s", script->getLastError());
 		}
 	});
 	manager = new SLB::Manager();
 	script = new SLB::Script(manager);
+	script->setPrintCallback(&printCallback);
 
 	SLB::Class<ScriptingPlayer>("Player", manager)
 		.constructor()
@@ -30,15 +26,12 @@ bool CModuleScripting::start() {
 		.set("move", &ScriptingPlayer::move)
 		.set("setPower", &ScriptingPlayer::setPower);
 
-	script->setPrintCallback(&printCallback);
+
 	script->doString("SLB.using(SLB)");
 	script->doString("player = Player()");
-	
-	//script->doString("player:move(0, 20, 0)");
 
 	return true;
 }
-
 
 bool CModuleScripting::stop() {
 	SAFE_DELETE(manager);
@@ -57,12 +50,7 @@ void CModuleScripting::render() {
 	}
 }
 
-void CModuleScripting::onPrint(SLB::Script* script, const char* str, size_t strSize) {
-	dbg(str);
-	
-	console->AddLog(str);
-}
-
 void printCallback(SLB::Script* script, const char* str, size_t strSize) {
-	Engine.getScripting().onPrint(script, str, strSize);
+	dbg(str);
+	Engine.getScripting().getConsole()->AddLog(str);
 }
