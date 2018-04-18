@@ -112,6 +112,7 @@
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
+
   "pbr_ambient": {
     "vs_file": "data/shaders/screen_quad.fx",
     "ps_file": "data/shaders/pbr.fx",
@@ -141,6 +142,7 @@
     "rs_config": "reverse_culling",
     "blend": "additive"
   },
+
   "water": {
     "vs_file": "data/shaders/water.fx",
     "ps_file": "data/shaders/water.fx",
@@ -152,6 +154,7 @@
       "noise": "data/textures/noise_cloud3.dds"
     }
   },
+  
   "pbr_skybox": {
     "vs_file": "data/shaders/pbr.fx",
     "vs_entry_point": "VS_skybox",

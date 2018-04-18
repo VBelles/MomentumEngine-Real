@@ -55,7 +55,7 @@ float4 PS(
 
   float3 gammaCorrectedColor = gammaCorrect( tmColor );
   gammaCorrectedColor = lerp( tmColor, gammaCorrectedColor.xyz, global_gamma_correction_enabled );
-return oNormal; 
+
   return float4( gammaCorrectedColor, 1);
 
   return float4( hdrColor.xyz, 1 ); 

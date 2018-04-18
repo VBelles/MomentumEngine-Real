@@ -111,6 +111,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 	for (int idx_sm = 0; idx_sm < nsubmeshes; ++idx_sm) {
 
 		CalCoreSubmesh* cal_sm = cal_mesh->getCoreSubmesh(idx_sm);
+		cal_sm->enableTangents(0, true);
 
 		// Copy The vertexs
 		auto& cal_vtxs = cal_sm->getVectorVertex();
@@ -128,11 +129,14 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 		}
 		auto& cal_uvs0 = cal_all_uvs[0];
 
-		cal_sm->enableTangents(0, true);
+		//hacer if
 		auto& cal_all_tangents = cal_sm->getVectorVectorTangentSpace();
-		assert(cal_all_tangents.size() > 0);
-		auto& cal_tangents = cal_all_tangents[0];
-		assert(cal_tangents.size()  == num_vtxs);
+		std::vector<CalCoreSubmesh::TangentSpace> cal_tangents;
+		if (cal_all_tangents.size() > 0) {
+			cal_tangents = cal_all_tangents[0];
+			assert(cal_all_tangents.size() > 0);
+			assert(cal_tangents.size()  == num_vtxs);
+		}
 
 		// Process the vtxs
 		for (int vid = 0; vid < num_vtxs; ++vid) {
@@ -147,15 +151,26 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 			skin_vtx.normal = Cal2DX(cal_vtx.normal);
 
 			// Texture coords
-			skin_vtx.uv.x = cal_uvs0[vid].u;
+			skin_vtx.uv.x = cal_uvs0[vid].u;//poner a 1, 0, en el else
 			skin_vtx.uv.y = cal_uvs0[vid].v;
-			skin_vtx.uv2.x = cal_uvs0[vid].u;
-			skin_vtx.uv2.y = cal_uvs0[vid].v;
+			if (cal_all_tangents.size() > 0) {
+				skin_vtx.uv2.x = cal_uvs0[vid].u;
+				skin_vtx.uv2.y = cal_uvs0[vid].v;
 
-			skin_vtx.tangent.x = cal_tangents[vid].tangent.x;
-			skin_vtx.tangent.y = cal_tangents[vid].tangent.y;
-			skin_vtx.tangent.z = cal_tangents[vid].tangent.z;
-			skin_vtx.tangent.w = cal_tangents[vid].crossFactor;
+				skin_vtx.tangent.x = cal_tangents[vid].tangent.x;
+				skin_vtx.tangent.y = cal_tangents[vid].tangent.y;
+				skin_vtx.tangent.z = cal_tangents[vid].tangent.z;
+				skin_vtx.tangent.w = cal_tangents[vid].crossFactor;
+			}
+			else {
+				skin_vtx.uv2.x = 0;
+				skin_vtx.uv2.y = 1;
+
+				skin_vtx.tangent.x = 1;
+				skin_vtx.tangent.y = 0;
+				skin_vtx.tangent.z = 0;
+				skin_vtx.tangent.w = 0;
+			}
 
 			// Weights...
 			int total_weight = 0;
