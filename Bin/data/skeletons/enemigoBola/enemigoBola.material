@@ -2,6 +2,9 @@
   "technique": "textured_skin.tech",
   "shadows": true,
   "textures": {
-    "albedo": "data/textures/gorila.dds"
+    "albedo": "data/textures/enemigoBola/EnemigoBolaBajaFinal_DefaultMaterial_BaseColor.dds",
+    "normal": "data/textures/enemigoBola/EnemigoBolaBajaFinal_DefaultMaterial_Normal.dds",
+    "metallic": "data/textures/enemigoBola/EnemigoBolaBajaFinal_DefaultMaterial_OcclusionRoughnessMetallic.dds",
+    "roughness": "data/textures/enemigoBola/EnemigoBolaBajaFinal_DefaultMaterial_OcclusionRoughnessMetallic.dds"
   }
 }

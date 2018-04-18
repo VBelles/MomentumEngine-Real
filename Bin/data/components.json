@@ -20,6 +20,7 @@
     "mechanism",
     "mechanism_system",
     "behaviorTree_melee_enemy",
+    "behaviorTree_ball_enemy",
     "behaviorTree_flying_ranged_enemy",
     "ranged_attack",
     "respawner",

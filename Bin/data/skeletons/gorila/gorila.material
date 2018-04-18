@@ -2,6 +2,9 @@
   "technique": "textured_skin.tech",
   "shadows": true,
   "textures": {
-    "albedo": "data/textures/gorila.dds"
+    "albedo": "data/textures/gorila/gorila_low_Material_121_BaseColor.dds",
+    "normal": "data/textures/gorila/gorila_low_Material_121_Normal.dds",
+    "metallic": "data/textures/gorila/gorila_low_Material_121_OcclusionRoughnessMetallic.dds",
+    "roughness": "data/textures/gorila/gorila_low_Material_121_OcclusionRoughnessMetallic.dds"
   }
 }
