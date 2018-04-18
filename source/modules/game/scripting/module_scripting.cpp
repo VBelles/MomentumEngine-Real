@@ -4,6 +4,7 @@
 #include <SLB/lua.hpp>
 #include <SLB/SLB.hpp>
 #include "modules/game/scripting/scripting_player.h"
+#include "modules/game/scripting/scripting_golem.h"
 #include "console.h"
 
 CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {}
@@ -15,6 +16,7 @@ bool CModuleScripting::start() {
 		if (_stricmp(command, "HELP") == 0) {
 			console->AddLog("- Bindings:");
 			script->safeDoString("print(player)");
+			script->safeDoString("print(golem)");
 		}
 		else if (!script->safeDoString(command)) {
 			console->AddLog("[error]%s", script->getLastError());
@@ -28,10 +30,12 @@ bool CModuleScripting::start() {
 
 	//Bind clases
 	ScriptingPlayer::bind(manager);
+	ScriptingGolem::bind(manager);
 
 	//Create binded objects
 	script->doString("SLB.using(SLB)");
 	script->doString("player = Player()");
+	script->doString("golem = Golem()");
 
 	return true;
 }

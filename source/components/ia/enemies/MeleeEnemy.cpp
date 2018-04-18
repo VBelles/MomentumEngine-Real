@@ -507,6 +507,10 @@ TCompCollider* CBehaviorTreeMeleeEnemy::getCollider() {
 	return get<TCompCollider>();
 }
 
+void CBehaviorTreeMeleeEnemy::setSpawnPosition(VEC3 spawnPosition) {
+	this->spawnPosition = spawnPosition;
+}
+
 TCompSkeleton* CBehaviorTreeMeleeEnemy::getSkeleton() {
 	return get<TCompSkeleton>();
 }

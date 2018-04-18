@@ -405,6 +405,10 @@ TCompCollider* CBehaviorTreeFlyingRangedEnemy::getCollider() {
 	return get<TCompCollider>();
 }
 
+void CBehaviorTreeFlyingRangedEnemy::setSpawnPosition(VEC3 spawnPosition) {
+	this->spawnPosition = spawnPosition;
+}
+
 CEntity* CBehaviorTreeFlyingRangedEnemy::getPlayerEntity() {
 	return playerHandle;
 }

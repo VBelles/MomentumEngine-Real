@@ -118,4 +118,5 @@ public:
 
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
+	void setSpawnPosition(VEC3 spawnPosition);
 };
