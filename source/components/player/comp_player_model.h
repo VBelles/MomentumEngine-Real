@@ -195,4 +195,5 @@ public:
 	T getConcurrentState(TCompPlayerModel::ActionStates state) { return static_cast<T>(concurrentStates[state]); }
 
 	float getHp() { return hp; }
+	void setHp(float hp);
 };

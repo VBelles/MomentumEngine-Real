@@ -27,6 +27,7 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	SLB::Class<ScriptingPlayer>("Player", manager)
 		.constructor()
 		.set("getHp", &ScriptingPlayer::getHp)
+		.set("setHp", &ScriptingPlayer::setHp)
 		.set("teleport", &ScriptingPlayer::teleport)
 		.set("tp", &ScriptingPlayer::teleport)
 		.set("move", &ScriptingPlayer::move)
@@ -35,6 +36,11 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 
 
 float ScriptingPlayer::getHp() {
+	return getPlayerModel()->getHp();
+}
+
+float ScriptingPlayer::setHp(float hp) {
+	getPlayerModel()->setHp(hp);
 	return getPlayerModel()->getHp();
 }
 

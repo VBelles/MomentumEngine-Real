@@ -484,6 +484,14 @@ TCompSkeleton* TCompPlayerModel::getSkeleton() {
 	return skeletonHandle;
 }
 
+void TCompPlayerModel::setHp(float hp) {
+	hp = clamp(hp, 0.f, maxHp);
+	this->hp = hp;
+	if (this->hp == 0.f) {
+		onDead();
+	}
+}
+
 TCompCamera* TCompPlayerModel::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();

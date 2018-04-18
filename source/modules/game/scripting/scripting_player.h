@@ -24,6 +24,7 @@ public:
 	ScriptingPlayer();
 	~ScriptingPlayer();
 	float getHp();
+	float setHp(float hp);
 	void teleport(float x, float y, float z);
 	void move(float dX, float dY, float dZ);
 	void setPower(float power);
