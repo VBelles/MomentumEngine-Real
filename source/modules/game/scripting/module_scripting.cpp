@@ -3,11 +3,16 @@
 #include "modules/module.h"
 #include <SLB/lua.hpp>
 #include <SLB/SLB.hpp>
+#include "console.h"
 #include "modules/game/scripting/scripting_player.h"
 #include "modules/game/scripting/scripting_golem.h"
-#include "console.h"
+#include "modules/game/scripting/scripting_entities.h"
 
 CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {}
+
+void hello() {
+	dbg("Hello\n");
+}
 
 bool CModuleScripting::start() {
 
@@ -20,6 +25,7 @@ bool CModuleScripting::start() {
 		}
 		else if (!script->safeDoString(command)) {
 			console->AddLog("[error]%s", script->getLastError());
+			dbg("%s\n", script->getLastError());
 		}
 	});
 
@@ -31,11 +37,18 @@ bool CModuleScripting::start() {
 	//Bind clases
 	ScriptingPlayer::bind(manager);
 	ScriptingGolem::bind(manager);
+	ScriptingEntities::create();
+	ScriptingEntities::bind(manager);
+
+	//manager->set("hp", SLB::FuncCall::create());
 
 	//Create binded objects
+
 	script->doString("SLB.using(SLB)");
 	script->doString("player = Player()");
 	script->doString("golem = Golem()");
+
+
 
 	return true;
 }
@@ -44,6 +57,7 @@ bool CModuleScripting::stop() {
 	SAFE_DELETE(manager);
 	SAFE_DELETE(script);
 	SAFE_DELETE(console);
+	ScriptingEntities::destroy();
 	return true;
 }
 

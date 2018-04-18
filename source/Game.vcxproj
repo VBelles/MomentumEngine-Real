@@ -221,6 +221,7 @@
     <ClCompile Include="modules\game\module_test_axis.cpp" />
     <ClCompile Include="modules\game\module_entities.cpp" />
     <ClCompile Include="modules\game\scripting\console.cpp" />
+    <ClCompile Include="modules\game\scripting\scripting_entities.cpp" />
     <ClCompile Include="modules\game\scripting\scripting_golem.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\game\physics\module_physics.cpp" />
@@ -412,6 +413,7 @@
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\game\scripting\console.h" />
+    <ClInclude Include="modules\game\scripting\scripting_entities.h" />
     <ClInclude Include="modules\game\scripting\scripting_golem.h" />
     <ClInclude Include="modules\module.h" />
     <ClInclude Include="modules\game\module_entities.h" />

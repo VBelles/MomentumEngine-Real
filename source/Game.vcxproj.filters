@@ -172,6 +172,7 @@
     <ClCompile Include="modules\game\scripting\console.cpp" />
     <ClCompile Include="components\platforms\comp_platform.cpp" />
     <ClCompile Include="modules\game\scripting\scripting_golem.cpp" />
+    <ClCompile Include="modules\game\scripting\scripting_entities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -375,6 +376,7 @@
     <ClInclude Include="modules\game\scripting\console.h" />
     <ClInclude Include="components\platforms\comp_platform.h" />
     <ClInclude Include="modules\game\scripting\scripting_golem.h" />
+    <ClInclude Include="modules\game\scripting\scripting_entities.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
