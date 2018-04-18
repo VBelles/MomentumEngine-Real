@@ -23,9 +23,14 @@ bool CModuleScripting::start() {
 			script->safeDoString("print(player)");
 			script->safeDoString("print(golem)");
 		}
-		else if (!script->safeDoString(command)) {
-			console->AddLog("[error]%s", script->getLastError());
-			dbg("%s\n", script->getLastError());
+		else {
+			std::string comandStr = command;
+			comandStr = "print(" + comandStr + ")";
+			dbg("%s\n", comandStr.c_str());
+			if (!script->safeDoString(comandStr.c_str())) {
+				console->AddLog("[error]%s", script->getLastError());
+				dbg("%s\n", script->getLastError());
+			}
 		}
 	});
 
@@ -40,16 +45,11 @@ bool CModuleScripting::start() {
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
 
-	//manager->set("hp", SLB::FuncCall::create());
-
 	//Create binded objects
-
 	script->doString("SLB.using(SLB)");
 	script->doString("player = Player()");
 	script->doString("golem = Golem()");
-
-
-
+	
 	return true;
 }
 
