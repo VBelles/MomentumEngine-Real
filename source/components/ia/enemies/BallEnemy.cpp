@@ -285,14 +285,14 @@ int CBehaviorTreeBallEnemy::returnToSpawn(float delta) {
 	VEC3 myPosition = getTransform()->getPosition();
 	myPosition.y = 0;
 	VEC3 targetPos = spawnPosition;
-	spawnPosition.y = 0;
+	targetPos.y = 0;
 	VEC3 myFront = getTransform()->getFront();
 	myFront.Normalize();
 	VEC3 deltaMovement = myFront * movementSpeed * delta;
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
 	float distanceSquared = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	if (VEC3::DistanceSquared(myPosition, spawnPosition) < minCombatDistanceSqrd
+	if (VEC3::DistanceSquared(myPosition, targetPos) < minCombatDistanceSqrd
 		|| (distanceSquared < fovChaseDistanceSqrd + minCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
 		return Leave;
 	}
