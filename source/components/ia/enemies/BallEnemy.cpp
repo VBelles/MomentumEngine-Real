@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "MeleeEnemy.h"
+#include "BallEnemy.h"
 #include "entity/common_msgs.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
@@ -10,60 +10,60 @@
 #include "components/player/comp_player_model.h"
 #include "skeleton/comp_skeleton.h"
 
-DECL_OBJ_MANAGER("behaviorTree_melee_enemy", CBehaviorTreeMeleeEnemy);
+DECL_OBJ_MANAGER("behaviorTree_ball_enemy", CBehaviorTreeBallEnemy);
 
-CBehaviorTreeMeleeEnemy::CBehaviorTreeMeleeEnemy()
+CBehaviorTreeBallEnemy::CBehaviorTreeBallEnemy()
 	: IBehaviorTree::IBehaviorTree() {
 	createRoot("meleeEnemy", Priority, nullptr, nullptr);
 
-	addChild("meleeEnemy", "onAttackHit", Sequence, &CBehaviorTreeMeleeEnemy::falseCondition, nullptr);
-	addChild("onAttackHit", "damageCalc", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::damageCalc);
+	addChild("meleeEnemy", "onAttackHit", Sequence, &CBehaviorTreeBallEnemy::falseCondition, nullptr);
+	addChild("onAttackHit", "damageCalc", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::damageCalc);
 	addChild("onAttackHit", "deathCheck", Priority, nullptr, nullptr);
-	addChild("deathCheck", "onDeath", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::deathCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onDeath);
+	addChild("deathCheck", "onDeath", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::deathCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::onDeath);
 	addChild("deathCheck", "attackProperties", Priority, nullptr, nullptr);
-	addChild("attackProperties", "grabProperty", Sequence, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::grabCondition, nullptr);
-	addChild("grabProperty", "onGrab", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onGrab);
-	addChild("grabProperty", "grabbed", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::grabbed);
-	addChild("attackProperties", "propelProperty", Sequence, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::propelCondition, nullptr);
-	addChild("propelProperty", "onPropel", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onPropel);
-	addChild("propelProperty", "propelled", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::propelled);
-	addChild("attackProperties", "horizontalLaunchProperty", Sequence, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::horizontalLaunchCondition, nullptr);
-	addChild("horizontalLaunchProperty", "onHorizontalLaunch", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onHorizontalLaunch);
-	addChild("horizontalLaunchProperty", "horizontalLaunched", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::horizontalLaunched);
-	addChild("horizontalLaunchProperty", "horizontalLaunchedFloat", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::floating);
-	addChild("attackProperties", "verticalLaunchProperty", Sequence, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::verticalLaunchCondition, nullptr);
-	addChild("verticalLaunchProperty", "onVerticalLaunch", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onVerticalLaunch);
-	addChild("verticalLaunchProperty", "verticalLaunched", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::verticalLaunched);
-	addChild("verticalLaunchProperty", "verticalLaunchedFloat", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::floating);
-	addChild("attackProperties", "onStun", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::onStunCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onStun);
+	addChild("attackProperties", "grabProperty", Sequence, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::grabCondition, nullptr);
+	addChild("grabProperty", "onGrab", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::onGrab);
+	addChild("grabProperty", "grabbed", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::grabbed);
+	addChild("attackProperties", "propelProperty", Sequence, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::propelCondition, nullptr);
+	addChild("propelProperty", "onPropel", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::onPropel);
+	addChild("propelProperty", "propelled", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::propelled);
+	addChild("attackProperties", "horizontalLaunchProperty", Sequence, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::horizontalLaunchCondition, nullptr);
+	addChild("horizontalLaunchProperty", "onHorizontalLaunch", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::onHorizontalLaunch);
+	addChild("horizontalLaunchProperty", "horizontalLaunched", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::horizontalLaunched);
+	addChild("horizontalLaunchProperty", "horizontalLaunchedFloat", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::floating);
+	addChild("attackProperties", "verticalLaunchProperty", Sequence, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::verticalLaunchCondition, nullptr);
+	addChild("verticalLaunchProperty", "onVerticalLaunch", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::onVerticalLaunch);
+	addChild("verticalLaunchProperty", "verticalLaunched", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::verticalLaunched);
+	addChild("verticalLaunchProperty", "verticalLaunchedFloat", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::floating);
+	addChild("attackProperties", "onStun", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::onStunCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::onStun);
 
-	addChild("meleeEnemy", "onRespawn", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::falseCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::respawn);
+	addChild("meleeEnemy", "onRespawn", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::falseCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::respawn);
 
-	addChild("meleeEnemy", "dead", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::deadCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::dead);
+	addChild("meleeEnemy", "dead", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::deadCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::dead);
 
-	addChild("meleeEnemy", "stunned", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::stunCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::stunned);
+	addChild("meleeEnemy", "stunned", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::stunCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::stunned);
 
-	addChild("meleeEnemy", "airborne", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::airborneCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::airborne);
+	addChild("meleeEnemy", "airborne", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::airborneCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::airborne);
 
-	addChild("meleeEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::returnToSpawn);
+	addChild("meleeEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::returnToSpawn);
 
-	addChild("meleeEnemy", "stepBack", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::stepBackCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::stepBack);
+	addChild("meleeEnemy", "stepBack", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::stepBackCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::stepBack);
 
-	CBehaviorTreeNodeRandom *node = (CBehaviorTreeNodeRandom*)addChild("meleeEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::combatCondition, nullptr);
+	CBehaviorTreeNodeRandom *node = (CBehaviorTreeNodeRandom*)addChild("meleeEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::combatCondition, nullptr);
 	addChild("combat", "idleWar", Sequence, nullptr, nullptr);
-	addChild("idleWar", "onIdleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onIdleWar);
-	addChild("idleWar", "idleWarAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::idleWar);
+	addChild("idleWar", "onIdleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::onIdleWar);
+	addChild("idleWar", "idleWarAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::idleWar);
 	addChild("combat", "attack", Sequence, nullptr, nullptr);
-	addChild("attack", "onAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onAttack);
-	addChild("attack", "attackAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::attack);
+	addChild("attack", "onAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::onAttack);
+	addChild("attack", "attackAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::attack);
 	node->setProbability(std::vector<float>{ 0.75f, 0.25f });
 
-	addChild("meleeEnemy", "chase", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::chaseCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::chase);
+	addChild("meleeEnemy", "chase", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::chaseCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::chase);
 
-	addChild("meleeEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::idle);
+	addChild("meleeEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::idle);
 }
 
-void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
+void CBehaviorTreeBallEnemy::load(const json& j, TEntityParseContext& ctx) {
 	maxHealth = j.value("maxHealth", 5.0f);
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
@@ -85,28 +85,28 @@ void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 	}
 }
 
-void CBehaviorTreeMeleeEnemy::debugInMenu() {
+void CBehaviorTreeBallEnemy::debugInMenu() {
 }
 
-void CBehaviorTreeMeleeEnemy::registerMsgs() {
-	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgEntitiesGroupCreated, onGroupCreated);
-	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgAttackHit, onAttackHit);
-	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgRespawn, onRespawn);
-	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgOutOfBounds, onOutOfBounds);
+void CBehaviorTreeBallEnemy::registerMsgs() {
+	DECL_MSG(CBehaviorTreeBallEnemy, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(CBehaviorTreeBallEnemy, TMsgAttackHit, onAttackHit);
+	DECL_MSG(CBehaviorTreeBallEnemy, TMsgRespawn, onRespawn);
+	DECL_MSG(CBehaviorTreeBallEnemy, TMsgOutOfBounds, onOutOfBounds);
 }
 
-void CBehaviorTreeMeleeEnemy::update(float delta) {
+void CBehaviorTreeBallEnemy::update(float delta) {
 	recalc(delta);
 }
 
-int CBehaviorTreeMeleeEnemy::damageCalc(float delta) {
+int CBehaviorTreeBallEnemy::damageCalc(float delta) {
 	health -= receivedAttack.damage;
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
+int CBehaviorTreeBallEnemy::onDeath(float delta) {
 	health = 0.f;
 	isDead = true;
 
@@ -124,11 +124,11 @@ int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::dead(float delta) {
+int CBehaviorTreeBallEnemy::dead(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
+int CBehaviorTreeBallEnemy::onGrab(float delta) {
 	getSkeleton()->setTimeFactor(0);
 	getCollider()->destroy();
 	timer.reset();
@@ -136,7 +136,7 @@ int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
+int CBehaviorTreeBallEnemy::grabbed(float delta) {
 	if (timer.elapsed() >= grabbedDuration) {
 		getCollider()->create();
 		getSkeleton()->setTimeFactor(1);
@@ -147,7 +147,7 @@ int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
+int CBehaviorTreeBallEnemy::onPropel(float delta) {
 	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
 
@@ -160,7 +160,7 @@ int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::propelled(float delta) {
+int CBehaviorTreeBallEnemy::propelled(float delta) {
 	if (timer.elapsed() < propelDuration) {
 		VEC3 deltaMovement = velocityVector * delta;
 		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
@@ -172,7 +172,7 @@ int CBehaviorTreeMeleeEnemy::propelled(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::onHorizontalLaunch(float delta) {
+int CBehaviorTreeBallEnemy::onHorizontalLaunch(float delta) {
 	getSkeleton()->setTimeFactor(0);
 	floatingDuration = receivedAttack.horizontalLauncher->suspensionDuration;
 	initialLaunchPos = getTransform()->getPosition();
@@ -180,7 +180,7 @@ int CBehaviorTreeMeleeEnemy::onHorizontalLaunch(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::horizontalLaunched(float delta) {
+int CBehaviorTreeBallEnemy::horizontalLaunched(float delta) {
 	updateGravity(delta);
 	VEC3 deltaMovement = velocityVector * delta;
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, 0, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
@@ -196,14 +196,14 @@ int CBehaviorTreeMeleeEnemy::horizontalLaunched(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::onVerticalLaunch(float delta) {
+int CBehaviorTreeBallEnemy::onVerticalLaunch(float delta) {
 	getSkeleton()->setTimeFactor(0);
 	floatingDuration = receivedAttack.verticalLauncher->suspensionDuration;
 	velocityVector = receivedAttack.verticalLauncher->velocity;
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::verticalLaunched(float delta) {
+int CBehaviorTreeBallEnemy::verticalLaunched(float delta) {
 	updateGravity(delta);
 	if (velocityVector.y <= 0) {
 		timer.reset();
@@ -215,7 +215,7 @@ int CBehaviorTreeMeleeEnemy::verticalLaunched(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::floating(float delta) {
+int CBehaviorTreeBallEnemy::floating(float delta) {
 	getSkeleton()->setTimeFactor(0);
 	if (timer.elapsed() > floatingDuration) {
 		getSkeleton()->setTimeFactor(1);
@@ -226,7 +226,7 @@ int CBehaviorTreeMeleeEnemy::floating(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::onStun(float delta) {
+int CBehaviorTreeBallEnemy::onStun(float delta) {
 	getSkeleton()->setTimeFactor(0);
 	stunDuration = receivedAttack.stun->duration;
 	stunTimer.reset();
@@ -234,7 +234,7 @@ int CBehaviorTreeMeleeEnemy::onStun(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::stunned(float delta) {
+int CBehaviorTreeBallEnemy::stunned(float delta) {
 	updateGravity(delta);
 	if (stunTimer.elapsed() > stunDuration) {
 		isStunned = false;
@@ -246,13 +246,13 @@ int CBehaviorTreeMeleeEnemy::stunned(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::airborne(float delta) {
+int CBehaviorTreeBallEnemy::airborne(float delta) {
 	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::respawn(float delta) {
+int CBehaviorTreeBallEnemy::respawn(float delta) {
 	health = maxHealth;
 	isDead = false;
 
@@ -275,7 +275,7 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
+int CBehaviorTreeBallEnemy::returnToSpawn(float delta) {
 	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
@@ -301,7 +301,7 @@ int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::chase(float delta) {
+int CBehaviorTreeBallEnemy::chase(float delta) {
 	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
@@ -316,7 +316,7 @@ int CBehaviorTreeMeleeEnemy::chase(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::stepBack(float delta) {
+int CBehaviorTreeBallEnemy::stepBack(float delta) {
 	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
@@ -330,7 +330,7 @@ int CBehaviorTreeMeleeEnemy::stepBack(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::onIdleWar(float delta) {
+int CBehaviorTreeBallEnemy::onIdleWar(float delta) {
 	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
@@ -338,7 +338,7 @@ int CBehaviorTreeMeleeEnemy::onIdleWar(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
+int CBehaviorTreeBallEnemy::idleWar(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (idleWarTimer.elapsed() > getSkeleton()->getAnimationDuration(0)) {
@@ -349,7 +349,7 @@ int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::onAttack(float delta) {
+int CBehaviorTreeBallEnemy::onAttack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < attackCooldown) {
@@ -361,7 +361,7 @@ int CBehaviorTreeMeleeEnemy::onAttack(float delta) {
 	return Leave;
 }
 
-int CBehaviorTreeMeleeEnemy::attack(float delta) {
+int CBehaviorTreeBallEnemy::attack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (getSkeleton()->getAnimationTime() < (getSkeleton()->getAnimationDuration(2))) {
@@ -377,64 +377,64 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 	}
 }
 
-int CBehaviorTreeMeleeEnemy::idle(float delta) {
+int CBehaviorTreeBallEnemy::idle(float delta) {
 	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
 	updateGravity(delta);
 	return Leave;
 }
 
-bool CBehaviorTreeMeleeEnemy::deathCondition(float delta) {
+bool CBehaviorTreeBallEnemy::deathCondition(float delta) {
 	return health <= 0;
 }
 
-bool CBehaviorTreeMeleeEnemy::deadCondition(float delta) {
+bool CBehaviorTreeBallEnemy::deadCondition(float delta) {
 	return isDead;
 }
 
-bool CBehaviorTreeMeleeEnemy::grabCondition(float delta) {
+bool CBehaviorTreeBallEnemy::grabCondition(float delta) {
 	return receivedAttack.grab;
 }
 
-bool CBehaviorTreeMeleeEnemy::propelCondition(float delta) {
+bool CBehaviorTreeBallEnemy::propelCondition(float delta) {
 	return receivedAttack.propel;
 }
 
-bool CBehaviorTreeMeleeEnemy::horizontalLaunchCondition(float delta) {
+bool CBehaviorTreeBallEnemy::horizontalLaunchCondition(float delta) {
 	return receivedAttack.horizontalLauncher;
 }
 
-bool CBehaviorTreeMeleeEnemy::verticalLaunchCondition(float delta) {
+bool CBehaviorTreeBallEnemy::verticalLaunchCondition(float delta) {
 	return receivedAttack.verticalLauncher;
 }
 
-bool CBehaviorTreeMeleeEnemy::onStunCondition(float delta) {
+bool CBehaviorTreeBallEnemy::onStunCondition(float delta) {
 	return receivedAttack.stun;
 }
 
-bool CBehaviorTreeMeleeEnemy::stunCondition(float delta) {
+bool CBehaviorTreeBallEnemy::stunCondition(float delta) {
 	return isStunned;
 }
 
-bool CBehaviorTreeMeleeEnemy::airborneCondition(float delta) {
+bool CBehaviorTreeBallEnemy::airborneCondition(float delta) {
 	return !grounded;
 }
 
-bool CBehaviorTreeMeleeEnemy::returnToSpawnCondition(float delta) {
+bool CBehaviorTreeBallEnemy::returnToSpawnCondition(float delta) {
 	return VEC3::DistanceSquared(getTransform()->getPosition(), spawnPosition) > recallDistanceSqrd;
 }
 
-bool CBehaviorTreeMeleeEnemy::chaseCondition(float delta) {
+bool CBehaviorTreeBallEnemy::chaseCondition(float delta) {
 	float distanceSqrd = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
 	bool isPlayerInFov = getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
 	return distanceSqrd > minCombatDistanceSqrd && (distanceSqrd < smallChaseRadiusSqrd || (distanceSqrd < fovChaseDistanceSqrd && isPlayerInFov));
 }
 
-bool CBehaviorTreeMeleeEnemy::combatCondition(float delta) {
+bool CBehaviorTreeBallEnemy::combatCondition(float delta) {
 	float distanceSqrd = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
 	return distanceSqrd < maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
 }
 
-bool CBehaviorTreeMeleeEnemy::stepBackCondition(float delta) {
+bool CBehaviorTreeBallEnemy::stepBackCondition(float delta) {
 	VEC3 myPos = getTransform()->getPosition();
 	VEC3 playerPos = getPlayerTransform()->getPosition();
 	myPos.y = 0;
@@ -444,12 +444,12 @@ bool CBehaviorTreeMeleeEnemy::stepBackCondition(float delta) {
 	return distanceSqrd < minCombatDistanceSqrd;
 }
 
-void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void CBehaviorTreeBallEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
 	playerHandle = getEntityByName(PLAYER_NAME);
 }
 
-void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
+void CBehaviorTreeBallEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	getSkeleton()->blendCycle(0);
 	getSkeleton()->setTimeFactor(1);
 	isStunned = false;
@@ -457,15 +457,15 @@ void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	current = tree["onAttackHit"];
 }
 
-void CBehaviorTreeMeleeEnemy::onRespawn(const TMsgRespawn& msg) {
+void CBehaviorTreeBallEnemy::onRespawn(const TMsgRespawn& msg) {
 	current = tree["onRespawn"];
 }
 
-void CBehaviorTreeMeleeEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
+void CBehaviorTreeBallEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	current = tree["onDeath"];
 }
 
-void CBehaviorTreeMeleeEnemy::updateGravity(float delta) {
+void CBehaviorTreeBallEnemy::updateGravity(float delta) {
 	float deltaY = calculateVerticalDeltaMovement(delta, gravity, maxVelocity.y);
 	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(physx::PxVec3(0, deltaY, 0), 0.f, delta, physx::PxControllerFilters());
 	grounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
@@ -477,7 +477,7 @@ void CBehaviorTreeMeleeEnemy::updateGravity(float delta) {
 	}
 }
 
-float CBehaviorTreeMeleeEnemy::calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical) {
+float CBehaviorTreeBallEnemy::calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical) {
 	float resultingDeltaMovement;
 	resultingDeltaMovement = velocityVector.y * delta + 0.5f * acceleration * delta * delta;
 	//clampear distancia vertical
@@ -485,7 +485,7 @@ float CBehaviorTreeMeleeEnemy::calculateVerticalDeltaMovement(float delta, float
 	return resultingDeltaMovement;
 }
 
-void CBehaviorTreeMeleeEnemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
+void CBehaviorTreeBallEnemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 	float deltaYaw = getTransform()->getDeltaYawToAimTo(targetPos);
 	float y, p, r;
 	getTransform()->getYawPitchRoll(&y, &p, &r);
@@ -499,22 +499,22 @@ void CBehaviorTreeMeleeEnemy::rotateTowards(float delta, VEC3 targetPos, float r
 	getTransform()->setYawPitchRoll(y, p, r);
 }
 
-TCompTransform* CBehaviorTreeMeleeEnemy::getTransform() {
+TCompTransform* CBehaviorTreeBallEnemy::getTransform() {
 	return get<TCompTransform>();
 }
 
-TCompCollider* CBehaviorTreeMeleeEnemy::getCollider() {
+TCompCollider* CBehaviorTreeBallEnemy::getCollider() {
 	return get<TCompCollider>();
 }
 
-TCompSkeleton* CBehaviorTreeMeleeEnemy::getSkeleton() {
+TCompSkeleton* CBehaviorTreeBallEnemy::getSkeleton() {
 	return get<TCompSkeleton>();
 }
 
-CEntity* CBehaviorTreeMeleeEnemy::getPlayerEntity() {
+CEntity* CBehaviorTreeBallEnemy::getPlayerEntity() {
 	return playerHandle;
 }
 
-TCompTransform* CBehaviorTreeMeleeEnemy::getPlayerTransform() {
+TCompTransform* CBehaviorTreeBallEnemy::getPlayerTransform() {
 	return getPlayerEntity()->get<TCompTransform>();
 }
