@@ -11,7 +11,7 @@ ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
-	animation = "wave";
+	animation = "melee";
 }
 
 void ReleasePowerAirActionState::update (float delta) {
@@ -61,7 +61,6 @@ void ReleasePowerAirActionState::update (float delta) {
 				}
 				break;
 		}
-		setPose();
 		phase = AttackPhases::Active;
 	}
 }
@@ -76,7 +75,7 @@ void ReleasePowerAirActionState::onStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->lockTurning = true;
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void ReleasePowerAirActionState::onStateExit(IActionState * nextState) {
@@ -87,7 +86,7 @@ void ReleasePowerAirActionState::onStateExit(IActionState * nextState) {
 	hitboxEntity = hitboxBigHandle;
 	hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	getPlayerModel()->baseState->setPose();
+	//getPlayerModel()->baseState->setPose();
 	getPlayerModel()->lockTurning = false;
 }
 

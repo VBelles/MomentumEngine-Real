@@ -7,7 +7,7 @@
 
 WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "jump_volando";
 }
 
 void WallJumpSquatPlummetActionState::update (float delta) {
@@ -28,10 +28,9 @@ void WallJumpSquatPlummetActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	getPlayerModel()->setGravityMultiplier(0.f);
 	getPlayerModel()->maxVerticalSpeed = abs(verticalVelocity);
-	setPose();
 	endingTime = endingFrames * (1.f / 60);
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void WallJumpSquatPlummetActionState::onStateExit(IActionState * nextState) {
