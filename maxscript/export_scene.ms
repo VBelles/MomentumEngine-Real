@@ -513,6 +513,8 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "loop" false
 					fs.writeComma()
+					fs.writeKeyValue "closed" (isClosed child 1)
+					fs.writeComma()
 					fs.writeKey "knots"
 					fs.beginArray()
 						knotsInSpline = numKnots child
@@ -522,6 +524,12 @@ struct TSceneExporter (
 							local knotPos = getKnotPoint child 1 i
 							local mcvKnotPos = knotPos * rotateXMatrix -90
 							fs.writeValue mcvKnotPos addIndent:true
+							if i == 1 or i == knotsInSpline then (
+								-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
+								-- This also forces following the real shape of the spline.
+								fs.writeComma()
+								fs.writeValue mcvKnotPos addIndent:true
+							)
 						)
 					fs.endArray()
 				fs.endObj()
