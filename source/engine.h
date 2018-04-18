@@ -26,6 +26,7 @@ public:
 	CModulePhysics& getPhysics() { return _module_physics; }
 	CModuleCameras& getCameras() { return _module_cameras; }
 	CModuleFSM& getFSM() { return _module_fsm; }
+	CModuleScripting& getScripting() { return _module_scripting; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
