@@ -2,7 +2,7 @@
 #include "comp_platform.h"
 #include "render/render_utils.h"
 #include "components/player/comp_player_model.h"
-#include "controllers/comp_follow_curve.h"
+#include "../controllers/comp_follow_curve.h"
 #include "geometry/curve.h"
 
 DECL_OBJ_MANAGER("platform", TCompPlatform);

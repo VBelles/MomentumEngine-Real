@@ -4,6 +4,8 @@
 #include "geometry/curve.h"
 #include "components/comp_collider.h"
 
+#include <algorithm>
+
 DECL_OBJ_MANAGER("follow_curve", TCompFollowCurve);
 
 void TCompFollowCurve::debugInMenu() {
@@ -41,13 +43,22 @@ void TCompFollowCurve::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 void TCompFollowCurve::update(float dt) {
     if (!_curve) return;
 
-    // actualizar ratio
+    // Actualizar ratio
     if (_automove) {
-        _ratio += _speed * dt;
-        if (_ratio >= 1.f) _ratio = 0.f;
+        if (!_moveBackwards) {
+            _ratio += _speed * dt;
+            if (_ratio >= 1.f) { // Reaches the end of the spline.
+                if (_curve->isLooping()) _moveBackwards = true;
+                else _automove = false; // If doesn't loop, stop moving.
+            }
+        }
+        else {
+            _ratio -= _speed * dt;
+            if (_ratio <= 0.f) _moveBackwards = false;
+        }
     }
 
-    // evaluar curva con dicho ratio
+    // Evaluar curva con dicho ratio
     VEC3 posToGo = _curve->evaluate(_ratio);
 	//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
 
@@ -68,6 +79,4 @@ void TCompFollowCurve::update(float dt) {
     QUAT rotation = transform->getRotation();
 	newTransform.q = { rotation.x, rotation.y, rotation.z, rotation.w };
 	rigidDynamic->setKinematicTarget(newTransform);
-
-	// TODO: Que vuelva por donde ha venido si loop = true, ahora mismo se teleporta al primer punto al acabar.
 }

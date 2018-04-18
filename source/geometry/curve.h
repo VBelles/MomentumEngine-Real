@@ -11,12 +11,14 @@ public:
     void addKnot(const VEC3& point);
     void setType(const std::string& typeName);
     void setLoop(const bool value);
+    bool isLooping() { return _loop; }
 
     VEC3 evaluate(float ratio) const;
     VEC3 evaluateAsCatmull(float ratio) const;
 
 private:
     std::vector<VEC3> _knots;
+    std::vector<VEC3> _knotsInverted;
     EType _type = EType::UNKNOWN;
 	bool _loop = false;
 };
