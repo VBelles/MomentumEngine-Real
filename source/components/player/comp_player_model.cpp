@@ -602,7 +602,7 @@ void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 }
 
 void TCompPlayerModel::onDead() {
-	getController()->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
+	//getController()->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
 	velocityVector = VEC3(0, 0, 0);
 
 	setConcurrentState(ActionStates::Idle);

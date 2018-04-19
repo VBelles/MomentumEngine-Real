@@ -38,9 +38,7 @@
     "culling",
     "light_dir",
     "render",
-    "fsm",
-    "fake_animation",
-    "player_input"
+    "spikes"
   ],
   "render_debug" : [
     "transform",
