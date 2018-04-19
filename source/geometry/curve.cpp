@@ -44,7 +44,9 @@ bool CCurve::load(const json& jData) {
         addKnot(knot);
     }
 
-	setLoop(jData.value("loop", false)); // TODO: Use this somewhere.
+	calculateRadius();
+
+	setLoop(jData.value("loop", false));
 
     return true;
 }
@@ -61,6 +63,9 @@ void CCurve::setType(const std::string & typeName) {
     if (typeName == "catmull-rom") {
         _type = EType::CATMULL_ROM;
     }
+	else if (typeName == "circular") {
+		_type = EType::CIRCULAR;
+	}
     else {
         _type = EType::UNKNOWN;
     }
@@ -70,9 +75,21 @@ void CCurve::setLoop(const bool value) {
     _loop = value;
 }
 
+void CCurve::calculateRadius() {
+	// _knots[0] tiene que ser el centro del movimiento circular,
+	// _knots[1] un punto cualquiera del círculo.
+	if (_type == EType::CIRCULAR && _knots.size() >= 2) {
+		_center = _knots[0];
+		_radius = VEC3::Distance(_center, _knots[1]);
+	}
+}
+
 VEC3 CCurve::evaluate(float ratio) const {
 	if (_type == EType::CATMULL_ROM) {
 		return evaluateAsCatmull(ratio);
+	}
+	else if (_type == EType::CIRCULAR) {
+		return evaluateAsCircle(ratio);
 	}
 	return VEC3::Zero;
 }
@@ -92,4 +109,23 @@ VEC3 CCurve::evaluateAsCatmull(float ratio) const {
 	VEC3 p4 = _knots[idx + 2];
 
 	return VEC3::CatmullRom(p1, p2, p3, p4, segmentRatio);
+}
+
+VEC3 CCurve::evaluateAsCircle(float ratio) const {
+	//// rotation
+	//float yaw, pitch;
+	//VEC3 front = 
+
+
+	//VEC3 direction = waypoints[currentWaypoint] - myPosition;
+	//direction.Normalize();
+
+	//getYawPitchFromVector(front, &yaw, &pitch);
+
+	//// final values
+	//VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
+	//VEC3 newPos = _center - newFront * _distance;
+
+
+	return VEC3();
 }

@@ -2,7 +2,7 @@
 
 class CCurve : public IResource {
 public:
-	enum class EType { UNKNOWN = 0, CATMULL_ROM };
+	enum class EType { UNKNOWN = 0, CATMULL_ROM, CIRCULAR };
 
     CCurve() = default;
     bool load(const std::string& fileName);
@@ -12,13 +12,17 @@ public:
     void setType(const std::string& typeName);
     void setLoop(const bool value);
     bool isLooping() { return _loop; }
+	void calculateRadius();
+	float getRadius() { return _radius; }
 
     VEC3 evaluate(float ratio) const;
-    VEC3 evaluateAsCatmull(float ratio) const;
+	VEC3 evaluateAsCatmull(float ratio) const;
+	VEC3 evaluateAsCircle(float ratio) const;
 
 private:
     std::vector<VEC3> _knots;
-    std::vector<VEC3> _knotsInverted;
+	VEC3 _center = VEC3::Zero;
+	float _radius = 1.0f;
     EType _type = EType::UNKNOWN;
 	bool _loop = false;
 };

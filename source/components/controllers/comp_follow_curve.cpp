@@ -20,6 +20,11 @@ void TCompFollowCurve::load(const json& j, TEntityParseContext& ctx) {
     //std::string curve_name = j["curve"];
     //_curve = Resources.get(curve_name)->as<CCurve>();
 
+	/*
+		TODO: Lo fino aquí sería hacer un _curve->load(j), donde j es
+			el contenido del json del componente follow_curve.
+			Ahora mismo lo hacemos guarro a mano, replicando el load.
+	*/
     _curve->setType(j["curve_type"]);
     _curve->setLoop(j["loop"]);
 
@@ -28,6 +33,8 @@ void TCompFollowCurve::load(const json& j, TEntityParseContext& ctx) {
         VEC3 p = loadVEC3(it.value());
         _curve->addKnot(p);
     }
+
+	_curve->calculateRadius();
 
 	_speed = j.value<float>("speed", 0.f);
 	_automove = j.value("automove", false);
