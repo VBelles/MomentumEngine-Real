@@ -7,7 +7,7 @@
 
 AirborneWallJumpActionState::AirborneWallJumpActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "jump_volando";
 }
 
 void AirborneWallJumpActionState::update(float delta) {
@@ -49,14 +49,13 @@ void AirborneWallJumpActionState::update(float delta) {
 
 void AirborneWallJumpActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	setPose();
 	getPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 	getPlayerModel()->setGravityMultiplier(1.1f);
 	//dbg("Entrando en airborne long\n");
 	enterFront = getPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void AirborneWallJumpActionState::onStateExit(IActionState * nextState) {

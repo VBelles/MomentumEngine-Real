@@ -145,6 +145,8 @@
     <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
+    <ClCompile Include="components\player\states\base_states\death\PitFallingActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\death\DeathActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
@@ -183,6 +185,7 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
+    <ClCompile Include="components\comp_spikes.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -325,6 +328,8 @@
     <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\power_stats.h" />
+    <ClInclude Include="components\player\states\base_states\death\PitFallingActionState.h" />
+    <ClInclude Include="components\player\states\base_states\death\DeathActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
     <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
@@ -363,6 +368,7 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
+    <ClInclude Include="components\comp_spikes.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />

@@ -10,7 +10,7 @@
 
 PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "jump_inicio";
 }
 
 void PropelHighActionState::update (float delta) {
@@ -50,7 +50,6 @@ void PropelHighActionState::update (float delta) {
 
 void PropelHighActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	setPose();
 	endingTime = endingFrames * (1.f / 60);
 	propelTarget = getPlayerModel()->grabTarget;
 	CEntity* targetEntity = propelTarget;
@@ -60,12 +59,12 @@ void PropelHighActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lastWallEntered = nullptr;
 	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void PropelHighActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	getPlayerModel()->baseState->setPose();
+	//getPlayerModel()->baseState->setPose();
 }
 
 void PropelHighActionState::setPose() {

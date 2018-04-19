@@ -9,7 +9,7 @@
 VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "kick";
+	animation = "melee";
 }
 
 void VerticalLauncherActionState::update (float delta) {
@@ -28,7 +28,6 @@ void VerticalLauncherActionState::update (float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-		setPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -46,7 +45,7 @@ void VerticalLauncherActionState::onStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void VerticalLauncherActionState::onStateExit(IActionState * nextState) {

@@ -35,7 +35,7 @@ public:
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
 		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
 		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
-		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet
+		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling
 	};
 
 private:
@@ -99,7 +99,6 @@ private:
 	PowerStats* loadPowerStats(const json& j);
 	void changeBaseState(ActionStates newState);
 	void changeConcurrentState(ActionStates newState);
-	void onDead();
 
 	void applyGravity(float delta);
 
@@ -177,6 +176,10 @@ public:
 	template <typename T >
 	T getConcurrentState(TCompPlayerModel::ActionStates state) { return static_cast<T>(concurrentStates[state]); }
 
+	void damage(float damage);
+	void resetHp() { hp = maxHp; }
 	float getHp() { return hp; }
 	void setHp(float hp);
+
+	VEC3 getRespawnPosition() { return respawnPosition; }
 };

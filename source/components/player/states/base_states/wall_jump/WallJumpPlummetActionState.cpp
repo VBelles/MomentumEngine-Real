@@ -9,7 +9,7 @@
 WallJumpPlummetActionState::WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "wave";
+	animation = "jump_volando";
 }
 
 void WallJumpPlummetActionState::update (float delta) {
@@ -34,7 +34,6 @@ void WallJumpPlummetActionState::update (float delta) {
 void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	getPlayerModel()->setGravityMultiplier(0.f);
-	setPose();
 	//Se calcula cada vez que se entra, ya que depende del poder
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	endingTime = currentPowerStats->plummetTime;
@@ -43,7 +42,7 @@ void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->enable();
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {

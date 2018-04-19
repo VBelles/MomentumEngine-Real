@@ -11,7 +11,7 @@
 StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "wave";
+	animation = "melee";
 }
 
 void StrongAttackActionState::update(float delta) {
@@ -37,7 +37,6 @@ void StrongAttackActionState::update(float delta) {
 			phase = AttackPhases::Recovery;
 		}
 		else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-			setPose();
 			timer.reset();
 			CEntity *hitboxEntity = hitboxHandle;
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -83,7 +82,7 @@ void StrongAttackActionState::onStateExit(IActionState * nextState) {
 
 void StrongAttackActionState::onStrongAttackButtonReleased() {
 	phase = AttackPhases::Startup;
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void StrongAttackActionState::onLeavingGround() {

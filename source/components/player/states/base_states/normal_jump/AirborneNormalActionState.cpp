@@ -6,7 +6,7 @@
 
 AirborneNormalActionState::AirborneNormalActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "jump_volando";
 }
 
 void AirborneNormalActionState::update (float delta) {
@@ -15,8 +15,7 @@ void AirborneNormalActionState::update (float delta) {
 
 void AirborneNormalActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	setPose();
-	getPlayerModel()->getSkeleton()->blendCycle(animation);
+	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void AirborneNormalActionState::onStateExit(IActionState * nextState) {

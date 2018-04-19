@@ -10,7 +10,7 @@
 
 PropelLongActionState::PropelLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "jump_inicio";
 }
 
 void PropelLongActionState::update (float delta) {
@@ -52,7 +52,6 @@ void PropelLongActionState::update (float delta) {
 
 void PropelLongActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	setPose();
 	endingTime = endingFrames * (1.f / 60);
 	propelTarget = getPlayerModel()->grabTarget;
 	CEntity* targetEntity = propelTarget;
@@ -60,14 +59,14 @@ void PropelLongActionState::onStateEnter(IActionState * lastState) {
 	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - getPlayerTransform()->getPosition();
 	movingVelocity /= endingTime;
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	getPlayerModel()->lastWallEntered = nullptr;
 	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 }
 
 void PropelLongActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	getPlayerModel()->baseState->setPose();
+	//getPlayerModel()->baseState->setPose();
 }
 
 void PropelLongActionState::setPose() {
