@@ -1,11 +1,12 @@
 {
 	"name":"ella",
 	"anims" : [
-		{ "name" : "ella_run_jose"},
-		{ "name" : "ella_jump_inicio"},
-		{ "name" : "ella_jump_volando"},
-		{ "name" : "ella_jump_caida"},
-		{ "name" : "ella_melee"}
+		{ "name" : "idle"},
+		{ "name" : "run"},
+		{ "name" : "jump_inicio"},
+		{ "name" : "jump_volando"},
+		{ "name" : "jump_caida"},
+		{ "name" : "melee"}
 	],
   "bone_ids_to_debug" : [
     3

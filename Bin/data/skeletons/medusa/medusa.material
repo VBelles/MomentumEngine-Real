@@ -1,0 +1,10 @@
+{
+  "technique": "textured_skin.tech",
+  "shadows": true,
+  "textures": {
+    "albedo": "data/textures/medusa/medusa_nueva_12_04_2018_default_BaseColor.dds",
+    "normal": "data/textures/medusa/medusa_nueva_12_04_2018_default_Normal.dds",
+    "metallic": "data/textures/medusa/medusa_nueva_12_04_2018_default_OcclusionRoughnessMetallic.dds",
+    "roughness": "data/textures/medusa/medusa_nueva_12_04_2018_default_OcclusionRoughnessMetallic.dds"
+  }
+}

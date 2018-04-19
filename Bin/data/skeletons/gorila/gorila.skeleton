@@ -2,8 +2,8 @@
 	"name":"gorila",
 	"anims" : [
 		{ "name" : "gorila_idle"},
-		{ "name" : "gorila_walking_mola4"},
-		{ "name" : "gorila_ataque_mola01"}
+		{ "name" : "gorila_walking"},
+		{ "name" : "gorila_ataque"}
 	],
   "bone_ids_to_debug" : [
     3

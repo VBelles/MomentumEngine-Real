@@ -1,0 +1,9 @@
+{
+	"name":"medusa",
+	"anims" : [
+		{ "name" : "medusa_idle_con_texturas_50_"}
+	],
+  "bone_ids_to_debug" : [
+    3
+  ]
+}

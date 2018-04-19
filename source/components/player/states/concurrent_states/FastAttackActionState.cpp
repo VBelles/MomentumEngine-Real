@@ -9,7 +9,7 @@
 FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "wave";
+	animation = "melee";
 }
 
 void FastAttackActionState::update(float delta) {
@@ -29,7 +29,6 @@ void FastAttackActionState::update(float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-		setPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -53,7 +52,7 @@ void FastAttackActionState::onStateEnter(IActionState * lastState) {
 
 void FastAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	getPlayerModel()->baseState->setPose();
+	//getPlayerModel()->baseState->setPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
@@ -63,7 +62,7 @@ void FastAttackActionState::onStateExit(IActionState * nextState) {
 
 void FastAttackActionState::onFastAttackButtonReleased() {
 	phase = AttackPhases::Startup;
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void FastAttackActionState::onLeavingGround() {

@@ -74,6 +74,10 @@ void TCompSkeleton::debugInMenu() {
 	static float out_delay = 0.3f;
 	static bool auto_lock = false;
 
+	float timeFactor = model->getMixer()->getTimeFactor();
+	ImGui::DragFloat("Time factor", &timeFactor, 0.1f, 0, 10.f);
+	setTimeFactor(timeFactor);
+
 	// Play aacton/cycle from the menu
 	ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount() - 1);
 	auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);

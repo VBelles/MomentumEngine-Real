@@ -12,6 +12,7 @@ IActionState::IActionState(CHandle playerModelHandle) {
 	this->colliderHandle = playerEntity->get<TCompCollider>();
 	this->playerTransformHandle = playerEntity->get<TCompTransform>();
 	this->renderHandle = playerEntity->get<TCompRender>();
+	velocityVector = getPlayerModel()->getVelocityVector();
 }
 
 void IActionState::onStateEnter(IActionState* lastState) {
@@ -28,9 +29,15 @@ void IActionState::setPose() {
 	getRender()->setMesh("data/meshes/pose_idle.mesh");
 }
 
+void IActionState::onDead() {
+	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Death);
+}
+
 void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }
+
 
 TCompCamera* IActionState::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);

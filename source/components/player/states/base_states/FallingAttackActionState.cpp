@@ -11,7 +11,7 @@
 FallingAttackActionState::FallingAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "wave";
+	animation = "melee";
 }
 
 void FallingAttackActionState::update (float delta) {
@@ -44,13 +44,12 @@ void FallingAttackActionState::update (float delta) {
 
 void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	setPose();
 	getPlayerModel()->maxVerticalSpeed = maxFallingVelocity;
 	getPlayerModel()->setGravity(0.f);
 	*velocityVector = VEC3::Zero;
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void FallingAttackActionState::onStateExit(IActionState * nextState) {
@@ -59,7 +58,7 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
 	getPlayerModel()->resetGravity();
-	getPlayerModel()->baseState->setPose();
+	//getPlayerModel()->baseState->setPose();
 }
 
 void FallingAttackActionState::onLanding() {

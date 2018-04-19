@@ -40,6 +40,8 @@
 #include "states/base_states/ReleasePowerGroundActionState.h"
 #include "states/base_states/JumpSquatSpringActionState.h"
 #include "states/base_states/IdleTurnAroundActionState.h"
+#include "states/base_states/death/DeathActionState.h"
+#include "states/base_states/death/PitFallingActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
@@ -260,6 +262,8 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(playerModelHandle) },
 	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(playerModelHandle) },
 	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle, wallJumpPlummetHitbox) },
+	{ ActionStates::Death, new DeathActionState(playerModelHandle) },
+	{ ActionStates::PitFalling, new PitFallingActionState(playerModelHandle) },
 	};
 
 	concurrentStates = {
@@ -424,7 +428,6 @@ void TCompPlayerModel::sweep(VEC3 deltaMovement) {
 
 
 }
-
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
@@ -462,12 +465,20 @@ void TCompPlayerModel::setHp(float hp) {
 	hp = clamp(hp, 0.f, maxHp);
 	this->hp = hp;
 	if (this->hp == 0.f) {
-		onDead();
+		setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		setBaseState(TCompPlayerModel::ActionStates::Death);
 	}
 }
 
 void TCompPlayerModel::setRespawnPosition(VEC3 position) {
 	respawnPosition = position;
+}
+
+void TCompPlayerModel::damage(float damage) {
+	//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
+	setHp(hp - damage);
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
 }
 
 TCompCamera* TCompPlayerModel::getCamera() {
@@ -568,13 +579,7 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 }
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
-	//TODO Esto lo tendr�a que procesar el estado en concreto, por si tiene armor o algo
-	hp -= msg.info.damage;
-	TCompRender* render = get<TCompRender>();
-	render->TurnRed(0.5f);
-	if (hp <= 0) {
-		onDead();
-	}
+	damage(msg.info.damage);
 }
 
 void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {
@@ -588,33 +593,11 @@ void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
 	getPowerGauge()->increasePower(msg.power);
 }
 
+
+
 void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
-	hp -= 1;
-	TCompRender* render = get<TCompRender>();
-	render->TurnRed(0.5f);
-	if (hp <= 0) {
-		onDead();
-	}
-	else {
-		getCollider()->controller->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
-		velocityVector = VEC3(0, 0, 0);
-		setConcurrentState(ActionStates::Idle);
-		setBaseState(ActionStates::AirborneNormal);
-		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-		Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
-	}
-}
-
-void TCompPlayerModel::onDead() {
-	getController()->setFootPosition({ respawnPosition.x, respawnPosition.y, respawnPosition.z });
-	velocityVector = VEC3(0, 0, 0);
-
-	setConcurrentState(ActionStates::Idle);
-	setBaseState(ActionStates::AirborneNormal);
-	hp = maxHp;
-	getPowerGauge()->resetPower();
-	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-	Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
+	setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	setBaseState(TCompPlayerModel::ActionStates::PitFalling);
 }
 
 

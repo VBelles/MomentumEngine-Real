@@ -156,5 +156,14 @@
 			}
 			
 		}
+	},
+	{
+		"entity":{
+			"name": "spikes1",
+			"prefab": "data/prefabs/spikes.prefab",
+			"transform": {
+				"pos": "-68 25 -38"
+			}
+		}
 	}
 ]

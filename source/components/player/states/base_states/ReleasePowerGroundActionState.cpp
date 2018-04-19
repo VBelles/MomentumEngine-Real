@@ -11,7 +11,7 @@ ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModel
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
-	animation = "wave";
+	animation = "melee";
 }
 
 void ReleasePowerGroundActionState::update (float delta) {
@@ -62,7 +62,6 @@ void ReleasePowerGroundActionState::update (float delta) {
 			}
 			break;
 		}
-		setPose();
 		phase = AttackPhases::Active;
 	}
 }
@@ -77,7 +76,7 @@ void ReleasePowerGroundActionState::onStateEnter(IActionState * lastState) {
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {

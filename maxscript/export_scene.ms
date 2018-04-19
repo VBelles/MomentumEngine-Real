@@ -269,7 +269,8 @@ struct TSceneExporter (
 	fn hasChildLine obj = (
 		if obj.children == undefined then return false
 		for child in obj.children do (
-			if classOf child == line then return true
+			if classOf child == line or 
+				classOf child == circle then return true
 		)
 		return false
 	),
@@ -498,7 +499,67 @@ struct TSceneExporter (
 		fs.writeComma()
 		exportCompCollider obj colliderGroups:colliderGroups trig:trig dyn:dyn
 	),
+	
+	fn exportCircleExtraKnots obj = (
+		-- If the line is a circle, we need to get 4 extra knots to Catmull to work properly,
+		-- we get them rotating a copy of the circle.
+		-- We also need to add the last knot to the begining.
+		local child = copy obj
+		convertToSplineShape child
+		local circleCopy = copy child
+		-- Rotate circle in local Z.
+		circleCopy.transform = (rotateZmatrix 45) * circleCopy.transform
+		
+		local lastKnot = getKnotPoint circleCopy 1 knotsInSpline
+		local mcvLastKnotPos = lastKnot * rotateXMatrix -90
+		fs.writeValue mcvKnotPos addIndent:true
+		fs.writeComma()
+		fs.writeValue mcvKnotPos addIndent:true
+		
+		local knotsInSpline = numKnots child
+		for i = 1 to knotsInSpline do (
+			fs.writeComma()
+			local knotPos = getKnotPoint child 1 i
+			local mcvKnotPos = knotPos * rotateXMatrix -90
+			fs.writeValue mcvKnotPos
+			knotPos = getKnotPoint circleCopy 1 i
+			mcvKnotPos = knotPos * rotateXMatrix -90
+			fs.writeValue mcvKnotPos
+			if i == knotsInSpline then (
+				fs.writeComma()
+				fs.writeValue mcvKnotPos
+			)
+		)
+		delete circleCopy
+		delete child
+	),
 
+	--TODO: si isClosed = true, hay que añadir siempre el último knot al principio, no solo en Circle.
+	
+	fn exportKnots childObj = (
+		fs.beginArray()
+			if classOf childObj == Circle then (
+				exportCircleExtraKnots childObj
+			)
+			else (
+				knotsInSpline = numKnots childObj
+				for i = 1 to (knotsInSpline) do (
+					if i > 1 then fs.writeComma()
+					-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
+					local knotPos = getKnotPoint childObj 1 i
+					local mcvKnotPos = knotPos * rotateXMatrix -90
+					fs.writeValue mcvKnotPos addIndent:true
+					if i == 1 or i == knotsInSpline then (
+						-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
+						-- This also forces following the real shape of the spline.
+						fs.writeComma()
+						fs.writeValue mcvKnotPos addIndent:true
+					)
+				)
+			)
+		fs.endArray()
+	),
+	
 	-- --SPLINE--------------------------------------------------
 	fn exportSpline obj type: = (
 		-- Executed only if we already know it has a child line.
@@ -516,22 +577,7 @@ struct TSceneExporter (
 					fs.writeKeyValue "closed" (isClosed child 1)
 					fs.writeComma()
 					fs.writeKey "knots"
-					fs.beginArray()
-						knotsInSpline = numKnots child
-						for i = 1 to (knotsInSpline) do (
-							if i > 1 then fs.writeComma()
-							-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
-							local knotPos = getKnotPoint child 1 i
-							local mcvKnotPos = knotPos * rotateXMatrix -90
-							fs.writeValue mcvKnotPos addIndent:true
-							if i == 1 or i == knotsInSpline then (
-								-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
-								-- This also forces following the real shape of the spline.
-								fs.writeComma()
-								fs.writeValue mcvKnotPos addIndent:true
-							)
-						)
-					fs.endArray()
+					exportKnots child
 				fs.endObj()
 				return true -- Only exports the first line found.
 			)
@@ -1157,6 +1203,7 @@ TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
+TODO: Tener en cuenta el isClosed al exportar splines.
 */
 
 /*----------------------------------------------------------------------------------

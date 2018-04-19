@@ -78,6 +78,7 @@ public:
 	virtual void onHitboxEnter(CHandle entity) {}
 	virtual void onShapeHit(const PxControllerShapeHit &hit) {}
 	virtual void onSweep(PxSweepBuffer& sweepBuffer) {}
+	virtual void onDead();
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }

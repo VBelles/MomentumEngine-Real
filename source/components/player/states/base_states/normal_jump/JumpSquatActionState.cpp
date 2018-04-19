@@ -7,7 +7,7 @@
 
 JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "jump_inicio";
 }
 
 void JumpSquatActionState::update (float delta) {
@@ -31,13 +31,12 @@ void JumpSquatActionState::update (float delta) {
 
 void JumpSquatActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	setPose();
 	//dbg("Entrando en JumpSquat\n");
 	squatTime = squatFrames * (1.f / 60);
 	isShortHop = false;
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void JumpSquatActionState::onStateExit(IActionState * nextState) {

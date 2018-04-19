@@ -177,6 +177,9 @@
     <ClCompile Include="components\player\power_stats.cpp" />
     <ClCompile Include="modules\game\scripting\scripting_door.cpp" />
     <ClCompile Include="components\comp_door.cpp" />
+    <ClCompile Include="components\comp_spikes.cpp" />
+    <ClCompile Include="components\player\states\base_states\death\DeathActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\death\PitFallingActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -385,6 +388,9 @@
     <ClInclude Include="components\player\power_stats.h" />
     <ClInclude Include="modules\game\scripting\scripting_door.h" />
     <ClInclude Include="components\comp_door.h" />
+    <ClInclude Include="components\comp_spikes.h" />
+    <ClInclude Include="components\player\states\base_states\death\DeathActionState.h" />
+    <ClInclude Include="components\player\states\base_states\death\PitFallingActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
