@@ -1,6 +1,7 @@
 {
 	"name":"ella",
 	"anims" : [
+		{ "name" : "idle"},
 		{ "name" : "run"},
 		{ "name" : "jump_inicio"},
 		{ "name" : "jump_volando"},
