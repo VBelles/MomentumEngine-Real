@@ -8,7 +8,7 @@
 AirborneActionState::AirborneActionState(CHandle playerModelHandle)
 	: IActionState::IActionState(playerModelHandle) {
 	accelerationVector = getPlayerModel()->getAccelerationVector();
-	velocityVector = getPlayerModel()->getVelocityVector();
+	//velocityVector = getPlayerModel()->getVelocityVector();
 }
 
 void AirborneActionState::update (float delta) {
