@@ -144,6 +144,7 @@
     <ClCompile Include="components\player\comp_player_model.cpp" />
     <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
+    <ClCompile Include="components\player\power_stats.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
@@ -321,6 +322,7 @@
     <ClInclude Include="components\player\comp_player_model.h" />
     <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
+    <ClInclude Include="components\player\power_stats.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
     <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />

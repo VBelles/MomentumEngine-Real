@@ -72,4 +72,10 @@ void TCompPowerGauge::setPower(float power) {
 	increasePower(power - this->power);
 }
 
+int TCompPowerGauge::getPowerLevel() { return powerLevel; }
+
+float TCompPowerGauge::getPower() { return power; }
+
+float TCompPowerGauge::getMaxPower() { return maxPower; }
+
 

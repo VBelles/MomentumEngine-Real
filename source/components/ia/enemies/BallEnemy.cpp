@@ -7,7 +7,7 @@
 #include "components/comp_respawner.h"
 #include "components/comp_shadow.h"
 #include "components/comp_give_power.h"
-#include "components/player/comp_player_model.h"
+#include "components/player/power_stats.h"
 #include "skeleton/comp_skeleton.h"
 
 DECL_OBJ_MANAGER("behaviorTree_ball_enemy", CBehaviorTreeBallEnemy);

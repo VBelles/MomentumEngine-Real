@@ -8,6 +8,7 @@ class CEntity;
 class TCompTransform;
 class TCompCollider;
 class TCompSkeleton;
+class TCompRender;
 struct PowerStats;
 
 class CBehaviorTreeMeleeEnemy : public IBehaviorTree, public TCompBase {
@@ -42,6 +43,10 @@ private:
 	bool isStunned = false;
 	float stunDuration;
 
+	CHandle transformHandle;
+	CHandle colliderHandle;
+	CHandle renderHandle;
+	CHandle skeletonHandle;
 	CHandle playerHandle;
 
 	VEC3 initialLaunchPos;
@@ -95,9 +100,7 @@ private:
 	bool combatCondition(float delta = 0.f);
 	bool stepBackCondition(float delta = 0.f);
 
-	CEntity* getPlayerEntity();
-	TCompTransform* getPlayerTransform();
-	TCompSkeleton* getSkeleton();
+	
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
@@ -107,6 +110,12 @@ private:
 	void updateGravity(float delta);
 	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
+
+
+	CEntity* getPlayerEntity();
+	TCompTransform* getPlayerTransform();
+	TCompSkeleton* getSkeleton();
+	TCompRender* getRender();
 
 public:
 	CBehaviorTreeMeleeEnemy();

@@ -52,58 +52,44 @@ DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
 using namespace physx;
 
+void TCompPlayerModel::registerMsgs() {
+	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompPlayerModel, TMsgAttackHit, onAttackHit);
+	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, onHitboxEnter);
+	DECL_MSG(TCompPlayerModel, TMsgCollect, onCollect);
+	DECL_MSG(TCompPlayerModel, TMsgGainPower, onGainPower);
+	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
+	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgOnContact, onContact);
+}
+
 void TCompPlayerModel::debugInMenu() {
-	ImGui::DragFloat("Speed_Ssj1", &ssj1->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
-	ImGui::DragFloat("Rotation_Ssj1", &ssj1->rotationSpeed, 0.1f, 0.f, 20.f);
-	ImGui::DragFloat("LandingLag_Ssj1", &ssj1->landingLag, 1.f, 0.f, 20.f);
-	ImGui::DragFloat("FallingMultiplier_Ssj1", &ssj1->fallingMultiplier, 0.01f, 1.f, 2.f);
-	ImGui::DragFloat("LongGravityMultiplier_Ssj1", &ssj1->longGravityMultiplier, 1.f, 0.f, 2.f);
-	ImGui::DragFloat("MaxVerticalVelocity_Ssj1", &ssj1->maxVelocityVertical, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("Acceleration_Ssj1", &ssj1->acceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("Deceleration_Ssj1", &ssj1->deceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("AirAcceleration_Ssj1", &ssj1->airAcceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("ShortHopVelocity_Ssj1", &ssj1->shortHopVelocity, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("SpringJumpVelocity_Ssj1", &ssj1->springJumpVelocity, 1.f, 0.f, 100.f);
-	ImGui::DragFloat3("JumpVelocity_Ssj1", &ssj1->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	ImGui::DragFloat3("LongJumpVelocity_Ssj1", &ssj1->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	ImGui::DragFloat3("WallJumpVelocity_Ssj1", &ssj1->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-
-	ImGui::DragFloat("Speed_Ssj2", &ssj2->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
-	ImGui::DragFloat("Rotation_Ssj2", &ssj2->rotationSpeed, 0.1f, 0.f, 20.f);
-	ImGui::DragFloat("LandingLag_Ssj2", &ssj2->landingLag, 1.f, 0.f, 20.f);
-	ImGui::DragFloat("FallingMultiplier_Ssj2", &ssj2->fallingMultiplier, 0.01f, 1.f, 2.f);
-	ImGui::DragFloat("LongGravityMultiplier_Ssj2", &ssj2->longGravityMultiplier, 1.f, 0.f, 2.f);
-	ImGui::DragFloat("MaxVerticalVelocity_Ssj2", &ssj2->maxVelocityVertical, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("Acceleration_Ssj2", &ssj2->acceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("Deceleration_Ssj2", &ssj2->deceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("AirAcceleration_Ssj2", &ssj2->airAcceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("ShortHopVelocity_Ssj2", &ssj2->shortHopVelocity, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("SpringJumpVelocity_Ssj2", &ssj2->springJumpVelocity, 1.f, 0.f, 100.f);
-	ImGui::DragFloat3("JumpVelocity_Ssj2", &ssj2->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	ImGui::DragFloat3("LongJumpVelocity_Ssj2", &ssj2->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	ImGui::DragFloat3("WallJumpVelocity_Ssj2", &ssj2->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-
-	ImGui::DragFloat("Speed_Ssj3", &ssj3->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
-	ImGui::DragFloat("Rotation_Ssj3", &ssj3->rotationSpeed, 0.1f, 0.f, 20.f);
-	ImGui::DragFloat("LandingLag_Ssj3", &ssj3->landingLag, 1.f, 0.f, 20.f);
-	ImGui::DragFloat("FallingMultiplier_Ssj3", &ssj3->fallingMultiplier, 0.01f, 1.f, 2.f);
-	ImGui::DragFloat("LongGravityMultiplier_Ssj3", &ssj3->longGravityMultiplier, 1.f, 0.f, 2.f);
-	ImGui::DragFloat("MaxVerticalVelocity_Ssj3", &ssj3->maxVelocityVertical, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("Acceleration_Ssj3", &ssj3->acceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("Deceleration_Ssj3", &ssj3->deceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("AirAcceleration_Ssj3", &ssj3->airAcceleration, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("ShortHopVelocity_Ssj3", &ssj3->shortHopVelocity, 1.f, 0.f, 100.f);
-	ImGui::DragFloat("SpringJumpVelocity_Ssj3", &ssj3->springJumpVelocity, 1.f, 0.f, 100.f);
-	ImGui::DragFloat3("JumpVelocity_Ssj3", &ssj3->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	ImGui::DragFloat3("LongJumpVelocity_Ssj3", &ssj3->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-	ImGui::DragFloat3("WallJumpVelocity_Ssj3", &ssj3->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
-
+	debugInMenu(ssj1, "Ssj1");
+	debugInMenu(ssj2, "Ssj2");
+	debugInMenu(ssj3, "Ssj3");
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		baseGravity = accelerationVector.y;
 	}
-
 	ImGui::DragFloat("WalkingSpeed", &walkingSpeed, 0.1f, 0.1f, 7.f);
 	ImGui::DragFloat("MaxVelocityUpwards", &maxVelocityUpwards, 0.1f, 10.f, 60.f);
+}
+
+void TCompPlayerModel::debugInMenu(PowerStats* powerStats, std::string name) {
+	ImGui::DragFloat((std::string("Speed_") + name).c_str(), &powerStats->maxHorizontalSpeed, 0.1f, 0.f, 40.f);
+	ImGui::DragFloat((std::string("Rotation_") + name).c_str(), &powerStats->rotationSpeed, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat((std::string("LandingLag_") + name).c_str(), &powerStats->landingLag, 1.f, 0.f, 20.f);
+	ImGui::DragFloat((std::string("FallingMultiplier_") + name).c_str(), &powerStats->fallingMultiplier, 0.01f, 1.f, 2.f);
+	ImGui::DragFloat((std::string("LongGravityMultiplier_") + name).c_str(), &powerStats->longGravityMultiplier, 1.f, 0.f, 2.f);
+	ImGui::DragFloat((std::string("MaxVerticalVelocity_") + name).c_str(), &powerStats->maxVelocityVertical, 1.f, 0.f, 100.f);
+	ImGui::DragFloat((std::string("Acceleration_") + name).c_str(), &powerStats->acceleration, 1.f, 0.f, 100.f);
+	ImGui::DragFloat((std::string("Deceleration_") + name).c_str(), &powerStats->deceleration, 1.f, 0.f, 100.f);
+	ImGui::DragFloat((std::string("AirAcceleration_") + name).c_str(), &powerStats->airAcceleration, 1.f, 0.f, 100.f);
+	ImGui::DragFloat((std::string("ShortHopVelocity_") + name).c_str(), &powerStats->shortHopVelocity, 1.f, 0.f, 100.f);
+	ImGui::DragFloat((std::string("SpringJumpVelocity_") + name).c_str(), &powerStats->springJumpVelocity, 1.f, 0.f, 100.f);
+	ImGui::DragFloat3((std::string("JumpVelocity_") + name).c_str(), &powerStats->jumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3((std::string("LongJumpVelocity_") + name).c_str(), &powerStats->longJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
+	ImGui::DragFloat3((std::string("WallJumpVelocity_") + name).c_str(), &powerStats->wallJumpVelocityVector.x, 1.f, -50.f, 1000000.f);
 }
 
 void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
@@ -137,7 +123,6 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	ssj->shortHopVelocity = j.value("shortHopVelocity", 0.0f);
 	ssj->springJumpVelocity = j.value("springJumpVelocity", 0.0f);
 	ssj->plummetTime = j.value("plummetTime", 0.0f);
-
 	return ssj;
 }
 
@@ -164,17 +149,6 @@ void TCompPlayerModel::changeConcurrentState(ActionStates newState) {
 	if (concurrentState) concurrentState->onStateEnter(exitingState);
 }
 
-void TCompPlayerModel::registerMsgs() {
-	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
-	DECL_MSG(TCompPlayerModel, TMsgAttackHit, onAttackHit);
-	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, onHitboxEnter);
-	DECL_MSG(TCompPlayerModel, TMsgCollect, onCollect);
-	DECL_MSG(TCompPlayerModel, TMsgGainPower, onGainPower);
-	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
-	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
-	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
-	DECL_MSG(TCompPlayerModel, TMsgOnContact, onContact);
-}
 
 void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	switch (msg.powerLvl) {
@@ -209,10 +183,10 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::PopStyleColor();
 
 		//Power bar
-		std::string powerProgressBarText = "Power: " + std::to_string((int)getPowerGauge()->power) + "/" + std::to_string((int)getPowerGauge()->maxPower);
-		ImVec4 color = getPowerGauge()->powerLevel == 1 ? ImColor{ 255, 255, 0 } : getPowerGauge()->powerLevel == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
+		std::string powerProgressBarText = "Power: " + std::to_string((int)getPowerGauge()->getPower()) + "/" + std::to_string((int)getPowerGauge()->getMaxPower());
+		ImVec4 color = getPowerGauge()->getPowerLevel() == 1 ? ImColor{ 255, 255, 0 } : getPowerGauge()->getPowerLevel() == 2 ? ImColor{ 255, 255 / 2, 0 } : ImColor{ 255, 0, 0 };
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-		ImGui::ProgressBar((float)getPowerGauge()->power / getPowerGauge()->maxPower, ImVec2(-1, 0), powerProgressBarText.c_str());
+		ImGui::ProgressBar((float)getPowerGauge()->getPower() / getPowerGauge()->getMaxPower(), ImVec2(-1, 0), powerProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		//Chrysalis counter
