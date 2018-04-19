@@ -50,6 +50,7 @@ bool CModuleScripting::start() {
 	script->doString("player = Player()");
 	script->doString("golem = Golem()");
 	
+	
 	return true;
 }
 
@@ -70,6 +71,14 @@ void CModuleScripting::render() {
 		bool open = true;
 		console->Draw("LUA Console", &open);
 	}
+}
+
+void CModuleScripting::doFile(const char* filename) {
+	script->doFile(filename);
+}
+
+void CModuleScripting::doFile(std::string filename) {
+	script->doFile(filename.c_str());
 }
 
 void printCallback(SLB::Script* script, const char* str, size_t strSize) {
