@@ -10,7 +10,7 @@
 HorizontalLauncherActionState::HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "kick";
+	animation = "melee";
 }
 
 void HorizontalLauncherActionState::update (float delta) {
@@ -29,7 +29,6 @@ void HorizontalLauncherActionState::update (float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-		setPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -50,7 +49,7 @@ void HorizontalLauncherActionState::onStateEnter(IActionState * lastState) {
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void HorizontalLauncherActionState::onStateExit(IActionState * nextState) {

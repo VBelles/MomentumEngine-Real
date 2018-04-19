@@ -8,7 +8,7 @@
 
 LandingActionState::LandingActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "jump_caida";
 }
 
 void LandingActionState::update (float delta) {
@@ -38,7 +38,6 @@ void LandingActionState::update (float delta) {
 
 void LandingActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	setPose();
 	VEC3 enteringVelocityVector = { velocityVector->x, 0.f, velocityVector->z };
 	enteringSpeed = enteringVelocityVector.Length();
 	velocityVector->x = 0.f;
@@ -47,7 +46,7 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	landingLagTime = landingLagFrames * (1.f / 60);
 	timer.reset();
 	//dbg("Entrando en landing\n");
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void LandingActionState::onStateExit(IActionState * nextState) {
