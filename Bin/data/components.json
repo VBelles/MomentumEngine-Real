@@ -19,6 +19,7 @@
     "breakable",
     "mechanism",
     "mechanism_system",
+    "door",
     "behaviorTree_melee_enemy",
     "behaviorTree_ball_enemy",
     "behaviorTree_flying_ranged_enemy",

@@ -7,6 +7,7 @@
 #include "modules/game/scripting/scripting_player.h"
 #include "modules/game/scripting/scripting_golem.h"
 #include "modules/game/scripting/scripting_entities.h"
+#include "modules/game/scripting/scripting_door.h"
 
 CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {}
 
@@ -42,6 +43,7 @@ bool CModuleScripting::start() {
 	//Bind clases
 	ScriptingPlayer::bind(manager);
 	ScriptingGolem::bind(manager);
+	ScriptingDoor::bind(manager);
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
 
@@ -49,8 +51,7 @@ bool CModuleScripting::start() {
 	script->doString("SLB.using(SLB)");
 	script->doString("player = Player()");
 	script->doString("golem = Golem()");
-	
-	
+
 	return true;
 }
 
@@ -78,7 +79,9 @@ void CModuleScripting::doFile(const char* filename) {
 }
 
 void CModuleScripting::doFile(std::string filename) {
-	script->doFile(filename.c_str());
+	if (!script->safeDoFile(filename.c_str())) {
+		dbg("%s\n", script->getLastError());
+	}
 }
 
 void printCallback(SLB::Script* script, const char* str, size_t strSize) {
