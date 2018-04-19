@@ -6,6 +6,7 @@ struct  TSkeletonsExporter (
 	skel_name,			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
+	bone_geometry = false,
 	
 	fn isBone obj = ( 
 		-- Discard black bones
@@ -33,6 +34,7 @@ struct  TSkeletonsExporter (
 			if isBone obj then (
 				format "% is a bone for the animation\n" obj.name
 				append objs obj
+				if (classof obj == BoneGeometry) then bone_geometry = true
 			)
 		)
 		return objs
@@ -73,9 +75,11 @@ struct  TSkeletonsExporter (
 		local root_bones = findRootBone()
 		local root = root_bones[1]
 		
-		-- Pasar a modo figura si esta en modo pose
-		--local was_in_figure_mode = root.controller.figureMode
-		--root.controller.figureMode = true
+		if (not bone_geometry) then (
+			-- Pasar a modo figura si esta en modo pose
+			local was_in_figure_mode = root.controller.figureMode
+			root.controller.figureMode = true
+		)
 		local bones_to_export = findBoneCandidates()
 		
 		for b in bones_to_export do (
@@ -97,7 +101,7 @@ struct  TSkeletonsExporter (
 		)
 		
 		-- Restaurar el modo pose si es q estaba en modo pose inicialmente
-		--root.controller.figureMode = was_in_figure_mode
+		if (not bone_geometry) then root.controller.figureMode = was_in_figure_mode
     ),
 	
 	fn exportAnim = (
