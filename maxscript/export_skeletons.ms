@@ -9,13 +9,14 @@ struct  TSkeletonsExporter (
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return (classof obj == Biped_Object or classof obj == Dummy) and obj.wireColor != Black
+		return (classof obj == Biped_Object or classof obj == Dummy or classof obj == BoneGeometry) and obj.wireColor != Black
 	),
 	
 	-- Search the root bones in the scene to define the .csf
 	fn findSkelCandidates = (
 		local obj_bones = #()
 		for obj in $* do (
+			format "% is classof %\n" obj.name (classof obj)
 			if isBone obj and obj.parent == undefined then (
 				format "% is a root bone\n" obj.name
 				append obj_bones obj
@@ -73,8 +74,8 @@ struct  TSkeletonsExporter (
 		local root = root_bones[1]
 		
 		-- Pasar a modo figura si esta en modo pose
-		local was_in_figure_mode = root.controller.figureMode
-		root.controller.figureMode = true
+		--local was_in_figure_mode = root.controller.figureMode
+		--root.controller.figureMode = true
 		local bones_to_export = findBoneCandidates()
 		
 		for b in bones_to_export do (
@@ -96,7 +97,7 @@ struct  TSkeletonsExporter (
 		)
 		
 		-- Restaurar el modo pose si es q estaba en modo pose inicialmente
-		root.controller.figureMode = was_in_figure_mode
+		--root.controller.figureMode = was_in_figure_mode
     ),
 	
 	fn exportAnim = (
@@ -120,7 +121,7 @@ struct  TSkeletonsExporter (
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
 exportPath = substituteString exportPath "\\" "/"
-se = TSkeletonsExporter project_path: exportPath skel_name:"gorila"
+se = TSkeletonsExporter project_path: exportPath skel_name:"medusa"
 
 --gc()
 --se = TSkeletonsExporter()
