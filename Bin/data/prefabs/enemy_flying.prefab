@@ -1,6 +1,7 @@
 [
 	{
 		"entity": {
+			"name": "medusa",
 			"transform":{},
 			"render": [
 				{

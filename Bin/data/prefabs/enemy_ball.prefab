@@ -1,6 +1,7 @@
 [
 	{
 		"entity": {
+			"name": "ball",
 			"transform":{},
 			"render": [
 				{

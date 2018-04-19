@@ -1,7 +1,7 @@
 [
 	{
 		"entity": {
-			"name": "melee_enemy",
+			"name": "golem",
 			"transform":{},
 			"render": [
 				{
