@@ -8,7 +8,7 @@
 
 IdleActionState::IdleActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "run";
+	animation = "idle";
 }
 
 void IdleActionState::update (float delta) {
