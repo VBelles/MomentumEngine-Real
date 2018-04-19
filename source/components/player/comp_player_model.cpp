@@ -472,13 +472,9 @@ void TCompPlayerModel::setHp(float hp) {
 
 void TCompPlayerModel::damage(float damage) {
 	//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
-	hp -= damage;
+	setHp(hp - damage);
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
-	if (hp <= 0) {
-		setConcurrentState(TCompPlayerModel::ActionStates::Idle);
-		setBaseState(TCompPlayerModel::ActionStates::Death);
-	}
 }
 
 TCompCamera* TCompPlayerModel::getCamera() {
