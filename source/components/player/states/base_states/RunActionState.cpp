@@ -8,7 +8,7 @@
 
 RunActionState::RunActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "jog";
+	animation = "run";
 }
 
 void RunActionState::update (float delta) {
@@ -71,8 +71,7 @@ void RunActionState::update (float delta) {
 
 void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	setPose();
-	getPlayerModel()->getSkeleton()->blendCycle(animation);
+	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void RunActionState::onStateExit(IActionState * nextState) {

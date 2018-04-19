@@ -8,7 +8,7 @@
 
 WalkActionState::WalkActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "run";
 }
 
 void WalkActionState::update (float delta) {
@@ -74,12 +74,13 @@ void WalkActionState::update (float delta) {
 
 void WalkActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	setPose();
-	getPlayerModel()->getSkeleton()->blendCycle(animation);
+	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getPlayerModel()->getSkeleton()->setTimeFactor(0.5f);
 }
 
 void WalkActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+	getPlayerModel()->getSkeleton()->setTimeFactor(1);
 }
 
 void WalkActionState::setPose() {

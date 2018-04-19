@@ -7,7 +7,7 @@
 
 WallJumpSquatActionState::WallJumpSquatActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "walk";
+	animation = "jump_inicio";
 }
 
 void WallJumpSquatActionState::update (float delta) {
@@ -29,10 +29,9 @@ void WallJumpSquatActionState::update (float delta) {
 
 void WallJumpSquatActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	setPose();
 	endingTime = endingFrames * (1.f / 60);
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void WallJumpSquatActionState::onStateExit(IActionState * nextState) {

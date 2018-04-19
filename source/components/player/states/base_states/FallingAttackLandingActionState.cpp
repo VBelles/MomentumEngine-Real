@@ -9,7 +9,7 @@
 FallingAttackLandingActionState::FallingAttackLandingActionState(CHandle playerModelHandle, CHandle hitbox)
 	: LandingActionState::LandingActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "walk";
+	animation = "jump_caida";
 }
 
 void FallingAttackLandingActionState::update(float delta) {
@@ -34,7 +34,7 @@ void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 	hitbox->enable();
 	hitboxTimer.reset();
 	springJumpTimer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void FallingAttackLandingActionState::onStateExit(IActionState * nextState) {
