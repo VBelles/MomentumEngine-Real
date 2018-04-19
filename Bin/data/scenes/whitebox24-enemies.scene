@@ -147,7 +147,7 @@
     "entity":
     {
       "name": "w24_enemyAir022",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-47.3087 31.9241 -112.524",
@@ -159,7 +159,7 @@
     "entity":
     {
       "name": "w24_enemyAir021",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-44.1863 34.6967 -93.1189",
@@ -171,7 +171,7 @@
     "entity":
     {
       "name": "w24_enemyAir020",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-107.485 23.028 -97.6235",
@@ -183,7 +183,7 @@
     "entity":
     {
       "name": "w24_enemyAir019",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-63.4581 34.6967 -48.2636",
@@ -195,7 +195,7 @@
     "entity":
     {
       "name": "w24_enemyAir018",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "1.20534 34.6967 -51.8641",
@@ -207,7 +207,7 @@
     "entity":
     {
       "name": "w24_enemyAir001",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "35.3127 55.3215 -114.214",
@@ -219,7 +219,7 @@
     "entity":
     {
       "name": "w24_enemyAir003",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "18.2636 47.4115 -85.9456",
@@ -231,7 +231,7 @@
     "entity":
     {
       "name": "w24_enemyAir005",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "42.8947 60.1375 -121.796",
@@ -243,7 +243,7 @@
     "entity":
     {
       "name": "w24_enemyAir006",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "50.6939 65.9078 -129.596",
@@ -255,7 +255,7 @@
     "entity":
     {
       "name": "w24_enemyAir007",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-51.3837 21.1911 -149.979",
@@ -267,7 +267,7 @@
     "entity":
     {
       "name": "w24_enemyAir008",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-50.2568 21.1911 -155.995",
@@ -279,7 +279,7 @@
     "entity":
     {
       "name": "w24_enemyAir009",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-57.3823 21.1911 -148.869",
@@ -291,7 +291,7 @@
     "entity":
     {
       "name": "w24_enemyAir010",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-57.0304 21.1911 -155.625",
@@ -303,7 +303,7 @@
     "entity":
     {
       "name": "w24_enemyAir011",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-53.8642 21.1911 -152.459",
@@ -315,7 +315,7 @@
     "entity":
     {
       "name": "w24_enemyAir012",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-47.9001 21.1911 -146.495",
@@ -327,7 +327,7 @@
     "entity":
     {
       "name": "w24_enemyAir013",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-52.7417 21.1911 -146.303",
@@ -339,7 +339,7 @@
     "entity":
     {
       "name": "w24_enemyAir014",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-47.5966 21.1911 -151.448",
@@ -351,7 +351,7 @@
     "entity":
     {
       "name": "w24_enemyAir017",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-11.4407 43.8187 -87.9101",
@@ -363,7 +363,7 @@
     "entity":
     {
       "name": "w24_enemyAir016",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-16.1021 38.0483 -77.9137",
@@ -375,7 +375,7 @@
     "entity":
     {
       "name": "w24_enemyAir015",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-24.1171 41.794 -70.8728",

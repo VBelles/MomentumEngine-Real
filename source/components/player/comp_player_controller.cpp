@@ -18,6 +18,7 @@ void TCompPlayerController::onGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 	assert(playerModelHandle.isValid());
 }
 
+
 void TCompPlayerController::update(float delta) {
 	TCompPlayerModel* playerModel = getPlayerModel();
 	VEC2 translationInput = VEC2::Zero;
@@ -78,4 +79,8 @@ void TCompPlayerController::update(float delta) {
 		playerModel->gainPowerButtonPressed();
 	}
 	playerModel->setMovementInput(translationInput, delta);
+}
+
+TCompPlayerModel * TCompPlayerController::getPlayerModel() {
+	return playerModelHandle;
 }

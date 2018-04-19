@@ -39,7 +39,7 @@ void ReleasePowerGroundActionState::update (float delta) {
 		CEntity *hitboxBigEntity = hitboxBigHandle;
 		TCompHitbox *hitboxBig = hitboxBigEntity->get<TCompHitbox>();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
-		switch (getPlayerModel()->getPowerGauge()->powerLevel) {
+		switch (getPlayerModel()->getPowerGauge()->getPowerLevel()) {
 		case 1:
 			getPlayerModel()->getPowerGauge()->releasePower();
 			break;
@@ -95,7 +95,7 @@ void ReleasePowerGroundActionState::onReleasePowerButton() {
 	//Si está en active, release energy
 	if (phase == AttackPhases::Active) {
 		//si además button presses es == 2 y ssj2, agrandar bola
-		if (getPlayerModel()->getPowerGauge()->powerLevel == 2) {
+		if (getPlayerModel()->getPowerGauge()->getPowerLevel() == 2) {
 			CEntity *hitboxEntity = hitboxSmallHandle;
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->disable();

@@ -11,7 +11,7 @@ private:
 	CHandle playerModelHandle;
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	TCompPlayerModel* getPlayerModel() { return playerModelHandle; }
+	TCompPlayerModel* getPlayerModel();
 
 public:
 	static void registerMsgs();
