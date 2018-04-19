@@ -179,4 +179,5 @@ public:
 
 	float getHp() { return hp; }
 	void setHp(float hp);
+	void setRespawnPosition(VEC3 position);
 };

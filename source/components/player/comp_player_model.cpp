@@ -466,6 +466,10 @@ void TCompPlayerModel::setHp(float hp) {
 	}
 }
 
+void TCompPlayerModel::setRespawnPosition(VEC3 position) {
+	respawnPosition = position;
+}
+
 TCompCamera* TCompPlayerModel::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();

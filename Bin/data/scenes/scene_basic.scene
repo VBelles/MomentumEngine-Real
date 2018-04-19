@@ -26,9 +26,7 @@
 				],
 				"activationEffectFile" : "data/scripts/test.lua"
 			},
-			"door":{
-
-			},
+			"door":{},
 			"destroyCondition": {}
 		}
 	},
