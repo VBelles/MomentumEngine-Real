@@ -288,6 +288,7 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() > attackCooldown) {
 		TEntityParseContext ctx;
+		ctx.root_transform.setPosition(getTransform()->getPosition());
 		if (parseScene(attackPrefab, ctx)) {
 			assert(!ctx.entities_loaded.empty());
 
