@@ -34,10 +34,13 @@ void TCompCamera::renderDebug() {
 }
 
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
+	bool isOrtographic = j.value("isOrtographic", false);
 	float fov_deg = j.value("fov", rad2deg(getFov()));
 	float z_near = j.value("z_near", 1.f /*getZNear()*/);
 	float z_far = j.value("z_far", 1000.f /*getZFar()*/);
-	setPerspective(deg2rad(fov_deg), z_near, z_far);
+	float ortographicWidth = j.value("ortographicWidth", 50.f);
+	float ortographicHeight = j.value("ortographicHeight", 50.f);
+	setPerspective(isOrtographic, deg2rad(fov_deg), z_near, z_far, ortographicWidth, ortographicHeight);
 }
 
 void TCompCamera::update(float delta) {

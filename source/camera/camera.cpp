@@ -33,14 +33,24 @@ void CCamera::lookAt(VEC3 new_pos, VEC3 new_target, VEC3 new_up_aux) {
     updateViewProj();
 }
 
-void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new_z_far) {
+void CCamera::setPerspective (
+		bool isOrtographic, float new_fov_vertical, float new_z_near, float new_z_far, float new_width, float new_height
+		) {
+	this->isOrtographic = isOrtographic;
     fov_vertical = new_fov_vertical;
     z_near = new_z_near;
     z_far = new_z_far;
+	ortographicWidth = new_width;
+	ortographicHeight = new_height;
     if (z_far <= z_near) z_far = z_near + 0.1f;
     assert(z_far > z_near);
     aspect_ratio = (float)Render.width / (float)Render.height;
-    proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, aspect_ratio, new_z_near, new_z_far);
+	if (isOrtographic) {
+		proj = MAT44::CreateOrthographic(new_width, new_height, new_z_near, new_z_far);
+	}
+	else {
+		proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, aspect_ratio, new_z_near, new_z_far);
+	}
     updateViewProj();
 }
 
