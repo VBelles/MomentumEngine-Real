@@ -1,5 +1,5 @@
 {
-	"type" : "catmull-rom",
+	"curve_type" : "catmull-rom",
 	"loop" : false,
 	"knots" : [
 		"-10 7 5",

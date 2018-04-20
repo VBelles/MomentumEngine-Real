@@ -34,7 +34,7 @@ bool CCurve::load(const std::string& fileName) {
 }
 
 bool CCurve::load(const json& jData) {
-    std::string typeName = jData["type"];
+    std::string typeName = jData["curve_type"];
 
     setType(typeName);
 
@@ -115,7 +115,7 @@ VEC3 CCurve::evaluateAsCircle(float ratio) const {
     float angle = ratio * 360.f;
     // TODO: Do this properly in 3D.
     float x = _center.x + _radius * cos(angle);
-    float y = _center.y + _radius * sin(angle);
+    float z = _center.z + _radius * sin(angle);
 
-	return VEC3(x, y, 0);
+	return VEC3(x, 0, z);
 }
