@@ -269,8 +269,7 @@ struct TSceneExporter (
 	fn hasChildLine obj = (
 		if obj.children == undefined then return false
 		for child in obj.children do (
-			if classOf child == line or 
-				classOf child == circle then return true
+			if classOf child == line then return true
 		)
 		return false
 	),
@@ -499,67 +498,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		exportCompCollider obj colliderGroups:colliderGroups trig:trig dyn:dyn
 	),
-	
-	fn exportCircleExtraKnots obj = (
-		-- If the line is a circle, we need to get 4 extra knots to Catmull to work properly,
-		-- we get them rotating a copy of the circle.
-		-- We also need to add the last knot to the begining.
-		local child = copy obj
-		convertToSplineShape child
-		local circleCopy = copy child
-		-- Rotate circle in local Z.
-		circleCopy.transform = (rotateZmatrix 45) * circleCopy.transform
-		
-		local lastKnot = getKnotPoint circleCopy 1 knotsInSpline
-		local mcvLastKnotPos = lastKnot * rotateXMatrix -90
-		fs.writeValue mcvKnotPos addIndent:true
-		fs.writeComma()
-		fs.writeValue mcvKnotPos addIndent:true
-		
-		local knotsInSpline = numKnots child
-		for i = 1 to knotsInSpline do (
-			fs.writeComma()
-			local knotPos = getKnotPoint child 1 i
-			local mcvKnotPos = knotPos * rotateXMatrix -90
-			fs.writeValue mcvKnotPos
-			knotPos = getKnotPoint circleCopy 1 i
-			mcvKnotPos = knotPos * rotateXMatrix -90
-			fs.writeValue mcvKnotPos
-			if i == knotsInSpline then (
-				fs.writeComma()
-				fs.writeValue mcvKnotPos
-			)
-		)
-		delete circleCopy
-		delete child
-	),
 
-	--TODO: si isClosed = true, hay que aÒadir siempre el ˙ltimo knot al principio, no solo en Circle.
-	
-	fn exportKnots childObj = (
-		fs.beginArray()
-			if classOf childObj == Circle then (
-				exportCircleExtraKnots childObj
-			)
-			else (
-				knotsInSpline = numKnots childObj
-				for i = 1 to (knotsInSpline) do (
-					if i > 1 then fs.writeComma()
-					-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
-					local knotPos = getKnotPoint childObj 1 i
-					local mcvKnotPos = knotPos * rotateXMatrix -90
-					fs.writeValue mcvKnotPos addIndent:true
-					if i == 1 or i == knotsInSpline then (
-						-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
-						-- This also forces following the real shape of the spline.
-						fs.writeComma()
-						fs.writeValue mcvKnotPos addIndent:true
-					)
-				)
-			)
-		fs.endArray()
-	),
-	
 	-- --SPLINE--------------------------------------------------
 	fn exportSpline obj type: = (
 		-- Executed only if we already know it has a child line.
@@ -577,7 +516,22 @@ struct TSceneExporter (
 					fs.writeKeyValue "closed" (isClosed child 1)
 					fs.writeComma()
 					fs.writeKey "knots"
-					exportKnots child
+					fs.beginArray()
+						knotsInSpline = numKnots child
+						for i = 1 to (knotsInSpline) do (
+							if i > 1 then fs.writeComma()
+							-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
+							local knotPos = getKnotPoint child 1 i
+							local mcvKnotPos = knotPos * rotateXMatrix -90
+							fs.writeValue mcvKnotPos addIndent:true
+							if i == 1 or i == knotsInSpline then (
+								-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
+								-- This also forces following the real shape of the spline.
+								fs.writeComma()
+								fs.writeValue mcvKnotPos addIndent:true
+							)
+						)
+					fs.endArray()
 				fs.endObj()
 				return true -- Only exports the first line found.
 			)
@@ -1020,7 +974,7 @@ struct TSceneExporter (
 					-- obj.nearAttenEnd for z_near
 					fs.writeKeyValue "z_far" obj.farAttenEnd
 					fs.writeComma()
-					fs.writeKeyValue "fov" 40 -- TODO: øPick from some light parameter?
+					fs.writeKeyValue "fov" 40 -- TODO: ¬øPick from some light parameter?
 				fs.endObj()
 				-- Add child spline if it exists.
 				if hasChildLine obj then (
@@ -1199,11 +1153,10 @@ struct TSceneExporter (
 )
 
 /*
-TODO: øSacar el fov de las luces de alg˙n par·metro? Ahora siempre le pongo 40.
-TODO: Decidir quÈ hacer con las plataformas mÛviles. De momento las dejo como estaban.
-TODO: Ahora saca transform de hitboxes, no deberÌa. øO deberÌa usarse el transform en lugar del offset?
+TODO: ¬øSacar el fov de las luces de alg√∫n par√°metro? Ahora siempre le pongo 40.
+TODO: Decidir qu√© hacer con las plataformas m√≥viles. De momento las dejo como estaban.
+TODO: Ahora saca transform de hitboxes, no deber√≠a. ¬øO deber√≠a usarse el transform en lugar del offset?
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
-TODO: Tener en cuenta el isClosed al exportar splines.
 */
 
 /*----------------------------------------------------------------------------------
@@ -1215,32 +1168,32 @@ Pasos para instalar los scripts:
 2. Seleccionar Proyecto\Bin\maxscript\autoboot\
 3. Darle a Use Path.
 4. Reiniciar Max.
-5. Ir a pestaÒa Utilities, en el desplegable Utilities seleccionar MCV Exporter.
-6. Ya se pueden usar los scripts d·ndole a los botones que han aparecido debajo.
+5. Ir a pesta√±a Utilities, en el desplegable Utilities seleccionar MCV Exporter.
+6. Ya se pueden usar los scripts d√°ndole a los botones que han aparecido debajo.
 -------------------------------
-Condiciones de exportaciÛn:
+Condiciones de exportaci√≥n:
 -------------------------------
-Las layers invisibles o vacÌas no se exportan.
+Las layers invisibles o vac√≠as no se exportan.
 Lo visible como Editable Mesh.
-Lo visible sÛlido debe tener una forma b·sica (Box, Sphere o Plane) como hija. Si no es hija
-se exportar· en la escena collisions.
-Todo lo tangible debe estar como forma b·sica en una Layer llamada "collisions",
+Lo visible s√≥lido debe tener una forma b√°sica (Box, Sphere o Plane) como hija. Si no es hija
+se exportar√° en la escena collisions.
+Todo lo tangible debe estar como forma b√°sica en una Layer llamada "collisions",
 incluidas las que son hijas de Meshes visibles.
 Los enemigos		     deben estar en una layer llamada "enemies".
-Las cris·lidas 		     deben estar en una layer llamada "chrysalis".
-Las plataformas mÛviles  deben estar en una layer llamada "movables".
-Las c·maras				 deben estar en una layer llamada "cameras".
+Las cris√°lidas 		     deben estar en una layer llamada "chrysalis".
+Las plataformas m√≥viles  deben estar en una layer llamada "movables".
+Las c√°maras				 deben estar en una layer llamada "cameras".
 Las luces				 deben estar en una layer llamada "lights".
 Los triggers			 deben estar en una layer llamada "triggers".
 Las meshes				 deben estar en una layer llamada "0".
 Los colliders invisibles deben estar en una layer llamada "collisions".
  
-Los enemigos que no tengan "melee" en el nombre son considerados voladores. --> CAMBIAR¡ CON ATTRIBUTES.
+Los enemigos que no tengan "melee" en el nombre son considerados voladores. --> CAMBIAR√Å CON ATTRIBUTES.
 El proyecto debe tener las siguientes carpetas:
  bin/data/scenes/
  bin/data/meshes/
  bin/data/materials/
- maxscript/  --> AquÌ tienen que estar estos scripts.
+ maxscript/  --> Aqu√≠ tienen que estar estos scripts.
 ----------------------------------------------------------------------------------*/
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
