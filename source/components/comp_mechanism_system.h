@@ -15,6 +15,7 @@ private:
 	bool isActivated = false;
 	size_t numberOfMechanisms = 0;
 	size_t numberOfMechanismsActivated = 0;
+	std::string activationEffectFile;
 
 	std::vector<std::string> mechanismsNames;
 	std::vector<CHandle> mechanisms;

@@ -25,6 +25,7 @@ void TCompMechanismSystem::load(const json& j, TEntityParseContext& ctx) {
 		}
 		numberOfMechanisms = mechanisms.size();
 	}
+	activationEffectFile = j["activationEffectFile"].get<std::string>();
 }
 
 void TCompMechanismSystem::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
@@ -35,11 +36,15 @@ void TCompMechanismSystem::onAllScenesCreated(const TMsgAllScenesCreated & msg) 
 
 void TCompMechanismSystem::update(float dt) {
 	//Comprobar que todos están activados
-	if (numberOfMechanismsActivated == numberOfMechanisms) {
-		//Enviar mensaje a owner
-		CHandle handle = this;
-		CEntity* entity = handle.getOwner();
-		entity->sendMsg(TMsgMechanismSystemActivated{});
+	if (!isActivated) {
+		if (numberOfMechanismsActivated == numberOfMechanisms) {
+			//Enviar mensaje a owner
+			/*CHandle handle = this;
+			CEntity* entity = handle.getOwner();
+			entity->sendMsg(TMsgMechanismSystemActivated{});*/
+			EngineScripting.doFile(activationEffectFile);
+			isActivated = true;
+		}
 	}
 }
 

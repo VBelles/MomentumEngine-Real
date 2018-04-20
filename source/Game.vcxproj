@@ -98,6 +98,7 @@
     <ClCompile Include="components\comp_collectable.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\comp_door.cpp" />
     <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\comp_give_power.cpp" />
@@ -226,6 +227,7 @@
     <ClCompile Include="modules\game\module_test_axis.cpp" />
     <ClCompile Include="modules\game\module_entities.cpp" />
     <ClCompile Include="modules\game\scripting\console.cpp" />
+    <ClCompile Include="modules\game\scripting\scripting_door.cpp" />
     <ClCompile Include="modules\game\scripting\scripting_entities.cpp" />
     <ClCompile Include="modules\game\scripting\scripting_golem.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
@@ -281,6 +283,7 @@
     <ClInclude Include="components\comp_collectable.h" />
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\comp_door.h" />
     <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\comp_give_power.h" />
@@ -423,6 +426,7 @@
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\game\scripting\console.h" />
+    <ClInclude Include="modules\game\scripting\scripting_door.h" />
     <ClInclude Include="modules\game\scripting\scripting_entities.h" />
     <ClInclude Include="modules\game\scripting\scripting_golem.h" />
     <ClInclude Include="modules\module.h" />

@@ -470,6 +470,10 @@ void TCompPlayerModel::setHp(float hp) {
 	}
 }
 
+void TCompPlayerModel::setRespawnPosition(VEC3 position) {
+	respawnPosition = position;
+}
+
 void TCompPlayerModel::damage(float damage) {
 	//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
 	setHp(hp - damage);

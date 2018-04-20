@@ -7,6 +7,7 @@
 #include "modules/game/scripting/scripting_player.h"
 #include "modules/game/scripting/scripting_golem.h"
 #include "modules/game/scripting/scripting_entities.h"
+#include "modules/game/scripting/scripting_door.h"
 
 CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {}
 
@@ -42,6 +43,7 @@ bool CModuleScripting::start() {
 	//Bind clases
 	ScriptingPlayer::bind(manager);
 	ScriptingGolem::bind(manager);
+	ScriptingDoor::bind(manager);
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
 
@@ -49,7 +51,7 @@ bool CModuleScripting::start() {
 	script->doString("SLB.using(SLB)");
 	script->doString("player = Player()");
 	script->doString("golem = Golem()");
-	
+
 	return true;
 }
 
@@ -69,6 +71,16 @@ void CModuleScripting::render() {
 	if (CApp::get().showDebug) {
 		bool open = true;
 		console->Draw("LUA Console", &open);
+	}
+}
+
+void CModuleScripting::doFile(const char* filename) {
+	script->doFile(filename);
+}
+
+void CModuleScripting::doFile(std::string filename) {
+	if (!script->safeDoFile(filename.c_str())) {
+		dbg("%s\n", script->getLastError());
 	}
 }
 

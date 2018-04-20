@@ -23,9 +23,10 @@
 				"mechanisms": [
 					"door2",
 					"door3"
-				]
+				],
+				"activationEffectFile" : "data/scripts/test.lua"
 			},
-			"appear": {},
+			"door":{},
 			"destroyCondition": {}
 		}
 	},

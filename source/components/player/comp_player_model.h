@@ -180,6 +180,6 @@ public:
 	void resetHp() { hp = maxHp; }
 	float getHp() { return hp; }
 	void setHp(float hp);
-
+	void setRespawnPosition(VEC3 position);
 	VEC3 getRespawnPosition() { return respawnPosition; }
 };
