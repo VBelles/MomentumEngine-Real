@@ -58,10 +58,12 @@ public:
     float getZNear() const { return z_near; }
     float getZFar() const { return z_far; }
     float getAspectRatio() const { return aspect_ratio; }
-
+	bool isCameraOrtographic() const { return isOrtographic; }
+	float getOrtographicWidth() const { return ortographicWidth; }
+	float getOrtographicHeight() const { return ortographicHeight; }
     // 
     void lookAt(VEC3 new_pos, VEC3 new_target, VEC3 new_up_aux = VEC3(0, 1, 0));
-    void setPerspective(bool isOrtographic, float new_fov_vertical, float new_z_near, float new_z_far, float new_width, float new_height);
+    void setPerspective(float new_fov_vertical, float new_z_near, float new_z_far, bool isOrtographic = false, float new_width = 50.f, float new_height = 50.f);
 	void setViewport(int x0, int y0, int width, int height);
     bool getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3 *screen_coords) const;
 
