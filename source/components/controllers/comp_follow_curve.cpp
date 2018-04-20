@@ -9,7 +9,7 @@
 DECL_OBJ_MANAGER("follow_curve", TCompFollowCurve);
 
 void TCompFollowCurve::debugInMenu() {
-    ImGui::DragFloat("speed", &_speed, 0.01f, 0.f, 20.f);
+    ImGui::DragFloat("speed", &speed, 0.01f, 0.f, 20.f);
 }
 
 void TCompFollowCurve::registerMsgs() {
@@ -17,61 +17,49 @@ void TCompFollowCurve::registerMsgs() {
 }
 
 void TCompFollowCurve::load(const json& j, TEntityParseContext& ctx) {
-    //std::string curve_name = j["curve"];
-    //_curve = Resources.get(curve_name)->as<CCurve>();
+	curve->load(j);
 
-    _curve->setType(j["curve_type"]);
-    _curve->setLoop(j["loop"]);
-
-    auto& j_knots = j["knots"];
-    for (auto it = j_knots.begin(); it != j_knots.end(); ++it) {
-        VEC3 p = loadVEC3(it.value());
-        _curve->addKnot(p);
-    }
-
-	_speed = j.value<float>("speed", 0.f);
-	_automove = j.value("automove", false);
+	speed = j.value<float>("speed", 0.f);
+	automove = j.value("automove", false);
 }
 
 void TCompFollowCurve::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
-    TCompCollider* collider = get<TCompCollider>();
-    assert(collider);
-    PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+    transformHandle = get<TCompTransform>();
+    colliderHandle = get<TCompCollider>();
+        
+    PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)getCollider()->actor;
     rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
 }
 
 void TCompFollowCurve::update(float dt) {
-    if (!_curve) return;
+    if (!curve) return;
 
-    // Actualizar ratio
-    if (_automove) {
-        if (!_moveBackwards) {
-            _ratio += _speed * dt;
-            if (_ratio >= 1.f) { // Reaches the end of the spline.
-                if (_curve->isLooping()) _moveBackwards = true;
-                else _automove = false; // If doesn't loop, stop moving.
+    TCompTransform* transform = getTransform();
+    VEC3 myPosition = transform->getPosition();
+
+    VEC3 posToGo;
+    if (automove) {
+        // Actualizar ratio
+        if (!moveBackwards) {
+            ratio += speed * dt;
+            if (ratio >= 1.f) { // Reaches the end of the spline.
+                if (curve->isLooping()) moveBackwards = true;
+                else automove = false; // If doesn't loop, stop moving.
             }
         }
         else {
-            _ratio -= _speed * dt;
-            if (_ratio <= 0.f) _moveBackwards = false;
+            ratio -= speed * dt;
+            if (ratio <= 0.f) moveBackwards = false;
         }
+        // Evaluar curva con dicho ratio
+        posToGo = curve->evaluate(ratio);
+        //dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
     }
 
-    // Evaluar curva con dicho ratio
-    VEC3 posToGo = _curve->evaluate(_ratio);
-	//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
-
-    TCompTransform* transform = get<TCompTransform>();
-	if (!transform) return;
-    VEC3 myPosition = transform->getPosition();
-
-    _movement = posToGo - myPosition;
+    movement = posToGo - myPosition;
 
 	// Move the component.
-	TCompCollider* collider = get<TCompCollider>();
-	assert(collider);
-	PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
+	PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)getCollider()->actor;
 
 	PxTransform newTransform;
     newTransform.p = { posToGo.x, posToGo.y, posToGo.z };
@@ -79,4 +67,19 @@ void TCompFollowCurve::update(float dt) {
     QUAT rotation = transform->getRotation();
 	newTransform.q = { rotation.x, rotation.y, rotation.z, rotation.w };
 	rigidDynamic->setKinematicTarget(newTransform);
+}
+
+// Por si se quiere evitar el movimiento mediante curve->evaluate() en trayectoria circular.
+VEC3 TCompFollowCurve::orbit(float dt, VEC3 targetPos, float rotationSpeed) {
+    VEC3 front = getTransform()->getFront();
+
+    float yaw, pitch;
+    getYawPitchFromVector(front, &yaw, &pitch);
+
+    yaw += speed * dt;
+
+    VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
+    VEC3 newPos = targetPos - newFront * curve->getRadius();
+    getTransform()->lookAt(newPos, targetPos);
+    return newPos;
 }
