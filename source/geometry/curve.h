@@ -13,7 +13,9 @@ public:
     void setLoop(const bool value);
     bool isLooping() { return _loop; }
 	void calculateRadius();
-	float getRadius() { return _radius; }
+    float getRadius() { return _radius; }
+    VEC3 getCenter() { return _center; }
+    EType getType() { return _type; }
 
     VEC3 evaluate(float ratio) const;
 	VEC3 evaluateAsCatmull(float ratio) const;

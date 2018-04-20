@@ -30,7 +30,7 @@
         "halfExtent": "4.75847 1.5174 4.98927"
       },
       "follow_curve": {
-        "curve_type" : "catmull-rom",
+        "curve_type" : "circular",
         "loop" : true,
         "knots" : [
           "-92.4935 19.3020 -43.9226",
@@ -50,11 +50,7 @@
     "entity":
     {
       "name": "w24_rampa000_trigger",
-      "transform":
-      {
-        "pos": "-93.361 19.5725 -46.7886",
-        "rotation": "-0.0522171 -0.296138 -0.165611 -0.939228"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",

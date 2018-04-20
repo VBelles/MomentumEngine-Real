@@ -112,20 +112,10 @@ VEC3 CCurve::evaluateAsCatmull(float ratio) const {
 }
 
 VEC3 CCurve::evaluateAsCircle(float ratio) const {
-	//// rotation
-	//float yaw, pitch;
-	//VEC3 front = 
+    float angle = ratio * 360.f;
+    // TODO: Do this properly in 3D.
+    float x = _center.x + _radius * cos(angle);
+    float y = _center.y + _radius * sin(angle);
 
-
-	//VEC3 direction = waypoints[currentWaypoint] - myPosition;
-	//direction.Normalize();
-
-	//getYawPitchFromVector(front, &yaw, &pitch);
-
-	//// final values
-	//VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
-	//VEC3 newPos = _center - newFront * _distance;
-
-
-	return VEC3();
+	return VEC3(x, y, 0);
 }
