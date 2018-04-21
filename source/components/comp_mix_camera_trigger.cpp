@@ -58,14 +58,15 @@ void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 			TCompTransform* interpolationCameraTransform = interpolationCameraEntity->get<TCompTransform>();
 			TCompCamera* interpolationCamera = interpolationCameraEntity->get<TCompCamera>();
 			TCompCamera* playerCamera = playerCameraEntity->get<TCompCamera>();
-			interpolationCamera->setPerspective(playerCamera->getFov(), playerCamera->getZNear(), playerCamera->getZFar());
 			interpolationCameraTransform->setPosition(playerCameraTransform->getPosition());
 			float y, p;
 			playerCameraTransform->getYawPitchRoll(&y, &p);
 			interpolationCameraTransform->setYawPitchRoll(y, p);
+			interpolationCamera->setPerspective(playerCamera->getFov(), playerCamera->getZNear(), playerCamera->getZFar());
+			//interpolationCamera->lookAt(interpolationCameraTransform->getPosition(), interpolationCameraTransform->getPosition() + interpolationCameraTransform->getFront());
 
 			//Blendear en 0 segundos
-			Engine.getCameras().blendInCamera(interpolationCameraHandle, 0, CModuleCameras::EPriority::GAMEPLAY);
+			Engine.getCameras().blendInCamera(interpolationCameraHandle, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 			
 			//Llamar a su función startInterpolation
 			TCompCamera* cameraToMix = cameraToMixEntity->get<TCompCamera>();

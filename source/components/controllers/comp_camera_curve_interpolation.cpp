@@ -69,7 +69,7 @@ void TCompCameraCurveInterpolation::update(float delta) {
 		if (weight == 1.f) {
 			isInterpolating = false;
 			//mixear siguiente cámara
-			Engine.getCameras().blendInCamera(cameraToBlend, 0.f);
+			Engine.getCameras().blendInCamera(cameraToBlend, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 			return;
 		}
 	}
@@ -106,7 +106,7 @@ void TCompCameraCurveInterpolation::startInterpolating(
 	VEC3 halfDistanceVector = (endingPos - startingPos) / 2;
 	startingOrbitFront = halfDistanceVector;
 	startingOrbitFront.Normalize();
-	orbitFront = startingFront;
+	orbitFront = startingOrbitFront;
 	orbitCenter = startingPos + halfDistanceVector;
 	maxDistanceToCenter = VEC3::Distance(startingPos, endingPos) / 2;
 	currentDistanceToCenter = maxDistanceToCenter;

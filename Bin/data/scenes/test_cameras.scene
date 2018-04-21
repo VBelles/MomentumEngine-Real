@@ -28,7 +28,7 @@
 		"entity": {
 			"name": "fixed_camera",
 			"transform": {
-				"pos": "-5 80 -20",
+				"pos": "-5 35 -20",
 				"lookat": "-83 24 -56"
 			},
 			"camera" : {
@@ -56,7 +56,7 @@
 			},
 			"mixCameraTrigger":{
 				"cameraToMix": "fixed_camera",
-				"timeToMixIn": 1.8,
+				"timeToMixIn": 10,
 				"timeToMixOut": 1
 			}
 		}
