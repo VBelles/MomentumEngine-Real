@@ -3,10 +3,10 @@
 		"entity": {
 			"name": "game_camera",
 			"transform": {
-				"pos": "3 0 -5"
+				"pos": "0 0 0"
 			},
 			"camera" : {
-				"fov" : 90 
+				"fov" : 80 
 			},
 			"render_blur" : {
 				"enabled" :  false
@@ -14,6 +14,18 @@
 			"render_blur_radial" : {
 				"enabled" :  false
 			}
+		}
+	},
+	{
+		"entity":{
+			"name" : "curve_interpolation_camera",
+			"transform" : {
+				"pos" : "0 0 0"
+			},
+			"camera" :{
+				"fov" : 80
+			},
+			"camera_curve_interpolation" :{}
 		}
 	}
 ]

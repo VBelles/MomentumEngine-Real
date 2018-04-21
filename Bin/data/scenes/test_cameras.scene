@@ -54,15 +54,10 @@
 				"group" : ["trigger"],
 				"mask" : ["player"]
 			},
-			"suggestCameraTrigger" :{
-				"cameraSuggestion" : "fixed_camera",
-				"distanceToCamera" : 8,
-				"suggestYaw" : true,
-				"suggestPitch" : true,
-				"forceDistance" : true,
-				"changeCenteringCamera" : true,
-				"forcePositionOnEnter" : true,
-				"centeringCameraSpeed" : "2 3"
+			"mixCameraTrigger":{
+				"cameraToMix": "fixed_camera",
+				"timeToMixIn": 1.8,
+				"timeToMixOut": 1
 			}
 		}
 	},

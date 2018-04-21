@@ -34,6 +34,7 @@
     "local_aabb",
     "camera_player",
     "fixed_camera",
+    "camera_curve_interpolation",
     "camera",
     "curve_controller",
     "culling",
