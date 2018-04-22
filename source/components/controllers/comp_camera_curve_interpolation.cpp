@@ -30,31 +30,41 @@ void TCompCameraCurveInterpolation::onGroupCreated(const TMsgEntitiesGroupCreate
 	cameraHandle = get<TCompCamera>();
 }
 
+void TCompCameraCurveInterpolation::orbit(float ratio) {
+	TCompTransform* transform = getTransform();
+	transform->setPosition(transform->getPosition() + (orbitFront * currentDistanceToCenter));
+	//Lerp orbitFront and distance
+	//orbitFront = VEC3::Lerp(startingOrbitFront, -startingOrbitFront, ratio);//Cómo sabe en qué sentido rotar
+	float orbitYaw = lerp(startingOrbitYaw, endingOrbitYaw, weight);//lo queremos lineal?
+	orbitFront = VEC3(sin(orbitYaw), 0.f, cos(orbitYaw));
+	if (ratio < 0.5f) {
+		currentDistanceToCenter = lerp(maxDistanceToCenter, halfwayDistanceToCenter, ratio * 2);
+	}
+	else {
+		currentDistanceToCenter = lerp(halfwayDistanceToCenter, maxDistanceToCenter, 1.f - ratio * 2);
+	}
+	height = lerp(startingPos.y, endingPos.y, ratio);
+	VEC3 newPos = transform->getPosition() - (orbitFront * currentDistanceToCenter);
+	newPos.y = height;
+	transform->setPosition(newPos);
+}
+
 void TCompCameraCurveInterpolation::update(float delta) {
 	if (isInterpolating) {
 		time += delta;
 		weight = clamp(time / timeToBlend, 0.f, 1.f);
 		float ratio = weight;
 		if (interpolator) {
-			interpolator->blend(0.f, 1.f, ratio);
+			ratio = interpolator->blend(0.f, 1.f, ratio);
 		}
 		
 		TCompTransform* transform = getTransform();
 		TCompCamera* camera = getCamera();
 
-		transform->setPosition(transform->getPosition() + (orbitFront * currentDistanceToCenter));
-		//Lerp orbit front and distance
-		orbitFront = VEC3::Lerp(startingOrbitFront, -startingOrbitFront, ratio);//Cómo sabe en qué sentido rotar
-		if (ratio < 0.5f) {
-			currentDistanceToCenter = lerp(maxDistanceToCenter, halfwayDistanceToCenter, ratio * 2);
-		}
-		else {
-			currentDistanceToCenter = lerp(halfwayDistanceToCenter, maxDistanceToCenter, 1.f - ratio * 2);
-		}
-		transform->setPosition(transform->getPosition() - (orbitFront * currentDistanceToCenter));
+		orbit(ratio);
 
 		//Lerp de Front
-		VEC3 newFront = VEC3::Lerp(startingFront, endingFront, ratio);
+		VEC3 newFront = VEC3::Lerp(startingFront, endingFront, weight);//interpolamos front linealmente
 		float newYaw, newPitch;
 		getYawPitchFromVector(newFront, &newYaw, &newPitch);
 		transform->setYawPitchRoll(newYaw, newPitch);
@@ -103,18 +113,38 @@ void TCompCameraCurveInterpolation::startInterpolating(
 	startingZfar = camera->getZFar();
 	startingZnear = camera->getZNear();
 
-	VEC3 halfDistanceVector = (endingPos - startingPos) / 2;
+	/*VEC3 halfDistanceVector = (endingPos - startingPos) / 2;
 	startingOrbitFront = halfDistanceVector;
 	startingOrbitFront.Normalize();
 	orbitFront = startingOrbitFront;
 	orbitCenter = startingPos + halfDistanceVector;
 	maxDistanceToCenter = VEC3::Distance(startingPos, endingPos) / 2;
+	currentDistanceToCenter = maxDistanceToCenter;*/
+
+	//Ahora sudando de la y
+	VEC3 halfDistanceVector = (endingPos - startingPos) / 2;
+	halfDistanceVector.y = 0.f;
+	startingOrbitFront = halfDistanceVector;
+	startingOrbitFront.Normalize();
+	orbitFront = startingOrbitFront;
+	maxDistanceToCenter = halfDistanceVector.Length();
 	currentDistanceToCenter = maxDistanceToCenter;
+	startingOrbitYaw = getYawFromVector(orbitFront);
+	//endingOrbitYaw será startingOrbitYaw +- PI según startingYaw y endingYaw
+	float yawDifference = endingYaw - startingYaw;
+	int sign = 1;
+	if (abs(yawDifference) < M_PI) {
+		sign = yawDifference < 0 ? -1 : 1;
+	}
+	else {
+		sign = yawDifference < 0 ? 1 : -1;
+	}
+	endingOrbitYaw = startingOrbitYaw + M_PI * sign;
 
 	VEC2 startingFront2D = VEC2(startingFront.x, startingFront.z);
 	VEC2 endingFront2D = VEC2(endingFront.x, endingFront.z);
 	float dotBetweenYaws = startingFront2D.Dot(endingFront2D);
-	halfwayDistanceToCenter = -dotBetweenYaws * maxDistanceToCenter;
+	halfwayDistanceToCenter = /*-dotBetweenYaws **/ maxDistanceToCenter;
 
 	isInterpolating = true;
 }

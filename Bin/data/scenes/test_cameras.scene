@@ -56,7 +56,7 @@
 			},
 			"mixCameraTrigger":{
 				"cameraToMix": "fixed_camera",
-				"timeToMixIn": 10,
+				"timeToMixIn": 5,
 				"timeToMixOut": 1
 			}
 		}

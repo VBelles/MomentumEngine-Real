@@ -313,7 +313,7 @@ void TCompPlayerModel::update(float dt) {
 	//float y, p;
 	//getTransform()->getYawPitchRoll(&y, &p);
 	//dbg("yaw: %f\n", rad2deg(y));
-	//y = 4.f;
+	//y = y + deg2rad(1.f);
 	//getTransform()->setYawPitchRoll(y, p);
 
 	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {

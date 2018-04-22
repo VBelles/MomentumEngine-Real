@@ -45,12 +45,16 @@ private:
 	float halfwayDistanceToCenter;
 	VEC3 orbitFront;
 	VEC3 startingOrbitFront;
+	float startingOrbitYaw;
+	float endingOrbitYaw;
+	float height;
 
 	Interpolator::IInterpolator* interpolator = nullptr;
 
 	//Msgs
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
+	void orbit(float ratio);
 
 	TCompTransform* getTransform() { return transformHandle; }
 	TCompCamera* getCamera() { return cameraHandle; }
