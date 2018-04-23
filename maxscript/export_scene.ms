@@ -269,7 +269,9 @@ struct TSceneExporter (
 	fn hasChildLine obj = (
 		if obj.children == undefined then return false
 		for child in obj.children do (
-			if classOf child == line then return true
+			if classOf child == line or 
+			   classOf child == circle or
+			   classOf child == SplineShape then return true
 		)
 		return false
 	),
@@ -451,10 +453,80 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- -- Purity ----------
+	-- -- Purity----------
 	fn exportPurity = (
 		fs.writeKeyEmpty "purity"
 		exportStringArray "tags" #("pure")		
+	),
+	
+	fn exportSplineKnots obj = (
+		fs.beginArray()
+			--Create a copy and convert it to SplineShape to be able to get the knots.
+			--We need this if the object is a circle. Also we avoid modifying the max file.
+			local objCopy = copy obj
+			convertToSplineShape objCopy
+		
+			knotsInSpline = numKnots objCopy
+			for i = 1 to (knotsInSpline) do (
+				if i > 1 then fs.writeComma()
+				else if classOf objCopy == SplineShape then (
+					--Circular movement only needs the center and at least one knot.
+					local center = objCopy.pos * rotateXMatrix -90
+					fs.writeValue center addIndent:true
+					fs.writeComma()
+				)
+				
+				-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
+				local knotPos = getKnotPoint objCopy 1 i
+				local mcvKnotPos = knotPos * rotateXMatrix -90
+				fs.writeValue mcvKnotPos addIndent:true
+				if classOf objCopy == line and
+				   (i == 1 or i == knotsInSpline) then (
+					-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
+					-- This also forces following the real shape of the spline.
+					fs.writeComma()
+					fs.writeValue mcvKnotPos addIndent:true
+				)
+			)
+			delete objCopy
+		fs.endArray()
+	),
+	
+	-- --SPLINE--------------------------------------------------
+	fn exportSpline obj type: = (
+		-- Executed only if we already know it has a child line.
+		local curveType = "catmull-rom"
+		for child in obj.children do (
+			local childClass = classOf child
+			if childClass == line or 
+			   childClass == circle or
+			   childClass == SplineShape then (
+				if childClass == line   then curveType = "catmull-rom"
+				if childClass == circle or
+			       childClass == SplineShape then curveType = "circular"
+				
+				fs.writeComma()
+				if type == unsupplied then fs.writeKey "follow_curve"
+				else fs.writeKey type
+				
+				fs.beginObj()
+					fs.writeKeyValue "curveType" curveType
+					fs.writeComma()
+					fs.writeKeyValue "automove" true
+					fs.writeComma()
+					fs.writeKeyValue "loop" true
+					fs.writeComma()
+					fs.writeKeyValue "closed" (isClosed child 1)
+					fs.writeComma()
+					fs.writeKeyValue "speed" 0.2
+					fs.writeComma()
+					fs.writeKey "knots"
+					exportSplineKnots child
+					
+				fs.endObj()
+				return true -- Only exports the first line found.
+			)
+		)
 	),
 	
 	-- --EDITABLE MESH-------------------------------------------
@@ -486,6 +558,9 @@ struct TSceneExporter (
 						fs.writeKeyValue "hp" 1
 					fs.endObj()
 				)
+				if hasChildLine child then (
+					exportSpline child
+				)
 			)
 		)
 	),
@@ -497,45 +572,6 @@ struct TSceneExporter (
 		exportTransform obj
 		fs.writeComma()
 		exportCompCollider obj colliderGroups:colliderGroups trig:trig dyn:dyn
-	),
-
-	-- --SPLINE--------------------------------------------------
-	fn exportSpline obj type: = (
-		-- Executed only if we already know it has a child line.
-		for child in obj.children do (
-			if classOf child == line then (
-				fs.writeComma()
-				if type == unsupplied then fs.writeKey "move"
-				else fs.writeKey type
-				
-				fs.beginObj()
-					fs.writeKeyValue "type" "catmull-rom"
-					fs.writeComma()
-					fs.writeKeyValue "loop" false
-					fs.writeComma()
-					fs.writeKeyValue "closed" (isClosed child 1)
-					fs.writeComma()
-					fs.writeKey "knots"
-					fs.beginArray()
-						knotsInSpline = numKnots child
-						for i = 1 to (knotsInSpline) do (
-							if i > 1 then fs.writeComma()
-							-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
-							local knotPos = getKnotPoint child 1 i
-							local mcvKnotPos = knotPos * rotateXMatrix -90
-							fs.writeValue mcvKnotPos addIndent:true
-							if i == 1 or i == knotsInSpline then (
-								-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
-								-- This also forces following the real shape of the spline.
-								fs.writeComma()
-								fs.writeValue mcvKnotPos addIndent:true
-							)
-						)
-					fs.endArray()
-				fs.endObj()
-				return true -- Only exports the first line found.
-			)
-		)
 	),
 		
 	-- --SHADOW --------------------------------------------------
@@ -1157,6 +1193,10 @@ TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 4
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
+TODO: Añadir enemigo bola.
+TODO: Cambiar lo de is_dynamic a type y que tenga las opciones: dynamic, kinematic y static.
+TODO: Poder exportar cualquier mesh como collider.
+TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 */
 
 /*----------------------------------------------------------------------------------
