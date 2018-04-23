@@ -795,6 +795,10 @@ struct TSceneExporter (
 			meshPath = "data/meshes/enemyMelee.mesh"
 			enemyType = "melee"
 		)
+		else if stringContainsSubstring obj.layer.name "ball" then (
+			meshPath = "data/meshes/enemigoBola.mesh"
+			enemyType = "ball"
+		)
 		else (
 			meshPath = "data/meshes/crisalida.mesh"
 		)
@@ -935,11 +939,14 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				local enemyAirPrefabName = "enemy_flying"
-				local enemyLandPrefabName = "enemy_melee"
+				local enemyAirPrefabName   = "enemy_flying"
+				local enemyMeleePrefabName = "enemy_melee"
+				local enemyBolaPrefabName  = "enemy_ball"
 				local prefabName = enemyAirPrefabName -- Flying by default.
 				if stringContainsSubstring obj.name "melee" then
-					prefabName = enemyLandPrefabName
+					prefabName = enemyMeleePrefabName
+				if stringContainsSubstring obj.name "bola" then
+					prefabName = enemyBolaPrefabName
 				local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
 				
 				local attributeManager = TAttributeManager()
@@ -956,7 +963,7 @@ struct TSceneExporter (
 				exportTransform obj lookAtCoord:lookAtPos
 				
 				-- If it's flying enemy.
-				if prefabName != enemyLandPrefabName then (
+				if prefabName == enemyAirPrefabName then (
 					fs.writeComma()
 					fs.writeKey "collider"
 					fs.beginObj()
@@ -1197,7 +1204,7 @@ TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 4
 TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
-TODO: Añadir enemigo bola.
+TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Poder exportar cualquier mesh como collider.
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 */
