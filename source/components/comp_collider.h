@@ -3,6 +3,8 @@
 #include "comp_base.h"
 #include "entity/common_msgs.h"
 
+class CCollisionMesh;
+
 using namespace physx;
 
 struct TMsgTriggerEnter {
@@ -36,6 +38,8 @@ public:
 		bool is_dynamic;
 		bool is_trigger;
 		bool is_character_controller;
+
+		const CCollisionMesh* col_mesh = nullptr;
 	};
 
 	TConfig config;
