@@ -229,8 +229,12 @@ void TCompCameraPlayer::moveCameraTowardsDefaultDistance(float delta) {
 	transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
 }
 
-void TCompCameraPlayer::suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera) {
+void TCompCameraPlayer::suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool hasOppositeYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera) {
 	suggestedYaw = yaw;
+	if (hasOppositeYaw) {
+		//mirar si nos va mejor ir al opuesto
+		dbg("has opposite yaw\n");
+	}
 	suggestedPitch = pitch;
 	forcedDistance = distance;
 

@@ -72,7 +72,7 @@ public:
 	void update(float dt);
 	void centerCamera();
 	void moveCameraTowardsDefaultDistance(float delta);
-	void suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera);
+	void suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool hasOppositeYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera);
 	void placeCameraOnSuggestedPosition(VEC2 centeringSpeed);
 	void resetSuggested();
 };
