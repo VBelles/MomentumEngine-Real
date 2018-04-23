@@ -37,7 +37,7 @@ void DeathActionState::respawn() {
 	getPlayerModel()->resetHp();
 	getPlayerModel()->getPowerGauge()->resetPower();
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-	Engine.getCameras().blendInCamera(playerCameraEntity, 0, CModuleCameras::EPriority::GAMEPLAY);
+	Engine.getCameras().blendInCamera(playerCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 
