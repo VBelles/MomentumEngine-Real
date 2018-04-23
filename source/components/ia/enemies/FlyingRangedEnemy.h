@@ -7,6 +7,7 @@
 class CEntity;
 class TCompTransform;
 class TCompCollider;
+class TCompSkeleton;
 struct PowerStats;
 
 class CBehaviorTreeFlyingRangedEnemy : public IBehaviorTree, public TCompBase {
@@ -85,6 +86,7 @@ private:
 
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();
+	TCompSkeleton* getSkeleton();
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);

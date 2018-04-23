@@ -9,6 +9,7 @@
 #include "components/comp_give_power.h"
 #include "components/player/power_stats.h"
 #include "entity/entity_parser.h"
+#include "skeleton/comp_skeleton.h"
 
 DECL_OBJ_MANAGER("behaviorTree_flying_ranged_enemy", CBehaviorTreeFlyingRangedEnemy);
 
@@ -285,6 +286,7 @@ int CBehaviorTreeFlyingRangedEnemy::idleWar(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
+	getSkeleton()->executeAction(1, 0.2f, 0.2f);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() > attackCooldown) {
 		TEntityParseContext ctx;
@@ -321,6 +323,7 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::idle(float delta) {
+	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
 	return Leave;
 }
 
@@ -416,4 +419,8 @@ CEntity* CBehaviorTreeFlyingRangedEnemy::getPlayerEntity() {
 
 TCompTransform* CBehaviorTreeFlyingRangedEnemy::getPlayerTransform() {
 	return getPlayerEntity()->get<TCompTransform>();
+}
+
+TCompSkeleton* CBehaviorTreeFlyingRangedEnemy::getSkeleton() {
+	return get<TCompSkeleton>();
 }
