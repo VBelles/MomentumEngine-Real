@@ -180,6 +180,7 @@
     <ClCompile Include="components\comp_spikes.cpp" />
     <ClCompile Include="components\player\states\base_states\death\DeathActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\death\PitFallingActionState.cpp" />
+    <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -391,6 +392,7 @@
     <ClInclude Include="components\comp_spikes.h" />
     <ClInclude Include="components\player\states\base_states\death\DeathActionState.h" />
     <ClInclude Include="components\player\states\base_states\death\PitFallingActionState.h" />
+    <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
