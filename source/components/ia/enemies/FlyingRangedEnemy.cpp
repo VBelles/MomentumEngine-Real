@@ -50,7 +50,9 @@ CBehaviorTreeFlyingRangedEnemy::CBehaviorTreeFlyingRangedEnemy()
 	addChild("combat", "idleWar", Sequence, nullptr, nullptr);
 	addChild("idleWar", "onIdleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onIdleWar);
 	addChild("idleWar", "idleWarAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idleWar);
-	addChild("combat", "attack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::attack);
+	addChild("combat", "attack", Sequence, nullptr, nullptr);
+	addChild("attack", "onAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onAttack);
+	addChild("attack", "attackAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::attack);
 	node->setProbability(std::vector<float>{ 0.75f, 0.25f });
 
 	addChild("meleeEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idle);
@@ -260,9 +262,8 @@ int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
 	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	if (VEC3::Distance(myPosition + deltaMovement, spawnPosition) < minCombatDistance 
-		|| (distance < maxCombatDistance + maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov)))
-	{
+	if (VEC3::Distance(myPosition + deltaMovement, spawnPosition) < minCombatDistance
+		|| (distance < maxCombatDistance + maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
 		return Leave;
 	}
 	else {
@@ -271,13 +272,15 @@ int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onIdleWar(float delta) {
+	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
 	idleWarTimer.reset();
 	return Leave;
 }
 
 int CBehaviorTreeFlyingRangedEnemy::idleWar(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	if (idleWarTimer.elapsed() > 1.f) {
+	dbg("idlewar animation time: %f, animation duration: %f\n", getSkeleton()->getAnimationTime(), getSkeleton()->getAnimationDuration(0));
+	if (idleWarTimer.elapsed() > getSkeleton()->getAnimationDuration(0)) {
 		return Leave;
 	}
 	else {
@@ -285,10 +288,24 @@ int CBehaviorTreeFlyingRangedEnemy::idleWar(float delta) {
 	}
 }
 
-int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
-	getSkeleton()->executeAction(1, 0.2f, 0.2f);
+int CBehaviorTreeFlyingRangedEnemy::onAttack(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	if (attackTimer.elapsed() > attackCooldown) {
+	if (attackTimer.elapsed() < attackCooldown) {
+		current = nullptr;
+	}
+	else {
+		getSkeleton()->executeAction(1, 0.0f, 0.0f);
+	}
+	return Leave;
+}
+
+int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
+	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
+	dbg("attack animation time: %f, animation duration: %f\n", getSkeleton()->getAnimationTime(), getSkeleton()->getAnimationDuration(1));
+	if (getSkeleton()->getAnimationTime() < (getSkeleton()->getAnimationDuration(1))) {
+		return Stay;
+	}
+	else {
 		TEntityParseContext ctx;
 		ctx.root_transform.setPosition(getTransform()->getPosition());
 		if (parseScene(attackPrefab, ctx)) {
@@ -318,8 +335,8 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 
 			attackTimer.reset();
 		}
+		return Leave;
 	}
-	return Leave;
 }
 
 int CBehaviorTreeFlyingRangedEnemy::idle(float delta) {

@@ -70,6 +70,7 @@ private:
 	int returnToSpawn(float delta = 0.f);
 	int onIdleWar(float delta = 0.f);
 	int idleWar(float delta = 0.f);
+	int onAttack(float delta = 0.f);
 	int attack(float delta = 0.f);
 	int idle(float delta = 0.f);
 
