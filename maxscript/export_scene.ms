@@ -437,7 +437,10 @@ struct TSceneExporter (
 		
 		if dyn != unsupplied and dyn then (
 			fs.writeComma()
-			fs.writeKeyValue "is_dynamic" dyn
+			fs.writeKeyValue "type" "dynamic"
+		) else (
+			fs.writeComma()
+			fs.writeKeyValue "type" "static"
 		)
 		
 		if colliderGroups != unsupplied then (
@@ -545,8 +548,9 @@ struct TSceneExporter (
 			if isCollider child then (
 				fs.writeComma()
 				--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
+				local movable = hasChildLine child
 				if pure == unsupplied then pure = false
-				exportCompCollider child dyn:(pure or (hasChildLine child))
+				exportCompCollider child dyn:(pure or movable)
 				if pure then (
 					fs.writeComma()
 					exportPurity()
@@ -558,7 +562,7 @@ struct TSceneExporter (
 						fs.writeKeyValue "hp" 1
 					fs.endObj()
 				)
-				if hasChildLine child then (
+				if movable then (
 					exportSpline child
 				)
 			)
@@ -1043,7 +1047,7 @@ struct TSceneExporter (
 				fs.beginObj()
 					fs.writeKeyValue "shape" "box"
 					fs.writeComma()
-					fs.writeKeyValue "is_dynamic" true
+					fs.writeKeyValue "type" "dynamic"
 					fs.writeComma()
 					local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
 					fs.writeKeyValue "halfExtent" platformHalfExtent
@@ -1083,7 +1087,7 @@ struct TSceneExporter (
 				fs.beginObj()
 					fs.writeKeyValue "shape" "box"
 					fs.writeComma()
-					fs.writeKeyValue "is_dynamic" true
+					fs.writeKeyValue "type" "dynamic"
 					fs.writeComma()
 					fs.writeKeyValue "is_trigger" true
 					fs.writeComma()
@@ -1194,7 +1198,6 @@ TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como 
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
 TODO: Añadir enemigo bola.
-TODO: Cambiar lo de is_dynamic a type y que tenga las opciones: dynamic, kinematic y static.
 TODO: Poder exportar cualquier mesh como collider.
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 */
