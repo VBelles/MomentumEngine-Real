@@ -10,5 +10,12 @@
 	],
   "bone_ids_to_debug" : [
     3
-  ]
+  ],
+	"meshes" : [
+			"ella_low",
+			"cintacorta_der",
+			"cintacorta_izq",
+			"cintalarga_der",
+			"cintalarga_izq"
+	]
 }
