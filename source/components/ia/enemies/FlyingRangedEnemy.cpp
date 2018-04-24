@@ -279,7 +279,6 @@ int CBehaviorTreeFlyingRangedEnemy::onIdleWar(float delta) {
 
 int CBehaviorTreeFlyingRangedEnemy::idleWar(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	dbg("idlewar animation time: %f, animation duration: %f\n", getSkeleton()->getAnimationTime(), getSkeleton()->getAnimationDuration(0));
 	if (idleWarTimer.elapsed() > getSkeleton()->getAnimationDuration(0)) {
 		return Leave;
 	}
@@ -294,6 +293,7 @@ int CBehaviorTreeFlyingRangedEnemy::onAttack(float delta) {
 		current = nullptr;
 	}
 	else {
+		attackTimer.reset();
 		getSkeleton()->executeAction(1, 0.0f, 0.0f);
 	}
 	return Leave;
@@ -301,8 +301,7 @@ int CBehaviorTreeFlyingRangedEnemy::onAttack(float delta) {
 
 int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	dbg("attack animation time: %f, animation duration: %f\n", getSkeleton()->getAnimationTime(), getSkeleton()->getAnimationDuration(1));
-	if (getSkeleton()->getAnimationTime() < (getSkeleton()->getAnimationDuration(1))) {
+	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(1))) {
 		return Stay;
 	}
 	else {
