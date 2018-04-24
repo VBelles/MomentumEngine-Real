@@ -1,5 +1,5 @@
 {
-  "technique": "textured_skin.tech",
+  "technique": "pbr_skin.tech",
   "shadows": true,
   "textures": {
     "albedo": "data/textures/gorila/gorila_low_Material_121_BaseColor.dds",

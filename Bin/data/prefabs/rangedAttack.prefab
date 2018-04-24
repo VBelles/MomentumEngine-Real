@@ -4,7 +4,7 @@
 			"name": "rangedAttack",
 			"transform": {},
 			"render" : {
-				"mesh": "data/meshes/Teapot001.mesh",
+				"mesh": "data/meshes/rangedAttackSphere.mesh",
 				"materials" : [
 					"data/materials/madera.material"
 				]
@@ -13,7 +13,7 @@
 				"shape": "sphere",
 				"type": "dynamic",
 				"is_trigger": true,
-				"radius": 0.05
+				"radius": 0.1
 			},
 			"ranged_attack": {
 				"speed": 15,

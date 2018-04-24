@@ -22,10 +22,11 @@ Texture2D    txGBufferLinearDepth SLOT( TS_DEFERRED_LINEAR_DEPTH );
 Texture2D    txAccLights          SLOT( TS_DEFERRED_ACC_LIGHTS );
 
 //--------------------------------------------------------------------------------------
-SamplerState samLinear        : register(s0);
-SamplerState samBorderLinear  : register(s1);
-SamplerComparisonState samPCF : register(s2);
-SamplerState samClampLinear   : register(s3);
+SamplerState samLinear                    : register(s0);
+SamplerState samBorderLinear              : register(s1);
+SamplerComparisonState samPCF             : register(s2);
+SamplerComparisonState samPCFWhiteBorder  : register(s3);
+SamplerState samClampLinear               : register(s4);
 
 //--------------------------------------------------------------------------------------
 float4x4 getSkinMtx( int4 iBones, float4 iWeights ) {
@@ -41,7 +42,7 @@ float2 hash2( float n ) { return frac(sin(float2(n,n+1.0))*float2(43758.5453123,
 
 // ----------------------------------------
 float shadowsTap( float2 homo_coord, float coord_z ) {
-  return txLightShadowMap.SampleCmp(samPCF, homo_coord, coord_z, 0).x;
+  return txLightShadowMap.SampleCmp(samPCFWhiteBorder, homo_coord, coord_z, 0).x;
 }
 
 //--------------------------------------------------------------------------------------

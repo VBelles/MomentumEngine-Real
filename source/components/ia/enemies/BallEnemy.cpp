@@ -356,6 +356,7 @@ int CBehaviorTreeBallEnemy::onAttack(float delta) {
 		current = nullptr;
 	}
 	else {
+		attackTimer.reset();
 		getSkeleton()->executeAction(2, 0.2f, 0.2f);
 	}
 	return Leave;
@@ -364,7 +365,7 @@ int CBehaviorTreeBallEnemy::onAttack(float delta) {
 int CBehaviorTreeBallEnemy::attack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	if (getSkeleton()->getAnimationTime() < (getSkeleton()->getAnimationDuration(2))) {
+	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(2))) {
 		return Stay;
 	}
 	else {

@@ -5,35 +5,35 @@ DXGI_FORMAT readFormat(const json& j, const std::string& label);
 
 // ---------------------------------------
 enum ZConfig {
-  ZCFG_DEFAULT
-, ZCFG_DISABLE_ALL
-, ZCFG_TEST_BUT_NO_WRITE
-, ZCFG_TEST_EQUAL
-, ZCFG_INVERSE_TEST_NO_WRITE
-, ZCFG_COUNT
+	ZCFG_DEFAULT
+	, ZCFG_DISABLE_ALL
+	, ZCFG_TEST_BUT_NO_WRITE
+	, ZCFG_TEST_EQUAL
+	, ZCFG_INVERSE_TEST_NO_WRITE
+	, ZCFG_COUNT
 };
-void activateZConfig( ZConfig cfg);
+void activateZConfig(ZConfig cfg);
 
 // ---------------------------------------
 enum RSConfig {
-    RSCFG_DEFAULT
-  , RSCFG_REVERSE_CULLING
-  , RSCFG_CULL_NONE
-  , RSCFG_SHADOWS
-  , RSCFG_WIREFRAME
-  , RSCFG_COUNT
+	RSCFG_DEFAULT
+	, RSCFG_REVERSE_CULLING
+	, RSCFG_CULL_NONE
+	, RSCFG_SHADOWS
+	, RSCFG_WIREFRAME
+	, RSCFG_COUNT
 };
 void activateRSConfig(RSConfig cfg);
 
 // ---------------------------------------
 enum BlendConfig {
-  BLEND_CFG_DEFAULT
-, BLEND_CFG_ADDITIVE
-, BLEND_CFG_ADDITIVE_BY_SRC_ALPHA
-, BLEND_CFG_COMBINATIVE
-, BLEND_CFG_COUNT
+	BLEND_CFG_DEFAULT
+	, BLEND_CFG_ADDITIVE
+	, BLEND_CFG_ADDITIVE_BY_SRC_ALPHA
+	, BLEND_CFG_COMBINATIVE
+	, BLEND_CFG_COUNT
 };
-void activateBlendConfig( BlendConfig cfg);
+void activateBlendConfig(BlendConfig cfg);
 
 // ---------------------------------------
 // Read from name
@@ -49,15 +49,16 @@ bool renderInMenu(BlendConfig& cfg);
 
 // --------------------------------------------
 enum eSamplerType {
-    SAMPLER_WRAP_LINEAR = 0
-  , SAMPLER_BORDER_LINEAR
-  , SAMPLER_PCF_SHADOWS
-  , SAMPLER_CLAMP_LINEAR
-  /*
-  , SAMPLER_CLAMP_BILINEAR
-  , SAMPLER_CLAMP_POINT
-  */
-  , SAMPLERS_COUNT
+	SAMPLER_WRAP_LINEAR = 0
+	, SAMPLER_BORDER_LINEAR
+	, SAMPLER_PCF_SHADOWS
+	, SAMPLER_PCF_SHADOWS_WHITE_BORDER
+	, SAMPLER_CLAMP_LINEAR
+	/*
+	, SAMPLER_CLAMP_BILINEAR
+	, SAMPLER_CLAMP_POINT
+	*/
+	, SAMPLERS_COUNT
 };
 void activateSampler(int slot, eSamplerType cfg);
 
