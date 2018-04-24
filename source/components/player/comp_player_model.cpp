@@ -274,6 +274,10 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle, grabHitbox) },
 	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
 	};
+
+	baseState = nullptr;
+	concurrentState = nullptr;
+
 	nextBaseState = ActionStates::Idle;
 	nextConcurrentState = ActionStates::Idle;
 	changeBaseState(ActionStates::Idle);
