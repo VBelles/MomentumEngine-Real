@@ -107,6 +107,7 @@
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvUvTSkin",
     "category": "gbuffer",
+    "uses_skin": true,
     "textures": {
       "environment": "data/textures/cubemaps/env.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
