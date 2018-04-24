@@ -26,42 +26,9 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
-        "halfExtent": "4.75847 1.5174 4.98927"
-      },
-      "follow_curve": {
-        "curve_type" : "circular",
-        "loop" : true,
-        "knots" : [
-          "-92.4935 19.3020 -43.9226",
-          "-108.012 19.3020 -26.8138",
-          "-81.5329 19.3020 -29.3678",
-          "-74.3630 31.2882 -11.4142",
-          "-44.0629 31.2882 -30.5896",
-          "-44.0629 31.2882 -30.5896"
-        ],
-        "speed" : 0.004,
-        "automove" : true
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "w24_rampa000_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "is_dynamic": true,
-        "is_trigger": true,
         "halfExtent": "4.75847 1.5174 4.98927",
-        "mask": ["player"]
-      },
-      "hierarchy": {
-        "parent": "w24_rampa000"
-      },
-      "platform": {}
+        "type": "static"
+      }
     }
   },
   {
@@ -91,7 +58,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "4.75847 1.5174 4.98927"
+        "halfExtent": "4.75847 1.5174 4.98927",
+        "type": "static"
       }
     }
   },
@@ -122,7 +90,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.70346 1.72629 1.06552"
+        "halfExtent": "1.70346 1.72629 1.06552",
+        "type": "static"
       }
     }
   },
@@ -153,7 +122,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.70346 1.72629 1.06552"
+        "halfExtent": "1.70346 1.72629 1.06552",
+        "type": "static"
       }
     }
   },
@@ -230,7 +200,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "47.4129 2.81 14.5"
+        "halfExtent": "47.4129 2.81 14.5",
+        "type": "static"
       }
     }
   },
@@ -258,7 +229,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "47.4129 2.81 11.5"
+        "halfExtent": "47.4129 2.81 11.5",
+        "type": "static"
       }
     }
   },
@@ -289,7 +261,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -320,7 +293,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -351,7 +325,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "44.727 2.81 25.8422"
+        "halfExtent": "44.727 2.81 25.8422",
+        "type": "static"
       }
     }
   },
@@ -382,7 +357,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "44.727 2.81 25.8422"
+        "halfExtent": "44.727 2.81 25.8422",
+        "type": "static"
       }
     }
   },
@@ -413,7 +389,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "27.6093 2.81 25.8422"
+        "halfExtent": "27.6093 2.81 25.8422",
+        "type": "static"
       }
     }
   },
@@ -444,7 +421,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -475,7 +453,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -505,7 +484,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 3.0 1.0"
+        "halfExtent": "10.8098 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -535,7 +515,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 3.0 1.0"
+        "halfExtent": "10.8098 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -566,7 +547,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -597,7 +579,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -628,7 +611,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -659,7 +643,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -690,7 +675,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -720,7 +706,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 11.0 2.0"
+        "halfExtent": "2.0 11.0 2.0",
+        "type": "static"
       }
     }
   },
@@ -750,7 +737,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 11.0 2.0"
+        "halfExtent": "2.0 11.0 2.0",
+        "type": "static"
       }
     }
   },
@@ -780,7 +768,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 11.0 2.0"
+        "halfExtent": "2.0 11.0 2.0",
+        "type": "static"
       }
     }
   },
@@ -810,7 +799,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 11.0 2.0"
+        "halfExtent": "2.0 11.0 2.0",
+        "type": "static"
       }
     }
   },
@@ -840,7 +830,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 11.0 2.0"
+        "halfExtent": "2.0 11.0 2.0",
+        "type": "static"
       }
     }
   },
@@ -871,7 +862,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -902,7 +894,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -933,7 +926,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -964,7 +958,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -995,7 +990,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -1026,7 +1022,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -1057,7 +1054,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -1088,7 +1086,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -1119,7 +1118,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -1150,7 +1150,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -1181,7 +1182,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.25 2.0"
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
       }
     }
   },
@@ -1211,7 +1213,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "19.3495 14.8216 5.23271"
+        "halfExtent": "19.3495 14.8216 5.23271",
+        "type": "static"
       }
     }
   },
@@ -1241,7 +1244,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "26.0516 3.2315 34.3539"
+        "halfExtent": "26.0516 3.2315 34.3539",
+        "type": "static"
       }
     }
   },
@@ -1269,7 +1273,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -1299,7 +1304,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.1854 7.95313 23.7544"
+        "halfExtent": "10.1854 7.95313 23.7544",
+        "type": "static"
       }
     }
   },
@@ -1329,7 +1335,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.1002 6.79139 23.0755"
+        "halfExtent": "10.1002 6.79139 23.0755",
+        "type": "static"
       }
     }
   },
@@ -1359,7 +1366,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.88025 11.56 1.925"
+        "halfExtent": "1.88025 11.56 1.925",
+        "type": "static"
       }
     }
   },
@@ -1389,7 +1397,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "5.60197 7.95313 7.82041"
+        "halfExtent": "5.60197 7.95313 7.82041",
+        "type": "static"
       }
     }
   },
@@ -1419,7 +1428,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1449,7 +1459,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1479,7 +1490,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1509,7 +1521,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1539,7 +1552,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1569,7 +1583,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1599,7 +1614,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1629,7 +1645,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1659,7 +1676,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1689,7 +1707,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1719,7 +1738,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1749,7 +1769,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.0 4.0 10.0"
+        "halfExtent": "10.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -1780,7 +1801,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.89692 0.254831 1.51308"
+        "halfExtent": "1.89692 0.254831 1.51308",
+        "type": "static"
       }
     }
   },
@@ -1811,7 +1833,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.89692 0.254831 1.51308"
+        "halfExtent": "1.89692 0.254831 1.51308",
+        "type": "static"
       }
     }
   },
@@ -1842,11 +1865,9 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
-        "halfExtent": "1.89692 0.254831 1.51308"
-      },
-      "tags": [ "pure" ],
-      "purity": {}
+        "halfExtent": "1.89692 0.254831 1.51308",
+        "type": "static"
+      }
     }
   },
   {
@@ -1876,7 +1897,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.89692 0.254831 1.51308"
+        "halfExtent": "1.89692 0.254831 1.51308",
+        "type": "static"
       }
     }
   },
@@ -1907,7 +1929,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.83328 2.77246 4.08575"
+        "halfExtent": "3.83328 2.77246 4.08575",
+        "type": "static"
       }
     }
   },
@@ -1938,7 +1961,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.5683 1.94072 4.08575"
+        "halfExtent": "2.5683 1.94072 4.08575",
+        "type": "static"
       }
     }
   },
@@ -1969,7 +1993,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.10764 0.15 0.6"
+        "halfExtent": "3.10764 0.15 0.6",
+        "type": "static"
       }
     }
   },
@@ -2000,7 +2025,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.36283 1.94072 2.57402"
+        "halfExtent": "2.36283 1.94072 2.57402",
+        "type": "static"
       }
     }
   },
@@ -2031,7 +2057,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.41162 2.77246 4.08575"
+        "halfExtent": "3.41162 2.77246 4.08575",
+        "type": "static"
       }
     }
   },
@@ -2062,7 +2089,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "5.55825 4.43594 3.59546"
+        "halfExtent": "5.55825 4.43594 3.59546",
+        "type": "static"
       }
     }
   },
@@ -2093,7 +2121,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "13.7779 4.43594 14.4865"
+        "halfExtent": "13.7779 4.43594 14.4865",
+        "type": "static"
       }
     }
   },
@@ -2123,7 +2152,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "7.68255 4.43594 9.12648"
+        "halfExtent": "7.68255 4.43594 9.12648",
+        "type": "static"
       }
     }
   },
@@ -2154,7 +2184,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "4.2254 2.66156 4.47197"
+        "halfExtent": "4.2254 2.66156 4.47197",
+        "type": "static"
       }
     }
   },
@@ -2184,7 +2215,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.61975 1.83648 2.81734"
+        "halfExtent": "2.61975 1.83648 2.81734",
+        "type": "static"
       }
     }
   },
@@ -2215,7 +2247,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "13.7779 4.43594 14.4865"
+        "halfExtent": "13.7779 4.43594 14.4865",
+        "type": "static"
       }
     }
   },
@@ -2245,7 +2278,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.141 4.303 10.18"
+        "halfExtent": "10.141 4.303 10.18",
+        "type": "static"
       }
     }
   },
@@ -2276,7 +2310,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "6.42261 2.18248 3.3987"
+        "halfExtent": "6.42261 2.18248 3.3987",
+        "type": "static"
       }
     }
   },
@@ -2306,7 +2341,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.32708 1.83648 1.74675"
+        "halfExtent": "3.32708 1.83648 1.74675",
+        "type": "static"
       }
     }
   },
@@ -2336,7 +2372,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.70346 1.72629 1.06552"
+        "halfExtent": "1.70346 1.72629 1.06552",
+        "type": "static"
       }
     }
   },
@@ -2367,7 +2404,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.0 1.0"
+        "halfExtent": "10.8098 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2398,7 +2436,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.0 1.0"
+        "halfExtent": "10.8098 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2428,7 +2467,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 4.21414 1.0"
+        "halfExtent": "10.8098 4.21414 1.0",
+        "type": "static"
       }
     }
   },
@@ -2458,7 +2498,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 4.21414 1.0"
+        "halfExtent": "10.8098 4.21414 1.0",
+        "type": "static"
       }
     }
   },
@@ -2488,7 +2529,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "7.5 2.0 1.0"
+        "halfExtent": "7.5 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2519,7 +2561,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "7.5 2.0 4.0"
+        "halfExtent": "7.5 2.0 4.0",
+        "type": "static"
       }
     }
   },
@@ -2549,7 +2592,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "4.0 2.0 1.0"
+        "halfExtent": "4.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2580,7 +2624,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "4.0 2.0 1.0"
+        "halfExtent": "4.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2610,7 +2655,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 2.0 1.0"
+        "halfExtent": "2.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2641,7 +2687,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 2.0 1.0"
+        "halfExtent": "2.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2672,7 +2719,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "4.0 2.0 1.0"
+        "halfExtent": "4.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2703,7 +2751,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 2.0 1.0"
+        "halfExtent": "2.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -2733,7 +2782,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "0.972882 4.21414 0.75"
+        "halfExtent": "0.972882 4.21414 0.75",
+        "type": "static"
       }
     }
   },
@@ -2763,7 +2813,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "0.972882 4.21414 0.75"
+        "halfExtent": "0.972882 4.21414 0.75",
+        "type": "static"
       }
     }
   },
@@ -2793,7 +2844,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "0.972882 4.21414 0.75"
+        "halfExtent": "0.972882 4.21414 0.75",
+        "type": "static"
       }
     }
   },
@@ -2823,7 +2875,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "0.972882 4.21414 0.75"
+        "halfExtent": "0.972882 4.21414 0.75",
+        "type": "static"
       }
     }
   },
@@ -2853,7 +2906,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 4.21414 1.0"
+        "halfExtent": "10.8098 4.21414 1.0",
+        "type": "static"
       }
     }
   },
@@ -2884,7 +2938,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 0.337131 1.0"
+        "halfExtent": "10.8098 0.337131 1.0",
+        "type": "static"
       }
     }
   },
@@ -2913,7 +2968,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 10.7461 1.0"
+        "halfExtent": "10.8098 10.7461 1.0",
+        "type": "static"
       }
     }
   },
@@ -2944,7 +3000,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "15.7823 2.0 18.9196"
+        "halfExtent": "15.7823 2.0 18.9196",
+        "type": "static"
       }
     }
   },
@@ -2998,7 +3055,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3027,7 +3085,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3056,7 +3115,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3086,7 +3146,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3115,7 +3176,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3144,7 +3206,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3173,7 +3236,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3203,7 +3267,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3232,7 +3297,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3261,7 +3327,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3290,7 +3357,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3320,7 +3388,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3349,7 +3418,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3378,7 +3448,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.81 22.7509"
+        "halfExtent": "10.8098 2.81 22.7509",
+        "type": "static"
       }
     }
   },
@@ -3408,7 +3479,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.141 4.30286 10.1806"
+        "halfExtent": "10.141 4.30286 10.1806",
+        "type": "static"
       }
     }
   },
@@ -3439,7 +3511,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "6.42261 2.18248 3.3987"
+        "halfExtent": "6.42261 2.18248 3.3987",
+        "type": "static"
       }
     }
   },
@@ -3470,7 +3543,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.32708 1.83648 1.74675"
+        "halfExtent": "3.32708 1.83648 1.74675",
+        "type": "static"
       }
     }
   },
@@ -3501,7 +3575,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.70346 1.72629 1.06552"
+        "halfExtent": "1.70346 1.72629 1.06552",
+        "type": "static"
       }
     }
   },
@@ -3532,7 +3607,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "9.5 4.0 7.3"
+        "halfExtent": "9.5 4.0 7.3",
+        "type": "static"
       }
     }
   },
@@ -3563,7 +3639,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "7.0 4.0 10.0"
+        "halfExtent": "7.0 4.0 10.0",
+        "type": "static"
       }
     }
   },
@@ -3593,7 +3670,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.5 12.5 2.5"
+        "halfExtent": "2.5 12.5 2.5",
+        "type": "static"
       }
     }
   },
@@ -3624,7 +3702,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.89153 3.0 1.0"
+        "halfExtent": "3.89153 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -3655,7 +3734,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 3.0 1.0"
+        "halfExtent": "10.8098 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -3686,7 +3766,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.89153 3.0 1.0"
+        "halfExtent": "3.89153 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -3717,7 +3798,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.89153 3.0 1.0"
+        "halfExtent": "3.89153 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -3748,7 +3830,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.36203 3.0 1.0"
+        "halfExtent": "1.36203 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -3779,7 +3862,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1.77064 3.0 1.0"
+        "halfExtent": "1.77064 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -3810,7 +3894,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.17789 3.0 1.0"
+        "halfExtent": "2.17789 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -3841,7 +3926,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.49017 1.0 1.52659"
+        "halfExtent": "3.49017 1.0 1.52659",
+        "type": "static"
       }
     }
   },
@@ -3872,7 +3958,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "8.62622 1.0 11.7792"
+        "halfExtent": "8.62622 1.0 11.7792",
+        "type": "static"
       }
     }
   },
@@ -3903,7 +3990,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.7248 1.0 1.52659"
+        "halfExtent": "3.7248 1.0 1.52659",
+        "type": "static"
       }
     }
   },
@@ -3934,7 +4022,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.49017 1.0 1.52659"
+        "halfExtent": "3.49017 1.0 1.52659",
+        "type": "static"
       }
     }
   },
@@ -3965,7 +4054,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.7248 1.0 1.52659"
+        "halfExtent": "3.7248 1.0 1.52659",
+        "type": "static"
       }
     }
   },
@@ -3996,7 +4086,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.49017 1.0 1.52659"
+        "halfExtent": "3.49017 1.0 1.52659",
+        "type": "static"
       }
     }
   },
@@ -4027,7 +4118,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.7248 1.0 1.52659"
+        "halfExtent": "3.7248 1.0 1.52659",
+        "type": "static"
       }
     }
   },
@@ -4058,7 +4150,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.49017 2.0 1.52659"
+        "halfExtent": "3.49017 2.0 1.52659",
+        "type": "static"
       }
     }
   },
@@ -4089,7 +4182,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 3.0 1.0"
+        "halfExtent": "10.8098 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4120,7 +4214,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "13.7779 4.43594 14.4865"
+        "halfExtent": "13.7779 4.43594 14.4865",
+        "type": "static"
       }
     }
   },
@@ -4151,7 +4246,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.56723 3.0 1.0"
+        "halfExtent": "3.56723 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4182,7 +4278,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.56723 3.0 1.0"
+        "halfExtent": "3.56723 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4213,7 +4310,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "3.56723 3.0 1.0"
+        "halfExtent": "3.56723 3.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4244,7 +4342,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.0 1.0"
+        "halfExtent": "10.8098 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4274,7 +4373,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 4.21414 1.0"
+        "halfExtent": "10.8098 4.21414 1.0",
+        "type": "static"
       }
     }
   },
@@ -4304,7 +4404,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "4.0 2.0 1.0"
+        "halfExtent": "4.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4335,7 +4436,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "4.0 2.0 1.0"
+        "halfExtent": "4.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4365,7 +4467,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 2.0 1.0"
+        "halfExtent": "2.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4396,7 +4499,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 2.0 1.0"
+        "halfExtent": "2.0 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4426,7 +4530,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "0.972882 4.21414 0.75"
+        "halfExtent": "0.972882 4.21414 0.75",
+        "type": "static"
       }
     }
   },
@@ -4456,7 +4561,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "0.972882 4.21414 0.75"
+        "halfExtent": "0.972882 4.21414 0.75",
+        "type": "static"
       }
     }
   },
@@ -4486,7 +4592,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "0.972882 4.21414 0.75"
+        "halfExtent": "0.972882 4.21414 0.75",
+        "type": "static"
       }
     }
   },
@@ -4516,7 +4623,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 10.7461 1.0"
+        "halfExtent": "10.8098 10.7461 1.0",
+        "type": "static"
       }
     }
   },
@@ -4546,7 +4654,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "7.5 2.0 1.0"
+        "halfExtent": "7.5 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4576,7 +4685,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 4.21414 1.0"
+        "halfExtent": "10.8098 4.21414 1.0",
+        "type": "static"
       }
     }
   },
@@ -4607,7 +4717,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "10.8098 2.0 1.0"
+        "halfExtent": "10.8098 2.0 1.0",
+        "type": "static"
       }
     }
   },
@@ -4637,7 +4748,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "0.972882 4.21414 0.75"
+        "halfExtent": "0.972882 4.21414 0.75",
+        "type": "static"
       }
     }
   },
@@ -4668,7 +4780,8 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "12.2151 1.0 17.5182"
+        "halfExtent": "12.2151 1.0 17.5182",
+        "type": "static"
       }
     }
   }

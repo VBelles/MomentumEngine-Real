@@ -1076,7 +1076,6 @@ struct TSceneExporter (
 				fs.writeKeyValue "name" triggerName
 				fs.writeComma()
 				fs.writeKeyEmpty "transform"
-				fs.writeComma()
 				-- collider
 				fs.writeKey "collider"
 				fs.beginObj()

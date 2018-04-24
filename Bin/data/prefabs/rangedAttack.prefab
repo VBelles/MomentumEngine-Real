@@ -11,7 +11,7 @@
 			},
 			"collider": {
 				"shape": "sphere",
-				"is_dynamic": true,
+				"type": "dynamic",
 				"is_trigger": true,
 				"radius": 0.05
 			},
