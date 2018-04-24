@@ -266,12 +266,16 @@ struct TSceneExporter (
 		matchpattern strng pattern:("?*" + substrng + "*")
 	),
 	
+	fn isLine obj = (
+		return classOf obj == line or 
+			   classOf obj == circle or
+			   classOf obj == SplineShape
+	),
+	
 	fn hasChildLine obj = (
 		if obj.children == undefined then return false
 		for child in obj.children do (
-			if classOf child == line or 
-			   classOf child == circle or
-			   classOf child == SplineShape then return true
+			if isLine child then return true
 		)
 		return false
 	),
@@ -483,7 +487,8 @@ struct TSceneExporter (
 				local knotPos = getKnotPoint objCopy 1 i
 				local mcvKnotPos = knotPos * rotateXMatrix -90
 				fs.writeValue mcvKnotPos addIndent:true
-				if classOf objCopy == line and
+				if (classOf objCopy == line or 
+					classOf objCopy == SplineShape) and
 				   (i == 1 or i == knotsInSpline) then (
 					-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
 					-- This also forces following the real shape of the spline.
@@ -501,10 +506,8 @@ struct TSceneExporter (
 		local curveType = "catmull-rom"
 		for child in obj.children do (
 			local childClass = classOf child
-			if childClass == line or 
-			   childClass == circle or
-			   childClass == SplineShape then (
-				if childClass == line   then curveType = "catmull-rom"
+			if isLine child then (
+				if childClass == line then curveType = "catmull-rom"
 				if childClass == circle or
 			       childClass == SplineShape then curveType = "circular"
 				
@@ -1180,7 +1183,7 @@ struct TSceneExporter (
 
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
-TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
+TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset? (De todas formas se ignoran teniendo parent.)
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Poder exportar cualquier mesh como collider.
@@ -1216,7 +1219,7 @@ Los triggers			 deben estar en una layer llamada "triggers".
 Las meshes				 deben estar en una layer llamada "0".
 Los colliders invisibles deben estar en una layer llamada "collisions".
  
-Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> CAMBIARÁ CON ATTRIBUTES.
+Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
 El proyecto debe tener las siguientes carpetas:
  bin/data/scenes/
  bin/data/meshes/
