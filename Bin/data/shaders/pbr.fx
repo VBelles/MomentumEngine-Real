@@ -97,6 +97,7 @@ void PS_GBuffer(
 
   // Si el material lo pide, sobreescribir los valores de la textura
   // por unos escalares uniformes. Only to playtesting...
+  //TODO quitar en la versión final
   if (scalar_metallic >= 0.f)
     o_albedo.a = scalar_metallic;
   if (scalar_roughness >= 0.f)
