@@ -9,11 +9,16 @@ void TCompCamera::debugInMenu() {
 	float fov_deg = rad2deg(getFov());
 	float new_znear = getZNear();
 	float new_zfar = getZFar();
+	bool isOrtographic = isCameraOrtographic();
+	float width = getOrtographicWidth();
+	float height = getOrtographicHeight();
 	bool changed = ImGui::DragFloat("Fov", &fov_deg, 0.1f, 30.f, 175.f);
 	changed |= ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 5.0f);
-	changed |= ImGui::DragFloat("Z Far", &new_zfar, 1.0f, 2.0f, 3000.0f);
+	changed |= ImGui::DragFloat("Z Far", &new_zfar, 0.001f, 0.01f, 300.0f);
+	changed |= ImGui::DragFloat("ortographicWidth", &width, 1.0f, 1.0f, 3000.0f);
+	changed |= ImGui::DragFloat("ortographicHeight", &height, 1.0f, 1.0f, 3000.0f);
 	if (changed)
-		setPerspective(deg2rad(fov_deg), new_znear, new_zfar);
+		setPerspective(deg2rad(fov_deg), new_znear, new_zfar, isOrtographic, width, height);
 	ImGui::LabelText("AspectRatio", "%f", getAspectRatio());
 }
 
@@ -34,10 +39,13 @@ void TCompCamera::renderDebug() {
 }
 
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
+	bool isOrtographic = j.value("isOrtographic", false);
 	float fov_deg = j.value("fov", rad2deg(getFov()));
 	float z_near = j.value("z_near", 1.f /*getZNear()*/);
 	float z_far = j.value("z_far", 1000.f /*getZFar()*/);
-	setPerspective(deg2rad(fov_deg), z_near, z_far);
+	float ortographicWidth = j.value("ortographicWidth", 50.f);
+	float ortographicHeight = j.value("ortographicHeight", 50.f);
+	setPerspective(deg2rad(fov_deg), z_near, z_far, isOrtographic,ortographicWidth, ortographicHeight);
 }
 
 void TCompCamera::update(float delta) {

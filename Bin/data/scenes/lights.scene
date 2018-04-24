@@ -8,9 +8,12 @@
 				"lookat": "-83 22 -56"
 			},
 			"light_dir": {
-				"intensity": 1,
+				"intensity": 3,
 				"color" :  "1 1 1 1",
-        		"projector" : "data/textures/white.dds",
+				"projector" : "data/textures/white.dds",
+				"isOrtographic" : true,
+				"ortographicWidth" : 200,
+				"ortographicHeight" : 200,
         		"z_near" : 5,
 				"z_far" : 300,
 				"fov": 50,
@@ -18,6 +21,11 @@
 				"shadows_step" : 1.5,
 				"shadows_resolution" : 1024,
 				"shadows_fmt" : "R32_TYPELESS"
+			},
+			"hierarchy" : {
+				"parent" : "The Player",
+				"pos" : " 0 150 0",
+				"lookat" : "0 0 0"
 			}
 		}
 	}

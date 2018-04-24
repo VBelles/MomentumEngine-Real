@@ -266,12 +266,16 @@ struct TSceneExporter (
 		matchpattern strng pattern:("?*" + substrng + "*")
 	),
 	
+	fn isLine obj = (
+		return classOf obj == line or 
+			   classOf obj == circle or
+			   classOf obj == SplineShape
+	),
+	
 	fn hasChildLine obj = (
 		if obj.children == undefined then return false
 		for child in obj.children do (
-			if classOf child == line or 
-			   classOf child == circle or
-			   classOf child == SplineShape then return true
+			if isLine child then return true
 		)
 		return false
 	),
@@ -410,7 +414,7 @@ struct TSceneExporter (
 		) else if classof obj == Capsule then (
 			fs.writeKeyValue "shape" "capsule"
 			fs.writeComma()
-			fs.writeKeyValue "is_character_controller" true
+			fs.writeKeyValue "type" "cct"
 			fs.writeComma()
 			fs.writeKeyValue "radius" obj.radius
 			fs.writeComma()
@@ -483,7 +487,8 @@ struct TSceneExporter (
 				local knotPos = getKnotPoint objCopy 1 i
 				local mcvKnotPos = knotPos * rotateXMatrix -90
 				fs.writeValue mcvKnotPos addIndent:true
-				if classOf objCopy == line and
+				if (classOf objCopy == line or 
+					classOf objCopy == SplineShape) and
 				   (i == 1 or i == knotsInSpline) then (
 					-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
 					-- This also forces following the real shape of the spline.
@@ -501,10 +506,8 @@ struct TSceneExporter (
 		local curveType = "catmull-rom"
 		for child in obj.children do (
 			local childClass = classOf child
-			if childClass == line or 
-			   childClass == circle or
-			   childClass == SplineShape then (
-				if childClass == line   then curveType = "catmull-rom"
+			if isLine child then (
+				if childClass == line then curveType = "catmull-rom"
 				if childClass == circle or
 			       childClass == SplineShape then curveType = "circular"
 				
@@ -1041,7 +1044,7 @@ struct TSceneExporter (
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				local prefabPath = base_path + "prefabs/platform_move.prefab"
-				local parentName = obj.name + "_trigger"
+				local triggerName = obj.name + "_trigger"
 				exportName obj
 				fs.writeComma()
 				fs.writeKeyValue "prefab" prefabPath
@@ -1062,32 +1065,17 @@ struct TSceneExporter (
 					fs.writeKeyValue "group" "scenario"
 				fs.endObj()
 				fs.writeComma()
-				-- platform_move
-				fs.writeKey "platform_move"
-				fs.beginObj()
-					fs.writeKeyValue "type" "up"
-					fs.writeComma()
-					fs.writeKeyValue "speed" 4.0
-					fs.writeComma()
-					fs.writeKey "waypoints"
-					fs.beginArray()
-						fs.writeValue objPos addIndent:true -- First point is position
-						fs.writeComma()
-						local nextPos = objPos + [0, 10, 0]
-						fs.writeValue nextPos addIndent:true -- TODO: Pick from spline?
-					fs.endArray()
-				fs.endObj()
 				-- entity trigger
 				fs.endObj()-- end previous entity
-				fs.endObj()
+				fs.endObj()-- end previous object
+				------ child entity ------
 				fs.writeComma()
 				fs.beginObj()
 				fs.writeKey "entity"
 				fs.beginObj()-- begin trigger entity
-				fs.writeKeyValue "name" parentName
+				fs.writeKeyValue "name" triggerName
 				fs.writeComma()
-				local yShift = platformHalfExtent[2]
-				exportTransform obj yShift:yShift
+				fs.writeKeyEmpty "transform"
 				fs.writeComma()
 				-- collider
 				fs.writeKey "collider"
@@ -1098,19 +1086,13 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "is_trigger" true
 					fs.writeComma()
-					fs.writeKeyValue "halfExtent" platformHalfExtent -- Adjustment required?
+					fs.writeKeyValue "halfExtent" platformHalfExtent
 					fs.writeComma()
-					fs.writeKeyValue "group" "scenario"
-					fs.writeComma()
-					fs.writeKeyValue "mask" "player"
+					exportStringArray "mask" #("player")
 				fs.endObj()
 				fs.writeComma()
-				-- fwd_msg
-				fs.writeKey "fwd_msg"
-				fs.beginObj()
-					fs.writeKeyValue "target" obj.name
-				fs.endObj()
-				fs.writeComma()
+				-- platform
+				fs.writeKeyEmpty "platform"
 				-- hierarchy
 				fs.writeKey "hierarchy"
 				fs.beginObj()
@@ -1201,9 +1183,8 @@ struct TSceneExporter (
 
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
-TODO: Decidir qué hacer con las plataformas móviles. De momento las dejo como estaban.
-TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset?
-TODO: Las splines de attack hitboxes tienen coordenadas de mundo. 
+TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset? (De todas formas se ignoran teniendo parent.)
+TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Poder exportar cualquier mesh como collider.
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
@@ -1238,7 +1219,7 @@ Los triggers			 deben estar en una layer llamada "triggers".
 Las meshes				 deben estar en una layer llamada "0".
 Los colliders invisibles deben estar en una layer llamada "collisions".
  
-Los enemigos que no tengan "melee" en el nombre son considerados voladores. --> CAMBIARÁ CON ATTRIBUTES.
+Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
 El proyecto debe tener las siguientes carpetas:
  bin/data/scenes/
  bin/data/meshes/

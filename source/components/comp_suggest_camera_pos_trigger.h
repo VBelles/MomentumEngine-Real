@@ -13,6 +13,7 @@ class TCompSuggestCameraPosTrigger : public TCompBase {
 private:
 	std::string cameraSuggestion;
 	bool suggestYaw = false;
+	bool hasOppositeYaw = false;
 	bool suggestPitch = false;
 	bool forceDistance = false;
 	bool changeCenteringCamera = false;
