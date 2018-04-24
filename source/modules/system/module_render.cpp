@@ -84,7 +84,7 @@ bool CModuleRender::start() {
     if (!cb_globals.create(CB_GLOBALS)) return false;
     if (!cb_blur.create(CB_BLUR))       return false;
 
-    cb_globals.global_exposure_adjustment = 0.5f;
+    cb_globals.global_exposure_adjustment = 1.f;
     cb_globals.global_ambient_adjustment = 1.f;
     cb_globals.global_world_time = 0.f;
     cb_globals.global_hdr_enabled = 1.f;
