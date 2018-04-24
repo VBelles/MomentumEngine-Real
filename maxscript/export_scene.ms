@@ -516,7 +516,7 @@ struct TSceneExporter (
 				else fs.writeKey type
 				
 				fs.beginObj()
-					fs.writeKeyValue "curveType" curveType
+					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
 					fs.writeKeyValue "automove" true
 					fs.writeComma()
@@ -1064,7 +1064,8 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "group" "scenario"
 				fs.endObj()
-				fs.writeComma()
+				-- child spline
+				if hasChildLine obj then exportSpline obj
 				-- entity trigger
 				fs.endObj()-- end previous entity
 				fs.endObj()-- end previous object
