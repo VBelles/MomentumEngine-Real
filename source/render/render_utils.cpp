@@ -323,7 +323,7 @@ struct CSamplers {
     setDXName(all_samplers[SAMPLER_PCF_SHADOWS], "PCF_SHADOWS");
 
 	// PCF sampling con bordes blancos
-	D3D11_SAMPLER_DESC sampler_desc_1 = {
+	D3D11_SAMPLER_DESC sampler_desc = {
 		D3D11_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT,// D3D11_FILTER Filter;
 		D3D11_TEXTURE_ADDRESS_BORDER, //D3D11_TEXTURE_ADDRESS_MODE AddressU;
 		D3D11_TEXTURE_ADDRESS_BORDER, //D3D11_TEXTURE_ADDRESS_MODE AddressV;
@@ -336,7 +336,7 @@ struct CSamplers {
 		0//FLOAT MaxLOD;
 	};
 	hr = Render.device->CreateSamplerState(
-		&sampler_desc_1, &all_samplers[SAMPLER_PCF_SHADOWS_WHITE_BORDER]);
+		&sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS_WHITE_BORDER]);
 	if (FAILED(hr))
 		return false;
 	setDXName(all_samplers[SAMPLER_PCF_SHADOWS_WHITE_BORDER], "SAMPLER_PCF_SHADOWS_WHITE_BORDER");

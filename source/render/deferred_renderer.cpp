@@ -136,7 +136,8 @@ void CDeferredRenderer::renderDirectionalLights() {
   tech->activate();
 
   // All light directional use the same mesh
-  auto* mesh = Resources.get("data/meshes/UnitFrustum.mesh")->as<CRenderMesh>();
+  auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+  //auto* mesh = Resources.get("data/meshes/UnitFrustum.mesh")->as<CRenderMesh>();
   mesh->activate();
 
   // Para todas las luces... pintala
@@ -146,7 +147,7 @@ void CDeferredRenderer::renderDirectionalLights() {
     // activar el shadow map...
     c->activate();
 
-    setWorldTransform(c->getViewProjection().Invert());
+    //setWorldTransform(c->getViewProjection().Invert());
 
     // mandar a pintar una geometria que refleje los pixeles que potencialmente
     // puede iluminar esta luz.... El Frustum solido
