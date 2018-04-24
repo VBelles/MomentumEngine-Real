@@ -965,19 +965,6 @@ struct TSceneExporter (
 				local objPos = obj.position * (rotateXMatrix -90)
 				local lookAtPos = [-1, objPos.y, -1]
 				exportTransform obj lookAtCoord:lookAtPos
-				
-				-- If it's flying enemy.
-				if prefabName == enemyAirPrefabName then (
-					fs.writeComma()
-					fs.writeKey "collider"
-					fs.beginObj()
-						fs.writeKeyValue "shape" "sphere"
-						fs.writeComma()
-						fs.writeKeyValue "radius" 0.3
-						fs.writeComma()
-						fs.writeKeyValue "group" "Enemy"
-					fs.endObj()
-				)
 				-- Add child spline if it exists.
 				if hasChildLine obj then (
 					exportSpline obj type:"patrolPath"
