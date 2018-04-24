@@ -49,6 +49,7 @@ private:
 	bool isPitchSuggested = false;
 	bool isDistanceForced = false;
 	bool isCenteringCameraForced = false;
+	bool hasOppositeYaw = false;
 
 	//Msgs
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);

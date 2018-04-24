@@ -195,7 +195,21 @@ void TCompCameraPlayer::centerCamera() {
 		centeringCamera = true;
 		VEC3 front = targetTransform.getFront();
 		if (isCenteringCameraForced) {
-			float centeringYaw = isYawSuggested ? suggestedYaw : atan2(front.x, front.z);
+			float centeringYaw;
+			if (isYawSuggested) {
+				centeringYaw = suggestedYaw;
+				if (hasOppositeYaw) {
+					//mirar si nos va mejor ir al opuesto
+					float currentYaw, pitch;
+					getTransform()->getYawPitchRoll(&currentYaw, &pitch);
+					if (abs(suggestedYaw - currentYaw) > M_PI / 2 && abs(suggestedYaw - currentYaw) < M_PI * 1.5f) {
+						centeringYaw = suggestedYaw + M_PI;
+					}
+				}
+			}
+			else {
+				centeringYaw = atan2(front.x, front.z);
+			}
 			float centeringPitch = isPitchSuggested ? suggestedPitch : initialPitch;
 			desiredYawPitch = VEC2(centeringYaw, centeringPitch);
 		}
@@ -231,9 +245,14 @@ void TCompCameraPlayer::moveCameraTowardsDefaultDistance(float delta) {
 
 void TCompCameraPlayer::suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool hasOppositeYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera) {
 	suggestedYaw = yaw;
+	this->hasOppositeYaw = hasOppositeYaw;
 	if (hasOppositeYaw) {
 		//mirar si nos va mejor ir al opuesto
-		dbg("has opposite yaw\n");
+		float currentYaw, pitch;
+		getTransform()->getYawPitchRoll(&currentYaw, &pitch);
+		if (abs(yaw - currentYaw) > M_PI / 2 && abs(yaw - currentYaw) < M_PI * 1.5f) {
+			suggestedYaw = yaw + M_PI;
+		}
 	}
 	suggestedPitch = pitch;
 	forcedDistance = distance;
@@ -249,10 +268,10 @@ void TCompCameraPlayer::placeCameraOnSuggestedPosition(VEC2 centeringSpeed) {
 		currentCenteringCameraSpeed = centeringSpeed;
 		centeringCamera = true;
 		VEC3 front = targetTransform.getFront();
-		float yaw, pitch, roll;
-		getTransform()->getYawPitchRoll(&yaw, &pitch, &roll);
-		float centeringYaw = isYawSuggested ? suggestedYaw : yaw;
-		float centeringPitch = isPitchSuggested ? suggestedPitch : pitch;
+		float currentYaw, currentPitch;
+		getTransform()->getYawPitchRoll(&currentYaw, &currentPitch);
+		float centeringYaw = isYawSuggested ? suggestedYaw : currentYaw;
+		float centeringPitch = isPitchSuggested ? suggestedPitch : currentPitch;
 		desiredYawPitch = VEC2(centeringYaw, centeringPitch);
 	}
 }
