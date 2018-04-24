@@ -3,11 +3,43 @@
 using namespace physx;
 
 class TCompCollider;
+struct ColliderConfig;
 class BasicControllerHitCallback;
 class BasicControllerBehavior;
 class BasicQueryFilterCallback;
 
 class CModulePhysics : public IModule {
+private:
+	PxDefaultAllocator      defaultAllocatorCallback;
+	PxDefaultErrorCallback  defaultErrorCallback;
+
+	PxPhysics*				physics;
+
+	PxDefaultCpuDispatcher*	dispatcher;
+	PxScene*				scene;
+
+	PxPvd*                  pvd;
+	PxFoundation*			foundation;
+	PxControllerManager*    controllerManager;
+
+	PxMaterial*				defaultMaterial;
+	BasicControllerHitCallback* basicControllerHitCallback;
+	BasicControllerBehavior* basicControllerBehavior;
+	BasicQueryFilterCallback* basicQueryFilterCallback;
+
+	std::set<CHandle> toRelease;
+
+	bool createPhysx();
+	bool createScene();
+
+	PxController* createCCT(const ColliderConfig& config);
+	PxRigidActor* createRigidBody(const ColliderConfig& config, PxTransform& initialTransform);
+	
+
+	void releaseColliders();
+
+	
+
 public:
 	enum FilterGroup {
 		Wall = 1 << 0,
@@ -19,7 +51,6 @@ public:
 		Scenario = Wall | Floor,
 		Characters = Player | Enemy,
 		All = Wall | Floor | Player | Enemy | Mechanism
-		//All = std::numeric_limits<int>::max() //TODO: test this
 	};
 
 	std::map<std::string, FilterGroup> filterGroupByName = {
@@ -36,9 +67,10 @@ public:
 
 	CModulePhysics(const std::string& aname) : IModule(aname) {}
 	virtual bool start() override;
-	bool stop() override;
+	virtual bool stop() override;
 	virtual void update(float delta) override;
 	virtual void render() override {}
+
 	FilterGroup getFilterByName(const std::string& name);
 	void createActor(TCompCollider& comp_collider);
 	void setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask);
@@ -49,37 +81,12 @@ public:
 
 	void releaseCollider(CHandle handle);
 
-	PxScene* getScene() { return gScene; }
+	PxScene* getScene() { return scene; }
 
 	BasicControllerHitCallback* getGameControllerHitCallback() { return basicControllerHitCallback; }
 	BasicQueryFilterCallback* getGameQueryFilterCallback() { return basicQueryFilterCallback; }
 
 
-private:
-	PxDefaultAllocator      gDefaultAllocatorCallback;
-	PxDefaultErrorCallback  gDefaultErrorCallback;
-
-	PxPhysics*				gPhysics;
-
-	PxDefaultCpuDispatcher*	gDispatcher;
-	PxScene*				gScene;
-
-	PxMaterial*				gMaterial;
-
-	PxPvd*                  gPvd;
-	PxFoundation*			gFoundation;
-	PxControllerManager*    mControllerManager;
-
-	std::set<CHandle> toRelease;
-
-	bool createPhysx();
-	bool createScene();
-
-	void releaseColliders();
-
-	BasicControllerHitCallback* basicControllerHitCallback;
-	BasicControllerBehavior* basicControllerBehavior;
-	BasicQueryFilterCallback* basicQueryFilterCallback;
 
 
 };
