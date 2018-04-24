@@ -12,44 +12,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "47.2148 13.1598 -36.0832",
-           "47.2148 23.1598 -36.0832"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove010_trigger",
-      "transform":
-      {
-        "pos": "47.2148 13.6598 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove010"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove010"
@@ -69,44 +55,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "52.3778 9.66229 -28.7096",
-           "52.3778 19.6623 -28.7096"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove009_trigger",
-      "transform":
-      {
-        "pos": "52.3778 10.1623 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove009"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove009"
@@ -126,44 +98,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "47.2148 6.15079 -36.0832",
-           "47.2148 16.1508 -36.0832"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove008_trigger",
-      "transform":
-      {
-        "pos": "47.2148 6.65079 -36.0832",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove008"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove008"
@@ -183,44 +141,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "52.3778 2.65323 -28.7096",
-           "52.3778 12.6532 -28.7096"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove007_trigger",
-      "transform":
-      {
-        "pos": "52.3778 3.15323 -28.7096",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove007"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove007"
@@ -240,44 +184,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "-21.2817 28.0821 -32.3757",
-           "-21.2817 38.0821 -32.3757"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove006_trigger",
-      "transform":
-      {
-        "pos": "-21.2817 28.5821 -32.3757",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove006"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove006"
@@ -297,44 +227,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "-34.6024 40.6805 -94.4496",
-           "-34.6024 50.6805 -94.4496"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove005_trigger",
-      "transform":
-      {
-        "pos": "-34.6024 41.1805 -94.4496",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove005"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove005"
@@ -354,44 +270,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "-47.1214 37.4539 -94.4496",
-           "-47.1214 47.4539 -94.4496"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove004_trigger",
-      "transform":
-      {
-        "pos": "-47.1214 37.9539 -94.4496",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove004"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove004"
@@ -411,44 +313,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "-59.5103 36.7081 -94.4496",
-           "-59.5103 46.7081 -94.4496"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove003_trigger",
-      "transform":
-      {
-        "pos": "-59.5103 37.2081 -94.4496",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove003"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove003"
@@ -468,44 +356,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "-10.0972 23.5198 -123.791",
-           "-10.0972 33.5198 -123.791"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove002_trigger",
-      "transform":
-      {
-        "pos": "-10.0972 24.0198 -123.791",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove002"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove002"
@@ -525,44 +399,30 @@
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "halfExtent": "1.5 0.5 1.5",
         "group": "scenario"
       },
-      "platform_move":
-      {
-        "type": "up",
-        "speed": 4.0,
-        "waypoints":
-        [
-           "61.179 34.9941 -100.821",
-           "61.179 44.9941 -100.821"
-        ]
-      }
+
     }
   },
   {
     "entity":
     {
       "name": "w24_platformMove001_trigger",
-      "transform":
-      {
-        "pos": "61.179 35.4941 -100.821",
-        "rotation": "0.0 -0.382683 0.0 -0.92388"
-      },
+      "transform": {},
       "collider":
       {
         "shape": "box",
-        "is_dynamic": true,
+        "type": "dynamic",
         "is_trigger": true,
         "halfExtent": "1.5 0.5 1.5",
-        "group": "scenario",
-        "mask": "player"
+        "mask":
+        [
+           "player"
+        ]
       },
-      "fwd_msg":
-      {
-        "target": "w24_platformMove001"
-      },
+      "platform": {},
       "hierarchy":
       {
         "parent": "w24_platformMove001"

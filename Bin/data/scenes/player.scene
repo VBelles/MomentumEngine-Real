@@ -78,7 +78,7 @@
 			},
 			"collider": {
 				"shape": "capsule",
-				"is_character_controller": true,
+				"type": "cct",
 				"radius": 0.3,
 				"height": 0.76,
 				"group" : ["player"],
@@ -109,7 +109,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 0.8,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -129,7 +129,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 0.7,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -149,7 +149,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 0.7,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -169,7 +169,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 0.9,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -189,7 +189,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 0.9,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -209,7 +209,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 1.5,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -229,7 +229,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 0.8,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -249,7 +249,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 2.0,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -269,7 +269,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 1.0,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -289,7 +289,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 4.0,
 				"group" : ["player"],
 				"mask" : ["enemy"]
@@ -309,7 +309,7 @@
 			"collider": {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"is_dynamic" : true,
+				"type" : "kinematic",
 				"radius" : 7.0,
 				"group" : ["player"],
 				"mask" : ["enemy"]

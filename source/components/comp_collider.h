@@ -15,30 +15,29 @@ struct TMsgTriggerExit {
 	DECL_MSG_ID();
 };
 
+struct ColliderConfig {
+	std::string type;
+	PxGeometryType::Enum shapeType;
+	VEC4 plane;
+	VEC3 halfExtent;
+	VEC3 offset;
+	float radius;
+	float height;
+	float step;
+	float slope;
+	unsigned int group;
+	unsigned int mask;
+	bool isTrigger;
+};
+
 class TCompCollider : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 private:
 	bool created = false;
-
+	void setCreated(bool value) { created = value; }
 public:
-	struct TConfig {
-		VEC3 halfExtent;
-		VEC3 offset = { 0, 0, 0 };
-		VEC4 plane;
-		float step;
-		float radius;
-		float height;
-		float slope;
-		PxGeometryType::Enum shapeType;
-		unsigned int group;
-		unsigned int mask;
-		bool is_dynamic;
-		bool is_trigger;
-		bool is_character_controller;
-	};
-
-	TConfig config;
+	ColliderConfig config;
 	PxActor* actor;
 	PxController* controller;
 
@@ -54,7 +53,6 @@ public:
 	void enableSceneQuery();
 	void disableSceneQuery();
 	bool isCreated() { return created; }
-	void setCreated(bool value) { created = value; }
 	void setupFiltering(PxU32 filterGroup, PxU32 filterMask);
 
 };

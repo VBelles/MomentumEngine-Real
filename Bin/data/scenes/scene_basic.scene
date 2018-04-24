@@ -99,7 +99,7 @@
 			"collider": {
 				"shape": "box",
 				"is_trigger" : true,
-				"is_dynamic" : false,
+				"type" : "dynamic",
 				"halfExtent" : "1000000 1 1000000",
 				"group":["all"],
 				"mask":["characters"]
@@ -149,7 +149,7 @@
 			"collider": {
 				"shape": "box",
 				"halfExtent": "1.5 0.5 1.5",
-				"is_dynamic": true
+				"type": "dynamic"
 			},
 			"platform_rotative":{
 				"rotation_speed": "0 0 50"

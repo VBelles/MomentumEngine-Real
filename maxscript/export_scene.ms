@@ -377,6 +377,7 @@ struct TSceneExporter (
 			-- Export Mesh
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
+			-- TODO: Pasarle aquí vtxType:"pos" si queremos exportar collider mesh.
 			exportMeshObject obj (project_path + mesh_name)
 
 			fs.writeComma()
@@ -516,7 +517,7 @@ struct TSceneExporter (
 				else fs.writeKey type
 				
 				fs.beginObj()
-					fs.writeKeyValue "curveType" curveType
+					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
 					fs.writeKeyValue "automove" true
 					fs.writeComma()
@@ -1064,7 +1065,8 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "group" "scenario"
 				fs.endObj()
-				fs.writeComma()
+				-- child spline
+				if hasChildLine obj then exportSpline obj
 				-- entity trigger
 				fs.endObj()-- end previous entity
 				fs.endObj()-- end previous object
@@ -1076,7 +1078,6 @@ struct TSceneExporter (
 				fs.writeKeyValue "name" triggerName
 				fs.writeComma()
 				fs.writeKeyEmpty "transform"
-				fs.writeComma()
 				-- collider
 				fs.writeKey "collider"
 				fs.beginObj()
@@ -1188,6 +1189,7 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Poder exportar cualquier mesh como collider.
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
+TODO: Pasarle vtxType:"pos" a exportMeshObject si queremos exportar collider mesh.
 */
 
 /*----------------------------------------------------------------------------------

@@ -29,58 +29,58 @@ bool CModulePhysics::start() {
 
 bool CModulePhysics::stop() {
 	toRelease.clear();
-	mControllerManager->release();
-	gMaterial->release();
-	gScene->release();
-	gDispatcher->release();
-	gPhysics->release();
-	gPvd->release();
-	gFoundation->release();
+	PX_RELEASE(controllerManager);
+	PX_RELEASE(defaultMaterial);
+	PX_RELEASE(scene);
+	PX_RELEASE(dispatcher);
+	PX_RELEASE(physics);
+	PX_RELEASE(pvd);
+	PX_RELEASE(foundation);
 	return true;
 }
 
 bool CModulePhysics::createPhysx() {
-	gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gDefaultAllocatorCallback, gDefaultErrorCallback);
-	assert(gFoundation != nullptr);
+	foundation = PxCreateFoundation(PX_FOUNDATION_VERSION, defaultAllocatorCallback, defaultErrorCallback);
+	assert(foundation != nullptr);
 
-	if (!gFoundation)
+	if (!foundation)
 		return false;
 
-	gPvd = PxCreatePvd(*gFoundation);
-	if (!gPvd)
+	pvd = PxCreatePvd(*foundation);
+	if (!pvd)
 		return false;
 
 	PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
-	bool  is_ok = gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
+	bool  is_ok = pvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
 
-	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
-	if (!gPhysics)
+	physics = PxCreatePhysics(PX_PHYSICS_VERSION, *foundation, PxTolerancesScale(), true, pvd);
+	if (!physics)
 		fatal("PxCreatePhysics failed");
 
 	return true;
 }
 
 bool CModulePhysics::createScene() {
-	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
+	PxSceneDesc sceneDesc(physics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
-	gDispatcher = PxDefaultCpuDispatcherCreate(2);
-	sceneDesc.cpuDispatcher = gDispatcher;
+	dispatcher = PxDefaultCpuDispatcherCreate(2);
+	sceneDesc.cpuDispatcher = dispatcher;
 	sceneDesc.filterShader = BasicFilterShader;
 	sceneDesc.simulationEventCallback = new BasicSimulationEventCallback();
 	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
-	gScene = gPhysics->createScene(sceneDesc);
+	scene = physics->createScene(sceneDesc);
 
-	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
+	PxPvdSceneClient* pvdClient = scene->getScenePvdClient();
 	if (pvdClient) {
 		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
 		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONTACTS, true);
 		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
 	}
-	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
+	defaultMaterial = physics->createMaterial(0.5f, 0.5f, 0.6f);
 
-	mControllerManager = PxCreateControllerManager(*gScene);
+	controllerManager = PxCreateControllerManager(*scene);
 
 	basicQueryFilterCallback = new BasicQueryFilterCallback();
 	basicControllerHitCallback = new BasicControllerHitCallback();
@@ -89,62 +89,66 @@ bool CModulePhysics::createScene() {
 	return true;
 }
 
-
-CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
-	auto it = filterGroupByName.find(name);
-	if (it != filterGroupByName.end()) {
-		return filterGroupByName[name];
-	}
-	return FilterGroup::All;
-}
-
 void CModulePhysics::createActor(TCompCollider& compCollider) {
-	const TCompCollider::TConfig& config = compCollider.config;
+	const ColliderConfig& config = compCollider.config;
 	CHandle colliderHandle(&compCollider);
 	CEntity* entity = colliderHandle.getOwner();
 	TCompTransform* compTransform = entity->get<TCompTransform>();
-	PxTransform initialTrans(toPhysx(compTransform->getPosition()), toPhysx(compTransform->getRotation()));
-
+	PxTransform initialTrans(toPhysx(compTransform));
 	PxRigidActor* actor = nullptr;
 
-	//CAPSULE CCT
-	if (config.shapeType == PxGeometryType::eCAPSULE && config.is_character_controller) {
-		PxControllerDesc* cDesc;
-		PxCapsuleControllerDesc capsuleDesc;
-
-		capsuleDesc.height = config.height;
-		capsuleDesc.radius = config.radius;
-		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
-		capsuleDesc.stepOffset = config.step;
-		capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
-		capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
-		capsuleDesc.material = gMaterial;
-		capsuleDesc.reportCallback = basicControllerHitCallback;
-		capsuleDesc.behaviorCallback = basicControllerBehavior;
-		cDesc = &capsuleDesc;
-
-		PxCapsuleController* controller = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
-		PX_ASSERT(controller);
+	if (config.type == "cct") {
+		PxController* controller = createCCT(config);
+		compCollider.controller = controller;
 		controller->setFootPosition(PxExtendedVec3(initialTrans.p.x, initialTrans.p.y, initialTrans.p.z));
 		actor = controller->getActor();
-		compCollider.controller = controller;
 	}
-	//PLANE
-	else if (config.shapeType == PxGeometryType::ePLANE) {
-		PxRigidStatic* plane = PxCreatePlane(*gPhysics, PxPlane(config.plane.x, config.plane.y, config.plane.z, config.plane.w), *gMaterial);
-		actor = plane;
-		gScene->addActor(*actor);
-	}
-	//SHAPE
 	else {
-		if (config.is_dynamic) { //DYNAMIC
-			PxRigidDynamic* body = gPhysics->createRigidDynamic(initialTrans);
+		actor = createRigidBody(config, initialTrans);
+	}
+	PX_ASSERT(actor);
+	setupFiltering(actor, config.group, config.mask);
+	actor->userData = colliderHandle.asVoidPtr();
+	compCollider.actor = actor;
+}
+
+
+PxController* CModulePhysics::createCCT(const ColliderConfig& config) {
+	PxCapsuleControllerDesc capsuleDesc;
+	capsuleDesc.height = config.height;
+	capsuleDesc.radius = config.radius;
+	capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
+	capsuleDesc.stepOffset = config.step;
+	capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
+	capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
+	capsuleDesc.material = defaultMaterial;
+	capsuleDesc.reportCallback = basicControllerHitCallback;
+	capsuleDesc.behaviorCallback = basicControllerBehavior;
+	PxController* controller = controllerManager->createController(capsuleDesc);
+	PX_ASSERT(controller);
+	return controller;
+}
+
+
+PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTransform& initialTransform) {
+	PxRigidActor* actor = nullptr;
+
+	if (config.shapeType == PxGeometryType::ePLANE) {
+		PxPlane plane(PxPlane(config.plane.x, config.plane.y, config.plane.z, config.plane.w));
+		actor = PxCreatePlane(*physics, plane, *defaultMaterial);
+	}
+	else {
+		if (config.type == "static") {
+			PxRigidStatic* body = physics->createRigidStatic(initialTransform);
 			actor = body;
-			PxRigidBodyExt::updateMassAndInertia(*body, 10.0f);
 		}
-		else { //STATIC
-			PxRigidStatic* body = gPhysics->createRigidStatic(initialTrans);
+		else { //Dynamic/kinematic
+			PxRigidDynamic* body = physics->createRigidDynamic(initialTransform);
 			actor = body;
+			PxRigidBodyExt::updateMassAndInertia(*body, 10.0f); //Random
+			if (config.type == "kinematic") {
+				body->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
+			}
 		}
 		PxTransform offset(PxVec3(config.offset.x, config.offset.y, config.offset.z));
 		PxGeometry* shapeGeometry = nullptr;
@@ -155,43 +159,39 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 		else if (config.shapeType == PxGeometryType::eSPHERE) {
 			PxSphereGeometry sphere = PxSphereGeometry(config.radius);
 			shapeGeometry = &sphere;
-			//offset.p.y = config.radius;
 		}
-		//....todo: more shapes
+
 		PX_ASSERT(shapeGeometry);
 		PxShapeFlags shapeFlags = PxShapeFlag::eVISUALIZATION | PxShapeFlag::eSCENE_QUERY_SHAPE | PxShapeFlag::eSIMULATION_SHAPE;
-		PxShape* shape = actor->createShape(*shapeGeometry, *gMaterial, shapeFlags);
+		PxShape* shape = actor->createShape(*shapeGeometry, *defaultMaterial, shapeFlags);
 		shape->setLocalPose(offset);
-
-		if (config.is_trigger) {
-			makeActorTrigger(actor);
-		}
-
-		gScene->addActor(*actor);
 	}
-	setupFiltering(actor, config.group, config.mask);
-	compCollider.actor = actor;
-	actor->userData = colliderHandle.asVoidPtr();
+	if (config.isTrigger) {
+		makeActorTrigger(actor);
+	}
+	scene->addActor(*actor);
+	return actor;
 }
 
+
 void CModulePhysics::update(float delta) {
-	if (!gScene) return;
-	gScene->simulate(delta);
-	gScene->fetchResults(true);
+	if (!scene) return;
+	scene->simulate(delta);
+	scene->fetchResults(true);
 
 	PxU32 nbActorsOut = 0;
-	PxActor**actors = gScene->getActiveActors(nbActorsOut);
+	PxActor**actors = scene->getActiveActors(nbActorsOut);
 
 	for (unsigned int i = 0; i < nbActorsOut; ++i) {
 		if (actors[i]->is<PxRigidActor>()) {
 			PxRigidActor* rigidActor = ((PxRigidActor*)actors[i]);
-			PxTransform PxTrans = rigidActor->getGlobalPose();
-			PxVec3 pxpos = PxTrans.p;
-			PxQuat pxq = PxTrans.q;
+			PxTransform pxTransform = rigidActor->getGlobalPose();
+			PxVec3 pxpos = pxTransform.p;
+			PxQuat pxq = pxTransform.q;
 			CHandle colliderHandle;
 			colliderHandle.fromVoidPtr(rigidActor->userData);
 			CEntity* entity = colliderHandle.getOwner();
-			TCompTransform * compTransform = entity->get<TCompTransform>();
+			TCompTransform* compTransform = entity->get<TCompTransform>();
 			TCompCollider* compCollider = colliderHandle;
 			if (compCollider->controller) {
 				PxExtendedVec3 pxpos_ext = compCollider->controller->getFootPosition();
@@ -280,3 +280,10 @@ void CModulePhysics::releaseColliders() {
 	toRelease.clear();
 }
 
+CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
+	auto it = filterGroupByName.find(name);
+	if (it != filterGroupByName.end()) {
+		return filterGroupByName[name];
+	}
+	return FilterGroup::All;
+}

@@ -31,7 +31,7 @@
 			"behaviorTree_ball_enemy": {},
 			"collider": {
 				"shape": "capsule",
-				"is_character_controller": true,
+				"type": "cct",
 				"radius": 0.95,
 				"height": 0.1,
 				"step": 0.0,
