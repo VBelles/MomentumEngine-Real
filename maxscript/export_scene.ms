@@ -377,6 +377,7 @@ struct TSceneExporter (
 			-- Export Mesh
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
+			-- TODO: Pasarle aquí vtxType:"pos" si queremos exportar collider mesh.
 			exportMeshObject obj (project_path + mesh_name)
 
 			fs.writeComma()
@@ -1188,6 +1189,7 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Poder exportar cualquier mesh como collider.
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
+TODO: Pasarle vtxType:"pos" a exportMeshObject si queremos exportar collider mesh.
 */
 
 /*----------------------------------------------------------------------------------
