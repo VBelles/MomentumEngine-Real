@@ -10,7 +10,7 @@ private:
 	float maxPowerToGive = 0.f;
 	float powerToGive = maxPowerToGive;
 	float baseMultiplier = 0.f;
-	float stateMultiplier = 0.f;
+	float stateMultiplier = 1.f;
 
 	void onGetPower(const TMsgGetPower& msg);
 

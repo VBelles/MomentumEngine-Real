@@ -6,16 +6,19 @@ struct  TSkeletonsExporter (
 	skel_name,			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
+	bone_geometry = false,
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return classof obj == Biped_Object and obj.wireColor != Black
+		return (classof obj == Biped_Object or classof obj == Dummy or classof obj == BoneGeometry) and obj.wireColor != Black
 	),
 	
 	-- Search the root bones in the scene to define the .csf
 	fn findSkelCandidates = (
 		local obj_bones = #()
 		for obj in $* do (
+			format "% is classof %\n" obj.name (classof obj)
+			if (classof obj == BoneGeometry) then bone_geometry = true
 			if isBone obj and obj.parent == undefined then (
 				format "% is a root bone\n" obj.name
 				append obj_bones obj
@@ -72,9 +75,12 @@ struct  TSkeletonsExporter (
 		local root_bones = findRootBone()
 		local root = root_bones[1]
 		
-		-- Pasar a modo figura si esta en modo pose
-		local was_in_figure_mode = root.controller.figureMode
-		root.controller.figureMode = true
+		format "is bone geometry %\n" bone_geometry
+		if (not bone_geometry) then (
+			-- Pasar a modo figura si esta en modo pose
+			local was_in_figure_mode = root.controller.figureMode
+			root.controller.figureMode = true
+		)
 		local bones_to_export = findBoneCandidates()
 		
 		for b in bones_to_export do (
@@ -96,7 +102,7 @@ struct  TSkeletonsExporter (
 		)
 		
 		-- Restaurar el modo pose si es q estaba en modo pose inicialmente
-		if was_in_figure_mode == false then root.controller.figureMode = false
+		if (not bone_geometry) then root.controller.figureMode = was_in_figure_mode
     ),
 	
 	fn exportAnim = (
@@ -120,7 +126,7 @@ struct  TSkeletonsExporter (
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
 exportPath = substituteString exportPath "\\" "/"
-se = TSkeletonsExporter project_path: exportPath skel_name:"gorila"
+se = TSkeletonsExporter project_path: exportPath skel_name:"medusa"
 
 --gc()
 --se = TSkeletonsExporter()

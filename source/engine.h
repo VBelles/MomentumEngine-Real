@@ -49,3 +49,4 @@ private:
 #define EngineInput CEngine::get().getInput()
 #define EnginePhysics CEngine::get().getPhysics()
 #define EngineRender CEngine::get().getRender()
+#define EngineScripting CEngine::get().getScripting()

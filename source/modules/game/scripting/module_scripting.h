@@ -19,6 +19,9 @@ public:
 	void update(float delta) override;
 	void render() override;
 
+	void doFile(const char* filename);
+	void doFile(std::string filename);
+
 	SLB::Manager* getManager() { return manager; }
 	SLB::Script* getScript() { return script; }
 	SimpleConsole* getConsole() { return console; }

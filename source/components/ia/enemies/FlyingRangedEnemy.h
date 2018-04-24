@@ -7,6 +7,7 @@
 class CEntity;
 class TCompTransform;
 class TCompCollider;
+class TCompSkeleton;
 struct PowerStats;
 
 class CBehaviorTreeFlyingRangedEnemy : public IBehaviorTree, public TCompBase {
@@ -69,6 +70,7 @@ private:
 	int returnToSpawn(float delta = 0.f);
 	int onIdleWar(float delta = 0.f);
 	int idleWar(float delta = 0.f);
+	int onAttack(float delta = 0.f);
 	int attack(float delta = 0.f);
 	int idle(float delta = 0.f);
 
@@ -85,6 +87,7 @@ private:
 
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();
+	TCompSkeleton* getSkeleton();
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);

@@ -53,7 +53,7 @@
       ]
     }
   },
-    {
+  {
     "entity":
     {
       "name": "Gorila"
@@ -75,6 +75,33 @@
           "materials":
           [
             "data/skeletons/gorila/gorila.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Medusa"
+      ,
+      "transform":
+      {
+        "pos": "-82 24.5 -65",
+        "rotation": "0.0 0.0 0.0 1.0"
+      },
+      "skeleton": {
+        "skeleton": "data/skeletons/medusa/medusa.skeleton"
+      },
+      "abs_aabb":true,
+      "local_aabb":true,
+      "render" : [
+        {
+          "mesh": "data/skeletons/medusa/medusa.mesh"
+          ,
+          "materials":
+          [
+            "data/skeletons/medusa/medusa.material"
           ]
         }
       ]

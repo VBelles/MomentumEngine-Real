@@ -11,7 +11,7 @@ ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
-	animation = "wave";
+	animation = "melee";
 }
 
 void ReleasePowerAirActionState::update (float delta) {
@@ -38,7 +38,7 @@ void ReleasePowerAirActionState::update (float delta) {
 		CEntity *hitboxBigEntity = hitboxBigHandle;
 		TCompHitbox *hitboxBig = hitboxBigEntity->get<TCompHitbox>();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
-		switch (getPlayerModel()->getPowerGauge()->powerLevel) {
+		switch (getPlayerModel()->getPowerGauge()->getPowerLevel()) {
 			case 1:
 				getPlayerModel()->getPowerGauge()->releasePower();
 				break;
@@ -61,7 +61,6 @@ void ReleasePowerAirActionState::update (float delta) {
 				}
 				break;
 		}
-		setPose();
 		phase = AttackPhases::Active;
 	}
 }
@@ -76,7 +75,7 @@ void ReleasePowerAirActionState::onStateEnter(IActionState * lastState) {
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->lockTurning = true;
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void ReleasePowerAirActionState::onStateExit(IActionState * nextState) {
@@ -87,7 +86,7 @@ void ReleasePowerAirActionState::onStateExit(IActionState * nextState) {
 	hitboxEntity = hitboxBigHandle;
 	hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();
-	getPlayerModel()->baseState->setPose();
+	//getPlayerModel()->baseState->setPose();
 	getPlayerModel()->lockTurning = false;
 }
 
@@ -96,7 +95,7 @@ void ReleasePowerAirActionState::onReleasePowerButton() {
 	//Si está en active, release energy
 	if (phase == AttackPhases::Active) {
 		//si además button presses es == 2 y ssj2, agrandar bola
-		if (getPlayerModel()->getPowerGauge()->powerLevel == 2) {
+		if (getPlayerModel()->getPowerGauge()->getPowerLevel() == 2) {
 			CEntity *hitboxEntity = hitboxSmallHandle;
 			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 			hitbox->disable();

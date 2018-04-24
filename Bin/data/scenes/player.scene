@@ -3,18 +3,22 @@
 		"entity": {
 			"name": "The Player",
 			"render" : [
-				{"mesh": "data/meshes/pose_run.mesh"},
-				{"materials": [
-					"data/materials/white.material"
-				]}
+				{
+					"mesh": "data/skeletons/ella/ella.mesh"
+				,
+				"materials":
+				[
+					"data/skeletons/ella/ella.material"
+				]
+				}
 			],
 			"transform": {
-				"pos": "-74 22 -56",
+				"pos": "-77 100 -59",
 				"axis": "0 1 0",
 				"angle": 120
 			},
 			"skeleton": {
-				"skeleton": "data/skeletons/cally/cally.skeleton"
+				"skeleton": "data/skeletons/ella/ella.skeleton"
 			},
 			"player_controller" : {},
 			"player_model" : {

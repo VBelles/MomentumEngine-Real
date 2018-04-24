@@ -7,6 +7,7 @@
 #include "modules/game/scripting/scripting_player.h"
 #include "modules/game/scripting/scripting_golem.h"
 #include "modules/game/scripting/scripting_entities.h"
+#include "modules/game/scripting/scripting_door.h"
 
 CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {}
 
@@ -23,9 +24,14 @@ bool CModuleScripting::start() {
 			script->safeDoString("print(player)");
 			script->safeDoString("print(golem)");
 		}
-		else if (!script->safeDoString(command)) {
-			console->AddLog("[error]%s", script->getLastError());
-			dbg("%s\n", script->getLastError());
+		else {
+			std::string comandStr = command;
+			comandStr = "print(" + comandStr + ")";
+			dbg("%s\n", comandStr.c_str());
+			if (!script->safeDoString(comandStr.c_str())) {
+				console->AddLog("[error]%s", script->getLastError());
+				dbg("%s\n", script->getLastError());
+			}
 		}
 	});
 
@@ -37,18 +43,14 @@ bool CModuleScripting::start() {
 	//Bind clases
 	ScriptingPlayer::bind(manager);
 	ScriptingGolem::bind(manager);
+	ScriptingDoor::bind(manager);
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
 
-	//manager->set("hp", SLB::FuncCall::create());
-
 	//Create binded objects
-
 	script->doString("SLB.using(SLB)");
 	script->doString("player = Player()");
 	script->doString("golem = Golem()");
-
-
 
 	return true;
 }
@@ -69,6 +71,16 @@ void CModuleScripting::render() {
 	if (CApp::get().showDebug) {
 		bool open = true;
 		console->Draw("LUA Console", &open);
+	}
+}
+
+void CModuleScripting::doFile(const char* filename) {
+	script->doFile(filename);
+}
+
+void CModuleScripting::doFile(std::string filename) {
+	if (!script->safeDoFile(filename.c_str())) {
+		dbg("%s\n", script->getLastError());
 	}
 }
 

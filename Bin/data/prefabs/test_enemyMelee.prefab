@@ -2,6 +2,7 @@
   {
     "entity":
     {
+      "name": "melee_enemy",
       "transform": {},
       "render":
       [

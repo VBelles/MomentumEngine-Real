@@ -8,7 +8,7 @@
 GrabActionState::GrabActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "wave";
+	animation = "melee";
 }
 
 void GrabActionState::update (float delta) {
@@ -35,19 +35,18 @@ void GrabActionState::update (float delta) {
 void GrabActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
-	setPose();
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	hitEndTime = activeFrames * (1.f / 60);
 	animationEndTime = endingLagFrames * (1.f / 60);
 	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->lockTurning = true;
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void GrabActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	getPlayerModel()->baseState->setPose();
+	//getPlayerModel()->baseState->setPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();

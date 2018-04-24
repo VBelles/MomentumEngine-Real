@@ -9,7 +9,7 @@
 FastAttackAirActionState::FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "wave";
+	animation = "melee";
 }
 
 void FastAttackAirActionState::update(float delta) {
@@ -25,7 +25,6 @@ void FastAttackAirActionState::update(float delta) {
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-		setPose();
 		timer.reset();
 		CEntity *hitboxEntity = hitboxHandle;
 		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
@@ -45,12 +44,12 @@ void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->lockBaseState = true;
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = true;
-	getPlayerModel()->getSkeleton()->executeAction(animation);
+	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	getPlayerModel()->baseState->setPose();
+	//getPlayerModel()->baseState->setPose();
 	CEntity *hitboxEntity = hitboxHandle;
 	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
 	hitbox->disable();

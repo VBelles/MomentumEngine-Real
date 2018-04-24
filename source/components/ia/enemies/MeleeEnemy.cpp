@@ -7,7 +7,7 @@
 #include "components/comp_respawner.h"
 #include "components/comp_shadow.h"
 #include "components/comp_give_power.h"
-#include "components/player/comp_player_model.h"
+#include "components/player/power_stats.h"
 #include "skeleton/comp_skeleton.h"
 
 DECL_OBJ_MANAGER("behaviorTree_melee_enemy", CBehaviorTreeMeleeEnemy);
@@ -101,8 +101,7 @@ void CBehaviorTreeMeleeEnemy::update(float delta) {
 
 int CBehaviorTreeMeleeEnemy::damageCalc(float delta) {
 	health -= receivedAttack.damage;
-	TCompRender* render = get<TCompRender>();
-	render->TurnRed(0.5f);
+	getRender()->TurnRed(0.5f);
 	return Leave;
 }
 
@@ -112,8 +111,7 @@ int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
 
 	getCollider()->destroy();
 
-	TCompRender *render = get<TCompRender>();
-	render->disable();
+	getRender()->disable();
 
 	TCompShadow* shadow = get<TCompShadow>();
 	shadow->disable();
@@ -155,8 +153,7 @@ int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
 
 	timer.reset();
 
-	TCompRender* render = get<TCompRender>();
-	render->TurnRed(0.5f);
+	getRender()->TurnRed(0.5f);
 	return Leave;
 }
 
@@ -263,8 +260,7 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 	TCompShadow* shadow = get<TCompShadow>();
 	shadow->enable();
 
-	TCompRender *render = get<TCompRender>();
-	render->enable();
+	getRender()->enable();
 
 	TCompGivePower *power = get<TCompGivePower>();
 	power->reset();
@@ -285,14 +281,14 @@ int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
 	VEC3 myPosition = getTransform()->getPosition();
 	myPosition.y = 0;
 	VEC3 targetPos = spawnPosition;
-	spawnPosition.y = 0;
+	targetPos.y = 0;
 	VEC3 myFront = getTransform()->getFront();
 	myFront.Normalize();
 	VEC3 deltaMovement = myFront * movementSpeed * delta;
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
 	float distanceSquared = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	if (VEC3::DistanceSquared(myPosition, spawnPosition) < minCombatDistanceSqrd
+	if (VEC3::DistanceSquared(myPosition, targetPos) < minCombatDistanceSqrd
 		|| (distanceSquared < fovChaseDistanceSqrd + minCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
 		return Leave;
 	}
@@ -356,6 +352,7 @@ int CBehaviorTreeMeleeEnemy::onAttack(float delta) {
 		current = nullptr;
 	}
 	else {
+		attackTimer.reset();
 		getSkeleton()->executeAction(2, 0.2f, 0.2f);
 	}
 	return Leave;
@@ -364,7 +361,7 @@ int CBehaviorTreeMeleeEnemy::onAttack(float delta) {
 int CBehaviorTreeMeleeEnemy::attack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
-	if (getSkeleton()->getAnimationTime() < (getSkeleton()->getAnimationDuration(2))) {
+	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(2))) {
 		return Stay;
 	}
 	else {
@@ -445,6 +442,10 @@ bool CBehaviorTreeMeleeEnemy::stepBackCondition(float delta) {
 }
 
 void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+	transformHandle = get<TCompTransform>();
+	colliderHandle = get<TCompCollider>();
+	renderHandle = get<TCompRender>();
+	skeletonHandle = get<TCompSkeleton>();
 	spawnPosition = getTransform()->getPosition();
 	playerHandle = getEntityByName(PLAYER_NAME);
 }
@@ -500,11 +501,11 @@ void CBehaviorTreeMeleeEnemy::rotateTowards(float delta, VEC3 targetPos, float r
 }
 
 TCompTransform* CBehaviorTreeMeleeEnemy::getTransform() {
-	return get<TCompTransform>();
+	return transformHandle;
 }
 
 TCompCollider* CBehaviorTreeMeleeEnemy::getCollider() {
-	return get<TCompCollider>();
+	return colliderHandle;
 }
 
 void CBehaviorTreeMeleeEnemy::setSpawnPosition(VEC3 spawnPosition) {
@@ -512,7 +513,11 @@ void CBehaviorTreeMeleeEnemy::setSpawnPosition(VEC3 spawnPosition) {
 }
 
 TCompSkeleton* CBehaviorTreeMeleeEnemy::getSkeleton() {
-	return get<TCompSkeleton>();
+	return skeletonHandle;
+}
+
+TCompRender * CBehaviorTreeMeleeEnemy::getRender() {
+	return renderHandle;
 }
 
 CEntity* CBehaviorTreeMeleeEnemy::getPlayerEntity() {

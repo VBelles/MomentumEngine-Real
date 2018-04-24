@@ -34,7 +34,7 @@ bool CCurve::load(const std::string& fileName) {
 }
 
 bool CCurve::load(const json& jData) {
-    std::string typeName = jData["type"];
+    std::string typeName = jData["curve_type"];
 
     setType(typeName);
 
@@ -44,7 +44,9 @@ bool CCurve::load(const json& jData) {
         addKnot(knot);
     }
 
-	setLoop(jData.value("loop", false)); // TODO: Use this somewhere.
+	calculateRadius();
+
+	setLoop(jData.value("loop", false));
 
     return true;
 }
@@ -61,6 +63,9 @@ void CCurve::setType(const std::string & typeName) {
     if (typeName == "catmull-rom") {
         _type = EType::CATMULL_ROM;
     }
+	else if (typeName == "circular") {
+		_type = EType::CIRCULAR;
+	}
     else {
         _type = EType::UNKNOWN;
     }
@@ -70,9 +75,21 @@ void CCurve::setLoop(const bool value) {
     _loop = value;
 }
 
+void CCurve::calculateRadius() {
+	// _knots[0] tiene que ser el centro del movimiento circular,
+	// _knots[1] un punto cualquiera del círculo.
+	if (_type == EType::CIRCULAR && _knots.size() >= 2) {
+		_center = _knots[0];
+		_radius = VEC3::Distance(_center, _knots[1]);
+	}
+}
+
 VEC3 CCurve::evaluate(float ratio) const {
 	if (_type == EType::CATMULL_ROM) {
 		return evaluateAsCatmull(ratio);
+	}
+	else if (_type == EType::CIRCULAR) {
+		return evaluateAsCircle(ratio);
 	}
 	return VEC3::Zero;
 }
@@ -92,4 +109,13 @@ VEC3 CCurve::evaluateAsCatmull(float ratio) const {
 	VEC3 p4 = _knots[idx + 2];
 
 	return VEC3::CatmullRom(p1, p2, p3, p4, segmentRatio);
+}
+
+VEC3 CCurve::evaluateAsCircle(float ratio) const {
+    float angle = ratio * 360.f;
+    // TODO: Do this properly in 3D.
+    float x = _center.x + _radius * cos(angle);
+    float z = _center.z + _radius * sin(angle);
+
+	return VEC3(x, 0, z);
 }

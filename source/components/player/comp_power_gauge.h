@@ -3,8 +3,7 @@
 
 class TCompPowerGauge : public TCompBase {
 	DECL_SIBLING_ACCESS();
-
-public:
+private:
 	int powerLevel = 1;	//Ex: 1, 2, 3 (ssj)
 	float power = 0.f;	//Ex: 2300
 	float maxPower = 0.f;
@@ -12,8 +11,9 @@ public:
 	float dropSpeed = 0.f;
 	bool isPure = true;
 	float freezeDropTime = 1.f;
-
 	CTimer freezeDropTimer;
+
+public:
 
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
@@ -24,5 +24,10 @@ public:
 	void resetPower();
 	void increasePower(float increment);
 	void setPower(float power);
+
+	int getPowerLevel();
+	float getPower();
+	float getMaxPower();
+
 
 };

@@ -9,11 +9,13 @@ class TCompPlayerController : public TCompBase {
 
 private:
 	CHandle playerModelHandle;
-
+	bool controlIsLocked = false;
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	TCompPlayerModel* getPlayerModel() { return playerModelHandle; }
+	TCompPlayerModel* getPlayerModel();
 
 public:
 	static void registerMsgs();
 	void update(float delta);
+	bool takePlayerControl();
+	bool givePlayerControl();
 };

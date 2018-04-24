@@ -33,4 +33,5 @@ public:
 	void onTriggerEnter(const TMsgTriggerEnter& msg);
 	void onTriggerExit(const TMsgTriggerExit& msg);
 	void CopyRotationFromMixedCameraToPlayerCamera();
+	//void copyParametersFromPlayerCameraToInterpolationCamera(...)
 };

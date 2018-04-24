@@ -1,6 +1,7 @@
 [
 	{
 		"entity": {
+			"name": "golem",
 			"transform":{},
 			"render": [
 				{

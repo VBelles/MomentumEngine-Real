@@ -2,6 +2,9 @@
   "technique": "textured_skin.tech",
   "shadows": true,
   "textures": {
-    "albedo": "data/textures/piedras_c.dds"
+    "albedo": "data/textures/ella/ellanuevascintas_low_Material_26_BaseColor.dds",
+    "normal": "data/textures/ella/ellanuevascintas_low_Material_26_Normal.dds",
+    "metallic": "data/textures/ella/ellanuevascintas_low_Material_26_OcclusionRoughnessMetallic.dds",
+    "roughness": "data/textures/ella/ellanuevascintas_low_Material_26_OcclusionRoughnessMetallic.dds"
   }
 }

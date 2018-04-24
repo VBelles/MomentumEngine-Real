@@ -8,7 +8,7 @@
 				"lookat": "-83 22 -56"
 			},
 			"light_dir": {
-				"intensity": 50,
+				"intensity": 1,
 				"color" :  "1 1 1 1",
         		"projector" : "data/textures/white.dds",
         		"z_near" : 5,

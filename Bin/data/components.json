@@ -19,7 +19,9 @@
     "breakable",
     "mechanism",
     "mechanism_system",
+    "door",
     "behaviorTree_melee_enemy",
+    "behaviorTree_ball_enemy",
     "behaviorTree_flying_ranged_enemy",
     "ranged_attack",
     "respawner",
@@ -32,14 +34,13 @@
     "local_aabb",
     "camera_player",
     "fixed_camera",
+    "camera_curve_interpolation",
     "camera",
     "curve_controller",
     "culling",
     "light_dir",
     "render",
-    "fsm",
-    "fake_animation",
-    "player_input"
+    "spikes"
   ],
   "render_debug" : [
     "transform",
