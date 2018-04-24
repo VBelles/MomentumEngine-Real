@@ -90,7 +90,6 @@ bool CModulePhysics::createScene() {
 }
 
 PxController* CModulePhysics::createCCT(const ColliderConfig& config) {
-	PxControllerDesc* cDesc;
 	PxCapsuleControllerDesc capsuleDesc;
 	capsuleDesc.height = config.height;
 	capsuleDesc.radius = config.radius;
@@ -101,11 +100,8 @@ PxController* CModulePhysics::createCCT(const ColliderConfig& config) {
 	capsuleDesc.material = defaultMaterial;
 	capsuleDesc.reportCallback = basicControllerHitCallback;
 	capsuleDesc.behaviorCallback = basicControllerBehavior;
-	cDesc = &capsuleDesc;
-
-	PxCapsuleController* controller = static_cast<PxCapsuleController*>(controllerManager->createController(*cDesc));
+	PxController* controller = controllerManager->createController(capsuleDesc);
 	PX_ASSERT(controller);
-
 	return controller;
 }
 
