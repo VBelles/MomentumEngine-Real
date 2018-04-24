@@ -237,15 +237,32 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 		return false;
 
 	// Check if there is already a .mesh
-	std::string cmf = root_path + name + ".cmf";
-	if (fileExists(cmf)) {
-		int mesh_id = loadCoreMesh(cmf);
-		if (mesh_id < 0)
-			return false;
-		std::string skin_mesh_file = root_path + name + ".mesh";
-		convertCalCoreMesh2RenderMesh(getCoreMesh(mesh_id), skin_mesh_file);
-		// Delete the cmf file
-		// std::remove(cmf.c_str());
+	if (json.count("meshes")) {
+		auto& meshes = json["meshes"];
+		assert(meshes.is_array());
+		for (size_t i = 0; i < meshes.size(); ++i) {
+			if (meshes[i].is_string()) {
+				std::string meshName = meshes[i];
+				std::string cmf = root_path + meshName + ".cmf";
+				int mesh_id = loadCoreMesh(cmf);
+				if (mesh_id < 0)
+					return false;
+				std::string skin_mesh_file = root_path + meshName + ".mesh";
+				convertCalCoreMesh2RenderMesh(getCoreMesh(mesh_id), skin_mesh_file);
+			}
+		}
+	}
+	else {
+		std::string cmf = root_path + name + ".cmf";
+		if (fileExists(cmf)) {
+			int mesh_id = loadCoreMesh(cmf);
+			if (mesh_id < 0)
+				return false;
+			std::string skin_mesh_file = root_path + name + ".mesh";
+			convertCalCoreMesh2RenderMesh(getCoreMesh(mesh_id), skin_mesh_file);
+			// Delete the cmf file
+			// std::remove(cmf.c_str());
+		}
 	}
 
 	// Read all anims
