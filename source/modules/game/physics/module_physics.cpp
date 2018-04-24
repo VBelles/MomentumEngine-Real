@@ -29,13 +29,13 @@ bool CModulePhysics::start() {
 
 bool CModulePhysics::stop() {
 	toRelease.clear();
-	controllerManager->release();
-	defaultMaterial->release();
-	scene->release();
-	dispatcher->release();
-	physics->release();
-	pvd->release();
-	foundation->release();
+	PX_RELEASE(controllerManager);
+	PX_RELEASE(defaultMaterial);
+	PX_RELEASE(scene);
+	PX_RELEASE(dispatcher);
+	PX_RELEASE(physics);
+	PX_RELEASE(pvd);
+	PX_RELEASE(foundation);
 	return true;
 }
 
@@ -89,6 +89,30 @@ bool CModulePhysics::createScene() {
 	return true;
 }
 
+void CModulePhysics::createActor(TCompCollider& compCollider) {
+	const ColliderConfig& config = compCollider.config;
+	CHandle colliderHandle(&compCollider);
+	CEntity* entity = colliderHandle.getOwner();
+	TCompTransform* compTransform = entity->get<TCompTransform>();
+	PxTransform initialTrans(toPhysx(compTransform));
+	PxRigidActor* actor = nullptr;
+
+	if (config.type == "cct") {
+		PxController* controller = createCCT(config);
+		compCollider.controller = controller;
+		controller->setFootPosition(PxExtendedVec3(initialTrans.p.x, initialTrans.p.y, initialTrans.p.z));
+		actor = controller->getActor();
+	}
+	else {
+		actor = createRigidBody(config, initialTrans);
+	}
+	PX_ASSERT(actor);
+	setupFiltering(actor, config.group, config.mask);
+	actor->userData = colliderHandle.asVoidPtr();
+	compCollider.actor = actor;
+}
+
+
 PxController* CModulePhysics::createCCT(const ColliderConfig& config) {
 	PxCapsuleControllerDesc capsuleDesc;
 	capsuleDesc.height = config.height;
@@ -104,6 +128,7 @@ PxController* CModulePhysics::createCCT(const ColliderConfig& config) {
 	PX_ASSERT(controller);
 	return controller;
 }
+
 
 PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTransform& initialTransform) {
 	PxRigidActor* actor = nullptr;
@@ -148,37 +173,6 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 	return actor;
 }
 
-
-CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
-	auto it = filterGroupByName.find(name);
-	if (it != filterGroupByName.end()) {
-		return filterGroupByName[name];
-	}
-	return FilterGroup::All;
-}
-
-void CModulePhysics::createActor(TCompCollider& compCollider) {
-	const ColliderConfig& config = compCollider.config;
-	CHandle colliderHandle(&compCollider);
-	CEntity* entity = colliderHandle.getOwner();
-	TCompTransform* compTransform = entity->get<TCompTransform>();
-	PxTransform initialTrans(toPhysx(compTransform));
-	PxRigidActor* actor = nullptr;
-
-	if (config.type == "cct") {
-		PxController* controller = createCCT(config);
-		compCollider.controller = controller;
-		controller->setFootPosition(PxExtendedVec3(initialTrans.p.x, initialTrans.p.y, initialTrans.p.z));
-		actor = controller->getActor();
-	}
-	else {
-		actor = createRigidBody(config, initialTrans);
-	}
-	assert(actor);
-	setupFiltering(actor, config.group, config.mask);
-	compCollider.actor = actor;
-	actor->userData = colliderHandle.asVoidPtr();
-}
 
 void CModulePhysics::update(float delta) {
 	if (!scene) return;
@@ -286,3 +280,10 @@ void CModulePhysics::releaseColliders() {
 	toRelease.clear();
 }
 
+CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
+	auto it = filterGroupByName.find(name);
+	if (it != filterGroupByName.end()) {
+		return filterGroupByName[name];
+	}
+	return FilterGroup::All;
+}

@@ -31,14 +31,9 @@ private:
 
 	bool createPhysx();
 	bool createScene();
-
 	PxController* createCCT(const ColliderConfig& config);
 	PxRigidActor* createRigidBody(const ColliderConfig& config, PxTransform& initialTransform);
-	
-
 	void releaseColliders();
-
-	
 
 public:
 	enum FilterGroup {
@@ -71,22 +66,18 @@ public:
 	virtual void update(float delta) override;
 	virtual void render() override {}
 
-	FilterGroup getFilterByName(const std::string& name);
-	void createActor(TCompCollider& comp_collider);
+	void createActor(TCompCollider& compCollider);
 	void setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask);
 	void setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU32 filterMask);
 	void enableSimulation(PxRigidActor* actor, bool value);
 	void enableSceneQuery(PxRigidActor* actor, bool value);
 	void makeActorTrigger(PxRigidActor * actor);
-
 	void releaseCollider(CHandle handle);
 
+	FilterGroup getFilterByName(const std::string& name);
 	PxScene* getScene() { return scene; }
-
 	BasicControllerHitCallback* getGameControllerHitCallback() { return basicControllerHitCallback; }
 	BasicQueryFilterCallback* getGameQueryFilterCallback() { return basicQueryFilterCallback; }
-
-
-
-
 };
+
+#define PX_RELEASE(x)  if(x) x->release(), x = nullptr;
