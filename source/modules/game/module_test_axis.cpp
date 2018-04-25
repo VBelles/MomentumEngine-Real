@@ -4,7 +4,7 @@
 #include "camera/camera.h"
 #include "render/render_objects.h"
 #include "entity/entity.h"
-#include "modules/game/module_entities.h"
+#include "modules/system/module_entities.h"
 #include "resources/resources_manager.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"

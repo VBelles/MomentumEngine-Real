@@ -37,12 +37,10 @@ bool CEngine::start() {
 	static CModulePause module_pause("pause");
 
 	_modules.registerSystemModule(&_module_entities);
-	//_modules.registerSystemModule(&_module_physics);
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_fsm);
 
-	//_modules.registerGameModule(&_module_entities);
 	_modules.registerGameModule(&_module_physics);
 	_modules.registerGameModule(&_module_scripting);
 	_modules.registerGameModule(&module_splash);
