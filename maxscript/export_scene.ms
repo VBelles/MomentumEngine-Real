@@ -500,6 +500,10 @@ struct TSceneExporter (
 				if childClass == circle or
 			       childClass == SplineShape then curveType = "circular"
 				
+				local closed = false
+				if childClass == circle then closed = true
+				else closed = isClosed child 1
+				
 				fs.writeComma()
 				fs.writeKey type
 				
@@ -510,7 +514,7 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "loop" true
 					fs.writeComma()
-					fs.writeKeyValue "closed" (isClosed child 1)
+					fs.writeKeyValue "closed" closed
 					fs.writeComma()
 					fs.writeKeyValue "speed" 0.2
 					fs.writeComma()
@@ -1021,10 +1025,9 @@ struct TSceneExporter (
 	),
 
 	-- --MOVABLE-------------------------------------------------
-	-- TO DO: this object should be nested with associated trigger,
-	-- right now we do two entities at once, manually.
 	fn exportMovable obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
+		if isLine obj then return false
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1172,6 +1175,7 @@ TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el tran
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
+TODO: Exportar pinchos, mech, rotate, coins.
 */
 
 /*----------------------------------------------------------------------------------

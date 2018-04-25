@@ -1,0 +1,773 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms2-move013",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "-12.8812 29.6525 -56.8372",
+        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "0.25 2.0 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "-16.7306 29.4001 -56.2888",
+           "-12.0321 29.4001 -54.5787",
+           "-12.0321 29.4001 -54.5787",
+           "-15.0205 29.4001 -60.9872",
+           "-21.4291 29.4001 -57.9989",
+           "-18.4407 29.4001 -51.5903",
+           "-18.4407 29.4001 -51.5903"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move013_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "0.25 2.0 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move013"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move012",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "-16.9372 29.6525 -49.388",
+        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "0.25 2.0 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "-16.7306 29.4001 -56.2888",
+           "-12.0321 29.4001 -54.5787",
+           "-12.0321 29.4001 -54.5787",
+           "-15.0205 29.4001 -60.9872",
+           "-21.4291 29.4001 -57.9989",
+           "-18.4407 29.4001 -51.5903",
+           "-18.4407 29.4001 -51.5903"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move012_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "0.25 2.0 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move012"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move011",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "-21.4407 29.6525 -57.2903",
+        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "0.25 2.0 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "-16.7306 29.4001 -56.2888",
+           "-12.0321 29.4001 -54.5787",
+           "-12.0321 29.4001 -54.5787",
+           "-15.0205 29.4001 -60.9872",
+           "-21.4291 29.4001 -57.9989",
+           "-18.4407 29.4001 -51.5903",
+           "-18.4407 29.4001 -51.5903"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move011_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "0.25 2.0 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move011"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-mech003-appear001",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "46.9993 11.7471 26.7373",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "1.5 0.25 1.5",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "speed": 0.2,
+        "knots":
+        [
+           "47.0915 11.9517 26.6707",
+           "47.0915 11.9517 26.6707",
+           "59.5237 11.9517 31.932",
+           "65.5286 11.9517 23.0906",
+           "60.8059 11.9517 18.3361",
+           "60.8059 11.9517 18.3361"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-mech003-appear001_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "1.5 0.25 1.5",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-mech003-appear001"
+      }
+    }
+  },
+,
+  {
+    "entity":
+    {
+      "name": "ms2-move009",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "31.3613 48.1095 4.00446",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "1.5 0.25 1.5",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "speed": 0.2,
+        "knots":
+        [
+           "31.4047 48.1077 3.90671",
+           "31.4047 48.1077 3.90671",
+           "10.305 48.1077 -8.27522",
+           "10.305 48.1077 -8.27522"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move009_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "1.5 0.25 1.5",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move009"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move008",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "-42.9832 35.0558 5.74433",
+        "rotation": "0.0 0.5 0.0 -0.866025"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "2.0 0.25 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "speed": 0.2,
+        "knots":
+        [
+           "-43.1086 35.0378 5.70251",
+           "-43.1086 35.0378 5.70251",
+           "-48.4876 35.0382 8.71697",
+           "-48.4876 35.0382 8.71697"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move008_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "2.0 0.25 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move008"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move001",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "-26.0587 5.194 -42.8964",
+        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "0.5 2.0 5.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "speed": 0.2,
+        "knots":
+        [
+           "-25.4701 4.7628 -44.9723",
+           "-25.4701 4.7628 -44.9723",
+           "-25.4701 16.4552 -44.9723",
+           "-25.4701 16.4552 -44.9723"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move001_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "0.5 2.0 5.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move001"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move004",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "5.42969 24.5329 -30.8586",
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "2.0 0.25 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "19.1899 24.6014 -30.1029",
+           "32.8456 24.6014 -30.1029",
+           "32.8456 24.6014 -30.1029",
+           "19.1899 24.6014 -43.7586",
+           "5.53419 24.6014 -30.1029",
+           "19.1899 24.6014 -16.4471",
+           "19.1899 24.6014 -16.4471"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move004_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "2.0 0.25 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move004"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move003",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "26.2359 24.5329 -18.7607",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "2.0 0.25 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "19.1899 24.6014 -30.1029",
+           "32.8456 24.6014 -30.1029",
+           "32.8456 24.6014 -30.1029",
+           "19.1899 24.6014 -43.7586",
+           "5.53419 24.6014 -30.1029",
+           "19.1899 24.6014 -16.4471",
+           "19.1899 24.6014 -16.4471"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move003_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "2.0 0.25 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move003"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move002",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "26.065 24.5329 -43.1985",
+        "rotation": "0.0 -0.766044 0.0 -0.642788"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "2.0 0.25 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "19.1899 24.6014 -30.1029",
+           "32.8456 24.6014 -30.1029",
+           "32.8456 24.6014 -30.1029",
+           "19.1899 24.6014 -43.7586",
+           "5.53419 24.6014 -30.1029",
+           "19.1899 24.6014 -16.4471",
+           "19.1899 24.6014 -16.4471"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move002_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "2.0 0.25 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move002"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move005",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "19.1629 35.0558 -44.7531",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "2.0 0.25 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "19.1899 35.2299 -30.1028",
+           "32.8456 35.2299 -30.1028",
+           "32.8456 35.2299 -30.1028",
+           "19.1899 35.2299 -43.7586",
+           "5.53419 35.2299 -30.1028",
+           "19.1899 35.2299 -16.4471",
+           "19.1899 35.2299 -16.4471"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move005_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "2.0 0.25 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move005"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move007",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "7.06497 35.0558 -23.9469",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "2.0 0.25 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "19.1899 35.2299 -30.1029",
+           "32.8456 35.2299 -30.1029",
+           "32.8456 35.2299 -30.1029",
+           "19.1899 35.2299 -43.7586",
+           "5.53419 35.2299 -30.1029",
+           "19.1899 35.2299 -16.4471",
+           "19.1899 35.2299 -16.4471"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move007_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "2.0 0.25 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move007"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move006",
+      "prefab": "data/prefabs/platform_move.prefab",
+      "transform":
+      {
+        "pos": "31.5028 35.0558 -24.1178",
+        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "halfExtent": "2.0 0.25 2.0",
+        "group": "scenario"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "19.1899 35.2299 -30.1029",
+           "32.8456 35.2299 -30.1029",
+           "32.8456 35.2299 -30.1029",
+           "19.1899 35.2299 -43.7586",
+           "5.53419 35.2299 -30.1029",
+           "19.1899 35.2299 -16.4471",
+           "19.1899 35.2299 -16.4471"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-move006_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "2.0 0.25 2.0",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2-move006"
+      }
+    }
+  }
+]
