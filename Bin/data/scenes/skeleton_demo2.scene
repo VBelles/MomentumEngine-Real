@@ -16,8 +16,35 @@
       "local_aabb":true,
       "render" : [
         {
-          "mesh": "data/skeletons/ella/ella.mesh"
-          ,
+          "mesh": "data/skeletons/ella/ella_low.mesh",
+          "materials":
+          [
+            "data/skeletons/ella/ella.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/ella/cintacorta_der.mesh",
+          "materials":
+          [
+            "data/skeletons/ella/ella.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/ella/cintacorta_izq.mesh",
+          "materials":
+          [
+            "data/skeletons/ella/ella.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/ella/cintalarga_der.mesh",
+          "materials":
+          [
+            "data/skeletons/ella/ella.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/ella/cintalarga_izq.mesh",
           "materials":
           [
             "data/skeletons/ella/ella.material"

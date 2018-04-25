@@ -27,7 +27,6 @@ SamplerState samBorderLinear              : register(s1);
 SamplerComparisonState samPCF             : register(s2);
 SamplerComparisonState samPCFWhiteBorder  : register(s3);
 SamplerState samClampLinear               : register(s4);
-
 //--------------------------------------------------------------------------------------
 float4x4 getSkinMtx( int4 iBones, float4 iWeights ) {
   // This matrix will be reused for the position, Normal, Tangent, etc
@@ -54,7 +53,7 @@ float computeShadowFactor( float3 wPos ) {
 
   // Avoid the white band in the back side of the light
   if( pos_in_light_proj_space.z < 0. )
-    return 0.f;
+    return 1.f;
 
   // Poisson distribution random points around a circle
   const float2 offsets[] = {
