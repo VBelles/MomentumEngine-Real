@@ -279,7 +279,7 @@ struct TSceneExporter (
 		)
 		return false
 	),
-
+	
 	fn isCollider obj = (
 			if  classof obj != Box 	 and
 				classof obj != Sphere and
@@ -289,6 +289,14 @@ struct TSceneExporter (
 			return false
 		)
 		return true
+	),
+	
+	fn hasChildCollider obj = (
+		if obj.children == undefined then return false
+		for child in obj.children do (
+			if isCollider child then return true
+		)
+		return false
 	),
 	
 	-- --STRING ARRAY (generic for tags, groups, masks )---------
@@ -377,7 +385,6 @@ struct TSceneExporter (
 			-- Export Mesh
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
-			-- TODO: Pasarle aquí vtxType:"pos" si queremos exportar collider mesh.
 			exportMeshObject obj (project_path + mesh_name)
 
 			fs.writeComma()
@@ -390,6 +397,20 @@ struct TSceneExporter (
 
 			fs.writeKey "materials"
 			fs.arrayOfStrings exported_materials
+		fs.endObj()
+	),
+	
+	-- --COLLIDER MESH------------------------------------------
+	fn exportColliderMesh obj = (
+		fs.writeKey "collider"
+		fs.beginObj()
+			local mesh_name = mesh_path + obj.name + ".col_mesh"
+			fs.writeKeyValue "col_mesh" mesh_name
+			fs.writeComma()
+			fs.writeKeyValue "type" "static"
+		
+			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"
+
 		fs.endObj()
 	),
 
@@ -536,6 +557,13 @@ struct TSceneExporter (
 		)
 	),
 	
+	fn exportBreakable hp:1 = (
+		fs.writeKey "breakable"
+		fs.beginObj()
+			fs.writeKeyValue "hp" hp
+		fs.endObj()
+	),
+	
 	-- --EDITABLE MESH-------------------------------------------
 	fn exportEditableMesh obj pure: breakable: = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
@@ -547,29 +575,33 @@ struct TSceneExporter (
 		fs.beginArray()
 			exportRenderMesh obj
 		fs.endArray()
-
-		for child in obj.children do (
-			if isCollider child then (
-				fs.writeComma()
-				--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
-				local movable = hasChildLine child
-				if pure == unsupplied then pure = false
-				exportCompCollider child dyn:(pure or movable)
-				if pure then (
+		
+		if hasChildCollider obj then (
+			for child in obj.children do (
+				if isCollider child then (
 					fs.writeComma()
-					exportPurity()
-				)
-				if breakable != unsupplied and breakable then (
-					fs.writeComma()
-					fs.writeKey "breakable"
-					fs.beginObj()
-						fs.writeKeyValue "hp" 1
-					fs.endObj()
-				)
-				if movable then (
-					exportSpline child
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
+					local movable = hasChildLine child
+					if pure == unsupplied then pure = false
+					exportCompCollider child dyn:(pure or movable)
+					if pure then (
+						fs.writeComma()
+						exportPurity()
+					)
+					if breakable != unsupplied and breakable then (
+						fs.writeComma()
+						exportBreakable()
+					)
+					if movable then (
+						exportSpline child
+					)
 				)
 			)
+		)
+		else (
+			-- Doesn't have  child collider, so export mesh as collider.
+			fs.writeComma()
+			exportColliderMesh obj
 		)
 	),
 
@@ -1176,7 +1208,7 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Poder exportar cualquier mesh como collider.
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
-TODO: Pasarle vtxType:"pos" a exportMeshObject si queremos exportar collider mesh.
+TODO: Pasarle vtxType:"Pos" a exportMeshObject si queremos exportar collider mesh.
 */
 
 /*----------------------------------------------------------------------------------
