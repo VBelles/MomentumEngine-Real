@@ -2,6 +2,7 @@
 #include "module_physics.h"
 #include "modules/module.h"
 #include "entity/entity.h"
+#include "render/mesh/collision_mesh.h" 
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 
@@ -15,6 +16,7 @@
 #pragma comment(lib, "PhysX3Common_x64.lib")
 #pragma comment(lib, "PhysX3Extensions.lib")
 #pragma comment(lib, "PxFoundation_x64.lib")
+#pragma comment(lib, "PhysX3Cooking_x64.lib") 
 #pragma comment(lib, "PxPvdSDK_x64.lib")
 #pragma comment(lib, "PhysX3CharacterKinematic_x64.lib")
 
@@ -37,6 +39,7 @@ bool CModulePhysics::stop() {
 	PX_RELEASE(dispatcher);
 	PX_RELEASE(physics);
 	PX_RELEASE(pvd);
+	PX_RELEASE(cooking);
 	PX_RELEASE(foundation);
 	return true;
 }
@@ -58,6 +61,8 @@ bool CModulePhysics::createPhysx() {
 	physics = PxCreatePhysics(PX_PHYSICS_VERSION, *foundation, PxTolerancesScale(), true, pvd);
 	if (!physics)
 		fatal("PxCreatePhysics failed");
+
+	cooking = PxCreateCooking(PX_PHYSICS_VERSION, physics->getFoundation(), physics->getTolerancesScale());
 
 	return true;
 }
@@ -100,9 +105,8 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 	PxRigidActor* actor = nullptr;
 
 	if (config.type == "cct") {
-		PxController* controller = createCCT(config);
+		PxController* controller = createCCT(config, initialTrans);
 		compCollider.controller = controller;
-		controller->setFootPosition(PxExtendedVec3(initialTrans.p.x, initialTrans.p.y, initialTrans.p.z));
 		actor = controller->getActor();
 	}
 	else {
@@ -115,18 +119,32 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 }
 
 
-PxController* CModulePhysics::createCCT(const ColliderConfig& config) {
-	PxCapsuleControllerDesc capsuleDesc;
-	capsuleDesc.height = config.height;
-	capsuleDesc.radius = config.radius;
-	capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
-	capsuleDesc.stepOffset = config.step;
-	capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
-	capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
-	capsuleDesc.material = defaultMaterial;
-	capsuleDesc.reportCallback = basicControllerHitCallback;
-	capsuleDesc.behaviorCallback = basicControllerBehavior;
-	PxController* controller = controllerManager->createController(capsuleDesc);
+PxController* CModulePhysics::createCCT(const ColliderConfig& config, PxTransform& initialTransform) {
+	PxControllerDesc* cDesc = nullptr;
+
+	if (config.shapeType == PxGeometryType::eBOX) {
+		PxBoxControllerDesc boxDesc;
+		boxDesc.halfForwardExtent = config.halfExtent.z;
+		boxDesc.halfSideExtent = config.halfExtent.x;
+		boxDesc.halfHeight = config.halfExtent.y;
+		cDesc = &boxDesc;
+	}
+	else {
+		PxCapsuleControllerDesc capsuleDesc;
+		capsuleDesc.height = config.height;
+		capsuleDesc.radius = config.radius;
+		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
+		cDesc = &capsuleDesc;
+	}
+	cDesc->position = PxExtendedVec3(initialTransform.p.x, initialTransform.p.y, initialTransform.p.z);
+	cDesc->stepOffset = config.step;
+	cDesc->nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
+	cDesc->slopeLimit = cosf(deg2rad(config.slope));
+	cDesc->material = defaultMaterial;
+	cDesc->reportCallback = basicControllerHitCallback;
+	cDesc->behaviorCallback = basicControllerBehavior;
+	cDesc->position = PxExtendedVec3(initialTransform.p.x, initialTransform.p.y, initialTransform.p.z);
+	PxController* controller = controllerManager->createController(*cDesc);
 	PX_ASSERT(controller);
 	return controller;
 }
@@ -162,7 +180,32 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			PxSphereGeometry sphere = PxSphereGeometry(config.radius);
 			shapeGeometry = &sphere;
 		}
+		else if (config.shapeType == physx::PxGeometryType::eCONVEXMESH) {
+			// http://docs.nvidia.com/gameworks/content/gameworkslibrary/physx/guide/Manual/Geometry.html 
 
+			PxConvexMeshDesc convexDesc;
+			convexDesc.points.count = config.colMesh->mesh.header.num_vertexs;
+			convexDesc.points.stride = config.colMesh->mesh.header.bytes_per_vtx;
+			convexDesc.points.data = config.colMesh->mesh.vtxs.data();
+			convexDesc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
+
+//#ifdef _DEBUG 
+//			// mesh should be validated before cooking without the mesh cleaning 
+//			bool res = cooking->validateConvexMesh(convexDesc);
+//			PX_ASSERT(res);
+//#endif 
+
+			PxDefaultMemoryOutputStream buf;
+			bool status = cooking->cookConvexMesh(convexDesc, buf);
+			PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
+			PxConvexMesh* convexMesh = physics->createConvexMesh(input);
+			
+			PxConvexMeshGeometry convMesh = PxConvexMeshGeometry(convexMesh);
+			shapeGeometry = &convMesh;
+			//shape = gPhysics->createShape(PxConvexMeshGeometry(convexMesh), *gMaterial);
+		}
+		//....todo: more shapes
+		
 		PX_ASSERT(shapeGeometry);
 		PxShapeFlags shapeFlags = PxShapeFlag::eVISUALIZATION | PxShapeFlag::eSCENE_QUERY_SHAPE | PxShapeFlag::eSIMULATION_SHAPE;
 		PxShape* shape = actor->createShape(*shapeGeometry, *defaultMaterial, shapeFlags);

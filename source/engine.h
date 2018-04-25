@@ -2,7 +2,7 @@
 
 #include "modules/module_manager.h"
 #include "modules/system/module_render.h"
-#include "modules/game/module_entities.h"
+#include "modules/system/module_entities.h"
 #include "modules/game/physics/module_physics.h"
 #include "modules/system/module_input.h"
 #include "modules/system/module_cameras.h"

@@ -15,6 +15,7 @@
 #include "geometry/curve.h"
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_blur_radial.h"
+#include "render/mesh/collision_mesh.h" 
 
 CModuleRender::CModuleRender(const std::string& name)
     : IModule(name) {
@@ -51,6 +52,7 @@ bool CModuleRender::start() {
     Resources.registerResourceClass(getResourceClassOf<CMaterial>());
     Resources.registerResourceClass(getResourceClassOf<CCurve>());
     Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
+	Resources.registerResourceClass(getResourceClassOf<CCollisionMesh>());
 
     if (!createRenderObjects()) return false;
 
@@ -84,7 +86,7 @@ bool CModuleRender::start() {
     if (!cb_globals.create(CB_GLOBALS)) return false;
     if (!cb_blur.create(CB_BLUR))       return false;
 
-    cb_globals.global_exposure_adjustment = 0.5f;
+    cb_globals.global_exposure_adjustment = 1.f;
     cb_globals.global_ambient_adjustment = 1.f;
     cb_globals.global_world_time = 0.f;
     cb_globals.global_hdr_enabled = 1.f;

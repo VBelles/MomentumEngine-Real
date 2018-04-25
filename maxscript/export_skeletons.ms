@@ -78,8 +78,14 @@ struct  TSkeletonsExporter (
 		format "is bone geometry %\n" bone_geometry
 		if (not bone_geometry) then (
 			-- Pasar a modo figura si esta en modo pose
-			local was_in_figure_mode = root.controller.figureMode
-			root.controller.figureMode = true
+			if (classof root == Biped_Object) then (
+				local was_in_figure_mode = root.controller.figureMode
+				root.controller.figureMode = true
+			)
+			else (
+				local was_in_figure_mode = root.children[1].controller.figureMode
+				root.children[1].controller.figureMode = true
+			)
 		)
 		local bones_to_export = findBoneCandidates()
 		
@@ -94,15 +100,21 @@ struct  TSkeletonsExporter (
 		-- Export la mesh...
 		local obj_meshes = findMeshCandidates()
 		for obj in obj_meshes do (
-			--local mesh_file = skel_root_path + obj.name + ".cmf"
-			local mesh_file = skel_root_path + skel_name + ".cmf"
+			local mesh_file = skel_root_path + obj.name + ".cmf"
 			-- 0.01 threshold, no LOD, no springs
 			local rc = ExportCalMesh mesh_file skel_file obj 4 0.01 false false
 			if rc != 0 then throw ("Failed to export cal3d mesh from object " + obj.name )
 		)
 		
 		-- Restaurar el modo pose si es q estaba en modo pose inicialmente
-		if (not bone_geometry) then root.controller.figureMode = was_in_figure_mode
+		if (not bone_geometry) then (
+			if (classof root == Biped_Object) then (
+				root.controller.figureMode = was_in_figure_mode
+			)
+			else (
+				root.children[1].controller.figureMode = was_in_figure_mode
+			)
+		)
     ),
 	
 	fn exportAnim = (
@@ -126,9 +138,9 @@ struct  TSkeletonsExporter (
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
 exportPath = substituteString exportPath "\\" "/"
-se = TSkeletonsExporter project_path: exportPath skel_name:"medusa"
+se = TSkeletonsExporter project_path: exportPath skel_name:"ella"
 
 --gc()
 --se = TSkeletonsExporter()
-se.exportSkelAndMeshes()
+--se.exportSkelAndMeshes()
 se.exportAnim()

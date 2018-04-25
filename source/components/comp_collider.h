@@ -3,6 +3,8 @@
 #include "comp_base.h"
 #include "entity/common_msgs.h"
 
+class CCollisionMesh;
+
 using namespace physx;
 
 struct TMsgTriggerEnter {
@@ -28,6 +30,8 @@ struct ColliderConfig {
 	unsigned int group;
 	unsigned int mask;
 	bool isTrigger;
+
+    const CCollisionMesh* colMesh = nullptr;
 };
 
 class TCompCollider : public TCompBase {
