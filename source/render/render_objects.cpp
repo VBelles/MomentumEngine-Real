@@ -272,6 +272,17 @@ void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color) {
     renderMesh(mesh, unit_cube_to_aabb, color);
 }
 
+void renderWiredCube(const VEC3& position, const QUAT& rotation, const VEC3 halfExent, MAT44 world, VEC4 color = VEC4(0,0,0,1)) {
+	// Accede a una mesh que esta centrada en el origen y
+	// tiene 0.5 de half size
+	auto mesh = Resources.get("wired_unit_cube.mesh")->as<CRenderMesh>();
+	MAT44 unit_cube_to_aabb = MAT44::CreateScale(halfExent * 2.f)
+		* MAT44::CreateFromQuaternion(rotation)
+		* MAT44::CreateTranslation(position)
+		* world;
+	renderMesh(mesh, unit_cube_to_aabb, color);
+}
+
 void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture) {
     auto* tech = Resources.get(tech_name)->as<CRenderTechnique>();
     assert(tech);

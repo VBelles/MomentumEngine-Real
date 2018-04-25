@@ -24,7 +24,7 @@ public:
 		PxGeometry* geometry;
 		VEC3 offset;
 		PxQueryFilterData filterData;
-		bool activated;
+		bool enabled;
 		int boneId;
 	};
 private:
@@ -36,10 +36,15 @@ private:
 	TCompHitboxes::Hitbox& createHitbox(const HitboxConfig & config);
 	void updateHitbox(const Hitbox& hitbox, float delta);
 
+	void enable(std::string name);
+
+	void disable(std::string name);
+
 public:
 	DECL_SIBLING_ACCESS();
 	static void registerMsgs();
 	void debugInMenu();
+	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 

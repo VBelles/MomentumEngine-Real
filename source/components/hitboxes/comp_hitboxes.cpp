@@ -6,10 +6,24 @@
 #include "skeleton/comp_skeleton.h"
 #include "skeleton/cal3d2engine.h"
 #include "modules/game/physics/basic_query_filter_callback.h"
+#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("hitboxes", TCompHitboxes);
 
 void TCompHitboxes::debugInMenu() {
+}
+
+void TCompHitboxes::renderDebug() {
+	for (auto& p : hitboxes) {
+		const Hitbox& hitbox = p.second;
+		if (hitbox.enabled) {
+			CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox.boneId);
+			VEC3 pos = Cal2DX(bone->getTranslationAbsolute());
+			QUAT rot = Cal2DX(bone->getRotationAbsolute());
+			pos += hitbox.offset;
+			//renderWiredCube(pos, rot, fromPhysx((static_cast<PxBoxGeometry*>(hitbox.geometry))->halfExtents), )
+		}
+	}
 }
 
 void TCompHitboxes::registerMsgs() {
@@ -96,19 +110,18 @@ TCompHitboxes::Hitbox& TCompHitboxes::createHitbox(const HitboxConfig& config) {
 void TCompHitboxes::update(float delta) {
 	for (auto& p : hitboxes) {
 		const Hitbox& hitbox = p.second;
-		if (hitbox.activated) {
+		if (hitbox.enabled) {
 			updateHitbox(hitbox, delta);
 		}
 	}
 }
 
 
-
 void TCompHitboxes::updateHitbox(const Hitbox& hitbox, float delta) {
 	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox.boneId);
 	VEC3 pos = Cal2DX(bone->getTranslationAbsolute());
-	pos += hitbox.offset;
 	QUAT rot = Cal2DX(bone->getRotationAbsolute());
+	pos += hitbox.offset;
 	PxTransform pose = PxTransform(toPhysx(pos), toPhysx(rot));
 	PxOverlapBuffer overlapCallback;
 	bool status = EnginePhysics.getScene()->overlap(*hitbox.geometry, pose, overlapCallback,
@@ -118,6 +131,17 @@ void TCompHitboxes::updateHitbox(const Hitbox& hitbox, float delta) {
 	}
 }
 
+void TCompHitboxes::enable(std::string name) {
+	if (hitboxes.find("name") != hitboxes.end()) {
+		hitboxes[name].enabled = true;
+	}
+}
+
+void TCompHitboxes::disable(std::string name) {
+	if (hitboxes.find("name") != hitboxes.end()) {
+		hitboxes[name].enabled = false;
+	}
+}
 
 TCompSkeleton* TCompHitboxes::getSkeleton() {
 	return skeletonHandle;
