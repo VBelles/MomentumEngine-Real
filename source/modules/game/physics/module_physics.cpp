@@ -187,17 +187,17 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			convexDesc.points.data = config.colMesh->mesh.vtxs.data();
 			convexDesc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
 
-#ifdef _DEBUG 
-			// mesh should be validated before cooking without the mesh cleaning 
-			bool res = cooking->validateConvexMesh(convexDesc);
-			PX_ASSERT(res);
-#endif 
+//#ifdef _DEBUG 
+//			// mesh should be validated before cooking without the mesh cleaning 
+//			bool res = cooking->validateConvexMesh(convexDesc);
+//			PX_ASSERT(res);
+//#endif 
 
 			PxDefaultMemoryOutputStream buf;
 			bool status = cooking->cookConvexMesh(convexDesc, buf);
 			PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
 			PxConvexMesh* convexMesh = physics->createConvexMesh(input);
-
+			
 			PxConvexMeshGeometry convMesh = PxConvexMeshGeometry(convexMesh);
 			shapeGeometry = &convMesh;
 			//shape = gPhysics->createShape(PxConvexMeshGeometry(convexMesh), *gMaterial);

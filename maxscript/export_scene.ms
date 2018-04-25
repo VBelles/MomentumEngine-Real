@@ -372,7 +372,7 @@ struct TSceneExporter (
 			local mesh_name = mesh_path + obj.name + ".col_mesh"
 			fs.writeKeyValue "mesh_src" mesh_name
 			fs.writeComma()
-			fs.writeKeyValue "shape" "tri_mesh"
+			fs.writeKeyValue "shape" "convex_mesh"
 			fs.writeComma()
 			fs.writeKeyValue "type" "static"
 		

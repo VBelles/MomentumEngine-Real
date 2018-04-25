@@ -76,7 +76,7 @@
       "name": "_test_Box002mesh",
       "transform":
       {
-        "pos": "-40.3205 12.5931 -50.7672",
+        "pos": "-79 25 -59",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
