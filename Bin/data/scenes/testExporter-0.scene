@@ -2,24 +2,19 @@
   {
     "entity":
     {
-      "name": "_test_Box002mesh",
+      "name": "_testShadow",
       "transform":
       {
-        "pos": "-40.3205 12.5931 -50.7672",
+        "pos": "0.0 0.0 0.0",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/_test_Box002mesh.mesh",
+          "mesh": "data/meshes/_testShadow.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/empty.material"
           ]
         }
       ]
@@ -53,29 +48,58 @@
       {
         "shape": "box",
         "halfExtent": "4.0 0.5 4.5",
-        "is_dynamic": true
+        "type": "dynamic"
+      },
+      "follow_curve":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "speed": 0.2,
+        "knots":
+        [
+           "-92.0 19.0 44.0",
+           "-114.452 19.0 44.0",
+           "-114.452 19.0 44.0",
+           "-92.0 19.0 66.4521",
+           "-69.5479 19.0 44.0",
+           "-92.0 19.0 21.5478",
+           "-92.0 19.0 21.5478"
+        ]
       }
     }
   },
   {
     "entity":
     {
-      "name": "_testShadow",
+      "name": "_test_Box002mesh",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "-40.3205 12.5931 -50.7672",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/_testShadow.mesh",
+          "mesh": "data/meshes/_test_Box002mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
           ]
         }
-      ]
+      ],
+      "collider":
+      {
+        "shape": "tri_mesh",
+        "mesh_src": "data/meshes/_test_Box002mesh.col_mesh",
+        "type": "static"
+      }
     }
   }
 ]

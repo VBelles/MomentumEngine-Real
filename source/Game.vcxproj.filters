@@ -181,6 +181,8 @@
     <ClCompile Include="components\player\states\base_states\death\DeathActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\death\PitFallingActionState.cpp" />
     <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
+    <ClCompile Include="render\mesh\collision_mesh.cpp" />
+    <ClCompile Include="components\comp_follow_transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -393,6 +395,8 @@
     <ClInclude Include="components\player\states\base_states\death\DeathActionState.h" />
     <ClInclude Include="components\player\states\base_states\death\PitFallingActionState.h" />
     <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />
+    <ClInclude Include="render\mesh\collision_mesh.h" />
+    <ClInclude Include="components\comp_follow_transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

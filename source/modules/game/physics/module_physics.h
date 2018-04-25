@@ -12,17 +12,16 @@ class CModulePhysics : public IModule {
 private:
 	PxDefaultAllocator      defaultAllocatorCallback;
 	PxDefaultErrorCallback  defaultErrorCallback;
-
-	PxPhysics*				physics;
-
 	PxDefaultCpuDispatcher*	dispatcher;
-	PxScene*				scene;
 
-	PxPvd*                  pvd;
 	PxFoundation*			foundation;
+	PxPhysics*				physics;
+	PxCooking*				cooking;
+	PxScene*				scene;
+	PxPvd*                  pvd;
 	PxControllerManager*    controllerManager;
-
 	PxMaterial*				defaultMaterial;
+
 	BasicControllerHitCallback* basicControllerHitCallback;
 	BasicControllerBehavior* basicControllerBehavior;
 	BasicQueryFilterCallback* basicQueryFilterCallback;
@@ -31,7 +30,7 @@ private:
 
 	bool createPhysx();
 	bool createScene();
-	PxController* createCCT(const ColliderConfig& config);
+	PxController* createCCT(const ColliderConfig& config, PxTransform& initialTransform);
 	PxRigidActor* createRigidBody(const ColliderConfig& config, PxTransform& initialTransform);
 	void releaseColliders();
 
@@ -45,7 +44,7 @@ public:
 		Trigger = 1 << 5,
 		Scenario = Wall | Floor,
 		Characters = Player | Enemy,
-		All = Wall | Floor | Player | Enemy | Mechanism
+		All = Wall | Floor | Player | Enemy | Mechanism | Trigger
 	};
 
 	std::map<std::string, FilterGroup> filterGroupByName = {

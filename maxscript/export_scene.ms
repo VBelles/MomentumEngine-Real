@@ -3,8 +3,9 @@ gc()
 
 fileIn "export_mesh.ms" -- To avoid error on first execution.
 fileIn "add-attributes.ms" -- To avoid error on first execution.
+fileIn "utils.ms"
 
--- 
+-------------------------------------------------------------
 struct TJsonFormatter (
 	ofilename,			-- Name of output file
 	fs, 				-- File stream
@@ -114,10 +115,6 @@ struct TJsonFormatter (
 		)
 		endArray()
 	)
-)
-
-fn cleanMaterialName oldName = (
-	return substituteString oldName " " "_"
 )
 
 -- ----------------------------------------------------------
@@ -258,14 +255,6 @@ struct TSceneExporter (
 		fs.writeKeyValue "name" obj.name
 	),
 
-	fn isValidName aname = (
-		return findString aname " " == undefined
-	),
-
-	fn stringContainsSubstring strng substrng = (
-		matchpattern strng pattern:("?*" + substrng + "*")
-	),
-	
 	fn isLine obj = (
 		return classOf obj == line or 
 			   classOf obj == circle or
@@ -279,16 +268,24 @@ struct TSceneExporter (
 		)
 		return false
 	),
-
+	
 	fn isCollider obj = (
-			if  classof obj != Box 	 and
-				classof obj != Sphere and
-				classof obj != Capsule and
-				classof obj != Plane then (
+		if  classof obj != Box 	 and
+			classof obj != Sphere and
+			classof obj != Capsule and
+			classof obj != Plane then (
 			format "Wrong object %. Collisions must be Spheres, Boxes, Capsules or Planes.\n" obj.name
 			return false
 		)
 		return true
+	),
+	
+	fn hasChildCollider obj = (
+		if obj.children == undefined then return false
+		for child in obj.children do (
+			if isCollider child then return true
+		)
+		return false
 	),
 	
 	-- --STRING ARRAY (generic for tags, groups, masks )---------
@@ -300,30 +297,6 @@ struct TSceneExporter (
 				fs.writeValue strings[i] addIndent:true
 			)
 		fs.endArray()
-	),
-	
-	-- Converts a very small number to zero.
-	fn smallNumToZero num = (
-		if (num <  0.00001 and num > 0) or
-		   (num > -0.00001 and num < 0) then return 0
-		else return num
-	),
-	
-	fn roundSmallPosToZeros pos = (
-		local auxPos = pos
-		auxPos.x = smallNumToZero pos.x
-		auxPos.y = smallNumToZero pos.y
-		auxPos.z = smallNumToZero pos.z
-		return auxPos
-	),
-	
-	fn roundSmallQuatToZeros q = (
-		local auxQuat = q
-		auxQuat.x = smallNumToZero q.x
-		auxQuat.y = smallNumToZero q.y
-		auxQuat.z = smallNumToZero q.z
-		auxQuat.w = smallNumToZero q.w
-		return auxQuat
 	),
 	
 	-- --TRANSFORM-----------------------------------------------
@@ -377,7 +350,6 @@ struct TSceneExporter (
 			-- Export Mesh
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
-			-- TODO: Pasarle aquí vtxType:"pos" si queremos exportar collider mesh.
 			exportMeshObject obj (project_path + mesh_name)
 
 			fs.writeComma()
@@ -392,9 +364,25 @@ struct TSceneExporter (
 			fs.arrayOfStrings exported_materials
 		fs.endObj()
 	),
+	
+	-- --COLLIDER MESH------------------------------------------
+	fn exportColliderMesh obj = (
+		fs.writeKey "collider"
+		fs.beginObj()
+			local mesh_name = mesh_path + obj.name + ".col_mesh"
+			fs.writeKeyValue "mesh_src" mesh_name
+			fs.writeComma()
+			fs.writeKeyValue "shape" "tri_mesh"
+			fs.writeComma()
+			fs.writeKeyValue "type" "static"
+		
+			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"
+
+		fs.endObj()
+	),
 
 	-- --COMP COLLIDER------------------------------------------
-	fn exportCompCollider obj colliderGroups: masks: trig: dyn: = (
+	fn exportCompCollider obj colliderGroups: masks: trig:false dyn:false = (
 		fs.writeKey "collider"
 		fs.beginObj()
 
@@ -434,13 +422,12 @@ struct TSceneExporter (
 			fs.writeKeyValue "density" density
 		)
 
-		if obj.layer.name == "triggers" or
-		   (trig != unsupplied and trig) then (
+		if obj.layer.name == "triggers" or trig then (
 			fs.writeComma()
 			fs.writeKeyValue "is_trigger" trig
 		)
 		
-		if dyn != unsupplied and dyn then (
+		if dyn then (
 			fs.writeComma()
 			fs.writeKeyValue "type" "dynamic"
 		) else (
@@ -463,6 +450,7 @@ struct TSceneExporter (
 	
 	-- -- Purity----------
 	fn exportPurity = (
+		fs.writeComma()
 		fs.writeKeyEmpty "purity"
 		exportStringArray "tags" #("pure")		
 	),
@@ -502,7 +490,7 @@ struct TSceneExporter (
 	),
 	
 	-- --SPLINE--------------------------------------------------
-	fn exportSpline obj type: = (
+	fn exportSpline obj type:"follow_curve" = (
 		-- Executed only if we already know it has a child line.
 		local curveType = "catmull-rom"
 		for child in obj.children do (
@@ -513,8 +501,7 @@ struct TSceneExporter (
 			       childClass == SplineShape then curveType = "circular"
 				
 				fs.writeComma()
-				if type == unsupplied then fs.writeKey "follow_curve"
-				else fs.writeKey type
+				fs.writeKey type
 				
 				fs.beginObj()
 					fs.writeKeyValue "curve_type" curveType
@@ -536,8 +523,16 @@ struct TSceneExporter (
 		)
 	),
 	
+	fn exportBreakable hp:1 = (
+		fs.writeComma()
+		fs.writeKey "breakable"
+		fs.beginObj()
+			fs.writeKeyValue "hp" hp
+		fs.endObj()
+	),
+	
 	-- --EDITABLE MESH-------------------------------------------
-	fn exportEditableMesh obj pure: breakable: = (
+	fn exportEditableMesh obj pure:false breakable:false = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
 		exportName obj
 		fs.writeComma()
@@ -547,34 +542,36 @@ struct TSceneExporter (
 		fs.beginArray()
 			exportRenderMesh obj
 		fs.endArray()
-
-		for child in obj.children do (
-			if isCollider child then (
-				fs.writeComma()
-				--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
-				local movable = hasChildLine child
-				if pure == unsupplied then pure = false
-				exportCompCollider child dyn:(pure or movable)
-				if pure then (
+		
+		if hasChildCollider obj then (
+			for child in obj.children do (
+				if isCollider child then (
 					fs.writeComma()
-					exportPurity()
-				)
-				if breakable != unsupplied and breakable then (
-					fs.writeComma()
-					fs.writeKey "breakable"
-					fs.beginObj()
-						fs.writeKeyValue "hp" 1
-					fs.endObj()
-				)
-				if movable then (
-					exportSpline child
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
+					local movable = hasChildLine child
+					--if pure == unsupplied then pure = false
+					exportCompCollider child dyn:(pure or movable)
+					if pure then (
+						exportPurity()
+					)
+					if breakable then (
+						exportBreakable()
+					)
+					if movable then (
+						exportSpline child
+					)
 				)
 			)
+		)
+		else (
+			-- Doesn't have  child collider, so export mesh as collider.
+			fs.writeComma()
+			exportColliderMesh obj
 		)
 	),
 
 	-- --ENTITY COLLIDER-----------------------------------------
-	fn exportEntityCollider obj colliderGroups: trig: dyn: = (
+	fn exportEntityCollider obj colliderGroups: trig:false dyn:false = (
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -854,7 +851,7 @@ struct TSceneExporter (
 	),
 	
 	-- --DEFAULT ------------------------------------------------
-	fn exportDefault obj nValidObjs pure: breakable: = (
+	fn exportDefault obj nValidObjs pure:false breakable:false = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -965,19 +962,6 @@ struct TSceneExporter (
 				local objPos = obj.position * (rotateXMatrix -90)
 				local lookAtPos = [-1, objPos.y, -1]
 				exportTransform obj lookAtCoord:lookAtPos
-				
-				-- If it's flying enemy.
-				if prefabName == enemyAirPrefabName then (
-					fs.writeComma()
-					fs.writeKey "collider"
-					fs.beginObj()
-						fs.writeKeyValue "shape" "sphere"
-						fs.writeComma()
-						fs.writeKeyValue "radius" 0.3
-						fs.writeComma()
-						fs.writeKeyValue "group" "Enemy"
-					fs.endObj()
-				)
 				-- Add child spline if it exists.
 				if hasChildLine obj then (
 					exportSpline obj type:"patrolPath"
@@ -1187,9 +1171,7 @@ TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 4
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset? (De todas formas se ignoran teniendo parent.)
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
-TODO: Poder exportar cualquier mesh como collider.
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
-TODO: Pasarle vtxType:"pos" a exportMeshObject si queremos exportar collider mesh.
 */
 
 /*----------------------------------------------------------------------------------
