@@ -11,7 +11,7 @@ ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
-	animation = "melee";
+	animation = "liberarenergia";
 }
 
 void ReleasePowerAirActionState::update (float delta) {

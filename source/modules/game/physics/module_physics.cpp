@@ -202,7 +202,24 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			
 			PxConvexMeshGeometry convMesh = PxConvexMeshGeometry(convexMesh);
 			shapeGeometry = &convMesh;
-			//shape = gPhysics->createShape(PxConvexMeshGeometry(convexMesh), *gMaterial);
+		}
+		else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH) {
+			PxTriangleMeshDesc triMesh;
+			triMesh.points.count = config.colMesh->mesh.header.num_vertexs;
+			triMesh.points.stride = config.colMesh->mesh.header.bytes_per_vtx;
+			triMesh.points.data = config.colMesh->mesh.vtxs.data();
+			
+			triMesh.triangles.count = config.colMesh->mesh.header.num_indices / 3;
+			triMesh.triangles.stride = config.colMesh->mesh.header.bytes_per_idx * 3;
+			triMesh.triangles.data = config.colMesh->mesh.idxs.data();
+			
+			PxDefaultMemoryOutputStream buf;
+			bool status = cooking->cookTriangleMesh(triMesh, buf);
+			PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
+			PxTriangleMesh* triangleMesh = physics->createTriangleMesh(input);
+
+			PxTriangleMeshGeometry triangMesh = PxTriangleMeshGeometry(triangleMesh);
+			shapeGeometry = &triangMesh;
 		}
 		//....todo: more shapes
 		
@@ -211,6 +228,7 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 		PxShape* shape = actor->createShape(*shapeGeometry, *defaultMaterial, shapeFlags);
 		shape->setLocalPose(offset);
 	}
+
 	if (config.isTrigger) {
 		makeActorTrigger(actor);
 	}
