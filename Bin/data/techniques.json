@@ -33,6 +33,13 @@
     "rs_config": "wireframe",
     "category": "general"
   },
+  "solid_objs_PosNUvUvTSkin": {
+    "vs_file": "data/shaders/solid.fx",
+    "vs_entry_point": "VS_Objs_Skin",
+    "vertex_type": "PosNUvUvTSkin",
+    "rs_config": "wireframe",
+    "category": "general"
+  },
 
 
   "shadows": {
