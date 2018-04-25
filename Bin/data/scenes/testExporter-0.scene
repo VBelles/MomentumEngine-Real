@@ -96,7 +96,8 @@
       ],
       "collider":
       {
-        "col_mesh": "data/meshes/_test_Box002mesh.col_mesh",
+        "shape": "tri_mesh",
+        "mesh_src": "data/meshes/_test_Box002mesh.col_mesh",
         "type": "static"
       }
     }
