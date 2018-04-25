@@ -36,7 +36,6 @@ void TCompHitboxes::load(const json& j, TEntityParseContext& ctx) {
 		for (int i = 0; i < hitboxesConfig.size(); ++i) {
 			const json& jHitbox = j["hitboxes"][i];
 			hitboxesConfig[i] = loadHitbox(jHitbox);
-			dbg("Name: %s\n", hitboxesConfig[i].name.c_str());
 		}
 	}
 }
@@ -44,7 +43,7 @@ void TCompHitboxes::load(const json& j, TEntityParseContext& ctx) {
 TCompHitboxes::HitboxConfig TCompHitboxes::loadHitbox(const json& jHitbox) {
 	HitboxConfig config = {};
 	config.name = jHitbox.value("name", "");
-
+	config.boneName = jHitbox.value("bone", "");
 	assert(config.name != "");
 	if (jHitbox.count("offset"))
 		config.offset = loadVEC3(jHitbox["offset"]);
@@ -96,9 +95,8 @@ TCompHitboxes::Hitbox TCompHitboxes::createHitbox(const HitboxConfig& config) {
 	hitbox.offset = config.offset;
 
 	hitbox.boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
-	assert(hitbox.boneId != -1);
 
-	//hitbox.boneId = 1;
+	assert(hitbox.boneId != -1);
 
 	hitbox.filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
 		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eANY_HIT));
@@ -109,7 +107,7 @@ TCompHitboxes::Hitbox TCompHitboxes::createHitbox(const HitboxConfig& config) {
 	else if (config.shape == "box") {
 		hitbox.geometry = new PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z);
 	}
-	//hitbox.enabled = true;
+	
 	return hitbox;
 }
 
@@ -134,10 +132,10 @@ void TCompHitboxes::updateHitbox(const Hitbox& hitbox, float delta) {
 	bool status = EnginePhysics.getScene()->overlap(*hitbox.geometry, pose, overlapCallback,
 		hitbox.filterData, EnginePhysics.getGameQueryFilterCallback());
 	if (status && overlapCallback.hasBlock) {
-		dbg("Hit\n");
+		//dbg("Hit\n");
 	}
 
-	dbg("%f,%f,%f\n", pos.x, pos.y, pos.z);
+	//dbg("%f,%f,%f\n", pos.x, pos.y, pos.z);
 }
 
 void TCompHitboxes::enable(std::string name) {

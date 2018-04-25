@@ -133,7 +133,7 @@
 						"halfExtent": "1 1 1",
 						"group":["player"],
 						"mask":["enemies"],
-						"bone":"pene"
+						"bone":"Bip001 R Hand"
 
 					}
 
