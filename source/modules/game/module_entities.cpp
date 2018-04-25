@@ -102,6 +102,7 @@ void CModuleEntities::reset() {
 		h.destroy();
 	});
 	CHandleManager::destroyAllPendingObjects();
+	TCompName::all_names.clear();
 }
 
 void CModuleEntities::render() {
