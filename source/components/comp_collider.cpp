@@ -14,9 +14,8 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.isTrigger = j.value("is_trigger", false);
 	config.height = j.value("height", 0.f);
 	config.step = j.value("step", 0.5f);
-	config.slope = j.value("slope", 0.0f);
-	config.group = CModulePhysics::FilterGroup::Scenario;
-	config.mask = CModulePhysics::FilterGroup::All;
+	config.slope = j.value("slope", 45.0f);
+	
 
 	if (j.count("halfExtent")) {
 		config.halfExtent = loadVEC3(j["halfExtent"]);
@@ -70,12 +69,18 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 			config.group = config.group | EnginePhysics.getFilterByName(group);
 		}
 	}
+	else {
+		config.group = CModulePhysics::FilterGroup::Scenario;
+	}
 	
 	if (j.count("mask")) {
 		for (std::string mask : j["mask"]) {
 			transform(mask.begin(), mask.end(), mask.begin(), ::tolower);
 			config.mask = config.mask | EnginePhysics.getFilterByName(mask);
 		}
+	}
+	else {
+		config.mask = CModulePhysics::FilterGroup::All;
 	}
 	
 }

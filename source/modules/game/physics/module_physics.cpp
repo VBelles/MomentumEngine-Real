@@ -37,6 +37,7 @@ bool CModulePhysics::stop() {
 	PX_RELEASE(dispatcher);
 	PX_RELEASE(physics);
 	PX_RELEASE(pvd);
+	PX_RELEASE(cooking);
 	PX_RELEASE(foundation);
 	return true;
 }
@@ -58,6 +59,8 @@ bool CModulePhysics::createPhysx() {
 	physics = PxCreatePhysics(PX_PHYSICS_VERSION, *foundation, PxTolerancesScale(), true, pvd);
 	if (!physics)
 		fatal("PxCreatePhysics failed");
+
+	cooking = PxCreateCooking(PX_PHYSICS_VERSION, physics->getFoundation(), physics->getTolerancesScale());
 
 	return true;
 }
@@ -100,9 +103,8 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 	PxRigidActor* actor = nullptr;
 
 	if (config.type == "cct") {
-		PxController* controller = createCCT(config);
+		PxController* controller = createCCT(config, initialTrans);
 		compCollider.controller = controller;
-		controller->setFootPosition(PxExtendedVec3(initialTrans.p.x, initialTrans.p.y, initialTrans.p.z));
 		actor = controller->getActor();
 	}
 	else {
@@ -115,18 +117,32 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 }
 
 
-PxController* CModulePhysics::createCCT(const ColliderConfig& config) {
-	PxCapsuleControllerDesc capsuleDesc;
-	capsuleDesc.height = config.height;
-	capsuleDesc.radius = config.radius;
-	capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
-	capsuleDesc.stepOffset = config.step;
-	capsuleDesc.nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
-	capsuleDesc.slopeLimit = cosf(deg2rad(config.slope));
-	capsuleDesc.material = defaultMaterial;
-	capsuleDesc.reportCallback = basicControllerHitCallback;
-	capsuleDesc.behaviorCallback = basicControllerBehavior;
-	PxController* controller = controllerManager->createController(capsuleDesc);
+PxController* CModulePhysics::createCCT(const ColliderConfig& config, PxTransform& initialTransform) {
+	PxControllerDesc* cDesc = nullptr;
+
+	if (config.shapeType == PxGeometryType::eBOX) {
+		PxBoxControllerDesc boxDesc;
+		boxDesc.halfForwardExtent = config.halfExtent.z;
+		boxDesc.halfSideExtent = config.halfExtent.x;
+		boxDesc.halfHeight = config.halfExtent.y;
+		cDesc = &boxDesc;
+	}
+	else {
+		PxCapsuleControllerDesc capsuleDesc;
+		capsuleDesc.height = config.height;
+		capsuleDesc.radius = config.radius;
+		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
+		cDesc = &capsuleDesc;
+	}
+	cDesc->position = PxExtendedVec3(initialTransform.p.x, initialTransform.p.y, initialTransform.p.z);
+	cDesc->stepOffset = config.step;
+	cDesc->nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
+	cDesc->slopeLimit = cosf(deg2rad(config.slope));
+	cDesc->material = defaultMaterial;
+	cDesc->reportCallback = basicControllerHitCallback;
+	cDesc->behaviorCallback = basicControllerBehavior;
+	cDesc->position = PxExtendedVec3(initialTransform.p.x, initialTransform.p.y, initialTransform.p.z);
+	PxController* controller = controllerManager->createController(*cDesc);
 	PX_ASSERT(controller);
 	return controller;
 }
@@ -165,10 +181,6 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 		else if (config.shapeType == physx::PxGeometryType::eCONVEXMESH) {
 			// http://docs.nvidia.com/gameworks/content/gameworkslibrary/physx/guide/Manual/Geometry.html 
 
-			// We could save this cooking process 
-			PxTolerancesScale scale;
-			PxCooking *cooking = PxCreateCooking(PX_PHYSICS_VERSION, physics->getFoundation(), PxCookingParams(scale));
-
 			PxConvexMeshDesc convexDesc;
 			convexDesc.points.count = config.colMesh->mesh.header.num_vertexs;
 			convexDesc.points.stride = config.colMesh->mesh.header.bytes_per_vtx;
@@ -185,8 +197,6 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			bool status = cooking->cookConvexMesh(convexDesc, buf);
 			PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
 			PxConvexMesh* convexMesh = physics->createConvexMesh(input);
-
-			cooking->release();
 
 			PxConvexMeshGeometry convMesh = PxConvexMeshGeometry(convexMesh);
 			shapeGeometry = &convMesh;
