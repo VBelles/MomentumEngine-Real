@@ -111,8 +111,7 @@
 				"group" : ["player"],
 				"mask" : ["all"],
 				"step"  : 0.5,
-				"slope" : 45,
-				"hitboxes":[]
+				"slope" : 45
 			},
 			"render_ui":{},
 			"shadow":
@@ -125,7 +124,20 @@
 				]
 			},
 			"power_gauge":{
-				
+			},
+			"hitboxes":{
+				"hitboxes":[
+					{
+						"name":"hitbox01",
+						"shape": "box",
+						"halfExtent": "1 1 1",
+						"group":["player"],
+						"mask":["enemies"],
+						"bone":"pene"
+
+					}
+
+				]
 			}
 		}
 	},

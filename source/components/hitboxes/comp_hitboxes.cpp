@@ -21,7 +21,7 @@ void TCompHitboxes::renderDebug() {
 			VEC3 pos = Cal2DX(bone->getTranslationAbsolute());
 			QUAT rot = Cal2DX(bone->getRotationAbsolute());
 			pos += hitbox.offset;
-			//renderWiredCube(pos, rot, fromPhysx((static_cast<PxBoxGeometry*>(hitbox.geometry))->halfExtents), )
+			renderWiredCube(pos, rot, fromPhysx((static_cast<PxBoxGeometry*>(hitbox.geometry))->halfExtents), VEC4(0, 0, 0, 1));
 		}
 	}
 }
@@ -36,13 +36,16 @@ void TCompHitboxes::load(const json& j, TEntityParseContext& ctx) {
 		for (int i = 0; i < hitboxesConfig.size(); ++i) {
 			const json& jHitbox = j["hitboxes"][i];
 			hitboxesConfig[i] = loadHitbox(jHitbox);
+			dbg("Name: %s\n", hitboxesConfig[i].name.c_str());
 		}
 	}
 }
 
-TCompHitboxes::HitboxConfig& TCompHitboxes::loadHitbox(const json& jHitbox) {
+TCompHitboxes::HitboxConfig TCompHitboxes::loadHitbox(const json& jHitbox) {
 	HitboxConfig config = {};
+	config.name = jHitbox.value("name", "");
 
+	assert(config.name != "");
 	if (jHitbox.count("offset"))
 		config.offset = loadVEC3(jHitbox["offset"]);
 
@@ -77,25 +80,28 @@ TCompHitboxes::HitboxConfig& TCompHitboxes::loadHitbox(const json& jHitbox) {
 }
 
 void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
+	skeletonHandle = get<TCompSkeleton>();
+	assert(skeletonHandle.isValid());
 	for (int i = 0; i < hitboxesConfig.size(); ++i) {
 		const HitboxConfig& config = hitboxesConfig[i];
 		Hitbox& hitbox = createHitbox(config);
 		hitboxes[hitbox.name] = hitbox;
-
 	}
 }
 
-TCompHitboxes::Hitbox& TCompHitboxes::createHitbox(const HitboxConfig& config) {
+TCompHitboxes::Hitbox TCompHitboxes::createHitbox(const HitboxConfig& config) {
 	Hitbox hitbox = {};
 
 	hitbox.name = config.name;
 	hitbox.offset = config.offset;
 
 	hitbox.boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
-	assert(hitbox.boneId != -1 && (std::string("Bone not found: ") + config.boneName).c_str());
+	assert(hitbox.boneId != -1);
+
+	//hitbox.boneId = 1;
 
 	hitbox.filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
-		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER));
+		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eANY_HIT));
 
 	if (config.shape == "sphere") {
 		hitbox.geometry = new PxSphereGeometry(config.radius);
@@ -103,6 +109,7 @@ TCompHitboxes::Hitbox& TCompHitboxes::createHitbox(const HitboxConfig& config) {
 	else if (config.shape == "box") {
 		hitbox.geometry = new PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z);
 	}
+	//hitbox.enabled = true;
 	return hitbox;
 }
 
@@ -129,6 +136,8 @@ void TCompHitboxes::updateHitbox(const Hitbox& hitbox, float delta) {
 	if (status && overlapCallback.hasBlock) {
 		dbg("Hit\n");
 	}
+
+	dbg("%f,%f,%f\n", pos.x, pos.y, pos.z);
 }
 
 void TCompHitboxes::enable(std::string name) {

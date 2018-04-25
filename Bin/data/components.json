@@ -28,6 +28,7 @@
     "hierarchy",
     "player_controller",
     "player_model",
+    "hitboxes",
     "follow_transform",
     "power_gauge",
     "hitbox",

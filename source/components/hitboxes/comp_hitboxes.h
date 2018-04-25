@@ -32,8 +32,8 @@ private:
 	std::map<std::string, Hitbox> hitboxes;
 	CHandle skeletonHandle;
 	
-	TCompHitboxes::HitboxConfig& loadHitbox(const json& jHitbox);
-	TCompHitboxes::Hitbox& createHitbox(const HitboxConfig & config);
+	TCompHitboxes::HitboxConfig loadHitbox(const json& jHitbox);
+	TCompHitboxes::Hitbox createHitbox(const HitboxConfig & config);
 	void updateHitbox(const Hitbox& hitbox, float delta);
 
 	void enable(std::string name);
