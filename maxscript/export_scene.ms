@@ -3,8 +3,9 @@ gc()
 
 fileIn "export_mesh.ms" -- To avoid error on first execution.
 fileIn "add-attributes.ms" -- To avoid error on first execution.
+fileIn "utils.ms"
 
--- 
+-------------------------------------------------------------
 struct TJsonFormatter (
 	ofilename,			-- Name of output file
 	fs, 				-- File stream
@@ -114,10 +115,6 @@ struct TJsonFormatter (
 		)
 		endArray()
 	)
-)
-
-fn cleanMaterialName oldName = (
-	return substituteString oldName " " "_"
 )
 
 -- ----------------------------------------------------------
@@ -258,14 +255,6 @@ struct TSceneExporter (
 		fs.writeKeyValue "name" obj.name
 	),
 
-	fn isValidName aname = (
-		return findString aname " " == undefined
-	),
-
-	fn stringContainsSubstring strng substrng = (
-		matchpattern strng pattern:("?*" + substrng + "*")
-	),
-	
 	fn isLine obj = (
 		return classOf obj == line or 
 			   classOf obj == circle or
@@ -281,10 +270,10 @@ struct TSceneExporter (
 	),
 	
 	fn isCollider obj = (
-			if  classof obj != Box 	 and
-				classof obj != Sphere and
-				classof obj != Capsule and
-				classof obj != Plane then (
+		if  classof obj != Box 	 and
+			classof obj != Sphere and
+			classof obj != Capsule and
+			classof obj != Plane then (
 			format "Wrong object %. Collisions must be Spheres, Boxes, Capsules or Planes.\n" obj.name
 			return false
 		)
@@ -308,30 +297,6 @@ struct TSceneExporter (
 				fs.writeValue strings[i] addIndent:true
 			)
 		fs.endArray()
-	),
-	
-	-- Converts a very small number to zero.
-	fn smallNumToZero num = (
-		if (num <  0.00001 and num > 0) or
-		   (num > -0.00001 and num < 0) then return 0
-		else return num
-	),
-	
-	fn roundSmallPosToZeros pos = (
-		local auxPos = pos
-		auxPos.x = smallNumToZero pos.x
-		auxPos.y = smallNumToZero pos.y
-		auxPos.z = smallNumToZero pos.z
-		return auxPos
-	),
-	
-	fn roundSmallQuatToZeros q = (
-		local auxQuat = q
-		auxQuat.x = smallNumToZero q.x
-		auxQuat.y = smallNumToZero q.y
-		auxQuat.z = smallNumToZero q.z
-		auxQuat.w = smallNumToZero q.w
-		return auxQuat
 	),
 	
 	-- --TRANSFORM-----------------------------------------------
