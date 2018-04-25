@@ -11,7 +11,7 @@ ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModel
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxSmallHandle = hitboxSmall;
 	hitboxBigHandle = hitboxBig;
-	animation = "melee";
+	animation = "liberarenergia";
 }
 
 void ReleasePowerGroundActionState::update (float delta) {
