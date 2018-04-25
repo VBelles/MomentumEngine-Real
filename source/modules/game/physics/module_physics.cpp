@@ -2,6 +2,7 @@
 #include "module_physics.h"
 #include "modules/module.h"
 #include "entity/entity.h"
+#include "render/mesh/collision_mesh.h" 
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 
@@ -15,6 +16,7 @@
 #pragma comment(lib, "PhysX3Common_x64.lib")
 #pragma comment(lib, "PhysX3Extensions.lib")
 #pragma comment(lib, "PxFoundation_x64.lib")
+#pragma comment(lib, "PhysX3Cooking_x64.lib") 
 #pragma comment(lib, "PxPvdSDK_x64.lib")
 #pragma comment(lib, "PhysX3CharacterKinematic_x64.lib")
 
@@ -160,7 +162,38 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			PxSphereGeometry sphere = PxSphereGeometry(config.radius);
 			shapeGeometry = &sphere;
 		}
+		else if (config.shapeType == physx::PxGeometryType::eCONVEXMESH) {
+			// http://docs.nvidia.com/gameworks/content/gameworkslibrary/physx/guide/Manual/Geometry.html 
 
+			// We could save this cooking process 
+			PxTolerancesScale scale;
+			PxCooking *cooking = PxCreateCooking(PX_PHYSICS_VERSION, physics->getFoundation(), PxCookingParams(scale));
+
+			PxConvexMeshDesc convexDesc;
+			convexDesc.points.count = config.colMesh->mesh.header.num_vertexs;
+			convexDesc.points.stride = config.colMesh->mesh.header.bytes_per_vtx;
+			convexDesc.points.data = config.colMesh->mesh.vtxs.data();
+			convexDesc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
+
+#ifdef _DEBUG 
+			// mesh should be validated before cooking without the mesh cleaning 
+			bool res = cooking->validateConvexMesh(convexDesc);
+			PX_ASSERT(res);
+#endif 
+
+			PxDefaultMemoryOutputStream buf;
+			bool status = cooking->cookConvexMesh(convexDesc, buf);
+			PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
+			PxConvexMesh* convexMesh = physics->createConvexMesh(input);
+
+			cooking->release();
+
+			PxConvexMeshGeometry convMesh = PxConvexMeshGeometry(convexMesh);
+			shapeGeometry = &convMesh;
+			//shape = gPhysics->createShape(PxConvexMeshGeometry(convexMesh), *gMaterial);
+		}
+		//....todo: more shapes
+		
 		PX_ASSERT(shapeGeometry);
 		PxShapeFlags shapeFlags = PxShapeFlag::eVISUALIZATION | PxShapeFlag::eSCENE_QUERY_SHAPE | PxShapeFlag::eSIMULATION_SHAPE;
 		PxShape* shape = actor->createShape(*shapeGeometry, *defaultMaterial, shapeFlags);

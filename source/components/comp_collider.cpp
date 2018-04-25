@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_collider.h"
+#include "render/mesh/collision_mesh.h" 
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
@@ -51,6 +52,16 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	}
 	else if (shape == "capsule") {
 		config.shapeType = PxGeometryType::eCAPSULE;
+	}
+	else if (shape == "convex_mesh") {
+		config.shapeType = physx::PxGeometryType::eCONVEXMESH;
+		std::string mesh_src = j.value("mesh_src", "");
+		config.colMesh = Resources.get(mesh_src)->as<CCollisionMesh>();
+	}
+	else if (shape == "tri_mesh") {
+		config.shapeType = physx::PxGeometryType::eTRIANGLEMESH;
+		std::string mesh_src = j.value("mesh_src", "");
+		config.colMesh = Resources.get(mesh_src)->as<CCollisionMesh>();
 	}
 
 	if (j.count("group")) {
