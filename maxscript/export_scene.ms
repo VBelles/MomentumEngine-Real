@@ -415,7 +415,7 @@ struct TSceneExporter (
 	),
 
 	-- --COMP COLLIDER------------------------------------------
-	fn exportCompCollider obj colliderGroups: masks: trig: dyn: = (
+	fn exportCompCollider obj colliderGroups: masks: trig:false dyn:false = (
 		fs.writeKey "collider"
 		fs.beginObj()
 
@@ -455,13 +455,12 @@ struct TSceneExporter (
 			fs.writeKeyValue "density" density
 		)
 
-		if obj.layer.name == "triggers" or
-		   (trig != unsupplied and trig) then (
+		if obj.layer.name == "triggers" or trig then (
 			fs.writeComma()
 			fs.writeKeyValue "is_trigger" trig
 		)
 		
-		if dyn != unsupplied and dyn then (
+		if dyn then (
 			fs.writeComma()
 			fs.writeKeyValue "type" "dynamic"
 		) else (
@@ -484,6 +483,7 @@ struct TSceneExporter (
 	
 	-- -- Purity----------
 	fn exportPurity = (
+		fs.writeComma()
 		fs.writeKeyEmpty "purity"
 		exportStringArray "tags" #("pure")		
 	),
@@ -523,7 +523,7 @@ struct TSceneExporter (
 	),
 	
 	-- --SPLINE--------------------------------------------------
-	fn exportSpline obj type: = (
+	fn exportSpline obj type:"follow_curve" = (
 		-- Executed only if we already know it has a child line.
 		local curveType = "catmull-rom"
 		for child in obj.children do (
@@ -534,8 +534,7 @@ struct TSceneExporter (
 			       childClass == SplineShape then curveType = "circular"
 				
 				fs.writeComma()
-				if type == unsupplied then fs.writeKey "follow_curve"
-				else fs.writeKey type
+				fs.writeKey type
 				
 				fs.beginObj()
 					fs.writeKeyValue "curve_type" curveType
@@ -558,6 +557,7 @@ struct TSceneExporter (
 	),
 	
 	fn exportBreakable hp:1 = (
+		fs.writeComma()
 		fs.writeKey "breakable"
 		fs.beginObj()
 			fs.writeKeyValue "hp" hp
@@ -565,7 +565,7 @@ struct TSceneExporter (
 	),
 	
 	-- --EDITABLE MESH-------------------------------------------
-	fn exportEditableMesh obj pure: breakable: = (
+	fn exportEditableMesh obj pure:false breakable:false = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
 		exportName obj
 		fs.writeComma()
@@ -582,14 +582,12 @@ struct TSceneExporter (
 					fs.writeComma()
 					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
 					local movable = hasChildLine child
-					if pure == unsupplied then pure = false
+					--if pure == unsupplied then pure = false
 					exportCompCollider child dyn:(pure or movable)
 					if pure then (
-						fs.writeComma()
 						exportPurity()
 					)
-					if breakable != unsupplied and breakable then (
-						fs.writeComma()
+					if breakable then (
 						exportBreakable()
 					)
 					if movable then (
@@ -606,7 +604,7 @@ struct TSceneExporter (
 	),
 
 	-- --ENTITY COLLIDER-----------------------------------------
-	fn exportEntityCollider obj colliderGroups: trig: dyn: = (
+	fn exportEntityCollider obj colliderGroups: trig:false dyn:false = (
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -886,7 +884,7 @@ struct TSceneExporter (
 	),
 	
 	-- --DEFAULT ------------------------------------------------
-	fn exportDefault obj nValidObjs pure: breakable: = (
+	fn exportDefault obj nValidObjs pure:false breakable:false = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -1206,9 +1204,7 @@ TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 4
 TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset? (De todas formas se ignoran teniendo parent.)
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
-TODO: Poder exportar cualquier mesh como collider.
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
-TODO: Pasarle vtxType:"Pos" a exportMeshObject si queremos exportar collider mesh.
 */
 
 /*----------------------------------------------------------------------------------
