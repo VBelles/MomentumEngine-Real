@@ -181,7 +181,6 @@
     <ClCompile Include="components\player\states\base_states\death\PitFallingActionState.cpp" />
     <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
     <ClCompile Include="components\hitboxes\comp_hitboxes.cpp" />
-    <ClCompile Include="components\hitboxes\hitbox.cpp" />
     <ClCompile Include="render\mesh\collision_mesh.cpp" />
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
@@ -397,7 +396,6 @@
     <ClInclude Include="components\player\states\base_states\death\PitFallingActionState.h" />
     <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />
     <ClInclude Include="components\hitboxes\comp_hitboxes.h" />
-    <ClInclude Include="components\hitboxes\hitbox.h" />
     <ClInclude Include="render\mesh\collision_mesh.h" />
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="modules\system\module_entities.h" />

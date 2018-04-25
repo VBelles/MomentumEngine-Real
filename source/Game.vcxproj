@@ -198,7 +198,6 @@
     <ClCompile Include="fsm\custom_transitions.cpp" />
     <ClCompile Include="fsm\factory.cpp" />
     <ClCompile Include="fsm\fsm.cpp" />
-    <ClCompile Include="components\hitboxes\hitbox.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_behavior.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_hit_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_filter_shader.cpp" />
@@ -393,7 +392,6 @@
     <ClInclude Include="fsm\state.h" />
     <ClInclude Include="fsm\transition.h" />
     <ClInclude Include="game_constants.h" />
-    <ClInclude Include="components\hitboxes\hitbox.h" />
     <ClInclude Include="modules\game\physics\basic_controller_behavior.h" />
     <ClInclude Include="modules\game\physics\basic_controller_hit_callback.h" />
     <ClInclude Include="modules\game\physics\basic_filter_shader.h" />

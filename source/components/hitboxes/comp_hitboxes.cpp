@@ -3,6 +3,9 @@
 #include "entity/entity_parser.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
+#include "skeleton/comp_skeleton.h"
+#include "skeleton/cal3d2engine.h"
+#include "modules/game/physics/basic_query_filter_callback.h"
 
 DECL_OBJ_MANAGER("hitboxes", TCompHitboxes);
 
@@ -11,75 +14,111 @@ void TCompHitboxes::debugInMenu() {
 
 void TCompHitboxes::registerMsgs() {
 	DECL_MSG(TCompHitboxes, TMsgEntityCreated, onCreate);
-	DECL_MSG(TCompHitboxes, TMsgEntitiesGroupCreated, onGroupCreated);
-	DECL_MSG(TCompHitboxes, TMsgTriggerEnter, onTriggerEnter);
-}
-
-void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
-	
-}
-
-void TCompHitboxes::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-
 }
 
 void TCompHitboxes::load(const json& j, TEntityParseContext& ctx) {
-	if (j.count("offset")) {
-		offset = loadVEC3(j["offset"]);
+	if (j.count("hitboxes")) {
+		hitboxesConfig.resize(j["hitboxes"].size());
+		for (int i = 0; i < hitboxesConfig.size(); ++i) {
+			const json& jHitbox = j["hitboxes"][i];
+			hitboxesConfig[i] = loadHitbox(jHitbox);
+		}
 	}
 }
 
-void TCompHitboxes::update(float dt) {
-	TCompCollider *collider = get<TCompCollider>();
-	if (collider->isCreated()) {
-		TCompTransform *transform = get<TCompTransform>();
-		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+TCompHitboxes::HitboxConfig& TCompHitboxes::loadHitbox(const json& jHitbox) {
+	HitboxConfig config = {};
 
-		VEC3 front = transform->getFront();
-		VEC3 right = -transform->getLeft();
-		front.y = 0.f;
-		right.y = 0.f;
-		front.Normalize();
-		right.Normalize();
-		VEC3 desiredDirection = front * offset.z + right * offset.x;
+	if (jHitbox.count("offset"))
+		config.offset = loadVEC3(jHitbox["offset"]);
 
-		rigidDynamic->setKinematicTarget({ transform->getPosition().x + desiredDirection.x, transform->getPosition().y + offset.y, transform->getPosition().z + desiredDirection.z });
+	config.shape = jHitbox.value("shape", "box");
+
+	config.radius = jHitbox.value("radius", 0.f);
+
+	if (jHitbox.count("halfExtent")) {
+		config.halfExtent = loadVEC3(jHitbox["halfExtent"]);
+	}
+
+	config.group = 0;
+	config.mask = 0;
+
+	if (jHitbox.count("group")) {
+		for (std::string group : jHitbox["group"]) {
+			transform(group.begin(), group.end(), group.begin(), ::tolower);
+			config.group = config.group | EnginePhysics.getFilterByName(group);
+		}
+	}
+
+	assert(config.group);
+
+	if (jHitbox.count("mask")) {
+		for (std::string mask : jHitbox["mask"]) {
+			transform(mask.begin(), mask.end(), mask.begin(), ::tolower);
+			config.mask = config.mask | EnginePhysics.getFilterByName(mask);
+		}
+	}
+	assert(config.mask);
+	return config;
+}
+
+void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
+	for (int i = 0; i < hitboxesConfig.size(); ++i) {
+		const HitboxConfig& config = hitboxesConfig[i];
+		Hitbox& hitbox = createHitbox(config);
+		hitboxes[hitbox.name] = hitbox;
+
 	}
 }
 
-void TCompHitboxes::onTriggerEnter(const TMsgTriggerEnter& msg) {
-	if (handles.find(msg.h_other_entity) == handles.end()) {
-		handles.insert(msg.h_other_entity);
-		CEntity *owner = CHandle(this).getOwner();
-		TCompHierarchy *hierarchy = owner->get<TCompHierarchy>();
-		CEntity *parent = hierarchy->h_parent;
-		parent->sendMsg(TMsgHitboxEnter{ msg.h_other_entity });
+TCompHitboxes::Hitbox& TCompHitboxes::createHitbox(const HitboxConfig& config) {
+	Hitbox hitbox = {};
+
+	hitbox.name = config.name;
+	hitbox.offset = config.offset;
+
+	hitbox.boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
+	assert(hitbox.boneId != -1 && (std::string("Bone not found: ") + config.boneName).c_str());
+
+	hitbox.filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
+		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER));
+
+	if (config.shape == "sphere") {
+		hitbox.geometry = new PxSphereGeometry(config.radius);
+	}
+	else if (config.shape == "box") {
+		hitbox.geometry = new PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z);
+	}
+	return hitbox;
+}
+
+
+void TCompHitboxes::update(float delta) {
+	for (auto& p : hitboxes) {
+		const Hitbox& hitbox = p.second;
+		if (hitbox.activated) {
+			updateHitbox(hitbox, delta);
+		}
 	}
 }
 
-void TCompHitboxes::disable() {
-	TCompCollider* collider = get<TCompCollider>();
-	if (collider->isCreated()) {
-		collider->destroy();
+
+
+void TCompHitboxes::updateHitbox(const Hitbox& hitbox, float delta) {
+	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox.boneId);
+	VEC3 pos = Cal2DX(bone->getTranslationAbsolute());
+	pos += hitbox.offset;
+	QUAT rot = Cal2DX(bone->getRotationAbsolute());
+	PxTransform pose = PxTransform(toPhysx(pos), toPhysx(rot));
+	PxOverlapBuffer overlapCallback;
+	bool status = EnginePhysics.getScene()->overlap(*hitbox.geometry, pose, overlapCallback,
+		hitbox.filterData, EnginePhysics.getGameQueryFilterCallback());
+	if (status && overlapCallback.hasBlock) {
+		dbg("Hit\n");
 	}
 }
 
-void TCompHitboxes::enable() {
-	TCompCollider* collider = get<TCompCollider>();
-	if (!collider->isCreated()) {
-		handles.clear();
 
-		collider->create();
-
-		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-		rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
-	}
-}
-
-VEC3 TCompHitboxes::getOffset() {
-	return offset;
-}
-
-void TCompHitboxes::setOffset(VEC3 newOffset) {
-	offset = newOffset;
+TCompSkeleton* TCompHitboxes::getSkeleton() {
+	return skeletonHandle;
 }
