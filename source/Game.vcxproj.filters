@@ -135,7 +135,6 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
     <ClCompile Include="modules\game\module_pause.cpp" />
-    <ClCompile Include="modules\game\module_entities.cpp" />
     <ClCompile Include="modules\system\module_render.cpp" />
     <ClCompile Include="utils\geometry_utils.cpp" />
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
@@ -183,6 +182,7 @@
     <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
     <ClCompile Include="render\mesh\collision_mesh.cpp" />
     <ClCompile Include="components\comp_follow_transform.cpp" />
+    <ClCompile Include="modules\system\module_entities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -349,7 +349,6 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
     <ClInclude Include="modules\game\module_pause.h" />
-    <ClInclude Include="modules\game\module_entities.h" />
     <ClInclude Include="modules\system\module_render.h" />
     <ClInclude Include="utils\geometry_utils.h" />
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
@@ -397,6 +396,7 @@
     <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />
     <ClInclude Include="render\mesh\collision_mesh.h" />
     <ClInclude Include="components\comp_follow_transform.h" />
+    <ClInclude Include="modules\system\module_entities.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

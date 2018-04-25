@@ -63,6 +63,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 		config.colMesh = Resources.get(mesh_src)->as<CCollisionMesh>();
 	}
 
+	config.group = 0;
 	if (j.count("group")) {
 		for (std::string group : j["group"]) {
 			transform(group.begin(), group.end(), group.begin(), ::tolower);
@@ -72,7 +73,8 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	else {
 		config.group = CModulePhysics::FilterGroup::Scenario;
 	}
-	
+
+	config.mask = 0;
 	if (j.count("mask")) {
 		for (std::string mask : j["mask"]) {
 			transform(mask.begin(), mask.end(), mask.begin(), ::tolower);

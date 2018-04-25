@@ -70,7 +70,7 @@ void CModuleEntities::update(float delta) {
 		om->updateAll(scaled_time);
 	}
 
-    CHandleManager::destroyAllPendingObjects();
+	CHandleManager::destroyAllPendingObjects();
 
 	{ // Esto Juan lo tiene en module_render.cpp
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
@@ -93,6 +93,16 @@ bool CModuleEntities::stop() {
 	all_registered_msgs.clear();
 	TCompName::all_names.clear();
 	return true;
+}
+
+void CModuleEntities::reset() {
+	auto hm = getObjectManager<CEntity>();
+	hm->forEach([](CEntity* e) {
+		CHandle h(e);
+		h.destroy();
+	});
+	CHandleManager::destroyAllPendingObjects();
+	TCompName::all_names.clear();
 }
 
 void CModuleEntities::render() {
@@ -187,9 +197,9 @@ void CModuleEntities::render() {
 		}
 	});*/
 
-    //CRenderManager::get().renderCategory("default"); // Ya no hace falta.
-    CRenderManager::get().debugInMenu();
-  	//renderDebugOfComponents();
+	//CRenderManager::get().renderCategory("default"); // Ya no hace falta.
+	CRenderManager::get().debugInMenu();
+	//renderDebugOfComponents();
 }
 
 // Shows render debug of all components (axis and so on).
