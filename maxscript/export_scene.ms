@@ -451,14 +451,7 @@ struct TSceneExporter (
 
 		fs.endObj()
 	),
-	
-	-- -- Purity----------
-	fn exportPurity = (
-		fs.writeComma()
-		fs.writeKeyEmpty "purity"
-		exportStringArray "tags" #("pure")		
-	),
-	
+			
 	fn exportSplineKnots obj = (
 		fs.beginArray()
 			--Create a copy and convert it to SplineShape to be able to get the knots.
@@ -531,6 +524,22 @@ struct TSceneExporter (
 		)
 	),
 	
+	-- --PURE----------------------------------------------------
+	fn exportPurity = (
+		fs.writeComma()
+		fs.writeKeyEmpty "purity"
+		exportStringArray "tags" #("pure")		
+	),
+	
+	-- --ROTATE-----------------------------------------------------
+	fn exportPlatfRotation = (
+		fs.writeComma()
+		fs.writeKey "platform_rotative"
+		fs.beginObj()
+			fs.writeKeyValue "rotation_speed" "0 0 50"
+		fs.endObj()
+	),
+	
 	-- --BREAKABLE------------------------------------------------
 	fn exportBreakable hp:1 = (
 		fs.writeComma()
@@ -540,44 +549,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --EDITABLE MESH-------------------------------------------
-	fn exportEditableMesh obj pure:false breakable:false = (
-		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
-		exportName obj
-		fs.writeComma()
-		exportTransform obj
-		fs.writeComma()
-		fs.writeKey "render"
-		fs.beginArray()
-			exportRenderMesh obj
-		fs.endArray()
-		
-		if hasChildCollider obj then (
-			for child in obj.children do (
-				if isCollider child then (
-					fs.writeComma()
-					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
-					local movable = hasChildLine child
-					--if pure == unsupplied then pure = false
-					exportCompCollider child dyn:(pure or movable)
-					if pure then (
-						exportPurity()
-					)
-					if breakable then (
-						exportBreakable()
-					)
-					if movable then (
-						exportSpline child
-					)
-				)
-			)
-		)
-		else (
-			-- Doesn't have  child collider, so export mesh as collider.
-			fs.writeComma()
-			exportColliderMesh obj
-		)
-	),
+
 
 	-- --ENTITY COLLIDER-----------------------------------------
 	fn exportEntityCollider obj colliderGroups: masks: trig:false dyn:false = (
@@ -618,7 +590,7 @@ struct TSceneExporter (
 		fs.endObj()
 		return true
 	),
-	
+		
 	fn exportChildHitboxes obj capsuleHeight = (
 		for child in obj.children do (
 			if isCollider child and
@@ -659,130 +631,6 @@ struct TSceneExporter (
 	
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
-
-	-- --PLAYER ---------------------------------------------------
-	fn exportPlayer obj nValidObjs = (
-		if classOf obj != Editable_mesh then (
-			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
-			return false
-		)
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				exportTransform obj
-				fs.writeComma()
-				fs.writeKey "render"
-				fs.beginArray()
-					exportRenderMesh obj
-				fs.endArray()
-				fs.writeComma()
-				fs.writeKeyEmpty "player_controller"
-				fs.writeKey "player_model"
-				fs.beginObj()
-					fs.writeKeyValue "gravity" -55
-					fs.writeComma()
-					fs.writeKeyValue "walkingSpeed" 3
-					fs.writeComma()
-					fs.writeKey "ssj1"
-					fs.beginObj()
-						fs.writeKeyValue "rotation_speed" 11.0
-						fs.writeComma()
-						fs.writeKeyValue "maxSpeed" 7.0
-						fs.writeComma()
-						fs.writeKeyValue "shortHopVelocity" 16.0
-						fs.writeComma()
-						fs.writeKeyValue "jumpVelocity" "0 20 0"
-						fs.writeComma()
-						fs.writeKeyValue "longJumpVelocity" "0 11 12"
-						fs.writeComma()
-						fs.writeKeyValue "maxVelocityVertical"  30.0
-						fs.writeComma()
-						fs.writeKeyValue "acceleration" 30.0
-						fs.writeComma()
-						fs.writeKeyValue "deceleration" 7.0
-						fs.writeComma()
-						fs.writeKeyValue "airAcceleration" 30.0
-						fs.writeComma()
-						fs.writeKeyValue "falling_multiplier" 1.05
-						fs.writeComma()
-						fs.writeKeyValue "long_gravity_multiplier" 0.60
-					fs.endObj()
-					fs.writeComma()
-					fs.writeKey "ssj2"
-					fs.beginObj()
-						fs.writeKeyValue "rotation_speed" 14.0
-						fs.writeComma()
-						fs.writeKeyValue "maxSpeed" 11.0
-						fs.writeComma()
-						fs.writeKeyValue "shortHopVelocity" 18.0
-						fs.writeComma()
-						fs.writeKeyValue "jumpVelocity" "0 25 0"
-						fs.writeComma()
-						fs.writeKeyValue "longJumpVelocity" "0 12 17"
-						fs.writeComma()
-						fs.writeKeyValue "maxVelocityVertical" 30.0
-						fs.writeComma()
-						fs.writeKeyValue "acceleration" 32.0
-						fs.writeComma()
-						fs.writeKeyValue "deceleration" 8.0
-						fs.writeComma()
-						fs.writeKeyValue "airAcceleration" 35.0
-						fs.writeComma()
-						fs.writeKeyValue "falling_multiplier" 1.05
-						fs.writeComma()
-						fs.writeKeyValue "long_gravity_multiplier" 0.60
-					fs.endObj()
-					fs.writeComma()
-					fs.writeKey "ssj3"
-					fs.beginObj()
-						fs.writeKeyValue "rotation_speed" 17.0
-						fs.writeComma()
-						fs.writeKeyValue "maxSpeed" 14.0
-						fs.writeComma()
-						fs.writeKeyValue "shortHopVelocity" 20.0
-						fs.writeComma()
-						fs.writeKeyValue "jumpVelocity" "0 30 0"
-						fs.writeComma()
-						fs.writeKeyValue "longJumpVelocity" "0 13 22.5"
-						fs.writeComma()
-						fs.writeKeyValue "maxVelocityVertical" 30.0
-						fs.writeComma()
-						fs.writeKeyValue "acceleration" 35.0
-						fs.writeComma()
-						fs.writeKeyValue "deceleration" 9.0
-						fs.writeComma()
-						fs.writeKeyValue "airAcceleration" 40.0
-						fs.writeComma()
-						fs.writeKeyValue "falling_multiplier" 1.05
-						fs.writeComma()
-						fs.writeKeyValue "long_gravity_multiplier" 0.60
-					fs.endObj()
-					fs.writeComma()
-					fs.writeKeyEmpty "power_gauge"
-				fs.endObj() -- End player_model
-				fs.writeComma()
-				local capsuleHeight = 0
-				for child in obj.children do (
-					if isCollider child and
-						-- Pick the capsule. Shouldn't have more than one.
-						classOf child == Capsule then (
-							exportCompCollider child colliderGroups:#("Player") masks:#("all")
-							capsuleHeight = child.height
-					)
-				)
-				fs.writeComma()
-				fs.writeKeyEmpty "render_ui"
-				exportShadow()
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		
-		exportChildHitboxes obj capsuleHeight
-
-		return true
-	),
 	
 	-- --Give power --
 	fn exportGivePower maxPow: multi: = (
@@ -810,87 +658,7 @@ struct TSceneExporter (
 			fs.writeComma()
 		)
 	),
-	
-	-- --ENEMY PREFAB ---------------------------------------
-	fn exportEnemyPrefab obj nValidObjs = (
-		if classOf obj != Capsule and classOf obj != Sphere then return false
-		if obj.parent != undefined then return false
-		local meshPath = ""
-		local enemyType = "flying"
-		if stringContainsSubstring obj.layer.name "melee" then (
-			meshPath = "data/meshes/enemyMelee.mesh"
-			enemyType = "melee"
-		)
-		else if stringContainsSubstring obj.layer.name "ball" then (
-			meshPath = "data/meshes/enemigoBola.mesh"
-			enemyType = "ball"
-		)
-		else (
-			meshPath = "data/meshes/crisalida.mesh"
-		)
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				fs.writeKeyEmpty "transform"
 		
-				fs.writeKey "render"
-				fs.beginArray()
-					fs.beginObj()
-						fs.writeKeyValue "mesh" meshPath
-						fs.writeComma()
-						fs.writeKey "materials"
-						fs.beginArray()
-							fs.writeValue "data/materials/piedras1.material" addIndent:true
-						fs.endArray()
-						fs.writeComma()
-						fs.writeKeyValue "color" "0.45 0.28 0.8 1.0"
-					fs.endObj()
-				fs.endArray() -- End render
-				fs.writeComma()
-		
-				exportStringArray "tags" #("enemy")
-				fs.writeComma()
-				
-				fs.writeKey "respawner"
-				fs.beginObj()
-					fs.writeKeyValue "respawnTime" 10
-				fs.endObj()
-				fs.writeComma()
-				
-				exportShadow()
-				fs.writeComma()
-				
-				exportGivePower maxPow:50000 multi:1
-				fs.writeComma()
-				
-				exportBehaviorTree enemyType
-				
-				exportCompCollider obj colliderGroups:#("enemy") masks:#("all")
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		
-		exportChildHitboxes obj obj.height
-		
-		return true
-	),
-	
-	-- --DEFAULT ------------------------------------------------
-	fn exportDefault obj nValidObjs pure:false breakable:false = (
-		if classOf obj != Editable_mesh then (
-			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
-			return false
-		)
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportEditableMesh obj pure:pure breakable:breakable
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-
 	-- --COLLISION ----------------------------------------------
 	fn exportCollision obj nValidObjs = (
 		if not isCollider obj then return false
@@ -1132,6 +900,255 @@ struct TSceneExporter (
 		return true
 	),
 
+	-- --EDITABLE MESH-------------------------------------------
+	fn exportEditableMesh obj pure:false breakable:false rot:false = (
+		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
+		exportName obj
+		fs.writeComma()
+		exportTransform obj
+		fs.writeComma()
+		fs.writeKey "render"
+		fs.beginArray()
+			exportRenderMesh obj
+		fs.endArray()
+		
+		if hasChildCollider obj then (
+			for child in obj.children do (
+				if isCollider child then (
+					fs.writeComma()
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
+					local movable = hasChildLine child
+					--if pure == unsupplied then pure = false
+					exportCompCollider child dyn:(pure or movable or rot)
+					if pure then (
+						exportPurity()
+					)
+					if breakable then (
+						exportBreakable()
+					)
+					if movable then (
+						exportSpline child
+					)
+					if rot then (
+						exportPlatfRotation()
+					)
+				)
+			)
+		)
+		else (
+			-- Doesn't have  child collider, so export mesh as collider.
+			fs.writeComma()
+			exportColliderMesh obj
+		)
+	),
+	
+	-- --DEFAULT ------------------------------------------------
+	fn exportDefault obj nValidObjs pure:false breakable:false rot:false = (
+		if classOf obj != Editable_mesh then (
+			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
+			return false
+		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportEditableMesh obj pure:pure breakable:breakable rot:rot
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
+	-- ----------------------------------------------------------
+	-- ----------------------------------------------------------
+	
+	-- --ENEMY PREFAB ---------------------------------------
+	fn exportEnemyPrefab obj nValidObjs = (
+		if classOf obj != Capsule and classOf obj != Sphere then return false
+		if obj.parent != undefined then return false
+		local meshPath = ""
+		local enemyType = "flying"
+		if stringContainsSubstring obj.layer.name "melee" then (
+			meshPath = "data/meshes/enemyMelee.mesh"
+			enemyType = "melee"
+		)
+		else if stringContainsSubstring obj.layer.name "ball" then (
+			meshPath = "data/meshes/enemigoBola.mesh"
+			enemyType = "ball"
+		)
+		else (
+			meshPath = "data/meshes/crisalida.mesh"
+		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				fs.writeKeyEmpty "transform"
+		
+				fs.writeKey "render"
+				fs.beginArray()
+					fs.beginObj()
+						fs.writeKeyValue "mesh" meshPath
+						fs.writeComma()
+						fs.writeKey "materials"
+						fs.beginArray()
+							fs.writeValue "data/materials/piedras1.material" addIndent:true
+						fs.endArray()
+						fs.writeComma()
+						fs.writeKeyValue "color" "0.45 0.28 0.8 1.0"
+					fs.endObj()
+				fs.endArray() -- End render
+				fs.writeComma()
+		
+				exportStringArray "tags" #("enemy")
+				fs.writeComma()
+				
+				fs.writeKey "respawner"
+				fs.beginObj()
+					fs.writeKeyValue "respawnTime" 10
+				fs.endObj()
+				fs.writeComma()
+				
+				exportShadow()
+				fs.writeComma()
+				
+				exportGivePower maxPow:50000 multi:1
+				fs.writeComma()
+				
+				exportBehaviorTree enemyType
+				
+				exportCompCollider obj colliderGroups:#("enemy") masks:#("all")
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		
+		exportChildHitboxes obj obj.height
+		
+		return true
+	),
+	
+	-- --PLAYER ---------------------------------------------------
+	fn exportPlayer obj nValidObjs = (
+		if classOf obj != Editable_mesh then (
+			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
+			return false
+		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				exportTransform obj
+				fs.writeComma()
+				fs.writeKey "render"
+				fs.beginArray()
+					exportRenderMesh obj
+				fs.endArray()
+				fs.writeComma()
+				fs.writeKeyEmpty "player_controller"
+				fs.writeKey "player_model"
+				fs.beginObj()
+					fs.writeKeyValue "gravity" -55
+					fs.writeComma()
+					fs.writeKeyValue "walkingSpeed" 3
+					fs.writeComma()
+					fs.writeKey "ssj1"
+					fs.beginObj()
+						fs.writeKeyValue "rotation_speed" 11.0
+						fs.writeComma()
+						fs.writeKeyValue "maxSpeed" 7.0
+						fs.writeComma()
+						fs.writeKeyValue "shortHopVelocity" 16.0
+						fs.writeComma()
+						fs.writeKeyValue "jumpVelocity" "0 20 0"
+						fs.writeComma()
+						fs.writeKeyValue "longJumpVelocity" "0 11 12"
+						fs.writeComma()
+						fs.writeKeyValue "maxVelocityVertical"  30.0
+						fs.writeComma()
+						fs.writeKeyValue "acceleration" 30.0
+						fs.writeComma()
+						fs.writeKeyValue "deceleration" 7.0
+						fs.writeComma()
+						fs.writeKeyValue "airAcceleration" 30.0
+						fs.writeComma()
+						fs.writeKeyValue "falling_multiplier" 1.05
+						fs.writeComma()
+						fs.writeKeyValue "long_gravity_multiplier" 0.60
+					fs.endObj()
+					fs.writeComma()
+					fs.writeKey "ssj2"
+					fs.beginObj()
+						fs.writeKeyValue "rotation_speed" 14.0
+						fs.writeComma()
+						fs.writeKeyValue "maxSpeed" 11.0
+						fs.writeComma()
+						fs.writeKeyValue "shortHopVelocity" 18.0
+						fs.writeComma()
+						fs.writeKeyValue "jumpVelocity" "0 25 0"
+						fs.writeComma()
+						fs.writeKeyValue "longJumpVelocity" "0 12 17"
+						fs.writeComma()
+						fs.writeKeyValue "maxVelocityVertical" 30.0
+						fs.writeComma()
+						fs.writeKeyValue "acceleration" 32.0
+						fs.writeComma()
+						fs.writeKeyValue "deceleration" 8.0
+						fs.writeComma()
+						fs.writeKeyValue "airAcceleration" 35.0
+						fs.writeComma()
+						fs.writeKeyValue "falling_multiplier" 1.05
+						fs.writeComma()
+						fs.writeKeyValue "long_gravity_multiplier" 0.60
+					fs.endObj()
+					fs.writeComma()
+					fs.writeKey "ssj3"
+					fs.beginObj()
+						fs.writeKeyValue "rotation_speed" 17.0
+						fs.writeComma()
+						fs.writeKeyValue "maxSpeed" 14.0
+						fs.writeComma()
+						fs.writeKeyValue "shortHopVelocity" 20.0
+						fs.writeComma()
+						fs.writeKeyValue "jumpVelocity" "0 30 0"
+						fs.writeComma()
+						fs.writeKeyValue "longJumpVelocity" "0 13 22.5"
+						fs.writeComma()
+						fs.writeKeyValue "maxVelocityVertical" 30.0
+						fs.writeComma()
+						fs.writeKeyValue "acceleration" 35.0
+						fs.writeComma()
+						fs.writeKeyValue "deceleration" 9.0
+						fs.writeComma()
+						fs.writeKeyValue "airAcceleration" 40.0
+						fs.writeComma()
+						fs.writeKeyValue "falling_multiplier" 1.05
+						fs.writeComma()
+						fs.writeKeyValue "long_gravity_multiplier" 0.60
+					fs.endObj()
+					fs.writeComma()
+					fs.writeKeyEmpty "power_gauge"
+				fs.endObj() -- End player_model
+				fs.writeComma()
+				local capsuleHeight = 0
+				for child in obj.children do (
+					if isCollider child and
+						-- Pick the capsule. Shouldn't have more than one.
+						classOf child == Capsule then (
+							exportCompCollider child colliderGroups:#("Player") masks:#("all")
+							capsuleHeight = child.height
+					)
+				)
+				fs.writeComma()
+				fs.writeKeyEmpty "render_ui"
+				exportShadow()
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		
+		exportChildHitboxes obj capsuleHeight
+
+		return true
+	),
+	
 	fn exportAll = (
 		-- Loop over all layers.
 		for i = 0 to LayerManager.count - 1 do (
@@ -1173,6 +1190,7 @@ struct TSceneExporter (
 							"player":       ( wasValid = exportPlayer      obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
+							"rotate": 		( wasValid = exportDefault	   obj nValidObjs rot:true)
 							"triggers":     ( wasValid = exportTrigger     obj nValidObjs )
 							--"mech":( wasValid = exportMechanism   obj nValidObjs )
 							"pure":		    ( wasValid = exportDefault     obj nValidObjs pure:true )
@@ -1201,7 +1219,7 @@ TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el tran
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
-TODO: Exportar pinchos, mech, rotate.
+TODO: Exportar pinchos, mech.
 TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
 */
 
