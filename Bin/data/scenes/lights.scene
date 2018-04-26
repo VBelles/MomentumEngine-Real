@@ -8,7 +8,7 @@
 				"lookat": "4 0 4"
 			},
 			"light_dir": {
-				"intensity": 7,
+				"intensity": 5,
 				"color" :  "1 1 1 1",
 				"projector" : "data/textures/white.dds",
 				"isOrtographic" : true,
@@ -25,6 +25,35 @@
 			"follow_transform" : {
 				"entityName" : "The Player",
 				"offset" : "0 150 0"
+			}
+		}
+	},
+	{
+		"entity":
+		{
+			"name": "LightDir01",
+			"transform": {
+				"pos": "0 150 0",
+				"lookat": "4 0 4"
+			},
+			"light_dir": {
+				"intensity": 3,
+				"color" :  "1 1 1 1",
+				"projector" : "data/textures/white.dds",
+				"isOrtographic" : true,
+				"ortographicWidth" : 20,
+				"ortographicHeight" : 20,
+        		"z_near" : 0.1,
+				"z_far" : 30,
+				"fov": 50,
+				"casts_shadows" : true,
+				"shadows_step" : 1.5,
+				"shadows_resolution" : 2048,
+				"shadows_fmt" : "R32_TYPELESS"
+			},
+			"follow_transform" : {
+				"entityName" : "The Player",
+				"offset" : "0 2 0"
 			}
 		}
 	}
