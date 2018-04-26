@@ -2,11 +2,14 @@
 
 #include "components/player/states/GroundedActionState.h"
 
+class Hitboxes;
+
 class FastAttackActionState : public GroundedActionState {
+private:
 	CTimer timer;
-	int warmUpFrames = 5;
-	int activeFrames = 5;
-	int endingLagFrames = 10;
+	int warmUpFrames = 10;
+	int activeFrames = 15;
+	int endingLagFrames = 5;
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
@@ -23,8 +26,10 @@ class FastAttackActionState : public GroundedActionState {
 
 	float powerToGet = 2000.f;
 
+	std::string hitbox = "fast_attack";
+
 public:
-	FastAttackActionState(CHandle playerModelHandle, CHandle hitbox);
+	FastAttackActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -39,4 +44,5 @@ public:
 	void onLeavingGround() override;
 	void setPose() override;
 	void onHitboxEnter(CHandle entity) override;
+
 };

@@ -1,14 +1,13 @@
 #include "mcv_platform.h"
 #include "FastAttackActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/comp_hitboxes.h"
 
-FastAttackActionState::FastAttackActionState(CHandle playerModelHandle, CHandle hitbox)
+FastAttackActionState::FastAttackActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	hitboxHandle = hitbox;
 	animation = "melee";
 }
 
@@ -23,16 +22,12 @@ void FastAttackActionState::update(float delta) {
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
+		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->enable();
+		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
 	}
 }
@@ -52,10 +47,7 @@ void FastAttackActionState::onStateEnter(IActionState * lastState) {
 
 void FastAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	//getPlayerModel()->baseState->setPose();
-	CEntity *hitboxEntity = hitboxHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
+	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockBaseState = false;
 	getPlayerModel()->lockWalk = false;
 }

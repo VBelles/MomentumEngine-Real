@@ -29,6 +29,7 @@ public:
 		CTransform* transform;
 		bool enabled;
 		int boneId;
+		std::set<CHandle> hits;
 	};
 private:
 	std::vector<HitboxConfig> hitboxesConfig;
@@ -39,12 +40,11 @@ private:
 	TCompHitboxes::Hitbox* createHitbox(const HitboxConfig& config);
 	void updateHitbox(Hitbox* hitbox, float delta);
 
-	void enable(std::string name);
-
-	void disable(std::string name);
+	
 
 public:
 	DECL_SIBLING_ACCESS();
+	~TCompHitboxes();
 	static void registerMsgs();
 	void debugInMenu();
 	void renderDebug();
@@ -54,8 +54,10 @@ public:
 	//Message callbacks
 	void onCreate(const TMsgEntityCreated& msg);
 
+	void enable(std::string name);
+	void disable(std::string name);
+
 	TCompSkeleton* getSkeleton();
 
-	~TCompHitboxes();
 
 };

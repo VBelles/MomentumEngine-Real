@@ -6,6 +6,7 @@ class TCompCamera;
 class TCompCollider;
 class TCompRender;
 class TCompTransform;
+class TCompHitboxes;
 
 using namespace physx;
 
@@ -24,6 +25,7 @@ protected:
 	CHandle currentCameraHandle;
 	CHandle colliderHandle;
 	CHandle renderHandle;
+	CHandle hitboxesHandle;
 
 	VEC3 deltaMovement;
 	VEC2 movementInput;
@@ -35,6 +37,7 @@ protected:
 	TCompCollider* getCollider();
 	TCompRender* getRender();
 	TCompCamera* getCamera();
+	TCompHitboxes* getHitboxes();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);

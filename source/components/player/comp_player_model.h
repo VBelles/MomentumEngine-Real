@@ -24,8 +24,6 @@ struct TMsgOutOfBounds;
 
 
 class TCompPlayerModel : public TCompBase {
-	DECL_SIBLING_ACCESS();
-
 public:
 	enum ActionStates {
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
@@ -103,6 +101,7 @@ private:
 	void applyGravity(float delta);
 
 public:
+	DECL_SIBLING_ACCESS();
 	~TCompPlayerModel();
 	IActionState* baseState;
 	IActionState* concurrentState;

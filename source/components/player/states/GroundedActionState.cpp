@@ -4,7 +4,6 @@
 
 GroundedActionState::GroundedActionState(CHandle adf)
 	: IActionState::IActionState(adf) {
-	accelerationVector = getPlayerModel()->getAccelerationVector();
 }
 
 void GroundedActionState::update(float delta) {

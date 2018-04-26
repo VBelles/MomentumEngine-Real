@@ -268,7 +268,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	concurrentStates = {
 		{ ActionStates::Idle, nullptr },
-	{ ActionStates::FastAttack, new FastAttackActionState(playerModelHandle, fastAttackHitbox) },
+	{ ActionStates::FastAttack, new FastAttackActionState(playerModelHandle) },
 	{ ActionStates::FastAttackAir, new FastAttackAirActionState(playerModelHandle, fastAttackAirHitbox) },
 	{ ActionStates::GrabHigh, new GrabHighActionState(playerModelHandle, grabHitbox) },
 	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle, grabHitbox) },

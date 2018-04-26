@@ -93,7 +93,7 @@ void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
 		hitboxes[hitbox->name] = hitbox;
 	}
 
-	enable("hitbox01"); //For testing purposes
+	//enable("hitbox01"); //For testing purposes
 }
 
 TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
@@ -147,11 +147,22 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 	PxOverlapBuffer overlapCallback;
 	bool status = EnginePhysics.getScene()->overlap(*hitbox->geometry, pose, overlapCallback,
 		hitbox->filterData, EnginePhysics.getGameQueryFilterCallback());
-	if (status && overlapCallback.hasBlock) {
-		//dbg("Hit\n");
+
+	if (status) {
+
+		CEntity* owner = CHandle(this).getOwner();
+		
+		for (int i = 0; i < overlapCallback.getNbAnyHits(); i++) {
+			auto hit = overlapCallback.getAnyHit(i);
+			CHandle colliderHandle;
+			colliderHandle.fromVoidPtr(hit.actor->userData);
+			CHandle hitHandle = colliderHandle.getOwner();
+			if (hitbox->hits.insert(CHandle(hitHandle)).second) { //Inserted
+				owner->sendMsg(TMsgHitboxEnter{ hitHandle });
+			}
+		}
+	
 	}
-	//VEC3 pos = hitbox->transform.getPosition();
-	//dbg("%f,%f,%f\n", pos.x, pos.y, pos.z);
 }
 
 void TCompHitboxes::enable(std::string name) {
@@ -165,6 +176,7 @@ void TCompHitboxes::disable(std::string name) {
 	auto it = hitboxes.find(name);
 	if (it != hitboxes.end()) {
 		it->second->enabled = false;
+		it->second->hits.clear();
 	}
 }
 
