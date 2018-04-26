@@ -7,35 +7,35 @@
           "mesh": "data/skeletons/ella/ella_low.mesh",
           "materials":
           [
-            "data/skeletons/ella/ella.material"
+            "data/skeletons/ella/ellaSS1.material"
           ]
         },
         {
           "mesh": "data/skeletons/ella/cintacorta_der.mesh",
           "materials":
           [
-            "data/skeletons/ella/ella.material"
+            "data/skeletons/ella/ellaSS1.material"
           ]
         },
         {
           "mesh": "data/skeletons/ella/cintacorta_izq.mesh",
           "materials":
           [
-            "data/skeletons/ella/ella.material"
+            "data/skeletons/ella/ellaSS1.material"
           ]
         },
         {
           "mesh": "data/skeletons/ella/cintalarga_der.mesh",
           "materials":
           [
-            "data/skeletons/ella/ella.material"
+            "data/skeletons/ella/ellaSS1.material"
           ]
         },
         {
           "mesh": "data/skeletons/ella/cintalarga_izq.mesh",
           "materials":
           [
-            "data/skeletons/ella/ella.material"
+            "data/skeletons/ella/ellaSS1.material"
           ]
         }
       ],
@@ -101,7 +101,12 @@
 					"falling_multiplier" : 1.05,
 					"long_gravity_multiplier" : 0.60,
 					"plummetTime" : 0.6
-				}
+				},
+				"materials":[
+					"data/skeletons/ella/ellaSS1.material",
+					"data/skeletons/ella/ellaSS2.material",
+					"data/skeletons/ella/ellaSS3.material"
+				]
 			},
 			"collider": {
 				"shape": "capsule",
