@@ -1,3 +1,110 @@
 [
-
+  {
+    "entity":
+    {
+      "name": "ms2-rotate003mesh",
+      "transform":
+      {
+        "pos": "-48.5951 34.7255 -19.4287",
+        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2-rotate003mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 2.0 2.0",
+        "type": "dynamic"
+      },
+      "platform_rotative":
+      {
+        "rotation_speed": "0 0 50"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-rotate002mesh",
+      "transform":
+      {
+        "pos": "-46.6847 30.7252 -26.5585",
+        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2-rotate002mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 2.0 2.0",
+        "type": "dynamic"
+      },
+      "platform_rotative":
+      {
+        "rotation_speed": "0 0 50"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2-rotate001mesh",
+      "transform":
+      {
+        "pos": "-48.5951 27.4464 -19.4287",
+        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2-rotate001mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 2.0 2.0",
+        "type": "dynamic"
+      },
+      "platform_rotative":
+      {
+        "rotation_speed": "0 0 50"
+      }
+    }
+  }
 ]

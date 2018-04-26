@@ -3,7 +3,7 @@
     "entity":
     {
       "name": "ms2-enemyBall010",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "21.5558 34.1779 43.5032",
@@ -15,7 +15,7 @@
     "entity":
     {
       "name": "ms2-enemyBall009",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "24.0323 34.1779 38.8521",
@@ -39,7 +39,7 @@
     "entity":
     {
       "name": "ms2-enemyBall008",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-15.8427 8.96087 -61.6524",
@@ -147,7 +147,7 @@
     "entity":
     {
       "name": "ms2-enemyBall007",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-40.4508 14.8203 40.6098",
@@ -159,7 +159,7 @@
     "entity":
     {
       "name": "ms2-enemyBall006",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-40.4508 11.8524 40.6098",
@@ -171,7 +171,7 @@
     "entity":
     {
       "name": "ms2-enemyBall005",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-40.4508 8.43962 40.6098",
@@ -183,7 +183,7 @@
     "entity":
     {
       "name": "ms2-enemyBall004",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-12.0905 12.2217 74.0861",
@@ -243,7 +243,7 @@
     "entity":
     {
       "name": "ms2-enemyBall003",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-32.7018 -0.0362052 45.1088",
@@ -483,7 +483,7 @@
     "entity":
     {
       "name": "ms2-enemyBall002",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-28.2014 -0.0362053 43.5866",
@@ -495,7 +495,7 @@
     "entity":
     {
       "name": "ms2-enemyBall001",
-      "prefab": "data/prefabs/enemy_flying.prefab",
+      "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
         "pos": "-17.4928 8.96087 -68.9584",

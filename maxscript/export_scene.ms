@@ -549,8 +549,41 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-
-
+	-- --MECHANISM------------------------------------------------
+	fn exportMechanism obj = (
+		fs.writeComma()
+		fs.writeKey "mechanism"
+		fs.beginObj()
+			fs.writeKeyValue "deactivationTime" 5
+			fs.writeComma()
+			fs.writeKeyValue "isResettable" true
+			fs.writeComma()
+			fs.writeKeyValue "reactivationTime" 3
+			fs.writeComma()
+			fs.writeKey "systems"
+			fs.beginArray()
+				fs.writeKey obj.parent.name
+			fs.endArray()
+		fs.endObj()
+	),
+	
+	-- --MECHANISM SYSTEM---------------------------------------------
+	fn exportMechanismSystem obj = (
+		fs.writeComma()
+		fs.writeKey "mechanism_system"
+		fs.beginObj()
+			fs.writeKeyValue "activationEffectFile" "data/scripts/test.lua"
+			fs.writeComma()
+			fs.writeKey "mechanisms"
+			fs.beginArray()
+				for i = 1 to obj.children.count do (
+					if i != 1 then fs.writeComma()
+					fs.writeKey obj.children[i].name
+				)
+			fs.endArray()
+		fs.endObj()
+	),
+	
 	-- --ENTITY COLLIDER-----------------------------------------
 	fn exportEntityCollider obj colliderGroups: masks: trig:false dyn:false = (
 		exportName obj
@@ -739,7 +772,7 @@ struct TSceneExporter (
 				local prefabName = enemyAirPrefabName -- Flying by default.
 				if stringContainsSubstring obj.name "melee" then
 					prefabName = enemyMeleePrefabName
-				if stringContainsSubstring obj.name "bola" then
+				if stringContainsSubstring obj.name "Ball" then
 					prefabName = enemyBolaPrefabName
 				local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
 				
@@ -1192,7 +1225,7 @@ struct TSceneExporter (
 							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"rotate": 		( wasValid = exportDefault	   obj nValidObjs rot:true)
 							"triggers":     ( wasValid = exportTrigger     obj nValidObjs )
-							--"mech":( wasValid = exportMechanism   obj nValidObjs )
+							--"mechanism":( wasValid = exportMechanism   obj nValidObjs )
 							"pure":		    ( wasValid = exportDefault     obj nValidObjs pure:true )
 							"break":		( wasValid = exportDefault     obj nValidObjs breakable:true )
 							"0":		    ( wasValid = exportDefault     obj nValidObjs )
@@ -1219,8 +1252,9 @@ TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el tran
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
-TODO: Exportar pinchos, mech.
 TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
+
+TODO: Exportar pinchos, mech.
 */
 
 /*----------------------------------------------------------------------------------
