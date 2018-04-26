@@ -1,5 +1,5 @@
 {
-	"startup" : "main_menu",
+	"startup" : "test_axis",
 	"gamestates" : 
 	[
 		{

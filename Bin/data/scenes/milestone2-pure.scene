@@ -2,42 +2,10 @@
   {
     "entity":
     {
-      "name": "ms2-pure002mesh",
-      "transform":
-      {
-        "pos": "5.37971 3.19862 -28.0302",
-        "rotation": "-0.579228 0.579228 -0.40558 0.40558"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2-pure002mesh.mesh",
-          "materials":
-          [
-            "data/materials/empty.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "shape": "box",
-        "halfExtent": "0.25 2.0 2.0",
-        "type": "dynamic"
-      },
-      "purity": {},
-      "tags":
-      [
-         "pure"
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms2-pure001mesh",
       "transform":
       {
-        "pos": "-45.6307 23.9032 -26.2183",
+        "pos": "-50.0415 23.9032 -27.7168",
         "rotation": "0.430459 -0.430459 0.560985 -0.560986"
       },
       "render":
@@ -66,10 +34,42 @@
   {
     "entity":
     {
+      "name": "ms2-pure002mesh",
+      "transform":
+      {
+        "pos": "5.83802 3.19862 -41.3966",
+        "rotation": "-0.579228 0.579228 -0.40558 0.40558"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2-pure002mesh.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "dynamic"
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2-pure003mesh",
       "transform":
       {
-        "pos": "6.64471 11.0725 63.8823",
+        "pos": "9.59221 11.0725 74.6754",
         "rotation": "0.0 -0.5 0.0 -0.866025"
       },
       "render":

@@ -5,7 +5,7 @@
       "name": "ms2-rotate003mesh",
       "transform":
       {
-        "pos": "-48.5951 34.7255 -19.4287",
+        "pos": "-53.0059 34.7255 -20.9272",
         "rotation": "0.430459 -0.430459 0.560986 -0.560986"
       },
       "render":
@@ -14,12 +14,7 @@
           "mesh": "data/meshes/ms2-rotate003mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -41,7 +36,7 @@
       "name": "ms2-rotate002mesh",
       "transform":
       {
-        "pos": "-46.6847 30.7252 -26.5585",
+        "pos": "-51.0955 30.7252 -28.0571",
         "rotation": "0.430459 -0.430459 0.560986 -0.560986"
       },
       "render":
@@ -50,12 +45,7 @@
           "mesh": "data/meshes/ms2-rotate002mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -77,7 +67,7 @@
       "name": "ms2-rotate001mesh",
       "transform":
       {
-        "pos": "-48.5951 27.4464 -19.4287",
+        "pos": "-53.0059 27.4464 -20.9272",
         "rotation": "0.430459 -0.430459 0.560986 -0.560986"
       },
       "render":
@@ -86,12 +76,7 @@
           "mesh": "data/meshes/ms2-rotate001mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
