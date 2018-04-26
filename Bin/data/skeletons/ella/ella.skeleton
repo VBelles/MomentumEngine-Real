@@ -9,6 +9,7 @@
 		{ "name" : "melee"},
 		{ "name" : "liberarenergia"},
 		{ "name" : "recibedanio"},
+		{ "name" : "ataquecaida_posicionamiento"},
 		{ "name" : "ataquecaida"},
 		{ "name" : "hard_landing"}
 	],
