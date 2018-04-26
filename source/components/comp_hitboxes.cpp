@@ -11,14 +11,23 @@
 DECL_OBJ_MANAGER("hitboxes", TCompHitboxes);
 
 void TCompHitboxes::debugInMenu() {
+	for (auto& p : hitboxes) {
+		Hitbox* hitbox = p.second;
+		VEC3 pos = hitbox->transform->getPosition();
+		ImGui::Text("%s: %f, %f, %f", hitbox->name.c_str(), pos.x, pos.y, pos.z);
+	}
 }
 
 void TCompHitboxes::renderDebug() {
 	for (auto& p : hitboxes) {
 		Hitbox* hitbox = p.second;
 		if (hitbox->enabled) {
-			renderWiredCube(hitbox->transform.getPosition(), hitbox->transform.getRotation(),
-				fromPhysx((static_cast<PxBoxGeometry*>(hitbox->geometry))->halfExtents), VEC4(0, 0, 0, 1));
+			if (hitbox->radius) {
+				renderSphere(hitbox->transform, hitbox->radius, VEC4(0, 0, 1, 1));
+			}
+			else {
+				renderWiredCube(hitbox->transform, hitbox->halfExtent, VEC4(1, 0, 0, 1));
+			}
 		}
 	}
 }
@@ -84,7 +93,7 @@ void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
 		hitboxes[hitbox->name] = hitbox;
 	}
 
-	//enable("hitbox01"); //For testing purposes
+	enable("hitbox01"); //For testing purposes
 }
 
 TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
@@ -92,14 +101,16 @@ TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
 
 	hitbox->name = config.name;
 	hitbox->offset = config.offset;
+	hitbox->halfExtent = config.halfExtent;
+	hitbox->radius = config.radius;
 
 	hitbox->boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
 	assert(hitbox->boneId != -1);
 
-	hitbox->transform = CTransform();
+	hitbox->transform = new CTransform();
 	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
-	hitbox->transform.setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
-	hitbox->transform.setRotation(Cal2DX(bone->getRotationAbsolute()));
+	hitbox->transform->setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
+	hitbox->transform->setRotation(Cal2DX(bone->getRotationAbsolute()));
 
 	hitbox->filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
 		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eANY_HIT));
@@ -129,10 +140,10 @@ void TCompHitboxes::update(float delta) {
 void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
 
-	hitbox->transform.setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
-	hitbox->transform.setRotation(Cal2DX(bone->getRotationAbsolute()));
+	hitbox->transform->setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
+	hitbox->transform->setRotation(Cal2DX(bone->getRotationAbsolute()));
 
-	PxTransform pose = PxTransform(toPhysx(&hitbox->transform));
+	PxTransform pose = PxTransform(toPhysx(hitbox->transform));
 	PxOverlapBuffer overlapCallback;
 	bool status = EnginePhysics.getScene()->overlap(*hitbox->geometry, pose, overlapCallback,
 		hitbox->filterData, EnginePhysics.getGameQueryFilterCallback());

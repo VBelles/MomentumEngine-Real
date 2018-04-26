@@ -129,12 +129,12 @@
 				"hitboxes":[
 					{
 						"name":"hitbox01",
-						"shape": "box",
-						"halfExtent": "1 1 1",
+						"shape": "sphere",
+						"halfExtent": "0.5 0.5 0.5",
+						"radius": 0.5,
 						"group":["player"],
 						"mask":["enemy"],
 						"bone":"Bip001 R Hand"
-
 					}
 
 				]

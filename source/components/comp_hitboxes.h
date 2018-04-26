@@ -22,9 +22,11 @@ public:
 	struct Hitbox {
 		std::string name;
 		PxGeometry* geometry;
+		float radius;
+		VEC3 halfExtent;
 		VEC3 offset;
 		PxQueryFilterData filterData;
-		CTransform transform;
+		CTransform* transform;
 		bool enabled;
 		int boneId;
 	};

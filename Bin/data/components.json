@@ -46,6 +46,7 @@
   ],
   "render_debug" : [
     "transform",
-    "light_dir"
+    "light_dir",
+    "hitboxes"
 	]
 }
