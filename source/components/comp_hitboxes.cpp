@@ -84,7 +84,7 @@ void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
 		hitboxes[hitbox->name] = hitbox;
 	}
 
-	//enable("hitbox01"); //For testing porpouses
+	//enable("hitbox01"); //For testing purposes
 }
 
 TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
@@ -160,3 +160,10 @@ void TCompHitboxes::disable(std::string name) {
 TCompSkeleton* TCompHitboxes::getSkeleton() {
 	return skeletonHandle;
 }
+
+TCompHitboxes::~TCompHitboxes() {
+	for (auto& p : hitboxes) {
+		SAFE_DELETE(p.second);
+	}
+}
+

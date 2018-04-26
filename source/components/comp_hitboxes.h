@@ -34,7 +34,7 @@ private:
 	CHandle skeletonHandle;
 	
 	TCompHitboxes::HitboxConfig loadHitbox(const json& jHitbox);
-	TCompHitboxes::Hitbox* createHitbox(const HitboxConfig & config);
+	TCompHitboxes::Hitbox* createHitbox(const HitboxConfig& config);
 	void updateHitbox(Hitbox* hitbox, float delta);
 
 	void enable(std::string name);
@@ -53,5 +53,7 @@ public:
 	void onCreate(const TMsgEntityCreated& msg);
 
 	TCompSkeleton* getSkeleton();
+
+	~TCompHitboxes();
 
 };
