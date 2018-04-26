@@ -8,7 +8,9 @@
 		{ "name" : "jump_caida"},
 		{ "name" : "melee"},
 		{ "name" : "liberarenergia"},
-		{ "name" : "recibedanio"}
+		{ "name" : "recibedanio"},
+		{ "name" : "ataquecaida"},
+		{ "name" : "hard_landing"}
 	],
   "bone_ids_to_debug" : [
     3

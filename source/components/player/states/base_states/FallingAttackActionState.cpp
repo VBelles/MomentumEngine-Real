@@ -11,7 +11,8 @@
 FallingAttackActionState::FallingAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "melee";
+	animation = "ataquecaida";
+	animationPositioning = "jump_inicio";
 }
 
 void FallingAttackActionState::update (float delta) {
@@ -50,6 +51,7 @@ void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getPlayerModel()->getSkeleton()->executeAction(animationPositioning, 0.2f, 0.2f);
 }
 
 void FallingAttackActionState::onStateExit(IActionState * nextState) {
