@@ -84,12 +84,12 @@ void CCurve::calculateRadius() {
 	}
 }
 
-VEC3 CCurve::evaluate(float ratio) const {
+VEC3 CCurve::evaluate(float ratio, VEC3 pos) const {
 	if (_type == EType::CATMULL_ROM) {
 		return evaluateAsCatmull(ratio);
 	}
 	else if (_type == EType::CIRCULAR) {
-		return evaluateAsCircle(ratio);
+		return evaluateAsCircle(ratio, pos);
 	}
 	return VEC3::Zero;
 }
@@ -111,11 +111,11 @@ VEC3 CCurve::evaluateAsCatmull(float ratio) const {
 	return VEC3::CatmullRom(p1, p2, p3, p4, segmentRatio);
 }
 
-VEC3 CCurve::evaluateAsCircle(float ratio) const {
+VEC3 CCurve::evaluateAsCircle(float ratio, VEC3 pos) const {
     float angle = ratio * 360.f;
     // TODO: Do this properly in 3D.
     float x = _center.x + _radius * cos(angle);
     float z = _center.z + _radius * sin(angle);
 
-	return VEC3(x, 0, z);
+	return VEC3(x, pos.y, z);
 }

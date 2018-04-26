@@ -17,9 +17,9 @@ public:
     VEC3 getCenter() { return _center; }
     EType getType() { return _type; }
 
-    VEC3 evaluate(float ratio) const;
+    VEC3 evaluate(float ratio, VEC3 pos = VEC3::Zero) const;
 	VEC3 evaluateAsCatmull(float ratio) const;
-	VEC3 evaluateAsCircle(float ratio) const;
+	VEC3 evaluateAsCircle(float ratio, VEC3 pos) const;
 
 private:
     std::vector<VEC3> _knots;

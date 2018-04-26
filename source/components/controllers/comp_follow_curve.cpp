@@ -21,6 +21,7 @@ void TCompFollowCurve::load(const json& j, TEntityParseContext& ctx) {
 
 	speed = j.value<float>("speed", 0.f);
 	automove = j.value("automove", false);
+	ratio = j.value("move_offset", 0.f); // Starts with an offset (from 0 to 1).
 }
 
 void TCompFollowCurve::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -52,7 +53,7 @@ void TCompFollowCurve::update(float dt) {
             if (ratio <= 0.f) moveBackwards = false;
         }
         // Evaluar curva con dicho ratio
-        posToGo = curve->evaluate(ratio);
+        posToGo = curve->evaluate(ratio, myPosition);
         //dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
     }
 

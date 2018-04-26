@@ -486,20 +486,40 @@ struct TSceneExporter (
 		fs.endArray()
 	),
 	
+	fn getCircularMovementOffset platform circleObj = (
+		local center = circleObj.pos
+		local circlePoint = getKnotPoint circleObj 1 1
+		local platformPos = platform.pos
+		
+		-- TODO: Aquí la idea sería aumentar el move_offset según el ángulo de la plataforma respecto
+		-- al centro del círculo, si no todas las plataforms que comparten centro se mueven superpuestas.
+		-- Ahora mismo no va fino, necesito ángulos negativos también.
+		local anglePlatformToCircle = get3pointAngle center circlePoint platformPos
+		if anglePlatformToCircle == 0 then return 0
+		else return anglePlatformToCircle / 180
+	),
+	
 	-- --SPLINE-------------------------------------------------------
 	fn exportSpline obj type:"follow_curve" = (
 		-- Executed only if we already know it has a child line.
 		local curveType = "catmull-rom"
 		for child in obj.children do (
 			local childClass = classOf child
+			local moveOffset = 0
 			if isLine child then (
 				if childClass == line then curveType = "catmull-rom"
 				if childClass == circle or
-			       childClass == SplineShape then curveType = "circular"
+			       childClass == SplineShape then (
+					curveType = "circular"
+					moveOffset = getCircularMovementOffset parent child
+				)
 				
 				local closed = false
+				local followSpeed = 0.2
 				if childClass == circle then closed = true
 				else closed = isClosed child 1
+				
+				if closed then followSpeed = 0.001
 				
 				fs.writeComma()
 				fs.writeKey type
@@ -513,7 +533,9 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "closed" closed
 					fs.writeComma()
-					fs.writeKeyValue "speed" 0.2
+					fs.writeKeyValue "move_offset" moveOffset
+					fs.writeComma()
+					fs.writeKeyValue "speed" followSpeed
 					fs.writeComma()
 					fs.writeKey "knots"
 					exportSplineKnots child
@@ -846,69 +868,41 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --MOVABLE-------------------------------------------------
-	fn exportMovable obj nValidObjs = (
-		if nValidObjs > 0 then fs.writeComma()
-		if isLine obj then return false
+	-- --MOVE TRIGGER-------------------------------------------------
+	fn exportMoveTrigger parentMeshObj obj = (
+		local triggerName = parentMeshObj.name + "_trigger"
+		local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
+		-- entity trigger
+		fs.endObj()-- end previous entity
+		fs.endObj()-- end previous object
+		------ child entity ------
+		fs.writeComma()
 		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				local prefabPath = base_path + "prefabs/platform_move.prefab"
-				local triggerName = obj.name + "_trigger"
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" prefabPath
-				fs.writeComma()
-				local objPos = obj.position * (rotateXMatrix -90)
-				exportTransform obj
-				fs.writeComma()
-				-- collider
-				fs.writeKey "collider"
-				fs.beginObj()
-					fs.writeKeyValue "shape" "box"
-					fs.writeComma()
-					fs.writeKeyValue "type" "dynamic"
-					fs.writeComma()
-					local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
-					fs.writeKeyValue "halfExtent" platformHalfExtent
-					fs.writeComma()
-					fs.writeKeyValue "group" "scenario"
-				fs.endObj()
-				-- child spline
-				if hasChildLine obj then exportSpline obj
-				-- entity trigger
-				fs.endObj()-- end previous entity
-				fs.endObj()-- end previous object
-				------ child entity ------
-				fs.writeComma()
-				fs.beginObj()
-				fs.writeKey "entity"
-				fs.beginObj()-- begin trigger entity
-				fs.writeKeyValue "name" triggerName
-				fs.writeComma()
-				fs.writeKeyEmpty "transform"
-				-- collider
-				fs.writeKey "collider"
-				fs.beginObj()
-					fs.writeKeyValue "shape" "box"
-					fs.writeComma()
-					fs.writeKeyValue "type" "dynamic"
-					fs.writeComma()
-					fs.writeKeyValue "is_trigger" true
-					fs.writeComma()
-					fs.writeKeyValue "halfExtent" platformHalfExtent
-					fs.writeComma()
-					exportStringArray "mask" #("player")
-				fs.endObj()
-				fs.writeComma()
-				-- platform
-				fs.writeKeyEmpty "platform"
-				-- hierarchy
-				fs.writeKey "hierarchy"
-				fs.beginObj()
-					fs.writeKeyValue "parent" obj.name
-				fs.endObj()
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.writeKey "entity"
+		fs.beginObj()-- begin trigger entity
+		fs.writeKeyValue "name" triggerName
+		fs.writeComma()
+		fs.writeKeyEmpty "transform"
+		-- collider
+		fs.writeKey "collider"
+		fs.beginObj()
+			fs.writeKeyValue "shape" "box"
+			fs.writeComma()
+			fs.writeKeyValue "type" "dynamic"
+			fs.writeComma()
+			fs.writeKeyValue "is_trigger" true
+			fs.writeComma()
+			fs.writeKeyValue "halfExtent" platformHalfExtent
+			fs.writeComma()
+			exportStringArray "mask" #("player")
+		fs.endObj()
+		fs.writeComma()
+		-- platform
+		fs.writeKeyEmpty "platform"
+		-- hierarchy
+		fs.writeKey "hierarchy"
+		fs.beginObj()
+			fs.writeKeyValue "parent" parentMeshObj.name
 		fs.endObj()
 		return true
 	),
@@ -932,7 +926,7 @@ struct TSceneExporter (
 		fs.endObj()
 		return true
 	),
-
+	
 	-- --EDITABLE MESH-------------------------------------------
 	fn exportEditableMesh obj pure:false breakable:false rot:false = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
@@ -961,6 +955,7 @@ struct TSceneExporter (
 					)
 					if movable then (
 						exportSpline child
+						exportMoveTrigger obj child
 					)
 					if rot then (
 						exportPlatfRotation()
@@ -976,7 +971,7 @@ struct TSceneExporter (
 	),
 	
 	-- --DEFAULT ------------------------------------------------
-	fn exportDefault obj nValidObjs pure:false breakable:false rot:false = (
+	fn exportDefault obj nValidObjs pure:false breakable:false rot:false mov:false = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -1219,7 +1214,7 @@ struct TSceneExporter (
 							"collisions":   ( wasValid = exportCollision   obj nValidObjs )
 							"enemies":      ( wasValid = exportEnemy       obj nValidObjs )
 							"lights":       ( wasValid = exportLight       obj nValidObjs )
-							"movables":     ( wasValid = exportMovable     obj nValidObjs )
+							"movables":     ( wasValid = exportDefault     obj nValidObjs dyn:true mov:true )
 							"player":       ( wasValid = exportPlayer      obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
