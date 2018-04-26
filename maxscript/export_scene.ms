@@ -603,6 +603,22 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	-- --COINS-------------------------------------------------------
+	fn exportCoin obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				exportTransform obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" "data/prefabs/coin.prefab"
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
 	fn exportChildHitboxes obj capsuleHeight = (
 		for child in obj.children do (
 			if isCollider child and
@@ -1149,6 +1165,7 @@ struct TSceneExporter (
 						case layerName of (
 							"cameras":      ( wasValid = exportCamera      obj nValidObjs )
 							"chrysalis":    ( wasValid = exportChrysalis   obj nValidObjs )
+							"coins": 	    ( wasValid = exportCoin		   obj nValidObjs )
 							"collisions":   ( wasValid = exportCollision   obj nValidObjs )
 							"enemies":      ( wasValid = exportEnemy       obj nValidObjs )
 							"lights":       ( wasValid = exportLight       obj nValidObjs )
@@ -1184,7 +1201,7 @@ TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el tran
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
-TODO: Exportar pinchos, mech, rotate, coins.
+TODO: Exportar pinchos, mech, rotate.
 TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
 */
 
