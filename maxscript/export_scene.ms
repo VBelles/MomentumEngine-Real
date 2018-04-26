@@ -68,11 +68,13 @@ struct TJsonFormatter (
 	),
 
 		-- --------------------
+	-- "key_str":\n
 	fn writeKey key_str = (
 		indent()
 		format "\"%\":\n" key_str to:fs
 	),
 	
+	-- "key_str": {},\n
 	fn writeKeyEmpty key_str = (
 		indent()
 		format "\"%\": {},\n" key_str to:fs
@@ -95,6 +97,7 @@ struct TJsonFormatter (
 		)
 	),
 	
+	-- "key_str": "val"
 	fn writeKeyValue key_str val = (
 		indent()
 		format "\"%\":" key_str to:fs
@@ -102,6 +105,7 @@ struct TJsonFormatter (
 	),
 
 	-- --------------------
+	-- "name"
 	fn writeName name = (
 		indent()
 		format "\"%\"" name to:fs
@@ -489,7 +493,7 @@ struct TSceneExporter (
 		fs.endArray()
 	),
 	
-	-- --SPLINE--------------------------------------------------
+	-- --SPLINE-------------------------------------------------------
 	fn exportSpline obj type:"follow_curve" = (
 		-- Executed only if we already know it has a child line.
 		local curveType = "catmull-rom"
@@ -527,6 +531,7 @@ struct TSceneExporter (
 		)
 	),
 	
+	-- --BREAKABLE------------------------------------------------
 	fn exportBreakable hp:1 = (
 		fs.writeComma()
 		fs.writeKey "breakable"
@@ -575,12 +580,12 @@ struct TSceneExporter (
 	),
 
 	-- --ENTITY COLLIDER-----------------------------------------
-	fn exportEntityCollider obj colliderGroups: trig:false dyn:false = (
+	fn exportEntityCollider obj colliderGroups: masks: trig:false dyn:false = (
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
-		exportCompCollider obj colliderGroups:colliderGroups trig:trig dyn:dyn
+		exportCompCollider obj colliderGroups:colliderGroups masks:masks trig:trig dyn:dyn
 	),
 		
 	-- --SHADOW --------------------------------------------------
@@ -1097,7 +1102,11 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportEntityCollider obj
+				if stringContainsSubstring obj.name "Bounds" then (
+					fs.writeKeyEmpty "outOfBounds"
+					exportEntityCollider obj trig:true dyn:true colliderGroups:#("all") masks:#("characters")
+				)
+				else exportEntityCollider obj trig:true
 				-- Add child spline if it exists.
 				if hasChildLine obj then (
 					exportSpline obj
@@ -1176,6 +1185,7 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Exportar pinchos, mech, rotate, coins.
+TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
 */
 
 /*----------------------------------------------------------------------------------

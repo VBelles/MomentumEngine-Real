@@ -3,11 +3,13 @@
 -----------------------------------------------
 
 fn cleanMaterialName oldName = (
-	return substituteString oldName " " "_"
+	local cleanName = substituteString oldName " " "_"
+	return substituteString cleanName "ñ" "n"
 )
 
 fn isValidName aname = (
-	return findString aname " " == undefined
+	return (findString aname " " == undefined) or
+		   (findString aname "ñ" == undefined)
 )
 
 fn stringContainsSubstring strng substrng = (
