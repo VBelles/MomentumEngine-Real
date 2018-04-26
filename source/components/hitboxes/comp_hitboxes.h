@@ -24,17 +24,18 @@ public:
 		PxGeometry* geometry;
 		VEC3 offset;
 		PxQueryFilterData filterData;
+		CTransform transform;
 		bool enabled;
 		int boneId;
 	};
 private:
 	std::vector<HitboxConfig> hitboxesConfig;
-	std::map<std::string, Hitbox> hitboxes;
+	std::map<std::string, Hitbox*> hitboxes;
 	CHandle skeletonHandle;
 	
 	TCompHitboxes::HitboxConfig loadHitbox(const json& jHitbox);
-	TCompHitboxes::Hitbox createHitbox(const HitboxConfig & config);
-	void updateHitbox(const Hitbox& hitbox, float delta);
+	TCompHitboxes::Hitbox* createHitbox(const HitboxConfig & config);
+	void updateHitbox(Hitbox* hitbox, float delta);
 
 	void enable(std::string name);
 

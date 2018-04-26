@@ -348,7 +348,7 @@ void CModulePhysics::releaseColliders() {
 CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
 	auto it = filterGroupByName.find(name);
 	if (it != filterGroupByName.end()) {
-		return filterGroupByName[name];
+		return it->second;
 	}
 	return FilterGroup::All;
 }

@@ -132,7 +132,7 @@
 						"shape": "box",
 						"halfExtent": "1 1 1",
 						"group":["player"],
-						"mask":["enemies"],
+						"mask":["enemy"],
 						"bone":"Bip001 R Hand"
 
 					}

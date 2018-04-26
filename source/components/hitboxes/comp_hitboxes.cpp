@@ -15,13 +15,10 @@ void TCompHitboxes::debugInMenu() {
 
 void TCompHitboxes::renderDebug() {
 	for (auto& p : hitboxes) {
-		const Hitbox& hitbox = p.second;
-		if (hitbox.enabled) {
-			CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox.boneId);
-			VEC3 pos = Cal2DX(bone->getTranslationAbsolute());
-			QUAT rot = Cal2DX(bone->getRotationAbsolute());
-			pos += hitbox.offset;
-			renderWiredCube(pos, rot, fromPhysx((static_cast<PxBoxGeometry*>(hitbox.geometry))->halfExtents), VEC4(0, 0, 0, 1));
+		Hitbox* hitbox = p.second;
+		if (hitbox->enabled) {
+			renderWiredCube(hitbox->transform.getPosition(), hitbox->transform.getRotation(),
+				fromPhysx((static_cast<PxBoxGeometry*>(hitbox->geometry))->halfExtents), VEC4(0, 0, 0, 1));
 		}
 	}
 }
@@ -83,70 +80,80 @@ void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
 	assert(skeletonHandle.isValid());
 	for (int i = 0; i < hitboxesConfig.size(); ++i) {
 		const HitboxConfig& config = hitboxesConfig[i];
-		Hitbox& hitbox = createHitbox(config);
-		hitboxes[hitbox.name] = hitbox;
+		Hitbox* hitbox = createHitbox(config);
+		hitboxes[hitbox->name] = hitbox;
 	}
+
+	//enable("hitbox01"); //For testing porpouses
 }
 
-TCompHitboxes::Hitbox TCompHitboxes::createHitbox(const HitboxConfig& config) {
-	Hitbox hitbox = {};
+TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
+	Hitbox* hitbox = new Hitbox();
 
-	hitbox.name = config.name;
-	hitbox.offset = config.offset;
+	hitbox->name = config.name;
+	hitbox->offset = config.offset;
 
-	hitbox.boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
+	hitbox->boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
+	assert(hitbox->boneId != -1);
 
-	assert(hitbox.boneId != -1);
+	hitbox->transform = CTransform();
+	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
+	hitbox->transform.setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
+	hitbox->transform.setRotation(Cal2DX(bone->getRotationAbsolute()));
 
-	hitbox.filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
+	hitbox->filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
 		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eANY_HIT));
 
 	if (config.shape == "sphere") {
-		hitbox.geometry = new PxSphereGeometry(config.radius);
+		hitbox->geometry = new PxSphereGeometry(config.radius);
 	}
 	else if (config.shape == "box") {
-		hitbox.geometry = new PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z);
+		hitbox->geometry = new PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z);
 	}
-	
+
+
 	return hitbox;
 }
 
 
 void TCompHitboxes::update(float delta) {
 	for (auto& p : hitboxes) {
-		const Hitbox& hitbox = p.second;
-		if (hitbox.enabled) {
+		Hitbox* hitbox = p.second;
+		if (hitbox->enabled) {
 			updateHitbox(hitbox, delta);
 		}
 	}
 }
 
 
-void TCompHitboxes::updateHitbox(const Hitbox& hitbox, float delta) {
-	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox.boneId);
-	VEC3 pos = Cal2DX(bone->getTranslationAbsolute());
-	QUAT rot = Cal2DX(bone->getRotationAbsolute());
-	pos += hitbox.offset;
-	PxTransform pose = PxTransform(toPhysx(pos), toPhysx(rot));
+void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
+	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
+
+	hitbox->transform.setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
+	hitbox->transform.setRotation(Cal2DX(bone->getRotationAbsolute()));
+
+	PxTransform pose = PxTransform(toPhysx(&hitbox->transform));
 	PxOverlapBuffer overlapCallback;
-	bool status = EnginePhysics.getScene()->overlap(*hitbox.geometry, pose, overlapCallback,
-		hitbox.filterData, EnginePhysics.getGameQueryFilterCallback());
+	bool status = EnginePhysics.getScene()->overlap(*hitbox->geometry, pose, overlapCallback,
+		hitbox->filterData, EnginePhysics.getGameQueryFilterCallback());
 	if (status && overlapCallback.hasBlock) {
 		//dbg("Hit\n");
 	}
-
+	//VEC3 pos = hitbox->transform.getPosition();
 	//dbg("%f,%f,%f\n", pos.x, pos.y, pos.z);
 }
 
 void TCompHitboxes::enable(std::string name) {
-	if (hitboxes.find("name") != hitboxes.end()) {
-		hitboxes[name].enabled = true;
+	auto it = hitboxes.find(name);
+	if (it != hitboxes.end()) {
+		it->second->enabled = true;
 	}
 }
 
 void TCompHitboxes::disable(std::string name) {
-	if (hitboxes.find("name") != hitboxes.end()) {
-		hitboxes[name].enabled = false;
+	auto it = hitboxes.find(name);
+	if (it != hitboxes.end()) {
+		it->second->enabled = false;
 	}
 }
 
