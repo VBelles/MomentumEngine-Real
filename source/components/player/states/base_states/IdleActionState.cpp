@@ -48,7 +48,7 @@ void IdleActionState::update (float delta) {
 
 void IdleActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.4f, 0.4f);
 }
 
 void IdleActionState::onStateExit(IActionState * nextState) {

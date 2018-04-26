@@ -7,6 +7,7 @@
 		{ "name" : "jump_volando"},
 		{ "name" : "jump_caida"},
 		{ "name" : "melee"},
+		{ "name" : "melee_strong"},
 		{ "name" : "liberarenergia"},
 		{ "name" : "recibedanio"},
 		{ "name" : "ataquecaida_posicionamiento"},
