@@ -11,7 +11,7 @@
 StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "melee";
+	animation = "melee_strong";
 }
 
 void StrongAttackActionState::update(float delta) {

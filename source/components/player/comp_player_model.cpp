@@ -67,9 +67,9 @@ void TCompPlayerModel::registerMsgs() {
 }
 
 void TCompPlayerModel::debugInMenu() {
-	debugInMenu(ssj1, "Ssj1");
-	debugInMenu(ssj2, "Ssj2");
-	debugInMenu(ssj3, "Ssj3");
+	debugInMenu(powerStats[0], "Ssj1");
+	debugInMenu(powerStats[1], "Ssj2");
+	debugInMenu(powerStats[2], "Ssj3");
 	if (ImGui::DragFloat("Gravity", &accelerationVector.y, 1.f, -1500.f, -0.1f)) {
 		baseGravity = accelerationVector.y;
 	}
@@ -102,9 +102,17 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	walkingSpeed = j.value("walkingSpeed", 5.0f);
 	maxVelocityUpwards = j.value("maxVelocityUpwards", 45.0f);
 
-	ssj1 = loadPowerStats(j["ssj1"]);
-	ssj2 = loadPowerStats(j["ssj2"]);
-	ssj3 = loadPowerStats(j["ssj3"]);
+	if (j.count("materials")) {
+		auto& j_mats = j["materials"];
+		for (size_t i = 0; i < j_mats.size(); ++i) {
+			std::string name_material = j_mats[i];
+			materials[i] = name_material;
+		}
+	}
+
+	powerStats[0] = loadPowerStats(j["ssj1"]);
+	powerStats[1] = loadPowerStats(j["ssj2"]);
+	powerStats[2] = loadPowerStats(j["ssj3"]);
 
 }
 
@@ -153,11 +161,10 @@ void TCompPlayerModel::changeConcurrentState(ActionStates newState) {
 
 
 void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
-	switch (msg.powerLvl) {
-	case 1: currentPowerStats = ssj1; break;
-	case 2: currentPowerStats = ssj2; break;
-	case 3: currentPowerStats = ssj3; break;
-	}
+	currentPowerStats = powerStats[msg.powerLvl - 1];
+
+	TCompRender *render = get<TCompRender>();
+	render->setAllMaterials(materials[msg.powerLvl - 1]);
 }
 
 void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -282,7 +289,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	nextConcurrentState = ActionStates::Idle;
 	changeBaseState(ActionStates::Idle);
 	changeConcurrentState(ActionStates::Idle);
-	currentPowerStats = ssj1;
+	currentPowerStats = powerStats[0];
 
 	playerFilterCallback = new PlayerFilterCallback();
 
@@ -424,11 +431,11 @@ void TCompPlayerModel::sweep(VEC3 deltaMovement) {
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
 	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
-	PxHitFlags hitFlags = PxHitFlag::eMESH_ANY| PxHitFlag::ePOSITION | PxHitFlag::eNORMAL | PxHitFlag::eDISTANCE;
+	PxHitFlags hitFlags = PxHitFlag::eMESH_ANY | PxHitFlag::ePOSITION | PxHitFlag::eNORMAL | PxHitFlag::eDISTANCE;
 
 	bool status = EnginePhysics.getScene()->sweep(geometry, playerPxTransform, toPhysx(direction), distance, sweepBuffer,
 		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
-	
+
 	if (status) {
 		baseState->onSweep(sweepBuffer);
 		if (concurrentState != concurrentStates[ActionStates::Idle]) {
@@ -649,9 +656,9 @@ void TCompPlayerModel::onContact(const TMsgOnContact& msg) {
 }
 
 TCompPlayerModel::~TCompPlayerModel() {
-	SAFE_DELETE(ssj1);
-	SAFE_DELETE(ssj2);
-	SAFE_DELETE(ssj3);
+	SAFE_DELETE(powerStats[0]);
+	SAFE_DELETE(powerStats[1]);
+	SAFE_DELETE(powerStats[2]);
 	for (auto& keyValue : baseStates) {
 		SAFE_DELETE(keyValue.second);
 	}
