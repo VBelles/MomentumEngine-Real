@@ -2,7 +2,7 @@
   "technique": "pbr_skin.tech",
   "shadows": true,
   "textures": {
-    "albedo": "data/textures/ella/ella_basecolor_purplemarks.dds",
+    "albedo": "data/textures/ella/ella_basecolor_whitemarks.dds",
     "normal": "data/textures/ella/ella_normals.dds",
     "metallic": "data/textures/ella/ella_occlusionroughnessmetallic.dds",
     "roughness": "data/textures/ella/ella_occlusionroughnessmetallic.dds"
