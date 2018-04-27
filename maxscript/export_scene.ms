@@ -572,7 +572,8 @@ struct TSceneExporter (
 	),
 	
 	-- --MECHANISM------------------------------------------------
-	fn exportMechanism obj = (
+	-- What is affected when activating a mechanism system.
+	fn exportMech obj = (
 		fs.writeComma()
 		fs.writeKey "mechanism"
 		fs.beginObj()
@@ -590,19 +591,32 @@ struct TSceneExporter (
 	),
 	
 	-- --MECHANISM SYSTEM---------------------------------------------
-	fn exportMechanismSystem obj = (
-		fs.writeComma()
-		fs.writeKey "mechanism_system"
+	-- The activator of the mechanisms.
+	fn exportMechSys obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		if obj.parent != undefined then return exportDefault obj nValidObjs
 		fs.beginObj()
-			fs.writeKeyValue "activationEffectFile" "data/scripts/test.lua"
-			fs.writeComma()
-			fs.writeKey "mechanisms"
-			fs.beginArray()
-				for i = 1 to obj.children.count do (
-					if i != 1 then fs.writeComma()
-					fs.writeKey obj.children[i].name
-				)
-			fs.endArray()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + "mech_sys.prefab")
+				fs.writeComma()
+				exportTransform obj
+				fs.writeComma()
+				fs.writeKey "mechanism_system"
+				fs.beginObj()
+					fs.writeKeyValue "activationEffectFile" "data/scripts/test.lua"
+					fs.writeComma()
+					fs.writeKey "mechanisms"
+					fs.beginArray()
+						for i = 1 to obj.children.count do (
+							if i != 1 then fs.writeComma()
+							fs.writeKey obj.children[i].name
+						)
+					fs.endArray()
+				fs.endObj()
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 	),
 	
@@ -640,7 +654,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				exportTransform obj
 				fs.writeComma()
-				fs.writeKeyValue "prefab" "data/prefabs/coin.prefab"
+				fs.writeKeyValue "prefab" (prefabPath + "coin.prefab")
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		return true
@@ -767,10 +781,9 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				local prefabPath = base_path + "prefabs/crisalida.prefab"
 				exportName obj
 				fs.writeComma()
-				fs.writeKeyValue "prefab" prefabPath
+				fs.writeKeyValue "prefab" (prefabPath + "crisalida.prefab")
 				fs.writeComma()
 				exportTransform obj
 				-- Add child spline if it exists.
@@ -796,7 +809,6 @@ struct TSceneExporter (
 					prefabName = enemyMeleePrefabName
 				if stringContainsSubstring obj.name "Ball" then
 					prefabName = enemyBolaPrefabName
-				local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
 				
 				local attributeManager = TAttributeManager()
 				local hp = attributeManager.getAttributeValue obj #enemyData #hitPoints
@@ -804,8 +816,7 @@ struct TSceneExporter (
 				
 				exportName obj
 				fs.writeComma()
-				local prefabPath = prefabPath
-				fs.writeKeyValue "prefab" prefabPath
+				fs.writeKeyValue "prefab" (prefabPath + prefabName + ".prefab")
 				fs.writeComma()
 				local objPos = obj.position * (rotateXMatrix -90)
 				local lookAtPos = [-1, objPos.y, -1]
@@ -928,7 +939,7 @@ struct TSceneExporter (
 	),
 	
 	-- --EDITABLE MESH-------------------------------------------
-	fn exportEditableMesh obj pure:false breakable:false rot:false = (
+	fn exportEditableMesh obj = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
 		exportName obj
 		fs.writeComma()
@@ -939,6 +950,11 @@ struct TSceneExporter (
 			exportRenderMesh obj
 		fs.endArray()
 		
+		local pure 		= obj.layer.name == "pure"
+		local breakable = obj.layer.name == "breakables"
+		local rot		= obj.layer.name == "rotate"
+		local mech		= obj.layer.name == "mechanism"
+		
 		if hasChildCollider obj then (
 			for child in obj.children do (
 				if isCollider child then (
@@ -947,19 +963,14 @@ struct TSceneExporter (
 					local movable = hasChildLine child
 					--if pure == unsupplied then pure = false
 					exportCompCollider child dyn:(pure or movable or rot)
-					if pure then (
-						exportPurity()
-					)
-					if breakable then (
-						exportBreakable()
-					)
+					if pure then  exportPurity()
+					if breakable then exportBreakable()
 					if movable then (
 						exportSpline child
 						exportMoveTrigger obj child
 					)
-					if rot then (
-						exportPlatfRotation()
-					)
+					if rot then exportPlatfRotation()
+					if mech then exportMech()
 				)
 			)
 		)
@@ -971,7 +982,7 @@ struct TSceneExporter (
 	),
 	
 	-- --DEFAULT ------------------------------------------------
-	fn exportDefault obj nValidObjs pure:false breakable:false rot:false mov:false = (
+	fn exportDefault obj nValidObjs = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -980,7 +991,7 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportEditableMesh obj pure:pure breakable:breakable rot:rot
+				exportEditableMesh obj
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		return true
@@ -1214,15 +1225,15 @@ struct TSceneExporter (
 							"collisions":   ( wasValid = exportCollision   obj nValidObjs )
 							"enemies":      ( wasValid = exportEnemy       obj nValidObjs )
 							"lights":       ( wasValid = exportLight       obj nValidObjs )
-							"movables":     ( wasValid = exportDefault     obj nValidObjs dyn:true mov:true )
+							"movables":     ( wasValid = exportDefault     obj nValidObjs )
 							"player":       ( wasValid = exportPlayer      obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
-							"rotate": 		( wasValid = exportDefault	   obj nValidObjs rot:true)
+							"rotate": 		( wasValid = exportDefault	   obj nValidObjs )
 							"triggers":     ( wasValid = exportTrigger     obj nValidObjs )
-							--"mechanism":( wasValid = exportMechanism   obj nValidObjs )
-							"pure":		    ( wasValid = exportDefault     obj nValidObjs pure:true )
-							"break":		( wasValid = exportDefault     obj nValidObjs breakable:true )
+							"mechanism":	( wasValid = exportMechSys	   obj nValidObjs )
+							"pure":		    ( wasValid = exportDefault     obj nValidObjs )
+							"break":		( wasValid = exportDefault     obj nValidObjs )
 							"0":		    ( wasValid = exportDefault     obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
