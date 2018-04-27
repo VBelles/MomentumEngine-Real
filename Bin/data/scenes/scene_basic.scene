@@ -128,7 +128,16 @@
 			"collider": {
 				"shape": "box",
 				"halfExtent": "2.5 3.5 1.0"
-			}
+			},
+			"altar":{
+				"spawn_positions": [
+					"-72 25 -59",
+					"-77 25 -59",
+					"-77 25 -55"
+				],
+				"prefab" : "data/prefabs/crisalida.prefab",
+				"activationEffectFile" : "data/scripts/test.lua"
+			}		
 		}
 	},
 	{
