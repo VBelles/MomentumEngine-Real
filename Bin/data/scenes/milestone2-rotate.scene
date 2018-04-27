@@ -2,16 +2,16 @@
   {
     "entity":
     {
-      "name": "ms2-rotate003mesh",
+      "name": "ms2_rotate003mesh",
       "transform":
       {
-        "pos": "-53.0059 34.7255 -20.9272",
-        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+        "pos": "-71.5043 34.7255 -34.2997",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-rotate003mesh.mesh",
+          "mesh": "data/meshes/ms2_rotate003mesh.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -33,16 +33,16 @@
   {
     "entity":
     {
-      "name": "ms2-rotate002mesh",
+      "name": "ms2_rotate002mesh",
       "transform":
       {
-        "pos": "-51.0955 30.7252 -28.0571",
-        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+        "pos": "-67.8136 30.7252 -40.6922",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-rotate002mesh.mesh",
+          "mesh": "data/meshes/ms2_rotate002mesh.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -64,16 +64,16 @@
   {
     "entity":
     {
-      "name": "ms2-rotate001mesh",
+      "name": "ms2_rotate001mesh",
       "transform":
       {
-        "pos": "-53.0059 27.4464 -20.9272",
-        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+        "pos": "-71.5043 27.4464 -34.2997",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-rotate001mesh.mesh",
+          "mesh": "data/meshes/ms2_rotate001mesh.mesh",
           "materials":
           [
             "data/materials/empty.material"

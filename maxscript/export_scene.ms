@@ -511,7 +511,7 @@ struct TSceneExporter (
 				if childClass == circle or
 			       childClass == SplineShape then (
 					curveType = "circular"
-					moveOffset = getCircularMovementOffset parent child
+					moveOffset = getCircularMovementOffset obj child
 				)
 				
 				local closed = false

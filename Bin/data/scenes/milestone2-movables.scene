@@ -2,16 +2,16 @@
   {
     "entity":
     {
-      "name": "ms2-move013mesh",
+      "name": "ms2_move013mesh",
       "transform":
       {
-        "pos": "-17.292 29.6525 -58.3357",
-        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+        "pos": "-27.3253 29.6525 -61.1901",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move013mesh.mesh",
+          "mesh": "data/meshes/ms2_move013mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -35,17 +35,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.9,
+        "move_offset": 0.157405,
         "speed": 0.001,
         "knots":
         [
-           "-21.1414 29.4001 -57.7873",
-           "-16.443 29.4001 -56.0772",
-           "-16.443 29.4001 -56.0772",
-           "-19.4313 29.4001 -62.4857",
-           "-25.8399 29.4001 -59.4974",
-           "-22.8515 29.4001 -53.0888",
-           "-22.8515 29.4001 -53.0888"
+           "-31.1855 29.4001 -61.6567",
+           "-27.0897 29.4001 -58.7888",
+           "-27.0897 29.4001 -58.7888",
+           "-28.3176 29.4001 -65.7524",
+           "-35.2812 29.4001 -64.5246",
+           "-34.0533 29.4001 -57.5609",
+           "-34.0533 29.4001 -57.5609"
         ]
       }
     }
@@ -53,7 +53,7 @@
   {
     "entity":
     {
-      "name": "ms2-move013mesh_trigger",
+      "name": "ms2_move013mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -69,23 +69,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move013mesh"
+        "parent": "ms2_move013mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move012mesh",
+      "name": "ms2_move012mesh",
       "transform":
       {
-        "pos": "-21.348 29.6525 -50.8866",
-        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+        "pos": "-33.171 29.6525 -55.0445",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move012mesh.mesh",
+          "mesh": "data/meshes/ms2_move012mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -109,17 +109,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.5,
+        "move_offset": 0.268443,
         "speed": 0.001,
         "knots":
         [
-           "-21.1414 29.4001 -57.7873",
-           "-24.9716 29.4001 -54.5733",
-           "-24.9716 29.4001 -54.5733",
-           "-17.9275 29.4001 -53.9571",
-           "-17.3112 29.4001 -61.0012",
-           "-24.3553 29.4001 -61.6175",
-           "-24.3553 29.4001 -61.6175"
+           "-31.1855 29.4001 -61.6567",
+           "-35.717 29.4001 -59.5436",
+           "-35.717 29.4001 -59.5436",
+           "-29.0724 29.4001 -57.1251",
+           "-26.6539 29.4001 -63.7698",
+           "-33.2985 29.4001 -66.1882",
+           "-33.2985 29.4001 -66.1882"
         ]
       }
     }
@@ -127,7 +127,7 @@
   {
     "entity":
     {
-      "name": "ms2-move012mesh_trigger",
+      "name": "ms2_move012mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -143,23 +143,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move012mesh"
+        "parent": "ms2_move012mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move011mesh",
+      "name": "ms2_move011mesh",
       "transform":
       {
-        "pos": "-25.8515 29.6525 -58.7888",
-        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+        "pos": "-35.4758 29.6525 -63.8431",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move011mesh.mesh",
+          "mesh": "data/meshes/ms2_move011mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -183,17 +183,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0,
+        "move_offset": 0.37793,
         "speed": 0.001,
         "knots":
         [
-           "-21.1414 29.4001 -57.7873",
-           "-22.0097 29.4001 -62.7113",
-           "-22.0097 29.4001 -62.7113",
-           "-26.0655 29.4001 -56.919",
-           "-20.2732 29.4001 -52.8632",
-           "-16.2174 29.4001 -58.6555",
-           "-16.2174 29.4001 -58.6555"
+           "-31.1855 29.4001 -61.6567",
+           "-30.7497 29.4001 -66.6376",
+           "-30.7497 29.4001 -66.6376",
+           "-36.1664 29.4001 -62.0925",
+           "-31.6212 29.4001 -56.6757",
+           "-26.2045 29.4001 -61.2209",
+           "-26.2045 29.4001 -61.2209"
         ]
       }
     }
@@ -201,7 +201,7 @@
   {
     "entity":
     {
-      "name": "ms2-move011mesh_trigger",
+      "name": "ms2_move011mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -217,23 +217,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move011mesh"
+        "parent": "ms2_move011mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move009mesh",
+      "name": "ms2_move009mesh",
       "transform":
       {
-        "pos": "31.3613 48.1095 4.00446",
-        "rotation": "0.0 0.258819 0.0 -0.965926"
+        "pos": "56.1255 48.1095 7.86738",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move009mesh.mesh",
+          "mesh": "data/meshes/ms2_move009mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -261,10 +261,10 @@
         "speed": 0.2,
         "knots":
         [
-           "31.4047 48.1077 3.90671",
-           "31.4047 48.1077 3.90671",
-           "10.305 48.1077 -8.27522",
-           "10.305 48.1077 -8.27522"
+           "56.105 48.1077 7.76242",
+           "56.105 48.1077 7.76242",
+           "31.8338 48.1077 9.88587",
+           "31.8338 48.1077 9.88587"
         ]
       }
     }
@@ -272,7 +272,7 @@
   {
     "entity":
     {
-      "name": "ms2-move009mesh_trigger",
+      "name": "ms2_move009mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -288,23 +288,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move009mesh"
+        "parent": "ms2_move009mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move008mesh",
+      "name": "ms2_move008mesh",
       "transform":
       {
-        "pos": "-47.394 35.0558 4.24581",
-        "rotation": "0.0 0.5 0.0 -0.866025"
+        "pos": "-72.5989 35.0558 -8.53199",
+        "rotation": "0.0 0.608761 0.0 -0.793353"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move008mesh.mesh",
+          "mesh": "data/meshes/ms2_move008mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -332,10 +332,10 @@
         "speed": 0.2,
         "knots":
         [
-           "-47.5194 35.0378 4.20398",
-           "-47.5194 35.0378 4.20398",
-           "-52.8984 35.0382 7.21845",
-           "-52.8984 35.0382 7.21845"
+           "-72.7092 35.0378 -8.60485",
+           "-72.7092 35.0378 -8.60485",
+           "-78.685 35.0382 -7.08527",
+           "-78.685 35.0382 -7.08527"
         ]
       }
     }
@@ -343,7 +343,7 @@
   {
     "entity":
     {
-      "name": "ms2-move008mesh_trigger",
+      "name": "ms2_move008mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -359,23 +359,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move008mesh"
+        "parent": "ms2_move008mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move007mesh",
+      "name": "ms2_move007mesh",
       "transform":
       {
-        "pos": "2.65416 35.0558 -25.4455",
-        "rotation": "0.0 0.0871557 0.0 -0.996195"
+        "pos": "-16.5714 35.0558 -24.2581",
+        "rotation": "0.0 0.21644 0.0 -0.976296"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move007mesh.mesh",
+          "mesh": "data/meshes/ms2_move007mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -399,17 +399,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.9,
+        "move_offset": 0.850408,
         "speed": 0.001,
         "knots":
         [
-           "14.7791 35.2299 -31.6014",
-           "28.4348 35.2299 -31.6014",
-           "28.4348 35.2299 -31.6014",
-           "14.7791 35.2299 -45.2571",
-           "1.12338 35.2299 -31.6014",
-           "14.7791 35.2299 -17.9457",
-           "14.7791 35.2299 -17.9457"
+           "-3.26632 35.2299 -27.0661",
+           "9.92409 35.2299 -23.5318",
+           "9.92409 35.2299 -23.5318",
+           "0.268042 35.2299 -40.2565",
+           "-16.4567 35.2299 -30.6005",
+           "-6.80068 35.2299 -13.8757",
+           "-6.80068 35.2299 -13.8757"
         ]
       }
     }
@@ -417,7 +417,7 @@
   {
     "entity":
     {
-      "name": "ms2-move007mesh_trigger",
+      "name": "ms2_move007mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -433,23 +433,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move007mesh"
+        "parent": "ms2_move007mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move006mesh",
+      "name": "ms2_move006mesh",
       "transform":
       {
-        "pos": "27.0919 35.0558 -25.6163",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+        "pos": "7.07793 35.0558 -18.0982",
+        "rotation": "0.0 0.0436194 0.0 -0.999048"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move006mesh.mesh",
+          "mesh": "data/meshes/ms2_move006mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -473,17 +473,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.5,
+        "move_offset": 0.522645,
         "speed": 0.001,
         "knots":
         [
-           "14.7791 35.2299 -31.6014",
-           "7.95125 35.2299 -19.7752",
-           "7.95125 35.2299 -19.7752",
-           "26.6053 35.2299 -24.7735",
-           "21.607 35.2299 -43.4276",
-           "2.95291 35.2299 -38.4292",
-           "2.95291 35.2299 -38.4292"
+           "-3.26631 35.2299 -27.0661",
+           "-12.9224 35.2299 -17.4101",
+           "-12.9224 35.2299 -17.4101",
+           "6.38974 35.2299 -17.4101",
+           "6.38974 35.2299 -36.7222",
+           "-12.9224 35.2299 -36.7222",
+           "-12.9224 35.2299 -36.7222"
         ]
       }
     }
@@ -491,7 +491,7 @@
   {
     "entity":
     {
-      "name": "ms2-move006mesh_trigger",
+      "name": "ms2_move006mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -507,23 +507,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move006mesh"
+        "parent": "ms2_move006mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move005mesh",
+      "name": "ms2_move005mesh",
       "transform":
       {
-        "pos": "14.7521 35.0558 -46.2516",
-        "rotation": "0.0 -0.382683 0.0 -0.92388"
+        "pos": "0.499355 35.0558 -41.2242",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move005mesh.mesh",
+          "mesh": "data/meshes/ms2_move005mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -547,17 +547,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0,
+        "move_offset": 0.166119,
         "speed": 0.001,
         "knots":
         [
-           "14.7791 35.2299 -31.6014",
-           "7.95125 35.2299 -43.4276",
-           "7.95125 35.2299 -43.4276",
-           "2.95291 35.2299 -24.7735",
-           "21.607 35.2299 -19.7752",
-           "26.6053 35.2299 -38.4292",
-           "26.6053 35.2299 -38.4292"
+           "-3.26631 35.2299 -27.0661",
+           "-6.80067 35.2299 -40.2565",
+           "-6.80067 35.2299 -40.2565",
+           "-16.4567 35.2299 -23.5318",
+           "0.268052 35.2299 -13.8757",
+           "9.9241 35.2299 -30.6005",
+           "9.9241 35.2299 -30.6005"
         ]
       }
     }
@@ -565,7 +565,7 @@
   {
     "entity":
     {
-      "name": "ms2-move005mesh_trigger",
+      "name": "ms2_move005mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -581,23 +581,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move005mesh"
+        "parent": "ms2_move005mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move004mesh",
+      "name": "ms2_move004mesh",
       "transform":
       {
-        "pos": "1.01889 24.5329 -32.3572",
-        "rotation": "0.0 -0.92388 0.0 -0.382683"
+        "pos": "-16.3621 24.5329 -31.3576",
+        "rotation": "0.0 -0.866025 0.0 -0.5"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move004mesh.mesh",
+          "mesh": "data/meshes/ms2_move004mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -621,17 +621,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.9,
+        "move_offset": 0.982463,
         "speed": 0.001,
         "knots":
         [
-           "14.7791 24.6014 -31.6014",
-           "28.4348 24.6014 -31.6014",
-           "28.4348 24.6014 -31.6014",
-           "14.7791 24.6014 -45.2571",
-           "1.12339 24.6014 -31.6014",
-           "14.7791 24.6014 -17.9457",
-           "14.7791 24.6014 -17.9457"
+           "-3.26631 24.6014 -27.0661",
+           "9.9241 24.6014 -23.5318",
+           "9.9241 24.6014 -23.5318",
+           "0.268049 24.6014 -40.2565",
+           "-16.4567 24.6014 -30.6005",
+           "-6.80067 24.6014 -13.8757",
+           "-6.80067 24.6014 -13.8757"
         ]
       }
     }
@@ -639,7 +639,7 @@
   {
     "entity":
     {
-      "name": "ms2-move004mesh_trigger",
+      "name": "ms2_move004mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -655,23 +655,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move004mesh"
+        "parent": "ms2_move004mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move003mesh",
+      "name": "ms2_move003mesh",
       "transform":
       {
-        "pos": "21.8251 24.5329 -20.2592",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
+        "pos": "0.60401 24.5329 -14.2868",
+        "rotation": "0.0 -0.5373 0.0 -0.843391"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move003mesh.mesh",
+          "mesh": "data/meshes/ms2_move003mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -695,17 +695,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.5,
+        "move_offset": 0.34361,
         "speed": 0.001,
         "knots":
         [
-           "14.7791 24.6014 -31.6014",
-           "7.95124 24.6014 -19.7752",
-           "7.95124 24.6014 -19.7752",
-           "26.6053 24.6014 -24.7735",
-           "21.607 24.6014 -43.4276",
-           "2.95291 24.6014 -38.4292",
-           "2.95291 24.6014 -38.4292"
+           "-3.26631 24.6014 -27.0661",
+           "-12.9224 24.6014 -17.4101",
+           "-12.9224 24.6014 -17.4101",
+           "6.38973 24.6014 -17.4101",
+           "6.38974 24.6014 -36.7222",
+           "-12.9224 24.6014 -36.7222",
+           "-12.9224 24.6014 -36.7222"
         ]
       }
     }
@@ -713,7 +713,7 @@
   {
     "entity":
     {
-      "name": "ms2-move003mesh_trigger",
+      "name": "ms2_move003mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -729,23 +729,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move003mesh"
+        "parent": "ms2_move003mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move002mesh",
+      "name": "ms2_move002mesh",
       "transform":
       {
-        "pos": "21.6542 24.5329 -44.697",
-        "rotation": "0.0 -0.766044 0.0 -0.642788"
+        "pos": "6.76395 24.5329 -37.9361",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move002mesh.mesh",
+          "mesh": "data/meshes/ms2_move002mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -769,17 +769,17 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0,
+        "move_offset": 0.320553,
         "speed": 0.001,
         "knots":
         [
-           "14.7791 24.6014 -31.6014",
-           "7.95124 24.6014 -43.4276",
-           "7.95124 24.6014 -43.4276",
-           "2.9529 24.6014 -24.7735",
-           "21.607 24.6014 -19.7752",
-           "26.6053 24.6014 -38.4292",
-           "26.6053 24.6014 -38.4292"
+           "-3.26632 24.6014 -27.0661",
+           "-6.80068 24.6014 -40.2565",
+           "-6.80068 24.6014 -40.2565",
+           "-16.4567 24.6014 -23.5318",
+           "0.268038 24.6014 -13.8757",
+           "9.92409 24.6014 -30.6005",
+           "9.92409 24.6014 -30.6005"
         ]
       }
     }
@@ -787,7 +787,7 @@
   {
     "entity":
     {
-      "name": "ms2-move002mesh_trigger",
+      "name": "ms2_move002mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -803,23 +803,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move002mesh"
+        "parent": "ms2_move002mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-move001mesh",
+      "name": "ms2_move001mesh",
       "transform":
       {
-        "pos": "-30.4695 5.194 -44.3949",
-        "rotation": "0.430459 -0.430459 0.560986 -0.560986"
+        "pos": "-43.6619 5.194 -51.1349",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-move001mesh.mesh",
+          "mesh": "data/meshes/ms2_move001mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -847,10 +847,10 @@
         "speed": 0.2,
         "knots":
         [
-           "-29.8809 4.7628 -46.4709",
-           "-29.8809 4.7628 -46.4709",
-           "-29.8809 16.4552 -46.4709",
-           "-29.8809 16.4552 -46.4709"
+           "-42.5561 4.7628 -52.9878",
+           "-42.5561 4.7628 -52.9878",
+           "-42.5561 16.4552 -52.9878",
+           "-42.5561 16.4552 -52.9878"
         ]
       }
     }
@@ -858,7 +858,7 @@
   {
     "entity":
     {
-      "name": "ms2-move001mesh_trigger",
+      "name": "ms2_move001mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -874,23 +874,23 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-move001mesh"
+        "parent": "ms2_move001mesh"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2-mech003-appear001mesh",
+      "name": "ms2_mech003-appear001mesh",
       "transform":
       {
-        "pos": "46.9993 11.7471 26.7373",
-        "rotation": "0.0 0.258819 0.0 -0.965926"
+        "pos": "81.9744 11.7471 17.5194",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2-mech003-appear001mesh.mesh",
+          "mesh": "data/meshes/ms2_mech003-appear001mesh.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -913,12 +913,12 @@
         "speed": 0.2,
         "knots":
         [
-           "47.0915 11.9517 26.6707",
-           "47.0915 11.9517 26.6707",
-           "59.5237 11.9517 31.932",
-           "65.5286 11.9517 23.0906",
-           "60.8059 11.9517 18.3361",
-           "60.8059 11.9517 18.3361"
+           "82.0117 11.9517 17.4121",
+           "82.0117 11.9517 17.4121",
+           "95.2133 11.9517 14.5911",
+           "95.0611 11.9517 3.90423",
+           "88.4653 11.9517 2.71844",
+           "88.4653 11.9517 2.71844"
         ]
       }
     }
@@ -926,7 +926,7 @@
   {
     "entity":
     {
-      "name": "ms2-mech003-appear001mesh_trigger",
+      "name": "ms2_mech003-appear001mesh_trigger",
       "transform": {},
       "collider":
       {
@@ -942,7 +942,7 @@
       "platform": {},
       "hierarchy":
       {
-        "parent": "ms2-mech003-appear001mesh"
+        "parent": "ms2_mech003-appear001mesh"
       }
     }
   }

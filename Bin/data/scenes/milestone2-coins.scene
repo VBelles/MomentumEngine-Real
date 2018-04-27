@@ -2,10 +2,58 @@
   {
     "entity":
     {
-      "name": "ms2-coin071",
+      "name": "ms2_coin071",
       "transform":
       {
-        "pos": "-9.23262 34.9286 -55.2699",
+        "pos": "-20.334 34.9286 -56.1429",
+        "rotation": "-0.653282 -0.270598 0.270598 -0.653282"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin070",
+      "transform":
+      {
+        "pos": "-18.3968 34.9286 -67.3481",
+        "rotation": "-0.653282 -0.270598 0.270598 -0.653282"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin069",
+      "transform":
+      {
+        "pos": "-33.7957 34.9286 -59.0529",
+        "rotation": "-0.653282 -0.270598 0.270598 -0.653282"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin068",
+      "transform":
+      {
+        "pos": "-31.8585 34.9286 -70.2581",
+        "rotation": "-0.653282 -0.270598 0.270598 -0.653282"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin067",
+      "transform":
+      {
+        "pos": "-85.4818 8.94289 31.0077",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -14,58 +62,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin070",
+      "name": "ms2_coin066",
       "transform":
       {
-        "pos": "-10.2616 34.9286 -66.5947",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
-      },
-      "prefab": "data/prefabs/coin.prefab"
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2-coin069",
-      "transform":
-      {
-        "pos": "-22.9888 34.9286 -54.5966",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
-      },
-      "prefab": "data/prefabs/coin.prefab"
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2-coin068",
-      "transform":
-      {
-        "pos": "-24.0178 34.9286 -65.9214",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
-      },
-      "prefab": "data/prefabs/coin.prefab"
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2-coin067",
-      "transform":
-      {
-        "pos": "-55.1847 8.94289 33.2386",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
-      },
-      "prefab": "data/prefabs/coin.prefab"
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2-coin066",
-      "transform":
-      {
-        "pos": "-7.91316 13.3843 2.98532",
+        "pos": "-12.301 13.3843 3.68676",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -74,11 +74,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin065",
+      "name": "ms2_coin065",
       "transform":
       {
-        "pos": "48.7634 16.6641 -33.7914",
-        "rotation": "-0.690346 0.153046 -0.153046 -0.690346"
+        "pos": "48.7016 16.6641 -33.0746",
+        "rotation": "-0.704416 -0.0616284 0.0616284 -0.704416"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -86,11 +86,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin064",
+      "name": "ms2_coin064",
       "transform":
       {
-        "pos": "52.9876 21.4605 -26.8712",
-        "rotation": "-0.690346 0.153046 -0.153046 -0.690346"
+        "pos": "56.1312 21.4605 -29.8288",
+        "rotation": "-0.704416 -0.0616284 0.0616284 -0.704416"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -98,11 +98,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin063",
+      "name": "ms2_coin063",
       "transform":
       {
-        "pos": "57.0132 25.8255 -20.2097",
-        "rotation": "-0.690346 0.153046 -0.153046 -0.690346"
+        "pos": "63.2496 25.8255 -26.681",
+        "rotation": "-0.704416 -0.0616284 0.0616284 -0.704416"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -110,11 +110,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin062",
+      "name": "ms2_coin062",
       "transform":
       {
-        "pos": "61.805 31.743 -12.5329",
-        "rotation": "-0.690346 0.153046 -0.153046 -0.690346"
+        "pos": "71.5781 31.743 -23.141",
+        "rotation": "-0.704416 -0.0616284 0.0616284 -0.704416"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -122,11 +122,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin061",
+      "name": "ms2_coin061",
       "transform":
       {
-        "pos": "4.6081 35.89 15.4033",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "40.7486 35.89 32.5498",
+        "rotation": "-0.67438 -0.212631 0.212631 -0.67438"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -134,11 +134,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin060",
+      "name": "ms2_coin060",
       "transform":
       {
-        "pos": "22.7388 13.442 13.0023",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "54.2233 13.442 20.1836",
+        "rotation": "-0.67438 -0.212631 0.212631 -0.67438"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -146,11 +146,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin059",
+      "name": "ms2_coin059",
       "transform":
       {
-        "pos": "24.1381 13.442 13.7715",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "55.8107 13.442 20.0111",
+        "rotation": "-0.67438 -0.212631 0.212631 -0.67438"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -158,11 +158,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin058",
+      "name": "ms2_coin058",
       "transform":
       {
-        "pos": "25.4895 13.442 14.4135",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "57.286 13.442 19.7619",
+        "rotation": "-0.67438 -0.212631 0.212631 -0.67438"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -170,11 +170,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin057",
+      "name": "ms2_coin057",
       "transform":
       {
-        "pos": "46.4079 49.9007 3.62103",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "68.231 49.9007 -1.07704",
+        "rotation": "-0.67438 -0.212631 0.212631 -0.67438"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -182,11 +182,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin056",
+      "name": "ms2_coin056",
       "transform":
       {
-        "pos": "47.8071 49.9007 4.39019",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "69.8183 49.9007 -1.24955",
+        "rotation": "-0.67438 -0.212631 0.212631 -0.67438"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -194,11 +194,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin055",
+      "name": "ms2_coin055",
       "transform":
       {
-        "pos": "57.7818 38.8954 12.083",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
+        "pos": "82.4015 38.8954 -0.669174",
+        "rotation": "0.477714 0.521334 -0.521334 0.477714"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -206,11 +206,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin054",
+      "name": "ms2_coin054",
       "transform":
       {
-        "pos": "58.4112 34.154 8.60434",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
+        "pos": "80.9218 34.154 -3.87977",
+        "rotation": "0.477714 0.521334 -0.521334 0.477714"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -218,11 +218,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin053",
+      "name": "ms2_coin053",
       "transform":
       {
-        "pos": "58.4112 32.9229 8.60434",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
+        "pos": "80.9218 32.9229 -3.87977",
+        "rotation": "0.477714 0.521334 -0.521334 0.477714"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -230,11 +230,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin052",
+      "name": "ms2_coin052",
       "transform":
       {
-        "pos": "57.2604 30.3871 11.863",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
+        "pos": "81.8483 30.3871 -0.550355",
+        "rotation": "0.477714 0.521334 -0.521334 0.477714"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -242,11 +242,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin051",
+      "name": "ms2_coin051",
       "transform":
       {
-        "pos": "57.2604 29.1511 11.863",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
+        "pos": "81.8483 29.1511 -0.550355",
+        "rotation": "0.477714 0.521334 -0.521334 0.477714"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -254,11 +254,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin050",
+      "name": "ms2_coin050",
       "transform":
       {
-        "pos": "58.4112 26.9507 8.60434",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
+        "pos": "80.9218 26.9507 -3.87977",
+        "rotation": "0.477714 0.521334 -0.521334 0.477714"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -266,11 +266,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin049",
+      "name": "ms2_coin049",
       "transform":
       {
-        "pos": "58.4112 25.6131 8.60434",
-        "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
+        "pos": "80.9218 25.6131 -3.87977",
+        "rotation": "0.477714 0.521334 -0.521334 0.477714"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -278,7 +278,7 @@
   {
     "entity":
     {
-      "name": "ms2-coin048",
+      "name": "ms2_coin048",
       "transform":
       {
         "pos": "3.2799 8.22756 -56.0221",
@@ -290,7 +290,7 @@
   {
     "entity":
     {
-      "name": "ms2-coin047",
+      "name": "ms2_coin047",
       "transform":
       {
         "pos": "8.90285 6.46414 -57.9093",
@@ -302,7 +302,7 @@
   {
     "entity":
     {
-      "name": "ms2-coin046",
+      "name": "ms2_coin046",
       "transform":
       {
         "pos": "11.1864 6.46414 -43.2963",
@@ -314,10 +314,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin045",
+      "name": "ms2_coin045",
       "transform":
       {
-        "pos": "-3.41115 1.74578 -17.4949",
+        "pos": "-3.41115 2.58472 -17.4949",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -326,7 +326,7 @@
   {
     "entity":
     {
-      "name": "ms2-coin044",
+      "name": "ms2_coin044",
       "transform":
       {
         "pos": "-5.22379 1.74578 -15.8012",
@@ -338,7 +338,7 @@
   {
     "entity":
     {
-      "name": "ms2-coin043",
+      "name": "ms2_coin043",
       "transform":
       {
         "pos": "2.2256 1.74578 -22.4594",
@@ -350,10 +350,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin042",
+      "name": "ms2_coin042",
       "transform":
       {
-        "pos": "0.500374 1.74578 -20.9321",
+        "pos": "0.500374 2.58472 -20.9321",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -362,10 +362,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin041",
+      "name": "ms2_coin041",
       "transform":
       {
-        "pos": "-1.31226 1.74578 -19.2383",
+        "pos": "-1.31226 2.93131 -19.2383",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -374,10 +374,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin040",
+      "name": "ms2_coin040",
       "transform":
       {
-        "pos": "-48.5655 5.0609 37.9099",
+        "pos": "-71.5481 5.0609 39.1432",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -386,10 +386,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin039",
+      "name": "ms2_coin039",
       "transform":
       {
-        "pos": "-47.9814 5.48255 55.5199",
+        "pos": "-80.7903 7.99337 68.312",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -398,10 +398,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin038",
+      "name": "ms2_coin038",
       "transform":
       {
-        "pos": "-54.1584 22.295 43.7007",
+        "pos": "-81.3163 33.3499 49.6621",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -410,10 +410,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin037",
+      "name": "ms2_coin037",
       "transform":
       {
-        "pos": "-56.3177 22.295 43.8891",
+        "pos": "-83.4756 33.3499 49.8504",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -422,10 +422,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin036",
+      "name": "ms2_coin036",
       "transform":
       {
-        "pos": "-55.2662 22.295 44.4512",
+        "pos": "-82.424 33.3499 50.4126",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -434,10 +434,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin035",
+      "name": "ms2_coin035",
       "transform":
       {
-        "pos": "-55.2093 22.295 43.094",
+        "pos": "-82.3672 33.3499 49.0553",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -446,11 +446,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin034",
+      "name": "ms2_coin034",
       "transform":
       {
-        "pos": "21.6297 26.1072 -20.6681",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "0.52108 26.1072 -14.7324",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -458,11 +458,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin033",
+      "name": "ms2_coin033",
       "transform":
       {
-        "pos": "21.5316 26.1072 -44.6763",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "6.64013 26.1072 -37.9478",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -470,11 +470,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin032",
+      "name": "ms2_coin032",
       "transform":
       {
-        "pos": "1.10821 26.1072 -32.5474",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-16.2265 26.1072 -31.5182",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -482,11 +482,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin031",
+      "name": "ms2_coin031",
       "transform":
       {
-        "pos": "27.2849 36.1397 -25.6734",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "7.27909 36.1397 -18.1034",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -494,11 +494,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin030",
+      "name": "ms2_coin030",
       "transform":
       {
-        "pos": "14.71 36.1397 -46.3205",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "0.476553 36.1397 -41.3015",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -506,11 +506,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin029",
+      "name": "ms2_coin029",
       "transform":
       {
-        "pos": "2.74814 36.1397 -25.777",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-16.3948 36.1397 -24.5541",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -518,11 +518,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin028",
+      "name": "ms2_coin028",
       "transform":
       {
-        "pos": "-40.5224 0.608388 -42.7803",
-        "rotation": "-0.701057 0.0922959 -0.0922959 -0.701057"
+        "pos": "-53.7901 0.608388 -52.1772",
+        "rotation": "-0.683013 0.183013 -0.183013 -0.683013"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -530,11 +530,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin027",
+      "name": "ms2_coin027",
       "transform":
       {
-        "pos": "-40.8115 0.608388 -41.5609",
-        "rotation": "-0.701057 0.0922959 -0.0922959 -0.701057"
+        "pos": "-54.385 0.608388 -51.0742",
+        "rotation": "-0.683013 0.183013 -0.183013 -0.683013"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -542,11 +542,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin026",
+      "name": "ms2_coin026",
       "transform":
       {
-        "pos": "-41.0823 0.608388 -40.3997",
-        "rotation": "-0.701057 0.0922959 -0.0922959 -0.701057"
+        "pos": "-54.9472 0.608388 -50.0226",
+        "rotation": "-0.683013 0.183013 -0.183013 -0.683013"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -554,11 +554,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin025",
+      "name": "ms2_coin025",
       "transform":
       {
-        "pos": "-41.4182 0.608388 -39.1201",
-        "rotation": "-0.701057 0.0922959 -0.0922959 -0.701057"
+        "pos": "-55.6028 0.608388 -48.8735",
+        "rotation": "-0.683013 0.183013 -0.183013 -0.683013"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -566,11 +566,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin024",
+      "name": "ms2_coin024",
       "transform":
       {
-        "pos": "-41.7074 0.608388 -37.9007",
-        "rotation": "-0.701057 0.0922959 -0.0922959 -0.701057"
+        "pos": "-56.1977 0.608388 -47.7705",
+        "rotation": "-0.683013 0.183013 -0.183013 -0.683013"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -578,11 +578,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin023",
+      "name": "ms2_coin023",
       "transform":
       {
-        "pos": "-41.9782 0.608388 -36.7394",
-        "rotation": "-0.701057 0.0922959 -0.0922959 -0.701057"
+        "pos": "-56.7598 0.608388 -46.719",
+        "rotation": "-0.683013 0.183013 -0.183013 -0.683013"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -590,11 +590,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin022",
+      "name": "ms2_coin022",
       "transform":
       {
-        "pos": "-59.8265 39.9412 -0.860451",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-83.2861 39.9412 -16.682",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -602,11 +602,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin021",
+      "name": "ms2_coin021",
       "transform":
       {
-        "pos": "-63.8033 38.1868 5.36606",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-88.739 38.1868 -11.697",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -614,11 +614,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin020",
+      "name": "ms2_coin020",
       "transform":
       {
-        "pos": "-62.0531 39.2147 2.27806",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-86.2492 39.2147 -14.2267",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -626,11 +626,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin019",
+      "name": "ms2_coin019",
       "transform":
       {
-        "pos": "-63.3288 37.2859 8.46059",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-89.0815 37.2859 -8.58505",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -638,11 +638,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin018",
+      "name": "ms2_coin018",
       "transform":
       {
-        "pos": "-39.213 9.91351 -14.7729",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-59.7742 9.91351 -24.7852",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -650,11 +650,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin017",
+      "name": "ms2_coin017",
       "transform":
       {
-        "pos": "-40.2424 6.36369 -11.3015",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-61.667 6.36369 -21.6985",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -662,11 +662,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin016",
+      "name": "ms2_coin016",
       "transform":
       {
-        "pos": "-41.1167 2.87816 -8.01746",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-63.3615 2.87816 -18.7527",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -674,10 +674,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin015",
+      "name": "ms2_coin015",
       "transform":
       {
-        "pos": "10.5593 13.2023 72.9774",
+        "pos": "19.4889 13.2023 82.2078",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -686,10 +686,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin014",
+      "name": "ms2_coin014",
       "transform":
       {
-        "pos": "9.97254 9.76309 66.673",
+        "pos": "18.9021 9.76309 75.9035",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -698,10 +698,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin013",
+      "name": "ms2_coin013",
       "transform":
       {
-        "pos": "5.76303 15.0669 83.8882",
+        "pos": "14.6926 15.0669 93.1187",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -710,10 +710,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin012",
+      "name": "ms2_coin012",
       "transform":
       {
-        "pos": "2.50071 15.0669 83.4816",
+        "pos": "11.4303 15.0669 92.7121",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -722,10 +722,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin011",
+      "name": "ms2_coin011",
       "transform":
       {
-        "pos": "3.60371 15.0669 84.0766",
+        "pos": "12.5333 15.0669 93.307",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -734,10 +734,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin010",
+      "name": "ms2_coin010",
       "transform":
       {
-        "pos": "4.65528 15.0669 84.6387",
+        "pos": "13.5848 15.0669 93.8692",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -746,10 +746,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin009",
+      "name": "ms2_coin009",
       "transform":
       {
-        "pos": "2.55757 15.0669 82.1244",
+        "pos": "11.4871 15.0669 91.3549",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -758,10 +758,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin008",
+      "name": "ms2_coin008",
       "transform":
       {
-        "pos": "3.66056 15.0669 82.7193",
+        "pos": "12.5901 15.0669 91.9498",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -770,10 +770,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin007",
+      "name": "ms2_coin007",
       "transform":
       {
-        "pos": "4.71214 15.0669 83.2815",
+        "pos": "13.6417 15.0669 92.5119",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -782,10 +782,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin006",
+      "name": "ms2_coin006",
       "transform":
       {
-        "pos": "3.88064 15.0669 81.1582",
+        "pos": "12.8102 15.0669 90.3887",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -794,10 +794,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin005",
+      "name": "ms2_coin005",
       "transform":
       {
-        "pos": "4.98364 15.0669 81.7532",
+        "pos": "13.9132 15.0669 90.9836",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -806,10 +806,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin004",
+      "name": "ms2_coin004",
       "transform":
       {
-        "pos": "6.03521 15.0669 82.3153",
+        "pos": "14.9648 15.0669 91.5458",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -818,10 +818,10 @@
   {
     "entity":
     {
-      "name": "ms2-coin003",
+      "name": "ms2_coin003",
       "transform":
       {
-        "pos": "1.27142 3.31874 48.99",
+        "pos": "13.2415 3.31874 68.6373",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -830,11 +830,11 @@
   {
     "entity":
     {
-      "name": "ms2-coin001",
+      "name": "ms2_coin001",
       "transform":
       {
-        "pos": "49.1586 49.9007 5.03226",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "71.2936 49.9007 -1.49876",
+        "rotation": "-0.67438 -0.212631 0.212631 -0.67438"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
