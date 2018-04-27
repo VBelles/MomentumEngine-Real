@@ -136,6 +136,7 @@ void CDeferredRenderer::renderDirectionalLights() {
   tech->activate();
 
   // All light directional use the same mesh
+  //cogemos unit quad en vez del frustum para que pinte luz en toda la pantalla, independientemente de si está en el frustum
   auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
   //auto* mesh = Resources.get("data/meshes/UnitFrustum.mesh")->as<CRenderMesh>();
   mesh->activate();
@@ -147,6 +148,7 @@ void CDeferredRenderer::renderDirectionalLights() {
     // activar el shadow map...
     c->activate();
 
+	//Comentado por usar luces ortogonales, tener en cuenta si se quieren luces con fov
     //setWorldTransform(c->getViewProjection().Invert());
 
     // mandar a pintar una geometria que refleje los pixeles que potencialmente

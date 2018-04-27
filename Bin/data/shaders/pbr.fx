@@ -57,7 +57,7 @@ void VS_GBuffer_Skin(
 
   oPos = mul(world_pos, camera_view_proj);
 
-  // Rotar la normal segun la transform del objeto
+  // Rotar la normal segun la transform del objeto, en este caso dictada por la matriz de skinning
   oNormal = mul(iNormal, (float3x3)skin_mtx);
   oTangent.xyz = mul(iTangent.xyz, (float3x3)skin_mtx);
   oTangent.w = iTangent.w;
@@ -291,7 +291,8 @@ float4 shade(
   float shadow_factor = use_shadows ? computeShadowFactor( wPos ) : 1.; 
 
   // From wPos to Light
-  float3 light_dir_full = float3( 0, 1, 0 ); //light_pos.xyz - wPos;
+  //camera_front.xyz de la luz
+  float3 light_dir_full = -light_front;//-light_front;  //float3( 0, 1, 0 ); //light_pos.xyz - wPos;
   float  distance_to_light = length( light_dir_full );
   float3 light_dir = light_dir_full / distance_to_light;
 
