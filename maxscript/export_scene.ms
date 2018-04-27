@@ -165,7 +165,7 @@ struct TMaterialExporter (
 		--format "Exporting material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
-			fs.writeKeyValue "technique" "textured.tech"
+			fs.writeKeyValue "technique" "pbr.tech"
 			fs.writeComma()
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
@@ -191,7 +191,7 @@ struct TMaterialExporter (
 			
 			fs.begin (project_path + mat_name )
 			fs.beginObj()
-				fs.writeKeyValue "technique" "textured.tech"
+				fs.writeKeyValue "technique" "pbr.tech"
 				fs.writeComma()
 				fs.writeKeyValue "shadows" true
 				fs.writeComma()
@@ -590,35 +590,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --MECHANISM SYSTEM---------------------------------------------
-	-- The activator of the mechanisms.
-	fn exportMechSys obj nValidObjs = (
-		if nValidObjs > 0 then fs.writeComma()
-		if obj.parent != undefined then return exportDefault obj nValidObjs
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + "mech_sys.prefab")
-				fs.writeComma()
-				exportTransform obj
-				fs.writeComma()
-				fs.writeKey "mechanism_system"
-				fs.beginObj()
-					fs.writeKeyValue "activationEffectFile" "data/scripts/test.lua"
-					fs.writeComma()
-					fs.writeKey "mechanisms"
-					fs.beginArray()
-						for i = 1 to obj.children.count do (
-							if i != 1 then fs.writeComma()
-							fs.writeKey obj.children[i].name
-						)
-					fs.endArray()
-				fs.endObj()
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-	),
+
 	
 	-- --ENTITY COLLIDER-----------------------------------------
 	fn exportEntityCollider obj colliderGroups: masks: trig:false dyn:false = (
@@ -981,6 +953,23 @@ struct TSceneExporter (
 		)
 	),
 	
+	-- --SPIKES---------------------------------------------------------
+	fn exportSpikes obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
+				fs.writeComma()
+				exportTransform obj
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
 	-- --DEFAULT ------------------------------------------------
 	fn exportDefault obj nValidObjs = (
 		if classOf obj != Editable_mesh then (
@@ -994,6 +983,41 @@ struct TSceneExporter (
 				exportEditableMesh obj
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
+		return true
+	),
+
+	-- --MECHANISM SYSTEM---------------------------------------------
+	-- The activator of the mechanisms.
+	fn exportMechSys obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+	
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + "mech_sys.prefab")
+				fs.writeComma()
+				exportTransform obj
+				fs.writeComma()
+				fs.writeKey "mechanism_system"
+				fs.beginObj()
+					fs.writeKeyValue "activationEffectFile" "data/scripts/test.lua"
+					fs.writeComma()
+					fs.writeKey "mechanisms"
+					fs.beginArray()
+						for i = 1 to obj.children.count do (
+							if i != 1 then fs.writeComma()
+							fs.writeValue obj.children[i].name addIndent:true
+						)
+					fs.endArray()
+				fs.endObj()
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+
+		for child in obj.children do (
+			exportDefault child (nValidObjs + 1)
+		)
 		return true
 	),
 	
@@ -1231,9 +1255,10 @@ struct TSceneExporter (
 							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"rotate": 		( wasValid = exportDefault	   obj nValidObjs )
 							"triggers":     ( wasValid = exportTrigger     obj nValidObjs )
-							"mechanism":	( wasValid = exportMechSys	   obj nValidObjs )
+							"mechanisms":	( wasValid = exportMechSys	   obj nValidObjs )
 							"pure":		    ( wasValid = exportDefault     obj nValidObjs )
-							"break":		( wasValid = exportDefault     obj nValidObjs )
+							"spikes":	    ( wasValid = exportSpikes      obj nValidObjs )
+							"breakables":	( wasValid = exportDefault     obj nValidObjs )
 							"0":		    ( wasValid = exportDefault     obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
@@ -1259,8 +1284,6 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
-
-TODO: Exportar pinchos, mech.
 */
 
 /*----------------------------------------------------------------------------------

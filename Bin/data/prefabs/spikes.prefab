@@ -12,7 +12,7 @@
 				"mask": ["player"]
 			},
 			"render" : {
-				"mesh": "data/meshes/plat_move.mesh"
+				"mesh": "data/meshes/spikes.mesh"
 			},
 			"spikes" : {
 				"damage" : 4.0

@@ -4,15 +4,18 @@
     "data/scenes/game_camera.scene",
     "data/scenes/lights.scene",
     "data/scenes/milestone2-0.scene",
+    "data/scenes/milestone2-breakables.scene",
     "data/scenes/milestone2-chrysalis.scene",
-    "data/scenes/milestone2-enemies.scene",
-    "data/scenes/milestone2-triggers.scene",
     "data/scenes/milestone2-coins.scene",
-    "data/scenes/milestone2-rotate.scene",
+    "data/scenes/milestone2-enemies.scene",
     "data/scenes/milestone2-movables.scene",
-    "data/scenes/milestone2-pure.scene"
+    "data/scenes/milestone2-pure.scene",
+    "data/scenes/milestone2-rotate.scene",
+    "data/scenes/milestone2-spikes.scene",
+    "data/scenes/milestone2-triggers.scene"
   ],
   "unused_scenes": [
+    "data/scenes/milestone2-mechanisms.scene",
     "data/scenes/test_cameras.scene",
     "data/scenes/scene_basic.scene",
     "data/scenes/skeleton_demo2.scene",
