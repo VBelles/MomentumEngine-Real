@@ -183,6 +183,7 @@
     <ClCompile Include="render\mesh\collision_mesh.cpp" />
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
+    <ClCompile Include="components\comp_altar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -397,6 +398,7 @@
     <ClInclude Include="render\mesh\collision_mesh.h" />
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="modules\system\module_entities.h" />
+    <ClInclude Include="components\comp_altar.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
