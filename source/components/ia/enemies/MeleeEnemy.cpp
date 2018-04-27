@@ -5,7 +5,6 @@
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
 #include "components/comp_respawner.h"
-#include "components/comp_shadow.h"
 #include "components/comp_give_power.h"
 #include "components/player/power_stats.h"
 #include "skeleton/comp_skeleton.h"
@@ -112,9 +111,6 @@ int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
 	getCollider()->destroy();
 
 	getRender()->disable();
-
-	TCompShadow* shadow = get<TCompShadow>();
-	shadow->disable();
 
 	TCompRespawner* spawner = get<TCompRespawner>();
 	spawner->onDead();
@@ -256,9 +252,6 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 	getCollider()->create();
 	getTransform()->setPosition(spawnPosition);
 	getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
-
-	TCompShadow* shadow = get<TCompShadow>();
-	shadow->enable();
 
 	getRender()->enable();
 

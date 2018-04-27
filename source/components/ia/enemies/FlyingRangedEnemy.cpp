@@ -5,7 +5,6 @@
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
 #include "components/comp_respawner.h"
-#include "components/comp_shadow.h"
 #include "components/comp_give_power.h"
 #include "components/player/power_stats.h"
 #include "entity/entity_parser.h"
@@ -111,9 +110,6 @@ int CBehaviorTreeFlyingRangedEnemy::onDeath(float delta) {
 
 	TCompRender *render = get<TCompRender>();
 	render->disable();
-
-	TCompShadow* shadow = get<TCompShadow>();
-	shadow->disable();
 
 	TCompRespawner* spawner = get<TCompRespawner>();
 	spawner->onDead();
@@ -252,9 +248,6 @@ int CBehaviorTreeFlyingRangedEnemy::respawn(float delta) {
 	getCollider()->create();
 	getTransform()->setPosition(spawnPosition);
 	getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
-
-	TCompShadow* shadow = get<TCompShadow>();
-	shadow->enable();
 
 	TCompRender *render = get<TCompRender>();
 	render->enable();
