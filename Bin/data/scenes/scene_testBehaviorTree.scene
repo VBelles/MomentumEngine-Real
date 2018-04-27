@@ -26,15 +26,6 @@
 		  "respawner" : {
 			  "respawnTime" : 2.0
 		  },
-		  "shadow":
-		  {
-			  "offset": "0 0.1 0",
-			  "mesh": "data/meshes/shadow.mesh",
-			  "materials":
-			  [
-				  "data/materials/black.material"
-			  ]
-		  },
 		  "transform": {
 			"pos": "-80 30 -60",
 			"lookAt": "-1.0 30.0 -1.0"
