@@ -74,6 +74,8 @@ void TCompSkeleton::debugInMenu() {
 	static float out_delay = 0.3f;
 	static bool auto_lock = false;
 
+	ImGui::Text("Animation time: %f", model->getMixer()->getAnimationTime());
+
 	float timeFactor = model->getMixer()->getTimeFactor();
 	ImGui::DragFloat("Time factor", &timeFactor, 0.1f, 0, 10.f);
 	setTimeFactor(timeFactor);
