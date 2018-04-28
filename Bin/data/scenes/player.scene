@@ -103,8 +103,12 @@
 				"type": "cct",
 				"radius": 0.3,
 				"height": 0.76,
-				"group": ["player"],
-				"mask": ["all"],
+				"group": [
+					"player"
+				],
+				"mask": [
+					"all"
+				],
 				"step": 0.5,
 				"slope": 45
 			},
@@ -118,18 +122,6 @@
 			},
 			"power_gauge": {},
 			"hitboxes": {
-				"attacks": [
-					{
-						"name": "fast_attack",
-						"damage": 1,
-						"power": 2000
-					},
-					{
-						"name": "strong_attack",
-						"damage": 1,
-						"power": 3000
-					}
-				],
 				"hitboxes": [
 					{
 						"name": "strong_attack",

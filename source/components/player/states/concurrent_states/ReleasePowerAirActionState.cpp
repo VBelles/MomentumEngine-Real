@@ -1,18 +1,12 @@
 #include "mcv_platform.h"
 #include "ReleasePowerAirActionState.h"
-#include "components/comp_hitbox.h"
+#include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/comp_player_model.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 
-ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	hitboxSmallHandle = hitboxSmall;
-	hitboxBigHandle = hitboxBig;
-	animation = "liberarenergia";
-}
 
 void ReleasePowerAirActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -23,20 +17,12 @@ void ReleasePowerAirActionState::update(float delta) {
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
 		//Deshabilitar ambas y ya está
-		CEntity *hitboxEntity = hitboxSmallHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
-		hitboxEntity = hitboxBigHandle;
-		hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
+		getHitboxes()->disable(smallHitbox);
+		getHitboxes()->disable(bigHitbox);
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
-		CEntity *hitboxSmallEntity = hitboxSmallHandle;
-		TCompHitbox *hitboxSmall = hitboxSmallEntity->get<TCompHitbox>();
-		CEntity *hitboxBigEntity = hitboxBigHandle;
-		TCompHitbox *hitboxBig = hitboxBigEntity->get<TCompHitbox>();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
 		switch (getPlayerModel()->getPowerGauge()->getPowerLevel()) {
 		case 1:
@@ -44,7 +30,7 @@ void ReleasePowerAirActionState::update(float delta) {
 			break;
 		case 2:
 			getPlayerModel()->getPowerGauge()->releasePower();
-			hitboxSmall->enable();
+			getHitboxes()->enable(smallHitbox);
 			if (buttonPresses > 1) getPlayerModel()->getPowerGauge()->releasePower();
 			break;
 		case 3:
@@ -52,12 +38,12 @@ void ReleasePowerAirActionState::update(float delta) {
 			if (buttonPresses > 1) {
 				getPlayerModel()->getPowerGauge()->releasePower();
 				//bola grande
-				hitboxBig->enable();
+				getHitboxes()->enable(bigHitbox);
 				if (buttonPresses > 2) getPlayerModel()->getPowerGauge()->releasePower();
 			}
 			else {
 				//bola pequeña
-				hitboxSmall->enable();
+				getHitboxes()->enable(smallHitbox);
 			}
 			break;
 		}
@@ -80,13 +66,8 @@ void ReleasePowerAirActionState::onStateEnter(IActionState * lastState) {
 
 void ReleasePowerAirActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	CEntity *hitboxEntity = hitboxSmallHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
-	hitboxEntity = hitboxBigHandle;
-	hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
-	//getPlayerModel()->baseState->setPose();
+	getHitboxes()->disable(smallHitbox);
+	getHitboxes()->disable(bigHitbox);
 	getPlayerModel()->lockTurning = false;
 }
 
@@ -96,12 +77,9 @@ void ReleasePowerAirActionState::onReleasePowerButton() {
 	if (phase == AttackPhases::Active) {
 		//si además button presses es == 2 y ssj2, agrandar bola
 		if (getPlayerModel()->getPowerGauge()->getPowerLevel() == 2) {
-			CEntity *hitboxEntity = hitboxSmallHandle;
-			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-			hitbox->disable();
-			hitboxEntity = hitboxBigHandle;
-			hitbox = hitboxEntity->get<TCompHitbox>();
-			hitbox->enable();
+			getHitboxes()->disable(smallHitbox);
+			getHitboxes()->enable(bigHitbox);
+
 		}
 		getPlayerModel()->getPowerGauge()->releasePower();
 	}
@@ -113,23 +91,16 @@ void ReleasePowerAirActionState::onLanding() {
 	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }
 
-void ReleasePowerAirActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_grab.mesh");
-}
 
 void ReleasePowerAirActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
-	if (entity != playerEntity) {
-		CEntity *otherEntity = entity;
-		TMsgAttackHit msgAtackHit = {};
-		msgAtackHit.attacker = playerEntity;
-		msgAtackHit.info = {};
-		msgAtackHit.info.givesPower = false;
-		msgAtackHit.info.damage = damage;
-		msgAtackHit.info.stun = new AttackInfo::Stun{
-			stunDuration
-		};
-		msgAtackHit.info.activatesMechanism = true;
-		otherEntity->sendMsg(msgAtackHit);
-	}
+	CEntity *otherEntity = entity;
+	TMsgAttackHit msgAtackHit = {};
+	msgAtackHit.attacker = playerEntity;
+	msgAtackHit.info = {};
+	msgAtackHit.info.givesPower = false;
+	msgAtackHit.info.damage = damage;
+	msgAtackHit.info.stun = new AttackInfo::Stun{ stunDuration };
+	msgAtackHit.info.activatesMechanism = true;
+	otherEntity->sendMsg(msgAtackHit);
 }
