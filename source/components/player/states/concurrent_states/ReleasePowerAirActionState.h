@@ -22,7 +22,6 @@ private:
 	float damage = 0.f;
 	AttackPhases phase = AttackPhases::Startup;
 
-	uint32_t enemyId = getID("enemy");
 
 public:
 	ReleasePowerAirActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig);

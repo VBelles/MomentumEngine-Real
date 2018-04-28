@@ -2,9 +2,6 @@
 #include "GroundedActionState.h"
 #include "components/player/comp_player_model.h"
 
-GroundedActionState::GroundedActionState(CHandle adf)
-	: IActionState::IActionState(adf) {
-}
 
 void GroundedActionState::update(float delta) {
 

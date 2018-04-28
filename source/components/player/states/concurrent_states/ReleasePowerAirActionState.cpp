@@ -14,7 +14,7 @@ ReleasePowerAirActionState::ReleasePowerAirActionState(CHandle playerModelHandle
 	animation = "liberarenergia";
 }
 
-void ReleasePowerAirActionState::update (float delta) {
+void ReleasePowerAirActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
@@ -39,27 +39,27 @@ void ReleasePowerAirActionState::update (float delta) {
 		TCompHitbox *hitboxBig = hitboxBigEntity->get<TCompHitbox>();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
 		switch (getPlayerModel()->getPowerGauge()->getPowerLevel()) {
-			case 1:
+		case 1:
+			getPlayerModel()->getPowerGauge()->releasePower();
+			break;
+		case 2:
+			getPlayerModel()->getPowerGauge()->releasePower();
+			hitboxSmall->enable();
+			if (buttonPresses > 1) getPlayerModel()->getPowerGauge()->releasePower();
+			break;
+		case 3:
+			getPlayerModel()->getPowerGauge()->releasePower();
+			if (buttonPresses > 1) {
 				getPlayerModel()->getPowerGauge()->releasePower();
-				break;
-			case 2:
-				getPlayerModel()->getPowerGauge()->releasePower();
+				//bola grande
+				hitboxBig->enable();
+				if (buttonPresses > 2) getPlayerModel()->getPowerGauge()->releasePower();
+			}
+			else {
+				//bola pequeña
 				hitboxSmall->enable();
-				if (buttonPresses > 1) getPlayerModel()->getPowerGauge()->releasePower();
-				break;
-			case 3:
-				getPlayerModel()->getPowerGauge()->releasePower();
-				if (buttonPresses > 1) {
-					getPlayerModel()->getPowerGauge()->releasePower();
-					//bola grande
-					hitboxBig->enable();
-					if (buttonPresses > 2) getPlayerModel()->getPowerGauge()->releasePower();
-				}
-				else {
-					//bola pequeña
-					hitboxSmall->enable();
-				}
-				break;
+			}
+			break;
 		}
 		phase = AttackPhases::Active;
 	}

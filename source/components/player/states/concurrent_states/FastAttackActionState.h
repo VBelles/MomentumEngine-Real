@@ -26,10 +26,12 @@ private:
 
 	float powerToGet = 2000.f;
 
-	std::string hitbox = "fast_attack";
+	std::string hitbox;
+
 
 public:
-	FastAttackActionState(CHandle playerModelHandle);
+	FastAttackActionState(CHandle playerModelHandle) 
+		: GroundedActionState(playerModelHandle, "melee"), hitbox("fast_attack") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

@@ -6,10 +6,6 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 
-FastAttackActionState::FastAttackActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "melee";
-}
 
 void FastAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -67,16 +63,15 @@ void FastAttackActionState::setPose() {
 
 void FastAttackActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
-	if (entity != playerEntity) {
-		CEntity *otherEntity = entity;
+	CEntity* otherEntity = entity;
 
-		otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 
-		TMsgAttackHit msgAtackHit = {};
-		msgAtackHit.attacker = playerEntity;
-		msgAtackHit.info = {};
-		msgAtackHit.info.givesPower = true;
-		msgAtackHit.info.damage = damage;
-		otherEntity->sendMsg(msgAtackHit);
-	}
+	TMsgAttackHit msgAtackHit = {};
+	msgAtackHit.attacker = playerEntity;
+	msgAtackHit.info = {};
+	msgAtackHit.info.givesPower = true;
+	msgAtackHit.info.damage = damage;
+	otherEntity->sendMsg(msgAtackHit);
+
 }

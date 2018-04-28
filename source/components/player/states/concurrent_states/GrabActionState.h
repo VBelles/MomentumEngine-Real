@@ -16,16 +16,16 @@ protected:
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;
 
-	CHandle hitboxHandle;
 	int damage = 0;
 	AttackPhases phase = AttackPhases::Startup;
 
-	uint32_t enemyId = getID("enemy");
-
 	float powerToGet = 1000.f;
 
+	std::string hitbox;
+
 public:
-	GrabActionState(CHandle playerModelHandle, CHandle hitbox);
+	GrabActionState(CHandle playerModelHandle)
+		: AirborneActionState(playerModelHandle, "melee"), hitbox("grab") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -35,10 +35,6 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
-
 	void onLanding() override;
-
-	void setPose() override;
-
 	void onHitboxEnter(CHandle entity) override {}
 };

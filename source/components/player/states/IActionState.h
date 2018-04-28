@@ -60,7 +60,7 @@ protected:
 	std::string animation;
 
 public:
-	IActionState(CHandle playerModelHandle);
+	IActionState(CHandle playerModelHandle, std::string animation = "");
 
 	virtual void update(float delta) = 0;
 	virtual void onStateEnter(IActionState* lastState);

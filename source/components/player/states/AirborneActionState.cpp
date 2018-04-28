@@ -5,9 +5,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 
-AirborneActionState::AirborneActionState(CHandle playerModelHandle)
-	: IActionState::IActionState(playerModelHandle) {
-}
+
 
 void AirborneActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
