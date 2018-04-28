@@ -107,7 +107,17 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 		for (size_t i = 0; i < j_mats.size(); ++i) {
 			std::string name_material = j_mats[i];
 			materials[i] = name_material;
+			dbg("material: %s\n", name_material.c_str());
 		}
+	}
+	else {
+		dbg("Eaeaeaeae\n");
+		dbg("Eaeaeaeae\n");
+		dbg("Eaeaeaeae\n");
+		dbg("Eaeaeaeae\n");
+		dbg("Eaeaeaeae\n");
+		dbg("Eaeaeaeae\n");
+
 	}
 
 	powerStats[0] = loadPowerStats(j["ssj1"]);
