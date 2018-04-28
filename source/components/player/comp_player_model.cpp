@@ -227,19 +227,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::End();
 	});
 
-
-	strongAttackHitbox = getEntityByName("Strong attack hitbox");
-	fastAttackHitbox = getEntityByName("Fast attack hitbox");
-	fastAttackAirHitbox = getEntityByName("Fast attack air hitbox");
-	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
-	fallingAttackLandingHitbox = getEntityByName("Falling attack landing hitbox");
-	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
-	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
-	grabHitbox = getEntityByName("Grab hitbox");
-	wallJumpPlummetHitbox = getEntityByName("Wall jump plummet hitbox");
-	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
-	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
-
+	
 	CHandle playerModelHandle = CHandle(this);
 	baseStates = {
 		{ ActionStates::Idle, new IdleActionState(playerModelHandle) },
@@ -262,13 +250,13 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(playerModelHandle) },
 	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle) },
 	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle) },
-	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle, verticalLauncherHitbox) },
-	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle, horizontalLauncherHitbox) },
-	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
+	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle) },
+	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle) },
+	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle) },
 	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(playerModelHandle) },
 	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(playerModelHandle) },
 	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(playerModelHandle) },
-	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle, wallJumpPlummetHitbox) },
+	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle) },
 	{ ActionStates::Death, new DeathActionState(playerModelHandle) },
 	{ ActionStates::PitFalling, new PitFallingActionState(playerModelHandle) },
 	};
