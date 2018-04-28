@@ -15,6 +15,8 @@ class FallingAttackActionState : public AirborneActionState {
 
 	float powerToGet = 4000.f;
 
+	std::string animationPositioning;
+
 public:
 	FallingAttackActionState(CHandle playerModelHandle, CHandle hitbox);
 	void update(float delta) override;

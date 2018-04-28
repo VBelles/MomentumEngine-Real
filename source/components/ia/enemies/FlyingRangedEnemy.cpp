@@ -5,7 +5,6 @@
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
 #include "components/comp_respawner.h"
-#include "components/comp_shadow.h"
 #include "components/comp_give_power.h"
 #include "components/player/power_stats.h"
 #include "entity/entity_parser.h"
@@ -112,9 +111,6 @@ int CBehaviorTreeFlyingRangedEnemy::onDeath(float delta) {
 	TCompRender *render = get<TCompRender>();
 	render->disable();
 
-	TCompShadow* shadow = get<TCompShadow>();
-	shadow->disable();
-
 	TCompRespawner* spawner = get<TCompRespawner>();
 	spawner->onDead();
 
@@ -126,6 +122,7 @@ int CBehaviorTreeFlyingRangedEnemy::dead(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onGrab(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	getCollider()->destroy();
 	timer.reset();
 	grabbedDuration = receivedAttack.grab->duration;
@@ -135,9 +132,11 @@ int CBehaviorTreeFlyingRangedEnemy::onGrab(float delta) {
 int CBehaviorTreeFlyingRangedEnemy::grabbed(float delta) {
 	if (timer.elapsed() >= grabbedDuration) {
 		getCollider()->create();
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
+		getSkeleton()->setTimeFactor(1);
 		return Stay;
 	}
 }
@@ -145,6 +144,8 @@ int CBehaviorTreeFlyingRangedEnemy::grabbed(float delta) {
 int CBehaviorTreeFlyingRangedEnemy::onPropel(float delta) {
 	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
+
+	getSkeleton()->setTimeFactor(0);
 
 	timer.reset();
 
@@ -160,11 +161,13 @@ int CBehaviorTreeFlyingRangedEnemy::propelled(float delta) {
 		return Stay;
 	}
 	else {
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onHorizontalLaunch(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	floatingDuration = receivedAttack.horizontalLauncher->suspensionDuration;
 	initialLaunchPos = getTransform()->getPosition();
 	velocityVector = receivedAttack.horizontalLauncher->velocity;
@@ -179,6 +182,7 @@ int CBehaviorTreeFlyingRangedEnemy::horizontalLaunched(float delta) {
 		velocityVector.x = 0;
 		velocityVector.z = 0;
 		timer.reset();
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -187,6 +191,7 @@ int CBehaviorTreeFlyingRangedEnemy::horizontalLaunched(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onVerticalLaunch(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	floatingDuration = receivedAttack.verticalLauncher->suspensionDuration;
 	velocityVector = receivedAttack.verticalLauncher->velocity;
 	return Leave;
@@ -198,6 +203,7 @@ int CBehaviorTreeFlyingRangedEnemy::verticalLaunched(float delta) {
 	velocityVector.y += gravity * delta;
 	if (velocityVector.y <= 0) {
 		timer.reset();
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -206,7 +212,9 @@ int CBehaviorTreeFlyingRangedEnemy::verticalLaunched(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::floating(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	if (timer.elapsed() > floatingDuration) {
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -215,6 +223,7 @@ int CBehaviorTreeFlyingRangedEnemy::floating(float delta) {
 }
 
 int CBehaviorTreeFlyingRangedEnemy::onStun(float delta) {
+	getSkeleton()->setTimeFactor(0);
 	stunDuration = receivedAttack.stun->duration;
 	stunTimer.reset();
 	isStunned = true;
@@ -224,6 +233,7 @@ int CBehaviorTreeFlyingRangedEnemy::onStun(float delta) {
 int CBehaviorTreeFlyingRangedEnemy::stunned(float delta) {
 	if (stunTimer.elapsed() > stunDuration) {
 		isStunned = false;
+		getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {
@@ -239,19 +249,20 @@ int CBehaviorTreeFlyingRangedEnemy::respawn(float delta) {
 	getTransform()->setPosition(spawnPosition);
 	getCollider()->controller->setFootPosition(PxExtendedVec3(spawnPosition.x, spawnPosition.y, spawnPosition.z));
 
-	TCompShadow* shadow = get<TCompShadow>();
-	shadow->enable();
-
 	TCompRender *render = get<TCompRender>();
 	render->enable();
 
 	TCompGivePower *power = get<TCompGivePower>();
 	power->reset();
 
+	getSkeleton()->blendCycle(0);
+	getSkeleton()->setTimeFactor(1);
+
 	return Leave;
 }
 
 int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
+	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	rotateTowards(delta, spawnPosition, rotationSpeed);
 
 	VEC3 myPosition = getTransform()->getPosition();
@@ -390,6 +401,8 @@ void CBehaviorTreeFlyingRangedEnemy::onGroupCreated(const TMsgEntitiesGroupCreat
 }
 
 void CBehaviorTreeFlyingRangedEnemy::onAttackHit(const TMsgAttackHit& msg) {
+	getSkeleton()->blendCycle(0);
+	getSkeleton()->setTimeFactor(1);
 	isStunned = false;
 	receivedAttack = msg.info;
 	current = tree["onAttackHit"];

@@ -32,7 +32,6 @@
     "follow_transform",
     "power_gauge",
     "hitbox",
-    "shadow",
     "local_aabb",
     "camera_player",
     "fixed_camera",

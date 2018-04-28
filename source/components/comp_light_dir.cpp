@@ -78,6 +78,9 @@ void TCompLightDir::activate() {
 	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
 	cb_light.updateGPU();
 
+	//puesto por no-juan, pies de plomo
+	cb_light.light_front = getFront();
+
 	// If we have a ZTexture, it's the time to activate it
 	if (shadows_rt) {
 

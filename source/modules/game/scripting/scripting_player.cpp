@@ -36,8 +36,8 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 		.set("move", &ScriptingPlayer::move)
 		.set("setPower", &ScriptingPlayer::setPower)
 		.set("setRespawnPosition", &ScriptingPlayer::setRespawnPosition)
-		.set("takePlayerControl", &ScriptingPlayer::takePlayerControl)
-		.set("givePlayerControl", &ScriptingPlayer::givePlayerControl);
+		.set("takeControl", &ScriptingPlayer::takePlayerControl)
+		.set("giveControl", &ScriptingPlayer::givePlayerControl);
 }
 
 
@@ -96,8 +96,3 @@ TCompCollider * ScriptingPlayer::getCollider() {
 TCompPowerGauge* ScriptingPlayer::getPowerGauge() {
 	return powerGaugeHandle;
 }
-
-
-
-
-

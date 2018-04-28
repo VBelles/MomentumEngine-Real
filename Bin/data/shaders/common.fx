@@ -52,6 +52,7 @@ float computeShadowFactor( float3 wPos ) {
   float3 homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
 
   // Avoid the white band in the back side of the light
+  // Nosotros recuperamos el back side porque queremos que haya luz incluso fuera del frustum
   if( pos_in_light_proj_space.z < 0. )
     return 1.f;
 

@@ -62,9 +62,8 @@ private:
 	float baseGravity = 0.f;
 	float currentGravity = 0.f;
 
-	PowerStats* ssj1;
-	PowerStats* ssj2;
-	PowerStats* ssj3;
+	std::string materials[3];
+	PowerStats* powerStats[3];
 	PowerStats* currentPowerStats;
 
 	float hp = 8;
