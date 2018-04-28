@@ -1,18 +1,13 @@
 #include "mcv_platform.h"
 #include "StrongAttackActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_hitbox.h"
+#include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 
-StrongAttackActionState::StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	hitboxHandle = hitbox;
-	animation = "melee_strong";
-}
 
 void StrongAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -31,16 +26,12 @@ void StrongAttackActionState::update(float delta) {
 		}
 		else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 			timer.reset();
-			CEntity *hitboxEntity = hitboxHandle;
-			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-			hitbox->disable();
+			getHitboxes()->disable(hitbox);
 			phase = AttackPhases::Recovery;
 		}
 		else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 			timer.reset();
-			CEntity *hitboxEntity = hitboxHandle;
-			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-			hitbox->enable();
+			getHitboxes()->enable(hitbox);
 			phase = AttackPhases::Active;
 		}
 	}
@@ -74,10 +65,7 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	CEntity *hitboxEntity = hitboxHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
-	//dbg("Finish strong Attack\n");
+	getHitboxes()->disable(hitbox);
 }
 
 void StrongAttackActionState::onStrongAttackButtonReleased() {
@@ -89,22 +77,15 @@ void StrongAttackActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void StrongAttackActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_knee.mesh");
-}
-
 void StrongAttackActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
-	if (entity != playerEntity) {
-		CEntity *otherEntity = entity;
+	CEntity *otherEntity = entity;
+	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+	TMsgAttackHit msgAtackHit = {};
+	msgAtackHit.attacker = playerEntity;
+	msgAtackHit.info = {};
+	msgAtackHit.info.givesPower = true;
+	msgAtackHit.info.damage = damage;
+	otherEntity->sendMsg(msgAtackHit);
 
-		otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-
-		TMsgAttackHit msgAtackHit = {};
-		msgAtackHit.attacker = playerEntity;
-		msgAtackHit.info = {};
-		msgAtackHit.info.givesPower = true;
-		msgAtackHit.info.damage = damage;
-		otherEntity->sendMsg(msgAtackHit);
-	}
 }

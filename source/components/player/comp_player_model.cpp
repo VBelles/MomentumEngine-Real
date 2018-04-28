@@ -261,7 +261,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::WallJumpSquat, new WallJumpSquatActionState(playerModelHandle) },
 	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(playerModelHandle) },
 	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle) },
-	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle, strongAttackHitbox) },
+	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle) },
 	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle, verticalLauncherHitbox) },
 	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle, horizontalLauncherHitbox) },
 	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
