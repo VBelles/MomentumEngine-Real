@@ -110,16 +110,6 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 			dbg("material: %s\n", name_material.c_str());
 		}
 	}
-	else {
-		dbg("Eaeaeaeae\n");
-		dbg("Eaeaeaeae\n");
-		dbg("Eaeaeaeae\n");
-		dbg("Eaeaeaeae\n");
-		dbg("Eaeaeaeae\n");
-		dbg("Eaeaeaeae\n");
-
-	}
-
 	powerStats[0] = loadPowerStats(j["ssj1"]);
 	powerStats[1] = loadPowerStats(j["ssj2"]);
 	powerStats[2] = loadPowerStats(j["ssj3"]);
@@ -264,13 +254,13 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::AirborneLong, new AirborneLongActionState(playerModelHandle) },
 	{ ActionStates::TurnAround, new TurnAroundActionState(playerModelHandle) },
 	{ ActionStates::Landing, new LandingActionState(playerModelHandle) },
-	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(playerModelHandle, fallingAttackLandingHitbox) },
+	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(playerModelHandle) },
 	{ ActionStates::PropelHigh, new PropelHighActionState(playerModelHandle) },
 	{ ActionStates::PropelLong, new PropelLongActionState(playerModelHandle) },
 	{ ActionStates::HuggingWall, new HuggingWallActionState(playerModelHandle) },
 	{ ActionStates::WallJumpSquat, new WallJumpSquatActionState(playerModelHandle) },
 	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(playerModelHandle) },
-	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle, fallingAttackHitbox) },
+	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle) },
 	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle, strongAttackHitbox) },
 	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle, verticalLauncherHitbox) },
 	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle, horizontalLauncherHitbox) },

@@ -57,9 +57,10 @@ protected:
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void clampHorizontalVelocity(float maxHorizontalSpeed);
 
-	std::string animation;
+	
 
 public:
+std::string animation;
 	IActionState(CHandle playerModelHandle, std::string animation = "");
 
 	virtual void update(float delta) = 0;

@@ -9,7 +9,7 @@ protected:
 	float landingLagTime;
 	float enteringSpeed;
 public:
-	LandingActionState(CHandle playerModelHandle);
+	LandingActionState(CHandle playerModelHandle, std::string animation = "jump_caida") : GroundedActionState(playerModelHandle, animation) {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
