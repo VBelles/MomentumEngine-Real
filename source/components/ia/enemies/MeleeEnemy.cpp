@@ -78,7 +78,7 @@ void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 	attackCooldown = j.value("attackCooldown", 2.f);
 	attackDamage = j.value("attackDamage", 1.f);
 	propelDuration = j.value("propelDuration", 1.5f);
-	gravity = j.value("gravity", -50.f);
+	gravity = j.value("gravity", -55.f);
 	if (j.count("maxVelocity")) {
 		maxVelocity = loadVEC3(j["maxVelocity"]);
 	}
@@ -123,6 +123,7 @@ int CBehaviorTreeMeleeEnemy::dead(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
+	dbg("grabbed\n");
 	getSkeleton()->setTimeFactor(0);
 	getCollider()->destroy();
 	timer.reset();
