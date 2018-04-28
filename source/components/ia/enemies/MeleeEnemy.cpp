@@ -346,6 +346,7 @@ int CBehaviorTreeMeleeEnemy::onAttack(float delta) {
 		current = nullptr;
 	}
 	else {
+		isFirstAttackLaunched = false;
 		attackTimer.reset();
 		getSkeleton()->executeAction(2, 0.2f, 0.2f);
 	}
@@ -356,13 +357,26 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(2))) {
+		//Parche para ir con la animación
+		if (!isFirstAttackLaunched && attackTimer.elapsed() >= (getSkeleton()->getAnimationDuration(2) * 0.5f)) {
+			if (combatCondition(delta)) {
+				TMsgAttackHit msg = {};
+				msg.attacker = CHandle(this);
+				msg.info.damage = attackDamage;
+				getPlayerEntity()->sendMsg(msg);
+			}
+			isFirstAttackLaunched = true;
+		}
 		return Stay;
 	}
 	else {
-		TMsgAttackHit msg = {};
-		msg.attacker = CHandle(this);
-		msg.info.damage = attackDamage;
-		getPlayerEntity()->sendMsg(msg);
+		//de momento comprobar si sigue delante, al menos
+		if (combatCondition(delta)) {
+			TMsgAttackHit msg = {};
+			msg.attacker = CHandle(this);
+			msg.info.damage = attackDamage;
+			getPlayerEntity()->sendMsg(msg);
+		}
 		attackTimer.reset();
 		return Leave;
 	}
