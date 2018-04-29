@@ -242,6 +242,7 @@
     <ClCompile Include="modules\game\physics\basic_query_filter_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_simulation_event_callback.cpp" />
     <ClCompile Include="modules\system\scripting\module_scripting.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_manager.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
@@ -447,6 +448,7 @@
     <ClInclude Include="modules\game\physics\basic_query_filter_callback.h" />
     <ClInclude Include="modules\game\physics\basic_simulation_event_callback.h" />
     <ClInclude Include="modules\system\scripting\module_scripting.h" />
+    <ClInclude Include="modules\system\scripting\scripting_manager.h" />
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="modules\system\scripting\scripting_player.h" />

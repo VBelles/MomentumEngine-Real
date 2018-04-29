@@ -8,8 +8,13 @@
 #include "modules/system/scripting/scripting_golem.h"
 #include "modules/system/scripting/scripting_entities.h"
 #include "modules/system/scripting/scripting_door.h"
+#include "modules/system/scripting/scripting_manager.h"
 
-CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {}
+CModuleScripting* CModuleScripting::instance = nullptr;
+
+CModuleScripting::CModuleScripting(const std::string& name) : IModule(name) {
+	instance = this;
+}
 
 void CModuleScripting::initConsole() {
 	//Create console and console callback
@@ -40,6 +45,9 @@ void CModuleScripting::initSLB() {
 	script->set("GAME_CAMERA", GAME_CAMERA);
 
 	//Bind clases
+	ScriptingManager::create();
+	ScriptingManager::bind(manager);
+
 	ScriptingPlayer::bind(manager);
 	ScriptingGolem::bind(manager);
 	ScriptingDoor::bind(manager);
@@ -78,11 +86,12 @@ bool CModuleScripting::stop() {
 	SAFE_DELETE(script);
 	SAFE_DELETE(console);
 	ScriptingEntities::destroy();
+	ScriptingManager::destroy();
 	return true;
 }
 
 void CModuleScripting::update(float delta) {
-	float currentTime = timer.elapsed();
+	checkDelayedCalls();
 }
 
 void CModuleScripting::render() {
@@ -93,6 +102,29 @@ void CModuleScripting::render() {
 	}
 }
 
+void CModuleScripting::checkDelayedCalls() {
+	std::set<DelayedCall> toRemove;
+	float currentTime = timer.elapsed();
+	for (DelayedCall dc : delayedCalls) {
+		if (currentTime >= (dc.startTime + dc.delay)) {
+			execString(dc.call.c_str());
+			toRemove.insert(dc);
+		}
+	}
+
+	for (DelayedCall dc : toRemove) {
+		delayedCalls.erase(dc);
+	}
+}
+
+void CModuleScripting::execString(const char* string) {
+	script->safeDoString(string);
+}
+
+void CModuleScripting::execFile(const char* string) {
+	script->safeDoFile(string);
+}
+
 void CModuleScripting::doFile(const char* filename) {
 	execFile(filename);
 }
@@ -101,22 +133,12 @@ void CModuleScripting::doFile(std::string filename) {
 	execFile(filename.c_str());
 }
 
-void CModuleScripting::throwEvent(luaCall event, std::string params) {
+void CModuleScripting::throwEvent(LuaCall event, std::string params) {
 	execString((luaCalls[event] + "(" + params + ")").c_str());
 }
 
-void CModuleScripting::execString(const char* string) {
-	try {
-		script->safeDoString(string);
-	}
-	catch (...) {}
-}
-
-void CModuleScripting::execFile(const char* string) {
-	try {
-		script->safeDoFile(string);
-	}
-	catch (...) {}
+void CModuleScripting::callDelayed(float delay, const char* call) {
+	delayedCalls.insert(DelayedCall{ timer.elapsed(), delay, call });
 }
 
 void printCallback(SLB::Script* script, const char* str, size_t strSize) {

@@ -1,6 +1,6 @@
 #pragma once
 
-enum luaCall {
+enum LuaCall {
 	onGameStart,
 	onLevelStart, //param levelId
 	onPowerLevelChange, //param powerLevel
@@ -20,19 +20,35 @@ class SimpleConsole;
 
 class CModuleScripting : public IModule {
 private:
+	static CModuleScripting* instance;
+
+	struct DelayedCall {
+		float startTime;
+		float delay;
+		std::string call;
+
+		friend bool operator<(const DelayedCall& dc1, const DelayedCall& dc2) {
+			if (dc1.startTime < dc2.startTime) return true;
+			else if (dc1.startTime == dc2.startTime) return dc1.delay < dc2.delay;
+			else return false;
+		}
+	};
+
 	SLB::Manager* manager;
 	SLB::Script* script;
 	SimpleConsole* console;
 
-	CTimer timer;
+	std::map<LuaCall, std::string> luaCalls;
 
-	std::map<luaCall, std::string> luaCalls;
+	void initConsole();
+	void initSLB();
 
 	void execString(const char* string);
 	void execFile(const char* string);
 
-	void initConsole();
-	void initSLB();
+	CTimer timer;
+	std::set<DelayedCall> delayedCalls;
+	void checkDelayedCalls();
 
 public:
 	CModuleScripting(const std::string& name);
@@ -44,9 +60,11 @@ public:
 	void doFile(const char* filename);
 	void doFile(std::string filename);
 
-	void throwEvent(luaCall event, std::string params);
+	void throwEvent(LuaCall event, std::string params);
 
 	SimpleConsole* getConsole() { return console; }
+
+	void callDelayed(float delay, const char* call);
 };
 
 //Callback for LUA print function
