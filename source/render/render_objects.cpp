@@ -125,7 +125,6 @@ CRenderMesh* createCameraFrustum() {
     return mesh;
 }
 
-// ----------------------------------
 // To render wired AABB's
 CRenderMesh* createWiredUnitCube() {
     std::vector<TVtxPosClr> vtxs =
@@ -154,38 +153,33 @@ CRenderMesh* createWiredUnitCube() {
     return mesh;
 }
 
-// ----------------------------------
 // Full screen quad to dump textures in screen
 CRenderMesh* createUnitQuadXY() {
     const VEC4 white(1, 1, 1, 1);
     const std::vector<TVtxPosClr> vtxs = {
-      { VEC3(0, 0, 0), white }
-    , { VEC3(1, 0, 0), white }
-    , { VEC3(0, 1, 0), white }
-    , { VEC3(1, 1, 0), white }
+          { VEC3(0, 0, 0), white }
+        , { VEC3(1, 0, 0), white }
+        , { VEC3(0, 1, 0), white }
+        , { VEC3(1, 1, 0), white }
     };
     CRenderMesh* mesh = new CRenderMesh;
-    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr"
-                      , CRenderMesh::TRIANGLE_STRIP
-    ))
+    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::TRIANGLE_STRIP))
         return nullptr;
     return mesh;
 }
 
 // Full screen quad to dump textures in screen
 CRenderMesh* createUnitQuadPosXY() {
-  const std::vector<VEC3> vtxs = {
-      VEC3(0, 0, 0) 
-    , VEC3(1, 0, 0) 
-    , VEC3(0, 1, 0) 
-    , VEC3(1, 1, 0) 
-  };
-  CRenderMesh* mesh = new CRenderMesh;
-  if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(VEC3), "Pos"
-    , CRenderMesh::TRIANGLE_STRIP
-  ))
-    return nullptr;
-  return mesh;
+    const std::vector<VEC3> vtxs = {
+          VEC3(0, 0, 0)
+        , VEC3(1, 0, 0)
+        , VEC3(0, 1, 0)
+        , VEC3(1, 1, 0)
+    };
+    CRenderMesh* mesh = new CRenderMesh;
+    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(VEC3), "Pos", CRenderMesh::TRIANGLE_STRIP))
+        return nullptr;
+    return mesh;
 }
 
 void registerMesh(CRenderMesh* new_mesh, const char* name) {
@@ -201,7 +195,7 @@ bool createRenderObjects() {
     registerMesh(createCameraFrustum(), "unit_frustum.mesh");
     registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
     registerMesh(createUnitQuadXY(), "unit_quad_xy.mesh");
-	registerMesh(createUnitQuadPosXY(), "unit_quad_pos_xy.mesh");
+    registerMesh(createUnitQuadPosXY(), "unit_quad_pos_xy.mesh");
 
     return true;
 }
@@ -220,17 +214,16 @@ void activateCamera(CCamera& camera, int width, int height) {
     cb_camera.camera_dummy1 = 1.f;
     cb_camera.camera_front = camera.getFront();
     cb_camera.camera_dummy2 = 0.f;
-	cb_camera.camera_left = camera.getLeft();
-	cb_camera.camera_dummy3 = 0.f;
-	cb_camera.camera_up = camera.getUp();
-	cb_camera.camera_dummy4 = 0.f;
+    cb_camera.camera_left = camera.getLeft();
+    cb_camera.camera_dummy3 = 0.f;
+    cb_camera.camera_up = camera.getUp();
+    cb_camera.camera_dummy4 = 0.f;
 
-
-	// To avoid converting the range -1..1 to 0..1 in the shader
-	// we concatenate the view_proj with a matrix to apply this offset
-	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f))
-		           * MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
-	cb_camera.camera_proj_with_offset = camera.getProjection() * mtx_offset;
+    // To avoid converting the range -1..1 to 0..1 in the shader
+    // we concatenate the view_proj with a matrix to apply this offset
+    MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f))
+        * MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
+    cb_camera.camera_proj_with_offset = camera.getProjection() * mtx_offset;
 
     cb_camera.camera_zfar = camera.getZFar();
     cb_camera.camera_znear = camera.getZNear();
@@ -271,21 +264,21 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
     assert(mesh);
     auto vdecl = mesh->getVertexDecl();
     assert(vdecl);
-	const char* tech_name = nullptr;
+    const char* tech_name = nullptr;
     if (vdecl->name == "PosNUv")
         tech_name = "solid_objs.tech";
     else if (vdecl->name == "PosNUvUvT")
         tech_name = "solid_objs_uv2.tech";
     else if (vdecl->name == "PosNUvSkin")
         tech_name = "solid_objs_skin.tech";
-	else if (vdecl->name == "PosNUvUvTSkin") // Esto Juan no lo tiene.
-		tech_name = "solid_objs_PosNUvUvTSkin.tech";
-	else if (vdecl->name == "PosClr")
-		tech_name = "solid.tech";
-	else {
-		// Don't know how to render this type of vertex
-		return;
-	}
+    else if (vdecl->name == "PosNUvUvTSkin") // Esto Juan no lo tiene.
+        tech_name = "solid_objs_PosNUvUvTSkin.tech";
+    else if (vdecl->name == "PosClr")
+        tech_name = "solid.tech";
+    else {
+        // Don't know how to render this type of vertex
+        return;
+    }
 
     auto prev_tech = CRenderTechnique::current;
     auto tech = Resources.get(tech_name)->as<CRenderTechnique>();
@@ -312,8 +305,7 @@ void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture)
     auto* tech = Resources.get(tech_name)->as<CRenderTechnique>();
     assert(tech);
     tech->activate();
-    if (texture)
-        texture->activate(TS_ALBEDO);
+    if (texture) texture->activate(TS_ALBEDO);
     auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
     mesh->activateAndRender();
 }
@@ -326,19 +318,17 @@ void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
     cb_object.obj_color = color;
     cb_object.updateGPU();
 
-
     auto mesh = Resources.get("line.mesh")->as<CRenderMesh>();
     mesh->activateAndRender();
 }
 
-bool createDepthStencil(
-    const std::string& aname,
-    int width, int height,
-    DXGI_FORMAT format,
-    // outputs
-    ID3D11Texture2D** depth_stencil_resource,
-    ID3D11DepthStencilView** depth_stencil_view,
-    CTexture** out_ztexture) {
+bool createDepthStencil(const std::string& aname,
+                        int width, int height,
+                        DXGI_FORMAT format,
+                        // outputs
+                        ID3D11Texture2D** depth_stencil_resource,
+                        ID3D11DepthStencilView** depth_stencil_view,
+                        CTexture** out_ztexture) {
 
     assert(format == DXGI_FORMAT_R32_TYPELESS
            || format == DXGI_FORMAT_R24G8_TYPELESS
@@ -397,8 +387,7 @@ bool createDepthStencil(
     }
 
     HRESULT hr = Render.device->CreateTexture2D(&desc, NULL, depth_stencil_resource);
-    if (FAILED(hr))
-        return false;
+    if (FAILED(hr)) return false;
     setDXName(*depth_stencil_resource, aname.c_str());
 
     // Create the depth stencil view
@@ -408,8 +397,7 @@ bool createDepthStencil(
     descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
     descDSV.Texture2D.MipSlice = 0;
     hr = Render.device->CreateDepthStencilView(*depth_stencil_resource, &descDSV, depth_stencil_view);
-    if (FAILED(hr))
-        return false;
+    if (FAILED(hr)) return false;
     setDXName(*depth_stencil_view, (aname + "_DSV").c_str());
 
     if (out_ztexture) {
@@ -423,8 +411,7 @@ bool createDepthStencil(
         // Create the shader resource view.
         ID3D11ShaderResourceView* depth_resource_view = nullptr;
         hr = Render.device->CreateShaderResourceView(*depth_stencil_resource, &shaderResourceViewDesc, &depth_resource_view);
-        if (FAILED(hr))
-            return false;
+        if (FAILED(hr)) return false;
 
         CTexture* ztexture = new CTexture();
         ztexture->setDXParams(width, height, *depth_stencil_resource, depth_resource_view);
