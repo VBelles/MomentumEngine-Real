@@ -55,7 +55,7 @@ CBehaviorTreeMeleeEnemy::CBehaviorTreeMeleeEnemy()
 	addChild("combat", "attack", Sequence, nullptr, nullptr);
 	addChild("attack", "onAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::onAttack);
 	addChild("attack", "attackAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::attack);
-	node->setProbability(std::vector<float>{ 0.75f, 0.25f });
+	node->setProbability(std::vector<float>{ 0.5f, 0.5f });
 
 	addChild("meleeEnemy", "chase", Action, (BehaviorTreeCondition)&CBehaviorTreeMeleeEnemy::chaseCondition, (BehaviorTreeAction)&CBehaviorTreeMeleeEnemy::chase);
 
