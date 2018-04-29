@@ -178,7 +178,6 @@ void CModuleRender::activateMainCamera() {
         assert(cam);
         CRenderManager::get().setEntityCamera(h_e_camera);
     }
-
     activateCamera(*cam, Render.width, Render.height);
 }
 
@@ -190,7 +189,7 @@ void CModuleRender::generateFrame() {
         activateMainCamera();
         cb_globals.updateGPU();
 
-        deferred.render(rt_main);
+        deferred.render(rt_main, h_e_camera);
 
 		CRenderManager::get().renderCategory("distorsions");
 		CRenderManager::get().renderCategory("textured");
@@ -223,13 +222,11 @@ void CModuleRender::generateFrame() {
             CEngine::get().getModules().render();
         }
     }
-
     {
         PROFILE_FUNCTION("ImGui::Render");
         CTraceScoped gpu_scope("ImGui");
         ImGui::Render();
     }
-
     // Present the information rendered to the back buffer to the front buffer (the screen)
     {
         PROFILE_FUNCTION("Render.swapChain");
