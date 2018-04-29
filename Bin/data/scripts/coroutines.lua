@@ -21,11 +21,16 @@ function updateCoroutines(elapsed)
 end
 
 function clearCoroutines()
+	for k,v in pairs(all_co) do
+		all_co[k] = nil
+	end
+	--[[
 	local name, co = next(all_co)
 	while name ~= nil do
 		co = nil
 		name, co = next(all_co, name)
 	end
+	--]]
 end
 
 function dumpCoroutines()

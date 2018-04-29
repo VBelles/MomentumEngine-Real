@@ -79,6 +79,10 @@ bool CModuleScripting::start() {
 
 	initConsole();
 	initSLB();
+
+	nextCoroutineId = 0;
+	delayedCalls.clear();
+
 	timer.reset();
 	return true;
 }
@@ -90,6 +94,13 @@ bool CModuleScripting::stop() {
 	ScriptingEntities::destroy();
 	ScriptingManager::destroy();
 	return true;
+}
+
+void CModuleScripting::reset() {
+	delayedCalls.clear();
+	std::string call = "clearCoroutines()";
+	execString(call.c_str());
+	nextCoroutineId = 0;
 }
 
 void CModuleScripting::update(float delta) {

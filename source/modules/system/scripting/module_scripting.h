@@ -62,6 +62,8 @@ public:
 	void update(float delta) override;
 	void render() override;
 
+	void reset();
+
 	void doFile(const char* filename);
 	void doFile(std::string filename);
 

@@ -44,7 +44,8 @@ CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
 }
 
 bool CModuleTestAxis::start() {
-	((CModuleEntities*)Engine.getModules().getModule("entities"))->reset();
+	Engine.getEntities().reset();
+	Engine.getScripting().reset();
 	json jboot = loadJson("data/boot.json");
 
 	// Auto load some scenes
@@ -76,7 +77,8 @@ bool CModuleTestAxis::start() {
 }
 
 bool CModuleTestAxis::stop() {
-	((CModuleEntities*)Engine.getModules().getModule("entities"))->reset();
+	Engine.getScripting().reset();
+	Engine.getEntities().reset();
 	return true;
 }
 
