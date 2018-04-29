@@ -9,9 +9,6 @@
 ScriptingEntities* ScriptingEntities::instance = nullptr;
 
 ScriptingEntities::ScriptingEntities() {
-	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
-	assert(playerEntity);
-	playerTransformHandle = playerEntity->get<TCompTransform>();
 }
 
 ScriptingEntities::~ScriptingEntities() {
@@ -73,6 +70,9 @@ std::string ScriptingEntities::spawnMedusa() {
 }
 
 TCompTransform* ScriptingEntities::getPlayerTransform() {
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	assert(playerEntity);
+	playerTransformHandle = playerEntity->get<TCompTransform>();
 	return playerTransformHandle;
 }
 

@@ -166,15 +166,9 @@
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
-    <ClCompile Include="modules\game\scripting\scripting_player.cpp" />
-    <ClCompile Include="modules\game\scripting\module_scripting.cpp" />
-    <ClCompile Include="modules\game\scripting\console.cpp" />
     <ClCompile Include="components\platforms\comp_platform.cpp" />
-    <ClCompile Include="modules\game\scripting\scripting_golem.cpp" />
-    <ClCompile Include="modules\game\scripting\scripting_entities.cpp" />
     <ClCompile Include="components\ia\enemies\BallEnemy.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
-    <ClCompile Include="modules\game\scripting\scripting_door.cpp" />
     <ClCompile Include="components\comp_door.cpp" />
     <ClCompile Include="components\comp_spikes.cpp" />
     <ClCompile Include="components\player\states\base_states\death\DeathActionState.cpp" />
@@ -184,6 +178,12 @@
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
     <ClCompile Include="components\comp_altar.cpp" />
+    <ClCompile Include="modules\system\scripting\console.cpp" />
+    <ClCompile Include="modules\system\scripting\module_scripting.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_door.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_entities.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_golem.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -381,15 +381,9 @@
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
-    <ClInclude Include="modules\game\scripting\scripting_player.h" />
-    <ClInclude Include="modules\game\scripting\module_scripting.h" />
-    <ClInclude Include="modules\game\scripting\console.h" />
     <ClInclude Include="components\platforms\comp_platform.h" />
-    <ClInclude Include="modules\game\scripting\scripting_golem.h" />
-    <ClInclude Include="modules\game\scripting\scripting_entities.h" />
     <ClInclude Include="components\ia\enemies\BallEnemy.h" />
     <ClInclude Include="components\player\power_stats.h" />
-    <ClInclude Include="modules\game\scripting\scripting_door.h" />
     <ClInclude Include="components\comp_door.h" />
     <ClInclude Include="components\comp_spikes.h" />
     <ClInclude Include="components\player\states\base_states\death\DeathActionState.h" />
@@ -399,6 +393,12 @@
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="modules\system\module_entities.h" />
     <ClInclude Include="components\comp_altar.h" />
+    <ClInclude Include="modules\system\scripting\console.h" />
+    <ClInclude Include="modules\system\scripting\module_scripting.h" />
+    <ClInclude Include="modules\system\scripting\scripting_door.h" />
+    <ClInclude Include="modules\system\scripting\scripting_entities.h" />
+    <ClInclude Include="modules\system\scripting\scripting_golem.h" />
+    <ClInclude Include="modules\system\scripting\scripting_player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

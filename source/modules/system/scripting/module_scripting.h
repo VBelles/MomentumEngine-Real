@@ -1,13 +1,15 @@
 #pragma once
 
-enum luaCalls {
+enum luaCall {
 	onGameStart,
 	onLevelStart, //param levelId
 	onPowerLevelChange, //param powerLevel
-	onTriggerEnter, //param triggerName
+	onTriggerEnter, //param triggerName, entityName
+	onTriggerExit, //param triggerName, entityName
 	onItemDestroyed, //param itemName
 	onEnemyKilled, //param enemyName
-	onItemCollected //param itemName
+	onItemCollected, //param itemName
+	onPlayerKilled
 };
 
 namespace SLB {
@@ -22,6 +24,16 @@ private:
 	SLB::Script* script;
 	SimpleConsole* console;
 
+	CTimer timer;
+
+	std::map<luaCall, std::string> luaCalls;
+
+	void execString(const char* string);
+	void execFile(const char* string);
+
+	void initConsole();
+	void initSLB();
+
 public:
 	CModuleScripting(const std::string& name);
 	bool start() override;
@@ -32,10 +44,9 @@ public:
 	void doFile(const char* filename);
 	void doFile(std::string filename);
 
-	SLB::Manager* getManager() { return manager; }
-	SLB::Script* getScript() { return script; }
-	SimpleConsole* getConsole() { return console; }
+	void throwEvent(luaCall event, std::string params);
 
+	SimpleConsole* getConsole() { return console; }
 };
 
 //Callback for LUA print function
