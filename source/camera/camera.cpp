@@ -32,9 +32,12 @@ void CCamera::lookAt(VEC3 new_pos, VEC3 new_target, VEC3 new_up_aux) {
     updateViewProj();
 }
 
-void CCamera::setPerspective(
-    float new_fov_vertical, float new_z_near, float new_z_far, bool isOrtographic, float new_width, float new_height
-) {
+void CCamera::setPerspective(float new_fov_vertical,
+                             float new_z_near,
+                             float new_z_far,
+                             bool isOrtographic,
+                             float new_width,
+                             float new_height) {
     this->isOrtographic = isOrtographic;
 
     fov_vertical = new_fov_vertical;

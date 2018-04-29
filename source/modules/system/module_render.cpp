@@ -221,8 +221,23 @@ void CModuleRender::generateFrame() {
         {
             PROFILE_FUNCTION("Modules");
             CTraceScoped gpu_scope("Modules");
-            CEngine::get().getModules().render();
+            EngineModules.render();
         }
+    }
+    {
+        PROFILE_FUNCTION("GUI");
+        CTraceScoped gpu_scope("GUI");
+
+        activateRSConfig(RSCFG_CULL_NONE);
+        activateZConfig(ZCFG_DISABLE_ALL);
+        activateBlendConfig(BLEND_CFG_COMBINATIVE);
+
+        activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
+        EngineModules.renderGUI();
+
+        activateRSConfig(RSCFG_DEFAULT);
+        activateZConfig(ZCFG_DEFAULT);
+        activateBlendConfig(BLEND_CFG_DEFAULT);
     }
     {
         PROFILE_FUNCTION("ImGui::Render");

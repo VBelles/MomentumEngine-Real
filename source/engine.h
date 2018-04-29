@@ -42,14 +42,16 @@ private:
 	CModuleCameras   _module_cameras;
 	CModuleFSM       _module_fsm;
 	CModuleScripting _module_scripting;
-	CModuleGUI      _module_gui;
+	CModuleGUI       _module_gui;
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
 };
 
 #define Engine CEngine::get()
+#define EngineModules CEngine::get().getModules()
 #define EngineInput CEngine::get().getInput()
 #define EnginePhysics CEngine::get().getPhysics()
 #define EngineRender CEngine::get().getRender()
 #define EngineScripting CEngine::get().getScripting()
+#define EngineGUI CEngine::get().getGUI()

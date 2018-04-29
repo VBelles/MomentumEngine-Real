@@ -2,34 +2,34 @@
 #include "mapping.h"
 
 namespace Input {
-	CMapping::CMapping() {
-	}
+    CMapping::CMapping() {
+    }
 
-	CMapping::CMapping(const std::string& filename) {
-		load(filename);
-	}
+    CMapping::CMapping(const std::string& filename) {
+        load(filename);
+    }
 
-	void CMapping::load(const std::string& filename) {
-		std::ifstream file_json(filename);
-		json json_data;
-		file_json >> json_data;
+    void CMapping::load(const std::string& filename) {
+        std::ifstream file_json(filename);
+        json json_data;
+        file_json >> json_data;
 
-		_mappings.clear();
+        _mappings.clear();
 
-		for (auto& jsonMapInfo : json_data) {
+        for (auto& jsonMapInfo : json_data) {
 
-			std::string name = jsonMapInfo["name"].get<std::string>();
+            std::string name = jsonMapInfo["name"].get<std::string>();
 
-			TMappingInfo info;
-			info.all = jsonMapInfo["all"].get<bool>();
-			auto& btData = jsonMapInfo["buttons"];
-			for (auto& bt : btData) {
-				const std::string btName = bt.get<std::string>();
-				const TButtonDef* def = Engine.getInput().getButtonDefinition(btName);
-				info.buttons.push_back(*def);
-			}
+            TMappingInfo info;
+            info.all = jsonMapInfo["all"].get<bool>();
+            auto& btData = jsonMapInfo["buttons"];
+            for (auto& bt : btData) {
+                const std::string btName = bt.get<std::string>();
+                const TButtonDef* def = EngineInput.getButtonDefinition(btName);
+                info.buttons.push_back(*def);
+            }
 
-			_mappings[name] = info;
-		}
-	}
+            _mappings[name] = info;
+        }
+    }
 }

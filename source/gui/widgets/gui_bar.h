@@ -2,18 +2,16 @@
 
 #include "gui/gui_widget.h"
 
-namespace GUI
-{
-  class CBar : public CWidget
-  {
-  public:
-    CBar() = default;
-    void render() override;
+namespace GUI {
+    class CBar : public CWidget {
+    public:
+        CBar() = default;
+        void render() override;
 
-  private:
-    TImageParams _imageParams;
-    TBarParams _barParams;
+    private:
+        TImageParams _imageParams;
+        TBarParams _barParams;
 
-    friend class CParser;
-  };
+        friend class CParser;
+    };
 }

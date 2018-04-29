@@ -54,7 +54,7 @@ void TCompShadow::update(float dt) {
 		TCompTransform* parentTransform = parentTransformHandle;
 		TCompTransform* transform = transformHandle;
 
-		PxScene* scene = Engine.getPhysics().getScene();
+		PxScene* scene = EnginePhysics.getScene();
 		PxVec3 origin = { parentTransform->getPosition().x + offset.x, parentTransform->getPosition().y + offset.y, parentTransform->getPosition().z + offset.z };
 
 		const PxU32 bufferSize = 256;

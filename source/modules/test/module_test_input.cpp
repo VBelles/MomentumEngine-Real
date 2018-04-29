@@ -12,7 +12,7 @@ void CModuleTestInput::update(float delta)
 	float g = 0.f;
 	float b = 0.f;
 
-	const Input::TButton& bt = CEngine::get().getInput().host(Input::PLAYER_1).keyboard().key(VK_SPACE);
+	const Input::TButton& bt = EngineInput.host(Input::PLAYER_1).keyboard().key(VK_SPACE);
 
 	// ---------------------- TEST: button times
 	/*const Input::TButton& bt = EngineInput[VK_SPACE];
@@ -45,5 +45,5 @@ void CModuleTestInput::update(float delta)
 	//g = EngineInput["green"].value;
 	//b = 0.5f + 0.5f * EngineInput["blue"].value;
 
-	//CEngine::get().getRender().setBackgroundColor(r, g, b, 1.f);
+	//EngineRender().setBackgroundColor(r, g, b, 1.f);
 }

@@ -4,25 +4,25 @@
     "pause",
     "physics",
     "entities",
-	"gui",
     "main_menu",
     "splash",
     "game_over",
     "test_axis",
     "cameras",
     "render",
+	"gui",
     "test_instancing",
     "scripting"
   ],
   "render": [
     "render",    
     "test_axis",
-	"gui",
     "main_menu",
     "cameras",
     "entities",
     "pause",
     "input",
+	"gui",
     "scripting"
   ]
 }

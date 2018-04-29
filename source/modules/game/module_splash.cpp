@@ -11,6 +11,6 @@ bool CModuleSplash::start() {
 void CModuleSplash::update(float delta) {
 	_timer -= delta;
 	if (_timer <= 0.f) {
-		Engine.getModules().changeGameState("main_menu");
+		EngineModules.changeGameState("main_menu");
 	}
 }
