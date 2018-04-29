@@ -40,19 +40,6 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
-
-	CHandle strongAttackHitbox;
-	CHandle fastAttackHitbox;
-	CHandle fastAttackAirHitbox;
-	CHandle fallingAttackHitbox;
-	CHandle fallingAttackLandingHitbox;
-	CHandle verticalLauncherHitbox;
-	CHandle horizontalLauncherHitbox;
-	CHandle grabHitbox;
-	CHandle wallJumpPlummetHitbox;
-	CHandle releasePowerSmallHitbox;
-	CHandle releasePowerBigHitbox;
-
 	CHandle skeletonHandle;
 
 	VEC3 respawnPosition;
