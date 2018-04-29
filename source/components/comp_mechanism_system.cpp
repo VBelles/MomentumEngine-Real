@@ -38,10 +38,6 @@ void TCompMechanismSystem::update(float dt) {
 	//Comprobar que todos están activados
 	if (!isActivated) {
 		if (numberOfMechanismsActivated == numberOfMechanisms) {
-			//Enviar mensaje a owner
-			/*CHandle handle = this;
-			CEntity* entity = handle.getOwner();
-			entity->sendMsg(TMsgMechanismSystemActivated{});*/
 			EngineScripting.doFile(activationEffectFile);
 			isActivated = true;
 		}

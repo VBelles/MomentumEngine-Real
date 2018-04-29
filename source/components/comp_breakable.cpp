@@ -43,7 +43,9 @@ void TCompBreakable::onHit(const TMsgAttackHit & msg) {
 }
 
 void TCompBreakable::onDie() {
+	((CEntity*)(CHandle(this).getOwner()))->sendMsg(TMsgDestroy{});
 	getCollider()->destroy();
+	//send message to entity
 }
 
 void TCompBreakable::dropLoot() {

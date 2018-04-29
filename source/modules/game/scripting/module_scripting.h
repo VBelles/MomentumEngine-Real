@@ -1,5 +1,15 @@
 #pragma once
 
+enum luaCalls {
+	onGameStart,
+	onLevelStart, //param levelId
+	onPowerLevelChange, //param powerLevel
+	onTriggerEnter, //param triggerName
+	onItemDestroyed, //param itemName
+	onEnemyKilled, //param enemyName
+	onItemCollected //param itemName
+};
+
 namespace SLB {
 	class Manager;
 	class Script;

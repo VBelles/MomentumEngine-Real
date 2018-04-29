@@ -7,8 +7,12 @@
 		{ "name" : "jump_volando"},
 		{ "name" : "jump_caida"},
 		{ "name" : "melee"},
+		{ "name" : "melee_strong"},
 		{ "name" : "liberarenergia"},
-		{ "name" : "recibedanio"}
+		{ "name" : "recibedanio"},
+		{ "name" : "ataquecaida_posicionamiento"},
+		{ "name" : "ataquecaida"},
+		{ "name" : "hard_landing"}
 	],
   "bone_ids_to_debug" : [
     3

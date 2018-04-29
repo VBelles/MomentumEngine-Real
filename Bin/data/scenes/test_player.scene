@@ -85,16 +85,7 @@
            "all"
         ]
       },
-      "render_ui": {},
-      "shadow":
-      {
-        "offset": "0 0.1 0",
-        "mesh": "data/meshes/shadow.mesh",
-        "materials":
-        [
-           "data/materials/black.material"
-        ]
-      }
+      "render_ui": {}
     }
   },
   {

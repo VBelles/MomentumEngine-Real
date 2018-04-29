@@ -9,7 +9,7 @@
 FallingAttackLandingActionState::FallingAttackLandingActionState(CHandle playerModelHandle, CHandle hitbox)
 	: LandingActionState::LandingActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "jump_caida";
+	animation = "hard_landing";
 }
 
 void FallingAttackLandingActionState::update(float delta) {

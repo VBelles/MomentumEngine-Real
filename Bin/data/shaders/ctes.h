@@ -102,6 +102,9 @@ CB_DEF(CCteLight, CB_LIGHT)
   float light_radius;                         // Used by point lights
   // Align x4
   MAT44 light_view_proj_offset;
+  //Posible bool para saber si es ortográfica en vez de dummy?
+  VEC3 light_front;
+  float dummy;
 
 };
 

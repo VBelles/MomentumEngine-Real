@@ -74,6 +74,8 @@ void TCompSkeleton::debugInMenu() {
 	static float out_delay = 0.3f;
 	static bool auto_lock = false;
 
+	ImGui::Text("Animation time: %f", model->getMixer()->getAnimationTime());
+
 	float timeFactor = model->getMixer()->getTimeFactor();
 	ImGui::DragFloat("Time factor", &timeFactor, 0.1f, 0, 10.f);
 	setTimeFactor(timeFactor);
@@ -185,7 +187,7 @@ void TCompSkeleton::renderDebug() {
 	}
 }
 
-void TCompSkeleton::blendCycle(int animationId, float weight, float in_delay, bool clearPrevious, float out_delay) {
+void TCompSkeleton::blendCycle(int animationId, float in_delay, float out_delay, float weight, bool clearPrevious) {
 	model->getMixer()->blendCycle(animationId, weight, in_delay);
 
 	if (clearPrevious) {
@@ -197,10 +199,10 @@ void TCompSkeleton::blendCycle(int animationId, float weight, float in_delay, bo
 	}
 }
 
-void TCompSkeleton::blendCycle(std::string animation, float weight, float in_delay, bool clearPrevious, float out_delay) {
+void TCompSkeleton::blendCycle(std::string animation, float in_delay, float out_delay, float weight, bool clearPrevious) {
 	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
 	int animationId = core->getCoreAnimationId(animation);
-	blendCycle(animationId, weight, in_delay, clearPrevious, out_delay);
+	blendCycle(animationId, out_delay, in_delay, weight, clearPrevious);
 }
 
 void TCompSkeleton::executeAction(int animationId, float in_delay, float out_delay, float weight, bool auto_lock) {
