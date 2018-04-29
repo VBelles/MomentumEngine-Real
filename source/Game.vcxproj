@@ -207,6 +207,12 @@
     <ClCompile Include="geometry\geometry.cpp" />
     <ClCompile Include="geometry\SimpleMath.cpp" />
     <ClCompile Include="geometry\transform.cpp" />
+    <ClCompile Include="gui\gui_parser.cpp" />
+    <ClCompile Include="gui\gui_widget.cpp" />
+    <ClCompile Include="gui\widgets\gui_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_button.cpp" />
+    <ClCompile Include="gui\widgets\gui_image.cpp" />
+    <ClCompile Include="gui\widgets\gui_text.cpp" />
     <ClCompile Include="handle\handle_def.cpp" />
     <ClCompile Include="handle\handle_manager.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -239,6 +245,7 @@
     <ClCompile Include="modules\system\module_render.cpp" />
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
+    <ClCompile Include="modules\system\module_gui.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\game\physics\basic_query_filter_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_simulation_event_callback.cpp" />
@@ -405,6 +412,13 @@
     <ClInclude Include="geometry\interpolators.h" />
     <ClInclude Include="geometry\SimpleMath.h" />
     <ClInclude Include="geometry\transform.h" />
+    <ClInclude Include="gui\gui_params.h" />
+    <ClInclude Include="gui\gui_parser.h" />
+    <ClInclude Include="gui\gui_widget.h" />
+    <ClInclude Include="gui\widgets\gui_bar.h" />
+    <ClInclude Include="gui\widgets\gui_button.h" />
+    <ClInclude Include="gui\widgets\gui_image.h" />
+    <ClInclude Include="gui\widgets\gui_text.h" />
     <ClInclude Include="handle\handle.h" />
     <ClInclude Include="handle\handle_def.h" />
     <ClInclude Include="handle\handle_manager.h" />
@@ -447,6 +461,7 @@
     <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\game\physics\module_physics.h" />
     <ClInclude Include="modules\system\module_render.h" />
+    <ClInclude Include="modules\system\module_gui.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\game\physics\basic_query_filter_callback.h" />
     <ClInclude Include="modules\game\physics\basic_simulation_event_callback.h" />

@@ -4,6 +4,7 @@
     "pause",
     "physics",
     "entities",
+	"gui",
     "main_menu",
     "splash",
     "game_over",
@@ -21,6 +22,7 @@
     "entities",
     "pause",
     "input",
+	"gui",
     "scripting"
   ]
 }

@@ -24,7 +24,8 @@ CEngine::CEngine()
 	, _module_input("input")
 	, _module_cameras("cameras")
 	, _module_fsm("fsm")
-	, _module_scripting("scripting") {
+	, _module_scripting("scripting")
+	, _module_gui("gui") {
 }
 
 bool CEngine::start() {
@@ -36,12 +37,13 @@ bool CEngine::start() {
 	static CModuleTestInput module_test_input("test_input");
 	static CModuleTestCameras module_test_cameras("test_cameras");
 	static CModulePause module_pause("pause");
-  static CModuleTestInstancing module_test_instancing("test_instancing");
+	static CModuleTestInstancing module_test_instancing("test_instancing");
 
 	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_fsm);
+	_modules.registerSystemModule(&_module_gui);
 
 	_modules.registerGameModule(&_module_physics);
 	_modules.registerGameModule(&_module_scripting);

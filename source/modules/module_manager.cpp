@@ -64,6 +64,18 @@ void CModuleManager::render() {
 	}
 }
 
+void CModuleManager::renderGUI() {
+  for (auto& mod : _render_modules)
+  {
+    if (mod->isActive())
+    {
+      PROFILE_FUNCTION(mod->getName().c_str());
+      CTraceScoped gpu_scope(mod->getName().c_str());
+      mod->renderGUI();
+    }
+  }
+}
+
 void CModuleManager::registerSystemModule(IModule* mod) {
 	_registered_modules.push_back(mod);
 	_system_modules.push_back(mod);
