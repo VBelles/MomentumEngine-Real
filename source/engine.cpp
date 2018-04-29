@@ -9,6 +9,7 @@
 #include "modules/test/module_test_input.h"
 #include "modules/test/module_test_cameras.h"
 #include "modules/game/module_pause.h"
+#include "modules/test/module_test_instancing.h"
 
 //--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
@@ -35,6 +36,7 @@ bool CEngine::start() {
 	static CModuleTestInput module_test_input("test_input");
 	static CModuleTestCameras module_test_cameras("test_cameras");
 	static CModulePause module_pause("pause");
+  static CModuleTestInstancing module_test_instancing("test_instancing");
 
 	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_render);
@@ -51,6 +53,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&_module_cameras);
 	_modules.registerGameModule(&module_test_cameras);
 	_modules.registerGameModule(&module_pause);
+  _modules.registerGameModule(&module_test_instancing);
 
 	_modules.loadModules("data/modules.json");
 	_modules.loadGamestates("data/gamestates.json");

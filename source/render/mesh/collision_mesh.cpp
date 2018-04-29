@@ -35,3 +35,4 @@ bool CCollisionMesh::load(const std::string& name) {
 	assert(strcmp(mesh.header.vertex_type_name, "Pos") == 0);
 	return true;
 }
+

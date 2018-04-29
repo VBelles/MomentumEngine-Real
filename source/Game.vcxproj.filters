@@ -184,6 +184,9 @@
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
     <ClCompile Include="components\comp_altar.cpp" />
+    <ClCompile Include="render\mesh\mesh_instanced.cpp" />
+    <ClCompile Include="modules\test\module_test_instancing.cpp" />
+    <ClCompile Include="components\postfx\comp_render_ao.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -399,6 +402,9 @@
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="modules\system\module_entities.h" />
     <ClInclude Include="components\comp_altar.h" />
+    <ClInclude Include="render\mesh\mesh_instanced.h" />
+    <ClInclude Include="modules\test\module_test_instancing.h" />
+    <ClInclude Include="components\postfx\comp_render_ao.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

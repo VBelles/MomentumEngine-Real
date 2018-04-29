@@ -9,3 +9,4 @@ public:
 	TMeshLoader mesh;
 	bool load(const std::string& name);
 };
+

@@ -10,6 +10,7 @@
     "test_axis",
     "cameras",
     "render",
+    "test_instancing",
     "scripting"
   ],
   "render": [
