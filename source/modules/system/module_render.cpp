@@ -85,6 +85,7 @@ bool CModuleRender::start() {
     if (!cb_light.create(CB_LIGHT))     return false;
     if (!cb_globals.create(CB_GLOBALS)) return false;
     if (!cb_blur.create(CB_BLUR))       return false;
+    if (!cb_gui.create(CB_GUI))         return false;
 
     cb_globals.global_exposure_adjustment = 1.f;
     cb_globals.global_ambient_adjustment = 1.f;
@@ -98,6 +99,7 @@ bool CModuleRender::start() {
     cb_camera.activate();
     cb_globals.activate();
     cb_blur.activate();
+    cb_gui.activate();
 
     //activateMainCamera();
 
