@@ -16,6 +16,7 @@ public:
 	static ScriptingManager* get() { return instance; }
 	static void bind(SLB::Manager* manager);
 
-	static void callDelayed(float delay, const char* call);
+	static void callDelayed(float delay, const char* func, const char* params);
+	static void setPlayerHp(float hp);
 };
 

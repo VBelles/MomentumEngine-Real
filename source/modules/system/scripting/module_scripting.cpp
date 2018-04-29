@@ -59,7 +59,8 @@ void CModuleScripting::initSLB() {
 	execString("player = Player()");
 	execString("golem = Golem()");
 
-	execFile("data/test.lua");
+	execFile("data/scripts/coroutines.lua");
+	execFile("data/scripts/testLua.lua");
 }
 
 bool CModuleScripting::start() {
@@ -72,7 +73,8 @@ bool CModuleScripting::start() {
 		{ onItemDestroyed, "onItemDestroyed" },
 		{ onEnemyKilled, "onEnemyKilled" },
 		{ onItemCollected, "onItemCollected" },
-		{ onPlayerKilled, "onPlayerKilled" }
+		{ onPlayerKilled, "onPlayerKilled" },
+		{ onAltarDestroyed, "onAltarDestroyed" }
 	};
 
 	initConsole();
@@ -92,6 +94,8 @@ bool CModuleScripting::stop() {
 
 void CModuleScripting::update(float delta) {
 	checkDelayedCalls();
+	std::string call = "updateCoroutines(" + std::to_string(delta) + ")";
+	execString(call.c_str());
 }
 
 void CModuleScripting::render() {
@@ -107,7 +111,8 @@ void CModuleScripting::checkDelayedCalls() {
 	float currentTime = timer.elapsed();
 	for (DelayedCall dc : delayedCalls) {
 		if (currentTime >= (dc.startTime + dc.delay)) {
-			execString(dc.call.c_str());
+			std::string call = "startCoroutine(\"" + getNextCoroutineId() + "\"," + dc.func + ",\"" + dc.params + "\")";
+			execString(call.c_str());
 			toRemove.insert(dc);
 		}
 	}
@@ -125,6 +130,12 @@ void CModuleScripting::execFile(const char* string) {
 	script->safeDoFile(string);
 }
 
+std::string CModuleScripting::getNextCoroutineId() {
+	std::string coroutineId = std::to_string(nextCoroutineId);
+	nextCoroutineId++;
+	return coroutineId;
+}
+
 void CModuleScripting::doFile(const char* filename) {
 	execFile(filename);
 }
@@ -134,11 +145,13 @@ void CModuleScripting::doFile(std::string filename) {
 }
 
 void CModuleScripting::throwEvent(LuaCall event, std::string params) {
-	execString((luaCalls[event] + "(" + params + ")").c_str());
+	std::string call = "startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + ",\"" + params + "\")";
+	execString(call.c_str());
+	//execString((luaCalls[event] + "(" + params + ")").c_str());
 }
 
-void CModuleScripting::callDelayed(float delay, const char* call) {
-	delayedCalls.insert(DelayedCall{ timer.elapsed(), delay, call });
+void CModuleScripting::callDelayed(float delay, const char* func, const char* params) {
+	delayedCalls.insert(DelayedCall{ timer.elapsed(), delay, func, params });
 }
 
 void printCallback(SLB::Script* script, const char* str, size_t strSize) {

@@ -9,7 +9,8 @@ enum LuaCall {
 	onItemDestroyed, //param itemName
 	onEnemyKilled, //param enemyName
 	onItemCollected, //param itemName
-	onPlayerKilled
+	onPlayerKilled,
+	onAltarDestroyed //param altarName
 };
 
 namespace SLB {
@@ -25,7 +26,8 @@ private:
 	struct DelayedCall {
 		float startTime;
 		float delay;
-		std::string call;
+		std::string func;
+		std::string params;
 
 		friend bool operator<(const DelayedCall& dc1, const DelayedCall& dc2) {
 			if (dc1.startTime < dc2.startTime) return true;
@@ -50,6 +52,9 @@ private:
 	std::set<DelayedCall> delayedCalls;
 	void checkDelayedCalls();
 
+	int nextCoroutineId = 0;
+	std::string getNextCoroutineId();
+
 public:
 	CModuleScripting(const std::string& name);
 	bool start() override;
@@ -64,7 +69,7 @@ public:
 
 	SimpleConsole* getConsole() { return console; }
 
-	void callDelayed(float delay, const char* call);
+	void callDelayed(float delay, const char* func, const char* params);
 };
 
 //Callback for LUA print function
