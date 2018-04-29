@@ -72,6 +72,28 @@ VS_OUTPUT VS_Objs_Skin(
   return output;
 }
 
+VS_OUTPUT VS_Objs_Skin_uv2(
+   float4 iPos : POSITION
+ , float3 iN : NORMAL
+ , float2 iUV : TEXCOORD0
+ , float2 iUV2 : TEXCOORD1
+ , float4 iT : NORMAL1
+ , int4   iBones   : BONES
+ , float4 iWeights : WEIGHTS
+)
+{
+  // This matrix will be reused for the position, Normal, Tangent, etc
+  float4x4 skin_mtx = getSkinMtx( iBones, iWeights );
+  float4 skinned_Pos = mul(iPos, skin_mtx);
+
+  VS_OUTPUT output = (VS_OUTPUT)0;
+  // The world matrix is inside the bones matrixs
+  output.Pos = mul(skinned_Pos, camera_view);
+  output.Pos = mul(output.Pos, camera_proj);
+  output.Color = obj_color;
+  return output;
+}
+
 //--------------------------------------------------------------------------------------
 // Pixel Shader
 //--------------------------------------------------------------------------------------
