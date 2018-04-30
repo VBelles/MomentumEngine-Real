@@ -16,7 +16,7 @@
 		},
 		{
 			"name" : "test_axis",
-			"modules" : [ "physics", "cameras", "test_axis", "pause", "scripting" ]
+			"modules" : [ "physics", "cameras", "test_axis", "pause" ]
 		}
 	]
 }

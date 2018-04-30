@@ -2,7 +2,9 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/rocas-white.dds",
-    "normal": "data/textures/null_normal.dds"
+    "albedo": "data/textures/rgb_test.dds",
+    "normal": "data/textures/null_normal.dds",
+    "roughness" : "data/textures/rgb_test.dds",
+    "metallic" : "data/textures/black.dds"
   }
 }

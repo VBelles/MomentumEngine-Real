@@ -7,7 +7,7 @@
 #include "modules/system/module_input.h"
 #include "modules/system/module_cameras.h"
 #include "modules/system/module_fsm.h"
-#include "modules/game/scripting/module_scripting.h"
+#include "modules/system/scripting/module_scripting.h"
 #include "modules/system/module_gui.h"
 
 class CEngine {

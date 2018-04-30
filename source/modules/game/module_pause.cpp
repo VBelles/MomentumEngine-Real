@@ -23,7 +23,8 @@ void CModulePause::update(float delta) {
 void CModulePause::onPausePressed() {
 	pause = !pause;
 
-	EngineModules.getModule("entities")->setActive(!pause);
+	EngineScripting.setActive(!pause);
+	Engine.getEntities().setActive(!pause);
 	CGameState* currentGamestate = EngineModules.getCurrentGameState();
 	for (auto& module : *currentGamestate) {
 		if (module != this) {
@@ -47,7 +48,8 @@ void CModulePause::render() {
 			onPausePressed();
 		}
 		if (ImGui::Button("Main menu")) {
-			EngineModules.getModule("entities")->setActive(true);
+			EngineScripting.setActive(true);
+			Engine.getEntities().setActive(true);
 			CGameState* currentGamestate = EngineModules.getCurrentGameState();
 			for (auto& module : *currentGamestate) {
 				if (module != this) {

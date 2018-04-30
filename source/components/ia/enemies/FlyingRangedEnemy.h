@@ -34,6 +34,7 @@ private:
 	float floatingDuration = 1.5f;
 	float grabbedDuration = 0.8f;
 
+	bool hasAttacked = false;
 	bool isDead = false;
 	bool isStunned = false;
 	float stunDuration;

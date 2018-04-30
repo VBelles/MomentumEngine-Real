@@ -158,10 +158,10 @@ CRenderMesh* createWiredUnitCube() {
 CRenderMesh* createUnitQuadXY() {
     const VEC4 white(1, 1, 1, 1);
     const std::vector<TVtxPosClr> vtxs = {
-          { VEC3(0, 0, 0), white }
-        , { VEC3(1, 0, 0), white }
-        , { VEC3(0, 1, 0), white }
-        , { VEC3(1, 1, 0), white }
+      { VEC3(0, 0, 0), white }
+    , { VEC3(1, 0, 0), white }
+    , { VEC3(0, 1, 0), white }
+    , { VEC3(1, 1, 0), white }
     };
     CRenderMesh* mesh = new CRenderMesh;
     if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::TRIANGLE_STRIP))
@@ -273,7 +273,7 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
     else if (vdecl->name == "PosNUvSkin")
         tech_name = "solid_objs_skin.tech";
     else if (vdecl->name == "PosNUvUvTSkin") // Esto Juan no lo tiene.
-        tech_name = "solid_objs_PosNUvUvTSkin.tech";
+		tech_name = "solid_objs_skin_uv2.tech";
     else if (vdecl->name == "PosClr")
         tech_name = "solid.tech";
     else {
@@ -324,12 +324,12 @@ void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
 }
 
 bool createDepthStencil(const std::string& aname,
-                        int width, int height,
-                        DXGI_FORMAT format,
-                        // outputs
-                        ID3D11Texture2D** depth_stencil_resource,
-                        ID3D11DepthStencilView** depth_stencil_view,
-                        CTexture** out_ztexture) {
+    int width, int height,
+    DXGI_FORMAT format,
+    // outputs
+    ID3D11Texture2D** depth_stencil_resource,
+    ID3D11DepthStencilView** depth_stencil_view,
+    CTexture** out_ztexture) {
 
     assert(format == DXGI_FORMAT_R32_TYPELESS
            || format == DXGI_FORMAT_R24G8_TYPELESS

@@ -75,6 +75,7 @@ void TCompPlayerModel::debugInMenu() {
 	}
 	ImGui::DragFloat("WalkingSpeed", &walkingSpeed, 0.1f, 0.1f, 7.f);
 	ImGui::DragFloat("MaxVelocityUpwards", &maxVelocityUpwards, 0.1f, 10.f, 60.f);
+	ImGui::DragFloat("InvulnerableTime", &invulnerableTime, 0.1f, 0.1f, 3.f);
 }
 
 void TCompPlayerModel::debugInMenu(PowerStats* powerStats, std::string name) {
@@ -321,11 +322,9 @@ void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
 
 void TCompPlayerModel::update(float dt) {
 
-	//float y, p;
-	//getTransform()->getYawPitchRoll(&y, &p);
-	//dbg("yaw: %f\n", rad2deg(y));
-	//y = y + deg2rad(1.f);
-	//getTransform()->setYawPitchRoll(y, p);
+	if (isInvulnerable && invulnerableTimer.elapsed() >= invulnerableTime) {
+		isInvulnerable = false;
+	}
 
 	if (showVictoryDialog == true && dialogTimer.elapsed() >= dialogTime) {
 		showVictoryDialog = false;
@@ -492,10 +491,14 @@ void TCompPlayerModel::setRespawnPosition(VEC3 position) {
 }
 
 void TCompPlayerModel::damage(float damage) {
-	//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
-	setHp(hp - damage);
-	TCompRender* render = get<TCompRender>();
-	render->TurnRed(0.5f);
+	if(!isInvulnerable){
+		//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
+		setHp(hp - damage);
+		TCompRender* render = get<TCompRender>();
+		render->TurnRed(0.5f);
+		isInvulnerable = true;
+		invulnerableTimer.reset();
+	}
 }
 
 TCompCamera* TCompPlayerModel::getCamera() {

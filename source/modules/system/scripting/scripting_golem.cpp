@@ -6,9 +6,6 @@
 #include <SLB/SLB.hpp>
 
 ScriptingGolem::ScriptingGolem() {
-	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
-	assert(playerEntity);
-	playerTransformHandle = playerEntity->get<TCompTransform>();
 }
 
 ScriptingGolem::~ScriptingGolem() {
@@ -36,6 +33,8 @@ void ScriptingGolem::spawn() {
 }
 
 TCompTransform * ScriptingGolem::getPlayerTransform() {
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	playerTransformHandle = playerEntity->get<TCompTransform>();
 	return playerTransformHandle;
 }
 

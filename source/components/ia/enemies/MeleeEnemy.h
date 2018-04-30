@@ -42,6 +42,7 @@ private:
 	bool isDead = false;
 	bool isStunned = false;
 	float stunDuration;
+	bool isFirstAttackLaunched = false;//Quitar cuando las hitbox hagan su trabajo
 
 	CHandle transformHandle;
 	CHandle colliderHandle;

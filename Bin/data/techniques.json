@@ -33,9 +33,9 @@
     "rs_config": "wireframe",
     "category": "general"
   },
-  "solid_objs_PosNUvUvTSkin": {
+  "solid_objs_skin_uv2": {
     "vs_file": "data/shaders/solid.fx",
-    "vs_entry_point": "VS_Objs_Skin",
+    "vs_entry_point": "VS_Objs_Skin_uv2",
     "vertex_type": "PosNUvUvTSkin",
     "rs_config": "wireframe",
     "category": "general"

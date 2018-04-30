@@ -9,7 +9,7 @@
 VerticalLauncherActionState::VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
 	hitboxHandle = hitbox;
-	animation = "melee";
+	animation = "vertical_launcher";
 }
 
 void VerticalLauncherActionState::update (float delta) {

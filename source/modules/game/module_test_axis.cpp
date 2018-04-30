@@ -44,7 +44,8 @@ CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
 }
 
 bool CModuleTestAxis::start() {
-	((CModuleEntities*)EngineModules.getModule("entities"))->reset();
+	Engine.getEntities().reset();
+	Engine.getScripting().reset();
     json jboot = loadJson("data/boot.json");
 
     // Auto load some scenes
@@ -70,11 +71,14 @@ bool CModuleTestAxis::start() {
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
 
+	Engine.getScripting().throwEvent(onLevelStart, "1");
+
     return true;
 }
 
 bool CModuleTestAxis::stop() {
-	((CModuleEntities*)EngineModules.getModule("entities"))->reset();
+	Engine.getScripting().reset();
+	Engine.getEntities().reset();
     return true;
 }
 
