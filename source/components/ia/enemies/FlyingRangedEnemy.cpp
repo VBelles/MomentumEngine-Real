@@ -69,7 +69,7 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	attackCooldown = j.value("attackCooldown", 2.f);
 	attackDamage = j.value("attackDamage", 1.f);
 	propelDuration = j.value("propelDuration", 1.5f);
-	gravity = j.value("gravity", -50.f);
+	gravity = j.value("gravity", -55.f);
 	if (j.count("attackPrefab")) {
 		attackPrefab = j["attackPrefab"].get<std::string>();
 	}

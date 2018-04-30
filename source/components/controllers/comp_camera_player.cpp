@@ -10,6 +10,7 @@ DECL_OBJ_MANAGER("camera_player", TCompCameraPlayer);
 
 void TCompCameraPlayer::debugInMenu() {
 	ImGui::DragFloat("distanceToTarget", &defaultDistanceToTarget, 0.1f, 1.f, 1000.f);
+	ImGui::DragFloat("offset", &offset, 0.1f, 0.f, 3.f);
 }
 
 // -------------------------------------------------
@@ -71,7 +72,7 @@ void TCompCameraPlayer::update(float delta) {
 void TCompCameraPlayer::updateTargetTransform() {
 	//Target transform is player transform + 2y
 	TCompTransform* transform = getTarget()->get<TCompTransform>();
-	targetTransform.setPosition(transform->getPosition() + VEC3::Up * 2.f);
+	targetTransform.setPosition(transform->getPosition() + VEC3::Up * offset);
 	targetTransform.setRotation(transform->getRotation());
 }
 
@@ -166,7 +167,7 @@ void TCompCameraPlayer::sweepBack() {
 
 	bool status = EnginePhysics.getScene()->sweep(geometry, toPhysx(targetPosition, rotation), toPhysx(direction), distance, sweepBuffer,
 		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
-
+	//Si empiezas el sweep fuera de la cápsula del player la cámara hará el loco si allí hay un collider...
 	if (status) {
 		PxSweepHit& hit = sweepBuffer.block;
 		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);

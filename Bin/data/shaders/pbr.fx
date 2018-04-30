@@ -84,15 +84,18 @@ void PS_GBuffer(
 , out float1 o_depth  : SV_Target2
 )
 {
+  //if the source texture for occlusion, roughness and metallic is the same, we must
+  //pick the appropriate channel for each one of them
+
   // Store in the Alpha channel of the albedo texture, the 'metallic' amount of
   // the material
   o_albedo = txAlbedo.Sample(samLinear, iTex0);
-  o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
+  o_albedo.a = /*1.f - */txMetallic.Sample(samLinear, iTex0).b;//the metallic amount is in the blue channel
 
   float3 N = computeNormalMap( iNormal, iTangent, iTex0 );
   
   // Save roughness in the alpha coord of the N render target
-  float roughness = txRoughness.Sample(samLinear, iTex0).r;
+  float roughness = /*1.f - */txRoughness.Sample(samLinear, iTex0).g;//roughness is in the green channel
   o_normal = encodeNormal( N, roughness );
 
   // Si el material lo pide, sobreescribir los valores de la textura
