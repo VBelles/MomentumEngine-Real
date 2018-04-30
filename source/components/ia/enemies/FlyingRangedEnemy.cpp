@@ -304,6 +304,7 @@ int CBehaviorTreeFlyingRangedEnemy::onAttack(float delta) {
 		current = nullptr;
 	}
 	else {
+		hasAttacked = false;
 		attackTimer.reset();
 		getSkeleton()->executeAction(1, 0.0f, 0.0f);
 	}
@@ -313,38 +314,41 @@ int CBehaviorTreeFlyingRangedEnemy::onAttack(float delta) {
 int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(1))) {
+		if (!hasAttacked && (attackTimer.elapsed() > (getSkeleton()->getAnimationDuration(1) / 2))) {
+			hasAttacked = true;
+			TEntityParseContext ctx;
+			ctx.root_transform.setPosition(getTransform()->getPosition());
+			if (parseScene(attackPrefab, ctx)) {
+				assert(!ctx.entities_loaded.empty());
+
+				AttackInfo attackInfo;
+				attackInfo.damage = attackDamage;
+
+				VEC3 front = getTransform()->getFront();
+				VEC3 right = -getTransform()->getLeft();
+				front.y = 0.f;
+				right.y = 0.f;
+				front.Normalize();
+				right.Normalize();
+				VEC3 desiredOffset = front * attackSpawnOffset.z + right * attackSpawnOffset.x;
+				desiredOffset.y = attackSpawnOffset.y;
+				VEC3 attackInitialPos = getTransform()->getPosition() + desiredOffset;
+
+				VEC3 attackDirection = getPlayerTransform()->getPosition() - attackInitialPos;
+				attackDirection += attackTargetOffset;
+				attackDirection.Normalize();
+
+				TMsgAssignRangedAttackOwner msg{ CHandle(this).getOwner(), attackInfo, attackInitialPos, attackDirection };
+
+				CEntity *attackEntity = ctx.entities_loaded[0];
+				attackEntity->sendMsg(msg);
+
+				attackTimer.reset();
+			}
+		}
 		return Stay;
 	}
 	else {
-		TEntityParseContext ctx;
-		ctx.root_transform.setPosition(getTransform()->getPosition());
-		if (parseScene(attackPrefab, ctx)) {
-			assert(!ctx.entities_loaded.empty());
-
-			AttackInfo attackInfo;
-			attackInfo.damage = attackDamage;
-
-			VEC3 front = getTransform()->getFront();
-			VEC3 right = -getTransform()->getLeft();
-			front.y = 0.f;
-			right.y = 0.f;
-			front.Normalize();
-			right.Normalize();
-			VEC3 desiredOffset = front * attackSpawnOffset.z + right * attackSpawnOffset.x;
-			desiredOffset.y = attackSpawnOffset.y;
-			VEC3 attackInitialPos = getTransform()->getPosition() + desiredOffset;
-
-			VEC3 attackDirection = getPlayerTransform()->getPosition() - attackInitialPos;
-			attackDirection += attackTargetOffset;
-			attackDirection.Normalize();
-
-			TMsgAssignRangedAttackOwner msg{ CHandle(this).getOwner(), attackInfo, attackInitialPos, attackDirection };
-
-			CEntity *attackEntity = ctx.entities_loaded[0];
-			attackEntity->sendMsg(msg);
-
-			attackTimer.reset();
-		}
 		return Leave;
 	}
 }
