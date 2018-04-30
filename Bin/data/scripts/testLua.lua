@@ -8,3 +8,7 @@ function testFunc(n)
 	wait(2)
 	setPlayerHp(n)
 end
+
+function onTriggerEnter_aaa(n)
+	setPlayerHp(5)
+end

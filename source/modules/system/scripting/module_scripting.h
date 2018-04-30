@@ -4,13 +4,13 @@ enum LuaCall {
 	onGameStart,
 	onLevelStart, //param levelId
 	onPowerLevelChange, //param powerLevel
-	onTriggerEnter, //param triggerName, entityName
-	onTriggerExit, //param triggerName, entityName
 	onItemDestroyed, //param itemName
 	onEnemyKilled, //param enemyName
 	onItemCollected, //param itemName
 	onPlayerKilled,
-	onAltarDestroyed //param altarName
+	onTriggerEnter, //param triggerName, entityName; la call sera onTriggerEnter_triggerName(entityName)
+	onTriggerExit, //param triggerName, entityName; la call sera onTriggerExit_triggerName(entityName)
+	onAltarDestroyed //param altarName; la call sera onAltarDestroyed_altarName()
 };
 
 namespace SLB {

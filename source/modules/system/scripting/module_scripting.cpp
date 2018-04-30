@@ -156,9 +156,17 @@ void CModuleScripting::doFile(std::string filename) {
 }
 
 void CModuleScripting::throwEvent(LuaCall event, std::string params) {
-	std::string call = "startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + ",\"" + params + "\")";
+	std::string call;
+	if (event == onTriggerEnter || event == onTriggerExit || event == onAltarDestroyed) {
+		int delimiterPos = params.find(",");
+		std::string firstParam = params.substr(0, delimiterPos);
+		std::string otherParams = params.substr(delimiterPos + 1);
+		call = "startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + "_" + firstParam + ",\"" + otherParams + "\")";
+	}
+	else {
+		call = "startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + ",\"" + params + "\")";
+	}
 	execString(call.c_str());
-	//execString((luaCalls[event] + "(" + params + ")").c_str());
 }
 
 void CModuleScripting::callDelayed(float delay, const char* func, const char* params) {
