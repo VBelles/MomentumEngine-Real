@@ -6,7 +6,6 @@ namespace SLB {
 }
 
 class ScriptingEntities {
-
 private:
 	~ScriptingEntities();
 	static ScriptingEntities* instance;

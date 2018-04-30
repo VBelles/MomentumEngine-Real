@@ -1,11 +1,6 @@
 #include "mcv_platform.h"
 #include "scripting_manager.h"
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
-#include "components/comp_name.h"
-#include "entity/entity_parser.h"
 #include <SLB/SLB.hpp>
-#include "components/player/comp_player_model.h"
 
 void ScriptingManager::bind(SLB::Manager* manager) {
 	manager->set("callDelayed", SLB::FuncCall::create(ScriptingManager::callDelayed));

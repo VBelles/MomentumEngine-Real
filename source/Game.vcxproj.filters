@@ -185,6 +185,7 @@
     <ClCompile Include="modules\system\scripting\scripting_golem.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_manager.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_cameras.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -401,6 +402,7 @@
     <ClInclude Include="modules\system\scripting\scripting_golem.h" />
     <ClInclude Include="modules\system\scripting\scripting_player.h" />
     <ClInclude Include="modules\system\scripting\scripting_manager.h" />
+    <ClInclude Include="modules\system\scripting\scripting_cameras.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

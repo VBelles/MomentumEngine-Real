@@ -9,6 +9,7 @@
 #include "modules/system/scripting/scripting_entities.h"
 #include "modules/system/scripting/scripting_door.h"
 #include "modules/system/scripting/scripting_manager.h"
+#include "modules/system/scripting/scripting_cameras.h"
 
 CModuleScripting* CModuleScripting::instance = nullptr;
 
@@ -47,10 +48,18 @@ void CModuleScripting::initSLB() {
 	script->set("BALL_PREFAB", BALL_PREFAB);
 	script->set("MEDUSA_PREFAB", MEDUSA_PREFAB);
 	script->set("CHRYSALIS_PREFAB", CHRYSALIS_PREFAB);
+	script->set("INTERPOLATOR_LINEAL", INTERPOLATOR_LINEAL);
+	script->set("INTERPOLATOR_CUBIC_IN", INTERPOLATOR_CUBIC_IN);
+	script->set("INTERPOLATOR_CUBIC_OUT", INTERPOLATOR_CUBIC_OUT);
+	script->set("INTERPOLATOR_CUBIC_IN_OUT", INTERPOLATOR_CUBIC_IN_OUT);
+	script->set("INTERPOLATOR_EXPO_IN", INTERPOLATOR_EXPO_IN);
+	script->set("INTERPOLATOR_EXPO_OUT", INTERPOLATOR_EXPO_OUT);
+	script->set("INTERPOLATOR_EXPO_IN_OUT", INTERPOLATOR_EXPO_IN_OUT);
 
 	//Bind clases
 	ScriptingManager::bind(manager);
 	ScriptingPlayer::bind(manager);
+	ScriptingCameras::bind(manager);
 
 	ScriptingGolem::bind(manager);
 	ScriptingDoor::bind(manager);
