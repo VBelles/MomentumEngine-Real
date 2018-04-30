@@ -1,0 +1,11 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/chrysalis/crisalida_low_crisalida_low_default_BaseColor.dds",
+    "normal": "data/textures/chrysalis/crisalida_low_crisalida_low_default_Normal.dds",
+    "metallic": "data/textures/chrysalis/crisalida_low_crisalida_low_default_Metallic.dds",
+    "roughness": "data/textures/chrysalis/crisalida_low_crisalida_low_default_Roughness.dds"
+  }
+}
