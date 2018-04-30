@@ -10,12 +10,12 @@
 					"mesh": "data/meshes/chrysalis.mesh",
 					"materials": [
 						"data/materials/chrysalis.material"
-					],
-					"color": "1 0.6 0.2 1.0"
+					]
 				}
 			],
 			"collectable": {
-				"type": "chrysalis"
+				"type": "chrysalis",
+				"rotationSpeed": 4
 			},
 			"collider" : {
 				"shape": "sphere",
