@@ -2,6 +2,145 @@
   {
     "entity":
     {
+      "name": "ms2_move009mesh001",
+      "transform":
+      {
+        "pos": "76.2399 70.4296 0.697893",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_move009mesh001.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "1.5 0.25 1.5",
+        "type": "dynamic"
+      },
+      "follow_curve":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "speed": 0.2,
+        "knots":
+        [
+           "76.2193 70.4278 0.592936",
+           "76.2193 70.4278 0.592936",
+           "51.9482 70.4278 2.71639",
+           "51.9482 70.4278 2.71639"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_move009mesh001_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "1.5 0.25 1.5",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2_move009mesh001"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech003-appear001mesh001",
+      "transform":
+      {
+        "pos": "113.501 15.9824 19.8174",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech003-appear001mesh001.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "1.5 0.25 1.5",
+        "type": "dynamic"
+      },
+      "follow_curve":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "speed": 0.2,
+        "knots":
+        [
+           "113.539 16.1871 19.71",
+           "113.539 16.1871 19.71",
+           "135.61 16.1871 16.8573",
+           "134.876 16.1871 -1.55625",
+           "125.006 16.1871 -4.07963",
+           "125.006 16.1871 -4.07963"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech003-appear001mesh001_trigger",
+      "transform": {},
+      "collider":
+      {
+        "shape": "box",
+        "type": "dynamic",
+        "is_trigger": true,
+        "halfExtent": "1.5 0.25 1.5",
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "platform": {},
+      "hierarchy":
+      {
+        "parent": "ms2_mech003-appear001mesh001"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_move013mesh",
       "transform":
       {
@@ -218,77 +357,6 @@
       "hierarchy":
       {
         "parent": "ms2_move011mesh"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move009mesh",
-      "transform":
-      {
-        "pos": "56.1255 48.1095 7.86738",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_move009mesh.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "shape": "box",
-        "halfExtent": "1.5 0.25 1.5",
-        "type": "dynamic"
-      },
-      "follow_curve":
-      {
-        "curve_type": "catmull-rom",
-        "automove": true,
-        "loop": true,
-        "closed": false,
-        "move_offset": 0,
-        "speed": 0.2,
-        "knots":
-        [
-           "56.105 48.1077 7.76242",
-           "56.105 48.1077 7.76242",
-           "31.8338 48.1077 9.88587",
-           "31.8338 48.1077 9.88587"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move009mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "1.5 0.25 1.5",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move009mesh"
       }
     }
   },
@@ -875,74 +943,6 @@
       "hierarchy":
       {
         "parent": "ms2_move001mesh"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_mech003-appear001mesh",
-      "transform":
-      {
-        "pos": "81.9744 11.7471 17.5194",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_mech003-appear001mesh.mesh",
-          "materials":
-          [
-            "data/materials/empty.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "shape": "box",
-        "halfExtent": "1.5 0.25 1.5",
-        "type": "dynamic"
-      },
-      "follow_curve":
-      {
-        "curve_type": "catmull-rom",
-        "automove": true,
-        "loop": true,
-        "closed": false,
-        "move_offset": 0,
-        "speed": 0.2,
-        "knots":
-        [
-           "82.0117 11.9517 17.4121",
-           "82.0117 11.9517 17.4121",
-           "95.2133 11.9517 14.5911",
-           "95.0611 11.9517 3.90423",
-           "88.4653 11.9517 2.71844",
-           "88.4653 11.9517 2.71844"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_mech003-appear001mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "1.5 0.25 1.5",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_mech003-appear001mesh"
       }
     }
   }

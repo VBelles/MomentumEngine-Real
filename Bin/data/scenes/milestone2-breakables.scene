@@ -2,16 +2,43 @@
   {
     "entity":
     {
-      "name": "ms2_breakable009mesh",
+      "name": "ms2_breakable021",
       "transform":
       {
-        "pos": "73.2728 33.0777 38.4616",
+        "pos": "58.0656 23.2488 112.595",
+        "rotation": "0.0 0.608761 0.0 -0.793353"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable021.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_breakable021.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable009mesh002",
+      "transform":
+      {
+        "pos": "103.236 46.8327 48.3321",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2_breakable009mesh.mesh",
+          "mesh": "data/meshes/ms2_breakable009mesh002.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -33,16 +60,16 @@
   {
     "entity":
     {
-      "name": "ms2_breakable008mesh",
+      "name": "ms2_breakable007mesh002",
       "transform":
       {
-        "pos": "69.494 33.0777 37.1034",
+        "pos": "105.962 46.8327 40.8573",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2_breakable008mesh.mesh",
+          "mesh": "data/meshes/ms2_breakable007mesh002.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -64,16 +91,16 @@
   {
     "entity":
     {
-      "name": "ms2_breakable007mesh",
+      "name": "ms2_breakable006mesh002",
       "transform":
       {
-        "pos": "75.9985 33.0777 30.9867",
+        "pos": "104.612 46.8327 44.6108",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2_breakable007mesh.mesh",
+          "mesh": "data/meshes/ms2_breakable006mesh002.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -95,16 +122,16 @@
   {
     "entity":
     {
-      "name": "ms2_breakable006mesh",
+      "name": "ms2_breakable009mesh001",
       "transform":
       {
-        "pos": "74.6486 33.0777 34.7402",
+        "pos": "99.4605 46.8327 46.9579",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2_breakable006mesh.mesh",
+          "mesh": "data/meshes/ms2_breakable009mesh001.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -126,16 +153,16 @@
   {
     "entity":
     {
-      "name": "ms2_breakable005mesh",
+      "name": "ms2_breakable008mesh001",
       "transform":
       {
-        "pos": "72.2197 33.0777 29.6286",
+        "pos": "95.6817 46.8327 45.5998",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2_breakable005mesh.mesh",
+          "mesh": "data/meshes/ms2_breakable008mesh001.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -157,16 +184,16 @@
   {
     "entity":
     {
-      "name": "ms2_breakable004mesh",
+      "name": "ms2_breakable007mesh001",
       "transform":
       {
-        "pos": "70.8698 33.0777 33.3821",
+        "pos": "102.186 46.8327 39.4831",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2_breakable004mesh.mesh",
+          "mesh": "data/meshes/ms2_breakable007mesh001.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -188,16 +215,16 @@
   {
     "entity":
     {
-      "name": "ms2_breakable003mesh",
+      "name": "ms2_breakable006mesh001",
       "transform":
       {
-        "pos": "18.4208 13.1384 87.004",
-        "rotation": "0.0 0.5 0.0 -0.866025"
+        "pos": "100.836 46.8327 43.2366",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2_breakable003mesh.mesh",
+          "mesh": "data/meshes/ms2_breakable006mesh001.mesh",
           "materials":
           [
             "data/materials/empty.material"
@@ -207,7 +234,69 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.25 3.0 0.5",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable005mesh001",
+      "transform":
+      {
+        "pos": "98.4074 46.8327 38.1249",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable005mesh001.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable004mesh001",
+      "transform":
+      {
+        "pos": "97.0575 46.8327 41.8785",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable004mesh001.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
         "type": "static"
       },
       "breakable":

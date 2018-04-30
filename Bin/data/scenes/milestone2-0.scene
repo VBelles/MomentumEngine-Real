@@ -2,6 +2,1539 @@
   {
     "entity":
     {
+      "name": "ms2_Box250mesh",
+      "transform":
+      {
+        "pos": "36.3335 16.1115 73.7478",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box250mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box254mesh",
+      "transform":
+      {
+        "pos": "64.9672 17.4055 111.225",
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box254mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box253mesh",
+      "transform":
+      {
+        "pos": "64.1685 13.1676 101.13",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box253mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box252mesh",
+      "transform":
+      {
+        "pos": "61.8401 17.4487 97.4587",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box252mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box251mesh",
+      "transform":
+      {
+        "pos": "61.5189 22.72 106.63",
+        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box251mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box249mesh",
+      "transform":
+      {
+        "pos": "41.5368 12.8227 76.5204",
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box249mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box248mesh",
+      "transform":
+      {
+        "pos": "47.0165 17.4183 78.8954",
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box248mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box247mesh",
+      "transform":
+      {
+        "pos": "16.9873 21.5615 126.99",
+        "rotation": "0.0 -0.5 0.0 -0.866025"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box247mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 9.0 10.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box246mesh",
+      "transform":
+      {
+        "pos": "5.86391 21.5615 109.29",
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box246mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 9.0 13.0",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box245mesh",
+      "transform":
+      {
+        "pos": "57.5469 17.4183 86.5241",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box245mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box244mesh",
+      "transform":
+      {
+        "pos": "37.9549 23.2488 83.0757",
+        "rotation": "0.0 -0.573576 0.0 -0.819152"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box244mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 9.0 4.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box243mesh",
+      "transform":
+      {
+        "pos": "20.1625 21.3154 105.206",
+        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box243mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 9.0 10.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box242mesh",
+      "transform":
+      {
+        "pos": "56.7478 23.2488 103.445",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box242mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 9.0 4.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box241mesh",
+      "transform":
+      {
+        "pos": "60.1434 22.72 93.1836",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box241mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box240mesh",
+      "transform":
+      {
+        "pos": "57.5469 22.72 86.5241",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box240mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box239mesh",
+      "transform":
+      {
+        "pos": "51.9157 19.9721 81.604",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box239mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box238mesh",
+      "transform":
+      {
+        "pos": "49.442 23.2488 91.8989",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box238mesh.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 9.0 10.5",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataformacolumna012",
+      "transform":
+      {
+        "pos": "65.0752 5.83894 64.0547",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataformacolumna012.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataformacolumna012.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma018",
+      "transform":
+      {
+        "pos": "71.8297 15.0782 23.2807",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma018.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma018.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma017",
+      "transform":
+      {
+        "pos": "79.8526 52.3832 29.4055",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma017.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma017.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma016",
+      "transform":
+      {
+        "pos": "56.774 20.9638 -20.604",
+        "rotation": "0.0 -0.5 0.0 -0.866025"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma016.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma016.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma015",
+      "transform":
+      {
+        "pos": "61.0584 13.3721 -4.51146",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma015.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma015.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma014",
+      "transform":
+      {
+        "pos": "69.6908 29.3395 -7.04752",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma014.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma014.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma013",
+      "transform":
+      {
+        "pos": "45.9136 68.0122 3.4128",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma013.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma013.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_paltaforma005",
+      "transform":
+      {
+        "pos": "110.344 52.4248 27.2269",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_paltaforma005.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_paltaforma005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_murodecarga007",
+      "transform":
+      {
+        "pos": "114.802 5.53603 14.3582",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_murodecarga007.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_murodecarga007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_murodecarga006",
+      "transform":
+      {
+        "pos": "110.607 5.53603 -13.8577",
+        "rotation": "0.0 -0.819152 0.0 -0.573576"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_murodecarga006.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_murodecarga006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_murodecarga005",
+      "transform":
+      {
+        "pos": "115.542 5.53603 32.9495",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_murodecarga005.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_murodecarga005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_murodecarga004",
+      "transform":
+      {
+        "pos": "105.82 -2.71371 -26.7074",
+        "rotation": "0.0 -0.887011 0.0 -0.461749"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_murodecarga004.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_murodecarga004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_montana y escultura003",
+      "transform":
+      {
+        "pos": "68.2821 5.53603 10.7216",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_montana y escultura003.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_montana y escultura003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_lanza011",
+      "transform":
+      {
+        "pos": "57.6328 -4.23083 33.6185",
+        "rotation": "-0.0642579 -0.734472 -0.0588815 -0.673019"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_lanza011.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_lanza011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_lanza010",
+      "transform":
+      {
+        "pos": "63.8138 35.868 3.48569",
+        "rotation": "0.537711 0.450887 -0.545308 0.458483"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_lanza010.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_lanza010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_lanza009",
+      "transform":
+      {
+        "pos": "55.5297 -16.0807 28.7314",
+        "rotation": "-0.212109 -0.697041 -0.0233565 -0.684542"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_lanza009.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_lanza009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_lanza008",
+      "transform":
+      {
+        "pos": "64.151 39.1828 7.33993",
+        "rotation": "-0.629566 -0.353414 0.599362 -0.345704"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_lanza008.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_lanza008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_lanza007",
+      "transform":
+      {
+        "pos": "63.1798 19.5093 9.5155",
+        "rotation": "-0.564456 -0.470125 0.481502 -0.478046"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_lanza007.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_lanza007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_brazoparte001",
+      "transform":
+      {
+        "pos": "80.7934 -3.18073 -55.4801",
+        "rotation": "-0.00662893 -0.707076 -0.0066289 -0.707076"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_brazoparte001.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_brazoparte001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_PYRAMID001",
+      "transform":
+      {
+        "pos": "46.028 73.2364 3.3347",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_PYRAMID001.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_PYRAMID001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma012",
+      "transform":
+      {
+        "pos": "2.4328 10.1778 68.5538",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma012.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma012.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma011",
+      "transform":
+      {
+        "pos": "0.378338 12.3657 72.452",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma011.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma010",
+      "transform":
+      {
+        "pos": "5.33015 15.9368 71.6366",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma010.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma009",
+      "transform":
+      {
+        "pos": "11.4216 16.4662 72.2283",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma009.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataforma008",
+      "transform":
+      {
+        "pos": "8.99609 18.8771 76.4218",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataforma008.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataforma008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataformacolumna011",
+      "transform":
+      {
+        "pos": "13.7642 18.8944 75.7744",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataformacolumna011.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataformacolumna011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_ruin-arc-Box047",
+      "transform":
+      {
+        "pos": "21.8121 24.1396 90.3743",
+        "rotation": "0.0 -0.953717 0.0 0.300706"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_ruin-arc-Box047.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_ruin-arc-Box047.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_ruin-arc-Box046",
+      "transform":
+      {
+        "pos": "20.245 24.6444 90.2913",
+        "rotation": "0.0 0.866025 0.0 -0.5"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_ruin-arc-Box046.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_ruin-arc-Box046.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_ruin-arc-Box045",
+      "transform":
+      {
+        "pos": "23.0952 27.0233 86.6441",
+        "rotation": "0.0 0.866025 0.0 -0.5"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_ruin-arc-Box045.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_ruin-arc-Box045.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataformacolumna010",
+      "transform":
+      {
+        "pos": "37.1528 34.7912 128.492",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataformacolumna010.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataformacolumna010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_plataformacolumna009",
+      "transform":
+      {
+        "pos": "-3.60044 3.43304 69.5428",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_plataformacolumna009.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_plataformacolumna009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_monte018",
+      "transform":
+      {
+        "pos": "13.5945 7.46465 117.993",
+        "rotation": "0.0 -0.0871556 0.0 -0.996195"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_monte018.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_monte018.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_monte017",
       "transform":
       {
@@ -3352,326 +4885,6 @@
   {
     "entity":
     {
-      "name": "ms2_Box143",
-      "transform":
-      {
-        "pos": "9.97726 8.266 76.1828",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box143.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box143.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box142",
-      "transform":
-      {
-        "pos": "3.51985 7.8158 69.2805",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box142.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box142.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box141",
-      "transform":
-      {
-        "pos": "12.2828 7.8158 70.6963",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box141.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box141.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box140",
-      "transform":
-      {
-        "pos": "18.0582 7.8158 77.5261",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box140.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box140.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box139",
-      "transform":
-      {
-        "pos": "16.5897 12.2655 82.2738",
-        "rotation": "0.0 -0.130526 0.0 -0.991445"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box139.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box139.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box138",
-      "transform":
-      {
-        "pos": "-2.12763 8.27972 87.8614",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box138.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box138.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box137",
-      "transform":
-      {
-        "pos": "1.10438 8.27245 72.4358",
-        "rotation": "0.0 -0.67559 0.0 -0.737277"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box137.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box137.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box136",
-      "transform":
-      {
-        "pos": "12.2828 1.40052 70.6963",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box136.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box136.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box135",
-      "transform":
-      {
-        "pos": "-3.37624 7.61004 95.5573",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box135.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box135.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box134",
-      "transform":
-      {
-        "pos": "7.72892 7.61004 100.731",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box134.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box134.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms2_Box133",
       "transform":
       {
@@ -3696,38 +4909,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/ms2_Box133.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_Box132",
-      "transform":
-      {
-        "pos": "80.9193 23.3365 1.76609",
-        "rotation": "0.0 -0.173648 0.0 -0.984808"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box132.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box132.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }
@@ -3867,7 +5048,7 @@
       "name": "ms2_lanza006",
       "transform":
       {
-        "pos": "37.921 8.95703 -37.731",
+        "pos": "52.4167 8.95703 -54.9432",
         "rotation": "-0.507865 -0.747208 0.0603727 -0.424392"
       },
       "render":
@@ -3885,289 +5066,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/ms2_lanza006.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_ruin-arc-Box035",
-      "transform":
-      {
-        "pos": "-3.98242 11.0032 81.5732",
-        "rotation": "0.0 -0.906308 0.0 0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_ruin-arc-Box035.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_ruin-arc-Box035.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_ruin-arc-Box034",
-      "transform":
-      {
-        "pos": "-5.51756 11.508 81.8987",
-        "rotation": "0.0 0.793353 0.0 -0.608761"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_ruin-arc-Box034.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_ruin-arc-Box034.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_ruin-arc-Box033",
-      "transform":
-      {
-        "pos": "-3.70851 13.8869 77.638",
-        "rotation": "0.0 0.793353 0.0 -0.608761"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_ruin-arc-Box033.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_ruin-arc-Box033.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna006",
-      "transform":
-      {
-        "pos": "11.4501 16.5191 96.7823",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna006.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna006.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna005",
-      "transform":
-      {
-        "pos": "-13.6412 -1.21148 70.5718",
-        "rotation": "0.0 -0.819152 0.0 -0.573576"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna005.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna005.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna004",
-      "transform":
-      {
-        "pos": "-14.6401 1.14378 75.0807",
-        "rotation": "0.0 -0.819152 0.0 -0.573576"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna004.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna004.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna003",
-      "transform":
-      {
-        "pos": "-11.3107 4.85262 71.7527",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna003.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna003.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_monte015",
-      "transform":
-      {
-        "pos": "-9.32695 0.0 101.547",
-        "rotation": "0.0 -0.216439 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_monte015.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_monte015.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma007",
-      "transform":
-      {
-        "pos": "25.7992 45.6921 10.5823",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma007.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma007.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }
@@ -4311,306 +5209,6 @@
   {
     "entity":
     {
-      "name": "ms2_paltaforma4",
-      "transform":
-      {
-        "pos": "79.4105 36.1629 22.8478",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_paltaforma4.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_paltaforma4.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma1",
-      "transform":
-      {
-        "pos": "48.8337 23.8034 -7.93039",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma1.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma1.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_brazoparte",
-      "transform":
-      {
-        "pos": "58.5413 4.08064 -33.7062",
-        "rotation": "-0.00662893 -0.707076 -0.0066289 -0.707076"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_brazoparte.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_brazoparte.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza3",
-      "transform":
-      {
-        "pos": "38.1168 -21.6167 19.7014",
-        "rotation": "-0.212109 -0.697041 -0.0233565 -0.684542"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza3.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza3.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza1",
-      "transform":
-      {
-        "pos": "39.6134 15.2081 14.6506",
-        "rotation": "-0.564456 -0.470125 0.481502 -0.478046"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza1.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza1.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza2",
-      "transform":
-      {
-        "pos": "40.5846 26.723 12.475",
-        "rotation": "-0.629566 -0.353414 0.599362 -0.345704"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza2.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza2.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza4",
-      "transform":
-      {
-        "pos": "40.2474 27.5272 8.62076",
-        "rotation": "0.537711 0.450887 -0.545308 0.458483"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza4.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza4.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_murodecarga1",
-      "transform":
-      {
-        "pos": "76.6583 -8.24973 -13.9297",
-        "rotation": "0.0 -0.887011 0.0 -0.461749"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_murodecarga1.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_murodecarga1.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza5",
-      "transform":
-      {
-        "pos": "40.2199 -9.76686 24.5885",
-        "rotation": "-0.0642579 -0.734472 -0.0588815 -0.673019"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza5.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza5.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna1",
-      "transform":
-      {
-        "pos": "54.4986 0.302918 44.1496",
-        "rotation": "0.0 -0.67559 0.0 -0.737277"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna1.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna1.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms2_plataformacolumna2",
       "transform":
       {
@@ -4635,134 +5233,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/ms2_plataformacolumna2.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma5",
-      "transform":
-      {
-        "pos": "60.4471 36.1629 24.5069",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma5.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma5.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_murodecarga2",
-      "transform":
-      {
-        "pos": "80.6981 0.0 -5.69013",
-        "rotation": "0.0 -0.819152 0.0 -0.573576"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_murodecarga2.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_murodecarga2.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_murodecarga2",
-      "transform":
-      {
-        "pos": "83.4514 0.0 26.3146",
-        "rotation": "0.0 -0.67559 0.0 -0.737277"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_murodecarga2.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_murodecarga2.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_murodecarga3",
-      "transform":
-      {
-        "pos": "82.7112 0.0 14.0791",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_murodecarga3.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_murodecarga3.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }
@@ -4844,102 +5314,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/ms2_monte6.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma2",
-      "transform":
-      {
-        "pos": "40.2013 7.83611 -5.39434",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma2.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma2.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma3",
-      "transform":
-      {
-        "pos": "35.9168 15.4278 -21.4869",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma3.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma3.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma6",
-      "transform":
-      {
-        "pos": "54.0664 11.4124 20.3948",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma6.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma6.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }
@@ -5068,67 +5442,13 @@
           "mesh": "data/meshes/ms2_suelo.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material"
+            "data/materials/wood.material"
           ]
         }
       ],
       "collider":
       {
         "mesh_src": "data/meshes/ms2_suelo.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_brazoenpartes1",
-      "transform":
-      {
-        "pos": "58.5413 4.08064 -33.7062",
-        "rotation": "-0.00662893 -0.707076 -0.0066289 -0.707076"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_brazoenpartes1.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_brazoenpartes1.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_montana y escultura",
-      "transform":
-      {
-        "pos": "47.425 0.0 9.83876",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_montana y escultura.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_montana y escultura.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }
@@ -5929,33 +6249,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/ms2_ruin-arc-Box016.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_PYRAMID",
-      "transform":
-      {
-        "pos": "25.9136 50.9163 10.5042",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_PYRAMID.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_PYRAMID.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }

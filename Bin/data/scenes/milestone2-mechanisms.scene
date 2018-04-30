@@ -2,6 +2,26 @@
   {
     "entity":
     {
+      "name": "ms2_mech007",
+      "prefab": "data/prefabs/mech_sys.prefab",
+      "transform":
+      {
+        "pos": "110.848 17.8896 19.9327",
+        "rotation": "0.477714 0.521334 -0.521334 0.477714"
+      },
+      "mechanism_system":
+      {
+        "activationEffectFile": "data/scripts/test.lua",
+        "mechanisms":
+        [
+
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_mech006",
       "prefab": "data/prefabs/mech_sys.prefab",
       "transform":
@@ -137,26 +157,6 @@
         "shape": "box",
         "halfExtent": "1.5 1.5 1.5",
         "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_mech003",
-      "prefab": "data/prefabs/mech_sys.prefab",
-      "transform":
-      {
-        "pos": "79.3208 13.6542 17.6347",
-        "rotation": "0.477714 0.521334 -0.521334 0.477714"
-      },
-      "mechanism_system":
-      {
-        "activationEffectFile": "data/scripts/test.lua",
-        "mechanisms":
-        [
-
-        ]
       }
     }
   },

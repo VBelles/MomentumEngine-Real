@@ -62,37 +62,5 @@
          "pure"
       ]
     }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_pure003mesh",
-      "transform":
-      {
-        "pos": "18.5218 11.0725 83.9059",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_pure003mesh.mesh",
-          "materials":
-          [
-            "data/materials/empty.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "shape": "box",
-        "halfExtent": "3.5 0.5 1.5",
-        "type": "dynamic"
-      },
-      "purity": {},
-      "tags":
-      [
-         "pure"
-      ]
-    }
   }
 ]
