@@ -7,9 +7,9 @@
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/crisalida.mesh",
+					"mesh": "data/meshes/chrysalis.mesh",
 					"materials": [
-						"data/materials/ambar.material"
+						"data/materials/chrysalis.material"
 					],
 					"color": "1 0.6 0.2 1.0"
 				}
