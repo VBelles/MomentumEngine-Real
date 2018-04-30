@@ -43,12 +43,15 @@ void CModuleScripting::initSLB() {
 	script->set("PLAYER_NAME", PLAYER_NAME);
 	script->set("PLAYER_CAMERA", PLAYER_CAMERA);
 	script->set("GAME_CAMERA", GAME_CAMERA);
+	script->set("GOLEM_PREFAB", GOLEM_PREFAB);
+	script->set("BALL_PREFAB", BALL_PREFAB);
+	script->set("MEDUSA_PREFAB", MEDUSA_PREFAB);
+	script->set("CHRYSALIS_PREFAB", CHRYSALIS_PREFAB);
 
 	//Bind clases
-	ScriptingManager::create();
 	ScriptingManager::bind(manager);
-
 	ScriptingPlayer::bind(manager);
+
 	ScriptingGolem::bind(manager);
 	ScriptingDoor::bind(manager);
 	ScriptingEntities::create();
@@ -92,7 +95,6 @@ bool CModuleScripting::stop() {
 	SAFE_DELETE(script);
 	SAFE_DELETE(console);
 	ScriptingEntities::destroy();
-	ScriptingManager::destroy();
 	return true;
 }
 
@@ -100,7 +102,6 @@ void CModuleScripting::reset() {
 	delayedCalls.clear();
 	std::string call = "clearCoroutines()";
 	execString(call.c_str());
-	nextCoroutineId = 0;
 }
 
 void CModuleScripting::update(float delta) {
@@ -157,7 +158,7 @@ void CModuleScripting::doFile(std::string filename) {
 
 void CModuleScripting::throwEvent(LuaCall event, std::string params) {
 	std::string call;
-	if (event == onTriggerEnter || event == onTriggerExit || event == onAltarDestroyed) {
+	if (event == onTriggerEnter || event == onTriggerExit || event == onAltarDestroyed || event == onLevelStart) {
 		int delimiterPos = params.find(",");
 		std::string firstParam = params.substr(0, delimiterPos);
 		std::string otherParams = params.substr(delimiterPos + 1);

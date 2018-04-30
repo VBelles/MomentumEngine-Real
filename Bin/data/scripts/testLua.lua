@@ -1,4 +1,4 @@
-function onLevelStart(n)
+function onLevelStart_1()
 	setPlayerHp(1)
 	callDelayed(3, "testFunc", "8")
 end
