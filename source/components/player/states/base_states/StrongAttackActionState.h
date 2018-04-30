@@ -4,9 +4,9 @@
 
 class StrongAttackActionState : public GroundedActionState {
 	CTimer timer;
-	int warmUpFrames = 20;
-	int activeFrames = 5;
-	int endingLagFrames = 40;
+	int warmUpFrames = 60;
+	int activeFrames = 10;
+	int endingLagFrames = 60;
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
