@@ -12,7 +12,10 @@
 		{ "name" : "recibedanio"},
 		{ "name" : "ataquecaida_posicionamiento"},
 		{ "name" : "ataquecaida"},
-		{ "name" : "hard_landing"}
+		{ "name" : "hard_landing"},
+		{ "name" : "longJump_caida"},
+		{ "name" : "longJump_inicio"},
+		{ "name" : "longJump_volando"}
 	],
   "bone_ids_to_debug" : [
     3

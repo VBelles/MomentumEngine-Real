@@ -138,7 +138,7 @@ struct  TSkeletonsExporter (
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
 exportPath = substituteString exportPath "\\" "/"
-se = TSkeletonsExporter project_path: exportPath skel_name:"gorila"
+se = TSkeletonsExporter project_path: exportPath skel_name:"ella"
 
 --gc()
 --se = TSkeletonsExporter()
