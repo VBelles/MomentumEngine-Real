@@ -42,7 +42,7 @@ void TCompSuggestCameraPosTrigger::onAllScenesCreated(const TMsgAllScenesCreated
 
 void TCompSuggestCameraPosTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	CEntity* entity = msg.h_other_entity;	
-	if (strcmp(PLAYER_NAME, entity->getName()) == 0) {
+	if (PLAYER_NAME == entity->getName()) {
 		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 		TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
 		//Llamar a funciones de player camera para cambiar yaw, pitch, distancia o si fuerza el centrar cámara
@@ -55,7 +55,7 @@ void TCompSuggestCameraPosTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) 
 
 void TCompSuggestCameraPosTrigger::onTriggerExit(const TMsgTriggerExit & msg) {
 	CEntity* entity = msg.h_other_entity;
-	if (strcmp(PLAYER_NAME, entity->getName()) == 0) {
+	if (PLAYER_NAME == entity->getName()) {
 		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 		TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
 		//Resetear valores por defecto de cámara player

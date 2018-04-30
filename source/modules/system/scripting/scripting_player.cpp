@@ -8,18 +8,6 @@
 #include <SLB/SLB.hpp>
 
 ScriptingPlayer::ScriptingPlayer() {
-	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
-	assert(playerEntity);
-	playerModelHandle = playerEntity->get<TCompPlayerModel>();
-	transformHandle = playerEntity->get<TCompTransform>();
-	colliderHandle = playerEntity->get<TCompCollider>();
-	powerGaugeHandle = playerEntity->get<TCompPowerGauge>();
-	playerControllerHandle = playerEntity->get<TCompPlayerController>();
-	assert(playerModelHandle.isValid());
-	assert(transformHandle.isValid());
-	assert(colliderHandle.isValid());
-	assert(playerControllerHandle.isValid());
-
 }
 
 ScriptingPlayer::~ScriptingPlayer() {
@@ -78,21 +66,31 @@ void ScriptingPlayer::setPower(float power) {
 
 
 TCompPlayerModel* ScriptingPlayer::getPlayerModel() {
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	playerModelHandle = playerEntity->get<TCompPlayerModel>();
 	return playerModelHandle;
 }
 
 TCompPlayerController * ScriptingPlayer::getPlayerController() {
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	playerControllerHandle = playerEntity->get<TCompPlayerController>();
 	return playerControllerHandle;
 }
 
 TCompTransform * ScriptingPlayer::getTransform() {
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	transformHandle = playerEntity->get<TCompTransform>();
 	return transformHandle;
 }
 
 TCompCollider * ScriptingPlayer::getCollider() {
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	colliderHandle = playerEntity->get<TCompCollider>();
 	return colliderHandle;
 }
 
 TCompPowerGauge* ScriptingPlayer::getPowerGauge() {
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	powerGaugeHandle = playerEntity->get<TCompPowerGauge>();
 	return powerGaugeHandle;
 }
