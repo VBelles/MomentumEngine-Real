@@ -45,10 +45,9 @@ void CModuleScripting::initSLB() {
 	script->set("GAME_CAMERA", GAME_CAMERA);
 
 	//Bind clases
-	ScriptingManager::create();
 	ScriptingManager::bind(manager);
-
 	ScriptingPlayer::bind(manager);
+
 	ScriptingGolem::bind(manager);
 	ScriptingDoor::bind(manager);
 	ScriptingEntities::create();
@@ -92,7 +91,6 @@ bool CModuleScripting::stop() {
 	SAFE_DELETE(script);
 	SAFE_DELETE(console);
 	ScriptingEntities::destroy();
-	ScriptingManager::destroy();
 	return true;
 }
 

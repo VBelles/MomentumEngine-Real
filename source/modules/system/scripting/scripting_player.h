@@ -6,35 +6,28 @@ class TCompCollider;
 class TCompPowerGauge;
 class TCompPlayerController;
 
-namespace SLB{
+namespace SLB {
 	class Manager;
 }
 
 class ScriptingPlayer {
 
 private:
-	CHandle playerModelHandle;
-	CHandle playerControllerHandle;
-	CHandle transformHandle;
-	CHandle colliderHandle;
-	CHandle powerGaugeHandle;
-	TCompPlayerModel* getPlayerModel();
-	TCompPlayerController* getPlayerController();
-	TCompTransform* getTransform();
-	TCompCollider* getCollider();
-	TCompPowerGauge* getPowerGauge();
+	static TCompPlayerModel* getPlayerModel();
+	static TCompPlayerController* getPlayerController();
+	static TCompTransform* getTransform();
+	static TCompCollider* getCollider();
+	static TCompPowerGauge* getPowerGauge();
 
 public:
-	ScriptingPlayer();
-	~ScriptingPlayer();
 	static void bind(SLB::Manager* manager);
-	float getHp();
-	float setHp(float hp);
-	void teleport(float x, float y, float z);
-	void move(float dX, float dY, float dZ);
-	void setPower(float power);
-	void setRespawnPosition(float x, float y, float z);
-	bool takePlayerControl();
-	bool givePlayerControl();
+	static float getPlayerHp();
+	static float setPlayerHp(float hp);
+	static void teleportPlayer(float x, float y, float z);
+	static void movePlayer(float dX, float dY, float dZ);
+	static void setPower(float power);
+	static void setPlayerRespawnPosition(float x, float y, float z);
+	static bool takePlayerControl();
+	static bool givePlayerControl();
 };
 
