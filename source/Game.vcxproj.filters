@@ -187,6 +187,13 @@
     <ClCompile Include="render\mesh\mesh_instanced.cpp" />
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
+	<ClCompile Include="modules\system\module_gui.cpp" />
+    <ClCompile Include="gui\gui_widget.cpp" />
+    <ClCompile Include="gui\widgets\gui_image.cpp" />
+    <ClCompile Include="gui\gui_parser.cpp" />
+    <ClCompile Include="gui\widgets\gui_text.cpp" />
+    <ClCompile Include="gui\widgets\gui_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -405,6 +412,14 @@
     <ClInclude Include="render\mesh\mesh_instanced.h" />
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="components\postfx\comp_render_ao.h" />
+	<ClInclude Include="modules\system\module_gui.h" />
+    <ClInclude Include="gui\gui_widget.h" />
+    <ClInclude Include="gui\gui_params.h" />
+    <ClInclude Include="gui\widgets\gui_image.h" />
+    <ClInclude Include="gui\gui_parser.h" />
+    <ClInclude Include="gui\widgets\gui_text.h" />
+    <ClInclude Include="gui\widgets\gui_bar.h" />
+    <ClInclude Include="gui\widgets\gui_button.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

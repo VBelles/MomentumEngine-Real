@@ -86,5 +86,5 @@ void CModuleScripting::doFile(std::string filename) {
 
 void printCallback(SLB::Script* script, const char* str, size_t strSize) {
 	dbg(str);
-	Engine.getScripting().getConsole()->AddLog(str);
+	EngineScripting.getConsole()->AddLog(str);
 }

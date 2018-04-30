@@ -85,6 +85,7 @@ bool CModuleRender::start() {
     if (!cb_light.create(CB_LIGHT))     return false;
     if (!cb_globals.create(CB_GLOBALS)) return false;
     if (!cb_blur.create(CB_BLUR))       return false;
+    if (!cb_gui.create(CB_GUI))         return false;
 
     cb_globals.global_exposure_adjustment = 1.f;
     cb_globals.global_ambient_adjustment = 1.f;
@@ -98,6 +99,7 @@ bool CModuleRender::start() {
     cb_camera.activate();
     cb_globals.activate();
     cb_blur.activate();
+    cb_gui.activate();
 
     //activateMainCamera();
 
@@ -219,8 +221,23 @@ void CModuleRender::generateFrame() {
         {
             PROFILE_FUNCTION("Modules");
             CTraceScoped gpu_scope("Modules");
-            CEngine::get().getModules().render();
+            EngineModules.render();
         }
+    }
+    {
+        PROFILE_FUNCTION("GUI");
+        CTraceScoped gpu_scope("GUI");
+
+        activateRSConfig(RSCFG_CULL_NONE);
+        activateZConfig(ZCFG_DISABLE_ALL);
+        activateBlendConfig(BLEND_CFG_COMBINATIVE);
+
+        activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
+        EngineModules.renderGUI();
+
+        activateRSConfig(RSCFG_DEFAULT);
+        activateZConfig(ZCFG_DEFAULT);
+        activateBlendConfig(BLEND_CFG_DEFAULT);
     }
     {
         PROFILE_FUNCTION("ImGui::Render");
