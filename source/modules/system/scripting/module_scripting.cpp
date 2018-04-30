@@ -43,6 +43,10 @@ void CModuleScripting::initSLB() {
 	script->set("PLAYER_NAME", PLAYER_NAME);
 	script->set("PLAYER_CAMERA", PLAYER_CAMERA);
 	script->set("GAME_CAMERA", GAME_CAMERA);
+	script->set("GOLEM_PREFAB", GOLEM_PREFAB);
+	script->set("BALL_PREFAB", BALL_PREFAB);
+	script->set("MEDUSA_PREFAB", MEDUSA_PREFAB);
+	script->set("CHRYSALIS_PREFAB", CHRYSALIS_PREFAB);
 
 	//Bind clases
 	ScriptingManager::bind(manager);
