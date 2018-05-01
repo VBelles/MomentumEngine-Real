@@ -57,7 +57,11 @@ void CModuleScripting::initSLB() {
 
 	//Load scripts
 	execFile("data/scripts/coroutines.lua");
-	execFile("data/scripts/testLua.lua");
+
+	std::set<std::string> filesToLoad = WindowsUtils::getAllFiles("data/scripts/autoload/", "*.lua", true);
+	for (std::string file : filesToLoad) {
+		execFile(file.c_str());
+	}
 }
 
 bool CModuleScripting::start() {
