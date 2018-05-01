@@ -233,7 +233,7 @@
       "name": "ms2_coin083",
       "transform":
       {
-        "pos": "61.4629 24.6673 92.1855",
+        "pos": "63.1849 24.6673 90.9718",
         "rotation": "-0.653282 -0.270598 0.270598 -0.653282"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -425,7 +425,7 @@
       "name": "ms2_coin067",
       "transform":
       {
-        "pos": "-85.4818 8.94289 31.0077",
+        "pos": "-82.9791 8.94289 35.1124",
         "rotation": "-0.612372 -0.353553 0.353553 -0.612372"
       },
       "prefab": "data/prefabs/coin.prefab"

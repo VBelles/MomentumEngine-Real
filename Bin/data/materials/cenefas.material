@@ -1,0 +1,9 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/texturaCenefa_albedo.dds",
+    "normal": "data/textures/texturaCenefa_normal.dds"
+  }
+}

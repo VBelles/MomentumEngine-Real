@@ -79,18 +79,18 @@ bool CModuleTestAxis::stop() {
 }
 
 void CModuleTestAxis::update(float delta) {
-    if (EngineInput['1'].getsPressed()) {
-		CHandle h_camera = getEntityByName(PLAYER_CAMERA);
-        Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-    }
-    if (EngineInput['2'].getsPressed()) {
-        CHandle h_camera = getEntityByName("fixed_camera");
-        Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-    }
-    if (EngineInput['3'].getsPressed()) {
-        CHandle h_camera = getEntityByName("test_camera_curve");
-        Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-    }
+  //  if (EngineInput['1'].getsPressed()) {
+		//CHandle h_camera = getEntityByName(PLAYER_CAMERA);
+  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
+  //  }
+  //  if (EngineInput['2'].getsPressed()) {
+  //      CHandle h_camera = getEntityByName("fixed_camera");
+  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
+  //  }
+  //  if (EngineInput['3'].getsPressed()) {
+  //      CHandle h_camera = getEntityByName("test_camera_curve");
+  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
+  //  }
     
     /*static float time = 0.f;
     time += delta;

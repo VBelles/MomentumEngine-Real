@@ -589,9 +589,7 @@ struct TSceneExporter (
 			fs.endArray()
 		fs.endObj()
 	),
-	
-
-	
+		
 	-- --ENTITY COLLIDER-----------------------------------------
 	fn exportEntityCollider obj colliderGroups: masks: trig:false dyn:false = (
 		exportName obj
@@ -700,15 +698,28 @@ struct TSceneExporter (
 		)
 	),
 		
+	-- --ENTITY collider mesh -----------------------------------------
+	fn exportEntityColliderMesh obj = (
+		exportName obj
+		fs.writeComma()
+		exportTransform obj
+		fs.writeComma()
+		exportColliderMesh obj
+	),
+	
 	-- --COLLISION ----------------------------------------------
 	fn exportCollision obj nValidObjs = (
-		if not isCollider obj then return false
+		if not isCollider obj and
+		   not classOf obj == Editable_Mesh then return false
 		if nValidObjs > 0 then fs.writeComma()
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				--format "name: % childLine: %\n" obj.name ((hasChildLine obj) as string)
+			if isCollider obj then
 				exportEntityCollider obj dyn:(hasChildLine obj)
+			else
+				exportEntityColliderMesh obj
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		return true
@@ -948,8 +959,8 @@ struct TSceneExporter (
 		)
 		else (
 			-- Doesn't have  child collider, so export mesh as collider.
-			fs.writeComma()
-			exportColliderMesh obj
+			--fs.writeComma()
+			--exportColliderMesh obj
 		)
 	),
 	
@@ -1284,6 +1295,11 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
+
+TODO: Sólo exportar mesh collider si un mesh es hijo de otro mesh o si está en capa colliders.
+TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
+	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
+TODO: Mirar si hay que exportar bien metallic y roughness, ahora no se exporta.
 */
 
 /*----------------------------------------------------------------------------------

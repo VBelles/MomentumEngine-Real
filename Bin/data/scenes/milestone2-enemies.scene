@@ -126,8 +126,8 @@
       "prefab": "data/prefabs/enemy_melee.prefab",
       "transform":
       {
-        "pos": "28.0327 26.3139 98.8714",
-        "lookat": "-1.0 26.3139 -1.0"
+        "pos": "27.853 27.6684 98.946",
+        "lookat": "-1.0 27.6684 -1.0"
       }
     }
   },
@@ -174,8 +174,8 @@
       "prefab": "data/prefabs/enemy_melee.prefab",
       "transform":
       {
-        "pos": "-70.2415 6.59906 27.1473",
-        "lookat": "-1.0 6.59906 -1.0"
+        "pos": "-80.7362 6.94462 26.3188",
+        "lookat": "-1.0 6.94462 -1.0"
       }
     }
   },
