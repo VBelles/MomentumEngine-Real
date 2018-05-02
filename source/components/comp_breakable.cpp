@@ -20,7 +20,7 @@ void TCompBreakable::registerMsgs() {
 
 void TCompBreakable::load(const json& j, TEntityParseContext& ctx) {
 	hp = j.value("hp", 1.f);
-	prefabToSpawn = j["prefab"].get<std::string>();
+	prefabToSpawn = j.value("prefab", "");
 	lootOffset = j.value("lootOffset", 1.0f);
 }
 
