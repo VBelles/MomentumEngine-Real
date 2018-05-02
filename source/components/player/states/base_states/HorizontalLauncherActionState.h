@@ -24,7 +24,7 @@ class HorizontalLauncherActionState : public GroundedActionState {
 	std::string hitbox = "horizontal_launcher";
 
 public:
-	HorizontalLauncherActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "melee") {}
+	HorizontalLauncherActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "vertical_launcher") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
