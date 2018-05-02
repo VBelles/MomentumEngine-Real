@@ -228,7 +228,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::End();
 	});
 
-	
+
 	CHandle playerModelHandle = CHandle(this);
 	baseStates = {
 		{ ActionStates::Idle, new IdleActionState(playerModelHandle) },
@@ -479,7 +479,7 @@ void TCompPlayerModel::setRespawnPosition(VEC3 position) {
 }
 
 void TCompPlayerModel::damage(float damage) {
-	if(!isInvulnerable){
+	if (!isInvulnerable) {
 		//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
 		setHp(hp - damage);
 		TCompRender* render = get<TCompRender>();
