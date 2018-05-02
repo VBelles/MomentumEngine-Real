@@ -240,6 +240,8 @@
     "ps_entry_point": "PS_GUI",
     "vertex_type" : "PosClr",
     "z" : "disable_all",
+    "blend": "combinative",
+    "rs_config": "cull_none",
     "category" : "helper"
   }
 
