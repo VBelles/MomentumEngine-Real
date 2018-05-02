@@ -71,9 +71,7 @@ bool CModuleScripting::start() {
 		{ onPowerLevelChange, "onPowerLevelChange" },
 		{ onTriggerEnter, "onTriggerEnter" },
 		{ onTriggerExit, "onTriggerExit" },
-		{ onItemDestroyed, "onItemDestroyed" },
 		{ onEnemyKilled, "onEnemyKilled" },
-		{ onItemCollected, "onItemCollected" },
 		{ onPlayerKilled, "onPlayerKilled" },
 		{ onAltarDestroyed, "onAltarDestroyed" }
 	};
