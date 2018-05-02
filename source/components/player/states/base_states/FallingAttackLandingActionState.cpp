@@ -7,7 +7,6 @@
 #include "skeleton/comp_skeleton.h"
 
 
-
 void FallingAttackLandingActionState::update(float delta) {
 	LandingActionState::update(delta);
 	if (hitboxTimer.elapsed() >= impactAttackDurationTime) {
@@ -51,6 +50,3 @@ void FallingAttackLandingActionState::onHitboxEnter(CHandle entity) {
 	otherEntity->sendMsg(msgAtackHit);
 }
 
-void FallingAttackLandingActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_landing.mesh");
-}

@@ -4,10 +4,8 @@
 
 class IdleActionState : public GroundedActionState {
 public:
-	IdleActionState(CHandle playerModelHandle);
+	IdleActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "idle") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
-
-	void setPose() override;
 };

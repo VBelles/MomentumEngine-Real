@@ -7,11 +7,6 @@
 #include "skeleton/comp_skeleton.h"
 #include "modules/game/physics/basic_query_filter_callback.h"
 
-HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
-	:AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "bajandopared";
-	animationClimbing = "correporlapared";
-}
 
 void HuggingWallActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -89,9 +84,6 @@ void HuggingWallActionState::onJumpLongButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
 }
 
-void HuggingWallActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_jump.mesh");
-}
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	PxScene* scene = Engine.getPhysics().getScene();

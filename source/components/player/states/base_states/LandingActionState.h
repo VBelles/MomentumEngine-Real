@@ -18,7 +18,6 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
-
 	void SetFinalRotationAndVelocity();
-	void setPose() override;
+	
 };

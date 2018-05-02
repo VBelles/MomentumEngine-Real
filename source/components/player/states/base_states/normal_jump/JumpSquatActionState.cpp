@@ -5,11 +5,6 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
-JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "jump_inicio";
-}
-
 void JumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
@@ -49,9 +44,6 @@ void JumpSquatActionState::onJumpHighButtonReleased() {
 	isShortHop = true;
 }
 
-void JumpSquatActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_jump_squat.mesh");
-}
 
 void JumpSquatActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {

@@ -63,7 +63,6 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
 	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
-	DECL_MSG(TCompPlayerModel, TMsgOnContact, onContact);
 }
 
 void TCompPlayerModel::debugInMenu() {
@@ -368,9 +367,7 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	getController()->getActor()->getShapes(&tempShape, 1);
 	PxFilterData filterData = tempShape->getSimulationFilterData();
 
-	sweep(deltaMovement);
-
-	PxControllerCollisionFlags moveFlags = getCollider()->controller->move(toPhysx(deltaMovement), 0.f, delta,
+	PxControllerCollisionFlags moveFlags = getController()->move(toPhysx(deltaMovement), 0.f, delta,
 		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
 	isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
@@ -402,37 +399,6 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	}
 }
 
-void TCompPlayerModel::sweep(VEC3 deltaMovement) {
-	PxShape* playerShape;
-	getController()->getActor()->getShapes(&playerShape, 1);
-	PxCapsuleGeometry geometry;
-	playerShape->getCapsuleGeometry(geometry);
-
-	PxTransform playerPxTransform = getController()->getActor()->getGlobalPose();
-	VEC3 position = fromPhysx(playerPxTransform.p);
-	VEC3 nextPosition = position + deltaMovement;
-	VEC3 direction = nextPosition - position;
-	direction.Normalize();
-	float distance = VEC3::Distance(nextPosition, position);
-
-	PxSweepBuffer sweepBuffer;
-	PxQueryFilterData fd;
-	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
-	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
-	PxHitFlags hitFlags = PxHitFlag::eMESH_ANY | PxHitFlag::ePOSITION | PxHitFlag::eNORMAL | PxHitFlag::eDISTANCE;
-
-	bool status = EnginePhysics.getScene()->sweep(geometry, playerPxTransform, toPhysx(direction), distance, sweepBuffer,
-		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
-
-	if (status) {
-		baseState->onSweep(sweepBuffer);
-		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->onSweep(sweepBuffer);
-		}
-	}
-
-
-}
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
@@ -446,25 +412,6 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	}
 }
 
-TCompTransform* TCompPlayerModel::getTransform() {
-	return transformHandle;
-}
-
-TCompCollider* TCompPlayerModel::getCollider() {
-	return colliderHandle;
-}
-
-PxCapsuleController* TCompPlayerModel::getController() {
-	return static_cast<PxCapsuleController*>(getCollider()->controller);
-}
-
-TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
-	return powerGaugeHandle;
-}
-
-TCompSkeleton* TCompPlayerModel::getSkeleton() {
-	return skeletonHandle;
-}
 
 void TCompPlayerModel::setHp(float hp) {
 	hp = clamp(hp, 0.f, maxHp);
@@ -488,13 +435,6 @@ void TCompPlayerModel::damage(float damage) {
 		isInvulnerable = true;
 		invulnerableTimer.reset();
 	}
-}
-
-TCompCamera* TCompPlayerModel::getCamera() {
-	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
-	TCompCamera* currentCamera = camera->get<TCompCamera>();
-	assert(currentCamera);
-	return currentCamera;
 }
 
 void TCompPlayerModel::jumpButtonPressed() {
@@ -603,48 +543,43 @@ void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
 }
 
 
-
 void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	setBaseState(TCompPlayerModel::ActionStates::PitFalling);
 }
-
 
 void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 	baseState->onShapeHit(msg.hit);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onShapeHit(msg.hit);
 	}
-	//if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
-	//	lastWallEntered = msg.hit.actor;
-
-	//	VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
-
-	//	//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
-	//	//dbg("%f\n", deg2rad(pitch));
-
-	//	VEC3 worldInput = getCamera()->TransformToWorld(baseState->getMovementInput());
-	//	if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || getTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
-	//		float pitch = asin(-msg.hit.worldNormal.y);
-	//		if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
-	//			HuggingWallActionState* actionState = getBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
-	//			actionState->SetHit(msg.hit);
-	//			setBaseState(ActionStates::HuggingWall);
-	//		}
-	//	}
-	//}
 }
 
+TCompTransform* TCompPlayerModel::getTransform() {
+	return transformHandle;
+}
 
-void TCompPlayerModel::onContact(const TMsgOnContact& msg) {
-	//dbg("ON CONTACT\n");
-	if (msg.pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_FOUND)) {
-		//dbg("TOUCH FOUND\n");
-	}
-	if (msg.pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_LOST)) {
-		//dbg("TOUCH LOST\n");
-	}
+TCompCollider* TCompPlayerModel::getCollider() {
+	return colliderHandle;
+}
 
+PxCapsuleController* TCompPlayerModel::getController() {
+	return static_cast<PxCapsuleController*>(getCollider()->controller);
+}
+
+TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
+	return powerGaugeHandle;
+}
+
+TCompSkeleton* TCompPlayerModel::getSkeleton() {
+	return skeletonHandle;
+}
+
+TCompCamera* TCompPlayerModel::getCamera() {
+	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
+	TCompCamera* currentCamera = camera->get<TCompCamera>();
+	assert(currentCamera);
+	return currentCamera;
 }
 
 TCompPlayerModel::~TCompPlayerModel() {

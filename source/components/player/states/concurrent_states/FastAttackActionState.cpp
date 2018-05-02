@@ -59,9 +59,6 @@ void FastAttackActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void FastAttackActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_punch.mesh");
-}
 
 void FastAttackActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();

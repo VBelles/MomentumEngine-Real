@@ -29,7 +29,5 @@ public:
 	void setMovementInput(VEC2 input) override {}
 	void onJumpHighButton() override;
 	void onJumpLongButton() override {}
-
 	void onHitboxEnter(CHandle entity) override;
-	void setPose() override;
 };

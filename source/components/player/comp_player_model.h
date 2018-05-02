@@ -14,7 +14,6 @@ class PlayerFilterCallback;
 struct TMsgEntitiesGroupCreated;
 struct TMsgCollect;
 struct TMsgOnShapeHit;
-struct TMsgOnContact;
 struct TMsgPowerLvlChange;
 struct TMsgAttackHit;
 struct TMsgHitboxEnter;
@@ -78,7 +77,6 @@ private:
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onCollect(const TMsgCollect& msg);
 	void onShapeHit(const TMsgOnShapeHit & msg);
-	void onContact(const TMsgOnContact & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onHitboxEnter(const TMsgHitboxEnter& msg);

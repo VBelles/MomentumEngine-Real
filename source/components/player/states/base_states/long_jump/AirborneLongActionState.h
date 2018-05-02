@@ -4,10 +4,8 @@
 
 class AirborneLongActionState : public AirborneActionState {
 public:
-	AirborneLongActionState(CHandle playerModelHandle);
+	AirborneLongActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "longJump_volando") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
-
-	void setPose() override;
 };
