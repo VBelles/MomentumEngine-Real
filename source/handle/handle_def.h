@@ -66,10 +66,9 @@ public:
   }
 
   bool operator<(CHandle h) const {
-	  bool ret = false;
-	  if (external_index == h.external_index) ret = age < h.age;
-	  else ret = external_index < h.external_index;
-	  return ret;
+	  if ((external_index == h.external_index) && (age == h.age)) return type < h.type;
+	  else if (external_index == h.external_index) return age < h.age;
+	  else return external_index < h.external_index;
   }
 
   uint32_t asUnsigned() const { return *(uint32_t*)this; }

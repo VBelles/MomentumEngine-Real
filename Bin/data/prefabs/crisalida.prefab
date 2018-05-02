@@ -7,20 +7,20 @@
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/crisalida.mesh",
+					"mesh": "data/meshes/chrysalis.mesh",
 					"materials": [
-						"data/materials/ambar.material"
-					],
-					"color": "1 0.6 0.2 1.0"
+						"data/materials/chrysalis.material"
+					]
 				}
 			],
 			"collectable": {
-				"type": "chrysalis"
+				"type": "chrysalis",
+				"rotationSpeed": 2.5
 			},
 			"collider" : {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"radius" : 0.5,
+				"radius" : 0.75,
 				"group": ["all"],
 				"mask": ["player"]
 			}

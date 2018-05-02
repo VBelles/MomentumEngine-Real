@@ -11,3 +11,13 @@ const std::string GOLEM_PREFAB = "data/prefabs/enemy_melee.prefab";
 const std::string BALL_PREFAB = "data/prefabs/enemy_ball.prefab";
 const std::string MEDUSA_PREFAB = "data/prefabs/enemy_flying.prefab";
 const std::string CHRYSALIS_PREFAB = "data/prefabs/crisalida.prefab";
+
+const std::string INTERPOLATOR_LINEAL = "lineal";
+const std::string INTERPOLATOR_CUBIC_IN = "cubicIn";
+const std::string INTERPOLATOR_CUBIC_OUT = "cubicOut";
+const std::string INTERPOLATOR_CUBIC_IN_OUT = "cubicInOut";
+const std::string INTERPOLATOR_EXPO_IN = "expoIn";
+const std::string INTERPOLATOR_EXPO_OUT = "expoOut";
+const std::string INTERPOLATOR_EXPO_IN_OUT = "expoInOut";
+
+const std::string AUTOLOAD_SCRIPTS_PATH = "data/scripts/autoload/";

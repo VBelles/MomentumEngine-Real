@@ -1,31 +1,5 @@
 [
-  {
-    "entity":
-    {
-      "name": "ms2_breakable021",
-      "transform":
-      {
-        "pos": "59.1999 23.2488 112.401",
-        "rotation": "0.0 0.665363 0.0 -0.74652"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_breakable021.mesh",
-          "materials":
-          [
-            "data/materials/empty.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_breakable021.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
+  
   {
     "entity":
     {
@@ -41,7 +15,12 @@
           "mesh": "data/meshes/ms2_breakable009mesh002.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -49,6 +28,42 @@
       {
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
+        "type": "static"
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable021",
+      "transform":
+      {
+        "pos": "59.1999 23.2488 112.401",
+        "rotation": "0.0 0.665363 0.0 -0.74652"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable021.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_breakable021.col_mesh",
+        "shape": "convex_mesh",
         "type": "static"
       },
       "breakable":
@@ -72,7 +87,12 @@
           "mesh": "data/meshes/ms2_breakable007mesh002.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -103,7 +123,12 @@
           "mesh": "data/meshes/ms2_breakable006mesh002.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -134,7 +159,12 @@
           "mesh": "data/meshes/ms2_breakable009mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -165,7 +195,12 @@
           "mesh": "data/meshes/ms2_breakable008mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -196,7 +231,12 @@
           "mesh": "data/meshes/ms2_breakable007mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -227,7 +267,12 @@
           "mesh": "data/meshes/ms2_breakable006mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -258,7 +303,12 @@
           "mesh": "data/meshes/ms2_breakable005mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -289,7 +339,12 @@
           "mesh": "data/meshes/ms2_breakable004mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -320,7 +375,12 @@
           "mesh": "data/meshes/ms2_breakable002mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -351,7 +411,12 @@
           "mesh": "data/meshes/ms2_breakable001mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],

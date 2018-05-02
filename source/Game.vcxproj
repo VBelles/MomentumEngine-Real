@@ -230,6 +230,7 @@
     <ClCompile Include="modules\game\module_test_axis.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
     <ClCompile Include="modules\system\scripting\console.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_cameras.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_door.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_entities.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_golem.cpp" />
@@ -275,6 +276,7 @@
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="utils\variant.cpp" />
+    <ClCompile Include="windows\windowsUtils.cpp" />
     <ClCompile Include="windows\app.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -434,6 +436,7 @@
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\system\scripting\console.h" />
+    <ClInclude Include="modules\system\scripting\scripting_cameras.h" />
     <ClInclude Include="modules\system\scripting\scripting_door.h" />
     <ClInclude Include="modules\system\scripting\scripting_entities.h" />
     <ClInclude Include="modules\system\scripting\scripting_golem.h" />
@@ -490,6 +493,7 @@
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="utils\variant.h" />
+    <ClInclude Include="windows\windowsUtils.h" />
     <ClInclude Include="windows\app.h" />
   </ItemGroup>
   <ItemGroup>

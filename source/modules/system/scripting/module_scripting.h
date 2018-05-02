@@ -30,9 +30,10 @@ private:
 		std::string params;
 
 		friend bool operator<(const DelayedCall& dc1, const DelayedCall& dc2) {
-			if (dc1.startTime < dc2.startTime) return true;
+			if ((dc1.startTime == dc2.startTime) && (dc1.delay == dc2.delay) && (dc1.func == dc2.func)) return dc1.params < dc2.params;
+			else if ((dc1.startTime == dc2.startTime) && (dc1.delay == dc2.delay)) return dc1.func < dc2.func;
 			else if (dc1.startTime == dc2.startTime) return dc1.delay < dc2.delay;
-			else return false;
+			else return dc1.startTime < dc2.startTime;
 		}
 	};
 

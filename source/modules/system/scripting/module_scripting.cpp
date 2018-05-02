@@ -9,6 +9,7 @@
 #include "modules/system/scripting/scripting_entities.h"
 #include "modules/system/scripting/scripting_door.h"
 #include "modules/system/scripting/scripting_manager.h"
+#include "modules/system/scripting/scripting_cameras.h"
 
 CModuleScripting* CModuleScripting::instance = nullptr;
 
@@ -39,31 +40,28 @@ void CModuleScripting::initSLB() {
 	script = new SLB::Script(manager);
 	script->setPrintCallback(&printCallback);
 
-	//Game constants
-	script->set("PLAYER_NAME", PLAYER_NAME);
-	script->set("PLAYER_CAMERA", PLAYER_CAMERA);
-	script->set("GAME_CAMERA", GAME_CAMERA);
-	script->set("GOLEM_PREFAB", GOLEM_PREFAB);
-	script->set("BALL_PREFAB", BALL_PREFAB);
-	script->set("MEDUSA_PREFAB", MEDUSA_PREFAB);
-	script->set("CHRYSALIS_PREFAB", CHRYSALIS_PREFAB);
-
 	//Bind clases
+	ScriptingManager::bindGameConstants(manager);
 	ScriptingManager::bind(manager);
 	ScriptingPlayer::bind(manager);
-
-	ScriptingGolem::bind(manager);
-	ScriptingDoor::bind(manager);
+	ScriptingCameras::bind(manager);
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
 
+	ScriptingGolem::bind(manager);
+	ScriptingDoor::bind(manager);
+
 	//Create binded objects
 	execString("SLB.using(SLB)");
-	execString("player = Player()");
 	execString("golem = Golem()");
 
+	//Load scripts
 	execFile("data/scripts/coroutines.lua");
-	execFile("data/scripts/testLua.lua");
+
+	std::set<std::string> filesToLoad = WindowsUtils::getAllFiles(AUTOLOAD_SCRIPTS_PATH, "*.lua", true);
+	for (std::string file : filesToLoad) {
+		execFile(file.c_str());
+	}
 }
 
 bool CModuleScripting::start() {
@@ -100,13 +98,13 @@ bool CModuleScripting::stop() {
 
 void CModuleScripting::reset() {
 	delayedCalls.clear();
-	std::string call = "clearCoroutines()";
+	std::string call = "__clearCoroutines()";
 	execString(call.c_str());
 }
 
 void CModuleScripting::update(float delta) {
 	checkDelayedCalls();
-	std::string call = "updateCoroutines(" + std::to_string(delta) + ")";
+	std::string call = "__updateCoroutines(" + std::to_string(delta) + ")";
 	execString(call.c_str());
 }
 
@@ -123,7 +121,7 @@ void CModuleScripting::checkDelayedCalls() {
 	float currentTime = timer.elapsed();
 	for (DelayedCall dc : delayedCalls) {
 		if (currentTime >= (dc.startTime + dc.delay)) {
-			std::string call = "startCoroutine(\"" + getNextCoroutineId() + "\"," + dc.func + ",\"" + dc.params + "\")";
+			std::string call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + dc.func + ",\"" + dc.params + "\")";
 			execString(call.c_str());
 			toRemove.insert(dc);
 		}
@@ -162,10 +160,10 @@ void CModuleScripting::throwEvent(LuaCall event, std::string params) {
 		int delimiterPos = params.find(",");
 		std::string firstParam = params.substr(0, delimiterPos);
 		std::string otherParams = params.substr(delimiterPos + 1);
-		call = "startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + "_" + firstParam + ",\"" + otherParams + "\")";
+		call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + "_" + firstParam + ",\"" + otherParams + "\")";
 	}
 	else {
-		call = "startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + ",\"" + params + "\")";
+		call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + ",\"" + params + "\")";
 	}
 	execString(call.c_str());
 }
