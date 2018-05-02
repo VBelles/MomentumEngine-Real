@@ -14,7 +14,12 @@
           "mesh": "data/meshes/ms2_rotate003mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -45,7 +50,12 @@
           "mesh": "data/meshes/ms2_rotate002mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],
@@ -76,7 +86,12 @@
           "mesh": "data/meshes/ms2_rotate001mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ],

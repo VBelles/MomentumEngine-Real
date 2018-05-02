@@ -945,8 +945,10 @@ struct TSceneExporter (
 					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
 					local movable = hasChildLine child
 					--if pure == unsupplied then pure = false
-					exportCompCollider child dyn:(pure or movable or rot)
-					if pure then  exportPurity()
+					local groups = #("scenario")
+					if rot then append groups "enemy"
+					exportCompCollider child dyn:(pure or movable or rot) colliderGroups:groups
+					if pure then exportPurity()
 					if breakable then exportBreakable()
 					if movable then (
 						exportSpline child
