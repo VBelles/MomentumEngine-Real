@@ -20,6 +20,8 @@ void TCompBreakable::registerMsgs() {
 
 void TCompBreakable::load(const json& j, TEntityParseContext& ctx) {
 	hp = j.value("hp", 1.f);
+	prefabToSpawn = j.value("prefab", "");
+	lootOffset = j.value("lootOffset", 1.0f);
 }
 
 void TCompBreakable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -50,21 +52,16 @@ void TCompBreakable::onDie() {
 
 void TCompBreakable::dropLoot() {
 	TEntityParseContext ctx;
-	if (parseScene("data/prefabs/coin.prefab", ctx)) {
-		CEntity* coinEntity = ctx.current_entity;
-		TCompTransform* coinTransform = coinEntity->get<TCompTransform>();
-		TCompCollectable* collectable = coinEntity->get<TCompCollectable>();
-		TCompCollider* collider = coinEntity->get<TCompCollider>();
-		VEC3 position = getTransform()->getPosition() + VEC3::Up * 1;
-		coinTransform->setPosition(position);
-		PxRigidActor* actor = (PxRigidActor*) collider->actor;
-		actor->setGlobalPose(PxTransform(toPhysx(position)));
-	}
+	VEC3 position = getTransform()->getPosition() + VEC3::Up * lootOffset;
+	ctx.root_transform.setPosition(position);
+	parseScene(prefabToSpawn, ctx);
 }
 
 void TCompBreakable::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	CHandle(this).getOwner().destroy();
-	dropLoot();
+	if (!prefabToSpawn.empty()) {
+		dropLoot();
+	}
 }
 
 

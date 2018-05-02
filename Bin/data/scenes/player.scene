@@ -119,13 +119,6 @@
 				"slope": 45
 			},
 			"render_ui": {},
-			"shadow": {
-				"offset": "0 0.1 0",
-				"mesh": "data/meshes/_testShadow.mesh",
-				"materials": [
-					"data/materials/black.material"
-				]
-			},
 			"power_gauge": {},
 			"hitboxes": {
 				"hitboxes": [

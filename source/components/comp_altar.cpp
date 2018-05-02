@@ -32,6 +32,9 @@ void TCompAltar::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 }
 
 void TCompAltar::onDestroy(const TMsgDestroy & msg) {
+	Engine.getScripting().throwEvent(onAltarDestroyed, ((CEntity*)CHandle(this).getOwner())->getName());
+
+	//TODO borrar al hacer los scripts
 	//Parar tiempo, hacer aparecer crisálidas, pinchar cámaras, (enseñar ui de crisálidas?)
 	//Al menos de momento, activar las crisálidas aquí
 	for (VEC3 spawnPos : spawnPositions) {

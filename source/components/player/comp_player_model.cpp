@@ -166,6 +166,8 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 
 	TCompRender *render = get<TCompRender>();
 	render->setAllMaterials(materials[msg.powerLvl - 1]);
+
+	Engine.getScripting().throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
 
 void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
