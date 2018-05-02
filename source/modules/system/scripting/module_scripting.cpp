@@ -71,11 +71,18 @@ bool CModuleScripting::start() {
 		{ onPowerLevelChange, "onPowerLevelChange" },
 		{ onTriggerEnter, "onTriggerEnter" },
 		{ onTriggerExit, "onTriggerExit" },
-		{ onItemDestroyed, "onItemDestroyed" },
 		{ onEnemyKilled, "onEnemyKilled" },
-		{ onItemCollected, "onItemCollected" },
 		{ onPlayerKilled, "onPlayerKilled" },
 		{ onAltarDestroyed, "onAltarDestroyed" }
+	};
+
+	callsFirstParamOnFunction = {
+		onLevelStart,
+		onTriggerEnter,
+		onTriggerExit,
+		onAltarDestroyed,
+		onMechanismSystemActivated,
+		onMechanismSystemDeactivated
 	};
 
 	initConsole();
@@ -156,7 +163,7 @@ void CModuleScripting::doFile(std::string filename) {
 
 void CModuleScripting::throwEvent(LuaCall event, std::string params) {
 	std::string call;
-	if (event == onTriggerEnter || event == onTriggerExit || event == onAltarDestroyed || event == onLevelStart) {
+	if (callsFirstParamOnFunction.find(event) != callsFirstParamOnFunction.end()) {
 		int delimiterPos = params.find(",");
 		std::string firstParam = params.substr(0, delimiterPos);
 		std::string otherParams = params.substr(delimiterPos + 1);

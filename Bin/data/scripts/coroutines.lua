@@ -1,7 +1,7 @@
 __all_co = {}
 
 function __startCoroutine(name, func, ...)
-	print("New coroutine "..name)
+	--print("New coroutine "..name)
 	local co = coroutine.create(func)
 	coroutine.resume(co, ...)
 
