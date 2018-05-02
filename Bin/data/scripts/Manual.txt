@@ -1,0 +1,54 @@
+Eventos:
+	onGameStart()
+	onPowerLevelChange(powerLevel)
+	onEnemyKilled(enemyName)
+	onPlayerKilled()
+	onLevelStart_levelId()
+	onTriggerEnter_triggerName(entityName)
+	onTriggerExit_triggerName(entityName)
+	onAltarDestroyed_altarName()
+
+Funciones:
+	callDelayed(float delay, string funcion, string params)
+
+	wait(float duration)
+	waitCondition(function func, string params)
+
+	blendInCamera(string cameraName, float timeToMixIn, CAMERA_PRIORITY, INTERPOLATOR) {
+	
+	getPlayerHp()
+	setPlayerHp(int hp)
+	setPlayerRespawnPosition(float x, float y, float z)
+	takePlayerControl()
+	givePlayerControl()
+	teleportPlayer(float x, float y, float z)
+	movePlayer(float x, float y, float z)
+	setPower(float power), cantidad de poder
+
+	spawnEntityAt(PREFAB, float x, float y, float z)
+	spawnGolemAt(float x, float y, float z)
+	spawnGolem()
+	spawnBallAt(float x, float y, float z)
+	spawnBall()
+	spawnMedusaAt(float x, float y, float z)
+	spawnMedusa()
+
+Constantes:
+	PLAYER_NAME
+	PLAYER_CAMERA
+	GAME_CAMERA
+	GOLEM_PREFAB
+	BALL_PREFAB
+	MEDUSA_PREFAB
+	CHRYSALIS_PREFAB
+	INTERPOLATOR_LINEAL;
+	INTERPOLATOR_CUBIC_IN;
+	INTERPOLATOR_CUBIC_OUT
+	INTERPOLATOR_CUBIC_IN_OUT
+	INTERPOLATOR_EXPO_IN
+	INTERPOLATOR_EXPO_OUT
+	INTERPOLATOR_EXPO_IN_OUT
+	CAMERA_PRIORITY_DEFAULT
+	CAMERA_PRIORITY_GAMEPLAY
+	CAMERA_PRIORITY_TEMPORARY
+	CAMERA_PRIORITY_DEBUG

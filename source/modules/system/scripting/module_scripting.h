@@ -3,8 +3,6 @@
 enum LuaCall {
 	onGameStart,
 	onPowerLevelChange, //param powerLevel
-	onItemDestroyed, //param itemName
-	onItemCollected, //param itemName
 	onEnemyKilled, //param enemyName
 	onPlayerKilled,
 	onLevelStart, //param levelId; la call sera onLevelStart_levelId()
