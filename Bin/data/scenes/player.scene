@@ -1,366 +1,281 @@
 [
-  {
-    "entity": {
-      "name": "The Player",
-      "render": [
-        {
-          "mesh": "data/skeletons/ella/ella_low.mesh",
-          "materials": [
-            "data/skeletons/ella/ellaSS1.material"
-          ]
-        },
-        {
-          "mesh": "data/skeletons/ella/cintacorta_der.mesh",
-          "materials": [
-            "data/skeletons/ella/ellaSS1.material"
-          ]
-        },
-        {
-          "mesh": "data/skeletons/ella/cintacorta_izq.mesh",
-          "materials": [
-            "data/skeletons/ella/ellaSS1.material"
-          ]
-        },
-        {
-          "mesh": "data/skeletons/ella/cintalarga_der.mesh",
-          "materials": [
-            "data/skeletons/ella/ellaSS1.material"
-          ]
-        },
-        {
-          "mesh": "data/skeletons/ella/cintalarga_izq.mesh",
-          "materials": [
-            "data/skeletons/ella/ellaSS1.material"
-          ]
-        }
-      ],
-      "transform": {
-        "pos": "-10 5 -10",
-        "axis": "0 1 0",
-        "angle": 120
-      },
-      "skeleton": {
-        "skeleton": "data/skeletons/ella/ella.skeleton"
-      },
-      "player_controller": {},
-      "player_model": {
-        "gravity": -55,
-        "walkingSpeed": 3.0,
-        "ssj1": {
-          "rotation_speed": 11.0,
-          "maxSpeed": 7.0,
-          "landingLag": 1.0,
-          "shortHopVelocity": 16.0,
-          "jumpVelocity": "0 20 0",
-          "longJumpVelocity": "0 11 12",
-          "wallJumpVelocity": "0 22 9",
-          "springJumpVelocity": 27,
-          "maxVelocityVertical": 30.0,
-          "acceleration": 30.0,
-          "deceleration": 7.0,
-          "airAcceleration": 30.0,
-          "falling_multiplier": 1.05,
-          "long_gravity_multiplier": 0.60,
-          "plummetTime": 0.4
-        },
-        "ssj2": {
-          "rotation_speed": 14.0,
-          "maxSpeed": 11.0,
-          "landingLag": 5.0,
-          "shortHopVelocity": 18.0,
-          "jumpVelocity": "0 25 0",
-          "longJumpVelocity": "0 12 17",
-          "wallJumpVelocity": "0 27 10",
-          "springJumpVelocity": 32,
-          "maxVelocityVertical": 30.0,
-          "acceleration": 32.0,
-          "deceleration": 8.0,
-          "airAcceleration": 35.0,
-          "falling_multiplier": 1.05,
-          "long_gravity_multiplier": 0.60,
-          "plummetTime": 0.5
-        },
-        "ssj3": {
-          "rotation_speed": 17.0,
-          "maxSpeed": 14.0,
-          "landingLag": 9.0,
-          "shortHopVelocity": 20.0,
-          "jumpVelocity": "0 30 0",
-          "longJumpVelocity": "0 13 22.5",
-          "wallJumpVelocity": "0 32 12",
-          "springJumpVelocity": 37,
-          "maxVelocityVertical": 30.0,
-          "acceleration": 35.0,
-          "deceleration": 9.0,
-          "airAcceleration": 40.0,
-          "falling_multiplier": 1.05,
-          "long_gravity_multiplier": 0.60,
-          "plummetTime": 0.6
-        },
-        "materials": [
-          "data/skeletons/ella/ellaSS1.material",
-          "data/skeletons/ella/ellaSS2.material",
-          "data/skeletons/ella/ellaSS3.material"
-        ]
-      },
-      "collider": {
-        "shape": "capsule",
-        "type": "cct",
-        "radius": 0.3,
-        "height": 0.76,
-        "group": [ "player" ],
-        "mask": [ "all" ],
-        "step": 0.5,
-        "slope": 45,
-        "hitboxes": []
-      },
-      "render_ui": {},
-      "power_gauge": {
-
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Strong attack hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 0.8,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.6 0.8"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Fast attack hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 0.7,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.6 0.7"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Fast attack air hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 0.7,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.6 0.7"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Vertical launcher hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 0.9,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.6 0.7"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Horizontal launcher hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 0.9,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.6 0.7"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Grab hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 1.5,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0.0 0.0 0.7"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Falling attack hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 0.8,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 -0.8 0"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Falling attack landing hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 2.0,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.0 0"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Wall jump plummet hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 1.0,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.0 0"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Release power small hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 4.0,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.75 0"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Release power big hitbox",
-      "transform": {},
-      "collider": {
-        "shape": "sphere",
-        "is_trigger": true,
-        "type": "kinematic",
-        "radius": 7.0,
-        "group": [ "player" ],
-        "mask": [ "enemy" ]
-      },
-      "hierarchy": {
-        "parent": "The Player"
-      },
-      "hitbox": {
-        "offset": "0 0.75 0"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "player_camera",
-      "transform": {},
-      "camera": {
-        "fov": 80,
-        "z_near": 0.1,
-        "active": true
-      },
-      "camera_player": {
-        "target": "The Player",
-        "distance_to_target": 5.5,
-        "camera_speed": "2 1",
-        "zoomOutSpeed": 20.0,
-        "zoomInSpeed": 10.0,
-        "centering_camera_speed": "18 9",
-        "max_pitch": 60,
-        "min_pitch": -70,
-        "yaw": 125,
-        "pitch": -20
-      }
-    }
-  }
+	{
+		"entity": {
+			"name": "The Player",
+			"render": [
+				{
+					"mesh": "data/skeletons/ella/ella_low.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintacorta_der.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintacorta_izq.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintalarga_der.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintalarga_izq.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1.material"
+					]
+				}
+			],
+			
+			"transform": {
+				"pos": "3 0 48",
+				"axis": "0 1 0",
+				"angle": 120
+			},
+			"skeleton": {
+				"skeleton": "data/skeletons/ella/ella.skeleton"
+			},
+			"player_controller": {},
+			"player_model": {
+				"gravity": -55,
+				"walkingSpeed": 3.0,
+				"ssj1": {
+					"rotation_speed": 11.0,
+					"maxSpeed": 7.0,
+					"landingLag": 1.0,
+					"shortHopVelocity": 16.0,
+					"jumpVelocity": "0 20 0",
+					"longJumpVelocity": "0 11 12",
+					"wallJumpVelocity": "0 22 9",
+					"springJumpVelocity": 27,
+					"maxVelocityVertical": 30.0,
+					"acceleration": 30.0,
+					"deceleration": 7.0,
+					"airAcceleration": 30.0,
+					"falling_multiplier": 1.05,
+					"long_gravity_multiplier": 0.60,
+					"plummetTime": 0.4
+				},
+				"ssj2": {
+					"rotation_speed": 14.0,
+					"maxSpeed": 11.0,
+					"landingLag": 5.0,
+					"shortHopVelocity": 18.0,
+					"jumpVelocity": "0 25 0",
+					"longJumpVelocity": "0 12 17",
+					"wallJumpVelocity": "0 27 10",
+					"springJumpVelocity": 32,
+					"maxVelocityVertical": 30.0,
+					"acceleration": 32.0,
+					"deceleration": 8.0,
+					"airAcceleration": 35.0,
+					"falling_multiplier": 1.05,
+					"long_gravity_multiplier": 0.60,
+					"plummetTime": 0.5
+				},
+				"ssj3": {
+					"rotation_speed": 17.0,
+					"maxSpeed": 14.0,
+					"landingLag": 9.0,
+					"shortHopVelocity": 20.0,
+					"jumpVelocity": "0 30 0",
+					"longJumpVelocity": "0 13 22.5",
+					"wallJumpVelocity": "0 32 12",
+					"springJumpVelocity": 37,
+					"maxVelocityVertical": 30.0,
+					"acceleration": 35.0,
+					"deceleration": 9.0,
+					"airAcceleration": 40.0,
+					"falling_multiplier": 1.05,
+					"long_gravity_multiplier": 0.60,
+					"plummetTime": 0.6
+				},
+				"materials": [
+					"data/skeletons/ella/ellaSS1.material",
+					"data/skeletons/ella/ellaSS2.material",
+					"data/skeletons/ella/ellaSS3.material"
+				]
+			},
+			"collider": {
+				"shape": "capsule",
+				"type": "cct",
+				"radius": 0.3,
+				"height": 0.76,
+				"group": [
+					"player"
+				],
+				"mask": [
+					"all"
+				],
+				"step": 0.5,
+				"slope": 45
+			},
+			"render_ui": {},
+			"shadow": {
+				"offset": "0 0.1 0",
+				"mesh": "data/meshes/_testShadow.mesh",
+				"materials": [
+					"data/materials/black.material"
+				]
+			},
+			"power_gauge": {},
+			"hitboxes": {
+				"hitboxes": [
+					{
+						"name": "strong_attack",
+						"shape": "sphere",
+						"radius": 0.8,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand",
+						"attack": "strong_attack"
+					},
+					{
+						"name": "fast_attack",
+						"shape": "sphere",
+						"radius": 0.7,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand",
+						"attack": "fast_attack"
+					},
+					{
+						"name": "horizontal_launcher",
+						"shape": "sphere",
+						"radius": 0.9,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "vertical_launcher",
+						"shape": "sphere",
+						"radius": 0.9,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "grab",
+						"shape": "sphere",
+						"radius": 1.5,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "falling_attack",
+						"shape": "sphere",
+						"radius": 0.8,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 L Foot"
+					},
+					{
+						"name": "landing_falling_attack",
+						"shape": "sphere",
+						"radius": 2.0,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Foot"
+					},
+					{
+						"name": "plummet_attack",
+						"shape": "sphere",
+						"radius": 1.0,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 L Foot"
+					},
+					{
+						"name": "release_power_small",
+						"shape": "sphere",
+						"radius": 4.0,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 Pelvis"
+					},
+					{
+						"name": "release_power_big",
+						"shape": "sphere",
+						"radius": 7.0,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 Pelvis"
+					}
+				]
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "player_camera",
+			"transform": {},
+			"camera": {
+				"fov": 80,
+				"z_near": 0.1,
+				"active": true
+			},
+			"camera_player": {
+				"target": "The Player",
+				"distance_to_target": 5.5,
+				"camera_speed": "2 1",
+				"zoomOutSpeed": 20.0,
+				"zoomInSpeed": 10.0,
+				"centering_camera_speed": "18 9",
+				"max_pitch": 60,
+				"min_pitch": -70,
+				"yaw": 125,
+				"pitch": -20
+			}
+		}
+	}
 ]

@@ -274,6 +274,40 @@ void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color) {
     renderMesh(mesh, unit_cube_to_aabb, color);
 }
 
+void renderWiredCube(CTransform* transform, const VEC3 halfExent, VEC4 color) {
+	// Accede a una mesh que esta centrada en el origen y
+	// tiene 0.5 de half size
+	auto mesh = Resources.get("wired_unit_cube.mesh")->as<CRenderMesh>();
+	MAT44 cube = MAT44::CreateScale(VEC3(halfExent) * 2.f)
+		* transform->asMatrix();
+	renderMesh(mesh, cube, color);
+}
+
+void renderCircle(CTransform* transform, float radius, VEC4 color) {
+	auto mesh = Resources.get("circle_xz.mesh")->as<CRenderMesh>();
+	MAT44 circle = MAT44::CreateScale(radius)
+		* transform->asMatrix();
+	renderMesh(mesh, circle, color);
+}
+
+void renderSphere(CTransform* transform, float radius, VEC4 color) {
+	auto mesh = Resources.get("circle_xz.mesh")->as<CRenderMesh>();
+	CTransform t = CTransform(*transform);
+	float y, p, r;
+	t.getYawPitchRoll(&y, &p, &r);
+	r = 0;
+	for (double i = 0; i < 4; i++) {
+		MAT44 circle = MAT44::CreateScale(radius)
+			* t.asMatrix();
+		renderMesh(mesh, circle, color);
+		t.setYawPitchRoll(y, p, r);
+		r += M_PI_4;
+	}
+	
+	
+	
+}
+
 void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture) {
     auto* tech = Resources.get(tech_name)->as<CRenderTechnique>();
     assert(tech);

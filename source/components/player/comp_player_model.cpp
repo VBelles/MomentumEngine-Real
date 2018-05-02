@@ -108,9 +108,9 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 		for (size_t i = 0; i < j_mats.size(); ++i) {
 			std::string name_material = j_mats[i];
 			materials[i] = name_material;
+			dbg("material: %s\n", name_material.c_str());
 		}
 	}
-
 	powerStats[0] = loadPowerStats(j["ssj1"]);
 	powerStats[1] = loadPowerStats(j["ssj2"]);
 	powerStats[2] = loadPowerStats(j["ssj3"]);
@@ -229,18 +229,6 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	});
 
 
-	strongAttackHitbox = getEntityByName("Strong attack hitbox");
-	fastAttackHitbox = getEntityByName("Fast attack hitbox");
-	fastAttackAirHitbox = getEntityByName("Fast attack air hitbox");
-	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
-	fallingAttackLandingHitbox = getEntityByName("Falling attack landing hitbox");
-	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
-	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
-	grabHitbox = getEntityByName("Grab hitbox");
-	wallJumpPlummetHitbox = getEntityByName("Wall jump plummet hitbox");
-	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
-	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
-
 	CHandle playerModelHandle = CHandle(this);
 	baseStates = {
 		{ ActionStates::Idle, new IdleActionState(playerModelHandle) },
@@ -255,32 +243,32 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::AirborneLong, new AirborneLongActionState(playerModelHandle) },
 	{ ActionStates::TurnAround, new TurnAroundActionState(playerModelHandle) },
 	{ ActionStates::Landing, new LandingActionState(playerModelHandle) },
-	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(playerModelHandle, fallingAttackLandingHitbox) },
+	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(playerModelHandle) },
 	{ ActionStates::PropelHigh, new PropelHighActionState(playerModelHandle) },
 	{ ActionStates::PropelLong, new PropelLongActionState(playerModelHandle) },
 	{ ActionStates::HuggingWall, new HuggingWallActionState(playerModelHandle) },
 	{ ActionStates::WallJumpSquat, new WallJumpSquatActionState(playerModelHandle) },
 	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(playerModelHandle) },
-	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle, fallingAttackHitbox) },
-	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle, strongAttackHitbox) },
-	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle, verticalLauncherHitbox) },
-	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle, horizontalLauncherHitbox) },
-	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
+	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle) },
+	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle) },
+	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle) },
+	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle) },
+	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle) },
 	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(playerModelHandle) },
 	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(playerModelHandle) },
 	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(playerModelHandle) },
-	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle, wallJumpPlummetHitbox) },
+	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle) },
 	{ ActionStates::Death, new DeathActionState(playerModelHandle) },
 	{ ActionStates::PitFalling, new PitFallingActionState(playerModelHandle) },
 	};
 
 	concurrentStates = {
 		{ ActionStates::Idle, nullptr },
-	{ ActionStates::FastAttack, new FastAttackActionState(playerModelHandle, fastAttackHitbox) },
-	{ ActionStates::FastAttackAir, new FastAttackAirActionState(playerModelHandle, fastAttackAirHitbox) },
-	{ ActionStates::GrabHigh, new GrabHighActionState(playerModelHandle, grabHitbox) },
-	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle, grabHitbox) },
-	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
+	{ ActionStates::FastAttack, new FastAttackActionState(playerModelHandle) },
+	{ ActionStates::FastAttackAir, new FastAttackAirActionState(playerModelHandle) },
+	{ ActionStates::GrabHigh, new GrabHighActionState(playerModelHandle) },
+	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle) },
+	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle) },
 	};
 
 	baseState = nullptr;
@@ -359,10 +347,11 @@ void TCompPlayerModel::applyGravity(float delta) {
 	else {
 		float deltaMovementDueToGravity;
 		deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-		if (dynamic_cast<GroundedActionState*>(baseState)) {
-			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed / 2 * delta;
+		if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
+			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
 		}
 		else {
+			wannaJump = false;
 			deltaMovement.y += deltaMovementDueToGravity;
 			//clampear distancia vertical
 			deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
@@ -491,7 +480,7 @@ void TCompPlayerModel::setRespawnPosition(VEC3 position) {
 }
 
 void TCompPlayerModel::damage(float damage) {
-	if(!isInvulnerable){
+	if (!isInvulnerable) {
 		//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
 		setHp(hp - damage);
 		TCompRender* render = get<TCompRender>();

@@ -3,6 +3,7 @@
 #include "components/player/states/GroundedActionState.h"
 
 class StrongAttackActionState : public GroundedActionState {
+private:
 	CTimer timer;
 	int warmUpFrames = 60;
 	int activeFrames = 10;
@@ -23,8 +24,10 @@ class StrongAttackActionState : public GroundedActionState {
 
 	float powerToGet = 3000.f;
 
+	std::string hitbox = "strong_attack";
+
 public:
-	StrongAttackActionState(CHandle playerModelHandle, CHandle hitbox);
+	StrongAttackActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "melee_strong") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -34,8 +37,6 @@ public:
 	void onStrongAttackButtonReleased() override;
 	void onFastAttackButton() override {}
 	void onReleasePowerButton() override {};
-
 	void onLeavingGround() override;
 	void onHitboxEnter(CHandle entity) override;
-	void setPose() override;
 };

@@ -9,7 +9,8 @@
 
 HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
 	:AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "jump_inicio";
+	animation = "bajandopared";
+	animationClimbing = "correporlapared";
 }
 
 void HuggingWallActionState::update(float delta) {
@@ -39,6 +40,7 @@ void HuggingWallActionState::update(float delta) {
 				TurnAround();
 				getPlayerModel()->setGravityMultiplier(slideGravityMultiplier);
 				getPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
+				getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 			}
 		}
 	}
@@ -63,7 +65,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 		getPlayerModel()->setGravityMultiplier(climbingGravityMultiplier);
 		getPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
 		climbTimer.reset();
-		getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+		getPlayerModel()->getSkeleton()->blendCycle(animationClimbing, 0.2f, 0.2f);
 	}
 	else {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);

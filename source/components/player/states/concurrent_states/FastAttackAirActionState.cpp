@@ -1,16 +1,12 @@
 #include "mcv_platform.h"
 #include "FastAttackAirActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_hitbox.h"
+#include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 
-FastAttackAirActionState::FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	hitboxHandle = hitbox;
-	animation = "melee";
-}
+
 
 void FastAttackAirActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -19,16 +15,12 @@ void FastAttackAirActionState::update(float delta) {
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
+		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->enable();
+		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
 	}
 }
@@ -49,31 +41,24 @@ void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 
 void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	//getPlayerModel()->baseState->setPose();
-	CEntity *hitboxEntity = hitboxHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
+	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockBaseState = false;
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = false;
 }
 
-void FastAttackAirActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_punch.mesh");
-}
-
 void FastAttackAirActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
-	if (entity != playerEntity) {
-		CEntity *otherEntity = entity;
 
-		otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+	CEntity *otherEntity = entity;
 
-		TMsgAttackHit msgAtackHit = {};
-		msgAtackHit.attacker = playerEntity;
-		msgAtackHit.info = {};
-		msgAtackHit.info.givesPower = true;
-		msgAtackHit.info.damage = damage;
-		otherEntity->sendMsg(msgAtackHit);
-	}
+	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+
+	TMsgAttackHit msgAtackHit = {};
+	msgAtackHit.attacker = playerEntity;
+	msgAtackHit.info = {};
+	msgAtackHit.info.givesPower = true;
+	msgAtackHit.info.damage = damage;
+	otherEntity->sendMsg(msgAtackHit);
+
 }

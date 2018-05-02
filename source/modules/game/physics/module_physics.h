@@ -35,6 +35,9 @@ private:
 	void releaseColliders();
 
 public:
+	int colliderType;
+	int hitboxType;
+
 	enum FilterGroup {
 		Wall = 1 << 0,
 		Floor = 1 << 1,

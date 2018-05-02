@@ -24,8 +24,6 @@ struct TMsgOutOfBounds;
 
 
 class TCompPlayerModel : public TCompBase {
-	DECL_SIBLING_ACCESS();
-
 public:
 	enum ActionStates {
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
@@ -42,19 +40,6 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
-
-	CHandle strongAttackHitbox;
-	CHandle fastAttackHitbox;
-	CHandle fastAttackAirHitbox;
-	CHandle fallingAttackHitbox;
-	CHandle fallingAttackLandingHitbox;
-	CHandle verticalLauncherHitbox;
-	CHandle horizontalLauncherHitbox;
-	CHandle grabHitbox;
-	CHandle wallJumpPlummetHitbox;
-	CHandle releasePowerSmallHitbox;
-	CHandle releasePowerBigHitbox;
-
 	CHandle skeletonHandle;
 
 	VEC3 respawnPosition;
@@ -107,6 +92,7 @@ private:
 	void applyGravity(float delta);
 
 public:
+	DECL_SIBLING_ACCESS();
 	~TCompPlayerModel();
 	IActionState* baseState;
 	IActionState* concurrentState;
@@ -116,6 +102,7 @@ public:
 	bool lockTurning = false;
 	bool lockConcurrentState = false;
 
+	bool wannaJump = false;
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;
 	bool isAttachedToPlatform = false;

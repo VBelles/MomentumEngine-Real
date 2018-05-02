@@ -22,10 +22,12 @@ private:
 	float damage = 0.f;
 	AttackPhases phase = AttackPhases::Startup;
 
-	uint32_t enemyId = getID("enemy");
+	std::string smallHitbox;
+	std::string bigHitbox;
 
 public:
-	ReleasePowerGroundActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig);
+	ReleasePowerGroundActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "liberarenergia"),
+		smallHitbox("release_power_small"), bigHitbox("release_power_big") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -35,8 +37,5 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override;
-
-	void setPose() override;
-
 	void onHitboxEnter(CHandle entity) override;
 };

@@ -177,6 +177,7 @@
     <ClCompile Include="render\mesh\collision_mesh.cpp" />
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
+    <ClCompile Include="components\comp_hitboxes.cpp" />
     <ClCompile Include="components\comp_altar.cpp" />
     <ClCompile Include="modules\system\scripting\console.cpp" />
     <ClCompile Include="modules\system\scripting\module_scripting.cpp" />
@@ -395,6 +396,7 @@
     <ClInclude Include="render\mesh\collision_mesh.h" />
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="modules\system\module_entities.h" />
+    <ClInclude Include="components\comp_hitboxes.h" />
     <ClInclude Include="components\comp_altar.h" />
     <ClInclude Include="modules\system\scripting\console.h" />
     <ClInclude Include="modules\system\scripting\module_scripting.h" />

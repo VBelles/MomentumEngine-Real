@@ -26,7 +26,7 @@ protected:
 	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
 public:
-	AirborneActionState(CHandle playerModelHandle);
+	AirborneActionState(CHandle playerModelHandle, std::string animation = "") : IActionState(playerModelHandle, animation) {};
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

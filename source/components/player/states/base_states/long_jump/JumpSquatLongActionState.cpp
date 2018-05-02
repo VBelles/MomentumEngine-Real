@@ -21,6 +21,7 @@ void JumpSquatLongActionState::update (float delta) {
 		*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
+		getPlayerModel()->wannaJump = true;
 	}
 }
 
@@ -41,6 +42,7 @@ void JumpSquatLongActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar

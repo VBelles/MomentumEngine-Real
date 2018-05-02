@@ -1,20 +1,14 @@
 #include "mcv_platform.h"
 #include "ReleasePowerGroundActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_hitbox.h"
+#include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
 #include "components/player/comp_power_gauge.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 
-ReleasePowerGroundActionState::ReleasePowerGroundActionState(CHandle playerModelHandle, CHandle hitboxSmall, CHandle hitboxBig)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	hitboxSmallHandle = hitboxSmall;
-	hitboxBigHandle = hitboxBig;
-	animation = "liberarenergia";
-}
 
-void ReleasePowerGroundActionState::update (float delta) {
+void ReleasePowerGroundActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		if (!isChangingBaseState) {
@@ -24,20 +18,12 @@ void ReleasePowerGroundActionState::update (float delta) {
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
 		//Deshabilitar ambas y ya está
-		CEntity *hitboxEntity = hitboxSmallHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
-		hitboxEntity = hitboxBigHandle;
-		hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
+		getHitboxes()->disable(smallHitbox);
+		getHitboxes()->disable(bigHitbox);
 		phase = AttackPhases::Recovery;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
-		CEntity *hitboxSmallEntity = hitboxSmallHandle;
-		TCompHitbox *hitboxSmall = hitboxSmallEntity->get<TCompHitbox>();
-		CEntity *hitboxBigEntity = hitboxBigHandle;
-		TCompHitbox *hitboxBig = hitboxBigEntity->get<TCompHitbox>();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
 		switch (getPlayerModel()->getPowerGauge()->getPowerLevel()) {
 		case 1:
@@ -45,7 +31,7 @@ void ReleasePowerGroundActionState::update (float delta) {
 			break;
 		case 2:
 			getPlayerModel()->getPowerGauge()->releasePower();
-			hitboxSmall->enable();
+			getHitboxes()->enable(smallHitbox);
 			if (buttonPresses > 1) getPlayerModel()->getPowerGauge()->releasePower();
 			break;
 		case 3:
@@ -53,12 +39,12 @@ void ReleasePowerGroundActionState::update (float delta) {
 			if (buttonPresses > 1) {
 				getPlayerModel()->getPowerGauge()->releasePower();
 				//bola grande
-				hitboxBig->enable();
+				getHitboxes()->enable(bigHitbox);
 				if (buttonPresses > 2) getPlayerModel()->getPowerGauge()->releasePower();
 			}
 			else {
 				//bola pequeña
-				hitboxSmall->enable();
+				getHitboxes()->enable(smallHitbox);
 			}
 			break;
 		}
@@ -81,12 +67,8 @@ void ReleasePowerGroundActionState::onStateEnter(IActionState * lastState) {
 
 void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	CEntity *hitboxEntity = hitboxSmallHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
-	hitboxEntity = hitboxBigHandle;
-	hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
+	getHitboxes()->disable(smallHitbox);
+	getHitboxes()->disable(bigHitbox);
 }
 
 void ReleasePowerGroundActionState::onReleasePowerButton() {
@@ -95,35 +77,26 @@ void ReleasePowerGroundActionState::onReleasePowerButton() {
 	if (phase == AttackPhases::Active) {
 		//si además button presses es == 2 y ssj2, agrandar bola
 		if (getPlayerModel()->getPowerGauge()->getPowerLevel() == 2) {
-			CEntity *hitboxEntity = hitboxSmallHandle;
-			TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-			hitbox->disable();
-			hitboxEntity = hitboxBigHandle;
-			hitbox = hitboxEntity->get<TCompHitbox>();
-			hitbox->enable();
+			getHitboxes()->disable(smallHitbox);
+			getHitboxes()->enable(bigHitbox);
 		}
 		getPlayerModel()->getPowerGauge()->releasePower();
 	}
 	if (phase == AttackPhases::Recovery) getPlayerModel()->getPowerGauge()->releasePower();
 }
 
-void ReleasePowerGroundActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_grab.mesh");
-}
 
 void ReleasePowerGroundActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
-	if (entity != playerEntity) {
-		CEntity *otherEntity = entity;
-		TMsgAttackHit msgAtackHit = {};
-		msgAtackHit.attacker = playerEntity;
-		msgAtackHit.info = {};
-		msgAtackHit.info.givesPower = false;
-		msgAtackHit.info.damage = damage;
-		msgAtackHit.info.stun = new AttackInfo::Stun{
-			stunDuration
-		};
-		msgAtackHit.info.activatesMechanism = true;
-		otherEntity->sendMsg(msgAtackHit);
-	}
+	CEntity *otherEntity = entity;
+	TMsgAttackHit msgAtackHit = {};
+	msgAtackHit.attacker = playerEntity;
+	msgAtackHit.info = {};
+	msgAtackHit.info.givesPower = false;
+	msgAtackHit.info.damage = damage;
+	msgAtackHit.info.stun = new AttackInfo::Stun{
+		stunDuration
+	};
+	msgAtackHit.info.activatesMechanism = true;
+	otherEntity->sendMsg(msgAtackHit);
 }

@@ -15,14 +15,14 @@ class VerticalLauncherActionState : public GroundedActionState {
 	int IASAFrames = 25;//Interruptible As Soon As
 	float interruptibleTime;
 
-	CHandle hitboxHandle;
-	int damage = 0;
+	float damage = 0;
 	AttackPhases phase = AttackPhases::Startup;
-
 	float powerToGet = 2000.f;
 
+	std::string hitbox = "vertical_launcher";
+
 public:
-	VerticalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);
+	VerticalLauncherActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "vertical_launcher"){}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -32,8 +32,6 @@ public:
 	void onStrongAttackButton() override {}
 	void onFastAttackButton() override {}
 	void onReleasePowerButton() override {}
-
 	void onLeavingGround() override;
-	void setPose() override;
 	void onHitboxEnter(CHandle entity) override;
 };

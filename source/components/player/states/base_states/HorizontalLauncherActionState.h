@@ -16,13 +16,15 @@ class HorizontalLauncherActionState : public GroundedActionState {
 	float interruptibleTime;
 
 	CHandle hitboxHandle;
-	int damage = 0;
+	float damage = 0;
 	AttackPhases phase = AttackPhases::Startup;
 
 	float powerToGet = 2000.f;
 
+	std::string hitbox = "horizontal_launcher";
+
 public:
-	HorizontalLauncherActionState(CHandle playerModelHandle, CHandle hitbox);
+	HorizontalLauncherActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "vertical_launcher") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -31,8 +33,6 @@ public:
 	void onStrongAttackButton() override {}
 	void onFastAttackButton() override {}
 	void onReleasePowerButton() override {}
-
 	void onLeavingGround() override;
-	void setPose() override;
 	void onHitboxEnter(CHandle entity) override;
 };

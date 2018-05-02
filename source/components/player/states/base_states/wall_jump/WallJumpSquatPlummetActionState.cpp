@@ -7,7 +7,7 @@
 
 WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "jump_volando";
+	animation = "jump_inicio";
 }
 
 void WallJumpSquatPlummetActionState::update (float delta) {

@@ -4,15 +4,18 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "components/comp_collider.h"
+#include "components/comp_hitboxes.h"
 #include "components/player/comp_player_model.h"
 
-IActionState::IActionState(CHandle playerModelHandle) {
-	this->playerModelHandle = playerModelHandle;
+IActionState::IActionState(CHandle playerModelHandle, std::string animation) 
+	: animation(animation), playerModelHandle(playerModelHandle) {
 	CEntity* playerEntity = playerModelHandle.getOwner();
 	this->colliderHandle = playerEntity->get<TCompCollider>();
 	this->playerTransformHandle = playerEntity->get<TCompTransform>();
 	this->renderHandle = playerEntity->get<TCompRender>();
+	this->hitboxesHandle = playerEntity->get<TCompHitboxes>();
 	velocityVector = getPlayerModel()->getVelocityVector();
+	accelerationVector = getPlayerModel()->getAccelerationVector();
 }
 
 void IActionState::onStateEnter(IActionState* lastState) {
@@ -37,7 +40,6 @@ void IActionState::onDead() {
 void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }
-
 
 TCompCamera* IActionState::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
@@ -122,3 +124,4 @@ TCompPlayerModel* IActionState::getPlayerModel() { return playerModelHandle; }
 TCompTransform* IActionState::getPlayerTransform() { return playerTransformHandle; }
 TCompCollider* IActionState::getCollider() { return colliderHandle; }
 TCompRender* IActionState::getRender() { return renderHandle; }
+TCompHitboxes* IActionState::getHitboxes() { return hitboxesHandle; }

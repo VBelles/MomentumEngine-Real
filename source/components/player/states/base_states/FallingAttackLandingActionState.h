@@ -3,6 +3,8 @@
 #include "LandingActionState.h"
 
 class FallingAttackLandingActionState : public LandingActionState {
+
+private:
 	CTimer hitboxTimer;
 	int impactAttackDurationFrames = 3;
 	float impactAttackDurationTime;
@@ -15,11 +17,12 @@ class FallingAttackLandingActionState : public LandingActionState {
 	float springJumpWindowEndTime;
 	bool hasTriedSpringJump = false;
 
-	CHandle hitboxHandle;
-	int damage = 0;
+	float damage = 0;
+
+	std::string hitbox = "landing_falling_attack";
 
 public:
-	FallingAttackLandingActionState(CHandle playerModelHandle, CHandle hitbox);
+	FallingAttackLandingActionState(CHandle playerModelHandle) : LandingActionState(playerModelHandle, "hard_landing") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
