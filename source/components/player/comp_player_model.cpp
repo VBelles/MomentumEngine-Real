@@ -42,6 +42,7 @@
 #include "states/base_states/IdleTurnAroundActionState.h"
 #include "states/base_states/death/DeathActionState.h"
 #include "states/base_states/death/PitFallingActionState.h"
+#include "states/base_states/knockback/HardKnockbackGroundActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
@@ -63,6 +64,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
 	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgOnContact, onContact);
 }
 
 void TCompPlayerModel::debugInMenu() {
@@ -107,9 +109,9 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 		for (size_t i = 0; i < j_mats.size(); ++i) {
 			std::string name_material = j_mats[i];
 			materials[i] = name_material;
-			dbg("material: %s\n", name_material.c_str());
 		}
 	}
+
 	powerStats[0] = loadPowerStats(j["ssj1"]);
 	powerStats[1] = loadPowerStats(j["ssj2"]);
 	powerStats[2] = loadPowerStats(j["ssj3"]);
@@ -165,8 +167,6 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 
 	TCompRender *render = get<TCompRender>();
 	render->setAllMaterials(materials[msg.powerLvl - 1]);
-
-	Engine.getScripting().throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
 
 void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -230,6 +230,18 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	});
 
 
+	strongAttackHitbox = getEntityByName("Strong attack hitbox");
+	fastAttackHitbox = getEntityByName("Fast attack hitbox");
+	fastAttackAirHitbox = getEntityByName("Fast attack air hitbox");
+	fallingAttackHitbox = getEntityByName("Falling attack hitbox");
+	fallingAttackLandingHitbox = getEntityByName("Falling attack landing hitbox");
+	verticalLauncherHitbox = getEntityByName("Vertical launcher hitbox");
+	horizontalLauncherHitbox = getEntityByName("Horizontal launcher hitbox");
+	grabHitbox = getEntityByName("Grab hitbox");
+	wallJumpPlummetHitbox = getEntityByName("Wall jump plummet hitbox");
+	releasePowerSmallHitbox = getEntityByName("Release power small hitbox");
+	releasePowerBigHitbox = getEntityByName("Release power big hitbox");
+
 	CHandle playerModelHandle = CHandle(this);
 	baseStates = {
 		{ ActionStates::Idle, new IdleActionState(playerModelHandle) },
@@ -244,32 +256,33 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::AirborneLong, new AirborneLongActionState(playerModelHandle) },
 	{ ActionStates::TurnAround, new TurnAroundActionState(playerModelHandle) },
 	{ ActionStates::Landing, new LandingActionState(playerModelHandle) },
-	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(playerModelHandle) },
+	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(playerModelHandle, fallingAttackLandingHitbox) },
 	{ ActionStates::PropelHigh, new PropelHighActionState(playerModelHandle) },
 	{ ActionStates::PropelLong, new PropelLongActionState(playerModelHandle) },
 	{ ActionStates::HuggingWall, new HuggingWallActionState(playerModelHandle) },
 	{ ActionStates::WallJumpSquat, new WallJumpSquatActionState(playerModelHandle) },
 	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(playerModelHandle) },
-	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle) },
-	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle) },
-	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle) },
-	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle) },
-	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle) },
+	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle, fallingAttackHitbox) },
+	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle, strongAttackHitbox) },
+	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle, verticalLauncherHitbox) },
+	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle, horizontalLauncherHitbox) },
+	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
 	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(playerModelHandle) },
 	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(playerModelHandle) },
 	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(playerModelHandle) },
-	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle) },
+	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle, wallJumpPlummetHitbox) },
 	{ ActionStates::Death, new DeathActionState(playerModelHandle) },
 	{ ActionStates::PitFalling, new PitFallingActionState(playerModelHandle) },
+	{ ActionStates::HardKnockbackGround, new HardKnockbackGroundActionState(playerModelHandle) },
 	};
 
 	concurrentStates = {
 		{ ActionStates::Idle, nullptr },
-	{ ActionStates::FastAttack, new FastAttackActionState(playerModelHandle) },
-	{ ActionStates::FastAttackAir, new FastAttackAirActionState(playerModelHandle) },
-	{ ActionStates::GrabHigh, new GrabHighActionState(playerModelHandle) },
-	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle) },
-	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle) },
+	{ ActionStates::FastAttack, new FastAttackActionState(playerModelHandle, fastAttackHitbox) },
+	{ ActionStates::FastAttackAir, new FastAttackAirActionState(playerModelHandle, fastAttackAirHitbox) },
+	{ ActionStates::GrabHigh, new GrabHighActionState(playerModelHandle, grabHitbox) },
+	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle, grabHitbox) },
+	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle, releasePowerSmallHitbox, releasePowerBigHitbox) },
 	};
 
 	baseState = nullptr;
@@ -348,11 +361,10 @@ void TCompPlayerModel::applyGravity(float delta) {
 	else {
 		float deltaMovementDueToGravity;
 		deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-		if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
-			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
+		if (dynamic_cast<GroundedActionState*>(baseState)) {
+			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed / 2 * delta;
 		}
 		else {
-			wannaJump = false;
 			deltaMovement.y += deltaMovementDueToGravity;
 			//clampear distancia vertical
 			deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
@@ -369,7 +381,9 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	getController()->getActor()->getShapes(&tempShape, 1);
 	PxFilterData filterData = tempShape->getSimulationFilterData();
 
-	PxControllerCollisionFlags moveFlags = getController()->move(toPhysx(deltaMovement), 0.f, delta,
+	sweep(deltaMovement);
+
+	PxControllerCollisionFlags moveFlags = getCollider()->controller->move(toPhysx(deltaMovement), 0.f, delta,
 		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
 
 	isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
@@ -401,6 +415,37 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	}
 }
 
+void TCompPlayerModel::sweep(VEC3 deltaMovement) {
+	PxShape* playerShape;
+	getController()->getActor()->getShapes(&playerShape, 1);
+	PxCapsuleGeometry geometry;
+	playerShape->getCapsuleGeometry(geometry);
+
+	PxTransform playerPxTransform = getController()->getActor()->getGlobalPose();
+	VEC3 position = fromPhysx(playerPxTransform.p);
+	VEC3 nextPosition = position + deltaMovement;
+	VEC3 direction = nextPosition - position;
+	direction.Normalize();
+	float distance = VEC3::Distance(nextPosition, position);
+
+	PxSweepBuffer sweepBuffer;
+	PxQueryFilterData fd;
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
+	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+	PxHitFlags hitFlags = PxHitFlag::eMESH_ANY | PxHitFlag::ePOSITION | PxHitFlag::eNORMAL | PxHitFlag::eDISTANCE;
+
+	bool status = EnginePhysics.getScene()->sweep(geometry, playerPxTransform, toPhysx(direction), distance, sweepBuffer,
+		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
+
+	if (status) {
+		baseState->onSweep(sweepBuffer);
+		if (concurrentState != concurrentStates[ActionStates::Idle]) {
+			concurrentState->onSweep(sweepBuffer);
+		}
+	}
+
+
+}
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
@@ -414,6 +459,25 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	}
 }
 
+TCompTransform* TCompPlayerModel::getTransform() {
+	return transformHandle;
+}
+
+TCompCollider* TCompPlayerModel::getCollider() {
+	return colliderHandle;
+}
+
+PxCapsuleController* TCompPlayerModel::getController() {
+	return static_cast<PxCapsuleController*>(getCollider()->controller);
+}
+
+TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
+	return powerGaugeHandle;
+}
+
+TCompSkeleton* TCompPlayerModel::getSkeleton() {
+	return skeletonHandle;
+}
 
 void TCompPlayerModel::setHp(float hp) {
 	hp = clamp(hp, 0.f, maxHp);
@@ -428,15 +492,19 @@ void TCompPlayerModel::setRespawnPosition(VEC3 position) {
 	respawnPosition = position;
 }
 
-void TCompPlayerModel::damage(float damage) {
-	if (!isInvulnerable) {
-		//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
+void TCompPlayerModel::damage(float damage) {//tendría que llegar también si es hard o no
 		setHp(hp - damage);
 		TCompRender* render = get<TCompRender>();
 		render->TurnRed(0.5f);
 		isInvulnerable = true;
 		invulnerableTimer.reset();
-	}
+}
+
+TCompCamera* TCompPlayerModel::getCamera() {
+	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
+	TCompCamera* currentCamera = camera->get<TCompCamera>();
+	assert(currentCamera);
+	return currentCamera;
 }
 
 void TCompPlayerModel::jumpButtonPressed() {
@@ -530,7 +598,9 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 }
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
-	damage(msg.info.damage);
+	if (!isInvulnerable) {
+		baseState->onDamage(msg.info.damage, true);//de moemento pasamos hard
+	}
 }
 
 void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {
@@ -545,43 +615,48 @@ void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
 }
 
 
+
 void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	setBaseState(TCompPlayerModel::ActionStates::PitFalling);
 }
+
 
 void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 	baseState->onShapeHit(msg.hit);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onShapeHit(msg.hit);
 	}
+	//if (!isGrounded && velocityVector.y < 0.f && msg.hit.actor != lastWallEntered) {
+	//	lastWallEntered = msg.hit.actor;
+
+	//	VEC3 hitNormal = VEC3(msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
+
+	//	//dbg("(%f, %f, %f)\n", msg.hit.worldNormal.x, msg.hit.worldNormal.y, msg.hit.worldNormal.z);
+	//	//dbg("%f\n", deg2rad(pitch));
+
+	//	VEC3 worldInput = getCamera()->TransformToWorld(baseState->getMovementInput());
+	//	if (worldInput.Dot(-hitNormal) >= attachWallByInputMinDot || getTransform()->getFront().Dot(-hitNormal) >= attachWallByFrontMinDot) {
+	//		float pitch = asin(-msg.hit.worldNormal.y);
+	//		if (pitch >= huggingWallMinPitch && pitch <= huggingWallMaxPitch) {
+	//			HuggingWallActionState* actionState = getBaseState<HuggingWallActionState*>(ActionStates::HuggingWall);
+	//			actionState->SetHit(msg.hit);
+	//			setBaseState(ActionStates::HuggingWall);
+	//		}
+	//	}
+	//}
 }
 
-TCompTransform* TCompPlayerModel::getTransform() {
-	return transformHandle;
-}
 
-TCompCollider* TCompPlayerModel::getCollider() {
-	return colliderHandle;
-}
+void TCompPlayerModel::onContact(const TMsgOnContact& msg) {
+	//dbg("ON CONTACT\n");
+	if (msg.pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_FOUND)) {
+		//dbg("TOUCH FOUND\n");
+	}
+	if (msg.pair.events.isSet(PxPairFlag::eNOTIFY_TOUCH_LOST)) {
+		//dbg("TOUCH LOST\n");
+	}
 
-PxCapsuleController* TCompPlayerModel::getController() {
-	return static_cast<PxCapsuleController*>(getCollider()->controller);
-}
-
-TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
-	return powerGaugeHandle;
-}
-
-TCompSkeleton* TCompPlayerModel::getSkeleton() {
-	return skeletonHandle;
-}
-
-TCompCamera* TCompPlayerModel::getCamera() {
-	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
-	TCompCamera* currentCamera = camera->get<TCompCamera>();
-	assert(currentCamera);
-	return currentCamera;
 }
 
 TCompPlayerModel::~TCompPlayerModel() {

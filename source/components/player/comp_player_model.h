@@ -32,7 +32,8 @@ public:
 		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
 		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
 		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
-		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling
+		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling,
+		HardKnockbackGround
 	};
 
 private:
