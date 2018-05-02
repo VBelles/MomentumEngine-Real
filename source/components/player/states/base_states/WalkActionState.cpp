@@ -6,11 +6,6 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
-WalkActionState::WalkActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "run";
-}
-
 void WalkActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
@@ -83,6 +78,3 @@ void WalkActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->getSkeleton()->setTimeFactor(1);
 }
 
-void WalkActionState::setPose() {
-	 getRender()->setMesh("data/meshes/pose_run.mesh");
-}

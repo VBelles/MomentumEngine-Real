@@ -5,16 +5,11 @@
 #include "components/player/comp_player_model.h"
 #include "skeleton/comp_skeleton.h"
 
-JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "longJump_inicio";
-}
-
-void JumpSquatLongActionState::update (float delta) {
+void JumpSquatLongActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
-	
+
 	if (timer.elapsed() >= squatTime) {
 		//saltar
 		getPlayerModel()->isAttachedToPlatform = false;
@@ -50,6 +45,3 @@ void JumpSquatLongActionState::onLeavingGround() {
 	}
 }
 
-void JumpSquatLongActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_jump_squat.mesh");
-}

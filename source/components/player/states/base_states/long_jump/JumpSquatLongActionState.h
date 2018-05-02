@@ -8,7 +8,7 @@ private:
 	int squatFrames = 8;
 	float squatTime;
 public:
-	JumpSquatLongActionState(CHandle playerModelHandle);
+	JumpSquatLongActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "longJump_inicio") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -17,7 +17,5 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
-	
 	virtual void onLeavingGround();
-	void setPose() override;
 };

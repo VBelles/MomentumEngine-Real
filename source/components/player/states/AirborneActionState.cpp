@@ -119,7 +119,25 @@ void AirborneActionState::onLanding() {
 }
 
 void AirborneActionState::onShapeHit(const PxControllerShapeHit& hit) {
-	
+
+	if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hit.worldNormal) < 0.8f
+		|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
+
+		getPlayerModel()->lastWallEntered = hit.actor;
+
+		VEC3 hitNormal = VEC3(hit.worldNormal.x, hit.worldNormal.y, hit.worldNormal.z);
+
+		VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
+		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
+			|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
+			float pitch = asin(-hit.worldNormal.y);
+			if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
+				HuggingWallActionState* actionState = getPlayerModel()->getBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
+				actionState->setHuggingWallNormal(hitNormal);
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HuggingWall);
+			}
+		}
+	}
 }
 
 void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {

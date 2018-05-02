@@ -36,8 +36,8 @@ protected:
 	TCompTransform* getPlayerTransform();
 	TCompCollider* getCollider();
 	TCompRender* getRender();
-	TCompCamera* getCamera();
 	TCompHitboxes* getHitboxes();
+	TCompCamera* getCamera();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
@@ -57,17 +57,14 @@ protected:
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void clampHorizontalVelocity(float maxHorizontalSpeed);
 
-	
-
 public:
-std::string animation;
+	std::string animation;
+
 	IActionState(CHandle playerModelHandle, std::string animation = "");
 
 	virtual void update(float delta) = 0;
 	virtual void onStateEnter(IActionState* lastState);
 	virtual void onStateExit(IActionState* nextState);
-
-	virtual void setPose();
 
 	virtual void setMovementInput(VEC2 input);
 

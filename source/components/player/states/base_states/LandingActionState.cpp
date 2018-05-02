@@ -7,7 +7,6 @@
 #include "skeleton/comp_skeleton.h"
 
 
-
 void LandingActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
@@ -73,8 +72,4 @@ void LandingActionState::SetFinalRotationAndVelocity() {
 		velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed;
 		velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed;
 	}
-}
-
-void LandingActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_landing.mesh");
 }

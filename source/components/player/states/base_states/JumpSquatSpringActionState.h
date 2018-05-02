@@ -9,7 +9,7 @@ private:
 	float squatTime;
 
 public:
-	JumpSquatSpringActionState(CHandle playerModelHandle);
+	JumpSquatSpringActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "jump_inicio") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -18,7 +18,5 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
-
 	virtual void onLeavingGround() override;
-	void setPose() override;
 };
