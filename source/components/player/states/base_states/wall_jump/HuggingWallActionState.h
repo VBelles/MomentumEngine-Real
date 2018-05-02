@@ -25,6 +25,9 @@ private:
 	VEC3 wallDirection;//Front or back
 
 	VEC3 huggingWallNormal;
+
+	std::string animationClimbing;
+
 public:
 	HuggingWallActionState(CHandle playerModelHandle);
 	void update(float delta) override;
