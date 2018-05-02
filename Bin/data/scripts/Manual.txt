@@ -34,6 +34,8 @@ Funciones:
 	spawnBall()
 	spawnMedusaAt(float x, float y, float z)
 	spawnMedusa()
+	stopEntities()
+	resumeEntities()
 
 Constantes:
 	PLAYER_NAME
@@ -43,8 +45,8 @@ Constantes:
 	BALL_PREFAB
 	MEDUSA_PREFAB
 	CHRYSALIS_PREFAB
-	INTERPOLATOR_LINEAL;
-	INTERPOLATOR_CUBIC_IN;
+	INTERPOLATOR_LINEAL
+	INTERPOLATOR_CUBIC_IN
 	INTERPOLATOR_CUBIC_OUT
 	INTERPOLATOR_CUBIC_IN_OUT
 	INTERPOLATOR_EXPO_IN
