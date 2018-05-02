@@ -22,38 +22,39 @@ CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
 
 struct TVtxPosClr {
-    VEC3 pos;
-    VEC4 color;
-    TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
+	VEC3 pos;
+	VEC4 color;
+	TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
 };
 
 // ---------------------------------------------------
 CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
-    CRenderMesh* mesh = new CRenderMesh;
+	CRenderMesh* mesh = new CRenderMesh;
 
-    std::vector<TVtxPosClr> vtxs;
-    VEC4 clr(1.f, 1.f, 1.f, 1.0f);
-    for (int i = 0; i < nsteps; ++i) {
-        vtxs.emplace_back(curve.evaluateAsCatmull((float)i / (float)nsteps), clr);
-        vtxs.emplace_back(curve.evaluateAsCatmull((float)(i + 1) / (float)nsteps), clr);
-    }
+	std::vector<TVtxPosClr> vtxs;
+	VEC4 clr(1.f, 1.f, 1.f, 1.0f);
+	for (int i = 0; i < nsteps; ++i) {
+		vtxs.emplace_back(curve.evaluateAsCatmull((float)i / (float)nsteps), clr);
+		vtxs.emplace_back(curve.evaluateAsCatmull((float)(i + 1) / (float)nsteps), clr);
+	}
 
-    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::LINE_LIST))
-        return nullptr;
-    return mesh;
+	if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::LINE_LIST))
+		return nullptr;
+	return mesh;
 }
 
 bool CModuleTestAxis::start() {
-	((CModuleEntities*)Engine.getModules().getModule("entities"))->reset();
-    json jboot = loadJson("data/boot.json");
+	Engine.getEntities().reset();
+	Engine.getScripting().reset();
+	json jboot = loadJson("data/boot.json");
 
-    // Auto load some scenes
-    std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
-    for (auto& scene_name : scenes_to_auto_load) {
-        dbg("Autoloading scene %s\n", scene_name.c_str());
-        TEntityParseContext ctx;
-        parseScene(scene_name, ctx);
-    }
+	// Auto load some scenes
+	std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
+	for (auto& scene_name : scenes_to_auto_load) {
+		dbg("Autoloading scene %s\n", scene_name.c_str());
+		TEntityParseContext ctx;
+		parseScene(scene_name, ctx);
+	}
 
 	//const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
 	//registerMesh(createCurveMesh(*curve, 100), "curve.mesh");
@@ -70,12 +71,15 @@ bool CModuleTestAxis::start() {
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
 
-    return true;
+	Engine.getScripting().throwEvent(onLevelStart, "1");
+
+	return true;
 }
 
 bool CModuleTestAxis::stop() {
-	((CModuleEntities*)Engine.getModules().getModule("entities"))->reset();
-    return true;
+	Engine.getScripting().reset();
+	Engine.getEntities().reset();
+	return true;
 }
 
 void CModuleTestAxis::update(float delta) {
@@ -100,27 +104,35 @@ void CModuleTestAxis::update(float delta) {
     float ratio = (pos.x + 10.f) / 20.f;
     c_curve->setRatio(ratio);*/
 
+	/*static float time = 0.f;
+	time += delta;
+	VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
+	CEntity* e_curve = getEntityByName("test_camera_curve");
+	TCompCurve* c_curve = e_curve->get<TCompCurve>();
+	float ratio = (pos.x + 10.f) / 20.f;
+	c_curve->setRatio(ratio);*/
+
 	/*//DEBUG:
 	CEntity* e_curve = getEntityByName("test_camera_curve");
 	TCompTransform* t_curve = e_curve->get<TCompTransform>();
 	pos = t_curve->getPosition();
 	dbg("pos: x: %f y: %f z: %f\n", pos.x, pos.y, pos.z);*/
-	
+
 }
 
 void CModuleTestAxis::render() {
-    // Find the entity with name 'game_camera'
+	// Find the entity with name 'game_camera'
 	CHandle h_e_camera = getEntityByName(GAME_CAMERA);
-    if (h_e_camera.isValid()) {
-        CEntity* e_camera = h_e_camera;
-        TCompCamera* c_camera = e_camera->get<TCompCamera>();
-        assert(c_camera);
-        activateCamera(*c_camera, Render.width, Render.height);
-    }
-    else {
-        activateCamera(camera, Render.width, Render.height);
-    }
+	if (h_e_camera.isValid()) {
+		CEntity* e_camera = h_e_camera;
+		TCompCamera* c_camera = e_camera->get<TCompCamera>();
+		assert(c_camera);
+		activateCamera(*c_camera, Render.width, Render.height);
+	}
+	else {
+		activateCamera(camera, Render.width, Render.height);
+	}
 
-    auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
-    solid->activate();
+	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
+	solid->activate();
 }

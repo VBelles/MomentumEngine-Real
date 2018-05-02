@@ -36,7 +36,7 @@ void TCompMixCameraTrigger::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	CEntity* entity = msg.h_other_entity;	
-	if (strcmp(PLAYER_NAME, entity->getName()) == 0) {
+	if (PLAYER_NAME == entity->getName()) {
 		CHandle h_camera = getEntityByName(cameraToMix);
 		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 		playerCameraEntity->sendMsg(TMsgLockCameraInput{ true });
@@ -83,7 +83,7 @@ void TCompMixCameraTrigger::onTriggerExit(const TMsgTriggerExit & msg) {
 
 	CEntity* entity = msg.h_other_entity;
 	std::string playerName = PLAYER_NAME;
-	if (strcmp(PLAYER_NAME, entity->getName()) == 0) {
+	if (PLAYER_NAME == entity->getName()) {
 		//Paramos CURVE_INTERPOLATION_CAMERA
 		CEntity* interpolationCameraEntity = getEntityByName(CURVE_INTERPOLATION_CAMERA);
 		TCompCameraCurveInterpolation* interpolationCameraComp = interpolationCameraEntity->get<TCompCameraCurveInterpolation>();
