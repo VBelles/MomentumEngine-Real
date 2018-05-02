@@ -7,6 +7,8 @@ Eventos:
 	onTriggerEnter_triggerName(entityName)
 	onTriggerExit_triggerName(entityName)
 	onAltarDestroyed_altarName()
+	onMechanismSystemActivated_mechanismSystemName()
+	onMechanismSystemDeactivated_mechanisSystemmName()
 
 Funciones:
 	callDelayed(float delay, string funcion, string params)

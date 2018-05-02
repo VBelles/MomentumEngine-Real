@@ -36,12 +36,12 @@ void TCompMechanismSystem::onAllScenesCreated(const TMsgAllScenesCreated & msg) 
 
 void TCompMechanismSystem::update(float dt) {
 	//Comprobar que todos están activados
-	if (!isActivated) {
-		if (numberOfMechanismsActivated == numberOfMechanisms) {
-			EngineScripting.doFile(activationEffectFile);
-			isActivated = true;
-		}
-	}
+	//if (!isActivated) {
+	//	if (numberOfMechanismsActivated == numberOfMechanisms) {
+	//		EngineScripting.doFile(activationEffectFile);
+	//		isActivated = true;
+	//	}
+	//}
 }
 
 void TCompMechanismSystem::onActivate(const TMsgMechanismActivated & msg) {
@@ -50,11 +50,17 @@ void TCompMechanismSystem::onActivate(const TMsgMechanismActivated & msg) {
 		numberOfMechanismsActivated = numberOfMechanisms;
 		dbg("Number of mechanisms activated more than max!! Something happens...\n");
 	}
+	else if (numberOfMechanismsActivated == numberOfMechanisms) {
+		Engine.getScripting().throwEvent(onMechanismSystemActivated, ((CEntity*)CHandle(this).getOwner())->getName());
+	}
 }
 
 void TCompMechanismSystem::onDeactivate(const TMsgMechanismDeactivated & msg) {
 	numberOfMechanismsActivated--;
-	if (numberOfMechanismsActivated < 0) {
+	if (numberOfMechanismsActivated == (numberOfMechanisms - 1)) {
+		Engine.getScripting().throwEvent(onMechanismSystemDeactivated, ((CEntity*)CHandle(this).getOwner())->getName());
+	}
+	else if (numberOfMechanismsActivated < 0) {
 		numberOfMechanismsActivated = 0;
 		dbg("Number of mechanisms activated fewer than 0!! Something happens...\n");
 	}
