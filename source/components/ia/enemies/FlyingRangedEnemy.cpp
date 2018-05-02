@@ -114,6 +114,8 @@ int CBehaviorTreeFlyingRangedEnemy::onDeath(float delta) {
 	TCompRespawner* spawner = get<TCompRespawner>();
 	spawner->onDead();
 
+	Engine.getScripting().throwEvent(onEnemyKilled, ((CEntity*)CHandle(this).getOwner())->getName());
+
 	return Leave;
 }
 

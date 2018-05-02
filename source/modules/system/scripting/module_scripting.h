@@ -3,9 +3,7 @@
 enum LuaCall {
 	onGameStart,
 	onPowerLevelChange, //param powerLevel
-	onItemDestroyed, //param itemName
 	onEnemyKilled, //param enemyName
-	onItemCollected, //param itemName
 	onPlayerKilled,
 	onLevelStart, //param levelId; la call sera onLevelStart_levelId()
 	onTriggerEnter, //param triggerName, entityName; la call sera onTriggerEnter_triggerName(entityName)
