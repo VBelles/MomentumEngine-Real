@@ -55,10 +55,15 @@ private:
 
 	float hp = 8;
 	float maxHp = 8;
+
+	bool isInvulnerable = false;
+	CTimer invulnerableTimer;
+	float invulnerableTime = 1.f;
+
+	//TODO Esto aquí es criminal, milestone 1 ftw 
 	int chrysalis = 0;
 	int chrysalisTarget = 5;
 	bool showVictoryDialog = false;
-
 	CTimer dialogTimer;
 	float dialogTime = 15.0f;
 

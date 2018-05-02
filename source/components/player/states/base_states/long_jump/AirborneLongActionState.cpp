@@ -7,7 +7,7 @@
 
 AirborneLongActionState::AirborneLongActionState(CHandle playerModelHandle)
 	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "jump_volando";
+	animation = "longJump_volando";
 }
 
 void AirborneLongActionState::update (float delta) {

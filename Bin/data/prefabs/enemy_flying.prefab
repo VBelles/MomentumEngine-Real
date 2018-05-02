@@ -20,7 +20,7 @@
 				"baseMultiplier": 1.0
 			},
 			"behaviorTree_flying_ranged_enemy": {
-				"attackSpawnOffset": "0.0 0.1 0.5",
+				"attackSpawnOffset": "0.0 2.3 0.0",
 				"attackTargetOffset": "0.0 0.76 0.0"
 			},
 			"collider": {

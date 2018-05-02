@@ -8,18 +8,12 @@
 
 ScriptingEntities* ScriptingEntities::instance = nullptr;
 
-ScriptingEntities::ScriptingEntities() {
-	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
-	assert(playerEntity);
-	playerTransformHandle = playerEntity->get<TCompTransform>();
-}
-
-ScriptingEntities::~ScriptingEntities() {
-}
+ScriptingEntities::~ScriptingEntities() {}
 
 
 void ScriptingEntities::bind(SLB::Manager* manager) {
 	assert(instance);
+	manager->set("spawnEntityAt", SLB::FuncCall::create(ScriptingEntities::spawnEntityAt));
 	manager->set("spawnGolemAt", SLB::FuncCall::create(ScriptingEntities::spawnGolemAt));
 	manager->set("spawnGolem", SLB::FuncCall::create(ScriptingEntities::spawnGolem));
 	manager->set("spawnBallAt", SLB::FuncCall::create(ScriptingEntities::spawnBallAt));
@@ -45,7 +39,7 @@ std::string ScriptingEntities::spawnEntityAt(std::string prefabFilename, float x
 }
 
 std::string ScriptingEntities::spawnGolemAt(float x, float y, float z) {
-	return spawnEntityAt("data/prefabs/enemy_melee.prefab", x, y, z);
+	return spawnEntityAt(GOLEM_PREFAB, x, y, z);
 }
 
 std::string ScriptingEntities::spawnGolem() {
@@ -54,7 +48,7 @@ std::string ScriptingEntities::spawnGolem() {
 }
 
 std::string ScriptingEntities::spawnBallAt(float x, float y, float z) {
-	return spawnEntityAt("data/prefabs/enemy_ball.prefab", x, y, z);
+	return spawnEntityAt(BALL_PREFAB, x, y, z);
 }
 
 std::string ScriptingEntities::spawnBall() {
@@ -63,7 +57,7 @@ std::string ScriptingEntities::spawnBall() {
 }
 
 std::string ScriptingEntities::spawnMedusaAt(float x, float y, float z) {
-	return spawnEntityAt("data/prefabs/enemy_flying.prefab", x, y, z);
+	return spawnEntityAt(MEDUSA_PREFAB, x, y, z);
 }
 
 std::string ScriptingEntities::spawnMedusa() {
@@ -73,9 +67,7 @@ std::string ScriptingEntities::spawnMedusa() {
 }
 
 TCompTransform* ScriptingEntities::getPlayerTransform() {
-	return playerTransformHandle;
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	assert(playerEntity);
+	return playerEntity->get<TCompTransform>();
 }
-
-
-
-

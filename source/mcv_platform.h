@@ -41,6 +41,8 @@
 #include "utils/json.hpp"
 using json = nlohmann::json;
 
+#include "windows/windowsUtils.h"
+
 #include "profiling/profiling.h"
 #include "geometry/geometry.h"
 #include "render/render.h"

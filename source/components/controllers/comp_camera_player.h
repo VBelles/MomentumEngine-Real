@@ -31,6 +31,8 @@ private:
 
 	VEC2 input;
 	
+	float offset = 1.f;
+
 	float currentDistanceToTarget = 0.f;
 	VEC2 currentCenteringCameraSpeed;
 

@@ -1,10 +1,13 @@
 {
 	"name":"medusa",
 	"anims" : [
-		{ "name" : "medusa_idle_con_texturas_50%_23_04_2018"},
-		{ "name" : "medusa_idle_con_texturas_50%_idle_pre_attack_23_04_2018"}
+		{ "name" : "medusa_idle"},
+		{ "name" : "medusa_ataque_nuevo"}
 	],
   "bone_ids_to_debug" : [
     3
-  ]
+  ],
+	"meshes" : [
+
+	]
 }

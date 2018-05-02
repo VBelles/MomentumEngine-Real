@@ -7,7 +7,7 @@
 
 JumpSquatLongActionState::JumpSquatLongActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "jump_inicio";
+	animation = "longJump_inicio";
 }
 
 void JumpSquatLongActionState::update (float delta) {
