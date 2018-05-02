@@ -4,10 +4,6 @@
 #include "components/comp_render.h"
 #include "skeleton/comp_skeleton.h"
 
-JumpSquatSpringActionState::JumpSquatSpringActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "jump_inicio";
-}
 
 void JumpSquatSpringActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
@@ -19,6 +15,7 @@ void JumpSquatSpringActionState::update (float delta) {
 		velocityVector->y = currentPowerStats->springJumpVelocity;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;
+		getPlayerModel()->wannaJump = true;
 	}
 }
 
@@ -45,6 +42,3 @@ void JumpSquatSpringActionState::onLeavingGround() {
 	}
 }
 
-void JumpSquatSpringActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_jump_squat.mesh");
-}

@@ -114,6 +114,8 @@ int CBehaviorTreeFlyingRangedEnemy::onDeath(float delta) {
 	TCompRespawner* spawner = get<TCompRespawner>();
 	spawner->onDead();
 
+	Engine.getScripting().throwEvent(onEnemyKilled, ((CEntity*)CHandle(this).getOwner())->getName());
+
 	return Leave;
 }
 
@@ -314,7 +316,7 @@ int CBehaviorTreeFlyingRangedEnemy::onAttack(float delta) {
 int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(1))) {
-		if (!hasAttacked && (attackTimer.elapsed() > (getSkeleton()->getAnimationDuration(1) / 2))) {
+		if (!hasAttacked && (attackTimer.elapsed() >= (getSkeleton()->getAnimationDuration(1) * (180.f / 280.f)))) {
 			hasAttacked = true;
 			TEntityParseContext ctx;
 			ctx.root_transform.setPosition(getTransform()->getPosition());

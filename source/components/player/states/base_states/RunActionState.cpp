@@ -6,10 +6,6 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
-RunActionState::RunActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "run";
-}
 
 void RunActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
@@ -76,8 +72,4 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 
 void RunActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-}
-
-void RunActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_run.mesh");
 }

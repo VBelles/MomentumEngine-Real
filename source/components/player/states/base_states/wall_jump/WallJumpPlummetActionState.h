@@ -9,11 +9,14 @@ protected:
 	float deceleration = 0.5f;
 
 	CHandle hitboxHandle;
-	int damage = 3;
+	float damage = 3;
 	float powerToGet = 4000.f;
 
+	std::string hitbox;
+
 public:
-	WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox);
+	WallJumpPlummetActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_volando"),
+		hitbox("plummet_attack") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -22,8 +25,6 @@ public:
 	void onFastAttackButton() override;
 	void onStrongAttackButton() override;
 	//void onReleasePowerButton() override {}
-
-	void setPose() override;
-	virtual void onLanding() override;
+	void onLanding() override;
 	void onHitboxEnter(CHandle entity) override;
 };

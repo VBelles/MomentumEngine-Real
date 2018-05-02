@@ -34,9 +34,14 @@
 //Physx
 #include "PxPhysicsAPI.h"
 
+//Cal3D
+#include <Cal3D/cal3d.h>
+
 // Engine
 #include "utils/json.hpp"
 using json = nlohmann::json;
+
+#include "windows/windowsUtils.h"
 
 #include "profiling/profiling.h"
 #include "geometry/geometry.h"

@@ -5,10 +5,6 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
-WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(CHandle playerModelHandle)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "jump_volando";
-}
 
 void WallJumpSquatPlummetActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
@@ -35,8 +31,4 @@ void WallJumpSquatPlummetActionState::onStateEnter(IActionState * lastState) {
 
 void WallJumpSquatPlummetActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-}
-
-void WallJumpSquatPlummetActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_propel.mesh");
 }

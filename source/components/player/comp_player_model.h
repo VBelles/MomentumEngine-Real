@@ -14,7 +14,6 @@ class PlayerFilterCallback;
 struct TMsgEntitiesGroupCreated;
 struct TMsgCollect;
 struct TMsgOnShapeHit;
-struct TMsgOnContact;
 struct TMsgPowerLvlChange;
 struct TMsgAttackHit;
 struct TMsgHitboxEnter;
@@ -24,8 +23,6 @@ struct TMsgOutOfBounds;
 
 
 class TCompPlayerModel : public TCompBase {
-	DECL_SIBLING_ACCESS();
-
 public:
 	enum ActionStates {
 		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
@@ -42,19 +39,6 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
-
-	CHandle strongAttackHitbox;
-	CHandle fastAttackHitbox;
-	CHandle fastAttackAirHitbox;
-	CHandle fallingAttackHitbox;
-	CHandle fallingAttackLandingHitbox;
-	CHandle verticalLauncherHitbox;
-	CHandle horizontalLauncherHitbox;
-	CHandle grabHitbox;
-	CHandle wallJumpPlummetHitbox;
-	CHandle releasePowerSmallHitbox;
-	CHandle releasePowerBigHitbox;
-
 	CHandle skeletonHandle;
 
 	VEC3 respawnPosition;
@@ -93,7 +77,6 @@ private:
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onCollect(const TMsgCollect& msg);
 	void onShapeHit(const TMsgOnShapeHit & msg);
-	void onContact(const TMsgOnContact & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onHitboxEnter(const TMsgHitboxEnter& msg);
@@ -107,6 +90,7 @@ private:
 	void applyGravity(float delta);
 
 public:
+	DECL_SIBLING_ACCESS();
 	~TCompPlayerModel();
 	IActionState* baseState;
 	IActionState* concurrentState;
@@ -116,6 +100,7 @@ public:
 	bool lockTurning = false;
 	bool lockConcurrentState = false;
 
+	bool wannaJump = false;
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;
 	bool isAttachedToPlatform = false;

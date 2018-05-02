@@ -11,8 +11,9 @@ private:
 	bool isShortHop = false;
 
 	float enteringVelocity = 0.f;
+
 public:
-	JumpSquatActionState(CHandle playerModelHandle);
+	JumpSquatActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "jump_inicio") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -22,7 +23,5 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 	void onJumpHighButtonReleased() override;
-
 	virtual void onLeavingGround() override;
-	void setPose() override;
 };

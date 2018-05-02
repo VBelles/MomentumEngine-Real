@@ -14,14 +14,16 @@ class FastAttackAirActionState : public AirborneActionState {
 	int IASAFrames = 28;//Interruptible As Soon As
 	float interruptibleTime;
 
-	CHandle hitboxHandle;
 	float damage = 1.f;
 	AttackPhases phase = AttackPhases::Launch;
 
 	float powerToGet = 1000.f;
 
+	std::string hitbox;
+
 public:
-	FastAttackAirActionState(CHandle playerModelHandle, CHandle hitbox);
+	FastAttackAirActionState(CHandle playerModelHandle)
+		: AirborneActionState(playerModelHandle, "melee"), hitbox("fast_attack") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -33,6 +35,5 @@ public:
 	void onReleasePowerButton() override {}
 	void onFastAttackButtonReleased() override {} //posible comportamiento extra
 
-	void setPose() override;
 	void onHitboxEnter(CHandle entity) override;
 };

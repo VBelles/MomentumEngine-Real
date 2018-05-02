@@ -22,6 +22,9 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color = VEC4(1, 
 void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color);
 void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture);
 void renderLine(VEC3 src, VEC3 dst, VEC4 color);
+void renderWiredCube(CTransform* transform, const VEC3 halfExent, VEC4 color);
+void renderCircle(CTransform* transform, float radius, VEC4 color);
+void renderSphere(CTransform* transform, float radius, VEC4 color);
 
 // Helper to create a depth stencil, returning all the dx objects
 bool createDepthStencil(

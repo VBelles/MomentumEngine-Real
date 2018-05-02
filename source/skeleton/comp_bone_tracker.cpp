@@ -2,7 +2,6 @@
 #include "comp_bone_tracker.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
-#include <Cal3D/cal3d.h>
 #include "cal3d2engine.h"
 #include "entity/entity_parser.h"
 

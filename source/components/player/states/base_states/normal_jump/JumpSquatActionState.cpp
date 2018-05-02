@@ -5,11 +5,6 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
-JumpSquatActionState::JumpSquatActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "jump_inicio";
-}
-
 void JumpSquatActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
@@ -20,6 +15,7 @@ void JumpSquatActionState::update (float delta) {
 		velocityVector->y = isShortHop ? currentPowerStats->shortHopVelocity : currentPowerStats->jumpVelocityVector.y;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;
+		getPlayerModel()->wannaJump = true;
 	}
 	else {
 		bool hasInput = movementInput != VEC2::Zero;
@@ -48,14 +44,12 @@ void JumpSquatActionState::onJumpHighButtonReleased() {
 	isShortHop = true;
 }
 
-void JumpSquatActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_jump_squat.mesh");
-}
 
 void JumpSquatActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar

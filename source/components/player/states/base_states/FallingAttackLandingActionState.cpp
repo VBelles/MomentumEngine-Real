@@ -1,23 +1,16 @@
 #include "mcv_platform.h"
 #include "FallingAttackLandingActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_hitbox.h"
+#include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 
-FallingAttackLandingActionState::FallingAttackLandingActionState(CHandle playerModelHandle, CHandle hitbox)
-	: LandingActionState::LandingActionState(playerModelHandle) {
-	hitboxHandle = hitbox;
-	animation = "hard_landing";
-}
 
 void FallingAttackLandingActionState::update(float delta) {
 	LandingActionState::update(delta);
 	if (hitboxTimer.elapsed() >= impactAttackDurationTime) {
-		CEntity *hitboxEntity = hitboxHandle;
-		TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-		hitbox->disable();
+		getHitboxes()->disable(hitbox);
 	}
 }
 
@@ -29,9 +22,7 @@ void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 	springJumpWindowEndTime = springJumpWindowEndFrame * (1.f / 60);
 	hasTriedSpringJump = false;
 	movementInput = VEC2::Zero;
-	CEntity *hitboxEntity = hitboxHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->enable();
+	getHitboxes()->enable(hitbox);
 	hitboxTimer.reset();
 	springJumpTimer.reset();
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
@@ -39,10 +30,7 @@ void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 
 void FallingAttackLandingActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	//dbg("Saliendo de falling attack landing\n");
-	CEntity *hitboxEntity = hitboxHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
+	getHitboxes()->disable(hitbox);
 }
 
 void FallingAttackLandingActionState::onJumpHighButton() {
@@ -54,16 +42,11 @@ void FallingAttackLandingActionState::onJumpHighButton() {
 
 void FallingAttackLandingActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
-	if (entity != playerEntity) {
-		CEntity *otherEntity = entity;
-		TMsgAttackHit msgAtackHit = {};
-		msgAtackHit.attacker = playerEntity;
-		msgAtackHit.info = {};
-		msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
-		otherEntity->sendMsg(msgAtackHit);
-	}
+	CEntity *otherEntity = entity;
+	TMsgAttackHit msgAtackHit = {};
+	msgAtackHit.attacker = playerEntity;
+	msgAtackHit.info = {};
+	msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
+	otherEntity->sendMsg(msgAtackHit);
 }
 
-void FallingAttackLandingActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_landing.mesh");
-}

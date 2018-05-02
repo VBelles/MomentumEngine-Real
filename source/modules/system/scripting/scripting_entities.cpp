@@ -8,9 +8,7 @@
 
 ScriptingEntities* ScriptingEntities::instance = nullptr;
 
-ScriptingEntities::~ScriptingEntities() {
-	destroy();
-}
+ScriptingEntities::~ScriptingEntities() {}
 
 
 void ScriptingEntities::bind(SLB::Manager* manager) {

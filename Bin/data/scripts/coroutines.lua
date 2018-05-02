@@ -1,45 +1,38 @@
-all_co = {}
+__all_co = {}
 
-function startCoroutine(name, func, ...)
+function __startCoroutine(name, func, ...)
 	print("New coroutine "..name)
 	local co = coroutine.create(func)
 	coroutine.resume(co, ...)
 
-	all_co[name] = co
+	__all_co[name] = co
 end
 
-function updateCoroutines(elapsed)
-	local name, co = next(all_co)
+function __updateCoroutines(elapsed)
+	local name, co = next(__all_co)
 	while name ~= nil do
 		local ok = coroutine.resume(co, elapsed)
 		if ok == false then
-			all_co[name] = nil
+			__all_co[name] = nil
 		end
 
-		name, co = next(all_co, name)
+		name, co = next(__all_co, name)
 	end
 end
 
-function clearCoroutines()
-	for k,v in pairs(all_co) do
-		all_co[k] = nil
+function __clearCoroutines()
+	for k,v in pairs(__all_co) do
+		__all_co[k] = nil
 	end
-	--[[
-	local name, co = next(all_co)
-	while name ~= nil do
-		co = nil
-		name, co = next(all_co, name)
-	end
-	--]]
 end
 
-function dumpCoroutines()
+function __dumpCoroutines()
 	print( "Dumping coroutines" )
-	local name, co = next(all_co)
+	local name, co = next(__all_co)
 	while name ~= nil do
 		local status = coroutine.status(co)
 		print("  " .. name .. ": " .. status)
-		name, co = next(all_co, name)
+		name, co = next(__all_co, name)
 	end
 	print( "Current: " .. tostring(coroutine.running()) )
 end

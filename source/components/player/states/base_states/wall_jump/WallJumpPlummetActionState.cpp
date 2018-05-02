@@ -1,18 +1,12 @@
 #include "mcv_platform.h"
 #include "WallJumpPlummetActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_hitbox.h"
+#include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 
-WallJumpPlummetActionState::WallJumpPlummetActionState(CHandle playerModelHandle, CHandle hitbox)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	hitboxHandle = hitbox;
-	animation = "jump_volando";
-}
-
-void WallJumpPlummetActionState::update (float delta) {
+void WallJumpPlummetActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 
 	VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
@@ -37,10 +31,7 @@ void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
 	//Se calcula cada vez que se entra, ya que depende del poder
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	endingTime = currentPowerStats->plummetTime;
-
-	CEntity *hitboxEntity = hitboxHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->enable();
+	getHitboxes()->enable(hitbox);
 	timer.reset();
 	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
@@ -49,9 +40,8 @@ void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	clampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
-	CEntity *hitboxEntity = hitboxHandle;
-	TCompHitbox *hitbox = hitboxEntity->get<TCompHitbox>();
-	hitbox->disable();
+	getHitboxes()->disable(hitbox);
+
 }
 
 void WallJumpPlummetActionState::onJumpHighButton() {
@@ -74,28 +64,19 @@ void WallJumpPlummetActionState::onStrongAttackButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 }
 
-void WallJumpPlummetActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_long_jump.mesh");
-}
-
 void WallJumpPlummetActionState::onLanding() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
 }
 
 void WallJumpPlummetActionState::onHitboxEnter(CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
-	if (entity != playerEntity) {
-		CEntity *otherEntity = entity;
+	CEntity *otherEntity = entity;
+	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
+	TMsgAttackHit msgAtackHit = {};
+	msgAtackHit.attacker = playerEntity;
+	msgAtackHit.info = {};
+	msgAtackHit.info.givesPower = true;
+	msgAtackHit.info.propel = new AttackInfo::Propel{ *velocityVector };
+	otherEntity->sendMsg(msgAtackHit);
 
-		otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-
-		TMsgAttackHit msgAtackHit = {};
-		msgAtackHit.attacker = playerEntity;
-		msgAtackHit.info = {};
-		msgAtackHit.info.givesPower = true;
-		msgAtackHit.info.propel = new AttackInfo::Propel{
-			*velocityVector
-		};
-		otherEntity->sendMsg(msgAtackHit);
-	}
 }

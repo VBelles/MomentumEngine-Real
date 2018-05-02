@@ -106,6 +106,7 @@
     <ClCompile Include="components\comp_give_power.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
+    <ClCompile Include="components\comp_hitboxes.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
     <ClCompile Include="components\comp_light_point.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
@@ -286,6 +287,7 @@
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="utils\variant.cpp" />
+    <ClCompile Include="windows\windowsUtils.cpp" />
     <ClCompile Include="windows\app.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +309,7 @@
     <ClInclude Include="components\comp_give_power.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
+    <ClInclude Include="components\comp_hitboxes.h" />
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="components\comp_light_point.h" />
     <ClInclude Include="components\comp_hitbox.h" />
@@ -513,6 +516,7 @@
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="utils\variant.h" />
+    <ClInclude Include="windows\windowsUtils.h" />
     <ClInclude Include="windows\app.h" />
   </ItemGroup>
   <ItemGroup>

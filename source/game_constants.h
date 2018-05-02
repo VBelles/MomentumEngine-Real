@@ -19,3 +19,5 @@ const std::string INTERPOLATOR_CUBIC_IN_OUT = "cubicInOut";
 const std::string INTERPOLATOR_EXPO_IN = "expoIn";
 const std::string INTERPOLATOR_EXPO_OUT = "expoOut";
 const std::string INTERPOLATOR_EXPO_IN_OUT = "expoInOut";
+
+const std::string AUTOLOAD_SCRIPTS_PATH = "data/scripts/autoload/";

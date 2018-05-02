@@ -7,6 +7,8 @@ struct TMsgEntitiesGroupCreated;
 struct TMsgTriggerEnter;
 struct TMsgColliderDestroyed;
 
+class TCompTransform;
+
 
 class TCompCollectable : public TCompBase {
 	DECL_SIBLING_ACCESS();
@@ -26,6 +28,11 @@ public:
 private:
 	bool collected = false;
 	Type type;
+
+	float rotationSpeed = 0.f;
+
+	CHandle transformHandle;
+	TCompTransform* getTransform() { return transformHandle; }
 
 public:
 

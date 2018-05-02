@@ -25,20 +25,22 @@ private:
 	VEC3 wallDirection;//Front or back
 
 	VEC3 huggingWallNormal;
+
+	std::string animationClimbing;
+
 public:
-	HuggingWallActionState(CHandle playerModelHandle);
+	HuggingWallActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "bajandopared"),
+		animationClimbing("correporlapared") {
+	}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 	void onJumpHighButton() override;
 	void onJumpLongButton() override;
-
-	void setPose() override;
+	virtual void onShapeHit(const PxControllerShapeHit &hit) override {}
 	void SetHit(PxControllerShapeHit hit) { this->hit = hit; }
 	void setHuggingWallNormal(VEC3 huggingWallNormal) { this->huggingWallNormal = huggingWallNormal; }
 	bool CheckIfHuggingWall(VEC3 wallDirection);
 	void FaceWall();
 	void TurnAround();
-
-	virtual void onShapeHit(const PxControllerShapeHit &hit) override {}
 };

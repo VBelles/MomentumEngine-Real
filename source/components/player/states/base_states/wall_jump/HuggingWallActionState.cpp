@@ -7,10 +7,6 @@
 #include "skeleton/comp_skeleton.h"
 #include "modules/game/physics/basic_query_filter_callback.h"
 
-HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle)
-	:AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "jump_inicio";
-}
 
 void HuggingWallActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -39,6 +35,7 @@ void HuggingWallActionState::update(float delta) {
 				TurnAround();
 				getPlayerModel()->setGravityMultiplier(slideGravityMultiplier);
 				getPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
+				getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 			}
 		}
 	}
@@ -63,7 +60,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 		getPlayerModel()->setGravityMultiplier(climbingGravityMultiplier);
 		getPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
 		climbTimer.reset();
-		getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+		getPlayerModel()->getSkeleton()->blendCycle(animationClimbing, 0.2f, 0.2f);
 	}
 	else {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
@@ -87,9 +84,6 @@ void HuggingWallActionState::onJumpLongButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
 }
 
-void HuggingWallActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_jump.mesh");
-}
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	PxScene* scene = EnginePhysics.getScene();

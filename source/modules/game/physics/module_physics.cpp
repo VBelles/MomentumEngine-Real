@@ -26,6 +26,8 @@ bool CModulePhysics::start() {
 		return false;
 	if (!createScene())
 		return false;
+	colliderType = CHandleManager::getByName("collider")->getType();
+
 	return true;
 }
 
@@ -251,9 +253,11 @@ void CModulePhysics::update(float delta) {
 			PxQuat pxq = pxTransform.q;
 			CHandle colliderHandle;
 			colliderHandle.fromVoidPtr(rigidActor->userData);
+			
 			CEntity* entity = colliderHandle.getOwner();
 			TCompTransform* compTransform = entity->get<TCompTransform>();
 			TCompCollider* compCollider = colliderHandle;
+
 			if (compCollider->controller) {
 				PxExtendedVec3 pxpos_ext = compCollider->controller->getFootPosition();
 				pxpos.x = static_cast<float>(pxpos_ext.x);
@@ -344,7 +348,7 @@ void CModulePhysics::releaseColliders() {
 CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name) {
 	auto it = filterGroupByName.find(name);
 	if (it != filterGroupByName.end()) {
-		return filterGroupByName[name];
+		return it->second;
 	}
 	return FilterGroup::All;
 }

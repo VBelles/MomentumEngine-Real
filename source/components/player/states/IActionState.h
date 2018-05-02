@@ -6,6 +6,7 @@ class TCompCamera;
 class TCompCollider;
 class TCompRender;
 class TCompTransform;
+class TCompHitboxes;
 
 using namespace physx;
 
@@ -24,6 +25,7 @@ protected:
 	CHandle currentCameraHandle;
 	CHandle colliderHandle;
 	CHandle renderHandle;
+	CHandle hitboxesHandle;
 
 	VEC3 deltaMovement;
 	VEC2 movementInput;
@@ -34,6 +36,7 @@ protected:
 	TCompTransform* getPlayerTransform();
 	TCompCollider* getCollider();
 	TCompRender* getRender();
+	TCompHitboxes* getHitboxes();
 	TCompCamera* getCamera();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
@@ -54,16 +57,14 @@ protected:
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void clampHorizontalVelocity(float maxHorizontalSpeed);
 
+public:
 	std::string animation;
 
-public:
-	IActionState(CHandle playerModelHandle);
+	IActionState(CHandle playerModelHandle, std::string animation = "");
 
 	virtual void update(float delta) = 0;
 	virtual void onStateEnter(IActionState* lastState);
 	virtual void onStateExit(IActionState* nextState);
-
-	virtual void setPose();
 
 	virtual void setMovementInput(VEC2 input);
 

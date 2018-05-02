@@ -4,15 +4,18 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "components/comp_collider.h"
+#include "components/comp_hitboxes.h"
 #include "components/player/comp_player_model.h"
 
-IActionState::IActionState(CHandle playerModelHandle) {
-	this->playerModelHandle = playerModelHandle;
+IActionState::IActionState(CHandle playerModelHandle, std::string animation)
+	: animation(animation), playerModelHandle(playerModelHandle) {
 	CEntity* playerEntity = playerModelHandle.getOwner();
 	this->colliderHandle = playerEntity->get<TCompCollider>();
 	this->playerTransformHandle = playerEntity->get<TCompTransform>();
 	this->renderHandle = playerEntity->get<TCompRender>();
+	this->hitboxesHandle = playerEntity->get<TCompHitboxes>();
 	velocityVector = getPlayerModel()->getVelocityVector();
+	accelerationVector = getPlayerModel()->getAccelerationVector();
 }
 
 void IActionState::onStateEnter(IActionState* lastState) {
@@ -25,10 +28,6 @@ void IActionState::onStateExit(IActionState* nextState) {
 	this->nextState = nextState;
 }
 
-void IActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_idle.mesh");
-}
-
 void IActionState::onDead() {
 	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Death);
@@ -38,26 +37,18 @@ void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }
 
-
-TCompCamera* IActionState::getCamera() {
-	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
-	TCompCamera* currentCamera = camera->get<TCompCamera>();
-	assert(currentCamera);
-	return currentCamera;
-}
-
 void IActionState::rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
-    float rotationIncrement = rotationSpeed * delta;
-    float deltaYaw = getPlayerTransform()->getDeltaYawToAimTo(targetPos);
-    float y, p, r;
-    getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-    if (abs(deltaYaw) >= rotationIncrement) {
-        y = (deltaYaw > 0) ? (y + rotationIncrement) : (y - rotationIncrement);
-    }
-    else {
-        y += deltaYaw;
-    }
-    getPlayerTransform()->setYawPitchRoll(y, p, r);
+	float rotationIncrement = rotationSpeed * delta;
+	float deltaYaw = getPlayerTransform()->getDeltaYawToAimTo(targetPos);
+	float y, p, r;
+	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
+	if (abs(deltaYaw) >= rotationIncrement) {
+		y = (deltaYaw > 0) ? (y + rotationIncrement) : (y - rotationIncrement);
+	}
+	else {
+		y += deltaYaw;
+	}
+	getPlayerTransform()->setYawPitchRoll(y, p, r);
 }
 
 float IActionState::calculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
@@ -122,3 +113,10 @@ TCompPlayerModel* IActionState::getPlayerModel() { return playerModelHandle; }
 TCompTransform* IActionState::getPlayerTransform() { return playerTransformHandle; }
 TCompCollider* IActionState::getCollider() { return colliderHandle; }
 TCompRender* IActionState::getRender() { return renderHandle; }
+TCompHitboxes* IActionState::getHitboxes() { return hitboxesHandle; }
+TCompCamera* IActionState::getCamera() {
+	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
+	TCompCamera* currentCamera = camera->get<TCompCamera>();
+	assert(currentCamera);
+	return currentCamera;
+}

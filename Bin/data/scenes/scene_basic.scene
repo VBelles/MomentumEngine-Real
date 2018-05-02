@@ -123,11 +123,14 @@
 				"lookat": "120 27 0"
 			},
 			"breakable":{
-				"hp": 1
+				"hp": 1,
+				"prefab" : "data/prefabs/coin.prefab",
+				"lootOffset" : 4
 			},
 			"collider": {
 				"shape": "box",
-				"halfExtent": "2.5 3.5 1.0"
+				"halfExtent": "2.5 3.5 1.0",
+				"group" : ["scenario", "enemy"]
 			},
 			"altar":{
 				"spawn_positions": [
