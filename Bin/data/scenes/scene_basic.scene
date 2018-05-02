@@ -127,7 +127,8 @@
 			},
 			"collider": {
 				"shape": "box",
-				"halfExtent": "2.5 3.5 1.0"
+				"halfExtent": "2.5 3.5 1.0",
+				"group" : ["scenario", "enemy"]
 			},
 			"altar":{
 				"spawn_positions": [
