@@ -11,9 +11,14 @@ class TCompBreakable : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 private:
+
+	//json
+	std::string prefabToSpawn;
+	float hp = 0.f;
+	float lootOffset = 1.f;
+
 	CHandle colliderHandle;
 	CHandle transformHandle;
-	float hp = 0.f;
 
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
