@@ -42,9 +42,7 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 	void onFastAttackButtonReleased() override;
-
 	void onLeavingGround() override;
-	void setPose() override;
 	void onHitboxEnter(CHandle entity) override;
 
 };

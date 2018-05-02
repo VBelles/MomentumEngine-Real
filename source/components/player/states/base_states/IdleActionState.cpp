@@ -6,10 +6,6 @@
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
 
-IdleActionState::IdleActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "idle";
-}
 
 void IdleActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
@@ -55,6 +51,3 @@ void IdleActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 }
 
-void IdleActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_idle.mesh");
-}

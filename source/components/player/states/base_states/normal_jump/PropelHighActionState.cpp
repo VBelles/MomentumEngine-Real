@@ -8,10 +8,6 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 
-PropelHighActionState::PropelHighActionState(CHandle playerModelHandle)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "jump_inicio";
-}
 
 void PropelHighActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
@@ -64,9 +60,4 @@ void PropelHighActionState::onStateEnter(IActionState * lastState) {
 
 void PropelHighActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	//getPlayerModel()->baseState->setPose();
-}
-
-void PropelHighActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_propel.mesh");
 }

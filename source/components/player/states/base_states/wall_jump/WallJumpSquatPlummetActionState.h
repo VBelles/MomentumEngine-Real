@@ -11,7 +11,7 @@ protected:
 	float verticalVelocity = -30.f;
 
 public:
-	WallJumpSquatPlummetActionState(CHandle playerModelHandle);
+	WallJumpSquatPlummetActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_inicio") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -20,6 +20,4 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
-
-	void setPose() override;
 };

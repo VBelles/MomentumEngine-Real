@@ -5,46 +5,17 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
-AirborneWallJumpActionState::AirborneWallJumpActionState(CHandle playerModelHandle)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "jump_volando";
-}
 
 void AirborneWallJumpActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
-	deltaMovement.y = velocityVector->y * delta;
-
 	deltaMovement.x = velocityVector->x * delta;
+	deltaMovement.y = velocityVector->y * delta;
 	deltaMovement.z = velocityVector->z * delta;
 	if (!isChangingBaseState) {
 		if (velocityVector->y < 0) {
 			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 		}
 	}
-
-	//bool hasInput = movementInput != VEC2::Zero;
-
-	//VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
-	//if (hasInput && velocityVector->y < 0) {
-	//	VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
-	//	rotatePlayerTowards(delta, targetPos, rotationSpeed);
-
-	//	//aceleración según sentido de movimiento
-	//	float appliedAcceleration = calculateAccelerationAccordingToDirection(enterFront, desiredDirection,
-	//		enteringPowerStats->acceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct,
-	//		backwardsAirDriftFactorWall, sidewaysAirDriftFactorWall);
-
-	//	deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
-	//		desiredDirection, appliedAcceleration, enteringPowerStats->wallJumpVelocityVector.z);
-
-	//	transferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
-	//	clampHorizontalVelocity(enteringPowerStats->wallJumpVelocityVector.z);
-	//}
-	//else {
-	//	deltaMovement.x = velocityVector->x * delta;
-	//	deltaMovement.z = velocityVector->z * delta;
-	//}
-
 }
 
 void AirborneWallJumpActionState::onStateEnter(IActionState * lastState) {
@@ -63,6 +34,3 @@ void AirborneWallJumpActionState::onStateExit(IActionState * nextState) {
 	//dbg("Saliendo de airborne long\n");
 }
 
-void AirborneWallJumpActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_long_jump.mesh");
-}

@@ -4,11 +4,6 @@
 #include "components/player/comp_player_model.h"
 #include "skeleton/comp_skeleton.h"
 
-AirborneNormalActionState::AirborneNormalActionState(CHandle playerModelHandle)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
-	animation = "jump_volando";
-}
-
 void AirborneNormalActionState::update (float delta) {
 	AirborneActionState::update(delta);
 }
@@ -20,9 +15,5 @@ void AirborneNormalActionState::onStateEnter(IActionState * lastState) {
 
 void AirborneNormalActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-}
-
-void AirborneNormalActionState::setPose() {
-	getRender()->setMesh("data/meshes/pose_jump.mesh");
 }
 

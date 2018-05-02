@@ -11,7 +11,7 @@ protected:
 	CHandle propelTarget;
 
 public:
-	PropelLongActionState(CHandle playerModelHandle);
+	PropelLongActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_inicio") {}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -20,7 +20,6 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
-
 	void onLanding() override {}
-	void setPose() override;
+
 };
