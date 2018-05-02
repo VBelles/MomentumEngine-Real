@@ -19,6 +19,7 @@ void JumpSquatSpringActionState::update (float delta) {
 		velocityVector->y = currentPowerStats->springJumpVelocity;
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;
+		getPlayerModel()->wannaJump = true;
 	}
 }
 

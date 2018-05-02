@@ -347,10 +347,11 @@ void TCompPlayerModel::applyGravity(float delta) {
 	else {
 		float deltaMovementDueToGravity;
 		deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-		if (dynamic_cast<GroundedActionState*>(baseState)) {
-			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed / 2 * delta;
+		if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
+			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
 		}
 		else {
+			wannaJump = false;
 			deltaMovement.y += deltaMovementDueToGravity;
 			//clampear distancia vertical
 			deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;

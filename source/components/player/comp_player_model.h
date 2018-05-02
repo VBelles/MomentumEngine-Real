@@ -102,6 +102,7 @@ public:
 	bool lockTurning = false;
 	bool lockConcurrentState = false;
 
+	bool wannaJump = false;
 	bool isGrounded = false;
 	bool isTouchingCeiling = false;
 	bool isAttachedToPlatform = false;
