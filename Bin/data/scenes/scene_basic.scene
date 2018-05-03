@@ -164,7 +164,7 @@
 				"type": "dynamic"
 			},
 			"platform_rotative":{
-				"rotation_speed": "0 0 50"
+				"rotation_speed": "30 0 0"
 			}
 			
 		}
@@ -176,6 +176,68 @@
 			"transform": {
 				"pos": "-68 25 -38"
 			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platfrom_simple",
+			"render": [
+				{
+					"mesh": "data/meshes/plat_move.mesh",
+					"materials": [
+						"data/materials/madera.material"
+					],
+					"color": "1 0.5 0.5 1.0"
+				}
+			],
+			"transform": {
+				"pos": "-65 25 -45"
+			},
+			"collider": {
+				"shape": "box",
+				"halfExtent": "1.5 0.5 1.5",
+				"type": "kinematic"
+			},
+			"platform_simple":{
+				"speed": 2.0,
+				"rotation_speed": "40 0 0",
+				"waypoints":[
+					"-65 25 -40",
+					"-65 35 -40"
+				]
+			}
+			
+		}
+	},
+	{
+		"entity": {
+			"name": "platfrom_simple2",
+			"render": [
+				{
+					"mesh": "data/meshes/plat_move.mesh",
+					"materials": [
+						"data/materials/madera.material"
+					],
+					"color": "1 0.5 0.5 1.0"
+				}
+			],
+			"transform": {
+				"pos": "-65 25 -45"
+			},
+			"collider": {
+				"shape": "box",
+				"halfExtent": "1.5 0.5 1.5",
+				"type": "kinematic"
+			},
+			"platform_simple":{
+				"speed": 2.0,
+				"rotation_speed": "40 0 0",
+				"waypoints":[
+					"-75 25 -40",
+					"-65 25 -40"
+				]
+			}
+			
 		}
 	}
 ]
