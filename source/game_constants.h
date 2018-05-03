@@ -44,5 +44,4 @@ const std::string INTERPOLATOR_SINE_IN = "Sine in";
 const std::string INTERPOLATOR_SINE_OUT = "Sine out";
 const std::string INTERPOLATOR_SINE_IN_OUT = "Sine in out";
 
-
 const std::string AUTOLOAD_SCRIPTS_PATH = "data/scripts/autoload/";

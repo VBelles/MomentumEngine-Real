@@ -11,31 +11,34 @@ Eventos:
 	onMechanismSystemDeactivated_mechanisSystemmName()
 
 Funciones:
-	callDelayed(float delay, string funcion, string params)
+	void callDelayed(float delay, string funcion, string params)
 
-	wait(float duration)
-	waitCondition(function func, string params)
+	void wait(float duration)
+	void waitCondition(function func, string params)
 
-	blendInCamera(string cameraName, float timeToMixIn, CAMERA_PRIORITY, INTERPOLATOR)
+	void blendInCamera(string cameraName, float timeToMixIn, CAMERA_PRIORITY, INTERPOLATOR)
 	
-	getPlayerHp()
-	setPlayerHp(int hp)
-	setPlayerRespawnPosition(float x, float y, float z)
-	takePlayerControl()
-	givePlayerControl()
-	teleportPlayer(float x, float y, float z)
-	movePlayer(float x, float y, float z)
-	setPower(float power), cantidad de poder
+	float getPlayerHp()
+	float setPlayerHp(float hp)
+	void setPlayerRespawnPosition(float x, float y, float z)
+	bool takePlayerControl()
+	bool givePlayerControl()
+	void teleportPlayer(float x, float y, float z)
+	void movePlayer(float x, float y, float z)
+	void setPower(float power), cantidad de poder
 
-	spawnEntityAt(PREFAB, float x, float y, float z)
-	spawnGolemAt(float x, float y, float z)
-	spawnGolem()
-	spawnBallAt(float x, float y, float z)
-	spawnBall()
-	spawnMedusaAt(float x, float y, float z)
-	spawnMedusa()
-	stopEntities()
-	resumeEntities()
+	string spawnEntityAt(PREFAB, float x, float y, float z)
+	string spawnGolemAt(float x, float y, float z)
+	string spawnGolem()
+	string spawnBallAt(float x, float y, float z)
+	string spawnBall()
+	string spawnMedusaAt(float x, float y, float z)
+	string spawnMedusa()
+	void stopEntities()
+	void resumeEntities()
+
+	bool openDoor(string doorName, float time)
+	bool closeDoor(string doorName, float time)
 
 Constantes:
 	PLAYER_NAME
