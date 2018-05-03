@@ -135,5 +135,21 @@
 				"forcePositionOnEnter" : true
 			}
 		}
+	},
+	{
+		"entity": {
+			"name": "chrysalides_cam",
+			"transform": {
+				"pos": "-71 26 -43",
+				"lookat": "-75 23 -54"
+			},
+			"camera" : {
+				"fov" : 60 
+			},
+			"fixed_camera" : {
+				"returnToPlayerCameraWithInput" : false,
+				"modifyPlayerCameraRotation" : false
+			}
+		}
 	}
 ]
