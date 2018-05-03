@@ -21,7 +21,7 @@
 			"collider" : {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"radius" : 0.5,
+				"radius" : 0.75,
 				"group": ["scenario"],
 				"mask": ["player"]
 			}

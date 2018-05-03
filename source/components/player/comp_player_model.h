@@ -110,8 +110,8 @@ public:
 	float walkingSpeed = 0.f;
 	float maxVelocityUpwards = 45.f;
 
-	float huggingWallMinPitch = deg2rad(-25);
-	float huggingWallMaxPitch = deg2rad(5);
+	float huggingWallMinPitch = deg2rad(-30);
+	float huggingWallMaxPitch = deg2rad(10);
 	float attachWallByInputMinDot = 0.3f;
 	float attachWallByFrontMinDot = 0.7f;
 	CTimer sameNormalReattachTimer;
