@@ -181,13 +181,13 @@ struct TMaterialExporter (
 				fs.writeComma()
 				exportMap mat.specularLevelMap "roughness" "null_roughness"
 				
+				--ambientMap
+				--specularMap
+				--selfIllumMap
+				--opacityMap
 				--filterMap
 				--reflectionMap
 				--refractionMap
-				--opacityMap
-				--selfIllumMap
-				--ambientMap
-				--specularMap
 				--displacementMap
 			)
 

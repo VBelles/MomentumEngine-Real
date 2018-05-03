@@ -7,9 +7,9 @@
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/mech_sys.mesh",
+					"mesh": "data/meshes/_mechPREFAB.mesh",
 					"materials": [
-						"data/materials/ambar.material"
+						"data/materials/mec1.material"
 					],
 					"color": "0 0 1 1"
 				}
@@ -17,6 +17,8 @@
 			"collider" : {
 				"shape": "sphere",
 				"radius" : 0.7,
+				"is_trigger": true,
+        		"type": "dynamic",
 				"group": ["scenario"],
 				"mask": ["player"]
 			}

@@ -4,6 +4,8 @@
   "textures":
   {
     "albedo": "data/textures/fieldstone-c.dds",
-    "normal": "data/textures/fieldstone-n.dds"
+    "normal": "data/textures/fieldstone-n.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/null_roughness.dds"
   }
 }
