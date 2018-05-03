@@ -26,12 +26,12 @@ void TCompMixCameraTrigger::registerMsgs() {
 }
 
 void TCompMixCameraTrigger::onCreate(const TMsgEntityCreated& msg) {
-	cubicInInterpolator = new TCubicInInterpolator();
-	cubicOutInterpolator = new TCubicOutInterpolator();
-	cubicInOutInterpolator = new TCubicInOutInterpolator();
-	expoInInterpolator = new TExpoInInterpolator();
-	expoOutInterpolator = new TExpoOutInterpolator();
-	expoInOutInterpolator = new TExpoInOutInterpolator();
+	cubicInInterpolator = (TCubicInInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_CUBIC_IN);
+	cubicOutInterpolator = (TCubicOutInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_CUBIC_OUT);
+	cubicInOutInterpolator = (TCubicInOutInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_CUBIC_IN_OUT);
+	expoInInterpolator = (TExpoInInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_EXPO_IN);
+	expoOutInterpolator = (TExpoOutInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_EXPO_OUT);
+	expoInOutInterpolator = (TExpoInOutInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_EXPO_IN_OUT);
 }
 
 void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {

@@ -212,7 +212,7 @@
 	},
 	{
 		"entity": {
-			"name": "platfrom_simple",
+			"name": "platform_simple",
 			"render": [
 				{
 					"mesh": "data/meshes/plat_move.mesh",
@@ -231,11 +231,19 @@
 				"type": "kinematic"
 			},
 			"platform_simple":{
-				"speed": 2.0,
-				"rotation_speed": "40 0 0",
-				"waypoints":[
-					"-65 25 -40",
-					"-65 35 -40"
+				"rotation_axis": "0 1 0",
+				"rotation_speed": 2,
+				"curve_type": "catmull-rom",
+				"automove": true,
+				"loop": true,
+				"closed": false,
+				"speed": 0.2,
+				"knots":
+				[
+				   "-75.5475 28.0458 -31.3392",
+				   "-75.5475 28.0458 -31.3392",
+				   "-60.0974 28.0458 -36.3096",
+				   "-60.0974 28.0458 -36.3096"
 				]
 			}
 			
@@ -243,7 +251,7 @@
 	},
 	{
 		"entity": {
-			"name": "platfrom_simple2",
+			"name": "platform_simple",
 			"render": [
 				{
 					"mesh": "data/meshes/plat_move.mesh",
@@ -262,11 +270,19 @@
 				"type": "kinematic"
 			},
 			"platform_simple":{
-				"speed": 2.0,
-				"rotation_speed": "40 0 0",
-				"waypoints":[
-					"-75 25 -40",
-					"-65 25 -40"
+				"rotation_axis": "0 1 0",
+				"rotation_speed": 2,
+				"curve_type": "catmull-rom",
+				"automove": true,
+				"loop": true,
+				"closed": false,
+				"speed": 0.2,
+				"knots":
+				[
+				   "-60.0974 20.0458 -36.3096",
+				   "-60.0974 20.0458 -36.3096",
+				   "-60.0974 35.0458 -36.3096",
+				   "-60.0974 35.0458 -36.3096"
 				]
 			}
 			

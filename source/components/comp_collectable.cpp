@@ -19,19 +19,21 @@ void TCompCollectable::registerMsgs() {
 void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
 	std::string typeName = j.value("type", "undefined");
 	type = getTypeByName(typeName);
-	rotationSpeed = j.value("rotationSpeed", 0.f);
+	rotationSpeed = j.value("rotation_speed", 0.f);
+	if (j.count("rotation_axis")) {
+		rotationAxis = loadVEC3(j["rotation_axis"]);
+	}
 }
 
 void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	transformHandle = get<TCompTransform>();
 }
 
-void TCompCollectable::update(float dt) {
+void TCompCollectable::update(float delta) {
 	if (abs(rotationSpeed) > 0) {
 		TCompTransform* transform = getTransform();
-		float y, p;
-		transform->getYawPitchRoll(&y, &p);
-		transform->setYawPitchRoll(y + rotationSpeed * dt, p);
+		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);	
+		transform->setRotation(transform->getRotation() * quat);
 	}
 }
 

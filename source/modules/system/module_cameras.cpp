@@ -22,11 +22,48 @@ CModuleCameras::CModuleCameras(const std::string& name)
 }
 
 bool CModuleCameras::start() {
+	interpolators = {
+		{INTERPOLATOR_LINEAR, new Interpolator::TLinearInterpolator() },
+		{INTERPOLATOR_QUAD_IN, new Interpolator::TQuadInInterpolator() },
+		{INTERPOLATOR_QUAD_OUT, new Interpolator::TQuadOutInterpolator() },
+		{INTERPOLATOR_QUAD_IN_OUT, new Interpolator::TQuadInOutInterpolator() },
+		{INTERPOLATOR_CUBIC_IN, new Interpolator::TCubicInInterpolator() },
+		{INTERPOLATOR_CUBIC_OUT, new Interpolator::TCubicOutInterpolator() },
+		{INTERPOLATOR_CUBIC_IN_OUT, new Interpolator::TCubicInOutInterpolator() },
+		{INTERPOLATOR_QUART_IN, new Interpolator::TQuartInInterpolator() },
+		{INTERPOLATOR_QUART_OUT, new Interpolator::TQuartOutInterpolator() },
+		{INTERPOLATOR_QUART_IN_OUT, new Interpolator::TQuartInOutInterpolator() },
+		{INTERPOLATOR_QUINT_IN, new Interpolator::TQuintInInterpolator() },
+		{INTERPOLATOR_QUINT_OUT, new Interpolator::TQuintOutInterpolator() },
+		{INTERPOLATOR_QUINT_IN_OUT, new Interpolator::TQuintInOutInterpolator() },
+		{INTERPOLATOR_BACK_IN, new Interpolator::TBackInInterpolator() },
+		{INTERPOLATOR_BACK_OUT, new Interpolator::TBackOutInterpolator() },
+		{INTERPOLATOR_BACK_IN_OUT, new Interpolator::TBackInOutInterpolator() },
+		{INTERPOLATOR_ELASTIC_IN, new Interpolator::TElasticInInterpolator() },
+		{INTERPOLATOR_ELASTIC_OUT, new Interpolator::TElasticOutInterpolator() },
+		{INTERPOLATOR_ELASTIC_IN_OUT, new Interpolator::TElasticInOutInterpolator() },
+		{INTERPOLATOR_BOUNCE_IN, new Interpolator::TBounceInInterpolator() },
+		{INTERPOLATOR_BOUNCE_OUT, new Interpolator::TBounceOutInterpolator() },
+		{INTERPOLATOR_BOUNCE_IN_OUT, new Interpolator::TBounceInOutInterpolator() },
+		{INTERPOLATOR_CIRCULAR_IN, new Interpolator::TCircularInInterpolator() },
+		{INTERPOLATOR_CIRCULAR_OUT, new Interpolator::TCircularOutInterpolator() },
+		{INTERPOLATOR_CIRCULAR_IN_OUT, new Interpolator::TCircularInOutInterpolator() },
+		{INTERPOLATOR_EXPO_IN, new Interpolator::TExpoInInterpolator() },
+		{INTERPOLATOR_EXPO_OUT, new Interpolator::TExpoOutInterpolator() },
+		{INTERPOLATOR_EXPO_IN_OUT, new Interpolator::TExpoInOutInterpolator() },
+		{INTERPOLATOR_SINE_IN, new Interpolator::TSineInInterpolator() },
+		{INTERPOLATOR_SINE_OUT, new Interpolator::TSineOutInterpolator() },
+		{INTERPOLATOR_SINE_IN_OUT, new Interpolator::TSineInOutInterpolator() }
+	};
+
 	return true;
 }
 
 bool CModuleCameras::stop() {
 	_mixedCameras.clear();
+	for (auto pair : interpolators) {
+		SAFE_DELETE(pair.second);
+	}
 	return true;
 }
 
@@ -253,4 +290,11 @@ void CModuleCameras::renderInMenu() {
 			ImGui::TreePop();
 		}
 	}
+}
+
+Interpolator::IInterpolator* CModuleCameras::getInterpolator(std::string interpolator) {
+	if (interpolators.find(interpolator) != interpolators.end()) {
+		return interpolators[interpolator];
+	}
+	else return nullptr;
 }

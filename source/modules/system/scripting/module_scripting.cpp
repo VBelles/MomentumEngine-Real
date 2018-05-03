@@ -5,7 +5,6 @@
 #include <SLB/SLB.hpp>
 #include "console.h"
 #include "modules/system/scripting/scripting_player.h"
-#include "modules/system/scripting/scripting_golem.h"
 #include "modules/system/scripting/scripting_entities.h"
 #include "modules/system/scripting/scripting_door.h"
 #include "modules/system/scripting/scripting_manager.h"
@@ -47,13 +46,10 @@ void CModuleScripting::initSLB() {
 	ScriptingCameras::bind(manager);
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
-
-	ScriptingGolem::bind(manager);
 	ScriptingDoor::bind(manager);
 
 	//Create binded objects
 	execString("SLB.using(SLB)");
-	execString("golem = Golem()");
 
 	//Load scripts
 	execFile("data/scripts/coroutines.lua");

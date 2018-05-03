@@ -4,23 +4,12 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_collider.h"
 #include "components/comp_transform.h"
+#include "geometry/curve.h"
 
 DECL_OBJ_MANAGER("platform_simple", TCompPlatformSimple);
 
 void TCompPlatformSimple::debugInMenu() {
-	if (ImGui::TreeNode("Waypoints")) {
-		for (auto& v : waypoints) {
-			ImGui::PushID(&v);
-			ImGui::DragFloat3("Point", &v.x, 0.1f, -20.f, 20.f);
-			ImGui::PopID();
-		}
-		ImGui::TreePop();
-	}
-
-	for (size_t i = 0; i < waypoints.size(); ++i)
-		renderLine(waypoints[i],
-			waypoints[(i + 1) % waypoints.size()],
-			VEC4(0, 1, 0, 1));
+	ImGui::DragFloat("speed", &speed, 0.01f, 0.f, 20.f);
 }
 
 void TCompPlatformSimple::registerMsgs() {
@@ -28,15 +17,15 @@ void TCompPlatformSimple::registerMsgs() {
 }
 
 void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
+	//Movement
 	speed = j.value("speed", 0.f);
-	if (j.count("rotation_speed")) {
-		rotationSpeed = loadVEC3(j["rotation_speed"]) * (float)M_PI / 180.f;
-	}
+	curve.load(j);
+	automove = j.value("automove", false);
 
-	auto& jWaypoints = j["waypoints"];
-	for (auto& jWaypoint : jWaypoints) {
-		VEC3 p = loadVEC3(jWaypoint);
-		waypoints.push_back(p);
+	//Rotation
+	rotationSpeed = j.value("rotation_speed", 0.f);
+	if (j.count("rotation_axis")) {
+		rotationAxis = loadVEC3(j["rotation_axis"]);
 	}
 
 }
@@ -53,22 +42,30 @@ void TCompPlatformSimple::update(float delta) {
 	VEC3 position = transform->getPosition();
 
 	//Position
-	float increment = speed * delta;
-
-	if (VEC3::Distance(position, waypoints[currentWaypoint]) <= increment) {
-		currentWaypoint = (currentWaypoint + 1) % waypoints.size();
+	if (automove) {
+		// Actualizar ratio
+		if (!moveBackwards) {
+			ratio += speed * delta;
+			if (ratio >= 1.f) { // Reaches the end of the spline.
+				if (curve.isLooping()) moveBackwards = true;
+				else automove = false; // If doesn't loop, stop moving.
+			}
+		}
+		else {
+			ratio -= speed * delta;
+			if (ratio <= 0.f) moveBackwards = false;
+		}
+		// Evaluar curva con dicho ratio
+		position = curve.evaluate(ratio);
+		//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
 	}
 
-	VEC3 direction = waypoints[currentWaypoint] - position;
-	direction.Normalize();
 
-	transform->setPosition(position + direction * increment);
+	transform->setPosition(position);
 
 	//Rotation
-	VEC3 yawPitchRoll;
-	transform->getYawPitchRoll(&yawPitchRoll.x, &yawPitchRoll.y, &yawPitchRoll.z);
-	yawPitchRoll += rotationSpeed * delta;
-	transform->setYawPitchRoll(yawPitchRoll.x, yawPitchRoll.y, yawPitchRoll.z);
+	QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
+	transform->setRotation(transform->getRotation() * quat);
 
 	//Update collider
 	getRigidDynamic()->setKinematicTarget(toPhysx(transform));

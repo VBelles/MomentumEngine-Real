@@ -15,7 +15,8 @@
 			],
 			"collectable": {
 				"type": "chrysalis",
-				"rotationSpeed": 2.5
+				"rotation_axis": "0 1 0",
+				"rotation_speed": 2.5
 			},
 			"collider" : {
 				"shape": "sphere",
