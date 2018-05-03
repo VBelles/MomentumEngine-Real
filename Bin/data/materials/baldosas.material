@@ -4,6 +4,6 @@
   "textures":
   {
     "albedo": "data/textures/texturaBaldosas_albedo.dds",
-    "normal": "data/textures/ruinas/texturaBaldosas_normal.dds"
+    "normal": "data/textures/texturaBaldosas_normal.dds"
   }
 }

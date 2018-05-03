@@ -28,10 +28,10 @@
         "shape": "box",
         "halfExtent": "6.0 6.0 6.0",
         "type": "dynamic",
+        "offset": "0 -6 0",
         "group":
         [
-           "scenario",
-           "enemy"
+           "scenario"
         ]
       },
       "platform_rotative":

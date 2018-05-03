@@ -585,7 +585,7 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKey "systems"
 			fs.beginArray()
-				fs.writeKey obj.parent.name
+				fs.writeValue obj.parent.name addIndent:true
 			fs.endArray()
 		fs.endObj()
 	),
@@ -936,7 +936,7 @@ struct TSceneExporter (
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
 		local rot		= obj.layer.name == "rotate"
-		local mech		= obj.layer.name == "mechanism"
+		local mech		= obj.layer.name == "mechanisms"
 		
 		if hasChildCollider obj then (
 			for child in obj.children do (
@@ -955,7 +955,7 @@ struct TSceneExporter (
 						exportMoveTrigger obj child
 					)
 					if rot then exportPlatfRotation()
-					if mech then exportMech()
+					if mech then exportMech child
 				)
 			)
 		)
@@ -1015,15 +1015,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKey "mechanism_system"
 				fs.beginObj()
-					fs.writeKeyValue "activationEffectFile" "data/scripts/test.lua"
-					fs.writeComma()
-					fs.writeKey "mechanisms"
-					fs.beginArray()
-						for i = 1 to obj.children.count do (
-							if i != 1 then fs.writeComma()
-							fs.writeValue obj.children[i].name addIndent:true
-						)
-					fs.endArray()
+					fs.writeKeyValue "number_of_mechanisms" obj.children.count
 				fs.endObj()
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()

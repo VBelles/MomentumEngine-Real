@@ -12,7 +12,7 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "150.0 0.5 150.0",
+        "halfExtent": "400.0 0.5 400.0",
         "is_trigger": true,
         "type": "dynamic",
         "group":

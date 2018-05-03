@@ -11,11 +11,7 @@
       },
       "mechanism_system":
       {
-        "activationEffectFile": "data/scripts/test.lua",
-        "mechanisms":
-        [
-
-        ]
+        "number_of_mechanisms": 0
       }
     }
   },
@@ -31,11 +27,7 @@
       },
       "mechanism_system":
       {
-        "activationEffectFile": "data/scripts/test.lua",
-        "mechanisms":
-        [
-           "ms2_mech006-appear001mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -62,7 +54,21 @@
       {
         "shape": "box",
         "halfExtent": "5.5 5.5 0.25",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech006-appear001mesh"
+        ]
       }
     }
   },
@@ -73,16 +79,12 @@
       "prefab": "data/prefabs/mech_sys.prefab",
       "transform":
       {
-        "pos": "-69.8644 19.2259 42.4686",
+        "pos": "-65.3077 19.2259 41.7824",
         "rotation": "-0.5 0.5 -0.5 -0.5"
       },
       "mechanism_system":
       {
-        "activationEffectFile": "data/scripts/test.lua",
-        "mechanisms":
-        [
-           "ms2_mech005-appear001mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -92,7 +94,7 @@
       "name": "ms2_mech005-appear001mesh",
       "transform":
       {
-        "pos": "-71.4853 17.5317 42.6947",
+        "pos": "-66.9286 17.5317 42.0085",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
@@ -109,7 +111,21 @@
       {
         "shape": "box",
         "halfExtent": "2.5 0.25 1.5",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech005-appear001mesh"
+        ]
       }
     }
   },
@@ -125,11 +141,7 @@
       },
       "mechanism_system":
       {
-        "activationEffectFile": "data/scripts/test.lua",
-        "mechanisms":
-        [
-           "ms2_mech004-appear001mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -156,7 +168,21 @@
       {
         "shape": "box",
         "halfExtent": "1.5 1.5 1.5",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech004-appear001mesh"
+        ]
       }
     }
   },
@@ -167,18 +193,12 @@
       "prefab": "data/prefabs/mech_sys.prefab",
       "transform":
       {
-        "pos": "-69.8644 4.83022 42.4686",
+        "pos": "-65.3077 5.16891 41.7824",
         "rotation": "-0.5 0.5 -0.5 -0.5"
       },
       "mechanism_system":
       {
-        "activationEffectFile": "data/scripts/test.lua",
-        "mechanisms":
-        [
-           "ms2_mech002-appear001mesh",
-           "ms2_mech002-appear002mesh",
-           "ms2_mech002-appear003mesh"
-        ]
+        "number_of_mechanisms": 3
       }
     }
   },
@@ -188,7 +208,7 @@
       "name": "ms2_mech002-appear001mesh",
       "transform":
       {
-        "pos": "-71.4853 7.85729 42.6947",
+        "pos": "-66.9286 8.19598 42.0085",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
@@ -205,7 +225,21 @@
       {
         "shape": "box",
         "halfExtent": "2.5 0.25 1.5",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech002-appear001mesh"
+        ]
       }
     }
   },
@@ -215,7 +249,7 @@
       "name": "ms2_mech002-appear002mesh",
       "transform":
       {
-        "pos": "-71.4853 11.2701 42.6947",
+        "pos": "-66.9286 11.6087 42.0085",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
@@ -232,7 +266,21 @@
       {
         "shape": "box",
         "halfExtent": "2.5 0.25 1.5",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech002-appear002mesh"
+        ]
       }
     }
   },
@@ -242,7 +290,7 @@
       "name": "ms2_mech002-appear003mesh",
       "transform":
       {
-        "pos": "-71.4853 14.238 42.6947",
+        "pos": "-66.9286 14.5767 42.0085",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
@@ -259,7 +307,21 @@
       {
         "shape": "box",
         "halfExtent": "2.5 0.25 1.5",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech002-appear003mesh"
+        ]
       }
     }
   },
@@ -275,14 +337,7 @@
       },
       "mechanism_system":
       {
-        "activationEffectFile": "data/scripts/test.lua",
-        "mechanisms":
-        [
-           "ms2_mech001-appear001mesh",
-           "ms2_mech001-appear002mesh",
-           "ms2_mech001-appear003mesh",
-           "ms2_mech001-appear004mesh"
-        ]
+        "number_of_mechanisms": 4
       }
     }
   },
@@ -309,7 +364,21 @@
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 2.0",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear001mesh"
+        ]
       }
     }
   },
@@ -336,7 +405,21 @@
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 2.0",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear002mesh"
+        ]
       }
     }
   },
@@ -363,7 +446,21 @@
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 2.0",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear003mesh"
+        ]
       }
     }
   },
@@ -390,7 +487,21 @@
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 2.0",
-        "type": "static"
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear004mesh"
+        ]
       }
     }
   }
