@@ -231,7 +231,7 @@ float4 PS_ambient(
 
   // if roughness = 0 -> I want to use the miplevel 0, the all-detailed image
   // if roughness = 1 -> I will use the most blurred image, the 8-th mipmap, If image was 256x256 => 1x1
-  float mipIndex = roughness * roughness * 8.0f;
+  float mipIndex = roughness * roughness * 30.0f;
   float3 env = txEnvironmentMap.SampleLevel(samLinear, reflected_dir, mipIndex).xyz;
   // Convert the color to linear also.
   env = pow(env, 2.2f);
