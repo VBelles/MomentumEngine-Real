@@ -172,11 +172,23 @@ struct TMaterialExporter (
 			fs.writeKey "textures"
 			fs.beginObj()
 		
-			if classof mat == Standardmaterial then (
-				exportMap mat.diffusemap "albedo" "null_albedo"
+			if classof mat == StandardMaterial then (
+				exportMap mat.diffuseMap "albedo" "null_albedo"
 			    fs.writeComma()
 				exportMap mat.bumpMap "normal" "null_normal"
-				-- ... other maps..
+				fs.writeComma()
+				exportMap mat.glossinessMap "metallic" "null_metallic"
+				fs.writeComma()
+				exportMap mat.specularLevelMap "roughness" "null_roughness"
+				
+				--filterMap
+				--reflectionMap
+				--refractionMap
+				--opacityMap
+				--selfIllumMap
+				--ambientMap
+				--specularMap
+				--displacementMap
 			)
 
 			fs.endObj()
