@@ -311,7 +311,7 @@ void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
 	}
 }
 
-void TCompPlayerModel::update(float dt) {
+void TCompPlayerModel::update(float delta) {
 
 	if (isInvulnerable && invulnerableTimer.elapsed() >= invulnerableTime) {
 		isInvulnerable = false;
@@ -321,9 +321,9 @@ void TCompPlayerModel::update(float dt) {
 		showVictoryDialog = false;
 	}
 
-	baseState->update(dt);
+	baseState->update(delta);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->update(dt);
+		concurrentState->update(delta);
 	}
 	if (!lockWalk) {
 		deltaMovement = baseState->getDeltaMovement();
@@ -332,8 +332,8 @@ void TCompPlayerModel::update(float dt) {
 		deltaMovement = concurrentState->getDeltaMovement();
 	}
 
-	applyGravity(dt);
-	updateMovement(dt, deltaMovement);
+	applyGravity(delta);
+	updateMovement(delta, deltaMovement);
 
 	if (baseState != baseStates[nextBaseState]) {
 		changeBaseState(nextBaseState);
@@ -344,37 +344,34 @@ void TCompPlayerModel::update(float dt) {
 }
 
 void TCompPlayerModel::applyGravity(float delta) {
-	if (isAttachedToPlatform) {
-		velocityVector.y = 0;
+	float deltaMovementDueToGravity;
+	deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
+	if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
+		deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
 	}
 	else {
-		float deltaMovementDueToGravity;
-		deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-		if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
-			deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
-		}
-		else {
-			wannaJump = false;
-			deltaMovement.y += deltaMovementDueToGravity;
-			//clampear distancia vertical
-			deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
-		}
-		velocityVector.y += currentGravity * delta;
-		velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
+		wannaJump = false;
+		deltaMovement.y += deltaMovementDueToGravity;
+		//clampear distancia vertical
+		deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
 	}
+	velocityVector.y += currentGravity * delta;
+	velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
+
 }
 
 
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
-	PxShape* tempShape;
-	getController()->getActor()->getShapes(&tempShape, 1);
-	PxFilterData filterData = tempShape->getSimulationFilterData();
-
+	hitState = HitState();
 	PxControllerCollisionFlags moveFlags = getController()->move(toPhysx(deltaMovement), 0.f, delta,
-		PxControllerFilters(&filterData, playerFilterCallback, playerFilterCallback));
+		PxControllerFilters(&getFilterData(), playerFilterCallback, playerFilterCallback));
+	hitState.isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
+	hitState.isTouchingCeiling = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
 
-	isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
+	baseState->onMove(hitState);
+
+	/*isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	//dbg("%d\n", isGrounded);
 	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue
 		if (isGrounded) {
@@ -385,22 +382,29 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 			}
 		}
 		if (!isTouchingCeiling) {
-			isTouchingCeiling = moveFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_UP);
+			isTouchingCeiling = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
 			if (isTouchingCeiling) {
 				velocityVector.y = -1.f;
 			}
 		}
+	}*/
+}
+
+void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
+	CHandle colliderHandle;
+	colliderHandle.fromVoidPtr(msg.hit.actor->userData);
+	hitState.entity = colliderHandle.getOwner();
+	hitState.hit = msg.hit;
+	baseState->onShapeHit(msg.hit);
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->onShapeHit(msg.hit);
 	}
-	else if (dynamic_cast<GroundedActionState*>(baseState)) {
-		if (!isGrounded) {
-			if (!isAttachedToPlatform)//What a beautiful hack
-				(static_cast<GroundedActionState*>(baseState))->onLeavingGround();
-		}
-		else {
-			//Si sigue en el suelo anulamos la velocidad ganada por la gravedad
-			velocityVector.y = 0.f;
-		}
-	}
+}
+
+PxFilterData TCompPlayerModel::getFilterData() {
+	PxShape* tempShape;
+	getController()->getActor()->getShapes(&tempShape, 1);
+	return tempShape->getSimulationFilterData();
 }
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
@@ -549,13 +553,6 @@ void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
 void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	setBaseState(TCompPlayerModel::ActionStates::PitFalling);
-}
-
-void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
-	baseState->onShapeHit(msg.hit);
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onShapeHit(msg.hit);
-	}
 }
 
 TCompTransform* TCompPlayerModel::getTransform() {

@@ -21,6 +21,13 @@ struct TMsgGainPower;
 struct TMsgGainPower;
 struct TMsgOutOfBounds;
 
+struct HitState {
+	CHandle entity;
+	PxControllerShapeHit hit;
+	bool isGrounded;
+	bool isTouchingCeiling;
+};
+
 
 class TCompPlayerModel : public TCompBase {
 public:
@@ -48,6 +55,8 @@ private:
 	VEC3 velocityVector;
 	float baseGravity = 0.f;
 	float currentGravity = 0.f;
+
+	HitState hitState;
 
 	std::string materials[3];
 	PowerStats* powerStats[3];
@@ -83,6 +92,7 @@ private:
 	void onHitboxEnter(const TMsgHitboxEnter& msg);
 	void onGainPower(const TMsgGainPower& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	PxFilterData getFilterData();
 
 	PowerStats* loadPowerStats(const json& j);
 	void changeBaseState(ActionStates newState);
