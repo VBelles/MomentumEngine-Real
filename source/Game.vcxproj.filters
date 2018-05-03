@@ -182,11 +182,12 @@
     <ClCompile Include="modules\system\scripting\module_scripting.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_door.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_entities.cpp" />
-    <ClCompile Include="modules\system\scripting\scripting_golem.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_manager.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_cameras.cpp" />
     <ClCompile Include="components\player\states\base_states\knockback\HardKnockbackGroundActionState.cpp" />
+    <ClCompile Include="components\comp_hitboxes.cpp" />
+    <ClCompile Include="windows\windowsUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -400,11 +401,12 @@
     <ClInclude Include="modules\system\scripting\module_scripting.h" />
     <ClInclude Include="modules\system\scripting\scripting_door.h" />
     <ClInclude Include="modules\system\scripting\scripting_entities.h" />
-    <ClInclude Include="modules\system\scripting\scripting_golem.h" />
     <ClInclude Include="modules\system\scripting\scripting_player.h" />
     <ClInclude Include="modules\system\scripting\scripting_manager.h" />
     <ClInclude Include="modules\system\scripting\scripting_cameras.h" />
     <ClInclude Include="components\player\states\base_states\knockback\HardKnockbackGroundActionState.h" />
+    <ClInclude Include="components\comp_hitboxes.h" />
+    <ClInclude Include="windows\windowsUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
