@@ -116,18 +116,9 @@ void AirborneActionState::onMove(HitState& hitState) {
 	if (hitState.isGrounded) {
 		onLanding();
 	}
-
-	if (hitState.isTouchingCeiling) {
-		velocityVector->y = -1.f;
+	if (hitState.isTouchingCeiling && velocityVector->y > 0.f) {
+		velocityVector->y = 0.f;
 	}
-	/*float y, p;
-	getYawPitchFromVector(fromPhysx(hitState.hit.worldNormal), &y, &p);
-	if (abs(p - deg2rad(-90)) <= 0.1f) {
-		velocityVector->y -= 0.5f;
-		getPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
-		getPlayerModel()->setGravityMultiplier(enteringPowerStats->fallingMultiplier);
-	}*/
-
 }
 
 

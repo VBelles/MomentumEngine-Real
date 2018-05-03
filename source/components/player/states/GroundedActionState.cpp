@@ -50,6 +50,10 @@ void GroundedActionState::onMove(HitState& hitState) {
 	}
 	else {
 		velocityVector->y = 0.f;
+		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
+		if ( dot < getPlayerModel()->getController()->getSlopeLimit()) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+		}
 	}
 }
 
