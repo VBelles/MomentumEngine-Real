@@ -15,7 +15,6 @@ private:
 	size_t numberOfPositions = 0;
 	size_t numberOfMechanismsActivated = 0;
 	std::string prefabToSpawn;
-	std::string activationEffectFile;
 
 	std::vector<VEC3> spawnPositions;
 

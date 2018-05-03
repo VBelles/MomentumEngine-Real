@@ -1,4 +1,4 @@
-#include "mcv_platform.h"
+﻿#include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
@@ -42,6 +42,7 @@
 #include "states/base_states/IdleTurnAroundActionState.h"
 #include "states/base_states/death/DeathActionState.h"
 #include "states/base_states/death/PitFallingActionState.h"
+#include "states/base_states/knockback/HardKnockbackGroundActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
@@ -261,6 +262,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle) },
 	{ ActionStates::Death, new DeathActionState(playerModelHandle) },
 	{ ActionStates::PitFalling, new PitFallingActionState(playerModelHandle) },
+	{ ActionStates::HardKnockbackGround, new HardKnockbackGroundActionState(playerModelHandle) },
 	};
 
 	concurrentStates = {
@@ -428,15 +430,12 @@ void TCompPlayerModel::setRespawnPosition(VEC3 position) {
 	respawnPosition = position;
 }
 
-void TCompPlayerModel::damage(float damage) {
-	if (!isInvulnerable) {
-		//TODO Esto lo tendra que procesar el estado en concreto, por si tiene armor o algo
-		setHp(hp - damage);
-		TCompRender* render = get<TCompRender>();
-		render->TurnRed(0.5f);
-		isInvulnerable = true;
-		invulnerableTimer.reset();
-	}
+void TCompPlayerModel::damage(float damage) {//tendr�a que llegar tambi�n si es hard o no
+	setHp(hp - damage);
+	TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);
+	isInvulnerable = true;
+	invulnerableTimer.reset();
 }
 
 void TCompPlayerModel::jumpButtonPressed() {
@@ -530,7 +529,9 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 }
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
-	damage(msg.info.damage);
+	if (!isInvulnerable) {
+		baseState->onDamage(msg.info.damage, true);//de moemento pasamos hard
+	}
 }
 
 void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {

@@ -75,6 +75,7 @@ void WallJumpPlummetActionState::onHitboxEnter(CHandle entity) {
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
+	msgAtackHit.info.damage = damage;
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.propel = new AttackInfo::Propel{ *velocityVector };
 	otherEntity->sendMsg(msgAtackHit);
