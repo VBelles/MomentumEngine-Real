@@ -34,6 +34,8 @@ Funciones:
 	spawnBall()
 	spawnMedusaAt(float x, float y, float z)
 	spawnMedusa()
+	stopEntities()
+	resumeEntities()
 
 Constantes:
 	PLAYER_NAME
