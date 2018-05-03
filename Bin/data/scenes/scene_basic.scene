@@ -1,5 +1,37 @@
 [
 	{
+  "entity":
+  {
+    "name": "_test_Box002mesh",
+    "transform":
+    {
+      "pos": "-59 25 -59",
+      "rotation": "0.0 0.0 0.0 -1.0"
+    },
+    "render":
+    [
+      {
+        "mesh": "data/meshes/_test_Box002mesh.mesh",
+        "materials":
+        [
+          "data/materials/mat_light_gray.material",
+          "data/materials/mat_light_gray.material",
+          "data/materials/mat_light_gray.material",
+          "data/materials/mat_light_gray.material",
+          "data/materials/mat_light_gray.material",
+          "data/materials/mat_light_gray.material"
+        ]
+      }
+    ],
+    "collider":
+    {
+      "shape": "tri_mesh",
+      "mesh_src": "data/meshes/_test_Box002mesh.col_mesh",
+      "type": "static"
+    }
+  }
+},
+	{
 		"entity": {
 			"name": "door",
 			"render": [
@@ -164,7 +196,7 @@
 				"type": "dynamic"
 			},
 			"platform_rotative":{
-				"rotation_speed": "0 0 50"
+				"rotation_speed": "30 0 0"
 			}
 			
 		}
@@ -176,6 +208,84 @@
 			"transform": {
 				"pos": "-68 25 -38"
 			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform_simple",
+			"render": [
+				{
+					"mesh": "data/meshes/plat_move.mesh",
+					"materials": [
+						"data/materials/madera.material"
+					],
+					"color": "1 0.5 0.5 1.0"
+				}
+			],
+			"transform": {
+				"pos": "-65 25 -45"
+			},
+			"collider": {
+				"shape": "box",
+				"halfExtent": "1.5 0.5 1.5",
+				"type": "kinematic"
+			},
+			"platform_simple":{
+				"rotation_axis": "0 1 0",
+				"rotation_speed": 2,
+				"curve_type": "catmull-rom",
+				"automove": true,
+				"loop": true,
+				"closed": false,
+				"speed": 0.2,
+				"knots":
+				[
+				   "-75.5475 28.0458 -31.3392",
+				   "-75.5475 28.0458 -31.3392",
+				   "-60.0974 28.0458 -36.3096",
+				   "-60.0974 28.0458 -36.3096"
+				]
+			}
+			
+		}
+	},
+	{
+		"entity": {
+			"name": "platform_simple",
+			"render": [
+				{
+					"mesh": "data/meshes/plat_move.mesh",
+					"materials": [
+						"data/materials/madera.material"
+					],
+					"color": "1 0.5 0.5 1.0"
+				}
+			],
+			"transform": {
+				"pos": "-65 25 -45"
+			},
+			"collider": {
+				"shape": "box",
+				"halfExtent": "1.5 0.5 1.5",
+				"type": "kinematic"
+			},
+			"platform_simple":{
+				"rotation_axis": "0 1 0",
+				"rotation_speed": 2,
+				"curve_type": "catmull-rom",
+				"automove": true,
+				"loop": true,
+				"closed": false,
+				"speed": 0.2,
+				"knots":
+				[
+				   "-60.0974 20.0458 -36.3096",
+				   "-60.0974 20.0458 -36.3096",
+				   "-60.0974 35.0458 -36.3096",
+				   "-60.0974 35.0458 -36.3096"
+				]
+			}
+			
 		}
 	}
 ]

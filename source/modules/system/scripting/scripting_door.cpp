@@ -1,41 +1,43 @@
 #include "mcv_platform.h"
 #include "scripting_door.h"
-#include "components/comp_transform.h"
 #include "components/comp_door.h"
-#include "components/comp_collider.h"
-#include "entity/entity_parser.h"
 #include <SLB/SLB.hpp>
 
-ScriptingDoor::ScriptingDoor(std::string name) {
-	CEntity* doorEntity = getEntityByName(name);
-	assert(doorEntity);
-	doorHandle = doorEntity->get<TCompDoor>();
-	assert(doorHandle.isValid());
-}
-
-ScriptingDoor::~ScriptingDoor() {
-}
-
-
 void ScriptingDoor::bind(SLB::Manager* manager) {
-	SLB::Class<ScriptingDoor>("Door", manager)
-		.constructor<std::string>()
-		.set("open", &ScriptingDoor::open)
-		.set("close", &ScriptingDoor::close);
+	manager->set("openDoor", SLB::FuncCall::create(ScriptingDoor::open));
+	manager->set("closeDoor", SLB::FuncCall::create(ScriptingDoor::close));
 }
 
-void ScriptingDoor::open(float time) {
-	getDoor()->startOpening(time);
+bool ScriptingDoor::open(std::string doorName, float time) {
+	TCompDoor* door = getDoor(doorName);
+	if (door) {
+		door->startOpening(time);
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
-void ScriptingDoor::close(float time) {
-	getDoor()->startClosing(time);
+bool ScriptingDoor::close(std::string doorName, float time) {
+	TCompDoor* door = getDoor(doorName);
+	if (door) {
+		door->startClosing(time);
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
-TCompDoor * ScriptingDoor::getDoor() {
-	return doorHandle;
+TCompDoor* ScriptingDoor::getDoor(std::string doorName) {
+	TCompDoor* ret = nullptr;
+	CHandle doorEntityHandle = getEntityByName(doorName);
+	if (doorEntityHandle.isValid()) {
+		CHandle doorHandle = ((CEntity*)doorEntityHandle)->get<TCompDoor>();
+		if (doorHandle.isValid()) {
+			ret = doorHandle;
+		}
+	}
+	return ret;
 }
-
-
-
-

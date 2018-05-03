@@ -4,6 +4,8 @@ class CModuleCameras : public IModule {
 public:
 	enum EPriority { DEFAULT = 0, GAMEPLAY, TEMPORARY, DEBUG, NUM_PRIORITIES };
 
+	std::map<std::string, Interpolator::IInterpolator*> interpolators;
+
 	CModuleCameras(const std::string& name);
 	bool start() override;
 	bool stop() override;
@@ -15,6 +17,8 @@ public:
 	void blendInCamera(CHandle camera, float blendTime = 0.f, EPriority priority = EPriority::DEFAULT, Interpolator::IInterpolator* interpolator = nullptr);
 	void blendOutCamera(CHandle camera, float blendTime = 0.f);
 	bool IsCameraAloneInMix(CHandle camera);
+
+	Interpolator::IInterpolator* getInterpolator(std::string interpolator);
 
 private:
 	void renderInMenu();

@@ -212,11 +212,21 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			triMesh.triangles.count = config.colMesh->mesh.header.num_indices / 3;
 			triMesh.triangles.stride = config.colMesh->mesh.header.bytes_per_idx * 3;
 			triMesh.triangles.data = config.colMesh->mesh.idxs.data();
-			
+
+			if (config.colMesh->mesh.header.bytes_per_idx == 2)
+				triMesh.flags = PxMeshFlags(PxTriangleMeshFlag::e16_BIT_INDICES) | PxMeshFlag::eFLIPNORMALS;
+
+#ifdef _DEBUG 
+			// mesh should be validated before cooked without the mesh cleaning 
+			bool res = cooking->validateTriangleMesh(triMesh);
+			PX_ASSERT(res);
+#endif 
+
 			PxDefaultMemoryOutputStream buf;
 			bool status = cooking->cookTriangleMesh(triMesh, buf);
 			PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
 			PxTriangleMesh* triangleMesh = physics->createTriangleMesh(input);
+			//PxTriangleMesh* triangleMesh = cooking->createTriangleMesh(triMesh, physics->getPhysicsInsertionCallback()); // Juan hace esto
 
 			PxTriangleMeshGeometry triangMesh = PxTriangleMeshGeometry(triangleMesh);
 			shapeGeometry = &triangMesh;

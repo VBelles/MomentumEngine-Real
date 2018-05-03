@@ -1,24 +1,18 @@
 #pragma once
 
-class TCompTransform;
 class TCompDoor;
 
-namespace SLB{
+namespace SLB {
 	class Manager;
 }
 
 class ScriptingDoor {
-
 private:
-	CHandle doorHandle;
+	static TCompDoor* getDoor(std::string doorName);
 
 public:
-	ScriptingDoor(std::string name);
-	~ScriptingDoor();
 	static void bind(SLB::Manager* manager);
-	void open(float time);
-	void close(float time);
-
-	TCompDoor* getDoor();
+	static bool open(std::string doorName, float time);
+	static bool close(std::string doorName, float time);
 };
 
