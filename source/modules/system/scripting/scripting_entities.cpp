@@ -40,7 +40,7 @@ std::string ScriptingEntities::spawnEntityAt(std::string prefabFilename, float x
 }
 
 std::string ScriptingEntities::spawnGolemAt(float x, float y, float z) {
-	return spawnEntityAt(GOLEM_PREFAB, x, y, z);
+	return spawnEntityAt(PREFAB_GOLEM, x, y, z);
 }
 
 std::string ScriptingEntities::spawnGolem() {
@@ -49,7 +49,7 @@ std::string ScriptingEntities::spawnGolem() {
 }
 
 std::string ScriptingEntities::spawnBallAt(float x, float y, float z) {
-	return spawnEntityAt(BALL_PREFAB, x, y, z);
+	return spawnEntityAt(PREFAB_BALL, x, y, z);
 }
 
 std::string ScriptingEntities::spawnBall() {
@@ -58,7 +58,7 @@ std::string ScriptingEntities::spawnBall() {
 }
 
 std::string ScriptingEntities::spawnMedusaAt(float x, float y, float z) {
-	return spawnEntityAt(MEDUSA_PREFAB, x, y, z);
+	return spawnEntityAt(PREFAB_MEDUSA, x, y, z);
 }
 
 std::string ScriptingEntities::spawnMedusa() {
