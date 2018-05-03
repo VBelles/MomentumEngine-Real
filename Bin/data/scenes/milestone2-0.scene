@@ -5737,32 +5737,7 @@
       ]
     }
   },
-  {
-    "entity":
-    {
-      "name": "ms2_Box181",
-      "transform":
-      {
-        "pos": "1.69319 29.3946 -29.2343",
-        "rotation": "-0.266344 0.243084 -0.397773 -0.843652"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_Box181.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
+
   {
     "entity":
     {

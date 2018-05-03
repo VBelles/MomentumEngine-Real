@@ -8482,23 +8482,7 @@
       }
     }
   },
-  {
-    "entity":
-    {
-      "name": "ms2_Box061_col",
-      "transform":
-      {
-        "pos": "1.69319 29.3946 -29.2343",
-        "rotation": "-0.266344 0.243084 -0.397773 -0.843652"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_Box061_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
+  
   {
     "entity":
     {

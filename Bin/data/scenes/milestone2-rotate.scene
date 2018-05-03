@@ -2,16 +2,16 @@
   {
     "entity":
     {
-      "name": "ms2_rotate003mesh",
+      "name": "ms2_rotate000mesh",
       "transform":
       {
-        "pos": "-71.5043 34.7255 -34.2997",
-        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
+        "pos": "-3.045 32.6325 -27.4333",
+        "rotation": "-0.253905 0.24218 -0.407109 -0.843293"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms2_rotate003mesh.mesh",
+          "mesh": "data/meshes/ms2_rotate000mesh.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -26,8 +26,49 @@
       "collider":
       {
         "shape": "box",
+        "halfExtent": "6.0 6.0 6.0",
+        "type": "dynamic",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "platform_rotative":
+      {
+        "rotation_speed": "12 0 0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_rotate003mesh",
+      "transform":
+      {
+        "pos": "-71.5043 34.7255 -34.2997",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_rotate003mesh.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
         "halfExtent": "0.5 2.0 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "platform_rotative":
       {
@@ -50,12 +91,7 @@
           "mesh": "data/meshes/ms2_rotate002mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -63,7 +99,12 @@
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "platform_rotative":
       {
@@ -86,12 +127,7 @@
           "mesh": "data/meshes/ms2_rotate001mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -99,7 +135,12 @@
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "platform_rotative":
       {
