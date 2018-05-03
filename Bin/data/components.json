@@ -14,6 +14,7 @@
     "platform_move",
     "follow_curve",
     "platform",
+    "platform_simple",
     "platform_rotative",
     "collectable",
     "breakable",

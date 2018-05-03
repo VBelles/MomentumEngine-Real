@@ -145,6 +145,7 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
     <ClCompile Include="components\platforms\comp_platform_move.cpp" />
     <ClCompile Include="components\platforms\comp_platform_rotative.cpp" />
+    <ClCompile Include="components\platforms\comp_platform_simple.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
     <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
@@ -339,6 +340,7 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
     <ClInclude Include="components\platforms\comp_platform_move.h" />
     <ClInclude Include="components\platforms\comp_platform_rotative.h" />
+    <ClInclude Include="components\platforms\comp_platform_simple.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
     <ClInclude Include="components\player\filters\player_filter_callback.h" />
