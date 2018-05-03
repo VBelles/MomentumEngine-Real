@@ -11,6 +11,10 @@
 void HuggingWallActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
+	//delta movement horizontal según wall normal
+	float yaw, pitch;
+	getYawPitchFromVector(fromPhysx(wallNormal), &yaw, &pitch);
+	VEC3 tangentVector;
 	if (CheckIfHuggingWall(wallDirection)) {
 		VEC3 worldInput = getCamera()->TransformToWorld(movementInput);
 		VEC3 normal = { wallNormal.x, 0.f, wallNormal.z };
@@ -30,6 +34,9 @@ void HuggingWallActionState::update(float delta) {
 			}
 		}
 		else if (isClimbing) {
+			tangentVector = getVectorFromYawPitch(yaw, pitch + M_PI_2);
+			float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
+			deltaMovement = tangentVector * module;
 			if (climbTimer.elapsed() >= climbTime) {
 				isClimbing = false;
 				TurnAround();
@@ -37,6 +44,11 @@ void HuggingWallActionState::update(float delta) {
 				getPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
 				getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 			}
+		}
+		else {
+			tangentVector = getVectorFromYawPitch(yaw, pitch - M_PI_2);
+			float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
+			deltaMovement = tangentVector * module;
 		}
 	}
 	else {

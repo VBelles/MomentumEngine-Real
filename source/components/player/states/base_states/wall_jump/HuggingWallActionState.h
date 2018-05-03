@@ -19,7 +19,7 @@ private:
 
 	float climbLedgeExitSpeed = 2.2f;
 
-	PxReal maxRaycastDistance = 0.5f;
+	PxReal maxRaycastDistance = 0.5f;//0.5
 	PxControllerShapeHit hit;
 	PxVec3 wallNormal;
 	VEC3 wallDirection;//Front or back
