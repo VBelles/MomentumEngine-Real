@@ -1,6 +1,10 @@
 #ifndef INC_RENDER_GPU_TRACES_H_
 #define INC_RENDER_GPU_TRACES_H_
 
+
+// TODO: To force profiling in release. Remove it in the future.
+#define PROFILE
+
 #if defined(_DEBUG) || defined(PROFILE)
 
 #include <d3d9.h>         // D3DPERF_*
