@@ -16,7 +16,8 @@
 			],
 			"collectable": {
 				"type": "coin",
-				"rotationSpeed": 2
+				"rotation_axis": "1 1 1",
+				"rotation_speed": 2
 			},
 			"collider" : {
 				"shape": "sphere",
