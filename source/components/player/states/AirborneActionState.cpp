@@ -182,3 +182,8 @@ void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
 	}
 
 }
+
+void AirborneActionState::onDamage(float damage, bool isHard) {
+	IActionState::onDamage(damage, isHard);
+	//getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::SoftKnockbackAir);
+}

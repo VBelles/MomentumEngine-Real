@@ -5,7 +5,7 @@
 class HardKnockbackGroundActionState : public GroundedActionState {
 private:
 	CTimer timer;
-	float duration = 1.5f;
+	float duration = 0.8f;
 
 public:
 	HardKnockbackGroundActionState(CHandle playerModelHandle);

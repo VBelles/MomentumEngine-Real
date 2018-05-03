@@ -39,4 +39,5 @@ public:
 	virtual void onLanding();
 	virtual void onShapeHit(const PxControllerShapeHit &hit) override;
 	virtual void onSweep(PxSweepBuffer& sweepBuffer) override;
+	virtual void onDamage(float damage, bool isHard) override;
 };

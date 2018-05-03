@@ -18,4 +18,5 @@ public:
 	void onReleasePowerButton() override;
 
 	virtual void onLeavingGround();
+	virtual void onDamage(float damage, bool isHard) override;
 };
