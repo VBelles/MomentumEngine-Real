@@ -43,6 +43,7 @@
 #include "states/base_states/death/DeathActionState.h"
 #include "states/base_states/death/PitFallingActionState.h"
 #include "states/base_states/knockback/HardKnockbackGroundActionState.h"
+#include "states/base_states/SlideActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
@@ -263,6 +264,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::Death, new DeathActionState(playerModelHandle) },
 	{ ActionStates::PitFalling, new PitFallingActionState(playerModelHandle) },
 	{ ActionStates::HardKnockbackGround, new HardKnockbackGroundActionState(playerModelHandle) },
+	{ ActionStates::Slide, new SlideActionState(playerModelHandle) },
 	};
 
 	concurrentStates = {
@@ -344,8 +346,7 @@ void TCompPlayerModel::update(float delta) {
 }
 
 void TCompPlayerModel::applyGravity(float delta) {
-	float deltaMovementDueToGravity;
-	deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
+	float deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
 	if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
 		deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
 	}
@@ -368,26 +369,7 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 		PxControllerFilters(&getFilterData(), playerFilterCallback, playerFilterCallback));
 	hitState.isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	hitState.isTouchingCeiling = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
-
 	baseState->onMove(hitState);
-
-	/*isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
-	//dbg("%d\n", isGrounded);
-	if (dynamic_cast<AirborneActionState*>(baseState)) {//NULL si no lo consigue
-		if (isGrounded) {
-			isTouchingCeiling = false;
-			(static_cast<AirborneActionState*>(baseState))->onLanding();
-			if (concurrentState != concurrentStates[ActionStates::Idle]) {
-				(static_cast<AirborneActionState*>(concurrentState))->onLanding();
-			}
-		}
-		if (!isTouchingCeiling) {
-			isTouchingCeiling = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
-			if (isTouchingCeiling) {
-				velocityVector.y = -1.f;
-			}
-		}
-	}*/
 }
 
 void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {

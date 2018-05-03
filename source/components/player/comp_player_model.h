@@ -40,7 +40,7 @@ public:
 		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
 		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
 		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling,
-		HardKnockbackGround
+		HardKnockbackGround, Slide
 	};
 
 private:
@@ -112,9 +112,7 @@ public:
 	bool lockConcurrentState = false;
 
 	bool wannaJump = false;
-	bool isGrounded = false;
-	bool isTouchingCeiling = false;
-	bool isAttachedToPlatform = false;
+	
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;
@@ -141,7 +139,6 @@ public:
 	void setBaseState(ActionStates newState);
 	void setConcurrentState(ActionStates newState);
 	void updateMovement(float delta, VEC3 deltaMovement);
-	void sweep(VEC3 deltaMovement);
 	void setMovementInput(VEC2 input, float delta);
 	void jumpButtonPressed();
 	void jumpButtonReleased();
