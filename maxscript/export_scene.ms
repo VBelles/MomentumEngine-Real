@@ -383,12 +383,15 @@ struct TSceneExporter (
 	
 	-- --COLLIDER MESH------------------------------------------
 	fn exportColliderMesh obj = (
+		local meshType = "convex_mesh"
+		if obj.layer.name == "trimesh" then meshType = "tri_mesh"
+		
 		fs.writeKey "collider"
 		fs.beginObj()
 			local mesh_name = mesh_path + obj.name + ".col_mesh"
 			fs.writeKeyValue "mesh_src" mesh_name
 			fs.writeComma()
-			fs.writeKeyValue "shape" "convex_mesh"
+			fs.writeKeyValue "shape" meshType
 			fs.writeComma()
 			fs.writeKeyValue "type" "static"
 		
@@ -733,6 +736,7 @@ struct TSceneExporter (
 		if not isCollider obj and
 		   not classOf obj == Editable_Mesh then return false
 		if nValidObjs > 0 then fs.writeComma()
+		
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1280,6 +1284,7 @@ struct TSceneExporter (
 							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"rotate": 		( wasValid = exportDefault	   obj nValidObjs )
 							"triggers":     ( wasValid = exportTrigger     obj nValidObjs )
+							"trimesh":		( wasValid = exportCollision   obj nValidObjs )
 							"mechanisms":	( wasValid = exportMechSys	   obj nValidObjs )
 							"pure":		    ( wasValid = exportDefault     obj nValidObjs )
 							"spikes":	    ( wasValid = exportSpikes      obj nValidObjs )

@@ -2,6 +2,27 @@
   {
     "entity":
     {
+      "name": "andrea_terrenobase001",
+      "transform":
+      {
+        "pos": "-6.6354 -56.5444 21.7785",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andrea_terrenobase001.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "formacion_rocosa1_low_formacion_rocosa1_low",
       "transform":
       {

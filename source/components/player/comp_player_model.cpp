@@ -364,8 +364,6 @@ void TCompPlayerModel::applyGravity(float delta) {
 	}
 }
 
-
-
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	PxShape* tempShape;
 	getController()->getActor()->getShapes(&tempShape, 1);
