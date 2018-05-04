@@ -2,6 +2,108 @@
   {
     "entity":
     {
+      "name": "lanza012_col",
+      "transform":
+      {
+        "pos": "70.4497 20.5988 -48.7993",
+        "rotation": "-0.81719 0.488831 0.0809716 0.294431"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/lanza012_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "lanza011_col",
+      "transform":
+      {
+        "pos": "82.1598 18.3681 -0.0428322",
+        "rotation": "0.582589 -0.806521 -0.0848897 -0.0539275"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/lanza011_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "lanza010_col",
+      "transform":
+      {
+        "pos": "87.8727 33.4576 2.30949",
+        "rotation": "0.620223 -0.777087 -0.0632248 -0.0863804"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/lanza010_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "lanza009_col",
+      "transform":
+      {
+        "pos": "88.9206 33.4844 3.22376",
+        "rotation": "0.513487 -0.851394 -0.0514091 -0.093894"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/lanza009_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "lanza008_col",
+      "transform":
+      {
+        "pos": "58.95 18.3844 36.8741",
+        "rotation": "-0.996195 0.0 0.0 0.0871558"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/lanza008_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "lanza007_col",
+      "transform":
+      {
+        "pos": "63.1138 5.94342 35.5588",
+        "rotation": "-0.976383 0.126079 -0.0337828 0.172163"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/lanza007_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "mountainVertical013_col",
       "transform":
       {
@@ -436,108 +538,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/ms2_murodecarga008_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza017_col",
-      "transform":
-      {
-        "pos": "52.4167 8.95703 -54.9432",
-        "rotation": "-0.507865 -0.747208 0.0603727 -0.424392"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza017_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza016_col",
-      "transform":
-      {
-        "pos": "63.1798 19.5093 9.5155",
-        "rotation": "-0.564456 -0.470125 0.481502 -0.478046"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza016_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza015_col",
-      "transform":
-      {
-        "pos": "64.151 39.1828 7.33993",
-        "rotation": "-0.629566 -0.353414 0.599362 -0.345704"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza015_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza014_col",
-      "transform":
-      {
-        "pos": "63.8138 35.868 3.48569",
-        "rotation": "0.537711 0.450887 -0.545308 0.458483"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza014_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza013_col",
-      "transform":
-      {
-        "pos": "55.5297 -16.0807 28.7314",
-        "rotation": "-0.212109 -0.697041 -0.0233565 -0.684542"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza013_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza012_col",
-      "transform":
-      {
-        "pos": "57.6328 -4.23083 33.6185",
-        "rotation": "-0.0642579 -0.734472 -0.0588815 -0.673019"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_lanza012_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }
