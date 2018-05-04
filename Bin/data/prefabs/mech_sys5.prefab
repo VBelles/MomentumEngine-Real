@@ -9,7 +9,7 @@
 				{
 					"mesh": "data/meshes/_mechPREFAB.mesh",
 					"materials": [
-						"data/materials/mec1.material"
+						"data/materials/mec5.material"
 					],
 					"color": "0 0 1 1"
 				}

@@ -3,7 +3,7 @@
     "entity":
     {
       "name": "ms2_mech003",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech_sys3.prefab",
       "transform":
       {
         "pos": "111.377 17.8673 19.8755",
@@ -19,7 +19,7 @@
     "entity":
     {
       "name": "ms2_mech002",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech_sys2.prefab",
       "transform":
       {
         "pos": "-65.2345 5.04006 41.7863",
@@ -158,7 +158,7 @@
     "entity":
     {
       "name": "ms2_mech005",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech_sys5.prefab",
       "transform":
       {
         "pos": "-65.2345 19.2622 41.7863",
@@ -215,7 +215,7 @@
     "entity":
     {
       "name": "ms2_mech001",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech_sys1.prefab",
       "transform":
       {
         "pos": "-84.0003 36.7173 -5.77995",
@@ -395,7 +395,7 @@
     "entity":
     {
       "name": "ms2_mech004",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech_sys4.prefab",
       "transform":
       {
         "pos": "-50.1077 51.0159 -41.5047",
@@ -452,7 +452,7 @@
     "entity":
     {
       "name": "ms2_mech006",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech_sys6.prefab",
       "transform":
       {
         "pos": "-39.8889 1.88036 -49.1364",

@@ -3,9 +3,9 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/Tuerca_low_wire_153228214_BaseColor.dds",
-    "normal": "data/textures/mecanismos_normal.dds",
-    "metallic": "data/textures/Tuerca_low_wire_153228214_Metallic.dds",
-    "roughness": "data/textures/Tuerca_low_wire_153228214_Roughness.dds"
+    "albedo": "data/textures/mecanismos/sim01/mec1_albedo.dds",
+    "normal": "data/textures/mecanismos/mecanismos_normal.dds",
+    "metallic": "data/textures/mecanismos/sim01/mec1_metallic.dds",
+    "roughness": "data/textures/mecanismos/sim01/mec1_roughness.dds"
   }
 }

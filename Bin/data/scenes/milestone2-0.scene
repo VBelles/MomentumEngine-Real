@@ -2,27 +2,6 @@
   {
     "entity":
     {
-      "name": "_mechPREFABtest",
-      "transform":
-      {
-        "pos": "-39.8889 1.88036 -49.1364",
-        "rotation": "-0.683013 0.183013 -0.183013 -0.683013"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/_mechPREFABtest.mesh",
-          "materials":
-          [
-            "data/materials/mec1.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "formacion_rocosa1_low_formacion_rocosa1_low",
       "transform":
       {
