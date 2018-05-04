@@ -151,6 +151,7 @@
     <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
+    <ClCompile Include="components\player\states\base_states\SlideActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\death\PitFallingActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\death\DeathActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
@@ -345,6 +346,7 @@
     <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\power_stats.h" />
+    <ClInclude Include="components\player\states\base_states\SlideActionState.h" />
     <ClInclude Include="components\player\states\base_states\death\PitFallingActionState.h" />
     <ClInclude Include="components\player\states\base_states\death\DeathActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />

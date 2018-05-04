@@ -189,6 +189,7 @@
     <ClCompile Include="components\comp_hitboxes.cpp" />
     <ClCompile Include="windows\windowsUtils.cpp" />
     <ClCompile Include="components\platforms\comp_platform_simple.cpp" />
+    <ClCompile Include="components\player\states\base_states\SlideActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -409,6 +410,7 @@
     <ClInclude Include="components\comp_hitboxes.h" />
     <ClInclude Include="windows\windowsUtils.h" />
     <ClInclude Include="components\platforms\comp_platform_simple.h" />
+    <ClInclude Include="components\player\states\base_states\SlideActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

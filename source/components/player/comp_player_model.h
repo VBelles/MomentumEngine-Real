@@ -21,6 +21,13 @@ struct TMsgGainPower;
 struct TMsgGainPower;
 struct TMsgOutOfBounds;
 
+struct HitState {
+	CHandle entity;
+	PxControllerShapeHit hit;
+	bool isGrounded;
+	bool isTouchingCeiling;
+};
+
 
 class TCompPlayerModel : public TCompBase {
 public:
@@ -33,7 +40,7 @@ public:
 		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
 		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
 		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling,
-		HardKnockbackGround
+		HardKnockbackGround, Slide
 	};
 
 private:
@@ -48,6 +55,8 @@ private:
 	VEC3 velocityVector;
 	float baseGravity = 0.f;
 	float currentGravity = 0.f;
+
+	HitState hitState;
 
 	std::string materials[3];
 	PowerStats* powerStats[3];
@@ -83,6 +92,7 @@ private:
 	void onHitboxEnter(const TMsgHitboxEnter& msg);
 	void onGainPower(const TMsgGainPower& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	PxFilterData getFilterData();
 
 	PowerStats* loadPowerStats(const json& j);
 	void changeBaseState(ActionStates newState);
@@ -102,9 +112,7 @@ public:
 	bool lockConcurrentState = false;
 
 	bool wannaJump = false;
-	bool isGrounded = false;
-	bool isTouchingCeiling = false;
-	bool isAttachedToPlatform = false;
+	
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;
@@ -131,7 +139,6 @@ public:
 	void setBaseState(ActionStates newState);
 	void setConcurrentState(ActionStates newState);
 	void updateMovement(float delta, VEC3 deltaMovement);
-	void sweep(VEC3 deltaMovement);
 	void setMovementInput(VEC2 input, float delta);
 	void jumpButtonPressed();
 	void jumpButtonReleased();

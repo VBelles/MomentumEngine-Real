@@ -83,6 +83,7 @@ bool CModulePhysics::createScene() {
 	defaultMaterial = physics->createMaterial(0.5f, 0.5f, 0.6f);
 
 	controllerManager = PxCreateControllerManager(*scene);
+	//controllerManager->setPreventVerticalSlidingAgainstCeiling(true);
 
 	basicQueryFilterCallback = new BasicQueryFilterCallback();
 	basicControllerHitCallback = new BasicControllerHitCallback();

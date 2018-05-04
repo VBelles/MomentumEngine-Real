@@ -38,6 +38,7 @@ void IActionState::onDamage(float damage, bool isHard) {
 	//Lo que venga luego ya lo procesa el estado en concreto
 }
 
+
 void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }
