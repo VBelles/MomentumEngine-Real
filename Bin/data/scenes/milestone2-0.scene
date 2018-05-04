@@ -2,6 +2,69 @@
   {
     "entity":
     {
+      "name": "terreno_elevado3",
+      "transform":
+      {
+        "pos": "-57.5072 -0.705564 48.9464",
+        "rotation": "-0.999048 0.0 -0.0436195 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/terreno_elevado3.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "terreno_elevado2",
+      "transform":
+      {
+        "pos": "12.4528 0.328289 82.21",
+        "rotation": "-0.999048 0.0 -0.0436195 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/terreno_elevado2.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "terreno_elevado",
+      "transform":
+      {
+        "pos": "12.4528 0.328284 -38.5502",
+        "rotation": "-0.999048 0.0 -0.0436195 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/terreno_elevado.mesh",
+          "materials":
+          [
+            "data/materials/Material_#4.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "andrea_terrenobase001",
       "transform":
       {
@@ -404,6 +467,237 @@
             "data/materials/liso.material",
             "data/materials/cenefas.material",
             "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box012",
+      "transform":
+      {
+        "pos": "-67.3382 0.0 65.0285",
+        "rotation": "0.0 -0.231292 0.0 -0.972884"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box012.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box011",
+      "transform":
+      {
+        "pos": "-75.5891 7.01194 76.4043",
+        "rotation": "0.0 -0.460885 0.0 -0.88746"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box011.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box010",
+      "transform":
+      {
+        "pos": "13.9277 -1.33878 -75.3472",
+        "rotation": "0.0 0.570105 0.0 -0.821572"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box010.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box009",
+      "transform":
+      {
+        "pos": "23.1111 -4.27173 -58.9032",
+        "rotation": "0.0 0.0843425 0.0 -0.996437"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box009.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box008",
+      "transform":
+      {
+        "pos": "23.1111 -4.27172 135.145",
+        "rotation": "0.0 -0.460885 0.0 -0.88746"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box008.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box007",
+      "transform":
+      {
+        "pos": "-12.1916 0.0 91.2231",
+        "rotation": "0.0 0.360133 0.0 -0.932901"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box007.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box006",
+      "transform":
+      {
+        "pos": "45.5841 0.0 -37.6972",
+        "rotation": "0.0 -0.738987 0.0 -0.67372"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box006.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box005",
+      "transform":
+      {
+        "pos": "-71.5797 0.0 89.5809",
+        "rotation": "0.0 -0.8981 0.0 -0.439792"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box005.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box003",
+      "transform":
+      {
+        "pos": "-78.9453 -1.33877 51.2449",
+        "rotation": "0.0 -0.0213492 0.0 -0.999772"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box003.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Box001",
+      "transform":
+      {
+        "pos": "23.1111 -4.27172 109.982",
+        "rotation": "0.0 -0.460885 0.0 -0.88746"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box001.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "andrea_big_mountain",
+      "transform":
+      {
+        "pos": "68.2821 5.53603 10.7216",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andrea_big_mountain.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material"
           ]
         }
       ]
@@ -2488,7 +2782,7 @@
       "name": "muro007",
       "transform":
       {
-        "pos": "37.4734 0.693757 -6.73208",
+        "pos": "37.4734 0.624255 -6.73208",
         "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
@@ -2510,7 +2804,7 @@
       "name": "muro006",
       "transform":
       {
-        "pos": "39.5823 1.43898 -7.81581",
+        "pos": "39.5823 1.36948 -7.81581",
         "rotation": "0.0 -0.999048 0.0 -0.0436195"
       },
       "render":
@@ -2532,7 +2826,7 @@
       "name": "muro005",
       "transform":
       {
-        "pos": "44.8005 1.43734 4.9498",
+        "pos": "44.8005 1.36783 4.9498",
         "rotation": "0.0 0.737277 0.0 -0.67559"
       },
       "render":
@@ -2554,7 +2848,7 @@
       "name": "muro004",
       "transform":
       {
-        "pos": "43.3455 1.43734 6.83062",
+        "pos": "43.3455 1.36783 6.83062",
         "rotation": "0.0 -0.999048 0.0 -0.0436193"
       },
       "render":
@@ -3420,7 +3714,7 @@
       "name": "columna010",
       "transform":
       {
-        "pos": "6.16489 3.86475 42.6957",
+        "pos": "6.16489 3.41305 42.6957",
         "rotation": "0.0 -0.999048 0.0 0.0436193"
       },
       "render":
@@ -3442,7 +3736,7 @@
       "name": "columna009",
       "transform":
       {
-        "pos": "-3.21843 3.86475 42.7045",
+        "pos": "-3.21843 3.41305 42.7045",
         "rotation": "0.0 -0.999048 0.0 0.0436193"
       },
       "render":
@@ -3464,7 +3758,7 @@
       "name": "columna008",
       "transform":
       {
-        "pos": "1.4514 3.86475 40.9664",
+        "pos": "1.4514 3.41305 40.9664",
         "rotation": "0.0 -0.999048 0.0 0.0436193"
       },
       "render":
@@ -3486,7 +3780,7 @@
       "name": "columna007",
       "transform":
       {
-        "pos": "6.36123 3.86475 52.8881",
+        "pos": "6.36123 3.41305 52.8881",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
@@ -3508,7 +3802,7 @@
       "name": "columna006",
       "transform":
       {
-        "pos": "1.69141 3.86475 54.6261",
+        "pos": "1.69141 3.41305 54.6261",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
@@ -3530,7 +3824,7 @@
       "name": "colCurvaRight009",
       "transform":
       {
-        "pos": "-63.4109 3.9903 0.297055",
+        "pos": "-63.4109 4.2777 0.297055",
         "rotation": "0.0 -0.642788 0.0 -0.766044"
       },
       "render":
@@ -3552,7 +3846,7 @@
       "name": "colCurvaLeft009",
       "transform":
       {
-        "pos": "-68.9951 3.9903 2.31328",
+        "pos": "-68.9951 4.2777 2.31328",
         "rotation": "0.0 -0.642788 0.0 -0.766044"
       },
       "render":
@@ -3574,7 +3868,7 @@
       "name": "colCurvaRight008",
       "transform":
       {
-        "pos": "-63.6724 3.9903 11.3575",
+        "pos": "-63.6724 4.29732 11.3575",
         "rotation": "0.0 0.707107 0.0 -0.707107"
       },
       "render":
@@ -3596,7 +3890,7 @@
       "name": "colCurvaLeft008",
       "transform":
       {
-        "pos": "-58.5232 3.9903 8.40222",
+        "pos": "-58.5232 4.29732 8.40222",
         "rotation": "0.0 0.707107 0.0 -0.707107"
       },
       "render":
@@ -3618,7 +3912,7 @@
       "name": "colCurvaRight007",
       "transform":
       {
-        "pos": "-50.8205 3.9903 12.786",
+        "pos": "-50.8205 4.29698 12.786",
         "rotation": "0.0 -0.906308 0.0 -0.422618"
       },
       "render":
@@ -3640,7 +3934,7 @@
       "name": "colCurvaLeft007",
       "transform":
       {
-        "pos": "-52.8655 3.9903 18.3598",
+        "pos": "-52.8655 4.29698 18.3598",
         "rotation": "0.0 -0.906308 0.0 -0.422618"
       },
       "render":
@@ -3662,7 +3956,7 @@
       "name": "colCurvaRight006",
       "transform":
       {
-        "pos": "-42.3872 3.9903 22.1875",
+        "pos": "-42.3872 4.27948 22.1875",
         "rotation": "0.0 0.573577 0.0 -0.819152"
       },
       "render":
@@ -3684,7 +3978,7 @@
       "name": "colCurvaLeft006",
       "transform":
       {
-        "pos": "-38.5592 3.9903 17.6493",
+        "pos": "-38.5592 4.27948 17.6493",
         "rotation": "0.0 0.573577 0.0 -0.819152"
       },
       "render":
@@ -3706,7 +4000,7 @@
       "name": "colCurvaRight005",
       "transform":
       {
-        "pos": "-29.0016 3.9903 28.8953",
+        "pos": "-29.0016 4.08702 28.8953",
         "rotation": "0.0 -0.608761 0.0 -0.793353"
       },
       "render":
@@ -3728,7 +4022,7 @@
       "name": "colCurvaLeft005",
       "transform":
       {
-        "pos": "-34.7403 3.9903 30.4171",
+        "pos": "-34.7403 4.08702 30.4171",
         "rotation": "0.0 -0.608761 0.0 -0.793353"
       },
       "render":
@@ -3750,7 +4044,7 @@
       "name": "colCurvaRight004",
       "transform":
       {
-        "pos": "-11.8244 3.9903 43.6035",
+        "pos": "-11.8244 3.75099 43.6035",
         "rotation": "0.0 -0.92388 0.0 -0.382684"
       },
       "render":
@@ -3772,7 +4066,7 @@
       "name": "colCurvaLeft004",
       "transform":
       {
-        "pos": "-13.3758 3.9903 49.3342",
+        "pos": "-13.3758 3.75099 49.3342",
         "rotation": "0.0 -0.92388 0.0 -0.382684"
       },
       "render":
@@ -3794,7 +4088,7 @@
       "name": "colCurvaRight003",
       "transform":
       {
-        "pos": "-23.7175 3.9903 47.3182",
+        "pos": "-23.7175 3.77034 47.3182",
         "rotation": "0.0 0.5 0.0 -0.866025"
       },
       "render":
@@ -3816,7 +4110,7 @@
       "name": "colCurvaLeft003",
       "transform":
       {
-        "pos": "-20.7358 3.9903 42.1842",
+        "pos": "-20.7358 3.77034 42.1842",
         "rotation": "0.0 0.5 0.0 -0.866025"
       },
       "render":
@@ -3838,7 +4132,7 @@
       "name": "colCurvaRight002",
       "transform":
       {
-        "pos": "-27.6577 3.9903 37.5761",
+        "pos": "-27.6577 3.95823 37.5761",
         "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
@@ -3860,7 +4154,7 @@
       "name": "colCurvaLeft002",
       "transform":
       {
-        "pos": "-33.0449 3.9903 40.0714",
+        "pos": "-33.0449 3.95823 40.0714",
         "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
@@ -4029,7 +4323,7 @@
       "name": "columna005",
       "transform":
       {
-        "pos": "-3.02209 3.86475 52.8969",
+        "pos": "-3.02209 3.41305 52.8969",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
@@ -4623,7 +4917,7 @@
       "name": "mountainVertical005",
       "transform":
       {
-        "pos": "-9.66935 -4.47381 25.5737",
+        "pos": "-9.66935 -5.57799 25.5737",
         "rotation": "0.0 0.0590068 0.0 -0.998258"
       },
       "render":
@@ -5235,6 +5529,27 @@
             "data/materials/Fieldstone.material",
             "data/materials/Fieldstone.material",
             "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_esculturaGigante",
+      "transform":
+      {
+        "pos": "68.2821 5.53603 10.7216",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_esculturaGigante.mesh",
+          "materials":
+          [
             "data/materials/Fieldstone.material"
           ]
         }
@@ -6025,7 +6340,7 @@
       "name": "ms2_plataformacolumna2",
       "transform":
       {
-        "pos": "-12.9936 7.57735 3.87826",
+        "pos": "-12.9936 5.2752 3.87826",
         "rotation": "0.0225575 0.257834 0.0841859 -0.96225"
       },
       "render":

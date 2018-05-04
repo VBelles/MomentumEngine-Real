@@ -1,0 +1,53 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms2_esculturaGigante_col",
+      "transform":
+      {
+        "pos": "68.2821 5.53603 10.7216",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_esculturaGigante_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "andrea_terrenobase",
+      "transform":
+      {
+        "pos": "-6.6354 -56.5444 21.7785",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/andrea_terrenobase.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "andrea_big_mountain_col",
+      "transform":
+      {
+        "pos": "68.2821 5.53603 10.7216",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/andrea_big_mountain_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  }
+]

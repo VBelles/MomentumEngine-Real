@@ -437,7 +437,7 @@
       "name": "ms2_coin066",
       "transform":
       {
-        "pos": "-12.301 13.3843 3.68676",
+        "pos": "-12.301 11.0112 3.68676",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
