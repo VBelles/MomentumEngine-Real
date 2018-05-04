@@ -111,7 +111,7 @@
     "vertex_type": "PosNUvUvT",
     "category": "gbuffer",
     "textures": {
-      "environment": "data/textures/cubemaps/momentum.dds",
+      "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -124,7 +124,7 @@
     "category": "gbuffer",
     "uses_skin": true,
     "textures": {
-      "environment": "data/textures/cubemaps/momentum.dds",
+      "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },

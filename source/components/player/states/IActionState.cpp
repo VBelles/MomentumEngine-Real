@@ -33,6 +33,12 @@ void IActionState::onDead() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Death);
 }
 
+void IActionState::onDamage(float damage, bool isHard) {
+	getPlayerModel()->damage(damage);
+	//Lo que venga luego ya lo procesa el estado en concreto
+}
+
+
 void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }

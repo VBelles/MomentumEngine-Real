@@ -16,12 +16,13 @@
 			],
 			"collectable": {
 				"type": "coin",
-				"rotationSpeed": 2
+				"rotation_axis": "1 1 1",
+				"rotation_speed": 2
 			},
 			"collider" : {
 				"shape": "sphere",
 				"is_trigger" : true,
-				"radius" : 0.5,
+				"radius" : 0.75,
 				"group": ["scenario"],
 				"mask": ["player"]
 			}

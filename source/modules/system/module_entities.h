@@ -6,6 +6,7 @@
 class CModuleEntities : public IModule {
 	std::vector< CHandleManager* > om_to_update;
 	std::vector< CHandleManager* > om_to_render_debug;
+	std::map< CHandleManager*, bool > om_to_update_active;
 	void loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers);
 	void renderDebugOfComponents();
 
@@ -18,6 +19,7 @@ public:
 	void render() override;
 
 	void reset();
+	void setManagerUpdate(std::string managerName, bool update);
 };
 
 CHandle getEntityByName(const std::string& name);

@@ -19,7 +19,7 @@ private:
 
 	float climbLedgeExitSpeed = 2.2f;
 
-	PxReal maxRaycastDistance = 0.5f;
+	PxReal maxRaycastDistance = 0.5f;//0.5
 	PxControllerShapeHit hit;
 	PxVec3 wallNormal;
 	VEC3 wallDirection;//Front or back
@@ -28,16 +28,18 @@ private:
 
 	std::string animationClimbing;
 
+	float huggingWallMinPitch = 0.f;
+
 public:
-	HuggingWallActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "bajandopared"),
-		animationClimbing("correporlapared") {
-	}
+	HuggingWallActionState(CHandle playerModelHandle);
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 	void onJumpHighButton() override;
 	void onJumpLongButton() override;
-	virtual void onShapeHit(const PxControllerShapeHit &hit) override {}
+	void onShapeHit(const PxControllerShapeHit &hit) override {}
+	void onMove(HitState& hitState) override;
+
 	void SetHit(PxControllerShapeHit hit) { this->hit = hit; }
 	void setHuggingWallNormal(VEC3 huggingWallNormal) { this->huggingWallNormal = huggingWallNormal; }
 	bool CheckIfHuggingWall(VEC3 wallDirection);

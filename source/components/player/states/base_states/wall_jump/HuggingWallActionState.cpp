@@ -8,9 +8,20 @@
 #include "modules/game/physics/basic_query_filter_callback.h"
 
 
+HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle) :
+	AirborneActionState(playerModelHandle, "bajandopared"),
+	animationClimbing("correporlapared"),
+	huggingWallMinPitch(cosf(getPlayerModel()->huggingWallMinPitch + M_PI_2)) {
+}
+
+
 void HuggingWallActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
+	//delta movement horizontal según wall normal
+	float yaw, pitch;
+	getYawPitchFromVector(fromPhysx(wallNormal), &yaw, &pitch);
+	VEC3 tangentVector;
 	if (CheckIfHuggingWall(wallDirection)) {
 		VEC3 worldInput = getCamera()->TransformToWorld(movementInput);
 		VEC3 normal = { wallNormal.x, 0.f, wallNormal.z };
@@ -30,6 +41,9 @@ void HuggingWallActionState::update(float delta) {
 			}
 		}
 		else if (isClimbing) {
+			tangentVector = getVectorFromYawPitch(yaw, pitch + M_PI_2);
+			float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
+			deltaMovement = tangentVector * module;
 			if (climbTimer.elapsed() >= climbTime) {
 				isClimbing = false;
 				TurnAround();
@@ -37,6 +51,11 @@ void HuggingWallActionState::update(float delta) {
 				getPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
 				getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 			}
+		}
+		else {
+			tangentVector = getVectorFromYawPitch(yaw, pitch - M_PI_2);
+			float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
+			deltaMovement = tangentVector * module;
 		}
 	}
 	else {
@@ -84,6 +103,24 @@ void HuggingWallActionState::onJumpLongButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
 }
 
+void HuggingWallActionState::onMove(HitState& hitState) {
+	if (hitState.isGrounded) {
+		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
+		if (dot < huggingWallMinPitch) {
+			//Continue in hugging wall
+		}
+		else if (dot < getPlayerModel()->getController()->getSlopeLimit()) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+		}
+		else {
+			onLanding();
+		}
+	}
+	if (hitState.isTouchingCeiling && velocityVector->y > 0.f) {
+		velocityVector->y = 0.f;
+	}
+}
+
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	PxScene* scene = EnginePhysics.getScene();
@@ -94,7 +131,7 @@ bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	filterData.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
 	filterData.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
 
-	bool status = scene->raycast(origin, unitDir, maxRaycastDistance, raycastBuffer, 
+	bool status = scene->raycast(origin, unitDir, maxRaycastDistance, raycastBuffer,
 		PxHitFlags(PxHitFlag::eDEFAULT), filterData, EnginePhysics.getGameQueryFilterCallback());
 	if (!status) return false;
 

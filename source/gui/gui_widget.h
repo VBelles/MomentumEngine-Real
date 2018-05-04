@@ -1,37 +1,45 @@
 #pragma once
 
 #include "gui_params.h"
+#include "gui_effect.h"
 
-namespace GUI {
-    class CWidget;
-    using VWidgets = std::vector<CWidget*>;
+namespace GUI
+{
+  class CWidget;
+  using VWidgets = std::vector<CWidget*>;
 
-    class CWidget {
-    public:
-        CWidget();
+  class CWidget
+  {
+  public:
+    CWidget();
 
-        void addChild(CWidget* wdgt);
-        void removeChild(CWidget* wdgt);
-        CWidget* getChild(const std::string& name) const;
-        const std::string& getName() const;
+    void addChild(CWidget* wdgt);
+    void removeChild(CWidget* wdgt);
+    CWidget* getChild(const std::string& name, bool recursive = false) const;
+    const std::string& getName() const;
+    virtual TImageParams* getImageParams() { return nullptr; }
+    virtual TTextParams* getTextParams() { return nullptr; }
 
-        void computeLocal();
-        void computeAbsolute();
+    void addEffect(CEffect* fx);
 
-        void updateAll(float delta);
-        void renderAll();
+    void computeLocal();
+    void computeAbsolute();
 
-        virtual void update(float delta);
-        virtual void render();
+    void updateAll(float delta);
+    void renderAll();
 
-    protected:
-        std::string _name;
-        VWidgets _children;
-        CWidget* _parent = nullptr;
-        TParams _params;
-        MAT44 _local;
-        MAT44 _absolute;
+    virtual void update(float delta);
+    virtual void render();
 
-        friend class CParser;
-    };
+  protected:
+    std::string _name;
+    VWidgets _children;
+    VEffects _effects;
+    CWidget* _parent = nullptr;
+    TParams _params;
+    MAT44 _local;
+    MAT44 _absolute;
+
+    friend class CParser;
+  };
 }

@@ -8,7 +8,9 @@ enum LuaCall {
 	onLevelStart, //param levelId; la call sera onLevelStart_levelId()
 	onTriggerEnter, //param triggerName, entityName; la call sera onTriggerEnter_triggerName(entityName)
 	onTriggerExit, //param triggerName, entityName; la call sera onTriggerExit_triggerName(entityName)
-	onAltarDestroyed //param altarName; la call sera onAltarDestroyed_altarName()
+	onAltarDestroyed, //param altarName; la call sera onAltarDestroyed_altarName()
+	onMechanismSystemActivated, //param mechanismSystemName; la call sera onMechanismSystemActivated_mechanismSystemName()
+	onMechanismSystemDeactivated //param mechanismSystemName; la call sera onMechanismSystemDeactivated_mechanisSystemmName()
 };
 
 namespace SLB {
@@ -40,6 +42,7 @@ private:
 	SimpleConsole* console;
 
 	std::map<LuaCall, std::string> luaCalls;
+	std::set<LuaCall> callsFirstParamOnFunction;
 
 	void initConsole();
 	void initSLB();

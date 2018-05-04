@@ -36,7 +36,7 @@ void TCompPlatform::onTriggerEnter(const TMsgTriggerEnter & msg) {
 
 		CEntity* ePlayer = (CEntity*)player;
 		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
-		playerModel->isAttachedToPlatform = true;
+		//playerModel->isAttachedToPlatform = true;
 	}
 }
 
@@ -48,7 +48,7 @@ void TCompPlatform::onTriggerExit(const TMsgTriggerExit & msg) {
         isPlayerInTrigger = false;
 		CEntity* ePlayer = (CEntity*)player;
 		TCompPlayerModel* playerModel = ePlayer->get<TCompPlayerModel>();
-		playerModel->isAttachedToPlatform = false;
+		//playerModel->isAttachedToPlatform = false;
     }
 }
 

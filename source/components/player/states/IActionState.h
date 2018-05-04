@@ -7,7 +7,7 @@ class TCompCollider;
 class TCompRender;
 class TCompTransform;
 class TCompHitboxes;
-
+struct HitState;
 using namespace physx;
 
 class IActionState {
@@ -80,6 +80,8 @@ public:
 	virtual void onShapeHit(const PxControllerShapeHit &hit) {}
 	virtual void onSweep(PxSweepBuffer& sweepBuffer) {}
 	virtual void onDead();
+	virtual void onDamage(float damage, bool isHard);
+	virtual void onMove(HitState& hitstate) {}
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }

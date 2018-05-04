@@ -5,7 +5,6 @@
 #include <SLB/SLB.hpp>
 #include "console.h"
 #include "modules/system/scripting/scripting_player.h"
-#include "modules/system/scripting/scripting_golem.h"
 #include "modules/system/scripting/scripting_entities.h"
 #include "modules/system/scripting/scripting_door.h"
 #include "modules/system/scripting/scripting_manager.h"
@@ -47,13 +46,10 @@ void CModuleScripting::initSLB() {
 	ScriptingCameras::bind(manager);
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
-
-	ScriptingGolem::bind(manager);
 	ScriptingDoor::bind(manager);
 
 	//Create binded objects
 	execString("SLB.using(SLB)");
-	execString("golem = Golem()");
 
 	//Load scripts
 	execFile("data/scripts/coroutines.lua");
@@ -74,6 +70,15 @@ bool CModuleScripting::start() {
 		{ onEnemyKilled, "onEnemyKilled" },
 		{ onPlayerKilled, "onPlayerKilled" },
 		{ onAltarDestroyed, "onAltarDestroyed" }
+	};
+
+	callsFirstParamOnFunction = {
+		onLevelStart,
+		onTriggerEnter,
+		onTriggerExit,
+		onAltarDestroyed,
+		onMechanismSystemActivated,
+		onMechanismSystemDeactivated
 	};
 
 	initConsole();
@@ -154,7 +159,7 @@ void CModuleScripting::doFile(std::string filename) {
 
 void CModuleScripting::throwEvent(LuaCall event, std::string params) {
 	std::string call;
-	if (event == onTriggerEnter || event == onTriggerExit || event == onAltarDestroyed || event == onLevelStart) {
+	if (callsFirstParamOnFunction.find(event) != callsFirstParamOnFunction.end()) {
 		int delimiterPos = params.find(",");
 		std::string firstParam = params.substr(0, delimiterPos);
 		std::string otherParams = params.substr(delimiterPos + 1);

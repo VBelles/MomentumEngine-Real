@@ -10,7 +10,6 @@ ScriptingEntities* ScriptingEntities::instance = nullptr;
 
 ScriptingEntities::~ScriptingEntities() {}
 
-
 void ScriptingEntities::bind(SLB::Manager* manager) {
 	assert(instance);
 	manager->set("spawnEntityAt", SLB::FuncCall::create(ScriptingEntities::spawnEntityAt));
@@ -20,6 +19,8 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("spawnBall", SLB::FuncCall::create(ScriptingEntities::spawnBall));
 	manager->set("spawnMedusaAt", SLB::FuncCall::create(ScriptingEntities::spawnMedusaAt));
 	manager->set("spawnMedusa", SLB::FuncCall::create(ScriptingEntities::spawnMedusa));
+	manager->set("stopEntities", SLB::FuncCall::create(ScriptingEntities::stopEntities));
+	manager->set("resumeEntities", SLB::FuncCall::create(ScriptingEntities::resumeEntities));
 }
 
 std::string ScriptingEntities::spawnEntityAt(std::string prefabFilename, float x, float y, float z) {
@@ -39,7 +40,7 @@ std::string ScriptingEntities::spawnEntityAt(std::string prefabFilename, float x
 }
 
 std::string ScriptingEntities::spawnGolemAt(float x, float y, float z) {
-	return spawnEntityAt(GOLEM_PREFAB, x, y, z);
+	return spawnEntityAt(PREFAB_GOLEM, x, y, z);
 }
 
 std::string ScriptingEntities::spawnGolem() {
@@ -48,7 +49,7 @@ std::string ScriptingEntities::spawnGolem() {
 }
 
 std::string ScriptingEntities::spawnBallAt(float x, float y, float z) {
-	return spawnEntityAt(BALL_PREFAB, x, y, z);
+	return spawnEntityAt(PREFAB_BALL, x, y, z);
 }
 
 std::string ScriptingEntities::spawnBall() {
@@ -57,7 +58,7 @@ std::string ScriptingEntities::spawnBall() {
 }
 
 std::string ScriptingEntities::spawnMedusaAt(float x, float y, float z) {
-	return spawnEntityAt(MEDUSA_PREFAB, x, y, z);
+	return spawnEntityAt(PREFAB_MEDUSA, x, y, z);
 }
 
 std::string ScriptingEntities::spawnMedusa() {
@@ -70,4 +71,30 @@ TCompTransform* ScriptingEntities::getPlayerTransform() {
 	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
 	assert(playerEntity);
 	return playerEntity->get<TCompTransform>();
+}
+
+void ScriptingEntities::stopEntities() {
+	Engine.getEntities().setManagerUpdate("skeleton", false);
+	Engine.getEntities().setManagerUpdate("behaviorTree_melee_enemy", false);
+	Engine.getEntities().setManagerUpdate("behaviorTree_ball_enemy", false);
+	Engine.getEntities().setManagerUpdate("behaviorTree_flying_ranged_enemy", false);
+	Engine.getEntities().setManagerUpdate("player_controller", false);
+	Engine.getEntities().setManagerUpdate("ranged_attack", false);
+	Engine.getEntities().setManagerUpdate("power_gauge", false);
+	Engine.getEntities().setManagerUpdate("platform_move", false);
+	Engine.getEntities().setManagerUpdate("platform_rotative", false);
+	Engine.getEntities().setManagerUpdate("follow_curve", false);
+}
+
+void ScriptingEntities::resumeEntities() {
+	Engine.getEntities().setManagerUpdate("skeleton", true);
+	Engine.getEntities().setManagerUpdate("behaviorTree_melee_enemy", true);
+	Engine.getEntities().setManagerUpdate("behaviorTree_ball_enemy", true);
+	Engine.getEntities().setManagerUpdate("behaviorTree_flying_ranged_enemy", true);
+	Engine.getEntities().setManagerUpdate("player_controller", true);
+	Engine.getEntities().setManagerUpdate("ranged_attack", true);
+	Engine.getEntities().setManagerUpdate("power_gauge", true);
+	Engine.getEntities().setManagerUpdate("platform_move", true);
+	Engine.getEntities().setManagerUpdate("platform_rotative", true);
+	Engine.getEntities().setManagerUpdate("follow_curve", true);
 }
