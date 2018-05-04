@@ -25,5 +25,8 @@ public:
 	static std::string spawnBall();
 	static std::string spawnMedusaAt(float x, float y, float z);
 	static std::string spawnMedusa();
+
+	static void stopEntities();
+	static void resumeEntities();
 };
 

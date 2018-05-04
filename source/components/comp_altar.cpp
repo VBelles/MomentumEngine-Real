@@ -24,7 +24,6 @@ void TCompAltar::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 	prefabToSpawn = j["prefab"].get<std::string>();
-	activationEffectFile = j["activationEffectFile"].get<std::string>();
 	
 }
 
@@ -34,13 +33,10 @@ void TCompAltar::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 void TCompAltar::onDestroy(const TMsgDestroy & msg) {
 	Engine.getScripting().throwEvent(onAltarDestroyed, ((CEntity*)CHandle(this).getOwner())->getName());
 
-	//TODO borrar al hacer los scripts
-	//Parar tiempo, hacer aparecer crisálidas, pinchar cámaras, (enseñar ui de crisálidas?)
-	//Al menos de momento, activar las crisálidas aquí
+	//Activar las crisálidas aquí, para poderlo integrar con 3dmax
 	for (VEC3 spawnPos : spawnPositions) {
 		TEntityParseContext ctx;
 		ctx.root_transform.setPosition(spawnPos);
 		parseScene(prefabToSpawn, ctx);
 	}
-	//EngineScripting.doFile(activationEffectFile);
 }

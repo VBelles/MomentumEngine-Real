@@ -23,6 +23,7 @@ void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleMana
 		auto om = CHandleManager::getByName(n.c_str());
 		assert(om || fatal("Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
 		managers.push_back(om);
+		om_to_update_active[om] = true;
 	}
 }
 
@@ -66,8 +67,10 @@ void CModuleEntities::update(float delta) {
 	float scaled_time = delta * time_scale_factor;
 
 	for (auto om : om_to_update) {
-		PROFILE_FUNCTION(om->getName());
-		om->updateAll(scaled_time);
+		if (om_to_update_active[om]) {
+			PROFILE_FUNCTION(om->getName());
+			om->updateAll(scaled_time);
+		}
 	}
 
 	CHandleManager::destroyAllPendingObjects();
@@ -212,5 +215,12 @@ void CModuleEntities::renderDebugOfComponents() {
 	for (auto om : om_to_render_debug) {
 		PROFILE_FUNCTION(om->getName());
 		om->renderDebugAll();
+	}
+}
+
+void  CModuleEntities::setManagerUpdate(std::string managerName, bool update) {
+	auto om = CHandleManager::getByName(managerName.c_str());
+	if (om_to_update_active.find(om) != om_to_update_active.end()) {
+		om_to_update_active[om] = update;
 	}
 }

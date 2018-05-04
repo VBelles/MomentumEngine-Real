@@ -44,6 +44,19 @@ void GroundedActionState::onReleasePowerButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::ReleasePowerGround);
 }
 
+void GroundedActionState::onMove(HitState& hitState) {
+	if (!hitState.isGrounded) {
+		onLeavingGround();
+	}
+	else {
+		velocityVector->y = 0.f;
+		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
+		if ( dot < getPlayerModel()->getController()->getSlopeLimit()) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+		}
+	}
+}
+
 void GroundedActionState::onLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);

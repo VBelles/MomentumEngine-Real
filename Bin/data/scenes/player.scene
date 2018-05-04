@@ -211,14 +211,14 @@
 					{
 						"name": "plummet_attack",
 						"shape": "sphere",
-						"radius": 1.0,
+						"radius": 2.0,
 						"group": [
 							"player"
 						],
 						"mask": [
 							"enemy"
 						],
-						"bone": "Bip001 L Foot"
+						"bone": "Bip001 Pelvis"
 					},
 					{
 						"name": "release_power_small",

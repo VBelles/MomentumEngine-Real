@@ -9,9 +9,7 @@ struct TMsgColliderDestroyed;
 
 class TCompTransform;
 
-
 class TCompCollectable : public TCompBase {
-	DECL_SIBLING_ACCESS();
 
 public:
 	enum Type {
@@ -29,13 +27,18 @@ private:
 	bool collected = false;
 	Type type;
 
-	float rotationSpeed = 0.f;
+	float rotationSpeed;
+	VEC3 rotationAxis;
+	float rotation = 0.f;
 
 	CHandle transformHandle;
 	TCompTransform* getTransform() { return transformHandle; }
 
-public:
 
+
+
+public:
+	DECL_SIBLING_ACCESS();
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);

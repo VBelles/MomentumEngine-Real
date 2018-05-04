@@ -12,7 +12,7 @@ void JumpSquatLongActionState::update(float delta) {
 
 	if (timer.elapsed() >= squatTime) {
 		//saltar
-		getPlayerModel()->isAttachedToPlatform = false;
+		//getPlayerModel()->isAttachedToPlatform = false;
 		*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
