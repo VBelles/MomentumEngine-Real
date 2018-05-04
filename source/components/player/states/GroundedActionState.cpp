@@ -14,6 +14,8 @@ void GroundedActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->resetGravity();
 	backwardsMaxDotProduct = cos(backwardsdMinAngle);
 	getPlayerModel()->lastWallEntered = nullptr;//En realidad al tocar el suelo ya se sobreescribe la variable
+	tryingToSlide = false;
+
 }
 
 void GroundedActionState::onStateExit(IActionState * nextState) {
@@ -45,7 +47,7 @@ void GroundedActionState::onReleasePowerButton() {
 }
 
 void GroundedActionState::onMove(HitState& hitState) {
-	if (!hitState.isGrounded) {
+	if (!hitState.hasHit || !hitState.isGrounded) {
 		onLeavingGround();
 	}
 	else {
@@ -57,12 +59,10 @@ void GroundedActionState::onMove(HitState& hitState) {
 			}
 			else if(slideTimer.elapsed() >= slideWindowTime) {
 				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
-				tryingToSlide = false;
 			}
 		}
 		else {
 			velocityVector->y = 0.f;
-			tryingToSlide = false;
 		}
 	}
 }
