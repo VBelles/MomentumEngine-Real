@@ -28,123 +28,16 @@
         "shape": "box",
         "halfExtent": "6.0 6.0 6.0",
         "type": "dynamic",
-        "offset": "0 -6 0",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_rotative":
-      {
-        "rotation_speed": "12 0 0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_rotate003mesh",
-      "transform":
-      {
-        "pos": "-71.5043 34.7255 -34.2997",
-        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_rotate003mesh.mesh",
-          "materials":
-          [
-            "data/materials/empty.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "shape": "box",
-        "halfExtent": "0.5 2.0 2.0",
-        "type": "dynamic",
         "group":
         [
            "scenario",
            "enemy"
         ]
       },
-      "platform_rotative":
+      "platform_simple":
       {
-        "rotation_speed": "0 0 50"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_rotate002mesh",
-      "transform":
-      {
-        "pos": "-67.8136 30.7252 -40.6922",
-        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_rotate002mesh.mesh",
-          "materials":
-          [
-            "data/materials/empty.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "shape": "box",
-        "halfExtent": "0.5 2.0 2.0",
-        "type": "dynamic",
-        "group":
-        [
-           "scenario",
-           "enemy"
-        ]
-      },
-      "platform_rotative":
-      {
-        "rotation_speed": "0 0 50"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_rotate001mesh",
-      "transform":
-      {
-        "pos": "-71.5043 27.4464 -34.2997",
-        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_rotate001mesh.mesh",
-          "materials":
-          [
-            "data/materials/empty.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "shape": "box",
-        "halfExtent": "0.5 2.0 2.0",
-        "type": "dynamic",
-        "group":
-        [
-           "scenario",
-           "enemy"
-        ]
-      },
-      "platform_rotative":
-      {
-        "rotation_speed": "0 0 50"
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 1
       }
     }
   }

@@ -34,14 +34,17 @@ bool CCurve::load(const std::string& fileName) {
 }
 
 bool CCurve::load(const json& jData) {
-    std::string typeName = jData["curve_type"];
+    std::string typeName = jData.value("curve_type", "catmull-rom");
 
     setType(typeName);
 
-    auto& jKnots = jData["knots"];
-    for (auto& jKnot : jKnots) {
-        VEC3 knot = loadVEC3(jKnot);
-        addKnot(knot);
+    auto exists = jData.find("knots");
+    if (exists != jData.end()) {
+        auto& jKnots = jData["knots"];
+        for (auto& jKnot : jKnots) {
+            VEC3 knot = loadVEC3(jKnot);
+            addKnot(knot);
+        }
     }
 
 	calculateRadius();

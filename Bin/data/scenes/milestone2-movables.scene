@@ -27,7 +27,11 @@
       {
         "shape": "box",
         "halfExtent": "1.5 0.25 1.5",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
       "platform_simple":
       {
@@ -72,10 +76,16 @@
       {
         "shape": "box",
         "halfExtent": "1.5 0.25 1.5",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
         "loop": true,
@@ -91,29 +101,6 @@
            "125.006 16.1871 -4.07963",
            "125.006 16.1871 -4.07963"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_mech003-appear001mesh001_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "1.5 0.25 1.5",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_mech003-appear001mesh001"
       }
     }
   },
@@ -145,10 +132,16 @@
       {
         "shape": "box",
         "halfExtent": "0.25 2.0 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
@@ -165,29 +158,6 @@
            "-34.0533 29.4001 -57.5609",
            "-34.0533 29.4001 -57.5609"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move013mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "0.25 2.0 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move013mesh"
       }
     }
   },
@@ -219,10 +189,16 @@
       {
         "shape": "box",
         "halfExtent": "0.25 2.0 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
@@ -239,29 +215,6 @@
            "-33.2985 29.4001 -66.1882",
            "-33.2985 29.4001 -66.1882"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move012mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "0.25 2.0 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move012mesh"
       }
     }
   },
@@ -293,10 +246,16 @@
       {
         "shape": "box",
         "halfExtent": "0.25 2.0 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
@@ -313,29 +272,6 @@
            "-26.2045 29.4001 -61.2209",
            "-26.2045 29.4001 -61.2209"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move011mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "0.25 2.0 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move011mesh"
       }
     }
   },
@@ -367,10 +303,16 @@
       {
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
         "loop": true,
@@ -384,29 +326,6 @@
            "-78.685 35.0382 -7.08527",
            "-78.685 35.0382 -7.08527"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move008mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "2.0 0.25 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move008mesh"
       }
     }
   },
@@ -438,15 +357,21 @@
       {
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.7,
+        "move_offset": 0.850408,
         "speed": 0.001,
         "knots":
         [
@@ -458,29 +383,6 @@
            "-6.80068 35.2299 -13.8757",
            "-6.80068 35.2299 -13.8757"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move007mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "2.0 0.25 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move007mesh"
       }
     }
   },
@@ -512,10 +414,16 @@
       {
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
@@ -532,29 +440,6 @@
            "-12.9224 35.2299 -36.7222",
            "-12.9224 35.2299 -36.7222"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move006mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "2.0 0.25 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move006mesh"
       }
     }
   },
@@ -586,10 +471,16 @@
       {
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
@@ -606,29 +497,6 @@
            "9.9241 35.2299 -30.6005",
            "9.9241 35.2299 -30.6005"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move005mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "2.0 0.25 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move005mesh"
       }
     }
   },
@@ -660,15 +528,21 @@
       {
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.7,
+        "move_offset": 0.982463,
         "speed": 0.001,
         "knots":
         [
@@ -680,29 +554,6 @@
            "-6.80067 24.6014 -13.8757",
            "-6.80067 24.6014 -13.8757"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move004mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "2.0 0.25 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move004mesh"
       }
     }
   },
@@ -734,10 +585,16 @@
       {
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
@@ -754,29 +611,6 @@
            "-12.9224 24.6014 -36.7222",
            "-12.9224 24.6014 -36.7222"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move003mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "2.0 0.25 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move003mesh"
       }
     }
   },
@@ -808,10 +642,16 @@
       {
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
@@ -828,29 +668,6 @@
            "9.92409 24.6014 -30.6005",
            "9.92409 24.6014 -30.6005"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move002mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "2.0 0.25 2.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move002mesh"
       }
     }
   },
@@ -882,10 +699,16 @@
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 5.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
-      "follow_curve":
+      "platform_simple":
       {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
         "loop": true,
@@ -899,29 +722,6 @@
            "-42.5561 16.4552 -52.9878",
            "-42.5561 16.4552 -52.9878"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_move001mesh_trigger",
-      "transform": {},
-      "collider":
-      {
-        "shape": "box",
-        "type": "dynamic",
-        "is_trigger": true,
-        "halfExtent": "0.5 2.0 5.0",
-        "mask":
-        [
-           "player"
-        ]
-      },
-      "platform": {},
-      "hierarchy":
-      {
-        "parent": "ms2_move001mesh"
       }
     }
   }

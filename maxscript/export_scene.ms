@@ -512,7 +512,7 @@ struct TSceneExporter (
 	),
 	
 	-- --SPLINE-------------------------------------------------------
-	fn exportSpline obj type:"follow_curve" = (
+	fn exportSpline obj type:"platform_simple" = (
 		-- Executed only if we already know it has a child line.
 		local curveType = "catmull-rom"
 		for child in obj.children do (
@@ -534,9 +534,12 @@ struct TSceneExporter (
 				if closed then followSpeed = 0.001
 				
 				fs.writeComma()
-				fs.writeKey type
-				
+				fs.writeKey "platform_simple"
 				fs.beginObj()
+					fs.writeKeyValue "rotation_axis" "0 1 0"
+					fs.writeComma()
+					fs.writeKeyValue "rotation_speed" 0
+					fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
 					fs.writeKeyValue "automove" true
@@ -551,7 +554,6 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKey "knots"
 					exportSplineKnots child
-					
 				fs.endObj()
 				return true -- Only exports the first line found.
 			)
@@ -568,9 +570,11 @@ struct TSceneExporter (
 	-- --ROTATE-----------------------------------------------------
 	fn exportPlatfRotation = (
 		fs.writeComma()
-		fs.writeKey "platform_rotative"
+		fs.writeKey "platform_simple"
 		fs.beginObj()
-			fs.writeKeyValue "rotation_speed" "0 0 50"
+			fs.writeKeyValue "rotation_axis" "0 1 0"
+			fs.writeComma()
+			fs.writeKeyValue "rotation_speed" 1
 		fs.endObj()
 	),
 	
@@ -672,6 +676,7 @@ struct TSceneExporter (
 						
 						-- Export spline if available.
 						if hasChildLine child then (
+							--TODO: this should be different now that we use platform_simple instead of follow_curve.
 							exportSpline child type:"hitboxPath"
 						)
 					fs.endObj() -- - - - - - - - - - - - - - - - - - - - -
@@ -874,7 +879,7 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --MOVE TRIGGER-------------------------------------------------
+	-- --MOVE TRIGGER (obsoleta, no se usa)------------------------
 	fn exportMoveTrigger parentMeshObj obj = (
 		local triggerName = parentMeshObj.name + "_trigger"
 		local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
@@ -960,12 +965,10 @@ struct TSceneExporter (
 					local groups = #("scenario")
 					if rot then append groups "enemy"
 					exportCompCollider child dyn:(pure or movable or rot) colliderGroups:groups
+					
 					if pure then exportPurity()
 					if breakable then exportBreakable()
-					if movable then (
-						exportSpline child
-						exportMoveTrigger obj child
-					)
+					if movable then exportSpline child
 					if rot then exportPlatfRotation()
 					if mech then exportMech child
 				)
@@ -1305,7 +1308,6 @@ TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh
 TODO: Sólo exportar mesh collider si un mesh es hijo de otro mesh o si está en capa colliders.
 TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
 	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
-TODO: Mirar si hay que exportar bien metallic y roughness, ahora no se exporta.
 */
 
 /*----------------------------------------------------------------------------------
