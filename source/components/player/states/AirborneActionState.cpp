@@ -114,7 +114,13 @@ void AirborneActionState::onReleasePowerButton() {
 
 void AirborneActionState::onMove(HitState& hitState) {
 	if (hitState.isGrounded) {
-		onLanding();
+		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
+		if (dot < getPlayerModel()->getController()->getSlopeLimit()) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+		}
+		else {
+			onLanding();
+		}
 	}
 	if (hitState.isTouchingCeiling && velocityVector->y > 0.f) {
 		velocityVector->y = 0.f;
