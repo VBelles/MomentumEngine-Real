@@ -2,57 +2,6 @@
   {
     "entity":
     {
-      "name": "terreno_elevado3_col",
-      "transform":
-      {
-        "pos": "-57.5072 -0.705564 48.9464",
-        "rotation": "-0.999048 0.0 -0.0436195 0.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/terreno_elevado3_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "terreno_elevado2_col",
-      "transform":
-      {
-        "pos": "12.4528 0.328289 82.21",
-        "rotation": "-0.999048 0.0 -0.0436195 0.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/terreno_elevado2_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "terreno_elevado_col",
-      "transform":
-      {
-        "pos": "12.4528 0.328284 -38.5502",
-        "rotation": "-0.999048 0.0 -0.0436195 0.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/terreno_elevado_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms2_murodecarga011_col",
       "transform":
       {
@@ -4813,27 +4762,10 @@
   {
     "entity":
     {
-      "name": "escalera4col010",
-      "transform":
-      {
-        "pos": "-63.9887 1.8427 -16.2674",
-        "rotation": "0.0 -0.965926 0.0 0.258819"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/escalera4col010.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "escalera4col009",
       "transform":
       {
-        "pos": "-66.2946 -0.515115 -12.2558",
+        "pos": "-66.2946 -0.186541 -12.2558",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "collider":
@@ -4847,27 +4779,10 @@
   {
     "entity":
     {
-      "name": "escalera4col008",
-      "transform":
-      {
-        "pos": "-60.5347 6.67287 -22.1688",
-        "rotation": "0.0 -0.965926 0.0 0.258819"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/escalera4col008.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "escalera4col007",
       "transform":
       {
-        "pos": "-62.7361 4.39725 -18.4207",
+        "pos": "-62.7361 4.66864 -18.4207",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "collider":
@@ -4884,7 +4799,7 @@
       "name": "escalera4col006",
       "transform":
       {
-        "pos": "-56.8075 11.8673 -28.5229",
+        "pos": "-56.7896 11.8605 -28.5492",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "collider":
