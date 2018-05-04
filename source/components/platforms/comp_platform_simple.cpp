@@ -21,6 +21,7 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	speed = j.value("speed", 0.f);
 	curve.load(j);
 	automove = j.value("automove", false);
+	ratio = j.value("move_offset", 0.f); // Starts with an offset (from 0 to 1).
 
 	//Rotation
 	rotationSpeed = j.value("rotation_speed", 0.f);
@@ -55,7 +56,7 @@ void TCompPlatformSimple::update(float delta) {
 			if (ratio <= 0.f) moveBackwards = false;
 		}
 		// Evaluar curva con dicho ratio
-		position = curve.evaluate(ratio);
+		position = curve.evaluate(ratio, position);
 		//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
 	}
 
