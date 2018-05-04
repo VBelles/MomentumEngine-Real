@@ -49,10 +49,20 @@ void GroundedActionState::onMove(HitState& hitState) {
 		onLeavingGround();
 	}
 	else {
-		velocityVector->y = 0.f;
 		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
 		if ( dot < getPlayerModel()->getController()->getSlopeLimit()) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			if (!tryingToSlide) {
+				tryingToSlide = true;
+				slideTimer.reset();
+			}
+			else if(slideTimer.elapsed() >= slideWindowTime) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+				tryingToSlide = false;
+			}
+		}
+		else {
+			velocityVector->y = 0.f;
+			tryingToSlide = false;
 		}
 	}
 }

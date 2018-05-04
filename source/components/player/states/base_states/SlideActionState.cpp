@@ -4,12 +4,20 @@
 #include "skeleton/comp_skeleton.h"
 
 void SlideActionState::update(float delta) {
-	AirborneActionState::update(delta);
+	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
+	float yaw, pitch;
+	getYawPitchFromVector(hitNormal, &yaw, &pitch);
+	VEC3 tangentVector = getVectorFromYawPitch(yaw, pitch - M_PI_2);
+	float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
+	deltaMovement = tangentVector * module;
+
 }
 
 void SlideActionState::onStateEnter(IActionState* lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	velocityVector->y = 0.f;
 }
 
 void SlideActionState::onStateExit(IActionState* nextState) {
@@ -23,8 +31,9 @@ void SlideActionState::onMove(HitState& hitState) {
 	else { //Grounded, check slope
 		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
 		if (dot >= getPlayerModel()->getController()->getSlopeLimit()) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 		}
 	}
+	hitNormal = fromPhysx(hitState.hit.worldNormal);
 }
 
