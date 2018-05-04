@@ -5,6 +5,9 @@
 class SlideActionState : public AirborneActionState {
 private:
 	VEC3 hitNormal;
+	bool isTryingToLand = false;
+	float landingWindowTime = 0.1f;
+	CTimer landingWindowTimer;
 public:
 	SlideActionState(CHandle playerModelHandle) :AirborneActionState(playerModelHandle, "jump_volando") {}
 	void update(float delta) override;

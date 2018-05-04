@@ -375,6 +375,7 @@ void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 	colliderHandle.fromVoidPtr(msg.hit.actor->userData);
 	hitState.entity = colliderHandle.getOwner();
 	hitState.hit = msg.hit;
+	hitState.hasHit = true;
 	baseState->onShapeHit(msg.hit);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onShapeHit(msg.hit);
