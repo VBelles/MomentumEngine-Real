@@ -27,7 +27,6 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("rotation_axis")) {
 		rotationAxis = loadVEC3(j["rotation_axis"]);
 	}
-
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
@@ -60,12 +59,13 @@ void TCompPlatformSimple::update(float delta) {
 		//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
 	}
 
-
 	transform->setPosition(position);
 
 	//Rotation
-	QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
-	transform->setRotation(transform->getRotation() * quat);
+    if (rotationSpeed > 0) {
+	    QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
+	    transform->setRotation(transform->getRotation() * quat);
+    }
 
 	//Update collider
 	getRigidDynamic()->setKinematicTarget(toPhysx(transform));
@@ -75,4 +75,3 @@ void TCompPlatformSimple::update(float delta) {
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }
 TCompCollider* TCompPlatformSimple::getCollider() { return colliderHandle; }
 PxRigidDynamic* TCompPlatformSimple::getRigidDynamic() { return static_cast<PxRigidDynamic*>(getCollider()->actor); }
-
