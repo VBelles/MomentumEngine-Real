@@ -25,7 +25,7 @@ void TCompMechanismSystem::load(const json& j, TEntityParseContext& ctx) {
 		}
 		numberOfMechanisms = mechanisms.size();
 	}
-	activationEffectFile = j["activationEffectFile"].get<std::string>();
+	//activationEffectFile = j["activationEffectFile"].get<std::string>();
 }
 
 void TCompMechanismSystem::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
