@@ -560,13 +560,6 @@ struct TSceneExporter (
 		)
 	),
 	
-	-- --PURE----------------------------------------------------
-	fn exportPurity = (
-		fs.writeComma()
-		fs.writeKeyEmpty "purity"
-		exportStringArray "tags" #("pure")		
-	),
-	
 	-- --ROTATE-----------------------------------------------------
 	fn exportPlatfRotation = (
 		fs.writeComma()
@@ -578,6 +571,13 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	-- --PURE----------------------------------------------------
+	fn exportPurity = (
+		fs.writeComma()
+		fs.writeKeyEmpty "purity"
+		exportStringArray "tags" #("pure")		
+	),
+		
 	-- --BREAKABLE------------------------------------------------
 	fn exportBreakable hp:1 = (
 		fs.writeComma()
