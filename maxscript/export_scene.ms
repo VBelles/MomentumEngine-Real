@@ -398,7 +398,7 @@ struct TSceneExporter (
 	),
 
 	-- --COMP COLLIDER------------------------------------------
-	fn exportCompCollider obj colliderGroups: masks: trig:false dyn:false = (
+	fn exportCompCollider obj colliderGroups: masks: trig:false dyn:false mov:false = (
 		fs.writeKey "collider"
 		fs.beginObj()
 
@@ -446,7 +446,11 @@ struct TSceneExporter (
 		if dyn then (
 			fs.writeComma()
 			fs.writeKeyValue "type" "dynamic"
-		) else (
+		) else if mov then (
+			fs.writeComma()
+			fs.writeKeyValue "type" "kinematic"
+		)			
+		else (
 			fs.writeComma()
 			fs.writeKeyValue "type" "static"
 		)
@@ -964,7 +968,8 @@ struct TSceneExporter (
 					--if pure == unsupplied then pure = false
 					local groups = #("scenario")
 					if rot then append groups "enemy"
-					exportCompCollider child dyn:(pure or movable or rot) colliderGroups:groups
+						
+					exportCompCollider child dyn:pure mov:(movable or rot) colliderGroups:groups
 					
 					if pure then exportPurity()
 					if breakable then exportBreakable()
