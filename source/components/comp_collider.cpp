@@ -70,7 +70,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 	else {
-		config.group = CModulePhysics::FilterGroup::Scenario;
+		config.group = config.isTrigger ? CModulePhysics::FilterGroup::Trigger : CModulePhysics::FilterGroup::Scenario;
 	}
 
 	config.mask = 0;
