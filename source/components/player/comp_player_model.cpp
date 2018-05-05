@@ -8,6 +8,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "components/comp_collectable.h"
+#include "components/comp_respawn_point.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/filters/player_filter_callback.h"
 #include "components/player/comp_power_gauge.h"
@@ -534,6 +535,10 @@ void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
 void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 	setBaseState(TCompPlayerModel::ActionStates::PitFalling);
+}
+
+void TCompPlayerModel::onRespawnChanged(const TMsgRespawnChanged& msg) {
+	setRespawnPosition(msg.respawnPosition);
 }
 
 TCompTransform* TCompPlayerModel::getTransform() {
