@@ -15,7 +15,6 @@ void GroundedActionState::onStateEnter(IActionState * lastState) {
 	backwardsMaxDotProduct = cos(backwardsdMinAngle);
 	getPlayerModel()->lastWallEntered = nullptr;//En realidad al tocar el suelo ya se sobreescribe la variable
 	getPlayerModel()->tryingToSlide = false;
-
 }
 
 void GroundedActionState::onStateExit(IActionState * nextState) {
@@ -70,6 +69,6 @@ void GroundedActionState::onMove(HitState& hitState) {
 }
 
 void GroundedActionState::onLeavingGround() {
-	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
+	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrï¿½n quï¿½ hacer
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
