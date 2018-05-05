@@ -72,7 +72,7 @@ void SlideActionState::onMove(HitState& hitState) {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else { //Grounded, check slope
-		dbg("normal.y: %f\n", hitState.hit.worldNormal.y);
+		//dbg("normal.y: %f\n", hitState.hit.worldNormal.y);
 		if (!isTryingToLand) {
 			isTryingToLand = true;
 			landingWindowTimer.reset();
