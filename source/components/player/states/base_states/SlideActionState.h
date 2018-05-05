@@ -5,7 +5,8 @@
 class SlideActionState : public AirborneActionState {
 private:
 	VEC3 hitNormal;
-	float maxSlidingVelocity = 10.f;
+	float maxVerticalSlidingVelocity = 10.f;
+	float sidewaysSlidingVelocity = 2.f;
 
 	bool isTryingToLand = false;
 	float landingWindowTime = 0.1f;
