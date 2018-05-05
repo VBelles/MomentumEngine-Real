@@ -1,4 +1,68 @@
 [
+  { "entity": { "name": "0Dummy" } },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low",
+      "transform":
+      {
+        "pos": "-39.9557 9.05296 101.897",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low",
+      "transform":
+      {
+        "pos": "-54.6583 9.05296 101.478",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low",
+      "transform":
+      {
+        "pos": "-70.374 9.05296 101.921",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
   {
     "entity":
     {
@@ -1359,27 +1423,6 @@
   {
     "entity":
     {
-      "name": "andrea_big_mountain",
-      "transform":
-      {
-        "pos": "68.2821 5.53603 10.7216",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andrea_big_mountain.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "altar001",
       "transform":
       {
@@ -2664,8 +2707,8 @@
       "name": "muro041",
       "transform":
       {
-        "pos": "58.9147 35.9288 102.34",
-        "rotation": "0.0 0.34202 0.0 -0.939693"
+        "pos": "57.8138 35.9288 101.459",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
       },
       "render":
       [
@@ -2686,8 +2729,8 @@
       "name": "muro040",
       "transform":
       {
-        "pos": "49.5927 35.9288 84.988",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "47.0149 35.9288 84.9861",
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -2708,8 +2751,8 @@
       "name": "muro039",
       "transform":
       {
-        "pos": "53.593 35.9288 90.7135",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "51.4991 35.9288 90.3412",
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -2730,8 +2773,8 @@
       "name": "muro038",
       "transform":
       {
-        "pos": "57.598 35.9288 96.4353",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "55.9874 35.9288 95.6921",
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -2928,8 +2971,8 @@
       "name": "muro029",
       "transform":
       {
-        "pos": "58.8681 30.7031 102.355",
-        "rotation": "0.0 -0.939693 0.0 -0.34202"
+        "pos": "57.7687 30.7031 101.479",
+        "rotation": "0.0 -0.953717 0.0 -0.300706"
       },
       "render":
       [
@@ -2950,8 +2993,8 @@
       "name": "muro028",
       "transform":
       {
-        "pos": "44.5869 30.7031 80.8403",
-        "rotation": "0.0 -0.953717 0.0 0.300706"
+        "pos": "41.6667 30.7031 81.2904",
+        "rotation": "0.0 -0.939693 0.0 0.34202"
       },
       "render":
       [
@@ -2972,8 +3015,8 @@
       "name": "muro027",
       "transform":
       {
-        "pos": "49.5477 30.7031 85.0023",
-        "rotation": "0.0 -0.999048 0.0 0.0436194"
+        "pos": "46.9713 30.7031 85.0043",
+        "rotation": "0.0 -0.996195 0.0 0.0871558"
       },
       "render":
       [
@@ -2994,8 +3037,8 @@
       "name": "muro026",
       "transform":
       {
-        "pos": "53.5578 30.7031 90.723",
-        "rotation": "0.0 -0.999048 0.0 0.0436194"
+        "pos": "51.4648 30.7031 90.3537",
+        "rotation": "0.0 -0.996195 0.0 0.0871558"
       },
       "render":
       [
@@ -3016,8 +3059,8 @@
       "name": "muro025",
       "transform":
       {
-        "pos": "57.5648 30.7031 96.4438",
-        "rotation": "0.0 -0.999048 0.0 0.0436194"
+        "pos": "55.9551 30.7031 95.7035",
+        "rotation": "0.0 -0.996195 0.0 0.0871558"
       },
       "render":
       [
@@ -3324,8 +3367,8 @@
       "name": "muro013",
       "transform":
       {
-        "pos": "38.4793 30.7047 77.6544",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+        "pos": "35.3046 30.7047 78.649",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
       },
       "render":
       [
@@ -3368,7 +3411,7 @@
       "name": "muro011",
       "transform":
       {
-        "pos": "-5.40578 8.83094 -36.3378",
+        "pos": "-5.40578 8.34226 -36.3378",
         "rotation": "0.0 -0.999048 0.0 0.0436193"
       },
       "render":
@@ -3390,7 +3433,7 @@
       "name": "muro010",
       "transform":
       {
-        "pos": "-6.83925 9.57616 -38.2265",
+        "pos": "-6.83925 9.08748 -38.2265",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       },
       "render":
@@ -3412,7 +3455,7 @@
       "name": "muro009",
       "transform":
       {
-        "pos": "4.82629 9.57452 -45.5821",
+        "pos": "4.82629 9.02145 -45.5821",
         "rotation": "0.0 -0.0436193 0.0 -0.999048"
       },
       "render":
@@ -3434,7 +3477,7 @@
       "name": "muro008",
       "transform":
       {
-        "pos": "6.9312 9.57452 -44.4758",
+        "pos": "6.9312 9.02145 -44.4758",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       },
       "render":

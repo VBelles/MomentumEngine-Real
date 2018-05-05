@@ -1,12 +1,56 @@
 [
+  { "entity": { "name": "coinDummy" } },
+  {
+    "entity":
+    {
+      "name": "ms2_coin106",
+      "transform":
+      {
+        "pos": "4.30512 19.204 -52.5899"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin105",
+      "transform":
+      {
+        "pos": "47.826 47.7872 -72.4645"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin104",
+      "transform":
+      {
+        "pos": "50.4454 47.7872 -67.9044"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin103",
+      "transform":
+      {
+        "pos": "53.0806 47.7872 -63.395"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
   {
     "entity":
     {
       "name": "ms2_coin102",
       "transform":
       {
-        "pos": "113.284 54.176 -8.18997",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "113.284 54.176 -8.18997"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -17,8 +61,7 @@
       "name": "ms2_coin101",
       "transform":
       {
-        "pos": "113.284 52.6312 -8.18997",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "113.284 52.6312 -8.18997"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -29,8 +72,7 @@
       "name": "ms2_coin100",
       "transform":
       {
-        "pos": "113.284 45.9763 -8.18997",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "113.284 45.9763 -8.18997"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -41,8 +83,7 @@
       "name": "ms2_coin099",
       "transform":
       {
-        "pos": "58.0977 52.8751 43.578",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "58.0977 52.8751 43.578"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -53,8 +94,7 @@
       "name": "ms2_coin098",
       "transform":
       {
-        "pos": "73.9624 18.2028 23.0355",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "73.9624 18.2028 23.0355"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -65,8 +105,7 @@
       "name": "ms2_coin097",
       "transform":
       {
-        "pos": "75.5498 18.2028 22.863",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "75.5498 18.2028 22.863"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -77,8 +116,7 @@
       "name": "ms2_coin096",
       "transform":
       {
-        "pos": "77.0251 18.2028 22.6138",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "77.0251 18.2028 22.6138"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -89,8 +127,7 @@
       "name": "ms2_coin095",
       "transform":
       {
-        "pos": "91.9842 76.1409 -7.16572",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "91.9842 76.1409 -7.16572"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -101,8 +138,7 @@
       "name": "ms2_coin094",
       "transform":
       {
-        "pos": "93.5716 76.1409 -7.33823",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "93.5716 76.1409 -7.33823"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -113,8 +149,7 @@
       "name": "ms2_coin093",
       "transform":
       {
-        "pos": "113.284 44.4315 -8.18997",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "113.284 44.4315 -8.18997"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -125,8 +160,7 @@
       "name": "ms2_coin092",
       "transform":
       {
-        "pos": "111.804 39.69 -11.4006",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "111.804 39.69 -11.4006"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -137,8 +171,7 @@
       "name": "ms2_coin091",
       "transform":
       {
-        "pos": "111.804 38.4589 -11.4006",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "111.804 38.4589 -11.4006"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -149,8 +182,7 @@
       "name": "ms2_coin090",
       "transform":
       {
-        "pos": "112.731 35.9231 -8.07115",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "112.731 35.9231 -8.07115"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -161,8 +193,7 @@
       "name": "ms2_coin089",
       "transform":
       {
-        "pos": "112.731 34.6871 -8.07115",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "112.731 34.6871 -8.07115"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -173,8 +204,7 @@
       "name": "ms2_coin088",
       "transform":
       {
-        "pos": "111.804 32.4868 -11.4006",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "111.804 32.4868 -11.4006"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -185,8 +215,7 @@
       "name": "ms2_coin087",
       "transform":
       {
-        "pos": "111.804 31.1492 -11.4006",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "111.804 31.1492 -11.4006"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -197,8 +226,7 @@
       "name": "ms2_coin086",
       "transform":
       {
-        "pos": "95.0469 76.1409 -7.58744",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "95.0469 76.1409 -7.58744"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -209,8 +237,7 @@
       "name": "ms2_coin085",
       "transform":
       {
-        "pos": "65.5025 15.3347 100.716",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "65.5025 15.3347 100.716"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -221,8 +248,7 @@
       "name": "ms2_coin084",
       "transform":
       {
-        "pos": "62.0367 28.1065 112.676",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "62.0367 28.1065 112.676"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -233,8 +259,7 @@
       "name": "ms2_coin083",
       "transform":
       {
-        "pos": "63.1849 24.6673 90.9718",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "63.1849 24.6673 90.9718"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -245,8 +270,7 @@
       "name": "ms2_coin082",
       "transform":
       {
-        "pos": "44.3189 31.8843 123.865",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "44.3189 31.8843 123.865"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -257,8 +281,7 @@
       "name": "ms2_coin081",
       "transform":
       {
-        "pos": "41.273 31.8843 122.628",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "41.273 31.8843 122.628"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -269,8 +292,7 @@
       "name": "ms2_coin080",
       "transform":
       {
-        "pos": "42.1844 31.8843 123.488",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "42.1844 31.8843 123.488"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -281,8 +303,7 @@
       "name": "ms2_coin079",
       "transform":
       {
-        "pos": "43.0547 31.8843 124.304",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "43.0547 31.8843 124.304"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -293,8 +314,7 @@
       "name": "ms2_coin078",
       "transform":
       {
-        "pos": "41.6792 31.8843 121.332",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "41.6792 31.8843 121.332"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -305,8 +325,7 @@
       "name": "ms2_coin077",
       "transform":
       {
-        "pos": "42.5906 31.8843 122.192",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "42.5906 31.8843 122.192"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -317,8 +336,7 @@
       "name": "ms2_coin076",
       "transform":
       {
-        "pos": "43.4609 31.8843 123.007",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "43.4609 31.8843 123.007"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -329,8 +347,7 @@
       "name": "ms2_coin075",
       "transform":
       {
-        "pos": "43.2072 31.8843 120.741",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "43.2072 31.8843 120.741"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -341,8 +358,7 @@
       "name": "ms2_coin074",
       "transform":
       {
-        "pos": "44.1187 31.8843 121.601",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "44.1187 31.8843 121.601"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -353,8 +369,7 @@
       "name": "ms2_coin073",
       "transform":
       {
-        "pos": "44.9889 31.8843 122.417",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "44.9889 31.8843 122.417"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -365,8 +380,7 @@
       "name": "ms2_coin072",
       "transform":
       {
-        "pos": "59.0059 19.3365 84.7833",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "59.0059 19.3365 84.7833"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -377,8 +391,7 @@
       "name": "ms2_coin071",
       "transform":
       {
-        "pos": "-20.334 34.9286 -56.1429",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-20.334 34.9286 -56.1429"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -389,8 +402,7 @@
       "name": "ms2_coin070",
       "transform":
       {
-        "pos": "-18.3968 34.9286 -67.3481",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-18.3968 34.9286 -67.3481"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -401,8 +413,7 @@
       "name": "ms2_coin069",
       "transform":
       {
-        "pos": "-33.7957 34.9286 -59.0529",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-33.7957 34.9286 -59.0529"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -413,8 +424,7 @@
       "name": "ms2_coin068",
       "transform":
       {
-        "pos": "-31.8585 34.9286 -70.2581",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-31.8585 34.9286 -70.2581"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -425,8 +435,7 @@
       "name": "ms2_coin067",
       "transform":
       {
-        "pos": "-81.7878 8.56223 33.0911",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-81.7878 7.4621 33.0911"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -437,8 +446,7 @@
       "name": "ms2_coin066",
       "transform":
       {
-        "pos": "-12.301 11.0112 3.68676",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-12.301 11.0112 3.68676"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -449,8 +457,7 @@
       "name": "ms2_coin065",
       "transform":
       {
-        "pos": "63.4065 19.9481 -50.7508",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "63.4065 19.9481 -50.7508"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -461,8 +468,7 @@
       "name": "ms2_coin064",
       "transform":
       {
-        "pos": "70.6269 22.9437 -47.0409",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "70.6269 22.9437 -47.0409"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -473,8 +479,7 @@
       "name": "ms2_coin063",
       "transform":
       {
-        "pos": "77.7453 26.6422 -43.8932",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "77.7453 26.6422 -43.8932"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -485,8 +490,7 @@
       "name": "ms2_coin062",
       "transform":
       {
-        "pos": "86.0738 32.5598 -40.3531",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "86.0738 29.925 -40.3531"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -497,8 +501,7 @@
       "name": "ms2_coin048",
       "transform":
       {
-        "pos": "7.67572 24.027 -57.7212",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "7.67572 24.027 -57.7212"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -509,8 +512,7 @@
       "name": "ms2_coin047",
       "transform":
       {
-        "pos": "13.2987 22.2636 -59.6084",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "13.2987 22.2636 -59.6084"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -521,8 +523,7 @@
       "name": "ms2_coin046",
       "transform":
       {
-        "pos": "11.1864 19.7736 -43.2963",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "11.3447 19.7736 -46.2867"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -533,8 +534,7 @@
       "name": "ms2_coin045",
       "transform":
       {
-        "pos": "12.6028 2.58473 13.5344",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "12.6028 2.58473 13.5344"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -545,8 +545,7 @@
       "name": "ms2_coin044",
       "transform":
       {
-        "pos": "10.7901 1.74578 15.2281",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "10.7901 1.74578 15.2281"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -557,8 +556,7 @@
       "name": "ms2_coin043",
       "transform":
       {
-        "pos": "18.2395 1.74578 8.56986",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "18.2395 1.74578 8.56986"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -569,8 +567,7 @@
       "name": "ms2_coin042",
       "transform":
       {
-        "pos": "16.5143 2.58473 10.0972",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "16.5143 2.58473 10.0972"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -581,8 +578,7 @@
       "name": "ms2_coin041",
       "transform":
       {
-        "pos": "14.7016 2.93132 11.791",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "14.7016 2.93132 11.791"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -593,8 +589,7 @@
       "name": "ms2_coin040",
       "transform":
       {
-        "pos": "-70.9825 9.30151 52.5715",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-70.9825 9.30151 52.5715"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -605,8 +600,7 @@
       "name": "ms2_coin039",
       "transform":
       {
-        "pos": "-86.825 0.864763 64.8742",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-86.825 0.864763 64.8742"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -617,8 +611,7 @@
       "name": "ms2_coin038",
       "transform":
       {
-        "pos": "-82.01 37.8387 49.1101",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-82.01 37.8387 49.1101"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -629,8 +622,7 @@
       "name": "ms2_coin037",
       "transform":
       {
-        "pos": "-84.1693 37.8387 49.2985",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-84.1693 37.8387 49.2985"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -641,8 +633,7 @@
       "name": "ms2_coin036",
       "transform":
       {
-        "pos": "-83.1178 37.8387 49.8606",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-83.1178 37.8387 49.8606"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -653,8 +644,7 @@
       "name": "ms2_coin035",
       "transform":
       {
-        "pos": "-83.0609 37.8387 48.5034",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-83.0609 37.8387 48.5034"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -665,8 +655,7 @@
       "name": "ms2_coin034",
       "transform":
       {
-        "pos": "0.52108 26.1072 -14.7324",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "0.52108 26.1072 -14.7324"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -677,8 +666,7 @@
       "name": "ms2_coin033",
       "transform":
       {
-        "pos": "6.64013 26.1072 -37.9478",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "6.64013 26.1072 -37.9478"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -689,8 +677,7 @@
       "name": "ms2_coin032",
       "transform":
       {
-        "pos": "-16.2265 26.1072 -31.5182",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-16.2265 26.1072 -31.5182"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -701,8 +688,7 @@
       "name": "ms2_coin031",
       "transform":
       {
-        "pos": "7.27909 36.1397 -18.1034",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "7.27909 36.1397 -18.1034"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -713,8 +699,7 @@
       "name": "ms2_coin030",
       "transform":
       {
-        "pos": "0.476553 36.1397 -41.3015",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "0.476553 36.1397 -41.3015"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -725,8 +710,7 @@
       "name": "ms2_coin029",
       "transform":
       {
-        "pos": "-16.3948 36.1397 -24.5541",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-16.3948 36.1397 -24.5541"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -737,8 +721,7 @@
       "name": "ms2_coin028",
       "transform":
       {
-        "pos": "-53.7901 0.608388 -52.1772",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-53.7901 0.608388 -52.1772"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -749,8 +732,7 @@
       "name": "ms2_coin027",
       "transform":
       {
-        "pos": "-54.385 0.608388 -51.0742",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-54.385 0.608388 -51.0742"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -761,8 +743,7 @@
       "name": "ms2_coin026",
       "transform":
       {
-        "pos": "-54.9472 0.608388 -50.0226",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-54.9472 0.608388 -50.0226"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -773,8 +754,7 @@
       "name": "ms2_coin025",
       "transform":
       {
-        "pos": "-55.6028 0.608388 -48.8735",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-55.6028 0.608388 -48.8735"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -785,8 +765,7 @@
       "name": "ms2_coin024",
       "transform":
       {
-        "pos": "-56.1977 0.608388 -47.7705",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-56.1977 0.608388 -47.7705"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -797,8 +776,7 @@
       "name": "ms2_coin023",
       "transform":
       {
-        "pos": "-56.7598 0.608388 -46.719",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-56.7598 0.608388 -46.719"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -809,8 +787,7 @@
       "name": "ms2_coin022",
       "transform":
       {
-        "pos": "-83.2861 39.9412 -16.682",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-83.2861 39.9412 -16.682"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -821,8 +798,7 @@
       "name": "ms2_coin021",
       "transform":
       {
-        "pos": "-88.739 38.1868 -11.697",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-88.739 38.1868 -11.697"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -833,8 +809,7 @@
       "name": "ms2_coin020",
       "transform":
       {
-        "pos": "-86.2492 39.2147 -14.2267",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-86.2492 39.2147 -14.2267"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -845,8 +820,7 @@
       "name": "ms2_coin019",
       "transform":
       {
-        "pos": "-89.0815 37.2859 -8.58505",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-89.0815 37.2859 -8.58505"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -857,8 +831,7 @@
       "name": "ms2_coin018",
       "transform":
       {
-        "pos": "-59.2152 10.3594 -23.888",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-59.2152 10.3594 -23.888"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -869,8 +842,7 @@
       "name": "ms2_coin017",
       "transform":
       {
-        "pos": "-63.8883 4.84836 -17.38",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-62.8028 6.83704 -19.8585"
       },
       "prefab": "data/prefabs/coin.prefab"
     }
@@ -881,8 +853,7 @@
       "name": "ms2_coin016",
       "transform":
       {
-        "pos": "-66.9946 1.06815 -11.3212",
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "pos": "-66.9946 1.2373 -11.3212"
       },
       "prefab": "data/prefabs/coin.prefab"
     }

@@ -1,4 +1,77 @@
 [
+  { "entity": { "name": "pureDummy" } },
+  {
+    "entity":
+    {
+      "name": "ms2_pure006mesh",
+      "transform":
+      {
+        "pos": "16.1086 17.1181 -42.8537",
+        "rotation": "-0.683013 0.683013 -0.183013 0.183013"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_pure006mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_pure005mesh",
+      "transform":
+      {
+        "pos": "19.9908 13.8061 -38.6944",
+        "rotation": "-0.683013 0.683013 -0.183013 0.183013"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_pure005mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
+      ]
+    }
+  },
   {
     "entity":
     {
@@ -14,14 +87,24 @@
           "mesh": "data/meshes/ms2_pure004mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/wood.material"
           ]
         }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.5 0.5 1.5",
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
       ]
     }
   },
@@ -40,12 +123,7 @@
           "mesh": "data/meshes/ms2_pure001mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/wood.material"
           ]
         }
       ],
@@ -72,8 +150,8 @@
       "name": "ms2_pure002mesh",
       "transform":
       {
-        "pos": "12.1418 10.8695 -39.4092",
-        "rotation": "-0.579228 0.579228 -0.40558 0.40558"
+        "pos": "13.4604 10.8695 -38.8734",
+        "rotation": "-0.683013 0.683013 -0.183013 0.183013"
       },
       "render":
       [
