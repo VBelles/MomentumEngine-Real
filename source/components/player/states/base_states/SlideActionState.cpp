@@ -1,9 +1,11 @@
 #include "mcv_platform.h"
 #include "SlideActionState.h"
 #include "components/player/comp_player_model.h"
+#include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
 void SlideActionState::update(float delta) {
+	//AirborneActionState::update(delta);
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	float yaw, pitch;
@@ -12,10 +14,18 @@ void SlideActionState::update(float delta) {
 	float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
 	deltaMovement = tangentVector * module;
 
+	TCompTransform* transform = getPlayerTransform();
+	transform->getYawPitchRoll(&yaw, &pitch);
+	transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);
 }
 
 void SlideActionState::onStateEnter(IActionState* lastState) {
 	AirborneActionState::onStateEnter(lastState);
+	TCompTransform* transform = getPlayerTransform();
+	float yaw, pitch;
+	transform->getYawPitchRoll(&yaw, &pitch);
+	transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);
+	
 	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 	velocityVector->y = 0.f;
 	velocityVector->x = 0.f;
