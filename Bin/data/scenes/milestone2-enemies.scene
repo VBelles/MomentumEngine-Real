@@ -1,4 +1,5 @@
 [
+  { "entity": { "name": "enemyDummy" } },
   {
     "entity":
     {
@@ -18,8 +19,8 @@
       "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
-        "pos": "89.9041 51.6868 50.6036",
-        "lookat": "-1.0 51.6868 -1.0"
+        "pos": "94.6179 49.9837 50.6309",
+        "lookat": "-1.0 49.9837 -1.0"
       }
     }
   },
@@ -30,8 +31,8 @@
       "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
-        "pos": "89.265 51.6868 45.3732",
-        "lookat": "-1.0 51.6868 -1.0"
+        "pos": "93.9788 49.9837 45.4005",
+        "lookat": "-1.0 49.9837 -1.0"
       }
     }
   },
