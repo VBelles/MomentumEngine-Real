@@ -2,19 +2,19 @@
   {
     "entity":
     {
-      "name": "terreno_elevado3",
+      "name": "lanza006",
       "transform":
       {
-        "pos": "-57.5072 -0.705564 48.9464",
-        "rotation": "-0.999048 0.0 -0.0436195 0.0"
+        "pos": "70.4497 20.5988 -48.7993",
+        "rotation": "-0.81719 0.488831 0.0809716 0.294431"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/terreno_elevado3.mesh",
+          "mesh": "data/meshes/lanza006.mesh",
           "materials":
           [
-            "data/materials/monte01.material"
+            "data/materials/lanza.material"
           ]
         }
       ]
@@ -23,19 +23,19 @@
   {
     "entity":
     {
-      "name": "terreno_elevado2",
+      "name": "lanza005",
       "transform":
       {
-        "pos": "12.4528 0.328289 82.21",
-        "rotation": "-0.999048 0.0 -0.0436195 0.0"
+        "pos": "82.1598 18.3681 -0.0428322",
+        "rotation": "0.582589 -0.806521 -0.0848897 -0.0539275"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/terreno_elevado2.mesh",
+          "mesh": "data/meshes/lanza005.mesh",
           "materials":
           [
-            "data/materials/monte01.material"
+            "data/materials/lanza.material"
           ]
         }
       ]
@@ -44,19 +44,19 @@
   {
     "entity":
     {
-      "name": "terreno_elevado",
+      "name": "lanza003",
       "transform":
       {
-        "pos": "12.4528 0.328284 -38.5502",
-        "rotation": "-0.999048 0.0 -0.0436195 0.0"
+        "pos": "88.9206 33.4844 3.22376",
+        "rotation": "0.513487 -0.851394 -0.0514091 -0.093894"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/terreno_elevado.mesh",
+          "mesh": "data/meshes/lanza003.mesh",
           "materials":
           [
-            "data/materials/Material_#4.material"
+            "data/materials/lanza.material"
           ]
         }
       ]
@@ -65,16 +65,164 @@
   {
     "entity":
     {
-      "name": "andrea_terrenobase001",
+      "name": "lanza004",
       "transform":
       {
-        "pos": "-6.6354 -56.5444 21.7785",
+        "pos": "87.8727 33.4576 2.30949",
+        "rotation": "0.620223 -0.777087 -0.0632248 -0.0863804"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/lanza004.mesh",
+          "materials":
+          [
+            "data/materials/lanza.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "lanza001",
+      "transform":
+      {
+        "pos": "63.1138 5.94342 35.5588",
+        "rotation": "-0.976383 0.126079 -0.0337828 0.172163"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/lanza001.mesh",
+          "materials":
+          [
+            "data/materials/lanza.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "lanza002",
+      "transform":
+      {
+        "pos": "58.95 18.3844 36.8741",
+        "rotation": "-0.996195 0.0 0.0 0.0871558"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/lanza002.mesh",
+          "materials":
+          [
+            "data/materials/lanza.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_029",
+      "transform":
+      {
+        "pos": "-75.9437 -7.88079 75.1869",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/andrea_terrenobase001.mesh",
+          "mesh": "data/meshes/IMPORT_monte_029.mesh",
+          "materials":
+          [
+            "data/materials/monte06.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_andrea_terrenobase001",
+      "transform":
+      {
+        "pos": "-6.6354 -56.5886 23.0733",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_andrea_terrenobase001.mesh",
+          "materials":
+          [
+            "data/materials/suelotileable.material",
+            "data/materials/grasstilable.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_006",
+      "transform":
+      {
+        "pos": "-81.4986 19.2155 65.5544",
+        "rotation": "0.0 -0.999974 0.0 -0.00714447"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_006.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_005",
+      "transform":
+      {
+        "pos": "-71.3097 2.5173 51.4554",
+        "rotation": "0.0 -0.0374412 0.0 -0.999299"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_005.mesh",
+          "materials":
+          [
+            "data/materials/balcon01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_015",
+      "transform":
+      {
+        "pos": "76.5132 16.6105 65.5466",
+        "rotation": "0.0 -0.820884 0.0 -0.571096"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_015.mesh",
           "materials":
           [
             "data/materials/monte01.material"
@@ -86,19 +234,407 @@
   {
     "entity":
     {
-      "name": "formacion_rocosa1_low_formacion_rocosa1_low",
+      "name": "IMPORT_minimonte_004",
       "transform":
       {
-        "pos": "-23.7018 3.76466 161.54",
+        "pos": "18.0286 25.2407 -68.5817",
+        "rotation": "0.0 -0.800222 0.0 -0.599704"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_004.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_003",
+      "transform":
+      {
+        "pos": "4.15558 11.765 -53.7593",
+        "rotation": "0.0 -0.988599 0.0 -0.150574"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_003.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_013",
+      "transform":
+      {
+        "pos": "-83.4743 18.7136 48.6259",
+        "rotation": "0.0 -0.1054 0.0 -0.99443"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_013.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_012",
+      "transform":
+      {
+        "pos": "-0.884518 21.3961 -69.8808",
+        "rotation": "0.0 0.417325 0.0 -0.908757"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_012.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_011",
+      "transform":
+      {
+        "pos": "42.7058 -4.87312 -37.2973",
+        "rotation": "0.0 -0.963808 0.0 -0.266595"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_011.mesh",
+          "materials":
+          [
+            "data/materials/monte04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_010",
+      "transform":
+      {
+        "pos": "-15.6809 -5.84047 119.695",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/formacion_rocosa1_low_formacion_rocosa1_low.mesh",
+          "mesh": "data/meshes/IMPORT_monte_010.mesh",
+          "materials":
+          [
+            "data/materials/monte06.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_009",
+      "transform":
+      {
+        "pos": "11.2341 3.50554 -49.6011",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_009.mesh",
+          "materials":
+          [
+            "data/materials/monte07.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_008",
+      "transform":
+      {
+        "pos": "21.5655 -1.12661 -80.6092",
+        "rotation": "0.0 0.680601 0.0 -0.732654"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_008.mesh",
+          "materials":
+          [
+            "data/materials/monte06.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_balcon_02",
+      "transform":
+      {
+        "pos": "3.69883 10.4791 142.241",
+        "rotation": "0.0 -0.904145 0.0 -0.427226"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_balcon_02.mesh",
+          "materials":
+          [
+            "data/materials/balcon04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_02",
+      "transform":
+      {
+        "pos": "62.3373 4.87721 58.7814",
+        "rotation": "0.0 0.293168 0.0 -0.956061"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_02.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_01",
+      "transform":
+      {
+        "pos": "61.8231 3.60483 70.0139",
+        "rotation": "0.0 -0.96818 0.0 -0.250255"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_01.mesh",
+          "materials":
+          [
+            "data/materials/balcon01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_06",
+      "transform":
+      {
+        "pos": "24.5911 -1.1266 112.815",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_06.mesh",
+          "materials":
+          [
+            "data/materials/monte06.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_05",
+      "transform":
+      {
+        "pos": "87.505 24.0361 40.532",
+        "rotation": "0.0 0.188075 0.0 -0.982155"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_05.mesh",
+          "materials":
+          [
+            "data/materials/monte05.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_04",
+      "transform":
+      {
+        "pos": "-11.2542 -4.8452 88.5455",
+        "rotation": "0.0 -0.292117 0.0 -0.956382"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_04.mesh",
+          "materials":
+          [
+            "data/materials/monte04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_BIGmonte_02",
+      "transform":
+      {
+        "pos": "96.6094 34.2763 1.58571",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_BIGmonte_02.mesh",
+          "materials":
+          [
+            "data/materials/monte02.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_01",
+      "transform":
+      {
+        "pos": "79.4579 16.6104 -27.0506",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_01.mesh",
           "materials":
           [
             "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_07",
+      "transform":
+      {
+        "pos": "13.6016 3.22099 78.9786",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_07.mesh",
+          "materials":
+          [
+            "data/materials/monte07.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box058",
+      "transform":
+      {
+        "pos": "-41.6791 0.0 -35.7238",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box058.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box057",
+      "transform":
+      {
+        "pos": "-57.9221 10.0 -45.1017",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box057.mesh",
+          "materials":
+          [
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Fieldstone.material"
           ]
         }
       ]
@@ -467,216 +1003,6 @@
             "data/materials/liso.material",
             "data/materials/cenefas.material",
             "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box012",
-      "transform":
-      {
-        "pos": "-67.3382 0.0 65.0285",
-        "rotation": "0.0 -0.231292 0.0 -0.972884"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box012.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box011",
-      "transform":
-      {
-        "pos": "-75.5891 7.01194 76.4043",
-        "rotation": "0.0 -0.460885 0.0 -0.88746"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box011.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box010",
-      "transform":
-      {
-        "pos": "13.9277 -1.33878 -75.3472",
-        "rotation": "0.0 0.570105 0.0 -0.821572"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box010.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box009",
-      "transform":
-      {
-        "pos": "23.1111 -4.27173 -58.9032",
-        "rotation": "0.0 0.0843425 0.0 -0.996437"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box009.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box008",
-      "transform":
-      {
-        "pos": "23.1111 -4.27172 135.145",
-        "rotation": "0.0 -0.460885 0.0 -0.88746"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box008.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box007",
-      "transform":
-      {
-        "pos": "-12.1916 0.0 91.2231",
-        "rotation": "0.0 0.360133 0.0 -0.932901"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box007.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box006",
-      "transform":
-      {
-        "pos": "45.5841 0.0 -37.6972",
-        "rotation": "0.0 -0.738987 0.0 -0.67372"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box006.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box005",
-      "transform":
-      {
-        "pos": "-71.5797 0.0 89.5809",
-        "rotation": "0.0 -0.8981 0.0 -0.439792"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box005.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box003",
-      "transform":
-      {
-        "pos": "-78.9453 -1.33877 51.2449",
-        "rotation": "0.0 -0.0213492 0.0 -0.999772"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box003.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box001",
-      "transform":
-      {
-        "pos": "23.1111 -4.27172 109.982",
-        "rotation": "0.0 -0.460885 0.0 -0.88746"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box001.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
           ]
         }
       ]
@@ -3258,75 +3584,6 @@
   {
     "entity":
     {
-      "name": "suelo014",
-      "transform":
-      {
-        "pos": "-119.782 1.78651 -35.338",
-        "rotation": "0.0 -0.965926 0.0 0.258819"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo014.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "suelo013",
-      "transform":
-      {
-        "pos": "-113.089 1.78305 -30.8906",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo013.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "suelo012",
-      "transform":
-      {
-        "pos": "-121.681 1.78651 -34.4626",
-        "rotation": "0.0 -0.965926 0.0 0.258819"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo012.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "suelo010",
       "transform":
       {
@@ -3419,75 +3676,6 @@
   {
     "entity":
     {
-      "name": "suelo006",
-      "transform":
-      {
-        "pos": "-130.34 1.78651 -25.6752",
-        "rotation": "0.0 -0.965926 0.0 0.258819"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo006.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "suelo005",
-      "transform":
-      {
-        "pos": "-126.714 1.78305 -19.6869",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo005.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "suelo004",
-      "transform":
-      {
-        "pos": "-123.203 1.86412 -13.2665",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo004.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "megaarco117",
       "transform":
       {
@@ -3566,75 +3754,6 @@
       [
         {
           "mesh": "data/meshes/megaarco111.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "megaarco110",
-      "transform":
-      {
-        "pos": "-140.838 8.74115 -33.4512",
-        "rotation": "0.0 -1.0 0.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/megaarco110.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "megaarco106",
-      "transform":
-      {
-        "pos": "-134.44 8.74115 -44.5331",
-        "rotation": "0.0 -1.0 0.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/megaarco106.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "megaarco105",
-      "transform":
-      {
-        "pos": "-128.041 8.74115 -55.6152",
-        "rotation": "0.0 -1.0 0.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/megaarco105.mesh",
           "materials":
           [
             "data/materials/liso.material",
@@ -5559,121 +5678,6 @@
   {
     "entity":
     {
-      "name": "ms2_lanza011",
-      "transform":
-      {
-        "pos": "57.6328 -4.23083 33.6185",
-        "rotation": "-0.0642579 -0.734472 -0.0588815 -0.673019"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza011.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza010",
-      "transform":
-      {
-        "pos": "63.8138 35.868 3.48569",
-        "rotation": "0.537711 0.450887 -0.545308 0.458483"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza010.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza009",
-      "transform":
-      {
-        "pos": "55.5297 -16.0807 28.7314",
-        "rotation": "-0.212109 -0.697041 -0.0233565 -0.684542"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza009.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza008",
-      "transform":
-      {
-        "pos": "64.151 39.1828 7.33993",
-        "rotation": "-0.629566 -0.353414 0.599362 -0.345704"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza008.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza007",
-      "transform":
-      {
-        "pos": "63.1798 19.5093 9.5155",
-        "rotation": "-0.564456 -0.470125 0.481502 -0.478046"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza007.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms2_brazoparte001",
       "transform":
       {
@@ -6303,29 +6307,6 @@
             "data/materials/Fieldstone.material",
             "data/materials/Fieldstone.material",
             "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_lanza006",
-      "transform":
-      {
-        "pos": "52.4167 8.95703 -54.9432",
-        "rotation": "-0.507865 -0.747208 0.0603727 -0.424392"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_lanza006.mesh",
-          "materials":
-          [
             "data/materials/Fieldstone.material",
             "data/materials/Fieldstone.material",
             "data/materials/Fieldstone.material"
