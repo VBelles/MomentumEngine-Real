@@ -36,9 +36,9 @@
 			],
 			
 			"transform": {
-				"pos": "-77 25 -59",
+				"pos": "3 2 48",
 				"axis": "0 1 0",
-				"angle": 120
+				"angle": 220
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/ella/ella.skeleton"
@@ -266,7 +266,7 @@
 				"centering_camera_speed": "18 9",
 				"max_pitch": 60,
 				"min_pitch": -70,
-				"yaw": 125,
+				"yaw": 225,
 				"pitch": -20
 			}
 		}

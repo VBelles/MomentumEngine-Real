@@ -20,12 +20,9 @@
 #pragma comment(lib, "PxPvdSDK_x64.lib")
 #pragma comment(lib, "PhysX3CharacterKinematic_x64.lib")
 
-
 bool CModulePhysics::start() {
-	if (!createPhysx())
-		return false;
-	if (!createScene())
-		return false;
+	if (!createPhysx()) return false;
+	if (!createScene()) return false;
 	colliderType = CHandleManager::getByName("collider")->getType();
 
 	return true;
@@ -48,12 +45,10 @@ bool CModulePhysics::createPhysx() {
 	foundation = PxCreateFoundation(PX_FOUNDATION_VERSION, defaultAllocatorCallback, defaultErrorCallback);
 	assert(foundation != nullptr);
 
-	if (!foundation)
-		return false;
+	if (!foundation) return false;
 
 	pvd = PxCreatePvd(*foundation);
-	if (!pvd)
-		return false;
+	if (!pvd) return false;
 
 	PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
 	bool  is_ok = pvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
@@ -149,7 +144,6 @@ PxController* CModulePhysics::createCCT(const ColliderConfig& config, PxTransfor
 	PX_ASSERT(controller);
 	return controller;
 }
-
 
 PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTransform& initialTransform) {
 	PxRigidActor* actor = nullptr;
@@ -247,7 +241,6 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 	return actor;
 }
 
-
 void CModulePhysics::update(float delta) {
 	if (!scene) return;
 	scene->simulate(delta);
@@ -334,7 +327,6 @@ void CModulePhysics::makeActorTrigger(PxRigidActor* actor) {
 	}
 	actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
 }
-
 
 void  CModulePhysics::releaseCollider(CHandle handle) {
 	toRelease.insert(handle);

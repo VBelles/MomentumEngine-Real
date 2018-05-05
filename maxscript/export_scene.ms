@@ -68,11 +68,13 @@ struct TJsonFormatter (
 	),
 
 		-- --------------------
+	-- "key_str":\n
 	fn writeKey key_str = (
 		indent()
 		format "\"%\":\n" key_str to:fs
 	),
 	
+	-- "key_str": {},\n
 	fn writeKeyEmpty key_str = (
 		indent()
 		format "\"%\": {},\n" key_str to:fs
@@ -95,6 +97,7 @@ struct TJsonFormatter (
 		)
 	),
 	
+	-- "key_str": "val"
 	fn writeKeyValue key_str val = (
 		indent()
 		format "\"%\":" key_str to:fs
@@ -102,6 +105,7 @@ struct TJsonFormatter (
 	),
 
 	-- --------------------
+	-- "name"
 	fn writeName name = (
 		indent()
 		format "\"%\"" name to:fs
@@ -161,18 +165,30 @@ struct TMaterialExporter (
 		--format "Exporting material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
-			fs.writeKeyValue "technique" "textured.tech"
+			fs.writeKeyValue "technique" "pbr.tech"
 			fs.writeComma()
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
 			fs.writeKey "textures"
 			fs.beginObj()
 		
-			if classof mat == Standardmaterial then (
-				exportMap mat.diffusemap "albedo" "null_albedo"
+			if classof mat == StandardMaterial then (
+				exportMap mat.diffuseMap "albedo" "null_albedo"
 			    fs.writeComma()
 				exportMap mat.bumpMap "normal" "null_normal"
-				-- ... other maps..
+				fs.writeComma()
+				exportMap mat.glossinessMap "metallic" "null_metallic"
+				fs.writeComma()
+				exportMap mat.specularLevelMap "roughness" "null_roughness"
+				
+				--ambientMap
+				--specularMap
+				--selfIllumMap
+				--opacityMap
+				--filterMap
+				--reflectionMap
+				--refractionMap
+				--displacementMap
 			)
 
 			fs.endObj()
@@ -187,7 +203,7 @@ struct TMaterialExporter (
 			
 			fs.begin (project_path + mat_name )
 			fs.beginObj()
-				fs.writeKeyValue "technique" "textured.tech"
+				fs.writeKeyValue "technique" "pbr.tech"
 				fs.writeComma()
 				fs.writeKeyValue "shadows" true
 				fs.writeComma()
@@ -367,12 +383,15 @@ struct TSceneExporter (
 	
 	-- --COLLIDER MESH------------------------------------------
 	fn exportColliderMesh obj = (
+		local meshType = "convex_mesh"
+		if obj.layer.name == "trimesh" then meshType = "tri_mesh"
+		
 		fs.writeKey "collider"
 		fs.beginObj()
 			local mesh_name = mesh_path + obj.name + ".col_mesh"
 			fs.writeKeyValue "mesh_src" mesh_name
 			fs.writeComma()
-			fs.writeKeyValue "shape" "convex_mesh"
+			fs.writeKeyValue "shape" meshType
 			fs.writeComma()
 			fs.writeKeyValue "type" "static"
 		
@@ -382,7 +401,7 @@ struct TSceneExporter (
 	),
 
 	-- --COMP COLLIDER------------------------------------------
-	fn exportCompCollider obj colliderGroups: masks: trig:false dyn:false = (
+	fn exportCompCollider obj colliderGroups: masks: trig:false dyn:false mov:false = (
 		fs.writeKey "collider"
 		fs.beginObj()
 
@@ -430,7 +449,11 @@ struct TSceneExporter (
 		if dyn then (
 			fs.writeComma()
 			fs.writeKeyValue "type" "dynamic"
-		) else (
+		) else if mov then (
+			fs.writeComma()
+			fs.writeKeyValue "type" "kinematic"
+		)			
+		else (
 			fs.writeComma()
 			fs.writeKeyValue "type" "static"
 		)
@@ -447,14 +470,7 @@ struct TSceneExporter (
 
 		fs.endObj()
 	),
-	
-	-- -- Purity----------
-	fn exportPurity = (
-		fs.writeComma()
-		fs.writeKeyEmpty "purity"
-		exportStringArray "tags" #("pure")		
-	),
-	
+			
 	fn exportSplineKnots obj = (
 		fs.beginArray()
 			--Create a copy and convert it to SplineShape to be able to get the knots.
@@ -489,40 +505,87 @@ struct TSceneExporter (
 		fs.endArray()
 	),
 	
-	-- --SPLINE--------------------------------------------------
-	fn exportSpline obj type:"follow_curve" = (
+	fn getCircularMovementOffset platform circleObj = (
+		local center = circleObj.pos
+		local circlePoint = getKnotPoint circleObj 1 1
+		local platformPos = platform.pos
+		
+		-- TODO: Aquí la idea sería aumentar el move_offset según el ángulo de la plataforma respecto
+		-- al centro del círculo, si no todas las plataforms que comparten centro se mueven superpuestas.
+		-- Ahora mismo no va fino, necesito ángulos negativos también.
+		local anglePlatformToCircle = get3pointAngle center circlePoint platformPos
+		if anglePlatformToCircle == 0 then return 0
+		else return anglePlatformToCircle / 180
+	),
+	
+	-- --SPLINE-------------------------------------------------------
+	fn exportSpline obj type:"platform_simple" = (
 		-- Executed only if we already know it has a child line.
 		local curveType = "catmull-rom"
 		for child in obj.children do (
 			local childClass = classOf child
+			local moveOffset = 0
 			if isLine child then (
 				if childClass == line then curveType = "catmull-rom"
 				if childClass == circle or
-			       childClass == SplineShape then curveType = "circular"
+			       childClass == SplineShape then (
+					curveType = "circular"
+					moveOffset = getCircularMovementOffset obj child
+				)
+				
+				local closed = false
+				local followSpeed = 0.2
+				if childClass == circle then closed = true
+				else closed = isClosed child 1
+				
+				if closed then followSpeed = 0.001
 				
 				fs.writeComma()
-				fs.writeKey type
-				
+				fs.writeKey "platform_simple"
 				fs.beginObj()
+					fs.writeKeyValue "rotation_axis" "0 1 0"
+					fs.writeComma()
+					fs.writeKeyValue "rotation_speed" 0
+					fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
 					fs.writeKeyValue "automove" true
 					fs.writeComma()
 					fs.writeKeyValue "loop" true
 					fs.writeComma()
-					fs.writeKeyValue "closed" (isClosed child 1)
+					fs.writeKeyValue "closed" closed
 					fs.writeComma()
-					fs.writeKeyValue "speed" 0.2
+					fs.writeKeyValue "move_offset" moveOffset
+					fs.writeComma()
+					fs.writeKeyValue "speed" followSpeed
 					fs.writeComma()
 					fs.writeKey "knots"
 					exportSplineKnots child
-					
 				fs.endObj()
 				return true -- Only exports the first line found.
 			)
 		)
 	),
 	
+	-- --ROTATE-----------------------------------------------------
+	fn exportPlatfRotation = (
+		fs.writeComma()
+		fs.writeKey "platform_simple"
+		fs.beginObj()
+			fs.writeKeyValue "rotation_axis" "0 1 0"
+			fs.writeComma()
+			fs.writeKeyValue "rotation_speed" 1
+		fs.endObj()
+	),
+	
+	-- --PURE----------------------------------------------------
+	fn exportPurity = (
+		fs.writeComma()
+		fs.writeKeyEmpty "purity"
+		exportStringArray "tags" #("pure")		
+	),
+		
+	-- --BREAKABLE------------------------------------------------
 	fn exportBreakable hp:1 = (
 		fs.writeComma()
 		fs.writeKey "breakable"
@@ -531,52 +594,32 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --EDITABLE MESH-------------------------------------------
-	fn exportEditableMesh obj pure:false breakable:false = (
-		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
-		exportName obj
+	-- --MECHANISM------------------------------------------------
+	-- What is affected when activating a mechanism system.
+	fn exportMech obj = (
 		fs.writeComma()
-		exportTransform obj
-		fs.writeComma()
-		fs.writeKey "render"
-		fs.beginArray()
-			exportRenderMesh obj
-		fs.endArray()
-		
-		if hasChildCollider obj then (
-			for child in obj.children do (
-				if isCollider child then (
-					fs.writeComma()
-					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
-					local movable = hasChildLine child
-					--if pure == unsupplied then pure = false
-					exportCompCollider child dyn:(pure or movable)
-					if pure then (
-						exportPurity()
-					)
-					if breakable then (
-						exportBreakable()
-					)
-					if movable then (
-						exportSpline child
-					)
-				)
-			)
-		)
-		else (
-			-- Doesn't have  child collider, so export mesh as collider.
+		fs.writeKey "mechanism"
+		fs.beginObj()
+			fs.writeKeyValue "deactivationTime" 5
 			fs.writeComma()
-			exportColliderMesh obj
-		)
+			fs.writeKeyValue "isResettable" true
+			fs.writeComma()
+			fs.writeKeyValue "reactivationTime" 3
+			fs.writeComma()
+			fs.writeKey "systems"
+			fs.beginArray()
+				fs.writeValue obj.parent.name addIndent:true
+			fs.endArray()
+		fs.endObj()
 	),
-
+		
 	-- --ENTITY COLLIDER-----------------------------------------
-	fn exportEntityCollider obj colliderGroups: trig:false dyn:false = (
+	fn exportEntityCollider obj colliderGroups: masks: trig:false dyn:false = (
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
-		exportCompCollider obj colliderGroups:colliderGroups trig:trig dyn:dyn
+		exportCompCollider obj colliderGroups:colliderGroups masks:masks trig:trig dyn:dyn
 	),
 		
 	-- --SHADOW --------------------------------------------------
@@ -594,6 +637,22 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	-- --COINS-------------------------------------------------------
+	fn exportCoin obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				exportTransform obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + "coin.prefab")
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+		
 	fn exportChildHitboxes obj capsuleHeight = (
 		for child in obj.children do (
 			if isCollider child and
@@ -624,6 +683,7 @@ struct TSceneExporter (
 						
 						-- Export spline if available.
 						if hasChildLine child then (
+							--TODO: this should be different now that we use platform_simple instead of follow_curve.
 							exportSpline child type:"hitboxPath"
 						)
 					fs.endObj() -- - - - - - - - - - - - - - - - - - - - -
@@ -634,7 +694,429 @@ struct TSceneExporter (
 	
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
+	
+	-- --Give power --
+	fn exportGivePower maxPow: multi: = (
+		fs.writeKey "givePower"
+		fs.beginObj()
+			if maxPow != unsupplied then (
+				fs.writeKeyValue "maxPowerToGive" maxPow
+				if multi != unsupplied then fs.writeComma()
+			)
+			if multi != unsupplied then fs.writeKeyValue "baseMultiplier" multi
+		fs.endObj()
+	),
+	
+	-- --Behavior tree --
+	fn exportBehaviorTree enemyType = (
+		if enemyType == "melee" then (
+			fs.writeKeyEmpty "behaviorTree_melee_enemy"
+		) else (
+			fs.writeKey "behaviorTree_flying_ranged_enemy"
+			fs.beginObj()
+				fs.writeKeyValue "attackSpawnOffset" "0.0 0.1 0.5"
+				fs.writeComma()
+				fs.writeKeyValue "attackTargetOffset" "0.0 0.76 0.0"
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+		
+	-- --ENTITY collider mesh -----------------------------------------
+	fn exportEntityColliderMesh obj = (
+		exportName obj
+		fs.writeComma()
+		exportTransform obj
+		fs.writeComma()
+		exportColliderMesh obj
+	),
+	
+	-- --COLLISION ----------------------------------------------
+	fn exportCollision obj nValidObjs = (
+		if not isCollider obj and
+		   not classOf obj == Editable_Mesh then return false
+		if nValidObjs > 0 then fs.writeComma()
+		
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				--format "name: % childLine: %\n" obj.name ((hasChildLine obj) as string)
+			if isCollider obj then
+				exportEntityCollider obj dyn:(hasChildLine obj)
+			else
+				exportEntityColliderMesh obj
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
+	-- --CAMERA--------------------------------------------------
+	fn exportCamera obj nValidObjs = (
+		local objClass = classOf obj
+		if objClass != TargetCamera and
+				objClass != FreeCamera  then (
+			if objClass != Targetobject then format "Warning: invalid object % of class % in cameras layer, not exported.\n" obj.name objClass
+			return false
+		)
+			if nValidObjs > 0 then fs.writeComma()
+			fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				if objClass == TargetCamera then (
+					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+				) else exportTransform obj
+				
+				fs.writeComma()
+				fs.writeKey "camera"
+				fs.beginObj()
+					fs.writeKeyValue "fov" obj.fov
+				fs.endObj()
+				-- Add child spline if it exists.
+				if hasChildLine obj then (
+					exportSpline obj
+				)
+			--format "Camera % target distance: %\n" obj.name obj.targetDistance
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
 
+	-- --CHRYSALIS-----------------------------------------------
+	fn exportChrysalis obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + "crisalida.prefab")
+				fs.writeComma()
+				exportTransform obj
+				-- Add child spline if it exists.
+				if hasChildLine obj then (
+					exportSpline obj
+				)
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
+	-- --ENEMY---------------------------------------------------
+	fn exportEnemy obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				local enemyAirPrefabName   = "enemy_flying"
+				local enemyMeleePrefabName = "enemy_melee"
+				local enemyBolaPrefabName  = "enemy_ball"
+				local prefabName = enemyAirPrefabName -- Flying by default.
+				if stringContainsSubstring obj.name "melee" then
+					prefabName = enemyMeleePrefabName
+				if stringContainsSubstring obj.name "Ball" then
+					prefabName = enemyBolaPrefabName
+				
+				local attributeManager = TAttributeManager()
+				local hp = attributeManager.getAttributeValue obj #enemyData #hitPoints
+				if hp != undefined then format "would export hp: %\n" hp
+				
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + prefabName + ".prefab")
+				fs.writeComma()
+				local objPos = obj.position * (rotateXMatrix -90)
+				local lookAtPos = [-1, objPos.y, -1]
+				exportTransform obj lookAtCoord:lookAtPos
+				-- Add child spline if it exists.
+				if hasChildLine obj then (
+					exportSpline obj type:"patrolPath"
+				)
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+
+	-- --LIGHT---------------------------------------------------
+	fn exportLight obj nValidObjs = (
+		local objClass = classOf obj
+		if objClass != TargetDirectionallight and
+		   objClass != Directionallight	  	  and
+		   objClass != freeSpot			  	  and
+		   objClass != Omnilight			  and
+		   objClass != targetSpot			then (
+			if objClass != Targetobject then format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
+			return false
+		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			-- Target Direct light. TODO: add more types.
+			-- http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_E6767B0D_B5BA_4422_A59F_FD5673FE550E_htm
+				exportName obj
+				
+				if objClass == TargetDirectionallight or
+					 objClass == targetSpot then (
+					fs.writeComma()
+					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+				)
+				fs.writeComma()
+				fs.writeKey "light_dir"
+				fs.beginObj()
+					fs.writeKeyValue "intensity" obj.multiplier
+					fs.writeComma()
+					fs.writeKeyValue "color" (obj.color as point3)
+					if obj.projector then (
+						fs.writeComma()
+						fs.writeKeyValue "projector" obj.projectorMap
+					)
+					fs.writeComma()
+					-- obj.nearAttenEnd for z_near
+					fs.writeKeyValue "z_far" obj.farAttenEnd
+					fs.writeComma()
+					fs.writeKeyValue "fov" 40 -- TODO: ¿Pick from some light parameter?
+				fs.endObj()
+				-- Add child spline if it exists.
+				if hasChildLine obj then (
+					exportSpline obj
+				)
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+
+	-- --MOVE TRIGGER (obsoleta, no se usa)------------------------
+	fn exportMoveTrigger parentMeshObj obj = (
+		local triggerName = parentMeshObj.name + "_trigger"
+		local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
+		-- entity trigger
+		fs.endObj()-- end previous entity
+		fs.endObj()-- end previous object
+		------ child entity ------
+		fs.writeComma()
+		fs.beginObj()
+		fs.writeKey "entity"
+		fs.beginObj()-- begin trigger entity
+		fs.writeKeyValue "name" triggerName
+		fs.writeComma()
+		fs.writeKeyEmpty "transform"
+		-- collider
+		fs.writeKey "collider"
+		fs.beginObj()
+			fs.writeKeyValue "shape" "box"
+			fs.writeComma()
+			fs.writeKeyValue "type" "dynamic"
+			fs.writeComma()
+			fs.writeKeyValue "is_trigger" true
+			fs.writeComma()
+			fs.writeKeyValue "halfExtent" platformHalfExtent
+			fs.writeComma()
+			exportStringArray "mask" #("player")
+		fs.endObj()
+		fs.writeComma()
+		-- platform
+		fs.writeKeyEmpty "platform"
+		-- hierarchy
+		fs.writeKey "hierarchy"
+		fs.beginObj()
+			fs.writeKeyValue "parent" parentMeshObj.name
+		fs.endObj()
+		return true
+	),
+
+	-- --TRIGGERS -----------------------------------------------
+	fn exportTrigger obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				if stringContainsSubstring obj.name "Bounds" then (
+					fs.writeKeyEmpty "outOfBounds"
+					exportEntityCollider obj trig:true dyn:true colliderGroups:#("all") masks:#("characters")
+				)
+				else exportEntityCollider obj trig:true
+				-- Add child spline if it exists.
+				if hasChildLine obj then (
+					exportSpline obj
+				)
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
+	-- --EDITABLE MESH-------------------------------------------
+	fn exportEditableMesh obj = (
+		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
+		exportName obj
+		fs.writeComma()
+		exportTransform obj
+		fs.writeComma()
+		fs.writeKey "render"
+		fs.beginArray()
+			exportRenderMesh obj
+		fs.endArray()
+		
+		local pure 		= obj.layer.name == "pure"
+		local breakable = obj.layer.name == "breakables"
+		local rot		= obj.layer.name == "rotate"
+		local mech		= obj.layer.name == "mechanisms"
+		
+		if hasChildCollider obj then (
+			for child in obj.children do (
+				if isCollider child then (
+					fs.writeComma()
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
+					local movable = hasChildLine child
+					--if pure == unsupplied then pure = false
+					local groups = #("scenario")
+					if breakable then append groups "enemy"
+						
+					exportCompCollider child dyn:pure mov:(movable or rot) colliderGroups:groups
+					
+					if pure then exportPurity()
+					if breakable then exportBreakable()
+					if movable then exportSpline child
+					if rot then exportPlatfRotation()
+					if mech then exportMech child
+				)
+			)
+		)
+		else (
+			-- Doesn't have  child collider, so export mesh as collider.
+			--fs.writeComma()
+			--exportColliderMesh obj
+		)
+	),
+	
+	-- --SPIKES---------------------------------------------------------
+	fn exportSpikes obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
+				fs.writeComma()
+				exportTransform obj
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
+	-- --DEFAULT ------------------------------------------------
+	fn exportDefault obj nValidObjs = (
+		if classOf obj != Editable_mesh then (
+			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
+			return false
+		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportEditableMesh obj
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+
+	-- --MECHANISM SYSTEM---------------------------------------------
+	-- The activator of the mechanisms.
+	fn exportMechSys obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+	
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + "mech_sys.prefab")
+				fs.writeComma()
+				exportTransform obj
+				fs.writeComma()
+				fs.writeKey "mechanism_system"
+				fs.beginObj()
+					fs.writeKeyValue "number_of_mechanisms" obj.children.count
+				fs.endObj()
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+
+		for child in obj.children do (
+			exportDefault child (nValidObjs + 1)
+		)
+		return true
+	),
+	
+	-- ----------------------------------------------------------
+	-- ----------------------------------------------------------
+	
+	-- --ENEMY PREFAB ---------------------------------------
+	fn exportEnemyPrefab obj nValidObjs = (
+		if classOf obj != Capsule and classOf obj != Sphere then return false
+		if obj.parent != undefined then return false
+		local meshPath = ""
+		local enemyType = "flying"
+		if stringContainsSubstring obj.layer.name "melee" then (
+			meshPath = "data/meshes/enemyMelee.mesh"
+			enemyType = "melee"
+		)
+		else if stringContainsSubstring obj.layer.name "ball" then (
+			meshPath = "data/meshes/enemigoBola.mesh"
+			enemyType = "ball"
+		)
+		else (
+			meshPath = "data/meshes/crisalida.mesh"
+		)
+		if nValidObjs > 0 then fs.writeComma()
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				fs.writeKeyEmpty "transform"
+		
+				fs.writeKey "render"
+				fs.beginArray()
+					fs.beginObj()
+						fs.writeKeyValue "mesh" meshPath
+						fs.writeComma()
+						fs.writeKey "materials"
+						fs.beginArray()
+							fs.writeValue "data/materials/piedras1.material" addIndent:true
+						fs.endArray()
+						fs.writeComma()
+						fs.writeKeyValue "color" "0.45 0.28 0.8 1.0"
+					fs.endObj()
+				fs.endArray() -- End render
+				fs.writeComma()
+		
+				exportStringArray "tags" #("enemy")
+				fs.writeComma()
+				
+				fs.writeKey "respawner"
+				fs.beginObj()
+					fs.writeKeyValue "respawnTime" 10
+				fs.endObj()
+				fs.writeComma()
+				
+				exportShadow()
+				fs.writeComma()
+				
+				exportGivePower maxPow:50000 multi:1
+				fs.writeComma()
+				
+				exportBehaviorTree enemyType
+				
+				exportCompCollider obj colliderGroups:#("enemy") masks:#("all")
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		
+		exportChildHitboxes obj obj.height
+		
+		return true
+	),
+	
 	-- --PLAYER ---------------------------------------------------
 	fn exportPlayer obj nValidObjs = (
 		if classOf obj != Editable_mesh then (
@@ -759,351 +1241,6 @@ struct TSceneExporter (
 		return true
 	),
 	
-	-- --Give power --
-	fn exportGivePower maxPow: multi: = (
-		fs.writeKey "givePower"
-		fs.beginObj()
-			if maxPow != unsupplied then (
-				fs.writeKeyValue "maxPowerToGive" maxPow
-				if multi != unsupplied then fs.writeComma()
-			)
-			if multi != unsupplied then fs.writeKeyValue "baseMultiplier" multi
-		fs.endObj()
-	),
-	
-	-- --Behavior tree --
-	fn exportBehaviorTree enemyType = (
-		if enemyType == "melee" then (
-			fs.writeKeyEmpty "behaviorTree_melee_enemy"
-		) else (
-			fs.writeKey "behaviorTree_flying_ranged_enemy"
-			fs.beginObj()
-				fs.writeKeyValue "attackSpawnOffset" "0.0 0.1 0.5"
-				fs.writeComma()
-				fs.writeKeyValue "attackTargetOffset" "0.0 0.76 0.0"
-			fs.endObj()
-			fs.writeComma()
-		)
-	),
-	
-	-- --ENEMY PREFAB ---------------------------------------
-	fn exportEnemyPrefab obj nValidObjs = (
-		if classOf obj != Capsule and classOf obj != Sphere then return false
-		if obj.parent != undefined then return false
-		local meshPath = ""
-		local enemyType = "flying"
-		if stringContainsSubstring obj.layer.name "melee" then (
-			meshPath = "data/meshes/enemyMelee.mesh"
-			enemyType = "melee"
-		)
-		else if stringContainsSubstring obj.layer.name "ball" then (
-			meshPath = "data/meshes/enemigoBola.mesh"
-			enemyType = "ball"
-		)
-		else (
-			meshPath = "data/meshes/crisalida.mesh"
-		)
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				fs.writeKeyEmpty "transform"
-		
-				fs.writeKey "render"
-				fs.beginArray()
-					fs.beginObj()
-						fs.writeKeyValue "mesh" meshPath
-						fs.writeComma()
-						fs.writeKey "materials"
-						fs.beginArray()
-							fs.writeValue "data/materials/piedras1.material" addIndent:true
-						fs.endArray()
-						fs.writeComma()
-						fs.writeKeyValue "color" "0.45 0.28 0.8 1.0"
-					fs.endObj()
-				fs.endArray() -- End render
-				fs.writeComma()
-		
-				exportStringArray "tags" #("enemy")
-				fs.writeComma()
-				
-				fs.writeKey "respawner"
-				fs.beginObj()
-					fs.writeKeyValue "respawnTime" 10
-				fs.endObj()
-				fs.writeComma()
-				
-				exportShadow()
-				fs.writeComma()
-				
-				exportGivePower maxPow:50000 multi:1
-				fs.writeComma()
-				
-				exportBehaviorTree enemyType
-				
-				exportCompCollider obj colliderGroups:#("enemy") masks:#("all")
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		
-		exportChildHitboxes obj obj.height
-		
-		return true
-	),
-	
-	-- --DEFAULT ------------------------------------------------
-	fn exportDefault obj nValidObjs pure:false breakable:false = (
-		if classOf obj != Editable_mesh then (
-			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
-			return false
-		)
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportEditableMesh obj pure:pure breakable:breakable
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-
-	-- --COLLISION ----------------------------------------------
-	fn exportCollision obj nValidObjs = (
-		if not isCollider obj then return false
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				--format "name: % childLine: %\n" obj.name ((hasChildLine obj) as string)
-				exportEntityCollider obj dyn:(hasChildLine obj)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-	
-	-- --CAMERA--------------------------------------------------
-	fn exportCamera obj nValidObjs = (
-		local objClass = classOf obj
-		if objClass != TargetCamera and
-				objClass != FreeCamera  then (
-			if objClass != Targetobject then format "Warning: invalid object % of class % in cameras layer, not exported.\n" obj.name objClass
-			return false
-		)
-			if nValidObjs > 0 then fs.writeComma()
-			fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				if objClass == TargetCamera then (
-					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
-				) else exportTransform obj
-				
-				fs.writeComma()
-				fs.writeKey "camera"
-				fs.beginObj()
-					fs.writeKeyValue "fov" obj.fov
-				fs.endObj()
-				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
-			--format "Camera % target distance: %\n" obj.name obj.targetDistance
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-
-	-- --CHRYSALIS-----------------------------------------------
-	fn exportChrysalis obj nValidObjs = (
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				local prefabPath = base_path + "prefabs/crisalida.prefab"
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" prefabPath
-				fs.writeComma()
-				exportTransform obj
-				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-	
-	-- --ENEMY---------------------------------------------------
-	fn exportEnemy obj nValidObjs = (
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				local enemyAirPrefabName   = "enemy_flying"
-				local enemyMeleePrefabName = "enemy_melee"
-				local enemyBolaPrefabName  = "enemy_ball"
-				local prefabName = enemyAirPrefabName -- Flying by default.
-				if stringContainsSubstring obj.name "melee" then
-					prefabName = enemyMeleePrefabName
-				if stringContainsSubstring obj.name "bola" then
-					prefabName = enemyBolaPrefabName
-				local prefabPath = base_path + "prefabs/" + prefabName + ".prefab"
-				
-				local attributeManager = TAttributeManager()
-				local hp = attributeManager.getAttributeValue obj #enemyData #hitPoints
-				if hp != undefined then format "would export hp: %\n" hp
-				
-				exportName obj
-				fs.writeComma()
-				local prefabPath = prefabPath
-				fs.writeKeyValue "prefab" prefabPath
-				fs.writeComma()
-				local objPos = obj.position * (rotateXMatrix -90)
-				local lookAtPos = [-1, objPos.y, -1]
-				exportTransform obj lookAtCoord:lookAtPos
-				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj type:"patrolPath"
-				)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-
-	-- --LIGHT---------------------------------------------------
-	fn exportLight obj nValidObjs = (
-		local objClass = classOf obj
-		if objClass != TargetDirectionallight and
-		   objClass != Directionallight	  	  and
-		   objClass != freeSpot			  	  and
-		   objClass != Omnilight			  and
-		   objClass != targetSpot			then (
-			if objClass != Targetobject then format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
-			return false
-		)
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-			-- Target Direct light. TODO: add more types.
-			-- http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_E6767B0D_B5BA_4422_A59F_FD5673FE550E_htm
-				exportName obj
-				
-				if objClass == TargetDirectionallight or
-					 objClass == targetSpot then (
-					fs.writeComma()
-					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
-				)
-				fs.writeComma()
-				fs.writeKey "light_dir"
-				fs.beginObj()
-					fs.writeKeyValue "intensity" obj.multiplier
-					fs.writeComma()
-					fs.writeKeyValue "color" (obj.color as point3)
-					if obj.projector then (
-						fs.writeComma()
-						fs.writeKeyValue "projector" obj.projectorMap
-					)
-					fs.writeComma()
-					-- obj.nearAttenEnd for z_near
-					fs.writeKeyValue "z_far" obj.farAttenEnd
-					fs.writeComma()
-					fs.writeKeyValue "fov" 40 -- TODO: ¿Pick from some light parameter?
-				fs.endObj()
-				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-
-	-- --MOVABLE-------------------------------------------------
-	-- TO DO: this object should be nested with associated trigger,
-	-- right now we do two entities at once, manually.
-	fn exportMovable obj nValidObjs = (
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				local prefabPath = base_path + "prefabs/platform_move.prefab"
-				local triggerName = obj.name + "_trigger"
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" prefabPath
-				fs.writeComma()
-				local objPos = obj.position * (rotateXMatrix -90)
-				exportTransform obj
-				fs.writeComma()
-				-- collider
-				fs.writeKey "collider"
-				fs.beginObj()
-					fs.writeKeyValue "shape" "box"
-					fs.writeComma()
-					fs.writeKeyValue "type" "dynamic"
-					fs.writeComma()
-					local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
-					fs.writeKeyValue "halfExtent" platformHalfExtent
-					fs.writeComma()
-					fs.writeKeyValue "group" "scenario"
-				fs.endObj()
-				-- child spline
-				if hasChildLine obj then exportSpline obj
-				-- entity trigger
-				fs.endObj()-- end previous entity
-				fs.endObj()-- end previous object
-				------ child entity ------
-				fs.writeComma()
-				fs.beginObj()
-				fs.writeKey "entity"
-				fs.beginObj()-- begin trigger entity
-				fs.writeKeyValue "name" triggerName
-				fs.writeComma()
-				fs.writeKeyEmpty "transform"
-				-- collider
-				fs.writeKey "collider"
-				fs.beginObj()
-					fs.writeKeyValue "shape" "box"
-					fs.writeComma()
-					fs.writeKeyValue "type" "dynamic"
-					fs.writeComma()
-					fs.writeKeyValue "is_trigger" true
-					fs.writeComma()
-					fs.writeKeyValue "halfExtent" platformHalfExtent
-					fs.writeComma()
-					exportStringArray "mask" #("player")
-				fs.endObj()
-				fs.writeComma()
-				-- platform
-				fs.writeKeyEmpty "platform"
-				-- hierarchy
-				fs.writeKey "hierarchy"
-				fs.beginObj()
-					fs.writeKeyValue "parent" obj.name
-				fs.endObj()
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-
-	-- --TRIGGERS -----------------------------------------------
-	fn exportTrigger obj nValidObjs = (
-		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportEntityCollider obj
-				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
-		return true
-	),
-
 	fn exportAll = (
 		-- Loop over all layers.
 		for i = 0 to LayerManager.count - 1 do (
@@ -1137,17 +1274,21 @@ struct TSceneExporter (
 						case layerName of (
 							"cameras":      ( wasValid = exportCamera      obj nValidObjs )
 							"chrysalis":    ( wasValid = exportChrysalis   obj nValidObjs )
+							"coins": 	    ( wasValid = exportCoin		   obj nValidObjs )
 							"collisions":   ( wasValid = exportCollision   obj nValidObjs )
 							"enemies":      ( wasValid = exportEnemy       obj nValidObjs )
 							"lights":       ( wasValid = exportLight       obj nValidObjs )
-							"movables":     ( wasValid = exportMovable     obj nValidObjs )
+							"movables":     ( wasValid = exportDefault     obj nValidObjs )
 							"player":       ( wasValid = exportPlayer      obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab obj nValidObjs )
+							"rotate": 		( wasValid = exportDefault	   obj nValidObjs )
 							"triggers":     ( wasValid = exportTrigger     obj nValidObjs )
-							--"mech":( wasValid = exportMechanism   obj nValidObjs )
-							"pure":		    ( wasValid = exportDefault     obj nValidObjs pure:true )
-							"break":		( wasValid = exportDefault     obj nValidObjs breakable:true )
+							"trimesh":		( wasValid = exportCollision   obj nValidObjs )
+							"mechanisms":	( wasValid = exportMechSys	   obj nValidObjs )
+							"pure":		    ( wasValid = exportDefault     obj nValidObjs )
+							"spikes":	    ( wasValid = exportSpikes      obj nValidObjs )
+							"breakables":	( wasValid = exportDefault     obj nValidObjs )
 							"0":		    ( wasValid = exportDefault     obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
@@ -1172,6 +1313,11 @@ TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el tran
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
+TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
+
+TODO: Sólo exportar mesh collider si un mesh es hijo de otro mesh o si está en capa colliders.
+TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
+	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
 */
 
 /*----------------------------------------------------------------------------------

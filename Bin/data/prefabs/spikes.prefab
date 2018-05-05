@@ -7,12 +7,20 @@
 				"shape": "box",
 				"halfExtent": "1.5 0.5 1.5",
 				"is_trigger" : true,
-				"radius" : 0.5,
-				"group": ["enemies"],
+				"group": ["trigger"],
 				"mask": ["player"]
 			},
 			"render" : {
-				"mesh": "data/meshes/plat_move.mesh"
+				"mesh": "data/meshes/spikes.mesh",
+				"materials":
+				[
+					"data/materials/spikes.material",
+					"data/materials/spikes.material",
+					"data/materials/spikes.material",
+					"data/materials/spikes.material",
+					"data/materials/spikes.material",
+					"data/materials/spikes.material"
+				]
 			},
 			"spikes" : {
 				"damage" : 4.0

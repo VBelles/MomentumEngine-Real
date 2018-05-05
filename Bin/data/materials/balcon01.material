@@ -1,0 +1,11 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/balcon_rocoso1_low_balcon_rocoso1_default_BaseColor.dds",
+    "normal": "data/textures/balcon_rocoso1_low_balcon_rocoso1_default_Normal.dds",
+    "metallic": "data/textures/formacion_rocosa5_low_formacion_rocosa5_default_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds"
+  }
+}

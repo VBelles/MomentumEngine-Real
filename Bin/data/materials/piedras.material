@@ -1,9 +1,11 @@
 {
-  "technique": "textured.tech",
+  "technique": "pbr.tech",
   "shadows": true,
   "textures":
   {
     "albedo": "data/textures/piedras_c.dds",
-    "normal": "data/textures/piedras_n.dds"
+    "normal": "data/textures/piedras_n.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/null_roughness.dds"
   }
 }

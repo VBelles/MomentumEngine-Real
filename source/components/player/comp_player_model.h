@@ -113,7 +113,8 @@ public:
 	bool lockConcurrentState = false;
 
 	bool wannaJump = false;
-	
+	bool tryingToSlide = false;
+
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;

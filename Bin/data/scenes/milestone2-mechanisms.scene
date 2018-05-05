@@ -1,0 +1,558 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms2_mech003",
+      "prefab": "data/prefabs/mech_sys.prefab",
+      "transform":
+      {
+        "pos": "111.377 17.8673 19.8755",
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech002",
+      "prefab": "data/prefabs/mech_sys.prefab",
+      "transform":
+      {
+        "pos": "-69.1898 5.04006 41.2216",
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech002-appear001mesh",
+      "transform":
+      {
+        "pos": "-70.8839 8.19598 41.4439",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech002-appear001mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.5 0.25 1.5",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech002-appear001mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech002-appear002mesh",
+      "transform":
+      {
+        "pos": "-70.8839 11.6087 41.4439",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech002-appear002mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.5 0.25 1.5",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech002-appear002mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech002-appear003mesh",
+      "transform":
+      {
+        "pos": "-70.8839 14.5767 41.4439",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech002-appear003mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.5 0.25 1.5",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech002-appear003mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech005",
+      "prefab": "data/prefabs/mech_sys.prefab",
+      "transform":
+      {
+        "pos": "-69.1898 19.2622 41.2216",
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech005-appear001mesh",
+      "transform":
+      {
+        "pos": "-70.8839 17.5317 41.4439",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech005-appear001mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.5 0.25 1.5",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech005-appear001mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech001",
+      "prefab": "data/prefabs/mech_sys.prefab",
+      "transform":
+      {
+        "pos": "-84.0003 36.7173 -5.77995",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 4
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech001-appear001mesh",
+      "transform":
+      {
+        "pos": "-85.2403 38.029 -12.6284",
+        "rotation": "0.560986 -0.560986 0.430459 -0.430459"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech001-appear001mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 2.0 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear001mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech001-appear002mesh",
+      "transform":
+      {
+        "pos": "-82.6651 38.9447 -14.7625",
+        "rotation": "0.560986 -0.560986 0.430459 -0.430459"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech001-appear002mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 2.0 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear002mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech001-appear003mesh",
+      "transform":
+      {
+        "pos": "-88.2006 36.1111 -7.32147",
+        "rotation": "0.560986 -0.560986 0.430459 -0.430459"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech001-appear003mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 2.0 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear003mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech001-appear004mesh",
+      "transform":
+      {
+        "pos": "-87.6352 37.0268 -10.3266",
+        "rotation": "0.560986 -0.560986 0.430459 -0.430459"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech001-appear004mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 2.0 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear004mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech004",
+      "prefab": "data/prefabs/mech_sys.prefab",
+      "transform":
+      {
+        "pos": "-50.1077 51.0159 -41.5047",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech004-appear001mesh",
+      "transform":
+      {
+        "pos": "-54.8319 51.526 -52.8919",
+        "rotation": "0.560986 -0.560986 0.430459 -0.430459"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech004-appear001mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "1.5 1.5 1.5",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech004-appear001mesh"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech006",
+      "prefab": "data/prefabs/mech_sys.prefab",
+      "transform":
+      {
+        "pos": "-39.8889 1.88036 -49.1364",
+        "rotation": "0.183013 0.683013 -0.683013 0.183013"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech006-appear001mesh",
+      "transform":
+      {
+        "pos": "-43.9183 -0.0726073 -50.6682",
+        "rotation": "0.0 -0.965926 0.0 -0.258819"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech006-appear001mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "5.5 5.5 0.25",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech006-appear001mesh"
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,495 @@
+[
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_033",
+      "transform":
+      {
+        "pos": "46.0216 11.447 107.041",
+        "rotation": "0.0 -0.292117 0.0 -0.956382"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_033.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_031",
+      "transform":
+      {
+        "pos": "-82.7354 -11.6308 29.4894",
+        "rotation": "0.0 -0.292117 0.0 -0.956382"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_031.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_016",
+      "transform":
+      {
+        "pos": "-73.1577 -3.3921 42.1231",
+        "rotation": "0.0 -0.990619 0.0 -0.136654"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_016.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_013",
+      "transform":
+      {
+        "pos": "41.6244 24.2244 123.995",
+        "rotation": "0.0 0.63672 0.0 -0.771095"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_013.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mountainVertical013_col",
+      "transform":
+      {
+        "pos": "-9.66935 -5.578 25.5737",
+        "rotation": "0.0 0.0590068 0.0 -0.998258"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mountainVertical013_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_016",
+      "transform":
+      {
+        "pos": "79.4579 16.6104 -27.0506",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_016.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_BIGmonte_003",
+      "transform":
+      {
+        "pos": "96.6094 34.2763 1.58571",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_BIGmonte_003.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_007",
+      "transform":
+      {
+        "pos": "61.8231 3.60483 70.0139",
+        "rotation": "0.0 -0.96818 0.0 -0.250255"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_007.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_008",
+      "transform":
+      {
+        "pos": "62.3373 4.87721 58.7814",
+        "rotation": "0.0 0.293168 0.0 -0.956061"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_008.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_018",
+      "transform":
+      {
+        "pos": "87.505 24.0361 40.532",
+        "rotation": "0.0 0.188075 0.0 -0.982155"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_018.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_028",
+      "transform":
+      {
+        "pos": "76.5132 16.6105 65.5466",
+        "rotation": "0.0 -0.820884 0.0 -0.571096"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_028.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_024",
+      "transform":
+      {
+        "pos": "42.7058 -4.87312 -37.2973",
+        "rotation": "0.0 -0.963808 0.0 -0.266595"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_024.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_021",
+      "transform":
+      {
+        "pos": "21.5655 -1.12661 -80.6092",
+        "rotation": "0.0 0.680601 0.0 -0.732654"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_021.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_010",
+      "transform":
+      {
+        "pos": "18.0286 25.2407 -68.5817",
+        "rotation": "0.0 -0.800222 0.0 -0.599704"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_010.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_025",
+      "transform":
+      {
+        "pos": "-0.884518 21.3961 -69.8808",
+        "rotation": "0.0 0.417325 0.0 -0.908757"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_025.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_009",
+      "transform":
+      {
+        "pos": "4.15558 11.765 -53.7593",
+        "rotation": "0.0 -0.988599 0.0 -0.150574"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_009.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_022",
+      "transform":
+      {
+        "pos": "11.2341 3.50554 -49.6011",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_022.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_011",
+      "transform":
+      {
+        "pos": "-71.5301 0.887356 53.2935",
+        "rotation": "0.0 -0.0374412 0.0 -0.999299"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_011.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_026",
+      "transform":
+      {
+        "pos": "-83.4743 18.7136 48.6259",
+        "rotation": "0.0 -0.1054 0.0 -0.99443"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_026.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_012",
+      "transform":
+      {
+        "pos": "-81.4986 14.2758 65.5544",
+        "rotation": "0.0 -0.999974 0.0 -0.00714447"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_012.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_030",
+      "transform":
+      {
+        "pos": "-75.9437 -7.88079 75.1869",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_030.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_020",
+      "transform":
+      {
+        "pos": "20.8392 3.22099 90.2668",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_020.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_017",
+      "transform":
+      {
+        "pos": "-11.2542 -4.8452 88.5455",
+        "rotation": "0.0 -0.292117 0.0 -0.956382"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_017.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_balcon_003",
+      "transform":
+      {
+        "pos": "3.69883 10.4791 142.241",
+        "rotation": "0.0 -0.904145 0.0 -0.427226"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_balcon_003.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_023",
+      "transform":
+      {
+        "pos": "-15.6809 -5.84047 119.695",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_023.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_019",
+      "transform":
+      {
+        "pos": "24.5911 -1.1266 112.815",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_019.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_andrea_terrenobase001col",
+      "transform":
+      {
+        "pos": "-6.6354 -56.5886 23.0733",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_andrea_terrenobase001col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "andrea_big_mountain_col",
+      "transform":
+      {
+        "pos": "68.2821 5.53603 10.7216",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/andrea_big_mountain_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_esculturaGigante_col",
+      "transform":
+      {
+        "pos": "68.2821 5.53603 10.7216",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_esculturaGigante_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  }
+]

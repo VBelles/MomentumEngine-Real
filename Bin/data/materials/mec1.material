@@ -1,0 +1,11 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/mecanismos/sim01/mec1_albedo.dds",
+    "normal": "data/textures/mecanismos/mecanismos_normal.dds",
+    "metallic": "data/textures/mecanismos/sim01/mec1_metallic.dds",
+    "roughness": "data/textures/mecanismos/sim01/mec1_roughness.dds"
+  }
+}

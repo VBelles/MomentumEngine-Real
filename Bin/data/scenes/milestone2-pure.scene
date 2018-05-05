@@ -1,0 +1,105 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms2_pure004mesh",
+      "transform":
+      {
+        "pos": "60.9837 25.9766 112.895",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_pure004mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_pure001mesh",
+      "transform":
+      {
+        "pos": "-66.8836 23.9032 -40.0907",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_pure001mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.5 2.0 2.5",
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_pure002mesh",
+      "transform":
+      {
+        "pos": "12.1418 10.8695 -39.4092",
+        "rotation": "-0.579228 0.579228 -0.40558 0.40558"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_pure002mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
+      ]
+    }
+  }
+]
