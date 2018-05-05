@@ -111,6 +111,11 @@ struct TJsonFormatter (
 		format "\"%\"" name to:fs
 	),
 
+	fn writeDummyEntity prefix = (
+		indent()
+		format ("{ \"entity\": { \"name\": \"" + prefix + "Dummy\" } },\n") to:fs
+	),
+	
 	fn arrayOfStrings arr = (
 		beginArray()
 		for idx = 1 to arr.count do (
@@ -640,6 +645,7 @@ struct TSceneExporter (
 	-- --COINS-------------------------------------------------------
 	fn exportCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
+		else fs.writeDummyEntity "coin"
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -786,6 +792,7 @@ struct TSceneExporter (
 	-- --CHRYSALIS-----------------------------------------------
 	fn exportChrysalis obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
+		else fs.writeDummyEntity "chrysalis"
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -806,6 +813,7 @@ struct TSceneExporter (
 	-- --ENEMY---------------------------------------------------
 	fn exportEnemy obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
+		else fs.writeDummyEntity "enemy"
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1028,6 +1036,7 @@ struct TSceneExporter (
 			return false
 		)
 		if nValidObjs > 0 then fs.writeComma()
+		else fs.writeDummyEntity obj.layer.name
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
