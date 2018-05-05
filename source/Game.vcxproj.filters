@@ -190,6 +190,7 @@
     <ClCompile Include="windows\windowsUtils.cpp" />
     <ClCompile Include="components\platforms\comp_platform_simple.cpp" />
     <ClCompile Include="components\player\states\base_states\SlideActionState.cpp" />
+    <ClCompile Include="components\comp_respawn_point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -411,6 +412,7 @@
     <ClInclude Include="windows\windowsUtils.h" />
     <ClInclude Include="components\platforms\comp_platform_simple.h" />
     <ClInclude Include="components\player\states\base_states\SlideActionState.h" />
+    <ClInclude Include="components\comp_respawn_point.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

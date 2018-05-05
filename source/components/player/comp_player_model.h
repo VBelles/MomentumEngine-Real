@@ -20,6 +20,7 @@ struct TMsgHitboxEnter;
 struct TMsgGainPower;
 struct TMsgGainPower;
 struct TMsgOutOfBounds;
+struct TMsgRespawnChanged;
 
 struct HitState {
 	bool hasHit = false; //When true the hit state data is valid
@@ -93,6 +94,7 @@ private:
 	void onHitboxEnter(const TMsgHitboxEnter& msg);
 	void onGainPower(const TMsgGainPower& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	void onRespawnChanged(const TMsgRespawnChanged& msg);
 	PxFilterData getFilterData();
 
 	PowerStats* loadPowerStats(const json& j);
