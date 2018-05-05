@@ -27,7 +27,7 @@ protected:
 	PowerStats* enteringPowerStats;
 
 	CTimer slideWindowTimer;
-	float slideWindowTime = 0.1f;
+	float slideWindowTime = 1.1f;
 	bool isTryingToSlide = false;
 
 public:

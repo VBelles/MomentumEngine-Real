@@ -42,8 +42,11 @@ void SlideActionState::onMove(HitState& hitState) {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else { //Grounded, check slope
-		dbg("normal.y: %f\n", hitState.hit.worldNormal.y);
-		if (!isTryingToLand) {
+		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
+		if (dot >= getPlayerModel()->getController()->getSlopeLimit()) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+		}
+		/*if (!isTryingToLand) {
 			isTryingToLand = true;
 			landingWindowTimer.reset();
 		}
@@ -52,7 +55,7 @@ void SlideActionState::onMove(HitState& hitState) {
 			if (dot >= getPlayerModel()->getController()->getSlopeLimit()) {
 				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 			}
-		}
+		}*/
 		hitNormal = fromPhysx(hitState.hit.worldNormal);
 	}
 
