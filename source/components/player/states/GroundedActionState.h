@@ -6,7 +6,7 @@ class GroundedActionState : public IActionState {
 protected:
 	float backwardsdMinAngle = deg2rad(130.f);
 	float backwardsMaxDotProduct;
-	bool tryingToSlide = false;
+
 	CTimer slideTimer;
 	float slideWindowTime = 1.1f;
 public:

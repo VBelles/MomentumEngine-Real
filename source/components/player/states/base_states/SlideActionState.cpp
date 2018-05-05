@@ -14,6 +14,11 @@ void SlideActionState::update(float delta) {
 	float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
 	deltaMovement = tangentVector * module;
 
+	if (deltaMovement.Length() > maxSlidingVelocity) {
+		deltaMovement.Normalize();
+		deltaMovement *= maxSlidingVelocity;
+	}
+
 	TCompTransform* transform = getPlayerTransform();
 	transform->getYawPitchRoll(&yaw, &pitch);
 	transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);
