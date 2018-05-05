@@ -36,7 +36,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 			config.offset = loadVEC3(j["offset"]);
 		}
 		else {
-			config.offset = VEC3(0, config.radius, 0);
+			//config.offset = VEC3(0, config.radius, 0);
 		}
 	}
 	else if (shape == "plane") {

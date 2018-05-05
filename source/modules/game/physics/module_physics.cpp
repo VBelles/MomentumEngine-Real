@@ -83,7 +83,6 @@ bool CModulePhysics::createScene() {
 	defaultMaterial = physics->createMaterial(0.5f, 0.5f, 0.6f);
 
 	controllerManager = PxCreateControllerManager(*scene);
-	//controllerManager->setPreventVerticalSlidingAgainstCeiling(true);
 
 	basicQueryFilterCallback = new BasicQueryFilterCallback();
 	basicControllerHitCallback = new BasicControllerHitCallback();
@@ -96,8 +95,10 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 	const ColliderConfig& config = compCollider.config;
 	CHandle colliderHandle(&compCollider);
 	CEntity* entity = colliderHandle.getOwner();
+		
 	TCompTransform* compTransform = entity->get<TCompTransform>();
-	PxTransform initialTrans(toPhysx(compTransform));
+	QUAT rotation = compTransform->getRotation();
+	PxTransform initialTrans = toPhysx(compTransform);
 	PxRigidActor* actor = nullptr;
 
 	if (config.type == "cct") {
@@ -111,7 +112,7 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 	PX_ASSERT(actor);
 	setupFiltering(actor, config.group, config.mask);
 	actor->userData = colliderHandle.asVoidPtr();
-	compCollider.actor = actor;
+	compCollider.actor = actor;	
 }
 
 
@@ -230,7 +231,7 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 		
 		PX_ASSERT(shapeGeometry);
 		PxShapeFlags shapeFlags = PxShapeFlag::eVISUALIZATION | PxShapeFlag::eSCENE_QUERY_SHAPE | PxShapeFlag::eSIMULATION_SHAPE;
-		PxShape* shape = actor->createShape(*shapeGeometry, *defaultMaterial, shapeFlags);
+		PxShape* shape = PxRigidActorExt::createExclusiveShape(*actor, *shapeGeometry, *defaultMaterial, shapeFlags);
 		shape->setLocalPose(offset);
 	}
 
