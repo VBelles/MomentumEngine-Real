@@ -82,6 +82,8 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	enterFront = getPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
+
+	isTryingToSlide = false;
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {
@@ -113,10 +115,16 @@ void AirborneActionState::onReleasePowerButton() {
 }
 
 void AirborneActionState::onMove(HitState& hitState) {
-	if (hitState.isGrounded) {
+	if (hitState.hasHit && hitState.isGrounded) {
 		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
 		if (dot < getPlayerModel()->getController()->getSlopeLimit()) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			if (!isTryingToSlide) {
+				isTryingToSlide = true;
+				slideWindowTimer.reset();
+			}
+			else if (slideWindowTimer.elapsed() >= slideWindowTime) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			}
 		}
 		else {
 			onLanding();

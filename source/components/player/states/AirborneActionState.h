@@ -25,6 +25,11 @@ protected:
 	float backwardsAirDriftFactorLong = 0.8f;
 	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
+
+	CTimer slideWindowTimer;
+	float slideWindowTime = 1.1f;
+	bool isTryingToSlide = false;
+
 public:
 	AirborneActionState(CHandle playerModelHandle, std::string animation = "") : IActionState(playerModelHandle, animation) {};
 	void update(float delta) override;

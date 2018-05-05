@@ -22,10 +22,11 @@ struct TMsgGainPower;
 struct TMsgOutOfBounds;
 
 struct HitState {
+	bool hasHit = false; //When true the hit state data is valid
 	CHandle entity;
 	PxControllerShapeHit hit;
-	bool isGrounded;
-	bool isTouchingCeiling;
+	bool isGrounded = false;
+	bool isTouchingCeiling = false;
 };
 
 
@@ -112,7 +113,8 @@ public:
 	bool lockConcurrentState = false;
 
 	bool wannaJump = false;
-	
+	bool tryingToSlide = false;
+
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;

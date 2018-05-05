@@ -347,7 +347,7 @@ void TCompPlayerModel::update(float delta) {
 
 void TCompPlayerModel::applyGravity(float delta) {
 	float deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-	if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
+	if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump && !tryingToSlide) {
 		deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
 	}
 	else {
@@ -375,6 +375,7 @@ void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 	colliderHandle.fromVoidPtr(msg.hit.actor->userData);
 	hitState.entity = colliderHandle.getOwner();
 	hitState.hit = msg.hit;
+	hitState.hasHit = true;
 	baseState->onShapeHit(msg.hit);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onShapeHit(msg.hit);

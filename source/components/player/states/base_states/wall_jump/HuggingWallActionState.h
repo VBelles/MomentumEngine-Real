@@ -30,6 +30,10 @@ private:
 
 	float huggingWallMinPitch = 0.f;
 
+	bool tryingToSlide = false;
+	CTimer slideTimer;
+	float slideWindowTime = 1.1f;
+
 public:
 	HuggingWallActionState(CHandle playerModelHandle);
 	void update(float delta) override;

@@ -6,9 +6,9 @@ class GroundedActionState : public IActionState {
 protected:
 	float backwardsdMinAngle = deg2rad(130.f);
 	float backwardsMaxDotProduct;
-	bool tryingToSlide = false;
+
 	CTimer slideTimer;
-	float slideWindowTime = 0.1f;
+	float slideWindowTime = 1.1f;
 public:
 	GroundedActionState(CHandle playerModelHandle, std::string animation = "") : IActionState(playerModelHandle, animation) {};
 	void update(float delta) override;

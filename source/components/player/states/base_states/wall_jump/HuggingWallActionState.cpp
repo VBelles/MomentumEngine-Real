@@ -84,6 +84,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 	else {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
+	tryingToSlide = false;
 }
 
 void HuggingWallActionState::onStateExit(IActionState * nextState) {
@@ -110,7 +111,13 @@ void HuggingWallActionState::onMove(HitState& hitState) {
 			//Continue in hugging wall
 		}
 		else if (dot < getPlayerModel()->getController()->getSlopeLimit()) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			if (!tryingToSlide) {
+				tryingToSlide = true;
+				slideTimer.reset();
+			}
+			else if (slideTimer.elapsed() >= slideWindowTime) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			}
 		}
 		else {
 			onLanding();
