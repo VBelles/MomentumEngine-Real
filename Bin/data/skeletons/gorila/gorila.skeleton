@@ -5,7 +5,9 @@
 		{ "name" : "gorila_walking_root"},
 		{ "name" : "gorila_ataque_root"}
 	],
-  "bone_ids_to_debug" : [
-    3
-  ]
+	"bone_ids_to_debug" : [
+		3
+	],
+	"meshes" : [
+	]
 }
