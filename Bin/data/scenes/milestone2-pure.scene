@@ -14,7 +14,12 @@
           "mesh": "data/meshes/ms2_pure001mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/white.material",
+            "data/materials/white.material",
+            "data/materials/white.material",
+            "data/materials/white.material",
+            "data/materials/white.material",
+            "data/materials/white.material"
           ]
         }
       ],
@@ -22,7 +27,11 @@
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 2.5",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
       "purity": {},
       "tags":
@@ -37,7 +46,7 @@
       "name": "ms2_pure002mesh",
       "transform":
       {
-        "pos": "5.83802 3.19862 -41.3966",
+        "pos": "12.1418 10.8695 -39.4092",
         "rotation": "-0.579228 0.579228 -0.40558 0.40558"
       },
       "render":
@@ -46,7 +55,12 @@
           "mesh": "data/meshes/ms2_pure002mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/white.material",
+            "data/materials/white.material",
+            "data/materials/white.material",
+            "data/materials/white.material",
+            "data/materials/white.material",
+            "data/materials/white.material"
           ]
         }
       ],
@@ -54,7 +68,11 @@
       {
         "shape": "box",
         "halfExtent": "0.25 2.0 2.0",
-        "type": "dynamic"
+        "type": "dynamic",
+        "group":
+        [
+           "scenario"
+        ]
       },
       "purity": {},
       "tags":

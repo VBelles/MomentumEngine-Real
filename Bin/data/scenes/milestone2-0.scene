@@ -2,6 +2,90 @@
   {
     "entity":
     {
+      "name": "IMPORT_monte_034",
+      "transform":
+      {
+        "pos": "46.0216 11.447 107.041",
+        "rotation": "0.0 -0.292117 0.0 -0.956382"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_034.mesh",
+          "materials":
+          [
+            "data/materials/monte04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_032",
+      "transform":
+      {
+        "pos": "-82.7354 -11.6308 29.4894",
+        "rotation": "0.0 -0.292117 0.0 -0.956382"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_032.mesh",
+          "materials":
+          [
+            "data/materials/monte04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_015",
+      "transform":
+      {
+        "pos": "-73.1577 -3.3921 42.1231",
+        "rotation": "0.0 -0.990619 0.0 -0.136654"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_015.mesh",
+          "materials":
+          [
+            "data/materials/balcon01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_014",
+      "transform":
+      {
+        "pos": "41.6244 24.2244 123.995",
+        "rotation": "0.0 0.63672 0.0 -0.771095"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_014.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "lanza006",
       "transform":
       {
@@ -174,7 +258,7 @@
       "name": "IMPORT_minimonte_006",
       "transform":
       {
-        "pos": "-81.4986 19.2155 65.5544",
+        "pos": "-81.4986 14.2758 65.5544",
         "rotation": "0.0 -0.999974 0.0 -0.00714447"
       },
       "render":
@@ -195,7 +279,7 @@
       "name": "IMPORT_minimonte_005",
       "transform":
       {
-        "pos": "-71.3097 2.5173 51.4554",
+        "pos": "-71.5301 0.887356 53.2935",
         "rotation": "0.0 -0.0374412 0.0 -0.999299"
       },
       "render":
@@ -573,7 +657,7 @@
       "name": "IMPORT_monte_07",
       "transform":
       {
-        "pos": "13.6016 3.22099 78.9786",
+        "pos": "20.8392 3.22099 90.2668",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -2910,7 +2994,7 @@
       "name": "colCurvaRightBroken002",
       "transform":
       {
-        "pos": "19.5854 34.5867 78.6963",
+        "pos": "19.5854 31.5656 78.6963",
         "rotation": "0.0 -0.34202 0.0 -0.939693"
       },
       "render":
@@ -2932,7 +3016,7 @@
       "name": "colCurvaLeft010",
       "transform":
       {
-        "pos": "15.5063 34.5867 84.2706",
+        "pos": "15.5063 31.5656 84.2706",
         "rotation": "0.0 -0.34202 0.0 -0.939693"
       },
       "render":
@@ -2954,7 +3038,7 @@
       "name": "muro014",
       "transform":
       {
-        "pos": "15.5952 30.4809 90.8181",
+        "pos": "15.5952 29.3034 90.8181",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -3020,7 +3104,7 @@
       "name": "muro011",
       "transform":
       {
-        "pos": "-7.86143 6.02138 -39.9178",
+        "pos": "-5.40578 8.83094 -36.3378",
         "rotation": "0.0 -0.999048 0.0 0.0436193"
       },
       "render":
@@ -3042,7 +3126,7 @@
       "name": "muro010",
       "transform":
       {
-        "pos": "-9.2949 6.76661 -41.8065",
+        "pos": "-6.83925 9.57616 -38.2265",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       },
       "render":
@@ -3064,7 +3148,7 @@
       "name": "muro009",
       "transform":
       {
-        "pos": "2.37064 6.76496 -49.1622",
+        "pos": "4.82629 9.57452 -45.5821",
         "rotation": "0.0 -0.0436193 0.0 -0.999048"
       },
       "render":
@@ -3086,7 +3170,7 @@
       "name": "muro008",
       "transform":
       {
-        "pos": "4.47555 6.76496 -48.0559",
+        "pos": "6.9312 9.57452 -44.4758",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       },
       "render":
@@ -3833,8 +3917,8 @@
       "name": "columna010",
       "transform":
       {
-        "pos": "6.16489 3.41305 42.6957",
-        "rotation": "0.0 -0.999048 0.0 0.0436193"
+        "pos": "6.50719 3.41305 30.3938",
+        "rotation": "0.0 -0.976296 0.0 0.216439"
       },
       "render":
       [
@@ -3855,8 +3939,8 @@
       "name": "columna009",
       "transform":
       {
-        "pos": "-3.21843 3.41305 42.7045",
-        "rotation": "0.0 -0.999048 0.0 0.0436193"
+        "pos": "-2.30723 3.41305 33.6114",
+        "rotation": "0.0 -0.976296 0.0 0.216439"
       },
       "render":
       [
@@ -3877,8 +3961,8 @@
       "name": "columna008",
       "transform":
       {
-        "pos": "1.4514 3.41305 40.9664",
-        "rotation": "0.0 -0.999048 0.0 0.0436193"
+        "pos": "1.48652 3.41305 30.381",
+        "rotation": "0.0 -0.976296 0.0 0.216439"
       },
       "render":
       [
@@ -3899,8 +3983,8 @@
       "name": "columna007",
       "transform":
       {
-        "pos": "6.36123 3.41305 52.8881",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "10.1777 3.41305 39.9044",
+        "rotation": "0.0 -0.21644 0.0 -0.976296"
       },
       "render":
       [
@@ -3921,8 +4005,8 @@
       "name": "columna006",
       "transform":
       {
-        "pos": "1.69141 3.41305 54.6261",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "6.38394 3.41305 43.1348",
+        "rotation": "0.0 -0.21644 0.0 -0.976296"
       },
       "render":
       [
@@ -4163,8 +4247,8 @@
       "name": "colCurvaRight004",
       "transform":
       {
-        "pos": "-11.8244 3.75099 43.6035",
-        "rotation": "0.0 -0.92388 0.0 -0.382684"
+        "pos": "-10.8518 3.75099 39.3462",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -4185,8 +4269,8 @@
       "name": "colCurvaLeft004",
       "transform":
       {
-        "pos": "-13.3758 3.75099 49.3342",
-        "rotation": "0.0 -0.92388 0.0 -0.382684"
+        "pos": "-9.83587 3.75099 45.1957",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -4207,8 +4291,8 @@
       "name": "colCurvaRight003",
       "transform":
       {
-        "pos": "-23.7175 3.77034 47.3182",
-        "rotation": "0.0 0.5 0.0 -0.866025"
+        "pos": "-20.486 3.77034 48.4786",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
       },
       "render":
       [
@@ -4229,8 +4313,8 @@
       "name": "colCurvaLeft003",
       "transform":
       {
-        "pos": "-20.7358 3.77034 42.1842",
-        "rotation": "0.0 0.5 0.0 -0.866025"
+        "pos": "-19.9533 3.77034 42.5656",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
       },
       "render":
       [
@@ -4442,8 +4526,8 @@
       "name": "columna005",
       "transform":
       {
-        "pos": "-3.02209 3.41305 52.8969",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "1.36327 3.41305 43.122",
+        "rotation": "0.0 -0.21644 0.0 -0.976296"
       },
       "render":
       [
@@ -5348,7 +5432,7 @@
       "name": "ms2_plataformacolumna012",
       "transform":
       {
-        "pos": "65.0752 5.83894 64.0547",
+        "pos": "61.4091 16.9796 58.0957",
         "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
@@ -5678,27 +5762,6 @@
   {
     "entity":
     {
-      "name": "ms2_brazoparte001",
-      "transform":
-      {
-        "pos": "80.7934 -3.18073 -55.4801",
-        "rotation": "-0.00662893 -0.707076 -0.0066289 -0.707076"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_brazoparte001.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms2_PYRAMID001",
       "transform":
       {
@@ -5723,7 +5786,7 @@
       "name": "ms2_plataforma012",
       "transform":
       {
-        "pos": "-8.13511 10.1778 61.3012",
+        "pos": "0.756205 10.1778 63.8471",
         "rotation": "0.0 -0.642788 0.0 -0.766044"
       },
       "render":
@@ -5749,7 +5812,7 @@
       "name": "ms2_plataforma011",
       "transform":
       {
-        "pos": "-10.1896 12.3657 65.1993",
+        "pos": "-1.29826 12.3657 67.7453",
         "rotation": "0.0 -0.642788 0.0 -0.766044"
       },
       "render":
@@ -5775,7 +5838,7 @@
       "name": "ms2_plataforma010",
       "transform":
       {
-        "pos": "-5.23775 15.9368 64.384",
+        "pos": "3.65356 15.9368 66.93",
         "rotation": "0.0 -0.642788 0.0 -0.766044"
       },
       "render":
@@ -5801,7 +5864,7 @@
       "name": "ms2_plataforma009",
       "transform":
       {
-        "pos": "0.853645 16.4662 64.9757",
+        "pos": "9.74496 16.4662 67.5217",
         "rotation": "0.0 -0.642788 0.0 -0.766044"
       },
       "render":
@@ -5827,7 +5890,7 @@
       "name": "ms2_plataforma008",
       "transform":
       {
-        "pos": "-1.57181 18.8771 69.1692",
+        "pos": "7.3195 18.8771 71.7151",
         "rotation": "0.0 -0.642788 0.0 -0.766044"
       },
       "render":
@@ -5853,7 +5916,7 @@
       "name": "ms2_plataformacolumna011",
       "transform":
       {
-        "pos": "3.19634 18.8944 68.5218",
+        "pos": "12.0876 18.8944 71.0677",
         "rotation": "0.0 -0.130526 0.0 -0.991445"
       },
       "render":
@@ -5905,7 +5968,7 @@
       "name": "ms2_plataformacolumna009",
       "transform":
       {
-        "pos": "-14.1683 3.43304 62.2902",
+        "pos": "-5.27703 3.43304 64.8362",
         "rotation": "0.0 -0.737277 0.0 -0.67559"
       },
       "render":
@@ -6295,7 +6358,7 @@
       "name": "ms2_Box133",
       "transform":
       {
-        "pos": "-66.4307 16.0793 48.8549",
+        "pos": "-70.386 16.0793 48.2902",
         "rotation": "-0.521334 0.521334 -0.477714 0.477714"
       },
       "render":

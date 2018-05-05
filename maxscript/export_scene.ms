@@ -971,7 +971,7 @@ struct TSceneExporter (
 					local movable = hasChildLine child
 					--if pure == unsupplied then pure = false
 					local groups = #("scenario")
-					if rot then append groups "enemy"
+					if breakable then append groups "enemy"
 						
 					exportCompCollider child dyn:pure mov:(movable or rot) colliderGroups:groups
 					

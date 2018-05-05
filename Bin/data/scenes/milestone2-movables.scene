@@ -542,7 +542,7 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.9,
+        "move_offset": 0.982463,
         "speed": 0.001,
         "knots":
         [

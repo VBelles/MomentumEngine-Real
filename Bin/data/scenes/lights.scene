@@ -44,7 +44,7 @@
 				"ortographicWidth" : 50,
 				"ortographicHeight" : 50,
         		"z_near" : 0.1,
-				"z_far" : 30,
+				"z_far" : 90,
 				"fov": 90,
 				"casts_shadows" : true,
 				"shadows_step" : 1.5,

@@ -1,12 +1,11 @@
 [
-  
   {
     "entity":
     {
       "name": "ms2_breakable009mesh002",
       "transform":
       {
-        "pos": "103.236 46.8327 48.3321",
+        "pos": "96.8649 53.0095 36.8168",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -15,12 +14,7 @@
           "mesh": "data/meshes/ms2_breakable009mesh002.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -29,44 +23,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
-      },
-      "breakable":
-      {
-        "hp": 1
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_breakable021",
-      "transform":
-      {
-        "pos": "59.1999 23.2488 112.401",
-        "rotation": "0.0 0.665363 0.0 -0.74652"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_breakable021.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_breakable021.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -80,7 +41,7 @@
       "name": "ms2_breakable007mesh002",
       "transform":
       {
-        "pos": "105.962 46.8327 40.8573",
+        "pos": "99.5906 53.0095 29.342",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -89,12 +50,7 @@
           "mesh": "data/meshes/ms2_breakable007mesh002.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -103,7 +59,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -117,7 +77,7 @@
       "name": "ms2_breakable006mesh002",
       "transform":
       {
-        "pos": "104.612 46.8327 44.6108",
+        "pos": "98.2407 53.0095 33.0955",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -126,12 +86,7 @@
           "mesh": "data/meshes/ms2_breakable006mesh002.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -140,7 +95,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -154,7 +113,7 @@
       "name": "ms2_breakable009mesh001",
       "transform":
       {
-        "pos": "99.4605 46.8327 46.9579",
+        "pos": "93.0895 53.0095 35.4427",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -163,12 +122,7 @@
           "mesh": "data/meshes/ms2_breakable009mesh001.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -177,7 +131,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -191,7 +149,7 @@
       "name": "ms2_breakable008mesh001",
       "transform":
       {
-        "pos": "95.6817 46.8327 45.5998",
+        "pos": "89.3107 53.0095 34.0845",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -200,12 +158,7 @@
           "mesh": "data/meshes/ms2_breakable008mesh001.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -214,7 +167,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -228,7 +185,7 @@
       "name": "ms2_breakable007mesh001",
       "transform":
       {
-        "pos": "102.186 46.8327 39.4831",
+        "pos": "95.8152 53.0095 27.9678",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -237,12 +194,7 @@
           "mesh": "data/meshes/ms2_breakable007mesh001.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -251,7 +203,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -265,7 +221,7 @@
       "name": "ms2_breakable006mesh001",
       "transform":
       {
-        "pos": "100.836 46.8327 43.2366",
+        "pos": "94.4653 53.0095 31.7213",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -274,12 +230,7 @@
           "mesh": "data/meshes/ms2_breakable006mesh001.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -288,7 +239,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -302,7 +257,7 @@
       "name": "ms2_breakable005mesh001",
       "transform":
       {
-        "pos": "98.4074 46.8327 38.1249",
+        "pos": "92.0364 53.0095 26.6097",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -311,12 +266,7 @@
           "mesh": "data/meshes/ms2_breakable005mesh001.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -325,7 +275,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -339,7 +293,7 @@
       "name": "ms2_breakable004mesh001",
       "transform":
       {
-        "pos": "97.0575 46.8327 41.8785",
+        "pos": "90.6865 53.0095 30.3632",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       },
       "render":
@@ -348,12 +302,7 @@
           "mesh": "data/meshes/ms2_breakable004mesh001.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -362,7 +311,11 @@
         "shape": "box",
         "halfExtent": "2.0 0.25 2.0",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -385,12 +338,7 @@
           "mesh": "data/meshes/ms2_breakable002mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/empty.material"
           ]
         }
       ],
@@ -399,7 +347,11 @@
         "shape": "box",
         "halfExtent": "5.4735 5.5 0.5",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -436,7 +388,11 @@
         "shape": "box",
         "halfExtent": "2.05 2.0 0.5",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {
@@ -445,9 +401,13 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "2.0 0.5 2.0",
+        "halfExtent": "2.1 0.25 2.1",
         "type": "static",
-        "group" : ["scenario", "enemy"]
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
       },
       "breakable":
       {

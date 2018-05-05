@@ -425,7 +425,7 @@
       "name": "ms2_coin067",
       "transform":
       {
-        "pos": "-77.4582 1.91188 31.7695",
+        "pos": "-81.7878 8.56223 33.0911",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -449,7 +449,7 @@
       "name": "ms2_coin065",
       "transform":
       {
-        "pos": "63.1974 17.4809 -50.2867",
+        "pos": "63.4065 19.9481 -50.7508",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -461,7 +461,7 @@
       "name": "ms2_coin064",
       "transform":
       {
-        "pos": "70.6269 22.2772 -47.0409",
+        "pos": "70.6269 22.9437 -47.0409",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -521,7 +521,7 @@
       "name": "ms2_coin046",
       "transform":
       {
-        "pos": "11.1864 6.46414 -43.2963",
+        "pos": "11.1864 19.7736 -43.2963",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -593,7 +593,7 @@
       "name": "ms2_coin040",
       "transform":
       {
-        "pos": "-66.9914 5.0609 38.457",
+        "pos": "-70.9825 9.30151 52.5715",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
@@ -605,7 +605,7 @@
       "name": "ms2_coin039",
       "transform":
       {
-        "pos": "-78.9828 11.654 93.2241",
+        "pos": "-86.825 0.864763 64.8742",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "prefab": "data/prefabs/coin.prefab"
