@@ -321,7 +321,7 @@ struct TSceneExporter (
 	),
 	
 	-- --TRANSFORM-----------------------------------------------
-	fn exportTransform obj yShift: lookAtCoord: = (
+	fn exportTransform obj yShift: lookAtCoord: noRot:false = (
 		fs.writeKey "transform"
 	
 		local max2mcv = rotateXMatrix -90
@@ -346,11 +346,13 @@ struct TSceneExporter (
 
 		fs.beginObj()
 			fs.writeKeyValue "pos" mcv_position
-			fs.writeComma()
-			if lookAtCoord == unsupplied then (
-				fs.writeKeyValue "rotation" mcv_quat
-			) else (
-				fs.writeKeyValue "lookat" lookAtCoord
+			if not noRot then (
+				fs.writeComma()
+				if lookAtCoord == unsupplied then (
+					fs.writeKeyValue "rotation" mcv_quat
+				) else (
+					fs.writeKeyValue "lookat" lookAtCoord
+				)
 			)
 		fs.endObj()
 	),
@@ -651,7 +653,7 @@ struct TSceneExporter (
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				exportName obj
 				fs.writeComma()
-				exportTransform obj
+				exportTransform obj noRot:true
 				fs.writeComma()
 				fs.writeKeyValue "prefab" (prefabPath + "coin.prefab")
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
