@@ -572,7 +572,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKey "platform_simple"
 		fs.beginObj()
-			fs.writeKeyValue "rotation_axis" "0 1 0"
+			fs.writeKeyValue "rotation_axis" "1 0 0"
 			fs.writeComma()
 			fs.writeKeyValue "rotation_speed" 1
 		fs.endObj()
@@ -936,7 +936,21 @@ struct TSceneExporter (
 					fs.writeKeyEmpty "outOfBounds"
 					exportEntityCollider obj trig:true dyn:true colliderGroups:#("all") masks:#("characters")
 				)
-				else exportEntityCollider obj trig:true
+				else exportEntityCollider obj trig:true colliderGroups:#("trigger") masks:#("player")
+
+				if stringContainsSubstring obj.name "respawn" and 
+					obj.children != undefined then (
+						local respawnPos = "0 0 0"
+						for child in obj.children do (
+							if classOf child == Dummy then respawnPos = (child.position * rotateXMatrix -90)
+						)
+						
+						fs.writeComma()
+						fs.writeKey "respawn_point"
+						fs.beginObj()
+							fs.writeKeyValue "respawn_position" respawnPos
+						fs.endObj()
+				)
 				-- Add child spline if it exists.
 				if hasChildLine obj then (
 					exportSpline obj

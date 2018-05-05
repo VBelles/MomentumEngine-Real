@@ -2,6 +2,216 @@
   {
     "entity":
     {
+      "name": "respawn006",
+      "transform":
+      {
+        "pos": "-59.5774 -0.60811 -39.9815",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "17.1597 13.4949 51.1102",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-67.421 1.0 -3.46279"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn005",
+      "transform":
+      {
+        "pos": "123.401 -15.7764 -1.04992",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "20.0 32.5 35.0",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "114.24 17.4728 19.9584"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn004",
+      "transform":
+      {
+        "pos": "23.3226 -2.38283 -57.9314",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "40.8 13.5 32.5",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "0.125641 8.86531 -27.3256"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn002",
+      "transform":
+      {
+        "pos": "-54.4107 34.3877 -38.1773",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "10.5533 13.4949 17.9164",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-66.0334 36.5745 -34.9338"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn003",
+      "transform":
+      {
+        "pos": "77.6712 65.9973 2.0644",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "38.6337 13.4949 19.4367",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "102.304 68.3918 12.6672"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn000",
+      "transform":
+      {
+        "pos": "2.75033 -2.38283 23.5648",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "60.0 13.5 32.5",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "4.56908 1.0 37.6896"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn001",
+      "transform":
+      {
+        "pos": "26.4788 27.4466 109.147",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "30.0 17.5 33.0",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "14.3691 28.3112 79.5657"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "outOfBounds": {},
       "name": "ms2_OutOfBounds",
       "transform":

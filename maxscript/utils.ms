@@ -30,7 +30,7 @@ fn isValidName aname = (
 )
 
 fn stringContainsSubstring strng substrng = (
-	matchpattern strng pattern:("?*" + substrng + "*")
+	matchpattern ("_" + strng) pattern:("?*" + substrng + "*")
 )
 
 -- Converts a very small number to zero.

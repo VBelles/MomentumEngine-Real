@@ -2,6 +2,91 @@
   {
     "entity":
     {
+      "name": "IMPORT_minimonte_022",
+      "transform":
+      {
+        "pos": "104.332 48.3899 32.5011",
+        "rotation": "0.0 -0.883689 0.0 -0.468074"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_022.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_020",
+      "transform":
+      {
+        "pos": "90.0264 50.5935 30.4339",
+        "rotation": "0.0 -0.293884 0.0 -0.955841"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_020.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_018",
+      "transform":
+      {
+        "pos": "-6.13931 -4.10564 13.6027",
+        "rotation": "0.0 -0.964052 0.0 -0.265713"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_minimonte_018.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_balcon_004",
+      "transform":
+      {
+        "pos": "95.3552 41.1136 -22.7929",
+        "rotation": "0.0 0.612792 0.0 -0.790245"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_balcon_004.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_036",
+      "transform":
+      {
+        "pos": "80.4914 18.7136 -24.4306",
+        "rotation": "0.0 -0.318136 0.0 -0.948045"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/IMPORT_monte_036.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "IMPORT_monte_033",
       "transform":
       {
@@ -70,40 +155,6 @@
   {
     "entity":
     {
-      "name": "mountainVertical013_col",
-      "transform":
-      {
-        "pos": "-9.66935 -5.578 25.5737",
-        "rotation": "0.0 0.0590068 0.0 -0.998258"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mountainVertical013_col.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "IMPORT_monte_016",
-      "transform":
-      {
-        "pos": "79.4579 16.6104 -27.0506",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/IMPORT_monte_016.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "IMPORT_BIGmonte_003",
       "transform":
       {
@@ -158,7 +209,7 @@
       "name": "IMPORT_monte_018",
       "transform":
       {
-        "pos": "87.505 24.0361 40.532",
+        "pos": "93.7191 24.0361 42.8306",
         "rotation": "0.0 0.188075 0.0 -0.982155"
       },
       "collider":
@@ -192,7 +243,7 @@
       "name": "IMPORT_monte_024",
       "transform":
       {
-        "pos": "42.7058 -4.87312 -37.2973",
+        "pos": "42.7058 -5.39642 -37.2973",
         "rotation": "0.0 -0.963808 0.0 -0.266595"
       },
       "collider":
@@ -243,7 +294,7 @@
       "name": "IMPORT_monte_025",
       "transform":
       {
-        "pos": "-0.884518 21.3961 -69.8808",
+        "pos": "5.75132 21.3961 -72.7066",
         "rotation": "0.0 0.417325 0.0 -0.908757"
       },
       "collider":
@@ -277,7 +328,7 @@
       "name": "IMPORT_monte_022",
       "transform":
       {
-        "pos": "11.2341 3.50554 -49.6011",
+        "pos": "11.2341 2.98224 -49.6011",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -362,7 +413,7 @@
       "name": "IMPORT_monte_020",
       "transform":
       {
-        "pos": "20.8392 3.22099 90.2668",
+        "pos": "20.8392 1.00942 90.2668",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -379,7 +430,7 @@
       "name": "IMPORT_monte_017",
       "transform":
       {
-        "pos": "-11.2542 -4.8452 88.5455",
+        "pos": "-11.2542 -6.97459 88.5455",
         "rotation": "0.0 -0.292117 0.0 -0.956382"
       },
       "collider":
@@ -396,8 +447,8 @@
       "name": "IMPORT_balcon_003",
       "transform":
       {
-        "pos": "3.69883 10.4791 142.241",
-        "rotation": "0.0 -0.904145 0.0 -0.427226"
+        "pos": "72.4743 10.4791 37.3395",
+        "rotation": "0.0 -0.295848 0.0 -0.955235"
       },
       "collider":
       {
@@ -413,7 +464,7 @@
       "name": "IMPORT_monte_023",
       "transform":
       {
-        "pos": "-15.6809 -5.84047 119.695",
+        "pos": "-15.6809 -6.82042 119.695",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
