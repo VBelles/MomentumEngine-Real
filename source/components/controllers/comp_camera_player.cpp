@@ -174,13 +174,13 @@ void TCompCameraPlayer::sweepBack() {
 		getTransform()->setPosition(fromPhysx(newPosition));
 		currentDistanceToTarget = VEC3::Distance(getTransform()->getPosition(), targetTransform.getPosition());
 		//dbg("%f, %f, %f\n", newPosition.x, newPosition.y, newPosition.z);
-		dbg("Distance: %f\n", currentDistanceToTarget);
+		//dbg("Distance: %f\n", currentDistanceToTarget);
 		
 	}
 	else {
 		currentDistanceToTarget = distance;
 	}
-	dbg("Status: %d\n", status);
+	//dbg("Status: %d\n", status);
 }
 
 
@@ -207,8 +207,8 @@ bool TCompCameraPlayer::isCameraInsideGeometry() {
 	PxRaycastBuffer buf2(hitBuffer2, bufferSize); // [out] Blocking and touching hits stored here
 	raycast(cameraPosition, targetPosition, buf2);
 
-	dbg("Buf1: %d\n", buf1.nbTouches);
-	dbg("Buf2: %d\n", buf2.nbTouches);
+	//dbg("Buf1: %d\n", buf1.nbTouches);
+	//dbg("Buf2: %d\n", buf2.nbTouches);
 
 	return buf1.nbTouches != buf2.nbTouches;
 }
