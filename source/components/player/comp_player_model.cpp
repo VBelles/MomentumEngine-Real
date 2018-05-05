@@ -66,6 +66,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
 	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgRespawnChanged, onRespawnChanged);
 }
 
 void TCompPlayerModel::debugInMenu() {
