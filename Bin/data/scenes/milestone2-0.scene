@@ -2,6 +2,291 @@
   {
     "entity":
     {
+      "name": "columna013",
+      "transform":
+      {
+        "pos": "25.5463 33.9042 130.492",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna013.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna012",
+      "transform":
+      {
+        "pos": "17.5136 33.9042 126.746",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna012.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna011",
+      "transform":
+      {
+        "pos": "9.8694 33.9042 123.182",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna011.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_021",
+      "transform":
+      {
+        "pos": "104.332 48.3899 32.5011",
+        "rotation": "0.0 -0.883689 0.0 -0.468074"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_021.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_019",
+      "transform":
+      {
+        "pos": "90.0264 50.5935 30.4339",
+        "rotation": "0.0 -0.293884 0.0 -0.955841"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_019.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "suelo077",
+      "transform":
+      {
+        "pos": "2.11748 27.6289 127.46",
+        "rotation": "0.0 -0.984808 0.0 0.173648"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo077.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material",
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_017",
+      "transform":
+      {
+        "pos": "-6.13931 -4.10564 13.6027",
+        "rotation": "0.0 -0.964052 0.0 -0.265713"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_017.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "megaarco125",
+      "transform":
+      {
+        "pos": "14.5231 5.64281 9.64826",
+        "rotation": "-0.664463 0.122788 0.241845 -0.696364"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/megaarco125.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material",
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "megaarco124",
+      "transform":
+      {
+        "pos": "22.6869 1.19262 2.31616",
+        "rotation": "-0.153046 0.477714 0.690346 -0.521334"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/megaarco124.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material",
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "megaarco119",
+      "transform":
+      {
+        "pos": "39.0305 22.9192 -62.4897",
+        "rotation": "-0.640856 -0.40558 -0.298836 -0.579228"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/megaarco119.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "megaarco118",
+      "transform":
+      {
+        "pos": "50.5277 33.3922 -68.0353",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/megaarco118.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material",
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_balcon_005",
+      "transform":
+      {
+        "pos": "95.3552 41.1136 -22.7929",
+        "rotation": "0.0 0.612792 0.0 -0.790245"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_balcon_005.mesh",
+          "materials":
+          [
+            "data/materials/balcon04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_035",
+      "transform":
+      {
+        "pos": "80.4914 18.7136 -24.4306",
+        "rotation": "0.0 -0.318136 0.0 -0.948045"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_035.mesh",
+          "materials":
+          [
+            "data/materials/monte01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "IMPORT_monte_034",
       "transform":
       {
@@ -384,7 +669,7 @@
       "name": "IMPORT_monte_012",
       "transform":
       {
-        "pos": "-0.884518 21.3961 -69.8808",
+        "pos": "5.75132 21.3961 -72.7066",
         "rotation": "0.0 0.417325 0.0 -0.908757"
       },
       "render":
@@ -405,7 +690,7 @@
       "name": "IMPORT_monte_011",
       "transform":
       {
-        "pos": "42.7058 -4.87312 -37.2973",
+        "pos": "42.7058 -5.39642 -37.2973",
         "rotation": "0.0 -0.963808 0.0 -0.266595"
       },
       "render":
@@ -426,7 +711,7 @@
       "name": "IMPORT_monte_010",
       "transform":
       {
-        "pos": "-15.6809 -5.84047 119.695",
+        "pos": "-15.6809 -6.82042 119.695",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -447,7 +732,7 @@
       "name": "IMPORT_monte_009",
       "transform":
       {
-        "pos": "11.2341 3.50554 -49.6011",
+        "pos": "11.2341 2.98224 -49.6011",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -489,8 +774,8 @@
       "name": "IMPORT_balcon_02",
       "transform":
       {
-        "pos": "3.69883 10.4791 142.241",
-        "rotation": "0.0 -0.904145 0.0 -0.427226"
+        "pos": "72.4743 10.4791 37.3395",
+        "rotation": "0.0 -0.295848 0.0 -0.955235"
       },
       "render":
       [
@@ -573,7 +858,7 @@
       "name": "IMPORT_monte_05",
       "transform":
       {
-        "pos": "87.505 24.0361 40.532",
+        "pos": "93.7191 24.0361 42.8306",
         "rotation": "0.0 0.188075 0.0 -0.982155"
       },
       "render":
@@ -594,7 +879,7 @@
       "name": "IMPORT_monte_04",
       "transform":
       {
-        "pos": "-11.2542 -4.8452 88.5455",
+        "pos": "-11.2542 -6.97459 88.5455",
         "rotation": "0.0 -0.292117 0.0 -0.956382"
       },
       "render":
@@ -633,31 +918,10 @@
   {
     "entity":
     {
-      "name": "IMPORT_monte_01",
-      "transform":
-      {
-        "pos": "79.4579 16.6104 -27.0506",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/IMPORT_monte_01.mesh",
-          "materials":
-          [
-            "data/materials/monte01.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "IMPORT_monte_07",
       "transform":
       {
-        "pos": "20.8392 3.22099 90.2668",
+        "pos": "20.8392 1.00942 90.2668",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -2488,8 +2752,8 @@
       "name": "muro037",
       "transform":
       {
-        "pos": "10.8853 35.9288 123.447",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+        "pos": "2.62984 35.9288 134.882",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
       },
       "render":
       [
@@ -2510,8 +2774,8 @@
       "name": "muro036",
       "transform":
       {
-        "pos": "16.9306 35.9288 126.946",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+        "pos": "9.19079 35.9288 137.278",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
       },
       "render":
       [
@@ -2532,8 +2796,8 @@
       "name": "muro035",
       "transform":
       {
-        "pos": "22.9784 35.9288 130.439",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+        "pos": "15.7533 35.9288 139.667",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
       },
       "render":
       [
@@ -2554,8 +2818,8 @@
       "name": "muro034",
       "transform":
       {
-        "pos": "5.08412 35.9288 104.862",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
+        "pos": "-6.3105 35.9288 117.586",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
       },
       "render":
       [
@@ -2576,8 +2840,8 @@
       "name": "muro033",
       "transform":
       {
-        "pos": "6.28995 35.9288 111.742",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
+        "pos": "-3.92834 35.9288 124.152",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
       },
       "render":
       [
@@ -2598,8 +2862,8 @@
       "name": "muro032",
       "transform":
       {
-        "pos": "7.50155 35.9288 118.62",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
+        "pos": "-1.54075 35.9288 130.716",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
       },
       "render":
       [
@@ -2774,8 +3038,8 @@
       "name": "muro024",
       "transform":
       {
-        "pos": "22.9691 30.7031 130.443",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+        "pos": "15.7449 30.7031 139.673",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
       },
       "render":
       [
@@ -2796,8 +3060,8 @@
       "name": "muro023",
       "transform":
       {
-        "pos": "16.9225 30.7031 126.951",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+        "pos": "9.18377 30.7031 137.285",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
       },
       "render":
       [
@@ -2818,8 +3082,8 @@
       "name": "muro022",
       "transform":
       {
-        "pos": "10.8704 30.7031 123.461",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+        "pos": "2.61761 30.7031 134.899",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
       },
       "render":
       [
@@ -2840,8 +3104,8 @@
       "name": "muro021",
       "transform":
       {
-        "pos": "3.84451 30.7131 98.0001",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
+        "pos": "-8.72279 30.7131 111.044",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
       },
       "render":
       [
@@ -2862,8 +3126,8 @@
       "name": "muro020",
       "transform":
       {
-        "pos": "7.47916 30.7031 118.633",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
+        "pos": "-1.56053 30.7031 130.732",
+        "rotation": "0.0 0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -2884,8 +3148,8 @@
       "name": "muro019",
       "transform":
       {
-        "pos": "6.26242 30.7031 111.753",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
+        "pos": "-3.9534 30.7031 124.169",
+        "rotation": "0.0 0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -2906,8 +3170,8 @@
       "name": "muro018",
       "transform":
       {
-        "pos": "5.04853 30.7031 104.875",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
+        "pos": "-6.34324 30.7031 117.606",
+        "rotation": "0.0 0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -5109,32 +5373,6 @@
           [
             "data/materials/liso.material",
             "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mountainVertical005",
-      "transform":
-      {
-        "pos": "-9.66935 -5.57799 25.5737",
-        "rotation": "0.0 0.0590068 0.0 -0.998258"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mountainVertical005.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
           ]
         }
       ]
