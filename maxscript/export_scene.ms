@@ -936,7 +936,7 @@ struct TSceneExporter (
 					fs.writeKeyEmpty "outOfBounds"
 					exportEntityCollider obj trig:true dyn:true colliderGroups:#("all") masks:#("characters")
 				)
-				else exportEntityCollider obj trig:true
+				else exportEntityCollider obj trig:true colliderGroups:#("trigger") masks:#("player")
 
 				if stringContainsSubstring obj.name "respawn" and 
 					obj.children != undefined then (
