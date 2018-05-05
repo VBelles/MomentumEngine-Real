@@ -20,9 +20,9 @@
 		{ "name" : "correporlapared"},
 		{ "name" : "bajandopared"}
 	],
-  "bone_ids_to_debug" : [
-    3
-  ],
-	"meshes" : [
+	"bone_ids_to_debug" : [
+		3
+	],
+		"meshes" : [
 	]
 }
