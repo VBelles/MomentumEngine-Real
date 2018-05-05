@@ -62,6 +62,8 @@ private:
 	void updateMovement(float delta);
 	void updateCenteringCamera(float delta);
 	bool sphereCast();
+	bool isCameraInsideGeometry();
+	bool raycast(VEC3 origin, VEC3 destination, PxRaycastCallback& callback);
 	void sweepBack();
 
 	CEntity* getTarget() { return targetHandle; }

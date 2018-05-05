@@ -1,0 +1,7 @@
+{
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/lila_coin.dds"
+  }
+}

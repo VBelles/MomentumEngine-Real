@@ -77,6 +77,7 @@ private:
 	bool showVictoryDialog = false;
 	CTimer dialogTimer;
 	float dialogTime = 15.0f;
+	int coins = 0;
 
 	PlayerFilterCallback* playerFilterCallback;
 
