@@ -537,9 +537,9 @@ void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 
 void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onHitboxEnter(msg.h_other_entity);
+		concurrentState->onHitboxEnter(msg.hitbox, msg.h_other_entity);
 	}
-	baseState->onHitboxEnter(msg.h_other_entity);
+	baseState->onHitboxEnter(msg.hitbox, msg.h_other_entity);
 }
 
 void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {

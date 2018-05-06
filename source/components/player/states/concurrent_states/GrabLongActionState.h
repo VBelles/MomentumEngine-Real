@@ -7,5 +7,5 @@ public:
 	GrabLongActionState(CHandle playerModelHandle)
 		: GrabActionState(playerModelHandle) {
 	}
-	void onHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

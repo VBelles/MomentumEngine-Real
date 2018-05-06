@@ -92,7 +92,7 @@ void ReleasePowerAirActionState::onLanding() {
 }
 
 
-void ReleasePowerAirActionState::onHitboxEnter(CHandle entity) {
+void ReleasePowerAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};

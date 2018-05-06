@@ -53,7 +53,7 @@ void VerticalLauncherActionState::onLeavingGround() {
 }
 
 
-void VerticalLauncherActionState::onHitboxEnter(CHandle entity) {
+void VerticalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

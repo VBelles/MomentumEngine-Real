@@ -45,7 +45,7 @@ void FallingAttackLandingActionState::onJumpHighButton() {
 	hasTriedSpringJump = true;
 }
 
-void FallingAttackLandingActionState::onHitboxEnter(CHandle entity) {
+void FallingAttackLandingActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};

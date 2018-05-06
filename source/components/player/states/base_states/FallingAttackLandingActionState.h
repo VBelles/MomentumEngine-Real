@@ -32,5 +32,5 @@ public:
 	void setMovementInput(VEC2 input) override {}
 	void onJumpHighButton() override;
 	void onJumpLongButton() override {}
-	void onHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };
