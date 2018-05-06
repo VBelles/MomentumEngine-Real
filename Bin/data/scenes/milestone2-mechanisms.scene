@@ -3,15 +3,21 @@
     "entity":
     {
       "name": "ms2_mech003",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
         "pos": "111.377 17.8673 19.8755",
         "rotation": "-0.5 0.5 -0.5 -0.5"
       },
-      "mechanism_system":
+      "mechanism":
       {
-        "number_of_mechanisms": 0
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+
+        ]
       }
     }
   },
@@ -19,15 +25,23 @@
     "entity":
     {
       "name": "ms2_mech002",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
         "pos": "-69.1898 5.04006 41.2216",
         "rotation": "-0.5 0.5 -0.5 -0.5"
       },
-      "mechanism_system":
+      "mechanism":
       {
-        "number_of_mechanisms": 3
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech002-appear001mesh",
+           "ms2_mech002-appear002mesh",
+           "ms2_mech002-appear003mesh"
+        ]
       }
     }
   },
@@ -65,15 +79,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech002-appear001mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -111,15 +119,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech002-appear002mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -157,15 +159,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech002-appear003mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -173,15 +169,21 @@
     "entity":
     {
       "name": "ms2_mech005",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
         "pos": "-69.1898 19.2622 41.2216",
         "rotation": "-0.5 0.5 -0.5 -0.5"
       },
-      "mechanism_system":
+      "mechanism":
       {
-        "number_of_mechanisms": 1
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech005-appear001mesh"
+        ]
       }
     }
   },
@@ -219,15 +221,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech005-appear001mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -235,15 +231,24 @@
     "entity":
     {
       "name": "ms2_mech001",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
         "pos": "-84.0003 36.7173 -5.77995",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
-      "mechanism_system":
+      "mechanism":
       {
-        "number_of_mechanisms": 4
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech001-appear001mesh",
+           "ms2_mech001-appear002mesh",
+           "ms2_mech001-appear003mesh",
+           "ms2_mech001-appear004mesh"
+        ]
       }
     }
   },
@@ -281,15 +286,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech001-appear001mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -327,15 +326,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech001-appear002mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -373,15 +366,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech001-appear003mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -419,15 +406,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech001-appear004mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -435,15 +416,21 @@
     "entity":
     {
       "name": "ms2_mech004",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
         "pos": "-50.1077 51.0159 -41.5047",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
-      "mechanism_system":
+      "mechanism":
       {
-        "number_of_mechanisms": 1
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech004-appear001mesh"
+        ]
       }
     }
   },
@@ -481,15 +468,9 @@
            "scenario"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech004-appear001mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   },
@@ -497,15 +478,21 @@
     "entity":
     {
       "name": "ms2_mech006",
-      "prefab": "data/prefabs/mech_sys.prefab",
+      "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
         "pos": "-39.8889 1.88036 -49.1364",
         "rotation": "0.183013 0.683013 -0.683013 0.183013"
       },
-      "mechanism_system":
+      "mechanism":
       {
-        "number_of_mechanisms": 1
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms2_mech006-appear001mesh"
+        ]
       }
     }
   },
@@ -540,18 +527,13 @@
         "type": "static",
         "group":
         [
-           "scenario"
+           "scenario",
+           "enemy"
         ]
       },
-      "mechanism":
+      "mechanism_system":
       {
-        "deactivationTime": 5,
-        "isResettable": true,
-        "reactivationTime": 3,
-        "systems":
-        [
-           "ms2_mech006-appear001mesh"
-        ]
+        "number_of_mechanisms": 1
       }
     }
   }

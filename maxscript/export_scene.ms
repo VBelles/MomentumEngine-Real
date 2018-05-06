@@ -602,21 +602,12 @@ struct TSceneExporter (
 	),
 	
 	-- --MECHANISM------------------------------------------------
-	-- What is affected when activating a mechanism system.
+	-- The activator of the mechanism system.
 	fn exportMech obj = (
 		fs.writeComma()
-		fs.writeKey "mechanism"
+		fs.writeKey "mechanism_system"
 		fs.beginObj()
-			fs.writeKeyValue "deactivationTime" 5
-			fs.writeComma()
-			fs.writeKeyValue "isResettable" true
-			fs.writeComma()
-			fs.writeKeyValue "reactivationTime" 3
-			fs.writeComma()
-			fs.writeKey "systems"
-			fs.beginArray()
-				fs.writeValue obj.parent.name addIndent:true
-			fs.endArray()
+			fs.writeKeyValue "number_of_mechanisms" 1
 		fs.endObj()
 	),
 		
@@ -1120,7 +1111,7 @@ struct TSceneExporter (
 	),
 
 	-- --MECHANISM SYSTEM---------------------------------------------
-	-- The activator of the mechanisms.
+	-- What is affected when activating a mechanism.
 	fn exportMechSys obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 	
@@ -1129,13 +1120,26 @@ struct TSceneExporter (
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				exportName obj
 				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + "mech_sys.prefab")
+				fs.writeKeyValue "prefab" (prefabPath + "mech.prefab")
 				fs.writeComma()
 				exportTransform obj
 				fs.writeComma()
-				fs.writeKey "mechanism_system"
+		
+				fs.writeKey "mechanism"
 				fs.beginObj()
-					fs.writeKeyValue "number_of_mechanisms" obj.children.count
+					fs.writeKeyValue "deactivationTime" 5
+					fs.writeComma()
+					fs.writeKeyValue "isResettable" true
+					fs.writeComma()
+					fs.writeKeyValue "reactivationTime" 3
+					fs.writeComma()
+					fs.writeKey "systems"
+					fs.beginArray()
+						for i = 1 to obj.children.count do (
+							if i > 1 then fs.writeComma()
+							fs.writeValue obj.children[i].name addIndent:true
+						)
+					fs.endArray()
 				fs.endObj()
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()

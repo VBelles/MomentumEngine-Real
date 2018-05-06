@@ -51,6 +51,7 @@ void TCompMechanismSystem::onActivate(const TMsgMechanismActivated & msg) {
 		dbg("Number of mechanisms activated more than max!! Something happens...\n");
 	}
 	else if (numberOfMechanismsActivated == numberOfMechanisms) {
+        dbg("mechanism system activated\n");
 		Engine.getScripting().throwEvent(onMechanismSystemActivated, ((CEntity*)CHandle(this).getOwner())->getName());
 	}
 }
