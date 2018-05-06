@@ -52,13 +52,13 @@ void FallingAttackLandingActionState::onHitboxEnter(std::string hitbox, CHandle 
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
 	if (hitbox == hitboxFallingAttack) {
-		dbg("Those nice frames\n");
+		//dbg("Those nice frames\n");
 		otherEntity->sendMsg(TMsgGetPower{ playerEntity, fallingAttackPowerToGet });
 		msgAtackHit.info.damage = fallingAttackDamage;
 		msgAtackHit.info.givesPower = true;
 	}
 	else {
-		dbg("Landing\n");
+		//dbg("Landing\n");
 		msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	}
 
