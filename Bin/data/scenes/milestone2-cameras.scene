@@ -2,6 +2,29 @@
   {
     "entity":
     {
+      "name": "ms2_camera_altar",
+      "transform":
+      {
+        "pos": "22.8942 86.9443 -1.5063",
+        "rotation": "0.0 -0.5 0.0 -0.866025"
+      },
+      "camera":
+      {
+        "fov": 80.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_camera_castle_side",
       "transform":
       {

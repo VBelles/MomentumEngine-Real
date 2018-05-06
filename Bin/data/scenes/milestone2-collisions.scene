@@ -1175,23 +1175,6 @@
   {
     "entity":
     {
-      "name": "altar_col013",
-      "transform":
-      {
-        "pos": "45.076 72.6123 3.33545",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/altar_col013.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "altar_col012",
       "transform":
       {
