@@ -10,14 +10,12 @@
 
 DECL_OBJ_MANAGER("purity", TCompPurity);
 
-
 void TCompPurity::registerMsgs() {
 	DECL_MSG(TCompPurity, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompPurity, TMsgPurityChange, onPurityChange);
 }
 
 void TCompPurity::load(const json& j, TEntityParseContext& ctx) {
-	
 }
 
 void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -34,16 +32,16 @@ void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
 	TCompRender* render = getRender();
 	if (msg.isPure) { //Player can stand on
 		collider->setupFiltering(collider->config.group, collider->config.mask | EnginePhysics.Player);
-		getRender()->meshes[0].enabled = true;
-		getRender()->meshes[1].enabled = false;	
-		getRender()->refreshMeshesInRenderManager();
+		render->meshes[0].enabled = true;
+		render->meshes[1].enabled = false;
+		render->refreshMeshesInRenderManager();
 	}
 	else { //Player can NOT stand on
 		collider->setupFiltering(collider->config.group, collider->config.mask & !EnginePhysics.Player);
-		getRender()->meshes[0].enabled = false;
-		getRender()->meshes[1].enabled = true;
+		render->meshes[0].enabled = false;
+		render->meshes[1].enabled = true;
 	}
-	getRender()->refreshMeshesInRenderManager();
+	render->refreshMeshesInRenderManager();
 }
 
 
