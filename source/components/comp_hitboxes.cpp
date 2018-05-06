@@ -104,6 +104,7 @@ TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
 	hitbox->offset = config.offset;
 	hitbox->halfExtent = config.halfExtent;
 	hitbox->radius = config.radius;
+	hitbox->boneId = -1;
 
 	if (!config.boneName.empty()) {
 		hitbox->boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
@@ -111,10 +112,7 @@ TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
 	}
 
 	hitbox->transform = new CTransform();
-	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
-	hitbox->transform->setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
-	hitbox->transform->setRotation(Cal2DX(bone->getRotationAbsolute()));
-
+	
 	hitbox->filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
 		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK));
 
@@ -161,8 +159,8 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 		hitbox->filterData, EnginePhysics.getGameQueryFilterCallback());
 
 	if (status) {
-		//dbg("Touches: %d\n", overlapCallback.getNbTouches());
-		//dbg("Hits: %d\n", overlapCallback.getNbAnyHits());
+		//dbg("%s - Touches: %d\n", hitbox->name.c_str(), overlapCallback.getNbTouches());
+		//dbg("%s - Hits: %d\n", hitbox->name.c_str(), overlapCallback.getNbAnyHits());
 		CEntity* owner = CHandle(this).getOwner();
 		
 		for (int i = 0; i < overlapCallback.getNbTouches(); i++) {
@@ -170,8 +168,10 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 			CHandle colliderHandle;
 			colliderHandle.fromVoidPtr(hit.actor->userData);
 			CHandle hitHandle = colliderHandle.getOwner();
-			if (hitbox->hits.insert(CHandle(hitHandle)).second) { //Inserted
+			if (hitbox->hits.insert(hitHandle).second) { //Inserted
 				owner->sendMsg(TMsgHitboxEnter{ hitHandle });
+				CEntity* entity = hitHandle;
+				//dbg("Name: %s\n", entity->getName());
 			}
 		}
 	
