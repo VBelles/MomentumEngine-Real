@@ -26,7 +26,7 @@
       {
         "shape": "box",
         "halfExtent": "0.25 2.0 2.0",
-        "type": "dynamic",
+        "type": "kinematic",
         "group":
         [
            "scenario"
@@ -61,7 +61,7 @@
       {
         "shape": "box",
         "halfExtent": "0.25 2.0 2.0",
-        "type": "dynamic",
+        "type": "kinematic",
         "group":
         [
            "scenario"
@@ -104,7 +104,7 @@
       {
         "shape": "box",
         "halfExtent": "3.5 0.5 1.5",
-        "type": "dynamic",
+        "type": "kinematic",
         "group":
         [
            "scenario"
@@ -186,6 +186,44 @@
         "shape": "box",
         "halfExtent": "0.25 2.0 2.0",
         "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_pure003mesh",
+      "transform":
+      {
+        "pos": "5 1 48"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_pure002mesh.mesh",
+          "materials": ["data/materials/wood.material"],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms2_pure002mesh.mesh",
+          "materials": ["data/materials/white.material"],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "static",
         "group":
         [
            "scenario"

@@ -61,7 +61,7 @@ void FallingAttackActionState::onLanding() {
 }
 
 
-void FallingAttackActionState::onHitboxEnter(CHandle entity) {
+void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 
 	CEntity *otherEntity = entity;

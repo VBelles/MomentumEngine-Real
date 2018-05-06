@@ -143,6 +143,7 @@ struct TMsgDestroy {
 };
 
 struct TMsgHitboxEnter {
+	std::string hitbox;
 	CHandle h_other_entity;
 	DECL_MSG_ID();
 };

@@ -86,7 +86,7 @@ void ReleasePowerGroundActionState::onReleasePowerButton() {
 }
 
 
-void ReleasePowerGroundActionState::onHitboxEnter(CHandle entity) {
+void ReleasePowerGroundActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};

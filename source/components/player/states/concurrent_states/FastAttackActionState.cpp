@@ -60,7 +60,7 @@ void FastAttackActionState::onLeavingGround() {
 }
 
 
-void FastAttackActionState::onHitboxEnter(CHandle entity) {
+void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity* otherEntity = entity;
 
