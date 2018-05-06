@@ -11,14 +11,14 @@
 DECL_OBJ_MANAGER("purity", TCompPurity);
 
 void TCompPurity::registerMsgs() {
-	DECL_MSG(TCompPurity, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompPurity, TMsgEntityCreated, onCreated);
 	DECL_MSG(TCompPurity, TMsgPurityChange, onPurityChange);
 }
 
 void TCompPurity::load(const json& j, TEntityParseContext& ctx) {
 }
 
-void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
+void TCompPurity::onCreated(const TMsgEntityCreated & msg) {
 	renderHandle = get<TCompRender>();
 	assert(renderHandle.isValid());
 	colliderHandle = get<TCompCollider>();

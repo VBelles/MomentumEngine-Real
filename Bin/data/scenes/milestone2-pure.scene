@@ -28,8 +28,7 @@
           "materials": ["data/materials/white.material"],
           "enabled": false
         }
-      ],
-      "purity":{}
+      ]
     }
   },
   {
