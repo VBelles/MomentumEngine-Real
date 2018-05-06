@@ -6,6 +6,7 @@
 struct TMsgEntityCreated;
 struct TMsgEntitiesGroupCreated;
 class TCompSkeleton;
+class TCompCollider;
 
 class TCompHitboxes : public TCompBase {
 public:
@@ -34,7 +35,9 @@ public:
 private:
 	std::vector<HitboxConfig> hitboxesConfig;
 	std::map<std::string, Hitbox*> hitboxes;
+
 	CHandle skeletonHandle;
+	CHandle colliderHandle;
 	
 	TCompHitboxes::HitboxConfig loadHitbox(const json& jHitbox);
 	TCompHitboxes::Hitbox* createHitbox(const HitboxConfig& config);
@@ -58,6 +61,8 @@ public:
 	void disable(std::string name);
 
 	TCompSkeleton* getSkeleton();
+	TCompCollider* getCollider();
+	PxController* getController();
 
 
 };
