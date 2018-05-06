@@ -79,7 +79,7 @@ void StrongAttackActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void StrongAttackActionState::onHitboxEnter(CHandle entity) {
+void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

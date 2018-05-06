@@ -86,7 +86,7 @@ void ReleasePowerGroundActionState::onReleasePowerButton() {
 }
 
 
-void ReleasePowerGroundActionState::onHitboxEnter(CHandle entity) {
+void ReleasePowerGroundActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};
@@ -94,9 +94,7 @@ void ReleasePowerGroundActionState::onHitboxEnter(CHandle entity) {
 	msgAtackHit.info = {};
 	msgAtackHit.info.givesPower = false;
 	msgAtackHit.info.damage = damage;
-	msgAtackHit.info.stun = new AttackInfo::Stun{
-		stunDuration
-	};
+	msgAtackHit.info.stun = new AttackInfo::Stun{stunDuration};
 	msgAtackHit.info.activatesMechanism = true;
 	otherEntity->sendMsg(msgAtackHit);
 }

@@ -35,5 +35,5 @@ public:
 	void onReleasePowerButton() override {}
 	void onFastAttackButtonReleased() override {} //posible comportamiento extra
 
-	void onHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

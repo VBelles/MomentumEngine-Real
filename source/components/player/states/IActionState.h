@@ -76,7 +76,7 @@ public:
 	virtual void onFastAttackButton() {}
 	virtual void onFastAttackButtonReleased() {}
 	virtual void onReleasePowerButton() {}
-	virtual void onHitboxEnter(CHandle entity) {}
+	virtual void onHitboxEnter(std::string hitbox, CHandle entity) {}
 	virtual void onShapeHit(const PxControllerShapeHit &hit) {}
 	virtual void onSweep(PxSweepBuffer& sweepBuffer) {}
 	virtual void onDead();

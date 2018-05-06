@@ -37,5 +37,5 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override;
-	void onHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

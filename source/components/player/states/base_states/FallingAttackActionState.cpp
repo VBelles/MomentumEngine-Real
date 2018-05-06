@@ -48,21 +48,20 @@ void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 
 void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	getHitboxes()->disable(hitbox);
+	//getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack
 	getPlayerModel()->resetGravity();
-	//getPlayerModel()->baseState->setPose();
 }
 
 void FallingAttackActionState::onLanding() {
 	CEntity *hitboxEntity = hitboxHandle;
-	getHitboxes()->disable(hitbox);
+	//getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack
 	*velocityVector = VEC3::Zero;
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
 	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
 }
 
 
-void FallingAttackActionState::onHitboxEnter(CHandle entity) {
+void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 
 	CEntity *otherEntity = entity;
@@ -74,9 +73,7 @@ void FallingAttackActionState::onHitboxEnter(CHandle entity) {
 	msgAtackHit.info = {};
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
-	msgAtackHit.info.propel = new AttackInfo::Propel{
-		propelVelocity
-	};
+	msgAtackHit.info.propel = new AttackInfo::Propel{ propelVelocity };
 	otherEntity->sendMsg(msgAtackHit);
 
 }

@@ -50,7 +50,7 @@ void TCompMechanism::update(float dt) {
 
 void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 	if (msg.info.activatesMechanism) {
-        dbg("mechanism activated\n");
+        dbg("Mechanism activated\n");
 
 		if (!isActivated) {
 			if (reactivationTimer.elapsed() >= reactivationTime) {

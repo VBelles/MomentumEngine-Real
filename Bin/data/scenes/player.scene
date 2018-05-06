@@ -126,98 +126,64 @@
 						"name": "strong_attack",
 						"shape": "sphere",
 						"radius": 0.8,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 R Hand",
-						"attack": "strong_attack"
+						"group": ["player"],
+						"mask": ["enemy"],
+						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "fast_attack",
 						"shape": "sphere",
 						"radius": 0.7,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 R Hand",
-						"attack": "fast_attack"
+						"group": ["player"],
+						"mask": ["enemy"],
+						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "horizontal_launcher",
 						"shape": "sphere",
 						"radius": 0.9,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
+						"group": ["player"],
+						"mask": ["enemy"],
 						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "vertical_launcher",
 						"shape": "sphere",
 						"radius": 0.9,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
+						"group": ["player"],
+						"mask": ["enemy"],
 						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "grab",
 						"shape": "sphere",
 						"radius": 1.5,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
+						"group": ["player"],
+						"mask": ["enemy"],
 						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "falling_attack",
 						"shape": "sphere",
-						"radius": 0.8,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 L Foot"
+						"radius": 1,
+						"offset": "0 -0.7 0",
+						"group": ["player"],
+						"mask": ["enemy"]
 					},
 					{
 						"name": "landing_falling_attack",
 						"shape": "sphere",
 						"radius": 2.0,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 R Foot"
+						"offset": "0 -0.5 0",
+						"group": ["player"],
+						"mask": ["enemy"]
 					},
 					{
 						"name": "plummet_attack",
 						"shape": "sphere",
 						"radius": 2.0,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
+						"group": ["player"],
+						"mask": ["enemy"],
 						"bone": "Bip001 Pelvis"
 					},
 					{
