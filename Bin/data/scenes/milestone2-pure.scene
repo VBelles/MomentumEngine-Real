@@ -87,8 +87,19 @@
           "mesh": "data/meshes/ms2_pure004mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material"
-          ]
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms2_pure004mesh.mesh",
+          "materials": ["data/materials/white.material"],
+          "enabled": false
         }
       ],
       "collider":
@@ -123,15 +134,26 @@
           "mesh": "data/meshes/ms2_pure001mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material"
-          ]
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms2_pure001mesh.mesh",
+          "materials": ["data/materials/white.material"],
+          "enabled": false
         }
       ],
       "collider":
       {
         "shape": "box",
         "halfExtent": "0.5 2.0 2.5",
-        "type": "dynamic",
+        "type": "kinematic",
         "group":
         [
            "scenario"
@@ -160,14 +182,58 @@
           "materials":
           [
             "data/materials/wood.material"
-          ]
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms2_pure002mesh.mesh",
+          "materials": ["data/materials/white.material"],
+          "enabled": false
         }
       ],
       "collider":
       {
         "shape": "box",
         "halfExtent": "0.25 2.0 2.0",
-        "type": "dynamic",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "purity": {},
+      "tags":
+      [
+         "pure"
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_pure003mesh",
+      "transform":
+      {
+        "pos": "5 1 48"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_pure002mesh.mesh",
+          "materials": ["data/materials/wood.material"],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms2_pure002mesh.mesh",
+          "materials": ["data/materials/white.material"],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "static",
         "group":
         [
            "scenario"

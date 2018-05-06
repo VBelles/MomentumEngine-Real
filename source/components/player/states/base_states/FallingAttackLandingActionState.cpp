@@ -12,6 +12,9 @@ void FallingAttackLandingActionState::update(float delta) {
 	if (hitboxTimer.elapsed() >= impactAttackDurationTime) {
 		getHitboxes()->disable(hitbox);
 	}
+	if (fallingAttackHitboxTimer.elapsed() >= fallingAttackTime) {
+		getHitboxes()->disable(hitboxFallingAttack);
+	}
 }
 
 void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
@@ -25,12 +28,14 @@ void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 	getHitboxes()->enable(hitbox);
 	hitboxTimer.reset();
 	springJumpTimer.reset();
+	fallingAttackHitboxTimer.reset();
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void FallingAttackLandingActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
+	getHitboxes()->disable(hitboxFallingAttack); //Por si las moscas
 }
 
 void FallingAttackLandingActionState::onJumpHighButton() {
