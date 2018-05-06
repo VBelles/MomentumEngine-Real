@@ -15,9 +15,11 @@
     "data/scenes/milestone2-spikes.scene",
     "data/scenes/milestone2-mechanisms.scene",
     "data/scenes/milestone2-triggers.scene",
-    "data/scenes/milestone2-trimesh.scene"
+    "data/scenes/milestone2-trimesh.scene",
+    "data/scenes/milestone2_camaras_definitivas.scene"
   ],
   "unused_scenes": [
+    "data/scenes/milestone2-cameras.scene",
     "data/scenes/test_cameras.scene",
     "data/scenes/scene_basic.scene",
     "data/scenes/skeleton_demo2.scene",

@@ -1,0 +1,119 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms2_camera_castle_side",
+      "transform":
+      {
+        "pos": "-82.5705 26.5312 -58.982",
+        "rotation": "0.0 -0.5 0.0 -0.866025"
+      },
+      "camera":
+      {
+        "fov": 80.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_castle_side_trig",
+      "transform":
+      {
+        "pos": "-65.3939 14.179 -47.1787",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "3.50787 10.0 14.0",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "mixCameraTrigger":
+      {
+        "cameraToMix": "ms2_camera_castle_side",
+        "timeToMixIn": 1,
+        "timeToMixOut": 1,
+        "modifyPlayerCameraRotation": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_castle_over",
+      "transform":
+      {
+        "pos": "-62.5721 60.0521 -58.2123",
+        "lookat": "-53.3321 53.3395 40.8525"
+      },
+      "camera":
+      {
+        "fov": 80.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_castle_over_trig",
+      "transform":
+      {
+        "pos": "-50.437 35.4452 -48.1449",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "12.249 18.6804 8.02808",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "ms2_camera_castle_over",
+        "suggestYaw": false,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": false,
+        "distanceToCamera": 8.03774,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "18 9"
+      }
+    }
+  }
+]

@@ -758,36 +758,107 @@ struct TSceneExporter (
 		return true
 	),
 	
+	fn exportCameraTrigger obj = (
+		exportEntityCollider obj colliderGroups:#("trigger") masks:#("player") trig:true
+		fs.writeComma()
+		fs.writeKey "mixCameraTrigger"
+		fs.beginObj()
+			fs.writeKeyValue "cameraToMix" obj.parent.name
+			fs.writeComma()
+			fs.writeKeyValue "timeToMixIn" 1
+			fs.writeComma()
+			fs.writeKeyValue "timeToMixOut" 1
+			fs.writeComma()
+			fs.writeKeyValue "modifyPlayerCameraRotation" true
+		fs.endObj()
+	),
+	
+	fn exportSuggestCameraTrigger obj = (
+		exportEntityCollider obj colliderGroups:#("trigger") masks:#("player") trig:true
+		fs.writeComma()
+		fs.writeKey "suggestCameraTrigger"
+		fs.beginObj()
+			fs.writeKeyValue "cameraSuggestion" obj.parent.name
+			fs.writeComma()
+			fs.writeKeyValue "suggestYaw" false
+			fs.writeComma()
+			fs.writeKeyValue "hasOppositeYaw" false
+			fs.writeComma()
+			fs.writeKeyValue "suggestPitch" true
+			fs.writeComma()
+			fs.writeKeyValue "forceDistance" false
+			fs.writeComma()
+			local distanceToCam = distance obj.pos obj.parent.Target[3].pos
+			fs.writeKeyValue "distanceToCamera" distanceToCam
+			fs.writeComma()
+			fs.writeKeyValue "changeCenteringCamera" true
+			fs.writeComma()
+			fs.writeKeyValue "forcePositionOnEnter" true
+			fs.writeComma()
+			fs.writeKeyValue "centeringCameraSpeed" "18 9"
+		fs.endObj()
+	),
+	
 	-- --CAMERA--------------------------------------------------
 	fn exportCamera obj nValidObjs = (
 		local objClass = classOf obj
-		if objClass != TargetCamera and
-				objClass != FreeCamera  then (
-			if objClass != Targetobject then format "Warning: invalid object % of class % in cameras layer, not exported.\n" obj.name objClass
-			return false
-		)
+		format "name: %\n" obj.name
+		if objClass == TargetCamera or
+				objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
 			fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
+				fs.writeKey "entity"
+				fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+					exportName obj
+					fs.writeComma()
+					if objClass == TargetCamera then (
+						exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+					) else exportTransform obj
+					
+					fs.writeComma()
+					fs.writeKey "camera"
+					fs.beginObj()
+						fs.writeKeyValue "fov" obj.fov
+					fs.endObj()
+					
+					fs.writeComma()
+					fs.writeKey "fixed_camera"
+					fs.beginObj()
+						fs.writeKeyValue "returnToPlayerCameraWithInput" false
+						fs.writeComma()
+						fs.writeKeyValue "modifyPlayerCameraRotation" true
+						fs.writeComma()
+						fs.writeKeyValue "timeToMixOut" 1
+						fs.writeComma()
+						fs.writeKeyValue "panningSpeed" 0
+						fs.writeComma()
+						fs.writeKeyValue "panningRadius" 3
+					fs.endObj()
+
+					-- Add child spline if it exists.
+					if hasChildLine obj then (
+						exportSpline obj
+					)
+				--format "Camera % target distance: %\n" obj.name obj.targetDistance
+				fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+			fs.endObj()
+		)
+
+		if hasChildCollider obj then (
+			local child = obj.children[1]
+			if classof child == Box then (
 				fs.writeComma()
-				if objClass == TargetCamera then (
-					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
-				) else exportTransform obj
-				
-				fs.writeComma()
-				fs.writeKey "camera"
 				fs.beginObj()
-					fs.writeKeyValue "fov" obj.fov
+					fs.writeKey "entity"
+					fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+						-- Add trigger.
+						if objClass == FreeCamera then exportCameraTrigger child
+						else exportSuggestCameraTrigger child
+					fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 				fs.endObj()
-				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
-			--format "Camera % target distance: %\n" obj.name obj.targetDistance
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+				return true
+			)
+		)
 		return true
 	),
 

@@ -2,6 +2,57 @@
   {
     "entity":
     {
+      "name": "megaarco129",
+      "transform":
+      {
+        "pos": "38.3923 23.3687 -52.0116",
+        "rotation": "-0.696364 -0.541675 -0.122788 -0.45452"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/megaarco129.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "megaarco127",
+      "transform":
+      {
+        "pos": "44.1276 22.8017 -64.4631",
+        "rotation": "-0.153046 0.477714 0.690346 -0.521334"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/megaarco127.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "megaarco126",
+      "transform":
+      {
+        "pos": "36.9169 22.8017 -54.6467",
+        "rotation": "-0.696364 -0.541675 -0.122788 -0.45452"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/megaarco126.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_Box254",
       "transform":
       {
@@ -481,46 +532,12 @@
       "name": "megaarco122",
       "transform":
       {
-        "pos": "35.3088 22.8017 -57.2907",
+        "pos": "35.7914 22.8017 -57.3636",
         "rotation": "-0.696364 -0.541675 -0.122788 -0.45452"
       },
       "collider":
       {
         "mesh_src": "data/meshes/megaarco122.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "megaarco121",
-      "transform":
-      {
-        "pos": "43.175 22.8017 -64.8666",
-        "rotation": "-0.696364 -0.541675 -0.122788 -0.45452"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/megaarco121.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "megaarco120",
-      "transform":
-      {
-        "pos": "42.4109 22.8864 -57.6109",
-        "rotation": "-0.696364 -0.541675 -0.122788 -0.45452"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/megaarco120.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }
@@ -1110,7 +1127,7 @@
       "name": "altar_col016",
       "transform":
       {
-        "pos": "44.8546 70.2622 1.24727",
+        "pos": "43.8717 70.2622 1.24727",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -1127,7 +1144,7 @@
       "name": "altar_col015",
       "transform":
       {
-        "pos": "48.1459 70.2622 2.1311",
+        "pos": "47.163 70.2622 2.1311",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -1144,7 +1161,7 @@
       "name": "altar_col014",
       "transform":
       {
-        "pos": "44.0134 70.2622 4.60103",
+        "pos": "43.0304 70.2622 4.60103",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -1161,7 +1178,7 @@
       "name": "altar_col013",
       "transform":
       {
-        "pos": "46.0589 72.6123 3.33545",
+        "pos": "45.076 72.6123 3.33545",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -1178,7 +1195,7 @@
       "name": "altar_col012",
       "transform":
       {
-        "pos": "46.0533 70.2622 3.35698",
+        "pos": "45.0704 70.2622 3.35698",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -1195,7 +1212,7 @@
       "name": "altar_col011",
       "transform":
       {
-        "pos": "47.2684 70.2622 5.4612",
+        "pos": "46.2854 70.2622 5.4612",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -3813,7 +3830,7 @@
       "name": "muro3col01mesh003",
       "transform":
       {
-        "pos": "15.6185 28.8544 90.9092",
+        "pos": "16.7462 28.7657 91.9025",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -3830,7 +3847,7 @@
       "name": "muro3col003",
       "transform":
       {
-        "pos": "15.6039 27.5551 90.884",
+        "pos": "16.7316 27.4665 91.8773",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -7023,142 +7040,6 @@
   {
     "entity":
     {
-      "name": "ms2_plataformacolumna017_col",
-      "transform":
-      {
-        "pos": "61.4091 16.9796 58.0957",
-        "rotation": "0.0 -0.67559 0.0 -0.737277"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna017_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna016_col",
-      "transform":
-      {
-        "pos": "12.0876 18.8944 71.0677",
-        "rotation": "0.0 -0.130526 0.0 -0.991445"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna016_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna015_col",
-      "transform":
-      {
-        "pos": "37.1528 34.7912 128.492",
-        "rotation": "0.0 -0.130526 0.0 -0.991445"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna015_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna014_col",
-      "transform":
-      {
-        "pos": "-5.27703 3.43304 64.8362",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna014_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna013_col",
-      "transform":
-      {
-        "pos": "-12.9936 5.2752 3.87826",
-        "rotation": "0.0225575 0.257834 0.0841859 -0.96225"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataformacolumna013_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma029_col",
-      "transform":
-      {
-        "pos": "71.8297 15.0782 23.2807",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma029_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma028_col",
-      "transform":
-      {
-        "pos": "79.8526 52.3832 29.4055",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma028_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma027_col",
-      "transform":
-      {
-        "pos": "56.774 20.9638 -20.604",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma027_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms2_plataforma026_col",
       "transform":
       {
@@ -7168,142 +7049,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/ms2_plataforma026_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma025_col",
-      "transform":
-      {
-        "pos": "69.6908 29.3395 -7.04752",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma025_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma024_col",
-      "transform":
-      {
-        "pos": "45.943 66.2067 3.30037",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma024_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma023_col",
-      "transform":
-      {
-        "pos": "0.756205 10.1778 63.8471",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma023_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma022_col",
-      "transform":
-      {
-        "pos": "-1.29826 12.3657 67.7453",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma022_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma021_col",
-      "transform":
-      {
-        "pos": "3.65356 15.9368 66.93",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma021_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma020_col",
-      "transform":
-      {
-        "pos": "9.74496 16.4662 67.5217",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma020_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma019_col",
-      "transform":
-      {
-        "pos": "7.3195 18.8771 71.7151",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_plataforma019_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_paltaforma006_col",
-      "transform":
-      {
-        "pos": "110.344 52.4248 27.2269",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms2_paltaforma006_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }
