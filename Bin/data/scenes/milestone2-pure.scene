@@ -32,11 +32,7 @@
            "scenario"
         ]
       },
-      "purity": {},
-      "tags":
-      [
-         "pure"
-      ]
+      "purity": {}
     }
   },
   {
@@ -71,11 +67,7 @@
            "scenario"
         ]
       },
-      "purity": {},
-      "tags":
-      [
-         "pure"
-      ]
+      "purity": {}
     }
   },
   {
@@ -118,11 +110,7 @@
            "scenario"
         ]
       },
-      "purity": {},
-      "tags":
-      [
-         "pure"
-      ]
+      "purity": {}
     }
   },
   {
@@ -165,11 +153,7 @@
            "scenario"
         ]
       },
-      "purity": {},
-      "tags":
-      [
-         "pure"
-      ]
+      "purity": {}
     }
   },
   {
@@ -207,11 +191,7 @@
            "scenario"
         ]
       },
-      "purity": {},
-      "tags":
-      [
-         "pure"
-      ]
+      "purity": {}
     }
   },
   {
@@ -245,11 +225,7 @@
            "scenario"
         ]
       },
-      "purity": {},
-      "tags":
-      [
-         "pure"
-      ]
+      "purity": {}
     }
   }
 ]
