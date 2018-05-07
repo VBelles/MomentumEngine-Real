@@ -456,7 +456,7 @@ struct TSceneExporter (
 		if dyn then (
 			fs.writeComma()
 			fs.writeKeyValue "type" "dynamic"
-		) else if mov then (
+		) else if mov or obj.layer.name == "pure" then (
 			fs.writeComma()
 			fs.writeKeyValue "type" "kinematic"
 		)			
@@ -1068,7 +1068,7 @@ struct TSceneExporter (
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
 						
-					exportCompCollider child dyn:pure mov:(movable or rot) colliderGroups:groups
+					exportCompCollider child mov:(movable or rot) colliderGroups:groups
 					
 					if pure then exportPurity()
 					if breakable then exportBreakable()
