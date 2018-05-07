@@ -4,6 +4,7 @@
 #include "components/comp_render.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/comp_camera.h"
+#include "components/comp_collider.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/comp_player_model.h"
 #include "entity/common_msgs.h"
@@ -11,6 +12,8 @@
 
 
 void ReleasePowerAirActionState::update(float delta) {
+	PxExtendedVec3 cctPos = getCollider()->controller->getPosition();
+	getBlurRadial()->setCenterInWorldCoordinates(VEC3(cctPos.x, cctPos.y, cctPos.z));
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
