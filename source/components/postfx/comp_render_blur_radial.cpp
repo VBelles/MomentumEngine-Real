@@ -65,8 +65,6 @@ void TCompRenderBlurRadial::setCenterInWorldCoordinates(VEC3 worldPosition) {
 	VEC3 posInHomoSpace = VEC3::Transform(worldPosition, camera->getViewProjection());
 	VEC3 cameraPosition = (posInHomoSpace + VEC3(1, 1, 1)) * 0.5f;
 	cameraPosition.y = 1 - cameraPosition.y;
-	//camera->getScreenCoordsOfWorldCoord(worldPosition, &cameraPosition);
 	normalized_center.x = cameraPosition.x;
 	normalized_center.y = cameraPosition.y;
-	dbg("%f, %f, %f\n", normalized_center.x, normalized_center.y);
 }
