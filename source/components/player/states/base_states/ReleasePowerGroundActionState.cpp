@@ -6,6 +6,9 @@
 #include "components/player/comp_power_gauge.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/postfx/comp_render_blur_radial.h"
+#include "components/comp_camera.h"
+
 
 
 void ReleasePowerGroundActionState::update(float delta) {
@@ -21,6 +24,7 @@ void ReleasePowerGroundActionState::update(float delta) {
 		getHitboxes()->disable(smallHitbox);
 		getHitboxes()->disable(bigHitbox);
 		phase = AttackPhases::Recovery;
+		getBlurRadial()->setEnable(false);
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
@@ -30,11 +34,13 @@ void ReleasePowerGroundActionState::update(float delta) {
 			getPlayerModel()->getPowerGauge()->releasePower();
 			break;
 		case 2:
+			getBlurRadial()->setEnable(true);
 			getPlayerModel()->getPowerGauge()->releasePower();
 			getHitboxes()->enable(smallHitbox);
 			if (buttonPresses > 1) getPlayerModel()->getPowerGauge()->releasePower();
 			break;
 		case 3:
+			getBlurRadial()->setEnable(true);
 			getPlayerModel()->getPowerGauge()->releasePower();
 			if (buttonPresses > 1) {
 				getPlayerModel()->getPowerGauge()->releasePower();
@@ -69,6 +75,7 @@ void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	getHitboxes()->disable(smallHitbox);
 	getHitboxes()->disable(bigHitbox);
+	getBlurRadial()->setEnable(false);
 }
 
 void ReleasePowerGroundActionState::onReleasePowerButton() {

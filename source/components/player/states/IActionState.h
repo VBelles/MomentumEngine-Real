@@ -7,6 +7,7 @@ class TCompCollider;
 class TCompRender;
 class TCompTransform;
 class TCompHitboxes;
+class TCompRenderBlurRadial;
 struct HitState;
 using namespace physx;
 
@@ -38,6 +39,7 @@ protected:
 	TCompRender* getRender();
 	TCompHitboxes* getHitboxes();
 	TCompCamera* getCamera();
+	TCompRenderBlurRadial* getBlurRadial();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);

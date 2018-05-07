@@ -4,8 +4,8 @@
 #include "camera/camera.h"
 
 class TCompCamera : public CCamera, public TCompBase {
-	DECL_SIBLING_ACCESS();
 public:
+	DECL_SIBLING_ACCESS();
 	void debugInMenu();
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);

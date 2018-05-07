@@ -55,3 +55,7 @@ CTexture* TCompRenderBlurRadial::apply( CTexture* in_texture) {
 
   return rt_output;
 }
+
+void TCompRenderBlurRadial::setEnable(bool enabled) {
+	this->enabled = enabled;
+}

@@ -30,7 +30,7 @@ float4 PS(
   amount *= blur_d.x;                                             // comp.amount 
   //return amount;
 
-  v2c *= amount * camera_inv_resolution.xx * distance2center * 10;  // x10 to amplify effect
+  v2c *= amount * camera_inv_resolution.xx * distance2center * 25;  // x10 to amplify effect
   
   // N taps moving to the center
   float4 cfinal = float4(0,0,0,0);
