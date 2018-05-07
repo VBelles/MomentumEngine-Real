@@ -139,7 +139,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "1 0 0",
+        "rotation_axis": "-1 0 -1",
         "rotation_speed": 1
       }
     }
@@ -175,7 +175,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "1 0 0",
+        "rotation_axis": "1 0 1",
         "rotation_speed": 1
       }
     }
@@ -211,7 +211,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "1 0 0",
+        "rotation_axis": "-1 0 -1",
         "rotation_speed": 1
       }
     }
