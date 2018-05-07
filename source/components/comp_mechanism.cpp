@@ -27,6 +27,7 @@ void TCompMechanism::load(const json& j, TEntityParseContext& ctx) {
 			}
 		}
 	}
+	isActivated = false;
 }
 
 void TCompMechanism::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
@@ -57,7 +58,7 @@ void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 				isActivated = true;
 				for (auto& system : mechanismSystems) {
 					CEntity* entity = system;
-					dbg("Sending activating msg.\n");
+					dbg("Sending activating msg %s.\n", entity->getName());
 					entity->sendMsg(TMsgMechanismActivated{});
 				}
 			}
