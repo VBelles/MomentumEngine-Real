@@ -439,8 +439,8 @@
       "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
-        "pos": "-69.418 15.1641 41.3075",
-        "lookat": "-1.0 15.1641 -1.0"
+        "pos": "-69.8495 19.1099 50.9944",
+        "lookat": "-1.0 19.1099 -1.0"
       }
     }
   },
@@ -451,8 +451,8 @@
       "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
-        "pos": "-69.418 12.1962 41.3075",
-        "lookat": "-1.0 12.1962 -1.0"
+        "pos": "-69.8495 15.7479 46.7104",
+        "lookat": "-1.0 15.7479 -1.0"
       }
     }
   },
@@ -463,8 +463,8 @@
       "prefab": "data/prefabs/enemy_ball.prefab",
       "transform":
       {
-        "pos": "-69.418 8.78342 41.3075",
-        "lookat": "-1.0 8.78342 -1.0"
+        "pos": "-69.418 12.1964 42.4758",
+        "lookat": "-1.0 12.1964 -1.0"
       }
     }
   },
@@ -751,7 +751,7 @@
       "prefab": "data/prefabs/enemy_melee.prefab",
       "transform":
       {
-        "pos": "-46.8233 0.468257 -42.0944",
+        "pos": "-48.1237 0.468257 -39.8419",
         "lookat": "-1.0 0.468257 -1.0"
       }
     }
@@ -763,7 +763,7 @@
       "prefab": "data/prefabs/enemy_melee.prefab",
       "transform":
       {
-        "pos": "-50.6412 0.468257 -44.2987",
+        "pos": "-51.9417 0.468257 -42.0462",
         "lookat": "-1.0 0.468257 -1.0"
       }
     }
@@ -775,7 +775,7 @@
       "prefab": "data/prefabs/enemy_melee.prefab",
       "transform":
       {
-        "pos": "-44.8801 0.468257 -45.4601",
+        "pos": "-46.1805 0.468257 -43.2077",
         "lookat": "-1.0 0.468257 -1.0"
       }
     }
@@ -787,7 +787,7 @@
       "prefab": "data/prefabs/enemy_melee.prefab",
       "transform":
       {
-        "pos": "-48.698 0.468257 -47.6644",
+        "pos": "-49.9984 0.468257 -45.412",
         "lookat": "-1.0 0.468257 -1.0"
       }
     }
@@ -799,7 +799,7 @@
       "prefab": "data/prefabs/enemy_melee.prefab",
       "transform":
       {
-        "pos": "-43.1805 0.468257 -48.4038",
+        "pos": "-44.481 0.468257 -46.1513",
         "lookat": "-1.0 0.468257 -1.0"
       }
     }
@@ -811,7 +811,7 @@
       "prefab": "data/prefabs/enemy_melee.prefab",
       "transform":
       {
-        "pos": "-46.9985 0.468257 -50.6081",
+        "pos": "-48.2989 0.468257 -48.3556",
         "lookat": "-1.0 0.468257 -1.0"
       }
     }

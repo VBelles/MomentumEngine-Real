@@ -20,7 +20,7 @@
 				"shape": "sphere",
 				"is_trigger" : false,
 				"radius" : 0.75,
-				"group": ["enemy"],
+				"group": ["all"],
 				"mask": ["player"]
 			},
     "breakable": {

@@ -3,6 +3,89 @@
   {
     "entity":
     {
+      "name": "ms2_mech002-appear002mesh",
+      "transform":
+      {
+        "pos": "-71.3153 15.1604 46.8467",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech002-appear002mesh.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.5 0.25 1.5",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_mech002-appear001mesh",
+      "transform":
+      {
+        "pos": "-70.8839 11.609 42.6121",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_mech002-appear001mesh.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.5 0.25 1.5",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box253mesh003",
+      "transform":
+      {
+        "pos": "118.998 16.031 -1.39109",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box253mesh003.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_Box253mesh002",
       "transform":
       {
@@ -27,7 +110,7 @@
       "name": "ms2_Box253mesh001",
       "transform":
       {
-        "pos": "119.053 12.9563 -0.754669",
+        "pos": "118.713 12.687 -4.64618",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
@@ -6049,7 +6132,7 @@
       "name": "ms2_Box133",
       "transform":
       {
-        "pos": "-70.386 16.0793 48.2902",
+        "pos": "-71.1044 18.7848 54.8426",
         "rotation": "-0.521334 0.521334 -0.477714 0.477714"
       },
       "render":
