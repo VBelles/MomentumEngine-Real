@@ -589,7 +589,6 @@ struct TSceneExporter (
 	fn exportPurity = (
 		fs.writeComma()
 		fs.writeKeyEmpty "purity"
-		exportStringArray "tags" #("pure")		
 	),
 		
 	-- --BREAKABLE------------------------------------------------
@@ -1414,6 +1413,38 @@ TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh
 TODO: Sólo exportar mesh collider si un mesh es hijo de otro mesh o si está en capa colliders.
 TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
 	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
+TODO: Las puras ahora se tienen que exportar diferente !!! Formato:
+			{
+				"entity": {
+					  "name": "ms2_pure006mesh",
+					  "transform": {
+						"pos": "16.1086 17.1181 -42.8537",
+						"rotation": "-0.683013 0.683013 -0.183013 0.183013"
+					  },
+					  "render":  [
+						{
+						  "mesh": "data/meshes/ms2_pure006mesh.mesh",
+						  "materials":["data/materials/wood.material"],
+						  "enabled": false
+						},
+						{
+						  "mesh": "data/meshes/ms2_pure006mesh.mesh",
+						  "materials":["data/materials/ambar.material"],
+						  "enabled": false
+						}
+					  ],
+					  "collider": {
+						"shape": "box",
+						"halfExtent": "0.25 2.0 2.0",
+						"type": "kinematic",
+						"group": [ "scenario" ]
+					  },
+					  "purity": {}
+				}
+			  }
+TODO: Convertir editable poly a editable mesh automáticamente antes de exportar.
+
+NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 
 /*----------------------------------------------------------------------------------

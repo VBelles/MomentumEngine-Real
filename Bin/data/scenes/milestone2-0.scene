@@ -3,6 +3,68 @@
   {
     "entity":
     {
+      "name": "plataforma_puraSI",
+      "transform":
+      {
+        "pos": "0.207995 1.211 -4.00275",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "materials":
+          [
+            "data/materials/pure.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "1.5 0.35 1.7",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_puraNO",
+      "transform":
+      {
+        "pos": "0.207995 1.211 -0.0351406",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_puraNO.mesh",
+          "materials":
+          [
+            "data/materials/NOpure.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "1.5 0.35 1.7",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "plataforma_rocosa1_low007",
       "transform":
       {
