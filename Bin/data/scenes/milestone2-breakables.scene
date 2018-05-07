@@ -15,12 +15,7 @@
           "mesh": "data/meshes/ms2_breakable011mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -56,12 +51,7 @@
           "mesh": "data/meshes/ms2_breakable021mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -97,7 +87,7 @@
           "mesh": "data/meshes/ms2_breakable009mesh002.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -133,7 +123,7 @@
           "mesh": "data/meshes/ms2_breakable007mesh002.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -169,7 +159,7 @@
           "mesh": "data/meshes/ms2_breakable006mesh002.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -205,7 +195,7 @@
           "mesh": "data/meshes/ms2_breakable009mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -241,7 +231,7 @@
           "mesh": "data/meshes/ms2_breakable008mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -277,7 +267,7 @@
           "mesh": "data/meshes/ms2_breakable007mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -313,7 +303,7 @@
           "mesh": "data/meshes/ms2_breakable006mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -349,7 +339,7 @@
           "mesh": "data/meshes/ms2_breakable005mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -385,7 +375,7 @@
           "mesh": "data/meshes/ms2_breakable004mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -421,7 +411,7 @@
           "mesh": "data/meshes/ms2_breakable002mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material"
+            "data/materials/ambar.material"
           ]
         }
       ],
@@ -457,12 +447,7 @@
           "mesh": "data/meshes/ms2_breakable001mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/ambar.material"
           ]
         }
       ],

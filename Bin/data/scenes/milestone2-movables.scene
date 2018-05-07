@@ -3,6 +3,162 @@
   {
     "entity":
     {
+      "name": "ms2_move013mesh001",
+      "transform":
+      {
+        "pos": "0.544545 28.5215 -26.431",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_move013mesh001.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.157404,
+        "speed": 0.001,
+        "knots":
+        [
+           "-3.3156 28.2691 -26.8975",
+           "0.780164 28.2691 -24.0297",
+           "0.780164 28.2691 -24.0297",
+           "-0.447714 28.2691 -30.9933",
+           "-7.41136 28.2691 -29.7654",
+           "-6.18348 28.2691 -22.8018",
+           "-6.18348 28.2691 -22.8018"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_move012mesh001",
+      "transform":
+      {
+        "pos": "-5.30114 28.5215 -20.2854",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_move012mesh001.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.268443,
+        "speed": 0.001,
+        "knots":
+        [
+           "-3.31559 28.2691 -26.8975",
+           "-7.84713 28.2691 -24.7844",
+           "-7.84713 28.2691 -24.7844",
+           "-1.2025 28.2691 -22.366",
+           "1.21595 28.2691 -29.0106",
+           "-5.42868 28.2691 -31.4291",
+           "-5.42868 28.2691 -31.4291"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_move011mesh001",
+      "transform":
+      {
+        "pos": "-7.60594 28.5215 -29.084",
+        "rotation": "0.353553 -0.353553 0.612372 -0.612372"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_move011mesh001.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "0.25 2.0 2.0",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.377929,
+        "speed": 0.001,
+        "knots":
+        [
+           "-3.3156 28.2691 -26.8975",
+           "-2.87982 28.2691 -31.8785",
+           "-2.87982 28.2691 -31.8785",
+           "-8.29657 28.2691 -27.3333",
+           "-3.75138 28.2691 -21.9166",
+           "1.66537 28.2691 -26.4618",
+           "1.66537 28.2691 -26.4618"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_move009mesh001",
       "transform":
       {
@@ -15,12 +171,7 @@
           "mesh": "data/meshes/ms2_move009mesh001.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -69,7 +220,7 @@
           "mesh": "data/meshes/ms2_mech003-appear001mesh001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -120,12 +271,7 @@
           "mesh": "data/meshes/ms2_move013mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -177,12 +323,7 @@
           "mesh": "data/meshes/ms2_move012mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -234,12 +375,7 @@
           "mesh": "data/meshes/ms2_move011mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -291,12 +427,7 @@
           "mesh": "data/meshes/ms2_move008mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -345,12 +476,7 @@
           "mesh": "data/meshes/ms2_move007mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -402,12 +528,7 @@
           "mesh": "data/meshes/ms2_move006mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -459,12 +580,7 @@
           "mesh": "data/meshes/ms2_move005mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -516,12 +632,7 @@
           "mesh": "data/meshes/ms2_move004mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -573,12 +684,7 @@
           "mesh": "data/meshes/ms2_move003mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -630,12 +736,7 @@
           "mesh": "data/meshes/ms2_move002mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -687,12 +788,7 @@
           "mesh": "data/meshes/ms2_move001mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ],

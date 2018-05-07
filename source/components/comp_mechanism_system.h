@@ -13,8 +13,8 @@ private:
 	CTimer deactivationTimer;
 	float deactivationTime;
 	bool isActivated = false;
-	size_t numberOfMechanisms = 0;
-	size_t numberOfMechanismsActivated = 0;
+	int numberOfMechanisms = 0;
+	int numberOfMechanismsActivated = 0;
 	std::string activationEffectFile;
 
 	std::vector<std::string> mechanismsNames;
