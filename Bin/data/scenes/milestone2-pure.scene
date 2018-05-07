@@ -17,7 +17,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
           "materials": ["data/materials/pure.material"],
           "enabled": false
         }
@@ -49,7 +49,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
           "materials": ["data/materials/pure.material"],
           "enabled": false
         }
@@ -81,7 +81,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
           "materials": ["data/materials/pure.material"],
           "enabled": false
         }
@@ -113,7 +113,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
           "materials": ["data/materials/pure.material"],
           "enabled": false
         }
@@ -145,7 +145,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
           "materials": ["data/materials/pure.material"],
           "enabled": false
         }
@@ -177,7 +177,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
           "materials": ["data/materials/pure.material"],
           "enabled": false
         }
@@ -209,7 +209,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
           "materials": ["data/materials/pure.material"],
           "enabled": false
         }
@@ -241,7 +241,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
           "materials": ["data/materials/pure.material"],
           "enabled": false
         }
