@@ -11,7 +11,7 @@
       },
       "mechanism":
       {
-        "deactivationTime": 5,
+        "deactivationTime": 12,
         "isResettable": true,
         "reactivationTime": 3,
         "systems":
@@ -143,7 +143,7 @@
       },
       "mechanism":
       {
-        "deactivationTime": 5,
+        "deactivationTime": 12,
         "isResettable": true,
         "reactivationTime": 3,
         "systems":
@@ -203,7 +203,7 @@
       },
       "mechanism":
       {
-        "deactivationTime": 5,
+        "deactivationTime": 12,
         "isResettable": true,
         "reactivationTime": 3,
         "systems":
@@ -380,7 +380,7 @@
       },
       "mechanism":
       {
-        "deactivationTime": 5,
+        "deactivationTime": 12,
         "isResettable": true,
         "reactivationTime": 3,
         "systems":
@@ -438,7 +438,7 @@
       },
       "mechanism":
       {
-        "deactivationTime": 5,
+        "deactivationTime": 12,
         "isResettable": true,
         "reactivationTime": 3,
         "systems":
