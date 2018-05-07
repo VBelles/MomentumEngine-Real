@@ -5,6 +5,7 @@ class TCompTransform;
 class TCompCollider;
 class TCompPowerGauge;
 class TCompPlayerController;
+class TCompCameraPlayer;
 
 namespace SLB {
 	class Manager;
@@ -18,6 +19,7 @@ private:
 	static TCompTransform* getTransform();
 	static TCompCollider* getCollider();
 	static TCompPowerGauge* getPowerGauge();
+    static TCompCameraPlayer* getPlayerCamera();
 
 public:
 	static void bind(SLB::Manager* manager);
@@ -29,5 +31,7 @@ public:
 	static void setPlayerRespawnPosition(float x, float y, float z);
 	static bool takePlayerControl();
 	static bool givePlayerControl();
+    static void lockPlayerCameraInput();
+    static void unlockPlayerCameraInput();
 };
 
