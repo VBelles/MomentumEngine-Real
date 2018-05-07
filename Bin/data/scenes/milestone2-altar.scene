@@ -12,7 +12,7 @@
         "mesh": "data/meshes/ms2_PYRAMID001.mesh",
         "materials":
         [
-          "data/materials/Fieldstone.material"
+          "data/materials/ambar.material"
         ]
       }
     ],
