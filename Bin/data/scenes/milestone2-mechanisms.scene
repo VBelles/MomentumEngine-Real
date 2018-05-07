@@ -38,9 +38,9 @@
         "reactivationTime": 3,
         "systems":
         [
-           "ms2_mech002-appear001mesh",
-           "ms2_mech002-appear002mesh",
-           "ms2_mech002-appear003mesh"
+           "ms2_mech002_appear001mesh",
+           "ms2_mech002_appear002mesh",
+           "ms2_mech002_appear003mesh"
         ]
       }
     }
@@ -48,7 +48,7 @@
   {
     "entity":
     {
-      "name": "ms2_mech002-appear001mesh",
+      "name": "ms2_mech002_appear001mesh",
       "transform":
       {
         "pos": "-70.8839 8.19598 41.4439",
@@ -82,13 +82,14 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
-      }
+      },
+      "door" : {}
     }
   },
   {
     "entity":
     {
-      "name": "ms2_mech002-appear002mesh",
+      "name": "ms2_mech002_appear002mesh",
       "transform":
       {
         "pos": "-70.8839 11.6087 41.4439",
@@ -122,13 +123,14 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
-      }
+      },
+      "door" : {}
     }
   },
   {
     "entity":
     {
-      "name": "ms2_mech002-appear003mesh",
+      "name": "ms2_mech002_appear003mesh",
       "transform":
       {
         "pos": "-70.8839 14.5767 41.4439",
@@ -162,7 +164,8 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
-      }
+      },
+      "door" : {}
     }
   },
   {
@@ -182,7 +185,7 @@
         "reactivationTime": 3,
         "systems":
         [
-           "ms2_mech005-appear001mesh"
+           "ms2_mech005_appear001mesh"
         ]
       }
     }
@@ -190,7 +193,7 @@
   {
     "entity":
     {
-      "name": "ms2_mech005-appear001mesh",
+      "name": "ms2_mech005_appear001mesh",
       "transform":
       {
         "pos": "-70.8839 17.5317 41.4439",
@@ -224,6 +227,9 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door" : {
+        "startsClosed" : false
       }
     }
   },
@@ -244,10 +250,10 @@
         "reactivationTime": 3,
         "systems":
         [
-           "ms2_mech001-appear001mesh",
-           "ms2_mech001-appear002mesh",
-           "ms2_mech001-appear003mesh",
-           "ms2_mech001-appear004mesh"
+           "ms2_mech001_appear001mesh",
+           "ms2_mech001_appear002mesh",
+           "ms2_mech001_appear003mesh",
+           "ms2_mech001_appear004mesh"
         ]
       }
     }
@@ -255,7 +261,7 @@
   {
     "entity":
     {
-      "name": "ms2_mech001-appear001mesh",
+      "name": "ms2_mech001_appear001mesh",
       "transform":
       {
         "pos": "-85.2403 38.029 -12.6284",
@@ -289,13 +295,16 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door" : {
+        "startsClosed" : false
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2_mech001-appear002mesh",
+      "name": "ms2_mech001_appear002mesh",
       "transform":
       {
         "pos": "-82.6651 38.9447 -14.7625",
@@ -329,13 +338,16 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door" : {
+        "startsClosed" : false
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2_mech001-appear003mesh",
+      "name": "ms2_mech001_appear003mesh",
       "transform":
       {
         "pos": "-88.2006 36.1111 -7.32147",
@@ -369,13 +381,16 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door" : {
+        "startsClosed" : false
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms2_mech001-appear004mesh",
+      "name": "ms2_mech001_appear004mesh",
       "transform":
       {
         "pos": "-87.6352 37.0268 -10.3266",
@@ -409,6 +424,9 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door" : {
+        "startsClosed" : false
       }
     }
   },
@@ -419,7 +437,7 @@
       "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
-        "pos": "-50.1077 51.0159 -41.5047",
+        "pos": "-50.1077 45 -41.5047",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "mechanism":
@@ -429,7 +447,7 @@
         "reactivationTime": 3,
         "systems":
         [
-           "ms2_mech004-appear001mesh"
+           "ms2_mech004_appear001mesh"
         ]
       }
     }
@@ -437,7 +455,7 @@
   {
     "entity":
     {
-      "name": "ms2_mech004-appear001mesh",
+      "name": "ms2_mech004_appear001mesh",
       "transform":
       {
         "pos": "-54.8319 51.526 -52.8919",
@@ -471,7 +489,8 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
-      }
+      },
+      "door" : {}
     }
   },
   {
@@ -491,7 +510,7 @@
         "reactivationTime": 3,
         "systems":
         [
-           "ms2_mech006-appear001mesh"
+           "ms2_mech006_appear001mesh"
         ]
       }
     }
@@ -499,7 +518,7 @@
   {
     "entity":
     {
-      "name": "ms2_mech006-appear001mesh",
+      "name": "ms2_mech006_appear001mesh",
       "transform":
       {
         "pos": "-43.9183 -0.0726073 -50.6682",
@@ -527,14 +546,14 @@
         "type": "static",
         "group":
         [
-           "scenario",
-           "enemy"
+           "scenario"
         ]
       },
       "mechanism_system":
       {
         "number_of_mechanisms": 1
-      }
+      },
+      "door" : {}
     }
   }
 ]

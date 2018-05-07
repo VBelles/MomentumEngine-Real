@@ -21,6 +21,7 @@ struct TMsgGainPower;
 struct TMsgGainPower;
 struct TMsgOutOfBounds;
 struct TMsgRespawnChanged;
+struct TMsgPurityChange;
 
 struct HitState {
 	bool hasHit = false; //When true the hit state data is valid
@@ -96,6 +97,8 @@ private:
 	void onGainPower(const TMsgGainPower& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
 	void onRespawnChanged(const TMsgRespawnChanged& msg);
+	void onPurityChange(const TMsgPurityChange& msg);
+
 	PxFilterData getFilterData();
 
 	PowerStats* loadPowerStats(const json& j);

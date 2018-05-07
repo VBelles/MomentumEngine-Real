@@ -36,9 +36,9 @@
 			],
 			
 			"transform": {
-				"pos": "3 2 48",
+				"pos": "-5 8.0 -49",
 				"axis": "0 1 0",
-				"angle": 220
+				"angle": 40
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/ella/ella.skeleton"
@@ -196,8 +196,8 @@
 						"mask": [
 							"enemy",
 							"mechanism"
-						],
-						"bone": "Bip001 Pelvis"
+						]
+						
 					},
 					{
 						"name": "release_power_big",
@@ -209,8 +209,8 @@
 						"mask": [
 							"enemy",
 							"mechanism"
-						],
-						"bone": "Bip001 Pelvis"
+						]
+						
 					}
 				]
 			}
@@ -219,7 +219,10 @@
 	{
 		"entity": {
 			"name": "player_camera",
-			"transform": {},
+			"transform": {
+				"axis": "0 1 0",
+				"angle": 40
+			},
 			"camera": {
 				"fov": 80,
 				"z_near": 0.1,

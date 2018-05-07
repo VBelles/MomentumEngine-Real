@@ -67,6 +67,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
 	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
 	DECL_MSG(TCompPlayerModel, TMsgRespawnChanged, onRespawnChanged);
+	DECL_MSG(TCompPlayerModel, TMsgPurityChange, onPurityChange);
 }
 
 void TCompPlayerModel::debugInMenu() {
@@ -537,7 +538,7 @@ void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 
 void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		//concurrentState->onHitboxEnter(msg.hitbox, msg.h_other_entity);
+		concurrentState->onHitboxEnter(msg.hitbox, msg.h_other_entity);
 	}
 	baseState->onHitboxEnter(msg.hitbox, msg.h_other_entity);
 }
@@ -554,6 +555,10 @@ void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 
 void TCompPlayerModel::onRespawnChanged(const TMsgRespawnChanged& msg) {
 	setRespawnPosition(msg.respawnPosition);
+}
+
+void TCompPlayerModel::onPurityChange(const TMsgPurityChange& msg){
+	getController()->invalidateCache(); //De esta forma no se queda sobre/en colliders estaticos al cambiar de pureza
 }
 
 TCompTransform* TCompPlayerModel::getTransform() {

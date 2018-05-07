@@ -2,6 +2,144 @@
   {
     "entity":
     {
+      "name": "ms2_camera_begginning",
+      "transform":
+      {
+        "pos": "-33.1273 7.54784 -75.4926",
+        "rotation": "0.211309 -0.293578 -0.046846 -0.93111"
+      },
+      "camera":
+      {
+        "fov": 80.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_chrysalis07",
+      "transform":
+      {
+        "pos": "-33.6279 27.3333 -73.7376",
+        "rotation": "0.167731 -0.254887 -0.0449433 -0.951251"
+      },
+      "camera":
+      {
+        "fov": 60.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_chrysalis05",
+      "transform":
+      {
+        "pos": "168.943 26.5311 -0.635994",
+        "rotation": "-0.0308435 0.706434 0.0308433 -0.706434"
+      },
+      "camera":
+      {
+        "fov": 69.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_chrysalis06",
+      "transform":
+      {
+        "pos": "-76.5285 47.3424 -22.7665",
+        "rotation": "-0.541732 0.0 0.0 -0.840551"
+      },
+      "camera":
+      {
+        "fov": 60.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_chrysalis08",
+      "transform":
+      {
+        "pos": "35.9159 39.5888 123.79",
+        "rotation": "-0.232387 0.695824 0.033605 -0.678746"
+      },
+      "camera":
+      {
+        "fov": 70.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_altar",
+      "transform":
+      {
+        "pos": "22.8942 86.9443 -1.5063",
+        "rotation": "0.0 -0.5 0.0 -0.866025"
+      },
+      "camera":
+      {
+        "fov": 80.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_camera_castle_side",
       "transform":
       {

@@ -120,7 +120,7 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 }
 
 // Esta función está caduca, la mantengo para que funcionen cosas viejas.
-void TCompRender::setMesh(std::string meshName, std::string materialName) {
+/*void TCompRender::setMesh(std::string meshName, std::string materialName) {
 	meshes.clear(); // !!! Asumo mesh única.
 	mesh = Resources.get(meshName)->as<CRenderMesh>();
 	if (materialName == "") {
@@ -134,7 +134,7 @@ void TCompRender::setMesh(std::string meshName, std::string materialName) {
 	CMeshWithMaterials meshWithMat{ true, mesh, materials };
 	meshes.push_back(meshWithMat);
 	refreshMeshesInRenderManager();
-}
+}*/
 
 void TCompRender::setAllMaterials(std::string materialName) {
 	for (CMeshWithMaterials &m : meshes) {
