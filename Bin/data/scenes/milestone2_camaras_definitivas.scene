@@ -34,7 +34,7 @@
       },
       "camera":
       {
-        "fov": 80.0
+        "fov": 70.0
       },
       "fixed_camera":
       {
@@ -136,7 +136,7 @@
         "distanceToCamera": 10,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "18 6"
+        "centeringCameraSpeed": "5 2"
       }
     }
   },
