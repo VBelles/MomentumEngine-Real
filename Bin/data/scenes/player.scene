@@ -190,17 +190,27 @@
 						"name": "release_power_small",
 						"shape": "sphere",
 						"radius": 4.0,
-						"group": ["player"],
-						"mask": ["enemy"],
-						"bone": "Bip001 Pelvis"
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy",
+							"mechanism"
+						]
+						
 					},
 					{
 						"name": "release_power_big",
 						"shape": "sphere",
 						"radius": 7.0,
-						"group": ["player"],
-						"mask": ["enemy"],
-						"bone": "Bip001 Pelvis"
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy",
+							"mechanism"
+						]
+						
 					}
 				]
 			}

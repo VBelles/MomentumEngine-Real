@@ -18,6 +18,7 @@ void TCompMechanism::load(const json& j, TEntityParseContext& ctx) {
     deactivationTime = j.value("deactivationTime", 0.f);
 	isResettable = j.value("isResettable", true);
 	reactivationTime = j.value("reactivationTime", 0.f);
+	mechanismSystemsNames.clear();
 	if(j.count("systems")) {
 		auto& systems = j["systems"];
 		assert(systems.is_array());
@@ -31,6 +32,7 @@ void TCompMechanism::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompMechanism::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
+	mechanismSystems.clear();
 	for (auto& systemName : mechanismSystemsNames) {
 		mechanismSystems.push_back(getEntityByName(systemName));
 	}
@@ -51,6 +53,8 @@ void TCompMechanism::update(float dt) {
 
 void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 	if (msg.info.activatesMechanism) {
+        dbg("Mechanism activated\n");
+
 		if (!isActivated) {
 			if (reactivationTimer.elapsed() >= reactivationTime) {
 				deactivationTimer.reset();
