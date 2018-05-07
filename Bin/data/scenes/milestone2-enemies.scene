@@ -247,8 +247,8 @@
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform":
       {
-        "pos": "114.555 40.256 20.0573",
-        "lookat": "-1.0 40.256 -1.0"
+        "pos": "117.56 52.8245 -12.2558",
+        "lookat": "-1.0 52.8245 -1.0"
       }
     }
   },
@@ -259,8 +259,8 @@
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform":
       {
-        "pos": "114.555 35.5053 20.0573",
-        "lookat": "-1.0 35.5053 -1.0"
+        "pos": "117.56 43.9153 -12.2558",
+        "lookat": "-1.0 43.9153 -1.0"
       }
     }
   },
@@ -271,8 +271,8 @@
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform":
       {
-        "pos": "114.555 31.0825 20.0573",
-        "lookat": "-1.0 31.0825 -1.0"
+        "pos": "117.56 38.2784 -12.2558",
+        "lookat": "-1.0 38.2784 -1.0"
       }
     }
   },
@@ -283,8 +283,8 @@
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform":
       {
-        "pos": "114.555 26.6473 20.0573",
-        "lookat": "-1.0 26.6473 -1.0"
+        "pos": "117.56 28.5802 -12.2558",
+        "lookat": "-1.0 28.5802 -1.0"
       }
     }
   },
@@ -295,8 +295,8 @@
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform":
       {
-        "pos": "114.555 13.3241 20.0573",
-        "lookat": "-1.0 13.3241 -1.0"
+        "pos": "117.56 22.2982 -12.2558",
+        "lookat": "-1.0 22.2982 -1.0"
       }
     }
   },

@@ -3,6 +3,132 @@
   {
     "entity":
     {
+      "name": "ms2_Box253mesh002",
+      "transform":
+      {
+        "pos": "119.053 20.5238 -4.93259",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box253mesh002.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_Box253mesh001",
+      "transform":
+      {
+        "pos": "119.053 12.9563 -0.754669",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_Box253mesh001.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low008",
+      "transform":
+      {
+        "pos": "111.355 52.3313 -22.4123",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low008.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_murodecargaCorto",
+      "transform":
+      {
+        "pos": "113.996 28.6929 -6.03148",
+        "rotation": "0.0 -0.173648 0.0 -0.984808"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_murodecargaCorto.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_murodecarga009",
+      "transform":
+      {
+        "pos": "113.115 9.03092 -14.9449",
+        "rotation": "0.0 -0.819152 0.0 -0.573576"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_murodecarga009.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_murodecarga008",
+      "transform":
+      {
+        "pos": "105.86 4.32899 -26.7841",
+        "rotation": "0.0 -0.965926 0.0 -0.258819"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_murodecarga008.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_wall",
       "transform":
       {
@@ -5326,153 +5452,6 @@
   {
     "entity":
     {
-      "name": "escalera014",
-      "transform":
-      {
-        "pos": "-126.659 2.19298 52.0123",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera014.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera013",
-      "transform":
-      {
-        "pos": "-126.576 2.35182 52.8812",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera013.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera012",
-      "transform":
-      {
-        "pos": "-127.521 2.51594 51.2298",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera012.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera011",
-      "transform":
-      {
-        "pos": "-123.029 2.19298 52.3703",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera011.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera010",
-      "transform":
-      {
-        "pos": "-124.953 2.51594 49.7472",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera010.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera009",
-      "transform":
-      {
-        "pos": "-124.091 2.19298 50.5297",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera009.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera008",
-      "transform":
-      {
-        "pos": "-124.007 2.37858 51.3992",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera008.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "columna005",
       "transform":
       {
@@ -5483,578 +5462,6 @@
       [
         {
           "mesh": "data/meshes/columna005.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna3",
-      "transform":
-      {
-        "pos": "-108.679 3.66691 75.1093",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna3.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baldosa",
-      "transform":
-      {
-        "pos": "-134.972 2.23976 28.9876",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/baldosa.mesh",
-          "materials":
-          [
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "muro3",
-      "transform":
-      {
-        "pos": "-152.107 2.02541 0.27433",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/muro3.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "muro2",
-      "transform":
-      {
-        "pos": "-149.443 2.76899 4.88733",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/muro2.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "muro1",
-      "transform":
-      {
-        "pos": "-146.991 2.76899 9.13581",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/muro1.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna2",
-      "transform":
-      {
-        "pos": "-110.451 3.66691 72.039",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna2.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera5",
-      "transform":
-      {
-        "pos": "-154.846 5.80073 56.2416",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera5.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera7",
-      "transform":
-      {
-        "pos": "-147.955 3.21712 62.5016",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera7.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera6",
-      "transform":
-      {
-        "pos": "-147.285 4.48779 69.453",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera6.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "colCurvaRight001",
-      "transform":
-      {
-        "pos": "-114.489 4.07239 65.6704",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/colCurvaRight001.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "colCurvaRightBroken001",
-      "transform":
-      {
-        "pos": "-119.206 4.07239 57.5",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/colCurvaRightBroken001.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "altar",
-      "transform":
-      {
-        "pos": "-120.285 2.30288 54.9142",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/altar.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera4",
-      "transform":
-      {
-        "pos": "-130.678 3.21712 67.4385",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera4.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "suelo3",
-      "transform":
-      {
-        "pos": "-140.741 1.78651 19.7479",
-        "rotation": "0.0 -0.965926 0.0 0.258819"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo3.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "suelo2",
-      "transform":
-      {
-        "pos": "-137.115 1.78305 25.7361",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo2.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "suelo1",
-      "transform":
-      {
-        "pos": "-133.604 1.86413 32.1565",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo1.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "megaarco2",
-      "transform":
-      {
-        "pos": "-130.733 5.20391 37.37",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/megaarco2.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "megaarco1",
-      "transform":
-      {
-        "pos": "-128.067 5.20391 41.9875",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/megaarco1.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna4",
-      "transform":
-      {
-        "pos": "-106.733 3.6243 78.4007",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna4.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "megaarco0",
-      "transform":
-      {
-        "pos": "-125.401 5.20391 46.605",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/megaarco0.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "fuente",
-      "transform":
-      {
-        "pos": "-144.308 3.00328 13.9917",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/fuente.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "colCurvaLeft001",
-      "transform":
-      {
-        "pos": "-116.459 4.07239 62.2376",
-        "rotation": "0.0 -0.866025 0.0 -0.5"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/colCurvaLeft001.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera3",
-      "transform":
-      {
-        "pos": "-146.069 5.80073 46.4538",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera3.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera1",
-      "transform":
-      {
-        "pos": "-138.506 4.70186 59.6697",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera1.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera2",
-      "transform":
-      {
-        "pos": "-139.179 3.21712 52.7137",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalera2.mesh",
-          "materials":
-          [
-            "data/materials/liso.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna1",
-      "transform":
-      {
-        "pos": "-112.138 3.66691 69.1172",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna1.mesh",
           "materials":
           [
             "data/materials/liso.material",
@@ -6327,7 +5734,7 @@
       "name": "ms2_murodecarga007",
       "transform":
       {
-        "pos": "114.802 5.53603 14.3582",
+        "pos": "117.958 10.4388 14.2054",
         "rotation": "0.0 -0.737277 0.0 -0.67559"
       },
       "render":
@@ -6336,90 +5743,7 @@
           "mesh": "data/meshes/ms2_murodecarga007.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_murodecarga006",
-      "transform":
-      {
-        "pos": "110.607 5.53603 -16.3103",
-        "rotation": "0.0 -0.819152 0.0 -0.573576"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_murodecarga006.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_murodecarga005",
-      "transform":
-      {
-        "pos": "115.542 5.53603 32.9495",
-        "rotation": "0.0 -0.67559 0.0 -0.737277"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_murodecarga005.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_murodecarga004",
-      "transform":
-      {
-        "pos": "105.82 4.13521 -26.7074",
-        "rotation": "0.0 -0.965926 0.0 -0.258819"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_murodecarga004.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
