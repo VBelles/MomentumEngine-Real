@@ -8,10 +8,13 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/comp_camera.h"
+#include "components/comp_collider.h"
 
 
 
 void ReleasePowerGroundActionState::update(float delta) {
+	PxExtendedVec3 cctPos = getCollider()->controller->getPosition();
+	getBlurRadial()->setCenterInWorldCoordinates(VEC3(cctPos.x, cctPos.y, cctPos.z));
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		if (!isChangingBaseState) {
