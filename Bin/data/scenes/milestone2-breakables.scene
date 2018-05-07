@@ -1,4 +1,46 @@
 [
+  { "entity": { "name": "breakablesDummy" } },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable011mesh",
+      "transform":
+      {
+        "pos": "57.667 21.1252 111.885",
+        "rotation": "0.0 0.697293 0.0 -0.716787"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable011mesh.mesh",
+          "materials":
+          [
+            "data/materials/wood.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material",
+            "data/materials/Rocas dark grey.material",
+            "data/materials/Fieldstone.material",
+            "data/materials/Piedras.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "7.0 9.0 0.5",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
   {
     "entity":
     {
@@ -379,7 +421,7 @@
           "mesh": "data/meshes/ms2_breakable002mesh.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/Fieldstone.material"
           ]
         }
       ],

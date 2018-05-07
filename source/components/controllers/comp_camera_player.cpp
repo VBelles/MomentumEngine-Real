@@ -319,3 +319,8 @@ void TCompCameraPlayer::resetSuggested() {
 	isCenteringCameraForced = false;
 	centeringCamera = false;
 }
+
+void TCompCameraPlayer::lockCameraInput(bool isLocked) {
+    isMovementLocked = isLocked;
+    centeringCamera = false; //Avoid bugs
+}

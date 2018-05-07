@@ -1,4 +1,764 @@
 [
+  { "entity": { "name": "0Dummy" } },
+  {
+    "entity":
+    {
+      "name": "plataforma_puraSI",
+      "transform":
+      {
+        "pos": "0.207995 1.211 -4.00275",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_puraSI.mesh",
+          "materials":
+          [
+            "data/materials/pure.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "1.5 0.35 1.7",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_puraNO",
+      "transform":
+      {
+        "pos": "0.207995 1.211 -0.0351406",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_puraNO.mesh",
+          "materials":
+          [
+            "data/materials/NOpure.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "1.5 0.35 1.7",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low007",
+      "transform":
+      {
+        "pos": "-12.5857 5.70696 3.35395",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low007.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escalera018",
+      "transform":
+      {
+        "pos": "-80.9903 28.5573 65.0183",
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/escalera018.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low006",
+      "transform":
+      {
+        "pos": "-21.2966 30.2726 93.9804",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low006.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low007",
+      "transform":
+      {
+        "pos": "-36.0292 36.1981 18.6607",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low007.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low013",
+      "transform":
+      {
+        "pos": "-4.5064 55.1451 5.54192",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low013.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low006",
+      "transform":
+      {
+        "pos": "-6.9427 32.9704 -51.1926",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low006.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "suelo079",
+      "transform":
+      {
+        "pos": "-29.0431 33.6683 -58.9318",
+        "rotation": "0.0 -0.965926 0.0 -0.258819"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo079.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material",
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "suelo078",
+      "transform":
+      {
+        "pos": "-34.5248 33.6683 -68.6048",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo078.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material",
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_039",
+      "transform":
+      {
+        "pos": "0.366939 1.11302 101.575",
+        "rotation": "0.0 -0.953717 0.0 0.300706"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_039.mesh",
+          "materials":
+          [
+            "data/materials/monte06.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low011",
+      "transform":
+      {
+        "pos": "7.53961 36.9489 -60.7557",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low011.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_025",
+      "transform":
+      {
+        "pos": "104.199 36.6755 51.7757",
+        "rotation": "0.0 -0.883689 0.0 -0.468074"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_025.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_minimonte_023",
+      "transform":
+      {
+        "pos": "93.8276 33.2781 60.3374",
+        "rotation": "0.0 -0.883689 0.0 -0.468074"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_minimonte_023.mesh",
+          "materials":
+          [
+            "data/materials/balcon03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low010",
+      "transform":
+      {
+        "pos": "44.6746 66.5493 3.4883",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low010.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low008",
+      "transform":
+      {
+        "pos": "47.6815 35.0968 -15.5559",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low008.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low006",
+      "transform":
+      {
+        "pos": "63.7328 23.1178 24.989",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low006.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low004",
+      "transform":
+      {
+        "pos": "71.0395 51.8926 30.89",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low004.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low002",
+      "transform":
+      {
+        "pos": "-58.7408 25.0609 68.5059",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low002.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low001",
+      "transform":
+      {
+        "pos": "57.2029 19.1047 -20.5494",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low001.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low005",
+      "transform":
+      {
+        "pos": "37.1469 35.5893 128.616",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low005.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low004",
+      "transform":
+      {
+        "pos": "60.4537 19.9998 58.0524",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low004.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low005",
+      "transform":
+      {
+        "pos": "0.864579 8.55057 63.7678",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low005.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low004",
+      "transform":
+      {
+        "pos": "-1.21487 10.7475 67.5747",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low004.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low003",
+      "transform":
+      {
+        "pos": "3.86417 14.2669 66.9933",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low003.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low002",
+      "transform":
+      {
+        "pos": "9.81083 14.8149 67.5045",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low002.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low001",
+      "transform":
+      {
+        "pos": "7.44897 17.3144 71.609",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low001.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low003",
+      "transform":
+      {
+        "pos": "11.9961 19.584 71.243",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low003.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low002",
+      "transform":
+      {
+        "pos": "-5.29711 4.39379 64.7187",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low002.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escultura_head",
+      "transform":
+      {
+        "pos": "59.4971 0.659151 37.9434",
+        "rotation": "0.0616284 0.704416 0.0616284 -0.704416"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/escultura_head.mesh",
+          "materials":
+          [
+            "data/materials/escultura.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "IMPORT_monte_038",
+      "transform":
+      {
+        "pos": "76.1102 -1.68544 -2.46246",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/IMPORT_monte_038.mesh",
+          "materials":
+          [
+            "data/materials/monte07.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escultura_gigante",
+      "transform":
+      {
+        "pos": "69.477 27.9062 4.77376",
+        "rotation": "0.0616284 0.704416 0.0616284 -0.704416"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/escultura_gigante.mesh",
+          "materials":
+          [
+            "data/materials/escultura.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa3_low",
+      "transform":
+      {
+        "pos": "-36.3952 20.8481 99.1168",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa3_low.mesh",
+          "materials":
+          [
+            "data/materials/plataforma3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa2_low",
+      "transform":
+      {
+        "pos": "-46.3314 25.0936 83.8612",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa2_low.mesh",
+          "materials":
+          [
+            "data/materials/plataforma2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_rocosa1_low",
+      "transform":
+      {
+        "pos": "-28.4619 9.05296 2.47949",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low.mesh",
+          "materials":
+          [
+            "data/materials/plataforma1.material"
+          ]
+        }
+      ]
+    }
+  },
   {
     "entity":
     {
@@ -187,6 +947,29 @@
       [
         {
           "mesh": "data/meshes/megaarco124.mesh",
+          "materials":
+          [
+            "data/materials/liso.material",
+            "data/materials/cenefas.material",
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "megaarco123",
+      "transform":
+      {
+        "pos": "37.5258 22.8858 -63.3801",
+        "rotation": "-0.696364 -0.541675 -0.122788 -0.454519"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/megaarco123.mesh",
           "materials":
           [
             "data/materials/liso.material",
@@ -606,7 +1389,7 @@
       "name": "IMPORT_minimonte_004",
       "transform":
       {
-        "pos": "18.0286 25.2407 -68.5817",
+        "pos": "19.1767 23.7585 -69.7292",
         "rotation": "0.0 -0.800222 0.0 -0.599704"
       },
       "render":
@@ -951,12 +1734,7 @@
           "mesh": "data/meshes/ms2_Box058.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -977,35 +1755,7 @@
           "mesh": "data/meshes/ms2_Box057.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "suelo076",
-      "transform":
-      {
-        "pos": "-34.4431 33.7512 -68.3637",
-        "rotation": "0.0 0.258819 0.0 -0.965926"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo076.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -1336,54 +2086,10 @@
   {
     "entity":
     {
-      "name": "suelo061",
-      "transform":
-      {
-        "pos": "-29.1017 33.7512 -59.1499",
-        "rotation": "0.0 0.258819 0.0 -0.965926"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/suelo061.mesh",
-          "materials":
-          [
-            "data/materials/liso.material",
-            "data/materials/cenefas.material",
-            "data/materials/baldosas.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "andrea_big_mountain",
-      "transform":
-      {
-        "pos": "68.2821 5.53603 10.7216",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andrea_big_mountain.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "altar001",
       "transform":
       {
-        "pos": "46.0856 71.6404 3.32648",
+        "pos": "45.1027 71.6404 3.32648",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -2661,11 +3367,32 @@
   {
     "entity":
     {
+      "name": "muro042",
+      "transform":
+      {
+        "pos": "41.6226 34.5525 81.3159",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muro042.mesh",
+          "materials":
+          [
+            "data/materials/liso.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "muro041",
       "transform":
       {
-        "pos": "58.9147 35.9288 102.34",
-        "rotation": "0.0 0.34202 0.0 -0.939693"
+        "pos": "57.8138 35.9288 101.459",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
       },
       "render":
       [
@@ -2686,8 +3413,8 @@
       "name": "muro040",
       "transform":
       {
-        "pos": "49.5927 35.9288 84.988",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "47.0149 35.9288 84.9861",
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -2708,8 +3435,8 @@
       "name": "muro039",
       "transform":
       {
-        "pos": "53.593 35.9288 90.7135",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "51.4991 35.9288 90.3412",
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -2730,8 +3457,8 @@
       "name": "muro038",
       "transform":
       {
-        "pos": "57.598 35.9288 96.4353",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "55.9874 35.9288 95.6921",
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
       },
       "render":
       [
@@ -2928,8 +3655,8 @@
       "name": "muro029",
       "transform":
       {
-        "pos": "58.8681 30.7031 102.355",
-        "rotation": "0.0 -0.939693 0.0 -0.34202"
+        "pos": "57.7687 30.7031 101.479",
+        "rotation": "0.0 -0.953717 0.0 -0.300706"
       },
       "render":
       [
@@ -2950,8 +3677,8 @@
       "name": "muro028",
       "transform":
       {
-        "pos": "44.5869 30.7031 80.8403",
-        "rotation": "0.0 -0.953717 0.0 0.300706"
+        "pos": "41.6667 30.7031 81.2904",
+        "rotation": "0.0 -0.939693 0.0 0.34202"
       },
       "render":
       [
@@ -2972,8 +3699,8 @@
       "name": "muro027",
       "transform":
       {
-        "pos": "49.5477 30.7031 85.0023",
-        "rotation": "0.0 -0.999048 0.0 0.0436194"
+        "pos": "46.9713 30.7031 85.0043",
+        "rotation": "0.0 -0.996195 0.0 0.0871558"
       },
       "render":
       [
@@ -2994,8 +3721,8 @@
       "name": "muro026",
       "transform":
       {
-        "pos": "53.5578 30.7031 90.723",
-        "rotation": "0.0 -0.999048 0.0 0.0436194"
+        "pos": "51.4648 30.7031 90.3537",
+        "rotation": "0.0 -0.996195 0.0 0.0871558"
       },
       "render":
       [
@@ -3016,8 +3743,8 @@
       "name": "muro025",
       "transform":
       {
-        "pos": "57.5648 30.7031 96.4438",
-        "rotation": "0.0 -0.999048 0.0 0.0436194"
+        "pos": "55.9551 30.7031 95.7035",
+        "rotation": "0.0 -0.996195 0.0 0.0871558"
       },
       "render":
       [
@@ -3302,7 +4029,7 @@
       "name": "muro014",
       "transform":
       {
-        "pos": "15.5952 29.3034 90.8181",
+        "pos": "16.7229 29.2148 91.8113",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -3324,8 +4051,8 @@
       "name": "muro013",
       "transform":
       {
-        "pos": "38.4793 30.7047 77.6544",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+        "pos": "35.3046 30.7047 78.649",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
       },
       "render":
       [
@@ -3368,7 +4095,7 @@
       "name": "muro011",
       "transform":
       {
-        "pos": "-5.40578 8.83094 -36.3378",
+        "pos": "-5.40578 8.34226 -36.3378",
         "rotation": "0.0 -0.999048 0.0 0.0436193"
       },
       "render":
@@ -3390,7 +4117,7 @@
       "name": "muro010",
       "transform":
       {
-        "pos": "-6.83925 9.57616 -38.2265",
+        "pos": "-6.83925 9.08748 -38.2265",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       },
       "render":
@@ -3412,7 +4139,7 @@
       "name": "muro009",
       "transform":
       {
-        "pos": "4.82629 9.57452 -45.5821",
+        "pos": "4.82629 9.02145 -45.5821",
         "rotation": "0.0 -0.0436193 0.0 -0.999048"
       },
       "render":
@@ -3434,7 +4161,7 @@
       "name": "muro008",
       "transform":
       {
-        "pos": "6.9312 9.57452 -44.4758",
+        "pos": "6.9312 9.02145 -44.4758",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       },
       "render":
@@ -5393,12 +6120,7 @@
           "mesh": "data/meshes/ms2_Box254mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5419,12 +6141,7 @@
           "mesh": "data/meshes/ms2_Box250mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5445,12 +6162,7 @@
           "mesh": "data/meshes/ms2_Box251mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5471,12 +6183,7 @@
           "mesh": "data/meshes/ms2_Box249mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5497,12 +6204,7 @@
           "mesh": "data/meshes/ms2_Box248mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5523,12 +6225,7 @@
           "mesh": "data/meshes/ms2_Box252mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5549,12 +6246,7 @@
           "mesh": "data/meshes/ms2_Box253mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5575,12 +6267,7 @@
           "mesh": "data/meshes/ms2_Box245mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5601,12 +6288,7 @@
           "mesh": "data/meshes/ms2_Box241mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5627,12 +6309,7 @@
           "mesh": "data/meshes/ms2_Box240mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5653,116 +6330,7 @@
           "mesh": "data/meshes/ms2_Box239mesh.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna012",
-      "transform":
-      {
-        "pos": "61.4091 16.9796 58.0957",
-        "rotation": "0.0 -0.67559 0.0 -0.737277"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna012.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma018",
-      "transform":
-      {
-        "pos": "71.8297 15.0782 23.2807",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma018.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma017",
-      "transform":
-      {
-        "pos": "79.8526 52.3832 29.4055",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma017.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma016",
-      "transform":
-      {
-        "pos": "56.774 20.9638 -20.604",
-        "rotation": "0.0 -0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma016.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -5781,84 +6349,6 @@
       [
         {
           "mesh": "data/meshes/ms2_plataforma015.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma014",
-      "transform":
-      {
-        "pos": "69.6908 29.3395 -7.04752",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma014.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma013",
-      "transform":
-      {
-        "pos": "45.943 66.2067 3.30037",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma013.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_paltaforma005",
-      "transform":
-      {
-        "pos": "110.344 52.4248 27.2269",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_paltaforma005.mesh",
           "materials":
           [
             "data/materials/Fieldstone.material",
@@ -5979,256 +6469,6 @@
   {
     "entity":
     {
-      "name": "ms2_esculturaGigante",
-      "transform":
-      {
-        "pos": "68.2821 5.53603 10.7216",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_esculturaGigante.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_PYRAMID001",
-      "transform":
-      {
-        "pos": "46.028 75.1427 3.3347",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_PYRAMID001.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma012",
-      "transform":
-      {
-        "pos": "0.756205 10.1778 63.8471",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma012.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma011",
-      "transform":
-      {
-        "pos": "-1.29826 12.3657 67.7453",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma011.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma010",
-      "transform":
-      {
-        "pos": "3.65356 15.9368 66.93",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma010.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma009",
-      "transform":
-      {
-        "pos": "9.74496 16.4662 67.5217",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma009.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataforma008",
-      "transform":
-      {
-        "pos": "7.3195 18.8771 71.7151",
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataforma008.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna011",
-      "transform":
-      {
-        "pos": "12.0876 18.8944 71.0677",
-        "rotation": "0.0 -0.130526 0.0 -0.991445"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna011.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna010",
-      "transform":
-      {
-        "pos": "37.1528 34.7912 128.492",
-        "rotation": "0.0 -0.130526 0.0 -0.991445"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna010.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna009",
-      "transform":
-      {
-        "pos": "-5.27703 3.43304 64.8362",
-        "rotation": "0.0 -0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna009.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms2_Box207",
       "transform":
       {
@@ -6241,12 +6481,7 @@
           "mesh": "data/meshes/ms2_Box207.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6267,12 +6502,7 @@
           "mesh": "data/meshes/ms2_Box205.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6293,12 +6523,7 @@
           "mesh": "data/meshes/ms2_Box204.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6319,12 +6544,7 @@
           "mesh": "data/meshes/ms2_Box193.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6345,12 +6565,7 @@
           "mesh": "data/meshes/ms2_Box182.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6371,12 +6586,7 @@
           "mesh": "data/meshes/ms2_Box180.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6397,12 +6607,7 @@
           "mesh": "data/meshes/ms2_Box179.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6423,12 +6628,7 @@
           "mesh": "data/meshes/ms2_Box178.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6449,12 +6649,7 @@
           "mesh": "data/meshes/ms2_Box174.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6475,12 +6670,7 @@
           "mesh": "data/meshes/ms2_Box173.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6501,12 +6691,7 @@
           "mesh": "data/meshes/ms2_Box153.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6527,12 +6712,7 @@
           "mesh": "data/meshes/ms2_Box152.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6553,12 +6733,7 @@
           "mesh": "data/meshes/ms2_Box151.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6579,12 +6754,7 @@
           "mesh": "data/meshes/ms2_Box150.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]
@@ -6605,38 +6775,7 @@
           "mesh": "data/meshes/ms2_Box133.mesh",
           "materials":
           [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms2_plataformacolumna2",
-      "transform":
-      {
-        "pos": "-12.9936 5.2752 3.87826",
-        "rotation": "0.0225575 0.257834 0.0841859 -0.96225"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms2_plataformacolumna2.mesh",
-          "materials":
-          [
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Fieldstone.material"
+            "data/materials/liso.material"
           ]
         }
       ]

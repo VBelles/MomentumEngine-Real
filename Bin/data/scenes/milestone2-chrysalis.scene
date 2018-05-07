@@ -1,8 +1,21 @@
 [
+  { "entity": { "name": "chrysalisDummy" } },
   {
     "entity":
     {
-      "name": "ms2_chrysalis009",
+      "name": "ms2_chrysalis008",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "2.00306 28.8275 127.385",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_chrysalis004",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
@@ -14,7 +27,7 @@
   {
     "entity":
     {
-      "name": "ms2_chrysalis008",
+      "name": "ms2_chrysalis005",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
@@ -38,7 +51,7 @@
   {
     "entity":
     {
-      "name": "ms2_chrysalis004",
+      "name": "ms2_chrysalis006",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {

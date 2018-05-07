@@ -1,0 +1,11 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/plataforma_rocosa3_low_DefaultMaterial_BaseColor.dds",
+    "normal": "data/textures/plataforma_rocosa3_low_DefaultMaterial_Normal.dds",
+    "metallic": "data/textures/plataforma_rocosa3_low_DefaultMaterial_Metallic.dds",
+    "roughness": "data/textures/plataforma_rocosa3_low_DefaultMaterial_Roughness.dds"
+  }
+}

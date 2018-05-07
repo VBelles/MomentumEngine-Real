@@ -71,8 +71,8 @@ bool CModuleTestAxis::start() {
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
 
-	Engine.getScripting().throwEvent(onLevelStart, "1");
-
+    Engine.getScripting().throwEvent(onGameStart,"");
+	Engine.getScripting().throwEvent(onLevelStart, "1"); 
 	return true;
 }
 

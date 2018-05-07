@@ -321,7 +321,7 @@ struct TSceneExporter (
 	),
 	
 	-- --TRANSFORM-----------------------------------------------
-	fn exportTransform obj yShift: lookAtCoord: = (
+	fn exportTransform obj yShift: lookAtCoord: noRot:false = (
 		fs.writeKey "transform"
 	
 		local max2mcv = rotateXMatrix -90
@@ -346,11 +346,13 @@ struct TSceneExporter (
 
 		fs.beginObj()
 			fs.writeKeyValue "pos" mcv_position
-			fs.writeComma()
-			if lookAtCoord == unsupplied then (
-				fs.writeKeyValue "rotation" mcv_quat
-			) else (
-				fs.writeKeyValue "lookat" lookAtCoord
+			if not noRot then (
+				fs.writeComma()
+				if lookAtCoord == unsupplied then (
+					fs.writeKeyValue "rotation" mcv_quat
+				) else (
+					fs.writeKeyValue "lookat" lookAtCoord
+				)
 			)
 		fs.endObj()
 	),
@@ -454,7 +456,7 @@ struct TSceneExporter (
 		if dyn then (
 			fs.writeComma()
 			fs.writeKeyValue "type" "dynamic"
-		) else if mov then (
+		) else if mov or obj.layer.name == "pure" then (
 			fs.writeComma()
 			fs.writeKeyValue "type" "kinematic"
 		)			
@@ -587,7 +589,6 @@ struct TSceneExporter (
 	fn exportPurity = (
 		fs.writeComma()
 		fs.writeKeyEmpty "purity"
-		exportStringArray "tags" #("pure")		
 	),
 		
 	-- --BREAKABLE------------------------------------------------
@@ -651,7 +652,7 @@ struct TSceneExporter (
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				exportName obj
 				fs.writeComma()
-				exportTransform obj
+				exportTransform obj noRot:true
 				fs.writeComma()
 				fs.writeKeyValue "prefab" (prefabPath + "coin.prefab")
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
@@ -756,36 +757,107 @@ struct TSceneExporter (
 		return true
 	),
 	
+	fn exportCameraTrigger obj = (
+		exportEntityCollider obj colliderGroups:#("trigger") masks:#("player") trig:true
+		fs.writeComma()
+		fs.writeKey "mixCameraTrigger"
+		fs.beginObj()
+			fs.writeKeyValue "cameraToMix" obj.parent.name
+			fs.writeComma()
+			fs.writeKeyValue "timeToMixIn" 1
+			fs.writeComma()
+			fs.writeKeyValue "timeToMixOut" 1
+			fs.writeComma()
+			fs.writeKeyValue "modifyPlayerCameraRotation" true
+		fs.endObj()
+	),
+	
+	fn exportSuggestCameraTrigger obj = (
+		exportEntityCollider obj colliderGroups:#("trigger") masks:#("player") trig:true
+		fs.writeComma()
+		fs.writeKey "suggestCameraTrigger"
+		fs.beginObj()
+			fs.writeKeyValue "cameraSuggestion" obj.parent.name
+			fs.writeComma()
+			fs.writeKeyValue "suggestYaw" false
+			fs.writeComma()
+			fs.writeKeyValue "hasOppositeYaw" false
+			fs.writeComma()
+			fs.writeKeyValue "suggestPitch" true
+			fs.writeComma()
+			fs.writeKeyValue "forceDistance" false
+			fs.writeComma()
+			local distanceToCam = distance obj.pos obj.parent.Target[3].pos
+			fs.writeKeyValue "distanceToCamera" distanceToCam
+			fs.writeComma()
+			fs.writeKeyValue "changeCenteringCamera" true
+			fs.writeComma()
+			fs.writeKeyValue "forcePositionOnEnter" true
+			fs.writeComma()
+			fs.writeKeyValue "centeringCameraSpeed" "18 9"
+		fs.endObj()
+	),
+	
 	-- --CAMERA--------------------------------------------------
 	fn exportCamera obj nValidObjs = (
 		local objClass = classOf obj
-		if objClass != TargetCamera and
-				objClass != FreeCamera  then (
-			if objClass != Targetobject then format "Warning: invalid object % of class % in cameras layer, not exported.\n" obj.name objClass
-			return false
-		)
+		format "name: %\n" obj.name
+		if objClass == TargetCamera or
+				objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
 			fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
+				fs.writeKey "entity"
+				fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+					exportName obj
+					fs.writeComma()
+					if objClass == TargetCamera then (
+						exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+					) else exportTransform obj
+					
+					fs.writeComma()
+					fs.writeKey "camera"
+					fs.beginObj()
+						fs.writeKeyValue "fov" obj.fov
+					fs.endObj()
+					
+					fs.writeComma()
+					fs.writeKey "fixed_camera"
+					fs.beginObj()
+						fs.writeKeyValue "returnToPlayerCameraWithInput" false
+						fs.writeComma()
+						fs.writeKeyValue "modifyPlayerCameraRotation" true
+						fs.writeComma()
+						fs.writeKeyValue "timeToMixOut" 1
+						fs.writeComma()
+						fs.writeKeyValue "panningSpeed" 0
+						fs.writeComma()
+						fs.writeKeyValue "panningRadius" 3
+					fs.endObj()
+
+					-- Add child spline if it exists.
+					if hasChildLine obj then (
+						exportSpline obj
+					)
+				--format "Camera % target distance: %\n" obj.name obj.targetDistance
+				fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+			fs.endObj()
+		)
+
+		if hasChildCollider obj then (
+			local child = obj.children[1]
+			if classof child == Box then (
 				fs.writeComma()
-				if objClass == TargetCamera then (
-					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
-				) else exportTransform obj
-				
-				fs.writeComma()
-				fs.writeKey "camera"
 				fs.beginObj()
-					fs.writeKeyValue "fov" obj.fov
+					fs.writeKey "entity"
+					fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+						-- Add trigger.
+						if objClass == FreeCamera then exportCameraTrigger child
+						else exportSuggestCameraTrigger child
+					fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 				fs.endObj()
-				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
-			--format "Camera % target distance: %\n" obj.name obj.targetDistance
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+				return true
+			)
+		)
 		return true
 	),
 
@@ -995,7 +1067,7 @@ struct TSceneExporter (
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
 						
-					exportCompCollider child dyn:pure mov:(movable or rot) colliderGroups:groups
+					exportCompCollider child mov:(movable or rot) colliderGroups:groups
 					
 					if pure then exportPurity()
 					if breakable then exportBreakable()
@@ -1341,6 +1413,38 @@ TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh
 TODO: Sólo exportar mesh collider si un mesh es hijo de otro mesh o si está en capa colliders.
 TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
 	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
+TODO: Las puras ahora se tienen que exportar diferente !!! Formato:
+			{
+				"entity": {
+					  "name": "ms2_pure006mesh",
+					  "transform": {
+						"pos": "16.1086 17.1181 -42.8537",
+						"rotation": "-0.683013 0.683013 -0.183013 0.183013"
+					  },
+					  "render":  [
+						{
+						  "mesh": "data/meshes/ms2_pure006mesh.mesh",
+						  "materials":["data/materials/wood.material"],
+						  "enabled": false
+						},
+						{
+						  "mesh": "data/meshes/ms2_pure006mesh.mesh",
+						  "materials":["data/materials/ambar.material"],
+						  "enabled": false
+						}
+					  ],
+					  "collider": {
+						"shape": "box",
+						"halfExtent": "0.25 2.0 2.0",
+						"type": "kinematic",
+						"group": [ "scenario" ]
+					  },
+					  "purity": {}
+				}
+			  }
+TODO: Convertir editable poly a editable mesh automáticamente antes de exportar.
+
+NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 
 /*----------------------------------------------------------------------------------
