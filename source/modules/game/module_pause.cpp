@@ -23,9 +23,9 @@ void CModulePause::update(float delta) {
 void CModulePause::onPausePressed() {
 	pause = !pause;
 
-	Engine.getScripting().setActive(!pause);
+	EngineScripting.setActive(!pause);
 	Engine.getEntities().setActive(!pause);
-	CGameState* currentGamestate = Engine.getModules().getCurrentGameState();
+	CGameState* currentGamestate = EngineModules.getCurrentGameState();
 	for (auto& module : *currentGamestate) {
 		if (module != this) {
 			module->setActive(!pause);
@@ -48,15 +48,15 @@ void CModulePause::render() {
 			onPausePressed();
 		}
 		if (ImGui::Button("Main menu")) {
-			Engine.getScripting().setActive(true);
+			EngineScripting.setActive(true);
 			Engine.getEntities().setActive(true);
-			CGameState* currentGamestate = Engine.getModules().getCurrentGameState();
+			CGameState* currentGamestate = EngineModules.getCurrentGameState();
 			for (auto& module : *currentGamestate) {
 				if (module != this) {
 					module->setActive(true);
 				}
 			}
-			Engine.getModules().changeGameState("main_menu");
+			EngineModules.changeGameState("main_menu");
 		}
 		if (ImGui::Button("Exit game")) {
 			CApp::get().stopMainLoop = true;

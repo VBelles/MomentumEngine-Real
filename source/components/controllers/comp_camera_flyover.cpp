@@ -27,7 +27,7 @@ void TCompCameraFlyover::load(const json& j, TEntityParseContext& ctx) {
 void TCompCameraFlyover::update(float scaled_dt) {
 	// Do we have a defined key to toggle enabling this component?
 	if (_key_toggle_enabled) {
-		const Input::TButton& bt = CEngine::get().getInput().host(Input::PLAYER_1).keyboard().key(_key_toggle_enabled);
+		const Input::TButton& bt = EngineInput.host(Input::PLAYER_1).keyboard().key(_key_toggle_enabled);
 		if (bt.getsPressed())
 			_enabled = !_enabled;
 	}
@@ -38,7 +38,7 @@ void TCompCameraFlyover::update(float scaled_dt) {
 	if (!c_transform) return;
 
 	// if the game is paused, we still want full camera speed 
-	float dt = CEngine::get().getUnscaledDeltaTime();
+	float dt = Engine.getUnscaledDeltaTime();
 
 	VEC3 pos = c_transform->getPosition();
 	VEC3 front = c_transform->getFront();

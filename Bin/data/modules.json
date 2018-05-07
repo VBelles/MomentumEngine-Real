@@ -10,6 +10,8 @@
     "test_axis",
     "cameras",
     "render",
+	"gui",
+    "test_instancing",
     "scripting"
   ],
   "render": [
@@ -20,6 +22,7 @@
     "entities",
     "pause",
     "input",
+	"gui",
     "scripting"
   ]
 }

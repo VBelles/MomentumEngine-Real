@@ -193,6 +193,7 @@
     <ClCompile Include="components\player\states\base_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\WalkActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\postfx\comp_render_ao.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\comp_spikes.cpp" />
@@ -204,6 +205,8 @@
     <ClCompile Include="fsm\custom_transitions.cpp" />
     <ClCompile Include="fsm\factory.cpp" />
     <ClCompile Include="fsm\fsm.cpp" />
+    <ClCompile Include="gui\controllers\gui_main_menu_controller.cpp" />
+    <ClCompile Include="gui\effects\gui_animate_uv.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_behavior.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_hit_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_filter_shader.cpp" />
@@ -212,6 +215,12 @@
     <ClCompile Include="geometry\geometry.cpp" />
     <ClCompile Include="geometry\SimpleMath.cpp" />
     <ClCompile Include="geometry\transform.cpp" />
+    <ClCompile Include="gui\gui_parser.cpp" />
+    <ClCompile Include="gui\gui_widget.cpp" />
+    <ClCompile Include="gui\widgets\gui_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_button.cpp" />
+    <ClCompile Include="gui\widgets\gui_image.cpp" />
+    <ClCompile Include="gui\widgets\gui_text.cpp" />
     <ClCompile Include="handle\handle_def.cpp" />
     <ClCompile Include="handle\handle_manager.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -244,6 +253,7 @@
     <ClCompile Include="modules\system\module_render.cpp" />
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
+    <ClCompile Include="modules\system\module_gui.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\game\physics\basic_query_filter_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_simulation_event_callback.cpp" />
@@ -252,12 +262,14 @@
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
+    <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="render\mesh\collision_mesh.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
+    <ClCompile Include="render\mesh\mesh_instanced.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
     <ClCompile Include="render\render.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
@@ -389,6 +401,7 @@
     <ClInclude Include="components\player\states\base_states\TurnAroundActionState.h" />
     <ClInclude Include="components\player\states\base_states\WalkActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
+    <ClInclude Include="components\postfx\comp_render_ao.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="components\comp_spikes.h" />
@@ -405,6 +418,10 @@
     <ClInclude Include="fsm\state.h" />
     <ClInclude Include="fsm\transition.h" />
     <ClInclude Include="game_constants.h" />
+    <ClInclude Include="gui\controllers\gui_main_menu_controller.h" />
+    <ClInclude Include="gui\effects\gui_animate_uv.h" />
+    <ClInclude Include="gui\gui_controller.h" />
+    <ClInclude Include="gui\gui_effect.h" />
     <ClInclude Include="modules\game\physics\basic_controller_behavior.h" />
     <ClInclude Include="modules\game\physics\basic_controller_hit_callback.h" />
     <ClInclude Include="modules\game\physics\basic_filter_shader.h" />
@@ -414,6 +431,13 @@
     <ClInclude Include="geometry\interpolators.h" />
     <ClInclude Include="geometry\SimpleMath.h" />
     <ClInclude Include="geometry\transform.h" />
+    <ClInclude Include="gui\gui_params.h" />
+    <ClInclude Include="gui\gui_parser.h" />
+    <ClInclude Include="gui\gui_widget.h" />
+    <ClInclude Include="gui\widgets\gui_bar.h" />
+    <ClInclude Include="gui\widgets\gui_button.h" />
+    <ClInclude Include="gui\widgets\gui_image.h" />
+    <ClInclude Include="gui\widgets\gui_text.h" />
     <ClInclude Include="handle\handle.h" />
     <ClInclude Include="handle\handle_def.h" />
     <ClInclude Include="handle\handle_manager.h" />
@@ -456,6 +480,7 @@
     <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\game\physics\module_physics.h" />
     <ClInclude Include="modules\system\module_render.h" />
+    <ClInclude Include="modules\system\module_gui.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\game\physics\basic_query_filter_callback.h" />
     <ClInclude Include="modules\game\physics\basic_simulation_event_callback.h" />
@@ -464,6 +489,7 @@
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="modules\system\scripting\scripting_player.h" />
+    <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
@@ -471,6 +497,7 @@
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\mesh\collision_mesh.h" />
     <ClInclude Include="render\mesh\mesh.h" />
+    <ClInclude Include="render\mesh\mesh_instanced.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\render.h" />

@@ -2,12 +2,12 @@
 #include "module_gameover.h"
 
 bool CModuleGameOver::start() {
-	CEngine::get().getRender().setBackgroundColor(0.f, 0.f, 1.f, 1.f);
-	return true;
+    EngineRender.setBackgroundColor(0.f, 0.f, 1.f, 1.f);
+    return true;
 }
 
 void CModuleGameOver::update(float delta) {
-	if (isPressed(VK_ESCAPE)) {
-		CEngine::get().getModules().changeGameState("main_menu");
-	}
+    if (isPressed(VK_ESCAPE)) {
+        EngineModules.changeGameState("main_menu");
+    }
 }
