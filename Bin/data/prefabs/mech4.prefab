@@ -1,7 +1,7 @@
 [
 	{
 		"entity": {
-			"name": "mech_sys",
+			"name": "mech",
 			"transform": {
 				"pos": "0 0 0"
 			},
@@ -9,7 +9,7 @@
 				{
 					"mesh": "data/meshes/_mechPREFAB.mesh",
 					"materials": [
-						"data/materials/mec1.material"
+						"data/materials/mec4.material"
 					],
 					"color": "0 0 1 1"
 				}
@@ -18,9 +18,11 @@
 				"shape": "sphere",
 				"radius" : 0.7,
 				"is_trigger": true,
-        		"type": "dynamic",
-				"group": ["scenario"],
-				"mask": ["player"]
+        		"type": "kinematic",
+				"group": [
+					"mechanism"
+				],
+				"mask": ["all"]
 			}
 		}
 	}
