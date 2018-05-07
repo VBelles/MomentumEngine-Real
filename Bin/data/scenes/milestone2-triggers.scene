@@ -41,7 +41,7 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "20.0 32.5 35.0",
+        "halfExtent": "15.0 32.5 15.0",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -55,7 +55,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "114.24 17.4728 19.9584"
+        "respawn_position": "125.229 28.5313 3.24185"
       }
     }
   },
@@ -216,13 +216,13 @@
       "name": "ms2_OutOfBounds",
       "transform":
       {
-        "pos": "0.0 -9.0 0.0",
+        "pos": "0.0 -76.1544 0.0",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
         "shape": "box",
-        "halfExtent": "400.0 0.5 400.0",
+        "halfExtent": "1292.56 31.4117 1252.0",
         "is_trigger": true,
         "type": "dynamic",
         "group":
