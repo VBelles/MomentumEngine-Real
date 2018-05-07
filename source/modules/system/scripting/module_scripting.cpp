@@ -69,7 +69,9 @@ bool CModuleScripting::start() {
 		{ onTriggerExit, "onTriggerExit" },
 		{ onEnemyKilled, "onEnemyKilled" },
 		{ onPlayerKilled, "onPlayerKilled" },
-		{ onAltarDestroyed, "onAltarDestroyed" }
+		{ onAltarDestroyed, "onAltarDestroyed" },
+		{ onMechanismSystemActivated, "onMechanismSystemActivated" },
+		{ onMechanismSystemDeactivated, "onMechanismSystemDeactivated" }
 	};
 
 	callsFirstParamOnFunction = {
@@ -162,8 +164,11 @@ void CModuleScripting::throwEvent(LuaCall event, std::string params) {
 	if (callsFirstParamOnFunction.find(event) != callsFirstParamOnFunction.end()) {
 		int delimiterPos = params.find(",");
 		std::string firstParam = params.substr(0, delimiterPos);
-		std::string otherParams = params.substr(delimiterPos + 1);
-		call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + "_" + firstParam + ",\"" + otherParams + "\")";
+		std::string otherParams = "";
+		if (delimiterPos >= 0) {
+			otherParams = ",\"" + params.substr(delimiterPos + 1) + "\"";
+		}
+		call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + "_" + firstParam + otherParams + ")";
 	}
 	else {
 		call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + ",\"" + params + "\")";

@@ -467,7 +467,7 @@
   {
     "entity":
     {
-      "name": "ms2_mech006-appear001mesh",
+      "name": "ms2_mech006-appear001",
       "transform":
       {
         "pos": "-43.9183 -0.0726073 -50.6682",
@@ -490,7 +490,7 @@
         "type": "static",
         "group":
         [
-           "scenario"
+           "all"
         ]
       },
       "mechanism":
@@ -500,9 +500,10 @@
         "reactivationTime": 3,
         "systems":
         [
-           "ms2_mech006-appear001mesh"
+           "ms2_mech006"
         ]
-      }
+      },
+      "door" : {}
     }
   }
 ]
