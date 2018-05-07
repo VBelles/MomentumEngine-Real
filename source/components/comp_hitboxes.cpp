@@ -170,7 +170,7 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 			CHandle hitHandle = colliderHandle.getOwner();
 			if (hitbox->hits.insert(hitHandle).second) { //Inserted
 				owner->sendMsg(TMsgHitboxEnter{hitbox->name, hitHandle });
-				CEntity* entity = hitHandle;
+				//CEntity* entity = hitHandle;
 				//dbg("Name: %s\n", entity->getName());
 			}
 		}

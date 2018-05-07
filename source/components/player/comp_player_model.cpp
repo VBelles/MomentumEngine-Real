@@ -229,9 +229,11 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 		if (showVictoryDialog) {
 			//-------- WIN DIALOG --------------------------------
-			ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 255 });
-			ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - 200, ImGui::GetIO().DisplaySize.y / 4));
-			ImGui::SetNextWindowSize(ImVec2(300, 200));
+			ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 120 });
+			ImVec2 size = ImVec2(300, 200);
+			ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - size.x / 2 , 
+				100 ));
+			ImGui::SetNextWindowSize(size);
 			ImGui::Begin("victoryWindow", &showVictoryDialog, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 			ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path to the final boss!\n\n\n");
 			ImGui::TextUnformatted("You can keep exploring and see\n\nif you can collect the other two.\n");

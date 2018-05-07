@@ -126,7 +126,8 @@ void CModuleScripting::checkDelayedCalls() {
 	float currentTime = timer.elapsed();
 	for (DelayedCall dc : delayedCalls) {
 		if (currentTime >= (dc.startTime + dc.delay)) {
-			std::string call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + dc.func + ",\"" + dc.params + "\")";
+			std::string call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + dc.func + "," + dc.params + ")";
+			dbg("%s \n", call.c_str());
 			execString(call.c_str());
 			toRemove.insert(dc);
 		}
