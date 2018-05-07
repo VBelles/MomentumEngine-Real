@@ -7,193 +7,167 @@
 using namespace GUI;
 
 CModuleGUI::CModuleGUI(const std::string& name)
-	: IModule(name)
-{}
-
-bool CModuleGUI::start()
-{
-  const float width = 1920;
-  const float height = 1080;
-  _orthoCamera.setOrthographic(width, height);
-
-  _technique = Resources.get("gui.tech")->as<CRenderTechnique>();
-  _quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
-  _fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
-
-  CParser parser;
-  parser.parseFile("data/gui/test.json");
-  /*parser.parseFile("data/gui/main_menu.json");
-  parser.parseFile("data/gui/gameplay.json");
-  parser.parseFile("data/gui/game_over.json");*/
-
-  activateWidget("test");
-
-  _variables.setVariant("progress", 0.5f);
-
-  auto newGameCB = []() {
-    printf("STARTING GAME\n");
-  };
-  auto continueCB = []() {
-    printf("LOADING GAME\n");
-  };
-  auto optionsCB = []() {
-    printf("CONFIGURING\n");
-  };
-
-  CMainMenuController* mmc = new CMainMenuController();
-  mmc->registerOption("new_game", newGameCB);
-  mmc->registerOption("continue", continueCB);
-  mmc->registerOption("options", optionsCB);
-  mmc->setCurrentOption(0);
-  registerController(mmc);
-
-  return true;
+	: IModule(name) {
 }
 
-bool CModuleGUI::stop()
-{
-  return true;
+bool CModuleGUI::start() {
+	const float width = 1920;
+	const float height = 1080;
+	_orthoCamera.setOrthographic(width, height, -1.f, 1.f);
+	_orthoCamera.isGuiCamera = true;
+
+	_technique = Resources.get("gui.tech")->as<CRenderTechnique>();
+	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+	_fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
+
+	//CParser parser;
+	//parser.parseFile("data/gui/test.json");
+	/*parser.parseFile("data/gui/main_menu.json");
+	parser.parseFile("data/gui/gameplay.json");
+	parser.parseFile("data/gui/game_over.json");*/
+
+	//activateWidget("test");
+
+	//_variables.setVariant("progress", 0.5f);
+
+	//auto newGameCB = []() {
+	//	printf("STARTING GAME\n");
+	//};
+	//auto continueCB = []() {
+	//	printf("LOADING GAME\n");
+	//};
+	//auto optionsCB = []() {
+	//	printf("CONFIGURING\n");
+	//};
+
+	//CMainMenuController* mmc = new CMainMenuController();
+	//mmc->registerOption("new_game", newGameCB);
+	//mmc->registerOption("continue", continueCB);
+	//mmc->registerOption("options", optionsCB);
+	//mmc->setCurrentOption(0);
+	//registerController(mmc);
+
+	return true;
 }
 
-void CModuleGUI::update(float delta)
-{
-  for (auto& wdgt : _activeWidgets)
-  {
-    wdgt->updateAll(delta);
-  }
-  for (auto& controller : _controllers)
-  {
-    controller->update(delta);
-  }
-
-  // change bar value
-  float value = _variables.getFloat("progress");
-  if (EngineInput[VK_LEFT].isPressed())
-  {
-    value = clamp(value - 0.5f * delta, 0.f, 1.f);
-  }
-  if (EngineInput[VK_RIGHT].isPressed())
-  {
-    value = clamp(value + 0.5f * delta, 0.f, 1.f);
-  }
-  _variables.setVariant("progress", value);
+bool CModuleGUI::stop() {
+	return true;
 }
 
-void CModuleGUI::renderGUI()
-{
-  for (auto& wdgt : _activeWidgets)
-  {
-    wdgt->renderAll();
-  }
+void CModuleGUI::update(float delta) {
+	for (auto& wdgt : _activeWidgets) {
+		wdgt->updateAll(delta);
+	}
+	for (auto& controller : _controllers) {
+		controller->update(delta);
+	}
+
+	//// change bar value
+	//float value = _variables.getFloat("progress");
+	//if (EngineInput[VK_LEFT].isPressed()) {
+	//	value = clamp(value - 0.5f * delta, 0.f, 1.f);
+	//}
+	//if (EngineInput[VK_RIGHT].isPressed()) {
+	//	value = clamp(value + 0.5f * delta, 0.f, 1.f);
+	//}
+	//_variables.setVariant("progress", value);
 }
 
-void CModuleGUI::registerWidget(CWidget* wdgt)
-{
-  _registeredWidgets.push_back(wdgt);
+void CModuleGUI::renderGUI() {
+	for (auto& wdgt : _activeWidgets) {
+		wdgt->renderAll();
+	}
 }
 
-CWidget* CModuleGUI::getWidget(const std::string& name, bool recursive) const
-{
-  for (auto& rwdgt : _registeredWidgets)
-  {
-    if (rwdgt->getName() == name)
-    {
-      return rwdgt;
-    }
-  }
-
-  if (recursive)
-  {
-    for (auto& rwdgt : _registeredWidgets)
-    {
-      CWidget* wdgt = rwdgt->getChild(name, true);
-      if (wdgt)
-      {
-        return wdgt;
-      }
-    }
-  }
-
-  return nullptr;
+void CModuleGUI::registerWidget(CWidget* wdgt) {
+	_registeredWidgets.push_back(wdgt);
 }
 
-void CModuleGUI::activateWidget(const std::string& name)
-{
-  CWidget* wdgt = getWidget(name);
-  if (wdgt)
-  {
-    _activeWidgets.push_back(wdgt);
-  }
+CWidget* CModuleGUI::getWidget(const std::string& name, bool recursive) const {
+	for (auto& rwdgt : _registeredWidgets) {
+		if (rwdgt->getName() == name) {
+			return rwdgt;
+		}
+	}
+
+	if (recursive) {
+		for (auto& rwdgt : _registeredWidgets) {
+			CWidget* wdgt = rwdgt->getChild(name, true);
+			if (wdgt) {
+				return wdgt;
+			}
+		}
+	}
+
+	return nullptr;
 }
 
-void CModuleGUI::registerController(GUI::CController* controller)
-{
-  auto it = std::find(_controllers.begin(), _controllers.end(), controller);
-  if (it == _controllers.end())
-  {
-    _controllers.push_back(controller);
-  }
+void CModuleGUI::activateWidget(const std::string& name) {
+	CWidget* wdgt = getWidget(name);
+	if (wdgt) {
+		_activeWidgets.push_back(wdgt);
+	}
 }
 
-void CModuleGUI::unregisterController(GUI::CController* controller)
-{
-  auto it = std::find(_controllers.begin(), _controllers.end(), controller);
-  if (it != _controllers.end())
-  {
-    _controllers.erase(it);
-  }
+void CModuleGUI::registerController(GUI::CController* controller) {
+	auto it = std::find(_controllers.begin(), _controllers.end(), controller);
+	if (it == _controllers.end()) {
+		_controllers.push_back(controller);
+	}
 }
 
-CCamera& CModuleGUI::getCamera()
-{
-  return _orthoCamera;
+void CModuleGUI::unregisterController(GUI::CController* controller) {
+	auto it = std::find(_controllers.begin(), _controllers.end(), controller);
+	if (it != _controllers.end()) {
+		_controllers.erase(it);
+	}
 }
 
-MVariants& CModuleGUI::getVariables()
-{
-  return _variables;
+CCamera& CModuleGUI::getCamera() {
+	return _orthoCamera;
 }
 
-void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color)
-{
-  assert(_technique && _quadMesh);
-
-  cb_object.obj_world = world;
-  cb_object.obj_color = VEC4(1, 1, 1, 1);
-  cb_object.updateGPU();
-
-  cb_gui.minUV = minUV;
-  cb_gui.maxUV = maxUV;
-  cb_gui.tint_color = color;
-  cb_gui.updateGPU();
-
-  _technique->activate();
-  if (texture)
-    texture->activate(TS_ALBEDO);
-
-  _quadMesh->activateAndRender();
+MVariants& CModuleGUI::getVariables() {
+	return _variables;
 }
 
-void CModuleGUI::renderText(const MAT44& world, const std::string& text, const VEC4& color)
-{
-  assert(_fontTexture);
+void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color) {
+	assert(_technique && _quadMesh);
 
-  int cellsPerRow = 8;
-  float cellSize = 1.f / 8.f;
-  char firstCharacter = ' ';
-  for (size_t i = 0; i < text.size(); ++i)
-  {
-    char c = text[i];
+	cb_object.obj_world = world;
+	cb_object.obj_color = VEC4(1, 1, 1, 1);
+	cb_object.updateGPU();
 
-    int cell = c - firstCharacter;
-    int row = cell / cellsPerRow;
-    int col = cell % cellsPerRow;
+	cb_gui.minUV = minUV;
+	cb_gui.maxUV = maxUV;
+	cb_gui.tint_color = color;
+	cb_gui.updateGPU();
 
-    VEC2 minUV = VEC2(col * cellSize, row * cellSize);
-    VEC2 maxUV = minUV + VEC2(1, 1) * cellSize;
-    VEC2 gap = i * VEC2(1, 0);
-    MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
+	_technique->activate();
+	if (texture)
+		texture->activate(TS_ALBEDO);
 
-    renderTexture(w, _fontTexture, minUV, maxUV, color);
-  }
+	_quadMesh->activateAndRender();
+}
+
+void CModuleGUI::renderText(const MAT44& world, const std::string& text, const VEC4& color) {
+	assert(_fontTexture);
+
+	int cellsPerRow = 8;
+	float cellSize = 1.f / 8.f;
+	char firstCharacter = ' ';
+	for (size_t i = 0; i < text.size(); ++i) {
+		char c = text[i];
+
+		int cell = c - firstCharacter;
+		int row = cell / cellsPerRow;
+		int col = cell % cellsPerRow;
+
+		VEC2 minUV = VEC2(col * cellSize, row * cellSize);
+		VEC2 maxUV = minUV + VEC2(1, 1) * cellSize;
+		VEC2 gap = i * VEC2(1, 0);
+		MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
+
+		renderTexture(w, _fontTexture, minUV, maxUV, color);
+	}
 }

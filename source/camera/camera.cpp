@@ -38,7 +38,7 @@ void CCamera::setPerspective(float new_fov_vertical,
                              bool isOrtographic,
                              float new_width,
                              float new_height) {
-    this->isOrtographic = isOrtographic;
+	this->isOrtographic = isOrtographic;
 
     fov_vertical = new_fov_vertical;
     z_near = new_z_near;
@@ -49,7 +49,8 @@ void CCamera::setPerspective(float new_fov_vertical,
     assert(z_far > z_near);
     aspect_ratio = (float)Render.width / (float)Render.height;
     if (isOrtographic) {
-        proj = MAT44::CreateOrthographic(new_width, new_height, new_z_near, new_z_far);
+		if (isGuiCamera) setOrthographic(new_width, new_height, z_near, z_far);
+		else proj = MAT44::CreateOrthographic(new_width, new_height, new_z_near, new_z_far);
     }
     else {
         proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, aspect_ratio, new_z_near, new_z_far);
@@ -80,12 +81,16 @@ MAT44 loadOrtho(float x_min, float x_max, float y_min, float y_max, float z_min,
     return m;
 }
 
-void CCamera::setOrthographic(float width, float height) {
+void CCamera::setOrthographic(float width, float height, float new_z_near, float new_z_far) {
     isOrtographic = true;
 
+	ortographicWidth = width;
+	ortographicHeight = height;
+
     aspect_ratio = fabsf(width / height);
-    z_far = 1.f;
-    z_near = -1.f;
+
+    z_far = new_z_far;
+    z_near = new_z_near;
 
     MAT44 custom_ortho = loadOrtho(0.f, width, height, 0.f, z_near, z_far);
     proj = custom_ortho;
