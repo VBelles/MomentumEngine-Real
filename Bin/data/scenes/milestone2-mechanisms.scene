@@ -46,12 +46,7 @@
           "mesh": "data/meshes/ms2_mech002-appear001mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -92,12 +87,7 @@
           "mesh": "data/meshes/ms2_mech002-appear002mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -138,12 +128,7 @@
           "mesh": "data/meshes/ms2_mech002-appear003mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -200,12 +185,7 @@
           "mesh": "data/meshes/ms2_mech005-appear001mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -262,12 +242,7 @@
           "mesh": "data/meshes/ms2_mech001-appear001mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -308,12 +283,7 @@
           "mesh": "data/meshes/ms2_mech001-appear002mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -354,12 +324,7 @@
           "mesh": "data/meshes/ms2_mech001-appear003mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -400,12 +365,7 @@
           "mesh": "data/meshes/ms2_mech001-appear004mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -462,12 +422,7 @@
           "mesh": "data/meshes/ms2_mech004-appear001mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],
@@ -524,12 +479,7 @@
           "mesh": "data/meshes/ms2_mech006-appear001mesh.mesh",
           "materials":
           [
-            "data/materials/wood.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material",
-            "data/materials/Rocas dark grey.material",
-            "data/materials/Fieldstone.material",
-            "data/materials/Piedras.material"
+            "data/materials/liso.material"
           ]
         }
       ],

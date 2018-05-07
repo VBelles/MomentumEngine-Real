@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "ms2_wall_col",
+      "transform":
+      {
+        "pos": "-55.544 0.0 -30.3731",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_wall_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "escalera7col2mesh002",
       "transform":
       {
@@ -5088,7 +5105,7 @@
       "name": "escalera4col009",
       "transform":
       {
-        "pos": "-66.2946 -0.186541 -12.2558",
+        "pos": "-66.0981 -0.901522 -12.4845",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "collider":
@@ -5105,7 +5122,7 @@
       "name": "escalera4col007",
       "transform":
       {
-        "pos": "-62.7361 4.66864 -18.4207",
+        "pos": "-62.5396 3.95366 -18.6494",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "collider":
@@ -5122,7 +5139,7 @@
       "name": "escalera4col006",
       "transform":
       {
-        "pos": "-56.7896 11.8605 -28.5492",
+        "pos": "-56.5803 11.1423 -28.7991",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "collider":
@@ -5139,7 +5156,7 @@
       "name": "escalera4col005",
       "transform":
       {
-        "pos": "-59.1135 9.50953 -24.5113",
+        "pos": "-58.9169 8.79455 -24.74",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "collider":
