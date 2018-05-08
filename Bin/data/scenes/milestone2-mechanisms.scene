@@ -3,7 +3,16 @@
     "entity":
     {
       "name": "ms2_mech005",
-      "prefab": "data/prefabs/mech5.prefab",
+      "prefab": "data/prefabs/mech.prefab",
+      "render": [
+				{
+					"mesh": "data/meshes/_mechPREFAB.mesh",
+					"materials": [
+						"data/materials/mec5.material"
+					],
+					"color": "0 0 1 1"
+				}
+			],
       "transform":
       {
         "pos": "120.367 25.1781 -9.56519",
@@ -63,7 +72,7 @@
     "entity":
     {
       "name": "ms2_mech001",
-      "prefab": "data/prefabs/mech1.prefab",
+      "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
         "pos": "-84.0003 36.7173 -5.77995",
@@ -240,7 +249,16 @@
     "entity":
     {
       "name": "ms2_mech004",
-      "prefab": "data/prefabs/mech4.prefab",
+      "prefab": "data/prefabs/mech.prefab",
+      "render": [
+				{
+					"mesh": "data/meshes/_mechPREFAB.mesh",
+					"materials": [
+						"data/materials/mec4.material"
+					],
+					"color": "0 0 1 1"
+				}
+			],
       "transform":
       {
         "pos": "-50.1077 45 -41.5047",
@@ -298,7 +316,16 @@
     "entity":
     {
       "name": "ms2_mech006",
-      "prefab": "data/prefabs/mech6.prefab",
+      "prefab": "data/prefabs/mech.prefab",
+      "render": [
+				{
+					"mesh": "data/meshes/_mechPREFAB.mesh",
+					"materials": [
+						"data/materials/mec6.material"
+					],
+					"color": "0 0 1 1"
+				}
+			],
       "transform":
       {
         "pos": "-39.8889 1.88036 -49.1364",
