@@ -9,7 +9,6 @@
 #include "components/comp_render_ui.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
-#include "components/comp_shadow.h"
 #include "components/comp_light_dir.h"
 #include "render/render_manager.h"
 #include "components/comp_group.h"
