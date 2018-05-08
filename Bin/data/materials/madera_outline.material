@@ -1,0 +1,12 @@
+{
+  "technique": "pbr_outline.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/paredambar_difuso.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

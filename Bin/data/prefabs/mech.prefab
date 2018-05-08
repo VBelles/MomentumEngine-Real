@@ -9,7 +9,14 @@
 				{
 					"mesh": "data/meshes/_mechPREFAB.mesh",
 					"materials": [
-						"data/materials/mec1.material"
+						"data/materials/madera_outline.material"
+					],
+					"color": "0 0 1 1"
+				},
+				{
+					"mesh": "data/meshes/_mechPREFAB.mesh",
+					"materials": [
+						"data/materials/madera_post_outline.material"
 					],
 					"color": "0 0 1 1"
 				}
