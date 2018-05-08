@@ -1094,6 +1094,7 @@ struct TSceneExporter (
 	
 	-- --DEFAULT ------------------------------------------------
 	fn exportDefault obj nValidObjs = (
+		if classOf obj == Editable_poly then convertToMesh obj
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -1419,34 +1420,38 @@ TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con 
 	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
 TODO: Las puras ahora se tienen que exportar diferente !!! Formato:
 			{
-				"entity": {
-					  "name": "ms2_pure006mesh",
-					  "transform": {
-						"pos": "16.1086 17.1181 -42.8537",
-						"rotation": "-0.683013 0.683013 -0.183013 0.183013"
-					  },
-					  "render":  [
-						{
-						  "mesh": "data/meshes/ms2_pure006mesh.mesh",
-						  "materials":["data/materials/wood.material"],
-						  "enabled": false
-						},
-						{
-						  "mesh": "data/meshes/ms2_pure006mesh.mesh",
-						  "materials":["data/materials/ambar.material"],
-						  "enabled": false
-						}
-					  ],
-					  "collider": {
-						"shape": "box",
-						"halfExtent": "0.25 2.0 2.0",
-						"type": "kinematic",
-						"group": [ "scenario" ]
-					  },
-					  "purity": {}
+				"entity":
+				{
+				  "name": "plataforma_puraNO008",
+				  "transform":
+				  {
+					"pos": "-68.0823 20.2976 -39.0947",
+					"rotation": "0.0 0.258819 0.0 -0.965926"
+				  },
+				  "render":
+				  [
+					{
+					  "mesh": "data/meshes/plataforma_puraNO.mesh",
+					  "materials": ["data/materials/NOpure.material"],
+					  "enabled": false
+					},
+					{
+					  "mesh": "data/meshes/plataforma_pura_aristas.mesh",
+					  "materials": ["data/materials/pure.material"],
+					  "enabled": false
+					}
+				  ],
+				  "collider":
+				  {
+					"mesh_src": "data/meshes/plataformaPuraSI_tri.col_mesh",
+					"shape": "tri_mesh",
+					"type": "static",
+					"group": [ "scenario" ]
+				  },
+				  "purity": {}
 				}
 			  }
-TODO: Convertir editable poly a editable mesh automáticamente antes de exportar.
+TODO: Que al exportar los materiales no haga copia si la carpeta ya está dentro de la carpeta textures.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
