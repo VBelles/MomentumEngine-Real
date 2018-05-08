@@ -73,9 +73,13 @@ bool CRenderToTexture::createRT(
 	return true;
 }
 
-void CRenderToTexture::activateRT() {
+// Will return prev rt
+CRenderToTexture* CRenderToTexture::activateRT() {
+	CRenderToTexture* prev_rt = current_rt;
 	Render.ctx->OMSetRenderTargets(1, &render_target_view, depth_stencil_view);
 	activateViewport();
+	current_rt = this;
+	return prev_rt;
 }
 
 void CRenderToTexture::activateViewport() {
