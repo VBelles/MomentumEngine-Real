@@ -20,37 +20,16 @@ bool CModuleGUI::start() {
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	_fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
 
-	//CParser parser;
-	//parser.parseFile("data/gui/test.json");
-	/*parser.parseFile("data/gui/main_menu.json");
-	parser.parseFile("data/gui/gameplay.json");
-	parser.parseFile("data/gui/game_over.json");*/
-
-	//activateWidget("test");
-
-	//_variables.setVariant("progress", 0.5f);
-
-	//auto newGameCB = []() {
-	//	printf("STARTING GAME\n");
-	//};
-	//auto continueCB = []() {
-	//	printf("LOADING GAME\n");
-	//};
-	//auto optionsCB = []() {
-	//	printf("CONFIGURING\n");
-	//};
-
-	//CMainMenuController* mmc = new CMainMenuController();
-	//mmc->registerOption("new_game", newGameCB);
-	//mmc->registerOption("continue", continueCB);
-	//mmc->registerOption("options", optionsCB);
-	//mmc->setCurrentOption(0);
-	//registerController(mmc);
-
 	return true;
 }
 
 bool CModuleGUI::stop() {
+	clearWidgets();
+	_variables.clear();
+	for (auto controller : _controllers) {
+		SAFE_DELETE(controller);
+	}
+	_controllers.clear();
 	return true;
 }
 
@@ -61,16 +40,6 @@ void CModuleGUI::update(float delta) {
 	for (auto& controller : _controllers) {
 		controller->update(delta);
 	}
-
-	//// change bar value
-	//float value = _variables.getFloat("progress");
-	//if (EngineInput[VK_LEFT].isPressed()) {
-	//	value = clamp(value - 0.5f * delta, 0.f, 1.f);
-	//}
-	//if (EngineInput[VK_RIGHT].isPressed()) {
-	//	value = clamp(value + 0.5f * delta, 0.f, 1.f);
-	//}
-	//_variables.setVariant("progress", value);
 }
 
 void CModuleGUI::renderGUI() {
@@ -81,6 +50,45 @@ void CModuleGUI::renderGUI() {
 
 void CModuleGUI::registerWidget(CWidget* wdgt) {
 	_registeredWidgets.push_back(wdgt);
+}
+
+void CModuleGUI::unregisterWidget(std::string name, bool recursive) {
+	CWidget* widget = getWidget(name, recursive);
+
+	if (recursive) {
+		VWidgets children = widget->getChildren(recursive);
+		for (CWidget* child : children) {
+			auto it = std::find(_activeWidgets.begin(), _activeWidgets.end(), child);
+			if (it != _activeWidgets.end()) {
+				_activeWidgets.erase(it);
+			}
+
+			it = std::find(_registeredWidgets.begin(), _registeredWidgets.end(), child);
+			if (it != _registeredWidgets.end()) {
+				SAFE_DELETE(*it);
+				_registeredWidgets.erase(it);
+			}
+		}
+	}
+
+	auto it = std::find(_activeWidgets.begin(), _activeWidgets.end(), widget);
+	if (it != _activeWidgets.end()) {
+		_activeWidgets.erase(it);
+	}
+
+	it = std::find(_registeredWidgets.begin(), _registeredWidgets.end(), widget);
+	if (it != _registeredWidgets.end()) {
+		SAFE_DELETE(*it);
+		_registeredWidgets.erase(it);
+	}
+}
+
+void CModuleGUI::clearWidgets() {
+	for (auto widget : _registeredWidgets) {
+		SAFE_DELETE(widget);
+	}
+	_registeredWidgets.clear();
+	_activeWidgets.clear();
 }
 
 CWidget* CModuleGUI::getWidget(const std::string& name, bool recursive) const {
@@ -106,6 +114,14 @@ void CModuleGUI::activateWidget(const std::string& name) {
 	CWidget* wdgt = getWidget(name);
 	if (wdgt) {
 		_activeWidgets.push_back(wdgt);
+	}
+}
+
+void CModuleGUI::deactivateWidget(const std::string& name) {
+	CWidget* wdgt = getWidget(name);
+	auto it = std::find(_activeWidgets.begin(), _activeWidgets.end(), wdgt);
+	if (it != _activeWidgets.end()) {
+		_activeWidgets.erase(it);
 	}
 }
 

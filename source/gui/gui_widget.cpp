@@ -3,120 +3,109 @@
 
 using namespace GUI;
 
-CWidget::CWidget()
-{
+CWidget::CWidget() {
 
 }
 
-void CWidget::addChild(CWidget* wdgt)
-{
-  if (wdgt && wdgt->_parent != this)
-  {
-    if (wdgt->_parent)
-      wdgt->_parent->removeChild(wdgt);
-    _children.push_back(wdgt);
-    wdgt->_parent = this;
-  }
+void CWidget::addChild(CWidget* wdgt) {
+	if (wdgt && wdgt->_parent != this) {
+		if (wdgt->_parent)
+			wdgt->_parent->removeChild(wdgt);
+		_children.push_back(wdgt);
+		wdgt->_parent = this;
+	}
 }
 
-void CWidget::removeChild(CWidget* wdgt)
-{
-  auto it = std::find(_children.begin(), _children.end(), wdgt);
-  if (it != _children.end())
-  {
-    _children.erase(it);
-    wdgt->_parent = nullptr;
-  }
+void CWidget::removeChild(CWidget* wdgt) {
+	auto it = std::find(_children.begin(), _children.end(), wdgt);
+	if (it != _children.end()) {
+		_children.erase(it);
+		wdgt->_parent = nullptr;
+	}
 }
 
-CWidget* CWidget::getChild(const std::string& name, bool recursive) const
-{
-  for (auto& child : _children)
-  {
-    if (child->_name == name)
-    {
-      return child;
-    }
-  }
+VWidgets CWidget::getChildren(bool recursive) {
+	VWidgets children = _children;
 
-  if(recursive)
-  {
-    for (auto& child : _children)
-    {
-      CWidget* wdgt = child->getChild(name, true);
-      if (wdgt)
-      {
-        return wdgt;
-      }
-    }
-  }
+	if (recursive) {
+		for (auto& child : _children) {
+			VWidgets childrenRecursive = child->getChildren(recursive);
+			children.insert(children.end(), childrenRecursive.begin(), childrenRecursive.end());
+		}
+	}
 
-  return nullptr;
+	return children;
 }
 
-const std::string& CWidget::getName() const
-{
-  return _name;
+CWidget* CWidget::getChild(const std::string& name, bool recursive) const {
+	for (auto& child : _children) {
+		if (child->_name == name) {
+			return child;
+		}
+	}
+
+	if (recursive) {
+		for (auto& child : _children) {
+			CWidget* wdgt = child->getChild(name, true);
+			if (wdgt) {
+				return wdgt;
+			}
+		}
+	}
+
+	return nullptr;
 }
 
-void CWidget::addEffect(CEffect* fx)
-{
-  _effects.push_back(fx);
-  fx->setWidget(this);
+const std::string& CWidget::getName() const {
+	return _name;
 }
 
-void CWidget::computeLocal()
-{
-  MAT44 tr = MAT44::CreateTranslation(_params._position.x, _params._position.y, 0.f);
-  MAT44 rot = MAT44::CreateFromYawPitchRoll(0.f, 0.f, _params._rotation);
-  MAT44 sc = MAT44::CreateScale(_params._scale.x, _params._scale.y, 1.f);
-  _local = rot * sc * tr;
+void CWidget::addEffect(CEffect* fx) {
+	_effects.push_back(fx);
+	fx->setWidget(this);
 }
 
-void CWidget::computeAbsolute()
-{
-  computeLocal();
-  if (_parent)
-  {
-    _absolute = _local * _parent->_absolute;
-  }
-  else
-  {
-    _absolute = _local;
-  }
-  // update my children absolutes
-  for (auto& child : _children)
-    child->computeAbsolute();
+void CWidget::computeLocal() {
+	MAT44 tr = MAT44::CreateTranslation(_params._position.x, _params._position.y, 0.f);
+	MAT44 rot = MAT44::CreateFromYawPitchRoll(0.f, 0.f, _params._rotation);
+	MAT44 sc = MAT44::CreateScale(_params._scale.x, _params._scale.y, 1.f);
+	_local = rot * sc * tr;
 }
 
-void CWidget::updateAll(float delta)
-{
-  update(delta);
-  for (auto& fx : _effects)
-  {
-    fx->update(delta);
-  }
-  for (auto& child : _children)
-  {
-    child->updateAll(delta);
-  }
+void CWidget::computeAbsolute() {
+	computeLocal();
+	if (_parent) {
+		_absolute = _local * _parent->_absolute;
+	}
+	else {
+		_absolute = _local;
+	}
+	// update my children absolutes
+	for (auto& child : _children)
+		child->computeAbsolute();
 }
 
-void CWidget::renderAll()
-{
-  render();
-  for (auto& child : _children)
-  {
-    child->renderAll();
-  }
+void CWidget::updateAll(float delta) {
+	update(delta);
+	for (auto& fx : _effects) {
+		fx->update(delta);
+	}
+	for (auto& child : _children) {
+		child->updateAll(delta);
+	}
 }
 
-void CWidget::update(float)
-{
-  // ...
+void CWidget::renderAll() {
+	render();
+	for (auto& child : _children) {
+		child->renderAll();
+	}
 }
 
-void CWidget::render()
-{
-  // ...
+void CWidget::update(float) {
+	// ...
+}
+
+void CWidget::render() {
+	// ...
 }

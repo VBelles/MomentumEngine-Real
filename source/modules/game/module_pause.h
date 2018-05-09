@@ -1,8 +1,11 @@
 #pragma once
 
+#include "gui/controllers/gui_main_menu_controller.h"
+
 class CModulePause : public IModule {
 private:
 	bool pause = false;
+	GUI::CMainMenuController* controller;
 
 	void onPausePressed();
 
