@@ -1,5 +1,5 @@
 {
-  "technique": "pbr_skin.tech",
+  "technique": "pbr_skin_silhouette.tech",
   "shadows": true,
   "textures": {
     "albedo": "data/textures/ella/ella_basecolor_whitemarks.dds",

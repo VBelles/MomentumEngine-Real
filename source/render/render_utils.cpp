@@ -26,6 +26,7 @@ struct CZConfigs {
   bool add(const D3D11_DEPTH_STENCIL_DESC& desc, ZConfig cfg, const char* name) {
     // Create the dx obj in the slot 'cfg'
     HRESULT hr = Render.device->CreateDepthStencilState(&desc, &z_cfgs[cfg]);
+	
     if (FAILED(hr))
       return false;
     // Assing the name
@@ -81,6 +82,27 @@ struct CZConfigs {
     desc.StencilEnable = false;
     if (!add(desc, ZCFG_INVERSE_TEST_NO_WRITE, "inverse_test_no_write"))
       return false;
+
+	// Default app, only pass those which are near than the previous samples
+	memset(&desc, 0x00, sizeof(desc));
+	desc.DepthEnable = TRUE;
+	desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	desc.DepthFunc = D3D11_COMPARISON_EQUAL;
+	desc.StencilEnable = TRUE;
+	desc.StencilReadMask = 0xFF;
+	desc.StencilWriteMask = 0xFF;
+	desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_REPLACE;
+	desc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	// Stencil operations if pixel is back-facing
+	desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	desc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	desc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	desc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	if (!add(desc, ZCFG_DEFAULT_WITH_STENCIL, "default_with_stencil"))
+		return false;
 
     return true;
   }
@@ -386,7 +408,7 @@ void activateAllSamplers() {
 
 void activateZConfig(enum ZConfig cfg) {
   assert(zconfigs.z_cfgs[cfg] != nullptr);
-  Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 0);
+  Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 255);
 }
 
 void activateRSConfig(enum RSConfig cfg) {

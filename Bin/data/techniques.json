@@ -121,6 +121,20 @@
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
+  "pbr_skin_silhouette": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_GBuffer_Skin",
+    "ps_entry_point": "PS_GBuffer",
+    "vertex_type": "PosNUvUvTSkin",
+    "category": "gbuffer",
+    "uses_skin": true,
+    "z": "default_with_stencil",
+    "textures": {
+      "environment": "data/textures/cubemaps/momentum/posx.dds",
+      "irradiance": "data/textures/cubemaps/irradiance.dds"
+    }
+  },
 
   "pbr_ambient": {
     "vs_file": "data/shaders/screen_quad.fx",
