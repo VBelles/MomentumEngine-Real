@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "module_test_axis.h"
+#include "module_game.h"
 #include "modules/module.h"
 #include "camera/camera.h"
 #include "render/render_objects.h"
@@ -43,7 +43,7 @@ CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
 	return mesh;
 }
 
-bool CModuleTestAxis::start() {
+bool CModuleGame::start() {
 	Engine.getEntities().reset();
 	Engine.getScripting().reset();
 	json jboot = loadJson("data/boot.json");
@@ -76,13 +76,13 @@ bool CModuleTestAxis::start() {
 	return true;
 }
 
-bool CModuleTestAxis::stop() {
+bool CModuleGame::stop() {
 	Engine.getScripting().reset();
 	Engine.getEntities().reset();
 	return true;
 }
 
-void CModuleTestAxis::update(float delta) {
+void CModuleGame::update(float delta) {
   //  if (EngineInput['1'].getsPressed()) {
 		//CHandle h_camera = getEntityByName(PLAYER_CAMERA);
   //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
@@ -120,7 +120,7 @@ void CModuleTestAxis::update(float delta) {
 
 }
 
-void CModuleTestAxis::render() {
+void CModuleGame::render() {
 	// Find the entity with name 'game_camera'
 	CHandle h_e_camera = getEntityByName(GAME_CAMERA);
 	if (h_e_camera.isValid()) {

@@ -25,10 +25,8 @@
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
-    <ClCompile Include="modules\game\module_test_axis.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
-    <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
@@ -66,29 +64,18 @@
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\comp_respawner.cpp" />
-    <ClCompile Include="components\comp_shadow.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
     <ClCompile Include="components\controllers\comp_camera_flyover.cpp" />
     <ClCompile Include="components\controllers\comp_camera_orbit.cpp" />
     <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="modules\system\module_cameras.cpp" />
-    <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="skeleton\comp_skeleton.cpp" />
     <ClCompile Include="skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
-    <ClCompile Include="fsm\fsm.cpp" />
-    <ClCompile Include="fsm\context.cpp" />
     <ClCompile Include="utils\variant.cpp" />
-    <ClCompile Include="modules\system\module_fsm.cpp" />
-    <ClCompile Include="fsm\custom_states.cpp" />
-    <ClCompile Include="fsm\factory.cpp" />
-    <ClCompile Include="fsm\custom_transitions.cpp" />
-    <ClCompile Include="components\comp_fsm.cpp" />
-    <ClCompile Include="components\controllers\comp_fake_animation_controller.cpp" />
-    <ClCompile Include="components\controllers\comp_player_input.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\comp_purity.cpp" />
     <ClCompile Include="components\controllers\comp_camera_player.cpp" />
@@ -191,6 +178,7 @@
     <ClCompile Include="components\platforms\comp_platform_simple.cpp" />
     <ClCompile Include="components\player\states\base_states\SlideActionState.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
+    <ClCompile Include="modules\game\module_game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -233,11 +221,9 @@
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
     <ClInclude Include="modules\game\module_splash.h" />
-    <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\module.h" />
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\system\module_input.h" />
-    <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
@@ -282,7 +268,6 @@
     <ClInclude Include="components\comp_out_of_bounds.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\comp_respawner.h" />
-    <ClInclude Include="components\comp_shadow.h" />
     <ClInclude Include="components\comp_aabb.h" />
     <ClInclude Include="components\comp_culling.h" />
     <ClInclude Include="components\controllers\comp_camera_flyover.h" />
@@ -290,7 +275,6 @@
     <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\interpolators.h" />
     <ClInclude Include="modules\system\module_cameras.h" />
-    <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\gpu_trace.h" />
@@ -304,18 +288,7 @@
     <ClInclude Include="skeleton\comp_bone_tracker.h" />
     <ClInclude Include="skeleton\cal3d2engine.h" />
     <ClInclude Include="components\comp_light_dir.h" />
-    <ClInclude Include="fsm\fsm.h" />
-    <ClInclude Include="fsm\state.h" />
-    <ClInclude Include="fsm\transition.h" />
-    <ClInclude Include="fsm\context.h" />
-    <ClInclude Include="fsm\custom_states.h" />
     <ClInclude Include="utils\variant.h" />
-    <ClInclude Include="modules\system\module_fsm.h" />
-    <ClInclude Include="fsm\factory.h" />
-    <ClInclude Include="fsm\custom_transitions.h" />
-    <ClInclude Include="components\comp_fsm.h" />
-    <ClInclude Include="components\controllers\comp_fake_animation_controller.h" />
-    <ClInclude Include="components\controllers\comp_player_input.h" />
     <ClInclude Include="modules\gamestate.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackActionState.h" />
@@ -413,6 +386,7 @@
     <ClInclude Include="components\platforms\comp_platform_simple.h" />
     <ClInclude Include="components\player\states\base_states\SlideActionState.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
+    <ClInclude Include="modules\game\module_game.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

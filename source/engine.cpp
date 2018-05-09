@@ -1,13 +1,9 @@
 #include "mcv_platform.h"
 #include "engine.h"
-
-#include "modules/system/module_fsm.h"
 #include "modules/game/module_splash.h"
 #include "modules/game/module_main_menu.h"
 #include "modules/game/module_gameover.h"
-#include "modules/game/module_test_axis.h"
-#include "modules/test/module_test_input.h"
-#include "modules/test/module_test_cameras.h"
+#include "modules/game/module_game.h"
 #include "modules/game/module_pause.h"
 
 //--------------------------------------------------------------------------------------
@@ -22,7 +18,6 @@ CEngine::CEngine()
 	, _module_physics("physics")
 	, _module_input("input")
 	, _module_cameras("cameras")
-	, _module_fsm("fsm")
 	, _module_scripting("scripting") {
 }
 
@@ -31,25 +26,20 @@ bool CEngine::start() {
 	static CModuleSplash   module_splash("splash");
 	static CModuleMainMenu module_main_menu("main_menu");
 	static CModuleGameOver module_game_over("game_over");
-	static CModuleTestAxis module_test_axis("test_axis");
-	static CModuleTestInput module_test_input("test_input");
-	static CModuleTestCameras module_test_cameras("test_cameras");
+	static CModuleGame module_test_axis("game");
 	static CModulePause module_pause("pause");
 
 	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_scripting);
-	_modules.registerSystemModule(&_module_fsm);
 
 	_modules.registerGameModule(&_module_physics);
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_main_menu);
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_test_axis);
-	_modules.registerGameModule(&module_test_input);
 	_modules.registerGameModule(&_module_cameras);
-	_modules.registerGameModule(&module_test_cameras);
 	_modules.registerGameModule(&module_pause);
 
 	_modules.loadModules("data/modules.json");
