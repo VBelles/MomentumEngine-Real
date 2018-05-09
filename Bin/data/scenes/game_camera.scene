@@ -13,6 +13,9 @@
 			},
 			"render_blur_radial" : {
 				"enabled" :  false
+			},
+			"render_ao" : {
+				"enabled" : false
 			}
 		}
 	},
