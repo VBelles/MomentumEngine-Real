@@ -204,7 +204,9 @@ void CModuleRender::generateFrame() {
         activateMainCamera();
         cb_globals.updateGPU();
 
-        deferred.render(rt_main, h_e_camera);
+		if (h_e_camera.isValid()) {
+			deferred.render(rt_main, h_e_camera);
+		}
 
 		CRenderManager::get().renderCategory("distorsions");
 		CRenderManager::get().renderCategory("textured");
