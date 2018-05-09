@@ -5,13 +5,12 @@ DXGI_FORMAT readFormat(const json& j, const std::string& label);
 
 // ---------------------------------------
 enum ZConfig {
-
 	ZCFG_DEFAULT
 	, ZCFG_DISABLE_ALL
 	, ZCFG_TEST_BUT_NO_WRITE
 	, ZCFG_TEST_EQUAL
 	, ZCFG_INVERSE_TEST_NO_WRITE
-	, ZCFG_DEFAULT_WITH_STENCIL
+	, ZCFG_TEST_NO_WRITES_MARK_STENCIL
 	, ZCFG_ON_NON_ZERO_STENCIL
 	, ZCFG_COUNT
 };
