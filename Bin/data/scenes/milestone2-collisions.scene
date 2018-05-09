@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "ms2_Box257",
+      "transform":
+      {
+        "pos": "118.998 16.031 -1.3911",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms2_Box257.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_Box256",
       "transform":
       {
@@ -22,7 +39,7 @@
       "name": "ms2_Box255",
       "transform":
       {
-        "pos": "119.053 12.9563 -0.754677",
+        "pos": "118.713 12.687 -4.64619",
         "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "collider":
@@ -6890,7 +6907,7 @@
       "name": "ms2_Box122",
       "transform":
       {
-        "pos": "-70.386 16.0793 48.2902",
+        "pos": "-71.1044 18.7848 54.8426",
         "rotation": "-0.521334 0.521334 -0.477714 0.477714"
       },
       "collider":

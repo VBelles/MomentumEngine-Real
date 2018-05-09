@@ -7,7 +7,7 @@
     "main_menu",
     "splash",
     "game_over",
-    "test_axis",
+    "game",
     "cameras",
     "render",
 	"gui",
@@ -16,7 +16,7 @@
   ],
   "render": [
     "render",    
-    "test_axis",
+    "game",
     "main_menu",
     "cameras",
     "entities",

@@ -3,6 +3,38 @@
   {
     "entity":
     {
+      "name": "plataforma_puraNO008",
+      "transform":
+      {
+        "pos": "-68.0823 20.2976 -39.0947",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_puraNO.mesh",
+          "materials": ["data/materials/NOpure.material"],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
+          "materials": ["data/materials/pure.material"],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataformaPuraSI_tri.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group": [ "scenario" ]
+      },
+      "purity": {}
+    }
+  },
+  {
+    "entity":
+    {
       "name": "plataforma_puraNO007",
       "transform":
       {

@@ -6,14 +6,16 @@
 			"render" : {
 				"mesh": "data/meshes/rangedAttackSphere.mesh",
 				"materials" : [
-					"data/materials/madera.material"
+					"data/materials/piedras.material"
 				]
 			},
 			"collider": {
 				"shape": "sphere",
 				"type": "dynamic",
 				"is_trigger": true,
-				"radius": 0.1
+				"radius": 0.1,
+				"mask": ["player", "scenario"],
+				"group": ["enemy"]
 			},
 			"ranged_attack": {
 				"speed": 15,

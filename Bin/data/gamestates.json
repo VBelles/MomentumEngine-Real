@@ -1,5 +1,5 @@
 {
-	"startup" : "test_axis",
+	"startup" : "game_state",
 	"gamestates" : 
 	[
 		{
@@ -15,8 +15,8 @@
 			"modules" : [ "game_over" ]
 		},
 		{
-			"name" : "test_axis",
-			"modules" : [ "physics", "cameras", "test_axis", "pause" ]
+			"name" : "game_state",
+			"modules" : [ "physics", "cameras", "game", "pause" ]
 		}
 	]
 }

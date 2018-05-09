@@ -166,6 +166,61 @@
   {
     "entity":
     {
+      "name": "ms2_camera_mountain_back",
+      "transform":
+      {
+        "pos": "168.943 26.5311 -10.635994",
+        "rotation": "-0.0308435 0.706434 0.0308433 -0.706434"
+      },
+      "camera":
+      {
+        "fov": 69.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 6,
+        "panningRadius": 2
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_camera_mountain_back_trig",
+      "transform":
+      {
+        "pos": "123.401 -15.7764 -1.04992",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "15.0 32.5 15.0",
+        "is_trigger": true,
+        "type": "static",
+        "group": [ "trigger" ],
+        "mask": [ "player" ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "ms2_camera_mountain_back",
+        "suggestYaw": true,
+        "hasOppositeYaw": false,
+        "suggestPitch": false,
+        "forceDistance": true,
+        "distanceToCamera": 20,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "5 2"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_camera_chrysalis07",
       "transform":
       {

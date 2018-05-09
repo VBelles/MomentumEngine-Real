@@ -6,7 +6,6 @@
 #include "modules/game/physics/module_physics.h"
 #include "modules/system/module_input.h"
 #include "modules/system/module_cameras.h"
-#include "modules/system/module_fsm.h"
 #include "modules/system/scripting/module_scripting.h"
 #include "modules/system/module_gui.h"
 
@@ -26,7 +25,6 @@ public:
 	CModuleInput& getInput() { return _module_input; }
 	CModulePhysics& getPhysics() { return _module_physics; }
 	CModuleCameras& getCameras() { return _module_cameras; }
-	CModuleFSM& getFSM() { return _module_fsm; }
 	CModuleScripting& getScripting() { return _module_scripting; }
 	CModuleGUI& getGUI() { return _module_gui; }
 
@@ -40,7 +38,6 @@ private:
 	CModulePhysics   _module_physics;
 	CModuleInput     _module_input;
 	CModuleCameras   _module_cameras;
-	CModuleFSM       _module_fsm;
 	CModuleScripting _module_scripting;
 	CModuleGUI       _module_gui;
 

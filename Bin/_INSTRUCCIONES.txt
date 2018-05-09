@@ -1,8 +1,6 @@
 .-~ INSTRUCCIONES ~-.
 
-El objetivo del juego es recoger 5 de las 7 crisálidas (esferas de color ámbar) para abrir el camino hacia el Boss.
-
-Hay enemigos terrestres y aéreos, ambos de color azul. Los aéreos son esferas.
+El objetivo del juego es recoger 5 de las 9 crisálidas (esferas de color ámbar) para abrir el camino hacia el Boss.
 
 Explora y diviértete.
 
@@ -46,5 +44,4 @@ Ratón:                  Movimiento cámara
 
 BUGS CONOCIDOS:
 
-1. Si caes al vacío con ataque caída, al revivir hay que hacer un ataque para poder moverse.
-2. Las plataformas móviles al subir hacen que te cueste moverte.
+1. Al player le puede costar salir de alguna esquina en pendiente.
