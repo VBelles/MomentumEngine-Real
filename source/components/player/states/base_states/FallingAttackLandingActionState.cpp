@@ -14,6 +14,7 @@ void FallingAttackLandingActionState::update(float delta) {
 	}
 	if (fallingAttackHitboxTimer.elapsed() >= fallingAttackTime) {
 		getHitboxes()->disable(hitboxFallingAttack);
+		getHitboxes()->disable(hitboxPlummet);
 	}
 }
 
@@ -36,6 +37,7 @@ void FallingAttackLandingActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
 	getHitboxes()->disable(hitboxFallingAttack); //Por si las moscas
+	getHitboxes()->disable(hitboxPlummet); //Por si las moscas
 }
 
 void FallingAttackLandingActionState::onJumpHighButton() {

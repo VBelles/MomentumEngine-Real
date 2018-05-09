@@ -5,8 +5,8 @@
 #include "modules/game/module_gameover.h"
 #include "modules/game/module_game.h"
 #include "modules/game/module_pause.h"
+#include "modules/test/module_test_instancing.h"
 
-//--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
 	static CEngine engine;
 	return engine;
@@ -18,7 +18,8 @@ CEngine::CEngine()
 	, _module_physics("physics")
 	, _module_input("input")
 	, _module_cameras("cameras")
-	, _module_scripting("scripting") {
+    , _module_scripting("scripting")
+    , _module_gui("gui") {
 }
 
 bool CEngine::start() {
@@ -28,11 +29,13 @@ bool CEngine::start() {
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleGame module_test_axis("game");
 	static CModulePause module_pause("pause");
+    static CModuleTestInstancing module_test_instancing("test_instancing");
 
 	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_scripting);
+    _modules.registerSystemModule(&_module_gui);
 
 	_modules.registerGameModule(&_module_physics);
 	_modules.registerGameModule(&module_splash);
@@ -41,6 +44,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_test_axis);
 	_modules.registerGameModule(&_module_cameras);
 	_modules.registerGameModule(&module_pause);
+    _modules.registerGameModule(&module_test_instancing);
 
 	_modules.loadModules("data/modules.json");
 	_modules.loadGamestates("data/gamestates.json");

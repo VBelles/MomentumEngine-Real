@@ -6,7 +6,7 @@
 			"render" : {
 				"mesh": "data/meshes/rangedAttackSphere.mesh",
 				"materials" : [
-					"data/materials/madera.material"
+					"data/materials/piedras.material"
 				]
 			},
 			"collider": {

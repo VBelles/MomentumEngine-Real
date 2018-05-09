@@ -23,6 +23,7 @@ private:
 
 	std::string hitbox = "landing_falling_attack";
 	std::string hitboxFallingAttack = "falling_attack";
+	std::string hitboxPlummet = "plummet_attack";
 
 	float fallingAttackDamage = 2.f;
 	float fallingAttackPowerToGet = 4000.f;

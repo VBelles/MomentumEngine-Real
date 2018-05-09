@@ -60,3 +60,4 @@ public:
 	void setupFiltering(PxU32 filterGroup, PxU32 filterMask);
 
 };
+

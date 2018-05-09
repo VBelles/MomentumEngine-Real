@@ -165,6 +165,16 @@
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
     <ClCompile Include="components\comp_altar.cpp" />
+    <ClCompile Include="render\mesh\mesh_instanced.cpp" />
+    <ClCompile Include="modules\test\module_test_instancing.cpp" />
+    <ClCompile Include="components\postfx\comp_render_ao.cpp" />
+    <ClCompile Include="modules\system\module_gui.cpp" />
+    <ClCompile Include="gui\gui_widget.cpp" />
+    <ClCompile Include="gui\widgets\gui_image.cpp" />
+    <ClCompile Include="gui\gui_parser.cpp" />
+    <ClCompile Include="gui\widgets\gui_text.cpp" />
+    <ClCompile Include="gui\widgets\gui_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_button.cpp" />
     <ClCompile Include="modules\system\scripting\console.cpp" />
     <ClCompile Include="modules\system\scripting\module_scripting.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_door.cpp" />
@@ -177,6 +187,8 @@
     <ClCompile Include="windows\windowsUtils.cpp" />
     <ClCompile Include="components\platforms\comp_platform_simple.cpp" />
     <ClCompile Include="components\player\states\base_states\SlideActionState.cpp" />
+    <ClCompile Include="gui\controllers\gui_main_menu_controller.cpp" />
+    <ClCompile Include="gui\effects\gui_animate_uv.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
     <ClCompile Include="modules\game\module_game.cpp" />
   </ItemGroup>
@@ -373,6 +385,17 @@
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="modules\system\module_entities.h" />
     <ClInclude Include="components\comp_altar.h" />
+    <ClInclude Include="render\mesh\mesh_instanced.h" />
+    <ClInclude Include="modules\test\module_test_instancing.h" />
+    <ClInclude Include="components\postfx\comp_render_ao.h" />
+    <ClInclude Include="modules\system\module_gui.h" />
+    <ClInclude Include="gui\gui_widget.h" />
+    <ClInclude Include="gui\gui_params.h" />
+    <ClInclude Include="gui\widgets\gui_image.h" />
+    <ClInclude Include="gui\gui_parser.h" />
+    <ClInclude Include="gui\widgets\gui_text.h" />
+    <ClInclude Include="gui\widgets\gui_bar.h" />
+    <ClInclude Include="gui\widgets\gui_button.h" />
     <ClInclude Include="modules\system\scripting\console.h" />
     <ClInclude Include="modules\system\scripting\module_scripting.h" />
     <ClInclude Include="modules\system\scripting\scripting_door.h" />
@@ -385,6 +408,10 @@
     <ClInclude Include="windows\windowsUtils.h" />
     <ClInclude Include="components\platforms\comp_platform_simple.h" />
     <ClInclude Include="components\player\states\base_states\SlideActionState.h" />
+    <ClInclude Include="gui\controllers\gui_main_menu_controller.h" />
+    <ClInclude Include="gui\effects\gui_animate_uv.h" />
+    <ClInclude Include="gui\gui_controller.h" />
+    <ClInclude Include="gui\gui_effect.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
     <ClInclude Include="modules\game\module_game.h" />
   </ItemGroup>

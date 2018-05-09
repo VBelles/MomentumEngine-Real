@@ -130,7 +130,7 @@ void HuggingWallActionState::onMove(HitState& hitState) {
 
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
-	PxScene* scene = Engine.getPhysics().getScene();
+	PxScene* scene = EnginePhysics.getScene();
 	PxVec3 origin = toPhysx(getPlayerTransform()->getPosition());
 	PxVec3 unitDir = PxVec3(wallDirection.x, 0.f, wallDirection.z);
 	PxRaycastBuffer raycastBuffer;
