@@ -1367,10 +1367,9 @@ struct TSceneExporter (
 				fs.begin scenePath
 				fs.beginArray()
 				for obj in layerObjs do (
-					-- Avoid child objects, they will be added through parent.
-					if obj.parent == undefined then (
-						local objectName = obj.name
-						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof obj) as string) objectName --DEBUG
+					-- Avoid child objects, they will be added through parent. Also, don't export hidden objects.
+					if obj.parent == undefined and not obj.isHidden then (
+						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof obj) as string) obj.name --DEBUG
 						case layerName of (
 							"cameras":      ( wasValid = exportCamera      obj nValidObjs )
 							"chrysalis":    ( wasValid = exportChrysalis   obj nValidObjs )
@@ -1419,39 +1418,40 @@ TODO: Sólo exportar mesh collider si un mesh es hijo de otro mesh o si está en
 TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
 	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
 TODO: Las puras ahora se tienen que exportar diferente !!! Formato:
+		{
+			"entity":
 			{
-				"entity":
+			  "name": "plataforma_puraNO008",
+			  "transform":
+			  {
+				"pos": "-68.0823 20.2976 -39.0947",
+				"rotation": "0.0 0.258819 0.0 -0.965926"
+			  },
+			  "render":
+			  [
 				{
-				  "name": "plataforma_puraNO008",
-				  "transform":
-				  {
-					"pos": "-68.0823 20.2976 -39.0947",
-					"rotation": "0.0 0.258819 0.0 -0.965926"
-				  },
-				  "render":
-				  [
-					{
-					  "mesh": "data/meshes/plataforma_puraNO.mesh",
-					  "materials": ["data/materials/NOpure.material"],
-					  "enabled": false
-					},
-					{
-					  "mesh": "data/meshes/plataforma_pura_aristas.mesh",
-					  "materials": ["data/materials/pure.material"],
-					  "enabled": false
-					}
-				  ],
-				  "collider":
-				  {
-					"mesh_src": "data/meshes/plataformaPuraSI_tri.col_mesh",
-					"shape": "tri_mesh",
-					"type": "static",
-					"group": [ "scenario" ]
-				  },
-				  "purity": {}
+				  "mesh": "data/meshes/plataforma_puraNO.mesh",
+				  "materials": ["data/materials/NOpure.material"],
+				  "enabled": false
+				},
+				{
+				  "mesh": "data/meshes/plataforma_pura_aristas.mesh",
+				  "materials": ["data/materials/pure.material"],
+				  "enabled": false
 				}
-			  }
+			  ],
+			  "collider":
+			  {
+				"mesh_src": "data/meshes/plataformaPuraSI_tri.col_mesh",
+				"shape": "tri_mesh",
+				"type": "static",
+				"group": [ "scenario" ]
+			  },
+			  "purity": {}
+			}
+		  }
 TODO: Que al exportar los materiales no haga copia si la carpeta ya está dentro de la carpeta textures.
+TODO: Si un mesh tiene hijo Box, exportar la Box como convex_mesh, no como caja.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
