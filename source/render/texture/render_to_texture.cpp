@@ -4,6 +4,8 @@
 #include "render/render_utils.h"
 #include "render/render_objects.h"      // createDepthStencil
 
+CRenderToTexture* CRenderToTexture::current_rt = nullptr;
+
 CRenderToTexture::~CRenderToTexture() {
 }
 
