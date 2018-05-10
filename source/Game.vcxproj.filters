@@ -191,6 +191,7 @@
     <ClCompile Include="gui\effects\gui_animate_uv.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
     <ClCompile Include="modules\game\module_game.cpp" />
+    <ClCompile Include="modules\system\module_sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -414,6 +415,7 @@
     <ClInclude Include="gui\gui_effect.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
     <ClInclude Include="modules\game\module_game.h" />
+    <ClInclude Include="modules\system\module_sound.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
