@@ -15,8 +15,11 @@ public:
 
 	// widget management
 	void registerWidget(GUI::CWidget* wdgt);
+	void unregisterWidget(std::string name, bool recursive = false);
+	void clearWidgets();
 	GUI::CWidget* getWidget(const std::string& name, bool recursive = false) const;
 	void activateWidget(const std::string& name);
+	void deactivateWidget(const std::string& name);
 
 	// controller management
 	void registerController(GUI::CController* controller);

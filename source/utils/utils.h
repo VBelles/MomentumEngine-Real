@@ -20,5 +20,7 @@ bool isPressed(int key);
 json loadJson(const std::string& filename);
 bool fileExists(const std::string& afilename);
 
+float scale(float A, float A1, float A2, float Min, float Max);
+
 #endif
 

@@ -2,19 +2,17 @@
 
 #include "mcv_platform.h"
 
-namespace GUI
-{
-  class CWidget;
+namespace GUI {
+	class CWidget;
 
-  class CEffect
-  {
-  public:
-    void setWidget(CWidget* wdgt) { _widget = wdgt; }
-    virtual void update(float delta) { (void)delta; }
+	class CEffect {
+	public:
+		void setWidget(CWidget* wdgt) { _widget = wdgt; }
+		virtual void update(float delta) { (void)delta; }
 
-  protected:
-    CWidget * _widget = nullptr;
-  };
+	protected:
+		CWidget * _widget = nullptr;
+	};
 
-  using VEffects = std::vector<CEffect*>;
+	using VEffects = std::vector<CEffect*>;
 }
