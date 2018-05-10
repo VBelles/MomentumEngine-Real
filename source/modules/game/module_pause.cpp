@@ -38,8 +38,8 @@ bool CModulePause::stop() {
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);
 	Engine.getGUI().unregisterWidget("test_pause_menu", true);
-	//ShowCursor(false);
-	//CApp::get().resetCursorPos = true;
+	ShowCursor(false);
+	CApp::get().resetCursorPos = true;
 	return true;
 }
 
@@ -71,8 +71,8 @@ void CModulePause::onPausePressed() {
 		}
 	}
 
-	//ShowCursor(pause);
-	//CApp::get().resetCursorPos = !pause;
+	ShowCursor(pause);
+	CApp::get().resetCursorPos = !pause;
 }
 
 void CModulePause::render() {}

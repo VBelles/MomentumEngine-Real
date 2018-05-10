@@ -3,8 +3,8 @@
 #include "gui/gui_parser.h"
 
 bool CModuleMainMenu::start() {
-	//ShowCursor(true);
-	//CApp::get().resetCursorPos = false;
+	ShowCursor(true);
+	CApp::get().resetCursorPos = false;
 
 	GUI::CParser parser;
 	parser.parseFile("data/gui/test.json");
@@ -31,8 +31,8 @@ bool CModuleMainMenu::stop() {
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);
 	Engine.getGUI().unregisterWidget("test", true);
-	//CApp::get().resetCursorPos = true;
-	//ShowCursor(false);
+	CApp::get().resetCursorPos = true;
+	ShowCursor(false);
 	return true;
 }
 

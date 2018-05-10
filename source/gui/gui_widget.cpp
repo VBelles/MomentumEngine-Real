@@ -109,3 +109,13 @@ void CWidget::update(float) {
 void CWidget::render() {
 	// ...
 }
+
+bool CWidget::overlaps(VEC2 pos) {
+	VEC2 position = { scale(_absolute.Translation().x, 0.f, Engine.getGUI().getCamera().getOrtographicWidth(), 0.f, CApp::get().resolution.x),
+		scale(_absolute.Translation().y, 0.f, Engine.getGUI().getCamera().getOrtographicHeight(), 0.f, CApp::get().resolution.y) };
+
+	return pos.x >= position.x &&
+		pos.x <= (position.x + scale(_params._size.x, 0.f, Engine.getGUI().getCamera().getOrtographicWidth(), 0.f, CApp::get().resolution.x)) &&
+		pos.y >= position.y &&
+		pos.y <= (position.y + scale(_params._size.y, 0.f, Engine.getGUI().getCamera().getOrtographicHeight(), 0.f, CApp::get().resolution.y));
+}

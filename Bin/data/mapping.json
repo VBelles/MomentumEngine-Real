@@ -82,7 +82,7 @@
 	{
 		"name" : "menu_accept",
 		"all" : false,
-		"buttons" : ["return", "space", "pad_a"]
+		"buttons" : ["return", "space", "pad_a", "mouse_left"]
 	},
 	{
 		"name" : "menu_back",

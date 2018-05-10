@@ -30,6 +30,8 @@ namespace GUI {
 		virtual void update(float delta);
 		virtual void render();
 
+		bool overlaps(VEC2 pos);
+
 	protected:
 		std::string _name;
 		VWidgets _children;
