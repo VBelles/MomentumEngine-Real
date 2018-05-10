@@ -114,12 +114,24 @@ void AirborneActionState::onReleasePowerButton() {
 	}
 }
 
-void AirborneActionState::onMove(HitState& hitState) {
-	if (hitState.hasHit && hitState.isGrounded) {
-		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
-		if (dot < getPlayerModel()->getController()->getSlopeLimit()) {
-			if (!isTryingToSlide) {
-				isTryingToSlide = true;
+void AirborneActionState::onMove(MoveState& moveState) {
+
+	if (moveState.isTouchingTop && velocityVector->y > 0.f) {
+		velocityVector->y = 0.f;
+	}
+
+	if (moveState.isTouchingBot) {
+		bool grounded = true;
+		for (HitState& hitState : moveState.hits) {
+			if (hitState.dotUp < getPlayerModel()->getController()->getSlopeLimit()) {
+				grounded = false;
+				break;
+			}
+		}
+
+		if (!grounded) { //Slide
+			if (!getPlayerModel()->tryingToSlide) {
+				getPlayerModel()->tryingToSlide = true;
 				slideWindowTimer.reset();
 			}
 			else if (slideWindowTimer.elapsed() >= slideWindowTime) {
@@ -130,9 +142,7 @@ void AirborneActionState::onMove(HitState& hitState) {
 			onLanding();
 		}
 	}
-	if (hitState.isTouchingCeiling && velocityVector->y > 0.f) {
-		velocityVector->y = 0.f;
-	}
+
 }
 
 

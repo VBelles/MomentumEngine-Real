@@ -104,27 +104,27 @@ void HuggingWallActionState::onJumpLongButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
 }
 
-void HuggingWallActionState::onMove(HitState& hitState) {
-	if (hitState.isGrounded) {
-		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
-		if (dot < huggingWallMinPitch) {
-			//Continue in hugging wall
-		}
-		else if (dot < getPlayerModel()->getController()->getSlopeLimit()) {
-			if (!tryingToSlide) {
-				tryingToSlide = true;
-				slideTimer.reset();
+void HuggingWallActionState::onMove(MoveState& moveState) {
+	if (moveState.isTouchingBot) {
+		bool grounded = true;
+		for (HitState& hitState : moveState.hits) {
+			if (hitState.dotUp < getPlayerModel()->getController()->getSlopeLimit()) {
+				grounded = false;
+				break;
 			}
-			else if (slideTimer.elapsed() >= slideWindowTime) {
+		}
+		if (!grounded) { //Slide
+			if (!getPlayerModel()->tryingToSlide) {
+				getPlayerModel()->tryingToSlide = true;
+				slideWindowTimer.reset();
+			}
+			else if (slideWindowTimer.elapsed() >= slideWindowTime) {
 				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
 			}
 		}
 		else {
 			onLanding();
 		}
-	}
-	if (hitState.isTouchingCeiling && velocityVector->y > 0.f) {
-		velocityVector->y = 0.f;
 	}
 }
 

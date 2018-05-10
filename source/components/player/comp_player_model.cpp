@@ -381,20 +381,24 @@ void TCompPlayerModel::applyGravity(float delta) {
 }
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
-	hitState = HitState();
+	moveState = MoveState();
 	PxControllerCollisionFlags moveFlags = getController()->move(toPhysx(deltaMovement), 0.f, delta,
 		PxControllerFilters(&getFilterData(), playerFilterCallback, playerFilterCallback));
-	hitState.isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
-	hitState.isTouchingCeiling = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
-	baseState->onMove(hitState);
+	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
+	moveState.isTouchingTop = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
+	moveState.isTouchingSide = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_SIDES);
+	baseState->onMove(moveState);
 }
 
 void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 	CHandle colliderHandle;
 	colliderHandle.fromVoidPtr(msg.hit.actor->userData);
+	HitState hitState;
 	hitState.entity = colliderHandle.getOwner();
 	hitState.hit = msg.hit;
-	hitState.hasHit = true;
+	hitState.dotUp = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
+	moveState.hits.push_back(hitState);
+
 	baseState->onShapeHit(msg.hit);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onShapeHit(msg.hit);

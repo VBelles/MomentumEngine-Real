@@ -19,6 +19,6 @@ public:
 	void onStrongAttackButton() override;
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
-	void onMove(HitState& hitState) override;
+	void onMove(MoveState& moveState) override;
 	virtual void onLeavingGround();
 };

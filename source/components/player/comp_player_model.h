@@ -23,14 +23,24 @@ struct TMsgOutOfBounds;
 struct TMsgRespawnChanged;
 struct TMsgPurityChange;
 
+
 struct HitState {
-	bool hasHit = false; //When true the hit state data is valid
 	CHandle entity;
 	PxControllerShapeHit hit;
-	bool isGrounded = false;
-	bool isTouchingCeiling = false;
+	float dotUp = 0.f;
 };
 
+struct MoveState {
+	bool isTouchingTop = false;
+	bool isTouchingBot = false;;
+	bool isTouchingSide = false;;
+
+	std::vector<HitState> hits;
+
+	/*std::vector<HitState> sideHits;
+	std::vector<HitState> topHits;
+	std::vector<HitState> botHits;*/
+};
 
 class TCompPlayerModel : public TCompBase {
 public:
@@ -59,7 +69,7 @@ private:
 	float baseGravity = 0.f;
 	float currentGravity = 0.f;
 
-	HitState hitState;
+	MoveState moveState;
 
 	std::string materials[3];
 	PowerStats* powerStats[3];

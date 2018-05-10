@@ -40,7 +40,7 @@ public:
 	void onStrongAttackButton() override;
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
-	virtual void onMove(HitState& hitState) override;
+	virtual void onMove(MoveState& moveState) override;
 
 	virtual void onLanding();
 	virtual void onShapeHit(const PxControllerShapeHit &hit) override;

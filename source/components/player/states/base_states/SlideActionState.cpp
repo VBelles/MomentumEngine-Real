@@ -16,7 +16,7 @@ void SlideActionState::update(float delta) {
 	float yaw, pitch;
 	getYawPitchFromVector(hitNormal, &yaw, &pitch);
 	VEC3 tangentVector = getVectorFromYawPitch(yaw, pitch - M_PI_2);
-	
+
 
 	float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
 	deltaMovement = tangentVector * module;
@@ -53,7 +53,7 @@ void SlideActionState::onStateEnter(IActionState* lastState) {
 	float yaw, pitch;
 	transform->getYawPitchRoll(&yaw, &pitch);
 	transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);
-	
+
 	getPlayerModel()->maxVerticalSpeed = maxVerticalSlidingVelocity;
 
 	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
@@ -67,28 +67,32 @@ void SlideActionState::onStateExit(IActionState* nextState) {
 	AirborneActionState::onStateExit(nextState);
 }
 
-void SlideActionState::onMove(HitState& hitState) {
-	if (!hitState.hasHit) { //Not grounded, change to airborne normal
+void SlideActionState::onMove(MoveState& moveState) {
+	if (!moveState.isTouchingBot) { //Not grounded, change to airborne normal
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else { //Grounded, check slope
-		//dbg("normal.y: %f\n", hitState.hit.worldNormal.y);
-		if (!isTryingToLand) {
-			isTryingToLand = true;
-			landingWindowTimer.reset();
-		}
-		/*if (!isTryingToLand) {
-			isTryingToLand = true;
-			landingWindowTimer.reset();
-		}
-		else if (landingWindowTimer.elapsed() >= landingWindowTime) {
-			float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
-			if (dot >= getPlayerModel()->getController()->getSlopeLimit()) {
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+		   //dbg("normal.y: %f\n", hitState.hit.worldNormal.y);
+		bool grounded = true;
+		for (HitState& hitState : moveState.hits) {
+			if (hitState.dotUp < getPlayerModel()->getController()->getSlopeLimit()) {
+				grounded = false;
+				break;
 			}
-		}*/
-		hitNormal = fromPhysx(hitState.hit.worldNormal);
+		}
+		if (!grounded) {
+			onLanding();
+		}
 	}
+
+	if (!moveState.hits.empty()) {
+		hitNormal = fromPhysx(moveState.hits[moveState.hits.size() - 1].hit.worldNormal);
+	}
+	else {
+		dbg("Wops\n");
+	}
+
+
 
 }
 

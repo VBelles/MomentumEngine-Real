@@ -9,6 +9,7 @@ class TCompTransform;
 class TCompHitboxes;
 class TCompRenderBlurRadial;
 struct HitState;
+struct MoveState;
 using namespace physx;
 
 class IActionState {
@@ -83,7 +84,7 @@ public:
 	virtual void onSweep(PxSweepBuffer& sweepBuffer) {}
 	virtual void onDead();
 	virtual void onDamage(float damage, bool isHard);
-	virtual void onMove(HitState& hitstate) {}
+	virtual void onMove(MoveState & moveState) {}
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }
