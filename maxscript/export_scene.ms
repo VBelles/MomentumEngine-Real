@@ -294,8 +294,9 @@ struct TSceneExporter (
 		if  classof obj != Box 	 and
 			classof obj != Sphere and
 			classof obj != Capsule and
+			classof obj != Editable_Mesh and
 			classof obj != Plane then (
-			format "Wrong object %. Collisions must be Spheres, Boxes, Capsules or Planes.\n" obj.name
+			format "Wrong object %. Collisions must be Spheres, Boxes, Capsules, Planes or meshes.\n" obj.name
 			return false
 		)
 		return true
@@ -368,6 +369,7 @@ struct TSceneExporter (
 	),
 	
 	-- ----------------------------------------------------------------------
+	-- -- · COMPONENTS · -------------------------------------------
 	-- ----------------------------------------------------------------------
 
 	-- --COMP: TRANSFORM-----------------------------------------------
@@ -503,6 +505,7 @@ struct TSceneExporter (
 	),
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider----------
+	-- -- (avoids adding "collider" component tag)-------------------------------
 	fn exportColliderMeshContents obj = (
 		local meshType = "convex_mesh"
 		if obj.layer.name == "trimesh" then meshType = "tri_mesh"
@@ -538,7 +541,7 @@ struct TSceneExporter (
 			local boxCopy = copy obj
 			convertToMesh boxCopy
 			exportColliderMeshContents boxCopy
-			
+			delete boxCopy
 			/*fs.writeKeyValue "shape" "box"
 			fs.writeComma()
 			fs.writeKeyValue "halfExtent" [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]*/
@@ -560,6 +563,8 @@ struct TSceneExporter (
 			fs.writeKeyValue "step" 0.5
 			fs.writeComma()
 			fs.writeKeyValue "slope" 45
+		) else if objClass == Editable_mesh then (
+			exportColliderMeshContents obj
 		)
 
 		if obj.layer.name == "triggers" or trig then (
@@ -592,7 +597,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --COLLIDER INSIDE AN ENTITY-----------------------------------------
+	-- --COLLIDER (name, transform and collider)-----------
 	fn exportEntityCollider obj colliderGroups: masks: trig:false dyn:false = (
 		exportName obj
 		fs.writeComma()
@@ -601,7 +606,7 @@ struct TSceneExporter (
 		exportCompCollider obj colliderGroups:colliderGroups masks:masks trig:trig dyn:dyn
 	),
 	
-	-- --COLLIDER MESH INSIDE AN ENTITY-----------------------------------------
+	-- --COLLIDER MESH (name, transform and collider mesh)----
 	fn exportEntityColliderMesh obj = (
 		exportName obj
 		fs.writeComma()
@@ -744,7 +749,7 @@ struct TSceneExporter (
 					local movable = hasChildLine child
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
-						
+					
 					exportCompCollider child mov:(movable or rot) colliderGroups:groups
 					
 					if pure then exportPurity()
@@ -763,19 +768,21 @@ struct TSceneExporter (
 	),
 
 	-- ----------------------------------------------------------
+	-- -- · ENTITIES · ------------------------------------
 	-- ----------------------------------------------------------
 
 	-- --ENTITY with only COLLISION ----------------------------------------------
 	fn exportEntityCollision obj nValidObjs = (
+		local objClass = classOf obj
 		if not isCollider obj and
-		   not classOf obj == Editable_Mesh then return false
+		   not objClass == Editable_mesh then return false
 		if nValidObjs > 0 then fs.writeComma()
 		
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				--format "name: % childLine: %\n" obj.name ((hasChildLine obj) as string)
-			if isCollider obj then
+			if isCollider obj and objClass != Editable_mesh then
 				exportEntityCollider obj dyn:(hasChildLine obj)
 			else
 				exportEntityColliderMesh obj
@@ -1429,7 +1436,6 @@ TODO: Las puras ahora se tienen que exportar diferente !!! Formato:
 			}
 		  }
 TODO: Que al exportar los materiales no haga copia si la carpeta ya está dentro de la carpeta textures.
-TODO: Si un mesh tiene hijo Box, exportar la Box como convex_mesh, no como caja.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
