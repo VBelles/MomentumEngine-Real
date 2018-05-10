@@ -388,7 +388,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- --RENDER MESH---------------------------------------------
+	-- --RENDER MESH (also exports material)----------------------------------------
 	fn exportRenderMesh obj = (
 		local mat = obj.material
 		if mat == undefined then (
@@ -404,7 +404,7 @@ struct TSceneExporter (
 			-- Export Mesh
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
-			exportMeshObject obj (project_path + mesh_name)
+			 obj (project_path + mesh_name)
 
 			fs.writeComma()
 
@@ -479,12 +479,6 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --COMP: PURE----------------------------------------------------
-	fn exportPurity = (
-		fs.writeComma()
-		fs.writeKeyEmpty "purity"
-	),
-
 	-- --COMP: BREAKABLE------------------------------------------------
 	fn exportBreakable hp:1 = (
 		fs.writeComma()
@@ -506,24 +500,27 @@ struct TSceneExporter (
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider----------
 	-- -- (avoids adding "collider" component tag)-------------------------------
-	fn exportColliderMeshContents obj = (
-		local meshType = "convex_mesh"
+	fn exportColliderMeshContents obj meshType:"convex_mesh" forceMesh: type:"static" groups:#("scenario") = (
 		if obj.layer.name == "trimesh" then meshType = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
+		if forceMesh != unsupplied then mesh_name = forceMesh
 		fs.writeKeyValue "mesh_src" mesh_name
 		fs.writeComma()
 		fs.writeKeyValue "shape" meshType
 		fs.writeComma()
-		fs.writeKeyValue "type" "static"
-	
-		exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"
+		fs.writeKeyValue "type" type
+		fs.writeComma()
+		exportStringArray "group" groups
+		
+		if forceMesh == unsupplied then
+			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"			
 	),
 	
 	-- --COMP: COLLIDER col_mesh------------------------------------------
-	fn exportColliderMesh obj = (
+	fn exportColliderMesh obj meshType:"convex_mesh" forceMesh: type:"static" groups:#("scenario") = (
 		fs.writeKey "collider"
 		fs.beginObj()
-			exportColliderMeshContents obj
+			exportColliderMeshContents obj meshType:meshType forceMesh:forceMesh type:type groups:groups
 		fs.endObj()
 	),
 
@@ -723,36 +720,65 @@ struct TSceneExporter (
 		fs.endObj()
 		return true
 	),
+	
+	-- --PURITY--------------------------------------------------------------------
+	fn exportPurity = (
+		fs.writeComma()
+		fs.beginObj()
+			fs.writeKeyValue "mesh" (mesh_path + "plataforma_puraNO.mesh")
+			fs.writeComma()
+			fs.writeKey "materials"
+			fs.beginArray()
+				fs.writeValue (mats_path + "NOpure.material")
+			fs.endArray()
+			fs.writeComma()
+			fs.writeKeyValue "enabled" false
+		fs.endObj()
+		fs.writeComma()
+		fs.beginObj()
+			fs.writeKeyValue "mesh" (mesh_path + "plataforma_pura_aristas.mesh")
+			fs.writeComma()
+			fs.writeKey "materials"
+			fs.beginArray()
+				fs.writeValue (mats_path + "pure.material")
+			fs.endArray()
+			fs.writeComma()
+			fs.writeKeyValue "enabled" false
+		fs.endObj()
+		fs.writeComma()
+		fs.writeKeyEmpty "purity"
+	),
 
 	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)--------------------------------
 	fn exportEditableMesh obj = (
-		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string)
+		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string) --DEBUG
+		local pure 		= obj.layer.name == "pure"
+		local breakable = obj.layer.name == "breakables"
+		local rot		= obj.layer.name == "rotate"
+		local mech		= obj.layer.name == "mechanisms"
+		
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
 		fs.writeKey "render"
 		fs.beginArray()
-			exportRenderMesh obj
-		fs.endArray()
-		
-		local pure 		= obj.layer.name == "pure"
-		local breakable = obj.layer.name == "breakables"
-		local rot		= obj.layer.name == "rotate"
-		local mech		= obj.layer.name == "mechanisms"
+			if pure then exportPurity() 
+			else exportRenderMesh obj
+		fs.endArray()				
 		
 		if hasChildCollider obj then (
 			for child in obj.children do (
 				if isCollider child then (
 					fs.writeComma()
-					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string)
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
 					local movable = hasChildLine child
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
-					
-					exportCompCollider child mov:(movable or rot) colliderGroups:groups
-					
-					if pure then exportPurity()
+
+					if pure then exportColliderMesh obj meshType:"tri_mesh" forceMesh:"plataformaPuraSI_tri.col_mesh" groups:groups
+					else exportCompCollider child mov:(movable or rot) colliderGroups:groups
+
 					if breakable then exportBreakable()
 					if movable then exportSpline child
 					if rot then exportPlatfRotation()
@@ -761,7 +787,7 @@ struct TSceneExporter (
 			)
 		)
 		else (
-			-- Doesn't have  child collider, so export mesh as collider.
+			-- Doesn't have child collider, so export mesh as collider.
 			--fs.writeComma()
 			--exportColliderMesh obj
 		)
@@ -1104,15 +1130,15 @@ struct TSceneExporter (
 		local meshPath = ""
 		local enemyType = "flying"
 		if stringContainsSubstring obj.layer.name "melee" then (
-			meshPath = "data/meshes/enemyMelee.mesh"
+			meshPath = mesh_path + "enemyMelee.mesh"
 			enemyType = "melee"
 		)
 		else if stringContainsSubstring obj.layer.name "ball" then (
-			meshPath = "data/meshes/enemigoBola.mesh"
+			meshPath = mesh_path + "enemigoBola.mesh"
 			enemyType = "ball"
 		)
 		else (
-			meshPath = "data/meshes/crisalida.mesh"
+			meshPath = mesh_path + "crisalida.mesh"
 		)
 		if nValidObjs > 0 then fs.writeComma()
 		fs.beginObj()
@@ -1402,39 +1428,7 @@ TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh
 TODO: Sólo exportar mesh collider si un mesh es hijo de otro mesh o si está en capa colliders.
 TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
 	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
-TODO: Las puras ahora se tienen que exportar diferente !!! Formato:
-		{
-			"entity":
-			{
-			  "name": "plataforma_puraNO008",
-			  "transform":
-			  {
-				"pos": "-68.0823 20.2976 -39.0947",
-				"rotation": "0.0 0.258819 0.0 -0.965926"
-			  },
-			  "render":
-			  [
-				{
-				  "mesh": "data/meshes/plataforma_puraNO.mesh",
-				  "materials": ["data/materials/NOpure.material"],
-				  "enabled": false
-				},
-				{
-				  "mesh": "data/meshes/plataforma_pura_aristas.mesh",
-				  "materials": ["data/materials/pure.material"],
-				  "enabled": false
-				}
-			  ],
-			  "collider":
-			  {
-				"mesh_src": "data/meshes/plataformaPuraSI_tri.col_mesh",
-				"shape": "tri_mesh",
-				"type": "static",
-				"group": [ "scenario" ]
-			  },
-			  "purity": {}
-			}
-		  }
+
 TODO: Que al exportar los materiales no haga copia si la carpeta ya está dentro de la carpeta textures.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
