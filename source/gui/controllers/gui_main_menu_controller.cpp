@@ -7,7 +7,9 @@ namespace GUI {
 		VEC2 leftAnalogInput = VEC2(
 			EngineInput[Input::EPadButton::PAD_LANALOG_X].value,
 			EngineInput[Input::EPadButton::PAD_LANALOG_Y].value);
-		if (leftAnalogInput.Length() > PAD_DEAD_ZONE) {
+
+		if (stickInputTimer.elapsed() > stickInputCooldown && leftAnalogInput.Length() > PAD_DEAD_ZONE) {
+			stickInputTimer.reset();
 			if (leftAnalogInput.y < -0.5) {
 				setCurrentOption(_currentOption + 1);
 			}
@@ -46,7 +48,9 @@ namespace GUI {
 			option.button->setCurrentState(CButton::EState::ST_Idle);
 		}
 
-		_currentOption = clamp(newOption, 0, static_cast<int>(_options.size()) - 1);
+		//_currentOption = clamp(newOption, 0, static_cast<int>(_options.size()) - 1);
+		int nOptions = static_cast<int>(_options.size());
+		_currentOption = (newOption + nOptions) % nOptions;
 
 		_options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
 	}

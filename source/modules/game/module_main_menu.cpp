@@ -11,8 +11,6 @@ bool CModuleMainMenu::start() {
 
 	Engine.getGUI().activateWidget("test");
 
-	Engine.getGUI().getVariables().setVariant("progress", 0.5f);
-
 	auto startGameCB = []() {
 		EngineModules.changeGameState("game_state");
 	};
