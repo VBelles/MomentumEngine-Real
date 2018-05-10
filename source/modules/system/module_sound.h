@@ -4,6 +4,9 @@
 
 class CModuleSound : public IModule {
 private:
+	void *extraDriverData = nullptr;
+	FMOD::System* lowLevelSystem = nullptr;
+	FMOD::Studio::System* system = nullptr;
 
 public:
 	CModuleSound(const std::string& name);
