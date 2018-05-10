@@ -72,7 +72,6 @@ void SlideActionState::onMove(MoveState& moveState) {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
 	else { //Grounded, check slope
-		   //dbg("normal.y: %f\n", hitState.hit.worldNormal.y);
 		bool grounded = true;
 		for (HitState& hitState : moveState.hits) {
 			if (hitState.dotUp < getPlayerModel()->getController()->getSlopeLimit()) {
@@ -80,19 +79,18 @@ void SlideActionState::onMove(MoveState& moveState) {
 				break;
 			}
 		}
-		if (!grounded) {
-			onLanding();
+		if (grounded) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+		}
+		else {
+			if (!moveState.hits.empty()) {
+				hitNormal = fromPhysx(moveState.hits[moveState.hits.size() - 1].hit.worldNormal);
+			}
+			else {
+				dbg("Wops\n");
+			}
 		}
 	}
-
-	if (!moveState.hits.empty()) {
-		hitNormal = fromPhysx(moveState.hits[moveState.hits.size() - 1].hit.worldNormal);
-	}
-	else {
-		dbg("Wops\n");
-	}
-
-
 
 }
 
