@@ -38,7 +38,7 @@ void CDeferredRenderer::renderGBuffer() {
     rt_depth->clear(VEC4(1, 1, 1, 1));
 
     // Clear ZBuffer with the value 1.0 (far)
-    Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+    Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
     // Render the solid objects that output to the G-Buffer
     CRenderManager::get().renderCategory("gbuffer");
@@ -162,7 +162,7 @@ void CDeferredRenderer::renderDirectionalLights() {
     tech->activate();
 
     // All light directional use the same mesh
-    //cogemos unit quad en vez del frustum para que pinte luz en toda la pantalla, independientemente de si está en el frustum
+    //cogemos unit quad en vez del frustum para que pinte luz en toda la pantalla, independientemente de si estï¿½ en el frustum
     auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
     //auto* mesh = Resources.get("data/meshes/UnitFrustum.mesh")->as<CRenderMesh>();
     mesh->activate();

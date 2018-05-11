@@ -17,6 +17,7 @@ Funciones:
 	void waitCondition(function func, string params)
 
 	void blendInCamera(string cameraName, float timeToMixIn, CAMERA_PRIORITY, INTERPOLATOR)
+	void copyRotationFromCamToCam(std::string copyCamName, std::string pasteCamName)
 	
 	float getPlayerHp()
 	float setPlayerHp(float hp)
@@ -26,6 +27,10 @@ Funciones:
 	void teleportPlayer(float x, float y, float z)
 	void movePlayer(float x, float y, float z)
 	void setPower(float power), cantidad de poder
+	void lockPlayerCameraInput()
+    	void unlockPlayerCameraInput()
+	void disablePlayerOutline()
+	void enablePlayerOutline()
 
 	string spawnEntityAt(PREFAB, float x, float y, float z)
 	string spawnGolemAt(float x, float y, float z)

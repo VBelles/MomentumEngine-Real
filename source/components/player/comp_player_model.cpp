@@ -169,7 +169,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	currentPowerStats = powerStats[msg.powerLvl - 1];
 
 	TCompRender *render = get<TCompRender>();
-	render->setAllMaterials(materials[msg.powerLvl - 1]);
+	render->setAllMaterials(0, render->meshes.size() / 2, materials[msg.powerLvl - 1]);
 
 	Engine.getScripting().throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
@@ -432,6 +432,22 @@ void TCompPlayerModel::setHp(float hp) {
 
 void TCompPlayerModel::setRespawnPosition(VEC3 position) {
 	respawnPosition = position;
+}
+
+void TCompPlayerModel::disableOutline() {
+	TCompRender *render = get<TCompRender>();
+	for (int i = render->meshes.size() / 2; i < render->meshes.size(); ++i) {
+		render->meshes[i].enabled = false;
+	}
+	render->refreshMeshesInRenderManager();
+}
+
+void TCompPlayerModel::enableOutline() {
+	TCompRender *render = get<TCompRender>();
+	for (int i = render->meshes.size() / 2; i < render->meshes.size(); ++i) {
+		render->meshes[i].enabled = true;
+	}
+	render->refreshMeshesInRenderManager();
 }
 
 void TCompPlayerModel::damage(float damage) {//tendr�a que llegar tambi�n si es hard o no

@@ -32,10 +32,14 @@
 #include <d3d11.h>
 
 //Physx
-#include "PxPhysicsAPI.h"
+#include <PxPhysicsAPI.h>
 
 //Cal3D
 #include <Cal3D/cal3d.h>
+
+//FMOD
+#include <fmod.hpp>
+#include <fmod_studio.hpp>
 
 // Engine
 #include "utils/json.hpp"

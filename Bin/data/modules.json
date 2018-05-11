@@ -12,7 +12,8 @@
     "render",
 	  "gui",
     "test_instancing",
-    "scripting"
+    "scripting",
+    "sound"
   ],
   "render": [
     "render",    
