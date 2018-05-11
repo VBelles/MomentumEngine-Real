@@ -42,7 +42,7 @@ public:
 
 	//void setMesh(std::string meshName, std::string materialName = "");
 
-	void setAllMaterials(std::string materialName);
+	void setAllMaterials(int startingMesh, int endingMesh, std::string materialName);
 	void setAllMaterials(std::vector<std::string> materialNames);
 
 	void update(float delta);
