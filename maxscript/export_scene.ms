@@ -503,7 +503,7 @@ struct TSceneExporter (
 	fn exportColliderMeshContents obj meshType:"convex_mesh" forceMesh: type:"static" groups:#("scenario") = (
 		if obj.layer.name == "trimesh" then meshType = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
-		if forceMesh != unsupplied then mesh_name = forceMesh
+		if forceMesh != unsupplied then mesh_name = mesh_path + forceMesh
 		fs.writeKeyValue "mesh_src" mesh_name
 		fs.writeComma()
 		fs.writeKeyValue "shape" meshType
@@ -723,13 +723,12 @@ struct TSceneExporter (
 	
 	-- --PURITY--------------------------------------------------------------------
 	fn exportPurity = (
-		fs.writeComma()
 		fs.beginObj()
 			fs.writeKeyValue "mesh" (mesh_path + "plataforma_puraNO.mesh")
 			fs.writeComma()
 			fs.writeKey "materials"
 			fs.beginArray()
-				fs.writeValue (mats_path + "NOpure.material")
+				fs.writeValue (mats_path + "NOpure.material") addIndent:true
 			fs.endArray()
 			fs.writeComma()
 			fs.writeKeyValue "enabled" false
@@ -740,13 +739,11 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKey "materials"
 			fs.beginArray()
-				fs.writeValue (mats_path + "pure.material")
+				fs.writeValue (mats_path + "pure.material") addIndent:true
 			fs.endArray()
 			fs.writeComma()
 			fs.writeKeyValue "enabled" false
 		fs.endObj()
-		fs.writeComma()
-		fs.writeKeyEmpty "purity"
 	),
 
 	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)--------------------------------
@@ -776,7 +773,10 @@ struct TSceneExporter (
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
 
-					if pure then exportColliderMesh obj meshType:"tri_mesh" forceMesh:"plataformaPuraSI_tri.col_mesh" groups:groups
+					if pure then (
+						fs.writeKeyEmpty "purity"
+						exportColliderMesh obj meshType:"tri_mesh" forceMesh:"plataformaPuraSI_tri.col_mesh" groups:groups
+					)
 					else exportCompCollider child mov:(movable or rot) colliderGroups:groups
 
 					if breakable then exportBreakable()

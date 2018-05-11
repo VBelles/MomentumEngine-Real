@@ -35,17 +35,16 @@ fn mcvPosToMax p = (
 )
 
 fn maxRotToMcv obj = (
-	-- From mcv, we will go to max, apply the max transform
-	-- and go back to mcv coord system.
+	-- From mcv, we will go to max, apply the max transform and go back to mcv coord system.
 	local mcv_transform = rotateXMatrix 90 * obj.transform * rotateXMatrix -90
 
 	-- Take just the rotation as quaternion
 	return roundSmallQuatToZeros (mcv_transform.rotationPart as quat)
 )
 
-fn mcvRotToMax p = (
+/*fn mcvRotToMax q = (
 	return 
-)
+)*/
 
 -- Returns the angle between two vectors (from 0 to 180 degrees).
 -- TODO: Esto debería devolver el ángulo en negativo si se da el caso (añadiendo referencia).
