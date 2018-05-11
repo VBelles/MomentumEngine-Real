@@ -321,15 +321,9 @@
 				{
 					"mesh": "data/meshes/_mechPREFAB.mesh",
 					"materials": [
-						"data/materials/madera_outline.material"
+						"data/materials/mec6.material"
 					],
 					"color": "0 0 1 1"
-        },
-        {
-					"mesh": "data/meshes/_mechPREFAB.mesh",
-					"materials": [
-						"data/materials/madera_post_outline.material"
-					]
         }
 			],
       "transform":

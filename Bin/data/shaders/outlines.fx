@@ -6,7 +6,7 @@ Texture2D<uint2>    txBackBufferStencil        SLOT( TS_ALBEDO );
 
 
 // In case we want to use the stencil test, we must have the zbuffer+stencil from the backbuffer
-// actived when rendering the outlines pass
+// activated when rendering the outlines pass
 // But we can't read the current values as it's 
 // In the tech 'outlines' add this ps entry point instead of the default PS
 //    "ps_entry_point": "PS_Solid",
