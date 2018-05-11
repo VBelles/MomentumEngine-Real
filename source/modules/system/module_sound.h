@@ -4,7 +4,7 @@
 
 #define TEST_EVENT "event:/onTest"
 
-class CModuleSound : public IModule {	
+class CModuleSound : public IModule {
 private:
 	FMOD_RESULT res;
 	void *extraDriverData = nullptr;
@@ -20,13 +20,13 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 
-	void instanceEvent(const char * event);
-	void releaseEvent(const char * event);
+	void instanceEvent(std::string event);
+	void releaseEvent(std::string event);
 
-	void startEvent(const char * event);
-	void stopEvent(const char * event, FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_IMMEDIATE);
+	void startEvent(std::string event);
+	void stopEvent(std::string event, FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_IMMEDIATE);
 
-	void emitEvent(const char * event);
+	void emitEvent(std::string event);
 
 };
 
