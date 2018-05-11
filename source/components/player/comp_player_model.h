@@ -187,4 +187,6 @@ public:
 	void setHp(float hp);
 	void setRespawnPosition(VEC3 position);
 	VEC3 getRespawnPosition() { return respawnPosition; }
+	void disableOutline();
+	void enableOutline();
 };
