@@ -129,9 +129,12 @@
 					"plummetTime": 0.6
 				},
 				"materials": [
-					"data/skeletons/ella/ellaSS1.material",
-					"data/skeletons/ella/ellaSS2.material",
-					"data/skeletons/ella/ellaSS3.material"
+					"data/skeletons/ella/ellaSS1_outline.material",
+					"data/skeletons/ella/ellaSS1_post_outline.material",
+					"data/skeletons/ella/ellaSS2_outline.material",
+					"data/skeletons/ella/ellaSS2_post_outline.material",
+					"data/skeletons/ella/ellaSS3_outline.material",
+					"data/skeletons/ella/ellaSS3_post_outline.material"
 				]
 			},
 			"collider": {

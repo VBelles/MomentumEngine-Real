@@ -169,7 +169,12 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	currentPowerStats = powerStats[msg.powerLvl - 1];
 
 	TCompRender *render = get<TCompRender>();
-	render->setAllMaterials(materials[msg.powerLvl - 1]);
+	std::vector<std::string> materialNames; 
+	materialNames.clear();
+	materialNames.push_back(materials[(msg.powerLvl - 1) * 2]);
+	materialNames.push_back(materials[((msg.powerLvl - 1) * 2) + 1]);
+	dbg("material name: %s, %s\n", materials[(msg.powerLvl - 1) * 2], materialNames[1]);
+	render->setAllMaterials(materialNames);
 
 	Engine.getScripting().throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }

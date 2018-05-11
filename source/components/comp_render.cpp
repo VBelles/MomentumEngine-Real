@@ -145,6 +145,17 @@ void TCompRender::setAllMaterials(std::string materialName) {
 	refreshMeshesInRenderManager();
 }
 
+void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
+	for (CMeshWithMaterials &m : meshes) {
+		m.materials.clear();
+		for (auto materialName : materialNames) {
+			const CMaterial* material = Resources.get(materialName)->as<CMaterial>();
+			m.materials.push_back(material);
+		}
+	}
+	refreshMeshesInRenderManager();
+}
+
 void TCompRender::update(float delta) {
 	if (isColorChanged && timer.elapsed() >= timeToNormal) {
 		color = originalColor;
