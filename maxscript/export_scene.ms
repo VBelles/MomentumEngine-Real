@@ -404,7 +404,7 @@ struct TSceneExporter (
 			-- Export Mesh
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
-			 obj (project_path + mesh_name)
+			exportMeshObject obj (project_path + mesh_name)
 
 			fs.writeComma()
 
