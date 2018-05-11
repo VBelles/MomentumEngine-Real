@@ -10,7 +10,7 @@
     "game",
     "cameras",
     "render",
-	"gui",
+	  "gui",
     "test_instancing",
     "scripting",
     "sound"
@@ -23,7 +23,7 @@
     "entities",
     "pause",
     "input",
-	"gui",
+	  "gui",
     "scripting"
   ]
 }

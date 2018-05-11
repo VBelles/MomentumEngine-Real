@@ -55,13 +55,13 @@
 				"position" : "810 650",
 				"children" : [
 					{
-						"name" : "new_game",
+						"name" : "start_game",
 						"type" : "button",
 						"position" : "0 0",
-						"size" : "300 50",
+						"size" : "400 50",
 						"texture" : "data/textures/gui/menu_boton.dds",
 						"font_size" : 32.0,
-						"text" : "NEW GAME",
+						"text" : "START GAME",
 						"halign" : "center",
 						"valign" : "center",
 						"color" : "0.5 0.5 0.5 1",
@@ -77,13 +77,13 @@
 						}
 					},
 					{
-						"name" : "continue",
+						"name" : "exit_game",
 						"type" : "button",
 						"position" : "0 80",
-						"size" : "300 50",
+						"size" : "400 50",
 						"texture" : "data/textures/gui/menu_boton.dds",
 						"font_size" : 32.0,
-						"text" : "CONTINUE",
+						"text" : "EXIT GAME",
 						"halign" : "center",
 						"valign" : "center",
 						"color" : "0.5 0.5 0.5 1",
@@ -94,28 +94,6 @@
 						},
 						"pressed" : {
 							"position" : "30 80",
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
-						}
-					},
-					{
-						"name" : "options",
-						"type" : "button",
-						"position" : "0 160",
-						"size" : "300 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "OPTIONS",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
-						"selected" : {
-							"position" : "30 160",
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
-						},
-						"pressed" : {
-							"position" : "30 160",
 							"font_size" : 36.0,
 							"font_color" : "0.8 0.8 1 1"
 						}

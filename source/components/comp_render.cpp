@@ -136,11 +136,23 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 	refreshMeshesInRenderManager();
 }*/
 
-void TCompRender::setAllMaterials(std::string materialName) {
-	for (CMeshWithMaterials &m : meshes) {
+void TCompRender::setAllMaterials(int startingMesh, int endingMesh, std::string materialName) {
+	for (int i = startingMesh; i < endingMesh; ++i) {
+		CMeshWithMaterials m = meshes[i];
 		m.materials.clear();
 		const CMaterial* material = Resources.get(materialName)->as<CMaterial>();
 		m.materials.push_back(material);
+	}
+	refreshMeshesInRenderManager();
+}
+
+void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
+	for (CMeshWithMaterials &m : meshes) {
+		m.materials.clear();
+		for (auto materialName : materialNames) {
+			const CMaterial* material = Resources.get(materialName)->as<CMaterial>();
+			m.materials.push_back(material);
+		}
 	}
 	refreshMeshesInRenderManager();
 }
@@ -171,6 +183,7 @@ void TCompRender::refreshMeshesInRenderManager() {
 		// All materials of the house...
 		uint32_t idx = 0;
 		for (auto& m : mwm.materials) {
+			dbg("%s\n", m->getName().c_str());
 			// Supporting null materials to discard submeshes
 			if (m) {
 				CRenderManager::get().addRenderKey(
