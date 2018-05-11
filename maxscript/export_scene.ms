@@ -393,7 +393,7 @@ struct TSceneExporter (
 		local mat = obj.material
 		if mat == undefined then (
 			format "Warning: Obj % doesn't have a material, a default will be assigned.\n" obj.name
-			-- TODO: assign default material.
+			--TODO: assign default material.
 		)
 		else if not (isValidName mat.name) then (
 			mat.name = cleanMaterialName mat.name
@@ -499,117 +499,113 @@ struct TSceneExporter (
 	),
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider----------
-	-- -- (avoids adding "collider" component tag)-------------------------------
-	fn exportColliderMeshContents obj meshType:"convex_mesh" forceMesh: type:"static" groups:#("scenario") = (
+	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
 		if obj.layer.name == "trimesh" then meshType = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
-		if forceMesh != unsupplied then mesh_name = mesh_path + forceMesh
+		if forceMesh then mesh_name = mesh_path + "plataformaPuraSI_tri.col_mesh"
+			
+		local meshType = "static"
+		if mov then meshType = "kinematic"
 		fs.writeKeyValue "mesh_src" mesh_name
 		fs.writeComma()
-		fs.writeKeyValue "shape" meshType
-		fs.writeComma()
-		fs.writeKeyValue "type" type
-		fs.writeComma()
-		exportStringArray "group" groups
+		fs.writeKeyValue "shape" meshShape
 		
 		if forceMesh == unsupplied then
 			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"			
 	),
 	
-	-- --COMP: COLLIDER col_mesh------------------------------------------
-	fn exportColliderMesh obj meshType:"convex_mesh" forceMesh: type:"static" groups:#("scenario") = (
-		fs.writeKey "collider"
-		fs.beginObj()
-			exportColliderMeshContents obj meshType:meshType forceMesh:forceMesh type:type groups:groups
-		fs.endObj()
+	fn exportSphere obj = (
+		fs.writeKeyValue "shape" "sphere"
+		fs.writeComma()
+		fs.writeKeyValue "radius" obj.radius
 	),
-
+	
+	fn exportBox obj = (
+		format "exportBox obj.name: %\n" obj.name --DEBUG
+		local boxCopy = copy obj
+		convertToMesh boxCopy
+		exportColliderMeshContents boxCopy
+		delete boxCopy
+		/*fs.writeKeyValue "shape" "box"
+		fs.writeComma()
+		fs.writeKeyValue "halfExtent" [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]*/
+	),
+	
+	fn exportPlane obj = (
+		fs.writeKeyValue "shape" "plane"
+		fs.writeComma()
+		-- Last value should be Y position.
+		fs.writeKeyValue "planeDesc" "0 1 0 0"
+	),
+	
+	fn exportCapsule obj = (
+		fs.writeKeyValue "shape" "capsule"
+		fs.writeComma()
+		fs.writeKeyValue "type" "cct"
+		fs.writeComma()
+		fs.writeKeyValue "radius" obj.radius
+		fs.writeComma()
+		--Warning: Max capsule height is the real height, NOT HALF as in PhysX.
+		fs.writeKeyValue "height" (obj.height / 2)
+		fs.writeComma()
+		fs.writeKeyValue "step" 0.5
+		fs.writeComma()
+		fs.writeKeyValue "slope" 45
+	),
+	
 	-- --COMP: COLLIDER------------------------------------------
-	fn exportCompCollider obj colliderGroups: masks: trig:false dyn:false mov:false = (
-		local objClass = classof obj
+	fn exportCompCollider obj meshMode:false colliderGroups: masks: trig:false dyn:false mov:false = (
+		local objClass = classOf obj
+		local layerName = obj.layer.name
 		fs.writeKey "collider"
 		fs.beginObj()
+			format "exportCompCollider of obj: %\n" obj.name
+			if meshMode then exportColliderMeshContents obj meshShape:"convex_mesh" mov:mov forceMesh:true
+			else (
+				if      objClass == Sphere		  then exportSphere obj
+				else if objClass == Box			  then exportBox obj
+				else if objClass == Plane		  then exportPlane obj
+				else if objClass == Capsule		  then exportCapsule obj
+				else if objClass == Editable_mesh then exportColliderMeshContents obj
 
-		if objClass == Sphere then (
-			fs.writeKeyValue "shape" "sphere"
-			fs.writeComma()
-			fs.writeKeyValue "radius" obj.radius
-		) else if objClass == Box then (
-			local boxCopy = copy obj
-			convertToMesh boxCopy
-			exportColliderMeshContents boxCopy
-			delete boxCopy
-			/*fs.writeKeyValue "shape" "box"
-			fs.writeComma()
-			fs.writeKeyValue "halfExtent" [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]*/
-		) else if objClass == Plane then (
-			fs.writeKeyValue "shape" "plane"
-			fs.writeComma()
-			-- Last value should be Y position.
-			fs.writeKeyValue "planeDesc" "0 1 0 0"
-		) else if objClass == Capsule then (
-			fs.writeKeyValue "shape" "capsule"
-			fs.writeComma()
-			fs.writeKeyValue "type" "cct"
-			fs.writeComma()
-			fs.writeKeyValue "radius" obj.radius
-			fs.writeComma()
-			--Warning: Max capsule height is the real height, NOT HALF as in PhysX.
-			fs.writeKeyValue "height" (obj.height / 2)
-			fs.writeComma()
-			fs.writeKeyValue "step" 0.5
-			fs.writeComma()
-			fs.writeKeyValue "slope" 45
-		) else if objClass == Editable_mesh then (
-			exportColliderMeshContents obj
-		)
+				if layerName == "triggers" or trig then (
+					fs.writeComma()
+					fs.writeKeyValue "is_trigger" trig
+				)
+				
+				if dyn then (
+					fs.writeComma()
+					fs.writeKeyValue "type" "dynamic"
+				) else if mov or layerName == "pure" then (
+					fs.writeComma()
+					fs.writeKeyValue "type" "kinematic"
+				)			
+				else (
+					fs.writeComma()
+					fs.writeKeyValue "type" "static"
+				)
+			)
 
-		if obj.layer.name == "triggers" or trig then (
-			fs.writeComma()
-			fs.writeKeyValue "is_trigger" trig
-		)
-		
-		if dyn then (
-			fs.writeComma()
-			fs.writeKeyValue "type" "dynamic"
-		) else if mov or obj.layer.name == "pure" then (
-			fs.writeComma()
-			fs.writeKeyValue "type" "kinematic"
-		)			
-		else (
-			fs.writeComma()
-			fs.writeKeyValue "type" "static"
-		)
-		
-		if colliderGroups != unsupplied then (
-			fs.writeComma()
-			exportStringArray "group" colliderGroups
-		)
-		
-		if masks != unsupplied then (
-			fs.writeComma()
-			exportStringArray "mask" masks
-		)
-
+			if colliderGroups != unsupplied then (
+				fs.writeComma()
+				exportStringArray "group" colliderGroups
+			)
+			
+			if masks != unsupplied then (
+				fs.writeComma()
+				exportStringArray "mask" masks
+			)
 		fs.endObj()
 	),
 	
 	-- --COLLIDER (name, transform and collider)-----------
-	fn exportEntityCollider obj colliderGroups: masks: trig:false dyn:false = (
+	fn exportEntityCollider obj meshMode: colliderGroups: masks: trig:false dyn:false = (
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
+		
 		exportCompCollider obj colliderGroups:colliderGroups masks:masks trig:trig dyn:dyn
-	),
-	
-	-- --COLLIDER MESH (name, transform and collider mesh)----
-	fn exportEntityColliderMesh obj = (
-		exportName obj
-		fs.writeComma()
-		exportTransform obj
-		fs.writeComma()
-		exportColliderMesh obj
 	),
 	
 	-- --COMP: Give power --
@@ -681,45 +677,6 @@ struct TSceneExporter (
 			fs.writeKeyValue "centeringCameraSpeed" "18 9"
 		fs.endObj()
 	),
-
-	-- --MOVE TRIGGER (obsoleta, no se usa)------------------------
-	fn exportMoveTrigger parentMeshObj obj = (
-		local triggerName = parentMeshObj.name + "_trigger"
-		local platformHalfExtent = [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]
-		-- entity trigger
-		fs.endObj()-- end previous entity
-		fs.endObj()-- end previous object
-		------ child entity ------
-		fs.writeComma()
-		fs.beginObj()
-		fs.writeKey "entity"
-		fs.beginObj()-- begin trigger entity
-		fs.writeKeyValue "name" triggerName
-		fs.writeComma()
-		fs.writeKeyEmpty "transform"
-		-- collider
-		fs.writeKey "collider"
-		fs.beginObj()
-			fs.writeKeyValue "shape" "box"
-			fs.writeComma()
-			fs.writeKeyValue "type" "dynamic"
-			fs.writeComma()
-			fs.writeKeyValue "is_trigger" true
-			fs.writeComma()
-			fs.writeKeyValue "halfExtent" platformHalfExtent
-			fs.writeComma()
-			exportStringArray "mask" #("player")
-		fs.endObj()
-		fs.writeComma()
-		-- platform
-		fs.writeKeyEmpty "platform"
-		-- hierarchy
-		fs.writeKey "hierarchy"
-		fs.beginObj()
-			fs.writeKeyValue "parent" parentMeshObj.name
-		fs.endObj()
-		return true
-	),
 	
 	-- --PURITY--------------------------------------------------------------------
 	fn exportPurity = (
@@ -768,16 +725,17 @@ struct TSceneExporter (
 			for child in obj.children do (
 				if isCollider child then (
 					fs.writeComma()
-					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
+					format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
 					local movable = hasChildLine child
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
-
+					
+					local objToExport = child
 					if pure then (
 						fs.writeKeyEmpty "purity"
-						exportColliderMesh obj meshType:"tri_mesh" forceMesh:"plataformaPuraSI_tri.col_mesh" groups:groups
+						objToExport = obj
 					)
-					else exportCompCollider child mov:(movable or rot) colliderGroups:groups
+					exportCompCollider objToExport meshMode:pure mov:(movable or rot) colliderGroups:groups
 
 					if breakable then exportBreakable()
 					if movable then exportSpline child
@@ -807,11 +765,7 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				--format "name: % childLine: %\n" obj.name ((hasChildLine obj) as string)
-			if isCollider obj and objClass != Editable_mesh then
-				exportEntityCollider obj dyn:(hasChildLine obj)
-			else
-				exportEntityColliderMesh obj
+				exportEntityCollider obj meshMode:(not (isCollider obj and objClass != Editable_mesh)) dyn:(hasChildLine obj)
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		return true
@@ -1424,8 +1378,8 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
+TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
 
-TODO: Sólo exportar mesh collider si un mesh es hijo de otro mesh o si está en capa colliders.
 TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
 	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
 
