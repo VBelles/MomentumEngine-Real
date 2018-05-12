@@ -34,7 +34,6 @@ void GhostJumpSquatActionState::update (float delta) {
 void GhostJumpSquatActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	//dbg("Entrando en GhostJumpSquat\n");
-	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
 }

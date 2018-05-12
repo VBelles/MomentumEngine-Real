@@ -53,11 +53,6 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	//dbg("Strong Attack\n");
 	phase = AttackPhases::Launch;
 	*velocityVector = VEC3::Zero;
-	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = activeFrames * (1.f / 60);
-	animationEndTime = endingLagFrames * (1.f / 60);
-	interruptibleTime = IASAFrames * (1.f / 60);
-	beginLauncherTime = startLauncherFrames * (1.f / 60);
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	timer.reset();

@@ -25,7 +25,6 @@ void WallJumpSquatActionState::update (float delta) {
 
 void WallJumpSquatActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	endingTime = endingFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }

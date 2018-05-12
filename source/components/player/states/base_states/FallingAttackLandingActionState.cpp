@@ -20,10 +20,7 @@ void FallingAttackLandingActionState::update(float delta) {
 
 void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 	LandingActionState::onStateEnter(lastState);
-	landingLagTime = newLandingLagFrames * (1.f / 60);
-	impactAttackDurationTime = impactAttackDurationFrames * (1.f / 60);
-	springJumpWindowStartTime = springJumpWindowStartFrame * (1.f / 60);
-	springJumpWindowEndTime = springJumpWindowEndFrame * (1.f / 60);
+	landingLagTime = newLandingLagTime;
 	hasTriedSpringJump = false;
 	movementInput = VEC2::Zero;
 	getHitboxes()->enable(hitbox);

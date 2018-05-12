@@ -76,7 +76,6 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	IActionState::onStateEnter(lastState);
 	enteringPowerStats = &*getPlayerModel()->getPowerStats();
 	isTurnAround = false;
-	turnAroundTime = turnAroundFrames * (1.f / 60);
 	getPlayerModel()->maxVerticalSpeed = getPlayerModel()->maxVelocityUpwards;
 	getPlayerModel()->resetGravity();
 	enterFront = getPlayerTransform()->getFront();

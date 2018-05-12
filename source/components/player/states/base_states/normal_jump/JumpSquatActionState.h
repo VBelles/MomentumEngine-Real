@@ -5,8 +5,7 @@
 class JumpSquatActionState : public GroundedActionState {
 private:
 	CTimer timer;
-	int squatFrames = 5;
-	float squatTime;
+	float squatTime = frames2sec(5);
 
 	bool isShortHop = false;
 

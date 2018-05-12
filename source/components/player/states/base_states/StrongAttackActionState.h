@@ -5,18 +5,14 @@
 class StrongAttackActionState : public GroundedActionState {
 private:
 	CTimer timer;
-	int warmUpFrames = 60;
-	int activeFrames = 10;
-	int endingLagFrames = 60;
-	float hitboxOutTime;
-	float hitEndTime;
-	float animationEndTime;
+	float hitboxOutTime = frames2sec(60);
+	float hitEndTime = frames2sec(10);
+	float animationEndTime = frames2sec(60);
 
 	int IASAFrames = 60;//Interruptible As Soon As
-	float interruptibleTime;
+	float interruptibleTime = frames2sec(60);
 
-	int startLauncherFrames = 20;
-	float beginLauncherTime;
+	float beginLauncherTime = frames2sec(20);
 
 	CHandle hitboxHandle;
 	float damage = 5.f;

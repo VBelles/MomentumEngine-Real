@@ -31,10 +31,6 @@ void VerticalLauncherActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	//dbg("Vertical Launcher\n");
 	phase = AttackPhases::Startup;
-	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = activeFrames * (1.f / 60);
-	animationEndTime = endingLagFrames * (1.f / 60);
-	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }

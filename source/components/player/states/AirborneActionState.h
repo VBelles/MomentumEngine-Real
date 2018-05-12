@@ -8,8 +8,7 @@ class AirborneActionState : public IActionState {
 protected:
 	CTimer turnAroundTimer;
 	bool isTurnAround = false;
-	int turnAroundFrames = 8;
-	float turnAroundTime;
+	float turnAroundTime = frames2sec(8);
 	float exitYaw;
 	float turnAroundRotationSpeed;
 	float rotationSpeed = 4.5f;

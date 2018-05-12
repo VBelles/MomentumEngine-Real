@@ -4,16 +4,13 @@
 
 class VerticalLauncherActionState : public GroundedActionState {
 	CTimer timer;
-	int warmUpFrames = 5;
-	int activeFrames = 8;
-	int endingLagFrames = 17;
-	float hitboxOutTime;
-	float hitEndTime;
-	float animationEndTime;
+
+	float hitboxOutTime = frames2sec(5);
+	float hitEndTime = frames2sec(8);
+	float animationEndTime = frames2sec(17);
 	float suspensionTime = 1.5f;
 
-	int IASAFrames = 25;//Interruptible As Soon As
-	float interruptibleTime;
+	float interruptibleTime = frames2sec(25);
 
 	float damage = 0;
 	AttackPhases phase = AttackPhases::Startup;

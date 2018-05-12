@@ -5,8 +5,7 @@
 class WallJumpSquatActionState : public AirborneActionState {
 protected:
 	CTimer timer;
-	int endingFrames = 4;
-	float endingTime;
+	float endingTime = frames2sec(4);
 
 public:
 	WallJumpSquatActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_inicio") {}

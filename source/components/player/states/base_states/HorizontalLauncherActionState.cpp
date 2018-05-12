@@ -33,10 +33,6 @@ void HorizontalLauncherActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	//dbg("Horizontal Launcher\n");
 	phase = AttackPhases::Startup;
-	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = activeFrames * (1.f / 60);
-	animationEndTime = endingLagFrames * (1.f / 60);
-	interruptibleTime = IASAFrames * (1.f / 60);
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	timer.reset();

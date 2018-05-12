@@ -59,6 +59,10 @@ protected:
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void clampHorizontalVelocity(float maxHorizontalSpeed);
 
+	float frames2sec(int frames) {
+		return (frames / 60.f);
+	}
+
 public:
 	std::string animation;
 

@@ -5,8 +5,7 @@
 class JumpSquatSpringActionState : public GroundedActionState {
 private:
 	CTimer timer;
-	int squatFrames = 12;
-	float squatTime;
+	float squatTime = frames2sec(12);
 
 public:
 	JumpSquatSpringActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "jump_inicio") {}

@@ -31,11 +31,6 @@ void FastAttackActionState::update(float delta) {
 void FastAttackActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	phase = AttackPhases::Launch;
-	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = activeFrames * (1.f / 60);
-	animationEndTime = endingLagFrames * (1.f / 60);
-	interruptibleTime = IASAFrames * (1.f / 60);
-	beginLauncherTime = startLauncherFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->lockBaseState = true;
 	getPlayerModel()->lockWalk = false;

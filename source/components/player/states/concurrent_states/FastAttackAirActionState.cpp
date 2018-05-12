@@ -28,10 +28,6 @@ void FastAttackAirActionState::update(float delta) {
 void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
-	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = activeFrames * (1.f / 60);
-	animationEndTime = endingLagFrames * (1.f / 60);
-	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->lockBaseState = true;
 	getPlayerModel()->lockWalk = false;

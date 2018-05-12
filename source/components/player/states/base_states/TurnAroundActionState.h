@@ -4,8 +4,7 @@
 
 class TurnAroundActionState : public GroundedActionState {
 	CTimer timer;
-	int turnAroundFrames = 9;
-	float turnAroundTime;
+	float turnAroundTime = frames2sec(9);
 	VEC3 exitVelocityVector;
 	float exitYaw;
 	float rotationSpeed;

@@ -5,8 +5,7 @@
 class JumpSquatLongActionState : public GroundedActionState {
 private:
 	CTimer timer;
-	int squatFrames = 8;
-	float squatTime;
+	float squatTime = frames2sec(8);
 public:
 	JumpSquatLongActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "longJump_inicio") {}
 	void update(float delta) override;

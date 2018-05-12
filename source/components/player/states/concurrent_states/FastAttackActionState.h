@@ -7,18 +7,13 @@ class Hitboxes;
 class FastAttackActionState : public GroundedActionState {
 private:
 	CTimer timer;
-	int warmUpFrames = 10;
-	int activeFrames = 15;
-	int endingLagFrames = 5;
-	float hitboxOutTime;
-	float hitEndTime;
-	float animationEndTime;
+	float hitboxOutTime = frames2sec(10);
+	float hitEndTime = frames2sec(15);
+	float animationEndTime = frames2sec(5);
 
-	int IASAFrames = 13;//Interruptible As Soon As
-	float interruptibleTime;
+	float interruptibleTime = frames2sec(13);
 
-	int startLauncherFrames = 15;
-	float beginLauncherTime;
+	float beginLauncherTime = frames2sec(15);
 
 	CHandle hitboxHandle;
 	float damage = 1.f;

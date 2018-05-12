@@ -5,8 +5,7 @@
 class WallJumpSquatPlummetActionState : public AirborneActionState {
 protected:
 	CTimer timer;
-	int endingFrames = 20;
-	float endingTime;
+	float endingTime = frames2sec(20);
 	float frontVelocity = 30.f;
 	float verticalVelocity = -30.f;
 

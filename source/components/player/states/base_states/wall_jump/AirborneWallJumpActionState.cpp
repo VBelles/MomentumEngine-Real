@@ -23,9 +23,6 @@ void AirborneWallJumpActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 	getPlayerModel()->setGravityMultiplier(1.1f);
 	//dbg("Entrando en airborne long\n");
-	enterFront = getPlayerTransform()->getFront();
-	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
-	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 

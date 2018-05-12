@@ -5,8 +5,7 @@
 class LandingActionState : public GroundedActionState {
 protected:
 	CTimer timer;
-	int landingLagFrames = 9;
-	float landingLagTime;
+	float landingLagTime = frames2sec(9);
 	float enteringSpeed;
 public:
 	LandingActionState(CHandle playerModelHandle, std::string animation = "jump_caida") : GroundedActionState(playerModelHandle, animation) {}

@@ -21,7 +21,6 @@ void JumpSquatSpringActionState::update (float delta) {
 
 void JumpSquatSpringActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	squatTime = squatFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->maxVerticalSpeed = getPlayerModel()->maxVelocityUpwards;
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);

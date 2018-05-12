@@ -5,16 +5,12 @@
 class GrabActionState : public AirborneActionState {
 protected:
 	CTimer timer;
-	int warmUpFrames = 2;
-	int activeFrames = 12;
-	int endingLagFrames = 15;
-	float hitboxOutTime;
-	float hitEndTime;
-	float animationEndTime;
+	float hitboxOutTime = frames2sec(2);
+	float hitEndTime = frames2sec(12);
+	float animationEndTime = frames2sec(15);
 	float lockDuration = 0.8f;
 
-	int IASAFrames = 25;//Interruptible As Soon As
-	float interruptibleTime;
+	float interruptibleTime = frames2sec(25);
 
 	int damage = 0;
 	AttackPhases phase = AttackPhases::Startup;

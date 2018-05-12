@@ -27,7 +27,6 @@ void IdleTurnAroundActionState::update (float delta) {
 
 void IdleTurnAroundActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	turnAroundTime = turnAroundFrames * (1.f / 60);
 	timer.reset();
 	*velocityVector = VEC3::Zero;
 	movementInput = lastState->getMovementInput();
