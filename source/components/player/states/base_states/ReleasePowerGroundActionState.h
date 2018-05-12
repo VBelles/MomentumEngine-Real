@@ -6,8 +6,8 @@ class ReleasePowerGroundActionState : public GroundedActionState {
 private:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(7);
-	float hitEndTime = frames2sec(13);
-	float animationEndTime = frames2sec(10);
+	float hitEndTime = frames2sec(26);
+	float animationEndTime = frames2sec(20);
 	int buttonPresses = 1;
 	float stunDuration = 3.f;
 
