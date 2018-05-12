@@ -7,11 +7,11 @@
 
 
 
-void AirborneActionState::update (float delta) {
+void AirborneActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	bool hasInput = movementInput != VEC2::Zero;	
-	
+	bool hasInput = movementInput != VEC2::Zero;
+
 	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 	if (!getPlayerModel()->lockTurning) {
 		if (!isTurnAround) {
@@ -55,7 +55,7 @@ void AirborneActionState::update (float delta) {
 			enteringPowerStats->airAcceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
 			sidewaysAirDriftFactor);
 
-		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z},
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3{ velocityVector->x , 0 , velocityVector->z },
 			desiredDirection, appliedAcceleration,
 			enteringPowerStats->maxHorizontalSpeed);
 		transferVelocityToDirectionAndAccelerate(delta, false, desiredDirection, appliedAcceleration);
@@ -66,7 +66,7 @@ void AirborneActionState::update (float delta) {
 		deltaMovement.z = velocityVector->z * delta;
 	}
 
-	if(velocityVector->y < 0){
+	if (velocityVector->y < 0) {
 		getPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 		getPlayerModel()->setGravityMultiplier(enteringPowerStats->fallingMultiplier);
 	}
@@ -82,6 +82,8 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	enterFront = getPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
+
+	isTryingToSlide = false;
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {
@@ -109,6 +111,27 @@ void AirborneActionState::onFastAttackButton() {
 void AirborneActionState::onReleasePowerButton() {
 	if (getPlayerModel()->isConcurrentActionFree()) {
 		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::ReleasePowerAir);
+	}
+}
+
+void AirborneActionState::onMove(HitState& hitState) {
+	if (hitState.hasHit && hitState.isGrounded) {
+		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
+		if (dot < getPlayerModel()->getController()->getSlopeLimit()) {
+			if (!isTryingToSlide) {
+				isTryingToSlide = true;
+				slideWindowTimer.reset();
+			}
+			else if (slideWindowTimer.elapsed() >= slideWindowTime) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			}
+		}
+		else {
+			onLanding();
+		}
+	}
+	if (hitState.isTouchingCeiling && velocityVector->y > 0.f) {
+		velocityVector->y = 0.f;
 	}
 }
 
@@ -141,10 +164,10 @@ void AirborneActionState::onShapeHit(const PxControllerShapeHit& hit) {
 }
 
 void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
-	
+
 	if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(sweepBuffer.block.normal) < 0.8f
 		|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
-	
+
 		getPlayerModel()->lastWallEntered = sweepBuffer.block.actor;
 
 		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);

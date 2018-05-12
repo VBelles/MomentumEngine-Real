@@ -20,6 +20,16 @@ struct TMsgHitboxEnter;
 struct TMsgGainPower;
 struct TMsgGainPower;
 struct TMsgOutOfBounds;
+struct TMsgRespawnChanged;
+struct TMsgPurityChange;
+
+struct HitState {
+	bool hasHit = false; //When true the hit state data is valid
+	CHandle entity;
+	PxControllerShapeHit hit;
+	bool isGrounded = false;
+	bool isTouchingCeiling = false;
+};
 
 
 class TCompPlayerModel : public TCompBase {
@@ -33,7 +43,7 @@ public:
 		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
 		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
 		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling,
-		HardKnockbackGround
+		HardKnockbackGround, Slide
 	};
 
 private:
@@ -49,7 +59,9 @@ private:
 	float baseGravity = 0.f;
 	float currentGravity = 0.f;
 
-	std::string materials[3];
+	HitState hitState;
+
+	std::string materials[3];//impares son outline, pares son post_outline
 	PowerStats* powerStats[3];
 	PowerStats* currentPowerStats;
 
@@ -66,6 +78,7 @@ private:
 	bool showVictoryDialog = false;
 	CTimer dialogTimer;
 	float dialogTime = 15.0f;
+	int coins = 0;
 
 	PlayerFilterCallback* playerFilterCallback;
 
@@ -83,6 +96,10 @@ private:
 	void onHitboxEnter(const TMsgHitboxEnter& msg);
 	void onGainPower(const TMsgGainPower& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	void onRespawnChanged(const TMsgRespawnChanged& msg);
+	void onPurityChange(const TMsgPurityChange& msg);
+
+	PxFilterData getFilterData();
 
 	PowerStats* loadPowerStats(const json& j);
 	void changeBaseState(ActionStates newState);
@@ -102,9 +119,8 @@ public:
 	bool lockConcurrentState = false;
 
 	bool wannaJump = false;
-	bool isGrounded = false;
-	bool isTouchingCeiling = false;
-	bool isAttachedToPlatform = false;
+	bool tryingToSlide = false;
+
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;
@@ -131,7 +147,6 @@ public:
 	void setBaseState(ActionStates newState);
 	void setConcurrentState(ActionStates newState);
 	void updateMovement(float delta, VEC3 deltaMovement);
-	void sweep(VEC3 deltaMovement);
 	void setMovementInput(VEC2 input, float delta);
 	void jumpButtonPressed();
 	void jumpButtonReleased();
@@ -172,4 +187,6 @@ public:
 	void setHp(float hp);
 	void setRespawnPosition(VEC3 position);
 	VEC3 getRespawnPosition() { return respawnPosition; }
+	void disableOutline();
+	void enableOutline();
 };

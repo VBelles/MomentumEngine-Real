@@ -2,6 +2,9 @@
 #include "ReleasePowerAirActionState.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
+#include "components/postfx/comp_render_blur_radial.h"
+#include "components/comp_camera.h"
+#include "components/comp_collider.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/comp_player_model.h"
 #include "entity/common_msgs.h"
@@ -9,6 +12,8 @@
 
 
 void ReleasePowerAirActionState::update(float delta) {
+	PxExtendedVec3 cctPos = getCollider()->controller->getPosition();
+	getBlurRadial()->setCenterInWorldCoordinates(VEC3(cctPos.x, cctPos.y, cctPos.z));
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
@@ -20,6 +25,7 @@ void ReleasePowerAirActionState::update(float delta) {
 		getHitboxes()->disable(smallHitbox);
 		getHitboxes()->disable(bigHitbox);
 		phase = AttackPhases::Recovery;
+		getBlurRadial()->setEnable(false);
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
@@ -29,11 +35,13 @@ void ReleasePowerAirActionState::update(float delta) {
 			getPlayerModel()->getPowerGauge()->releasePower();
 			break;
 		case 2:
+			getBlurRadial()->setEnable(true);
 			getPlayerModel()->getPowerGauge()->releasePower();
 			getHitboxes()->enable(smallHitbox);
 			if (buttonPresses > 1) getPlayerModel()->getPowerGauge()->releasePower();
 			break;
 		case 3:
+			getBlurRadial()->setEnable(true);
 			getPlayerModel()->getPowerGauge()->releasePower();
 			if (buttonPresses > 1) {
 				getPlayerModel()->getPowerGauge()->releasePower();
@@ -69,6 +77,7 @@ void ReleasePowerAirActionState::onStateExit(IActionState * nextState) {
 	getHitboxes()->disable(smallHitbox);
 	getHitboxes()->disable(bigHitbox);
 	getPlayerModel()->lockTurning = false;
+	getBlurRadial()->setEnable(false);
 }
 
 void ReleasePowerAirActionState::onReleasePowerButton() {
@@ -92,7 +101,7 @@ void ReleasePowerAirActionState::onLanding() {
 }
 
 
-void ReleasePowerAirActionState::onHitboxEnter(CHandle entity) {
+void ReleasePowerAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};

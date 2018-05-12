@@ -86,14 +86,15 @@ TCompHitboxes::HitboxConfig TCompHitboxes::loadHitbox(const json& jHitbox) {
 
 void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
 	skeletonHandle = get<TCompSkeleton>();
+	colliderHandle = get<TCompCollider>();
 	assert(skeletonHandle.isValid());
+	assert(colliderHandle.isValid());
 	for (int i = 0; i < hitboxesConfig.size(); ++i) {
 		const HitboxConfig& config = hitboxesConfig[i];
 		Hitbox* hitbox = createHitbox(config);
 		hitboxes[hitbox->name] = hitbox;
 	}
 
-	//enable("hitbox01"); //For testing purposes
 }
 
 TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
@@ -103,17 +104,17 @@ TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
 	hitbox->offset = config.offset;
 	hitbox->halfExtent = config.halfExtent;
 	hitbox->radius = config.radius;
+	hitbox->boneId = -1;
 
-	hitbox->boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
-	assert(hitbox->boneId != -1);
+	if (!config.boneName.empty()) {
+		hitbox->boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
+		assert(hitbox->boneId != -1);
+	}
 
 	hitbox->transform = new CTransform();
-	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
-	hitbox->transform->setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
-	hitbox->transform->setRotation(Cal2DX(bone->getRotationAbsolute()));
-
+	
 	hitbox->filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
-		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eANY_HIT));
+		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK));
 
 	if (config.shape == "sphere") {
 		hitbox->geometry = new PxSphereGeometry(config.radius);
@@ -121,7 +122,6 @@ TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
 	else if (config.shape == "box") {
 		hitbox->geometry = new PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z);
 	}
-
 
 	return hitbox;
 }
@@ -138,27 +138,40 @@ void TCompHitboxes::update(float delta) {
 
 
 void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
-	CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
+	if (hitbox->boneId != -1) {
+		CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
+		hitbox->transform->setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
+		hitbox->transform->setRotation(Cal2DX(bone->getRotationAbsolute()));
+	}
+	else{
+		PxExtendedVec3 extendedPos = getController()->getPosition();
+		VEC3 pos = VEC3(extendedPos.x, extendedPos.y, extendedPos.z) + hitbox->offset;
+		hitbox->transform->setPosition(pos);
+	}
 
-	hitbox->transform->setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
-	hitbox->transform->setRotation(Cal2DX(bone->getRotationAbsolute()));
+	PxTransform pose = PxTransform(toPhysx(hitbox->transform));  
 
-	PxTransform pose = PxTransform(toPhysx(hitbox->transform));
-	PxOverlapBuffer overlapCallback;
+	const PxU32 bufferSize = 16; //Hasta 16 enemigos por overlap query, suficientes e incluso excesivo
+	PxOverlapHit hitBuffer[bufferSize];
+	PxOverlapBuffer overlapCallback(hitBuffer, bufferSize);
+
 	bool status = EnginePhysics.getScene()->overlap(*hitbox->geometry, pose, overlapCallback,
 		hitbox->filterData, EnginePhysics.getGameQueryFilterCallback());
 
 	if (status) {
-
+		//dbg("%s - Touches: %d\n", hitbox->name.c_str(), overlapCallback.getNbTouches());
+		//dbg("%s - Hits: %d\n", hitbox->name.c_str(), overlapCallback.getNbAnyHits());
 		CEntity* owner = CHandle(this).getOwner();
 		
-		for (int i = 0; i < overlapCallback.getNbAnyHits(); i++) {
-			auto hit = overlapCallback.getAnyHit(i);
+		for (int i = 0; i < overlapCallback.getNbTouches(); i++) {
+			auto hit = overlapCallback.getTouch(i);
 			CHandle colliderHandle;
 			colliderHandle.fromVoidPtr(hit.actor->userData);
 			CHandle hitHandle = colliderHandle.getOwner();
-			if (hitbox->hits.insert(CHandle(hitHandle)).second) { //Inserted
-				owner->sendMsg(TMsgHitboxEnter{ hitHandle });
+			if (hitbox->hits.insert(hitHandle).second) { //Inserted
+				owner->sendMsg(TMsgHitboxEnter{hitbox->name, hitHandle });
+				//CEntity* entity = hitHandle;
+				//dbg("Name: %s\n", entity->getName());
 			}
 		}
 	
@@ -182,6 +195,13 @@ void TCompHitboxes::disable(std::string name) {
 
 TCompSkeleton* TCompHitboxes::getSkeleton() {
 	return skeletonHandle;
+}
+
+TCompCollider* TCompHitboxes::getCollider() {
+	return colliderHandle;
+}
+PxController* TCompHitboxes::getController() {
+	return getCollider()->controller;
 }
 
 TCompHitboxes::~TCompHitboxes() {

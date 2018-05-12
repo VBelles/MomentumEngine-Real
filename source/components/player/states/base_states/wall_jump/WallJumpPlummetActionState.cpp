@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "WallJumpPlummetActionState.h"
+#include "components/player/states/base_states/FallingAttackLandingActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
@@ -40,7 +41,10 @@ void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	clampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
-	getHitboxes()->disable(hitbox);
+
+	if (!dynamic_cast<FallingAttackLandingActionState*>(nextState)) {
+		getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack si es posible
+	}
 
 }
 
@@ -68,7 +72,7 @@ void WallJumpPlummetActionState::onLanding() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
 }
 
-void WallJumpPlummetActionState::onHitboxEnter(CHandle entity) {
+void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

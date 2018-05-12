@@ -32,8 +32,13 @@ bool CRenderManager::sortRenderKeys(const TRenderKey& k1, const TRenderKey& k2) 
 	if (k1.material->tech->usesSkin() != k2.material->tech->usesSkin())
 		return k1.material->tech->usesSkin() < k2.material->tech->usesSkin();
 	// Render tech
-	if (k1.material->tech != k2.material->tech)
-		return k1.material->tech < k2.material->tech;
+	auto t1 = k1.material->tech;
+	auto t2 = k2.material->tech;
+	if (t1 != t2) {
+		if (t1->getPriority() != t2->getPriority())
+			return t1->getPriority() < t2->getPriority();
+		return t1 < t2;
+	}
 	// Materials Wood vs Dark Wood
 	if (k1.material != k2.material)
 		return k1.material->getName() < k2.material->getName();
@@ -42,6 +47,10 @@ bool CRenderManager::sortRenderKeys(const TRenderKey& k1, const TRenderKey& k2) 
 	if (k1.h_render_owner != k2.h_render_owner)
 		return k1.h_render_owner.asUnsigned() < k2.h_render_owner.asUnsigned();
 	return k1.subgroup_idx < k2.subgroup_idx;
+}
+
+void CRenderManager::forceDirty() { 
+  render_keys.is_dirty = true; 
 }
 
 void CRenderManager::delRenderKeys(CHandle h_owner) {
@@ -69,8 +78,12 @@ void CRenderManager::addRenderKey(
 	if (material->castsShadows()) {
 
 		const CMaterial* shadow_mat = nullptr;
-		if (material->tech->usesSkin())
+		if (material->tech->usesSkin()) {
 			shadow_mat = Resources.get("data/materials/shadows_skin.material")->as<CMaterial>();
+    }
+    else if (material->tech->usesInstancing()) {
+      shadow_mat = Resources.get("data/materials/shadows_instanced.material")->as<CMaterial>();
+    }
 		else {
 			//if(mesh->getVertexDecl()->name == "PosNUvCvTan" )
 			//  shadow_mat = Resources.get("data/materials/shadows_mix.material")->as<CMaterial>();

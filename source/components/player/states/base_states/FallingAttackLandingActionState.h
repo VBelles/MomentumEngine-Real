@@ -8,6 +8,8 @@ private:
 	CTimer hitboxTimer;
 	int impactAttackDurationFrames = 3;
 	float impactAttackDurationTime;
+	CTimer fallingAttackHitboxTimer;
+	float fallingAttackTime = 5.f * (1.f / 60.f);
 	int newLandingLagFrames = 40;
 	float stunTime = 1.5f;
 	CTimer springJumpTimer;
@@ -20,6 +22,11 @@ private:
 	float damage = 0;
 
 	std::string hitbox = "landing_falling_attack";
+	std::string hitboxFallingAttack = "falling_attack";
+	std::string hitboxPlummet = "plummet_attack";
+
+	float fallingAttackDamage = 2.f;
+	float fallingAttackPowerToGet = 4000.f;
 
 public:
 	FallingAttackLandingActionState(CHandle playerModelHandle) : LandingActionState(playerModelHandle, "hard_landing") {}
@@ -29,5 +36,5 @@ public:
 	void setMovementInput(VEC2 input) override {}
 	void onJumpHighButton() override;
 	void onJumpLongButton() override {}
-	void onHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

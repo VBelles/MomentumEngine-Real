@@ -7,19 +7,23 @@
     "main_menu",
     "splash",
     "game_over",
-    "test_axis",
+    "game",
     "cameras",
     "render",
-    "scripting"
+	  "gui",
+    "test_instancing",
+    "scripting",
+    "sound"
   ],
   "render": [
     "render",    
-    "test_axis",
+    "game",
     "main_menu",
     "cameras",
     "entities",
     "pause",
     "input",
+	  "gui",
     "scripting"
   ]
 }

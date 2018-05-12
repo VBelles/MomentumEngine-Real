@@ -15,7 +15,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.height = j.value("height", 0.f);
 	config.step = j.value("step", 0.5f);
 	config.slope = j.value("slope", 45.0f);
-	
 
 	if (j.count("halfExtent")) {
 		config.halfExtent = loadVEC3(j["halfExtent"]);
@@ -37,7 +36,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 			config.offset = loadVEC3(j["offset"]);
 		}
 		else {
-			config.offset = VEC3(0, config.radius, 0);
+			//config.offset = VEC3(0, config.radius, 0);
 		}
 	}
 	else if (shape == "plane") {
@@ -71,7 +70,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 	else {
-		config.group = CModulePhysics::FilterGroup::Scenario;
+		config.group = config.isTrigger ? CModulePhysics::FilterGroup::Trigger : CModulePhysics::FilterGroup::Scenario;
 	}
 
 	config.mask = 0;
@@ -84,7 +83,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	else {
 		config.mask = CModulePhysics::FilterGroup::All;
 	}
-	
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
@@ -132,5 +130,3 @@ void TCompCollider::disableSceneQuery() {
 void TCompCollider::setupFiltering(PxU32 filterGroup, PxU32 filterMask) {
 	EnginePhysics.setupFiltering(static_cast<PxRigidActor*>(actor), filterGroup, filterMask);
 }
-
-

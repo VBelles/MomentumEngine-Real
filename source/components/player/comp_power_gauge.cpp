@@ -4,6 +4,8 @@
 #include "entity/common_msgs.h"
 #include "comp_player_model.h"
 #include "components/comp_tags.h"
+#include "components/comp_collider.h"
+#include "components/comp_purity.h"
 
 DECL_OBJ_MANAGER("power_gauge", TCompPowerGauge);
 
@@ -60,11 +62,10 @@ void TCompPowerGauge::increasePower(float increment) {
 	//Notify pure entities when purity changed
 	if (lastIsPure != isPure) {
 		TMsgPurityChange msg = TMsgPurityChange{ this, isPure };
-		auto& pureEntitiesHandles = CTagsManager::get().getAllEntitiesByTag(getID("pure"));
-		for (auto handle : pureEntitiesHandles) {
-			CEntity* e = handle;
-			if (e) e->sendMsg(msg);
-		}
+		((CEntity*)CHandle(this).getOwner())->sendMsg(msg); //Send message to my entity
+		getObjectManager<TCompPurity>()->forEach([&msg](CHandle purity) { //Send message to entities with purity
+			((CEntity*)purity.getOwner())->sendMsg(msg);
+		});
 	}
 }
 

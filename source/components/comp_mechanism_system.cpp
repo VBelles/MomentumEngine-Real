@@ -15,17 +15,19 @@ void TCompMechanismSystem::registerMsgs() {
 }
 
 void TCompMechanismSystem::load(const json& j, TEntityParseContext& ctx) {
-	if(j.count("mechanisms")) {
-		auto& mechanisms = j["mechanisms"];
-		assert(mechanisms.is_array());
-		for (auto& mechanism : mechanisms) {
-			if (mechanism.is_string()) {
-				mechanismsNames.push_back(mechanism);
-			}
-		}
-		numberOfMechanisms = mechanisms.size();
-	}
-	activationEffectFile = j["activationEffectFile"].get<std::string>();
+	numberOfMechanisms = j.value("number_of_mechanisms", 0);
+	numberOfMechanismsActivated = 0;
+	//if(j.count("mechanisms")) {
+	//	auto& mechanisms = j["mechanisms"];
+	//	assert(mechanisms.is_array());
+	//	for (auto& mechanism : mechanisms) {
+	//		if (mechanism.is_string()) {
+	//			mechanismsNames.push_back(mechanism);
+	//		}
+	//	}
+	//	numberOfMechanisms = mechanisms.size();
+	//}
+	//activationEffectFile = j["activationEffectFile"].get<std::string>();
 }
 
 void TCompMechanismSystem::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
@@ -51,6 +53,7 @@ void TCompMechanismSystem::onActivate(const TMsgMechanismActivated & msg) {
 		dbg("Number of mechanisms activated more than max!! Something happens...\n");
 	}
 	else if (numberOfMechanismsActivated == numberOfMechanisms) {
+		dbg("number of mechanisms %i \n", numberOfMechanisms);
 		Engine.getScripting().throwEvent(onMechanismSystemActivated, ((CEntity*)CHandle(this).getOwner())->getName());
 	}
 }

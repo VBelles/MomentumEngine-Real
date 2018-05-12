@@ -12,6 +12,10 @@ void FallingAttackLandingActionState::update(float delta) {
 	if (hitboxTimer.elapsed() >= impactAttackDurationTime) {
 		getHitboxes()->disable(hitbox);
 	}
+	if (fallingAttackHitboxTimer.elapsed() >= fallingAttackTime) {
+		getHitboxes()->disable(hitboxFallingAttack);
+		getHitboxes()->disable(hitboxPlummet);
+	}
 }
 
 void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
@@ -25,12 +29,15 @@ void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 	getHitboxes()->enable(hitbox);
 	hitboxTimer.reset();
 	springJumpTimer.reset();
+	fallingAttackHitboxTimer.reset();
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void FallingAttackLandingActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
+	getHitboxes()->disable(hitboxFallingAttack); //Por si las moscas
+	getHitboxes()->disable(hitboxPlummet); //Por si las moscas
 }
 
 void FallingAttackLandingActionState::onJumpHighButton() {
@@ -40,13 +47,23 @@ void FallingAttackLandingActionState::onJumpHighButton() {
 	hasTriedSpringJump = true;
 }
 
-void FallingAttackLandingActionState::onHitboxEnter(CHandle entity) {
+void FallingAttackLandingActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
-	msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
+	if (hitbox == hitboxFallingAttack) {
+		//dbg("Those nice frames\n");
+		otherEntity->sendMsg(TMsgGetPower{ playerEntity, fallingAttackPowerToGet });
+		msgAtackHit.info.damage = fallingAttackDamage;
+		msgAtackHit.info.givesPower = true;
+	}
+	else {
+		//dbg("Landing\n");
+		msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
+	}
+
 	otherEntity->sendMsg(msgAtackHit);
 }
 

@@ -68,5 +68,25 @@
 		"name" : "debug_mode",
 		"all" : false,
 		"buttons" : ["f2"]
+	},
+	{
+		"name" : "menu_up",
+		"all" : false,
+		"buttons" : ["w", "up", "pad_up"]
+	},
+	{
+		"name" : "menu_down",
+		"all" : false,
+		"buttons" : ["s", "down", "pad_down"]
+	},
+	{
+		"name" : "menu_accept",
+		"all" : false,
+		"buttons" : ["return", "space", "pad_a", "mouse_left"]
+	},
+	{
+		"name" : "menu_back",
+		"all" : false,
+		"buttons" : ["escape", "pad_b"]
 	}
 ]

@@ -6,8 +6,9 @@
 #include "modules/game/physics/module_physics.h"
 #include "modules/system/module_input.h"
 #include "modules/system/module_cameras.h"
-#include "modules/system/module_fsm.h"
 #include "modules/system/scripting/module_scripting.h"
+#include "modules/system/module_gui.h"
+#include "modules/system/module_sound.h"
 
 class CEngine {
 public:
@@ -25,8 +26,9 @@ public:
 	CModuleInput& getInput() { return _module_input; }
 	CModulePhysics& getPhysics() { return _module_physics; }
 	CModuleCameras& getCameras() { return _module_cameras; }
-	CModuleFSM& getFSM() { return _module_fsm; }
 	CModuleScripting& getScripting() { return _module_scripting; }
+	CModuleGUI& getGUI() { return _module_gui; }
+	CModuleSound& getSound() { return _module_sound; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
@@ -38,15 +40,19 @@ private:
 	CModulePhysics   _module_physics;
 	CModuleInput     _module_input;
 	CModuleCameras   _module_cameras;
-	CModuleFSM       _module_fsm;
 	CModuleScripting _module_scripting;
+	CModuleGUI       _module_gui;
+	CModuleSound     _module_sound;
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
 };
 
 #define Engine CEngine::get()
+#define EngineModules CEngine::get().getModules()
 #define EngineInput CEngine::get().getInput()
 #define EnginePhysics CEngine::get().getPhysics()
 #define EngineRender CEngine::get().getRender()
 #define EngineScripting CEngine::get().getScripting()
+#define EngineGUI CEngine::get().getGUI()
+#define EngineSound CEngine::get().getSound()

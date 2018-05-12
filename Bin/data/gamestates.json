@@ -15,8 +15,8 @@
 			"modules" : [ "game_over" ]
 		},
 		{
-			"name" : "test_axis",
-			"modules" : [ "physics", "cameras", "test_axis", "pause" ]
+			"name" : "game_state",
+			"modules" : [ "physics", "cameras", "game", "pause" ]
 		}
 	]
 }

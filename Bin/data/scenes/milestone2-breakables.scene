@@ -1,0 +1,471 @@
+[
+  { "entity": { "name": "breakablesDummy" } },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable011mesh",
+      "transform":
+      {
+        "pos": "57.667 21.1252 111.885",
+        "rotation": "0.0 0.697293 0.0 -0.716787"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable011mesh.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "7.0 9.0 0.5",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable021mesh",
+      "transform":
+      {
+        "pos": "-26.3574 33.6105 -63.0698",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable021mesh.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.1 0.25 2.1",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable009mesh002",
+      "transform":
+      {
+        "pos": "103.06 53.0595 30.4205",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable009mesh002.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable007mesh002",
+      "transform":
+      {
+        "pos": "102.371 53.0595 22.4941",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable007mesh002.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable006mesh002",
+      "transform":
+      {
+        "pos": "102.734 53.0595 26.4664",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable006mesh002.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable009mesh001",
+      "transform":
+      {
+        "pos": "99.0574 53.0595 30.7707",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable009mesh001.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable008mesh001",
+      "transform":
+      {
+        "pos": "95.0587 53.0595 31.1367",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable008mesh001.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable007mesh001",
+      "transform":
+      {
+        "pos": "98.3687 53.0595 22.8442",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable007mesh001.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable006mesh001",
+      "transform":
+      {
+        "pos": "98.7316 53.0595 26.8166",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable006mesh001.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable005mesh001",
+      "transform":
+      {
+        "pos": "94.3699 53.0595 23.2103",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable005mesh001.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable004mesh001",
+      "transform":
+      {
+        "pos": "94.7328 53.0595 27.1826",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable004mesh001.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.0 0.25 2.0",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable002mesh",
+      "transform":
+      {
+        "pos": "-52.3057 0.0 -35.9721",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable002mesh.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "5.4735 5.5 0.5",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh",
+      "transform":
+      {
+        "pos": "-52.1548 0.0 -55.1012",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2.05 2.0 0.5",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  }
+]

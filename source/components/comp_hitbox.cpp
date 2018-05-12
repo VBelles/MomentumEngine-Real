@@ -54,7 +54,7 @@ void TCompHitbox::onTriggerEnter(const TMsgTriggerEnter& msg) {
 		CEntity *owner = CHandle(this).getOwner();
 		TCompHierarchy *hierarchy = owner->get<TCompHierarchy>();
 		CEntity *parent = hierarchy->h_parent;
-		parent->sendMsg(TMsgHitboxEnter{ msg.h_other_entity });
+		parent->sendMsg(TMsgHitboxEnter{"", msg.h_other_entity });
 	}
 }
 

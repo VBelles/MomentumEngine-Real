@@ -7,7 +7,8 @@ class TCompCollider;
 class TCompRender;
 class TCompTransform;
 class TCompHitboxes;
-
+class TCompRenderBlurRadial;
+struct HitState;
 using namespace physx;
 
 class IActionState {
@@ -38,6 +39,7 @@ protected:
 	TCompRender* getRender();
 	TCompHitboxes* getHitboxes();
 	TCompCamera* getCamera();
+	TCompRenderBlurRadial* getBlurRadial();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
@@ -76,11 +78,12 @@ public:
 	virtual void onFastAttackButton() {}
 	virtual void onFastAttackButtonReleased() {}
 	virtual void onReleasePowerButton() {}
-	virtual void onHitboxEnter(CHandle entity) {}
+	virtual void onHitboxEnter(std::string hitbox, CHandle entity) {}
 	virtual void onShapeHit(const PxControllerShapeHit &hit) {}
 	virtual void onSweep(PxSweepBuffer& sweepBuffer) {}
 	virtual void onDead();
 	virtual void onDamage(float damage, bool isHard);
+	virtual void onMove(HitState& hitstate) {}
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }

@@ -14,12 +14,14 @@ void GroundedActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->resetGravity();
 	backwardsMaxDotProduct = cos(backwardsdMinAngle);
 	getPlayerModel()->lastWallEntered = nullptr;//En realidad al tocar el suelo ya se sobreescribe la variable
+	getPlayerModel()->tryingToSlide = false;
 }
 
 void GroundedActionState::onStateExit(IActionState * nextState) {
 	IActionState::onStateExit(nextState);
 	getPlayerModel()->lastWallEntered = nullptr;
 	getPlayerModel()->lastWallNormal = PxVec3(0,0,0);
+	getPlayerModel()->tryingToSlide = false;
 }
 
 void GroundedActionState::onJumpHighButton() {
@@ -44,8 +46,30 @@ void GroundedActionState::onReleasePowerButton() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::ReleasePowerGround);
 }
 
+void GroundedActionState::onMove(HitState& hitState) {
+	if (!hitState.hasHit || !hitState.isGrounded) {
+		onLeavingGround();
+	}
+	else {
+		float dot = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
+		if ( dot < getPlayerModel()->getController()->getSlopeLimit()) {
+			if (!getPlayerModel()->tryingToSlide) {
+				getPlayerModel()->tryingToSlide = true;
+				slideTimer.reset();
+			}
+			else if(slideTimer.elapsed() >= slideWindowTime) {
+				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			}
+		}
+		else {
+			velocityVector->y = 0.f;
+			getPlayerModel()->tryingToSlide = false;
+		}
+	}
+}
+
 void GroundedActionState::onLeavingGround() {
-	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrán qué hacer
+	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabrï¿½n quï¿½ hacer
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 

@@ -23,14 +23,14 @@ float4 PS(
 {
 
   float2 v2c = iTex0 - blur_center;
-  float2 distance2center = length( v2c );
+  float distance2center = length( v2c );
   v2c = normalize( v2c );
 
   float amount = smoothstep( 0, blur_d.y, distance2center );      // 0.. comp.radius
   amount *= blur_d.x;                                             // comp.amount 
   //return amount;
 
-  v2c *= amount * camera_inv_resolution.xx * distance2center * 10;  // x10 to amplify effect
+  v2c *= amount * camera_inv_resolution.xx * distance2center * 25;  // x10 to amplify effect
   
   // N taps moving to the center
   float4 cfinal = float4(0,0,0,0);

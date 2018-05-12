@@ -2,6 +2,7 @@
 #include "collision_mesh.h" 
 
 class CCollisionMeshResourceClass : public CResourceClass {
+
 public:
 	CCollisionMeshResourceClass() {
 		class_name = "Collision Meshes";
@@ -23,12 +24,10 @@ const CResourceClass* getResourceClassOf<CCollisionMesh>() {
 	return &the_resource_class;
 }
 
-// ---------------------------------------------- 
 bool CCollisionMesh::load(const std::string& name) {
 	// Read the file 
 	CFileDataProvider fdp(name.c_str());
-	if (!fdp.isValid())
-		return false;
+	if (!fdp.isValid()) return false;
 	// init it from the file source 
 	bool is_ok = mesh.load(fdp);
 	assert(is_ok);

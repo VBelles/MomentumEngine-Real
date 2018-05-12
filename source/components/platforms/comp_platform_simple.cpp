@@ -21,13 +21,13 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	speed = j.value("speed", 0.f);
 	curve.load(j);
 	automove = j.value("automove", false);
+	ratio = j.value("move_offset", 0.f); // Starts with an offset (from 0 to 1).
 
 	//Rotation
 	rotationSpeed = j.value("rotation_speed", 0.f);
 	if (j.count("rotation_axis")) {
 		rotationAxis = loadVEC3(j["rotation_axis"]);
 	}
-
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
@@ -56,16 +56,17 @@ void TCompPlatformSimple::update(float delta) {
 			if (ratio <= 0.f) moveBackwards = false;
 		}
 		// Evaluar curva con dicho ratio
-		position = curve.evaluate(ratio);
+		position = curve.evaluate(ratio, position);
 		//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
 	}
-
 
 	transform->setPosition(position);
 
 	//Rotation
-	QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
-	transform->setRotation(transform->getRotation() * quat);
+    if (rotationSpeed > 0) {
+	    QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
+	    transform->setRotation(transform->getRotation() * quat);
+    }
 
 	//Update collider
 	getRigidDynamic()->setKinematicTarget(toPhysx(transform));
@@ -75,4 +76,3 @@ void TCompPlatformSimple::update(float delta) {
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }
 TCompCollider* TCompPlatformSimple::getCollider() { return colliderHandle; }
 PxRigidDynamic* TCompPlatformSimple::getRigidDynamic() { return static_cast<PxRigidDynamic*>(getCollider()->actor); }
-

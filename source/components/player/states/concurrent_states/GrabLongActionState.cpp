@@ -5,7 +5,7 @@
 #include "entity/common_msgs.h"
 
 
-void GrabLongActionState::onHitboxEnter(CHandle entity) {
+void GrabLongActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 	CEntity *otherEntity = entity;
 

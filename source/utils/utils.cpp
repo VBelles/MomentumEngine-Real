@@ -92,3 +92,8 @@ uint32_t getID(const void* buff, size_t nbytes) {
 uint32_t getID(const char* txt) {
 	return getID(txt, strlen(txt));
 }
+
+float scale(float A, float A1, float A2, float Min, float Max) {
+	long double percentage = (A - A1) / (A1 - A2);
+	return (percentage) * (Min - Max) + Min;
+}

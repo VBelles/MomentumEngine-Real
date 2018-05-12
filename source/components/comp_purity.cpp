@@ -10,38 +10,38 @@
 
 DECL_OBJ_MANAGER("purity", TCompPurity);
 
-
 void TCompPurity::registerMsgs() {
-	DECL_MSG(TCompPurity, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompPurity, TMsgEntityCreated, onCreated);
 	DECL_MSG(TCompPurity, TMsgPurityChange, onPurityChange);
 }
 
-void TCompPurity::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
+void TCompPurity::load(const json& j, TEntityParseContext& ctx) {
+}
+
+void TCompPurity::onCreated(const TMsgEntityCreated & msg) {
 	renderHandle = get<TCompRender>();
 	assert(renderHandle.isValid());
 	colliderHandle = get<TCompCollider>();
 	assert(colliderHandle.isValid());
-	assert(getRigidDynamic());
-	originalMeshPath = getRender()->meshes[0].mesh->getName();
-	originalMaterialPath = getRender()->meshes[0].materials[0]->getName();
-	getRigidDynamic()->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
+	getRender()->meshes[0].enabled = true;
+	getRender()->refreshMeshesInRenderManager();
 }
 
-// Pruebo en WWBox061, la tercera plataforma fija que hay al principio.
 void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
 	TCompCollider* collider = getCollider();
-	if (msg.isPure) {
-		//collider->create();
+	TCompRender* render = getRender();
+	if (msg.isPure) { //Player can stand on
 		collider->setupFiltering(collider->config.group, collider->config.mask | EnginePhysics.Player);
-		getRender()->setMesh(originalMeshPath, originalMaterialPath);
+		render->meshes[0].enabled = true;
+		render->meshes[1].enabled = false;
+		render->refreshMeshesInRenderManager();
 	}
-	else {
-		//collider->destroy();
+	else { //Player can NOT stand on
 		collider->setupFiltering(collider->config.group, collider->config.mask & !EnginePhysics.Player);
-		// Falta decidir qu� efecto aplicar cuando la plataforma est� intangible,
-		// de momento la dejo con material blanco.
-		getRender()->setMesh(originalMeshPath, "data/materials/white.material");
+		render->meshes[0].enabled = false;
+		render->meshes[1].enabled = true;
 	}
+	render->refreshMeshesInRenderManager();
 }
 
 
@@ -53,8 +53,5 @@ TCompCollider* TCompPurity::getCollider() {
 	return colliderHandle;
 }
 
-PxRigidDynamic* TCompPurity::getRigidDynamic() {
-	return static_cast<PxRigidDynamic*>(getCollider()->actor);
-}
 
 

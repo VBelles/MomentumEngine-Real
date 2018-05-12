@@ -5,6 +5,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/player/comp_player_controller.h"
 #include "components/player/comp_power_gauge.h"
+#include "components/controllers/comp_camera_player.h"
 #include <SLB/SLB.hpp>
 
 void ScriptingPlayer::bind(SLB::Manager* manager) {
@@ -15,7 +16,11 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("givePlayerControl", SLB::FuncCall::create(ScriptingPlayer::givePlayerControl));
 	manager->set("teleportPlayer", SLB::FuncCall::create(ScriptingPlayer::teleportPlayer));
 	manager->set("movePlayer", SLB::FuncCall::create(ScriptingPlayer::movePlayer));
-	manager->set("setPower", SLB::FuncCall::create(ScriptingPlayer::setPower));
+    manager->set("setPower", SLB::FuncCall::create(ScriptingPlayer::setPower));
+    manager->set("lockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::lockPlayerCameraInput));
+	manager->set("unlockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::unlockPlayerCameraInput));
+	manager->set("disablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::disablePlayerOutline));
+	manager->set("enablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::enablePlayerOutline));
 }
 
 
@@ -39,6 +44,22 @@ bool ScriptingPlayer::takePlayerControl() {
 
 bool ScriptingPlayer::givePlayerControl() {
 	return getPlayerController()->givePlayerControl();
+}
+
+void ScriptingPlayer::lockPlayerCameraInput() {
+    getPlayerCamera()->lockCameraInput(true);
+}
+
+void ScriptingPlayer::unlockPlayerCameraInput() {
+    getPlayerCamera()->lockCameraInput(false);
+}
+
+void ScriptingPlayer::disablePlayerOutline() {
+	getPlayerModel()->disableOutline();
+}
+
+void ScriptingPlayer::enablePlayerOutline() {
+	getPlayerModel()->enableOutline();
 }
 
 void ScriptingPlayer::teleportPlayer(float x, float y, float z) {
@@ -78,4 +99,9 @@ TCompCollider * ScriptingPlayer::getCollider() {
 TCompPowerGauge* ScriptingPlayer::getPowerGauge() {
 	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
 	return playerEntity->get<TCompPowerGauge>();
+}
+
+TCompCameraPlayer * ScriptingPlayer::getPlayerCamera() {
+    CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+    return playerCameraEntity->get<TCompCameraPlayer>();
 }

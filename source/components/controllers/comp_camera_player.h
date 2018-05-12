@@ -62,6 +62,8 @@ private:
 	void updateMovement(float delta);
 	void updateCenteringCamera(float delta);
 	bool sphereCast();
+	bool isCameraInsideGeometry();
+	bool raycast(VEC3 origin, VEC3 destination, PxRaycastCallback& callback);
 	void sweepBack();
 
 	CEntity* getTarget() { return targetHandle; }
@@ -78,5 +80,6 @@ public:
 	void suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool hasOppositeYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera);
 	void placeCameraOnSuggestedPosition(VEC2 centeringSpeed);
 	void resetSuggested();
+    void lockCameraInput(bool isLocked);
 };
 

@@ -5,6 +5,7 @@
 #include "components/comp_camera.h"
 #include "components/comp_collider.h"
 #include "components/comp_hitboxes.h"
+#include "components/postfx/comp_render_blur_radial.h"
 #include "components/player/comp_player_model.h"
 
 IActionState::IActionState(CHandle playerModelHandle, std::string animation)
@@ -37,6 +38,7 @@ void IActionState::onDamage(float damage, bool isHard) {
 	getPlayerModel()->damage(damage);
 	//Lo que venga luego ya lo procesa el estado en concreto
 }
+
 
 void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
@@ -125,3 +127,5 @@ TCompCamera* IActionState::getCamera() {
 	assert(currentCamera);
 	return currentCamera;
 }
+TCompRenderBlurRadial* IActionState::getBlurRadial() { return getCamera()->get<TCompRenderBlurRadial>(); }
+

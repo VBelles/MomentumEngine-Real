@@ -9,7 +9,6 @@ class TCompCollider;
 
 class TCompPlatformSimple : public TCompBase {
 private:
-
 	CCurve curve;
 	float speed = 0.f;
 	float ratio = 0.f;
@@ -34,5 +33,4 @@ public:
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
 	PxRigidDynamic* getRigidDynamic();
-
 };

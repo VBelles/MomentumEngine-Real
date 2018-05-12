@@ -1,0 +1,1367 @@
+[
+  { "entity": { "name": "coinDummy" } },
+  {
+    "entity":
+    {
+      "name": "ms2_coin154",
+      "transform":
+      {
+        "pos": "116.767 29.8172 -13.7482"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin153",
+      "transform":
+      {
+        "pos": "116.767 28.4796 -13.7482"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin152",
+      "transform":
+      {
+        "pos": "118.247 33.9642 -10.5376"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin151",
+      "transform":
+      {
+        "pos": "118.247 32.4193 -10.5376"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin148",
+      "transform":
+      {
+        "pos": "116.767 52.3028 -13.7482"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin147",
+      "transform":
+      {
+        "pos": "116.767 51.0717 -13.7482"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin146",
+      "transform":
+      {
+        "pos": "9.96331 40.9093 123.021"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin145",
+      "transform":
+      {
+        "pos": "17.4719 40.9093 126.601"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin144",
+      "transform":
+      {
+        "pos": "25.6892 40.9093 130.363"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin143",
+      "transform":
+      {
+        "pos": "-80.9837 21.92 67.086"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin142",
+      "transform":
+      {
+        "pos": "-58.359 28.5992 68.2462"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin141",
+      "transform":
+      {
+        "pos": "-43.8457 29.5469 85.166"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin140",
+      "transform":
+      {
+        "pos": "-47.6214 29.5469 83.2617"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin139",
+      "transform":
+      {
+        "pos": "-20.9599 39.4813 93.7687"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin138",
+      "transform":
+      {
+        "pos": "-36.0749 25.6149 98.9796"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin137",
+      "transform":
+      {
+        "pos": "-45.792 29.5469 84.1464"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin136",
+      "transform":
+      {
+        "pos": "72.1976 3.69199 -2.9932"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin135",
+      "transform":
+      {
+        "pos": "72.5619 3.69199 5.57892"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin134",
+      "transform":
+      {
+        "pos": "71.2768 3.69199 14.3133"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin133",
+      "transform":
+      {
+        "pos": "4.41442 1.27524 38.688"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin132",
+      "transform":
+      {
+        "pos": "5.81086 1.27524 35.7539"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin131",
+      "transform":
+      {
+        "pos": "5.82144 1.27524 37.5825"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin130",
+      "transform":
+      {
+        "pos": "2.82379 1.27524 36.0569"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin129",
+      "transform":
+      {
+        "pos": "2.83437 1.27524 37.8855"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin128",
+      "transform":
+      {
+        "pos": "4.39439 1.27524 34.7711"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin127",
+      "transform":
+      {
+        "pos": "4.40497 1.27524 36.5998"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin126",
+      "transform":
+      {
+        "pos": "-65.9818 1.27524 1.37901"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin125",
+      "transform":
+      {
+        "pos": "-60.6568 1.27524 9.80145"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin124",
+      "transform":
+      {
+        "pos": "-51.5929 1.27524 15.7369"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin123",
+      "transform":
+      {
+        "pos": "-40.0885 1.27524 19.8786"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin122",
+      "transform":
+      {
+        "pos": "-31.5175 1.27524 30.4194"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin121",
+      "transform":
+      {
+        "pos": "-30.0973 1.27524 39.3736"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin120",
+      "transform":
+      {
+        "pos": "-19.619 1.27524 45.6885"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin119",
+      "transform":
+      {
+        "pos": "-11.1595 1.27524 43.0226"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin118",
+      "transform":
+      {
+        "pos": "107.367 44.5964 54.7414"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin117",
+      "transform":
+      {
+        "pos": "94.0916 40.8962 63.3118"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin116",
+      "transform":
+      {
+        "pos": "81.8718 35.6983 64.0814"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin115",
+      "transform":
+      {
+        "pos": "-80.3862 37.8387 47.8794"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin114",
+      "transform":
+      {
+        "pos": "-82.1381 37.8387 44.9097"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin113",
+      "transform":
+      {
+        "pos": "-83.5563 37.8387 45.1105"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin112",
+      "transform":
+      {
+        "pos": "-83.4746 37.8387 46.6588"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin111",
+      "transform":
+      {
+        "pos": "-85.2405 37.8387 50.8093"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin110",
+      "transform":
+      {
+        "pos": "-83.4968 37.8387 47.8425"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin109",
+      "transform":
+      {
+        "pos": "-86.4913 37.8387 48.0278"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin108",
+      "transform":
+      {
+        "pos": "-85.0554 37.8387 47.9632"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin107",
+      "transform":
+      {
+        "pos": "-86.4616 37.8387 46.7876"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin106",
+      "transform":
+      {
+        "pos": "4.30512 19.204 -52.5899"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin105",
+      "transform":
+      {
+        "pos": "47.826 47.7872 -72.4645"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin104",
+      "transform":
+      {
+        "pos": "50.4454 47.7872 -67.9044"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin103",
+      "transform":
+      {
+        "pos": "53.0806 47.7872 -63.395"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin102",
+      "transform":
+      {
+        "pos": "118.247 56.4864 -10.5376"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin101",
+      "transform":
+      {
+        "pos": "118.247 54.9416 -10.5376"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin100",
+      "transform":
+      {
+        "pos": "118.247 48.9456 -10.5376"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin099",
+      "transform":
+      {
+        "pos": "58.0977 52.8751 43.578"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin098",
+      "transform":
+      {
+        "pos": "73.9624 18.2028 23.0355"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin097",
+      "transform":
+      {
+        "pos": "75.5498 18.2028 22.863"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin096",
+      "transform":
+      {
+        "pos": "77.0251 18.2028 22.6138"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin095",
+      "transform":
+      {
+        "pos": "91.9842 76.1409 -7.16572"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin094",
+      "transform":
+      {
+        "pos": "93.5716 76.1409 -7.33823"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin093",
+      "transform":
+      {
+        "pos": "118.247 47.4008 -10.5376"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin092",
+      "transform":
+      {
+        "pos": "116.767 44.3592 -13.7482"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin091",
+      "transform":
+      {
+        "pos": "116.767 43.1281 -13.7482"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin090",
+      "transform":
+      {
+        "pos": "117.693 40.981 -10.4188"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin089",
+      "transform":
+      {
+        "pos": "117.693 39.745 -10.4188"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin088",
+      "transform":
+      {
+        "pos": "116.767 36.9592 -13.7482"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin087",
+      "transform":
+      {
+        "pos": "116.767 35.6216 -13.7482"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin086",
+      "transform":
+      {
+        "pos": "95.0469 76.1409 -7.58744"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin085",
+      "transform":
+      {
+        "pos": "65.5025 15.3347 100.716"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin084",
+      "transform":
+      {
+        "pos": "62.0367 28.1065 112.676"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin083",
+      "transform":
+      {
+        "pos": "63.1849 24.6673 90.9718"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin082",
+      "transform":
+      {
+        "pos": "44.3189 31.8843 123.865"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin081",
+      "transform":
+      {
+        "pos": "41.273 31.8843 122.628"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin080",
+      "transform":
+      {
+        "pos": "42.1844 31.8843 123.488"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin079",
+      "transform":
+      {
+        "pos": "43.0547 31.8843 124.304"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin078",
+      "transform":
+      {
+        "pos": "41.6792 31.8843 121.332"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin077",
+      "transform":
+      {
+        "pos": "42.5906 31.8843 122.192"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin076",
+      "transform":
+      {
+        "pos": "43.4609 31.8843 123.007"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin075",
+      "transform":
+      {
+        "pos": "43.2072 31.8843 120.741"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin074",
+      "transform":
+      {
+        "pos": "44.1187 31.8843 121.601"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin073",
+      "transform":
+      {
+        "pos": "44.9889 31.8843 122.417"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin072",
+      "transform":
+      {
+        "pos": "59.0059 19.3365 84.7833"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin071",
+      "transform":
+      {
+        "pos": "-20.334 34.9286 -56.1429"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin070",
+      "transform":
+      {
+        "pos": "-18.3968 34.9286 -67.3481"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin069",
+      "transform":
+      {
+        "pos": "-33.7957 34.9286 -59.0529"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin068",
+      "transform":
+      {
+        "pos": "-31.8585 34.9286 -70.2581"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin067",
+      "transform":
+      {
+        "pos": "-81.7878 7.4621 33.0911"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin066",
+      "transform":
+      {
+        "pos": "-12.301 11.0112 3.68676"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin065",
+      "transform":
+      {
+        "pos": "63.4065 19.9481 -50.7508"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin064",
+      "transform":
+      {
+        "pos": "70.6269 22.9437 -47.0409"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin063",
+      "transform":
+      {
+        "pos": "77.7453 26.6422 -43.8932"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin062",
+      "transform":
+      {
+        "pos": "86.0738 29.925 -40.3531"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin048",
+      "transform":
+      {
+        "pos": "10.1614 24.027 -55.937"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin047",
+      "transform":
+      {
+        "pos": "15.272 22.2636 -58.7622"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin046",
+      "transform":
+      {
+        "pos": "11.3447 19.7736 -46.2867"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin045",
+      "transform":
+      {
+        "pos": "12.6028 2.58473 13.5344"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin044",
+      "transform":
+      {
+        "pos": "10.7901 1.74578 15.2281"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin043",
+      "transform":
+      {
+        "pos": "18.2395 1.74578 8.56986"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin042",
+      "transform":
+      {
+        "pos": "16.5143 2.58473 10.0972"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin041",
+      "transform":
+      {
+        "pos": "14.7016 2.93132 11.791"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin040",
+      "transform":
+      {
+        "pos": "-70.9825 9.30151 52.5715"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin039",
+      "transform":
+      {
+        "pos": "-86.825 0.864763 64.8742"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin038",
+      "transform":
+      {
+        "pos": "-80.3735 37.8387 49.2599"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin037",
+      "transform":
+      {
+        "pos": "-83.5362 37.8387 49.1765"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin036",
+      "transform":
+      {
+        "pos": "-83.531 37.8387 50.5957"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin035",
+      "transform":
+      {
+        "pos": "-81.931 37.8387 47.8917"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin034",
+      "transform":
+      {
+        "pos": "0.52108 26.1072 -14.7324"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin033",
+      "transform":
+      {
+        "pos": "6.64013 26.1072 -37.9478"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin032",
+      "transform":
+      {
+        "pos": "-16.2265 26.1072 -31.5182"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin031",
+      "transform":
+      {
+        "pos": "7.27909 36.1397 -18.1034"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin030",
+      "transform":
+      {
+        "pos": "0.476553 36.1397 -41.3015"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin029",
+      "transform":
+      {
+        "pos": "-16.3948 36.1397 -24.5541"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin028",
+      "transform":
+      {
+        "pos": "-53.7901 0.608388 -52.1772"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin027",
+      "transform":
+      {
+        "pos": "-54.385 0.608388 -51.0742"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin026",
+      "transform":
+      {
+        "pos": "-54.9472 0.608388 -50.0226"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin025",
+      "transform":
+      {
+        "pos": "-55.6028 0.608388 -48.8735"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin024",
+      "transform":
+      {
+        "pos": "-56.1977 0.608388 -47.7705"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin023",
+      "transform":
+      {
+        "pos": "-56.7598 0.608388 -46.719"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin022",
+      "transform":
+      {
+        "pos": "-83.2861 39.9412 -16.682"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin021",
+      "transform":
+      {
+        "pos": "-88.739 38.1868 -11.697"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin020",
+      "transform":
+      {
+        "pos": "-86.2492 39.2147 -14.2267"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin019",
+      "transform":
+      {
+        "pos": "-89.0815 37.2859 -8.58505"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin018",
+      "transform":
+      {
+        "pos": "-59.2152 10.3594 -23.888"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin017",
+      "transform":
+      {
+        "pos": "-62.8028 6.83704 -19.8585"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_coin016",
+      "transform":
+      {
+        "pos": "-66.9946 1.2373 -11.3212"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  }
+]

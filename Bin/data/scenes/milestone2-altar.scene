@@ -1,0 +1,40 @@
+[
+{
+  "entity":
+  {
+    "name": "ms2_PYRAMID001",
+    "transform": {
+      "pos": "45.0451 73.1427 3.3347",
+      "rotation": "0.0 -0.737277 0.0 -0.67559"
+    },
+    "render": [
+      {
+        "mesh": "data/meshes/ms2_PYRAMID001.mesh",
+        "materials":
+        [
+          "data/materials/ambar.material"
+        ]
+      }
+    ],
+    "collider" : {
+				"shape": "sphere",
+				"is_trigger" : false,
+				"radius" : 0.75,
+				"group": ["all"],
+				"mask": ["player"]
+			},
+    "breakable": {
+      "hp": 1
+    },
+    "altar": {
+      "prefab": "data/prefabs/crisalida.prefab",
+      "spawn_positions": [
+        "2.00306 28.8275 127.385",
+        "119.677 10.8471 -3.12987",
+        "-26.3368 31.4093 -63.0586",
+        "-76.9283 34.9377 -18.1545"
+      ]
+    }
+  }
+}
+]

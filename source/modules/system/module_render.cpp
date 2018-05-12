@@ -15,6 +15,7 @@
 #include "geometry/curve.h"
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_blur_radial.h"
+#include "components/postfx/comp_render_outlines.h"
 #include "render/mesh/collision_mesh.h" 
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -85,6 +86,7 @@ bool CModuleRender::start() {
     if (!cb_light.create(CB_LIGHT))     return false;
     if (!cb_globals.create(CB_GLOBALS)) return false;
     if (!cb_blur.create(CB_BLUR))       return false;
+    if (!cb_gui.create(CB_GUI))         return false;
 
     cb_globals.global_exposure_adjustment = 1.f;
     cb_globals.global_ambient_adjustment = 1.f;
@@ -98,6 +100,7 @@ bool CModuleRender::start() {
     cb_camera.activate();
     cb_globals.activate();
     cb_blur.activate();
+    cb_gui.activate();
 
     //activateMainCamera();
 
@@ -191,7 +194,6 @@ void CModuleRender::activateMainCamera() {
         assert(cam);
         CRenderManager::get().setEntityCamera(h_e_camera);
     }
-
     activateCamera(*cam, Render.width, Render.height);
 }
 
@@ -203,7 +205,9 @@ void CModuleRender::generateFrame() {
         activateMainCamera();
         cb_globals.updateGPU();
 
-        deferred.render(rt_main);
+		if (h_e_camera.isValid()) {
+			deferred.render(rt_main, h_e_camera);
+		}
 
 		CRenderManager::get().renderCategory("distorsions");
 		CRenderManager::get().renderCategory("textured");
@@ -223,6 +227,10 @@ void CModuleRender::generateFrame() {
             TCompRenderBlurRadial* c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
             if (c_render_blur_radial)
                 curr_rt = c_render_blur_radial->apply(curr_rt);
+
+			TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
+			if (c_render_outlines)
+				c_render_outlines->apply();
         }
 
         Render.startRenderInBackbuffer();
@@ -233,16 +241,29 @@ void CModuleRender::generateFrame() {
         {
             PROFILE_FUNCTION("Modules");
             CTraceScoped gpu_scope("Modules");
-            CEngine::get().getModules().render();
+            EngineModules.render();
         }
     }
+    {
+        PROFILE_FUNCTION("GUI");
+        CTraceScoped gpu_scope("GUI");
 
+        activateRSConfig(RSCFG_CULL_NONE);
+        activateZConfig(ZCFG_DISABLE_ALL);
+        activateBlendConfig(BLEND_CFG_COMBINATIVE);
+
+        activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
+        EngineModules.renderGUI();
+
+        activateRSConfig(RSCFG_DEFAULT);
+        activateZConfig(ZCFG_DEFAULT);
+        activateBlendConfig(BLEND_CFG_DEFAULT);
+    }
     {
         PROFILE_FUNCTION("ImGui::Render");
         CTraceScoped gpu_scope("ImGui");
         ImGui::Render();
     }
-
     // Present the information rendered to the back buffer to the front buffer (the screen)
     {
         PROFILE_FUNCTION("Render.swapChain");

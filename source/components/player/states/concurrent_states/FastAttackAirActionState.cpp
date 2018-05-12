@@ -47,7 +47,7 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->lockTurning = false;
 }
 
-void FastAttackAirActionState::onHitboxEnter(CHandle entity) {
+void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 
 	CEntity *otherEntity = entity;

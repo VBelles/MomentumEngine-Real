@@ -64,7 +64,7 @@ void TCompCameraPlayer::update(float delta) {
 		updateMovement(delta);
 	}
 
-	if (!isMovementLocked && sphereCast()) {
+	if (!isMovementLocked && (isCameraInsideGeometry() || sphereCast())) {
 		sweepBack();
 	}
 }
@@ -162,7 +162,7 @@ void TCompCameraPlayer::sweepBack() {
 	PxSweepBuffer sweepBuffer;
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
-	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+	fd.flags |= PxQueryFlag::ePREFILTER;
 	PxHitFlags hitFlags = PxHitFlag::eDEFAULT;
 
 	bool status = EnginePhysics.getScene()->sweep(geometry, toPhysx(targetPosition, rotation), toPhysx(direction), distance, sweepBuffer,
@@ -173,11 +173,16 @@ void TCompCameraPlayer::sweepBack() {
 		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);
 		getTransform()->setPosition(fromPhysx(newPosition));
 		currentDistanceToTarget = VEC3::Distance(getTransform()->getPosition(), targetTransform.getPosition());
+		//dbg("%f, %f, %f\n", newPosition.x, newPosition.y, newPosition.z);
+		//dbg("Distance: %f\n", currentDistanceToTarget);
+		
 	}
 	else {
 		currentDistanceToTarget = distance;
 	}
+	//dbg("Status: %d\n", status);
 }
+
 
 bool TCompCameraPlayer::sphereCast() {
 	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
@@ -189,6 +194,36 @@ bool TCompCameraPlayer::sphereCast() {
 	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, buf, fd, EnginePhysics.getGameQueryFilterCallback());
 	return status;
 }
+
+bool TCompCameraPlayer::isCameraInsideGeometry() {
+	VEC3 cameraPosition = getTransform()->getPosition();
+	VEC3 targetPosition = targetTransform.getPosition();
+
+	const PxU32 bufferSize = 256;        // [in] size of 'hitBuffer'
+	PxRaycastHit hitBuffer[bufferSize];  // [out] User provided buffer for results
+	PxRaycastBuffer buf1(hitBuffer, bufferSize); // [out] Blocking and touching hits stored here
+	raycast(targetPosition, cameraPosition, buf1);
+	PxRaycastHit hitBuffer2[bufferSize];  // [out] User provided buffer for results
+	PxRaycastBuffer buf2(hitBuffer2, bufferSize); // [out] Blocking and touching hits stored here
+	raycast(cameraPosition, targetPosition, buf2);
+
+	//dbg("Buf1: %d\n", buf1.nbTouches);
+	//dbg("Buf2: %d\n", buf2.nbTouches);
+
+	return buf1.nbTouches != buf2.nbTouches;
+}
+
+bool TCompCameraPlayer::raycast(VEC3 origin, VEC3 destination, PxRaycastCallback& callback) {
+	VEC3 dir = destination - origin;
+	dir.Normalize();
+	float distance = VEC3::Distance(origin, destination);
+	PxHitFlags hitflags = PxHitFlags(PxHitFlag::eDEFAULT);
+	PxQueryFilterData filterData(PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0),
+		PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK);
+	bool status = EnginePhysics.getScene()->raycast(toPhysx(origin), toPhysx(dir), distance, callback, hitflags, filterData, EnginePhysics.getGameQueryFilterCallback());
+	return status;
+}
+
 
 void TCompCameraPlayer::centerCamera() {
 	if (!isMovementLocked) {
@@ -283,4 +318,9 @@ void TCompCameraPlayer::resetSuggested() {
 	isDistanceForced = false;
 	isCenteringCameraForced = false;
 	centeringCamera = false;
+}
+
+void TCompCameraPlayer::lockCameraInput(bool isLocked) {
+    isMovementLocked = isLocked;
+    centeringCamera = false; //Avoid bugs
 }

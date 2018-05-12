@@ -26,5 +26,5 @@ public:
 	void onStrongAttackButton() override;
 	//void onReleasePowerButton() override {}
 	void onLanding() override;
-	void onHitboxEnter(CHandle entity) override;
+	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

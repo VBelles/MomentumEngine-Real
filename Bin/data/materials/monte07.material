@@ -1,0 +1,11 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/formacion_rocosa7_low_formacion_rocosa7_default_BaseColor.dds",
+    "normal": "data/textures/formacion_rocosa7_low_formacion_rocosa7_default_Normal.dds",
+    "metallic": "data/textures/formacion_rocosa7_low_formacion_rocosa7_default_Metallic.dds",
+    "roughness": "data/textures/formacion_rocosa7_low_formacion_rocosa7_default_Roughness.dds"
+  }
+}

@@ -6,39 +6,69 @@
 				{
 					"mesh": "data/skeletons/ella/ella_low.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
 					]
 				},
 				{
 					"mesh": "data/skeletons/ella/cintacorta_der.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
 					]
 				},
 				{
 					"mesh": "data/skeletons/ella/cintacorta_izq.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
 					]
 				},
 				{
 					"mesh": "data/skeletons/ella/cintalarga_der.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
 					]
 				},
 				{
 					"mesh": "data/skeletons/ella/cintalarga_izq.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/ella_low.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintacorta_der.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintacorta_izq.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintalarga_der.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintalarga_izq.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
 					]
 				}
 			],
 			
 			"transform": {
-				"pos": "-77 25 -59",
+				"pos": "-5 8.0 -49",
 				"axis": "0 1 0",
-				"angle": 120
+				"angle": 40
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/ella/ella.skeleton"
@@ -99,9 +129,9 @@
 					"plummetTime": 0.6
 				},
 				"materials": [
-					"data/skeletons/ella/ellaSS1.material",
-					"data/skeletons/ella/ellaSS2.material",
-					"data/skeletons/ella/ellaSS3.material"
+					"data/skeletons/ella/ellaSS1_post_outline.material",
+					"data/skeletons/ella/ellaSS2_post_outline.material",
+					"data/skeletons/ella/ellaSS3_post_outline.material"
 				]
 			},
 			"collider": {
@@ -126,98 +156,64 @@
 						"name": "strong_attack",
 						"shape": "sphere",
 						"radius": 0.8,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 R Hand",
-						"attack": "strong_attack"
+						"group": ["player"],
+						"mask": ["enemy"],
+						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "fast_attack",
 						"shape": "sphere",
 						"radius": 0.7,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 R Hand",
-						"attack": "fast_attack"
+						"group": ["player"],
+						"mask": ["enemy"],
+						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "horizontal_launcher",
 						"shape": "sphere",
 						"radius": 0.9,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
+						"group": ["player"],
+						"mask": ["enemy"],
 						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "vertical_launcher",
 						"shape": "sphere",
 						"radius": 0.9,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
+						"group": ["player"],
+						"mask": ["enemy"],
 						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "grab",
 						"shape": "sphere",
 						"radius": 1.5,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
+						"group": ["player"],
+						"mask": ["enemy"],
 						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "falling_attack",
 						"shape": "sphere",
-						"radius": 0.8,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 L Foot"
+						"radius": 1,
+						"offset": "0 -0.7 0",
+						"group": ["player"],
+						"mask": ["enemy"]
 					},
 					{
 						"name": "landing_falling_attack",
 						"shape": "sphere",
 						"radius": 2.0,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 R Foot"
+						"offset": "0 -0.5 0",
+						"group": ["player"],
+						"mask": ["enemy"]
 					},
 					{
 						"name": "plummet_attack",
 						"shape": "sphere",
 						"radius": 2.0,
-						"group": [
-							"player"
-						],
-						"mask": [
-							"enemy"
-						],
+						"group": ["player"],
+						"mask": ["enemy"],
 						"bone": "Bip001 Pelvis"
 					},
 					{
@@ -228,9 +224,10 @@
 							"player"
 						],
 						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 Pelvis"
+							"enemy",
+							"mechanism"
+						]
+						
 					},
 					{
 						"name": "release_power_big",
@@ -240,9 +237,10 @@
 							"player"
 						],
 						"mask": [
-							"enemy"
-						],
-						"bone": "Bip001 Pelvis"
+							"enemy",
+							"mechanism"
+						]
+						
 					}
 				]
 			}
@@ -251,7 +249,10 @@
 	{
 		"entity": {
 			"name": "player_camera",
-			"transform": {},
+			"transform": {
+				"axis": "0 1 0",
+				"angle": 40
+			},
 			"camera": {
 				"fov": 80,
 				"z_near": 0.1,
@@ -266,7 +267,7 @@
 				"centering_camera_speed": "18 9",
 				"max_pitch": 60,
 				"min_pitch": -70,
-				"yaw": 125,
+				"yaw": 225,
 				"pitch": -20
 			}
 		}
