@@ -61,7 +61,8 @@ private:
 
 	HitState hitState;
 
-	std::string materials[3];//impares son outline, pares son post_outline
+	std::string post_outline_materials[3];
+	std::string outline_materials[3];
 	PowerStats* powerStats[3];
 	PowerStats* currentPowerStats;
 

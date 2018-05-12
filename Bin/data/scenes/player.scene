@@ -128,10 +128,15 @@
 					"long_gravity_multiplier": 0.60,
 					"plummetTime": 0.6
 				},
-				"materials": [
+				"post_outline_materials": [
 					"data/skeletons/ella/ellaSS1_post_outline.material",
 					"data/skeletons/ella/ellaSS2_post_outline.material",
 					"data/skeletons/ella/ellaSS3_post_outline.material"
+				],
+				"outline_materials": [
+					"data/skeletons/ella/ellaSS1_outline.material",
+					"data/skeletons/ella/ellaSS2_outline.material",
+					"data/skeletons/ella/ellaSS3_outline.material"
 				]
 			},
 			"collider": {

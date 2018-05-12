@@ -107,12 +107,20 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	walkingSpeed = j.value("walkingSpeed", 5.0f);
 	maxVelocityUpwards = j.value("maxVelocityUpwards", 45.0f);
 
-	if (j.count("materials")) {
-		auto& j_mats = j["materials"];
+	if (j.count("post_outline_materials")) {
+		auto& j_mats = j["post_outline_materials"];
 		for (size_t i = 0; i < j_mats.size(); ++i) {
 			std::string name_material = j_mats[i];
-			materials[i] = name_material;
-			dbg("material: %s\n", name_material.c_str());
+			post_outline_materials[i] = name_material;
+			dbg("post_outline_material: %s\n", name_material.c_str());
+		}
+	}
+	if (j.count("outline_materials")) {
+		auto& j_mats = j["outline_materials"];
+		for (size_t i = 0; i < j_mats.size(); ++i) {
+			std::string name_material = j_mats[i];
+			outline_materials[i] = name_material;
+			dbg("outline_material: %s\n", name_material.c_str());
 		}
 	}
 	powerStats[0] = loadPowerStats(j["ssj1"]);
@@ -169,7 +177,8 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	currentPowerStats = powerStats[msg.powerLvl - 1];
 
 	TCompRender *render = get<TCompRender>();
-	render->setAllMaterials(0, render->meshes.size() / 2, materials[msg.powerLvl - 1]);
+	render->setAllMaterials(0, render->meshes.size() / 2, post_outline_materials[msg.powerLvl - 1]);
+	render->setAllMaterials(render->meshes.size() / 2, render->meshes.size(), outline_materials[msg.powerLvl - 1]);
 
 	Engine.getScripting().throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
