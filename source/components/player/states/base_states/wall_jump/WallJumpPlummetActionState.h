@@ -8,7 +8,6 @@ protected:
 	float endingTime;
 	float deceleration = 0.5f;
 
-	CHandle hitboxHandle;
 	float damage = 3;
 	float powerToGet = 4000.f;
 

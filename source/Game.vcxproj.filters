@@ -192,7 +192,8 @@
     <ClCompile Include="components\comp_respawn_point.cpp" />
     <ClCompile Include="modules\game\module_game.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
-    <ClCompile Include="components\postfx\comp_render_outlines.cpp"/>
+    <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
+    <ClCompile Include="components\player\states\base_states\LauncherActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -417,7 +418,8 @@
     <ClInclude Include="components\comp_respawn_point.h" />
     <ClInclude Include="modules\game\module_game.h" />
     <ClInclude Include="modules\system\module_sound.h" />
-    <ClInclude Include="components\postfx\comp_render_outlines.h"/>
+    <ClInclude Include="components\postfx\comp_render_outlines.h" />
+    <ClInclude Include="components\player\states\base_states\LauncherActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

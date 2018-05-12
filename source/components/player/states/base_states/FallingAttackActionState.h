@@ -10,7 +10,6 @@ private:
 	float maxFallingVelocity = 55.f;
 	float upwardsVelocity = 18.f;
 
-	CHandle hitboxHandle;
 	float damage = 2.f;
 
 	float powerToGet = 4000.f;

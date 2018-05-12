@@ -14,7 +14,6 @@ private:
 
 	float beginLauncherTime = frames2sec(20);
 
-	CHandle hitboxHandle;
 	float damage = 5.f;
 	AttackPhases phase = AttackPhases::Launch;
 

@@ -26,7 +26,8 @@ private:
 	float fallingAttackPowerToGet = 4000.f;
 
 public:
-	FallingAttackLandingActionState(CHandle playerModelHandle) : LandingActionState(playerModelHandle, "hard_landing") {}
+	FallingAttackLandingActionState(CHandle playerModelHandle) : LandingActionState(playerModelHandle, "hard_landing") {
+	}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
