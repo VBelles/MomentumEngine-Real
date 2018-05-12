@@ -45,12 +45,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -189,6 +189,7 @@
     <ClCompile Include="components\player\states\base_states\TurnAroundActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\WalkActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
@@ -235,6 +236,7 @@
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_game.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
+    <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="modules\system\scripting\console.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_cameras.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_door.cpp" />
@@ -385,6 +387,7 @@
     <ClInclude Include="components\player\states\base_states\TurnAroundActionState.h" />
     <ClInclude Include="components\player\states\base_states\WalkActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
+    <ClInclude Include="components\postfx\comp_render_outlines.h" />
     <ClInclude Include="components\postfx\comp_render_ao.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
@@ -446,6 +449,7 @@
     <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_game.h" />
+    <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="modules\system\scripting\console.h" />
     <ClInclude Include="modules\system\scripting\scripting_cameras.h" />
     <ClInclude Include="modules\system\scripting\scripting_door.h" />

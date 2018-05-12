@@ -16,6 +16,9 @@
 			},
 			"render_ao" : {
 				"enabled" : false
+			},
+			"render_outlines" : {
+				"enabled" : true
 			}
 		}
 	},

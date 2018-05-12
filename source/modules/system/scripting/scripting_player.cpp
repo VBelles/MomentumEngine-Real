@@ -18,7 +18,9 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("movePlayer", SLB::FuncCall::create(ScriptingPlayer::movePlayer));
     manager->set("setPower", SLB::FuncCall::create(ScriptingPlayer::setPower));
     manager->set("lockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::lockPlayerCameraInput));
-    manager->set("unlockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::unlockPlayerCameraInput));
+	manager->set("unlockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::unlockPlayerCameraInput));
+	manager->set("disablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::disablePlayerOutline));
+	manager->set("enablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::enablePlayerOutline));
 }
 
 
@@ -50,6 +52,14 @@ void ScriptingPlayer::lockPlayerCameraInput() {
 
 void ScriptingPlayer::unlockPlayerCameraInput() {
     getPlayerCamera()->lockCameraInput(false);
+}
+
+void ScriptingPlayer::disablePlayerOutline() {
+	getPlayerModel()->disableOutline();
+}
+
+void ScriptingPlayer::enablePlayerOutline() {
+	getPlayerModel()->enableOutline();
 }
 
 void ScriptingPlayer::teleportPlayer(float x, float y, float z) {

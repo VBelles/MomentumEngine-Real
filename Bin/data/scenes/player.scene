@@ -6,31 +6,61 @@
 				{
 					"mesh": "data/skeletons/ella/ella_low.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
 					]
 				},
 				{
 					"mesh": "data/skeletons/ella/cintacorta_der.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
 					]
 				},
 				{
 					"mesh": "data/skeletons/ella/cintacorta_izq.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
 					]
 				},
 				{
 					"mesh": "data/skeletons/ella/cintalarga_der.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
 					]
 				},
 				{
 					"mesh": "data/skeletons/ella/cintalarga_izq.mesh",
 					"materials": [
-						"data/skeletons/ella/ellaSS1.material"
+						"data/skeletons/ella/ellaSS1_post_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/ella_low.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintacorta_der.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintacorta_izq.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintalarga_der.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/ella/cintalarga_izq.mesh",
+					"materials": [
+						"data/skeletons/ella/ellaSS1_outline.material"
 					]
 				}
 			],
@@ -99,9 +129,9 @@
 					"plummetTime": 0.6
 				},
 				"materials": [
-					"data/skeletons/ella/ellaSS1.material",
-					"data/skeletons/ella/ellaSS2.material",
-					"data/skeletons/ella/ellaSS3.material"
+					"data/skeletons/ella/ellaSS1_post_outline.material",
+					"data/skeletons/ella/ellaSS2_post_outline.material",
+					"data/skeletons/ella/ellaSS3_post_outline.material"
 				]
 			},
 			"collider": {

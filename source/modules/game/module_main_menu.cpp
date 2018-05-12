@@ -1,37 +1,41 @@
 #include "mcv_platform.h"
 #include "module_main_menu.h"
-#include "modules/module.h"
+#include "gui/gui_parser.h"
 
 bool CModuleMainMenu::start() {
-    ShowCursor(true);
-    CApp::get().resetCursorPos = false;
-    return true;
+	ShowCursor(true);
+	CApp::get().resetCursorPos = false;
+
+	GUI::CParser parser;
+	parser.parseFile("data/gui/test.json");
+
+	Engine.getGUI().activateWidget("test");
+
+	auto startGameCB = []() {
+		EngineModules.changeGameState("game_state");
+	};
+	auto exitCB = []() {
+		CApp::get().stopMainLoop = true;
+	};
+
+	controller = new GUI::CMainMenuController();
+	controller->registerOption("start_game", startGameCB);
+	controller->registerOption("exit_game", exitCB);
+	controller->setCurrentOption(0);
+	Engine.getGUI().registerController(controller);
+
+	return true;
 }
 
 bool CModuleMainMenu::stop() {
-    CApp::get().resetCursorPos = true;
-    ShowCursor(false);
-    return true;
+	Engine.getGUI().unregisterController(controller);
+	SAFE_DELETE(controller);
+	Engine.getGUI().unregisterWidget("test", true);
+	CApp::get().resetCursorPos = true;
+	ShowCursor(false);
+	return true;
 }
 
-void CModuleMainMenu::update(float delta) {
-}
+void CModuleMainMenu::update(float delta) {}
 
-void CModuleMainMenu::render() {
-    imguiBool = toRender();
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 178 });
-    ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - 200, ImGui::GetIO().DisplaySize.y / 4));
-    ImGui::SetNextWindowSize(ImVec2(300, 200));
-    ImGui::Begin("MainMenu", &imguiBool, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-    ImGui::TextUnformatted("Main menu\n");
-
-    if (ImGui::Button("Start game")) {
-        EngineModules.changeGameState("test_axis");
-    }
-    if (ImGui::Button("Exit game")) {
-        CApp::get().stopMainLoop = true;
-    }
-
-    ImGui::End();
-    ImGui::PopStyleColor();
-}
+void CModuleMainMenu::render() {}

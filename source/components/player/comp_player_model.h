@@ -71,7 +71,7 @@ private:
 
 	MoveState moveState;
 
-	std::string materials[3];
+	std::string materials[3];//impares son outline, pares son post_outline
 	PowerStats* powerStats[3];
 	PowerStats* currentPowerStats;
 
@@ -197,4 +197,6 @@ public:
 	void setHp(float hp);
 	void setRespawnPosition(VEC3 position);
 	VEC3 getRespawnPosition() { return respawnPosition; }
+	void disableOutline();
+	void enableOutline();
 };

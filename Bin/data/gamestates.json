@@ -1,5 +1,5 @@
 {
-	"startup" : "game_state",
+	"startup" : "main_menu",
 	"gamestates" : 
 	[
 		{

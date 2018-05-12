@@ -10,9 +10,10 @@
     "game",
     "cameras",
     "render",
-	"gui",
+	  "gui",
     "test_instancing",
-    "scripting"
+    "scripting",
+    "sound"
   ],
   "render": [
     "render",    
@@ -22,7 +23,7 @@
     "entities",
     "pause",
     "input",
-	"gui",
+	  "gui",
     "scripting"
   ]
 }

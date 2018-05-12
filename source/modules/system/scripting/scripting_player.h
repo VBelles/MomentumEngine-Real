@@ -33,5 +33,7 @@ public:
 	static bool givePlayerControl();
     static void lockPlayerCameraInput();
     static void unlockPlayerCameraInput();
+	static void disablePlayerOutline();
+	static void enablePlayerOutline();
 };
 

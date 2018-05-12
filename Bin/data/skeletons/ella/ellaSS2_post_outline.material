@@ -1,0 +1,10 @@
+{
+  "technique": "pbr_skin_post_outline.tech",
+  "shadows": true,
+  "textures": {
+    "albedo": "data/textures/ella/ella_basecolor_bluemarks.dds",
+    "normal": "data/textures/ella/ella_normals.dds",
+    "metallic": "data/textures/ella/ella_occlusionroughnessmetallic.dds",
+    "roughness": "data/textures/ella/ella_occlusionroughnessmetallic.dds"
+  }
+}

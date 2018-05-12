@@ -14,18 +14,20 @@ class CRenderToTexture : public CTexture {
 	ID3D11Texture2D*        depth_resource = nullptr;
 	CTexture*               ztexture = nullptr;
 
+	static CRenderToTexture* current_rt;
+
 public:
 
 	~CRenderToTexture();
 
 	bool createRT(const char* name, int new_xres, int new_yres
-				  , DXGI_FORMAT new_color_format
-				  , DXGI_FORMAT new_depth_format = DXGI_FORMAT_UNKNOWN
-				  , bool        uses_depth_of_backbuffer = false
+		, DXGI_FORMAT new_color_format
+		, DXGI_FORMAT new_depth_format = DXGI_FORMAT_UNKNOWN
+		, bool        uses_depth_of_backbuffer = false
 	);
 	void destroy() override;
 
-	void activateRT();
+	CRenderToTexture* activateRT();
 	void activateViewport();
 
 	void clear(VEC4 clear_color);
@@ -35,6 +37,7 @@ public:
 		return render_target_view;
 	}
 	CTexture* getZTexture() { return ztexture; }
+	static CRenderToTexture* getCurrentRT() { return current_rt; }
 
 	void debugInMenu() override;
 };

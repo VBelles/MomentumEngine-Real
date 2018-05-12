@@ -10,7 +10,7 @@ struct  TSkeletonsExporter (
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return (classof obj == Biped_Object or classof obj == Dummy or classof obj == BoneGeometry) and obj.wireColor != Black
+		return (classof obj == Biped_Object or classof obj == Dummy or classof obj == BoneGeometry)
 	),
 	
 	-- Search the root bones in the scene to define the .csf
@@ -30,6 +30,19 @@ struct  TSkeletonsExporter (
 	-- Find in the scene the bones which will be exported as part of the animation
 	-- Change the color to black to discard the bones
 	fn findBoneCandidates = (
+		local objs = #()
+		for obj in $* do (
+			if isBone obj and obj.wireColor != Black then (
+				format "% is a bone for the animation\n" obj.name
+				append objs obj
+			)
+		)
+		return objs
+	),
+	
+	-- Find in the scene the bones which will be exported as part of the animation
+	-- Change the color to black to discard the bones
+	fn findSkelBones = (
 		local objs = #()
 		for obj in $* do (
 			if isBone obj then (
@@ -87,7 +100,7 @@ struct  TSkeletonsExporter (
 				root.children[1].controller.figureMode = true
 			)
 		)
-		local bones_to_export = findBoneCandidates()
+		local bones_to_export = findSkelBones()
 		
 		for b in bones_to_export do (
 			format "Bone Skel is %\n" b.name

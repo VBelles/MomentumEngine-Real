@@ -8,6 +8,7 @@
 #include "modules/system/module_cameras.h"
 #include "modules/system/scripting/module_scripting.h"
 #include "modules/system/module_gui.h"
+#include "modules/system/module_sound.h"
 
 class CEngine {
 public:
@@ -27,6 +28,7 @@ public:
 	CModuleCameras& getCameras() { return _module_cameras; }
 	CModuleScripting& getScripting() { return _module_scripting; }
 	CModuleGUI& getGUI() { return _module_gui; }
+	CModuleSound& getSound() { return _module_sound; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
@@ -40,6 +42,7 @@ private:
 	CModuleCameras   _module_cameras;
 	CModuleScripting _module_scripting;
 	CModuleGUI       _module_gui;
+	CModuleSound     _module_sound;
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
@@ -52,3 +55,4 @@ private:
 #define EngineRender CEngine::get().getRender()
 #define EngineScripting CEngine::get().getScripting()
 #define EngineGUI CEngine::get().getGUI()
+#define EngineSound CEngine::get().getSound()

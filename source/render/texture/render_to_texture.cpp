@@ -4,6 +4,8 @@
 #include "render/render_utils.h"
 #include "render/render_objects.h"      // createDepthStencil
 
+CRenderToTexture* CRenderToTexture::current_rt = nullptr;
+
 CRenderToTexture::~CRenderToTexture() {
 }
 
@@ -73,9 +75,13 @@ bool CRenderToTexture::createRT(
 	return true;
 }
 
-void CRenderToTexture::activateRT() {
+// Will return prev rt
+CRenderToTexture* CRenderToTexture::activateRT() {
+	CRenderToTexture* prev_rt = current_rt;
 	Render.ctx->OMSetRenderTargets(1, &render_target_view, depth_stencil_view);
 	activateViewport();
+	current_rt = this;
+	return prev_rt;
 }
 
 void CRenderToTexture::activateViewport() {
@@ -95,6 +101,6 @@ void CRenderToTexture::clear(VEC4 clear_color) {
 }
 
 void CRenderToTexture::clearZ() {
-	if (depth_stencil_view)
-		Render.ctx->ClearDepthStencilView(depth_stencil_view, D3D11_CLEAR_DEPTH, 1.0f, 0);
+  if(depth_stencil_view)
+    Render.ctx->ClearDepthStencilView(depth_stencil_view, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }

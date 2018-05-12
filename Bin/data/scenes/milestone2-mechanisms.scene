@@ -324,7 +324,7 @@
 						"data/materials/mec6.material"
 					],
 					"color": "0 0 1 1"
-				}
+        }
 			],
       "transform":
       {

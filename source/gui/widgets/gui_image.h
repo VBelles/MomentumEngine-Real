@@ -2,18 +2,16 @@
 
 #include "gui/gui_widget.h"
 
-namespace GUI
-{
-  class CImage : public CWidget
-  {
-  public:
-    CImage() = default;
-    void render() override;
-    TImageParams* getImageParams() override;
+namespace GUI {
+	class CImage : public CWidget {
+	public:
+		CImage() = default;
+		void render() override;
+		TImageParams* getImageParams() override;
 
-  private:
-    TImageParams _imageParams;
+	private:
+		TImageParams _imageParams;
 
-    friend class CParser;
-  };
+		friend class CParser;
+	};
 }
