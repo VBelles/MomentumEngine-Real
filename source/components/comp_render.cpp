@@ -183,7 +183,6 @@ void TCompRender::refreshMeshesInRenderManager() {
 		// All materials of the house...
 		uint32_t idx = 0;
 		for (auto& m : mwm.materials) {
-			dbg("%s\n", m->getName().c_str());
 			// Supporting null materials to discard submeshes
 			if (m) {
 				CRenderManager::get().addRenderKey(
