@@ -72,6 +72,11 @@ fn get3pointAngle p1 p2 p3 = (
 	return getVecAngle v1 v2
 )
 
+fn setMaterialIDs obj id:1 = (
+	addModifier obj (MaterialModifier materialID:id)
+	convertTo obj editable_mesh
+)
+
 fn cleanMaterialName oldName = (
 	local cleanName = substituteString oldName " " "_"
 	return substituteString cleanName "ñ" "n"
