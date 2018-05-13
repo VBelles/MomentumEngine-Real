@@ -115,6 +115,15 @@ void IActionState::clampHorizontalVelocity(float maxHorizontalSpeed) {
 	}
 }
 
+bool IActionState::isWalkable(MoveState& moveState) {
+	for (HitState& hit : moveState.botHits) {
+		if (hit.dotUp >= getPlayerModel()->getController()->getSlopeLimit()) {
+			return true;
+		}
+	}
+	return false;
+}
+
 
 TCompPlayerModel* IActionState::getPlayerModel() { return playerModelHandle; }
 TCompTransform* IActionState::getPlayerTransform() { return playerTransformHandle; }

@@ -60,6 +60,8 @@ protected:
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void clampHorizontalVelocity(float maxHorizontalSpeed);
 
+	bool isWalkable(MoveState& moveState);
+
 public:
 	std::string animation;
 

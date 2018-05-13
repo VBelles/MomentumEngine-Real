@@ -10,7 +10,7 @@ void SlideActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 
-	bool hasInput = movementInput != VEC2::Zero;
+	/*bool hasInput = movementInput != VEC2::Zero;
 	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 	desiredDirection.y = 0.f;
 	float yaw, pitch;
@@ -44,7 +44,7 @@ void SlideActionState::update(float delta) {
 
 	TCompTransform* transform = getPlayerTransform();
 	transform->getYawPitchRoll(&yaw, &pitch);
-	transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);
+	transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);*/
 }
 
 void SlideActionState::onStateEnter(IActionState* lastState) {
@@ -71,25 +71,8 @@ void SlideActionState::onMove(MoveState& moveState) {
 	if (!moveState.isTouchingBot) { //Not grounded, change to airborne normal
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
-	else { //Grounded, check slope
-		bool grounded = true;
-		for (HitState& hitState : moveState.hits) {
-			if (hitState.dotUp < getPlayerModel()->getController()->getSlopeLimit()) {
-				grounded = false;
-				break;
-			}
-		}
-		if (grounded) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
-		}
-		else {
-			if (!moveState.hits.empty()) {
-				hitNormal = fromPhysx(moveState.hits[moveState.hits.size() - 1].hit.worldNormal);
-			}
-			else {
-				dbg("Wops\n");
-			}
-		}
+	else if (isWalkable(moveState)) {
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 	}
 
 }

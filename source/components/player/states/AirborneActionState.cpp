@@ -115,34 +115,17 @@ void AirborneActionState::onReleasePowerButton() {
 }
 
 void AirborneActionState::onMove(MoveState& moveState) {
-
 	if (moveState.isTouchingTop && velocityVector->y > 0.f) {
 		velocityVector->y = 0.f;
 	}
-
 	if (moveState.isTouchingBot) {
-		bool grounded = true;
-		for (HitState& hitState : moveState.hits) {
-			if (hitState.dotUp < getPlayerModel()->getController()->getSlopeLimit()) {
-				grounded = false;
-				break;
-			}
-		}
-
-		if (!grounded) { //Slide
-			if (!getPlayerModel()->tryingToSlide) {
-				getPlayerModel()->tryingToSlide = true;
-				slideWindowTimer.reset();
-			}
-			else if (slideWindowTimer.elapsed() >= slideWindowTime) {
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
-			}
+		if (!isWalkable(moveState)) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
 		}
 		else {
 			onLanding();
 		}
 	}
-
 }
 
 

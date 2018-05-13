@@ -186,7 +186,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	renderUI->registerOnRenderUI([&]() {
 
-	
+
 		bool showWindow = true;
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(50, 35));
@@ -223,7 +223,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		//Coin counter
 		std::string coinText = "Coins: " + std::to_string(coins);
 		ImGui::ProgressBar(0, ImVec2(-1, 0), coinText.c_str());
-	
+
 		ImGui::End();
 		ImGui::PopStyleColor();
 
@@ -231,8 +231,8 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 			//-------- WIN DIALOG --------------------------------
 			ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 120 });
 			ImVec2 size = ImVec2(300, 200);
-			ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - size.x / 2 , 
-				100 ));
+			ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - size.x / 2,
+				100));
 			ImGui::SetNextWindowSize(size);
 			ImGui::Begin("victoryWindow", &showVictoryDialog, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 			ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path to the final boss!\n\n\n");
@@ -246,7 +246,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::Begin("Params Main Character", &showWindow);
 		debugInMenu();
 		ImGui::End();
-		
+
 
 	});
 
@@ -398,6 +398,20 @@ void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 	hitState.hit = msg.hit;
 	hitState.dotUp = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
 	moveState.hits.push_back(hitState);
+
+	PxCapsuleController* controller = getController();
+	PxExtendedVec3 hitPos = msg.hit.worldPos;
+	PxExtendedVec3 cctPos = controller->getPosition();
+	float halfHeight = controller->getHeight() * 0.5f;
+	if (hitPos.y >= cctPos.y + halfHeight) { //Top hit
+		moveState.topHits.push_back(hitState);
+	}
+	else if (hitPos.y <= cctPos.y - halfHeight) { //Bot hit
+		moveState.botHits.push_back(hitState);
+	}
+	else { //Side hit
+		moveState.sideHits.push_back(hitState);
+	}
 
 	baseState->onShapeHit(msg.hit);
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
@@ -579,7 +593,7 @@ void TCompPlayerModel::onRespawnChanged(const TMsgRespawnChanged& msg) {
 	setRespawnPosition(msg.respawnPosition);
 }
 
-void TCompPlayerModel::onPurityChange(const TMsgPurityChange& msg){
+void TCompPlayerModel::onPurityChange(const TMsgPurityChange& msg) {
 	getController()->invalidateCache(); //De esta forma no se queda sobre/en colliders estaticos al cambiar de pureza
 }
 

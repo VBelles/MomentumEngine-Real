@@ -47,33 +47,16 @@ void GroundedActionState::onReleasePowerButton() {
 }
 
 void GroundedActionState::onMove(MoveState& moveState) {
+	velocityVector->y = 0.f;
 	if (!moveState.isTouchingBot) {
 		onLeavingGround();
-		return;
-	}
-
-	bool grounded = false;
-	for (HitState& hit : moveState.hits) {
-		if (hit.dotUp >= getPlayerModel()->getController()->getSlopeLimit()) {
-			grounded = true;
-			break;
-		}
-	}
-
-	if (!grounded) { //Slide
-		if (!getPlayerModel()->tryingToSlide) {
-			getPlayerModel()->tryingToSlide = true;
-			slideTimer.reset();
-		}
-		else if (slideTimer.elapsed() >= slideWindowTime) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
-		}
 	}
 	else {
-		velocityVector->y = 0.f;
-		getPlayerModel()->tryingToSlide = false;
+		if (!isWalkable(moveState)) { //Slide
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+		}
+		
 	}
-
 }
 
 void GroundedActionState::onLeavingGround() {
