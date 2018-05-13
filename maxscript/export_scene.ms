@@ -131,11 +131,11 @@ struct TJsonFormatter (
 -- ----------------------------------------------------------
 struct TMaterialExporter (
 	fs = TJsonFormatter(),
-	project_path,              -- Assigned in the ctor
-	base_path,                 -- Assigned in the ctor
+	project_path,           -- Assigned in the ctor. "D:\Dev\MomentumEngine-Real\Bin\"
+	base_path,              -- Assigned in the ctor. "data/"
 
-	-- TODO: Avoid exporting material if it already exists.
-	
+	--TODO: Avoid exporting material if it already exists.
+	--Map = dds file.
 	fn exportMap map alias default_value = (
 		if map == undefined then (
 			local json_filename = base_path + "textures/" + default_value + ".dds"
@@ -143,23 +143,33 @@ struct TMaterialExporter (
 			return false
 		)
 
-		-- "C:\engine\bin\data\textures\bricks.dds"
-		-- "C:\download\bricks.dds"
-		local map_filename = map.filename
+		-- "C:\engine\bin\data\textures\bricks.dds" but also "C:\download\bricks.dds"
+		local mapFilename = map.filename
 
 		-- bricks
-		local base_name = getFilenameFile map_filename
-
-		-- data\textures\bricks.dds"
-		local json_filename = base_path + "textures/" + base_name + ".dds"
+		local mapBaseName = getFilenameFile mapFilename
+		-- "C:\engine\bin\data\textures\"
+		local mapBasePath = getFilenamePath mapFilename
+		-- "data\textures\bricks.dds"
+		local json_filename = base_path + "textures/" + mapBaseName + ".dds"
 
 		-- "C:\engine\bin\data\textures\bricks.dds"
 		local ofull_path = project_path + json_filename
-
-		-- Check if ofull_path exists
-		if not doesFileExist ofull_path then (
-			format "We should copy from % to %\n" map_filename ofull_path
-			copyFile map_filename ofull_path
+		
+		format "mapBasePath: %\n" mapBasePath --DEBUG
+		format "(project_path + base_path): %\n" (project_path + base_path) --DEBUG
+		if isPathInsidePath mapBasePath (project_path + base_path) then (
+			--Map is already inside project directory, no need to copy, just point to the right sub-folder.
+			--TODO: Finish this, mapBasePath keeps original path and it doesn't work.
+			local strippedPath = stripPathFromPath mapBasePath project_path
+			json_filename = strippedPath + mapBaseName + ".dds"
+			format "strippedPath: %\n" strippedPath --DEBUG
+			format "json_filename: %\n" json_filename --DEBUG
+		) else (
+			if not doesFileExist ofull_path then (
+				format "We should copy from % to %\n" mapFilename ofull_path
+				copyFile mapFilename ofull_path
+			)
 		)
 
 		fs.writeKeyValue alias json_filename
@@ -177,7 +187,7 @@ struct TMaterialExporter (
 			fs.writeKey "textures"
 			fs.beginObj()
 		
-			if classof mat == StandardMaterial then (
+			if classOf mat == StandardMaterial then (
 				exportMap mat.diffuseMap "albedo" "null_albedo"
 			    fs.writeComma()
 				exportMap mat.bumpMap "normal" "null_normal"
@@ -226,7 +236,7 @@ struct TMaterialExporter (
 	-- Will return an array of all the materials names used by obj and exported by us
 	fn exportMaterial mat mat_path obj = (
 		local exported_materials = #()
-		local matClass = classof mat
+		local matClass = classOf mat
 		--format "material class: %\n" matClass as string --DEBUG
 		
 		if mat == undefined then (
@@ -403,7 +413,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- --RENDER MESH (also exports material)----------------------------------------
+	-- --RENDER MESH (also exports MATERIAL)----------------------------------------
 	fn exportRenderMesh obj = (
 		local mat = obj.material
 		if mat == undefined then (
@@ -540,6 +550,7 @@ struct TSceneExporter (
 		--format "exportBox obj.name: %\n" obj.name --DEBUG
 		local boxCopy = copy obj
 		convertToMesh boxCopy
+		boxCopy.name = obj.name
 		exportColliderMeshContents boxCopy
 		delete boxCopy
 		/*fs.writeKeyValue "shape" "box"
@@ -1408,8 +1419,6 @@ TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferent
 
 TODO: Que al exportar los materiales no haga copia si la carpeta ya está dentro de la carpeta textures.
 
-BUG: Los collider de box exportan nombre que no toca porque coge el nombre de la copia temporal (añade 001, etc).
-
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 
@@ -1451,9 +1460,8 @@ El proyecto debe tener las siguientes carpetas:
 ----------------------------------------------------------------------------------*/
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
-global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "") + "Bin\\"
-exportPath = substituteString exportPath "\\" "/"
-exporter = TSceneExporter project_path: exportPath
+global exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
+exporter = TSceneExporter project_path:exportPath
 
 --mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"
 --mexporter.exportStdMaterial $.mat "pep" 
