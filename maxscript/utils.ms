@@ -46,6 +46,11 @@ fn maxRotToMcv obj = (
 	return 
 )*/
 
+fn getPosRelativeToParent child = (
+	if child.parent == undefined then return child.pos
+	else return in coordsys child.parent child.pos
+)
+
 -- Returns the angle between two vectors (from 0 to 180 degrees).
 -- TODO: Esto debería devolver el ángulo en negativo si se da el caso (añadiendo referencia).
 fn getVecAngle v1 v2 = (
