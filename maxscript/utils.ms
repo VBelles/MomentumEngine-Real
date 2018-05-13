@@ -72,9 +72,16 @@ fn get3pointAngle p1 p2 p3 = (
 	return getVecAngle v1 v2
 )
 
+------- MATERIALS  AND NAMES ------------------------------------------------------
+
+-- Sets to <id> the material ID of all faces of an object.
 fn setMaterialIDs obj id:1 = (
 	addModifier obj (MaterialModifier materialID:id)
-	convertTo obj editable_mesh
+	convertTo obj Editable_Mesh
+)
+
+fn setSelectionMaterialIDs id:1 = (
+	for obj in objects do setMaterialIDs obj id:id
 )
 
 fn cleanMaterialName oldName = (
@@ -91,3 +98,20 @@ fn stringContainsSubstring strng substrng = (
 	matchpattern ("_" + strng) pattern:("?*" + substrng + "*")
 )
 
+fn cleanPath originalPath = (
+	return substituteString originalPath "\\" "/"
+)
+
+fn isPathInsidePath thisPath basePath = (
+	if not doesDirectoryExist thisPath or
+	   not doesDirectoryExist basePath then return false
+	else return stringContainsSubstring (cleanPath basePath) (cleanPath thisPath)
+)
+
+-- "c:/ojete/data/" and "c:/ojete/" returns "data/"
+fn stripPathFromPath originalPath pathToRemove = (
+	originalPath = cleanPath originalPath
+	local foundAt = findString originalPath (cleanPath pathToRemove)
+	if foundAt == undefined then return originalPath
+	return substring originalPath (foundAt + pathToRemove.count) -1
+)
