@@ -1,0 +1,55 @@
+[
+  { "entity": { "name": "00Dummy" } },
+  {
+    "entity":
+    {
+      "name": "_test_Box002mesh",
+      "transform":
+      {
+        "pos": "-40.3205 8.39272 -50.7672",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/_test_Box002mesh.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/_test_Box002mesh_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "_test_Box002mesh2_col",
+      "transform":
+      {
+        "pos": "0.318798 -3.97942 -1.52547",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/_test_Box002mesh2_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  }
+]

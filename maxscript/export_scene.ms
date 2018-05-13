@@ -200,33 +200,34 @@ struct TMaterialExporter (
 		fs.endObj()
 		fs.end()
 	),
+	
 	-- Exports an empty solid material to a json format
-		fn exportEmptyMaterial mat_name = (
-			/*exportMap undefined "albedo" "null_albedo"
+	fn exportEmptyMaterial mat_name = (
+		/*exportMap undefined "albedo" "null_albedo"
+		fs.writeComma()
+		exportMap undefined "normal" "null_normal"*/
+		
+		fs.begin (project_path + mat_name )
+		fs.beginObj()
+			fs.writeKeyValue "technique" "pbr.tech"
 			fs.writeComma()
-			exportMap undefined "normal" "null_normal"*/
-			
-			fs.begin (project_path + mat_name )
+			fs.writeKeyValue "shadows" true
+			fs.writeComma()
+			fs.writeKey "textures"
 			fs.beginObj()
-				fs.writeKeyValue "technique" "pbr.tech"
+				fs.writeKeyValue "albedo" "data/textures/null_albedo.dds"
 				fs.writeComma()
-				fs.writeKeyValue "shadows" true
-				fs.writeComma()
-				fs.writeKey "textures"
-				fs.beginObj()
-					fs.writeKeyValue "albedo" "data/textures/null_albedo.dds"
-					fs.writeComma()
-					fs.writeKeyValue "normal" "data/textures/null_normal.dds"
-				fs.endObj()
+				fs.writeKeyValue "normal" "data/textures/null_normal.dds"
 			fs.endObj()
-			fs.end()
+		fs.endObj()
+		fs.end()
 	),
 	
 	-- Will return an array of all the materials names used by obj and exported by us
 	fn exportMaterial mat mat_path obj = (
 		local exported_materials = #()
 		local matClass = classof mat
-		--format "material class: %\n" matClass as string
+		--format "material class: %\n" matClass as string --DEBUG
 		
 		if mat == undefined then (
 			--throw ("Obj " + obj.name + " does NOT have a material")
@@ -310,6 +311,16 @@ struct TSceneExporter (
 		return false
 	),
 	
+	-- Ends one entity and starts a new one.
+	fn startNewEntity = (
+			fs.endObj() -- - - - - - - end previous entity - - -
+		fs.endObj() -- - - - end previous json object - - - - - -
+		fs.writeComma()
+		fs.beginObj() -- - - - - start new json object - - - - - -
+			fs.writeKey "entity"
+			fs.beginObj() -- - - start new entity  - - - - - - -
+	),
+	
 	-- --STRING ARRAY (generic for tags, groups, masks )---------
 	fn exportStringArray arrayName strings = (
 		fs.writeKey arrayName
@@ -373,14 +384,18 @@ struct TSceneExporter (
 	-- ----------------------------------------------------------------------
 
 	-- --COMP: TRANSFORM-----------------------------------------------
-	fn exportTransform obj lookAtCoord: noRot:false = (
+	fn exportTransform obj lookAtCoord: noRot:false relative:false = (
 		fs.writeKey "transform"
 		fs.beginObj()
-			fs.writeKeyValue "pos" (maxPosToMcv obj.pos)
+			local objPos = obj.pos
+			if relative then objPos = getPosRelativeToParent obj
+			fs.writeKeyValue "pos" (maxPosToMcv objPos)
 			if not noRot then (
 				fs.writeComma()
 				if lookAtCoord == unsupplied then (
-					fs.writeKeyValue "rotation" (maxRotToMcv obj)
+					local transf = obj.transform
+					if relative then transf = getTransfRelativeToParent obj
+					fs.writeKeyValue "rotation" (maxRotToMcv transf)
 				) else (
 					fs.writeKeyValue "lookat" lookAtCoord
 				)
@@ -393,7 +408,6 @@ struct TSceneExporter (
 		local mat = obj.material
 		if mat == undefined then (
 			format "Warning: Obj % doesn't have a material, a default will be assigned.\n" obj.name
-			--TODO: assign default material.
 		)
 		else if not (isValidName mat.name) then (
 			mat.name = cleanMaterialName mat.name
@@ -404,6 +418,8 @@ struct TSceneExporter (
 			-- Export Mesh
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
+			
+			-- Generate the mesh file.
 			exportMeshObject obj (project_path + mesh_name)
 
 			fs.writeComma()
@@ -503,15 +519,15 @@ struct TSceneExporter (
 		if obj.layer.name == "trimesh" then meshType = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh then mesh_name = mesh_path + "plataformaPuraSI_tri.col_mesh"
-			
+
 		local meshType = "static"
 		if mov then meshType = "kinematic"
 		fs.writeKeyValue "mesh_src" mesh_name
 		fs.writeComma()
 		fs.writeKeyValue "shape" meshShape
-		
-		if forceMesh == unsupplied then
-			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"			
+
+		if not forceMesh then
+			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"
 	),
 	
 	fn exportSphere obj = (
@@ -521,7 +537,7 @@ struct TSceneExporter (
 	),
 	
 	fn exportBox obj = (
-		format "exportBox obj.name: %\n" obj.name --DEBUG
+		--format "exportBox obj.name: %\n" obj.name --DEBUG
 		local boxCopy = copy obj
 		convertToMesh boxCopy
 		exportColliderMeshContents boxCopy
@@ -553,13 +569,34 @@ struct TSceneExporter (
 		fs.writeKeyValue "slope" 45
 	),
 	
+	fn exportHierarchy parentName = (
+		fs.writeKey "hierarchy"
+		fs.beginObj()
+			fs.writeKeyValue "parent" parentName
+		fs.endObj()
+	),
+	
+	fn exportSeparateColliderEntity obj = (
+		startNewEntity()
+		exportName obj
+		fs.writeComma()
+		exportTransform obj relative:true
+		fs.writeComma()
+		exportHierarchy obj.parent.name
+		fs.writeComma()
+	),
+	
 	-- --COMP: COLLIDER------------------------------------------
-	fn exportCompCollider obj meshMode:false colliderGroups: masks: trig:false dyn:false mov:false = (
+	fn exportCompCollider obj first:true meshMode:false colliderGroups: masks: trig:false dyn:false mov:false = (
 		local objClass = classOf obj
 		local layerName = obj.layer.name
+		
+		-- If the object has more than one child collider we need to add them in separate entities.
+		if not first then exportSeparateColliderEntity obj
+		
 		fs.writeKey "collider"
 		fs.beginObj()
-			format "exportCompCollider of obj: %\n" obj.name
+			--format "exportCompCollider of obj: %\n" obj.name --DEBUG
 			if meshMode then exportColliderMeshContents obj meshShape:"convex_mesh" mov:mov forceMesh:true
 			else (
 				if      objClass == Sphere		  then exportSphere obj
@@ -573,17 +610,11 @@ struct TSceneExporter (
 					fs.writeKeyValue "is_trigger" trig
 				)
 				
-				if dyn then (
-					fs.writeComma()
-					fs.writeKeyValue "type" "dynamic"
-				) else if mov or layerName == "pure" then (
-					fs.writeComma()
+				fs.writeComma()
+				if dyn then fs.writeKeyValue "type" "dynamic"
+				else if mov or layerName == "pure" then
 					fs.writeKeyValue "type" "kinematic"
-				)			
-				else (
-					fs.writeComma()
-					fs.writeKeyValue "type" "static"
-				)
+				else fs.writeKeyValue "type" "static"
 			)
 
 			if colliderGroups != unsupplied then (
@@ -595,7 +626,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				exportStringArray "mask" masks
 			)
-		fs.endObj()
+		fs.endObj() -- End collider component.
 	),
 	
 	-- --COLLIDER (name, transform and collider)-----------
@@ -721,21 +752,24 @@ struct TSceneExporter (
 			else exportRenderMesh obj
 		fs.endArray()				
 		
+		local colliderCount = 0
 		if hasChildCollider obj then (
 			for child in obj.children do (
 				if isCollider child then (
-					fs.writeComma()
-					format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
+					colliderCount += 1
+					local isFirst = colliderCount == 1
+					if isFirst then fs.writeComma()
+					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
 					local movable = hasChildLine child
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
-					
+
 					local objToExport = child
 					if pure then (
 						fs.writeKeyEmpty "purity"
 						objToExport = obj
 					)
-					exportCompCollider objToExport meshMode:pure mov:(movable or rot) colliderGroups:groups
+					exportCompCollider objToExport first:isFirst meshMode:pure mov:(movable or rot) colliderGroups:groups
 
 					if breakable then exportBreakable()
 					if movable then exportSpline child
@@ -743,11 +777,6 @@ struct TSceneExporter (
 					if mech then exportMech child
 				)
 			)
-		)
-		else (
-			-- Doesn't have child collider, so export mesh as collider.
-			--fs.writeComma()
-			--exportColliderMesh obj
 		)
 	),
 
@@ -1153,10 +1182,7 @@ struct TSceneExporter (
 					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
 						exportEntityCollider child colliderGroups:#("Hitbox") trig:true dyn:true
 						fs.writeComma()
-						fs.writeKey "hierarchy"
-						fs.beginObj()
-							fs.writeKeyValue "parent" obj.name
-						fs.endObj()
+						exportHierarchy obj.name
 						fs.writeComma()
 						fs.writeKey "hitbox"
 						fs.beginObj()
@@ -1380,10 +1406,9 @@ TODO: Probar spline cerrada, habría que poner el último knot al principio segu
 TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
 
-TODO: Si un mesh tiene hijo collider, exportarlo como una entidad separada, con transform propia,
-	pero hija del mesh en hierarchy. Lo suyo es que una mesh pueda tener varios colliders hijos.
-
 TODO: Que al exportar los materiales no haga copia si la carpeta ya está dentro de la carpeta textures.
+
+BUG: Los collider de box exportan nombre que no toca porque coge el nombre de la copia temporal (añade 001, etc).
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
@@ -1408,14 +1433,14 @@ Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija.
 se exportará en la escena collisions.
 Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
 incluidas las que son hijas de Meshes visibles.
-Los enemigos		     deben estar en una layer llamada "enemies".
-Las crisálidas 		     deben estar en una layer llamada "chrysalis".
+Los enemigos		    deben estar en una layer llamada "enemies".
+Las crisálidas 		    deben estar en una layer llamada "chrysalis".
 Las plataformas móviles  deben estar en una layer llamada "movables".
-Las cámaras				 deben estar en una layer llamada "cameras".
-Las luces				 deben estar en una layer llamada "lights".
-Los triggers			 deben estar en una layer llamada "triggers".
-Las meshes				 deben estar en una layer llamada "0".
-Los colliders invisibles deben estar en una layer llamada "collisions".
+Las cámaras		    deben estar en una layer llamada "cameras".
+Las luces			    deben estar en una layer llamada "lights".
+Los triggers		    deben estar en una layer llamada "triggers".
+Las meshes		    deben estar en una layer llamada "0".
+Los colliders invisibles     deben estar en una layer llamada "collisions".
  
 Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
 El proyecto debe tener las siguientes carpetas:

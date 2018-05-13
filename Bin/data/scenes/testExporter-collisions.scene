@@ -1,0 +1,36 @@
+[
+  {
+    "entity":
+    {
+      "name": "_testPlane001",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "plane",
+        "planeDesc": "0 1 0 0",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "_invisibleBox001",
+      "transform":
+      {
+        "pos": "-53.8111 0.0 -41.6951",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/_invisibleBox002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  }
+]

@@ -34,21 +34,25 @@ fn mcvPosToMax p = (
 	return p * rotateXMatrix 90
 )
 
-fn maxRotToMcv obj = (
+fn maxRotToMcv transf = (
 	-- From mcv, we will go to max, apply the max transform and go back to mcv coord system.
-	local mcv_transform = rotateXMatrix 90 * obj.transform * rotateXMatrix -90
+	local mcvTransform = rotateXMatrix 90 * transf * rotateXMatrix -90
 
 	-- Take just the rotation as quaternion
-	return roundSmallQuatToZeros (mcv_transform.rotationPart as quat)
+	return roundSmallQuatToZeros (mcvTransform.rotationPart as quat)
 )
 
 /*fn mcvRotToMax q = (
 	return 
 )*/
 
+fn getTransfRelativeToParent child = (
+	if child.parent == undefined then return child.transform
+	else return child.transform * (inverse child.parent.transform)
+)
+
 fn getPosRelativeToParent child = (
-	if child.parent == undefined then return child.pos
-	else return in coordsys child.parent child.pos
+	return (getTransfRelativeToParent child).pos
 )
 
 -- Returns the angle between two vectors (from 0 to 180 degrees).
