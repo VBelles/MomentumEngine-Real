@@ -1,6 +1,9 @@
 #pragma once
 
 
+const float FPS = 1.f / 60.f;
+#define frames2sec(frames) frames * FPS
+
 class TCompPlayerModel;
 class TCompCamera;
 class TCompCollider;
@@ -58,10 +61,6 @@ protected:
 
 	//Clampear velocidad horizontal, usando un VEC2, para no tocar la velocidad vertical
 	void clampHorizontalVelocity(float maxHorizontalSpeed);
-
-	float frames2sec(int frames) {
-		return (frames / 60.f);
-	}
 
 public:
 	std::string animation;
