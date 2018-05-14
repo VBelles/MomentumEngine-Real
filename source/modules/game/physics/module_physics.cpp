@@ -98,7 +98,7 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 		
 	TCompTransform* compTransform = entity->get<TCompTransform>();
 	QUAT rotation = compTransform->getRotation();
-	PxTransform initialTrans = toPhysx(compTransform);
+	PxTransform initialTrans = compToPxTransform(compTransform);
 	PxRigidActor* actor = nullptr;
 
 	if (config.type == "cct") {

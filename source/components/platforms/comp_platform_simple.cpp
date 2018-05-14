@@ -69,7 +69,7 @@ void TCompPlatformSimple::update(float delta) {
     }
 
 	//Update collider
-	getRigidDynamic()->setKinematicTarget(toPhysx(transform));
+	getRigidDynamic()->setKinematicTarget(compToPxTransform(transform));
 
 }
 

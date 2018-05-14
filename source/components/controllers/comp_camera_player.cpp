@@ -151,9 +151,10 @@ void TCompCameraPlayer::updateCenteringCamera(float delta) {
 	moveCameraTowardsDefaultDistance(delta);
 }
 void TCompCameraPlayer::sweepBack() {
+	TCompTransform* transform = getTransform();
 	VEC3 targetPosition = targetTransform.getPosition();
-	VEC3 position = getTransform()->getPosition();
-	QUAT rotation = getTransform()->getRotation();
+	VEC3 position = transform->getPosition();
+	QUAT rotation = transform->getRotation();
 	VEC3 direction = position - targetPosition;
 	direction.Normalize();
 	PxSphereGeometry geometry(sphereCastRadius);
@@ -165,14 +166,14 @@ void TCompCameraPlayer::sweepBack() {
 	fd.flags |= PxQueryFlag::ePREFILTER;
 	PxHitFlags hitFlags = PxHitFlag::eDEFAULT;
 
-	bool status = EnginePhysics.getScene()->sweep(geometry, toPhysx(targetPosition, rotation), toPhysx(direction), distance, sweepBuffer,
+	bool status = EnginePhysics.getScene()->sweep(geometry, PxTransform(toPxVec3(targetPosition), toPxQuat(rotation)), toPxVec3(direction), distance, sweepBuffer,
 		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
 	//Si empiezas el sweep fuera de la cápsula del player la cámara hará el loco si allí hay un collider...
 	if (status) {
 		PxSweepHit& hit = sweepBuffer.block;
 		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);
-		getTransform()->setPosition(fromPhysx(newPosition));
-		currentDistanceToTarget = VEC3::Distance(getTransform()->getPosition(), targetTransform.getPosition());
+		transform->setPosition(toVec3(newPosition));
+		currentDistanceToTarget = VEC3::Distance(transform->getPosition(), targetTransform.getPosition());
 		//dbg("%f, %f, %f\n", newPosition.x, newPosition.y, newPosition.z);
 		//dbg("Distance: %f\n", currentDistanceToTarget);
 		
@@ -186,7 +187,7 @@ void TCompCameraPlayer::sweepBack() {
 
 bool TCompCameraPlayer::sphereCast() {
 	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
-	PxTransform pxTransform(toPhysx(getTransform()));
+	PxTransform pxTransform = compToPxTransform(getTransform());
 	PxOverlapBuffer buf;
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
@@ -220,7 +221,7 @@ bool TCompCameraPlayer::raycast(VEC3 origin, VEC3 destination, PxRaycastCallback
 	PxHitFlags hitflags = PxHitFlags(PxHitFlag::eDEFAULT);
 	PxQueryFilterData filterData(PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0),
 		PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK);
-	bool status = EnginePhysics.getScene()->raycast(toPhysx(origin), toPhysx(dir), distance, callback, hitflags, filterData, EnginePhysics.getGameQueryFilterCallback());
+	bool status = EnginePhysics.getScene()->raycast(toPxVec3(origin), toPxVec3(dir), distance, callback, hitflags, filterData, EnginePhysics.getGameQueryFilterCallback());
 	return status;
 }
 
