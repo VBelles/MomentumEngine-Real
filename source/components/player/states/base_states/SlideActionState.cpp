@@ -6,9 +6,9 @@
 #include "skeleton/comp_skeleton.h"
 
 void SlideActionState::update(float delta) {
-	//AirborneActionState::update(delta);
-	deltaMovement = VEC3::Zero;
-	deltaMovement.y = velocityVector->y * delta;
+	AirborneActionState::update(delta);
+	//deltaMovement = VEC3::Zero;
+	//deltaMovement.y = velocityVector->y * delta;
 
 	/*bool hasInput = movementInput != VEC2::Zero;
 	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
@@ -52,7 +52,7 @@ void SlideActionState::onStateEnter(IActionState* lastState) {
 	TCompTransform* transform = getPlayerTransform();
 	float yaw, pitch;
 	transform->getYawPitchRoll(&yaw, &pitch);
-	transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);
+	//transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);
 
 	getPlayerModel()->maxVerticalSpeed = maxVerticalSlidingVelocity;
 

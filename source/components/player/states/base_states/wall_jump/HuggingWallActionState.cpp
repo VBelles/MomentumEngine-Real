@@ -114,13 +114,15 @@ void HuggingWallActionState::onMove(MoveState& moveState) {
 			}
 		}
 		if (!grounded) { //Slide
-			if (!getPlayerModel()->tryingToSlide) {
+			/*if (!getPlayerModel()->tryingToSlide) {
 				getPlayerModel()->tryingToSlide = true;
 				slideWindowTimer.reset();
 			}
 			else if (slideWindowTimer.elapsed() >= slideWindowTime) {
 				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
-			}
+			}*/
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+
 		}
 		else {
 			onLanding();
