@@ -73,7 +73,7 @@ void CModuleCameras::update(float delta) {
 	if (_defaultCamera.isValid()) {
 		CEntity* e = _defaultCamera;
 		TCompCamera* c_camera = e->get<TCompCamera>();
-		blendCameras(c_camera, c_camera, 1.f, &resultCamera);
+		blendCameras(c_camera->getCamera(), c_camera->getCamera(), 1.f, &resultCamera);
 	}
 
 	for (int i = 0; i < NUM_PRIORITIES; ++i) {
@@ -104,7 +104,7 @@ void CModuleCameras::update(float delta) {
 				// blend them
 				CEntity* e = mc.camera;
 				TCompCamera* c_camera = e->get<TCompCamera>();
-				blendCameras(&resultCamera, c_camera, ratio, &resultCamera);
+				blendCameras(&resultCamera, c_camera->getCamera(), ratio, &resultCamera);
 			}
 		}
 	}
@@ -124,7 +124,7 @@ void CModuleCameras::update(float delta) {
 	if (_outputCamera.isValid()) {
 		CEntity* e = _outputCamera;
 		TCompCamera* c_camera = e->get<TCompCamera>();
-		blendCameras(&resultCamera, &resultCamera, 1.f, c_camera);
+		blendCameras(&resultCamera, &resultCamera, 1.f, c_camera->getCamera());
 	}
 }
 

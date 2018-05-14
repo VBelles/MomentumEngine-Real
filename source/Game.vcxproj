@@ -92,6 +92,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
+    <ClCompile Include="camera\camera_gui.cpp" />
+    <ClCompile Include="camera\camera_orthographic.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_altar.cpp" />
     <ClCompile Include="components\comp_appear.cpp" />
@@ -290,6 +292,8 @@
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
     <ClInclude Include="camera\camera.h" />
+    <ClInclude Include="camera\camera_gui.h" />
+    <ClInclude Include="camera\camera_orthographic.h" />
     <ClInclude Include="components\comp_aabb.h" />
     <ClInclude Include="components\comp_altar.h" />
     <ClInclude Include="components\comp_appear.h" />

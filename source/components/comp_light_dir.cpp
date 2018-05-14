@@ -56,7 +56,7 @@ void TCompLightDir::update(float dt) {
 	// of TCompCamera, but will fail because we are a CompLightDir
 	TCompTransform* c = get<TCompTransform>();
 	if (!c) return;
-	this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
+	camera->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
 }
 
 // Updates the Shader Cte Light with MY information
@@ -74,12 +74,12 @@ void TCompLightDir::activate() {
 	cb_light.light_color = color;
 	cb_light.light_intensity = intensity;
 	cb_light.light_pos = c->getPosition();
-	cb_light.light_radius = getZFar();
-	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
+	cb_light.light_radius = camera->getZFar();
+	cb_light.light_view_proj_offset = camera->getViewProjection() * mtx_offset;
 	cb_light.updateGPU();
 
 	//puesto por no-juan, pies de plomo
-	cb_light.light_front = getFront();
+	cb_light.light_front = camera->getFront();
 
 	// If we have a ZTexture, it's the time to activate it
 	if (shadows_rt) {
@@ -109,7 +109,7 @@ void TCompLightDir::generateShadowMap() {
 		PROFILE_FUNCTION("Clear&SetCommonCtes");
 		shadows_rt->clearZ();
 		// We are going to render the scene from the light position & orientation
-		activateCamera(*this, shadows_rt->getWidth(), shadows_rt->getHeight());
+		activateCamera(*camera, shadows_rt->getWidth(), shadows_rt->getHeight());
 	}
 
 	CRenderManager::get().renderCategory("shadows");

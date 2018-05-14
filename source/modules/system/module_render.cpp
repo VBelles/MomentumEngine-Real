@@ -190,7 +190,7 @@ void CModuleRender::activateMainCamera() {
     if (h_e_camera.isValid()) {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get< TCompCamera >();
-        cam = c_camera;
+        cam = c_camera->getCamera();
         assert(cam);
         CRenderManager::get().setEntityCamera(h_e_camera);
     }

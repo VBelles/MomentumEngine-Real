@@ -59,7 +59,7 @@ void TCompCameraCurveInterpolation::update(float delta) {
 		}
 		
 		TCompTransform* transform = getTransform();
-		TCompCamera* camera = getCamera();
+		CCamera* camera = ((TCompCamera*)getCamera())->getCamera();
 
 		orbit(ratio);
 
@@ -104,7 +104,7 @@ void TCompCameraCurveInterpolation::startInterpolating(
 	interpolator = newInterpolator;
 
 	TCompTransform* transform = getTransform();
-	TCompCamera* camera = getCamera();
+	CCamera* camera = ((TCompCamera*)getCamera())->getCamera();
 	startingPos = transform->getPosition();
 	startingFront = transform->getFront();
 	//yaw y pitch no se necesitan, creo

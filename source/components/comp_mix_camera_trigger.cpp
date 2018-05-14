@@ -56,8 +56,10 @@ void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 			CHandle interpolationCameraHandle = getEntityByName(CURVE_INTERPOLATION_CAMERA);
 			CEntity* interpolationCameraEntity = interpolationCameraHandle;
 			TCompTransform* interpolationCameraTransform = interpolationCameraEntity->get<TCompTransform>();
-			TCompCamera* interpolationCamera = interpolationCameraEntity->get<TCompCamera>();
-			TCompCamera* playerCamera = playerCameraEntity->get<TCompCamera>();
+			TCompCamera* interpolationCameraComp = interpolationCameraEntity->get<TCompCamera>();
+			TCompCamera* playerCameraComp = playerCameraEntity->get<TCompCamera>();
+			CCamera* interpolationCamera = interpolationCameraComp->getCamera();
+			CCamera* playerCamera = playerCameraComp->getCamera();
 			interpolationCameraTransform->setPosition(playerCameraTransform->getPosition());
 			float y, p;
 			playerCameraTransform->getYawPitchRoll(&y, &p);
@@ -69,9 +71,9 @@ void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 			Engine.getCameras().blendInCamera(interpolationCameraHandle, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 			
 			//Llamar a su función startInterpolation
-			TCompCamera* cameraToMix = cameraToMixEntity->get<TCompCamera>();
-			TCompCameraCurveInterpolation* interpolationCameraComp = interpolationCameraEntity->get<TCompCameraCurveInterpolation>();
-			interpolationCameraComp->startInterpolating(
+			CCamera* cameraToMix = ((TCompCamera*)cameraToMixEntity->get<TCompCamera>())->getCamera();
+			TCompCameraCurveInterpolation* curveInterpolationCameraComp = interpolationCameraEntity->get<TCompCameraCurveInterpolation>();
+			curveInterpolationCameraComp->startInterpolating(
 				h_camera, timeToMixIn, cameraToMixTransform->getPosition(), cameraToMixTransform->getFront(),
 				cameraToMix->getFov(), cameraToMix->getZNear(), cameraToMix->getZFar(), cubicOutInterpolator
 			);
@@ -104,7 +106,8 @@ void TCompMixCameraTrigger::onTriggerExit(const TMsgTriggerExit & msg) {
 void TCompMixCameraTrigger::CopyRotationFromMixedCameraToPlayerCamera() {
 	CHandle leavingCameraHandle = getEntityByName(GAME_CAMERA);
 	CEntity* leavingCameraEntity = leavingCameraHandle;
-	TCompCamera* leavingCamera = leavingCameraEntity->get<TCompCamera>();
+	TCompCamera* leavingCameraComp = leavingCameraEntity->get<TCompCamera>();
+	CCamera* leavingCamera = leavingCameraComp->getCamera();
 	CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
 	CEntity* playerCameraEntity = playerCameraHandle;
 	TCompTransform* playerCameraTransform = playerCameraEntity->get<TCompTransform>();

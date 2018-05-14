@@ -4,6 +4,9 @@
 #include "gui/gui_widget.h"
 #include "utils/variant.h"
 #include "gui/gui_controller.h"
+#include "camera/camera_gui.h"
+
+class CCameraOrthographic;
 
 class CModuleGUI : public IModule {
 public:
@@ -25,14 +28,14 @@ public:
 	void registerController(GUI::CController* controller);
 	void unregisterController(GUI::CController* controller);
 
-	CCamera& getCamera();
+	CCameraGui& getCamera();
 	MVariants& getVariables();
 
 	void renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color);
 	void renderText(const MAT44& world, const std::string& text, const VEC4& color);
 
 private:
-	CCamera _orthoCamera;
+	CCameraGui _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;
 	const CRenderMesh* _quadMesh = nullptr;
 	const CTexture* _fontTexture = nullptr;
