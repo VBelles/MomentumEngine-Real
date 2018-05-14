@@ -23,5 +23,4 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 	void onMove(MoveState& moveState) override;
-	void onShapeHit(const PxControllerShapeHit & hit) override {}
 };

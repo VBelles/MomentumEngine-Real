@@ -85,11 +85,9 @@ public:
 	virtual void onFastAttackButtonReleased() {}
 	virtual void onReleasePowerButton() {}
 	virtual void onHitboxEnter(std::string hitbox, CHandle entity) {}
-	virtual void onShapeHit(const PxControllerShapeHit &hit) {}
-	virtual void onSweep(PxSweepBuffer& sweepBuffer) {}
 	virtual void onDead();
 	virtual void onDamage(float damage, bool isHard);
-	virtual void onMove(MoveState & moveState) {}
+	virtual void onMove(MoveState& moveState) {}
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }

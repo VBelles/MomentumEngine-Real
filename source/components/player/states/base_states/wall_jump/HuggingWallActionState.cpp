@@ -84,7 +84,6 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 	else {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
-	tryingToSlide = false;
 }
 
 void HuggingWallActionState::onStateExit(IActionState * nextState) {

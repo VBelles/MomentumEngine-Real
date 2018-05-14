@@ -413,10 +413,6 @@ void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 		moveState.sideHits.push_back(hitState);
 	}
 
-	baseState->onShapeHit(msg.hit);
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onShapeHit(msg.hit);
-	}
 }
 
 PxFilterData TCompPlayerModel::getFilterData() {
