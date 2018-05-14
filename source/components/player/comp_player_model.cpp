@@ -382,7 +382,7 @@ void TCompPlayerModel::applyGravity(float delta) {
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	hitState = HitState();
-	PxControllerCollisionFlags moveFlags = getController()->move(toPhysx(deltaMovement), 0.f, delta,
+	PxControllerCollisionFlags moveFlags = getController()->move(toPxVec3(deltaMovement), 0.f, delta,
 		PxControllerFilters(&getFilterData(), playerFilterCallback, playerFilterCallback));
 	hitState.isGrounded = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	hitState.isTouchingCeiling = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);

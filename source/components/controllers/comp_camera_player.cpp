@@ -187,7 +187,7 @@ void TCompCameraPlayer::sweepBack() {
 
 bool TCompCameraPlayer::sphereCast() {
 	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
-	PxTransform pxTransform(toPhysx(getTransform()));
+	PxTransform pxTransform = compToPxTransform(getTransform());
 	PxOverlapBuffer buf;
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
@@ -221,7 +221,7 @@ bool TCompCameraPlayer::raycast(VEC3 origin, VEC3 destination, PxRaycastCallback
 	PxHitFlags hitflags = PxHitFlags(PxHitFlag::eDEFAULT);
 	PxQueryFilterData filterData(PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0),
 		PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK);
-	bool status = EnginePhysics.getScene()->raycast(toPhysx(origin), toPhysx(dir), distance, callback, hitflags, filterData, EnginePhysics.getGameQueryFilterCallback());
+	bool status = EnginePhysics.getScene()->raycast(toPxVec3(origin), toPxVec3(dir), distance, callback, hitflags, filterData, EnginePhysics.getGameQueryFilterCallback());
 	return status;
 }
 

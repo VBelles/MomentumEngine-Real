@@ -169,7 +169,7 @@ void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
 
 		getPlayerModel()->lastWallEntered = sweepBuffer.block.actor;
 
-		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);
+		VEC3 hitNormal = toVec3(sweepBuffer.block.normal);
 
 		VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
 		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
@@ -183,7 +183,7 @@ void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
 		}
 	}
 	else {
-		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);
+		VEC3 hitNormal = toVec3(sweepBuffer.block.normal);
 
 		//float angle = acos(hitNormal.Dot(VEC3::Up));
 

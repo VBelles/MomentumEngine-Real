@@ -16,3 +16,4 @@ physx::PxTransform toPhysx(VEC3& v, QUAT& quat);*/
 #define toPxVec3(vec3) PxVec3(vec3.x, vec3.y, vec3.z)
 #define toPxQuat(quat) PxQuat(quat.x, quat.y, quat.z, quat.w)
 #define toPxTransform(transform) PxTransform(toPxVec3(transform.getPosition()), toPxQuat(transform.getRotation()))
+#define compToPxTransform(transform) PxTransform(toPxVec3(transform->getPosition()), toPxQuat(transform->getRotation()))

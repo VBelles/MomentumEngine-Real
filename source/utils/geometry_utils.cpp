@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 
-VEC3 fromPhysx(physx::PxVec3& v) {
+/*VEC3 fromPhysx(physx::PxVec3& v) {
 	return VEC3(v.x, v.y, v.z);
 }
 
@@ -25,4 +25,4 @@ physx::PxTransform toPhysx(CTransform* transform) {
 physx::PxTransform toPhysx(VEC3& p, QUAT& q) {
 	return physx::PxTransform(physx::PxVec3(p.x, p.y, p.z), physx::PxQuat(q.x, q.y, q.z, q.w));
 }
-
+*/

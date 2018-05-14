@@ -87,7 +87,7 @@ void SlideActionState::onMove(HitState& hitState) {
 				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 			}
 		}*/
-		hitNormal = fromPhysx(hitState.hit.worldNormal);
+		hitNormal = toVec3(hitState.hit.worldNormal);
 	}
 
 }
