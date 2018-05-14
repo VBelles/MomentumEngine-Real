@@ -6,6 +6,7 @@ const float FPS = 1.f / 60.f;
 
 class TCompPlayerModel;
 class TCompCamera;
+class CCamera;
 class TCompCollider;
 class TCompRender;
 class TCompTransform;
@@ -41,7 +42,8 @@ protected:
 	TCompCollider* getCollider();
 	TCompRender* getRender();
 	TCompHitboxes* getHitboxes();
-	TCompCamera* getCamera();
+	CCamera* getCamera();
+	TCompCamera* getCameraComp();
 	TCompRenderBlurRadial* getBlurRadial();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta

@@ -1,12 +1,19 @@
 #include "mcv_platform.h"
 #include "camera.h"
-/*
-CCamera::CCamera() {
-  aspect_ratio = 1.f;
-  setPerspective(deg2rad(60.f), 1.0f, 1000.f);
-  lookAt(VEC3(1, 0, 0), VEC3(0, 0, 0), VEC3(0, 1, 0));
+
+void CCamera::debugInMenu() {
+	float fov_deg = rad2deg(getFov());
+	float new_znear = getZNear();
+	float new_zfar = getZFar();
+	bool changed = ImGui::DragFloat("Fov", &fov_deg, 0.1f, 30.f, 175.f);
+	changed |= ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 5.0f);
+	changed |= ImGui::DragFloat("Z Far", &new_zfar, 0.001f, 0.01f, 300.0f);
+	if (changed) {
+		setPerspective(deg2rad(fov_deg), new_znear, new_zfar);
+	}
+	ImGui::LabelText("AspectRatio", "%f", getAspectRatio());
 }
-*/
+
 void CCamera::updateViewProj() {
     view_proj = view * proj;
 }
@@ -34,80 +41,15 @@ void CCamera::lookAt(VEC3 new_pos, VEC3 new_target, VEC3 new_up_aux) {
 
 void CCamera::setPerspective(float new_fov_vertical,
                              float new_z_near,
-                             float new_z_far,
-                             bool isOrtographic,
-                             float new_width,
-                             float new_height) {
-	this->isOrtographic = isOrtographic;
-
+                             float new_z_far) {
     fov_vertical = new_fov_vertical;
     z_near = new_z_near;
     z_far = new_z_far;
-    ortographicWidth = new_width;
-    ortographicHeight = new_height;
     if (z_far <= z_near) z_far = z_near + 0.1f;
     assert(z_far > z_near);
     aspect_ratio = (float)Render.width / (float)Render.height;
-    if (isOrtographic) {
-		if (isGuiCamera) setOrthographic(new_width, new_height, z_near, z_far);
-		else proj = MAT44::CreateOrthographic(new_width, new_height, new_z_near, new_z_far);
-    }
-    else {
-        proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, aspect_ratio, new_z_near, new_z_far);
-    }
+    proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, aspect_ratio, new_z_near, new_z_far);
     updateViewProj();
-}
-
-MAT44 loadOrtho(float x_min, float x_max, float y_min, float y_max, float z_min, float z_max) {
-    MAT44 m = MAT44::Identity;
-
-    // (RH) l=x_min; r=x_max; b=y_min; t=y_max; zn=z_min; zf=z_max; 
-    //
-    // 2/(r-l)      0            0           0
-    // 0            2/(t-b)      0           0
-    // 0            0            1/(zf-zn)   0
-    // (l+r)/(l-r)  (t+b)/(b-t)  zn/(zn-zf)  1
-
-    assert(x_max != x_min);
-    assert(y_max != y_min);
-    assert(z_max != z_min);
-
-    m._11 = 2.0f / (x_max - x_min);
-    m._22 = 2.0f / (y_max - y_min);
-    m._33 = 1.0f / (z_max - z_min);
-    m._41 = (x_min + x_max) / (x_min - x_max);
-    m._42 = (y_max + y_min) / (y_min - y_max);
-    m._43 = z_min / (z_min - z_max);
-    return m;
-}
-
-void CCamera::setOrthographic(float width, float height, float new_z_near, float new_z_far) {
-    isOrtographic = true;
-
-	ortographicWidth = width;
-	ortographicHeight = height;
-
-    aspect_ratio = fabsf(width / height);
-
-    z_far = new_z_far;
-    z_near = new_z_near;
-
-    MAT44 custom_ortho = loadOrtho(0.f, width, height, 0.f, z_near, z_far);
-    proj = custom_ortho;
-
-    // Position and target and unset!
-    pos = VEC3(width * 0.5f, height * 0.5f, z_near);
-    front.x = 0;
-    front.y = 0;
-    front.z = 1;
-    left.x = 1;
-    left.y = 0;
-    left.z = 0;
-    up.x = 0;
-    up.y = 1;
-    up.z = 0;
-    view = MAT44::Identity;
-    view_proj = proj;
 }
 
 void CCamera::setViewport(int x0, int y0, int width, int height) {
@@ -119,7 +61,7 @@ void CCamera::setViewport(int x0, int y0, int width, int height) {
 
     aspect_ratio = (float)width / (float)height;
 
-    setPerspective(fov_vertical, z_near, z_far, isOrtographic, ortographicWidth, ortographicHeight);
+    setPerspective(fov_vertical, z_near, z_far);
 }
 
 bool CCamera::getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3* result) const {
