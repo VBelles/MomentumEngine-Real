@@ -1,6 +1,11 @@
 #include "mcv_platform.h"
 #include "transform.h"
 
+
+CTransform::CTransform() {}
+
+CTransform::CTransform(VEC3 pos, QUAT rot): pos(pos), rot(rot)  {}
+
 bool CTransform::load(const json& j) {
     if (j.count("pos"))
         pos = loadVEC3(j["pos"]);
@@ -21,6 +26,7 @@ bool CTransform::load(const json& j) {
         scale = j.value("scale", 1.0f);
     return true;
 }
+
 
 CTransform CTransform::combineWith(const CTransform& delta_transform) const {
     CTransform new_t;

@@ -7,6 +7,8 @@ class CTransform {
   float scale = 1.0f;
 
 public:
+	CTransform();
+	CTransform(VEC3 pos, QUAT rot);
 
   CTransform combineWith(const CTransform& delta_transform) const;
 
