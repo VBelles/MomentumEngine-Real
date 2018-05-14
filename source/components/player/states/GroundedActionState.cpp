@@ -47,7 +47,6 @@ void GroundedActionState::onReleasePowerButton() {
 }
 
 void GroundedActionState::onMove(MoveState& moveState) {
-	velocityVector->y = 0.f;
 	if (!moveState.isTouchingBot) {
 		onLeavingGround();
 	}
@@ -55,7 +54,7 @@ void GroundedActionState::onMove(MoveState& moveState) {
 		if (!isWalkable(moveState)) { //Slide
 			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
 		}
-		
+		velocityVector->y = 0.f;
 	}
 }
 

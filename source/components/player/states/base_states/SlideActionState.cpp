@@ -57,9 +57,9 @@ void SlideActionState::onStateEnter(IActionState* lastState) {
 	getPlayerModel()->maxVerticalSpeed = maxVerticalSlidingVelocity;
 
 	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
-	velocityVector->y = 0.f;
-	velocityVector->x = 0.f;
-	velocityVector->z = 0.f;
+	//velocityVector->y = 0.f;
+	//velocityVector->x = 0.f;
+	//velocityVector->z = 0.f;
 	isTryingToLand = false;
 }
 
