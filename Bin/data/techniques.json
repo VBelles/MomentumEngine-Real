@@ -211,6 +211,13 @@
     "z": "disable_all"
   },
   
+  "color_grading": {
+    "vs_file": "data/shaders/color_grading.fx",
+    "vertex_type": "PosClr",
+    "category": "fx",
+    "z": "disable_all"
+  },
+  
   "blur": {
     "vs_file": "data/shaders/blur.fx",
     "ps_file": "data/shaders/blur.fx",
@@ -226,6 +233,13 @@
     "z": "disable_all"
   },
 
+  "focus": {
+    "vs_file": "data/shaders/focus.fx",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z" : "disable_all"
+  },
+
   "particles": {
     "vs_file": "data/shaders/particles.fx",
     "vertex_type": "Pos_x_RenderParticle",
@@ -234,6 +248,23 @@
     "z": "test_but_no_write"
   },
 
+  "bloom_filter": {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "ps_file": "data/shaders/bloom.fx",
+    "ps_entry_point": "PS_filter",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z" : "disable_all"
+  },
+  "bloom_add": {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "ps_file": "data/shaders/bloom.fx",
+    "ps_entry_point": "PS_add",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z" : "disable_all",
+    "blend" : "additive"
+  },
 
   "pbr_outline": {
     "vs_file": "data/shaders/pbr.fx",
