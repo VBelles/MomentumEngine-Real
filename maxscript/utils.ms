@@ -84,14 +84,14 @@ fn setSelectionMaterialIDs id:1 = (
 	for obj in objects do setMaterialIDs obj id:id
 )
 
-fn cleanMaterialName oldName = (
+fn cleanName oldName = (
 	local cleanName = substituteString oldName " " "_"
 	return substituteString cleanName "ñ" "n"
 )
 
-fn isValidName aname = (
-	return (findString aname " " == undefined) or
-		   (findString aname "ñ" == undefined)
+fn isValidName aName = (
+	return (findString aName " " == undefined) or
+		   (findString aName "ñ" == undefined)
 )
 
 fn stringContainsSubstring strng substrng = (

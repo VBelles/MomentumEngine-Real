@@ -241,7 +241,7 @@ struct TMaterialExporter (
 		)
 		
 		if matClass == StandardMaterial then (
-			local mat_name = mat_path + (cleanMaterialName mat.name) + ".material"
+			local mat_name = mat_path + (cleanName mat.name) + ".material"
 			append exported_materials mat_name
 			exportStdMaterial mat mat_name
 
@@ -414,7 +414,7 @@ struct TSceneExporter (
 			format "Warning: Obj % doesn't have a material, a default will be assigned.\n" obj.name
 		)
 		else if not (isValidName mat.name) then (
-			mat.name = cleanMaterialName mat.name
+			mat.name = cleanName mat.name
 			format "Warning: material had invalid name, changed spaces to underscores.\n"
 		)
 
@@ -1363,6 +1363,7 @@ struct TSceneExporter (
 				fs.begin scenePath
 				fs.beginArray()
 				for obj in layerObjs do (
+					obj.name = cleanName obj.name
 					-- Avoid child objects, they will be added through parent. Also, don't export hidden objects.
 					if obj.parent == undefined and not obj.isHidden then (
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof obj) as string) obj.name --DEBUG
@@ -1409,10 +1410,7 @@ TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el tran
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
-TODO: Si el objeto tiene ñ en el nombre, que no se grabe con ese nombre el mesh, limpiarlo antes.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
-
-TODO: Que al exportar los materiales no haga copia si la carpeta ya está dentro de la carpeta textures.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
