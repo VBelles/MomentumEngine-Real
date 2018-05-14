@@ -156,22 +156,16 @@ struct TMaterialExporter (
 		-- "C:\engine\bin\data\textures\bricks.dds"
 		local ofull_path = project_path + json_filename
 		
-		format "mapBasePath: %\n" mapBasePath --DEBUG
-		format "(project_path + base_path): %\n" (project_path + base_path) --DEBUG
 		if isPathInsidePath mapBasePath (project_path + base_path) then (
 			--Map is already inside project directory, no need to copy, just point to the right sub-folder.
-			--TODO: Finish this, mapBasePath keeps original path and it doesn't work.
 			local strippedPath = stripPathFromPath mapBasePath project_path
 			json_filename = strippedPath + mapBaseName + ".dds"
-			format "strippedPath: %\n" strippedPath --DEBUG
-			format "json_filename: %\n" json_filename --DEBUG
 		) else (
 			if not doesFileExist ofull_path then (
 				format "We should copy from % to %\n" mapFilename ofull_path
 				copyFile mapFilename ofull_path
 			)
 		)
-
 		fs.writeKeyValue alias json_filename
 	),
 
@@ -1343,6 +1337,7 @@ struct TSceneExporter (
 	),
 	
 	fn exportAll = (
+		deselect objects -- Deselect all objects, export is faster.
 		-- Loop over all layers.
 		for i = 0 to LayerManager.count - 1 do (
 			-- Get the layer by index.

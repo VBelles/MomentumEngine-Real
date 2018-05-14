@@ -95,6 +95,7 @@ fn isValidName aname = (
 )
 
 fn stringContainsSubstring strng substrng = (
+	--Add "_" so we can find the substring right at the beginning.
 	matchpattern ("_" + strng) pattern:("?*" + substrng + "*")
 )
 
@@ -105,7 +106,7 @@ fn cleanPath originalPath = (
 fn isPathInsidePath thisPath basePath = (
 	if not doesDirectoryExist thisPath or
 	   not doesDirectoryExist basePath then return false
-	else return stringContainsSubstring (cleanPath basePath) (cleanPath thisPath)
+	else return stringContainsSubstring (cleanPath thisPath) (cleanPath basePath)
 )
 
 -- "c:/ojete/data/" and "c:/ojete/" returns "data/"
