@@ -106,25 +106,10 @@ void HuggingWallActionState::onJumpLongButton() {
 
 void HuggingWallActionState::onMove(MoveState& moveState) {
 	if (moveState.isTouchingBot) {
-		bool grounded = true;
-		for (HitState& hitState : moveState.hits) {
-			if (hitState.dotUp < getPlayerModel()->getController()->getSlopeLimit()) {
-				grounded = false;
-				break;
-			}
-		}
-		if (!grounded) { //Slide
-			/*if (!getPlayerModel()->tryingToSlide) {
-				getPlayerModel()->tryingToSlide = true;
-				slideWindowTimer.reset();
-			}
-			else if (slideWindowTimer.elapsed() >= slideWindowTime) {
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
-			}*/
+		if (isWalkable(moveState)) { //Slide
 			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
-
 		}
-		else {
+		else { //Land
 			onLanding();
 		}
 	}

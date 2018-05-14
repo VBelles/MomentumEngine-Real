@@ -114,73 +114,34 @@ void AirborneActionState::onReleasePowerButton() {
 }
 
 void AirborneActionState::onMove(MoveState& moveState) {
-	if (moveState.isTouchingTop && velocityVector->y > 0.f) {
-		velocityVector->y = 0.f;
-	}
-	if (moveState.isTouchingBot) {
-		if (!isWalkable(moveState)) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
-		}
-		else {
-			onLanding();
-		}
-	}
-}
+	//Hugging wall
+	for (HitState& hitState : moveState.sideHits) {
+		if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hitState.hit.worldNormal) < 0.8f
+			|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
 
+			getPlayerModel()->lastWallEntered = hitState.hit.actor;
 
-void AirborneActionState::onLanding() {
-	//Ir a landing action state
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
-}
+			VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
 
-void AirborneActionState::onShapeHit(const PxControllerShapeHit& hit) {
-
-	if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hit.worldNormal) < 0.8f
-		|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
-
-		getPlayerModel()->lastWallEntered = hit.actor;
-
-		VEC3 hitNormal = VEC3(hit.worldNormal.x, hit.worldNormal.y, hit.worldNormal.z);
-
-		VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
-		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
-			|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
-			float pitch = asin(-hit.worldNormal.y);
-			if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
-				HuggingWallActionState* actionState = getPlayerModel()->getBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
-				actionState->setHuggingWallNormal(hitNormal);
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HuggingWall);
+			VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
+			if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
+				|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
+				float pitch = asin(-hitNormal.y);
+				if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
+					HuggingWallActionState* actionState = getPlayerModel()->getBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
+					actionState->setHuggingWallNormal(hitNormal);
+					getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HuggingWall);
+				}
 			}
 		}
 	}
-}
-
-void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
-
-	if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(sweepBuffer.block.normal) < 0.8f
-		|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
-
-		getPlayerModel()->lastWallEntered = sweepBuffer.block.actor;
-
-		VEC3 hitNormal = toVec3(sweepBuffer.block.normal);
-
-		VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
-		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
-			|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
-			float pitch = asin(-sweepBuffer.block.normal.y);
-			if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
-				HuggingWallActionState* actionState = getPlayerModel()->getBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
-				actionState->setHuggingWallNormal(hitNormal);
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HuggingWall);
-			}
-		}
-	}
-	else {
-		VEC3 hitNormal = toVec3(sweepBuffer.block.normal);
+	/*for (HitState& hitState : moveState.sideHits) {
+		//Restar inercia
+		VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
 
 		//float angle = acos(hitNormal.Dot(VEC3::Up));
 
-		VEC2 normal = VEC2(sweepBuffer.block.normal.x, sweepBuffer.block.normal.z);
+		VEC2 normal = VEC2(hitNormal.x, hitNormal.z);
 		VEC2 velocity2 = VEC2(getPlayerModel()->getVelocityVector()->x, getPlayerModel()->getVelocityVector()->z);
 		VEC2 velocityNormal = VEC2(velocity2);
 		velocityNormal.Normalize();
@@ -192,11 +153,32 @@ void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
 		float a = atan2(det, dot);
 
 		velocity2 = perpendicularNormal * (sin(a) * velocity2.Length());
-		//getPlayerModel()->getVelocityVector()->x = velocity2.x;
-		//getPlayerModel()->getVelocityVector()->z = velocity2.y;
+
+		velocityVector->x = velocity2.x;
+		velocityVector->z = velocity2.y;
+	}*/
+
+	if (moveState.isTouchingTop && velocityVector->y > 0.f) {
+		velocityVector->y = 0.f;
+	}
+	if (moveState.isTouchingBot) {
+		if (!isWalkable(moveState)) {
+			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+		}
+		else {
+			onLanding();
+		}
 	}
 
+
 }
+
+
+void AirborneActionState::onLanding() {
+	//Ir a landing action state
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
+}
+
 
 void AirborneActionState::onDamage(float damage, bool isHard) {
 	IActionState::onDamage(damage, isHard);
