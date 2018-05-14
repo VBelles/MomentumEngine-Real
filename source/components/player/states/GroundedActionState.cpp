@@ -74,6 +74,6 @@ void GroundedActionState::onLeavingGround() {
 }
 
 void GroundedActionState::onDamage(float damage, bool isHard) {
-	IActionState::onDamage(damage, isHard);
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HardKnockbackGround);
+	IActionState::onDamage(damage, isHard);//Hacemos esto al final para sobreescribir el estado de muerte
 }

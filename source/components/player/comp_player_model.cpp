@@ -549,7 +549,7 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
-		baseState->onDamage(msg.info.damage, true);//de moemento pasamos hard
+		baseState->onDamage(msg.info.damage, true);//de momento pasamos hard
 	}
 }
 
