@@ -5,17 +5,13 @@
 class ReleasePowerAirActionState : public AirborneActionState {
 private:
 	CTimer timer;
-	int warmUpFrames = 7;
-	int activeFrames = 13;
-	int endingLagFrames = 10;
-	float hitboxOutTime;
-	float hitEndTime;
-	float animationEndTime;
+	float hitboxOutTime = frames2sec(7);
+	float hitEndTime = frames2sec(26);
+	float animationEndTime = frames2sec(20);
 	int buttonPresses = 1;
 	float stunDuration = 3.f;
 
-	int IASAFrames = 25;//Interruptible As Soon As
-	float interruptibleTime;
+	float interruptibleTime = frames2sec(25);
 
 	CHandle hitboxSmallHandle;
 	CHandle hitboxBigHandle;

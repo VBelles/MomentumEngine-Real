@@ -76,7 +76,6 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	IActionState::onStateEnter(lastState);
 	enteringPowerStats = &*getPlayerModel()->getPowerStats();
 	isTurnAround = false;
-	turnAroundTime = turnAroundFrames * (1.f / 60);
 	getPlayerModel()->maxVerticalSpeed = getPlayerModel()->maxVelocityUpwards;
 	getPlayerModel()->resetGravity();
 	enterFront = getPlayerTransform()->getFront();
@@ -163,7 +162,7 @@ void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
 
 		getPlayerModel()->lastWallEntered = sweepBuffer.block.actor;
 
-		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);
+		VEC3 hitNormal = toVec3(sweepBuffer.block.normal);
 
 		VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
 		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
@@ -177,7 +176,7 @@ void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
 		}
 	}
 	else {
-		VEC3 hitNormal = fromPhysx(sweepBuffer.block.normal);
+		VEC3 hitNormal = toVec3(sweepBuffer.block.normal);
 
 		//float angle = acos(hitNormal.Dot(VEC3::Up));
 
@@ -197,4 +196,9 @@ void AirborneActionState::onSweep(PxSweepBuffer& sweepBuffer) {
 		//getPlayerModel()->getVelocityVector()->z = velocity2.y;
 	}
 
+}
+
+void AirborneActionState::onDamage(float damage, bool isHard) {
+	IActionState::onDamage(damage, isHard);
+	//getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::SoftKnockbackAir);
 }

@@ -36,4 +36,3 @@ public:
 	static void disablePlayerOutline();
 	static void enablePlayerOutline();
 };
-

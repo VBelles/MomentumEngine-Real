@@ -1,6 +1,9 @@
 #pragma once
 
 
+const float FPS = 1.f / 60.f;
+#define frames2sec(frames) frames * FPS
+
 class TCompPlayerModel;
 class TCompCamera;
 class TCompCollider;

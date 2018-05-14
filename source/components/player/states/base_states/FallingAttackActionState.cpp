@@ -41,7 +41,6 @@ void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->maxVerticalSpeed = maxFallingVelocity;
 	getPlayerModel()->setGravity(0.f);
 	*velocityVector = VEC3::Zero;
-	hitboxOutTime = warmUpFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 	getPlayerModel()->getSkeleton()->executeAction(animationPositioning, 0.2f, 0.2f);

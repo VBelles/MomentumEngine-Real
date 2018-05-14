@@ -12,6 +12,7 @@ HardKnockbackGroundActionState::HardKnockbackGroundActionState(CHandle playerMod
 }
 
 void HardKnockbackGroundActionState::update (float delta) {
+	deltaMovement = VEC3::Zero;
 	if (timer.elapsed() >= duration) {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
@@ -19,7 +20,7 @@ void HardKnockbackGroundActionState::update (float delta) {
 
 void HardKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
-
+	*velocityVector = VEC3::Zero;
 	getPlayerModel()->getSkeleton()->blendCycle(animation);
 	timer.reset();
 }

@@ -46,7 +46,6 @@ void PropelHighActionState::update (float delta) {
 
 void PropelHighActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	endingTime = endingFrames * (1.f / 60);
 	propelTarget = getPlayerModel()->grabTarget;
 	CEntity* targetEntity = propelTarget;
 	TCompTransform* targetTransform = targetEntity->get<TCompTransform>();

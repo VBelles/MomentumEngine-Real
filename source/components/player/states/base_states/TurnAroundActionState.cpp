@@ -33,7 +33,6 @@ void TurnAroundActionState::update (float delta) {
 
 void TurnAroundActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	turnAroundTime = turnAroundFrames * (1.f / 60);
 	timer.reset();
 	VEC2 enteringHorizontalVelocityVector = { velocityVector->x, velocityVector->z };
 	*velocityVector = VEC3::Zero;

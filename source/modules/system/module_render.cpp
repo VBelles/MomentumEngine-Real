@@ -13,10 +13,13 @@
 #include "skeleton/game_core_skeleton.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
+#include "render/mesh/collision_mesh.h" 
+#include "components/postfx/comp_render_focus.h"
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_blur_radial.h"
+#include "components/postfx/comp_color_grading.h"
 #include "components/postfx/comp_render_outlines.h"
-#include "render/mesh/collision_mesh.h" 
+#include "components/postfx/comp_render_bloom.h"
 
 CModuleRender::CModuleRender(const std::string& name)
     : IModule(name) {
@@ -209,6 +212,7 @@ void CModuleRender::generateFrame() {
 			deferred.render(rt_main, h_e_camera);
 		}
 
+		CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
 		CRenderManager::get().renderCategory("textured");
 		CRenderManager::get().renderCategory("general");
@@ -217,6 +221,13 @@ void CModuleRender::generateFrame() {
         CTexture* curr_rt = rt_main;
         if (h_e_camera.isValid()) {
             CEntity* e_cam = h_e_camera;
+
+			// The bloom blurs the given input
+			TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
+			if (c_render_bloom) {
+				c_render_bloom->generateHighlights(curr_rt);
+				c_render_bloom->addBloom();
+			}
 
             // Check if we have a render_fx component
             TCompRenderBlur* c_render_blur = e_cam->get< TCompRenderBlur >();
@@ -227,6 +238,16 @@ void CModuleRender::generateFrame() {
             TCompRenderBlurRadial* c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
             if (c_render_blur_radial)
                 curr_rt = c_render_blur_radial->apply(curr_rt);
+
+			// Requires the blur component to be active
+			TCompRenderFocus* c_render_focus = e_cam->get< TCompRenderFocus >();
+			if (c_render_focus)
+				curr_rt = c_render_focus->apply(rt_main, curr_rt);
+
+			// Check if we have a color grading component
+			TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
+			if (c_color_grading)
+				curr_rt = c_color_grading->apply(curr_rt);
 
 			TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
 			if (c_render_outlines)

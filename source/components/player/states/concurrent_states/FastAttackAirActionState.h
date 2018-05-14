@@ -4,15 +4,11 @@
 
 class FastAttackAirActionState : public AirborneActionState {
 	CTimer timer;
-	int warmUpFrames = 5;
-	int activeFrames = 8;
-	int endingLagFrames = 18;
-	float hitboxOutTime;
-	float hitEndTime;
-	float animationEndTime;
+	float hitboxOutTime = frames2sec(5);
+	float hitEndTime = frames2sec(8);
+	float animationEndTime = frames2sec(18);
 
-	int IASAFrames = 28;//Interruptible As Soon As
-	float interruptibleTime;
+	float interruptibleTime = frames2sec(28);
 
 	float damage = 1.f;
 	AttackPhases phase = AttackPhases::Launch;

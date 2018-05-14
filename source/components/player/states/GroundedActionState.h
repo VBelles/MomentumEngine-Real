@@ -21,4 +21,5 @@ public:
 	void onReleasePowerButton() override;
 	void onMove(MoveState& moveState) override;
 	virtual void onLeavingGround();
+	virtual void onDamage(float damage, bool isHard) override;
 };

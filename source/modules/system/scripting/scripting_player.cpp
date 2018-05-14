@@ -23,7 +23,6 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("enablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::enablePlayerOutline));
 }
 
-
 float ScriptingPlayer::getPlayerHp() {
 	return getPlayerModel()->getHp();
 }
@@ -74,7 +73,6 @@ void ScriptingPlayer::movePlayer(float dX, float dY, float dZ){
 void ScriptingPlayer::setPower(float power) {
 	getPowerGauge()->setPower(power);
 }
-
 
 TCompPlayerModel* ScriptingPlayer::getPlayerModel() {
 	CEntity* playerEntity = getEntityByName(PLAYER_NAME);

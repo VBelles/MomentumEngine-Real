@@ -20,7 +20,7 @@ void HuggingWallActionState::update(float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	//delta movement horizontal según wall normal
 	float yaw, pitch;
-	getYawPitchFromVector(fromPhysx(wallNormal), &yaw, &pitch);
+	getYawPitchFromVector(toVec3(wallNormal), &yaw, &pitch);
 	VEC3 tangentVector;
 	if (CheckIfHuggingWall(wallDirection)) {
 		VEC3 worldInput = getCamera()->TransformToWorld(movementInput);
@@ -131,7 +131,7 @@ void HuggingWallActionState::onMove(MoveState& moveState) {
 
 bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	PxScene* scene = EnginePhysics.getScene();
-	PxVec3 origin = toPhysx(getPlayerTransform()->getPosition());
+	PxVec3 origin = toPxVec3(getPlayerTransform()->getPosition());
 	PxVec3 unitDir = PxVec3(wallDirection.x, 0.f, wallDirection.z);
 	PxRaycastBuffer raycastBuffer;
 	PxQueryFilterData filterData;

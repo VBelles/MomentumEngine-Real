@@ -171,7 +171,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	TCompRender *render = get<TCompRender>();
 	render->setAllMaterials(0, render->meshes.size() / 2, materials[msg.powerLvl - 1]);
 
-	Engine.getScripting().throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
+	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
 
 void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -382,7 +382,7 @@ void TCompPlayerModel::applyGravity(float delta) {
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	moveState = MoveState();
-	PxControllerCollisionFlags moveFlags = getController()->move(toPhysx(deltaMovement), 0.f, delta,
+	PxControllerCollisionFlags moveFlags = getController()->move(toPxVec3(deltaMovement), 0.f, delta,
 		PxControllerFilters(&getFilterData(), playerFilterCallback, playerFilterCallback));
 	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	moveState.isTouchingTop = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
@@ -438,7 +438,6 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	}
 }
 
-
 void TCompPlayerModel::setHp(float hp) {
 	hp = clamp(hp, 0.f, maxHp);
 	this->hp = hp;
@@ -468,7 +467,7 @@ void TCompPlayerModel::enableOutline() {
 	render->refreshMeshesInRenderManager();
 }
 
-void TCompPlayerModel::damage(float damage) {//tendr�a que llegar tambi�n si es hard o no
+void TCompPlayerModel::damage(float damage) {//tendría que llegar también si es hard o no
 	setHp(hp - damage);
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
@@ -568,7 +567,7 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
-		baseState->onDamage(msg.info.damage, true);//de moemento pasamos hard
+		baseState->onDamage(msg.info.damage, true);//de momento pasamos hard
 	}
 }
 

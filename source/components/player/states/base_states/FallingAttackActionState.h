@@ -5,13 +5,11 @@
 class FallingAttackActionState : public AirborneActionState {
 private:
 	CTimer timer;
-	int warmUpFrames = 12;
-	float hitboxOutTime;
+	float hitboxOutTime = frames2sec(12);
 	float fallingMultiplier = 2.5f;
 	float maxFallingVelocity = 55.f;
 	float upwardsVelocity = 18.f;
 
-	CHandle hitboxHandle;
 	float damage = 2.f;
 
 	float powerToGet = 4000.f;

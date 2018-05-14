@@ -63,3 +63,8 @@ void GroundedActionState::onLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabr�n qu� hacer
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
+
+void GroundedActionState::onDamage(float damage, bool isHard) {
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HardKnockbackGround);
+	IActionState::onDamage(damage, isHard);//Hacemos esto al final para sobreescribir el estado de muerte
+}

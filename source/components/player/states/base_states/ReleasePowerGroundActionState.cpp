@@ -66,10 +66,6 @@ void ReleasePowerGroundActionState::onStateEnter(IActionState * lastState) {
 	phase = AttackPhases::Startup;
 	*velocityVector = VEC3::Zero;
 	buttonPresses = 1;
-	hitboxOutTime = warmUpFrames * (1.f / 60);
-	hitEndTime = activeFrames * (1.f / 60);
-	animationEndTime = endingLagFrames * (1.f / 60);
-	interruptibleTime = IASAFrames * (1.f / 60);
 	timer.reset();
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }

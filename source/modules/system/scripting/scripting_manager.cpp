@@ -54,5 +54,5 @@ void ScriptingManager::bindGameConstants(SLB::Manager* manager) {
 }
 
 void ScriptingManager::callDelayed(float delay, const char* func, const char* params) {
-	Engine.getScripting().callDelayed(delay, func, params);
+	EngineScripting.callDelayed(delay, func, params);
 }

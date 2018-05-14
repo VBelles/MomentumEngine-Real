@@ -16,7 +16,7 @@ public:
 		CHandle                h_transform;        // sibling component transform handle
 		CHandle                h_aabb;
 		uint32_t               subgroup_idx = 0;
-		const CRenderMesh*     mesh = nullptr;     // Qué mesh hay que pintar
+		const CRenderMesh*     mesh = nullptr;     // Quï¿½ mesh hay que pintar
 		const CMaterial*       material = nullptr;
 
 		void debugInMenu();

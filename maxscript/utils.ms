@@ -34,17 +34,26 @@ fn mcvPosToMax p = (
 	return p * rotateXMatrix 90
 )
 
-fn maxRotToMcv obj = (
+fn maxRotToMcv transf = (
 	-- From mcv, we will go to max, apply the max transform and go back to mcv coord system.
-	local mcv_transform = rotateXMatrix 90 * obj.transform * rotateXMatrix -90
+	local mcvTransform = rotateXMatrix 90 * transf * rotateXMatrix -90
 
 	-- Take just the rotation as quaternion
-	return roundSmallQuatToZeros (mcv_transform.rotationPart as quat)
+	return roundSmallQuatToZeros (mcvTransform.rotationPart as quat)
 )
 
 /*fn mcvRotToMax q = (
 	return 
 )*/
+
+fn getTransfRelativeToParent child = (
+	if child.parent == undefined then return child.transform
+	else return child.transform * (inverse child.parent.transform)
+)
+
+fn getPosRelativeToParent child = (
+	return (getTransfRelativeToParent child).pos
+)
 
 -- Returns the angle between two vectors (from 0 to 180 degrees).
 -- TODO: Esto debería devolver el ángulo en negativo si se da el caso (añadiendo referencia).
@@ -63,17 +72,47 @@ fn get3pointAngle p1 p2 p3 = (
 	return getVecAngle v1 v2
 )
 
-fn cleanMaterialName oldName = (
+------- MATERIALS  AND NAMES ------------------------------------------------------
+
+-- Sets to <id> the material ID of all faces of an object.
+fn setMaterialIDs obj id:1 = (
+	addModifier obj (MaterialModifier materialID:id)
+	convertTo obj Editable_Mesh
+)
+
+fn setSelectionMaterialIDs id:1 = (
+	for obj in objects do setMaterialIDs obj id:id
+)
+
+fn cleanName oldName = (
 	local cleanName = substituteString oldName " " "_"
 	return substituteString cleanName "ñ" "n"
 )
 
-fn isValidName aname = (
-	return (findString aname " " == undefined) or
-		   (findString aname "ñ" == undefined)
+fn isValidName aName = (
+	return (findString aName " " == undefined) or
+		   (findString aName "ñ" == undefined)
 )
 
 fn stringContainsSubstring strng substrng = (
+	--Add "_" so we can find the substring right at the beginning.
 	matchpattern ("_" + strng) pattern:("?*" + substrng + "*")
 )
 
+fn cleanPath originalPath = (
+	return substituteString originalPath "\\" "/"
+)
+
+fn isPathInsidePath thisPath basePath = (
+	if not doesDirectoryExist thisPath or
+	   not doesDirectoryExist basePath then return false
+	else return stringContainsSubstring (cleanPath thisPath) (cleanPath basePath)
+)
+
+-- "c:/ojete/data/" and "c:/ojete/" returns "data/"
+fn stripPathFromPath originalPath pathToRemove = (
+	originalPath = cleanPath originalPath
+	local foundAt = findString originalPath (cleanPath pathToRemove)
+	if foundAt == undefined then return originalPath
+	return substring originalPath (foundAt + pathToRemove.count) -1
+)

@@ -31,7 +31,7 @@ void TCompAltar::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 }
 
 void TCompAltar::onDestroy(const TMsgDestroy & msg) {
-	Engine.getScripting().throwEvent(onAltarDestroyed, ((CEntity*)CHandle(this).getOwner())->getName());
+	EngineScripting.throwEvent(onAltarDestroyed, ((CEntity*)CHandle(this).getOwner())->getName());
 
 	//Activar las crisálidas aquí, para poderlo integrar con 3dmax
 	for (VEC3 spawnPos : spawnPositions) {

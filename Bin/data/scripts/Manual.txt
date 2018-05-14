@@ -21,14 +21,14 @@ Funciones:
 	
 	float getPlayerHp()
 	float setPlayerHp(float hp)
-	void setPlayerRespawnPosition(float x, float y, float z)
-	bool takePlayerControl()
-	bool givePlayerControl()
 	void teleportPlayer(float x, float y, float z)
 	void movePlayer(float x, float y, float z)
 	void setPower(float power), cantidad de poder
+	void setPlayerRespawnPosition(float x, float y, float z)
+	bool takePlayerControl()
+	bool givePlayerControl()
 	void lockPlayerCameraInput()
-    	void unlockPlayerCameraInput()
+    void unlockPlayerCameraInput()
 	void disablePlayerOutline()
 	void enablePlayerOutline()
 
@@ -42,8 +42,8 @@ Funciones:
 	void stopEntities()
 	void resumeEntities()
 
-	bool openDoor(string doorName, float time)
-	bool closeDoor(string doorName, float time)
+	bool open(string doorName, float time)
+	bool close(string doorName, float time)
 
 Constantes:
 	PLAYER_NAME

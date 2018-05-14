@@ -38,8 +38,7 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	enteringSpeed = enteringVelocityVector.Length();
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
-	landingLagFrames = getPlayerModel()->getPowerStats()->landingLag;
-	landingLagTime = landingLagFrames * (1.f / 60);
+	landingLagTime = frames2sec(getPlayerModel()->getPowerStats()->landingLag);
 	timer.reset();
 	//dbg("Entrando en landing\n");
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);

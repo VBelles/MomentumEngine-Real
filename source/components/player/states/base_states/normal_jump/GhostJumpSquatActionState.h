@@ -5,8 +5,7 @@
 class GhostJumpSquatActionState : public AirborneActionState {
 private:
 	CTimer timer;
-	int squatFrames = 2;
-	float squatTime;
+	float squatTime = frames2sec(2);
 	float enteringVelocity = 0.f;
 public:
 	GhostJumpSquatActionState(CHandle playerModelHandle);

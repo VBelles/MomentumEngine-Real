@@ -1,37 +1,12 @@
 #pragma once
 
-#include "components/player/states/GroundedActionState.h"
+#include "LauncherActionState.h"
 
-class VerticalLauncherActionState : public GroundedActionState {
-	CTimer timer;
-	int warmUpFrames = 5;
-	int activeFrames = 8;
-	int endingLagFrames = 17;
-	float hitboxOutTime;
-	float hitEndTime;
-	float animationEndTime;
-	float suspensionTime = 1.5f;
-
-	int IASAFrames = 25;//Interruptible As Soon As
-	float interruptibleTime;
-
-	float damage = 0;
-	AttackPhases phase = AttackPhases::Startup;
-	float powerToGet = 2000.f;
-
-	std::string hitbox = "vertical_launcher";
-
+class VerticalLauncherActionState : public LauncherActionState {
 public:
-	VerticalLauncherActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "vertical_launcher"){}
-	void update(float delta) override;
-	void onStateEnter(IActionState* lastState) override;
-	void onStateExit(IActionState* nextState) override;
-	void setMovementInput(VEC2 input) override;
-	void onJumpHighButton() override {}
-	void onJumpLongButton() override {}
-	void onStrongAttackButton() override {}
-	void onFastAttackButton() override {}
-	void onReleasePowerButton() override {}
-	void onLeavingGround() override;
+	VerticalLauncherActionState(CHandle playerModelHandle) : LauncherActionState(playerModelHandle, "vertical_launcher"){
+		//set here variables you want to override
+		hitbox = "vertical_launcher";
+	}
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

@@ -43,7 +43,6 @@ struct AttackInfo {
 			stun = new Stun{ toCopy.stun->duration };
 		}
 		if (toCopy.verticalLauncher) {
-			dbg("attack info copy vertical launcher duration: %f\n", toCopy.verticalLauncher->suspensionDuration);
 			verticalLauncher = new VerticalLauncher{ toCopy.verticalLauncher->suspensionDuration, toCopy.verticalLauncher->velocity };
 		}
 		if (toCopy.horizontalLauncher) {

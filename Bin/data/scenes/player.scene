@@ -146,7 +146,7 @@
 					"all"
 				],
 				"step": 0.5,
-				"slope": 45
+				"slope": 60
 			},
 			"render_ui": {},
 			"power_gauge": {},

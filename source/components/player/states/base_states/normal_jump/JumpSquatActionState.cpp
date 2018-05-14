@@ -28,7 +28,6 @@ void JumpSquatActionState::update (float delta) {
 void JumpSquatActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	//dbg("Entrando en JumpSquat\n");
-	squatTime = squatFrames * (1.f / 60);
 	isShortHop = false;
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();

@@ -6,17 +6,14 @@ class FallingAttackLandingActionState : public LandingActionState {
 
 private:
 	CTimer hitboxTimer;
-	int impactAttackDurationFrames = 3;
-	float impactAttackDurationTime;
+	float impactAttackDurationTime = frames2sec(3);
 	CTimer fallingAttackHitboxTimer;
-	float fallingAttackTime = 5.f * (1.f / 60.f);
-	int newLandingLagFrames = 40;
+	float fallingAttackTime = frames2sec(5);
+	float newLandingLagTime = frames2sec(40);
 	float stunTime = 1.5f;
 	CTimer springJumpTimer;
-	int springJumpWindowStartFrame = 8;
-	float springJumpWindowStartTime;
-	int springJumpWindowEndFrame = 28;
-	float springJumpWindowEndTime;
+	float springJumpWindowStartTime = frames2sec(8);
+	float springJumpWindowEndTime = frames2sec(28);
 	bool hasTriedSpringJump = false;
 
 	float damage = 0;
@@ -29,7 +26,8 @@ private:
 	float fallingAttackPowerToGet = 4000.f;
 
 public:
-	FallingAttackLandingActionState(CHandle playerModelHandle) : LandingActionState(playerModelHandle, "hard_landing") {}
+	FallingAttackLandingActionState(CHandle playerModelHandle) : LandingActionState(playerModelHandle, "hard_landing") {
+	}
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

@@ -5,8 +5,7 @@
 class PropelHighActionState : public AirborneActionState {
 protected:
 	CTimer timer;
-	int endingFrames = 10;
-	float endingTime;
+	float endingTime = frames2sec(10);
 	VEC3 movingVelocity;
 	CHandle propelTarget;
 

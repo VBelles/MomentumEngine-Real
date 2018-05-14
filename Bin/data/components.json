@@ -10,6 +10,7 @@
   "update": [
     "fwd_msg",
     "skeleton",
+    "skel_lookat",
     "bone_tracker",
     "platform_simple",
     "collectable",

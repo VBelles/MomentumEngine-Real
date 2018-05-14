@@ -71,9 +71,8 @@ void SlideActionState::onMove(MoveState& moveState) {
 	if (!moveState.isTouchingBot) { //Not grounded, change to airborne normal
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 	}
-	else if (isWalkable(moveState)) {
+	else if (isWalkable(moveState)) { //Grounded
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
 	}
-
 }
 

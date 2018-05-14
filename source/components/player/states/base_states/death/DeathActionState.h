@@ -12,5 +12,4 @@ public:
 	void onStateExit(IActionState* nextState) override;
 
 	void respawn();
-
 };
