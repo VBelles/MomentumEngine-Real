@@ -138,7 +138,7 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompRender::setAllMaterials(int startingMesh, int endingMesh, std::string materialName) {
 	for (int i = startingMesh; i < endingMesh; ++i) {
-		CMeshWithMaterials m = meshes[i];
+		CMeshWithMaterials &m = meshes[i];
 		m.materials.clear();
 		const CMaterial* material = Resources.get(materialName)->as<CMaterial>();
 		m.materials.push_back(material);
