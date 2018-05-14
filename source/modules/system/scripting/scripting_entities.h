@@ -29,4 +29,3 @@ public:
 	static void stopEntities();
 	static void resumeEntities();
 };
-

@@ -54,14 +54,14 @@ void TCompMechanismSystem::onActivate(const TMsgMechanismActivated & msg) {
 	}
 	else if (numberOfMechanismsActivated == numberOfMechanisms) {
 		dbg("number of mechanisms %i \n", numberOfMechanisms);
-		Engine.getScripting().throwEvent(onMechanismSystemActivated, ((CEntity*)CHandle(this).getOwner())->getName());
+		EngineScripting.throwEvent(onMechanismSystemActivated, ((CEntity*)CHandle(this).getOwner())->getName());
 	}
 }
 
 void TCompMechanismSystem::onDeactivate(const TMsgMechanismDeactivated & msg) {
 	numberOfMechanismsActivated--;
 	if (numberOfMechanismsActivated == (numberOfMechanisms - 1)) {
-		Engine.getScripting().throwEvent(onMechanismSystemDeactivated, ((CEntity*)CHandle(this).getOwner())->getName());
+		EngineScripting.throwEvent(onMechanismSystemDeactivated, ((CEntity*)CHandle(this).getOwner())->getName());
 	}
 	else if (numberOfMechanismsActivated < 0) {
 		numberOfMechanismsActivated = 0;

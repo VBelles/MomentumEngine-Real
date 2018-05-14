@@ -21,7 +21,7 @@ void DeathActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	getPlayerModel()->getSkeleton()->blendCycle(animation);
 	finish = true;
-	Engine.getScripting().throwEvent(onPlayerKilled, "");
+    EngineScripting.throwEvent(onPlayerKilled, "");
 }
 
 void DeathActionState::onStateExit(IActionState* nextState) {

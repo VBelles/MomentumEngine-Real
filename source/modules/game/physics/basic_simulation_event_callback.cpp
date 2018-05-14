@@ -46,14 +46,14 @@ void BasicSimulationEventCallback::onTrigger(PxTriggerPair* pairs, PxU32 count) 
 			std::string params = triggerEntity->getName();
 			params += ",";
 			params += otherEntity->getName();
-			Engine.getScripting().throwEvent(onTriggerEnter, params);
+			EngineScripting.throwEvent(onTriggerEnter, params);
 		}
 		else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST) {
 			triggerEntity->sendMsg(TMsgTriggerExit{ otherEntity });
 			std::string params = triggerEntity->getName();
 			params += ",";
 			params += otherEntity->getName();
-			Engine.getScripting().throwEvent(onTriggerExit, params);
+			EngineScripting.throwEvent(onTriggerExit, params);
 		}
 	}
 }
