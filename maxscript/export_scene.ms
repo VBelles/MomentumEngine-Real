@@ -1406,7 +1406,6 @@ struct TSceneExporter (
 
 /*
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
-TODO: Ahora saca transform de hitboxes, no debería. ¿O debería usarse el transform en lugar del offset? (De todas formas se ignoran teniendo parent.)
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
@@ -1431,17 +1430,15 @@ Condiciones de exportación:
 -------------------------------
 Las layers invisibles o vacías no se exportan.
 Lo visible como Editable Mesh.
-Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) como hija. Si no es hija
+Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) o una mesh como hija. Si no es hija
 se exportará en la escena collisions.
-Todo lo tangible debe estar como forma básica en una Layer llamada "collisions",
-incluidas las que son hijas de Meshes visibles.
+Las meshes		    deben estar en una layer llamada "0".
 Los enemigos		    deben estar en una layer llamada "enemies".
 Las crisálidas 		    deben estar en una layer llamada "chrysalis".
 Las plataformas móviles  deben estar en una layer llamada "movables".
 Las cámaras		    deben estar en una layer llamada "cameras".
 Las luces			    deben estar en una layer llamada "lights".
 Los triggers		    deben estar en una layer llamada "triggers".
-Las meshes		    deben estar en una layer llamada "0".
 Los colliders invisibles     deben estar en una layer llamada "collisions".
  
 Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
