@@ -8,12 +8,13 @@ namespace GUI {
 		if (mouse.position_delta.Length() > 0) {
 			for (int i = 0; i < _options.size(); i++) {
 				TOption option = _options[i];
-				_currentOption = -1;
+				//_currentOption = -1;
 				option.button->setCurrentState(CButton::EState::ST_Idle);
 				if (option.button->overlaps(mouse.position)) {
 					setCurrentOption(i);
 					i = _options.size();
-				}
+                }
+                else setCurrentOption(_currentOption);
 			}
 		}
 		else {
