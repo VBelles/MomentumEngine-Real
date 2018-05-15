@@ -366,7 +366,7 @@ void TCompPlayerModel::update(float delta) {
 
 void TCompPlayerModel::applyGravity(float delta) {
 	float deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-	if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump && !tryingToSlide) {
+	if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
 		deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
 	}
 	else {
