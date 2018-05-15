@@ -34,8 +34,11 @@ void IActionState::onDead() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Death);
 }
 
-void IActionState::onDamage(float damage, bool isHard) {
-	getPlayerModel()->damage(damage);
+void IActionState::onDamage(const TMsgAttackHit& msg) {
+	getPlayerModel()->damage(msg.info.damage);
+	if (msg.info.invulnerabilityTime > 0) {
+		getPlayerModel()->makeInvulnerable(msg.info.invulnerabilityTime);
+	}
 	//Lo que venga luego ya lo procesa el estado en concreto
 }
 

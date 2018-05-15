@@ -180,7 +180,7 @@ void AirborneActionState::onLanding() {
 }
 
 
-void AirborneActionState::onDamage(float damage, bool isHard) {
-	IActionState::onDamage(damage, isHard);
+void AirborneActionState::onDamage(const TMsgAttackHit& msg) {
+	IActionState::onDamage(msg);
 	//getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::SoftKnockbackAir);
 }

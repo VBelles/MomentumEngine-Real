@@ -20,6 +20,6 @@ public:
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
 	void onMove(MoveState& moveState) override;
+	void onDamage(const TMsgAttackHit& msg) override;
 	virtual void onLeavingGround();
-	virtual void onDamage(float damage, bool isHard) override;
 };

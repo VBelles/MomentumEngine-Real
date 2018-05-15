@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "GroundedActionState.h"
 #include "components/player/comp_player_model.h"
-
+#include "entity/common_msgs.h"
 
 void GroundedActionState::update(float delta) {
 
@@ -63,7 +63,12 @@ void GroundedActionState::onLeavingGround() {
 	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
 }
 
-void GroundedActionState::onDamage(float damage, bool isHard) {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HardKnockbackGround);
-	IActionState::onDamage(damage, isHard);//Hacemos esto al final para sobreescribir el estado de muerte
+void GroundedActionState::onDamage(const TMsgAttackHit& msg) {
+	if (msg.info.stun) {
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HardKnockbackGround);
+	}
+	else {
+		//getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::SoftKnockbackGround);
+	}
+	IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "components/comp_base.h"
+#include "entity/common_msgs.h"
 #include "power_stats.h"
 
 class IActionState;
@@ -97,6 +98,8 @@ private:
 	ActionStates nextBaseState;
 	ActionStates nextConcurrentState;
 
+	AttackInfo receivedAttack;
+
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onCollect(const TMsgCollect& msg);
@@ -192,6 +195,7 @@ public:
 	T getConcurrentState(TCompPlayerModel::ActionStates state) { return static_cast<T>(concurrentStates[state]); }
 
 	void damage(float damage);
+	void makeInvulnerable(float time);
 	void resetHp() { hp = maxHp; }
 	float getHp() { return hp; }
 	void setHp(float hp);
