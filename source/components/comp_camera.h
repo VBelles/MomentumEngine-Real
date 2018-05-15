@@ -5,7 +5,7 @@
 
 class TCompCamera : public TCompBase {
 protected:
-	CCamera* camera;
+	CCamera* camera = nullptr;
 
 public:
 	DECL_SIBLING_ACCESS();
