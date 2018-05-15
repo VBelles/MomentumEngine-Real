@@ -117,7 +117,8 @@ TCompTransform* TCompFixedCamera::getTransform() {
 void TCompFixedCamera::CopyRotationFromMixedCameraToPlayerCamera() {
 	CHandle leavingCameraHandle = getEntityByName(GAME_CAMERA);
 	CEntity* leavingCameraEntity = leavingCameraHandle;
-	TCompCamera* leavingCamera = leavingCameraEntity->get<TCompCamera>();
+	TCompCamera* leavingCameraComp = leavingCameraEntity->get<TCompCamera>();
+	CCamera* leavingCamera = leavingCameraComp->getCamera();
 	CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
 	CEntity* playerCameraEntity = playerCameraHandle;
 	TCompTransform* playerCameraTransform = playerCameraEntity->get<TCompTransform>();

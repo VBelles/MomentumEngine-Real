@@ -2,28 +2,20 @@
 #include "comp_camera.h"
 #include "comp_transform.h"
 #include "render/render_objects.h"
+#include "camera/camera_orthographic.h"
 
 DECL_OBJ_MANAGER("camera", TCompCamera);
 
+TCompCamera::~TCompCamera() {
+	SAFE_DELETE(camera);
+}
+
 void TCompCamera::debugInMenu() {
-	float fov_deg = rad2deg(getFov());
-	float new_znear = getZNear();
-	float new_zfar = getZFar();
-	bool isOrtographic = isCameraOrtographic();
-	float width = getOrtographicWidth();
-	float height = getOrtographicHeight();
-	bool changed = ImGui::DragFloat("Fov", &fov_deg, 0.1f, 30.f, 175.f);
-	changed |= ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 5.0f);
-	changed |= ImGui::DragFloat("Z Far", &new_zfar, 0.001f, 0.01f, 300.0f);
-	changed |= ImGui::DragFloat("ortographicWidth", &width, 1.0f, 1.0f, 3000.0f);
-	changed |= ImGui::DragFloat("ortographicHeight", &height, 1.0f, 1.0f, 3000.0f);
-	if (changed)
-		setPerspective(deg2rad(fov_deg), new_znear, new_zfar, isOrtographic, width, height);
-	ImGui::LabelText("AspectRatio", "%f", getAspectRatio());
+	camera->debugInMenu();
 }
 
 void TCompCamera::renderDebug() {
-	MAT44 inv_view_proj = getViewProjection().Invert();
+	MAT44 inv_view_proj = camera->getViewProjection().Invert();
 
 	auto mesh = Resources.get("unit_frustum.mesh")->as<CRenderMesh>();
 	mesh->activate();
@@ -39,17 +31,32 @@ void TCompCamera::renderDebug() {
 }
 
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
-	bool isOrtographic = j.value("isOrtographic", false);
-	float fov_deg = j.value("fov", rad2deg(getFov()));
-	float z_near = j.value("z_near", 1.f /*getZNear()*/);
-	float z_far = j.value("z_far", 1000.f /*getZFar()*/);
-	float ortographicWidth = j.value("ortographicWidth", 50.f);
-	float ortographicHeight = j.value("ortographicHeight", 50.f);
-	setPerspective(deg2rad(fov_deg), z_near, z_far, isOrtographic,ortographicWidth, ortographicHeight);
+	SAFE_DELETE(camera);
+
+	float z_near = j.value("z_near", 1.f);
+	float z_far = j.value("z_far", 1000.f);
+
+	bool isOrthographic = j.value("isOrtographic", false);
+	if (isOrthographic) {
+		camera = new CCameraOrthographic();
+		float orthographicWidth = j.value("orthographicWidth", 50.f);
+		float orthographicHeight = j.value("orthographicHeight", 50.f);
+		((CCameraOrthographic*)camera)->setPerspective(z_near, z_far, orthographicWidth, orthographicHeight);
+
+	}
+	else {
+		camera = new CCamera();
+		float fov_deg = j.value("fov", deg2rad(60.f));
+		camera->setPerspective(deg2rad(fov_deg), z_near, z_far);
+	}
 }
 
 void TCompCamera::update(float delta) {
 	TCompTransform* transform = get<TCompTransform>();
 	assert(transform);
-	this->lookAt(transform->getPosition(), transform->getPosition() + transform->getFront(), transform->getUp());
+	camera->lookAt(transform->getPosition(), transform->getPosition() + transform->getFront(), transform->getUp());
+}
+
+CCamera* TCompCamera::getCamera() {
+	return camera;
 }

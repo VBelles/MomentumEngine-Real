@@ -45,7 +45,7 @@ void TCompCulling::update(float dt) {
 	// Conseguimos acceso al comp_camera de un sibling component
 	TCompCamera* c_camera = get<TCompCamera>();
 	assert(c_camera);
-	MAT44 view_proj = c_camera->getViewProjection();
+	MAT44 view_proj = c_camera->getCamera()->getViewProjection();
 	//e_owner->sendMsg(TMsgGetCullingViewProj{ &view_proj });
 
 	updateFromMatrix(view_proj);

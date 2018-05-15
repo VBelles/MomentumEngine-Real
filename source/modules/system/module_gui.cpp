@@ -13,8 +13,7 @@ CModuleGUI::CModuleGUI(const std::string& name)
 bool CModuleGUI::start() {
 	const float width = 1920;
 	const float height = 1080;
-	_orthoCamera.setOrthographic(width, height, -1.f, 1.f);
-	_orthoCamera.isGuiCamera = true;
+	_orthoCamera.setPerspective(-1.f, 1.f, width, height);
 
 	_technique = Resources.get("gui.tech")->as<CRenderTechnique>();
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
@@ -139,7 +138,7 @@ void CModuleGUI::unregisterController(GUI::CController* controller) {
 	}
 }
 
-CCamera& CModuleGUI::getCamera() {
+CCameraGui& CModuleGUI::getCamera() {
 	return _orthoCamera;
 }
 

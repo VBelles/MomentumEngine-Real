@@ -127,7 +127,7 @@ void CModuleGame::render() {
 		CEntity* e_camera = h_e_camera;
 		TCompCamera* c_camera = e_camera->get<TCompCamera>();
 		assert(c_camera);
-		activateCamera(*c_camera, Render.width, Render.height);
+		activateCamera(*c_camera->getCamera(), Render.width, Render.height);
 	}
 	else {
 		activateCamera(camera, Render.width, Render.height);

@@ -18,7 +18,7 @@ void CText::render() {
 
 	MAT44 tr = MAT44::CreateTranslation(offset.x, offset.y, 0.f);
 	MAT44 w = MAT44::CreateScale(_textParams._size) * tr * _absolute;
-	Engine.get().getGUI().renderText(w, _textParams._text, _textParams._color);
+    EngineGUI.renderText(w, _textParams._text, _textParams._color);
 }
 
 TTextParams* CText::getTextParams() {

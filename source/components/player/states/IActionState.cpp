@@ -125,16 +125,38 @@ bool IActionState::isWalkable(MoveState& moveState) {
 }
 
 
-TCompPlayerModel* IActionState::getPlayerModel() { return playerModelHandle; }
-TCompTransform* IActionState::getPlayerTransform() { return playerTransformHandle; }
-TCompCollider* IActionState::getCollider() { return colliderHandle; }
-TCompRender* IActionState::getRender() { return renderHandle; }
-TCompHitboxes* IActionState::getHitboxes() { return hitboxesHandle; }
-TCompCamera* IActionState::getCamera() {
+TCompPlayerModel* IActionState::getPlayerModel() {
+	return playerModelHandle;
+}
+
+TCompTransform* IActionState::getPlayerTransform() {
+	return playerTransformHandle;
+}
+
+TCompCollider* IActionState::getCollider() {
+	return colliderHandle;
+}
+
+TCompRender* IActionState::getRender() {
+	return renderHandle;
+}
+
+TCompHitboxes* IActionState::getHitboxes() {
+	return hitboxesHandle;
+}
+
+CCamera* IActionState::getCamera() {
+	return getCameraComp()->getCamera();
+}
+
+TCompCamera* IActionState::getCameraComp() {
 	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
 	return currentCamera;
 }
-TCompRenderBlurRadial* IActionState::getBlurRadial() { return getCamera()->get<TCompRenderBlurRadial>(); }
+
+TCompRenderBlurRadial* IActionState::getBlurRadial() {
+	return getCameraComp()->get<TCompRenderBlurRadial>();
+}
 
