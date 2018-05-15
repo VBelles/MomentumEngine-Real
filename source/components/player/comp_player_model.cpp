@@ -397,7 +397,6 @@ void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 	hitState.entity = colliderHandle.getOwner();
 	hitState.hit = msg.hit;
 	hitState.dotUp = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
-	moveState.hits.push_back(hitState);
 
 	PxCapsuleController* controller = getController();
 	PxExtendedVec3 hitPos = msg.hit.worldPos;

@@ -32,10 +32,8 @@ struct HitState {
 
 struct MoveState {
 	bool isTouchingTop = false;
-	bool isTouchingBot = false;;
-	bool isTouchingSide = false;;
-
-	std::vector<HitState> hits;
+	bool isTouchingBot = false;
+	bool isTouchingSide = false;
 
 	std::vector<HitState> topHits;
 	std::vector<HitState> botHits;
