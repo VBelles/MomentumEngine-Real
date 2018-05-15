@@ -13,12 +13,10 @@ void GroundedActionState::onStateEnter(IActionState * lastState) {
 	if (currentPowerStats) getPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
 	getPlayerModel()->resetGravity();
 	backwardsMaxDotProduct = cos(backwardsdMinAngle);
-	getPlayerModel()->lastWallEntered = nullptr;//En realidad al tocar el suelo ya se sobreescribe la variable
 }
 
 void GroundedActionState::onStateExit(IActionState * nextState) {
 	IActionState::onStateExit(nextState);
-	getPlayerModel()->lastWallEntered = nullptr;
 	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 }
 

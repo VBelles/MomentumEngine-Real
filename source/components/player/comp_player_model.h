@@ -141,7 +141,6 @@ public:
 	PxVec3 lastWallNormal = { 0,0,0 };
 
 	CHandle grabTarget;
-	PxRigidActor* lastWallEntered;
 
 	//Parent methods
 	static void registerMsgs();

@@ -119,8 +119,6 @@ void AirborneActionState::onMove(MoveState& moveState) {
 		if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hitState.hit.worldNormal) < 0.8f
 			|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
 
-			getPlayerModel()->lastWallEntered = hitState.hit.actor;
-
 			VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
 
 			VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());

@@ -55,7 +55,6 @@ void PropelLongActionState::onStateEnter(IActionState * lastState) {
 	movingVelocity /= endingTime;
 	timer.reset();
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
-	getPlayerModel()->lastWallEntered = nullptr;
 	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 }
 

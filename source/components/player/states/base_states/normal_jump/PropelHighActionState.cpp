@@ -52,7 +52,6 @@ void PropelHighActionState::onStateEnter(IActionState * lastState) {
 	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - getPlayerTransform()->getPosition();
 	movingVelocity /= endingTime;
 	timer.reset();
-	getPlayerModel()->lastWallEntered = nullptr;
 	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
