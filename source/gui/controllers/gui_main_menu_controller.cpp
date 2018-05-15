@@ -6,15 +6,19 @@ namespace GUI {
 	void CMainMenuController::update(float delta) {
 		auto& mouse = EngineInput[Input::PLAYER_1].mouse();
 		if (mouse.position_delta.Length() > 0) {
-			for (int i = 0; i < _options.size(); i++) {
+			int i = 0;
+			while (i < _options.size()) {
 				TOption option = _options[i];
-				//_currentOption = -1;
-				option.button->setCurrentState(CButton::EState::ST_Idle);
 				if (option.button->overlaps(mouse.position)) {
-					setCurrentOption(i);
-					i = _options.size();
-                }
-                else setCurrentOption(_currentOption);
+					if (i != _currentOption) {
+						setCurrentOption(i);
+					}
+					break;
+				}
+				i++;
+			}
+			if (i == _options.size()) {
+				setCurrentOption(_currentOption);
 			}
 		}
 		else {
@@ -44,7 +48,16 @@ namespace GUI {
 		if (_currentOption >= 0 && EngineInput["menu_accept"].getsPressed()) {
 			_options[_currentOption].button->setCurrentState(CButton::EState::ST_Pressed);
 		}
+		else if (_currentOption >= 0 && EngineInput["mouse_accept"].getsPressed()
+			&& _options[_currentOption].button->overlaps(mouse.position)) {
+			_options[_currentOption].button->setCurrentState(CButton::EState::ST_Pressed);
+		}
 		if (_currentOption >= 0 && EngineInput["menu_accept"].getsReleased()) {
+			_options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
+			_options[_currentOption].callback();
+		}
+		else if (_currentOption >= 0 && EngineInput["mouse_accept"].getsReleased()
+			&& _options[_currentOption].button->overlaps(mouse.position)) {
 			_options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
 			_options[_currentOption].callback();
 		}
