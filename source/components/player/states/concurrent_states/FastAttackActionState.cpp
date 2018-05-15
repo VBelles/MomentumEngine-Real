@@ -32,14 +32,12 @@ void FastAttackActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	phase = AttackPhases::Launch;
 	timer.reset();
-	getPlayerModel()->lockBaseState = true;
 	getPlayerModel()->lockWalk = false;
 }
 
 void FastAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
-	getPlayerModel()->lockBaseState = false;
 	getPlayerModel()->lockWalk = false;
 }
 

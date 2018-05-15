@@ -123,10 +123,8 @@ public:
 	IActionState* baseState;
 	IActionState* concurrentState;
 
-	bool lockBaseState = false;
 	bool lockWalk = false;
 	bool lockTurning = false;
-	bool lockConcurrentState = false;
 
 	bool wannaJump = false;
 	bool tryingToSlide = false;

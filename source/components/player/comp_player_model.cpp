@@ -429,7 +429,7 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	else {
 		baseState->setMovementInput(VEC2::Zero);
 	}
-	if (!lockConcurrentState && concurrentState != concurrentStates[ActionStates::Idle]) {
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->setMovementInput(input);
 	}
 }
@@ -472,69 +472,55 @@ void TCompPlayerModel::damage(float damage) {//tendría que llegar también si e
 }
 
 void TCompPlayerModel::jumpButtonPressed() {
-	if (!lockBaseState) {
-		baseState->onJumpHighButton();
+
+	baseState->onJumpHighButton();
+
+
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->onJumpHighButton();
 	}
-	else {
-		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->onJumpHighButton();
-		}
-	}
+
 }
 
 void TCompPlayerModel::jumpButtonReleased() {
-	if (!lockBaseState) {
-		baseState->onJumpHighButtonReleased();
+	baseState->onJumpHighButtonReleased();
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->onJumpHighButtonReleased();
 	}
-	else {
-		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->onJumpHighButtonReleased();
-		}
-	}
+
 }
 
 void TCompPlayerModel::longJumpButtonPressed() {
-	if (!lockBaseState) {
-		baseState->onJumpLongButton();
+	baseState->onJumpLongButton();
+	if (concurrentState != concurrentStates[ActionStates::Idle]) {
+		concurrentState->onJumpLongButton();
 	}
-	else {
-		if (concurrentState != concurrentStates[ActionStates::Idle]) {
-			concurrentState->onJumpLongButton();
-		}
-	}
+
 }
 
 void TCompPlayerModel::fastAttackButtonPressed() {
-	if (!lockBaseState) {
-		baseState->onFastAttackButton();
-	}
+	baseState->onFastAttackButton();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onFastAttackButton();
 	}
 }
 
 void TCompPlayerModel::fastAttackButtonReleased() {
-	if (!lockBaseState) {
-		baseState->onFastAttackButtonReleased();
-	}
+	baseState->onFastAttackButtonReleased();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onFastAttackButtonReleased();
 	}
 }
 
 void TCompPlayerModel::strongAttackButtonPressed() {
-	if (!lockBaseState) {
-		baseState->onStrongAttackButton();
-	}
+	baseState->onStrongAttackButton();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onStrongAttackButton();
 	}
 }
 
 void TCompPlayerModel::strongAttackButtonReleased() {
-	if (!lockBaseState) {
-		baseState->onStrongAttackButtonReleased();
-	}
+	baseState->onStrongAttackButtonReleased();
 	if (concurrentState != concurrentStates[ActionStates::Idle]) {
 		concurrentState->onStrongAttackButtonReleased();
 	}
