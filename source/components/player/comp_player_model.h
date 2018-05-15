@@ -69,16 +69,19 @@ private:
 
 	MoveState moveState;
 
-	std::string materials[3];//impares son outline, pares son post_outline
+	std::string materials[3];
 	PowerStats* powerStats[3];
 	PowerStats* currentPowerStats;
 
-	float hp = 8;
-	float maxHp = 8;
+	const float PLAYER_MAX_HP = 8.f;
+	float maxHp = PLAYER_MAX_HP;
+	float hp = PLAYER_MAX_HP;
 
 	bool isInvulnerable = false;
 	CTimer invulnerableTimer;
 	float invulnerableTime = 1.f;
+
+	int coins = 0;
 
 	//TODO Esto aquí es criminal, milestone 1 ftw 
 	int chrysalis = 0;
@@ -86,7 +89,7 @@ private:
 	bool showVictoryDialog = false;
 	CTimer dialogTimer;
 	float dialogTime = 15.0f;
-	int coins = 0;
+	
 
 	PlayerFilterCallback* playerFilterCallback;
 
@@ -180,9 +183,9 @@ public:
 	PowerStats* getPowerStats() { return currentPowerStats; }
 
 	template <typename T>
-	T getBaseState(TCompPlayerModel::ActionStates state) { return static_cast<T>(baseStates[state]); }
+	T getBaseState(ActionStates state) { return (T)(baseStates[state]); }
 	template <typename T >
-	T getConcurrentState(TCompPlayerModel::ActionStates state) { return static_cast<T>(concurrentStates[state]); }
+	T getConcurrentState(ActionStates state) { return static_cast<T>(concurrentStates[state]); }
 
 	void damage(float damage);
 	void resetHp() { hp = maxHp; }
