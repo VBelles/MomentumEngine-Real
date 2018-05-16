@@ -151,6 +151,7 @@
     <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
+    <ClCompile Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\LauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\SlideActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\death\PitFallingActionState.cpp" />
@@ -173,6 +174,8 @@
     <ClCompile Include="components\player\states\base_states\VerticalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackLandingActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\ReleasePowerAirActionState.cpp" />
+    <ClCompile Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.cpp" />
+    <ClCompile Include="components\player\states\concurrent_states\SoftKnockbackGroundActionState.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\GroundedActionState.cpp" />
@@ -357,6 +360,7 @@
     <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\power_stats.h" />
+    <ClInclude Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.h" />
     <ClInclude Include="components\player\states\base_states\LauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\SlideActionState.h" />
     <ClInclude Include="components\player\states\base_states\death\PitFallingActionState.h" />
@@ -377,6 +381,8 @@
     <ClInclude Include="components\player\states\base_states\StrongAttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\ReleasePowerAirActionState.h" />
+    <ClInclude Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.h" />
+    <ClInclude Include="components\player\states\concurrent_states\SoftKnockbackGroundActionState.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\states\AirborneActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackLandingActionState.h" />

@@ -181,6 +181,11 @@ void AirborneActionState::onLanding() {
 
 
 void AirborneActionState::onDamage(const TMsgAttackHit& msg) {
-	IActionState::onDamage(msg);
-	//getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::SoftKnockbackAir);
+	if (msg.info.stun) {
+		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HardKnockbackAir);
+	}
+	else {
+		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::SoftKnockbackAir);
+	}
+	IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
 }

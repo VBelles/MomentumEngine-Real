@@ -9,7 +9,6 @@ private:
 	float hitEndTime = frames2sec(10);
 	float animationEndTime = frames2sec(60);
 
-	int IASAFrames = 60;//Interruptible As Soon As
 	float interruptibleTime = frames2sec(60);
 
 	float beginLauncherTime = frames2sec(20);

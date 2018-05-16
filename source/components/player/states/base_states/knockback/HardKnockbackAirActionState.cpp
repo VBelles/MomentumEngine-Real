@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "HardKnockbackGroundActionState.h"
+#include "HardKnockbackAirActionState.h"
 #include "components/comp_render.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_collider.h"
@@ -7,19 +7,19 @@
 #include "components/player/comp_power_gauge.h"
 #include "entity/common_msgs.h"
 
-HardKnockbackGroundActionState::HardKnockbackGroundActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
+HardKnockbackAirActionState::HardKnockbackAirActionState(CHandle playerModelHandle)
+	: AirborneActionState::AirborneActionState(playerModelHandle) {
 	animation = "recibedanio";
 }
 
-void HardKnockbackGroundActionState::update (float delta) {
+void HardKnockbackAirActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	if (timer.elapsed() >= duration) {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 	}
 }
 
-void HardKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
+void HardKnockbackAirActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	*velocityVector = VEC3::Zero;
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
@@ -28,7 +28,7 @@ void HardKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
 	duration = getPlayerModel()->getReceivedAttack()->stun->duration;
 }
 
-void HardKnockbackGroundActionState::onStateExit(IActionState* nextState) {
+void HardKnockbackAirActionState::onStateExit(IActionState* nextState) {
 	IActionState::onStateExit(nextState);
 }
 

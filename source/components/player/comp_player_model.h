@@ -54,7 +54,8 @@ public:
 		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
 		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
 		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling,
-		HardKnockbackGround, Slide
+		HardKnockbackGround, HardKnockbackAir, SoftKnockbackGround, SoftKnockbackAir,
+		Slide
 	};
 
 private:

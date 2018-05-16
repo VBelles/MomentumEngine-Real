@@ -68,7 +68,7 @@ void GroundedActionState::onDamage(const TMsgAttackHit& msg) {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HardKnockbackGround);
 	}
 	else {
-		//getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::SoftKnockbackGround);
+		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::SoftKnockbackGround);
 	}
 	IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
 }

@@ -44,12 +44,15 @@
 #include "states/base_states/death/DeathActionState.h"
 #include "states/base_states/death/PitFallingActionState.h"
 #include "states/base_states/knockback/HardKnockbackGroundActionState.h"
+#include "states/base_states/knockback/HardKnockbackAirActionState.h"
 #include "states/base_states/SlideActionState.h"
 #include "states/concurrent_states/FastAttackActionState.h"
 #include "states/concurrent_states/FastAttackAirActionState.h"
 #include "states/concurrent_states/GrabHighActionState.h"
 #include "states/concurrent_states/GrabLongActionState.h"
 #include "states/concurrent_states/ReleasePowerAirActionState.h"
+#include "states/concurrent_states/SoftKnockbackGroundActionState.h"
+#include "states/concurrent_states/SoftKnockbackAirActionState.h"
 #include "modules/game/physics/basic_query_filter_callback.h"
 #include "skeleton/comp_skeleton.h"
 
@@ -283,6 +286,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::Death, new DeathActionState(playerModelHandle) },
 	{ ActionStates::PitFalling, new PitFallingActionState(playerModelHandle) },
 	{ ActionStates::HardKnockbackGround, new HardKnockbackGroundActionState(playerModelHandle) },
+	{ ActionStates::HardKnockbackAir, new HardKnockbackAirActionState(playerModelHandle) },
 	{ ActionStates::Slide, new SlideActionState(playerModelHandle) },
 	};
 
@@ -293,6 +297,8 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	{ ActionStates::GrabHigh, new GrabHighActionState(playerModelHandle) },
 	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle) },
 	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle) },
+	{ ActionStates::SoftKnockbackGround, new SoftKnockbackGroundActionState(playerModelHandle) },
+	//{ ActionStates::SoftKnockbackAir, new SoftKnockbackAirActionState(playerModelHandle) },
 	};
 
 	baseState = nullptr;
