@@ -151,6 +151,7 @@
     <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
+    <ClCompile Include="components\player\states\AttackActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\LauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\SlideActionState.cpp" />
@@ -360,6 +361,7 @@
     <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\power_stats.h" />
+    <ClInclude Include="components\player\states\AttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.h" />
     <ClInclude Include="components\player\states\base_states\LauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\SlideActionState.h" />
