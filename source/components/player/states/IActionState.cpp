@@ -119,6 +119,9 @@ void IActionState::clampHorizontalVelocity(float maxHorizontalSpeed) {
 }
 
 bool IActionState::isWalkable(MoveState& moveState) {
+	if (moveState.botHits.empty()) {
+		return true;
+	}
 	for (HitState& hit : moveState.botHits) {
 		if (hit.dotUp >= getPlayerModel()->getController()->getSlopeLimit()) {
 			return true;

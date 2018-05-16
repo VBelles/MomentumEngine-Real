@@ -15,3 +15,15 @@ source/.vs/Game/v15
 Bin/imgui.ini
 Bin/*.cpuprofile
 SLB/x64/
+tools/Navmeshes/source/crowds/.vs/
+tools/Navmeshes/source/crowds/Debug/*.lib
+tools/Navmeshes/source/crowds/Debug/*.idb
+tools/Navmeshes/source/crowds/Debug/*.pdb
+tools/Coroutines/.vs/
+tools/Coroutines/bin/*.lib
+tools/Coroutines/bin/*.ilk
+tools/Coroutines/bin/*.idb
+tools/Coroutines/bin/*.pdb
+tools/Coroutines/Debug/*.lib
+tools/Coroutines/Debug/*.idb
+tools/Coroutines/Debug/*.pdb
