@@ -36,7 +36,7 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 	float z_near = j.value("z_near", 1.f);
 	float z_far = j.value("z_far", 1000.f);
 
-	bool isOrthographic = j.value("isOrtographic", false);
+	bool isOrthographic = j.value("isOrthographic", false);
 	if (isOrthographic) {
 		camera = new CCameraOrthographic();
 		float orthographicWidth = j.value("orthographicWidth", 50.f);
