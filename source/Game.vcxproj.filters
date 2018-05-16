@@ -201,6 +201,7 @@
     <ClCompile Include="components\postfx\comp_render_focus.cpp" />
     <ClCompile Include="camera\camera_orthographic.cpp" />
     <ClCompile Include="camera\camera_gui.cpp" />
+    <ClCompile Include="components\player\states\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -434,6 +435,7 @@
     <ClInclude Include="components\postfx\comp_render_focus.h" />
     <ClInclude Include="camera\camera_orthographic.h" />
     <ClInclude Include="camera\camera_gui.h" />
+    <ClInclude Include="components\player\states\StateManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

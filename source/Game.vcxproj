@@ -287,6 +287,7 @@
     <ClCompile Include="skeleton\comp_skeleton.cpp" />
     <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="skeleton\game_core_skeleton.cpp" />
+    <ClCompile Include="components\player\states\StateManager.cpp" />
     <ClCompile Include="utils\geometry_utils.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
@@ -514,6 +515,7 @@
     <ClInclude Include="skeleton\comp_skeleton.h" />
     <ClInclude Include="skeleton\comp_skel_lookat.h" />
     <ClInclude Include="skeleton\game_core_skeleton.h" />
+    <ClInclude Include="components\player\states\StateManager.h" />
     <ClInclude Include="utils\data_provider.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />
