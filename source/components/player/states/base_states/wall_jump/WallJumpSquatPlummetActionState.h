@@ -9,8 +9,11 @@ protected:
 	float frontVelocity = 30.f;
 	float verticalVelocity = -30.f;
 
+	std::string animation = "jump_inicio";
+
 public:
-	WallJumpSquatPlummetActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_inicio") {}
+	WallJumpSquatPlummetActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

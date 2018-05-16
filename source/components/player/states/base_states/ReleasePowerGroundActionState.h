@@ -9,21 +9,22 @@ private:
 	float hitEndTime = frames2sec(26);
 	float animationEndTime = frames2sec(20);
 	int buttonPresses = 1;
-	float stunDuration = 3.f;
 
 	float interruptibleTime = frames2sec(25);
 
-	CHandle hitboxSmallHandle;
-	CHandle hitboxBigHandle;
-	float damage = 0.f;
 	AttackPhases phase = AttackPhases::Startup;
 
-	std::string smallHitbox;
-	std::string bigHitbox;
+	float damage = 0.f;
+	float stunDuration = 3.f;
+
+	std::string animation = "liberarenergia";
+
+	std::string smallHitbox = "release_power_small";
+	std::string bigHitbox = "release_power_big";
 
 public:
-	ReleasePowerGroundActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "liberarenergia"),
-		smallHitbox("release_power_small"), bigHitbox("release_power_big") {}
+	ReleasePowerGroundActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

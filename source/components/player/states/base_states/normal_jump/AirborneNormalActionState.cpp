@@ -4,7 +4,11 @@
 #include "components/player/comp_player_model.h"
 #include "skeleton/comp_skeleton.h"
 
-void AirborneNormalActionState::update (float delta) {
+AirborneNormalActionState::AirborneNormalActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, AirborneNormal) {
+}
+
+void AirborneNormalActionState::update(float delta) {
 	AirborneActionState::update(delta);
 }
 

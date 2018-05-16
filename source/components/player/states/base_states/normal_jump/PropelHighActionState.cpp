@@ -7,6 +7,12 @@
 #include "components/comp_transform.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
+
+
+PropelHighActionState::PropelHighActionState(StateManager* stateManager): 
+	AirborneActionState(stateManager, PropelHigh){
+}
 
 
 void PropelHighActionState::update (float delta) {
@@ -16,7 +22,7 @@ void PropelHighActionState::update (float delta) {
 	if (timer.elapsed() >= endingTime) {
 		if (!isChangingBaseState) {
 			if (movementInput != VEC2::Zero) {
-				VEC3 inputDirection = getCamera()->TransformToWorld(movementInput);
+				VEC3 inputDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 				float newYaw = atan2(inputDirection.x, inputDirection.z);
 				float y, p, r;
 				getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
@@ -26,7 +32,7 @@ void PropelHighActionState::update (float delta) {
 			deltaMovement = *velocityVector * delta;
 			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
 			//pasar mensaje a la otra entidad
-			CHandle playerEntity = CHandle(playerModelHandle).getOwner();
+			CHandle playerEntity = CHandle(stateManager->getEntity());
 			CEntity* targetEntity = propelTarget;
 			VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
 			TMsgAttackHit msgAtackHit = {};

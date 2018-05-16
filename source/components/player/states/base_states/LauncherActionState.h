@@ -16,11 +16,12 @@ protected:
 	AttackPhases phase = AttackPhases::Startup;
 	float powerToGet = 2000.f;
 
+	std::string animation;
 	std::string hitbox;
 
-
 public:
-	LauncherActionState(CHandle playerModelHandle, std::string animation = "") : GroundedActionState(playerModelHandle, animation){}
+	LauncherActionState(StateManager* stateManager, State state, std::string animation, std::string hitbox);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

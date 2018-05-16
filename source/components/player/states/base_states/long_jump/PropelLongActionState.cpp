@@ -7,16 +7,21 @@
 #include "components/player/comp_player_model.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
 
-void PropelLongActionState::update (float delta) {
+PropelLongActionState::PropelLongActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, PropelLong) {
+}
+
+void PropelLongActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= endingTime) {
 		if (!isChangingBaseState) {
 			if (movementInput != VEC2::Zero) {
-				VEC3 inputDirection = getCamera()->TransformToWorld(movementInput);
+				VEC3 inputDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 				float newYaw = atan2(inputDirection.x, inputDirection.z);
 				float y, p, r;
 				getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
@@ -28,7 +33,7 @@ void PropelLongActionState::update (float delta) {
 
 			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
 			//pasar mensaje a la otra entidad
-			CHandle playerEntity = playerModelHandle.getOwner();
+			CHandle playerEntity = CHandle(stateManager->getEntity());
 			CEntity* targetEntity = propelTarget;
 			VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
 			TMsgAttackHit msgAtackHit = {};
@@ -60,6 +65,5 @@ void PropelLongActionState::onStateEnter(IActionState * lastState) {
 
 void PropelLongActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
-	//getPlayerModel()->baseState->setPose();
 }
 

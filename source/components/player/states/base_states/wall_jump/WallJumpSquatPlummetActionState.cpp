@@ -6,14 +6,18 @@
 #include "skeleton/comp_skeleton.h"
 
 
-void WallJumpSquatPlummetActionState::update (float delta) {
+WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, WallJumpSquatPlummet) {
+}
+
+void WallJumpSquatPlummetActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (!isChangingBaseState) {
 		if (timer.elapsed() >= endingTime) {
 			//saltar
 			*velocityVector = getPlayerTransform()->getFront() * frontVelocity;
 			velocityVector->y = verticalVelocity;
-		
+
 			deltaMovement = *velocityVector * delta;
 			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpPlummet);
 		}

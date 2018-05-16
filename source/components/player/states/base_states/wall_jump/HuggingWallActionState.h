@@ -26,7 +26,8 @@ private:
 
 	VEC3 huggingWallNormal;
 
-	std::string animationClimbing;
+	std::string animation = "bajandopared";
+	std::string animationClimbing = "correporlapared";
 
 	float huggingWallMinPitch = 0.f;
 
@@ -35,7 +36,8 @@ private:
 	float slideWindowTime = 1.1f;
 
 public:
-	HuggingWallActionState(CHandle playerModelHandle);
+	HuggingWallActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

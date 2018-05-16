@@ -5,7 +5,12 @@
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
+
+FallingAttackLandingActionState::FallingAttackLandingActionState(StateManager* stateManager) :
+	LandingActionState(stateManager, LandingFallingAttack) {
+}
 
 void FallingAttackLandingActionState::update(float delta) {
 	LandingActionState::update(delta);
@@ -45,7 +50,7 @@ void FallingAttackLandingActionState::onJumpHighButton() {
 }
 
 void FallingAttackLandingActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;

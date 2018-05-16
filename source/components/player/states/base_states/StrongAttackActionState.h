@@ -14,15 +14,18 @@ private:
 
 	float beginLauncherTime = frames2sec(20);
 
-	float damage = 5.f;
 	AttackPhases phase = AttackPhases::Launch;
-
+	
 	float powerToGet = 3000.f;
+	float damage = 5.f;
+
+	std::string animation = "melee_strong";
 
 	std::string hitbox = "strong_attack";
 
 public:
-	StrongAttackActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "melee_strong") {}
+	StrongAttackActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

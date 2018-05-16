@@ -7,8 +7,11 @@ protected:
 	CTimer timer;
 	float endingTime = frames2sec(4);
 
+	std::string animation = "jump_inicio";
+
 public:
-	WallJumpSquatActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_inicio") {}
+	WallJumpSquatActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

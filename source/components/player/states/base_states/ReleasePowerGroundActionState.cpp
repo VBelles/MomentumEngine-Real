@@ -9,8 +9,12 @@
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/comp_camera.h"
 #include "components/comp_collider.h"
+#include "components/player/states/StateManager.h"
 
 
+ReleasePowerGroundActionState::ReleasePowerGroundActionState(StateManager* stateManager):
+	GroundedActionState(stateManager, ReleasePowerGround){
+}
 
 void ReleasePowerGroundActionState::update(float delta) {
 	PxExtendedVec3 cctPos = getCollider()->controller->getPosition();
@@ -93,7 +97,7 @@ void ReleasePowerGroundActionState::onReleasePowerButton() {
 
 
 void ReleasePowerGroundActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;

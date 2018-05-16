@@ -4,11 +4,13 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 
-IdleTurnAroundActionState::IdleTurnAroundActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
+
+
+IdleTurnAroundActionState::IdleTurnAroundActionState(StateManager* stateManager) :
+	GroundedActionState(stateManager, IdleTurnAround) {
 }
 
-void IdleTurnAroundActionState::update (float delta) {
+void IdleTurnAroundActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
@@ -19,7 +21,7 @@ void IdleTurnAroundActionState::update (float delta) {
 	}
 	else {
 		float y, p, r;
-		getPlayerTransform()->getYawPitchRoll(&y,&p,&r);
+		getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 		y += rotationSpeed * delta;
 		getPlayerTransform()->setYawPitchRoll(y, p, r);
 	}
@@ -31,7 +33,7 @@ void IdleTurnAroundActionState::onStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	movementInput = lastState->getMovementInput();
 	movementInput.Normalize();
-	VEC3 movementInputWorldSpace = getCamera()->TransformToWorld(movementInput);
+	VEC3 movementInputWorldSpace = getCamera()->getCamera()->TransformToWorld(movementInput);
 	exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 	float y, p, r;
 	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);

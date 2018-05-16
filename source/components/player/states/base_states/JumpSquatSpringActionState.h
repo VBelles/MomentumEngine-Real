@@ -7,8 +7,11 @@ private:
 	CTimer timer;
 	float squatTime = frames2sec(12);
 
+	std::string animation = "jump_inicio";
+
 public:
-	JumpSquatSpringActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "jump_inicio") {}
+	JumpSquatSpringActionState(StateManager* stateManager);
+	
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -17,5 +20,5 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
-	virtual void onLeavingGround() override;
+	void onLeavingGround() override;
 };

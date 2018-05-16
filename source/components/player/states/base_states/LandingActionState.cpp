@@ -7,12 +7,16 @@
 #include "skeleton/comp_skeleton.h"
 
 
+LandingActionState::LandingActionState(StateManager* stateManager, State state):
+	GroundedActionState(stateManager, state){
+}
+
 void LandingActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
-	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 	if (hasInput) {
 		VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
 		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);

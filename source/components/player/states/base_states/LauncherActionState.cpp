@@ -7,6 +7,12 @@
 #include "skeleton/comp_skeleton.h"
 
 
+LauncherActionState::LauncherActionState(StateManager* stateManager, State state, std::string animation, std::string hitbox) :
+	GroundedActionState(stateManager, state),
+	animation(animation),
+	hitbox(hitbox) {
+}
+
 void LauncherActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;

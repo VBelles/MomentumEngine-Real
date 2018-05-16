@@ -6,8 +6,11 @@ class PitFallingActionState : public IActionState {
 private:
 	bool finish = false;
 	float fallingDamage = 1;
+	std::string animation = "walk";
+
 public:
-	PitFallingActionState(CHandle playerModelHandle);
+	PitFallingActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

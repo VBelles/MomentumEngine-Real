@@ -7,7 +7,12 @@
 #include "components/comp_camera.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
+
+StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
+	GroundedActionState(stateManager, StrongAttack) {
+}
 
 void StrongAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -41,7 +46,7 @@ void StrongAttackActionState::update(float delta) {
 		bool hasInput = movementInput != VEC2::Zero;
 
 		if (hasInput) {
-			VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+			VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 			VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
 			rotatePlayerTowards(delta, targetPos, 3.f);
 		}
@@ -75,7 +80,7 @@ void StrongAttackActionState::onLeavingGround() {
 }
 
 void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAtackHit = {};

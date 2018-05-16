@@ -8,7 +8,8 @@ private:
 	float squatTime = frames2sec(2);
 	float enteringVelocity = 0.f;
 public:
-	GhostJumpSquatActionState(CHandle playerModelHandle);
+	GhostJumpSquatActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

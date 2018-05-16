@@ -8,7 +8,12 @@
 #include "components/comp_camera.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
+
+FallingAttackActionState::FallingAttackActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, FallingAttack) {
+}
 
 void FallingAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -20,7 +25,7 @@ void FallingAttackActionState::update(float delta) {
 		PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 		if (hasInput) {
-			VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+			VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 			VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
 			rotatePlayerTowards(delta, targetPos, 10.f);
 		}
@@ -63,8 +68,7 @@ void FallingAttackActionState::onLanding() {
 
 
 void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
-
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

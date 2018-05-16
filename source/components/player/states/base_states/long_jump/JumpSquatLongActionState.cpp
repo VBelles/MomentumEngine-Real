@@ -5,6 +5,10 @@
 #include "components/player/comp_player_model.h"
 #include "skeleton/comp_skeleton.h"
 
+JumpSquatLongActionState::JumpSquatLongActionState(StateManager* stateManager) :
+	GroundedActionState(stateManager, JumpSquatLong) {
+}
+
 void JumpSquatLongActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;

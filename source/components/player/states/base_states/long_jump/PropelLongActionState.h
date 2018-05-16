@@ -9,8 +9,11 @@ protected:
 	VEC3 movingVelocity;
 	CHandle propelTarget;
 
+	std::string animation = "jump_inicio";
+
 public:
-	PropelLongActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_inicio") {}
+	PropelLongActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

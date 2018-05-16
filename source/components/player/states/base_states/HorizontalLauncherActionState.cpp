@@ -6,10 +6,15 @@
 #include "components/comp_transform.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
+
+HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stateManager) :
+	LauncherActionState(stateManager, HorizontalLauncher, "vertical_launcher", "horizontal_launcher") {
+}
 
 void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAtackHit = {};

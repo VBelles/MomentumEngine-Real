@@ -6,8 +6,12 @@ class JumpSquatLongActionState : public GroundedActionState {
 private:
 	CTimer timer;
 	float squatTime = frames2sec(8);
+
+	std::string animation = "longJump_inicio";
+
 public:
-	JumpSquatLongActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "longJump_inicio") {}
+	JumpSquatLongActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -16,5 +20,5 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
-	virtual void onLeavingGround();
+	void onLeavingGround() override;
 };

@@ -4,8 +4,8 @@
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
 
-TurnAroundActionState::TurnAroundActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
+TurnAroundActionState::TurnAroundActionState(StateManager* stateManager)
+	: GroundedActionState::GroundedActionState(stateManager, TurnAround) {
 }
 
 void TurnAroundActionState::update (float delta) {
@@ -39,7 +39,7 @@ void TurnAroundActionState::onStateEnter(IActionState * lastState) {
 	float enteringHorizontalVelocity = enteringHorizontalVelocityVector.Length();
 	movementInput = lastState->getMovementInput();
 	movementInput.Normalize();
-	VEC3 movementInputWorldSpace = getCamera()->TransformToWorld(movementInput);
+	VEC3 movementInputWorldSpace = getCamera()->getCamera()->TransformToWorld(movementInput);
 	exitVelocityVector = movementInputWorldSpace * enteringHorizontalVelocity;
 	exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 	float y, p, r;

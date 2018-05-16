@@ -8,12 +8,11 @@
 #include "modules/game/physics/basic_query_filter_callback.h"
 
 
-HuggingWallActionState::HuggingWallActionState(CHandle playerModelHandle) :
-	AirborneActionState(playerModelHandle, "bajandopared"),
-	animationClimbing("correporlapared"),
+
+HuggingWallActionState::HuggingWallActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, HuggingWall),
 	huggingWallMinPitch(cosf(getPlayerModel()->huggingWallMinPitch + M_PI_2)) {
 }
-
 
 void HuggingWallActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -23,7 +22,7 @@ void HuggingWallActionState::update(float delta) {
 	getYawPitchFromVector(toVec3(wallNormal), &yaw, &pitch);
 	VEC3 tangentVector;
 	if (CheckIfHuggingWall(wallDirection)) {
-		VEC3 worldInput = getCamera()->TransformToWorld(movementInput);
+		VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(movementInput);
 		VEC3 normal = { wallNormal.x, 0.f, wallNormal.z };
 		if (worldInput.Dot(normal) >= releaseWallMinDotProduct && movementInput != VEC2::Zero) {
 			if (!isTryingToRelease) {

@@ -6,12 +6,12 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
 
-DeathActionState::DeathActionState(CHandle playerModelHandle)
-	: IActionState::IActionState(playerModelHandle) {
-	animation = "walk";
+
+DeathActionState::DeathActionState(StateManager* stateManager) :
+	IActionState(stateManager, Death) {
 }
 
-void DeathActionState::update (float delta) {
+void DeathActionState::update(float delta) {
 	if (finish) {
 		respawn();
 	}
@@ -21,7 +21,7 @@ void DeathActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	getPlayerModel()->getSkeleton()->blendCycle(animation);
 	finish = true;
-    EngineScripting.throwEvent(onPlayerKilled, "");
+	EngineScripting.throwEvent(onPlayerKilled, "");
 }
 
 void DeathActionState::onStateExit(IActionState* nextState) {

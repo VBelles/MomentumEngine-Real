@@ -7,8 +7,12 @@ protected:
 	CTimer timer;
 	float landingLagTime = frames2sec(9);
 	float enteringSpeed;
+
+	std::string animation = "jump_caida";
+
 public:
-	LandingActionState(CHandle playerModelHandle, std::string animation = "jump_caida") : GroundedActionState(playerModelHandle, animation) {}
+	LandingActionState(StateManager* stateManager, State state = Landing);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -17,6 +21,7 @@ public:
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
+
 	void SetFinalRotationAndVelocity();
 	
 };

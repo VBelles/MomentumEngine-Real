@@ -8,15 +8,14 @@ private:
 	float maxVerticalSlidingVelocity = 10.f;
 	float sidewaysSlidingVelocity = 2.f;
 
-	bool isTryingToLand = false;
-	float landingWindowTime = 0.1f;
-	CTimer landingWindowTimer;
+	std::string animation = "jump_volando";
+
 public:
-	SlideActionState(CHandle playerModelHandle) :AirborneActionState(playerModelHandle, "jump_volando") {}
+	SlideActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
-
 	void onJumpHighButton() override {}
 	void onJumpLongButton() override {}
 	void onFastAttackButton() override {}

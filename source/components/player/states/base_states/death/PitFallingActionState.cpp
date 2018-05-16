@@ -6,12 +6,12 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
 
-PitFallingActionState::PitFallingActionState(CHandle playerModelHandle)
-	: IActionState::IActionState(playerModelHandle) {
-	animation = "walk";
+
+PitFallingActionState::PitFallingActionState(StateManager* stateManager) :
+	IActionState(stateManager, PitFalling) {
 }
 
-void PitFallingActionState::update (float delta) {
+void PitFallingActionState::update(float delta) {
 	if (finish) {
 		respawn();
 	}

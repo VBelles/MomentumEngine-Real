@@ -3,9 +3,12 @@
 #include "components/player/states/AirborneActionState.h"
 
 class AirborneWallJumpActionState : public AirborneActionState {
-	
+private:
+	std::string animation = "jump_volando";
+
 public:
-	AirborneWallJumpActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_volando") {}
+	AirborneWallJumpActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

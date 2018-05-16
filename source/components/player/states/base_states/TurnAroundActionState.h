@@ -3,6 +3,7 @@
 #include "components/player/states/GroundedActionState.h"
 
 class TurnAroundActionState : public GroundedActionState {
+private:
 	CTimer timer;
 	float turnAroundTime = frames2sec(9);
 	VEC3 exitVelocityVector;
@@ -12,13 +13,13 @@ class TurnAroundActionState : public GroundedActionState {
 
 	void rotateToFinalDirection();
 	void setFinalVelocity();
+
 public:
-	TurnAroundActionState(CHandle playerModelHandle);
+	TurnAroundActionState(StateManager* stateManager);
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 	void onJumpHighButton() override;
 	void onJumpLongButton() override;
-
-	virtual void onLeavingGround();
+	void onLeavingGround() override;
 };

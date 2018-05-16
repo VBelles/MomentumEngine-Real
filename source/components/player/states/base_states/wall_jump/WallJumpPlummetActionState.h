@@ -11,11 +11,13 @@ protected:
 	float damage = 3;
 	float powerToGet = 4000.f;
 
-	std::string hitbox;
+	std::string animation = "jump_volando";
+
+	std::string hitbox = "plummet_attack";
 
 public:
-	WallJumpPlummetActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "jump_volando"),
-		hitbox("plummet_attack") {}
+	WallJumpPlummetActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

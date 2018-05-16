@@ -3,11 +3,12 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_transform.h"
 
-GhostJumpWindowActionState::GhostJumpWindowActionState(CHandle playerModelHandle)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
+
+GhostJumpWindowActionState::GhostJumpWindowActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, GhostJumpWindow) {
 }
 
-void GhostJumpWindowActionState::update (float delta) {
+void GhostJumpWindowActionState::update(float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
 		if (!isChangingBaseState) {

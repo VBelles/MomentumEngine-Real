@@ -6,6 +6,10 @@
 #include "skeleton/comp_skeleton.h"
 
 
+AirborneWallJumpActionState::AirborneWallJumpActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, AirborneWallJump) {
+}
+
 void AirborneWallJumpActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.x = velocityVector->x * delta;

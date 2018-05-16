@@ -3,11 +3,12 @@
 #include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
 
-GhostJumpSquatActionState::GhostJumpSquatActionState(CHandle playerModelHandle)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
+
+GhostJumpSquatActionState::GhostJumpSquatActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, GhostJumpSquat) {
 }
 
-void GhostJumpSquatActionState::update (float delta) {
+void GhostJumpSquatActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();

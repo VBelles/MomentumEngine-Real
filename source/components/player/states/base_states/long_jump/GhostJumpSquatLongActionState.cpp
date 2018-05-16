@@ -3,11 +3,10 @@
 #include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
 
-GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(CHandle playerModelHandle)
-	: AirborneActionState::AirborneActionState(playerModelHandle) {
+
+GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, GhostJumpSquatLong) {
 }
-
-
 
 void GhostJumpSquatLongActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;

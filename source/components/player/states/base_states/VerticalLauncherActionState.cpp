@@ -5,9 +5,14 @@
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
+
+VerticalLauncherActionState::VerticalLauncherActionState(StateManager * stateManager) :
+	LauncherActionState(stateManager, VerticalLauncher, "vertical_launcher", "vertical_launcher") {
+}
 
 void VerticalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAtackHit = {};

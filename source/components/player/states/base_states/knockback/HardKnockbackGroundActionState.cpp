@@ -6,12 +6,11 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
 
-HardKnockbackGroundActionState::HardKnockbackGroundActionState(CHandle playerModelHandle)
-	: GroundedActionState::GroundedActionState(playerModelHandle) {
-	animation = "jump_volando";
+HardKnockbackGroundActionState::HardKnockbackGroundActionState(StateManager* stateManager) :
+	GroundedActionState(stateManager, HardKnockbackGround) {
 }
 
-void HardKnockbackGroundActionState::update (float delta) {
+void HardKnockbackGroundActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (timer.elapsed() >= duration) {
 		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);

@@ -6,7 +6,11 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
-void WalkActionState::update (float delta) {
+WalkActionState::WalkActionState(StateManager* stateManager) :
+	GroundedActionState(stateManager, Walk) {
+}
+
+void WalkActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
@@ -19,7 +23,7 @@ void WalkActionState::update (float delta) {
 	}
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
-	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 	bool isTurnAround = getPlayerModel()->getTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
 	if (hasInput && !isTurnAround) {
 		VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
@@ -59,7 +63,7 @@ void WalkActionState::update (float delta) {
 			if (horizontalVelocity.Length() == 0.f) {
 				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
 			}
-			else if(!wantToWalk && horizontalVelocity.Length() > getPlayerModel()->walkingSpeed){
+			else if (!wantToWalk && horizontalVelocity.Length() > getPlayerModel()->walkingSpeed) {
 				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Run);
 			}
 		}

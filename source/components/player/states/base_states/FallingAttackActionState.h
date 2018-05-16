@@ -11,14 +11,16 @@ private:
 	float upwardsVelocity = 18.f;
 
 	float damage = 2.f;
-
 	float powerToGet = 4000.f;
+
+	std::string animation = "ataquecaida";
 
 	std::string hitbox = "falling_attack";
 	std::string animationPositioning = "jump_inicio";
 
 public:
-	FallingAttackActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "ataquecaida") {}
+	FallingAttackActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

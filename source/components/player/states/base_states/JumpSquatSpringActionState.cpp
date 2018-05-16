@@ -5,7 +5,11 @@
 #include "skeleton/comp_skeleton.h"
 
 
-void JumpSquatSpringActionState::update (float delta) {
+JumpSquatSpringActionState::JumpSquatSpringActionState(StateManager* stateManager) :
+	GroundedActionState(stateManager, JumpSquatSpring) {
+}
+
+void JumpSquatSpringActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();

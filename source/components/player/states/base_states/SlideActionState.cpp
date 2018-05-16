@@ -5,6 +5,10 @@
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
 
+SlideActionState::SlideActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, Slide) {
+}
+
 void SlideActionState::update(float delta) {
 	AirborneActionState::update(delta);
 	//deltaMovement = VEC3::Zero;
@@ -60,7 +64,6 @@ void SlideActionState::onStateEnter(IActionState* lastState) {
 	//velocityVector->y = 0.f;
 	//velocityVector->x = 0.f;
 	//velocityVector->z = 0.f;
-	isTryingToLand = false;
 }
 
 void SlideActionState::onStateExit(IActionState* nextState) {

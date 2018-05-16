@@ -6,6 +6,11 @@
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
+
+WallJumpPlummetActionState::WallJumpPlummetActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, WallJumpPlummet) {
+}
 
 void WallJumpPlummetActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -73,7 +78,7 @@ void WallJumpPlummetActionState::onLanding() {
 }
 
 void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAtackHit = {};

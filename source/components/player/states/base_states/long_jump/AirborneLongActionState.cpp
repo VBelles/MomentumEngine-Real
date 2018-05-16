@@ -5,12 +5,16 @@
 #include "components/player/comp_player_model.h"
 #include "skeleton/comp_skeleton.h"
 
-void AirborneLongActionState::update (float delta) {
+AirborneLongActionState::AirborneLongActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, AirborneLong) {
+}
+
+void AirborneLongActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 
-	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 
 	if (hasInput) {
 		//aceleración según sentido de movimiento

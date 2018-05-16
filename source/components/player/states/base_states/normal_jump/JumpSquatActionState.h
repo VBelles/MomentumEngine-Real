@@ -11,8 +11,11 @@ private:
 
 	float enteringVelocity = 0.f;
 
+	std::string animation = "jump_inicio";
+
 public:
-	JumpSquatActionState(CHandle playerModelHandle) : GroundedActionState(playerModelHandle, "jump_inicio") {}
+	JumpSquatActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -22,5 +25,5 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 	void onJumpHighButtonReleased() override;
-	virtual void onLeavingGround() override;
+	void onLeavingGround() override;
 };
