@@ -28,6 +28,7 @@ void StrongAttackActionState::update(float delta) {
 			timer.reset();
 			getHitboxes()->disable(hitbox);
 			phase = AttackPhases::Recovery;
+
 		}
 		else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 			timer.reset();
