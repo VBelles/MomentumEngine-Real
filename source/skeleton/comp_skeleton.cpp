@@ -252,7 +252,7 @@ void TCompSkeleton::removeAction(std::string animation, float delay) {
 	}
 }
 
-void TCompSkeleton::clear(float delay = 0.0f) {
+void TCompSkeleton::clear(float delay) {
 	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
 	for (auto a : model->getMixer()->getAnimationCycle()) {
 		int id = core->getCoreAnimationId(a->getCoreAnimation()->getName());
