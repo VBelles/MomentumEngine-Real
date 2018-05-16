@@ -26,6 +26,7 @@ struct AttackInfo {
 		VEC3 velocity;
 	};
 	float damage = 0.f;
+	float invulnerabilityTime = 0.f;
 	bool givesPower = false;
 	bool activatesMechanism = false;
 	Stun* stun = nullptr;
@@ -36,6 +37,7 @@ struct AttackInfo {
 
 	AttackInfo& AttackInfo::operator=(const AttackInfo& toCopy) {
 		damage = toCopy.damage;
+		invulnerabilityTime = toCopy.invulnerabilityTime;
 		givesPower = toCopy.givesPower;
 		activatesMechanism = toCopy.activatesMechanism;
 		release();

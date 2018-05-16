@@ -14,7 +14,7 @@ GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState sta
 void GrabActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		stateManager->changeState(Free);
+		stateManager->changeConcurrentState(Free);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -45,6 +45,6 @@ void GrabActionState::onStateExit(IActionState * nextState) {
 void GrabActionState::onLanding() {
 	getHitboxes()->disable(hitbox);
 	stateManager->changeState(Landing);
-	stateManager->changeState(Free);
+	stateManager->changeConcurrentState(Free);
 }
 

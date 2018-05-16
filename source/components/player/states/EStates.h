@@ -34,6 +34,7 @@ enum State {
 	Death,
 	PitFalling,
 	HardKnockbackGround,
+	HardKnockbackAir,
 	Slide
 };
 
@@ -44,5 +45,7 @@ enum ConcurrentState {
 	FastAttackAir,
 	GrabHigh,
 	GrabLong,
-	ReleasePowerAir
+	ReleasePowerAir,
+	SoftKnockbackAir,
+	SoftKnockbackGround
 };

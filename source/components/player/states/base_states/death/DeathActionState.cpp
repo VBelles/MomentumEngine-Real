@@ -33,7 +33,7 @@ void DeathActionState::respawn() {
 	assert(getPlayerModel());
 	VEC3 respawnPosition = getPlayerModel()->getRespawnPosition();
 	getCollider()->controller->setFootPosition(PxExtendedVec3(respawnPosition.x, respawnPosition.y, respawnPosition.z));
-	stateManager->changeState(Free);
+	stateManager->changeConcurrentState(Free);
 	stateManager->changeState(AirborneNormal);
 	getPlayerModel()->resetHp();
 	getPlayerModel()->getPowerGauge()->resetPower();

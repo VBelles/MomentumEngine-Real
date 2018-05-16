@@ -35,7 +35,7 @@ void PropelLongActionState::update(float delta) {
 			//pasar mensaje a la otra entidad
 			CHandle playerEntity = CHandle(stateManager->getEntity());
 			CEntity* targetEntity = propelTarget;
-			VEC3 propelVelocity = { 0, -currentPowerStats->jumpVelocityVector.y, 0 };
+			VEC3 propelVelocity = -getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 			TMsgAttackHit msgAtackHit = {};
 			msgAtackHit.attacker = playerEntity;
 			msgAtackHit.info = {};

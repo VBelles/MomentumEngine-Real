@@ -53,7 +53,7 @@ public:
 
 	void updateStates(float delta);
 	void changeState(State newState);
-	void changeState(ConcurrentState newState);
+	void changeConcurrentState(ConcurrentState newState);
 	void performStateChange();
 
 	IActionState* getState();

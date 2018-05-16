@@ -57,12 +57,12 @@ void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 void WallJumpPlummetActionState::onJumpHighButton() {
 	//Se recupera y agarra
 	stateManager->changeState(AirborneNormal);
-	stateManager->changeState(GrabHigh);
+	stateManager->changeConcurrentState(GrabHigh);
 }
 
 void WallJumpPlummetActionState::onJumpLongButton() {
 	stateManager->changeState(AirborneNormal);
-	stateManager->changeState(GrabLong);
+	stateManager->changeConcurrentState(GrabLong);
 }
 
 void WallJumpPlummetActionState::onFastAttackButton() {

@@ -58,7 +58,7 @@ void AirborneActionState::update(float delta) {
 	}
 
 	if (hasInput) {
-		//aceleración según sentido de movimiento
+		//aceleraciï¿½n segï¿½n sentido de movimiento
 		float appliedAcceleration = calculateAccelerationAccordingToDirection(enterFront, desiredDirection,
 			enteringPowerStats->airAcceleration, backwardsMaxDotProduct, sidewaysMaxDotProduct, backwardsAirDriftFactor,
 			sidewaysAirDriftFactor);
@@ -96,11 +96,11 @@ void AirborneActionState::onStateExit(IActionState * nextState) {
 }
 
 void AirborneActionState::onJumpHighButton() {
-	stateManager->changeState(GrabHigh);
+	stateManager->changeConcurrentState(GrabHigh);
 }
 
 void AirborneActionState::onJumpLongButton() {
-	stateManager->changeState(GrabLong);
+	stateManager->changeConcurrentState(GrabLong);
 }
 
 void AirborneActionState::onStrongAttackButton() {
@@ -109,13 +109,13 @@ void AirborneActionState::onStrongAttackButton() {
 
 void AirborneActionState::onFastAttackButton() {
 	if (getPlayerModel()->isConcurrentActionFree()) {
-		stateManager->changeState(FastAttackAir);
+		stateManager->changeConcurrentState(FastAttackAir);
 	}
 }
 
 void AirborneActionState::onReleasePowerButton() {
 	if (getPlayerModel()->isConcurrentActionFree()) {
-		stateManager->changeState(ReleasePowerAir);
+		stateManager->changeConcurrentState(ReleasePowerAir);
 	}
 }
 
@@ -184,7 +184,13 @@ void AirborneActionState::onLanding() {
 }
 
 
-void AirborneActionState::onDamage(float damage, bool isHard) {
-	IActionState::onDamage(damage, isHard);
-	//stateManager->changeState(SoftKnockbackAir);
+void AirborneActionState::onDamage(const TMsgAttackHit& msg) {
+	if (msg.info.stun) {
+		stateManager->changeState(HardKnockbackAir);
+	}
+	else {
+		stateManager->changeConcurrentState(SoftKnockbackAir);
+	}
+	IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
+
 }

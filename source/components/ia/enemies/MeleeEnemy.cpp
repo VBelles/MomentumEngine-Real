@@ -159,6 +159,7 @@ int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
 int CBehaviorTreeMeleeEnemy::propelled(float delta) {
 	if (timer.elapsed() < propelDuration) {
 		VEC3 deltaMovement = velocityVector * delta;
+		updateGravity(delta);
 		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 		return Stay;
 	}
@@ -365,6 +366,8 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 				TMsgAttackHit msg = {};
 				msg.attacker = CHandle(this);
 				msg.info.damage = attackDamage;
+				msg.info.stun = new AttackInfo::Stun{ 1.f };
+				msg.info.invulnerabilityTime = 1.f;
 				getPlayerEntity()->sendMsg(msg);
 			}
 			isFirstAttackLaunched = true;

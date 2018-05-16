@@ -1,8 +1,8 @@
 #pragma once
 
-#include "components/player/states/GroundedActionState.h"
+#include "components/player/states/AirborneActionState.h"
 
-class HardKnockbackGroundActionState : public GroundedActionState {
+class HardKnockbackAirActionState : public AirborneActionState {
 private:
 	CTimer timer;
 	float duration = 0.8f;
@@ -10,7 +10,8 @@ private:
 	std::string animation = "recibedanio";
 
 public:
-	HardKnockbackGroundActionState(StateManager* stateManager);
+	HardKnockbackAirActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

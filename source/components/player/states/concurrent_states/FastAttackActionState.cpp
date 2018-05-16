@@ -15,11 +15,11 @@ FastAttackActionState::FastAttackActionState(StateManager* stateManager)
 void FastAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		stateManager->changeState(Free);
+		stateManager->changeConcurrentState(Free);
 		stateManager->changeState(HorizontalLauncher);
 	}
 	else if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		stateManager->changeState(Free);
+		stateManager->changeConcurrentState(Free);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();

@@ -26,7 +26,7 @@ void GrabHighActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	otherEntity->sendMsg(msgAtackHit);
 	getPlayerModel()->grabTarget = entity;
 	stateManager->changeState(PropelHigh);
-	stateManager->changeState(Free);
+	stateManager->changeConcurrentState(Free);
 
 
 }

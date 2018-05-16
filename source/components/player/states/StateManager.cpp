@@ -41,6 +41,9 @@
 #include "components/player/states/base_states/death/DeathActionState.h"
 #include "components/player/states/base_states/death/PitFallingActionState.h"
 #include "components/player/states/base_states/knockback/HardKnockbackGroundActionState.h"
+#include "components/player/states/base_states/knockback/HardKnockbackAirActionState.h"
+#include "components/player/states/concurrent_states/SoftKnockbackGroundActionState.h"
+#include "components/player/states/concurrent_states/SoftKnockbackAirActionState.h"
 #include "components/player/states/base_states/SlideActionState.h"
 #include "components/player/states/concurrent_states/FreeActionState.h"
 #include "components/player/states/concurrent_states/FastAttackActionState.h"
@@ -101,8 +104,9 @@ void StateManager::registerStates() {
 	registerState(WallJumpPlummetActionState);
 	registerState(DeathActionState);
 	registerState(PitFallingActionState);
-	registerState(HardKnockbackGroundActionState);
 	registerState(SlideActionState);
+	registerState(HardKnockbackGroundActionState);
+	registerState(HardKnockbackAirActionState);
 
 	registerConcurrentState(FreeActionState);
 	registerConcurrentState(FastAttackActionState);
@@ -110,9 +114,11 @@ void StateManager::registerStates() {
 	registerConcurrentState(GrabHighActionState);
 	registerConcurrentState(GrabLongActionState);
 	registerConcurrentState(ReleasePowerAirActionState);
+	registerConcurrentState(SoftKnockbackGroundActionState);
+	registerConcurrentState(SoftKnockbackAirActionState);
 
 	changeState(Idle);
-	changeState(Free);
+	changeConcurrentState(Free);
 	performStateChange();
 }
 
@@ -126,7 +132,7 @@ void StateManager::changeState(State newState) {
 	if(baseState) baseState->isChangingBaseState = true;
 }
 
-void StateManager::changeState(ConcurrentState newState) {
+void StateManager::changeConcurrentState(ConcurrentState newState) {
 	nextConcurrentState = concurrentStates[newState];
 	if(concurrentState) concurrentState->isChangingBaseState = true;
 }

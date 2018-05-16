@@ -192,7 +192,6 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	});
 
-	
 	currentPowerStats = powerStats[0];
 
 	playerFilterCallback = new PlayerFilterCallback();
@@ -325,7 +324,7 @@ void TCompPlayerModel::setHp(float hp) {
 	this->hp = hp;
 	if (this->hp == 0.f) {
 		stateManager->changeState(Death);
-		stateManager->changeState(Free);
+		stateManager->changeConcurrentState(Free);
 	}
 }
 
@@ -353,6 +352,10 @@ void TCompPlayerModel::damage(float damage) {//tendría que llegar también si e
 	setHp(hp - damage);
 	TCompRender* render = get<TCompRender>();
 	render->TurnRed(0.5f);
+}
+
+void TCompPlayerModel::makeInvulnerable(float time) {
+	invulnerableTime = time;
 	isInvulnerable = true;
 	invulnerableTimer.reset();
 }
@@ -413,7 +416,12 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
-		stateManager->getState()->onDamage(msg.info.damage, true);//de momento pasamos hard
+		receivedAttack = msg.info;
+		stateManager->getState()->onDamage(msg);
+		//lo que diferencia hard de soft es el stun
+	}
+	else {
+		dbg("hit but invulnerable\n");
 	}
 }
 
@@ -428,7 +436,7 @@ void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
 
 
 void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
-	stateManager->changeState(Free);
+	stateManager->changeConcurrentState(Free);
 	stateManager->changeState(PitFalling);
 }
 

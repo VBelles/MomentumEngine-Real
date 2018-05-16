@@ -16,6 +16,7 @@ class TCompHitboxes;
 class TCompRenderBlurRadial;
 struct HitState;
 struct MoveState;
+struct TMsgAttackHit;
 
 using namespace physx;
 
@@ -89,7 +90,7 @@ public:
 	virtual void onReleasePowerButton() {}
 	virtual void onHitboxEnter(std::string hitbox, CHandle entity) {}
 	virtual void onDead();
-	virtual void onDamage(float damage, bool isHard);
+	virtual void onDamage(const TMsgAttackHit& msg);
 	virtual void onMove(MoveState& moveState) {}
 
 	VEC3 getDeltaMovement() { return deltaMovement; }

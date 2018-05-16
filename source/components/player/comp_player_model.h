@@ -1,6 +1,7 @@
 #pragma once
 
 #include "components/comp_base.h"
+#include "entity/common_msgs.h"
 #include "power_stats.h"
 
 class IActionState;
@@ -71,7 +72,7 @@ private:
 
 	int coins = 0;
 
-	//TODO Esto aquí es criminal, milestone 1 ftw 
+	//TODO Esto aquï¿½ es criminal, milestone 1 ftw 
 	int chrysalis = 0;
 	int chrysalisTarget = 5;
 	bool showVictoryDialog = false;
@@ -82,6 +83,8 @@ private:
 	PlayerFilterCallback* playerFilterCallback = nullptr;
 
 	StateManager* stateManager = nullptr;
+
+	AttackInfo receivedAttack;
 
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -160,8 +163,10 @@ public:
 	void resetGravity() { currentGravity = baseGravity; }
 
 	PowerStats* getPowerStats() { return currentPowerStats; }
+	AttackInfo* getReceivedAttack() { return &receivedAttack; }
 
 	void damage(float damage);
+	void makeInvulnerable(float time);
 	void resetHp() { hp = maxHp; }
 	float getHp() { return hp; }
 	void setHp(float hp);

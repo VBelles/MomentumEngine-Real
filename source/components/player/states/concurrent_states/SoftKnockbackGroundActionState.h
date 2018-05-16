@@ -2,15 +2,16 @@
 
 #include "components/player/states/GroundedActionState.h"
 
-class HardKnockbackGroundActionState : public GroundedActionState {
+class SoftKnockbackGroundActionState : public GroundedActionState {
 private:
 	CTimer timer;
 	float duration = 0.8f;
 
-	std::string animation = "recibedanio";
+	std::string animation = "ataquecaida";
 
 public:
-	HardKnockbackGroundActionState(StateManager* stateManager);
+	SoftKnockbackGroundActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

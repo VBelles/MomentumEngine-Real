@@ -1,36 +1,35 @@
 #include "mcv_platform.h"
-#include "HardKnockbackGroundActionState.h"
+#include "HardKnockbackAirActionState.h"
 #include "components/comp_render.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
-#include "components/player/states/StateManager.h"
 #include "entity/common_msgs.h"
+#include "components/player/states/StateManager.h"
 
 
-HardKnockbackGroundActionState::HardKnockbackGroundActionState(StateManager* stateManager) :
-	GroundedActionState(stateManager, HardKnockbackGround) {
+HardKnockbackAirActionState::HardKnockbackAirActionState(StateManager * stateManager):
+AirborneActionState(stateManager, HardKnockbackAir){
 }
 
-
-void HardKnockbackGroundActionState::update(float delta) {
+void HardKnockbackAirActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	if (timer.elapsed() >= duration) {
 		stateManager->changeState(Idle);
 	}
 }
 
-void HardKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
+void HardKnockbackAirActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	*velocityVector = VEC3::Zero;
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	timer.reset();
-	//sï¿½lo entra en este estado si tiene stun
+	//sólo entra en este estado si tiene stun
 	duration = getPlayerModel()->getReceivedAttack()->stun->duration;
 }
 
-void HardKnockbackGroundActionState::onStateExit(IActionState* nextState) {
+void HardKnockbackAirActionState::onStateExit(IActionState* nextState) {
 	IActionState::onStateExit(nextState);
 }
 

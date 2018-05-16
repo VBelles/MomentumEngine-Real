@@ -33,7 +33,7 @@ void FallingAttackActionState::update(float delta) {
 		deltaMovement.y = upwardsVelocity * delta;
 	}
 	else {
-		//ataque caída
+		//ataque caï¿½da
 		if (timer.elapsed() >= hitboxOutTime) {
 			getHitboxes()->enable(hitbox);
 		}
@@ -63,11 +63,15 @@ void FallingAttackActionState::onLanding() {
 	//getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack
 	*velocityVector = VEC3::Zero;
 	stateManager->changeState(LandingFallingAttack);
-	stateManager->changeState(Free);
+	stateManager->changeConcurrentState(Free);
 }
 
 
 void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
+	//Para y su velocidad se transmite al enemigo
+	*velocityVector = VEC3::Zero;
+	stateManager->changeState(AirborneNormal);
+
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 

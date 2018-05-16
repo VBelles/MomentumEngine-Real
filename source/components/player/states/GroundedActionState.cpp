@@ -2,7 +2,7 @@
 #include "GroundedActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/states/StateManager.h"
-
+#include "entity/common_msgs.h"
 
 GroundedActionState::GroundedActionState(StateManager* stateManager, State state)
 	: IActionState(stateManager, state) {
@@ -44,7 +44,7 @@ void GroundedActionState::onStrongAttackButton() {
 
 void GroundedActionState::onFastAttackButton() {
 	if (getPlayerModel()->isConcurrentActionFree()) {
-		stateManager->changeState(FastAttack);
+		stateManager->changeConcurrentState(FastAttack);
 	}
 }
 
@@ -69,7 +69,13 @@ void GroundedActionState::onLeavingGround() {
 	stateManager->changeState(GhostJumpWindow);
 }
 
-void GroundedActionState::onDamage(float damage, bool isHard) {
-	stateManager->changeState(HardKnockbackGround);
-	IActionState::onDamage(damage, isHard);//Hacemos esto al final para sobreescribir el estado de muerte
+
+void GroundedActionState::onDamage(const TMsgAttackHit& msg) {
+	if (msg.info.stun) {
+		stateManager->changeState(HardKnockbackGround);
+	}
+	else {
+		stateManager->changeConcurrentState(SoftKnockbackGround);
+	}
+	IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
 }

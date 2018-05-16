@@ -21,7 +21,7 @@ void ReleasePowerAirActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		stateManager->changeState(Free);
+		stateManager->changeConcurrentState(Free);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -97,7 +97,7 @@ void ReleasePowerAirActionState::onReleasePowerButton() {
 
 void ReleasePowerAirActionState::onLanding() {
 	stateManager->changeState(Landing);
-	stateManager->changeState(Free);
+	stateManager->changeConcurrentState(Free);
 }
 
 
