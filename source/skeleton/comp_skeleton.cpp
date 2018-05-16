@@ -176,27 +176,27 @@ void TCompSkeleton::updateCtesBones() {
 }
 
 void TCompSkeleton::renderDebug() {
-  assert(model);
+	assert(model);
 
-  VEC3 lines[MAX_SUPPORTED_BONES][2];
-  int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
-  TCompTransform* transform = get<TCompTransform>();
-  float scale = transform->getScale();
-  for (int currLine = 0; currLine < nrLines; currLine++)
-    renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale * 1.0000001, VEC4(1, 1, 1, 1));
+	VEC3 lines[MAX_SUPPORTED_BONES][2];
+	int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
+	TCompTransform* transform = get<TCompTransform>();
+	float scale = transform->getScale();
+	for (int currLine = 0; currLine < nrLines; currLine++)
+		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale * 1.0000001, VEC4(1, 1, 1, 1));
 
-  // Show list of bones
-  auto mesh = Resources.get("axis.mesh")->as<CRenderMesh>();
-  auto core = (CGameCoreSkeleton*)model->getCoreModel();
-  auto& bones_to_debug = core->bone_ids_to_debug;
-  for (auto it : bones_to_debug) {
-    CalBone* cal_bone = model->getSkeleton()->getBone(it);
-    QUAT rot = Cal2DX(cal_bone->getRotationAbsolute());
-    VEC3 pos = Cal2DX(cal_bone->getTranslationAbsolute());
-    MAT44 matrix;
-    matrix = MAT44::CreateFromQuaternion(rot) * MAT44::CreateTranslation(pos);
-    renderMesh(mesh, matrix, VEC4(1, 1, 1, 1));
-  }
+	// Show list of bones
+	auto mesh = Resources.get("axis.mesh")->as<CRenderMesh>();
+	auto core = (CGameCoreSkeleton*)model->getCoreModel();
+	auto& bones_to_debug = core->bone_ids_to_debug;
+	for (auto it : bones_to_debug) {
+		CalBone* cal_bone = model->getSkeleton()->getBone(it);
+		QUAT rot = Cal2DX(cal_bone->getRotationAbsolute());
+		VEC3 pos = Cal2DX(cal_bone->getTranslationAbsolute());
+		MAT44 matrix;
+		matrix = MAT44::CreateFromQuaternion(rot) * MAT44::CreateTranslation(pos);
+		renderMesh(mesh, matrix, VEC4(1, 1, 1, 1));
+	}
 }
 
 void TCompSkeleton::blendCycle(int animationId, float in_delay, float out_delay, float weight, bool clearPrevious) {
@@ -225,6 +225,42 @@ void TCompSkeleton::executeAction(std::string animation, float in_delay, float o
 	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
 	int animationId = core->getCoreAnimationId(animation);
 	executeAction(animationId, in_delay, out_delay, weight, auto_lock);
+}
+
+void TCompSkeleton::removeAction(int animationId, float delay) {
+	if (delay == 0) {
+		model->getMixer()->removeAction(animationId);
+	}
+	else {
+		CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
+		removeAction(core->getCoreAnimation(animationId)->getName(), delay);
+	}
+}
+
+void TCompSkeleton::removeAction(std::string animation, float delay) {
+	if (delay == 0) {
+		CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
+		int animationId = core->getCoreAnimationId(animation);
+		removeAction(animationId);
+	}
+	else {
+		for (auto a : model->getMixer()->getAnimationActionList()) {
+			if (a->getCoreAnimation()->getName() == animation) {
+				a->remove(delay);
+			}
+		}
+	}
+}
+
+void TCompSkeleton::clear(float delay) {
+	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
+	for (auto a : model->getMixer()->getAnimationCycle()) {
+		int id = core->getCoreAnimationId(a->getCoreAnimation()->getName());
+		model->getMixer()->clearCycle(id, delay);
+	}
+	for (auto a : model->getMixer()->getAnimationActionList()) {
+		removeAction(a->getCoreAnimation()->getName(), delay);
+	}
 }
 
 void TCompSkeleton::setTimeFactor(float timeFactor) {

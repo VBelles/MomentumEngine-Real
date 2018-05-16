@@ -24,6 +24,9 @@ public:
 	void blendCycle(std::string animation, float in_delay = 0.0f, float out_delay = 0.0f, float weight = 1.f, bool clearPrevious = true);
 	void executeAction(int animationId, float in_delay = 0.0f, float out_delay = 0.0f, float weight = 1.0f, bool auto_lock = false);
 	void executeAction(std::string animation, float in_delay = 0.0f, float out_delay = 0.0f, float weight = 1.0f, bool auto_lock = false);
+	void removeAction(int animationId, float delay = 0.0f);
+	void removeAction(std::string animation, float delay = 0.0f);
+	void clear(float delay = 0.0f);
 	void setTimeFactor(float timeFactor);
 	float getAnimationTime();
 	float getAnimationDuration(int animationId);
