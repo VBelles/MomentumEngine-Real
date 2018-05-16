@@ -188,6 +188,7 @@ public:
 	void resetGravity() { currentGravity = baseGravity; }
 
 	PowerStats* getPowerStats() { return currentPowerStats; }
+	AttackInfo* getReceivedAttack() { return &receivedAttack; }
 
 	template <typename T>
 	T getBaseState(TCompPlayerModel::ActionStates state) { return static_cast<T>(baseStates[state]); }

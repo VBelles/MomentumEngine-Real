@@ -5,6 +5,7 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
+#include "entity/common_msgs.h"
 
 HardKnockbackGroundActionState::HardKnockbackGroundActionState(CHandle playerModelHandle)
 	: GroundedActionState::GroundedActionState(playerModelHandle) {
@@ -23,6 +24,8 @@ void HardKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
 	*velocityVector = VEC3::Zero;
 	getPlayerModel()->getSkeleton()->blendCycle(animation);
 	timer.reset();
+	//sólo entra en este estado si tiene stun
+	duration = getPlayerModel()->getReceivedAttack()->stun->duration;
 }
 
 void HardKnockbackGroundActionState::onStateExit(IActionState* nextState) {
