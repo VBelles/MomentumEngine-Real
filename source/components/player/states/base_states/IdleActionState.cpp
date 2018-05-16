@@ -7,14 +7,18 @@
 #include "skeleton/comp_skeleton.h"
 
 
-void IdleActionState::update (float delta) {
+IdleActionState::IdleActionState(StateManager * stateManager) :
+	GroundedActionState(stateManager, Idle) {
+}
+
+void IdleActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
-	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 	bool isTurnAround = getPlayerModel()->getTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
 	if (hasInput && !isTurnAround) {
 		VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;

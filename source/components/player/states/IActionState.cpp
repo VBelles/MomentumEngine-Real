@@ -140,10 +140,5 @@ TCompTransform* IActionState::getPlayerTransform() { return stateManager->getTra
 TCompCollider* IActionState::getCollider() { return stateManager->getCollider(); }
 TCompRender* IActionState::getRender() { return stateManager->getRender(); }
 TCompHitboxes* IActionState::getHitboxes() { return stateManager->getHitboxes(); }
+TCompCamera* IActionState::getCamera() { return stateManager->getCamera(); }
 TCompRenderBlurRadial* IActionState::getBlurRadial() { return getCamera()->get<TCompRenderBlurRadial>(); }
-TCompCamera* IActionState::getCamera() {
-	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
-	TCompCamera* currentCamera = camera->get<TCompCamera>();
-	assert(currentCamera);
-	return currentCamera;
-}

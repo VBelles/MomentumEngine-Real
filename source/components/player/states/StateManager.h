@@ -23,7 +23,6 @@ private:
 	CHandle cameraHandle;
 	CHandle skeletonHandle;
 	CHandle hitboxesHandle;
-	CHandle renderBlurRadialHandle;
 
 	std::map<State, IActionState*> states;
 	std::map<ConcurrentState, IActionState*> concurrentStates;
@@ -38,7 +37,7 @@ private:
 	states[s->state] = s;
 
 #define registerConcurrentState(stateClass) \
-	IActionState* s = new stateClass(playerModelHandle); \
+	IActionState* s = new stateClass(this); \
 	concurrentStates[s->concurrentState] = s;
 	
 public:
@@ -70,7 +69,6 @@ public:
 	TCompCamera* getCamera();
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
-	TCompRenderBlurRadial* getBlurRadial();
 
 };
 

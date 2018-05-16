@@ -56,10 +56,9 @@ StateManager::StateManager(CHandle entityHandle) :
 	transformHandle(getEntity()->get<TCompTransform>()),
 	colliderHandle(getEntity()->get<TCompCollider>()),
 	renderHandle(getEntity()->get<TCompRender>()),
-	cameraHandle(getEntity()->get<TCompCamera>()),
+	cameraHandle(((CEntity *)getEntityByName(GAME_CAMERA))->get<TCompCamera>()),
 	skeletonHandle(getEntity()->get<TCompSkeleton>()),
-	hitboxesHandle(getEntity()->get<TCompHitboxes>()),
-	renderBlurRadialHandle(getEntity()->get<TCompRenderBlurRadial>()) {
+	hitboxesHandle(getEntity()->get<TCompHitboxes>()){
 }
 
 StateManager::~StateManager() {
@@ -159,5 +158,4 @@ TCompRender* StateManager::getRender() { return renderHandle; }
 TCompCamera* StateManager::getCamera() { return cameraHandle; }
 TCompSkeleton* StateManager::getSkeleton() { return skeletonHandle; }
 TCompHitboxes* StateManager::getHitboxes() { return hitboxesHandle; }
-TCompRenderBlurRadial* StateManager::getBlurRadial() { return renderBlurRadialHandle; }
 
