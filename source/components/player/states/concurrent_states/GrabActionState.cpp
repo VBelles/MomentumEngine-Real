@@ -4,7 +4,7 @@
 #include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
 #include "skeleton/comp_skeleton.h"
-
+#include "components/player/states/StateManager.h"
 
 
 GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState state) :
@@ -14,7 +14,7 @@ GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState sta
 void GrabActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		stateManager->changeState(Free);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -44,7 +44,7 @@ void GrabActionState::onStateExit(IActionState * nextState) {
 
 void GrabActionState::onLanding() {
 	getHitboxes()->disable(hitbox);
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	stateManager->changeState(Landing);
+	stateManager->changeState(Free);
 }
 

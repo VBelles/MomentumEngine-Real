@@ -8,6 +8,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
 
+
 WallJumpPlummetActionState::WallJumpPlummetActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, WallJumpPlummet) {
 }
@@ -26,7 +27,7 @@ void WallJumpPlummetActionState::update(float delta) {
 	deltaMovement = *velocityVector * delta;
 	if (!isChangingBaseState) {
 		if (timer.elapsed() >= endingTime) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			stateManager->changeState(AirborneNormal);
 		}
 	}
 }
@@ -55,26 +56,26 @@ void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 
 void WallJumpPlummetActionState::onJumpHighButton() {
 	//Se recupera y agarra
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::GrabHigh);
+	stateManager->changeState(AirborneNormal);
+	stateManager->changeState(GrabHigh);
 }
 
 void WallJumpPlummetActionState::onJumpLongButton() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::GrabLong);
+	stateManager->changeState(AirborneNormal);
+	stateManager->changeState(GrabLong);
 }
 
 void WallJumpPlummetActionState::onFastAttackButton() {
 	//Se recupera
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	stateManager->changeState(AirborneNormal);
 }
 
 void WallJumpPlummetActionState::onStrongAttackButton() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	stateManager->changeState(AirborneNormal);
 }
 
 void WallJumpPlummetActionState::onLanding() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
+	stateManager->changeState(LandingFallingAttack);
 }
 
 void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

@@ -6,7 +6,7 @@
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
 #include "modules/game/physics/basic_query_filter_callback.h"
-
+#include "components/player/states/StateManager.h"
 
 
 HuggingWallActionState::HuggingWallActionState(StateManager* stateManager) :
@@ -36,7 +36,7 @@ void HuggingWallActionState::update(float delta) {
 		if (isTryingToRelease && releaseWallTimer.elapsed() >= releaseWallTime) {
 			if (!isChangingBaseState) {
 				//TurnAround();
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+				stateManager->changeState(AirborneNormal);
 			}
 		}
 		else if (isClimbing) {
@@ -63,7 +63,7 @@ void HuggingWallActionState::update(float delta) {
 			getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 		}
 		if (!isChangingBaseState) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			stateManager->changeState(AirborneNormal);
 		}
 	}
 }
@@ -81,7 +81,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 		getPlayerModel()->getSkeleton()->blendCycle(animationClimbing, 0.2f, 0.2f);
 	}
 	else {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		stateManager->changeState(AirborneNormal);
 	}
 }
 
@@ -93,19 +93,19 @@ void HuggingWallActionState::onStateExit(IActionState * nextState) {
 void HuggingWallActionState::onJumpHighButton() {
 	TurnAround();
 	isClimbing = false;
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquat);
+	stateManager->changeState(WallJumpSquat);
 }
 
 void HuggingWallActionState::onJumpLongButton() {
 	TurnAround();
 	isClimbing = false;
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpSquatPlummet);
+	stateManager->changeState(WallJumpSquatPlummet);
 }
 
 void HuggingWallActionState::onMove(MoveState& moveState) {
 	if (moveState.isTouchingBot) {
 		if (isWalkable(moveState)) { //Slide
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			stateManager->changeState(Slide);
 		}
 		else { //Land
 			onLanding();

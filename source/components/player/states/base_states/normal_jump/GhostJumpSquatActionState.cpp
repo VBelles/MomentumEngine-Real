@@ -2,6 +2,7 @@
 #include "GhostJumpSquatActionState.h"
 #include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
+#include "components/player/states/StateManager.h"
 
 
 GhostJumpSquatActionState::GhostJumpSquatActionState(StateManager* stateManager) :
@@ -20,7 +21,7 @@ void GhostJumpSquatActionState::update(float delta) {
 			*velocityVector += currentPowerStats->jumpVelocityVector;
 			deltaMovement = *velocityVector * delta;
 			//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			stateManager->changeState(AirborneNormal);
 		}
 	}
 	else {

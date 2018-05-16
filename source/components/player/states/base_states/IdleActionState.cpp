@@ -5,6 +5,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
 
 IdleActionState::IdleActionState(StateManager * stateManager) :
@@ -38,10 +39,10 @@ void IdleActionState::update(float delta) {
 	if (!isChangingBaseState) {
 		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 		if (isTurnAround) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::IdleTurnAround);
+			stateManager->changeState(IdleTurnAround);
 		}
 		else if (horizontalVelocity.Length() > 0.f) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+			stateManager->changeState(Walk);
 		}
 	}
 }

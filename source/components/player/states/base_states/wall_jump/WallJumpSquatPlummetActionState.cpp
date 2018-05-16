@@ -4,7 +4,7 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
-
+#include "components/player/states/StateManager.h"
 
 WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, WallJumpSquatPlummet) {
@@ -19,7 +19,7 @@ void WallJumpSquatPlummetActionState::update(float delta) {
 			velocityVector->y = verticalVelocity;
 
 			deltaMovement = *velocityVector * delta;
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::WallJumpPlummet);
+			stateManager->changeState(WallJumpPlummet);
 		}
 	}
 }

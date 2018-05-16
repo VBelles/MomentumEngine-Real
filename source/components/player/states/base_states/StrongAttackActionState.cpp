@@ -20,13 +20,13 @@ void StrongAttackActionState::update(float delta) {
 
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
 		if (!isChangingBaseState) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::VerticalLauncher);
+			stateManager->changeState(VerticalLauncher);
 		}
 	}
 	else {
 		if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 			if (!isChangingBaseState) {
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+				stateManager->changeState(Idle);
 			}
 		}
 		else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
@@ -76,7 +76,7 @@ void StrongAttackActionState::onStrongAttackButtonReleased() {
 }
 
 void StrongAttackActionState::onLeavingGround() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	stateManager->changeState(GhostJumpWindow);
 }
 
 void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

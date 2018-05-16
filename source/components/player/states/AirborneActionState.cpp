@@ -4,6 +4,7 @@
 #include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "components/player/states/StateManager.h"
 
 
 AirborneActionState::AirborneActionState(StateManager* stateManager, State state)
@@ -95,26 +96,26 @@ void AirborneActionState::onStateExit(IActionState * nextState) {
 }
 
 void AirborneActionState::onJumpHighButton() {
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::GrabHigh);
+	stateManager->changeState(GrabHigh);
 }
 
 void AirborneActionState::onJumpLongButton() {
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::GrabLong);
+	stateManager->changeState(GrabLong);
 }
 
 void AirborneActionState::onStrongAttackButton() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::FallingAttack);
+	stateManager->changeState(FallingAttack);
 }
 
 void AirborneActionState::onFastAttackButton() {
 	if (getPlayerModel()->isConcurrentActionFree()) {
-		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::FastAttackAir);
+		stateManager->changeState(FastAttackAir);
 	}
 }
 
 void AirborneActionState::onReleasePowerButton() {
 	if (getPlayerModel()->isConcurrentActionFree()) {
-		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::ReleasePowerAir);
+		stateManager->changeState(ReleasePowerAir);
 	}
 }
 
@@ -126,14 +127,14 @@ void AirborneActionState::onMove(MoveState& moveState) {
 
 			VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
 
-			VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
+			VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(stateManager->getState()->getMovementInput());
 			if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
 				|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
 				float pitch = asin(-hitNormal.y);
 				if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
-					HuggingWallActionState* actionState = getPlayerModel()->getBaseState<HuggingWallActionState*>(TCompPlayerModel::ActionStates::HuggingWall);
+					HuggingWallActionState* actionState = (HuggingWallActionState*) stateManager->getState(HuggingWall);
 					actionState->setHuggingWallNormal(hitNormal);
-					getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HuggingWall);
+					stateManager->changeState(HuggingWall);
 				}
 			}
 		}
@@ -166,7 +167,7 @@ void AirborneActionState::onMove(MoveState& moveState) {
 	}
 	if (moveState.isTouchingBot) {
 		if (!isWalkable(moveState)) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			stateManager->changeState(Slide);
 		}
 		else {
 			onLanding();
@@ -179,11 +180,11 @@ void AirborneActionState::onMove(MoveState& moveState) {
 
 void AirborneActionState::onLanding() {
 	//Ir a landing action state
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Landing);
+	stateManager->changeState(Landing);
 }
 
 
 void AirborneActionState::onDamage(float damage, bool isHard) {
 	IActionState::onDamage(damage, isHard);
-	//getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::SoftKnockbackAir);
+	//stateManager->changeState(SoftKnockbackAir);
 }

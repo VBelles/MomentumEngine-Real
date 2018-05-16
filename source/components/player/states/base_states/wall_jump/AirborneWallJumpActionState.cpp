@@ -4,6 +4,7 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
 
 AirborneWallJumpActionState::AirborneWallJumpActionState(StateManager* stateManager) :
@@ -17,7 +18,7 @@ void AirborneWallJumpActionState::update(float delta) {
 	deltaMovement.z = velocityVector->z * delta;
 	if (!isChangingBaseState) {
 		if (velocityVector->y < 0) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			stateManager->changeState(AirborneNormal);
 		}
 	}
 }

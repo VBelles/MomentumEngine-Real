@@ -13,7 +13,7 @@ class TCompRenderBlurRadial;
 class IActionState;
 
 class StateManager {
-	
+
 private:
 	CHandle entityHandle;
 	CHandle playerModelHandle;
@@ -32,27 +32,28 @@ private:
 	IActionState* nextBaseState;
 	IActionState* nextConcurrentState;
 
+	void registerStates();
+
 #define registerState(stateClass) \
-	IActionState* s = new stateClass(playerModelHandle); \
-	states[s->state] = s;
+	{\
+	IActionState* s = new stateClass(this); \
+	states[s->state] = s;\
+	}
 
 #define registerConcurrentState(stateClass) \
+	{\
 	IActionState* s = new stateClass(this); \
-	concurrentStates[s->concurrentState] = s;
-	
+	concurrentStates[s->concurrentState] = s;\
+	}
+
 public:
-	
+
 	StateManager(CHandle entityHandle);
 	~StateManager();
 
-	void registerStates();
-
 	void updateStates(float delta);
-
 	void changeState(State newState);
-
 	void changeState(ConcurrentState newState);
-
 	void performStateChange();
 
 	IActionState* getState();

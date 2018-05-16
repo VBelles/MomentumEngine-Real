@@ -4,6 +4,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
 SlideActionState::SlideActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, Slide) {
@@ -72,10 +73,10 @@ void SlideActionState::onStateExit(IActionState* nextState) {
 
 void SlideActionState::onMove(MoveState& moveState) {
 	if (!moveState.isTouchingBot) { //Not grounded, change to airborne normal
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		stateManager->changeState(AirborneNormal);
 	}
 	else if (isWalkable(moveState)) { //Grounded
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+		stateManager->changeState(Walk);
 	}
 }
 

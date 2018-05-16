@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "GroundedActionState.h"
 #include "components/player/comp_player_model.h"
+#include "components/player/states/StateManager.h"
 
 
 GroundedActionState::GroundedActionState(StateManager* stateManager, State state)
@@ -30,25 +31,25 @@ void GroundedActionState::onStateExit(IActionState * nextState) {
 }
 
 void GroundedActionState::onJumpHighButton() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	stateManager->changeState(JumpSquat);
 }
 
 void GroundedActionState::onJumpLongButton() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	stateManager->changeState(JumpSquatLong);
 }
 
 void GroundedActionState::onStrongAttackButton() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::StrongAttack);
+	stateManager->changeState(StrongAttack);
 }
 
 void GroundedActionState::onFastAttackButton() {
 	if (getPlayerModel()->isConcurrentActionFree()) {
-		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::FastAttack);
+		stateManager->changeState(FastAttack);
 	}
 }
 
 void GroundedActionState::onReleasePowerButton() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::ReleasePowerGround);
+	stateManager->changeState(ReleasePowerGround);
 }
 
 void GroundedActionState::onMove(MoveState& moveState) {
@@ -57,7 +58,7 @@ void GroundedActionState::onMove(MoveState& moveState) {
 	}
 	else {
 		if (!isWalkable(moveState)) { //Slide
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Slide);
+			stateManager->changeState(Slide);
 		}
 		velocityVector->y = 0.f;
 	}
@@ -65,10 +66,10 @@ void GroundedActionState::onMove(MoveState& moveState) {
 
 void GroundedActionState::onLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabr�n qu� hacer
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	stateManager->changeState(GhostJumpWindow);
 }
 
 void GroundedActionState::onDamage(float damage, bool isHard) {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HardKnockbackGround);
+	stateManager->changeState(HardKnockbackGround);
 	IActionState::onDamage(damage, isHard);//Hacemos esto al final para sobreescribir el estado de muerte
 }

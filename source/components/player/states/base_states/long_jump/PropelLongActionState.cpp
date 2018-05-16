@@ -31,7 +31,7 @@ void PropelLongActionState::update(float delta) {
 			velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 			deltaMovement = *velocityVector * delta;
 
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+			stateManager->changeState(AirborneLong);
 			//pasar mensaje a la otra entidad
 			CHandle playerEntity = CHandle(stateManager->getEntity());
 			CEntity* targetEntity = propelTarget;

@@ -6,7 +6,7 @@
 #include "components/player/states/StateManager.h"
 
 
-GrabHighActionState::GrabHighActionState(StateManager* stageManager) :
+GrabHighActionState::GrabHighActionState(StateManager* stateManager) :
 	GrabActionState(stateManager, GrabHigh) {
 }
 
@@ -25,8 +25,8 @@ void GrabHighActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	};
 	otherEntity->sendMsg(msgAtackHit);
 	getPlayerModel()->grabTarget = entity;
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::PropelHigh);
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	stateManager->changeState(PropelHigh);
+	stateManager->changeState(Free);
 
 
 }

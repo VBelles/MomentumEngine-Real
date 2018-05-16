@@ -2,6 +2,7 @@
 #include "GhostJumpWindowActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_transform.h"
+#include "components/player/states/StateManager.h"
 
 
 GhostJumpWindowActionState::GhostJumpWindowActionState(StateManager* stateManager) :
@@ -12,7 +13,7 @@ void GhostJumpWindowActionState::update(float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
 		if (!isChangingBaseState) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+			stateManager->changeState(AirborneNormal);
 		}
 	}
 	AirborneActionState::update(delta);
@@ -33,12 +34,12 @@ void GhostJumpWindowActionState::onJumpHighButton() {
 	velocityVector->y = 0.f;
 	*velocityVector += currentPowerStats->jumpVelocityVector;
 	//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	stateManager->changeState(AirborneNormal);
 }
 
 void GhostJumpWindowActionState::onJumpLongButton() {
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 	velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+	stateManager->changeState(AirborneLong);
 }

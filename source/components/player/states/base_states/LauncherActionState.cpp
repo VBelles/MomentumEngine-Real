@@ -5,6 +5,7 @@
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
 
 LauncherActionState::LauncherActionState(StateManager* stateManager, State state, std::string animation, std::string hitbox) :
@@ -18,7 +19,7 @@ void LauncherActionState::update(float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		if (!isChangingBaseState) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			stateManager->changeState(Idle);
 		}
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
@@ -47,5 +48,5 @@ void LauncherActionState::onStateExit(IActionState * nextState) {
 }
 
 void LauncherActionState::onLeavingGround() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	stateManager->changeState(GhostJumpWindow);
 }

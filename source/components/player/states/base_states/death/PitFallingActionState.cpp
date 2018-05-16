@@ -5,7 +5,7 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
-
+#include "components/player/states/StateManager.h"
 
 PitFallingActionState::PitFallingActionState(StateManager* stateManager) :
 	IActionState(stateManager, PitFalling) {
@@ -32,8 +32,8 @@ void PitFallingActionState::respawn() {
 	assert(getPlayerModel());
 	VEC3 respawnPosition = getPlayerModel()->getRespawnPosition();
 	getCollider()->controller->setFootPosition(PxExtendedVec3(respawnPosition.x, respawnPosition.y, respawnPosition.z));
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+	stateManager->changeState(Free);
+	stateManager->changeState(Idle);
 	getPlayerModel()->damage(fallingDamage);
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	Engine.getCameras().blendInCamera(playerCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);

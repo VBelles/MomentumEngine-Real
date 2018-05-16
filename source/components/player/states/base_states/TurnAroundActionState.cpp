@@ -3,6 +3,8 @@
 #include "TurnAroundActionState.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
+#include "components/player/states/StateManager.h"
+
 
 TurnAroundActionState::TurnAroundActionState(StateManager* stateManager)
 	: GroundedActionState::GroundedActionState(stateManager, TurnAround) {
@@ -16,10 +18,10 @@ void TurnAroundActionState::update (float delta) {
 		if (!isChangingBaseState) {
 			if (movementInput.Length() > 0.8f) {
 				setFinalVelocity();
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+				stateManager->changeState(Walk);
 			}
 			else {
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+				stateManager->changeState(Idle);
 			}
 		}
 	}
@@ -56,18 +58,18 @@ void TurnAroundActionState::onJumpHighButton() {
 	//(que se coma todos los frames si quiere saltar)
 	rotateToFinalDirection();
 	setFinalVelocity();
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	stateManager->changeState(JumpSquat);
 }
 
 void TurnAroundActionState::onJumpLongButton() {
 	rotateToFinalDirection();
 	setFinalVelocity();
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	stateManager->changeState(JumpSquatLong);
 }
 
 void TurnAroundActionState::onLeavingGround() {
 	rotateToFinalDirection();
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	stateManager->changeState(GhostJumpWindow);
 }
 
 void TurnAroundActionState::rotateToFinalDirection() {

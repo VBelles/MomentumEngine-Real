@@ -5,6 +5,7 @@
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
 
 RunActionState::RunActionState(StateManager* stateManager) :
@@ -54,16 +55,16 @@ void RunActionState::update(float delta) {
 
 	if (!isChangingBaseState) {
 		if (isTurnAround) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::TurnAround);
+			stateManager->changeState(TurnAround);
 		}
 		else {
 			VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 
 			if (horizontalVelocity.Length() == 0.f) {
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+				stateManager->changeState(Idle);
 			}
 			else if (horizontalVelocity.Length() <= getPlayerModel()->walkingSpeed) {
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+				stateManager->changeState(Walk);
 			}
 		}
 	}

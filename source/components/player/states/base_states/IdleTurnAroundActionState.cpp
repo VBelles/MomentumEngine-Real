@@ -3,7 +3,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
-
+#include "components/player/states/StateManager.h"
 
 
 IdleTurnAroundActionState::IdleTurnAroundActionState(StateManager* stateManager) :
@@ -16,7 +16,7 @@ void IdleTurnAroundActionState::update(float delta) {
 	if (timer.elapsed() >= turnAroundTime) {
 		rotateToFinalDirection();
 		if (!isChangingBaseState) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			stateManager->changeState(Idle);
 		}
 	}
 	else {
@@ -46,17 +46,17 @@ void IdleTurnAroundActionState::onStateExit(IActionState * nextState) {
 
 void IdleTurnAroundActionState::onJumpHighButton() {
 	rotateToFinalDirection();
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	stateManager->changeState(JumpSquat);
 }
 
 void IdleTurnAroundActionState::onJumpLongButton() {
 	rotateToFinalDirection();
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	stateManager->changeState(JumpSquatLong);
 }
 
 void IdleTurnAroundActionState::onLeavingGround() {
 	rotateToFinalDirection();
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	stateManager->changeState(GhostJumpWindow);
 }
 
 void IdleTurnAroundActionState::rotateToFinalDirection() {

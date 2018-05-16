@@ -22,7 +22,7 @@ void ReleasePowerGroundActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		if (!isChangingBaseState) {
-			getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+			stateManager->changeState(Idle);
 		}
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {

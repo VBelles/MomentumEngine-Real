@@ -62,8 +62,8 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 void FallingAttackActionState::onLanding() {
 	//getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack
 	*velocityVector = VEC3::Zero;
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::LandingFallingAttack);
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	stateManager->changeState(LandingFallingAttack);
+	stateManager->changeState(Free);
 }
 
 

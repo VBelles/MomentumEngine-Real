@@ -5,7 +5,7 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
-
+#include "components/player/states/StateManager.h"
 
 DeathActionState::DeathActionState(StateManager* stateManager) :
 	IActionState(stateManager, Death) {
@@ -33,8 +33,8 @@ void DeathActionState::respawn() {
 	assert(getPlayerModel());
 	VEC3 respawnPosition = getPlayerModel()->getRespawnPosition();
 	getCollider()->controller->setFootPosition(PxExtendedVec3(respawnPosition.x, respawnPosition.y, respawnPosition.z));
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+	stateManager->changeState(Free);
+	stateManager->changeState(AirborneNormal);
 	getPlayerModel()->resetHp();
 	getPlayerModel()->getPowerGauge()->resetPower();
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);

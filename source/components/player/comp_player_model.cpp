@@ -1,6 +1,6 @@
 ﻿#include "mcv_platform.h"
-#include "entity/entity_parser.h"
 #include "comp_player_model.h"
+#include "entity/entity_parser.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
@@ -12,44 +12,9 @@
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/filters/player_filter_callback.h"
 #include "components/player/comp_power_gauge.h"
-#include "states/AirborneActionState.h"
-#include "states/GroundedActionState.h"
-#include "states/base_states/GhostJumpWindowActionState.h"
-#include "states/base_states/RunActionState.h"
-#include "states/base_states/WalkActionState.h"
-#include "states/base_states/normal_jump/JumpSquatActionState.h"
-#include "states/base_states/normal_jump/GhostJumpSquatActionState.h"
-#include "states/base_states/normal_jump/PropelHighActionState.h"
-#include "states/base_states/normal_jump/AirborneNormalActionState.h"
-#include "states/base_states/long_jump/AirborneLongActionState.h"
-#include "states/base_states/long_jump/GhostJumpSquatLongActionState.h"
-#include "states/base_states/long_jump/JumpSquatLongActionState.h"
-#include "states/base_states/long_jump/PropelLongActionState.h"
-#include "states/base_states/TurnAroundActionState.h"
-#include "states/base_states/IdleActionState.h"
-#include "states/base_states/LandingActionState.h"
-#include "states/base_states/FallingAttackLandingActionState.h"
-#include "states/base_states/wall_jump/HuggingWallActionState.h"
-#include "states/base_states/wall_jump/WallJumpSquatActionState.h"
-#include "states/base_states/wall_jump/AirborneWallJumpActionState.h"
-#include "states/base_states/wall_jump/WallJumpSquatPlummetActionState.h"
-#include "states/base_states/wall_jump/WallJumpPlummetActionState.h"
-#include "states/base_states/FallingAttackActionState.h"
-#include "states/base_states/StrongAttackActionState.h"
-#include "states/base_states/HorizontalLauncherActionState.h"
-#include "states/base_states/VerticalLauncherActionState.h"
-#include "states/base_states/ReleasePowerGroundActionState.h"
-#include "states/base_states/JumpSquatSpringActionState.h"
-#include "states/base_states/IdleTurnAroundActionState.h"
-#include "states/base_states/death/DeathActionState.h"
-#include "states/base_states/death/PitFallingActionState.h"
-#include "states/base_states/knockback/HardKnockbackGroundActionState.h"
-#include "states/base_states/SlideActionState.h"
-#include "states/concurrent_states/FastAttackActionState.h"
-#include "states/concurrent_states/FastAttackAirActionState.h"
-#include "states/concurrent_states/GrabHighActionState.h"
-#include "states/concurrent_states/GrabLongActionState.h"
-#include "states/concurrent_states/ReleasePowerAirActionState.h"
+#include "components/player/states/AirborneActionState.h"
+#include "components/player/states/GroundedActionState.h"
+#include "components/player/states/StateManager.h"
 #include "modules/game/physics/basic_query_filter_callback.h"
 #include "skeleton/comp_skeleton.h"
 
@@ -141,29 +106,6 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	return ssj;
 }
 
-void TCompPlayerModel::setBaseState(ActionStates newState) {
-	nextBaseState = newState;
-	baseState->isChangingBaseState = true;
-}
-
-void TCompPlayerModel::changeBaseState(ActionStates newState) {
-	IActionState* exitingState = baseState;
-	baseState = baseStates[newState];
-	if (exitingState) exitingState->onStateExit(baseState);
-	if (baseState) baseState->onStateEnter(exitingState);
-}
-
-void TCompPlayerModel::setConcurrentState(ActionStates newState) {
-	nextConcurrentState = newState;
-}
-
-void TCompPlayerModel::changeConcurrentState(ActionStates newState) {
-	IActionState* exitingState = concurrentState;
-	concurrentState = concurrentStates[newState];
-	if (exitingState) exitingState->onStateExit(concurrentState);
-	if (concurrentState) concurrentState->onStateEnter(exitingState);
-}
-
 
 void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	currentPowerStats = powerStats[msg.powerLvl - 1];
@@ -250,61 +192,16 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	});
 
-
-	CHandle playerModelHandle = CHandle(this);
-	baseStates = {
-		{ ActionStates::Idle, new IdleActionState(playerModelHandle) },
-	{ ActionStates::JumpSquat, new JumpSquatActionState(playerModelHandle) },
-	{ ActionStates::GhostJumpSquat, new GhostJumpSquatActionState(playerModelHandle) },
-	{ ActionStates::GhostJumpWindow, new GhostJumpWindowActionState(playerModelHandle) },
-	{ ActionStates::Run, new RunActionState(playerModelHandle) },
-	{ ActionStates::Walk, new WalkActionState(playerModelHandle) },
-	{ ActionStates::AirborneNormal, new AirborneNormalActionState(playerModelHandle) },
-	{ ActionStates::GhostJumpSquatLong, new GhostJumpSquatLongActionState(playerModelHandle) },
-	{ ActionStates::JumpSquatLong, new JumpSquatLongActionState(playerModelHandle) },
-	{ ActionStates::AirborneLong, new AirborneLongActionState(playerModelHandle) },
-	{ ActionStates::TurnAround, new TurnAroundActionState(playerModelHandle) },
-	{ ActionStates::Landing, new LandingActionState(playerModelHandle) },
-	{ ActionStates::LandingFallingAttack, new FallingAttackLandingActionState(playerModelHandle) },
-	{ ActionStates::PropelHigh, new PropelHighActionState(playerModelHandle) },
-	{ ActionStates::PropelLong, new PropelLongActionState(playerModelHandle) },
-	{ ActionStates::HuggingWall, new HuggingWallActionState(playerModelHandle) },
-	{ ActionStates::WallJumpSquat, new WallJumpSquatActionState(playerModelHandle) },
-	{ ActionStates::AirborneWallJump, new AirborneWallJumpActionState(playerModelHandle) },
-	{ ActionStates::FallingAttack, new FallingAttackActionState(playerModelHandle) },
-	{ ActionStates::StrongAttack, new StrongAttackActionState(playerModelHandle) },
-	{ ActionStates::VerticalLauncher, new VerticalLauncherActionState(playerModelHandle) },
-	{ ActionStates::HorizontalLauncher, new HorizontalLauncherActionState(playerModelHandle) },
-	{ ActionStates::ReleasePowerGround, new ReleasePowerGroundActionState(playerModelHandle) },
-	{ ActionStates::JumpSquatSpring, new JumpSquatSpringActionState(playerModelHandle) },
-	{ ActionStates::IdleTurnAround, new IdleTurnAroundActionState(playerModelHandle) },
-	{ ActionStates::WallJumpSquatPlummet, new WallJumpSquatPlummetActionState(playerModelHandle) },
-	{ ActionStates::WallJumpPlummet, new WallJumpPlummetActionState(playerModelHandle) },
-	{ ActionStates::Death, new DeathActionState(playerModelHandle) },
-	{ ActionStates::PitFalling, new PitFallingActionState(playerModelHandle) },
-	{ ActionStates::HardKnockbackGround, new HardKnockbackGroundActionState(playerModelHandle) },
-	{ ActionStates::Slide, new SlideActionState(playerModelHandle) },
-	};
-
-	concurrentStates = {
-		{ ActionStates::Idle, nullptr },
-	{ ActionStates::FastAttack, new FastAttackActionState(playerModelHandle) },
-	{ ActionStates::FastAttackAir, new FastAttackAirActionState(playerModelHandle) },
-	{ ActionStates::GrabHigh, new GrabHighActionState(playerModelHandle) },
-	{ ActionStates::GrabLong, new GrabLongActionState(playerModelHandle) },
-	{ ActionStates::ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle) },
-	};
-
-	baseState = nullptr;
-	concurrentState = nullptr;
-
-	nextBaseState = ActionStates::Idle;
-	nextConcurrentState = ActionStates::Idle;
-	changeBaseState(ActionStates::Idle);
-	changeConcurrentState(ActionStates::Idle);
+	
 	currentPowerStats = powerStats[0];
 
 	playerFilterCallback = new PlayerFilterCallback();
+
+	CHandle playerModelHandle = CHandle(this);
+	assert(playerModelHandle.isValid());
+	CEntity* entity = playerModelHandle.getOwner();
+	assert(entity);
+	stateManager = new StateManager(entity);
 
 }
 
@@ -342,31 +239,23 @@ void TCompPlayerModel::update(float delta) {
 		showVictoryDialog = false;
 	}
 
-	baseState->update(delta);
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->update(delta);
-	}
+	stateManager->updateStates(delta);
 	if (!lockWalk) {
-		deltaMovement = baseState->getDeltaMovement();
+		deltaMovement = stateManager->getState()->getDeltaMovement();
 	}
-	else if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		deltaMovement = concurrentState->getDeltaMovement();
+	else {
+		deltaMovement = stateManager->getConcurrentState()->getDeltaMovement();
 	}
 
 	applyGravity(delta);
 	updateMovement(delta, deltaMovement);
 
-	if (baseState != baseStates[nextBaseState]) {
-		changeBaseState(nextBaseState);
-	}
-	if (concurrentState != concurrentStates[nextConcurrentState]) {
-		changeConcurrentState(nextConcurrentState);
-	}
+	stateManager->performStateChange();
 }
 
 void TCompPlayerModel::applyGravity(float delta) {
 	float deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
-	if (dynamic_cast<GroundedActionState*>(baseState) && !wannaJump) {
+	if (dynamic_cast<GroundedActionState*>(stateManager->getState()) && !wannaJump) {
 		deltaMovement.y -= currentPowerStats->maxHorizontalSpeed * 2.0f * delta;
 	}
 	else {
@@ -387,7 +276,7 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	moveState.isTouchingTop = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
 	moveState.isTouchingSide = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_SIDES);
-	baseState->onMove(moveState);
+	stateManager->getState()->onMove(moveState);
 }
 
 void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
@@ -423,22 +312,20 @@ PxFilterData TCompPlayerModel::getFilterData() {
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
-		baseState->setMovementInput(input);
+		stateManager->getState()->setMovementInput(input);
 	}
 	else {
-		baseState->setMovementInput(VEC2::Zero);
+		stateManager->getState()->setMovementInput(VEC2::Zero);
 	}
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->setMovementInput(input);
-	}
+	stateManager->getConcurrentState()->setMovementInput(input);
 }
 
 void TCompPlayerModel::setHp(float hp) {
 	hp = clamp(hp, 0.f, maxHp);
 	this->hp = hp;
 	if (this->hp == 0.f) {
-		setConcurrentState(TCompPlayerModel::ActionStates::Idle);
-		setBaseState(TCompPlayerModel::ActionStates::Death);
+		stateManager->changeState(Death);
+		stateManager->changeState(Free);
 	}
 }
 
@@ -471,58 +358,38 @@ void TCompPlayerModel::damage(float damage) {//tendría que llegar también si e
 }
 
 void TCompPlayerModel::jumpButtonPressed() {
-
-	baseState->onJumpHighButton();
-
-
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onJumpHighButton();
-	}
-
+	stateManager->getState()->onJumpHighButton();
+	stateManager->getConcurrentState()->onJumpHighButton();
 }
 
 void TCompPlayerModel::jumpButtonReleased() {
-	baseState->onJumpHighButtonReleased();
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onJumpHighButtonReleased();
-	}
-
+	stateManager->getState()->onJumpHighButtonReleased();
+	stateManager->getConcurrentState()->onJumpHighButtonReleased();
 }
 
 void TCompPlayerModel::longJumpButtonPressed() {
-	baseState->onJumpLongButton();
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onJumpLongButton();
-	}
-
+	stateManager->getState()->onJumpLongButton();
+	stateManager->getConcurrentState()->onJumpLongButton();
 }
 
 void TCompPlayerModel::fastAttackButtonPressed() {
-	baseState->onFastAttackButton();
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onFastAttackButton();
-	}
+	stateManager->getState()->onFastAttackButton();
+	stateManager->getConcurrentState()->onFastAttackButton();
 }
 
 void TCompPlayerModel::fastAttackButtonReleased() {
-	baseState->onFastAttackButtonReleased();
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onFastAttackButtonReleased();
-	}
+	stateManager->getState()->onFastAttackButtonReleased();
+	stateManager->getConcurrentState()->onFastAttackButtonReleased();
 }
 
 void TCompPlayerModel::strongAttackButtonPressed() {
-	baseState->onStrongAttackButton();
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onStrongAttackButton();
-	}
+	stateManager->getState()->onStrongAttackButton();
+	stateManager->getConcurrentState()->onStrongAttackButton();
 }
 
 void TCompPlayerModel::strongAttackButtonReleased() {
-	baseState->onStrongAttackButtonReleased();
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onStrongAttackButtonReleased();
-	}
+	stateManager->getState()->onStrongAttackButtonReleased();
+	stateManager->getConcurrentState()->onStrongAttackButtonReleased();
 }
 
 void TCompPlayerModel::centerCameraButtonPressed() {
@@ -532,10 +399,8 @@ void TCompPlayerModel::centerCameraButtonPressed() {
 }
 
 void TCompPlayerModel::releasePowerButtonPressed() {
-	baseState->onReleasePowerButton();
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onReleasePowerButton();
-	}
+	stateManager->getState()->onReleasePowerButton();
+	stateManager->getConcurrentState()->onReleasePowerButton();
 }
 
 void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only
@@ -543,20 +408,18 @@ void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only
 }
 
 bool TCompPlayerModel::isConcurrentActionFree() {
-	return (concurrentState == concurrentStates[ActionStates::Idle]);
+	return stateManager->getConcurrentState()->concurrentState == Free;
 }
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
-		baseState->onDamage(msg.info.damage, true);//de momento pasamos hard
+		stateManager->getState()->onDamage(msg.info.damage, true);//de momento pasamos hard
 	}
 }
 
 void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {
-	if (concurrentState != concurrentStates[ActionStates::Idle]) {
-		concurrentState->onHitboxEnter(msg.hitbox, msg.h_other_entity);
-	}
-	baseState->onHitboxEnter(msg.hitbox, msg.h_other_entity);
+	stateManager->getConcurrentState()->onHitboxEnter(msg.hitbox, msg.h_other_entity);
+	stateManager->getState()->onHitboxEnter(msg.hitbox, msg.h_other_entity);
 }
 
 void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
@@ -565,8 +428,8 @@ void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
 
 
 void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
-	setConcurrentState(TCompPlayerModel::ActionStates::Idle);
-	setBaseState(TCompPlayerModel::ActionStates::PitFalling);
+	stateManager->changeState(Free);
+	stateManager->changeState(PitFalling);
 }
 
 void TCompPlayerModel::onRespawnChanged(const TMsgRespawnChanged& msg) {
@@ -608,11 +471,6 @@ TCompPlayerModel::~TCompPlayerModel() {
 	SAFE_DELETE(powerStats[0]);
 	SAFE_DELETE(powerStats[1]);
 	SAFE_DELETE(powerStats[2]);
-	for (auto& keyValue : baseStates) {
-		SAFE_DELETE(keyValue.second);
-	}
-	for (auto& keyValue : concurrentStates) {
-		SAFE_DELETE(keyValue.second);
-	}
 	SAFE_DELETE(playerFilterCallback);
+	SAFE_DELETE(stateManager);
 }

@@ -5,6 +5,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
 
 LandingActionState::LandingActionState(StateManager* stateManager, State state):
@@ -25,12 +26,12 @@ void LandingActionState::update (float delta) {
 	if (!isChangingBaseState) {
 		if (timer.elapsed() >= landingLagTime) {
 			if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+				stateManager->changeState(Idle);
 			}
 			else {
 				velocityVector->x = getPlayerTransform()->getFront().x * enteringSpeed * 0.6f;
 				velocityVector->z = getPlayerTransform()->getFront().z * enteringSpeed * 0.6f;
-				getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Walk);
+				stateManager->changeState(Walk);
 			}
 		}
 	}
@@ -55,19 +56,19 @@ void LandingActionState::onStateExit(IActionState * nextState) {
 
 void LandingActionState::onJumpHighButton() {
 	SetFinalRotationAndVelocity();
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquat);
+	stateManager->changeState(JumpSquat);
 }
 
 void LandingActionState::onJumpLongButton() {
 	SetFinalRotationAndVelocity();
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::JumpSquatLong);
+	stateManager->changeState(JumpSquatLong);
 }
 
 void LandingActionState::SetFinalRotationAndVelocity() {
 	bool hasInput = movementInput != VEC2::Zero;
 	if (hasInput) {
 		movementInput.Normalize();
-		VEC3 movementInputWorldSpace = getCamera()->TransformToWorld(movementInput);
+		VEC3 movementInputWorldSpace = getCamera()->getCamera()->TransformToWorld(movementInput);
 		float exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
 		float y, p, r;
 		getPlayerTransform()->getYawPitchRoll(&y, &p, &r);

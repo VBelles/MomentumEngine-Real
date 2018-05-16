@@ -5,7 +5,7 @@
 #include "entity/common_msgs.h"
 #include "components/player/states/StateManager.h"
 
-GrabLongActionState::GrabLongActionState(StateManager* stageManager) :
+GrabLongActionState::GrabLongActionState(StateManager* stateManager) :
 	GrabActionState(stateManager, GrabLong) {
 }
 
@@ -24,8 +24,8 @@ void GrabLongActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	};
 	otherEntity->sendMsg(msgAtackHit);
 	getPlayerModel()->grabTarget = entity;
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::PropelLong);
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+	stateManager->changeState(PropelLong);
+	stateManager->changeState(Free);
 
 
 }

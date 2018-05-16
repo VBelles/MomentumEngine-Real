@@ -15,11 +15,11 @@ FastAttackActionState::FastAttackActionState(StateManager* stateManager)
 void FastAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::HorizontalLauncher);
+		stateManager->changeState(Free);
+		stateManager->changeState(HorizontalLauncher);
 	}
 	else if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
+		stateManager->changeState(Free);
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();
@@ -54,7 +54,7 @@ void FastAttackActionState::onFastAttackButtonReleased() {
 }
 
 void FastAttackActionState::onLeavingGround() {
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpWindow);
+	stateManager->changeState(GhostJumpWindow);
 }
 
 

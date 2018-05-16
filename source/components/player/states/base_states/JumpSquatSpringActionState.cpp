@@ -3,7 +3,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
 #include "skeleton/comp_skeleton.h"
-
+#include "components/player/states/StateManager.h"
 
 JumpSquatSpringActionState::JumpSquatSpringActionState(StateManager* stateManager) :
 	GroundedActionState(stateManager, JumpSquatSpring) {
@@ -37,11 +37,11 @@ void JumpSquatSpringActionState::onStateExit(IActionState * nextState) {
 void JumpSquatSpringActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+		stateManager->changeState(AirborneNormal);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquat);
+		stateManager->changeState(GhostJumpSquat);
 	}
 }
 

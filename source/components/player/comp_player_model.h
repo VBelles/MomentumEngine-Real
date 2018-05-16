@@ -10,6 +10,7 @@ class TCompTransform;
 class TCompPowerGauge;
 class TCompSkeleton;
 class PlayerFilterCallback;
+class StateManager;
 
 struct TMsgEntitiesGroupCreated;
 struct TMsgCollect;
@@ -41,19 +42,6 @@ struct MoveState {
 };
 
 class TCompPlayerModel : public TCompBase {
-public:
-	enum ActionStates {
-		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
-		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
-		GhostJumpSquatLong, FastAttack, StrongAttack, FallingAttack,
-		HorizontalLauncher, VerticalLauncher, GrabHigh, GrabLong,
-		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
-		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
-		ReleasePowerAir, ReleasePowerGround, FastAttackAir, JumpSquatSpring,
-		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling,
-		HardKnockbackGround, Slide
-	};
-
 private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
@@ -91,12 +79,9 @@ private:
 	float dialogTime = 15.0f;
 	
 
-	PlayerFilterCallback* playerFilterCallback;
+	PlayerFilterCallback* playerFilterCallback = nullptr;
 
-	std::map<ActionStates, IActionState*> baseStates;
-	std::map<ActionStates, IActionState*> concurrentStates;
-	ActionStates nextBaseState;
-	ActionStates nextConcurrentState;
+	StateManager* stateManager = nullptr;
 
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -113,16 +98,12 @@ private:
 	PxFilterData getFilterData();
 
 	PowerStats* loadPowerStats(const json& j);
-	void changeBaseState(ActionStates newState);
-	void changeConcurrentState(ActionStates newState);
 
 	void applyGravity(float delta);
 
 public:
 	DECL_SIBLING_ACCESS();
 	~TCompPlayerModel();
-	IActionState* baseState;
-	IActionState* concurrentState;
 
 	bool lockWalk = false;
 	bool lockTurning = false;
@@ -150,8 +131,6 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
 
-	void setBaseState(ActionStates newState);
-	void setConcurrentState(ActionStates newState);
 	void updateMovement(float delta, VEC3 deltaMovement);
 	void setMovementInput(VEC2 input, float delta);
 	void jumpButtonPressed();
@@ -182,11 +161,6 @@ public:
 
 	PowerStats* getPowerStats() { return currentPowerStats; }
 
-	template <typename T>
-	T getBaseState(ActionStates state) { return (T)(baseStates[state]); }
-	template <typename T >
-	T getConcurrentState(ActionStates state) { return static_cast<T>(concurrentStates[state]); }
-
 	void damage(float damage);
 	void resetHp() { hp = maxHp; }
 	float getHp() { return hp; }
@@ -195,4 +169,6 @@ public:
 	VEC3 getRespawnPosition() { return respawnPosition; }
 	void disableOutline();
 	void enableOutline();
+
+	StateManager* getStateManager() { return stateManager; }
 };

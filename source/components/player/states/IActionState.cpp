@@ -36,8 +36,8 @@ void IActionState::onStateExit(IActionState* nextState) {
 }
 
 void IActionState::onDead() {
-	getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);
-	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Death);
+	stateManager->changeState(Free);
+	stateManager->changeState(Death);
 }
 
 void IActionState::onDamage(float damage, bool isHard) {

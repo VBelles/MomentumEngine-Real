@@ -5,6 +5,8 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
+#include "components/player/states/StateManager.h"
+
 
 HardKnockbackGroundActionState::HardKnockbackGroundActionState(StateManager* stateManager) :
 	GroundedActionState(stateManager, HardKnockbackGround) {
@@ -13,7 +15,7 @@ HardKnockbackGroundActionState::HardKnockbackGroundActionState(StateManager* sta
 void HardKnockbackGroundActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (timer.elapsed() >= duration) {
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::Idle);
+		stateManager->changeState(Idle);
 	}
 }
 

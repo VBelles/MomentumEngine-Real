@@ -4,6 +4,8 @@
 #include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
+
 
 JumpSquatLongActionState::JumpSquatLongActionState(StateManager* stateManager) :
 	GroundedActionState(stateManager, JumpSquatLong) {
@@ -39,12 +41,12 @@ void JumpSquatLongActionState::onStateExit(IActionState * nextState) {
 void JumpSquatLongActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneLong);
+		stateManager->changeState(AirborneLong);
 
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar
-		getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::GhostJumpSquatLong);
+		stateManager->changeState(GhostJumpSquatLong);
 	}
 }
 
