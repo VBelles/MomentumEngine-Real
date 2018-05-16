@@ -65,6 +65,10 @@ void FallingAttackActionState::onLanding() {
 void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = playerModelHandle.getOwner();
 
+	//Para y su velocidad se transmite al enemigo
+	*velocityVector = VEC3::Zero;
+	getPlayerModel()->setBaseState(TCompPlayerModel::ActionStates::AirborneNormal);
+
 	CEntity *otherEntity = entity;
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

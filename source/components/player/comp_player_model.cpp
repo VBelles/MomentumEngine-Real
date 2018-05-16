@@ -571,6 +571,9 @@ void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 		baseState->onDamage(msg);
 		//lo que diferencia hard de soft es el stun
 	}
+	else {
+		dbg("hit but invulnerable\n");
+	}
 }
 
 void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {

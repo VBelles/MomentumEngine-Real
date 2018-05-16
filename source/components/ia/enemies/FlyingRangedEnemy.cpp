@@ -325,6 +325,7 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 
 				AttackInfo attackInfo;
 				attackInfo.damage = attackDamage;
+				attackInfo.invulnerabilityTime = 1.f;
 
 				VEC3 front = getTransform()->getFront();
 				VEC3 right = -getTransform()->getLeft();
