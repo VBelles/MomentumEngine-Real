@@ -21,7 +21,7 @@ public:
 	float              bone_ids_debug_scale = 1.f;
 	std::vector< int > bone_ids_to_debug;
 
-  std::vector< TBoneCorrection > lookat_corrections;
+	std::vector< TBoneCorrection > lookat_corrections;
 
 };
 
