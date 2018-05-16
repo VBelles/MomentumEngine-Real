@@ -6,13 +6,20 @@
 #include "components/comp_camera.h"
 
 
+AirborneActionState::AirborneActionState(StateManager* stateManager, State state)
+	: IActionState(stateManager, state) {
+};
+
+AirborneActionState::AirborneActionState(StateManager* stateManager, ConcurrentState state)
+	: IActionState(stateManager, state) {
+};
 
 void AirborneActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	bool hasInput = movementInput != VEC2::Zero;
 
-	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
+	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 	if (!getPlayerModel()->lockTurning) {
 		if (!isTurnAround) {
 			if (hasInput) {
@@ -81,8 +88,6 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	enterFront = getPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
-
-	isTryingToSlide = false;
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {
@@ -121,7 +126,7 @@ void AirborneActionState::onMove(MoveState& moveState) {
 
 			VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
 
-			VEC3 worldInput = getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
+			VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(getPlayerModel()->baseState->getMovementInput());
 			if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
 				|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
 				float pitch = asin(-hitNormal.y);

@@ -3,10 +3,15 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitbox.h"
 #include "entity/common_msgs.h"
+#include "components/player/states/StateManager.h"
 
+
+GrabHighActionState::GrabHighActionState(StateManager* stageManager) :
+	GrabActionState(stateManager, GrabHigh) {
+}
 
 void GrabHighActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

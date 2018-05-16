@@ -3,7 +3,7 @@
 
 enum State {
 	UndefinedState,
-	/*Idle,
+	Idle,
 	JumpSquat,
 	GhostJumpSquat,
 	GhostJumpWindow,
@@ -39,15 +39,15 @@ enum State {
 	Death,
 	PitFalling,
 	HardKnockbackGround,
-	Slide*/
+	Slide
 };
 
 enum ConcurrentState {
 	UndefinedConcurrentState,
-	/*Free,
+	Free,
 	FastAttack,
 	FastAttackAir,
 	GrabHigh,
 	GrabLong,
-	ReleasePowerAir*/
+	ReleasePowerAir
 };

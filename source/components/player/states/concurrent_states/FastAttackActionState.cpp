@@ -5,7 +5,12 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
+#include "components/player/states/StateManager.h"
 
+
+FastAttackActionState::FastAttackActionState(StateManager* stateManager)
+	: GroundedActionState(stateManager, FastAttack) {
+}
 
 void FastAttackActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -54,7 +59,7 @@ void FastAttackActionState::onLeavingGround() {
 
 
 void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity* otherEntity = entity;
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

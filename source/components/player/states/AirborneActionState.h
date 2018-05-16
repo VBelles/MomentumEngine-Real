@@ -25,12 +25,11 @@ protected:
 	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
 
-	CTimer slideWindowTimer;
-	float slideWindowTime = 1.1f;
-	bool isTryingToSlide = false;
 
 public:
-	AirborneActionState(CHandle playerModelHandle, std::string animation = "") : IActionState(playerModelHandle, animation) {};
+	AirborneActionState(StateManager* stateManager, State state);
+	AirborneActionState(StateManager* stateManager, ConcurrentState state);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -41,5 +40,6 @@ public:
 	void onReleasePowerButton() override;
 	void onMove(MoveState& moveState) override;
 	void onDamage(float damage, bool isHard) override;
+
 	virtual void onLanding();
 };

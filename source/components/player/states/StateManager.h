@@ -39,7 +39,7 @@ private:
 
 #define registerConcurrentState(stateClass) \
 	IActionState* s = new stateClass(playerModelHandle); \
-	concurrentStates[s->state] = s;
+	concurrentStates[s->concurrentState] = s;
 	
 public:
 	

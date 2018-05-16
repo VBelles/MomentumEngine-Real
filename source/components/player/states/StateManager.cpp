@@ -42,6 +42,7 @@
 #include "components/player/states/base_states/death/PitFallingActionState.h"
 #include "components/player/states/base_states/knockback/HardKnockbackGroundActionState.h"
 #include "components/player/states/base_states/SlideActionState.h"
+#include "components/player/states/concurrent_states/FreeActionState.h"
 #include "components/player/states/concurrent_states/FastAttackActionState.h"
 #include "components/player/states/concurrent_states/FastAttackAirActionState.h"
 #include "components/player/states/concurrent_states/GrabHighActionState.h"
@@ -100,14 +101,12 @@ void StateManager::registerStates() {
 	{ Slide, new SlideActionState(playerModelHandle) },
 	};
 
-	concurrentStates = {
-		{Free, nullptr },
-	{ FastAttack, new FastAttackActionState(playerModelHandle) },
-	{ FastAttackAir, new FastAttackAirActionState(playerModelHandle) },
-	{ GrabHigh, new GrabHighActionState(playerModelHandle) },
-	{ GrabLong, new GrabLongActionState(playerModelHandle) },
-	{ ReleasePowerAir, new ReleasePowerAirActionState(playerModelHandle) },
-	};
+	registerConcurrentState(FreeActionState);
+	registerConcurrentState(FastAttackActionState);
+	registerConcurrentState(FastAttackAirActionState);
+	registerConcurrentState(GrabHighActionState);
+	registerConcurrentState(GrabLongActionState);
+	registerConcurrentState(ReleasePowerAirActionState);
 
 }
 

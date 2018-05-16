@@ -9,19 +9,19 @@ protected:
 	float hitEndTime = frames2sec(12);
 	float animationEndTime = frames2sec(15);
 	float lockDuration = 0.8f;
-
 	float interruptibleTime = frames2sec(25);
 
-	int damage = 0;
 	AttackPhases phase = AttackPhases::Startup;
 
+	int damage = 0;
 	float powerToGet = 1000.f;
 
-	std::string hitbox;
+	std::string animation = "melee";
+	std::string hitbox = "grab";
 
 public:
-	GrabActionState(CHandle playerModelHandle)
-		: AirborneActionState(playerModelHandle, "melee"), hitbox("grab") {}
+	GrabActionState(StateManager* stateManager, ConcurrentState state);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;

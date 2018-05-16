@@ -7,7 +7,11 @@
 
 
 
-void GrabActionState::update (float delta) {
+GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState state) :
+	AirborneActionState(stateManager, state) {
+}
+
+void GrabActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		getPlayerModel()->setConcurrentState(TCompPlayerModel::ActionStates::Idle);

@@ -5,8 +5,11 @@
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
-
+FastAttackAirActionState::FastAttackAirActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, FastAttackAir) {
+}
 
 void FastAttackAirActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
@@ -42,7 +45,7 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 }
 
 void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 
 	CEntity *otherEntity = entity;
 

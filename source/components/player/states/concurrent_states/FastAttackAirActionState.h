@@ -3,6 +3,7 @@
 #include "components/player/states/AirborneActionState.h"
 
 class FastAttackAirActionState : public AirborneActionState {
+private:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(5);
 	float hitEndTime = frames2sec(8);
@@ -15,11 +16,12 @@ class FastAttackAirActionState : public AirborneActionState {
 
 	float powerToGet = 1000.f;
 
-	std::string hitbox;
+	std::string animation = "melee";
+	std::string hitbox = "fast_attack";
 
 public:
-	FastAttackAirActionState(CHandle playerModelHandle)
-		: AirborneActionState(playerModelHandle, "melee"), hitbox("fast_attack") {}
+	FastAttackAirActionState(StateManager* stateManager);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -30,6 +32,5 @@ public:
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}
 	void onFastAttackButtonReleased() override {} //posible comportamiento extra
-
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

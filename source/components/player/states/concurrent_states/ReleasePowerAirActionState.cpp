@@ -9,7 +9,11 @@
 #include "components/player/comp_player_model.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/states/StateManager.h"
 
+ReleasePowerAirActionState::ReleasePowerAirActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, ReleasePowerAir) {
+}
 
 void ReleasePowerAirActionState::update(float delta) {
 	PxExtendedVec3 cctPos = getCollider()->controller->getPosition();
@@ -98,7 +102,7 @@ void ReleasePowerAirActionState::onLanding() {
 
 
 void ReleasePowerAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = playerModelHandle.getOwner();
+	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;

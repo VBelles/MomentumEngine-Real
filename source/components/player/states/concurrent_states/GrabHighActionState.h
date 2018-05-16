@@ -4,7 +4,7 @@
 
 class GrabHighActionState : public GrabActionState {
 public:
-	GrabHighActionState(CHandle playerModelHandle)
-		: GrabActionState(playerModelHandle) {}
+	GrabHighActionState(StateManager* stageManager);
+
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

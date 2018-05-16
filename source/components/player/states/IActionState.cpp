@@ -7,17 +7,23 @@
 #include "components/comp_hitboxes.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/player/comp_player_model.h"
+#include "components/player/states/StateManager.h"
 
-IActionState::IActionState(CHandle playerModelHandle, std::string animation)
-	: animation(animation), playerModelHandle(playerModelHandle) {
-	CEntity* playerEntity = playerModelHandle.getOwner();
-	this->colliderHandle = playerEntity->get<TCompCollider>();
-	this->playerTransformHandle = playerEntity->get<TCompTransform>();
-	this->renderHandle = playerEntity->get<TCompRender>();
-	this->hitboxesHandle = playerEntity->get<TCompHitboxes>();
+
+IActionState::IActionState(StateManager* stateManager, State state, ConcurrentState concurrentState) :
+	stateManager(stateManager),
+	state(state),
+	concurrentState(concurrentState) {
 	velocityVector = getPlayerModel()->getVelocityVector();
 	accelerationVector = getPlayerModel()->getAccelerationVector();
+
 }
+
+IActionState::IActionState(StateManager* stateManager, State state) :
+	IActionState::IActionState(stateManager, state, UndefinedConcurrentState) {}
+
+IActionState::IActionState(StateManager* stateManager, ConcurrentState concurrentState) :
+	IActionState::IActionState(stateManager, UndefinedState, concurrentState) {}
 
 void IActionState::onStateEnter(IActionState* lastState) {
 	this->lastState = lastState;
@@ -128,38 +134,16 @@ bool IActionState::isWalkable(MoveState& moveState) {
 }
 
 
-TCompPlayerModel* IActionState::getPlayerModel() {
-	return playerModelHandle;
-}
-
-TCompTransform* IActionState::getPlayerTransform() {
-	return playerTransformHandle;
-}
-
-TCompCollider* IActionState::getCollider() {
-	return colliderHandle;
-}
-
-TCompRender* IActionState::getRender() {
-	return renderHandle;
-}
-
-TCompHitboxes* IActionState::getHitboxes() {
-	return hitboxesHandle;
-}
-
-CCamera* IActionState::getCamera() {
-	return getCameraComp()->getCamera();
-}
-
-TCompCamera* IActionState::getCameraComp() {
+//Component getters
+TCompPlayerModel* IActionState::getPlayerModel() { return stateManager->getPlayerModel(); }
+TCompTransform* IActionState::getPlayerTransform() { return stateManager->getTransform(); }
+TCompCollider* IActionState::getCollider() { return stateManager->getCollider(); }
+TCompRender* IActionState::getRender() { return stateManager->getRender(); }
+TCompHitboxes* IActionState::getHitboxes() { return stateManager->getHitboxes(); }
+TCompRenderBlurRadial* IActionState::getBlurRadial() { return getCamera()->get<TCompRenderBlurRadial>(); }
+TCompCamera* IActionState::getCamera() {
 	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
 	TCompCamera* currentCamera = camera->get<TCompCamera>();
 	assert(currentCamera);
 	return currentCamera;
 }
-
-TCompRenderBlurRadial* IActionState::getBlurRadial() {
-	return getCameraComp()->get<TCompRenderBlurRadial>();
-}
-

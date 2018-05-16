@@ -9,21 +9,20 @@ private:
 	float hitEndTime = frames2sec(26);
 	float animationEndTime = frames2sec(20);
 	int buttonPresses = 1;
-	float stunDuration = 3.f;
 
 	float interruptibleTime = frames2sec(25);
 
-	CHandle hitboxSmallHandle;
-	CHandle hitboxBigHandle;
-	float damage = 0.f;
 	AttackPhases phase = AttackPhases::Startup;
 
-	std::string smallHitbox;
-	std::string bigHitbox;
+	float stunDuration = 3.f;
+	float damage = 0.f;
+
+	std::string smallHitbox = "release_power_small";
+	std::string bigHitbox = "release_power_big";
+	std::string animation = "liberarenergia";
 
 public:
-	ReleasePowerAirActionState(CHandle playerModelHandle) : AirborneActionState(playerModelHandle, "liberarenergia"),
-		smallHitbox("release_power_small"), bigHitbox("release_power_big") {}
+	ReleasePowerAirActionState(StateManager* stateManager);
 
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;

@@ -203,6 +203,7 @@
     <ClCompile Include="camera\camera_gui.cpp" />
     <ClCompile Include="components\player\states\StateManager.cpp" />
     <ClCompile Include="components\player\states\EState.cpp" />
+    <ClCompile Include="components\player\states\concurrent_states\FreeActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -438,6 +439,7 @@
     <ClInclude Include="camera\camera_gui.h" />
     <ClInclude Include="components\player\states\StateManager.h" />
     <ClInclude Include="components\player\states\EStates.h" />
+    <ClInclude Include="components\player\states\concurrent_states\FreeActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

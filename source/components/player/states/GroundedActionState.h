@@ -7,10 +7,10 @@ protected:
 	float backwardsdMinAngle = deg2rad(130.f);
 	float backwardsMaxDotProduct;
 
-	CTimer slideTimer;
-	float slideWindowTime = 1.1f;
 public:
-	GroundedActionState(CHandle playerModelHandle, std::string animation = "") : IActionState(playerModelHandle, animation) {};
+	GroundedActionState(StateManager* stateManager, State state);
+	GroundedActionState(StateManager* stateManager, ConcurrentState state);
+
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
@@ -20,6 +20,7 @@ public:
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
 	void onMove(MoveState& moveState) override;
+	void onDamage(float damage, bool isHard) override;
+
 	virtual void onLeavingGround();
-	virtual void onDamage(float damage, bool isHard) override;
 };

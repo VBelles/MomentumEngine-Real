@@ -3,6 +3,15 @@
 #include "components/player/comp_player_model.h"
 
 
+GroundedActionState::GroundedActionState(StateManager* stateManager, State state)
+	: IActionState(stateManager, state) {
+};
+
+GroundedActionState::GroundedActionState(StateManager* stateManager, ConcurrentState state)
+	: IActionState(stateManager, state) {
+};
+
+
 void GroundedActionState::update(float delta) {
 
 }

@@ -5,6 +5,7 @@
 const float FPS = 1.f / 60.f;
 #define frames2sec(frames) frames * FPS
 
+class StateManager;
 class TCompPlayerModel;
 class TCompCamera;
 class CCamera;
@@ -15,6 +16,7 @@ class TCompHitboxes;
 class TCompRenderBlurRadial;
 struct HitState;
 struct MoveState;
+
 using namespace physx;
 
 class IActionState {
@@ -27,13 +29,6 @@ protected:
 	IActionState* lastState;
 	IActionState* nextState;
 
-	CHandle playerModelHandle;
-	CHandle playerTransformHandle;
-	CHandle currentCameraHandle;
-	CHandle colliderHandle;
-	CHandle renderHandle;
-	CHandle hitboxesHandle;
-
 	VEC3 deltaMovement;
 	VEC2 movementInput;
 	VEC3* accelerationVector;
@@ -44,8 +39,7 @@ protected:
 	TCompCollider* getCollider();
 	TCompRender* getRender();
 	TCompHitboxes* getHitboxes();
-	CCamera* getCamera();
-	TCompCamera* getCameraComp();
+	TCompCamera* getCamera();
 	TCompRenderBlurRadial* getBlurRadial();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
@@ -70,12 +64,14 @@ protected:
 
 public:
 
+	StateManager* stateManager;
+
 	State state;
 	ConcurrentState concurrentState;
 
-	std::string animation;
-
-	IActionState(CHandle playerModelHandle, std::string animation = "");
+	IActionState(StateManager * stateManager, State state, ConcurrentState concurrentState);
+	IActionState(StateManager* stateManager, State state);
+	IActionState(StateManager* stateManager, ConcurrentState concurrentState);
 
 	virtual void update(float delta) = 0;
 	virtual void onStateEnter(IActionState* lastState);
