@@ -45,12 +45,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)..\tools\PhysX\PhysX_3.4\Include;$(SolutionDir)..\tools\PhysX\PxShared\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\tools\PhysX\PhysX_3.4\Include;$(SolutionDir)..\tools\PhysX\PxShared\Include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(ProjectName)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
-    <IncludePath>$(SolutionDir)..\tools\PhysX\PhysX_3.4\Include;$(SolutionDir)..\tools\PhysX\PxShared\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\tools\PhysX\PhysX_3.4\Include;$(SolutionDir)..\tools\PhysX\PxShared\Include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -167,6 +167,7 @@
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\system\module_gui.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\system\module_multithread.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
@@ -308,6 +309,7 @@
     <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\system\module_gui.h" />
     <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\system\module_multithread.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />

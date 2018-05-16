@@ -349,6 +349,9 @@
     <ClCompile Include="physics\ragdoll.cpp">
       <Filter>physics</Filter>
     </ClCompile>
+    <ClCompile Include="modules\system\module_multithread.cpp">
+      <Filter>modules\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="windows">
@@ -918,6 +921,9 @@
     </ClInclude>
     <ClInclude Include="physics\ragdoll.h">
       <Filter>physics</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\system\module_multithread.h">
+      <Filter>modules\system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,9 @@
     "entity" : 100,
     "transform" : 90
   },
+  "multithread": [
+    "skeleton"
+  ],
   "update": [
     "circular_controller",
     "player_controller",

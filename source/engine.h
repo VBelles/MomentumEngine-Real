@@ -4,6 +4,7 @@
 #include "modules/module_render.h"
 #include "modules/module_entities.h"
 #include "modules/system/module_physics.h"
+#include "modules/system/module_multithread.h"
 #include "modules/module_ia.h"
 #include "modules/system/module_input.h"
 #include "modules/system/module_cameras.h"
@@ -26,6 +27,7 @@ public:
   CModuleIA& getIA() { return _module_ia; }
   CModuleInput& getInput() { return _module_input; }
   CModulePhysics& getPhysics() { return _module_physics; }
+  CModuleMultithread& getMultithread() { return _module_multithread; }
   CModuleCameras& getCameras() { return _module_cameras; }
   CModuleFSM& getFSM() { return _module_fsm; }
   CModuleGUI& getGUI() { return _module_gui; }
@@ -37,6 +39,8 @@ private:
   CModuleRender   _module_render;
   CModuleEntities _module_entities;
   CModulePhysics  _module_physics;
+  CModuleMultithread  _module_multithread;
+  
 	CModuleIA       _module_ia;
 	CModuleInput    _module_input;
   CModuleCameras  _module_cameras;
