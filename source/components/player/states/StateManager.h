@@ -1,5 +1,7 @@
 #pragma once
 
+#include "components/player/states/EStates.h"
+
 class TCompPlayerModel;
 class TCompTransform;
 class TCompCollider;
@@ -11,22 +13,7 @@ class TCompRenderBlurRadial;
 class IActionState;
 
 class StateManager {
-public:
-	enum ActionState {
-		Idle, JumpSquat, GhostJumpSquat, GhostJumpWindow,
-		Run, Walk, AirborneNormal, JumpSquatLong, AirborneLong,
-		GhostJumpSquatLong, StrongAttack, FallingAttack,
-		HorizontalLauncher, VerticalLauncher,
-		PropelHigh, PropelLong, TurnAround, Landing, LandingFallingAttack,
-		HuggingWall, WallJumpSquat, HuggingWallLongJumpSquat, AirborneWallJump,
-		ReleasePowerGround, JumpSquatSpring,
-		IdleTurnAround, WallJumpSquatPlummet, WallJumpPlummet, Death, PitFalling,
-		HardKnockbackGround, Slide
-	};
-
-	enum ConcurrentActionState {
-		Free, FastAttack, FastAttackAir, GrabHigh, GrabLong, ReleasePowerAir
-	};
+	
 private:
 	CHandle entityHandle;
 	CHandle playerModelHandle;
@@ -38,18 +25,21 @@ private:
 	CHandle hitboxesHandle;
 	CHandle renderBlurRadialHandle;
 
-	std::map<ActionState, IActionState*> states;
-	std::map<ConcurrentActionState, IActionState*> concurrentStates;
+	std::map<State, IActionState*> states;
+	std::map<ConcurrentState, IActionState*> concurrentStates;
 
 	IActionState* baseState;
 	IActionState* concurrentState;
 	IActionState* nextBaseState;
 	IActionState* nextConcurrentState;
 
-	template <typename T>
-	void registerState(ActionState state, T);
-	template <typename T>
-	void registerState(ConcurrentActionState state, T);
+#define registerState(stateClass) \
+	IActionState* s = new stateClass(playerModelHandle); \
+	states[s->state] = s;
+
+#define registerConcurrentState(stateClass) \
+	IActionState* s = new stateClass(playerModelHandle); \
+	concurrentStates[s->state] = s;
 	
 public:
 	
@@ -60,11 +50,17 @@ public:
 
 	void updateStates(float delta);
 
-	void changeState(ActionState newState);
+	void changeState(State newState);
 
-	void changeConcurrentState(ConcurrentActionState newState);
+	void changeState(ConcurrentState newState);
 
 	void performStateChange();
+
+	IActionState* getState();
+	IActionState* getConcurrentState();
+
+	IActionState* getState(State state);
+	IActionState* getConcurrentState(ConcurrentState state);
 
 	CEntity* getEntity();
 	TCompPlayerModel* getPlayerModel();

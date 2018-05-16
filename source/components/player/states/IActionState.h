@@ -1,5 +1,6 @@
 #pragma once
 
+#include "components/player/states/EStates.h"
 
 const float FPS = 1.f / 60.f;
 #define frames2sec(frames) frames * FPS
@@ -68,6 +69,10 @@ protected:
 	bool isWalkable(MoveState& moveState);
 
 public:
+
+	State state;
+	ConcurrentState concurrentState;
+
 	std::string animation;
 
 	IActionState(CHandle playerModelHandle, std::string animation = "");
