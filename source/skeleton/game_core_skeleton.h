@@ -4,6 +4,7 @@
 #include "resources/resource.h"
 #include "cal3d/cal3d.h"
 #include "bone_correction.h"
+#include "physics/ragdoll_core.h"
 
 // This is the CalCoreModel + IResource interface + other metadata
 // we might need in the future and is shared between all instances
@@ -22,6 +23,8 @@ public:
   std::vector< int > bone_ids_to_debug;
 
   std::vector< TBoneCorrection > lookat_corrections;
+
+  TRagdollCore ragdoll_core;
 
 };
 

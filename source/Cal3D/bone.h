@@ -50,6 +50,7 @@ public:
   void setSkeleton(CalSkeleton *pSkeleton);
   void calculateBoundingBox();
   CalBoundingBox & getBoundingBox();
+  void calculateBoneSpace();
 
 private:
   CalCoreBone *m_pCoreBone;

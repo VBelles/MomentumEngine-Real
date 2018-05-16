@@ -3,6 +3,15 @@
 #include "modules/module.h"
 #include "components/comp_collider.h"
 #include "PxPhysicsAPI.h"
+#include "skeleton/comp_ragdoll.h"
+
+
+#define VEC3_TO_PXVEC3(vec3) physx::PxVec3(vec3.x,vec3.y,vec3.z)
+#define PXVEC3_TO_VEC3(pxvec3) VEC3(pxvec3.x,pxvec3.y,pxvec3.z)
+
+#define QUAT_TO_PXQUAT(quat) physx::PxQuat(quat.x,quat.y,quat.z, quat.w)
+#define PXQUAT_TO_QUAT(pxquat) QUAT(pxquat.x,pxquat.y,pxquat.z, pxquat.w)
+
 
 class CModulePhysics : public IModule
 {
@@ -24,9 +33,15 @@ public:
   virtual void render() override;
   FilterGroup getFilterByName(const std::string& name);
   void createActor(TCompCollider& comp_collider);
+  physx::PxRigidActor* createActor(const TCompCollider::TConfig & config, const physx::PxTransform& initialTrans);
   void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
   void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 
+
+  void createRagdoll(TCompRagdoll& comp_ragdoll);
+  void createRagdollJoints(TCompRagdoll& comp_ragdoll, int bone_id);
+
+  physx::PxScene*				gScene;
 private:
     physx::PxDefaultAllocator gDefaultAllocatorCallback;
     physx::PxDefaultErrorCallback gDefaultErrorCallback;
@@ -34,7 +49,6 @@ private:
     physx::PxPhysics*				gPhysics;
 
     physx::PxDefaultCpuDispatcher*	gDispatcher;
-    physx::PxScene*				gScene;
 
     physx::PxMaterial*				gMaterial;
 

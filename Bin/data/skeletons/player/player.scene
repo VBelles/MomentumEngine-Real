@@ -2,7 +2,7 @@
 		"entity": {
 			"name": "Jugador",
 			"transform": {
-				"pos": "3 0 0"
+				"pos": "3 1 0"
 			},
 			"render": [{
 					"mesh": "data/skeletons/player/body.mesh",
@@ -93,6 +93,8 @@
 			"skeleton": {
 				"skeleton": "data/skeletons/player/player.skeleton",
 				"scale": 1.0
+			},
+			"ragdoll": {
 			},
 			"skel_lookat" : {
 				"target_entity_name" : "Jugador Target"

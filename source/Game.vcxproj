@@ -171,6 +171,8 @@
     <ClCompile Include="modules\test\module_test_cameras.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
+    <ClCompile Include="physics\ragdoll.cpp" />
+    <ClCompile Include="physics\ragdoll_core.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -196,6 +198,7 @@
     <ClCompile Include="resources\resources_manager.cpp" />
     <ClCompile Include="skeleton\bone_correction.cpp" />
     <ClCompile Include="skeleton\comp_bone_tracker.cpp" />
+    <ClCompile Include="skeleton\comp_ragdoll.cpp" />
     <ClCompile Include="skeleton\comp_skeleton.cpp" />
     <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="skeleton\game_core_skeleton.cpp" />
@@ -309,6 +312,8 @@
     <ClInclude Include="modules\test\module_test_cameras.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="modules\test\module_test_instancing.h" />
+    <ClInclude Include="physics\ragdoll.h" />
+    <ClInclude Include="physics\ragdoll_core.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
@@ -338,6 +343,7 @@
     <ClInclude Include="skeleton\bone_correction.h" />
     <ClInclude Include="skeleton\cal3d2engine.h" />
     <ClInclude Include="skeleton\comp_bone_tracker.h" />
+    <ClInclude Include="skeleton\comp_ragdoll.h" />
     <ClInclude Include="skeleton\comp_skeleton.h" />
     <ClInclude Include="skeleton\comp_skel_lookat.h" />
     <ClInclude Include="skeleton\game_core_skeleton.h" />

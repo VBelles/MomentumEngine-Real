@@ -340,6 +340,15 @@
     <ClCompile Include="components\postfx\comp_render_outlines.cpp">
       <Filter>components\postfx</Filter>
     </ClCompile>
+    <ClCompile Include="skeleton\comp_ragdoll.cpp">
+      <Filter>skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\ragdoll_core.cpp">
+      <Filter>physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\ragdoll.cpp">
+      <Filter>physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="windows">
@@ -434,6 +443,9 @@
     </Filter>
     <Filter Include="gui\controllers">
       <UniqueIdentifier>{60780942-ac06-4967-8c08-e98bf8578652}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="physics">
+      <UniqueIdentifier>{becfbf60-03c4-42c8-a2d8-32498d860a47}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -897,6 +909,15 @@
     </ClInclude>
     <ClInclude Include="components\postfx\comp_render_outlines.h">
       <Filter>components\postfx</Filter>
+    </ClInclude>
+    <ClInclude Include="skeleton\comp_ragdoll.h">
+      <Filter>skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\ragdoll_core.h">
+      <Filter>physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\ragdoll.h">
+      <Filter>physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -462,3 +462,20 @@ CalBoundingBox & CalBone::getBoundingBox()
 
 
 //****************************************************************************//
+
+
+//****************************************************************************//
+
+void CalBone::calculateBoneSpace() {
+	// calculate the bone space transformation
+	m_translationBoneSpace = m_pCoreBone->getTranslationBoneSpace();
+	m_translationBoneSpace *= m_rotationAbsolute;
+	m_translationBoneSpace += m_translationAbsolute;
+
+	m_rotationBoneSpace = m_pCoreBone->getRotationBoneSpace();
+	m_rotationBoneSpace *= m_rotationAbsolute;
+
+	// Generate the vertex transform.  If I ever add support for bone-scaling
+	// to Cal3D, this step will become significantly more complex.
+	m_transformMatrix = m_rotationBoneSpace;
+}
