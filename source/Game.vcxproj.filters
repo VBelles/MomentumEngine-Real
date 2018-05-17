@@ -202,7 +202,7 @@
     <ClCompile Include="camera\camera_orthographic.cpp" />
     <ClCompile Include="camera\camera_gui.cpp" />
     <ClCompile Include="components\player\states\StateManager.cpp" />
-    <ClCompile Include="components\player\states\EState.cpp" />
+    <ClCompile Include="components\player\states\EStates.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FreeActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\SoftKnockbackGroundActionState.cpp" />
@@ -441,16 +441,13 @@
     <ClInclude Include="components\postfx\comp_render_focus.h" />
     <ClInclude Include="camera\camera_orthographic.h" />
     <ClInclude Include="camera\camera_gui.h" />
-<<<<<<< HEAD
     <ClInclude Include="components\player\states\StateManager.h" />
     <ClInclude Include="components\player\states\EStates.h" />
     <ClInclude Include="components\player\states\concurrent_states\FreeActionState.h" />
-=======
     <ClInclude Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\SoftKnockbackGroundActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.h" />
     <ClInclude Include="components\player\states\AttackActionState.h" />
->>>>>>> origin/damage
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -176,7 +176,7 @@
     <ClCompile Include="components\player\states\base_states\VerticalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackLandingActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\ReleasePowerAirActionState.cpp" />
-    <ClCompile Include="components\player\states\EState.cpp" />
+    <ClCompile Include="components\player\states\EStates.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\SoftKnockbackGroundActionState.cpp" />
     <ClCompile Include="components\player\states\IActionState.cpp" />

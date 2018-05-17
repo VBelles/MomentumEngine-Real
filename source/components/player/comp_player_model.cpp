@@ -196,11 +196,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	playerFilterCallback = new PlayerFilterCallback();
 
-	CHandle playerModelHandle = CHandle(this);
-	assert(playerModelHandle.isValid());
-	CEntity* entity = playerModelHandle.getOwner();
-	assert(entity);
-	stateManager = new StateManager(entity);
+	stateManager = new StateManager(CHandle(this).getOwner());
 
 }
 
@@ -253,13 +249,13 @@ void TCompPlayerModel::update(float delta) {
 }
 
 void TCompPlayerModel::applyGravity(float delta) {
-	float deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
 	if (dynamic_cast<GroundedActionState*>(stateManager->getState()) && !wannaJump) {
 		float horizontalVelocity = clamp((VEC2(velocityVector.x, velocityVector.z)).Length(), 0.1f, 100.f);
 		deltaMovement.y -= horizontalVelocity * 2.f * delta;
 	}
 	else {
 		wannaJump = false;
+		float deltaMovementDueToGravity = 0.5f * currentGravity * delta * delta;
 		deltaMovement.y += deltaMovementDueToGravity;
 		//clampear distancia vertical
 		deltaMovement.y = deltaMovement.y > maxVerticalSpeed * delta ? maxVerticalSpeed * delta : deltaMovement.y;
