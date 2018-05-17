@@ -149,7 +149,7 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 		hitbox->transform->setPosition(pos);
 	}
 
-	PxTransform pose = compToPxTransform(hitbox->transform);
+	PxTransform pose = toPxTransform(hitbox->transform);
 
 	const PxU32 bufferSize = 16; //Hasta 16 enemigos por overlap query, suficientes e incluso excesivo
 	PxOverlapHit hitBuffer[bufferSize];

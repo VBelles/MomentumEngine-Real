@@ -34,7 +34,7 @@ void TCompRangedAttack::update(float delta) {
 			TCompTransform* transform = get<TCompTransform>();
 			PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
 			transform->setPosition(transform->getPosition() + transform->getFront() * speed * delta);
-			rigidDynamic->setKinematicTarget(compToPxTransform(transform));
+			rigidDynamic->setKinematicTarget(toPxTransform(transform));
 		}
 	}
 }

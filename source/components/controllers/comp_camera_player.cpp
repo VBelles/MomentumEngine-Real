@@ -187,7 +187,7 @@ void TCompCameraPlayer::sweepBack() {
 
 bool TCompCameraPlayer::sphereCast() {
 	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
-	PxTransform pxTransform = compToPxTransform(getTransform());
+	PxTransform pxTransform = toPxTransform(getTransform());
 	PxOverlapBuffer buf;
 	PxQueryFilterData fd;
 	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);

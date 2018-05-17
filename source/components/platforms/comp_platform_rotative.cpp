@@ -31,7 +31,7 @@ void TCompPlatformRotative::update(float delta) {
 	transform->getYawPitchRoll(&yawPitchRoll.x, &yawPitchRoll.y, &yawPitchRoll.z);
 	yawPitchRoll += rotationSpeed * delta;
 	transform->setYawPitchRoll(yawPitchRoll.x, yawPitchRoll.y, yawPitchRoll.z);
-	getRigidDynamic()->setKinematicTarget(compToPxTransform(transform));
+	getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
 }
 
 TCompCollider* TCompPlatformRotative::getCollider() {
