@@ -1,5 +1,5 @@
 {
-  "technique": "pbr_skin.tech",
+  "technique": "pbr_skin_clear_stencil.tech",
   "shadows": true,
   "textures": {
     "albedo": "data/textures/medusa/medusa_nueva_12_04_2018_default_BaseColor.dds",

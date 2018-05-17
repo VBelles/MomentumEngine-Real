@@ -28,9 +28,6 @@ bool CRenderManager::sortRenderKeys(const TRenderKey& k1, const TRenderKey& k2) 
 	// Category
 	if (k1.material->tech->getCategoryID() != k2.material->tech->getCategoryID())
 		return k1.material->tech->getCategoryID() < k2.material->tech->getCategoryID();
-	// NonSkin -> Skin  
-	if (k1.material->tech->usesSkin() != k2.material->tech->usesSkin())
-		return k1.material->tech->usesSkin() < k2.material->tech->usesSkin();
 	// Render tech
 	auto t1 = k1.material->tech;
 	auto t2 = k2.material->tech;
@@ -39,6 +36,9 @@ bool CRenderManager::sortRenderKeys(const TRenderKey& k1, const TRenderKey& k2) 
 			return t1->getPriority() < t2->getPriority();
 		return t1 < t2;
 	}
+	// NonSkin -> Skin  
+	if (k1.material->tech->usesSkin() != k2.material->tech->usesSkin())
+		return k1.material->tech->usesSkin() < k2.material->tech->usesSkin();
 	// Materials Wood vs Dark Wood
 	if (k1.material != k2.material)
 		return k1.material->getName() < k2.material->getName();

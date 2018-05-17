@@ -82,7 +82,7 @@ struct CZConfigs {
     if (!add(desc, ZCFG_INVERSE_TEST_NO_WRITE, "inverse_test_no_write"))
       return false;
 
-    // Default app, only pass those which are near than the previous samples
+    // Marks stencil when z-test fails
     memset(&desc, 0x00, sizeof(desc));
     desc.DepthEnable = TRUE;
     desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // Do NOT update the Z
@@ -107,6 +107,32 @@ struct CZConfigs {
 
     if (!add(desc, ZCFG_TEST_NO_WRITES_MARK_STENCIL, "test_no_writes_mark_stencil"))
       return false;
+
+	// Clears stencil when z-test passes
+	memset(&desc, 0x00, sizeof(desc));
+	desc.DepthEnable = TRUE;
+	desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	desc.DepthFunc = D3D11_COMPARISON_LESS;
+
+	// Stencil test parameters
+	desc.StencilEnable = true;
+	desc.StencilReadMask = 0xFF;
+	desc.StencilWriteMask = 0xFF;
+
+	// Stencil operations if pixel is front-facing
+	desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_ZERO;
+	desc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	// Stencil operations if pixel is back-facing
+	desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	desc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	desc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	desc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	if (!add(desc, ZCFG_DEFAULT_CLEAR_STENCIL, "default_clear_stencil"))
+		return false;
 
     // Default app, only pass those which are near than the previous samples
     memset(&desc, 0x00, sizeof(desc));
@@ -453,6 +479,7 @@ void activateAllSamplers() {
 
 void activateZConfig(enum ZConfig cfg) {
   assert(zconfigs.z_cfgs[cfg] != nullptr);
+  //aquí podríamos poner el valor de referencia según el ZConfig
   Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 255);
 }
 
