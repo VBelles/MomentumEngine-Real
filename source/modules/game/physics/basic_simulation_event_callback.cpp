@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "basic_simulation_event_callback.h"
 #include "components/comp_collider.h"
+#include "entity/common_msgs.h"
 
 void BasicSimulationEventCallback::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 count) {
 	if (pairHeader.flags & (PxContactPairHeaderFlag::eREMOVED_ACTOR_0 | PxContactPairHeaderFlag::eREMOVED_ACTOR_1))

@@ -15,8 +15,9 @@
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/StateManager.h"
-#include "modules/game/physics/basic_query_filter_callback.h"
 #include "skeleton/comp_skeleton.h"
+#include "modules/game/physics/basic_query_filter_callback.h"
+#include "modules/game/physics/basic_controller_hit_callback.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -30,7 +31,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, onGainPower);
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
-	DECL_MSG(TCompPlayerModel, TMsgOnShapeHit, onShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgShapeHit, onShapeHit);
 	DECL_MSG(TCompPlayerModel, TMsgRespawnChanged, onRespawnChanged);
 	DECL_MSG(TCompPlayerModel, TMsgPurityChange, onPurityChange);
 }
@@ -275,7 +276,7 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	stateManager->getState()->onMove(moveState);
 }
 
-void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
+void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
 	CHandle colliderHandle;
 	colliderHandle.fromVoidPtr(msg.hit.actor->userData);
 	HitState hitState;

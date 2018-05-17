@@ -5,6 +5,7 @@
 
 struct TMsgTriggerEnter;
 struct TMsgTriggerEnter;
+struct TMsgColliderDestroyed;
 
 class TCompRangedAttack : public TCompBase {
 	DECL_SIBLING_ACCESS();

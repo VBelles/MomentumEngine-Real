@@ -1,9 +1,10 @@
 #pragma once
 
 #include "comp_base.h"
-#include "entity/common_msgs.h"
+#include "entity/msgs.h"
 
 class CCollisionMesh;
+struct TMsgEntityCreated;
 
 using namespace physx;
 
@@ -16,6 +17,11 @@ struct TMsgTriggerExit {
 	CHandle h_other_entity;
 	DECL_MSG_ID();
 };
+
+struct TMsgColliderDestroyed {
+	DECL_MSG_ID();
+};
+
 
 struct ColliderConfig {
 	std::string type;

@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_collider.h"
 #include "render/mesh/collision_mesh.h" 
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 

@@ -1,8 +1,9 @@
 #pragma once
 
 #include "components/comp_base.h"
-#include "entity/common_msgs.h"
 #include "power_stats.h"
+#include "entity/common_msgs.h"
+#include "modules/game/physics/basic_controller_hit_callback.h"
 
 class IActionState;
 class TCompCamera;
@@ -13,17 +14,8 @@ class TCompSkeleton;
 class PlayerFilterCallback;
 class StateManager;
 
-struct TMsgEntitiesGroupCreated;
-struct TMsgCollect;
-struct TMsgOnShapeHit;
-struct TMsgPowerLvlChange;
-struct TMsgAttackHit;
-struct TMsgHitboxEnter;
-struct TMsgGainPower;
-struct TMsgGainPower;
-struct TMsgOutOfBounds;
 struct TMsgRespawnChanged;
-struct TMsgPurityChange;
+struct TMsgCollect;
 
 
 struct HitState {
@@ -89,7 +81,7 @@ private:
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onCollect(const TMsgCollect& msg);
-	void onShapeHit(const TMsgOnShapeHit & msg);
+	void onShapeHit(const TMsgShapeHit & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onHitboxEnter(const TMsgHitboxEnter& msg);

@@ -184,9 +184,6 @@ struct TMsgOutOfBounds {
 	DECL_MSG_ID();
 };
 
-struct TMsgColliderDestroyed {
-	DECL_MSG_ID();
-};
 
 struct TMsgRespawn {
 	DECL_MSG_ID();
@@ -194,11 +191,6 @@ struct TMsgRespawn {
 
 struct TMsgDefineLocalAABB {
 	AABB* aabb;
-	DECL_MSG_ID();
-};
-
-struct TMsgOnShapeHit {
-	const physx::PxControllerShapeHit& hit;
 	DECL_MSG_ID();
 };
 
