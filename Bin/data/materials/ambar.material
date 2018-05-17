@@ -1,5 +1,5 @@
 {
-  "technique": "pbr.tech",
+  "technique": "transparency.tech",
   "shadows": true,
   "textures":
   {

@@ -333,6 +333,17 @@
     "blend": "combinative",
     "rs_config": "cull_none",
     "category" : "helper"
+  },
+
+  "transparency" : {
+    "vs_file": "data/shaders/transparency.fx",
+    "ps_file": "data/shaders/transparency.fx",
+    "vs_entry_point": "VS",
+    "ps_entry_point": "PS",
+    "vertex_type": "PosNUvUvT",
+    "category": "distorsions",
+    "rs_config": "cull_none",    
+    "blend": "additive"    
   }
 
 
