@@ -20,13 +20,13 @@ void StrongAttackActionState::update(float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			stateManager->changeState(VerticalLauncher);
 		}
 	}
 	else {
 		if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-			if (!isChangingBaseState) {
+			if (!stateManager->isChangingBaseState) {
 				stateManager->changeState(Idle);
 			}
 		}

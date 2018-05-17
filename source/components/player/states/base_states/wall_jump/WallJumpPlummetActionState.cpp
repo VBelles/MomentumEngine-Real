@@ -26,7 +26,7 @@ void WallJumpPlummetActionState::update(float delta) {
 	}
 
 	deltaMovement = *velocityVector * delta;
-	if (!isChangingBaseState) {
+	if (!stateManager->isChangingBaseState) {
 		if (timer.elapsed() >= endingTime) {
 			stateManager->changeState(AirborneNormal);
 		}

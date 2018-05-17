@@ -16,7 +16,7 @@ void AirborneWallJumpActionState::update(float delta) {
 	deltaMovement.x = velocityVector->x * delta;
 	deltaMovement.y = velocityVector->y * delta;
 	deltaMovement.z = velocityVector->z * delta;
-	if (!isChangingBaseState) {
+	if (!stateManager->isChangingBaseState) {
 		if (velocityVector->y < 0) {
 			stateManager->changeState(AirborneNormal);
 		}

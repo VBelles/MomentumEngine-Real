@@ -19,7 +19,7 @@ void LauncherActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			stateManager->changeState(Idle);
 		}
 	}

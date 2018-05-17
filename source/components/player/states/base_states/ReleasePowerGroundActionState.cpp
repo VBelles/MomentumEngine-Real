@@ -22,7 +22,7 @@ void ReleasePowerGroundActionState::update(float delta) {
 	getBlurRadial()->setCenterInWorldCoordinates(VEC3(cctPos.x, cctPos.y, cctPos.z));
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			stateManager->changeState(Idle);
 		}
 	}

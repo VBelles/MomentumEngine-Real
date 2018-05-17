@@ -12,7 +12,7 @@ GhostJumpWindowActionState::GhostJumpWindowActionState(StateManager* stateManage
 void GhostJumpWindowActionState::update(float delta) {
 	if (timer.elapsed() >= squatTime) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			stateManager->changeState(AirborneNormal);
 		}
 	}

@@ -16,7 +16,7 @@ void WallJumpSquatActionState::update(float delta) {
 	//deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
-	if (!isChangingBaseState) {
+	if (!stateManager->isChangingBaseState) {
 		if (timer.elapsed() >= endingTime) {
 			//saltar
 			*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->wallJumpVelocityVector.z;

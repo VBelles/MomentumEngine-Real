@@ -23,7 +23,7 @@ void LandingActionState::update (float delta) {
 		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
 
-	if (!isChangingBaseState) {
+	if (!stateManager->isChangingBaseState) {
 		if (timer.elapsed() >= landingLagTime) {
 			if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
 				stateManager->changeState(Idle);

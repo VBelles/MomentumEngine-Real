@@ -12,7 +12,7 @@ WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(StateManager* s
 
 void WallJumpSquatPlummetActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
-	if (!isChangingBaseState) {
+	if (!stateManager->isChangingBaseState) {
 		if (timer.elapsed() >= endingTime) {
 			//saltar
 			*velocityVector = getPlayerTransform()->getFront() * frontVelocity;

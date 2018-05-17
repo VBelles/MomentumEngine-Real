@@ -55,7 +55,7 @@ void WalkActionState::update(float delta) {
 		}
 	}
 
-	if (!isChangingBaseState) {
+	if (!stateManager->isChangingBaseState) {
 		if (isTurnAround) {
 			stateManager->changeState(TurnAround);
 		}

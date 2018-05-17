@@ -60,7 +60,7 @@ StateManager::StateManager(CHandle entityHandle) :
 	colliderHandle(getEntity()->get<TCompCollider>()),
 	renderHandle(getEntity()->get<TCompRender>()),
 	skeletonHandle(getEntity()->get<TCompSkeleton>()),
-	hitboxesHandle(getEntity()->get<TCompHitboxes>()){
+	hitboxesHandle(getEntity()->get<TCompHitboxes>()) {
 
 	registerStates();
 }
@@ -129,26 +129,40 @@ void StateManager::updateStates(float delta) {
 
 void StateManager::changeState(State newState) {
 	nextBaseState = states[newState];
-	if(baseState) baseState->isChangingBaseState = true;
+	isChangingBaseState = true;
 }
 
 void StateManager::changeConcurrentState(ConcurrentState newState) {
 	nextConcurrentState = concurrentStates[newState];
-	if(concurrentState) concurrentState->isChangingBaseState = true;
+	isChangingConcurrentState = true;
 }
 
 void StateManager::performStateChange() {
 	if (baseState != nextBaseState) {
 		IActionState* exitingState = baseState;
 		baseState = nextBaseState;
-		if (exitingState) exitingState->onStateExit(baseState);
-		if (baseState) baseState->onStateEnter(exitingState);
+		if (exitingState) {
+			baseState->nextState = baseState;
+			exitingState->onStateExit(baseState);
+		}
+		if (baseState) {
+			baseState->lastState = exitingState;
+			baseState->onStateEnter(exitingState);
+		}
+		isChangingBaseState = false;
 	}
 	if (concurrentState != nextConcurrentState) {
-		IActionState* exitingState = concurrentState;
+		IActionState* exitingConcurrentState = concurrentState;
 		concurrentState = nextConcurrentState;
-		if (exitingState) exitingState->onStateExit(concurrentState);
-		if (concurrentState) concurrentState->onStateEnter(exitingState);
+		if (exitingConcurrentState) {
+			concurrentState->nextState = concurrentState;
+			exitingConcurrentState->onStateExit(concurrentState);
+		}
+		if (baseState) {
+			concurrentState->lastState = exitingConcurrentState;
+			concurrentState->onStateEnter(exitingConcurrentState);
+		}
+		isChangingConcurrentState = false;
 	}
 }
 

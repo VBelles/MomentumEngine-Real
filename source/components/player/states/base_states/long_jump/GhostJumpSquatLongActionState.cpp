@@ -15,7 +15,7 @@ void GhostJumpSquatLongActionState::update(float delta) {
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			//saltar
 			*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 			velocityVector->y = currentPowerStats->longJumpVelocityVector.y;

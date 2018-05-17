@@ -34,7 +34,7 @@ void HuggingWallActionState::update(float delta) {
 			isTryingToRelease = false;
 		}
 		if (isTryingToRelease && releaseWallTimer.elapsed() >= releaseWallTime) {
-			if (!isChangingBaseState) {
+			if (!stateManager->isChangingBaseState) {
 				//TurnAround();
 				stateManager->changeState(AirborneNormal);
 			}
@@ -62,7 +62,7 @@ void HuggingWallActionState::update(float delta) {
 			*velocityVector += getPlayerTransform()->getFront() * climbLedgeExitSpeed;
 			getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 		}
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			stateManager->changeState(AirborneNormal);
 		}
 	}

@@ -53,7 +53,7 @@ void RunActionState::update(float delta) {
 		}
 	}
 
-	if (!isChangingBaseState) {
+	if (!stateManager->isChangingBaseState) {
 		if (isTurnAround) {
 			stateManager->changeState(TurnAround);
 		}

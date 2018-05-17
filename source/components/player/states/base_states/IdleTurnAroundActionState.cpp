@@ -15,7 +15,7 @@ void IdleTurnAroundActionState::update(float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
 		rotateToFinalDirection();
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			stateManager->changeState(Idle);
 		}
 	}

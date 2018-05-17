@@ -15,7 +15,7 @@ void TurnAroundActionState::update (float delta) {
 	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= turnAroundTime) {
 		rotateToFinalDirection();
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			if (movementInput.Length() > 0.8f) {
 				setFinalVelocity();
 				stateManager->changeState(Walk);

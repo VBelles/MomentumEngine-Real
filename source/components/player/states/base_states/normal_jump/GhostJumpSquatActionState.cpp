@@ -15,7 +15,7 @@ void GhostJumpSquatActionState::update(float delta) {
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 	if (timer.elapsed() >= squatTime) {
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			//saltar
 			velocityVector->y = 0.f;
 			*velocityVector += currentPowerStats->jumpVelocityVector;

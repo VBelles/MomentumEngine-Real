@@ -11,9 +11,9 @@ AttackActionState::AttackActionState(StateManager* stateManager) {
 
 void AttackActionState::update(float delta) {
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-		//if (!isChangingBaseState()) {
+		if (!_stateManager->isChangingBaseState) {
 			_stateManager->changeState(Idle);
-		//}
+		}
 	}
 	else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
 		timer.reset();

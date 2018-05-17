@@ -36,7 +36,7 @@ void IdleActionState::update(float delta) {
 		clampHorizontalVelocity(getPlayerModel()->walkingSpeed);
 	}
 
-	if (!isChangingBaseState) {
+	if (!stateManager->isChangingBaseState) {
 		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
 		if (isTurnAround) {
 			stateManager->changeState(IdleTurnAround);

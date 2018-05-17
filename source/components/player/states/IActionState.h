@@ -23,10 +23,6 @@ using namespace physx;
 class IActionState {
 
 protected:
-
-	IActionState* lastState;
-	IActionState* nextState;
-
 	VEC3 deltaMovement;
 	VEC2 movementInput;
 	VEC3* accelerationVector;
@@ -67,6 +63,9 @@ public:
 	State state;
 	ConcurrentState concurrentState;
 
+	IActionState* lastState;
+	IActionState* nextState;
+
 	IActionState(StateManager * stateManager, State state, ConcurrentState concurrentState);
 	IActionState(StateManager* stateManager, State state);
 	IActionState(StateManager* stateManager, ConcurrentState concurrentState);
@@ -92,5 +91,4 @@ public:
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }
-	bool isChangingBaseState = false;
 };

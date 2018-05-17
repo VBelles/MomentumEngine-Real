@@ -19,7 +19,7 @@ void PropelLongActionState::update(float delta) {
 	//deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	if (timer.elapsed() >= endingTime) {
-		if (!isChangingBaseState) {
+		if (!stateManager->isChangingBaseState) {
 			if (movementInput != VEC2::Zero) {
 				VEC3 inputDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 				float newYaw = atan2(inputDirection.x, inputDirection.z);

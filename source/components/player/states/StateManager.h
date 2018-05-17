@@ -71,6 +71,8 @@ public:
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
 
+	bool isChangingBaseState = false;
+	bool isChangingConcurrentState = false;
 };
 
 
