@@ -82,6 +82,7 @@ private:
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onCollect(const TMsgCollect& msg);
 	void onShapeHit(const TMsgShapeHit & msg);
+	void onControllerHit(const TMsgControllerHit & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onHitboxEnter(const TMsgHitboxEnter& msg);

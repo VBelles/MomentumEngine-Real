@@ -32,6 +32,7 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
 	DECL_MSG(TCompPlayerModel, TMsgShapeHit, onShapeHit);
+	DECL_MSG(TCompPlayerModel, TMsgControllerHit, onControllerHit);
 	DECL_MSG(TCompPlayerModel, TMsgRespawnChanged, onRespawnChanged);
 	DECL_MSG(TCompPlayerModel, TMsgPurityChange, onPurityChange);
 }
@@ -297,7 +298,10 @@ void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
 	else { //Side hit
 		moveState.sideHits.push_back(hitState);
 	}
+}
 
+void TCompPlayerModel::onControllerHit(const TMsgControllerHit& msg) {
+	
 }
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar

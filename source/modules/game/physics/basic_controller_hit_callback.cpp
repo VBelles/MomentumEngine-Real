@@ -9,7 +9,11 @@ void BasicControllerHitCallback::onShapeHit(const PxControllerShapeHit& hit) {
 	controllerEntity->sendMsg(TMsgShapeHit{ hit });
 }
 
-void BasicControllerHitCallback::onControllerHit(const PxControllersHit & hit) {
+void BasicControllerHitCallback::onControllerHit(const PxControllersHit& hit) {
+	CHandle controllerHandle;
+	controllerHandle.fromVoidPtr(hit.controller->getActor()->userData);
+	CEntity* controllerEntity = controllerHandle.getOwner();
+	controllerEntity->sendMsg(TMsgControllerHit{ hit });
 }
 
 void BasicControllerHitCallback::onObstacleHit(const PxControllerObstacleHit & hit) {
