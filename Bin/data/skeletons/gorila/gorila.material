@@ -1,5 +1,5 @@
 {
-  "technique": "pbr_skin.tech",
+  "technique": "pbr_skin_clear_stencil.tech",
   "shadows": true,
   "textures": {
     "albedo": "data/textures/gorila/enemigo_definitivo_low_Material _121_BaseColor.dds",
