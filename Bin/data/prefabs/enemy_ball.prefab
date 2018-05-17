@@ -25,9 +25,9 @@
 			"collider": {
 				"shape": "capsule",
 				"type": "cct",
-				"radius": 0.95,
+				"radius": 0.5,
 				"height": 0.1,
-				"step": 0.0,
+				"step": 0.3,
 				"group": [ "enemy" ],
 				"mask": [ "all" ]
 			},
