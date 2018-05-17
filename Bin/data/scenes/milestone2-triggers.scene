@@ -224,10 +224,10 @@
         "shape": "box",
         "halfExtent": "1292.56 31.4117 1252.0",
         "is_trigger": true,
-        "type": "dynamic",
+        "type": "static",
         "group":
         [
-           "all"
+           "trigger"
         ],
         "mask":
         [
