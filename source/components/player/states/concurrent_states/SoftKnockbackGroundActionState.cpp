@@ -7,6 +7,7 @@
 #include "components/player/comp_power_gauge.h"
 #include "entity/common_msgs.h"
 #include "components/player/states/StateManager.h"
+#include "components/player/states/AttackActionState.h"
 
 
 SoftKnockbackGroundActionState::SoftKnockbackGroundActionState(StateManager* stateManager) :
@@ -24,6 +25,9 @@ void SoftKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	timer.reset();
+	if (dynamic_cast<AttackActionState*>(stateManager->getState())) {
+		stateManager->changeState(Idle);
+	}
 	//bloquear ataques
 }
 
