@@ -166,7 +166,7 @@
       ]
       ,
       "lod" : {
-        "threshold" : 0.05,
+        "threshold" : 0.08,
         "children" : [
           "piramid", "piramid_ball0", "piramid_ball1", "piramid_ball2", "piramid_ball3"
         ]
