@@ -11,6 +11,8 @@
         "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
+      "local_aabb": null,
+      "abs_aabb": null,
       "render":
       [
         {
@@ -37,6 +39,8 @@
         "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
+      "local_aabb": null,
+      "abs_aabb": null,
       "render":
       [
         {
@@ -63,6 +67,8 @@
         "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
+      "local_aabb": null,
+      "abs_aabb": null,
       "render":
       [
         {
@@ -89,6 +95,8 @@
         "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
+      "local_aabb": null,
+      "abs_aabb": null,
       "render":
       [
         {
@@ -115,6 +123,8 @@
         "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
+      "local_aabb": null,
+      "abs_aabb": null,
       "render":
       [
         {
@@ -141,6 +151,8 @@
         "rotation": "0.0 0.0 0.0 1.0"
       }
       ,
+      "local_aabb": null,
+      "abs_aabb": null,
       "render":
       [
         {
@@ -152,8 +164,9 @@
           ]
         }
       ]
-      , 
+      ,
       "lod" : {
+        "threshold" : 0.05,
         "children" : [
           "piramid", "piramid_ball0", "piramid_ball1", "piramid_ball2", "piramid_ball3"
         ]
