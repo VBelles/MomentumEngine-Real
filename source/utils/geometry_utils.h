@@ -16,3 +16,7 @@ template <typename T>
 physx::PxTransform toPxTransform(T* transform) {
 	return physx::PxTransform(toPxVec3(transform->getPosition()), toPxQuat(transform->getRotation()));
 }
+
+
+physx::PxFilterData getFilterData(const physx::PxController* controller);
+

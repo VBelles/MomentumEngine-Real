@@ -268,7 +268,7 @@ void TCompPlayerModel::applyGravity(float delta) {
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	moveState = MoveState();
 	PxControllerCollisionFlags moveFlags = getController()->move(toPxVec3(deltaMovement), 0.f, delta,
-		PxControllerFilters(&getFilterData(), playerFilterCallback, playerFilterCallback));
+		PxControllerFilters(&getFilterData(getController()), playerFilterCallback, playerFilterCallback));
 	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	moveState.isTouchingTop = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
 	moveState.isTouchingSide = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_SIDES);
@@ -297,12 +297,6 @@ void TCompPlayerModel::onShapeHit(const TMsgOnShapeHit& msg) {
 		moveState.sideHits.push_back(hitState);
 	}
 
-}
-
-PxFilterData TCompPlayerModel::getFilterData() {
-	PxShape* tempShape;
-	getController()->getActor()->getShapes(&tempShape, 1);
-	return tempShape->getSimulationFilterData();
 }
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar

@@ -98,8 +98,6 @@ private:
 	void onRespawnChanged(const TMsgRespawnChanged& msg);
 	void onPurityChange(const TMsgPurityChange& msg);
 
-	PxFilterData getFilterData();
-
 	PowerStats* loadPowerStats(const json& j);
 
 	void applyGravity(float delta);

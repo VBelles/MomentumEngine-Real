@@ -1,9 +1,7 @@
 #pragma once
 
 class PlayerFilterCallback: public PxControllerFilterCallback, public PxQueryFilterCallback {
-
 public:
-
 	bool filter(const PxController& a, const PxController& b) override;
 	PxQueryHitType::Enum preFilter(const physx::PxFilterData& filterData, 
 		const physx::PxShape* shape, const physx::PxRigidActor* actor, physx::PxHitFlags& queryFlags);
