@@ -12,7 +12,8 @@
 #include "components/player/states/StateManager.h"
 
 ReleasePowerAirActionState::ReleasePowerAirActionState(StateManager* stateManager) :
-	AirborneActionState(stateManager, ReleasePowerAir) {
+	AirborneActionState(stateManager, ReleasePowerAir),
+	AttackActionState(stateManager) {
 }
 
 void ReleasePowerAirActionState::update(float delta) {

@@ -8,7 +8,8 @@
 #include "components/player/states/StateManager.h"
 
 FastAttackAirActionState::FastAttackAirActionState(StateManager* stateManager) :
-	AirborneActionState(stateManager, FastAttackAir) {
+	AirborneActionState(stateManager, FastAttackAir),
+	AttackActionState(stateManager) {
 }
 
 void FastAttackAirActionState::update(float delta) {

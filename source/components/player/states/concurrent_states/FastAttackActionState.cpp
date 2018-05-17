@@ -9,7 +9,8 @@
 
 
 FastAttackActionState::FastAttackActionState(StateManager* stateManager)
-	: GroundedActionState(stateManager, FastAttack) {
+	: GroundedActionState(stateManager, FastAttack),
+	AttackActionState(stateManager) {
 }
 
 void FastAttackActionState::update(float delta) {

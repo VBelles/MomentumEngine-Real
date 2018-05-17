@@ -13,7 +13,8 @@
 
 
 ReleasePowerGroundActionState::ReleasePowerGroundActionState(StateManager* stateManager):
-	GroundedActionState(stateManager, ReleasePowerGround){
+	GroundedActionState(stateManager, ReleasePowerGround),
+	AttackActionState(stateManager) {
 }
 
 void ReleasePowerGroundActionState::update(float delta) {

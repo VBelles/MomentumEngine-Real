@@ -1,8 +1,9 @@
 #pragma once
 
 #include "components/player/states/AirborneActionState.h"
+#include "components/player/states/AttackActionState.h"
 
-class WallJumpPlummetActionState : public AirborneActionState {
+class WallJumpPlummetActionState : public AirborneActionState, public AttackActionState {
 protected:
 	CTimer timer;
 	float endingTime;

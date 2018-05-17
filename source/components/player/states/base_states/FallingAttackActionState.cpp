@@ -12,7 +12,8 @@
 
 
 FallingAttackActionState::FallingAttackActionState(StateManager* stateManager) :
-	AirborneActionState(stateManager, FallingAttack) {
+	AirborneActionState(stateManager, FallingAttack),
+	AttackActionState(stateManager) {
 }
 
 void FallingAttackActionState::update(float delta) {

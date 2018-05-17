@@ -11,7 +11,8 @@
 
 
 StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
-	GroundedActionState(stateManager, StrongAttack) {
+	GroundedActionState(stateManager, StrongAttack),
+	AttackActionState(stateManager) {
 }
 
 void StrongAttackActionState::update(float delta) {

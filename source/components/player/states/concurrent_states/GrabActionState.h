@@ -1,8 +1,9 @@
 #pragma once
 
 #include "components/player/states/AirborneActionState.h"
+#include "components/player/states/AttackActionState.h"
 
-class GrabActionState : public AirborneActionState {
+class GrabActionState : public AirborneActionState, public AttackActionState {
 protected:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(2);

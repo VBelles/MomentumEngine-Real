@@ -10,7 +10,8 @@
 
 
 WallJumpPlummetActionState::WallJumpPlummetActionState(StateManager* stateManager) :
-	AirborneActionState(stateManager, WallJumpPlummet) {
+	AirborneActionState(stateManager, WallJumpPlummet),
+	AttackActionState(stateManager) {
 }
 
 void WallJumpPlummetActionState::update(float delta) {

@@ -1,25 +1,33 @@
 #pragma once
 
-#include "components/player/states/IActionState.h"
+class IActionState;
+class StateManager;
+class TCompHitboxes;
 
-class AttackActionState : public IActionState {
+class AttackActionState{
 protected:
+
+	enum AttackPhases {
+		Launch, Startup, Active, Recovery
+	};
+
 	CTimer timer;
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
 
-	float damage;
 	AttackPhases phase = AttackPhases::Startup;
 
-	std::string animation;
-
 	std::string hitbox;
+	StateManager* _stateManager;
+
+	TCompHitboxes* getAttackHitboxes();
+	//virtual bool isChangingBaseState() = 0;
 
 public:
 	AttackActionState(StateManager* stateManager);
 
-	void update(float delta) override;
-	void onStateEnter(IActionState* lastState) override;
-	void onStateExit(IActionState* nextState) override;
+	void update(float delta);
+	void onStateEnter(IActionState* lastState);
+	void onStateExit(IActionState* nextState);
 };

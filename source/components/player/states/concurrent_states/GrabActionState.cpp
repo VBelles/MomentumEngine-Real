@@ -8,7 +8,8 @@
 
 
 GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState state) :
-	AirborneActionState(stateManager, state) {
+	AirborneActionState(stateManager, state) ,
+	AttackActionState(stateManager) {
 }
 
 void GrabActionState::update(float delta) {
