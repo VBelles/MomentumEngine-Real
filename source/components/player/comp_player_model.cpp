@@ -413,8 +413,7 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
-		SAFE_DELETE(receivedAttack);
-		receivedAttack = new AttackInfo(msg.info);
+		receivedAttack = msg.info;
 		stateManager->getState()->onDamage(msg);
 		//lo que diferencia hard de soft es el stun
 	}

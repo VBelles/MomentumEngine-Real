@@ -4,6 +4,7 @@
 #include "power_stats.h"
 #include "entity/common_msgs.h"
 #include "modules/game/physics/basic_controller_hit_callback.h"
+#include "components/player/attack_info.h"
 
 class IActionState;
 class TCompCamera;
@@ -16,9 +17,7 @@ class StateManager;
 
 struct TMsgRespawnChanged;
 struct TMsgCollect;
-struct TMsgAttackHit;
 
-struct AttackInfo;
 
 struct HitState {
 	CHandle entity;
@@ -78,7 +77,7 @@ private:
 
 	StateManager* stateManager = nullptr;
 
-	AttackInfo* receivedAttack = nullptr;
+	AttackInfo receivedAttack;
 
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -156,7 +155,7 @@ public:
 	void resetGravity() { currentGravity = baseGravity; }
 
 	PowerStats* getPowerStats() { return currentPowerStats; }
-	AttackInfo* getReceivedAttack() { return receivedAttack; }
+	AttackInfo* getReceivedAttack() { return &receivedAttack; }
 
 	void damage(float damage);
 	void makeInvulnerable(float time);
