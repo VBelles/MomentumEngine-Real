@@ -8,6 +8,7 @@
 #include "components/comp_give_power.h"
 #include "components/player/power_stats.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/player/attack_info.h"
 
 DECL_OBJ_MANAGER("behaviorTree_ball_enemy", CBehaviorTreeBallEnemy);
 

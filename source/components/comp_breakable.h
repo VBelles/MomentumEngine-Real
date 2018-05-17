@@ -1,17 +1,14 @@
 #pragma once
 
 #include "comp_base.h"
+#include "components/player/attack_info.h"
 
 class TCompTransform;
 struct TMsgEntitiesGroupCreated;
 struct TMsgColliderDestroyed;
-struct TMsgAttackHit;
 
 class TCompBreakable : public TCompBase {
-	DECL_SIBLING_ACCESS();
-
 private:
-
 	//json
 	std::string prefabToSpawn;
 	float hp = 0.f;
@@ -32,6 +29,7 @@ private:
 	TCompTransform* getTransform() { return transformHandle; }
 
 public:
+	DECL_SIBLING_ACCESS();
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);

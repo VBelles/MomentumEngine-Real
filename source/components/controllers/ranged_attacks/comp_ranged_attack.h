@@ -2,6 +2,7 @@
 
 #include "components/comp_base.h"
 #include "entity/common_msgs.h"
+#include "components/player/attack_info.h"
 
 struct TMsgTriggerEnter;
 struct TMsgTriggerEnter;

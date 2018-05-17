@@ -3,12 +3,14 @@
 #include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/comp_base.h"
 #include "entity/common_msgs.h"
+#include "components/player/attack_info.h"
 
 class CEntity;
 class TCompTransform;
 class TCompCollider;
 class TCompSkeleton;
 struct PowerStats;
+struct TMsgAttackHit;
 
 class CBehaviorTreeBallEnemy : public IBehaviorTree, public TCompBase {
 	DECL_SIBLING_ACCESS();

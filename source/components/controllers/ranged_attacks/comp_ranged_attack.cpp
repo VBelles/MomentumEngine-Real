@@ -4,6 +4,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 
+
 DECL_OBJ_MANAGER("ranged_attack", TCompRangedAttack);
 
 void TCompRangedAttack::debugInMenu() {
