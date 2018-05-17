@@ -9,7 +9,7 @@
 
 FastAttackAirActionState::FastAttackAirActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, FastAttackAir),
-	AttackActionState(stateManager) {
+	AttackState(stateManager) {
 }
 
 void FastAttackAirActionState::update(float delta) {

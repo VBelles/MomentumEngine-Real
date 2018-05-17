@@ -1,15 +1,15 @@
 #include "mcv_platform.h"
-#include "AttackActionState.h"
+#include "AttackState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/player/states/StateManager.h"
 
 
-AttackActionState::AttackActionState(StateManager* stateManager) {
+AttackState::AttackState(StateManager* stateManager) {
 	_stateManager = stateManager;
 }
 
-void AttackActionState::update(float delta) {
+void AttackState::update(float delta) {
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		if (!_stateManager->isChangingBaseState) {
 			_stateManager->changeState(Idle);
@@ -27,14 +27,14 @@ void AttackActionState::update(float delta) {
 	}
 }
 
-void AttackActionState::onStateEnter(IActionState * lastState) {
+void AttackState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 }
 
-void AttackActionState::onStateExit(IActionState * nextState) {
+void AttackState::onStateExit(IActionState * nextState) {
 	getAttackHitboxes()->disable(hitbox);
 }
 
-TCompHitboxes * AttackActionState::getAttackHitboxes() {
+TCompHitboxes * AttackState::getAttackHitboxes() {
 	return _stateManager->getHitboxes();
 }

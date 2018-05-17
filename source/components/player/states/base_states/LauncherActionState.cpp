@@ -10,7 +10,7 @@
 
 LauncherActionState::LauncherActionState(StateManager* stateManager, State state, std::string animation, std::string hitbox) :
 	GroundedActionState(stateManager, state),
-	AttackActionState(stateManager),
+	AttackState(stateManager),
 	animation(animation),
 	hitbox(hitbox) {
 }

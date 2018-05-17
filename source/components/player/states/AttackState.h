@@ -6,7 +6,7 @@ class StateManager;
 class TCompHitboxes;
 
 
-class AttackActionState{
+class AttackState{
 protected:
 
 	enum AttackPhases {
@@ -27,7 +27,7 @@ protected:
 	//virtual bool isChangingBaseState() = 0;
 
 public:
-	AttackActionState(StateManager* stateManager);
+	AttackState(StateManager* stateManager);
 
 	void update(float delta);
 	void onStateEnter(IActionState* lastState);

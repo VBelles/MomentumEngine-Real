@@ -13,7 +13,7 @@
 
 ReleasePowerAirActionState::ReleasePowerAirActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, ReleasePowerAir),
-	AttackActionState(stateManager) {
+	AttackState(stateManager) {
 }
 
 void ReleasePowerAirActionState::update(float delta) {

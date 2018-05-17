@@ -1,9 +1,9 @@
 #pragma once
 
 #include "components/player/states/GroundedActionState.h"
-#include "components/player/states/AttackActionState.h"
+#include "components/player/states/AttackState.h"
 
-class LauncherActionState : public GroundedActionState, public AttackActionState {
+class LauncherActionState : public GroundedActionState, public AttackState {
 protected:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(5);
