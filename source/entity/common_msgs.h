@@ -32,6 +32,11 @@ struct TMsgDefineLocalAABB {
   DECL_MSG_ID();
 };
 
+struct TMsgSetVisible {
+  bool visible;
+  DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

@@ -22,9 +22,29 @@ TCompRender::~TCompRender() {
 void TCompRender::onDefineLocalAABB(const TMsgDefineLocalAABB& msg) {
   AABB::CreateMerged(*msg.aabb, *msg.aabb, aabb);
 }
+// --------------------------------------------
+void TCompRender::onSetVisible(const TMsgSetVisible& msg) {
+  
+  // If the flag has not changed, nothing to change
+  if (global_enabled == msg.visible)
+    return;
+  
+  // Now keep the new value
+  global_enabled = msg.visible;
+
+  // This means we were visible, so we only need to remove my self
+  if (!global_enabled) {
+    CRenderManager::get().delRenderKeys(CHandle(this));
+  }
+  else {
+    // We come from being invisible, so just add my render keys
+    refreshMeshesInRenderManager(false);
+  }
+}
 
 void TCompRender::registerMsgs() {
   DECL_MSG(TCompRender, TMsgDefineLocalAABB, onDefineLocalAABB);
+  DECL_MSG(TCompRender, TMsgSetVisible, onSetVisible);
 }
 
 // --------------------------------------------
@@ -46,7 +66,7 @@ void TCompRender::debugInMenu() {
 
   // Notify the rendermanager that we should regenerate our contents
   if (changed)
-    refreshMeshesInRenderManager();
+    refreshMeshesInRenderManager(true);
 }
 
 void TCompRender::renderDebug() {
@@ -128,19 +148,21 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
     loadMesh(j, ctx);
   }
 
-  refreshMeshesInRenderManager();
+  refreshMeshesInRenderManager(true);
 }
 
 // --------------------------------------------
-void TCompRender::refreshMeshesInRenderManager() {
+// Parameter is used only when we know we were globally disabled
+void TCompRender::refreshMeshesInRenderManager( bool delete_me_from_keys ) {
   CHandle h_me = CHandle(this);
-  CRenderManager::get().delRenderKeys(h_me);
+  if(delete_me_from_keys)
+    CRenderManager::get().delRenderKeys(h_me);
   
   // The house and the trees..
   for (auto& mwm : meshes) {
 
     // Do not register disabled meshes
-    if (!mwm.enabled)
+    if (!mwm.enabled || !global_enabled)
       continue;
 
     // All materials of the house...
