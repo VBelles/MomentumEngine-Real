@@ -6,6 +6,7 @@
     "data/scenes/game_camera.scene",
     "data/scenes/level_pbr.scene",
     "data/scenes/test_instancing.scene",
+    "data/scenes/lod.scene",
     "data/scenes/lights.scene"
   ],
   "unused_scenes": [

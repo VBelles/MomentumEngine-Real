@@ -352,6 +352,9 @@
     <ClCompile Include="modules\system\module_multithread.cpp">
       <Filter>modules\system</Filter>
     </ClCompile>
+    <ClCompile Include="components\comp_lod.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="windows">
@@ -924,6 +927,9 @@
     </ClInclude>
     <ClInclude Include="modules\system\module_multithread.h">
       <Filter>modules\system</Filter>
+    </ClInclude>
+    <ClInclude Include="components\comp_lod.h">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
