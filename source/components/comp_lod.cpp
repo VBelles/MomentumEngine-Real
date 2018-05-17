@@ -10,6 +10,14 @@
 
 DECL_OBJ_MANAGER("lod", TCompLOD);
 
+// TODO. If the children are prefabs and contains other entities
+// we currently will not notify those entities as the msg is only
+// send to the entity names associated to me in the json
+// One option is to make the comp_group component forward the 
+// TMsgSetVisible msg to his children.
+
+// TODO camera name should be removed and not computed everytime
+
 void TCompLOD::debugInMenu() {
   ImGui::DragFloat("Threshold", &lod_threshold, 0.001f, 0.0f, 0.1f);
   ImGui::Text("Current: %f", lod_level);
@@ -34,6 +42,8 @@ void TCompLOD::load(const json& j, TEntityParseContext& ctx) {
     assert(h.isValid());
     handles.push_back(h);
   }
+  // In case the children AABB are moving each frame
+  children_dynamic = j.value("children_dynamic", false);
   camera_name = j.value( "camera", "test_camera_flyover" );
   lod_threshold = j.value("threshold", lod_threshold);
   h_camera = ctx.findEntityByName(camera_name);
@@ -56,6 +66,7 @@ void TCompLOD::updateAABBFromChildren() {
     }
   }
 
+  aabb_update_required = false;
 }
 
 // 
@@ -85,13 +96,24 @@ void TCompLOD::updateLevel() {
 }
 
 void TCompLOD::applyLODStatus() {
-  // this.visible( using_lod );
-  // children.visible( !using_lod );
+
+  // this.visible = ( using_lod );
+  TMsgSetVisible msg = { using_lod };
+  CHandle(this).getOwner().sendMsg(msg);
+
+  // children.visible = ( !using_lod );
+  msg.visible = !msg.visible;
+  for( auto h : handles )
+    h.sendMsg(msg);
 }
 
 void TCompLOD::update(float delta) {
-  updateAABBFromChildren();
+
+  if(children_dynamic || aabb_update_required)
+    updateAABBFromChildren();
   
+  // TODO remove this line, cache the camera_pos
+  // somewhere
   h_camera = ::getEntityByName(camera_name);
 
   bool was_using_lod = using_lod;

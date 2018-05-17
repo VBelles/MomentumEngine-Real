@@ -10,6 +10,9 @@ struct TCompLOD : public TCompBase {
   std::vector< std::string > names;
   AABB aabb;
 
+  bool  children_dynamic = false;
+  bool  aabb_update_required = true;
+
   float lod_level = 0.f;
   float lod_threshold = 0.5f;
   bool  using_lod = false;
