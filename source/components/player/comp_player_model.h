@@ -16,7 +16,9 @@ class StateManager;
 
 struct TMsgRespawnChanged;
 struct TMsgCollect;
+struct TMsgAttackHit;
 
+struct AttackInfo;
 
 struct HitState {
 	CHandle entity;
@@ -52,7 +54,7 @@ private:
 
 	std::string materials[3];
 	PowerStats* powerStats[3];
-	PowerStats* currentPowerStats;
+	PowerStats* currentPowerStats = nullptr;
 
 	const float PLAYER_MAX_HP = 8.f;
 	float maxHp = PLAYER_MAX_HP;
@@ -76,7 +78,7 @@ private:
 
 	StateManager* stateManager = nullptr;
 
-	AttackInfo receivedAttack;
+	AttackInfo* receivedAttack = nullptr;
 
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -154,7 +156,7 @@ public:
 	void resetGravity() { currentGravity = baseGravity; }
 
 	PowerStats* getPowerStats() { return currentPowerStats; }
-	AttackInfo* getReceivedAttack() { return &receivedAttack; }
+	AttackInfo* getReceivedAttack() { return receivedAttack; }
 
 	void damage(float damage);
 	void makeInvulnerable(float time);

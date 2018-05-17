@@ -1,6 +1,7 @@
 #pragma once
 
 #include "components/player/states/EStates.h"
+#include "components/player/attack_info.h"
 
 const float FPS = 1.f / 60.f;
 #define frames2sec(frames) frames * FPS

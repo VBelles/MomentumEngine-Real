@@ -15,6 +15,7 @@
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/StateManager.h"
+#include "components/player/attack_info.h"
 #include "skeleton/comp_skeleton.h"
 #include "modules/game/physics/basic_query_filter_callback.h"
 #include "modules/game/physics/basic_controller_hit_callback.h"
@@ -412,7 +413,8 @@ bool TCompPlayerModel::isConcurrentActionFree() {
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
-		receivedAttack = msg.info;
+		SAFE_DELETE(receivedAttack);
+		receivedAttack = new AttackInfo(msg.info);
 		stateManager->getState()->onDamage(msg);
 		//lo que diferencia hard de soft es el stun
 	}
