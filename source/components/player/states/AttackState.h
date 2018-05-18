@@ -18,13 +18,15 @@ protected:
 	float hitEndTime;
 	float animationEndTime;
 
+	float cancelableTime;
+	float interruptibleTime;
+
 	AttackPhases phase = AttackPhases::Startup;
 
 	std::string hitbox;
 	StateManager* _stateManager;
 
 	TCompHitboxes* getAttackHitboxes();
-	//virtual bool isChangingBaseState() = 0;
 
 public:
 	AttackState(StateManager* stateManager);

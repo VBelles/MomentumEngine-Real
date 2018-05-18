@@ -28,6 +28,7 @@ void AttackState::update(float delta) {
 }
 
 void AttackState::onStateEnter(IActionState * lastState) {
+	phase = AttackPhases::Startup;
 	timer.reset();
 }
 

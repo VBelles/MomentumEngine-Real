@@ -5,23 +5,14 @@
 
 class StrongAttackActionState : public GroundedActionState, public AttackState {
 private:
-	CTimer timer;
-	float hitboxOutTime = frames2sec(60);
-	float hitEndTime = frames2sec(10);
-	float animationEndTime = frames2sec(60);
-
-	float interruptibleTime = frames2sec(60);
+	//parameters set in constructor
 
 	float beginLauncherTime = frames2sec(20);
-
-	AttackPhases phase = AttackPhases::Launch;
 	
 	float powerToGet = 3000.f;
 	float damage = 5.f;
 
 	std::string animation = "melee_strong";
-
-	std::string hitbox = "strong_attack";
 
 public:
 	StrongAttackActionState(StateManager* stateManager);

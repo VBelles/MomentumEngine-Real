@@ -13,6 +13,12 @@
 StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, StrongAttack),
 	AttackState(stateManager) {
+	hitboxOutTime = frames2sec(60);
+	hitEndTime = frames2sec(10);
+	animationEndTime = frames2sec(60);
+	cancelableTime = frames2sec(50);
+	interruptibleTime = frames2sec(110);
+	hitbox = "strong_attack";
 }
 
 void StrongAttackActionState::update(float delta) {
@@ -25,22 +31,7 @@ void StrongAttackActionState::update(float delta) {
 		}
 	}
 	else {
-		if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
-			if (!stateManager->isChangingBaseState) {
-				stateManager->changeState(Idle);
-			}
-		}
-		else if (phase == AttackPhases::Active && timer.elapsed() >= hitEndTime) {
-			timer.reset();
-			getHitboxes()->disable(hitbox);
-			phase = AttackPhases::Recovery;
-
-		}
-		else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
-			timer.reset();
-			getHitboxes()->enable(hitbox);
-			phase = AttackPhases::Active;
-		}
+		AttackState::update(delta);
 	}
 
 	if (phase == AttackPhases::Startup || phase == AttackPhases::Launch) {
@@ -57,17 +48,14 @@ void StrongAttackActionState::update(float delta) {
 
 void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	//dbg("Strong Attack\n");
+	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Launch;
 	*velocityVector = VEC3::Zero;
-	velocityVector->x = 0.f;
-	velocityVector->z = 0.f;
-	timer.reset();
 }
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	getHitboxes()->disable(hitbox);
+	AttackState::onStateExit(nextState);
 }
 
 void StrongAttackActionState::onStrongAttackButtonReleased() {
