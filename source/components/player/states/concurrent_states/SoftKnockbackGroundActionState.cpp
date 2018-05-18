@@ -29,11 +29,13 @@ void SoftKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
 		stateManager->changeState(Idle);
 	}
 	//bloquear ataques
+	getPlayerModel()->lockAttack = true;
 }
 
 void SoftKnockbackGroundActionState::onStateExit(IActionState* nextState) {
 	IActionState::onStateExit(nextState);
 	//desbloquear ataques
+	getPlayerModel()->lockAttack = false;
 }
 
 

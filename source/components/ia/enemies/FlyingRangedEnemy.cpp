@@ -325,7 +325,9 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 
 				AttackInfo attackInfo;
 				attackInfo.damage = attackDamage;
-				attackInfo.invulnerabilityTime = 1.f;
+				//si le pongo stun así peta
+				//attackInfo.stun = new AttackInfo::Stun{ 1.f };
+				attackInfo.invulnerabilityTime = 1.2f;
 
 				VEC3 front = getTransform()->getFront();
 				VEC3 right = -getTransform()->getLeft();
@@ -346,7 +348,7 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 				CEntity *attackEntity = ctx.entities_loaded[0];
 				attackEntity->sendMsg(msg);
 
-				attackTimer.reset();
+				//attackTimer.reset();
 			}
 		}
 		return Stay;

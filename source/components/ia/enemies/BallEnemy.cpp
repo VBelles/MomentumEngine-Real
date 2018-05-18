@@ -368,11 +368,11 @@ int CBehaviorTreeBallEnemy::attack(float delta) {
 	else {
 		TMsgAttackHit msg = {};
 		msg.attacker = CHandle(this);
-		//msg.info.stun = new AttackInfo::Stun{ 1.f };
-		msg.info.invulnerabilityTime = 0.2f;
+		msg.info.stun = new AttackInfo::Stun{ 1.f };
+		msg.info.invulnerabilityTime = 1.f;
 		msg.info.damage = attackDamage;
 		getPlayerEntity()->sendMsg(msg);
-		attackTimer.reset();
+		//attackTimer.reset();
 		return Leave;
 	}
 }

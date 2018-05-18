@@ -380,9 +380,10 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 			TMsgAttackHit msg = {};
 			msg.attacker = CHandle(this);
 			msg.info.damage = attackDamage;
+			msg.info.invulnerabilityTime = 0.1f;
 			getPlayerEntity()->sendMsg(msg);
 		}
-		attackTimer.reset();
+		//attackTimer.reset();
 		return Leave;
 	}
 }

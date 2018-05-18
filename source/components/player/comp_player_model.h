@@ -102,6 +102,7 @@ public:
 
 	bool lockWalk = false;
 	bool lockTurning = false;
+	bool lockAttack = false;
 	bool wannaJump = false;
 
 	float maxVerticalSpeed = 0.f;

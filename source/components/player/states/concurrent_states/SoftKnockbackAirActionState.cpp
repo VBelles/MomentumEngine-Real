@@ -29,11 +29,13 @@ void SoftKnockbackAirActionState::onStateEnter(IActionState* lastState) {
 		stateManager->changeState(AirborneNormal);
 	}
 	//bloquear ataques
+	getPlayerModel()->lockAttack = true;
 }
 
 void SoftKnockbackAirActionState::onStateExit(IActionState* nextState) {
 	IActionState::onStateExit(nextState);
 	//desbloquear ataques
+	getPlayerModel()->lockAttack = false;
 }
 
 
