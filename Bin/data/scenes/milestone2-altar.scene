@@ -18,10 +18,9 @@
     ],
     "collider" : {
 				"shape": "sphere",
-				"is_trigger" : false,
 				"radius" : 0.75,
-				"group": ["all"],
-				"mask": ["player"]
+				"group": ["enemy"],
+				"mask": ["all"]
 			},
     "breakable": {
       "hp": 1

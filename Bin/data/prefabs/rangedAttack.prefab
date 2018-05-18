@@ -14,8 +14,8 @@
 				"type": "dynamic",
 				"is_trigger": true,
 				"radius": 0.1,
-				"mask": ["player", "scenario"],
-				"group": ["enemy"]
+				"group": ["enemy"],
+				"mask": ["player"]
 			},
 			"ranged_attack": {
 				"speed": 15,
