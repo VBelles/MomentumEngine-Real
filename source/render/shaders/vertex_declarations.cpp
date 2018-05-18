@@ -27,7 +27,8 @@ CVertexDecl* CVertexDeclManager::createNew(const std::string& name,
         case DXGI_FORMAT_R8G8B8A8_UINT:      total_bytes += 4;     break;
         case DXGI_FORMAT_R8G8B8A8_UNORM:     total_bytes += 4;     break;
         default:
-            fatal("Unknown size of vertex element %08x while declaring vtx decl %s.%s\n", d->Format, name.c_str(), d->SemanticName);
+            fatal("Unknown size of vertex element %08x while declaring vtx decl %s.%s\n",
+                  d->Format, name.c_str(), d->SemanticName);
         }
     }
     decl->bytes_per_vertex = total_bytes;

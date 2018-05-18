@@ -16,7 +16,8 @@ bool CVertexShader::create(const std::string& filename,
     if (FAILED(hr)) return false;
 
     // Create the vertex shader in the GPU
-    hr = Render.device->CreateVertexShader(pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), NULL, &vs);
+    hr = Render.device->CreateVertexShader(pVSBlob->GetBufferPointer(),
+                                           pVSBlob->GetBufferSize(), NULL, &vs);
     if (FAILED(hr)) {
         pVSBlob->Release();
         return false;
@@ -26,7 +27,6 @@ bool CVertexShader::create(const std::string& filename,
     vtx_declaration = CVertexDeclManager::get().getByName(vtx_decl_name);
     assert(vtx_declaration);
 
-    // 
     hr = Render.device->CreateInputLayout(vtx_declaration->cpu_layout,
                                           vtx_declaration->numElements,
                                           pVSBlob->GetBufferPointer(),

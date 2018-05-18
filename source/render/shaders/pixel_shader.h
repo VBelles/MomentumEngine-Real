@@ -1,18 +1,11 @@
-#ifndef INC_RENDER_PIXEL_SHADER_H_
-#define INC_RENDER_PIXEL_SHADER_H_
+#pragma once
 
 class CPixelShader {
-
-  ID3D11PixelShader*   ps = nullptr;
+    ID3D11PixelShader*   ps = nullptr;
 
 public:
-  ~CPixelShader() { destroy(); }
-  bool create(const std::string& filename, const std::string& fn_entry_name);
-  void destroy();
-  void activate() const;
-
+    ~CPixelShader() { destroy(); }
+    bool create(const std::string& filename, const std::string& fn_entry_name);
+    void destroy();
+    void activate() const;
 };
-
-
-#endif
-
