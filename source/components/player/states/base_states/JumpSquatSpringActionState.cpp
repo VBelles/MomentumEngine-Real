@@ -37,7 +37,7 @@ void JumpSquatSpringActionState::onStateExit(IActionState * nextState) {
 void JumpSquatSpringActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		stateManager->changeState(AirborneNormal);
+		stateManager->changeState(SpringJump);
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar

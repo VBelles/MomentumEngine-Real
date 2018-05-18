@@ -209,6 +209,7 @@
     <ClCompile Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.cpp" />
     <ClCompile Include="components\player\attack_info.cpp" />
     <ClCompile Include="components\player\states\AttackState.cpp" />
+    <ClCompile Include="components\player\states\base_states\SpringJumpActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -450,6 +451,7 @@
     <ClInclude Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.h" />
     <ClInclude Include="components\player\attack_info.h" />
     <ClInclude Include="components\player\states\AttackState.h" />
+    <ClInclude Include="components\player\states\base_states\SpringJumpActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -42,9 +42,10 @@
 #include "components/player/states/base_states/death/PitFallingActionState.h"
 #include "components/player/states/base_states/knockback/HardKnockbackGroundActionState.h"
 #include "components/player/states/base_states/knockback/HardKnockbackAirActionState.h"
+#include "components/player/states/base_states/SlideActionState.h"
+#include "components/player/states/base_states/SpringJumpActionState.h"
 #include "components/player/states/concurrent_states/SoftKnockbackGroundActionState.h"
 #include "components/player/states/concurrent_states/SoftKnockbackAirActionState.h"
-#include "components/player/states/base_states/SlideActionState.h"
 #include "components/player/states/concurrent_states/FreeActionState.h"
 #include "components/player/states/concurrent_states/FastAttackActionState.h"
 #include "components/player/states/concurrent_states/FastAttackAirActionState.h"
@@ -107,6 +108,7 @@ void StateManager::registerStates() {
 	registerState(SlideActionState);
 	registerState(HardKnockbackGroundActionState);
 	registerState(HardKnockbackAirActionState);
+	registerState(SpringJumpActionState);
 
 	registerConcurrentState(FreeActionState);
 	registerConcurrentState(FastAttackActionState);

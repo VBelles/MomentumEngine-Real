@@ -35,7 +35,8 @@ enum State {
 	PitFalling,
 	HardKnockbackGround,
 	HardKnockbackAir,
-	Slide
+	Slide,
+	SpringJump
 };
 
 enum ConcurrentState {
