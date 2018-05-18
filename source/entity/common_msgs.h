@@ -67,6 +67,11 @@ struct TMsgGetPower {
 	DECL_MSG_ID();
 };
 
+struct TMsgSetVisible {
+  bool visible;
+  DECL_MSG_ID();
+};
+
 struct TMsgGainPower {
 	CHandle sender;
 	float power;

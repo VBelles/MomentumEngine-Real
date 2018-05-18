@@ -323,7 +323,32 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 		}
 	}
 
-	return true;
+  // Load Ragdoll Core
+  auto& jragdoll_core = json["ragdoll"];
+  if (json["ragdoll"].is_array()) {
+	  for (auto& j : jragdoll_core) {
+		  if (!j.is_null()) {
+			  ragdoll_core.ragdoll_bone_cores.resize(ragdoll_core.ragdoll_bone_cores.size() + 1);
+			  TRagdollBoneCore& ragdoll_bone_core = ragdoll_core.ragdoll_bone_cores.back();
+			  ragdoll_bone_core.bone = j["bone"];
+			  ragdoll_bone_core.height = j["height"].get<float>();
+			  ragdoll_bone_core.radius = j["radius"].get<float>();
+
+			  ragdoll_bone_core.parent_bone = j["parent_bone"];
+		  }
+	  }
+
+	  for (auto& core_bone : ragdoll_core.ragdoll_bone_cores) {
+		  for (auto& parent_core_bone : ragdoll_core.ragdoll_bone_cores) {
+			  if (core_bone.parent_bone == parent_core_bone.bone) {
+				  core_bone.parent_core = &parent_core_bone;
+				  break;
+			  }
+		  }
+	  }
+  }
+
+  return true;
 }
 
 

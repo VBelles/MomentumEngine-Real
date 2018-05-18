@@ -7,6 +7,9 @@
     "entity" : 100,
     "transform" : 90
   },
+  "multithread": [
+    "skeleton"
+  ],
   "update": [
     "fwd_msg",
     "skeleton",
@@ -39,6 +42,7 @@
     "culling",
     "light_dir",
     "render",
+    "lod",
     "spikes"
   ],
   "render_debug" : [

@@ -1,0 +1,50 @@
+[
+	{
+		"entity": {
+			"name": "The Piramids",
+			"transform": {
+				"pos": "0 0 0"
+			}
+		}
+	}
+	,
+	{
+		"entity": {
+			"prefab" : "data/prefabs/piramid_with_lod.prefab",
+			"name": "Piramid00",
+			"transform": {
+				"pos": "-40 0 40"
+			}
+		}
+	}
+	,
+	{
+		"entity": {
+			"prefab" : "data/prefabs/piramid_with_lod.prefab",
+			"name": "Piramid01",
+			"transform": {
+				"pos": "-40 0 30"
+			}
+		}
+	}
+	,
+	{
+		"entity": {
+			"prefab" : "data/prefabs/piramid_with_lod.prefab",
+			"name": "Piramid02",
+			"transform": {
+				"pos": "-40 0 20"
+			}
+		}
+	}
+	,
+	{
+		"entity": {
+			"prefab" : "data/prefabs/piramid_with_lod.prefab",
+			"name": "Piramid03",
+			"transform": {
+				"pos": "-40 0 10"
+			}
+		}
+	}
+]

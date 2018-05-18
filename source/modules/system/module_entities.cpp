@@ -38,8 +38,8 @@ bool CModuleEntities::start() {
 	// The bigger the number in the init_order section, the lower comp_type id you get
 	std::map< std::string, int > init_order = j["init_order"];;
 	std::sort(CHandleManager::predefined_managers,
-		CHandleManager::predefined_managers + CHandleManager::npredefined_managers,
-		[&init_order](CHandleManager* m1, CHandleManager* m2) {
+			  CHandleManager::predefined_managers + CHandleManager::npredefined_managers,
+			  [&init_order](CHandleManager* m1, CHandleManager* m2) {
 		int priority_m1 = init_order[m1->getName()];
 		int priority_m2 = init_order[m2->getName()];
 		return priority_m1 > priority_m2;
@@ -58,6 +58,13 @@ bool CModuleEntities::start() {
 
 	loadListOfManagers(j["update"], om_to_update);
 	loadListOfManagers(j["render_debug"], om_to_render_debug);
+
+	std::vector< std::string > names = j["multithread"];
+	for (auto& n : names) {
+		auto om = CHandleManager::getByName(n.c_str());
+		assert(om || fatal("Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
+		om->multithreaded = true;
+	}
 
 	return true;
 }
@@ -160,24 +167,24 @@ void CModuleEntities::render() {
 	auto om_render = getObjectManager<TCompRender>();
 	om_render->forEach([](TCompRender* c) {
 
-	  TCompTransform* c_transform = c->get<TCompTransform>();
-	  if (!c_transform)
-		return;
+	TCompTransform* c_transform = c->get<TCompTransform>();
+	if (!c_transform)
+	return;
 
-	  cb_object.obj_world = c_transform->asMatrix();
-	  cb_object.obj_color = c->color;
-	  cb_object.updateGPU();
+	cb_object.obj_world = c_transform->asMatrix();
+	cb_object.obj_color = c->color;
+	cb_object.updateGPU();
 
-	  int idx = 0;
-	  c->mesh->activate();
-	  for (auto& m : c->materials) {
-		if (m) {
-		  m->activate();
-		  c->mesh->renderSubMesh(idx);
-		}
-		++idx;
-	  }
-   */
+	int idx = 0;
+	c->mesh->activate();
+	for (auto& m : c->materials) {
+	if (m) {
+	m->activate();
+	c->mesh->renderSubMesh(idx);
+	}
+	++idx;
+	}
+	*/
 	auto om_render_ui = getObjectManager<TCompRenderUI>();
 	om_render_ui->forEach([](TCompRenderUI* c) {
 		c->renderUI();
@@ -185,18 +192,18 @@ void CModuleEntities::render() {
 
 	/*auto om_shadow = getObjectManager<TCompShadow>();
 	om_shadow->forEach([](TCompShadow* c) {
-		if (c->isEnabled()) {
-			TCompTransform* c_transform = c->getTransform();
-			if (!c_transform) return;
+	if (c->isEnabled()) {
+	TCompTransform* c_transform = c->getTransform();
+	if (!c_transform) return;
 
-			cb_object.obj_world = c_transform->asMatrix();
-			cb_object.updateGPU();
+	cb_object.obj_world = c_transform->asMatrix();
+	cb_object.updateGPU();
 
-			for (auto& m : c->materials) {
-				m->activate();
-			}
-			c->mesh->activateAndRender();
-		}
+	for (auto& m : c->materials) {
+	m->activate();
+	}
+	c->mesh->activateAndRender();
+	}
 	});*/
 
 	//CRenderManager::get().renderCategory("default"); // Ya no hace falta.

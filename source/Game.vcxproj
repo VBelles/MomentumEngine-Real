@@ -115,6 +115,7 @@
     <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_mechanism_system.cpp" />
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
+    <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
     <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
@@ -266,7 +267,10 @@
     <ClCompile Include="modules\system\scripting\module_scripting.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_manager.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
+    <ClCompile Include="modules\system\module_multithread.cpp" />
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
+    <ClCompile Include="physics\ragdoll.cpp" />
+    <ClCompile Include="physics\ragdoll_core.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -292,6 +296,7 @@
     <ClCompile Include="resources\resources_manager.cpp" />
     <ClCompile Include="skeleton\bone_correction.cpp" />
     <ClCompile Include="skeleton\comp_bone_tracker.cpp" />
+    <ClCompile Include="skeleton\comp_ragdoll.cpp" />
     <ClCompile Include="skeleton\comp_skeleton.cpp" />
     <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="skeleton\game_core_skeleton.cpp" />
@@ -330,6 +335,7 @@
     <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_mechanism_system.h" />
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
+    <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
     <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />
@@ -498,7 +504,10 @@
     <ClInclude Include="modules\system\scripting\module_scripting.h" />
     <ClInclude Include="modules\system\scripting\scripting_manager.h" />
     <ClInclude Include="modules\system\scripting\scripting_player.h" />
+    <ClInclude Include="modules\system\module_multithread.h" />
     <ClInclude Include="modules\test\module_test_instancing.h" />
+    <ClInclude Include="physics\ragdoll.h" />
+    <ClInclude Include="physics\ragdoll_core.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
@@ -528,6 +537,7 @@
     <ClInclude Include="skeleton\bone_correction.h" />
     <ClInclude Include="skeleton\cal3d2engine.h" />
     <ClInclude Include="skeleton\comp_bone_tracker.h" />
+    <ClInclude Include="skeleton\comp_ragdoll.h" />
     <ClInclude Include="skeleton\comp_skeleton.h" />
     <ClInclude Include="skeleton\comp_skel_lookat.h" />
     <ClInclude Include="skeleton\game_core_skeleton.h" />

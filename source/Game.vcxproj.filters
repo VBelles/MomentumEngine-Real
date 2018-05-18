@@ -210,6 +210,12 @@
     <ClCompile Include="components\player\attack_info.cpp" />
     <ClCompile Include="components\player\states\AttackState.cpp" />
     <ClCompile Include="components\player\states\base_states\SpringJumpActionState.cpp" />
+    <ClCompile Include="skeleton\comp_ragdoll.cpp" />
+    <ClCompile Include="physics\ragdoll_core.cpp" />
+    <ClCompile Include="physics\ragdoll.cpp" />
+    <ClCompile Include="modules\system\module_multithread.cpp" />
+    <ClCompile Include="components\comp_lod.cpp" />
+    <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -452,6 +458,13 @@
     <ClInclude Include="components\player\attack_info.h" />
     <ClInclude Include="components\player\states\AttackState.h" />
     <ClInclude Include="components\player\states\base_states\SpringJumpActionState.h" />
+    <ClInclude Include="skeleton\comp_skel_lookat.h" />
+    <ClInclude Include="skeleton\bone_correction.h" />
+    <ClInclude Include="skeleton\comp_ragdoll.h" />
+    <ClInclude Include="physics\ragdoll_core.h" />
+    <ClInclude Include="physics\ragdoll.h" />
+    <ClInclude Include="modules\system\module_multithread.h" />
+    <ClInclude Include="components\comp_lod.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "skeleton/comp_ragdoll.h"
+
 using namespace physx;
 
 class TCompCollider;
@@ -8,11 +10,18 @@ class BasicControllerHitCallback;
 class BasicControllerBehavior;
 class BasicQueryFilterCallback;
 
+#define VEC3_TO_PXVEC3(vec3) physx::PxVec3(vec3.x,vec3.y,vec3.z)
+#define PXVEC3_TO_VEC3(pxvec3) VEC3(pxvec3.x,pxvec3.y,pxvec3.z)
+
+#define QUAT_TO_PXQUAT(quat) physx::PxQuat(quat.x,quat.y,quat.z, quat.w)
+#define PXQUAT_TO_QUAT(pxquat) QUAT(pxquat.x,pxquat.y,pxquat.z, pxquat.w)
+
 class CModulePhysics : public IModule {
 private:
 	PxDefaultAllocator      defaultAllocatorCallback;
 	PxDefaultErrorCallback  defaultErrorCallback;
 	PxDefaultCpuDispatcher*	dispatcher;
+
 
 	PxFoundation*			foundation;
 	PxPhysics*				physics;
@@ -52,14 +61,14 @@ public:
 
 	std::map<std::string, FilterGroup> filterGroupByName = {
 		{ "wall", Wall },
-		{ "floor", Floor },
-		{ "player", Player },
-		{ "enemy", Enemy },
-		{ "mechanism", Mechanism },
-		{ "trigger", Trigger },
-		{ "scenario", Scenario },
-		{ "characters", Characters },
-		{ "all", All }
+	{ "floor", Floor },
+	{ "player", Player },
+	{ "enemy", Enemy },
+	{ "mechanism", Mechanism },
+	{ "trigger", Trigger },
+	{ "scenario", Scenario },
+	{ "characters", Characters },
+	{ "all", All }
 	};
 
 	CModulePhysics(const std::string& aname) : IModule(aname) {}
@@ -67,6 +76,9 @@ public:
 	virtual bool stop() override;
 	virtual void update(float delta) override;
 	virtual void render() override {}
+
+	void createRagdoll(TCompRagdoll& comp_ragdoll);
+	void createRagdollJoints(TCompRagdoll& comp_ragdoll, int bone_id);
 
 	void createActor(TCompCollider& compCollider);
 	void setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask);

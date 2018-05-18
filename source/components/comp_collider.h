@@ -22,7 +22,6 @@ struct TMsgColliderDestroyed {
 	DECL_MSG_ID();
 };
 
-
 struct ColliderConfig {
 	std::string type;
 	PxGeometryType::Enum shapeType;

@@ -19,9 +19,29 @@ TCompRender::~TCompRender() {
 void TCompRender::onDefineLocalAABB(const TMsgDefineLocalAABB& msg) {
 	AABB::CreateMerged(*msg.aabb, *msg.aabb, aabb);
 }
+// --------------------------------------------
+void TCompRender::onSetVisible(const TMsgSetVisible& msg) {
+  
+  // If the flag has not changed, nothing to change
+  if (global_enabled == msg.visible)
+    return;
+  
+  // Now keep the new value
+  global_enabled = msg.visible;
+
+  // This means we were visible, so we only need to remove my self
+  if (!global_enabled) {
+    CRenderManager::get().delRenderKeys(CHandle(this));
+  }
+  else {
+    // We come from being invisible, so just add my render keys
+    refreshMeshesInRenderManager(false);
+  }
+}
 
 void TCompRender::registerMsgs() {
-	DECL_MSG(TCompRender, TMsgDefineLocalAABB, onDefineLocalAABB);
+  DECL_MSG(TCompRender, TMsgDefineLocalAABB, onDefineLocalAABB);
+  DECL_MSG(TCompRender, TMsgSetVisible, onSetVisible);
 }
 
 void TCompRender::debugInMenu() {
@@ -143,7 +163,7 @@ void TCompRender::setAllMaterials(int startingMesh, int endingMesh, std::string 
 		const CMaterial* material = Resources.get(materialName)->as<CMaterial>();
 		m.materials.push_back(material);
 	}
-	refreshMeshesInRenderManager();
+	refreshMeshesInRenderManager(true);
 }
 
 void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
@@ -171,14 +191,15 @@ void TCompRender::TurnRed(float time) {
 	color = VEC4(1, 0, 0, 1);
 }
 
-void TCompRender::refreshMeshesInRenderManager() {
+void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
 	CHandle h_me = CHandle(this);
-	CRenderManager::get().delRenderKeys(h_me);
-
+	if(delete_me_from_keys)
+	  CRenderManager::get().delRenderKeys(h_me);
+  
 	// The house and the trees..
 	for (auto& mwm : meshes) {
 		// Do not register disabled meshes
-		if (!mwm.enabled) continue;
+    if (!mwm.enabled || !global_enabled) continue;
 
 		// All materials of the house...
 		uint32_t idx = 0;

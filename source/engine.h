@@ -4,6 +4,7 @@
 #include "modules/system/module_render.h"
 #include "modules/system/module_entities.h"
 #include "modules/game/physics/module_physics.h"
+#include "modules/system/module_multithread.h"
 #include "modules/system/module_input.h"
 #include "modules/system/module_cameras.h"
 #include "modules/system/scripting/module_scripting.h"
@@ -29,6 +30,7 @@ public:
 	CModuleScripting& getScripting() { return _module_scripting; }
 	CModuleGUI& getGUI() { return _module_gui; }
 	CModuleSound& getSound() { return _module_sound; }
+  CModuleMultithread& getMultithread() { return _module_multithread; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
@@ -43,6 +45,7 @@ private:
 	CModuleScripting _module_scripting;
 	CModuleGUI       _module_gui;
 	CModuleSound     _module_sound;
+	CModuleMultithread  _module_multithread;
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
