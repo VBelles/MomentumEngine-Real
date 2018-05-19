@@ -99,23 +99,13 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\HuggingWallActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackLandingActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\GhostJumpWindowActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\IdleActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\LandingActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\RunActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\TurnAroundActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\WalkActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\HorizontalLauncherActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\StrongAttackActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\VerticalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\ReleasePowerAirActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\ReleasePowerGroundActionState.cpp" />
     <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_mechanism_system.cpp" />
     <ClCompile Include="components\comp_appear.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\JumpSquatSpringActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\IdleTurnAroundActionState.cpp" />
     <ClCompile Include="components\comp_give_power.cpp" />
     <ClCompile Include="components\controllers\ranged_attacks\comp_ranged_attack.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
@@ -193,7 +183,6 @@
     <ClCompile Include="modules\game\module_game.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
-    <ClCompile Include="components\player\states\base_states\LauncherActionState.cpp" />
     <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="skeleton\bone_correction.cpp" />
     <ClCompile Include="components\postfx\comp_color_grading.cpp" />
@@ -209,7 +198,18 @@
     <ClCompile Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.cpp" />
     <ClCompile Include="components\player\attack_info.cpp" />
     <ClCompile Include="components\player\states\AttackState.cpp" />
-    <ClCompile Include="components\player\states\base_states\SpringJumpActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\HorizontalLauncherActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\LauncherActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\ReleasePowerGroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\StrongAttackActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\VerticalLauncherActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\moving_around\IdleActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\moving_around\IdleTurnAroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\moving_around\RunActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\moving_around\TurnAroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\moving_around\WalkActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\spring_jump\SpringJumpActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -338,23 +338,13 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\HuggingWallActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackLandingActionState.h" />
     <ClInclude Include="components\player\states\base_states\GhostJumpWindowActionState.h" />
-    <ClInclude Include="components\player\states\base_states\IdleActionState.h" />
     <ClInclude Include="components\player\states\base_states\LandingActionState.h" />
-    <ClInclude Include="components\player\states\base_states\RunActionState.h" />
-    <ClInclude Include="components\player\states\base_states\TurnAroundActionState.h" />
-    <ClInclude Include="components\player\states\base_states\WalkActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />
-    <ClInclude Include="components\player\states\base_states\HorizontalLauncherActionState.h" />
-    <ClInclude Include="components\player\states\base_states\StrongAttackActionState.h" />
-    <ClInclude Include="components\player\states\base_states\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\ReleasePowerAirActionState.h" />
-    <ClInclude Include="components\player\states\base_states\ReleasePowerGroundActionState.h" />
     <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_mechanism_system.h" />
     <ClInclude Include="components\comp_appear.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
-    <ClInclude Include="components\player\states\base_states\JumpSquatSpringActionState.h" />
-    <ClInclude Include="components\player\states\base_states\IdleTurnAroundActionState.h" />
     <ClInclude Include="components\comp_give_power.h" />
     <ClInclude Include="components\controllers\ranged_attacks\comp_ranged_attack.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
@@ -435,7 +425,6 @@
     <ClInclude Include="modules\game\module_game.h" />
     <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
-    <ClInclude Include="components\player\states\base_states\LauncherActionState.h" />
     <ClInclude Include="skeleton\comp_skel_lookat.h" />
     <ClInclude Include="skeleton\bone_correction.h" />
     <ClInclude Include="components\postfx\comp_color_grading.h" />
@@ -451,7 +440,18 @@
     <ClInclude Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.h" />
     <ClInclude Include="components\player\attack_info.h" />
     <ClInclude Include="components\player\states\AttackState.h" />
-    <ClInclude Include="components\player\states\base_states\SpringJumpActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\HorizontalLauncherActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\LauncherActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\ReleasePowerGroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\StrongAttackActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\VerticalLauncherActionState.h" />
+    <ClInclude Include="components\player\states\base_states\moving_around\IdleActionState.h" />
+    <ClInclude Include="components\player\states\base_states\moving_around\IdleTurnAroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\moving_around\RunActionState.h" />
+    <ClInclude Include="components\player\states\base_states\moving_around\TurnAroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\moving_around\WalkActionState.h" />
+    <ClInclude Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.h" />
+    <ClInclude Include="components\player\states\base_states\spring_jump\SpringJumpActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
