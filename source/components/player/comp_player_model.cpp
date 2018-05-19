@@ -308,6 +308,10 @@ void TCompPlayerModel::onControllerHit(const TMsgControllerHit& msg) {
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 	if (!lockWalk) {
+		if (isWalking) {
+			input.Normalize();
+			input *= 0.5f;
+		}
 		stateManager->getState()->setMovementInput(input);
 	}
 	else {
@@ -407,6 +411,14 @@ void TCompPlayerModel::releasePowerButtonPressed() {
 		stateManager->getState()->onReleasePowerButton();
 		stateManager->getConcurrentState()->onReleasePowerButton();
 	}
+}
+
+void TCompPlayerModel::dodgeButtonPressed() {
+	dbg("dodge\n");
+}
+
+void TCompPlayerModel::walkButtonPressed() {
+	isWalking = !isWalking;
 }
 
 void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only

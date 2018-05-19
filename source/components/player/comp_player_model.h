@@ -104,6 +104,7 @@ public:
 	bool lockTurning = false;
 	bool lockAttack = false;
 	bool wannaJump = false;
+	bool isWalking = false;
 
 	float maxVerticalSpeed = 0.f;
 
@@ -138,6 +139,8 @@ public:
 	void strongAttackButtonReleased();
 	void centerCameraButtonPressed();
 	void releasePowerButtonPressed();
+	void dodgeButtonPressed();
+	void walkButtonPressed();
 	void gainPowerButtonPressed();
 	bool isConcurrentActionFree();
 

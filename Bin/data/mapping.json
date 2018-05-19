@@ -22,7 +22,7 @@
 	{
 		"name" : "walk",
 		"all" : false,
-		"buttons" : ["lcontrol"]
+		"buttons" : ["q"]
 	},
 	{
 		"name" : "jump",
@@ -42,7 +42,12 @@
 	{
 		"name" : "gain_power",
 		"all" : false,
-		"buttons" : ["pad_r1", "r"]
+		"buttons" : ["pad_options", "r"]
+	},
+	{
+		"name" : "dodge",
+		"all" : false,
+		"buttons" : ["pad_r1", "lcontrol"]
 	},
 	{
 		"name" : "long_jump",

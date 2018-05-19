@@ -29,6 +29,7 @@ void TCompPlayerController::update(float delta) {
 		);
 		if (leftAnalogInput.Length() > PAD_DEAD_ZONE) { //Manda el input del pad
 			translationInput = leftAnalogInput;
+			playerModel->isWalking = false;//para evitar que ande si está en true y usas mando
 		}
 		else { //Detecto el teclado
 			if (EngineInput["left"].isPressed()) {
@@ -43,9 +44,8 @@ void TCompPlayerController::update(float delta) {
 			if (EngineInput["forward"].isPressed()) {
 				translationInput.y += 1.f;
 			}
-			if (EngineInput["walk"].isPressed()) {
-				translationInput.Normalize();
-				translationInput *= 0.5f;
+			if (EngineInput["walk"].getsPressed()) {
+				playerModel->walkButtonPressed();
 			}
 		}
 
@@ -75,6 +75,9 @@ void TCompPlayerController::update(float delta) {
 		}
 		if (EngineInput["release_power"].getsPressed()) {
 			playerModel->releasePowerButtonPressed();
+		}
+		if (EngineInput["dodge"].getsPressed()) {
+			playerModel->dodgeButtonPressed();
 		}
 		if (EngineInput["gain_power"].getsPressed() && IsDebuggerPresent()) {
 			playerModel->gainPowerButtonPressed();
