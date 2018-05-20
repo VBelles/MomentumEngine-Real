@@ -83,6 +83,7 @@ public:
 	virtual void onStrongAttackButton() {}
 	virtual void onStrongAttackButtonReleased() {}
 	virtual void onFastAttackButton() {}
+	virtual void onDodgeButton() {}
 	virtual void onFastAttackButtonReleased() {}
 	virtual void onReleasePowerButton() {}
 	virtual void onHitboxEnter(std::string hitbox, CHandle entity) {}

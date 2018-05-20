@@ -19,6 +19,7 @@ public:
 	void onStrongAttackButton() override;
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
+	void onDodgeButton() override;
 	void onMove(MoveState& moveState) override;
 	void onDamage(const TMsgAttackHit& msg) override;
 

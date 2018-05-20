@@ -52,6 +52,10 @@ void GroundedActionState::onReleasePowerButton() {
 	stateManager->changeState(ReleasePowerGround);
 }
 
+void GroundedActionState::onDodgeButton() {
+	stateManager->changeState(Dodge);
+}
+
 void GroundedActionState::onMove(MoveState& moveState) {
 	if (!moveState.isTouchingBot) {
 		onLeavingGround();

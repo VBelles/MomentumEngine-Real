@@ -55,7 +55,8 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	AttackState::onStateExit(nextState);
+	AttackState::onStateExit(nextState); 
+	getPlayerModel()->getSkeleton()->removeAction(animation, 0.2f);
 }
 
 void StrongAttackActionState::onStrongAttackButtonReleased() {

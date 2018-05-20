@@ -153,6 +153,7 @@
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
     <ClCompile Include="components\player\states\AttackState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\DodgeActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\HorizontalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\LauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\ReleasePowerGroundActionState.cpp" />
@@ -368,6 +369,7 @@
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\power_stats.h" />
     <ClInclude Include="components\player\states\AttackState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\DodgeActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\HorizontalLauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\LauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\ReleasePowerGroundActionState.h" />

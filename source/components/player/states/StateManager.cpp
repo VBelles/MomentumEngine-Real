@@ -37,6 +37,7 @@
 #include "components/player/states/base_states/combat/HorizontalLauncherActionState.h"
 #include "components/player/states/base_states/combat/VerticalLauncherActionState.h"
 #include "components/player/states/base_states/combat/ReleasePowerGroundActionState.h"
+#include "components/player/states/base_states/combat/DodgeActionState.h"
 #include "components/player/states/base_states/spring_jump/JumpSquatSpringActionState.h"
 #include "components/player/states/base_states/spring_jump/SpringJumpActionState.h"
 #include "components/player/states/base_states/death/DeathActionState.h"
@@ -109,6 +110,7 @@ void StateManager::registerStates() {
 	registerState(HardKnockbackGroundActionState);
 	registerState(HardKnockbackAirActionState);
 	registerState(SpringJumpActionState);
+	registerState(DodgeActionState);
 
 	registerConcurrentState(FreeActionState);
 	registerConcurrentState(FastAttackActionState);

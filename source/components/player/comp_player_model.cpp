@@ -414,7 +414,10 @@ void TCompPlayerModel::releasePowerButtonPressed() {
 }
 
 void TCompPlayerModel::dodgeButtonPressed() {
-	dbg("dodge\n");
+	if (!lockAttack) {
+		stateManager->getState()->onDodgeButton();
+		stateManager->getConcurrentState()->onDodgeButton();
+	}
 }
 
 void TCompPlayerModel::walkButtonPressed() {
