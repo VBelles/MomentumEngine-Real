@@ -4,9 +4,13 @@ using namespace physx;
 
 class TCompCollider;
 struct ColliderConfig;
-class BasicControllerHitCallback;
-class BasicControllerBehavior;
-class BasicQueryFilterCallback;
+
+#include "basic_filter_shader.h"
+#include "basic_query_filter_callback.h"
+#include "basic_simulation_event_callback.h"
+#include "basic_controller_hit_callback.h"
+#include "basic_controller_filter_callback.h"
+#include "basic_controller_behavior.h"
 
 class CModulePhysics : public IModule {
 private:
@@ -22,9 +26,10 @@ private:
 	PxControllerManager*    controllerManager;
 	PxMaterial*				defaultMaterial;
 
-	BasicControllerHitCallback* basicControllerHitCallback;
-	BasicControllerBehavior* basicControllerBehavior;
-	BasicQueryFilterCallback* basicQueryFilterCallback;
+	BasicControllerHitCallback basicControllerHitCallback;
+	BasicControllerFilterCallback basicControllerFilterCallback;
+	BasicControllerBehavior basicControllerBehavior;
+	BasicQueryFilterCallback basicQueryFilterCallback;
 
 	std::set<CHandle> toRelease;
 
@@ -35,9 +40,6 @@ private:
 	void releaseColliders();
 
 public:
-	int colliderType;
-	int hitboxType;
-
 	enum FilterGroup {
 		Wall = 1 << 0,
 		Floor = 1 << 1,
@@ -76,10 +78,13 @@ public:
 	void makeActorTrigger(PxRigidActor * actor);
 	void releaseCollider(CHandle handle);
 
+	PxControllerCollisionFlags move(PxController* controller, PxVec3& deltaMovement, float delta, float minDist = 0.f);
+
 	FilterGroup getFilterByName(const std::string& name);
 	PxScene* getScene() { return scene; }
-	BasicControllerHitCallback* getGameControllerHitCallback() { return basicControllerHitCallback; }
-	BasicQueryFilterCallback* getGameQueryFilterCallback() { return basicQueryFilterCallback; }
+	BasicControllerHitCallback* getGameControllerHitCallback() { return &basicControllerHitCallback; }
+	BasicQueryFilterCallback* getGameQueryFilterCallback() { return &basicQueryFilterCallback; }
+	BasicControllerFilterCallback* getControllerFilterCallback() { return &basicControllerFilterCallback; }
 };
 
 #define PX_RELEASE(x)  if(x) x->release(), x = nullptr;

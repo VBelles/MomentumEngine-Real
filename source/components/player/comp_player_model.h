@@ -3,8 +3,6 @@
 #include "components/comp_base.h"
 #include "power_stats.h"
 #include "entity/common_msgs.h"
-#include "modules/game/physics/basic_controller_hit_callback.h"
-#include "components/player/filters/player_filter_callback.h"
 #include "components/player/attack_info.h"
 
 class IActionState;
@@ -13,7 +11,6 @@ class TCompCollider;
 class TCompTransform;
 class TCompPowerGauge;
 class TCompSkeleton;
-class PlayerFilterCallback;
 class StateManager;
 
 struct TMsgRespawnChanged;
@@ -72,9 +69,6 @@ private:
 	CTimer dialogTimer;
 	float dialogTime = 15.0f;
 	
-
-	PlayerFilterCallback playerFilterCallback;
-
 	StateManager* stateManager = nullptr;
 
 	AttackInfo receivedAttack;

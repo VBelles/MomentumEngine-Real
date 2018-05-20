@@ -6,7 +6,7 @@
 #include "bone_correction.h"
 
 class CalModel;
-struct TCompSkeleton;
+class TCompSkeleton;
 
 struct TCompSkelLookAt : public TCompBase {
 	CHandle     h_skeleton;        // Handle to comp_skeleton of the entity being tracked

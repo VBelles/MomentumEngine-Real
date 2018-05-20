@@ -262,8 +262,7 @@ void TCompPlayerModel::applyGravity(float delta) {
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	moveState = MoveState();
-	PxControllerCollisionFlags moveFlags = getController()->move(toPxVec3(deltaMovement), 0.f, delta,
-		PxControllerFilters(&getFilterData(getController()), &playerFilterCallback, &playerFilterCallback));
+	PxControllerCollisionFlags moveFlags = EnginePhysics.move(getController(), toPxVec3(deltaMovement), delta);
 	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	moveState.isTouchingTop = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
 	moveState.isTouchingSide = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_SIDES);
