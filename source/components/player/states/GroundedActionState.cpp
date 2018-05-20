@@ -43,7 +43,7 @@ void GroundedActionState::onStrongAttackButton() {
 }
 
 void GroundedActionState::onFastAttackButton() {
-	if (getPlayerModel()->isConcurrentActionFree()) {
+	if (stateManager->isConcurrentActionFree()) {
 		stateManager->changeConcurrentState(FastAttack);
 	}
 }

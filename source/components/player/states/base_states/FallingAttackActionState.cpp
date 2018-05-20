@@ -48,8 +48,8 @@ void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->setGravity(0.f);
 	*velocityVector = VEC3::Zero;
 	timer.reset();
-	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
-	getPlayerModel()->getSkeleton()->executeAction(animationPositioning, 0.2f, 0.2f);
+	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animationPositioning, 0.2f, 0.2f);
 }
 
 void FallingAttackActionState::onStateExit(IActionState * nextState) {

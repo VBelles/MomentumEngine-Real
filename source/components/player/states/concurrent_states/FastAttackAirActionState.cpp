@@ -35,7 +35,7 @@ void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = true;
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void FastAttackAirActionState::onStateExit(IActionState * nextState) {

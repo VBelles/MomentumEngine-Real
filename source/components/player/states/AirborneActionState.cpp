@@ -108,13 +108,13 @@ void AirborneActionState::onStrongAttackButton() {
 }
 
 void AirborneActionState::onFastAttackButton() {
-	if (getPlayerModel()->isConcurrentActionFree()) {
+	if (stateManager->isConcurrentActionFree()) {
 		stateManager->changeConcurrentState(FastAttackAir);
 	}
 }
 
 void AirborneActionState::onReleasePowerButton() {
-	if (getPlayerModel()->isConcurrentActionFree()) {
+	if (stateManager->isConcurrentActionFree()) {
 		stateManager->changeConcurrentState(ReleasePowerAir);
 	}
 }

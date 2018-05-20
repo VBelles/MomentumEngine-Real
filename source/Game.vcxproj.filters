@@ -113,7 +113,6 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
     <ClCompile Include="modules\game\module_pause.cpp" />
     <ClCompile Include="modules\system\module_render.cpp" />
-    <ClCompile Include="utils\geometry_utils.cpp" />
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="mcv_platform.cpp" />
     <ClCompile Include="modules\game\physics\module_physics.cpp" />
@@ -211,6 +210,7 @@
     <ClCompile Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\spring_jump\SpringJumpActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\DodgeActionState.cpp" />
+    <ClCompile Include="utils\physx_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -353,7 +353,6 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
     <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\system\module_render.h" />
-    <ClInclude Include="utils\geometry_utils.h" />
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="game_constants.h" />
     <ClInclude Include="modules\game\physics\module_physics.h" />
@@ -454,6 +453,7 @@
     <ClInclude Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\spring_jump\SpringJumpActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\DodgeActionState.h" />
+    <ClInclude Include="utils\physx_utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

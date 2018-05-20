@@ -75,12 +75,12 @@ void WalkActionState::update(float delta) {
 
 void WalkActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
-	getPlayerModel()->getSkeleton()->setTimeFactor(0.5f);
+	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->setTimeFactor(0.5f);
 }
 
 void WalkActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	getPlayerModel()->getSkeleton()->setTimeFactor(1);
+	getSkeleton()->setTimeFactor(1);
 }
 

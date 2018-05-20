@@ -15,6 +15,9 @@ class TCompRender;
 class TCompTransform;
 class TCompHitboxes;
 class TCompRenderBlurRadial;
+class TCompSkeleton;
+class TCompPowerGauge;
+
 struct HitState;
 struct MoveState;
 struct TMsgAttackHit;
@@ -36,6 +39,8 @@ protected:
 	TCompHitboxes* getHitboxes();
 	TCompCamera* getCamera();
 	TCompRenderBlurRadial* getBlurRadial();
+	TCompSkeleton* getSkeleton();
+	TCompPowerGauge* getPowerGauge();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);

@@ -18,7 +18,7 @@ void DodgeActionState::update (float delta) {
 		stateManager->changeState(Idle);
 	}
 	else if (isMoving && timer.elapsed() >= movingTime) {
-		getPlayerModel()->getSkeleton()->executeAction(recoveryAnimation, 0.2f, 0.2f);
+		getSkeleton()->executeAction(recoveryAnimation, 0.2f, 0.2f);
 		*velocityVector = VEC3::Zero;
 		deltaMovement.x = 0.f;
 		deltaMovement.z = 0.f;
@@ -36,7 +36,7 @@ void DodgeActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	timer.reset();
 	isMoving = true;
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	//posibilidad: coger el último input y encarar esa dirección antes de decidir la velocidad
 	//set velocity vector
 	*velocityVector = -getPlayerTransform()->getFront() * dodgeSpeed;
@@ -44,8 +44,8 @@ void DodgeActionState::onStateEnter(IActionState * lastState) {
 
 void DodgeActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState); 
-	getPlayerModel()->getSkeleton()->removeAction(animation, 0.2f);
-	getPlayerModel()->getSkeleton()->removeAction(recoveryAnimation, 0.2f);
+	getSkeleton()->removeAction(animation, 0.2f);
+	getSkeleton()->removeAction(recoveryAnimation, 0.2f);
 }
 
 void DodgeActionState::onJumpHighButton() {

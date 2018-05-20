@@ -56,13 +56,13 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState); 
-	getPlayerModel()->getSkeleton()->removeAction(animation, 0.2f);
+	getSkeleton()->removeAction(animation, 0.2f);
 }
 
 void StrongAttackActionState::onStrongAttackButtonReleased() {
 	if (phase == AttackPhases::Launch) {
 		phase = AttackPhases::Startup;
-		getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	}
 }
 

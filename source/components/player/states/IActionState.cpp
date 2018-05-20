@@ -1,13 +1,15 @@
 #include "mcv_platform.h"
 #include "IActionState.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "components/comp_collider.h"
 #include "components/comp_hitboxes.h"
 #include "components/postfx/comp_render_blur_radial.h"
-#include "components/player/comp_player_model.h"
+#include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "components/player/comp_power_gauge.h"
 
 
 IActionState::IActionState(StateManager* stateManager, State state, ConcurrentState concurrentState) :
@@ -144,3 +146,5 @@ TCompRender* IActionState::getRender() { return stateManager->getRender(); }
 TCompHitboxes* IActionState::getHitboxes() { return stateManager->getHitboxes(); }
 TCompCamera* IActionState::getCamera() { return stateManager->getCamera(); }
 TCompRenderBlurRadial* IActionState::getBlurRadial() { return getCamera()->get<TCompRenderBlurRadial>(); }
+TCompSkeleton* IActionState::getSkeleton() { return stateManager->getSkeleton(); }
+TCompPowerGauge* IActionState::getPowerGauge() { return stateManager->getPowerGauge(); }
