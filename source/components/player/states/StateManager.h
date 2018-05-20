@@ -10,6 +10,7 @@ class TCompCamera;
 class TCompSkeleton;
 class TCompHitboxes;
 class TCompRenderBlurRadial;
+class TCompPowerGauge;
 class IActionState;
 
 class StateManager {
@@ -23,6 +24,7 @@ private:
 	CHandle cameraHandle;
 	CHandle skeletonHandle;
 	CHandle hitboxesHandle;
+	CHandle powerGaugeHandle;
 
 	std::map<State, IActionState*> states;
 	std::map<ConcurrentState, IActionState*> concurrentStates;
@@ -62,6 +64,8 @@ public:
 	IActionState* getState(State state);
 	IActionState* getConcurrentState(ConcurrentState state);
 
+	bool isConcurrentActionFree();
+
 	CEntity* getEntity();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getTransform();
@@ -70,6 +74,7 @@ public:
 	TCompCamera* getCamera();
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
+	TCompPowerGauge* getPowerGauge();
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;

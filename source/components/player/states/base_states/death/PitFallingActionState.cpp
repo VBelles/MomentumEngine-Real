@@ -19,7 +19,7 @@ void PitFallingActionState::update(float delta) {
 
 void PitFallingActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
-	getPlayerModel()->getSkeleton()->blendCycle(animation);
+	getSkeleton()->blendCycle(animation);
 	finish = true;
 }
 

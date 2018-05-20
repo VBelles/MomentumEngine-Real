@@ -4,6 +4,7 @@
 #include "power_stats.h"
 #include "entity/common_msgs.h"
 #include "modules/game/physics/basic_controller_hit_callback.h"
+#include "components/player/filters/player_filter_callback.h"
 #include "components/player/attack_info.h"
 
 class IActionState;
@@ -73,7 +74,7 @@ private:
 	float dialogTime = 15.0f;
 	
 
-	PlayerFilterCallback* playerFilterCallback = nullptr;
+	PlayerFilterCallback playerFilterCallback;
 
 	StateManager* stateManager = nullptr;
 
@@ -139,14 +140,11 @@ public:
 	void centerCameraButtonPressed();
 	void releasePowerButtonPressed();
 	void gainPowerButtonPressed();
-	bool isConcurrentActionFree();
 
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
 	PxCapsuleController* getController();
-	TCompCamera* getCamera();
 	TCompPowerGauge* getPowerGauge();
-	TCompSkeleton* getSkeleton();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }
 	VEC3* getVelocityVector() { return &velocityVector; }

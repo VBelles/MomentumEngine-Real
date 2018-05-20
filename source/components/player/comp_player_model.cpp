@@ -197,8 +197,6 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	currentPowerStats = powerStats[0];
 
-	playerFilterCallback = new PlayerFilterCallback();
-
 	stateManager = new StateManager(CHandle(this).getOwner());
 
 }
@@ -271,7 +269,7 @@ void TCompPlayerModel::applyGravity(float delta) {
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	moveState = MoveState();
 	PxControllerCollisionFlags moveFlags = getController()->move(toPxVec3(deltaMovement), 0.f, delta,
-		PxControllerFilters(&getFilterData(getController()), playerFilterCallback, playerFilterCallback));
+		PxControllerFilters(&getFilterData(getController()), &playerFilterCallback, &playerFilterCallback));
 	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	moveState.isTouchingTop = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
 	moveState.isTouchingSide = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_SIDES);
@@ -413,9 +411,6 @@ void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only
 	getPowerGauge()->gainPower();
 }
 
-bool TCompPlayerModel::isConcurrentActionFree() {
-	return stateManager->getConcurrentState()->concurrentState == Free;
-}
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
@@ -467,21 +462,9 @@ TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
 	return powerGaugeHandle;
 }
 
-TCompSkeleton* TCompPlayerModel::getSkeleton() {
-	return skeletonHandle;
-}
-
-TCompCamera* TCompPlayerModel::getCamera() {
-	CEntity* camera = (CEntity *)getEntityByName(GAME_CAMERA);
-	TCompCamera* currentCamera = camera->get<TCompCamera>();
-	assert(currentCamera);
-	return currentCamera;
-}
-
 TCompPlayerModel::~TCompPlayerModel() {
 	SAFE_DELETE(powerStats[0]);
 	SAFE_DELETE(powerStats[1]);
 	SAFE_DELETE(powerStats[2]);
-	SAFE_DELETE(playerFilterCallback);
 	SAFE_DELETE(stateManager);
 }

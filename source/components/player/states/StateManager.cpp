@@ -2,6 +2,7 @@
 #include "StateManager.h"
 #include "components/player/states/IActionState.h"
 #include "components/player/comp_player_model.h"
+#include "components/player/comp_power_gauge.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
@@ -61,7 +62,8 @@ StateManager::StateManager(CHandle entityHandle) :
 	colliderHandle(getEntity()->get<TCompCollider>()),
 	renderHandle(getEntity()->get<TCompRender>()),
 	skeletonHandle(getEntity()->get<TCompSkeleton>()),
-	hitboxesHandle(getEntity()->get<TCompHitboxes>()) {
+	hitboxesHandle(getEntity()->get<TCompHitboxes>()),
+	powerGaugeHandle(getEntity()->get<TCompPowerGauge>()) {
 
 	registerStates();
 }
@@ -174,6 +176,9 @@ IActionState* StateManager::getConcurrentState() { return concurrentState; }
 IActionState* StateManager::getState(State state) { return states[state]; }
 IActionState* StateManager::getConcurrentState(ConcurrentState state) { return concurrentStates[state]; }
 
+bool StateManager::isConcurrentActionFree() {
+	return concurrentState->concurrentState == Free;
+}
 
 //Component getters
 CEntity* StateManager::getEntity() { return entityHandle; }
@@ -184,4 +189,5 @@ TCompRender* StateManager::getRender() { return renderHandle; }
 TCompCamera* StateManager::getCamera() { return ((CEntity *)getEntityByName(GAME_CAMERA))->get<TCompCamera>(); }
 TCompSkeleton* StateManager::getSkeleton() { return skeletonHandle; }
 TCompHitboxes* StateManager::getHitboxes() { return hitboxesHandle; }
+TCompPowerGauge* StateManager::getPowerGauge() { return powerGaugeHandle; }
 
