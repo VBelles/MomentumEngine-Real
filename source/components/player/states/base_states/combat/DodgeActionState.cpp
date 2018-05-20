@@ -35,6 +35,7 @@ void DodgeActionState::update (float delta) {
 void DodgeActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	timer.reset();
+	stateManager->changeConcurrentState(Free);
 	isMoving = true;
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	//posibilidad: coger el último input y encarar esa dirección antes de decidir la velocidad

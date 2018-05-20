@@ -17,7 +17,7 @@ StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
 	hitEndTime = frames2sec(10);
 	animationEndTime = frames2sec(60);
 	cancelableTime = frames2sec(50);
-	interruptibleTime = frames2sec(110);
+	interruptibleTime = frames2sec(80);
 	hitbox = "strong_attack";
 }
 
@@ -51,6 +51,7 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Launch;
 	*velocityVector = VEC3::Zero;
+	stateManager->changeConcurrentState(Free);
 }
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
@@ -64,6 +65,10 @@ void StrongAttackActionState::onStrongAttackButtonReleased() {
 		phase = AttackPhases::Startup;
 		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	}
+}
+
+void StrongAttackActionState::onDodgeButton() {
+	if(isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
 }
 
 void StrongAttackActionState::onLeavingGround() {

@@ -31,6 +31,7 @@ void FastAttackAirActionState::update(float delta) {
 
 void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
+	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
@@ -40,6 +41,7 @@ void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 
 void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
+	AttackState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = false;

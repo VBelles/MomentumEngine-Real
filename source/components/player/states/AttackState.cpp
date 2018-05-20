@@ -30,10 +30,25 @@ void AttackState::update(float delta) {
 void AttackState::onStateEnter(IActionState * lastState) {
 	phase = AttackPhases::Startup;
 	timer.reset();
+	cancelTimer.reset();
 }
 
 void AttackState::onStateExit(IActionState * nextState) {
 	getAttackHitboxes()->disable(hitbox);
+}
+
+bool AttackState::isCancelable() {
+	if (cancelTimer.elapsed() <= cancelableTime) {
+		return true;
+	}
+	return false;
+}
+
+bool AttackState::isInterruptible() {
+	if (cancelTimer.elapsed() >= interruptibleTime) {
+		return true;
+	}
+	return false;
 }
 
 TCompHitboxes * AttackState::getAttackHitboxes() {

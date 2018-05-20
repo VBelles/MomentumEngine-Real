@@ -35,6 +35,7 @@ void WallJumpPlummetActionState::update(float delta) {
 
 void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
+	AttackState::onStateEnter(lastState);
 	getPlayerModel()->setGravityMultiplier(0.f);
 	//Se calcula cada vez que se entra, ya que depende del poder
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
@@ -46,6 +47,7 @@ void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
 
 void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
+	AttackState::onStateExit(nextState);
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	clampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 

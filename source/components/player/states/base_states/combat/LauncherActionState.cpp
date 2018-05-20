@@ -36,7 +36,11 @@ void LauncherActionState::onStateEnter(IActionState * lastState) {
 void LauncherActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
+	getSkeleton()->removeAction(animation, 0.2f);
+}
 
+void LauncherActionState::onDodgeButton() {
+	if (isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
 }
 
 void LauncherActionState::onLeavingGround() {

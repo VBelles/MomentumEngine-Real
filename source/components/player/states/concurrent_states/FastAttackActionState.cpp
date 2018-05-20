@@ -11,6 +11,8 @@
 FastAttackActionState::FastAttackActionState(StateManager* stateManager)
 	: GroundedActionState(stateManager, FastAttack),
 	AttackState(stateManager) {
+	cancelableTime = frames2sec(9);;
+	interruptibleTime = frames2sec(25);
 }
 
 void FastAttackActionState::update(float delta) {
@@ -36,15 +38,25 @@ void FastAttackActionState::update(float delta) {
 
 void FastAttackActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
+	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Launch;
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
+	getPlayerModel()->lockAttack = true;
 }
 
 void FastAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+	AttackState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
+	getPlayerModel()->lockAttack = false;
 	getPlayerModel()->lockWalk = false;
+	getSkeleton()->removeAction(animation, 0.2f);
+}
+
+void FastAttackActionState::onDodgeButton() {
+	if (isCancelable() || isInterruptible()) { stateManager->changeState(Dodge); }
+	else { dbg("no dodge!\n"); }
 }
 
 void FastAttackActionState::onFastAttackButtonReleased() {

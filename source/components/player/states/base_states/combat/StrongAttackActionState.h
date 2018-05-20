@@ -25,6 +25,7 @@ public:
 	void onStrongAttackButton() override {}
 	void onStrongAttackButtonReleased() override;
 	void onFastAttackButton() override {}
+	void onDodgeButton() override;
 	void onReleasePowerButton() override {};
 	void onLeavingGround() override;
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;

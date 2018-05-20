@@ -66,6 +66,7 @@ void ReleasePowerAirActionState::update(float delta) {
 
 void ReleasePowerAirActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
+	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
 	buttonPresses = 1;
 	timer.reset();
@@ -75,6 +76,7 @@ void ReleasePowerAirActionState::onStateEnter(IActionState * lastState) {
 
 void ReleasePowerAirActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
+	AttackState::onStateExit(nextState);
 	getHitboxes()->disable(smallHitbox);
 	getHitboxes()->disable(bigHitbox);
 	getPlayerModel()->lockTurning = false;

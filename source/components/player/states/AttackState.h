@@ -18,6 +18,7 @@ protected:
 	float hitEndTime;
 	float animationEndTime;
 
+	CTimer cancelTimer;
 	float cancelableTime;
 	float interruptibleTime;
 
@@ -34,4 +35,6 @@ public:
 	void update(float delta);
 	void onStateEnter(IActionState* lastState);
 	void onStateExit(IActionState* nextState);
+	bool isCancelable();
+	bool isInterruptible();
 };

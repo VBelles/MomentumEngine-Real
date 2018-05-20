@@ -11,8 +11,6 @@ private:
 	float animationEndTime = frames2sec(20);
 	int buttonPresses = 1;
 
-	float interruptibleTime = frames2sec(25);
-
 	AttackPhases phase = AttackPhases::Startup;
 
 	float damage = 0.f;
@@ -34,6 +32,7 @@ public:
 	void onJumpLongButton() override {}
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
+	void onDodgeButton() override;
 	void onReleasePowerButton() override;
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

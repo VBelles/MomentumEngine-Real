@@ -15,6 +15,8 @@
 ReleasePowerGroundActionState::ReleasePowerGroundActionState(StateManager* stateManager):
 	GroundedActionState(stateManager, ReleasePowerGround),
 	AttackState(stateManager) {
+	cancelableTime = frames2sec(6);
+	interruptibleTime = frames2sec(43);
 }
 
 void ReleasePowerGroundActionState::update(float delta) {
@@ -68,7 +70,9 @@ void ReleasePowerGroundActionState::update(float delta) {
 
 void ReleasePowerGroundActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
+	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
+	stateManager->changeConcurrentState(Free);
 	*velocityVector = VEC3::Zero;
 	buttonPresses = 1;
 	timer.reset();
@@ -77,9 +81,15 @@ void ReleasePowerGroundActionState::onStateEnter(IActionState * lastState) {
 
 void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+	AttackState::onStateExit(nextState);
 	getHitboxes()->disable(smallHitbox);
 	getHitboxes()->disable(bigHitbox);
 	getBlurRadial()->setEnable(false);
+	getSkeleton()->removeAction(animation, 0.2f);
+}
+
+void ReleasePowerGroundActionState::onDodgeButton() {
+	if (isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
 }
 
 void ReleasePowerGroundActionState::onReleasePowerButton() {

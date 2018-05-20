@@ -44,6 +44,7 @@ void FallingAttackActionState::update(float delta) {
 
 void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
+	AttackState::onStateEnter(lastState);
 	getPlayerModel()->maxVerticalSpeed = maxFallingVelocity;
 	getPlayerModel()->setGravity(0.f);
 	*velocityVector = VEC3::Zero;
@@ -54,6 +55,7 @@ void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 
 void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
+	AttackState::onStateExit(nextState);
 	if (!dynamic_cast<FallingAttackLandingActionState*>(nextState)) {
 		getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack si es posible
 	}

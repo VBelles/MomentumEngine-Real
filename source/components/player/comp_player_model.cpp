@@ -371,8 +371,8 @@ void TCompPlayerModel::longJumpButtonPressed() {
 void TCompPlayerModel::fastAttackButtonPressed() {
 	if (!lockAttack) {
 		stateManager->getState()->onFastAttackButton();
-		stateManager->getConcurrentState()->onFastAttackButton();
 	}
+	stateManager->getConcurrentState()->onFastAttackButton();
 }
 
 void TCompPlayerModel::fastAttackButtonReleased() {
@@ -383,8 +383,8 @@ void TCompPlayerModel::fastAttackButtonReleased() {
 void TCompPlayerModel::strongAttackButtonPressed() {
 	if (!lockAttack) {
 		stateManager->getState()->onStrongAttackButton();
-		stateManager->getConcurrentState()->onStrongAttackButton();
 	}
+	stateManager->getConcurrentState()->onStrongAttackButton();
 }
 
 void TCompPlayerModel::strongAttackButtonReleased() {
@@ -401,15 +401,15 @@ void TCompPlayerModel::centerCameraButtonPressed() {
 void TCompPlayerModel::releasePowerButtonPressed() {
 	if (!lockAttack) {
 		stateManager->getState()->onReleasePowerButton();
-		stateManager->getConcurrentState()->onReleasePowerButton();
 	}
+	stateManager->getConcurrentState()->onReleasePowerButton();
 }
 
 void TCompPlayerModel::dodgeButtonPressed() {
 	if (!lockAttack) {
 		stateManager->getState()->onDodgeButton();
-		stateManager->getConcurrentState()->onDodgeButton();
 	}
+	stateManager->getConcurrentState()->onDodgeButton();
 }
 
 void TCompPlayerModel::walkButtonPressed() {

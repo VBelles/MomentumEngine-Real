@@ -8,8 +8,7 @@ private:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(10);
 	float hitEndTime = frames2sec(15);
-	float animationEndTime = frames2sec(5);
-	float interruptibleTime = frames2sec(13);
+	float animationEndTime = frames2sec(10);
 	float beginLauncherTime = frames2sec(15);
 
 	AttackPhases phase = AttackPhases::Launch;
@@ -31,6 +30,7 @@ public:
 	void onJumpLongButton() override {}
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
+	void onDodgeButton() override;
 	void onReleasePowerButton() override {}
 	void onFastAttackButtonReleased() override;
 	void onLeavingGround() override;

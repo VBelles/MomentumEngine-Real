@@ -31,6 +31,7 @@ void GrabActionState::update(float delta) {
 
 void GrabActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
+	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
 	timer.reset();
 	getPlayerModel()->lockTurning = true;
@@ -39,6 +40,7 @@ void GrabActionState::onStateEnter(IActionState * lastState) {
 
 void GrabActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
+	AttackState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockTurning = false;
 }
