@@ -41,7 +41,6 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
-	CHandle skeletonHandle;
 
 	VEC3 respawnPosition;
 	VEC3 deltaMovement;

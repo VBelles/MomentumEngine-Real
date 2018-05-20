@@ -1,8 +1,6 @@
 ﻿#include "mcv_platform.h"
 #include "comp_player_model.h"
-#include "entity/entity_parser.h"
 #include "components/comp_render_ui.h"
-#include "components/comp_tags.h"
 #include "components/comp_render.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
@@ -10,15 +8,12 @@
 #include "components/comp_collectable.h"
 #include "components/comp_respawn_point.h"
 #include "components/controllers/comp_camera_player.h"
-#include "components/player/filters/player_filter_callback.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/StateManager.h"
 #include "components/player/attack_info.h"
-#include "skeleton/comp_skeleton.h"
-#include "modules/game/physics/basic_query_filter_callback.h"
-#include "modules/game/physics/basic_controller_hit_callback.h"
+
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -125,8 +120,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
-	skeletonHandle = get<TCompSkeleton>();
-
+	
 	respawnPosition = getTransform()->getPosition();
 
 	renderUI->registerOnRenderUI([&]() {
