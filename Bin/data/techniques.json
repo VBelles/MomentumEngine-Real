@@ -6,7 +6,8 @@
     "vertex_type": "PosClr",
     "ps_file": "data/shaders/solid.fx",
     "ps_entry_point": "PS",
-    "category": "general"
+    "category": "general",
+    "priority": 90
   },
   "solid_objs": {
     "vs_file": "data/shaders/solid.fx",
@@ -15,7 +16,8 @@
     "ps_file": "data/shaders/solid.fx",
     "ps_entry_point": "PS",
     "rs_config": "wireframe",
-    "category": "general"
+    "category": "general",
+    "priority": 90
   },
   "solid_objs_uv2": {
     "vs_file": "data/shaders/solid.fx",
@@ -24,21 +26,24 @@
     "ps_file": "data/shaders/solid.fx",
     "ps_entry_point": "PS",
     "rs_config": "wireframe",
-    "category": "general"
+    "category": "general",
+    "priority": 90
   },
   "solid_objs_skin": {
     "vs_file": "data/shaders/solid.fx",
     "vs_entry_point": "VS_Objs_Skin",
     "vertex_type": "PosNUvSkin",
     "rs_config": "wireframe",
-    "category": "general"
+    "category": "general",
+    "priority": 90
   },
   "solid_objs_skin_uv2": {
     "vs_file": "data/shaders/solid.fx",
     "vs_entry_point": "VS_Objs_Skin_uv2",
     "vertex_type": "PosNUvUvTSkin",
     "rs_config": "wireframe",
-    "category": "general"
+    "category": "general",
+    "priority": 90
   },
 
 
@@ -48,7 +53,8 @@
     "vertex_type": "Pos",
     "ps_entry_point": "",
     "rs_config": "shadows",
-    "category": "shadows"
+    "category": "shadows",
+    "priority": 70
   },
   "shadows_skin": {
     "vs_file": "data/shaders/shadows.fx",
@@ -57,6 +63,7 @@
     "ps_entry_point": "",
     "rs_config": "shadows",
     "category": "shadows",
+    "priority": 70,
     "uses_skin": true
   },
   "shadows_instanced": {
@@ -65,14 +72,16 @@
     "vertex_type": "Pos_x_Instance",
     "ps_entry_point": "",
     "rs_config": "shadows",
-    "category": "shadows"
+    "category": "shadows",
+    "priority": 70
   },
 
   "dump_texture": {
     "vs_file": "data/shaders/screen_quad.fx",
     "vertex_type": "PosClr",
     "z": "disable_all",
-    "category": "helper"
+    "category": "helper",
+    "priority": 40
   },
 
 
@@ -83,13 +92,15 @@
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds"
     },
-    "category": "textured"
+    "category": "textured",
+    "priority": 80
   },
   "textured_skin": {
     "vs_file": "data/shaders/textured.fx",
     "vs_entry_point": "VS_Skin",
     "vertex_type": "PosNUvSkin",
     "category": "textured",
+    "priority": 80,
     "uses_skin": true
   },
 
@@ -99,7 +110,8 @@
     "vertex_type": "PosClr",
     "ps_file": "data/shaders/deferred.fx",
     "z": "disable_all",
-    "category": "helper"
+    "category": "helper",
+    "priority": 40
   },
 
 
@@ -110,6 +122,7 @@
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvUvT",
     "category": "gbuffer",
+    "priority": 100,
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
@@ -122,6 +135,7 @@
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvUvTSkin",
     "category": "gbuffer",
+    "priority": 100,
     "uses_skin": true,
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds",
@@ -135,7 +149,7 @@
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvUvT",
     "category": "gbuffer",
-    "z" : "default_clear_stencil",
+    "z": "default_clear_stencil",
     "priority": 170,
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds",
@@ -150,7 +164,7 @@
     "vertex_type": "PosNUvUvTSkin",
     "category": "gbuffer",
     "uses_skin": true,
-    "z" : "default_clear_stencil",
+    "z": "default_clear_stencil",
     "priority": 170,
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds",
@@ -164,6 +178,7 @@
     "ps_entry_point": "PS_ambient",
     "vertex_type": "PosClr",
     "category": "pbr_proc",
+    "priority": 310,
     "z": "disable_all"
   },
   "pbr_dir_lights": {
@@ -172,6 +187,7 @@
     "ps_file": "data/shaders/pbr.fx",
     "ps_entry_point": "PS_dir_lights",
     "category": "pbr_proc",
+    "priority": 310,
     "z": "disable_all",
     "blend": "additive"
   },
@@ -182,6 +198,7 @@
     "ps_entry_point": "PS_point_lights",
     "vertex_type": "PosNUvUvT",
     "category": "pbr_proc",
+    "priority": 310,
     "z": "inverse_test_no_write",
     "rs_config": "reverse_culling",
     "blend": "additive"
@@ -194,11 +211,12 @@
     "ps_entry_point": "PS",
     "vertex_type": "PosNUvUvT",
     "category": "distorsions",
+    "priority": 300,
     "textures": {
       "noise": "data/textures/noise_cloud3.dds"
     }
   },
-  
+
   "pbr_skybox": {
     "vs_file": "data/shaders/pbr.fx",
     "vs_entry_point": "VS_skybox",
@@ -206,7 +224,8 @@
     "ps_file": "data/shaders/pbr.fx",
     "ps_entry_point": "PS_skybox",
     "z": "test_equal",
-    "category": "pbr_skybox"
+    "category": "pbr_skybox",
+    "priority": 30
   },
   "pbr_instanced": {
     "vs_file": "data/shaders/pbr_instanced.fx",
@@ -214,15 +233,17 @@
     "ps_file": "data/shaders/pbr.fx",
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvUvT_x_Instance",
-    "category": "gbuffer"
+    "category": "gbuffer",
+    "priority": 100
   },
   "pbr_decals": {
     "vs_file": "data/shaders/pbr_decals.fx",
     "vertex_type": "PosNUvUvT_x_InstanceColored",
     "category": "gbuffer_decals",
-    "z" : "inverse_test_no_write",
+    "priority": 50,
+    "z": "inverse_test_no_write",
     "rs_config": "reverse_culling",
-    "blend" : "combinative_gbuffer"
+    "blend": "combinative_gbuffer"
   },
 
   "pbr_mix": {
@@ -230,28 +251,32 @@
     "vs_entry_point": "VS_GBuffer",
     "ps_entry_point": "PS_GBufferMix",
     "vertex_type": "PosNUvUvT",
-    "category" : "gbuffer"
+    "category": "gbuffer",
+    "priority": 100
   },
 
   "ao": {
     "vs_file": "data/shaders/ao.fx",
     "vertex_type": "PosClr",
     "category": "fx",
+    "priority": 20,
     "z": "disable_all"
   },
-  
+
   "color_grading": {
     "vs_file": "data/shaders/color_grading.fx",
     "vertex_type": "PosClr",
     "category": "fx",
+    "priority": 20,
     "z": "disable_all"
   },
-  
+
   "blur": {
     "vs_file": "data/shaders/blur.fx",
     "ps_file": "data/shaders/blur.fx",
     "vertex_type": "PosClr",
     "category": "fx",
+    "priority": 20,
     "z": "disable_all"
   },
   "blur_radial": {
@@ -259,20 +284,23 @@
     "ps_file": "data/shaders/blur_radial.fx",
     "vertex_type": "PosClr",
     "category": "fx",
+    "priority": 20,
     "z": "disable_all"
   },
 
   "focus": {
     "vs_file": "data/shaders/focus.fx",
     "vertex_type": "PosClr",
-    "category" : "fx",
-    "z" : "disable_all"
+    "category": "fx",
+    "priority": 20,
+    "z": "disable_all"
   },
 
   "particles": {
     "vs_file": "data/shaders/particles.fx",
     "vertex_type": "Pos_x_RenderParticle",
     "category": "particles",
+    "priority": 60,
     "blend": "combinative",
     "z": "test_but_no_write"
   },
@@ -282,17 +310,19 @@
     "ps_file": "data/shaders/bloom.fx",
     "ps_entry_point": "PS_filter",
     "vertex_type": "PosClr",
-    "category" : "fx",
-    "z" : "disable_all"
+    "category": "fx",
+    "priority": 20,
+    "z": "disable_all"
   },
   "bloom_add": {
     "vs_file": "data/shaders/screen_quad.fx",
     "ps_file": "data/shaders/bloom.fx",
     "ps_entry_point": "PS_add",
     "vertex_type": "PosClr",
-    "category" : "fx",
-    "z" : "disable_all",
-    "blend" : "additive"
+    "category": "fx",
+    "priority": 20,
+    "z": "disable_all",
+    "blend": "additive"
   },
 
   "pbr_outline": {
@@ -301,9 +331,9 @@
     "ps_entry_point": "",
     "vertex_type": "PosNUvUvT",
     "category": "gbuffer",
-    "z" : "test_no_writes_mark_stencil",
-    "priority" : 150,
-    "comment" : "This needs to go after the pbr's solids, but just before the object to render"
+    "z": "test_no_writes_mark_stencil",
+    "priority": 150,
+    "comment": "This needs to go after the pbr's solids, but just before the object to render"
   },
   "pbr_post_outline": {
     "vs_file": "data/shaders/pbr.fx",
@@ -315,8 +345,8 @@
       "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     },
-    "priority" : 160,
-    "comment" : "This needs to go after the pbr_outline"
+    "priority": 160,
+    "comment": "This needs to go after the pbr_outline"
   },
   "pbr_skin_outline": {
     "vs_file": "data/shaders/pbr.fx",
@@ -325,9 +355,9 @@
     "vertex_type": "PosNUvUvTSkin",
     "category": "gbuffer",
     "uses_skin": true,
-    "z" : "test_no_writes_mark_stencil",
-    "priority" : 150,
-    "comment" : "This needs to go after the pbr's solids, but just before the object to render"
+    "z": "test_no_writes_mark_stencil",
+    "priority": 150,
+    "comment": "This needs to go after the pbr's solids, but just before the object to render"
   },
   "pbr_skin_post_outline": {
     "vs_file": "data/shaders/pbr.fx",
@@ -340,38 +370,55 @@
       "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     },
-    "priority" : 160,
-    "comment" : "This needs to go after the pbr_outline"
+    "priority": 160,
+    "comment": "This needs to go after the pbr_outline"
   },
   "outlines": {
     "vs_file": "data/shaders/screen_quad.fx",
     "ps_file": "data/shaders/outlines.fx",
     "vertex_type": "PosClr",
-    "category" : "fx",
-    "blend" : "combinative",
+    "category": "fx",
+    "priority": 20,
+    "blend": "combinative",
     "ps_entry_point__if_stencil_test": "PS_Solid",
-    "z__if_stencil_test" : "on_non_zero_stencil"
+    "z__if_stencil_test": "on_non_zero_stencil"
   },
 
-  "gui" : {
+  "gui": {
     "vs_file": "data/shaders/gui.fx",
     "vs_entry_point": "VS_GUI",
     "ps_entry_point": "PS_GUI",
-    "vertex_type" : "PosClr",
-    "z" : "disable_all",
+    "vertex_type": "PosClr",
+    "z": "disable_all",
     "blend": "combinative",
     "rs_config": "cull_none",
-    "category" : "helper"
+    "category": "helper",
+    "priority": 40
   },
 
-  "transparency" : {
+  "transparency": {
     "vs_file": "data/shaders/transparency.fx",
     "ps_file": "data/shaders/transparency.fx",
     "vs_entry_point": "VS",
     "ps_entry_point": "PS",
     "vertex_type": "PosNUvUvT",
     "category": "distorsions",
+    "priority": 300,
     "blend": "additive",
+    "textures": {
+      "environment": "data/textures/cubemaps/momentum/posx.dds",
+      "irradiance": "data/textures/cubemaps/irradiance.dds"
+    }
+  },
+
+  "glass": {
+    "vs_file": "data/shaders/glass.fx",
+    "ps_file": "data/shaders/glass.fx",
+    "vs_entry_point": "VS",
+    "ps_entry_point": "PS",
+    "vertex_type": "PosNUvUvT",
+    "category": "distorsions",
+    "priority": 400,
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"

@@ -16,6 +16,7 @@
     "data/scenes/milestone2-mechanisms.scene",
     "data/scenes/milestone2-triggers.scene",
     "data/scenes/milestone2-trimesh.scene",
+    "data/scenes/test_glass_shader.scene",
     "data/scenes/milestone2_camaras_definitivas.scene"
   ],
   "unused_scenes": [

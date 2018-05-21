@@ -1,10 +1,9 @@
 {
-  "technique": "transparency.tech",
+  "technique": "glass.tech",
   "shadows": true,
-  "textures":
-  {
-    "albedo": "data/textures/paredambar_difuso.dds",
-    "normal": "data/textures/texturaLisa_normal.dds",
+  "textures": {
+    "albedo": "data/textures/ambar_alpha.dds",
+    "normal": "data/textures/grass_texture_normals.dds",
     "metallic": "data/textures/null_metallic.dds",
     "roughness": "data/textures/null_roughness.dds"
   }
