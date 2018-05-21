@@ -11,8 +11,6 @@ private:
 	float animationEndTime = frames2sec(20);
 	int buttonPresses = 1;
 
-	float interruptibleTime = frames2sec(25);
-
 	AttackPhases phase = AttackPhases::Startup;
 
 	float stunDuration = 3.f;

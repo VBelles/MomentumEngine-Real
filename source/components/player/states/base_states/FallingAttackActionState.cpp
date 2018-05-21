@@ -14,6 +14,7 @@
 FallingAttackActionState::FallingAttackActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, FallingAttack),
 	AttackState(stateManager) {
+	cancelableTime = frames2sec(11);
 }
 
 void FallingAttackActionState::update(float delta) {
@@ -56,6 +57,8 @@ void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
+	getSkeleton()->removeAction(animation, 0.2f);
+	getSkeleton()->removeAction(animationPositioning, 0.2f);
 	if (!dynamic_cast<FallingAttackLandingActionState*>(nextState)) {
 		getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack si es posible
 	}

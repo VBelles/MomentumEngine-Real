@@ -10,6 +10,8 @@
 GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState state) :
 	AirborneActionState(stateManager, state) ,
 	AttackState(stateManager) {
+	cancelableTime = frames2sec(1);
+	interruptibleTime = frames2sec(25);
 }
 
 void GrabActionState::update(float delta) {

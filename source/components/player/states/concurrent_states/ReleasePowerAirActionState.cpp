@@ -14,6 +14,8 @@
 ReleasePowerAirActionState::ReleasePowerAirActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, ReleasePowerAir),
 	AttackState(stateManager) {
+	cancelableTime = frames2sec(6);
+	interruptibleTime = frames2sec(43);
 }
 
 void ReleasePowerAirActionState::update(float delta) {

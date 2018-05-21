@@ -10,7 +10,6 @@ protected:
 	float hitEndTime = frames2sec(12);
 	float animationEndTime = frames2sec(15);
 	float lockDuration = 0.8f;
-	float interruptibleTime = frames2sec(25);
 
 	AttackPhases phase = AttackPhases::Startup;
 

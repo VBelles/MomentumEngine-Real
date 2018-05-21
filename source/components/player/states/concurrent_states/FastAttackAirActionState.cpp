@@ -10,6 +10,8 @@
 FastAttackAirActionState::FastAttackAirActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, FastAttackAir),
 	AttackState(stateManager) {
+	cancelableTime = frames2sec(5);
+	interruptibleTime = frames2sec(38);
 }
 
 void FastAttackAirActionState::update(float delta) {
