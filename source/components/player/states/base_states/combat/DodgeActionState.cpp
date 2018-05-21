@@ -34,47 +34,98 @@ void DodgeActionState::update (float delta) {
 }
 
 void DodgeActionState::onStateEnter(IActionState * lastState) {
+	VEC2 leavingInput = lastState == this ? movementInput : lastState->getMovementInput();
 	GroundedActionState::onStateEnter(lastState);
 	timer.reset();
 	invencibilityTimer.reset();
 	stateManager->changeConcurrentState(Free);
 	isMoving = true;
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+
 	//posibilidad: coger el último input y encarar esa dirección antes de decidir la velocidad
+	if (leavingInput.Length() > PAD_DEAD_ZONE) {
+		leavingInput.Normalize();
+		VEC3 movementInputWorldSpace = getCamera()->getCamera()->TransformToWorld(leavingInput);
+		float exitYaw = atan2(movementInputWorldSpace.x, movementInputWorldSpace.z);
+		float y, p;
+		getPlayerTransform()->getYawPitchRoll(&y, &p);
+		getPlayerTransform()->setYawPitchRoll(exitYaw, p);
+	}
+
 	//set velocity vector
 	*velocityVector = -getPlayerTransform()->getFront() * dodgeSpeed;
+
+	//staling
+	currentNumberOfCloseDodges++;
+	if (currentNumberOfCloseDodges >= numberOfDodgesToStale) {
+		bool isStaling = true;
+		for (int i = 0; i < numberOfDodgesToStale - 1; i++) {
+			if (staleTimers[i].elapsed() >= staleTime) {
+				isStaling = false;
+				currentNumberOfCloseDodges--;
+			}
+		}
+		if (isStaling) {
+			currentNumberOfCloseDodges = 1;
+			isInterruptible = false;
+			recoveryTime = staleRecoveryTime;
+			dbg("No abuses, cabrón\n");
+		}
+	}
+	//resetear el timer que me toca
+	staleTimers[staleTimerIndex].reset();
+	staleTimerIndex = (staleTimerIndex + 1) % (numberOfDodgesToStale - 1);
 }
 
 void DodgeActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
 	getSkeleton()->removeAction(recoveryAnimation, 0.2f);
+	if (!isInterruptible) {
+		isInterruptible = true;
+		recoveryTime = regularRecoveryTime;
+	}
 }
 
 void DodgeActionState::onJumpHighButton() {
-	//Aquí habrá alguna condición
-	multiplyHorizontalSpeed(leavingGroundSpeedMultiplier);
-	GroundedActionState::onJumpHighButton();
-	//stateManager->changeState(JumpSquat);
+	if (isInterruptible) {
+		multiplyHorizontalSpeed(leavingGroundSpeedMultiplier);
+		GroundedActionState::onJumpHighButton();
+	}
 }
 
 void DodgeActionState::onJumpLongButton() {
-	//Aquí habrá alguna condición
-	multiplyHorizontalSpeed(leavingGroundSpeedMultiplier);
-	GroundedActionState::onJumpLongButton();
-	//stateManager->changeState(JumpSquatLong);
+	if (isInterruptible) {
+		multiplyHorizontalSpeed(leavingGroundSpeedMultiplier);
+		GroundedActionState::onJumpLongButton();
+	}
 }
 
 void DodgeActionState::onStrongAttackButton() {
-	//Aquí habrá alguna condición
-	GroundedActionState::onStrongAttackButton();
+	if (isInterruptible) {
+		GroundedActionState::onStrongAttackButton();
+	}
 }
 
 void DodgeActionState::onFastAttackButton() {
-	//Aquí habrá alguna condición
-	stateManager->changeState(Idle);
-	multiplyHorizontalSpeed(0.f);
-	GroundedActionState::onFastAttackButton();
+	if (isInterruptible) {
+		stateManager->changeState(Idle);
+		multiplyHorizontalSpeed(0.f);
+		GroundedActionState::onFastAttackButton();
+	}
+}
+
+void DodgeActionState::onDodgeButton() {
+	if (isInterruptible) {
+		onStateExit(this);
+		onStateEnter(this);
+	}
+}
+
+void DodgeActionState::onReleasePowerButton() {
+	if (isInterruptible) {
+		GroundedActionState::onReleasePowerButton();
+	}
 }
 
 void DodgeActionState::onMove(MoveState & moveState) {
