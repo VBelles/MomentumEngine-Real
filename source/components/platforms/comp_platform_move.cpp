@@ -2,6 +2,11 @@
 #include "comp_platform_move.h"
 #include "render/render_objects.h"
 #include "components/player/comp_player_model.h"
+#include "entity/common_msgs.h"
+#include "entity/entity_parser.h"
+#include "components/comp_hierarchy.h"
+#include "components/comp_transform.h"
+#include "components/comp_collider.h"
 
 DECL_OBJ_MANAGER("platform_move", TCompPlatformMove);
 
