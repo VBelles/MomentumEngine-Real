@@ -1,11 +1,11 @@
 #pragma once
 
 #include "comp_base.h"
-#include "components/player/attack_info.h"
 
 class TCompTransform;
 struct TMsgEntitiesGroupCreated;
 struct TMsgColliderDestroyed;
+struct TMsgAttackHit;
 
 class TCompBreakable : public TCompBase {
 private:
@@ -33,5 +33,4 @@ public:
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
-	void update(float dt);
 };
