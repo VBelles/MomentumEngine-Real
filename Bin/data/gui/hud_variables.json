@@ -1,0 +1,12 @@
+[
+    {
+        "name" : "hp_progress",
+        "type" : "float",
+        "value" : 0.0
+    },
+    {
+        "name" : "power_progress",
+        "type" : "float",
+        "value" : 0.0
+    }
+]

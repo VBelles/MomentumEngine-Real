@@ -1,6 +1,10 @@
 #pragma once
 
+#include "gui/controllers/hud_controller.h"
+
 class CModuleGame : public IModule {
+private:
+	GUI::CHudController controller;
 
 public:
 	CModuleGame(const std::string& aname) : IModule(aname) {}

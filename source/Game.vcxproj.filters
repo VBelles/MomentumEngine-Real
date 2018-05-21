@@ -210,6 +210,7 @@
     <ClCompile Include="components\player\states\base_states\SpringJumpActionState.cpp" />
     <ClCompile Include="utils\physx_utils.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_filter_callback.cpp" />
+    <ClCompile Include="gui\controllers\hud_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -452,6 +453,7 @@
     <ClInclude Include="components\player\states\base_states\SpringJumpActionState.h" />
     <ClInclude Include="utils\physx_utils.h" />
     <ClInclude Include="modules\game\physics\basic_controller_filter_callback.h" />
+    <ClInclude Include="gui\controllers\hud_controller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

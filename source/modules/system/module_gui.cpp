@@ -19,6 +19,7 @@ bool CModuleGUI::start() {
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	_fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
 
+
 	return true;
 }
 
