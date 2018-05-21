@@ -88,27 +88,27 @@ void DodgeActionState::onStateExit(IActionState * nextState) {
 }
 
 void DodgeActionState::onJumpHighButton() {
-	if (isInterruptible) {
+	if (isInterruptible && invencibilityTimer.elapsed() >= takeActionTime) {
 		multiplyHorizontalSpeed(leavingGroundSpeedMultiplier);
 		GroundedActionState::onJumpHighButton();
 	}
 }
 
 void DodgeActionState::onJumpLongButton() {
-	if (isInterruptible) {
+	if (isInterruptible && invencibilityTimer.elapsed() >= takeActionTime) {
 		multiplyHorizontalSpeed(leavingGroundSpeedMultiplier);
 		GroundedActionState::onJumpLongButton();
 	}
 }
 
 void DodgeActionState::onStrongAttackButton() {
-	if (isInterruptible) {
+	if (isInterruptible && invencibilityTimer.elapsed() >= takeActionTime) {
 		GroundedActionState::onStrongAttackButton();
 	}
 }
 
 void DodgeActionState::onFastAttackButton() {
-	if (isInterruptible) {
+	if (isInterruptible && invencibilityTimer.elapsed() >= takeActionTime) {
 		stateManager->changeState(Idle);
 		multiplyHorizontalSpeed(0.f);
 		GroundedActionState::onFastAttackButton();
@@ -116,14 +116,14 @@ void DodgeActionState::onFastAttackButton() {
 }
 
 void DodgeActionState::onDodgeButton() {
-	if (isInterruptible) {
+	if (isInterruptible && invencibilityTimer.elapsed() >= takeActionTime) {
 		onStateExit(this);
 		onStateEnter(this);
 	}
 }
 
 void DodgeActionState::onReleasePowerButton() {
-	if (isInterruptible) {
+	if (isInterruptible && invencibilityTimer.elapsed() >= takeActionTime) {
 		GroundedActionState::onReleasePowerButton();
 	}
 }

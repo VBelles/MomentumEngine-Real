@@ -86,6 +86,7 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	isTurnAround = false;
 	getPlayerModel()->maxVerticalSpeed = getPlayerModel()->maxVelocityUpwards;
 	getPlayerModel()->resetGravity();
+	getPlayerModel()->isWalking = false;
 	enterFront = getPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));

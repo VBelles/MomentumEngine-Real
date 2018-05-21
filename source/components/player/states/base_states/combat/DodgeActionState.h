@@ -11,6 +11,7 @@ private:
 	float staleRecoveryTime = frames2sec(70);
 	CTimer invencibilityTimer;
 	float invencibilityTime = frames2sec(5);
+	float takeActionTime = frames2sec(3);
 	float dodgeSpeed = 22.f;
 	
 	static constexpr int numberOfDodgesToStale = 4;
