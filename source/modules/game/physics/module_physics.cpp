@@ -6,12 +6,6 @@
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 
-#include "basic_filter_shader.h"
-#include "basic_query_filter_callback.h"
-#include "basic_simulation_event_callback.h"
-#include "basic_controller_hit_callback.h"
-#include "basic_controller_behavior.h"
-
 #pragma comment(lib, "PhysX3_x64.lib")
 #pragma comment(lib, "PhysX3Common_x64.lib")
 #pragma comment(lib, "PhysX3Extensions.lib")
@@ -23,8 +17,6 @@
 bool CModulePhysics::start() {
 	if (!createPhysx()) return false;
 	if (!createScene()) return false;
-	colliderType = CHandleManager::getByName("collider")->getType();
-
 	return true;
 }
 
@@ -84,10 +76,6 @@ bool CModulePhysics::createScene() {
 
 	controllerManager = PxCreateControllerManager(*scene);
 
-	basicQueryFilterCallback = new BasicQueryFilterCallback();
-	basicControllerHitCallback = new BasicControllerHitCallback();
-	basicControllerBehavior = new BasicControllerBehavior();
-
 	return true;
 }
 
@@ -138,8 +126,8 @@ PxController* CModulePhysics::createCCT(const ColliderConfig& config, PxTransfor
 	cDesc->nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
 	cDesc->slopeLimit = cosf(deg2rad(config.slope));
 	cDesc->material = defaultMaterial;
-	cDesc->reportCallback = basicControllerHitCallback;
-	cDesc->behaviorCallback = basicControllerBehavior;
+	cDesc->reportCallback = &basicControllerHitCallback;
+	cDesc->behaviorCallback = &basicControllerBehavior;
 	cDesc->position = PxExtendedVec3(initialTransform.p.x, initialTransform.p.y, initialTransform.p.z);
 	PxController* controller = controllerManager->createController(*cDesc);
 	PX_ASSERT(controller);
@@ -334,8 +322,8 @@ void  CModulePhysics::releaseCollider(CHandle handle) {
 }
 
 void CModulePhysics::releaseColliders() {
-	for (std::set<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
-		TCompCollider *collider = *it;
+	for (auto& handle : toRelease) {
+		TCompCollider* collider = handle;
 		if (collider->controller) {
 			collider->controller->release();
 		}
@@ -343,7 +331,7 @@ void CModulePhysics::releaseColliders() {
 			collider->actor->release();
 			collider->actor = nullptr;
 		}
-		CEntity *parent = it->getOwner();
+		CEntity *parent = handle.getOwner();
 		parent->sendMsg(TMsgColliderDestroyed{});
 	}
 	toRelease.clear();
@@ -355,4 +343,11 @@ CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& n
 		return it->second;
 	}
 	return FilterGroup::All;
+}
+
+
+PxControllerCollisionFlags CModulePhysics::move(PxController* controller, PxVec3& deltaMovement, float delta, float minDist) {
+	PxControllerFilters filter = PxControllerFilters(&getFilterData(controller), &basicQueryFilterCallback, &basicControllerFilterCallback);
+	return controller->move(deltaMovement, minDist, delta, filter);
+
 }

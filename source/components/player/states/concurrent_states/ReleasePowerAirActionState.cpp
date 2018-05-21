@@ -20,7 +20,7 @@ ReleasePowerAirActionState::ReleasePowerAirActionState(StateManager* stateManage
 
 void ReleasePowerAirActionState::update(float delta) {
 	PxExtendedVec3 cctPos = getCollider()->controller->getPosition();
-	getBlurRadial()->setCenterInWorldCoordinates(VEC3(cctPos.x, cctPos.y, cctPos.z));
+	getBlurRadial()->setCenterInWorldCoordinates(toVec3(cctPos));
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {

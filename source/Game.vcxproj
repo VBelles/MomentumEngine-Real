@@ -149,7 +149,6 @@
     <ClCompile Include="components\player\attack_info.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
-    <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
     <ClCompile Include="components\player\states\AttackState.cpp" />
@@ -250,6 +249,7 @@
     <ClCompile Include="modules\game\module_pause.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_game.cpp" />
+    <ClCompile Include="modules\game\physics\basic_controller_filter_callback.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="modules\system\scripting\console.cpp" />
@@ -365,7 +365,6 @@
     <ClInclude Include="components\player\attack_info.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
-    <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\power_stats.h" />
     <ClInclude Include="components\player\states\AttackState.h" />
@@ -482,6 +481,7 @@
     <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_game.h" />
+    <ClInclude Include="modules\game\physics\basic_controller_filter_callback.h" />
     <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="modules\system\scripting\console.h" />
     <ClInclude Include="modules\system\scripting\scripting_cameras.h" />

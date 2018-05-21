@@ -130,7 +130,6 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNode.cpp" />
     <ClCompile Include="components\ia\enemies\FlyingRangedEnemy.cpp" />
     <ClCompile Include="components\ia\enemies\MeleeEnemy.cpp" />
-    <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\comp_suggest_camera_pos_trigger.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_behavior.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_hit_callback.cpp" />
@@ -211,6 +210,7 @@
     <ClCompile Include="components\player\states\base_states\spring_jump\SpringJumpActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\DodgeActionState.cpp" />
     <ClCompile Include="utils\physx_utils.cpp" />
+    <ClCompile Include="modules\game\physics\basic_controller_filter_callback.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -370,7 +370,6 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNode.h" />
     <ClInclude Include="components\ia\enemies\MeleeEnemy.h" />
     <ClInclude Include="components\ia\enemies\FlyingRangedEnemy.h" />
-    <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\comp_suggest_camera_pos_trigger.h" />
     <ClInclude Include="modules\game\physics\basic_controller_behavior.h" />
     <ClInclude Include="modules\game\physics\basic_controller_hit_callback.h" />
@@ -454,6 +453,7 @@
     <ClInclude Include="components\player\states\base_states\spring_jump\SpringJumpActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\DodgeActionState.h" />
     <ClInclude Include="utils\physx_utils.h" />
+    <ClInclude Include="modules\game\physics\basic_controller_filter_callback.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

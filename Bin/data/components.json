@@ -38,8 +38,7 @@
     "curve_controller",
     "culling",
     "light_dir",
-    "render",
-    "spikes"
+    "render"
   ],
   "render_debug" : [
     "transform",
