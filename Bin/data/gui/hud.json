@@ -1,0 +1,50 @@
+[
+	{
+		"name" : "hud",
+		"type" : "widget",
+		"size" : "1920 1080",
+		"children" : [
+			{
+				"name" : "hp_bar",
+				"type" : "widget",
+				"position" : "50 50",
+				"children" : [
+					{
+						"name" : "background",
+						"type" : "image",
+						"size" : "200 50",
+						"texture" : "data/textures/gui/battery_empty.dds"
+					},
+					{
+						"name" : "foreground",
+						"type" : "bar",
+						"size" : "200 50",
+						"texture" : "data/textures/gui/battery_full.dds",
+						"variable" : "hp_progress"
+					}
+				]
+			},
+			{
+				"name" : "power_bar",
+				"type" : "widget",
+				"position" : "50 125",
+				"children" : [
+					{
+						"name" : "background",
+						"type" : "image",
+						"size" : "200 50",
+						"texture" : "data/textures/gui/battery_empty.dds"
+					},
+					{
+						"name" : "foreground",
+						"type" : "bar",
+						"size" : "200 50",
+						"texture" : "data/textures/gui/battery_full.dds",
+						"variable" : "power_progress"
+					}
+				]
+			}
+		]
+		
+	}
+]

@@ -49,11 +49,16 @@ void TCompPlatformSimple::update(float delta) {
 			if (ratio >= 1.f) { // Reaches the end of the spline.
 				if (curve.isLooping()) moveBackwards = true;
 				else automove = false; // If doesn't loop, stop moving.
+				ratio = 1.f;
 			}
 		}
 		else {
 			ratio -= speed * delta;
-			if (ratio <= 0.f) moveBackwards = false;
+			if (ratio <= 0.f) {
+				moveBackwards = false;
+				ratio = 0.f;
+			}
+
 		}
 		// Evaluar curva con dicho ratio
 		position = curve.evaluate(ratio, position);
@@ -63,10 +68,10 @@ void TCompPlatformSimple::update(float delta) {
 	transform->setPosition(position);
 
 	//Rotation
-    if (rotationSpeed > 0) {
-	    QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
-	    transform->setRotation(transform->getRotation() * quat);
-    }
+	if (rotationSpeed > 0) {
+		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
+		transform->setRotation(transform->getRotation() * quat);
+	}
 
 	//Update collider
 	getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
