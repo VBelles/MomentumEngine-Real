@@ -32,20 +32,23 @@ void TCompLightDir::load(const json& j, TEntityParseContext& ctx) {
 		projector = Resources.get(projector_name)->as<CTexture>();
 	}
 
-	// Check if we need to allocate a shadow map
-	casts_shadows = j.value("casts_shadows", false);
-	if (casts_shadows) {
-		shadows_step = j.value("shadows_step", shadows_step);
-		shadows_resolution = j.value("shadows_resolution", shadows_resolution);
-		auto shadowmap_fmt = readFormat(j, "shadows_fmt");
-		assert(shadows_resolution > 0);
-		shadows_rt = new CRenderToTexture;
-		// Make a unique name to have the Resource Manager happy with the unique names for each resource
-		char my_name[64];
-		sprintf(my_name, "shadow_map_%08x", CHandle(this).asUnsigned());
-		bool is_ok = shadows_rt->createRT(my_name, shadows_resolution, shadows_resolution, DXGI_FORMAT_UNKNOWN, shadowmap_fmt);
-		assert(is_ok);
-	}
+  // Check if we need to allocate a shadow map
+  casts_shadows = j.value("casts_shadows", false);
+  if (casts_shadows) {
+    shadows_step = j.value("shadows_step", shadows_step);
+    shadows_resolution = j.value("shadows_resolution", shadows_resolution);
+    auto shadowmap_fmt = readFormat(j, "shadows_fmt");
+    assert(shadows_resolution > 0);
+    shadows_rt = new CRenderToTexture;
+    // Make a unique name to have the Resource Manager happy with the unique names for each resource
+    char my_name[64];
+    sprintf(my_name, "shadow_map_%08x", CHandle(this).asUnsigned());
+    
+    // Added a placeholder Color Render Target to be able to do a alpha test when rendering
+    // the grass
+    bool is_ok = shadows_rt->createRT(my_name, shadows_resolution, shadows_resolution, DXGI_FORMAT_R8G8B8A8_UNORM, shadowmap_fmt);
+    assert(is_ok);
+  }
 
 	shadows_enabled = casts_shadows;
 }

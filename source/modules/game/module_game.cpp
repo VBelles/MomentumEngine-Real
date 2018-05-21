@@ -17,6 +17,8 @@
 #include "render/render_manager.h"
 #include "components/controllers/comp_curve.h"
 #include "geometry/curve.h"
+#include "gui/gui_parser.h"
+#include "gui/controllers/hud_controller.h"
 
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
@@ -48,6 +50,11 @@ bool CModuleGame::start() {
 	EngineScripting.reset();
 	json jboot = loadJson("data/boot.json");
 
+	//GUI::CParser parser;
+	//parser.parseFile("data/gui/hud.json");
+	//EngineGUI.activateWidget("hud");
+	//EngineGUI.registerController(&controller);
+
 	// Auto load some scenes
 	std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
 	for (auto& scene_name : scenes_to_auto_load) {
@@ -77,6 +84,8 @@ bool CModuleGame::start() {
 }
 
 bool CModuleGame::stop() {
+	/*EngineGUI.deactivateWidget("hud");
+	EngineGUI.unregisterController(&controller);*/
 	EngineScripting.reset();
 	Engine.getEntities().reset();
 	return true;

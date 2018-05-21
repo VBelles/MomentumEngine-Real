@@ -209,8 +209,15 @@
     <ClCompile Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\spring_jump\SpringJumpActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\DodgeActionState.cpp" />
+    <ClCompile Include="skeleton\comp_ragdoll.cpp" />
+    <ClCompile Include="modules\system\module_multithread.cpp" />
+    <ClCompile Include="components\comp_lod.cpp" />
+    <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="utils\physx_utils.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_filter_callback.cpp" />
+    <ClCompile Include="modules\game\physics\ragdoll.cpp" />
+    <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
+    <ClCompile Include="gui\controllers\hud_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -452,8 +459,16 @@
     <ClInclude Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\spring_jump\SpringJumpActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\DodgeActionState.h" />
+    <ClInclude Include="skeleton\comp_skel_lookat.h" />
+    <ClInclude Include="skeleton\bone_correction.h" />
+    <ClInclude Include="skeleton\comp_ragdoll.h" />
+    <ClInclude Include="modules\system\module_multithread.h" />
+    <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="utils\physx_utils.h" />
     <ClInclude Include="modules\game\physics\basic_controller_filter_callback.h" />
+    <ClInclude Include="modules\game\physics\ragdoll.h" />
+    <ClInclude Include="modules\game\physics\ragdoll_core.h" />
+    <ClInclude Include="gui\controllers\hud_controller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

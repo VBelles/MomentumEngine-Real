@@ -16,6 +16,7 @@ CEngine::CEngine()
 	: _module_render("render")
 	, _module_entities("entities")
 	, _module_physics("physics")
+	, _module_multithread("multithread")
 	, _module_input("input")
 	, _module_cameras("cameras")
 	, _module_scripting("scripting")
@@ -37,6 +38,7 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_scripting);
 	_modules.registerSystemModule(&_module_gui);
 	_modules.registerSystemModule(&_module_sound);
+	_modules.registerSystemModule(&_module_multithread);
 
 	_modules.registerGameModule(&_module_physics);
 	_modules.registerGameModule(&module_splash);

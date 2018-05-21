@@ -82,6 +82,8 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	powerStats[1] = loadPowerStats(j["ssj2"]);
 	powerStats[2] = loadPowerStats(j["ssj3"]);
 
+	resetHp();
+
 }
 
 PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
@@ -220,7 +222,6 @@ void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
 }
 
 void TCompPlayerModel::update(float delta) {
-
 	if (isInvulnerable && invulnerableTimer.elapsed() >= invulnerableTime) {
 		isInvulnerable = false;
 	}
@@ -318,6 +319,7 @@ void TCompPlayerModel::setHp(float hp) {
 		stateManager->changeState(Death);
 		stateManager->changeConcurrentState(Free);
 	}
+	EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
 }
 
 void TCompPlayerModel::setRespawnPosition(VEC3 position) {

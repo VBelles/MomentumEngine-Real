@@ -53,8 +53,8 @@ private:
 	PowerStats* currentPowerStats = nullptr;
 
 	const float PLAYER_MAX_HP = 8.f;
-	float maxHp = PLAYER_MAX_HP;
-	float hp = PLAYER_MAX_HP;
+	float maxHp = 0.f;
+	float hp = 0.f;
 
 	bool isInvulnerable = false;
 	CTimer invulnerableTimer;
@@ -68,7 +68,7 @@ private:
 	bool showVictoryDialog = false;
 	CTimer dialogTimer;
 	float dialogTime = 15.0f;
-	
+
 	StateManager* stateManager = nullptr;
 
 	AttackInfo receivedAttack;
@@ -154,7 +154,7 @@ public:
 
 	void damage(float damage);
 	void makeInvulnerable(float time);
-	void resetHp() { hp = maxHp; }
+	void resetHp() { maxHp = PLAYER_MAX_HP; setHp(maxHp); }
 	float getHp() { return hp; }
 	void setHp(float hp);
 	void setRespawnPosition(VEC3 position);

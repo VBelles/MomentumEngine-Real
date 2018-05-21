@@ -1,0 +1,176 @@
+[
+  {
+    "entity":
+    {
+      "name": "piramid"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "local_aabb": null,
+      "abs_aabb": null,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piramid.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/stones.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "piramid_ball0"
+      ,
+      "transform":
+      {
+        "pos": "-1.45436 4.40915 -1.24921"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "local_aabb": null,
+      "abs_aabb": null,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piramid_ball0.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/madera.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "piramid_ball1"
+      ,
+      "transform":
+      {
+        "pos": "1.21573 4.40915 -1.59529"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "local_aabb": null,
+      "abs_aabb": null,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piramid_ball1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/madera.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "piramid_ball3"
+      ,
+      "transform":
+      {
+        "pos": "1.35881 4.40915 1.21733"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "local_aabb": null,
+      "abs_aabb": null,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piramid_ball3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/madera.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "piramid_ball2"
+      ,
+      "transform":
+      {
+        "pos": "-1.43993 4.40915 1.44023"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "local_aabb": null,
+      "abs_aabb": null,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piramid_ball2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/madera.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "piramid_lod"
+      ,
+      "transform":
+      {
+        "pos": "0 0 0"
+        ,
+        "rotation": "0.0 0.0 0.0 1.0"
+      }
+      ,
+      "local_aabb": null,
+      "abs_aabb": null,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piramid_lod.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/stones.material"
+          ]
+        }
+      ]
+      ,
+      "lod" : {
+        "threshold" : 0.08,
+        "children" : [
+          "piramid", "piramid_ball0", "piramid_ball1", "piramid_ball2", "piramid_ball3"
+        ]
+      }
+    }
+  }
+]

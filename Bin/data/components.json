@@ -7,6 +7,8 @@
     "entity" : 100,
     "transform" : 90
   },
+  "multithread": [
+  ],
   "update": [
     "fwd_msg",
     "skeleton",
@@ -38,7 +40,9 @@
     "curve_controller",
     "culling",
     "light_dir",
-    "render"
+    "render",
+    "lod",
+    "spikes"
   ],
   "render_debug" : [
     "transform",

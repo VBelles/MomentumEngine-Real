@@ -67,6 +67,7 @@ void TCompPowerGauge::increasePower(float increment) {
 			((CEntity*)purity.getOwner())->sendMsg(msg);
 		});
 	}
+	EngineGUI.getVariables().getVariant("power_progress")->setFloat(power / maxPower);
 }
 
 void TCompPowerGauge::setPower(float power) {

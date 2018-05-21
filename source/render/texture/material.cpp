@@ -89,14 +89,15 @@ bool CMaterial::create(const json& j) {
 }
 
 void CMaterial::onFileChanged(const std::string& filename) {
-    if (filename == getName()) {
-        create(filename);
-    }
-    else {
-        // Maybe a texture has been updated, get the new shader resource view
-        for (int i = 0; i < max_textures; ++i)
-            srvs[i] = textures[i] ? textures[i]->getShaderResourceView() : nullptr;
-    }
+  if (filename == getName()) {
+    auto j = loadJson(filename);
+    create(j);
+  }
+  else {
+    // Maybe a texture has been updated, get the new shader resource view
+    for (int i = 0; i < max_textures; ++i)
+      srvs[i] = textures[i] ? textures[i]->getShaderResourceView() : nullptr;
+  }
 }
 
 void CMaterial::destroy() {
