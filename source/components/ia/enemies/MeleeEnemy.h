@@ -109,6 +109,7 @@ private:
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	void onPerfectDodged(const TMsgPerfectDodged& msg);
 
 	void updateGravity(float delta);
 	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);

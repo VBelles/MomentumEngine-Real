@@ -37,6 +37,10 @@ struct TMsgMechanismSystemActivated {
 	DECL_MSG_ID();
 };
 
+struct TMsgPerfectDodged {
+	DECL_MSG_ID();
+};
+
 struct TMsgAssignBulletOwner {
 	CHandle h_owner;
 	DECL_MSG_ID();

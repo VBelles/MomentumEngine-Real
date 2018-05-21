@@ -145,6 +145,12 @@ void DodgeActionState::onDamage(const TMsgAttackHit & msg) {
 	if (invencibilityTimer.elapsed() >= invencibilityTime) {
 		GroundedActionState::onDamage(msg);
 	}
+	else {
+		//enviar mensaje a enemigo conforme ha sido esquivado finamente
+		dbg("Can't touch this! Hammer Time!\n");
+		CEntity* attacker = msg.attacker.getOwner();
+		attacker->sendMsg(TMsgPerfectDodged{});
+	}
 }
 
 void DodgeActionState::onLeavingGround() {

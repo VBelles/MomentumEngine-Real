@@ -95,6 +95,7 @@ private:
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	void onPerfectDodged(const TMsgPerfectDodged& msg);
 
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 

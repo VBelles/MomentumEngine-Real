@@ -89,6 +89,7 @@ void CBehaviorTreeFlyingRangedEnemy::registerMsgs() {
 	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgAttackHit, onAttackHit);
 	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgRespawn, onRespawn);
 	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgPerfectDodged, onPerfectDodged);
 }
 
 void CBehaviorTreeFlyingRangedEnemy::update(float delta) {
@@ -343,7 +344,7 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 				attackDirection += attackTargetOffset;
 				attackDirection.Normalize();
 
-				TMsgAssignRangedAttackOwner msg{ CHandle(this).getOwner(), attackInfo, attackInitialPos, attackDirection };
+				TMsgAssignRangedAttackOwner msg{ CHandle(this), attackInfo, attackInitialPos, attackDirection };
 
 				CEntity *attackEntity = ctx.entities_loaded[0];
 				attackEntity->sendMsg(msg);
@@ -423,6 +424,10 @@ void CBehaviorTreeFlyingRangedEnemy::onRespawn(const TMsgRespawn& msg) {
 
 void CBehaviorTreeFlyingRangedEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	current = tree["onDeath"];
+}
+
+void CBehaviorTreeFlyingRangedEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
+	dbg("Damn! I've been dodged.\n");
 }
 
 void CBehaviorTreeFlyingRangedEnemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {

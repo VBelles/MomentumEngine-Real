@@ -92,6 +92,7 @@ void CBehaviorTreeMeleeEnemy::registerMsgs() {
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgAttackHit, onAttackHit);
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgRespawn, onRespawn);
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgPerfectDodged, onPerfectDodged);
 }
 
 void CBehaviorTreeMeleeEnemy::update(float delta) {
@@ -478,6 +479,12 @@ void CBehaviorTreeMeleeEnemy::onRespawn(const TMsgRespawn& msg) {
 
 void CBehaviorTreeMeleeEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	current = tree["onDeath"];
+}
+
+void CBehaviorTreeMeleeEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
+	dbg("Damn! I've been dodged.\n");
+	//algo así podría estar guay
+	//getSkeleton()->setTimeFactor(0.25f);
 }
 
 void CBehaviorTreeMeleeEnemy::updateGravity(float delta) {

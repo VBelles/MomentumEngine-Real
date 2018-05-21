@@ -93,6 +93,7 @@ void CBehaviorTreeBallEnemy::registerMsgs() {
 	DECL_MSG(CBehaviorTreeBallEnemy, TMsgAttackHit, onAttackHit);
 	DECL_MSG(CBehaviorTreeBallEnemy, TMsgRespawn, onRespawn);
 	DECL_MSG(CBehaviorTreeBallEnemy, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(CBehaviorTreeBallEnemy, TMsgPerfectDodged, onPerfectDodged);
 }
 
 void CBehaviorTreeBallEnemy::update(float delta) {
@@ -463,6 +464,10 @@ void CBehaviorTreeBallEnemy::onRespawn(const TMsgRespawn& msg) {
 
 void CBehaviorTreeBallEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	current = tree["onDeath"];
+}
+
+void CBehaviorTreeBallEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
+	dbg("Damn! I've been dodged.\n");
 }
 
 void CBehaviorTreeBallEnemy::updateGravity(float delta) {
