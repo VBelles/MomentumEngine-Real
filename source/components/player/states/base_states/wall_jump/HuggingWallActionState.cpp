@@ -48,7 +48,7 @@ void HuggingWallActionState::update(float delta) {
 				TurnAround();
 				getPlayerModel()->setGravityMultiplier(slideGravityMultiplier);
 				getPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
-				getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+				getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 			}
 		}
 		else {
@@ -78,7 +78,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 		getPlayerModel()->setGravityMultiplier(climbingGravityMultiplier);
 		getPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
 		climbTimer.reset();
-		getPlayerModel()->getSkeleton()->blendCycle(animationClimbing, 0.2f, 0.2f);
+		getSkeleton()->blendCycle(animationClimbing, 0.2f, 0.2f);
 	}
 	else {
 		stateManager->changeState(AirborneNormal);

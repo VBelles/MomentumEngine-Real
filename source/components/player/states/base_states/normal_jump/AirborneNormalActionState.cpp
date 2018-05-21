@@ -14,7 +14,7 @@ void AirborneNormalActionState::update(float delta) {
 
 void AirborneNormalActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void AirborneNormalActionState::onStateExit(IActionState * nextState) {

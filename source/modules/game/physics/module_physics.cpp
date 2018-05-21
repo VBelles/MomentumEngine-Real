@@ -26,7 +26,6 @@
 bool CModulePhysics::start() {
 	if (!createPhysx()) return false;
 	if (!createScene()) return false;
-	colliderType = CHandleManager::getByName("collider")->getType();
 
 	return true;
 }
@@ -57,8 +56,7 @@ bool CModulePhysics::createPhysx() {
 	bool  is_ok = pvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
 
 	physics = PxCreatePhysics(PX_PHYSICS_VERSION, *foundation, PxTolerancesScale(), true, pvd);
-	if (!physics)
-		fatal("PxCreatePhysics failed");
+	if (!physics) fatal("PxCreatePhysics failed");
 
 	cooking = PxCreateCooking(PX_PHYSICS_VERSION, physics->getFoundation(), physics->getTolerancesScale());
 
@@ -87,10 +85,6 @@ bool CModulePhysics::createScene() {
 
 	controllerManager = PxCreateControllerManager(*scene);
 
-	basicQueryFilterCallback = new BasicQueryFilterCallback();
-	basicControllerHitCallback = new BasicControllerHitCallback();
-	basicControllerBehavior = new BasicControllerBehavior();
-
 	return true;
 }
 
@@ -98,7 +92,7 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 	const ColliderConfig& config = compCollider.config;
 	CHandle colliderHandle(&compCollider);
 	CEntity* entity = colliderHandle.getOwner();
-
+		
 	TCompTransform* compTransform = entity->get<TCompTransform>();
 	QUAT rotation = compTransform->getRotation();
 	PxTransform initialTrans = toPxTransform(compTransform);
@@ -115,9 +109,8 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 	PX_ASSERT(actor);
 	setupFiltering(actor, config.group, config.mask);
 	actor->userData = colliderHandle.asVoidPtr();
-	compCollider.actor = actor;
+	compCollider.actor = actor;	
 }
-
 
 PxController* CModulePhysics::createCCT(const ColliderConfig& config, PxTransform& initialTransform) {
 	PxControllerDesc* cDesc = nullptr;
@@ -141,8 +134,8 @@ PxController* CModulePhysics::createCCT(const ColliderConfig& config, PxTransfor
 	cDesc->nonWalkableMode = PxControllerNonWalkableMode::ePREVENT_CLIMBING_AND_FORCE_SLIDING;
 	cDesc->slopeLimit = cosf(deg2rad(config.slope));
 	cDesc->material = defaultMaterial;
-	cDesc->reportCallback = basicControllerHitCallback;
-	cDesc->behaviorCallback = basicControllerBehavior;
+	cDesc->reportCallback = &basicControllerHitCallback;
+	cDesc->behaviorCallback = &basicControllerBehavior;
 	cDesc->position = PxExtendedVec3(initialTransform.p.x, initialTransform.p.y, initialTransform.p.z);
 	PxController* controller = controllerManager->createController(*cDesc);
 	PX_ASSERT(controller);
@@ -188,17 +181,17 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			convexDesc.points.data = config.colMesh->mesh.vtxs.data();
 			convexDesc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
 
-			//#ifdef _DEBUG 
-			//			// mesh should be validated before cooking without the mesh cleaning 
-			//			bool res = cooking->validateConvexMesh(convexDesc);
-			//			PX_ASSERT(res);
-			//#endif 
+//#ifdef _DEBUG 
+//			// mesh should be validated before cooking without the mesh cleaning 
+//			bool res = cooking->validateConvexMesh(convexDesc);
+//			PX_ASSERT(res);
+//#endif 
 
 			PxDefaultMemoryOutputStream buf;
 			bool status = cooking->cookConvexMesh(convexDesc, buf);
 			PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
 			PxConvexMesh* convexMesh = physics->createConvexMesh(input);
-
+			
 			PxConvexMeshGeometry convMesh = PxConvexMeshGeometry(convexMesh);
 			shapeGeometry = &convMesh;
 		}
@@ -207,7 +200,7 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			triMesh.points.count = config.colMesh->mesh.header.num_vertexs;
 			triMesh.points.stride = config.colMesh->mesh.header.bytes_per_vtx;
 			triMesh.points.data = config.colMesh->mesh.vtxs.data();
-
+			
 			triMesh.triangles.count = config.colMesh->mesh.header.num_indices / 3;
 			triMesh.triangles.stride = config.colMesh->mesh.header.bytes_per_idx * 3;
 			triMesh.triangles.data = config.colMesh->mesh.idxs.data();
@@ -231,7 +224,7 @@ PxRigidActor* CModulePhysics::createRigidBody(const ColliderConfig& config, PxTr
 			shapeGeometry = &triangMesh;
 		}
 		//....todo: more shapes
-
+		
 		PX_ASSERT(shapeGeometry);
 		PxShapeFlags shapeFlags = PxShapeFlag::eVISUALIZATION | PxShapeFlag::eSCENE_QUERY_SHAPE | PxShapeFlag::eSIMULATION_SHAPE;
 		PxShape* shape = PxRigidActorExt::createExclusiveShape(*actor, *shapeGeometry, *defaultMaterial, shapeFlags);
@@ -261,7 +254,7 @@ void CModulePhysics::update(float delta) {
 			PxQuat pxq = pxTransform.q;
 			CHandle colliderHandle;
 			colliderHandle.fromVoidPtr(rigidActor->userData);
-
+			
 			CEntity* entity = colliderHandle.getOwner();
 			TCompTransform* compTransform = entity->get<TCompTransform>();
 			TCompCollider* compCollider = colliderHandle;
@@ -278,7 +271,6 @@ void CModulePhysics::update(float delta) {
 			compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
 		}
 	}
-
 	releaseColliders();
 }
 
@@ -337,8 +329,8 @@ void  CModulePhysics::releaseCollider(CHandle handle) {
 }
 
 void CModulePhysics::releaseColliders() {
-	for (std::set<CHandle>::iterator it = toRelease.begin(); it != toRelease.end(); ++it) {
-		TCompCollider *collider = *it;
+	for (auto& handle : toRelease) {
+		TCompCollider* collider = handle;
 		if (collider->controller) {
 			collider->controller->release();
 		}
@@ -346,7 +338,7 @@ void CModulePhysics::releaseColliders() {
 			collider->actor->release();
 			collider->actor = nullptr;
 		}
-		CEntity *parent = it->getOwner();
+		CEntity *parent = handle.getOwner();
 		parent->sendMsg(TMsgColliderDestroyed{});
 	}
 	toRelease.clear();
@@ -361,8 +353,7 @@ CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& n
 }
 
 void CModulePhysics::createRagdoll(TCompRagdoll& comp_ragdoll) {
-	if (comp_ragdoll.ragdoll.created)
-		return;
+	if (comp_ragdoll.ragdoll.created) return;
 	CHandle h_comp_ragdoll(&comp_ragdoll);
 	CEntity* e = h_comp_ragdoll.getOwner();
 
@@ -402,6 +393,9 @@ void CModulePhysics::createRagdoll(TCompRagdoll& comp_ragdoll) {
 		config.group = CModulePhysics::FilterGroup::All;
 		config.mask = CModulePhysics::FilterGroup::All;
 
+        /* TODO: Descomentar esto y adaptarlo si queremos usar ragdolls. !!!
+
+
 		auto actor = createActor(config, px_transform);
 		PxRigidDynamic* body = (PxRigidDynamic*)actor;
 		//PxShape* shape = gPhysics->createShape(PxCapsuleGeometry(ragdoll_bone_core.radius, ragdoll_bone_core.height), *gMaterial);
@@ -423,7 +417,7 @@ void CModulePhysics::createRagdoll(TCompRagdoll& comp_ragdoll) {
 
 		ragdoll_bone.idx = core_skel->getCoreSkeleton()->getCoreBoneId(ragdoll_bone_core.bone);
 		ragdoll_bone.core->instance_idx = comp_ragdoll.ragdoll.num_bones;
-		++comp_ragdoll.ragdoll.num_bones;
+		++comp_ragdoll.ragdoll.num_bones;*/
 	}
 
 	for (int i = 0; i < comp_ragdoll.ragdoll.num_bones; ++i) {
@@ -436,101 +430,100 @@ void CModulePhysics::createRagdoll(TCompRagdoll& comp_ragdoll) {
 			++parent_ragdoll_bone.num_children;
 		}
 	}
-
 	createRagdollJoints(comp_ragdoll, 0);
 
 	comp_ragdoll.ragdoll.created = true;
-
 }
 
-
-
 void CModulePhysics::createRagdollJoints(TCompRagdoll& comp_ragdoll, int bone_id) {
-	TRagdoll::TRagdollBone& ragdoll_bone = comp_ragdoll.ragdoll.bones[bone_id];
+    TRagdoll::TRagdollBone& ragdoll_bone = comp_ragdoll.ragdoll.bones[bone_id];
 
-	for (int i = 0; i < ragdoll_bone.num_children; ++i) {
-		auto child_id = ragdoll_bone.children_idxs[i];
-		TRagdoll::TRagdollBone& child_ragdoll_bone = comp_ragdoll.ragdoll.bones[child_id];
+    for (int i = 0; i < ragdoll_bone.num_children; ++i) {
+        auto child_id = ragdoll_bone.children_idxs[i];
+        TRagdoll::TRagdollBone& child_ragdoll_bone = comp_ragdoll.ragdoll.bones[child_id];
 
-		PxJoint* joint = nullptr;
+        PxJoint* joint = nullptr;
 
-		PxVec3 offset(0.1f, 0.f, 0.f);
+        PxVec3 offset(0.1f, 0.f, 0.f);
 
-		assert(child_ragdoll_bone.actor);
-		assert(ragdoll_bone.actor);
-		auto d1 = child_ragdoll_bone.actor->getGlobalPose().q.rotate(PxVec3(1, 0, 0));
-		auto d2 = ragdoll_bone.actor->getGlobalPose().q.rotate(PxVec3(1, 0, 0));
-		auto axis = d1.cross(d2).getNormalized();
-		auto pos = ragdoll_bone.actor->getGlobalPose().p;
-		auto diff = (pos - child_ragdoll_bone.actor->getGlobalPose().p).getNormalized();
-		if (diff.dot(d2) < 0) d2 = -d2;
+        assert(child_ragdoll_bone.actor);
+        assert(ragdoll_bone.actor);
+        auto d1 = child_ragdoll_bone.actor->getGlobalPose().q.rotate(PxVec3(1, 0, 0));
+        auto d2 = ragdoll_bone.actor->getGlobalPose().q.rotate(PxVec3(1, 0, 0));
+        auto axis = d1.cross(d2).getNormalized();
+        auto pos = ragdoll_bone.actor->getGlobalPose().p;
+        auto diff = (pos - child_ragdoll_bone.actor->getGlobalPose().p).getNormalized();
+        if (diff.dot(d2) < 0) d2 = -d2;
 
-		PxShape* shape;
-		if (ragdoll_bone.actor->getShapes(&shape, 1) == 1) {
-			PxCapsuleGeometry capsule;
-			if (shape->getCapsuleGeometry(capsule)) {
-				pos -= (capsule.halfHeight + capsule.radius) * d2;
-			}
-		}
+        PxShape* shape;
+        if (ragdoll_bone.actor->getShapes(&shape, 1) == 1) {
+            PxCapsuleGeometry capsule;
+            if (shape->getCapsuleGeometry(capsule)) {
+                pos -= (capsule.halfHeight + capsule.radius) * d2;
+            }
+        }
 
-		PxMat44 mat(d1, axis, d1.cross(axis).getNormalized(), pos);
-		assert(ragdoll_bone.actor->getGlobalPose().isValid());
-		assert(ragdoll_bone.actor->getGlobalPose().getInverse().isValid());
-		PxTransform tr0 = ragdoll_bone.actor->getGlobalPose().getInverse() * PxTransform(mat);
-		if (!tr0.isValid()) {
-			tr0 = PxTransform(PxVec3(0.f, 0.f, 0.f));
-		}
+        PxMat44 mat(d1, axis, d1.cross(axis).getNormalized(), pos);
+        assert(ragdoll_bone.actor->getGlobalPose().isValid());
+        assert(ragdoll_bone.actor->getGlobalPose().getInverse().isValid());
+        PxTransform tr0 = ragdoll_bone.actor->getGlobalPose().getInverse() * PxTransform(mat);
+        if (!tr0.isValid()) {
+            tr0 = PxTransform(PxVec3(0.f, 0.f, 0.f));
+        }
 
+        PxTransform tr1 = child_ragdoll_bone.actor->getGlobalPose().getInverse() * ragdoll_bone.actor->getGlobalPose() * tr0;
+        if (!tr1.isValid()) {
+            tr1 = PxTransform(PxVec3(0.f, 0.f, 0.f));
+        }
+        //-----
+        //PxSphericalJoint joint
+        joint =
+            PxSphericalJointCreate(scene->getPhysics(), ragdoll_bone.actor, tr0, child_ragdoll_bone.actor, tr1);
+        assert(joint);
+        if (joint) {
+            auto* spherical = static_cast<PxSphericalJoint*>(joint);
+            spherical->setProjectionLinearTolerance(0.1f);
+            spherical->setLimitCone(physx::PxJointLimitCone(0.01, 0.f, 0.01f));
+            spherical->setSphericalJointFlag(physx::PxSphericalJointFlag::eLIMIT_ENABLED, true);
+        }
+        /*
 
-		PxTransform tr1 = child_ragdoll_bone.actor->getGlobalPose().getInverse() * ragdoll_bone.actor->getGlobalPose() * tr0;
-		if (!tr1.isValid()) {
-			tr1 = PxTransform(PxVec3(0.f, 0.f, 0.f));
-		}
-		//-----
-		//PxSphericalJoint joint
-		joint =
-			PxSphericalJointCreate(scene->getPhysics(), ragdoll_bone.actor, tr0, child_ragdoll_bone.actor, tr1);
-		assert(joint);
-		if (joint) {
-			auto* spherical = static_cast<PxSphericalJoint*>(joint);
-			spherical->setProjectionLinearTolerance(0.1f);
-			spherical->setLimitCone(physx::PxJointLimitCone(0.01, 0.f, 0.01f));
-			spherical->setSphericalJointFlag(physx::PxSphericalJointFlag::eLIMIT_ENABLED, true);
-		}
-		/*
+        //PxRevoluteJoint joint
+        joint =
+        PxRevoluteJointCreate(mScene->getPhysics(), ragdoll_bone.actor, tr0, child_ragdoll_bone.actor, tr1);
+        if (joint)
+        {
+        auto* hinge = static_cast<PxRevoluteJoint*>(joint);
+        hinge->setProjectionLinearTolerance(0.1f);
+        hinge->setProjectionAngularTolerance(0.01f);
+        hinge->setLimit(physx::PxJointAngularLimitPair(-PxPi / 4, PxPi / 4, 0.01f));
+        hinge->setRevoluteJointFlag(PxRevoluteJointFlag::eLIMIT_ENABLED, true);
+        }
+        */
 
-		//PxRevoluteJoint joint
-		joint =
-		PxRevoluteJointCreate(mScene->getPhysics(), ragdoll_bone.actor, tr0, child_ragdoll_bone.actor, tr1);
-		if (joint)
-		{
-		auto* hinge = static_cast<PxRevoluteJoint*>(joint);
-		hinge->setProjectionLinearTolerance(0.1f);
-		hinge->setProjectionAngularTolerance(0.01f);
-		hinge->setLimit(physx::PxJointAngularLimitPair(-PxPi / 4, PxPi / 4, 0.01f));
-		hinge->setRevoluteJointFlag(PxRevoluteJointFlag::eLIMIT_ENABLED, true);
-		}
-		*/
+        /*
+        //fixed joint
+        joint = PxFixedJointCreate(mScene->getPhysics(), ragdoll_bone.actor, tr0, child_ragdoll_bone.actor, tr1);
+        assert(joint);
+        if (joint)
+        {
+        auto* fixed_joint = static_cast<PxFixedJoint*>(joint);
+        fixed_joint->setProjectionLinearTolerance(0.1f);
+        fixed_joint->setProjectionAngularTolerance(0.01f);
+        }
+        */
+        if (joint) {
+            joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
+            joint->setConstraintFlag(PxConstraintFlag::eCOLLISION_ENABLED, false);
+            joint->setConstraintFlag(PxConstraintFlag::ePROJECTION, true);
+        }
+        child_ragdoll_bone.parent_joint = joint;
 
-		/*
-		//fixed joint
-		joint = PxFixedJointCreate(mScene->getPhysics(), ragdoll_bone.actor, tr0, child_ragdoll_bone.actor, tr1);
-		assert(joint);
-		if (joint)
-		{
-		auto* fixed_joint = static_cast<PxFixedJoint*>(joint);
-		fixed_joint->setProjectionLinearTolerance(0.1f);
-		fixed_joint->setProjectionAngularTolerance(0.01f);
-		}
-		*/
-		if (joint) {
-			joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
-			joint->setConstraintFlag(PxConstraintFlag::eCOLLISION_ENABLED, false);
-			joint->setConstraintFlag(PxConstraintFlag::ePROJECTION, true);
-		}
-		child_ragdoll_bone.parent_joint = joint;
+        createRagdollJoints(comp_ragdoll, child_id);
+    }
+}
 
-		createRagdollJoints(comp_ragdoll, child_id);
-	}
-
+PxControllerCollisionFlags CModulePhysics::move(PxController* controller, PxVec3& deltaMovement, float delta, float minDist) {
+	PxControllerFilters filter = PxControllerFilters(&getFilterData(controller), &basicQueryFilterCallback, &basicControllerFilterCallback);
+	return controller->move(deltaMovement, minDist, delta, filter);
 }

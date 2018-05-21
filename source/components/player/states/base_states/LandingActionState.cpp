@@ -46,7 +46,7 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	landingLagTime = frames2sec(getPlayerModel()->getPowerStats()->landingLag);
 	timer.reset();
 	//dbg("Entrando en landing\n");
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void LandingActionState::onStateExit(IActionState * nextState) {

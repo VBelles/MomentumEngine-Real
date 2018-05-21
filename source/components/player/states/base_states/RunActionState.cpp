@@ -72,7 +72,7 @@ void RunActionState::update(float delta) {
 
 void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	getPlayerModel()->getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void RunActionState::onStateExit(IActionState * nextState) {

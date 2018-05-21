@@ -50,7 +50,7 @@ void FastAttackActionState::onStateExit(IActionState * nextState) {
 void FastAttackActionState::onFastAttackButtonReleased() {
 	if (phase == AttackPhases::Launch) {
 		phase = AttackPhases::Startup;
-		getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	}
 }
 

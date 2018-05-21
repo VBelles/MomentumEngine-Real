@@ -389,8 +389,11 @@
     "ps_entry_point": "PS",
     "vertex_type": "PosNUvUvT",
     "category": "distorsions",
-    "rs_config": "cull_none",    
-    "blend": "additive"    
+    "blend": "additive",
+    "textures": {
+      "environment": "data/textures/cubemaps/momentum/posx.dds",
+      "irradiance": "data/textures/cubemaps/irradiance.dds"
+    }
   }
 
 

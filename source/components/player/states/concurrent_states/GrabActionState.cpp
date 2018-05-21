@@ -34,7 +34,7 @@ void GrabActionState::onStateEnter(IActionState * lastState) {
 	phase = AttackPhases::Startup;
 	timer.reset();
 	getPlayerModel()->lockTurning = true;
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void GrabActionState::onStateExit(IActionState * nextState) {

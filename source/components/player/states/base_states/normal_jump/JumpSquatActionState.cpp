@@ -36,7 +36,7 @@ void JumpSquatActionState::onStateEnter(IActionState * lastState) {
 	isShortHop = false;
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void JumpSquatActionState::onStateExit(IActionState * nextState) {

@@ -1,10 +1,11 @@
 #include "mcv_platform.h"
 #include "comp_breakable.h"
+#include "entity/entity_parser.h"
+#include "entity/common_msgs.h"
 #include "components/comp_transform.h"
 #include "components/comp_collectable.h"
 #include "components/comp_collider.h"
-#include "entity/entity_parser.h"
-#include "entity/common_msgs.h"
+#include "components/player/attack_info.h"
 
 
 DECL_OBJ_MANAGER("breakable", TCompBreakable);
@@ -29,10 +30,6 @@ void TCompBreakable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	assert(colliderHandle.isValid());
 	transformHandle = get<TCompTransform>();
 	assert(transformHandle.isValid());
-}
-
-void TCompBreakable::update(float dt) {
-	
 }
 
 void TCompBreakable::onHit(const TMsgAttackHit & msg) {
@@ -63,7 +60,5 @@ void TCompBreakable::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 		dropLoot();
 	}
 }
-
-
 
 

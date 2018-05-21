@@ -123,7 +123,6 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
     <ClCompile Include="modules\game\module_pause.cpp" />
     <ClCompile Include="modules\system\module_render.cpp" />
-    <ClCompile Include="utils\geometry_utils.cpp" />
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="mcv_platform.cpp" />
     <ClCompile Include="modules\game\physics\module_physics.cpp" />
@@ -141,7 +140,6 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNode.cpp" />
     <ClCompile Include="components\ia\enemies\FlyingRangedEnemy.cpp" />
     <ClCompile Include="components\ia\enemies\MeleeEnemy.cpp" />
-    <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\comp_suggest_camera_pos_trigger.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_behavior.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_hit_callback.cpp" />
@@ -211,11 +209,13 @@
     <ClCompile Include="components\player\states\AttackState.cpp" />
     <ClCompile Include="components\player\states\base_states\SpringJumpActionState.cpp" />
     <ClCompile Include="skeleton\comp_ragdoll.cpp" />
-    <ClCompile Include="physics\ragdoll_core.cpp" />
-    <ClCompile Include="physics\ragdoll.cpp" />
     <ClCompile Include="modules\system\module_multithread.cpp" />
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
+    <ClCompile Include="utils\physx_utils.cpp" />
+    <ClCompile Include="modules\game\physics\basic_controller_filter_callback.cpp" />
+    <ClCompile Include="modules\game\physics\ragdoll.cpp" />
+    <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -368,7 +368,6 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
     <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\system\module_render.h" />
-    <ClInclude Include="utils\geometry_utils.h" />
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="game_constants.h" />
     <ClInclude Include="modules\game\physics\module_physics.h" />
@@ -386,7 +385,6 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNode.h" />
     <ClInclude Include="components\ia\enemies\MeleeEnemy.h" />
     <ClInclude Include="components\ia\enemies\FlyingRangedEnemy.h" />
-    <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\comp_suggest_camera_pos_trigger.h" />
     <ClInclude Include="modules\game\physics\basic_controller_behavior.h" />
     <ClInclude Include="modules\game\physics\basic_controller_hit_callback.h" />
@@ -461,10 +459,12 @@
     <ClInclude Include="skeleton\comp_skel_lookat.h" />
     <ClInclude Include="skeleton\bone_correction.h" />
     <ClInclude Include="skeleton\comp_ragdoll.h" />
-    <ClInclude Include="physics\ragdoll_core.h" />
-    <ClInclude Include="physics\ragdoll.h" />
     <ClInclude Include="modules\system\module_multithread.h" />
     <ClInclude Include="components\comp_lod.h" />
+    <ClInclude Include="utils\physx_utils.h" />
+    <ClInclude Include="modules\game\physics\basic_controller_filter_callback.h" />
+    <ClInclude Include="modules\game\physics\ragdoll.h" />
+    <ClInclude Include="modules\game\physics\ragdoll_core.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

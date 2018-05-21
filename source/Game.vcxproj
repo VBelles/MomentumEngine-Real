@@ -45,12 +45,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -150,7 +150,6 @@
     <ClCompile Include="components\player\attack_info.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
-    <ClCompile Include="components\player\filters\player_filter_callback.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
     <ClCompile Include="components\player\states\AttackState.cpp" />
@@ -250,6 +249,7 @@
     <ClCompile Include="modules\game\module_pause.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_game.cpp" />
+    <ClCompile Include="modules\game\physics\basic_controller_filter_callback.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="modules\system\scripting\console.cpp" />
@@ -269,8 +269,8 @@
     <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
     <ClCompile Include="modules\system\module_multithread.cpp" />
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
-    <ClCompile Include="physics\ragdoll.cpp" />
-    <ClCompile Include="physics\ragdoll_core.cpp" />
+    <ClCompile Include="modules\game\physics\ragdoll.cpp" />
+    <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -301,7 +301,7 @@
     <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="components\player\states\StateManager.cpp" />
-    <ClCompile Include="utils\geometry_utils.cpp" />
+    <ClCompile Include="utils\physx_utils.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="utils\variant.cpp" />
@@ -370,7 +370,6 @@
     <ClInclude Include="components\player\attack_info.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
-    <ClInclude Include="components\player\filters\player_filter_callback.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
     <ClInclude Include="components\player\power_stats.h" />
     <ClInclude Include="components\player\states\AttackState.h" />
@@ -486,6 +485,7 @@
     <ClInclude Include="modules\game\module_pause.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_game.h" />
+    <ClInclude Include="modules\game\physics\basic_controller_filter_callback.h" />
     <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="modules\system\scripting\console.h" />
     <ClInclude Include="modules\system\scripting\scripting_cameras.h" />
@@ -506,8 +506,8 @@
     <ClInclude Include="modules\system\scripting\scripting_player.h" />
     <ClInclude Include="modules\system\module_multithread.h" />
     <ClInclude Include="modules\test\module_test_instancing.h" />
-    <ClInclude Include="physics\ragdoll.h" />
-    <ClInclude Include="physics\ragdoll_core.h" />
+    <ClInclude Include="modules\game\physics\ragdoll.h" />
+    <ClInclude Include="modules\game\physics\ragdoll_core.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
@@ -545,7 +545,7 @@
     <ClInclude Include="utils\data_provider.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />
-    <ClInclude Include="utils\geometry_utils.h" />
+    <ClInclude Include="utils\physx_utils.h" />
     <ClInclude Include="utils\json.hpp" />
     <ClInclude Include="utils\murmur3\murmur3.h" />
     <ClInclude Include="utils\timer.h" />

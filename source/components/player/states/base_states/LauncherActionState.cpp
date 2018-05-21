@@ -30,7 +30,7 @@ void LauncherActionState::update(float delta) {
 void LauncherActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void LauncherActionState::onStateExit(IActionState * nextState) {

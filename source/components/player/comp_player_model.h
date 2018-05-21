@@ -3,7 +3,6 @@
 #include "components/comp_base.h"
 #include "power_stats.h"
 #include "entity/common_msgs.h"
-#include "modules/game/physics/basic_controller_hit_callback.h"
 #include "components/player/attack_info.h"
 
 class IActionState;
@@ -12,7 +11,6 @@ class TCompCollider;
 class TCompTransform;
 class TCompPowerGauge;
 class TCompSkeleton;
-class PlayerFilterCallback;
 class StateManager;
 
 struct TMsgRespawnChanged;
@@ -40,7 +38,6 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
-	CHandle skeletonHandle;
 
 	VEC3 respawnPosition;
 	VEC3 deltaMovement;
@@ -72,9 +69,6 @@ private:
 	CTimer dialogTimer;
 	float dialogTime = 15.0f;
 	
-
-	PlayerFilterCallback* playerFilterCallback = nullptr;
-
 	StateManager* stateManager = nullptr;
 
 	AttackInfo receivedAttack;
@@ -139,14 +133,11 @@ public:
 	void centerCameraButtonPressed();
 	void releasePowerButtonPressed();
 	void gainPowerButtonPressed();
-	bool isConcurrentActionFree();
 
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
 	PxCapsuleController* getController();
-	TCompCamera* getCamera();
 	TCompPowerGauge* getPowerGauge();
-	TCompSkeleton* getSkeleton();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }
 	VEC3* getVelocityVector() { return &velocityVector; }

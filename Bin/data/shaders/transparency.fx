@@ -41,6 +41,11 @@ float getSpecularTerm(float3 world_pos, float3 N, float3 L) {
 }
 
 //--------------------------------------------------------------------------------------
+float3 Specular_F_Roughness(float3 specularColor, float gloss, float3 h, float3 v) {
+	// Sclick using roughness to attenuate fresnel.
+	return (specularColor + (max(gloss, specularColor) - specularColor) * pow((1 - saturate(dot(v, h))), 5));
+}
+
 float4 PS(
 	float4 iPosition : SV_POSITION    // Screen coords
 	, float3 iNormal : NORMAL0
@@ -59,39 +64,30 @@ float4 PS(
   float2 pos_camera_unit_space = float2((1 + pos_homo_space.x) * 0.5, (1 - pos_homo_space.y) * 0.5);
   float4 color_base = txAlbedo.Sample(samClampLinear, pos_camera_unit_space) * obj_color.a;
 
-  // Recover world position coords of the sea_bottom_wpos
-  float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
-  float3 sea_bottom_wpos = getWorldCoords(iPosition.xy, zlinear);
-
-  float4 water_color = color_base;
-
-  float  distance_of_water_traversed = length(sea_bottom_wpos - iWorldPos);
-  float  amount_of_color_base = exp(-distance_of_water_traversed * 0.103);
-  float4 surface_color = lerp(water_color, color_base, amount_of_color_base);
-
-  // Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
-  float shadow_factor = computeShadowFactor(iWorldPos);
-  float water_surface_shadow_factor = 0.5 + saturate(0.5 + shadow_factor);
-
-  // Compute reflected color using the eye direction reflected in the N
   float3 eye = normalize(iWorldPos - camera_pos);
-  float3 eye_r = reflect(eye, iNormal);
-  float4 env_color = txEnvironmentMap.SampleLevel(samLinear, eye_r, 3);
 
-  //// Apply a small fresnel effect
-  //float  amount = dot(iNormal, -eye);
-  //amount = saturate(amount);
-  //// Change the curve of the influence,.
-  //amount = pow(amount, 0.5);
-  float amount = 0.9f;
+  // Apply a small fresnel effect
+  float  amount = dot(iNormal, -eye);
+  amount = saturate(amount);
+  // Change the curve of the influence,.
+  amount = pow(amount, 0.5);
 
-  float4 final_color = surface_color * amount + env_color * (1 - amount);
+  float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, iNormal, 6).xyz;
+  float3 irradiance_texture = txIrradianceMap.Sample(samLinear, iNormal).xyz;
+  float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
+
+  float g_ReflectionIntensity = 1.0;
+  float g_AmbientLightIntensity = 1.0;
+
+  float4 self_illum = float4(0, 0, 0, 0); //txGSelfIllum.Load(uint3(iPosition.xy,0));
+
+  float roughness = length(txRoughness.Sample(samLinear, iTex0));
+  float3 env_fresnel = Specular_F_Roughness(color_base, 1. - roughness * roughness, iNormal, eye);
+
+  float4 final_color = float4(env_fresnel * amount * g_ReflectionIntensity +
+	  color_base.xyz * irradiance * g_AmbientLightIntensity
+	  , 1.0f) + self_illum;
+
+  final_color *= obj_color.a;
   return final_color;
-
-  // Add some specular
-  float3 L = normalize(light_pos.xyz - iWorldPos);
-  float spec_term = getSpecularTerm(iWorldPos, iNormal, L);
-
-  // Add spec + final color
-  return final_color + spec_term * shadow_factor;
 }

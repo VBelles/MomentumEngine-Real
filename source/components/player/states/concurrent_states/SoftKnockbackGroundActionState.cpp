@@ -23,7 +23,7 @@ void SoftKnockbackGroundActionState::update(float delta) {
 
 void SoftKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	timer.reset();
 	if (dynamic_cast<AttackState*>(stateManager->getState())) {
 		stateManager->changeState(Idle);

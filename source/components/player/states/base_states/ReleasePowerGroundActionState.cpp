@@ -37,24 +37,24 @@ void ReleasePowerGroundActionState::update(float delta) {
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
-		switch (getPlayerModel()->getPowerGauge()->getPowerLevel()) {
+		switch (getPowerGauge()->getPowerLevel()) {
 		case 1:
-			getPlayerModel()->getPowerGauge()->releasePower();
+			getPowerGauge()->releasePower();
 			break;
 		case 2:
 			getBlurRadial()->setEnable(true);
-			getPlayerModel()->getPowerGauge()->releasePower();
+			getPowerGauge()->releasePower();
 			getHitboxes()->enable(smallHitbox);
-			if (buttonPresses > 1) getPlayerModel()->getPowerGauge()->releasePower();
+			if (buttonPresses > 1) getPowerGauge()->releasePower();
 			break;
 		case 3:
 			getBlurRadial()->setEnable(true);
-			getPlayerModel()->getPowerGauge()->releasePower();
+			getPowerGauge()->releasePower();
 			if (buttonPresses > 1) {
-				getPlayerModel()->getPowerGauge()->releasePower();
+				getPowerGauge()->releasePower();
 				//bola grande
 				getHitboxes()->enable(bigHitbox);
-				if (buttonPresses > 2) getPlayerModel()->getPowerGauge()->releasePower();
+				if (buttonPresses > 2) getPowerGauge()->releasePower();
 			}
 			else {
 				//bola pequeña
@@ -72,7 +72,7 @@ void ReleasePowerGroundActionState::onStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	buttonPresses = 1;
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {
@@ -87,13 +87,13 @@ void ReleasePowerGroundActionState::onReleasePowerButton() {
 	//Si está en active, release energy
 	if (phase == AttackPhases::Active) {
 		//si además button presses es == 2 y ssj2, agrandar bola
-		if (getPlayerModel()->getPowerGauge()->getPowerLevel() == 2) {
+		if (getPowerGauge()->getPowerLevel() == 2) {
 			getHitboxes()->disable(smallHitbox);
 			getHitboxes()->enable(bigHitbox);
 		}
-		getPlayerModel()->getPowerGauge()->releasePower();
+		getPowerGauge()->releasePower();
 	}
-	if (phase == AttackPhases::Recovery) getPlayerModel()->getPowerGauge()->releasePower();
+	if (phase == AttackPhases::Recovery) getPowerGauge()->releasePower();
 }
 
 

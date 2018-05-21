@@ -30,7 +30,7 @@ void JumpSquatLongActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	//dbg("Entrando en JumpSquatLong\n");
 	timer.reset();
-	getPlayerModel()->getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void JumpSquatLongActionState::onStateExit(IActionState * nextState) {
