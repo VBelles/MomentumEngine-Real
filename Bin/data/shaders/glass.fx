@@ -51,12 +51,10 @@ float4 PS(
 	float2 pos_camera_unit_space = float2((1 + pos_homo_space.x) * 0.5, (1 - pos_homo_space.y) * 0.5);
 	float4 background_color = txGBufferAlbedos.Sample(samBorderLinear, pos_camera_unit_space + noise);
 
-	float4 return_color = lerp(background_color, albedo, albedo.a);
-
 	float4 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, normal, 6);
 	float4 irradiance_texture = txIrradianceMap.Sample(samLinear, normal);
 	float4 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
-	float4 final_color = lerp(irradiance, albedo, albedo.a);
-	return lerp(background_color, final_color, albedo.a);
+	float4 final_color = lerp(irradiance, background_color, 0.5f);
+	return lerp(final_color, albedo, albedo.a);
 }
