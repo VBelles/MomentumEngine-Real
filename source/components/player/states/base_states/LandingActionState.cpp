@@ -15,7 +15,7 @@ LandingActionState::LandingActionState(StateManager* stateManager, State state):
 void LandingActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	bool hasInput = movementInput != VEC2::Zero;
+	bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 	if (hasInput) {
@@ -25,7 +25,7 @@ void LandingActionState::update (float delta) {
 
 	if (!stateManager->isChangingBaseState) {
 		if (timer.elapsed() >= landingLagTime) {
-			if (movementInput.Length() < 0.8f || enteringSpeed == 0.f) {
+			if (movementInput.Length() < PAD_RUN_THRESHOLD || enteringSpeed == 0.f) {
 				stateManager->changeState(Idle);
 			}
 			else {
@@ -63,7 +63,7 @@ void LandingActionState::onJumpLongButton() {
 }
 
 void LandingActionState::SetFinalRotationAndVelocity() {
-	bool hasInput = movementInput != VEC2::Zero;
+	bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 	if (hasInput) {
 		movementInput.Normalize();
 		VEC3 movementInputWorldSpace = getCamera()->getCamera()->TransformToWorld(movementInput);

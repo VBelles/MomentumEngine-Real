@@ -23,7 +23,7 @@ void FallingAttackActionState::update(float delta) {
 
 	if (timer.elapsed() < hitboxOutTime) {
 		//posicionamiento
-		bool hasInput = movementInput != VEC2::Zero;
+		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 		PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 		if (hasInput) {

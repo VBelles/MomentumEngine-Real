@@ -15,7 +15,7 @@ void SlideActionState::update(float delta) {
 	//deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
 
-	/*bool hasInput = movementInput != VEC2::Zero;
+	/*bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
 	desiredDirection.y = 0.f;
 	float yaw, pitch;

@@ -25,7 +25,7 @@ void GhostJumpSquatActionState::update(float delta) {
 		}
 	}
 	else {
-		bool hasInput = movementInput != VEC2::Zero;
+		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
 		if (hasInput) {
 			deltaMovement += getPlayerTransform()->getFront() * enteringVelocity * delta;

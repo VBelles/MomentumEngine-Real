@@ -36,7 +36,7 @@ void StrongAttackActionState::update(float delta) {
 
 	if (phase == AttackPhases::Startup || phase == AttackPhases::Launch) {
 		//posicionamiento
-		bool hasInput = movementInput != VEC2::Zero;
+		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
 		if (hasInput) {
 			VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);

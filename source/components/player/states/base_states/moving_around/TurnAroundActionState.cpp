@@ -16,7 +16,7 @@ void TurnAroundActionState::update (float delta) {
 	if (timer.elapsed() >= turnAroundTime) {
 		rotateToFinalDirection();
 		if (!stateManager->isChangingBaseState) {
-			if (movementInput.Length() > 0.8f) {
+			if (movementInput.Length() > PAD_RUN_THRESHOLD) {
 				setFinalVelocity();
 				stateManager->changeState(Walk);
 			}

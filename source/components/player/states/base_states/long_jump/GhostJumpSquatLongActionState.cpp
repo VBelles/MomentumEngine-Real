@@ -25,7 +25,7 @@ void GhostJumpSquatLongActionState::update(float delta) {
 		}
 	}
 	else {
-		bool hasInput = movementInput != VEC2::Zero;
+		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
 		deltaMovement.x = 0;
 		deltaMovement.z = 0;

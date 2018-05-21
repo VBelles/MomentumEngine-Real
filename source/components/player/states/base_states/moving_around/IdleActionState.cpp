@@ -15,7 +15,7 @@ IdleActionState::IdleActionState(StateManager * stateManager) :
 void IdleActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	bool hasInput = movementInput != VEC2::Zero;
+	bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 
 	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos

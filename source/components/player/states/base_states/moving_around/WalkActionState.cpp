@@ -15,11 +15,11 @@ WalkActionState::WalkActionState(StateManager* stateManager) :
 void WalkActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	bool hasInput = movementInput != VEC2::Zero;
+	bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	float desiredVelocity = currentPowerStats->maxHorizontalSpeed;
 	bool wantToWalk = false;
-	if (movementInput.Length() < 0.8f) {
+	if (movementInput.Length() < PAD_RUN_THRESHOLD) {
 		desiredVelocity = getPlayerModel()->walkingSpeed;
 		wantToWalk = true;
 	}

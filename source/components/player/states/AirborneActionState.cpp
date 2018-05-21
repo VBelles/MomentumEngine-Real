@@ -18,7 +18,7 @@ AirborneActionState::AirborneActionState(StateManager* stateManager, ConcurrentS
 void AirborneActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
-	bool hasInput = movementInput != VEC2::Zero;
+	bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
 	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 	if (!getPlayerModel()->lockTurning) {
