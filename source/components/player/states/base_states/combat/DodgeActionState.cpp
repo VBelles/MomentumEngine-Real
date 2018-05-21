@@ -23,6 +23,7 @@ void DodgeActionState::update (float delta) {
 		deltaMovement.x = 0.f;
 		deltaMovement.z = 0.f;
 		isMoving = false;
+		timer.reset();
 	}
 	else if(isMoving){
 		//move
@@ -35,6 +36,7 @@ void DodgeActionState::update (float delta) {
 void DodgeActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	timer.reset();
+	invencibilityTimer.reset();
 	stateManager->changeConcurrentState(Free);
 	isMoving = true;
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
@@ -50,13 +52,29 @@ void DodgeActionState::onStateExit(IActionState * nextState) {
 }
 
 void DodgeActionState::onJumpHighButton() {
+	//Aquí habrá alguna condición
 	multiplyHorizontalSpeed(leavingGroundSpeedMultiplier);
-	stateManager->changeState(JumpSquat);
+	GroundedActionState::onJumpHighButton();
+	//stateManager->changeState(JumpSquat);
 }
 
 void DodgeActionState::onJumpLongButton() {
+	//Aquí habrá alguna condición
 	multiplyHorizontalSpeed(leavingGroundSpeedMultiplier);
-	stateManager->changeState(JumpSquatLong);
+	GroundedActionState::onJumpLongButton();
+	//stateManager->changeState(JumpSquatLong);
+}
+
+void DodgeActionState::onStrongAttackButton() {
+	//Aquí habrá alguna condición
+	GroundedActionState::onStrongAttackButton();
+}
+
+void DodgeActionState::onFastAttackButton() {
+	//Aquí habrá alguna condición
+	stateManager->changeState(Idle);
+	multiplyHorizontalSpeed(0.f);
+	GroundedActionState::onFastAttackButton();
 }
 
 void DodgeActionState::onMove(MoveState & moveState) {
@@ -73,7 +91,7 @@ void DodgeActionState::onMove(MoveState & moveState) {
 }
 
 void DodgeActionState::onDamage(const TMsgAttackHit & msg) {
-	if (timer.elapsed() >= invencibilityTime) {
+	if (invencibilityTimer.elapsed() >= invencibilityTime) {
 		GroundedActionState::onDamage(msg);
 	}
 }

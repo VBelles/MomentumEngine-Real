@@ -15,6 +15,7 @@ AirborneActionState(stateManager, HardKnockbackAir){
 
 void HardKnockbackAirActionState::update (float delta) {
 	deltaMovement = VEC3::Zero;
+	deltaMovement.y = velocityVector->y * delta;
 	if (timer.elapsed() >= duration) {
 		stateManager->changeState(Idle);
 	}

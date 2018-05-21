@@ -5,10 +5,11 @@
 class DodgeActionState : public GroundedActionState {
 private:
 	CTimer timer;
-	float movingTime = frames2sec(10);
-	float recoveryTime = frames2sec(25);
+	float movingTime = frames2sec(12);
+	float recoveryTime = frames2sec(15);
+	CTimer invencibilityTimer;
 	float invencibilityTime = frames2sec(5);
-	float dodgeSpeed = 18.f;
+	float dodgeSpeed = 22.f;
 	
 	float leavingGroundSpeedMultiplier = 0.25f;
 
@@ -24,8 +25,8 @@ public:
 	void onStateExit(IActionState* nextState) override;
 	void onJumpHighButton() override;
 	void onJumpLongButton() override;
-	void onStrongAttackButton() override{}
-	void onFastAttackButton() override {}
+	void onStrongAttackButton() override;
+	void onFastAttackButton() override;
 	void onDodgeButton() override {}
 	void onReleasePowerButton() override {}
 	void onMove(MoveState& moveState) override;
