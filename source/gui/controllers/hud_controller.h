@@ -8,5 +8,8 @@ namespace GUI {
 	public:
 		CHudController();
 		virtual void update(float delta) override;
+		void updateHp(float hp, float maxHp);
+		void updatePower(float power, float maxPower);
+		void updateText();
 	};
 }

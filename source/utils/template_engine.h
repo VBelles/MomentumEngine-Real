@@ -1,8 +1,13 @@
 #pragma once
+
+#include <cstdlib>
+#include <iostream>
+#include <string>
 #include <regex>
 
 //https://stackoverflow.com/a/37516316
 namespace std {
+
 	template<class BidirIt, class Traits, class CharT, class UnaryFunction>
 	std::basic_string<CharT> regex_replace(BidirIt first, BidirIt last,
 		const std::basic_regex<CharT, Traits>& re, UnaryFunction f) {
@@ -37,21 +42,21 @@ namespace std {
 
 		return s;
 	}
-}
 
+	template<class Traits, class CharT, class UnaryFunction>
+	std::string regex_replace(const std::string& s, const std::basic_regex<CharT, Traits>& re, UnaryFunction f) {
+		return std::regex_replace(s.cbegin(), s.cend(), re, f);
+	}
 
-template<class Traits, class CharT, class UnaryFunction>
-std::string regex_replace(const std::string& s,
-	const std::basic_regex<CharT, Traits>& re, UnaryFunction f) {
-	return regex_replace(s.cbegin(), s.cend(), re, f);
-}
+} // namespace std
 
 
 //"Template engine"
-std::string process_template(const std::string& s, std::function<std::string(const std::string)> f) {
+template<class UnaryFunction>
+std::string processTemplate(const std::string& s, UnaryFunction f) {
 	std::regex re("\\{\\{(.+?)\\}\\}");
 	auto callback = [&f](const std::smatch& m) {
 		return f(m.str(1));
 	};
-	return regex_replace(s.cbegin(), s.cend(), re, callback);
+	return std::regex_replace(s, re, callback);
 }

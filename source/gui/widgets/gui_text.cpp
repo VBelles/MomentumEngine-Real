@@ -1,9 +1,11 @@
 #include "mcv_platform.h"
 #include "gui_text.h"
+#include "utils/template_engine.h"
 
 using namespace GUI;
 
 void CText::render() {
+	updateTemplate();
 	float textWidth = _textParams._text.size() * _textParams._size;
 	float textHeight = _textParams._size;
 	VEC2 offset;
@@ -18,9 +20,23 @@ void CText::render() {
 
 	MAT44 tr = MAT44::CreateTranslation(offset.x, offset.y, 0.f);
 	MAT44 w = MAT44::CreateScale(_textParams._size) * tr * _absolute;
-    EngineGUI.renderText(w, _textParams._text, _textParams._color);
+	EngineGUI.renderText(w, _textParams._text, _textParams._color);
 }
 
 TTextParams* CText::getTextParams() {
 	return &_textParams;
+}
+
+void CText::updateTemplate() {
+	if (!_textParams._template_text.empty()) {
+		auto callback = [](const std::string& name) {
+			CVariant* variant = EngineGUI.getVariables().getVariant(name);
+			if (variant) {
+				return variant->toString();
+			}
+			dbg("Warning: variable %s does not exists\n", name.c_str());
+			return std::string();
+		};
+		_textParams._text = processTemplate(_textParams._template_text, callback);
+	}
 }

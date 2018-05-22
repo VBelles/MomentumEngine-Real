@@ -8,6 +8,7 @@ namespace GUI {
 		CText() = default;
 		void render() override;
 		TTextParams* getTextParams() override;
+		void updateTemplate();
 
 	private:
 		TTextParams _textParams;

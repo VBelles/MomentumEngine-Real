@@ -129,7 +129,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 
 		bool showWindow = true;
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
+		/*ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(50, 35));
 		ImGui::SetNextWindowSize(ImVec2(200, 300));
 		ImGui::Begin("HpPower", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
@@ -148,7 +148,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::PopStyleColor();
 
 		ImGui::End();
-		ImGui::PopStyleColor();
+		ImGui::PopStyleColor();*/
 
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 50, ImGui::GetIO().DisplaySize.y - 100));
@@ -320,6 +320,8 @@ void TCompPlayerModel::setHp(float hp) {
 		stateManager->changeConcurrentState(Free);
 	}
 	EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
+	EngineGUI.getVariables().getVariant("hp")->setInt(hp);
+
 }
 
 void TCompPlayerModel::setRespawnPosition(VEC3 position) {

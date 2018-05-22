@@ -26,7 +26,7 @@ namespace GUI {
 		//const CFont* _font = nullptr;
 		std::string _text;
 		VEC4 _color;
-		bool _isTemplate = false;
+		std::string _template_text;
 	};
 
 	struct TBarParams {

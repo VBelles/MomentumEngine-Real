@@ -182,7 +182,7 @@ void CParser::parseTextParams(TTextParams& params, const json& data) {
 	if (vAlign == "center")      params._vAlign = TTextParams::Center;
 	else if (vAlign == "bottom") params._vAlign = TTextParams::Bottom;
 	else                         params._vAlign = TTextParams::Top;
-	params._isTemplate = data.value("isTemplate", false);
+	params._template_text = data.value("template_text", "");
 
 }
 
