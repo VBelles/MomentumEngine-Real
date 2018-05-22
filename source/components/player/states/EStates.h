@@ -16,6 +16,8 @@ enum State {
 	StrongAttack,
 	StrongAttack2,
 	StrongAttack3,
+	StrongFinisher1,
+	StrongFinisher2,
 	FallingAttack,
 	HorizontalLauncher,
 	VerticalLauncher,

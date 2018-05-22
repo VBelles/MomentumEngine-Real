@@ -37,6 +37,8 @@
 #include "components/player/states/base_states/combat/StrongAttackActionState.h"
 #include "components/player/states/base_states/combat/StrongAttack2ActionState.h"
 #include "components/player/states/base_states/combat/StrongAttack3ActionState.h"
+#include "components/player/states/base_states/combat/StrongFinisher1ActionState.h"
+#include "components/player/states/base_states/combat/StrongFinisher2ActionState.h"
 #include "components/player/states/base_states/combat/HorizontalLauncherActionState.h"
 #include "components/player/states/base_states/combat/VerticalLauncherActionState.h"
 #include "components/player/states/base_states/combat/ReleasePowerGroundActionState.h"
@@ -104,6 +106,8 @@ void StateManager::registerStates() {
 	registerState(StrongAttackActionState);
 	registerState(StrongAttack2ActionState);
 	registerState(StrongAttack3ActionState);
+	registerState(StrongFinisher1ActionState);
+	registerState(StrongFinisher2ActionState);
 	registerState(VerticalLauncherActionState);
 	registerState(HorizontalLauncherActionState);
 	registerState(ReleasePowerGroundActionState);

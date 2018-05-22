@@ -60,7 +60,7 @@ void FastAttack2ActionState::onFastAttackButton() {
 }
 
 void FastAttack2ActionState::onStrongAttackButton() {
-	//if (isInterruptible()) stateManager->changeState(StrongFinisher2);
+	if (isInterruptible()) stateManager->changeState(StrongFinisher2);
 }
 
 void FastAttack2ActionState::onDodgeButton() {
