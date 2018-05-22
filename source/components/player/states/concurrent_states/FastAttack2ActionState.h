@@ -3,7 +3,7 @@
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/AttackState.h"
 
-class FastAttackActionState : public GroundedActionState, public AttackState {
+class FastAttack2ActionState : public GroundedActionState, public AttackState {
 private:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(10);
@@ -16,11 +16,11 @@ private:
 	float damage = 1.f;
 	float powerToGet = 2000.f;
 
-	std::string animation = "melee";
+	std::string animation = "ataquecaida";
 	std::string hitbox = "fast_attack";
 
 public:
-	FastAttackActionState(StateManager* stateManager);
+	FastAttack2ActionState(StateManager* stateManager);
 
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;

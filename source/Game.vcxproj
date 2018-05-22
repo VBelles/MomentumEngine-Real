@@ -175,6 +175,7 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackActionState.cpp" />
+    <ClCompile Include="components\player\states\concurrent_states\FastAttack2ActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FreeActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabActionState.cpp" />
@@ -397,6 +398,7 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackActionState.h" />
+    <ClInclude Include="components\player\states\concurrent_states\FastAttack2ActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FreeActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\GrabActionState.h" />

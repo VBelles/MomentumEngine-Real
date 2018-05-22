@@ -44,6 +44,7 @@ enum ConcurrentState {
 	UndefinedConcurrentState,
 	Free,
 	FastAttack,
+	FastAttack2,
 	FastAttackAir,
 	GrabHigh,
 	GrabLong,

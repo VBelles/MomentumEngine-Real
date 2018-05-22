@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "FastAttackActionState.h"
+#include "FastAttack2ActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
@@ -8,14 +8,14 @@
 #include "components/player/states/StateManager.h"
 
 
-FastAttackActionState::FastAttackActionState(StateManager* stateManager)
-	: GroundedActionState(stateManager, FastAttack),
+FastAttack2ActionState::FastAttack2ActionState(StateManager* stateManager)
+	: GroundedActionState(stateManager, FastAttack2),
 	AttackState(stateManager) {
 	cancelableTime = frames2sec(9);;
 	interruptibleTime = frames2sec(30);
 }
 
-void FastAttackActionState::update(float delta) {
+void FastAttack2ActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
 		stateManager->changeConcurrentState(Free);
@@ -36,17 +36,17 @@ void FastAttackActionState::update(float delta) {
 	}
 }
 
-void FastAttackActionState::onStateEnter(IActionState * lastState) {
+void FastAttack2ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Fast attack 1\n");
+	dbg("Fast attack 2\n");
 	phase = AttackPhases::Launch;
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockAttack = true;
 }
 
-void FastAttackActionState::onStateExit(IActionState * nextState) {
+void FastAttack2ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
@@ -55,31 +55,31 @@ void FastAttackActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 }
 
-void FastAttackActionState::onFastAttackButton() {
-	if (isInterruptible()) stateManager->changeConcurrentState(FastAttack2);
+void FastAttack2ActionState::onFastAttackButton() {
+	if (isInterruptible()) stateManager->changeConcurrentState(FastAttack);
 }
 
-void FastAttackActionState::onStrongAttackButton() {
-	//if (isInterruptible()) stateManager->changeState(StrongFinisher1);
+void FastAttack2ActionState::onStrongAttackButton() {
+	//if (isInterruptible()) stateManager->changeState(StrongFinisher2);
 }
 
-void FastAttackActionState::onDodgeButton() {
+void FastAttack2ActionState::onDodgeButton() {
 	if (isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
 }
 
-void FastAttackActionState::onFastAttackButtonReleased() {
+void FastAttack2ActionState::onFastAttackButtonReleased() {
 	if (phase == AttackPhases::Launch) {
 		phase = AttackPhases::Startup;
 		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	}
 }
 
-void FastAttackActionState::onLeavingGround() {
+void FastAttack2ActionState::onLeavingGround() {
 	stateManager->changeState(GhostJumpWindow);
 }
 
 
-void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
+void FastAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity* otherEntity = entity;
 

@@ -50,6 +50,7 @@
 #include "components/player/states/concurrent_states/SoftKnockbackAirActionState.h"
 #include "components/player/states/concurrent_states/FreeActionState.h"
 #include "components/player/states/concurrent_states/FastAttackActionState.h"
+#include "components/player/states/concurrent_states/FastAttack2ActionState.h"
 #include "components/player/states/concurrent_states/FastAttackAirActionState.h"
 #include "components/player/states/concurrent_states/GrabHighActionState.h"
 #include "components/player/states/concurrent_states/GrabLongActionState.h"
@@ -116,6 +117,7 @@ void StateManager::registerStates() {
 
 	registerConcurrentState(FreeActionState);
 	registerConcurrentState(FastAttackActionState);
+	registerConcurrentState(FastAttack2ActionState);
 	registerConcurrentState(FastAttackAirActionState);
 	registerConcurrentState(GrabHighActionState);
 	registerConcurrentState(GrabLongActionState);
