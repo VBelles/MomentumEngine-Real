@@ -273,6 +273,7 @@
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
+    <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -512,6 +513,7 @@
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game\physics\ragdoll.h" />
     <ClInclude Include="modules\game\physics\ragdoll_core.h" />
+    <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
