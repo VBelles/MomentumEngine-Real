@@ -3,7 +3,7 @@
   "shadows": true,
   "textures": {
     "albedo": "data/textures/ambar_alpha.dds",
-    "normal": "data/textures/grass_texture_normals.dds",
+    "normal": "data/textures/mix/Ground_10_NRM.dds",
     "metallic": "data/textures/null_metallic.dds",
     "roughness": "data/textures/null_roughness.dds"
   }

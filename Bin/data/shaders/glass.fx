@@ -49,12 +49,21 @@ float4 PS(
 	float4 pos_proj_space = mul(float4(iWorldPos, 1), camera_view_proj);
 	float3 pos_homo_space = pos_proj_space.xyz / pos_proj_space.w;    // -1..1
 	float2 pos_camera_unit_space = float2((1 + pos_homo_space.x) * 0.5, (1 - pos_homo_space.y) * 0.5);
-	float4 background_color = txGBufferAlbedos.Sample(samBorderLinear, pos_camera_unit_space + noise);
+
+	float4 background_color;
+	float zlinear = txGBufferLinearDepth.Sample(samLinear, pos_camera_unit_space + noise.xy).x;
+
+	if (zlinear > (1 - pos_homo_space.z) * 0.5f) {
+		background_color = txGBufferAlbedos.Sample(samLinear, pos_camera_unit_space + noise.xy);
+	}
+	else {
+		background_color = txGBufferAlbedos.Sample(samLinear, pos_camera_unit_space);
+	}
 
 	float4 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, normal, 6);
 	float4 irradiance_texture = txIrradianceMap.Sample(samLinear, normal);
 	float4 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
-	float4 final_color = lerp(irradiance, background_color, 0.5f);
+	float4 final_color = lerp(irradiance, background_color, 0.75f);
 	return lerp(final_color, albedo, albedo.a);
 }
