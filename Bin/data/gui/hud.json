@@ -1,50 +1,64 @@
 [
 	{
-		"name" : "hud",
-		"type" : "widget",
-		"size" : "1920 1080",
-		"children" : [
+		"name": "hud",
+		"type": "widget",
+		"size": "1920 1080",
+		"children": [
 			{
-				"name" : "hp_bar",
-				"type" : "widget",
-				"position" : "50 50",
-				"children" : [
+				"name": "hp_bar",
+				"type": "widget",
+				"position": "75 75",
+				"children": [
 					{
-						"name" : "background",
-						"type" : "image",
-						"size" : "200 50",
-						"texture" : "data/textures/gui/battery_empty.dds"
+						"name": "background",
+						"type": "image",
+						"size": "300 30",
+						"texture": "data/textures/gui/transparent.dds"
 					},
 					{
-						"name" : "foreground",
-						"type" : "bar",
-						"size" : "200 50",
-						"texture" : "data/textures/gui/battery_full.dds",
-						"variable" : "hp_progress"
+						"name": "foreground",
+						"type": "bar",
+						"size": "300 30",
+						"texture": "data/textures/gui/solid.dds",
+						"color": "0 1 0 1",
+						"variable": "hp_progress"
+					},
+					{
+						"name": "hp_text",
+						"type": "text",
+						"text": "HP",
+		        		"font_color" : "0.5 0.5 0.5 1",
+		        		"font_size" : 32
 					}
 				]
 			},
 			{
-				"name" : "power_bar",
-				"type" : "widget",
-				"position" : "50 125",
-				"children" : [
+				"name": "power_bar",
+				"type": "widget",
+				"position": "75 125",
+				"children": [
 					{
-						"name" : "background",
-						"type" : "image",
-						"size" : "200 50",
-						"texture" : "data/textures/gui/battery_empty.dds"
+						"name": "background",
+						"type": "image",
+						"size": "300 30",
+						"texture": "data/textures/gui/transparent.dds"
 					},
 					{
-						"name" : "foreground",
-						"type" : "bar",
-						"size" : "200 50",
-						"texture" : "data/textures/gui/battery_full.dds",
-						"variable" : "power_progress"
+						"name": "foreground",
+						"type": "bar",
+						"size": "300 30",
+						"texture": "data/textures/gui/solid.dds",
+						"variable": "power_progress"
+					},
+					{
+						"name": "power_text",
+						"type": "text",
+						"text": "POWER",
+		        		"font_color" : "0.5 0.5 0.5 1",
+		        		"font_size" : 32
 					}
 				]
 			}
 		]
-		
 	}
 ]
