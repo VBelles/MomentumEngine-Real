@@ -14,6 +14,8 @@ enum State {
 	AirborneLong,
 	GhostJumpSquatLong,
 	StrongAttack,
+	StrongAttack2,
+	StrongAttack3,
 	FallingAttack,
 	HorizontalLauncher,
 	VerticalLauncher,

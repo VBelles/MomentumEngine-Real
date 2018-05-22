@@ -3,11 +3,9 @@
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/AttackState.h"
 
-class StrongAttackActionState : public GroundedActionState, public AttackState {
+class StrongAttack2ActionState : public GroundedActionState, public AttackState {
 private:
 	//parameters set in constructor
-
-	float beginLauncherTime = frames2sec(20);
 	
 	float powerToGet = 3000.f;
 	float damage = 5.f;
@@ -15,7 +13,7 @@ private:
 	std::string animation = "melee_strong";
 
 public:
-	StrongAttackActionState(StateManager* stateManager);
+	StrongAttack2ActionState(StateManager* stateManager);
 
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
@@ -23,7 +21,6 @@ public:
 	void onJumpHighButton() override {}
 	void onJumpLongButton() override {}
 	void onStrongAttackButton() override;
-	void onStrongAttackButtonReleased() override;
 	void onFastAttackButton() override;
 	void onDodgeButton() override;
 	void onReleasePowerButton() override;

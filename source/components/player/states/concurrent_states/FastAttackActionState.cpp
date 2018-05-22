@@ -67,6 +67,10 @@ void FastAttackActionState::onDodgeButton() {
 	if (isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
 }
 
+void FastAttackActionState::onReleasePowerButton() {
+	if (isInterruptible()) GroundedActionState::onReleasePowerButton();
+}
+
 void FastAttackActionState::onFastAttackButtonReleased() {
 	if (phase == AttackPhases::Launch) {
 		phase = AttackPhases::Startup;

@@ -89,7 +89,7 @@ void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {
 }
 
 void ReleasePowerGroundActionState::onDodgeButton() {
-	if (isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
+	if (isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
 }
 
 void ReleasePowerGroundActionState::onReleasePowerButton() {

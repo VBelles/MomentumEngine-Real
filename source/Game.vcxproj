@@ -157,6 +157,8 @@
     <ClCompile Include="components\player\states\base_states\combat\HorizontalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\LauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\ReleasePowerGroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\StrongAttack2ActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\StrongAttack3ActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\StrongAttackActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\VerticalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.cpp" />
@@ -380,6 +382,8 @@
     <ClInclude Include="components\player\states\base_states\combat\HorizontalLauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\LauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\ReleasePowerGroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\StrongAttack2ActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\StrongAttack3ActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\StrongAttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.h" />

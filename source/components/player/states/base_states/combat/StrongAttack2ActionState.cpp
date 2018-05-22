@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "StrongAttackActionState.h"
+#include "StrongAttack2ActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
@@ -10,8 +10,8 @@
 #include "components/player/states/StateManager.h"
 
 
-StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
-	GroundedActionState(stateManager, StrongAttack),
+StrongAttack2ActionState::StrongAttack2ActionState(StateManager * stateManager) :
+	GroundedActionState(stateManager, StrongAttack2),
 	AttackState(stateManager) {
 	hitboxOutTime = frames2sec(60);
 	hitEndTime = frames2sec(10);
@@ -21,20 +21,13 @@ StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
 	hitbox = "strong_attack";
 }
 
-void StrongAttackActionState::update(float delta) {
+void StrongAttack2ActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 
-	if (phase == AttackPhases::Launch && timer.elapsed() >= beginLauncherTime) {
-		if (!stateManager->isChangingBaseState) {
-			stateManager->changeState(VerticalLauncher);
-		}
-	}
-	else {
-		AttackState::update(delta);
-	}
+	AttackState::update(delta);
 
-	if (phase == AttackPhases::Startup || phase == AttackPhases::Launch) {
+	if (phase == AttackPhases::Startup){
 		//posicionamiento
 		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
@@ -46,45 +39,39 @@ void StrongAttackActionState::update(float delta) {
 	}
 }
 
-void StrongAttackActionState::onStateEnter(IActionState * lastState) {
+void StrongAttack2ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Strong 1\n");
-	phase = AttackPhases::Launch;
+	dbg("Strong 2\n");
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
 }
 
-void StrongAttackActionState::onStateExit(IActionState * nextState) {
+void StrongAttack2ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
 }
 
-void StrongAttackActionState::onStrongAttackButton() {
-	if (isInterruptible()) stateManager->changeState(StrongAttack2);
+void StrongAttack2ActionState::onStrongAttackButton() {
+	if (isInterruptible()) stateManager->changeState(StrongAttack3);
 }
 
-void StrongAttackActionState::onStrongAttackButtonReleased() {
-	if (phase == AttackPhases::Launch) {
-		phase = AttackPhases::Startup;
-		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
-	}
+void StrongAttack2ActionState::onFastAttackButton() {
+	//if (isInterruptible()) stateManager->changeState(FastFinisher2);
 }
 
-void StrongAttackActionState::onFastAttackButton() {
-	//if (isInterruptible()) stateManager->changeState(FastFinisher1);
+void StrongAttack2ActionState::onDodgeButton() {
+	if(isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
 }
 
-void StrongAttackActionState::onDodgeButton() {
-	if (isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
-}
-
-void StrongAttackActionState::onReleasePowerButton() {
+void StrongAttack2ActionState::onReleasePowerButton() {
 	if (isInterruptible()) GroundedActionState::onReleasePowerButton();
+
 }
 
-void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
+void StrongAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
