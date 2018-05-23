@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "StrongAttack2ActionState.h"
+#include "FastFinisher2ActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
@@ -10,24 +10,24 @@
 #include "components/player/states/StateManager.h"
 
 
-StrongAttack2ActionState::StrongAttack2ActionState(StateManager * stateManager) :
-	GroundedActionState(stateManager, StrongAttack2),
+FastFinisher2ActionState::FastFinisher2ActionState(StateManager * stateManager) :
+	GroundedActionState(stateManager, FastFinisher2),
 	AttackState(stateManager) {
 	hitboxOutTime = frames2sec(60);
 	hitEndTime = frames2sec(10);
 	animationEndTime = frames2sec(60);
 	cancelableTime = frames2sec(50);
-	interruptibleTime = frames2sec(80);
+	interruptibleTime = frames2sec(110);
 	hitbox = "strong_attack";
 }
 
-void StrongAttack2ActionState::update(float delta) {
+void FastFinisher2ActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 
 	AttackState::update(delta);
 
-	if (phase == AttackPhases::Startup){
+	if (phase == AttackPhases::Startup) {
 		//posicionamiento
 		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
@@ -39,39 +39,26 @@ void StrongAttack2ActionState::update(float delta) {
 	}
 }
 
-void StrongAttack2ActionState::onStateEnter(IActionState * lastState) {
+void FastFinisher2ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Strong 2\n");
+	dbg("Fast Finisher 2\n");
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
 }
 
-void StrongAttack2ActionState::onStateExit(IActionState * nextState) {
+void FastFinisher2ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	AttackState::onStateExit(nextState); 
+	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 }
 
-void StrongAttack2ActionState::onStrongAttackButton() {
-	if (isInterruptible()) stateManager->changeState(StrongAttack3);
+void FastFinisher2ActionState::onDodgeButton() {
+	if (isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
 }
 
-void StrongAttack2ActionState::onFastAttackButton() {
-	if (isInterruptible()) stateManager->changeState(FastFinisher2);
-}
-
-void StrongAttack2ActionState::onDodgeButton() {
-	if(isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
-}
-
-void StrongAttack2ActionState::onReleasePowerButton() {
-	if (isInterruptible()) GroundedActionState::onReleasePowerButton();
-
-}
-
-void StrongAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
+void FastFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
@@ -81,5 +68,4 @@ void StrongAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAtackHit);
-
 }
