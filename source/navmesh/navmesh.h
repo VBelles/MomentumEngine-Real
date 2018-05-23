@@ -2,9 +2,9 @@
 
 #include "resources/resource.h"
 
-#include "../tools/Navmeshes/Recast/Include/Recast.h"
-#include "../tools/Navmeshes/Detour/Include/DetourNavMesh.h"
-#include "../tools/Navmeshes/Detour/Include/DetourNavMeshQuery.h"
+#include "Recast/Include/Recast.h"
+#include "Detour/Include/DetourNavMesh.h"
+#include "Detour/Include/DetourNavMeshQuery.h"
 
 class CNavMesh : public IResource {
 
