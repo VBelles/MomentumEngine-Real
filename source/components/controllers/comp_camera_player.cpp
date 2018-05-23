@@ -11,6 +11,7 @@ DECL_OBJ_MANAGER("camera_player", TCompCameraPlayer);
 void TCompCameraPlayer::debugInMenu() {
 	ImGui::DragFloat("distanceToTarget", &defaultDistanceToTarget, 0.1f, 1.f, 1000.f);
 	ImGui::DragFloat("offset", &offset, 0.1f, 0.f, 3.f);
+	ImGui::DragFloat("Pitch offset", &pitchOffset, 0.1f, -360.f, 360.f);
 }
 
 // -------------------------------------------------
@@ -54,7 +55,11 @@ void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompCameraPlayer::update(float delta) {
-
+	TCompTransform* transform = getTransform();
+	float y, p, r;
+	transform->getYawPitchRoll(&y, &p, &r);
+	//transform->setYawPitchRoll(y, p - pitchOffset);
+	transform->setYawPitchRoll(y, p - deg2rad(pitchOffset));
 	updateTargetTransform();
 	updateInput();
 	if (centeringCamera) {
@@ -67,10 +72,14 @@ void TCompCameraPlayer::update(float delta) {
 	if (!isMovementLocked && (isCameraInsideGeometry() || sphereCast())) {
 		sweepBack();
 	}
+
+	transform->getYawPitchRoll(&y, &p, &r);
+	//transform->setYawPitchRoll(y, p + pitchOffset);
+	transform->setYawPitchRoll(y, p + deg2rad(pitchOffset));
 }
 
 void TCompCameraPlayer::updateTargetTransform() {
-	//Target transform is player transform + 2y
+	//Target transform is player transform + offset
 	TCompTransform* transform = getTarget()->get<TCompTransform>();
 	targetTransform.setPosition(transform->getPosition() + VEC3::Up * offset);
 	targetTransform.setRotation(transform->getRotation());
@@ -109,7 +118,6 @@ void TCompCameraPlayer::updateMovement(float delta) {
 	p += input.y * delta;
 	p = clamp(p, minPitch, maxPitch);
 	transform->setYawPitchRoll(y, p, r);
-	
 	moveCameraTowardsDefaultDistance(delta);
 }
 

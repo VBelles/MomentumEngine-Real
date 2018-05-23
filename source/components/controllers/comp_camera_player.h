@@ -24,6 +24,9 @@ private:
 	float maxPitch = 0.f;
 	float initialYaw = 0.f;
 	float initialPitch = 0.f;
+
+	//float pitchOffset = deg2rad(10);
+	float pitchOffset = 12.f;
 	
 	CHandle targetHandle;
 	CHandle transformHandle;
