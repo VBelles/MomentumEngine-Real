@@ -9,6 +9,7 @@
 
 DECL_OBJ_MANAGER("power_gauge", TCompPowerGauge);
 
+
 void TCompPowerGauge::registerMsgs() {
 }
 
@@ -40,11 +41,7 @@ void TCompPowerGauge::update(float delta) {
 }
 
 void TCompPowerGauge::releasePower() {
-	float barPercentage = power;
-	for (int i = 0; i < powerLevel - 1; i++) {
-		barPercentage -= powerPerLevel[i];
-	}
-	barPercentage /= powerPerLevel[powerLevel - 1];
+	float barPercentage = getPowerLevelPercentage();
 	float powerToDecrease = barPercentage * powerPerLevel[powerLevel - 1];
 	if (powerLevel != 0) {
 		powerToDecrease += (1 - barPercentage) * powerPerLevel[powerLevel - 2];
@@ -111,4 +108,19 @@ float TCompPowerGauge::getPower() { return power; }
 
 float TCompPowerGauge::getMaxPower() { return maxPower; }
 
+float TCompPowerGauge::getBarPercentage() {
+	float percentage = getPowerLevelPercentage() / NUMBER_OF_POWER_LEVELS;
+	percentage += (float)(powerLevel - 1) / NUMBER_OF_POWER_LEVELS;
+	return percentage;
+}
+
+float TCompPowerGauge::getPowerLevelPercentage() {
+	float percentage = power;
+	for (int i = 0; i < powerLevel - 1; i++) {
+		percentage -= powerPerLevel[i];
+	}
+	percentage /= powerPerLevel[powerLevel - 1];
+
+	return percentage;
+}
 

@@ -13,6 +13,8 @@ private:
 	float freezeDropTime = 1.f;
 	CTimer freezeDropTimer;
 
+	float getPowerLevelPercentage();
+
 public:
 
 	static void registerMsgs();
@@ -29,5 +31,5 @@ public:
 	float getPower();
 	float getMaxPower();
 
-
+	float getBarPercentage();
 };
