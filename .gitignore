@@ -16,6 +16,7 @@ Bin/imgui.ini
 Bin/*.cpuprofile
 SLB/x64/
 tools/Navmeshes/source/
+tools/Navmeshes/demos/crowds/.vs/
 tools/Coroutines/.vs/
 tools/Coroutines/bin/*.lib
 tools/Coroutines/bin/*.ilk

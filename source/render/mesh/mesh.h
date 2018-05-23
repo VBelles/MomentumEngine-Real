@@ -52,7 +52,7 @@ public:
     ID3D11Buffer* getIB() const { return ib; }
 
 protected:
-    ID3D11Buffer * vb = nullptr;
+    ID3D11Buffer*      vb = nullptr;
     ID3D11Buffer*      ib = nullptr;      // index buffer
     const CVertexDecl* vtx_decl = nullptr;
     eTopology          topology = eTopology::UNDEFINED;
