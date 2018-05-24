@@ -62,10 +62,10 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
 	rotationSpeed = j.value("rotationSpeed", 20.f);
-	recallDistance = j.value("recallDistance", 5.f);
+	recallDistanceSqrd = j.value("recallDistanceSqrd", 25.f);
 	attackFov = deg2rad(j.value("attackFov", 60.f));
-	minCombatDistance = j.value("minCombatDistance", 2.f);
-	maxCombatDistance = j.value("maxCombatDistance", 20.f);
+	minCombatDistanceSqrd = j.value("minCombatDistanceSqrd", 4.f);
+	maxCombatDistanceSqrd = j.value("maxCombatDistanceSqrd", 400.f);
 	attackCooldown = j.value("attackCooldown", 2.f);
 	attackDamage = j.value("attackDamage", 1.f);
 	propelDuration = j.value("propelDuration", 1.5f);
@@ -275,9 +275,9 @@ int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
 
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
-	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	if (VEC3::Distance(myPosition + deltaMovement, spawnPosition) < minCombatDistance
-		|| (distance < maxCombatDistance + maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
+	float distance = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	if (VEC3::DistanceSquared(myPosition + deltaMovement, spawnPosition) < minCombatDistanceSqrd
+		|| (distance < maxCombatDistanceSqrd + maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
 		return Leave;
 	}
 	else {
@@ -397,12 +397,12 @@ bool CBehaviorTreeFlyingRangedEnemy::stunCondition(float delta) {
 }
 
 bool CBehaviorTreeFlyingRangedEnemy::returnToSpawnCondition(float delta) {
-	return VEC3::Distance(getTransform()->getPosition(), spawnPosition) > recallDistance;
+	return VEC3::DistanceSquared(getTransform()->getPosition(), spawnPosition) > recallDistanceSqrd;
 }
 
 bool CBehaviorTreeFlyingRangedEnemy::combatCondition(float delta) {
-	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distance < maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
+	float distance = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	return distance < maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
 }
 
 void CBehaviorTreeFlyingRangedEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {

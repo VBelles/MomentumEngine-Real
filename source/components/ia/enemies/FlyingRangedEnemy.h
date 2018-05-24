@@ -20,11 +20,11 @@ private:
 	float movementSpeed = 2.5f;
 	float rotationSpeed;
 
-	float recallDistance = 28.f;
+	float recallDistanceSqrd = 28.f;
 
 	float attackFov = deg2rad(60);
-	float minCombatDistance = 2.f;
-	float maxCombatDistance = 20.f;
+	float minCombatDistanceSqrd = 2.f;
+	float maxCombatDistanceSqrd = 20.f;
 	float attackCooldown = 7.f;
 	float attackDamage = 1.f;
 	VEC3 attackSpawnOffset = VEC3(0, 2, 2);
