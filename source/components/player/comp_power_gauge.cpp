@@ -9,29 +9,48 @@
 
 DECL_OBJ_MANAGER("power_gauge", TCompPowerGauge);
 
+
 void TCompPowerGauge::registerMsgs() {
 }
 
 void TCompPowerGauge::load(const json & j, TEntityParseContext & ctx) {
 	powerLevel = j.value("power_level", 1);
-	maxPower = j.value("max_power", 30000.f);
-	powerPerLevel = j.value("power_per_level", 10000.f);
-	dropSpeed = j.value("drop_speed", 5.f * 60.f);
+	//powerPerLevel = j.value("power_per_level", 10000.f);
+	maxPower = 0.f;
+	if (j.count("power_per_level")) {
+		json jPowerPerLevel = j["power_per_level"];
+		for (int i = 0; i < NUMBER_OF_POWER_LEVELS; i++) {
+			powerPerLevel[i] = jPowerPerLevel[i];
+			maxPower += powerPerLevel[i];
+		}
+	}
+	//dropSpeed = j.value("drop_speed", 5.f * 60.f);
+	if (j.count("drop_speed")) {
+		json jDropSpeed = j["drop_speed"];
+		for (int i = 0; i < NUMBER_OF_POWER_LEVELS; i++) {
+			dropSpeed[i] = jDropSpeed[i];
+		}
+	}
 	freezeDropTime = j.value("freezeDropTime", 1.5f);
 }
 
 void TCompPowerGauge::update(float delta) {
 	if (freezeDropTimer.elapsed() > freezeDropTime) {
-		increasePower(-dropSpeed * delta);
+		increasePower(-dropSpeed[powerLevel - 1] * delta);
 	}
 }
 
 void TCompPowerGauge::releasePower() {
-	increasePower(-powerPerLevel);
+	float barPercentage = getPowerLevelPercentage();
+	float powerToDecrease = barPercentage * powerPerLevel[powerLevel - 1];
+	if (powerLevel != 0) {
+		powerToDecrease += (1 - barPercentage) * powerPerLevel[powerLevel - 2];
+	}
+	increasePower(-powerToDecrease);
 }
 
 void TCompPowerGauge::gainPower() {
-	increasePower(powerPerLevel);
+	increasePower(powerPerLevel[powerLevel - 1]);
 }
 
 void TCompPowerGauge::resetPower() {
@@ -49,7 +68,16 @@ void TCompPowerGauge::increasePower(float increment) {
 
 	//Calculate power level
 	int lastPowerLevel = powerLevel;
-	powerLevel = power < powerPerLevel ? 1 : power < powerPerLevel * 2 ? 2 : 3;
+
+	if (power <= powerPerLevel[0]) {
+		powerLevel = 1;
+	}
+	else if (power <= powerPerLevel[0] + powerPerLevel[1]) {
+		powerLevel = 2;
+	}
+	else {
+		powerLevel = 3;
+	}
 
 	//Notify player_comp when power level changed
 	if (lastPowerLevel != powerLevel) {
@@ -80,4 +108,19 @@ float TCompPowerGauge::getPower() { return power; }
 
 float TCompPowerGauge::getMaxPower() { return maxPower; }
 
+float TCompPowerGauge::getBarPercentage() {
+	float percentage = getPowerLevelPercentage() / NUMBER_OF_POWER_LEVELS;
+	percentage += (float)(powerLevel - 1) / NUMBER_OF_POWER_LEVELS;
+	return percentage;
+}
+
+float TCompPowerGauge::getPowerLevelPercentage() {
+	float percentage = power;
+	for (int i = 0; i < powerLevel - 1; i++) {
+		percentage -= powerPerLevel[i];
+	}
+	percentage /= powerPerLevel[powerLevel - 1];
+
+	return percentage;
+}
 

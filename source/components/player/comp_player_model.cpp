@@ -144,7 +144,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		std::string powerProgressBarText = "Power";
 		ImVec4 color = getPowerGauge()->getPowerLevel() == 1 ? ImColor{ 133, 78, 128 } : getPowerGauge()->getPowerLevel() == 2 ? ImColor{ 24, 174, 186 } : ImColor{ 255, 255, 255 };
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-		ImGui::ProgressBar((float)getPowerGauge()->getPower() / getPowerGauge()->getMaxPower(), ImVec2(-1, 0), powerProgressBarText.c_str());
+		ImGui::ProgressBar(getPowerGauge()->getBarPercentage(), ImVec2(-1, 0), powerProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		ImGui::End();
