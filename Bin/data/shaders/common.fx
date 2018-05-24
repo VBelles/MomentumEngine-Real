@@ -243,3 +243,13 @@ void computeBlendWeights( float t1_a
   w2 = b2 / ( b_total );
   w3 = b3 / ( b_total );
 }
+
+//--------------------------------------------------------------------------------------
+float3 computeFog(float3 color, float3 fogColor, float dz, float3 wPos){
+  float d = length(wPos.xyz - camera_pos);
+	float l = exp( - pow( d * dz , 2 ) );
+	l = saturate(1 - l);
+  l = clamp(l, 0, 0.5);
+
+	return lerp(color, fogColor, l);
+}

@@ -19,6 +19,12 @@
 			},
 			"render_outlines" : {
 				"enabled" : true
+			},
+			"render_fog" : {
+				"enabled" : true,
+				"fog_color": "0.8 0.8 0.8 1",
+				"fog_density": 0.005,
+				"fog_max_ratio": 0.5
 			}
 		}
 	},

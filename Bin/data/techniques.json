@@ -269,6 +269,13 @@
     "z" : "disable_all"
   },
 
+  "fog": {
+    "vs_file": "data/shaders/fog.fx",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z": "default"
+  },
+
   "particles": {
     "vs_file": "data/shaders/particles.fx",
     "vertex_type": "Pos_x_RenderParticle",

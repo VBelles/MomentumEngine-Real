@@ -208,6 +208,7 @@
     <ClCompile Include="components\player\states\base_states\normal_jump\JumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\normal_jump\PropelHighActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\postfx\comp_render_fog.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
     <ClCompile Include="components\postfx\comp_color_grading.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
@@ -437,6 +438,7 @@
     <ClInclude Include="components\player\states\base_states\normal_jump\JumpSquatActionState.h" />
     <ClInclude Include="components\player\states\base_states\normal_jump\PropelHighActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
+    <ClInclude Include="components\postfx\comp_render_fog.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
     <ClInclude Include="components\postfx\comp_color_grading.h" />
     <ClInclude Include="components\postfx\comp_render_ao.h" />
