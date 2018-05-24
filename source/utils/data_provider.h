@@ -1,13 +1,11 @@
 #pragma once
 
-// ------------------------------------------
 class CDataProvider {
 
 protected:
 	std::string name;
 
 public:
-
 	virtual ~CDataProvider() {}
 	virtual bool isValid() const = 0;
 	virtual const std::string& getName() const {
@@ -35,8 +33,7 @@ public:
 	}
 
 	~CFileDataProvider() {
-		if (f)
-			fclose(f);
+		if (f) fclose(f);
 		f = nullptr;
 	}
 
@@ -48,7 +45,4 @@ public:
 		auto bytes_read = fread(out_buffer, 1, num_bytes, f);
 		assert(bytes_read == num_bytes);
 	}
-
-
 };
-

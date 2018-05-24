@@ -62,5 +62,4 @@ protected:
     AABB               aabb;
     VMeshSubGroups     subgroups;
     bool               is_dynamic = false;
-
 };

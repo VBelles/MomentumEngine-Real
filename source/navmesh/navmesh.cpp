@@ -1,16 +1,19 @@
 #include "mcv_platform.h"
 #include "navmesh.h"
+#include "navmesh_loader.h"
+
+//https://github.com/recastnavigation/recastnavigation
 
 class CNavMeshResourceClass : public CResourceClass {
 public:
 	CNavMeshResourceClass() {
-        class_name = "navMeshes";
+        class_name = "NavMeshes";
         extensions = { ".bin" };
     }
     IResource* create(const std::string& name) const override {
         CNavMesh* res = nullptr;
-        /*if (name.find(".bin") != std::string::npos)
-            res = load(name);*/
+        if (name.find(".bin") != std::string::npos)
+            res = loadNavMesh(name.c_str());
         return res;
     }
 };

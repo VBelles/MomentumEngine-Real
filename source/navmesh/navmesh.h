@@ -9,9 +9,6 @@
 #include "Detour/Include/DetourNavMeshQuery.h"
 #include "DetourCrowd/Include/DetourCrowd.h"
 
-static const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; //'MSET';
-static const int NAVMESHSET_VERSION = 1;
-
 class CNavMesh : public IResource {
 
 private:
@@ -28,6 +25,9 @@ private:
 	unsigned char*          triareas;
 
 public:
+    static const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; //'MSET';
+    static const int NAVMESHSET_VERSION = 1;
+
     struct NavMeshSetHeader {
         int magic;
         int version;
@@ -45,6 +45,7 @@ public:
     void debugInMenu();
 
     bool loadNavmesh(const std::string& binFilePath);
+    bool create();
     void destroy() override;
 
     bool isValid() const;

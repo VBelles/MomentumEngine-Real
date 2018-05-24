@@ -44,7 +44,8 @@ public:
 
 	// This method should be called only by the ResourceManager. All other classes
 	// should have const IResource pointers which can't call this method
-	virtual void setNameAndClass(const std::string& new_name, const CResourceClass* new_class) {
+	virtual void setNameAndClass(const std::string& new_name,
+                                 const CResourceClass* new_class) {
 		name = new_name;
 		resource_class = new_class;
 	}
@@ -55,7 +56,8 @@ public:
 		const CResourceClass* requested_class = getResourceClassOf<TDerivedResource>();
 
 		assert(resource_class == requested_class ||
-			fatal("You are trying to cast a resource of class %s to class %s\n", resource_class->class_name.c_str(), requested_class->class_name.c_str())
+			fatal("You are trying to cast a resource of class %s to class %s\n",
+                  resource_class->class_name.c_str(), requested_class->class_name.c_str())
 		);
 		return static_cast<const TDerivedResource*>(this);
 	}

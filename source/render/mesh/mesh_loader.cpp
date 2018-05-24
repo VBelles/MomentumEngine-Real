@@ -4,7 +4,6 @@
 #include "utils/data_saver.h"
 
 bool TMeshLoader::load(CDataProvider& dp) {
-
     bool eof_found = false;
     while (!eof_found) {
 
@@ -77,7 +76,6 @@ bool TMeshLoader::save(CDataSaver& ds) {
     return true;
 }
 
-
 CRenderMesh* loadMesh(const char* filename) {
     CFileDataProvider fdp(filename);
     assert(fdp.isValid());
@@ -94,8 +92,7 @@ CRenderMesh* loadMesh(const char* filename) {
         , loader.idxs.data()
         , loader.idxs.size()
         , loader.header.bytes_per_idx
-        , &loader.subgroups
-    ))
+        , &loader.subgroups))
         return nullptr;
 
     return mesh;

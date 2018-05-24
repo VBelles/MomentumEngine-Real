@@ -219,6 +219,7 @@
     <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
     <ClCompile Include="gui\controllers\hud_controller.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
+    <ClCompile Include="navmesh\navmesh_loader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -471,6 +472,7 @@
     <ClInclude Include="modules\game\physics\ragdoll_core.h" />
     <ClInclude Include="gui\controllers\hud_controller.h" />
     <ClInclude Include="navmesh\navmesh.h" />
+    <ClInclude Include="navmesh\navmesh_loader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
