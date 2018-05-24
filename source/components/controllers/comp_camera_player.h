@@ -25,8 +25,11 @@ private:
 	float maxPitch = 0.f;
 	float initialYaw = 0.f;
 	float initialPitch = 0.f;
-	float zoomInSpeedIdleRun = 2.8f;
-	float zoomOutSpeedIdleRun = 5.2f;
+	float zoomInSpeedIdleRun = 0.f;
+	float zoomOutSpeedIdleRun = 0.f;
+	float minPitchOffset = 0.f;
+	float maxPitchOffset = 0.f;
+	float pitchOffsetThreshold = 0.f;
 
 	//float pitchOffset = deg2rad(10);
 	float pitchOffset = 16.f;
@@ -74,6 +77,7 @@ private:
 	bool isCameraInsideGeometry();
 	bool raycast(VEC3 origin, VEC3 destination, PxRaycastCallback& callback);
 	void sweepBack();
+	float calculatePitchOffset(float pitch);
 
 	CEntity* getTarget() { return targetHandle; }
 	TCompTransform* getTransform() { return transformHandle; }

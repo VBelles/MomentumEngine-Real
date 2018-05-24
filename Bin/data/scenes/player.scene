@@ -270,6 +270,9 @@
 				"centering_camera_speed": "18 9",
 				"max_pitch": 60,
 				"min_pitch": -70,
+				"minPitchOffset" : 4,
+				"maxPitchOffset" : 16,
+				"pitchOffsetThreshold" : 0,
 				"yaw": 225,
 				"pitch": -20
 			}

@@ -39,6 +39,9 @@ void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	centeringCameraSpeed = loadVEC2(j["centering_camera_speed"]);
 	zoomInSpeedIdleRun = j.value("zoomInSpeedIdleRun", 2.8f);
 	zoomOutSpeedIdleRun = j.value("zoomOutSpeedIdleRun", 5.2f);
+	minPitchOffset = j.value("minPitchOffset", 4.f);
+	maxPitchOffset = j.value("maxPitchOffset", 16.f);
+	pitchOffsetThreshold = j.value("pitchOffsetThreshold", 0.f);
 	currentCenteringCameraSpeed = centeringCameraSpeed;
 }
 
@@ -84,6 +87,8 @@ void TCompCameraPlayer::update(float delta) {
 	}
 
 	transform->getYawPitchRoll(&y, &p, &r);
+	//calcular pitchOffset según pitch
+	pitchOffset = calculatePitchOffset(p);
 	//transform->setYawPitchRoll(y, p + pitchOffset);
 	transform->setYawPitchRoll(y, p + deg2rad(pitchOffset));
 }
@@ -200,6 +205,13 @@ void TCompCameraPlayer::sweepBack() {
 		currentDistanceToTarget = distance;
 	}
 	//dbg("Status: %d\n", status);
+}
+
+float TCompCameraPlayer::calculatePitchOffset(float pitch) {
+	if (pitch > pitchOffsetThreshold) return maxPitchOffset;
+	float ratio = abs(pitch - pitchOffsetThreshold) / abs(minPitch - pitchOffsetThreshold);
+	float res = lerp(maxPitchOffset, minPitchOffset, ratio);
+	return res;
 }
 
 
