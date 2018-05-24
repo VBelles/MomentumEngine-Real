@@ -9,6 +9,7 @@ class CEntity;
 class TCompTransform;
 class TCompCollider;
 class TCompSkeleton;
+class TCompHitboxes;
 struct PowerStats;
 
 class CBehaviorTreeFlyingRangedEnemy : public IBehaviorTree, public TCompBase {
@@ -20,16 +21,19 @@ private:
 	float movementSpeed = 2.5f;
 	float rotationSpeed;
 
-	float recallDistance = 28.f;
+	float recallDistanceSqrd = 28.f;
 
 	float attackFov = deg2rad(60);
-	float minCombatDistance = 2.f;
-	float maxCombatDistance = 20.f;
+	float minCombatDistanceSqrd = 2.f;
+	float maxCombatDistanceSqrd = 20.f;
 	float attackCooldown = 7.f;
 	float attackDamage = 1.f;
 	VEC3 attackSpawnOffset = VEC3(0, 2, 2);
 	VEC3 attackTargetOffset = VEC3(0, 0.76f, 0);
 	std::string attackPrefab = "data/prefabs/rangedAttack.prefab";
+
+	std::map<std::string, AttackInfo> attackInfos;
+	std::map<std::string, VEC2> attacksFrameData;
 
 	float propelDuration = 1.5f;
 	float floatingDuration = 1.5f;
@@ -72,9 +76,11 @@ private:
 	int returnToSpawn(float delta = 0.f);
 	int onIdleWar(float delta = 0.f);
 	int idleWar(float delta = 0.f);
-	int onAttack(float delta = 0.f);
-	int attack(float delta = 0.f);
+	int onRangedAttack(float delta = 0.f);
+	int rangedAttack(float delta = 0.f);
 	int idle(float delta = 0.f);
+	int onMeleeAttack(float delta = 0.f);
+	int meleeAttack(float delta = 0.f);
 
 	bool deathCondition(float delta = 0.f);
 	bool deadCondition(float delta = 0.f);
@@ -86,16 +92,19 @@ private:
 	bool stunCondition(float delta = 0.f);
 	bool returnToSpawnCondition(float delta = 0.f);
 	bool combatCondition(float delta = 0.f);
+	bool meleeAttackCondition(float delta = 0.f);
 
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();
 	TCompSkeleton* getSkeleton();
+	TCompHitboxes* getHitboxes();
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
 	void onPerfectDodged(const TMsgPerfectDodged& msg);
+	void onHitboxEnter(const TMsgHitboxEnter& msg);
 
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 

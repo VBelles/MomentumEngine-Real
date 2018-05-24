@@ -33,6 +33,7 @@ struct AttackInfo {
 	AttackInfo();
 	AttackInfo(const AttackInfo& other);
 	AttackInfo& operator=(const AttackInfo& other);
+	void load(const json& j);
 	~AttackInfo();
 };
 

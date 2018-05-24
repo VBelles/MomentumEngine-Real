@@ -33,3 +33,36 @@ AttackInfo::~AttackInfo() {
 	SAFE_DELETE(grab);
 	SAFE_DELETE(propel);
 }
+
+void AttackInfo::load(const json& j) {
+	SAFE_DELETE(stun);
+	SAFE_DELETE(verticalLauncher);
+	SAFE_DELETE(horizontalLauncher);
+	SAFE_DELETE(grab);
+	SAFE_DELETE(propel);
+
+	damage = j.value("damage", 0.0f);
+	invulnerabilityTime = j.value("invulnerabilityTime", 0.f);
+	givesPower = j.value("givesPower", false);
+	activatesMechanism = j.value("activatesMechanism", false);
+
+	if (j.count("stun")) {
+		stun = new AttackInfo::Stun{ j.value("stun", 1.0f) };
+	}
+	if (j.count("verticalLauncher")) {
+		const json& jVerticalLauncher = j["verticalLauncher"];
+		verticalLauncher = new AttackInfo::VerticalLauncher{ jVerticalLauncher.value("suspensionDuration", 1.0f),
+			loadVEC3(jVerticalLauncher["velocity"]) };
+	}
+	if (j.count("horizontalLauncher")) {
+		const json& jHorizontalLauncher = j["horizontalLauncher"];
+		verticalLauncher = new AttackInfo::VerticalLauncher{ jHorizontalLauncher.value("suspensionDuration", 1.0f),
+			loadVEC3(jHorizontalLauncher["velocity"]) };
+	}
+	if (j.count("grab")) {
+		grab = new AttackInfo::Grab{ j.value("grab", 1.0f) };
+	}
+	if (j.count("propel")) {
+		propel = new AttackInfo::Propel{ loadVEC3(j["propel"]) };
+	}
+}

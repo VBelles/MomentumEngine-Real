@@ -6,6 +6,7 @@
 #include "components/comp_render.h"
 #include "components/comp_respawner.h"
 #include "components/comp_give_power.h"
+#include "components/comp_hitboxes.h"
 #include "components/player/power_stats.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/attack_info.h"
@@ -61,6 +62,10 @@ CBehaviorTreeBallEnemy::CBehaviorTreeBallEnemy()
 	addChild("meleeEnemy", "chase", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::chaseCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::chase);
 
 	addChild("meleeEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeBallEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeBallEnemy::idle);
+
+	attackInfos["attack"].damage = attackDamage;
+	attackInfos["attack"].stun = new AttackInfo::Stun{ 1.f };
+	attackInfos["attack"].invulnerabilityTime = 1.f;
 }
 
 void CBehaviorTreeBallEnemy::load(const json& j, TEntityParseContext& ctx) {
@@ -83,6 +88,18 @@ void CBehaviorTreeBallEnemy::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("maxVelocity")) {
 		maxVelocity = loadVEC3(j["maxVelocity"]);
 	}
+	if (j.count("attacks")) {
+		for (int i = 0; i < j["attacks"].size(); ++i) {
+			const json& jAttack = j["attacks"][i];
+			std::string attackName = jAttack.value("name", "attack" + std::to_string(i));
+
+			attackInfos[attackName].load(jAttack);
+
+			if (jAttack.count("frameData")) {
+				attacksFrameData[attackName] = loadVEC2(jAttack["frameData"]);
+			}
+		}
+	}
 }
 
 void CBehaviorTreeBallEnemy::debugInMenu() {
@@ -94,6 +111,7 @@ void CBehaviorTreeBallEnemy::registerMsgs() {
 	DECL_MSG(CBehaviorTreeBallEnemy, TMsgRespawn, onRespawn);
 	DECL_MSG(CBehaviorTreeBallEnemy, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(CBehaviorTreeBallEnemy, TMsgPerfectDodged, onPerfectDodged);
+	DECL_MSG(CBehaviorTreeBallEnemy, TMsgHitboxEnter, onHitboxEnter);
 }
 
 void CBehaviorTreeBallEnemy::update(float delta) {
@@ -119,7 +137,7 @@ int CBehaviorTreeBallEnemy::onDeath(float delta) {
 	TCompRespawner* spawner = get<TCompRespawner>();
 	spawner->onDead();
 
-    EngineScripting.throwEvent(onEnemyKilled, ((CEntity*)CHandle(this).getOwner())->getName());
+	EngineScripting.throwEvent(onEnemyKilled, ((CEntity*)CHandle(this).getOwner())->getName());
 
 	return Leave;
 }
@@ -354,6 +372,7 @@ int CBehaviorTreeBallEnemy::onAttack(float delta) {
 		current = nullptr;
 	}
 	else {
+		hasAttacked = false;
 		attackTimer.reset();
 		getSkeleton()->executeAction(2, 0.2f, 0.2f);
 	}
@@ -364,16 +383,17 @@ int CBehaviorTreeBallEnemy::attack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(2))) {
+		if (!hasAttacked && attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x)) {
+			getHitboxes()->enable("attack");
+			hasAttacked = true;
+		}
+		else if (hasAttacked && attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x + attacksFrameData["attack"].y)) {
+			getHitboxes()->disable("attack");
+		}
 		return Stay;
 	}
 	else {
-		TMsgAttackHit msg = {};
-		msg.attacker = CHandle(this);
-		msg.info.stun = new AttackInfo::Stun{ 1.f };
-		msg.info.invulnerabilityTime = 1.f;
-		msg.info.damage = attackDamage;
-		getPlayerEntity()->sendMsg(msg);
-		//attackTimer.reset();
+		getHitboxes()->disable("attack");
 		return Leave;
 	}
 }
@@ -482,6 +502,15 @@ void CBehaviorTreeBallEnemy::updateGravity(float delta) {
 	}
 }
 
+void CBehaviorTreeBallEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
+	if (attackInfos.find(msg.hitbox) != attackInfos.end()) {
+		TMsgAttackHit attackHit = {};
+		attackHit.attacker = CHandle(this);
+		attackHit.info = attackInfos[msg.hitbox];
+		((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+	}
+}
+
 float CBehaviorTreeBallEnemy::calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical) {
 	float resultingDeltaMovement;
 	resultingDeltaMovement = velocityVector.y * delta + 0.5f * acceleration * delta * delta;
@@ -514,6 +543,10 @@ TCompCollider* CBehaviorTreeBallEnemy::getCollider() {
 
 TCompSkeleton* CBehaviorTreeBallEnemy::getSkeleton() {
 	return get<TCompSkeleton>();
+}
+
+TCompHitboxes* CBehaviorTreeBallEnemy::getHitboxes() {
+	return get<TCompHitboxes>();
 }
 
 CEntity* CBehaviorTreeBallEnemy::getPlayerEntity() {
