@@ -35,6 +35,7 @@ private:
 	float attackDamage = 1.f;
 
 	std::map<std::string, AttackInfo> attackInfos;
+	std::map<std::string, VEC2> attacksFrameData;
 
 	float gravity = -55.f;
 	VEC3 maxVelocity = { 30, 30, 30 };
@@ -43,6 +44,7 @@ private:
 	float floatingDuration = 1.5f;
 	float grabbedDuration = 0.8f;
 
+	bool hasAttacked = false;
 	bool isDead = false;
 	bool isStunned = false;
 	float stunDuration;

@@ -379,12 +379,13 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 			getHitboxes()->enable("attack");
 			isFirstAttackLaunched = true;
 		}
-		else if (isFirstAttackLaunched && attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x + attacksFrameData["attack"].y)) {
+		else if (attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x + attacksFrameData["attack"].y)) {
 			getHitboxes()->disable("attack");
 		}
 		return Stay;
 	}
 	else {
+		getHitboxes()->disable("attack");
 		return Leave;
 	}
 }

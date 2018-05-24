@@ -88,6 +88,18 @@ void CBehaviorTreeBallEnemy::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("maxVelocity")) {
 		maxVelocity = loadVEC3(j["maxVelocity"]);
 	}
+	if (j.count("attacks")) {
+		for (int i = 0; i < j["attacks"].size(); ++i) {
+			const json& jAttack = j["attacks"][i];
+			std::string attackName = jAttack.value("name", "attack" + std::to_string(i));
+
+			attackInfos[attackName].load(jAttack);
+
+			if (jAttack.count("frameData")) {
+				attacksFrameData[attackName] = loadVEC2(jAttack["frameData"]);
+			}
+		}
+	}
 }
 
 void CBehaviorTreeBallEnemy::debugInMenu() {
@@ -125,7 +137,7 @@ int CBehaviorTreeBallEnemy::onDeath(float delta) {
 	TCompRespawner* spawner = get<TCompRespawner>();
 	spawner->onDead();
 
-    EngineScripting.throwEvent(onEnemyKilled, ((CEntity*)CHandle(this).getOwner())->getName());
+	EngineScripting.throwEvent(onEnemyKilled, ((CEntity*)CHandle(this).getOwner())->getName());
 
 	return Leave;
 }
@@ -360,6 +372,7 @@ int CBehaviorTreeBallEnemy::onAttack(float delta) {
 		current = nullptr;
 	}
 	else {
+		hasAttacked = false;
 		attackTimer.reset();
 		getSkeleton()->executeAction(2, 0.2f, 0.2f);
 	}
@@ -370,16 +383,17 @@ int CBehaviorTreeBallEnemy::attack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(2))) {
+		if (!hasAttacked && attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x)) {
+			getHitboxes()->enable("attack");
+			hasAttacked = true;
+		}
+		else if (hasAttacked && attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x + attacksFrameData["attack"].y)) {
+			getHitboxes()->disable("attack");
+		}
 		return Stay;
 	}
 	else {
-		TMsgAttackHit msg = {};
-		msg.attacker = CHandle(this);
-		msg.info.stun = new AttackInfo::Stun{ 1.f };
-		msg.info.invulnerabilityTime = 1.f;
-		msg.info.damage = attackDamage;
-		getPlayerEntity()->sendMsg(msg);
-		//attackTimer.reset();
+		getHitboxes()->disable("attack");
 		return Leave;
 	}
 }

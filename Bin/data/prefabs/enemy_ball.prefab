@@ -21,7 +21,17 @@
         "maxPowerToGive": 50000.0,
         "baseMultiplier": 1.2
       },
-      "behaviorTree_ball_enemy": {},
+      "behaviorTree_ball_enemy": {
+        "attacks": [
+          {
+            "name": "attack",
+            "frameData": "5 20",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0
+          }
+        ]
+      },
       "collider": {
         "shape": "capsule",
         "type": "cct",
