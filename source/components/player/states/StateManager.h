@@ -36,6 +36,12 @@ private:
 
 	void registerStates();
 
+#define toStrt(stateClass) \
+	{\
+	IActionState* s = new stateClass(this); \
+	states[s->state] = s;\
+	}
+
 #define registerState(stateClass) \
 	{\
 	IActionState* s = new stateClass(this); \
@@ -78,6 +84,7 @@ public:
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;
+
 };
 
 

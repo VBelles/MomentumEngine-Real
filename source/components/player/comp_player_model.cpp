@@ -34,6 +34,9 @@ void TCompPlayerModel::registerMsgs() {
 }
 
 void TCompPlayerModel::debugInMenu() {
+	ImGui::Text("State: %s", States::toString(getStateManager()->getState()->state));
+	ImGui::Text("Concurrent state: %s", States::toString(getStateManager()->getConcurrentState()->concurrentState));
+
 	debugInMenu(powerStats[0], "Ssj1");
 	debugInMenu(powerStats[1], "Ssj2");
 	debugInMenu(powerStats[2], "Ssj3");
