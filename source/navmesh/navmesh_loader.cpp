@@ -19,66 +19,9 @@ CNavMesh* loadNavMesh(const char* filename) {
     /*TNavMeshLoader loader;
     if (!loader.load(fdp)) return nullptr;*/
 
-    FILE* fp = fopen(filename, "rb");
-    if (!fp) return false;
-
-    // Read header.
-    NavMeshSetHeader header;
-    size_t readLen = fread(&header, sizeof(NavMeshSetHeader), 1, fp);
-    if (readLen != 1) {
-        fclose(fp);
-        return false;
-    }
-    if (header.magic != NAVMESHSET_MAGIC) {
-        fclose(fp);
-        return false;
-    }
-    if (header.version != NAVMESHSET_VERSION) {
-        fclose(fp);
-        return false;
-    }
-
-    navMesh = dtAllocNavMesh();
-    if (!navMesh) {
-        fclose(fp);
-        return false;
-    }
-    dtStatus status = navMesh->init(&header.params);
-    if (dtStatusFailed(status)) {
-        fclose(fp);
-        return false;
-    }
-
-    // Read tiles.
-    for (int i = 0; i < header.numTiles; ++i) {
-        NavMeshTileHeader tileHeader;
-        readLen = fread(&tileHeader, sizeof(tileHeader), 1, fp);
-        if (readLen != 1) {
-            fclose(fp);
-            return false;
-        }
-
-        if (!tileHeader.tileRef || !tileHeader.dataSize) break;
-
-        unsigned char* data = (unsigned char*)dtAlloc(tileHeader.dataSize, DT_ALLOC_PERM);
-        if (!data) break;
-        memset(data, 0, tileHeader.dataSize);
-        readLen = fread(data, tileHeader.dataSize, 1, fp);
-        if (readLen != 1) {
-            dtFree(data);
-            fclose(fp);
-            return false;
-        }
-        navMesh->addTile(data, tileHeader.dataSize, DT_TILE_FREE_DATA, tileHeader.tileRef, 0);
-    }
-    fclose(fp);
-    
-
+	// TODO: Hacerlo con el loader y no pasando filename aquí.
     CNavMesh* navmesh = new CNavMesh();
-    if (!navmesh->create(
-        // TODO: add parameters here
-    
-    )) return nullptr;
+    if (!navmesh->create(filename)) return nullptr;
 
     return navmesh;
 }

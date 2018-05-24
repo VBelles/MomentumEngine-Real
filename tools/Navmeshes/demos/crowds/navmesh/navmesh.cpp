@@ -366,10 +366,10 @@ void CNavmesh::render( bool use_z_test ) {
   //Renderer.disableZWrite( );
 
   if( m_navMesh && m_navQuery &&
-      (m_draw_mode == NAVMESH_DRAW_MESH ||
-      m_draw_mode == NAVMESH_DRAW_TRANS ||
-      m_draw_mode == NAVMESH_DRAW_BVTREE ||
-      m_draw_mode == NAVMESH_DRAW_NODES ||
+      (m_draw_mode == NAVMESH_DRAW_MESH   ||
+	   m_draw_mode == NAVMESH_DRAW_TRANS  ||
+	   m_draw_mode == NAVMESH_DRAW_BVTREE ||
+	   m_draw_mode == NAVMESH_DRAW_NODES  ||
       m_draw_mode == NAVMESH_DRAW_INVIS) ) {
     if( m_draw_mode != NAVMESH_DRAW_INVIS )
       duDebugDrawNavMeshWithClosedList( &m_draw, *m_navMesh, *m_navQuery, m_navMeshDrawFlags );

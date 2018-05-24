@@ -30,6 +30,8 @@ CNavMesh::CNavMesh() {
     navQuery = dtAllocNavMeshQuery();
     crowd = dtAllocCrowd();
 
+	drawMode = EDrawMode::NAVMESH_DRAW_COUNTOURS;
+
     cfg.tileSize = 32;
     cfg.cs = 0.3f;
     cfg.ch = 0.2f;
@@ -47,6 +49,7 @@ CNavMesh::CNavMesh() {
 }
 
 void CNavMesh::debugInMenu() {
+	// Todos estos datos habría que guardarlos desde el RecastDemo, no vienen en el .bin.
     ImGui::DragInt("tileSize", &cfg.tileSize, 1, 0, 1024);
     ImGui::DragFloat("xz cellsize", &cfg.cs, 0.01f, 0.1f, 1.f);
     ImGui::DragFloat("cellheight", &cfg.ch, 0.01f, 0.1f, 1.f);
@@ -63,7 +66,7 @@ void CNavMesh::debugInMenu() {
     ImGui::DragFloat("detailSampleMaxError", &cfg.detailSampleMaxError, 0.01f, 0.f, 16);
 }
 
-bool CNavMesh::loadNavmesh(const std::string& binFilePath) {
+bool CNavMesh::create(const std::string& binFilePath) {
     FILE* fp = fopen(binFilePath.c_str(), "rb");
     if (!fp) return false;
 
@@ -140,4 +143,66 @@ void CNavMesh::destroy() {
     dmesh = nullptr;
     dtFreeNavMesh(navMesh);
     navMesh = nullptr;
+}
+
+void CNavMesh::render(bool use_z_test) {
+	/*if( !use_z_test )
+	Renderer.disableZTest( );*/
+	
+	/*TPoint aabb_min, aabb_max;
+	input_data.aabb.getMinMax( aabb_min, aabb_max );*/
+
+	// render the bounding box
+	/*duDebugDrawBoxWire( &m_draw, aabb_min.x, aabb_min.y, aabb_min.z, aabb_max.x, aabb_max.y, aabb_max.z, duRGBA( 255, 255, 255, 128 ), 1.0f );
+	draw.begin( DU_DRAW_POINTS, 5.0f );
+	draw.vertex( aabb_min.x, aabb_min.y, aabb_min.z, duRGBA( 255, 255, 255, 128 ) );
+	draw.end( );*/
+
+	unsigned char navMeshDrawFlags(DU_DRAWNAVMESH_OFFMESHCONS |
+								   DU_DRAWNAVMESH_CLOSEDLIST  |
+								   DU_DRAWNAVMESH_COLOR_TILES);
+	const int SAMPLE_POLYFLAGS_DISABLED = 0xffff;
+
+	//Renderer.disableZWrite( );
+
+	if (navMesh && navQuery &&
+		(drawMode == NAVMESH_DRAW_MESH   ||
+		 drawMode == NAVMESH_DRAW_TRANS  ||
+		 drawMode == NAVMESH_DRAW_BVTREE ||
+		 drawMode == NAVMESH_DRAW_NODES  ||
+		 drawMode == NAVMESH_DRAW_INVIS)) {
+		if (drawMode != NAVMESH_DRAW_INVIS)
+			duDebugDrawNavMeshWithClosedList(&draw, *navMesh, *navQuery, navMeshDrawFlags);
+		if (drawMode == NAVMESH_DRAW_BVTREE)
+			duDebugDrawNavMeshBVTree(&draw, *navMesh);
+		if (drawMode == NAVMESH_DRAW_NODES)
+			duDebugDrawNavMeshNodes(&draw, *navQuery);
+		duDebugDrawNavMeshPolysWithFlags(&draw, *navMesh, SAMPLE_POLYFLAGS_DISABLED, duRGBA(0, 0, 255, 128));
+	}
+
+	//Renderer.enableZWrite( );
+
+	if (cset && drawMode == NAVMESH_DRAW_COUNTOURS) {
+		//Renderer.disableZWrite( );
+		duDebugDrawContours(&draw, *cset);
+		//Renderer.enableZWrite( );
+	}
+
+	if (pmesh && drawMode == NAVMESH_DRAW_POLYMESH) {
+		//Renderer.disableZWrite( );
+		duDebugDrawPolyMesh(&draw, *pmesh);
+		//Renderer.enableZWrite( );
+	}
+	if (dmesh && drawMode == NAVMESH_DRAW_POLYMESH_DETAILS) {
+		//Renderer.disableZWrite( );
+		duDebugDrawPolyMeshDetail(&draw, *dmesh);
+		//Renderer.enableZWrite( );
+	}
+
+	/*if( type == NAVMESH_STATIC_MESH )
+	static_mesh.render( m_draw, draw_mode );*/
+
+	/*Renderer.enableZWrite( );
+	if( !use_z_test )
+	Renderer.enableZTest( );*/
 }

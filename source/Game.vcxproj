@@ -275,6 +275,8 @@
     <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_loader.cpp" />
+    <ClCompile Include="navmesh\navmesh_query.cpp" />
+    <ClCompile Include="navmesh\navmesh_render.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -516,6 +518,8 @@
     <ClInclude Include="modules\game\physics\ragdoll_core.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_loader.h" />
+    <ClInclude Include="navmesh\navmesh_query.h" />
+    <ClInclude Include="navmesh\navmesh_render.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
