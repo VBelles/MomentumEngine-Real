@@ -59,6 +59,7 @@ public:
 
 	void enable(std::string name);
 	void disable(std::string name);
+	void disableAll();
 
 	TCompSkeleton* getSkeleton();
 	TCompCollider* getCollider();
