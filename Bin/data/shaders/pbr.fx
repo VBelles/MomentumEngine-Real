@@ -328,8 +328,11 @@ float4 PS_ambient(
   float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + 
                               albedo.xyz * irradiance * g_AmbientLightIntensity
                               , 1.0f) + self_illum;
+  
+  float4 c = final_color * global_ambient_adjustment * ao;
 
-  return final_color * global_ambient_adjustment * ao;
+	float3 fog = computeFog(c.xyz, float3(0.8, 0.8, 0.8), 0.005, wPos);
+  return float4(fog, c.w);
 }
 
 //--------------------------------------------------------------------------------------
