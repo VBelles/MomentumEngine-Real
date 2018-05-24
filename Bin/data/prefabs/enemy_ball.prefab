@@ -25,7 +25,7 @@
         "attacks": [
           {
             "name": "attack",
-            "frameData": "5 20",
+            "frameData": "5 40",
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
             "stun": 1.0
