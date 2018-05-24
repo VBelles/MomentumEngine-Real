@@ -20,6 +20,7 @@
 #include "components/postfx/comp_color_grading.h"
 #include "components/postfx/comp_render_outlines.h"
 #include "components/postfx/comp_render_bloom.h"
+#include "components/postfx/comp_render_fog.h"
 
 CModuleRender::CModuleRender(const std::string& name)
     : IModule(name) {
@@ -90,6 +91,8 @@ bool CModuleRender::start() {
     if (!cb_globals.create(CB_GLOBALS)) return false;
     if (!cb_blur.create(CB_BLUR))       return false;
     if (!cb_gui.create(CB_GUI))         return false;
+	if (!cb_fog.create(CB_FOG))       return false;
+
 
     cb_globals.global_exposure_adjustment = 1.f;
     cb_globals.global_ambient_adjustment = 1.f;
@@ -103,7 +106,8 @@ bool CModuleRender::start() {
     cb_camera.activate();
     cb_globals.activate();
     cb_blur.activate();
-    cb_gui.activate();
+	cb_gui.activate();
+	cb_fog.activate();
 
     //activateMainCamera();
 
@@ -120,7 +124,9 @@ bool CModuleRender::stop() {
     cb_camera.destroy();
     cb_object.destroy();
     cb_globals.destroy();
-    cb_blur.destroy();
+	cb_blur.destroy();
+	cb_gui.destroy();
+	cb_fog.destroy();
 
     ImGui_ImplDX11_Shutdown();
 
@@ -228,6 +234,11 @@ void CModuleRender::generateFrame() {
 				c_render_bloom->generateHighlights(curr_rt);
 				c_render_bloom->addBloom();
 			}
+
+			// Check if we have a render_fog component
+			TCompRenderFog* c_render_fog = e_cam->get< TCompRenderFog >();
+			if (c_render_fog)
+				curr_rt = c_render_fog->apply(curr_rt);
 
             // Check if we have a render_fx component
             TCompRenderBlur* c_render_blur = e_cam->get< TCompRenderBlur >();
