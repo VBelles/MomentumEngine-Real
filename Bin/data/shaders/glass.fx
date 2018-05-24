@@ -32,6 +32,12 @@ void VS(
 }
 
 //--------------------------------------------------------------------------------------
+float scale(float A, float A1, float A2, float Min, float Max) {
+	float percentage = (A - A1) / (A1 - A2);
+	return (percentage) * (Min - Max) + Min;
+}
+
+
 float4 PS(
   float4 iPosition : SV_POSITION    // Screen coords
 , float3 iNormal   : NORMAL0
@@ -52,8 +58,7 @@ float4 PS(
 
 	float4 background_color;
 	float zlinear = txGBufferLinearDepth.Sample(samLinear, pos_camera_unit_space + noise.xy).x;
-
-	if (zlinear > (1 - pos_homo_space.z) * 0.5f) {
+	if (zlinear > length(iWorldPos - camera_pos) / (camera_zfar - camera_znear)) {
 		background_color = txGBufferAlbedos.Sample(samLinear, pos_camera_unit_space + noise.xy);
 	}
 	else {
