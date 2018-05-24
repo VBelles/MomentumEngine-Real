@@ -23,7 +23,7 @@
 			"render_fog" : {
 				"enabled" : true,
 				"fog_color": "0.8 0.8 0.8 1",
-				"fog_density": 0.005,
+				"fog_density": 0.0025,
 				"fog_max_ratio": 0.5
 			}
 		}
