@@ -42,6 +42,7 @@ private:
 	VEC3 maxVelocity = { 30, 30, 30 };
 
 	float propelDuration = 1.5f;
+	float defaultPropelDuration = propelDuration;
 	float floatingDuration = 1.5f;
 	float grabbedDuration = 0.8f;
 

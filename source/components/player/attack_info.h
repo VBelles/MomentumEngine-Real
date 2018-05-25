@@ -18,6 +18,7 @@ struct AttackInfo {
 	};
 	struct Propel {
 		VEC3 velocity;
+		float duration;
 	};
 	float damage = 0.f;
 	float invulnerabilityTime = 0.f;

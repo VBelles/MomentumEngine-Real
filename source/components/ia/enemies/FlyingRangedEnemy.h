@@ -36,6 +36,7 @@ private:
 	std::map<std::string, VEC2> attacksFrameData;
 
 	float propelDuration = 1.5f;
+	float defaultPropelDuration = propelDuration;
 	float floatingDuration = 1.5f;
 	float grabbedDuration = 0.8f;
 

@@ -168,7 +168,12 @@ int CBehaviorTreeBallEnemy::grabbed(float delta) {
 int CBehaviorTreeBallEnemy::onPropel(float delta) {
 	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
-
+	if (receivedAttack.propel->duration > 0.f) {
+		propelDuration = receivedAttack.propel->duration;
+	}
+	else {
+		propelDuration = defaultPropelDuration;
+	}
 	getSkeleton()->setTimeFactor(0);
 
 	timer.reset();
