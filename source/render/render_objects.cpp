@@ -9,13 +9,6 @@ CRenderCte<CCteGlobals> cb_globals("Globals");
 CRenderCte<CCteBlur>    cb_blur("Blur");
 CRenderCte<CCteGUI>     cb_gui("Gui");
 
-struct TVtxPosClr {
-    VEC3 pos;
-    VEC4 color;
-    TVtxPosClr() {}
-    TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
-};
-
 CRenderMesh* createLineZ() {
     CRenderMesh* mesh = new CRenderMesh;
     // Axis aligned X,Y,Z of sizes 1,2,3
@@ -340,6 +333,25 @@ void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture)
     if (texture) texture->activate(TS_ALBEDO);
     auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
     mesh->activateAndRender();
+}
+
+void renderDots(TVtxPosClr vertices[]) {
+	CRenderMesh* mesh = new CRenderMesh;
+	//float vertices[] = {pos.x, pos.y, pos.z, color.x, color.y, color.z, color.w};
+	if (mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::POINT_LIST))
+		mesh->activateAndRender();
+}
+
+void renderTriangles(TVtxPosClr vertices[]) {
+	CRenderMesh* mesh = new CRenderMesh;
+	if (mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::TRIANGLE_LIST)) // No sé si esto funciona tal cual o hay que hacer algo con el sizeof.
+		mesh->activateAndRender();
+}
+
+void renderLines(TVtxPosClr vertices[]) {
+	CRenderMesh* mesh = new CRenderMesh;
+	if (mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::LINE_LIST)) // No sé si esto funciona tal cual o hay que hacer algo con el sizeof.
+		mesh->activateAndRender();
 }
 
 void renderLine(VEC3 src, VEC3 dst, VEC4 color) {

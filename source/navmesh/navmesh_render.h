@@ -1,14 +1,8 @@
 #pragma once
 
-#include "DebugUtils/Include/DebugDraw.h"
-#include "DebugUtils/Include/RecastDebugDraw.h"
+#include "DebugDraw.h"
 
-struct TVtxPosClr {
-	VEC3 pos;
-	VEC4 color;
-	TVtxPosClr() {}
-	TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
-};
+#include "render/render_objects.h"
 
 class NavMeshDebugDrawDX : public duDebugDraw {
 private:

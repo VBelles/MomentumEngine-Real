@@ -1,12 +1,5 @@
 #include "mcv_platform.h"
 #include "navmesh_render.h"
-#include "DebugUtils/Include/DetourDebugDraw.h"
-
-#include "render/render_objects.h"
-
-#include <stdio.h>
-#include <stdarg.h>
-#include <assert.h>
 
 void NavMeshDebugDrawDX::depthMask(bool state) {
 	/*if( state )
@@ -61,19 +54,24 @@ void NavMeshDebugDrawDX::vertex(const float x, const float y, const float z, uns
 
 void NavMeshDebugDrawDX::end() {
 	if (primitive == DU_DRAW_POINTS) {
-
+		renderDots(colored_vertices);
+		
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_POINTLIST, num_colored_vertices, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_LINES) {
-        for (int i = 0; i < num_colored_vertices / 2; ++i) {
+		renderLines(colored_vertices);
+		
+		/*int pairsOfVertices = num_colored_vertices / 2;
+        for (int i = 0; i < pairsOfVertices; ++i) {
             renderLine(colored_vertices[i].pos,
-                       colored_vertices[i + num_colored_vertices].pos,
+                       colored_vertices[i + pairsOfVertices].pos,
                        colored_vertices[i].color);
-        }
+        }*/
 
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_LINELIST, num_colored_vertices / 2, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_TRIS) {
+		renderTriangles(colored_vertices);
 
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, num_colored_vertices / 3, colored_vertices, sizeof(TVtxPosClr));
 	}

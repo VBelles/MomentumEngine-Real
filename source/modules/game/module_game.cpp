@@ -23,12 +23,6 @@
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
 
-struct TVtxPosClr {
-	VEC3 pos;
-	VEC4 color;
-	TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
-};
-
 // ---------------------------------------------------
 CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
 	CRenderMesh* mesh = new CRenderMesh;

@@ -1,11 +1,5 @@
 #pragma once
 
-#include "Recast/Include/Recast.h"
-#include "Detour/Include/DetourCommon.h"
-#include "Detour/Include/DetourNavMesh.h"
-#include "Detour/Include/DetourNavMeshQuery.h"
-#include "DetourCrowd/Include/DetourCrowd.h"
-
 #include "navmesh.h"
 
 class CNavmeshQuery {

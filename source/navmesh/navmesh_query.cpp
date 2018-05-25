@@ -1,5 +1,13 @@
 #include "mcv_platform.h"
 #include "navmesh_query.h"
+#include "DetourCommon.h"
+
+inline bool inRange(const float* v1, const float* v2, const float r, const float h) {
+	const float dx = v2[0] - v1[0];
+	const float dy = v2[1] - v1[1];
+	const float dz = v2[2] - v1[2];
+	return (dx*dx + dz * dz) < r * r && fabsf(dy) < h;
+}
 
 static int fixupCorridor(dtPolyRef* path, const int npath, const int maxPath,
 						 const dtPolyRef* visited, const int nvisited) {
@@ -134,13 +142,6 @@ static bool getSteerTarget(dtNavMeshQuery* navQuery, const float* startPos, cons
 	steerPosRef = steerPathPolys[ns];
 
 	return true;
-}
-
-inline bool inRange(const float* v1, const float* v2, const float r, const float h) {
-	const float dx = v2[0] - v1[0];
-	const float dy = v2[1] - v1[1];
-	const float dz = v2[2] - v1[2];
-	return (dx*dx + dz * dz) < r * r && fabsf(dy) < h;
 }
 
 //-----------------------------------------------------------------------------

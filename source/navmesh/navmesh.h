@@ -1,13 +1,13 @@
 #pragma once
 
-#include "resources/resource.h"
+#include "Recast.h"
+#include "RecastDebugDraw.h"
+#include "DetourDebugDraw.h"
+#include "DetourNavMesh.h"
+#include "DetourNavMeshQuery.h"
+#include "DetourCrowd.h"
 
-#include "Recast/Include/Recast.h"
-//#include "DebugUtils/Include/RecastDebugDraw.h"
-#include "DebugUtils/Include/DetourDebugDraw.h"
-#include "Detour/Include/DetourNavMesh.h"
-#include "Detour/Include/DetourNavMeshQuery.h"
-#include "DetourCrowd/Include/DetourCrowd.h"
+#include "resources/resource.h"
 #include "navmesh_render.h"
 
 class CNavMesh : public IResource {

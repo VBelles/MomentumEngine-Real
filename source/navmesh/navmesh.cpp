@@ -36,7 +36,7 @@ CNavMesh::CNavMesh() {
     cfg.cs = 0.3f;
     cfg.ch = 0.2f;
     cfg.walkableSlopeAngle = 45.0f;
-    cfg.walkableHeight = 2.0;
+    cfg.walkableHeight = 2;
     cfg.walkableClimb = 0;
     cfg.walkableRadius = 1;
     cfg.maxEdgeLen = 12;
@@ -50,7 +50,7 @@ CNavMesh::CNavMesh() {
 
 void CNavMesh::debugInMenu() {
 	// Todos estos datos habría que guardarlos desde el RecastDemo, no vienen en el .bin.
-    ImGui::DragInt("tileSize", &cfg.tileSize, 1, 0, 1024);
+    /*ImGui::DragInt("tileSize", &cfg.tileSize, 1, 0, 1024);
     ImGui::DragFloat("xz cellsize", &cfg.cs, 0.01f, 0.1f, 1.f);
     ImGui::DragFloat("cellheight", &cfg.ch, 0.01f, 0.1f, 1.f);
     ImGui::DragFloat("walkableSlopeAngle", &cfg.walkableSlopeAngle, 1.f, 0.f, 90.f);
@@ -63,7 +63,7 @@ void CNavMesh::debugInMenu() {
     ImGui::DragInt("mergeRegionArea", &cfg.mergeRegionArea, 1, 0, 150);
     ImGui::DragInt("maxVertsPerPoly", &cfg.maxVertsPerPoly, 1, 3, 12);
     ImGui::DragFloat("detailSampleDist", &cfg.detailSampleDist, 0.01f, 0.f, 16);
-    ImGui::DragFloat("detailSampleMaxError", &cfg.detailSampleMaxError, 0.01f, 0.f, 16);
+    ImGui::DragFloat("detailSampleMaxError", &cfg.detailSampleMaxError, 0.01f, 0.f, 16);*/
 }
 
 bool CNavMesh::create(const std::string& binFilePath) {
