@@ -9,7 +9,4 @@ function onGameStart()
 	blendInCamera("player_camera", 1, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
 	wait(1)
 	givePlayerControl()
-	startSoundEvent(SOUND_TEST_EVENT)
-	wait(1)
-	stopSoundEvent(SOUND_TEST_EVENT, SOUND_STOP_ALLOWFADEOUT)
 end
