@@ -10,7 +10,7 @@ void ScriptingSound::bind(SLB::Manager* manager) {
 }
 
 void ScriptingSound::bindConstants(SLB::Manager* manager) {
-	manager->set("SOUND_TEST_EVENT", SLB::Value::copy((std::string)TEST_EVENT));
+	manager->set("SOUND_EVENT_TEST", SLB::Value::copy((std::string)TEST_EVENT));
 
 	manager->set("SOUND_STOP_ALLOWFADEOUT", SLB::Value::copy(static_cast<int>(FMOD_STUDIO_STOP_MODE::FMOD_STUDIO_STOP_ALLOWFADEOUT)));
 	manager->set("SOUND_STOP_IMMEDIATE", SLB::Value::copy(static_cast<int>(FMOD_STUDIO_STOP_MODE::FMOD_STUDIO_STOP_IMMEDIATE)));

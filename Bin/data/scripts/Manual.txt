@@ -28,7 +28,7 @@ Funciones:
 	bool takePlayerControl()
 	bool givePlayerControl()
 	void lockPlayerCameraInput()
-    void unlockPlayerCameraInput()
+    	void unlockPlayerCameraInput()
 	void disablePlayerOutline()
 	void enablePlayerOutline()
 
@@ -42,17 +42,23 @@ Funciones:
 	void stopEntities()
 	void resumeEntities()
 
-	bool open(string doorName, float time)
-	bool close(string doorName, float time)
+	bool openDoor(string doorName, float time)
+	bool closeDoor(string doorName, float time)
+
+	void startSoundEvent(SOUND_EVENT)
+	void stopSoundEvent(SOUND_EVENT, SOUND_STOP)
+	void emitSoundEvent(SOUND_EVENT)
 
 Constantes:
 	PLAYER_NAME
 	PLAYER_CAMERA
 	GAME_CAMERA
+
 	PREFAB_GOLEM
 	PREFAB_BALL
 	PREFAB_MEDUSA
 	PREFAB_CHRYSALIS
+
 	INTERPOLATOR_LINEAR
 	INTERPOLATOR_QUAD_IN
 	INTERPOLATOR_QUAD_OUT
@@ -84,7 +90,12 @@ Constantes:
 	INTERPOLATOR_SINE_IN
 	INTERPOLATOR_SINE_OUT
 	INTERPOLATOR_SINE_IN_OUT
+
 	CAMERA_PRIORITY_DEFAULT
 	CAMERA_PRIORITY_GAMEPLAY
 	CAMERA_PRIORITY_TEMPORARY
 	CAMERA_PRIORITY_DEBUG
+
+	SOUND_EVENT_TEST
+	SOUND_STOP_ALLOWFADEOUT
+	SOUND_STOP_IMMEDIATE
