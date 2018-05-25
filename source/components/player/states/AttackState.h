@@ -22,6 +22,11 @@ protected:
 	float cancelableTime;
 	float interruptibleTime;
 
+	CTimer invulnerableTimer;
+	float invulnerabilityStartTime;
+	float invulnerabilityEndTime;
+	float superarmorStartTime;
+	float superarmorEndTime;
 	AttackPhases phase = AttackPhases::Startup;
 
 	std::string hitbox;
@@ -37,4 +42,6 @@ public:
 	void onStateExit(IActionState* nextState);
 	bool isCancelable();
 	bool isInterruptible();
+	bool hasInvulnerability();
+	bool hasSuperArmor();
 };
