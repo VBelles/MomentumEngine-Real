@@ -9,6 +9,7 @@
 #include "modules/system/module_cameras.h"
 #include "modules/system/scripting/module_scripting.h"
 #include "modules/system/module_gui.h"
+#include "modules/system/module_uniques.h"
 #include "modules/system/module_sound.h"
 
 class CEngine {
@@ -30,7 +31,8 @@ public:
 	CModuleScripting& getScripting() { return _module_scripting; }
 	CModuleGUI& getGUI() { return _module_gui; }
 	CModuleSound& getSound() { return _module_sound; }
-  CModuleMultithread& getMultithread() { return _module_multithread; }
+	CModuleMultithread& getMultithread() { return _module_multithread; }
+	CModuleUniques& getUniques() { return _module_uniques; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
@@ -46,6 +48,8 @@ private:
 	CModuleGUI       _module_gui;
 	CModuleSound     _module_sound;
 	CModuleMultithread  _module_multithread;
+	CModuleUniques _module_uniques;
+
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
@@ -59,3 +63,4 @@ private:
 #define EngineScripting CEngine::get().getScripting()
 #define EngineGUI CEngine::get().getGUI()
 #define EngineSound CEngine::get().getSound()
+#define EngineUniques CEngine::get().getUniques()
