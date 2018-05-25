@@ -12,10 +12,9 @@ class TCompTransform;
 class TCompPowerGauge;
 class TCompSkeleton;
 class StateManager;
+class TCompCollectableManager;
 
 struct TMsgRespawnChanged;
-struct TMsgCollect;
-
 
 struct HitState {
 	CHandle entity;
@@ -38,6 +37,7 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
+	CHandle collectableManagerHandle;
 
 	VEC3 respawnPosition;
 	VEC3 deltaMovement;
@@ -75,7 +75,6 @@ private:
 
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	void onCollect(const TMsgCollect& msg);
 	void onShapeHit(const TMsgShapeHit & msg);
 	void onControllerHit(const TMsgControllerHit & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);
@@ -141,6 +140,7 @@ public:
 	TCompCollider* getCollider();
 	PxCapsuleController* getController();
 	TCompPowerGauge* getPowerGauge();
+	TCompCollectableManager* getCollectableManager();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }
 	VEC3* getVelocityVector() { return &velocityVector; }

@@ -227,6 +227,7 @@
     <ClCompile Include="components\player\states\base_states\combat\FastFinisher2ActionState.cpp" />
     <ClCompile Include="components\postfx\comp_render_fog.cpp" />
     <ClCompile Include="modules\system\module_uniques.cpp" />
+    <ClCompile Include="components\player\comp_collectable_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -487,6 +488,7 @@
     <ClInclude Include="components\player\states\base_states\combat\FastFinisher2ActionState.h" />
     <ClInclude Include="components\postfx\comp_render_fog.h" />
     <ClInclude Include="modules\system\module_uniques.h" />
+    <ClInclude Include="components\player\comp_collectable_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

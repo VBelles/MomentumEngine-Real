@@ -161,6 +161,7 @@
 				],
 				"freezeDropTime": 1.5
 			},
+			"collectable_manager":{},
 			"hitboxes": {
 				"hitboxes": [
 					{

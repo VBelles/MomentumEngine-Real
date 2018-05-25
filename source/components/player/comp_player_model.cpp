@@ -9,6 +9,7 @@
 #include "components/comp_respawn_point.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/comp_power_gauge.h"
+#include "components/player/comp_collectable_manager.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/StateManager.h"
@@ -23,7 +24,6 @@ void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompPlayerModel, TMsgAttackHit, onAttackHit);
 	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, onHitboxEnter);
-	DECL_MSG(TCompPlayerModel, TMsgCollect, onCollect);
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, onGainPower);
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
@@ -125,7 +125,8 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
-	
+	collectableManagerHandle = get<TCompCollectableManager>();
+
 	respawnPosition = getTransform()->getPosition();
 
 	renderUI->registerOnRenderUI([&]() {
@@ -159,13 +160,13 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 
 		//Chrysalis counter
-		std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
+		std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(getCollectableManager()->getNumberOfChrysalis()) + "/" + std::to_string(chrysalisTarget);
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
-		ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
+		ImGui::ProgressBar((float)getCollectableManager()->getNumberOfChrysalis() / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		//Coin counter
-		std::string coinText = "Coins: " + std::to_string(coins);
+		std::string coinText = "Coins: " + std::to_string(getCollectableManager()->getNumberOfCoins());
 		ImGui::ProgressBar(0, ImVec2(-1, 0), coinText.c_str());
 
 		ImGui::End();
@@ -198,30 +199,6 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	stateManager = new StateManager(CHandle(this).getOwner());
 
-}
-
-void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
-	TCompCollectable* collectable = msg.collectableHandle;
-	switch (msg.type) {
-	case TCompCollectable::Type::CHRYSALIS:
-		collectable->collect();
-		++chrysalis;
-		if (chrysalis == chrysalisTarget) {
-			// Open boss door.
-			CEntity* door = (CEntity*)getEntityByName("door");
-			if (door) door->sendMsg(TMsgDestroy{});
-			dialogTimer.reset();
-			showVictoryDialog = true;
-		}
-		break;
-	case TCompCollectable::Type::COIN:
-		collectable->collect();
-		++coins;
-		break;
-	default:
-		dbg("Collected unknown object %d\n", msg.type);
-		break;
-	}
 }
 
 void TCompPlayerModel::update(float delta) {
@@ -473,6 +450,10 @@ PxCapsuleController* TCompPlayerModel::getController() {
 
 TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
 	return powerGaugeHandle;
+}
+
+TCompCollectableManager* TCompPlayerModel::getCollectableManager() {
+	return collectableManagerHandle;
 }
 
 TCompPlayerModel::~TCompPlayerModel() {
