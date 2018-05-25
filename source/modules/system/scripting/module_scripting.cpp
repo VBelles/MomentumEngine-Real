@@ -9,6 +9,7 @@
 #include "modules/system/scripting/scripting_door.h"
 #include "modules/system/scripting/scripting_manager.h"
 #include "modules/system/scripting/scripting_cameras.h"
+#include "modules/system/scripting/scripting_sound.h"
 
 CModuleScripting* CModuleScripting::instance = nullptr;
 
@@ -47,6 +48,7 @@ void CModuleScripting::initSLB() {
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
 	ScriptingDoor::bind(manager);
+	ScriptingSound::bind(manager);
 
 	//Create binded objects
 	execString("SLB.using(SLB)");
