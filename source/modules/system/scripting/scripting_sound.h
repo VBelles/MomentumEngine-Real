@@ -6,6 +6,7 @@ namespace SLB {
 
 class ScriptingSound {
 private:
+	static void bindConstants(SLB::Manager* manager);
 
 public:
 	static void bind(SLB::Manager* manager);

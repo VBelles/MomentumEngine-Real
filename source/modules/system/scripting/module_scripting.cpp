@@ -41,7 +41,6 @@ void CModuleScripting::initSLB() {
 	script->setPrintCallback(&printCallback);
 
 	//Bind clases
-	ScriptingManager::bindGameConstants(manager);
 	ScriptingManager::bind(manager);
 	ScriptingPlayer::bind(manager);
 	ScriptingCameras::bind(manager);
