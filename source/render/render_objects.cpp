@@ -331,9 +331,6 @@ void renderSphere(CTransform* transform, float radius, VEC4 color) {
 		t.setYawPitchRoll(y, p, r);
 		r += M_PI_4;
 	}
-	
-	
-	
 }
 
 void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture) {
@@ -354,24 +351,23 @@ void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
     cb_object.obj_color = color;
     cb_object.updateGPU();
 
-
     auto mesh = Resources.get("line.mesh")->as<CRenderMesh>();
     mesh->activateAndRender();
 }
 
 bool createDepthStencil(const std::string& aname,
-    int width, int height,
-    DXGI_FORMAT format,
-    // outputs
-    ID3D11Texture2D** depth_stencil_resource,
-    ID3D11DepthStencilView** depth_stencil_view,
-    CTexture** out_ztexture) {
+                        int width, int height,
+                        DXGI_FORMAT format,
+                        // outputs
+                        ID3D11Texture2D** depth_stencil_resource,
+                        ID3D11DepthStencilView** depth_stencil_view,
+                        CTexture** out_ztexture) {
 
-    assert(format == DXGI_FORMAT_R32_TYPELESS
-           || format == DXGI_FORMAT_R24G8_TYPELESS
-           || format == DXGI_FORMAT_R16_TYPELESS
-           || format == DXGI_FORMAT_D24_UNORM_S8_UINT
-           || format == DXGI_FORMAT_R8_TYPELESS);
+    assert(format == DXGI_FORMAT_R32_TYPELESS      ||
+           format == DXGI_FORMAT_R24G8_TYPELESS    ||
+           format == DXGI_FORMAT_R16_TYPELESS      ||
+           format == DXGI_FORMAT_D24_UNORM_S8_UINT ||
+           format == DXGI_FORMAT_R8_TYPELESS);
 
     // Crear un ZBuffer de la resolucion de mi backbuffer
     D3D11_TEXTURE2D_DESC desc;

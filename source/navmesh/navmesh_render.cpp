@@ -2,6 +2,8 @@
 #include "navmesh_render.h"
 #include "DebugUtils/Include/DetourDebugDraw.h"
 
+#include "render/render_objects.h"
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <assert.h>
@@ -58,47 +60,47 @@ void NavMeshDebugDrawDX::vertex(const float x, const float y, const float z, uns
 }
 
 void NavMeshDebugDrawDX::end() {
-	g_pd3dDevice->SetTexture(0, NULL);
-	g_pd3dDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
-	g_pd3dDevice->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
-	g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	g_pd3dDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
-	g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-
 	if (primitive == DU_DRAW_POINTS) {
-		g_pd3dDevice->DrawPrimitiveUP(D3DPT_POINTLIST, num_colored_vertices, colored_vertices, sizeof(CUSTOMVERTEX));
+
+		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_POINTLIST, num_colored_vertices, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_LINES) {
-		g_pd3dDevice->DrawPrimitiveUP(D3DPT_LINELIST, num_colored_vertices / 2, colored_vertices, sizeof(CUSTOMVERTEX));
+        for (int i = 0; i < num_colored_vertices / 2; ++i) {
+            renderLine(colored_vertices[i].pos,
+                       colored_vertices[i + num_colored_vertices].pos,
+                       colored_vertices[i].color);
+        }
+
+		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_LINELIST, num_colored_vertices / 2, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_TRIS) {
-		g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, num_colored_vertices / 3, colored_vertices, sizeof(CUSTOMVERTEX));
+
+		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, num_colored_vertices / 3, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_QUADS) {
 		int num_quads = num_colored_vertices / 4;
-		CUSTOMVERTEX vs[6];
+        TVtxPosClr vs[6];
 
 		for (int i = 0; i < num_quads; ++i) {
 			int idx = i * 4;
-			CUSTOMVERTEX& v1 = colored_vertices[idx];
-			CUSTOMVERTEX& v2 = colored_vertices[idx + 1];
-			CUSTOMVERTEX& v3 = colored_vertices[idx + 2];
-			CUSTOMVERTEX& v4 = colored_vertices[idx + 3];
+			TVtxPosClr& v1 = colored_vertices[idx];
+			TVtxPosClr& v2 = colored_vertices[idx + 1];
+			TVtxPosClr& v3 = colored_vertices[idx + 2];
+			TVtxPosClr& v4 = colored_vertices[idx + 3];
 
-			vs[0].assign(v1.x, v1.y, v1.z, v1.color);
-			vs[1].assign(v3.x, v3.y, v3.z, v3.color);
-			vs[2].assign(v2.x, v2.y, v2.z, v2.color);
+            vs[0] = TVtxPosClr(VEC3(v1.pos.x, v1.pos.y, v1.pos.z), v1.color);
+            vs[1] = TVtxPosClr(VEC3(v3.pos.x, v3.pos.y, v3.pos.z), v3.color);
+            vs[2] = TVtxPosClr(VEC3(v2.pos.x, v2.pos.y, v2.pos.z), v2.color);
 
-			vs[3].assign(v1.x, v1.y, v1.z, v1.color);
-			vs[4].assign(v4.x, v4.y, v4.z, v4.color);
-			vs[5].assign(v2.x, v2.y, v2.z, v2.color);
+            vs[3] = TVtxPosClr(VEC3(v1.pos.x, v1.pos.y, v1.pos.z), v1.color);
+            vs[4] = TVtxPosClr(VEC3(v4.pos.x, v4.pos.y, v4.pos.z), v4.color);
+            vs[5] = TVtxPosClr(VEC3(v2.pos.x, v2.pos.y, v2.pos.z), v2.color);
 
-			g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, vs, sizeof(CUSTOMVERTEX));
+			//g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, vs, sizeof(TVtxPosClr));
 		}
 	}
-	g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-	g_pd3dDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	//g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+	//g_pd3dDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	num_colored_vertices = 0;
 	num_textured_colored_vertices = 0;
