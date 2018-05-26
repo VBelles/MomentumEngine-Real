@@ -219,6 +219,9 @@
     <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
     <ClCompile Include="gui\controllers\hud_controller.cpp" />
     <ClCompile Include="utils\template_engine.cpp" />
+    <ClCompile Include="gui\gui_params.cpp" />
+    <ClCompile Include="gui\gui_effect.cpp" />
+    <ClCompile Include="gui\gui_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />

@@ -8,10 +8,13 @@ namespace GUI {
 		CText() = default;
 		void render() override;
 		TTextParams* getTextParams() override;
-		void updateTemplate();
 
 	private:
 		TTextParams _textParams;
+		VTemplate::VariableCallback variableCallback = [](const std::string& name) {
+			CVariant* variant = EngineGUI.getVariables().getVariant(name);
+			return variant ? variant->toString() : "";
+		};
 
 		friend class CParser;
 	};

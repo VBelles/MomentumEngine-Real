@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mcv_platform.h"
+#include "utils/template_engine.h"
 
 namespace GUI {
 	struct TParams {
@@ -26,7 +26,7 @@ namespace GUI {
 		//const CFont* _font = nullptr;
 		std::string _text;
 		VEC4 _color;
-		std::string _template_text;
+		VTemplate::TTemplate _templateText;
 	};
 
 	struct TBarParams {

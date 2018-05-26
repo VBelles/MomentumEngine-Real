@@ -215,6 +215,9 @@
     <ClCompile Include="gui\controllers\gui_main_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\hud_controller.cpp" />
     <ClCompile Include="gui\effects\gui_animate_uv.cpp" />
+    <ClCompile Include="gui\gui_params.cpp" />
+    <ClCompile Include="gui\gui_effect.cpp" />
+    <ClCompile Include="gui\gui_controller.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_behavior.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_hit_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_filter_shader.cpp" />

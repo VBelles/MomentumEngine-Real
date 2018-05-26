@@ -13,26 +13,4 @@ namespace GUI {
 	void CHudController::update(float delta) {
 
 	}
-
-	void CHudController::updateHp(float hp, float maxHp) {
-		EngineGUI.getVariables().getVariant("hp")->setString(std::to_string((int)hp));
-		EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
-		updateText();
-
-	}
-	void CHudController::updatePower(float power, float maxPower) {
-		EngineGUI.getVariables().getVariant("power_progress")->setFloat(power / maxPower);
-		updateText();
-	}
-
-	void CHudController::updateText() {
-		auto widgets = EngineGUI.getWidget("hud")->getChildren(true);
-		for (auto widget : widgets) {
-			CText* text = static_cast<CText*>(widget);
-			if (text) {
-				text->updateTemplate();
-			}
-		}
-	}
-
 }

@@ -1,11 +1,10 @@
 #include "mcv_platform.h"
 #include "gui_text.h"
-#include "utils/template_engine.h"
 
 using namespace GUI;
 
 void CText::render() {
-	updateTemplate();
+	_textParams._text = _textParams._templateText.toString(variableCallback);
 	float textWidth = _textParams._text.size() * _textParams._size;
 	float textHeight = _textParams._size;
 	VEC2 offset;
@@ -27,16 +26,3 @@ TTextParams* CText::getTextParams() {
 	return &_textParams;
 }
 
-void CText::updateTemplate() {
-	if (!_textParams._template_text.empty()) {
-		auto callback = [](const std::string& name) {
-			CVariant* variant = EngineGUI.getVariables().getVariant(name);
-			if (variant) {
-				return variant->toString();
-			}
-			dbg("Warning: variable %s does not exists\n", name.c_str());
-			return std::string();
-		};
-		_textParams._text = processTemplate(_textParams._template_text, callback);
-	}
-}

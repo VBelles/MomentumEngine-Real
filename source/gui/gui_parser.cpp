@@ -5,6 +5,7 @@
 #include "gui/widgets/gui_bar.h"
 #include "gui/widgets/gui_button.h"
 #include "gui/effects/gui_animate_uv.h"
+#include "utils/template_engine.h"
 
 namespace {
 	json mergeJson(const json& j1, const std::string& key) {
@@ -174,6 +175,7 @@ void CParser::parseTextParams(TTextParams& params, const json& data) {
 	params._color = loadVEC4(data.value("font_color", "1 1 1 1"));
 	params._size = data.value("font_size", 1.f);
 	params._text = data.value("text", "");
+	VTemplate::compileTemplate(params._text, &params._templateText);
 	const std::string& hAlign = data.value("halign", "");
 	if (hAlign == "center")      params._hAlign = TTextParams::Center;
 	else if (hAlign == "right")  params._hAlign = TTextParams::Right;
@@ -182,8 +184,6 @@ void CParser::parseTextParams(TTextParams& params, const json& data) {
 	if (vAlign == "center")      params._vAlign = TTextParams::Center;
 	else if (vAlign == "bottom") params._vAlign = TTextParams::Bottom;
 	else                         params._vAlign = TTextParams::Top;
-	params._template_text = data.value("template_text", "");
-
 }
 
 void CParser::parseBarParams(TBarParams& params, const json& data) {
