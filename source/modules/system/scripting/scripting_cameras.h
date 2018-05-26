@@ -7,6 +7,7 @@ class IInterpolator;
 
 class ScriptingCameras {
 private:
+	static void bindConstants(SLB::Manager* manager);
 
 public:
 	static void bind(SLB::Manager* manager);

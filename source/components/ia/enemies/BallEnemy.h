@@ -9,6 +9,7 @@ class CEntity;
 class TCompTransform;
 class TCompCollider;
 class TCompSkeleton;
+class TCompHitboxes;
 struct PowerStats;
 struct TMsgAttackHit;
 
@@ -33,13 +34,18 @@ private:
 	float attackCooldown = 5.f;
 	float attackDamage = 1.f;
 
+	std::map<std::string, AttackInfo> attackInfos;
+	std::map<std::string, VEC2> attacksFrameData;
+
 	float gravity = -55.f;
 	VEC3 maxVelocity = { 30, 30, 30 };
 
 	float propelDuration = 1.5f;
+	float defaultPropelDuration = propelDuration;
 	float floatingDuration = 1.5f;
 	float grabbedDuration = 0.8f;
 
+	bool hasAttacked = false;
 	bool isDead = false;
 	bool isStunned = false;
 	float stunDuration;
@@ -100,11 +106,14 @@ private:
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();
 	TCompSkeleton* getSkeleton();
+	TCompHitboxes* getHitboxes();
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	void onPerfectDodged(const TMsgPerfectDodged& msg);
+	void onHitboxEnter(const TMsgHitboxEnter& msg);
 
 	void updateGravity(float delta);
 	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);

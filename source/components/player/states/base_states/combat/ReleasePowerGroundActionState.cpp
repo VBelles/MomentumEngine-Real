@@ -17,6 +17,10 @@ ReleasePowerGroundActionState::ReleasePowerGroundActionState(StateManager* state
 	AttackState(stateManager) {
 	cancelableTime = frames2sec(6);
 	interruptibleTime = frames2sec(43);
+	invulnerabilityStartTime = frames2sec(7);
+	invulnerabilityEndTime = frames2sec(10);
+	superarmorStartTime = frames2sec(0);
+	superarmorEndTime = frames2sec(7);
 }
 
 void ReleasePowerGroundActionState::update(float delta) {
@@ -89,7 +93,7 @@ void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {
 }
 
 void ReleasePowerGroundActionState::onDodgeButton() {
-	if (isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
+	if (isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
 }
 
 void ReleasePowerGroundActionState::onReleasePowerButton() {
@@ -104,6 +108,22 @@ void ReleasePowerGroundActionState::onReleasePowerButton() {
 		getPowerGauge()->releasePower();
 	}
 	if (phase == AttackPhases::Recovery) getPowerGauge()->releasePower();
+}
+
+void ReleasePowerGroundActionState::onDamage(const TMsgAttackHit & msg) {
+	if (hasInvulnerability()) {
+		//enviar mensaje a enemigo conforme ha sido esquivado finamente
+		dbg("Can't touch this! Hammer Time!\n");
+		CEntity* attacker = msg.attacker.getOwner();
+		attacker->sendMsg(TMsgPerfectDodged{});
+	}
+	else if (hasSuperArmor()) {
+		dbg("super armor!\n");
+		IActionState::onDamage(msg);
+	}
+	else {
+		GroundedActionState::onDamage(msg);
+	}
 }
 
 

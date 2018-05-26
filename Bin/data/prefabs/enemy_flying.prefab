@@ -1,40 +1,61 @@
 [
-	{
-		"entity": {
-			"name": "medusa",
-			"transform":{},
-			"render": [
-				{
-					"mesh": "data/skeletons/medusa/medusa.mesh",
-					"materials": [
-						"data/skeletons/medusa/medusa.material"
-					]
-				}
-			],
-			"tags": [ "enemy" ],
-			"respawner" : {
-				"respawnTime" : 10.0
-			},
-			"givePower": {
-				"maxPowerToGive": 50000.0,
-				"baseMultiplier": 2.5
-			},
-			"behaviorTree_flying_ranged_enemy": {
-				"attackSpawnOffset": "0.0 2.3 0.0",
-				"attackTargetOffset": "0.0 0.76 0.0"
-			},
-			"collider": {
-				"shape": "capsule",
-				"type": "cct",
-				"radius": 0.3,
-				"height": 0.1,
-				"step": 0.3,
-				"group": [ "enemy" ],
-				"mask": [ "all" ]
-			},
-			"skeleton": {
-        		"skeleton": "data/skeletons/medusa/medusa.skeleton"
-      		}
-		}
-	}
+  {
+    "entity": {
+      "name": "medusa",
+      "transform": {},
+      "render": [
+        {
+          "mesh": "data/skeletons/medusa/medusa.mesh",
+          "materials": [
+            "data/skeletons/medusa/medusa.material"
+          ]
+        }
+      ],
+      "tags": [ "enemy" ],
+      "respawner": {
+        "respawnTime": 10.0
+      },
+      "givePower": {
+        "maxPowerToGive": 50000.0,
+        "baseMultiplier": 2.5
+      },
+      "behaviorTree_flying_ranged_enemy": {
+        "attackSpawnOffset": "0.0 2.3 0.0",
+        "attackTargetOffset": "0.0 0.76 0.0",
+        "attacks": [
+          {
+            "name": "attack",
+            "frameData": "5 40",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0
+          }
+        ]
+      },
+      "collider": {
+        "shape": "capsule",
+        "type": "cct",
+        "radius": 0.3,
+        "height": 0.1,
+        "step": 0.3,
+        "group": [ "enemy" ],
+        "mask": [ "all" ]
+      },
+      "skeleton": {
+        "skeleton": "data/skeletons/medusa/medusa.skeleton"
+      },
+      "hitboxes": {
+        "hitboxes": [
+          {
+            "name": "attack",
+            "shape": "sphere",
+            "radius": 1.5,
+            "group": [ "enemy" ],
+            "mask": [ "player" ],
+            "bone": "Bone001"
+          }
+        ]
+      }
+    }
+  }
 ]

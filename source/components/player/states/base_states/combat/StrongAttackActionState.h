@@ -22,11 +22,10 @@ public:
 	void onStateExit(IActionState* nextState) override;
 	void onJumpHighButton() override {}
 	void onJumpLongButton() override {}
-	void onStrongAttackButton() override {}
+	void onStrongAttackButton() override;
 	void onStrongAttackButtonReleased() override;
-	void onFastAttackButton() override {}
+	void onFastAttackButton() override;
 	void onDodgeButton() override;
-	void onReleasePowerButton() override {};
-	void onLeavingGround() override;
+	void onReleasePowerButton() override;
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

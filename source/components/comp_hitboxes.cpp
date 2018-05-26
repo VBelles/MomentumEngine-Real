@@ -193,6 +193,13 @@ void TCompHitboxes::disable(std::string name) {
 	}
 }
 
+void TCompHitboxes::disableAll() {
+	for (auto &pair : hitboxes) {
+		pair.second->enabled = false;
+		pair.second->hits.clear();
+	}
+}
+
 TCompSkeleton* TCompHitboxes::getSkeleton() {
 	return skeletonHandle;
 }

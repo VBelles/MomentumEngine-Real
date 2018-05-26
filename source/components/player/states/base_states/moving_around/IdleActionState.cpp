@@ -4,6 +4,7 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "components/controllers/comp_camera_player.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
 
@@ -45,10 +46,17 @@ void IdleActionState::update(float delta) {
 			stateManager->changeState(Walk);
 		}
 	}
+
+	if (closeCameraTimer.elapsed() >= closeCameraTime) {
+		CEntity* cameraEntity = getEntityByName(PLAYER_CAMERA);
+		TCompCameraPlayer* camera = cameraEntity->get<TCompCameraPlayer>();
+		camera->moveCameraCloser(true);
+	}
 }
 
 void IdleActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
+	closeCameraTimer.reset();
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 

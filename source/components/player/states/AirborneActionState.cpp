@@ -4,6 +4,7 @@
 #include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "components/controllers/comp_camera_player.h"
 #include "components/player/states/StateManager.h"
 
 
@@ -90,6 +91,10 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	enterFront = getPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
+
+	CEntity* cameraEntity = getEntityByName(PLAYER_CAMERA);
+	TCompCameraPlayer* camera = cameraEntity->get<TCompCameraPlayer>();
+	camera->moveCameraCloser(false);
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {

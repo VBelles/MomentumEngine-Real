@@ -9,8 +9,11 @@
 DECL_OBJ_MANAGER("camera_player", TCompCameraPlayer);
 
 void TCompCameraPlayer::debugInMenu() {
-	ImGui::DragFloat("distanceToTarget", &defaultDistanceToTarget, 0.1f, 1.f, 1000.f);
-	ImGui::DragFloat("offset", &offset, 0.1f, 0.f, 3.f);
+	ImGui::DragFloat("Distance to target", &defaultDistanceToTarget, 0.1f, 1.f, 1000.f);
+	ImGui::DragFloat("Offset", &offset, 0.1f, 0.f, 3.f);
+	ImGui::DragFloat("Pitch offset", &pitchOffset, 0.1f, -360.f, 360.f);
+	ImGui::DragFloat("Zoom in speed", &zoomInSpeed, 0.1f, 0.1f, 20.f);
+	ImGui::DragFloat("Zoom out speed", &zoomOutSpeed, 0.1f, 0.1f, 20.f);
 }
 
 // -------------------------------------------------
@@ -20,16 +23,25 @@ void TCompCameraPlayer::renderDebug() {
 // -------------------------------------------------
 void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	targetName = j.value("target", "");
-	defaultDistanceToTarget = j.value("distance_to_target", 5.f);
+	defaultDistanceToTarget = j.value("distance_to_target", 4.5f);
 	currentDistanceToTarget = defaultDistanceToTarget;
+	runDistanceToTarget = defaultDistanceToTarget;
+	idleDistanceToTarget = j.value("idle_distance_to_target", 2.5f);
 	cameraSpeed = loadVEC2(j["camera_speed"]); 
 	zoomOutSpeed = (j.value("zoomOutSpeed", 20.f));
+	defaultZoomOutSpeed = zoomOutSpeed;
 	zoomInSpeed = (j.value("zoomInSpeed", 10.f));
+	defaultZoomInSpeed = zoomInSpeed;
 	maxPitch = deg2rad(j.value("max_pitch", 80.f));
 	minPitch = deg2rad(j.value("min_pitch", -80.f));
 	initialYaw = deg2rad(j.value("yaw", 0.f));
 	initialPitch = deg2rad(j.value("pitch", -20.f));
 	centeringCameraSpeed = loadVEC2(j["centering_camera_speed"]);
+	zoomInSpeedIdleRun = j.value("zoomInSpeedIdleRun", 2.8f);
+	zoomOutSpeedIdleRun = j.value("zoomOutSpeedIdleRun", 5.2f);
+	minPitchOffset = j.value("minPitchOffset", 4.f);
+	maxPitchOffset = j.value("maxPitchOffset", 16.f);
+	pitchOffsetThreshold = j.value("pitchOffsetThreshold", 0.f);
 	currentCenteringCameraSpeed = centeringCameraSpeed;
 }
 
@@ -54,7 +66,11 @@ void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompCameraPlayer::update(float delta) {
-
+	TCompTransform* transform = getTransform();
+	float y, p, r;
+	transform->getYawPitchRoll(&y, &p, &r);
+	//transform->setYawPitchRoll(y, p - pitchOffset);
+	transform->setYawPitchRoll(y, p - deg2rad(pitchOffset));
 	updateTargetTransform();
 	updateInput();
 	if (centeringCamera) {
@@ -66,11 +82,19 @@ void TCompCameraPlayer::update(float delta) {
 
 	if (!isMovementLocked && (isCameraInsideGeometry() || sphereCast())) {
 		sweepBack();
+		zoomInSpeed = defaultZoomInSpeed;
+		zoomOutSpeed = defaultZoomOutSpeed;
 	}
+
+	transform->getYawPitchRoll(&y, &p, &r);
+	//calcular pitchOffset según pitch
+	pitchOffset = calculatePitchOffset(p);
+	//transform->setYawPitchRoll(y, p + pitchOffset);
+	transform->setYawPitchRoll(y, p + deg2rad(pitchOffset));
 }
 
 void TCompCameraPlayer::updateTargetTransform() {
-	//Target transform is player transform + 2y
+	//Target transform is player transform + offset
 	TCompTransform* transform = getTarget()->get<TCompTransform>();
 	targetTransform.setPosition(transform->getPosition() + VEC3::Up * offset);
 	targetTransform.setRotation(transform->getRotation());
@@ -109,7 +133,6 @@ void TCompCameraPlayer::updateMovement(float delta) {
 	p += input.y * delta;
 	p = clamp(p, minPitch, maxPitch);
 	transform->setYawPitchRoll(y, p, r);
-	
 	moveCameraTowardsDefaultDistance(delta);
 }
 
@@ -182,6 +205,13 @@ void TCompCameraPlayer::sweepBack() {
 		currentDistanceToTarget = distance;
 	}
 	//dbg("Status: %d\n", status);
+}
+
+float TCompCameraPlayer::calculatePitchOffset(float pitch) {
+	if (pitch > pitchOffsetThreshold) return maxPitchOffset;
+	float ratio = abs(pitch - pitchOffsetThreshold) / abs(minPitch - pitchOffsetThreshold);
+	float res = lerp(maxPitchOffset, minPitchOffset, ratio);
+	return res;
 }
 
 
@@ -324,4 +354,17 @@ void TCompCameraPlayer::resetSuggested() {
 void TCompCameraPlayer::lockCameraInput(bool isLocked) {
     isMovementLocked = isLocked;
     centeringCamera = false; //Avoid bugs
+}
+
+void TCompCameraPlayer::moveCameraCloser(bool wantClose) {
+	if (!isDistanceForced) {
+		zoomInSpeed = zoomInSpeedIdleRun;
+		zoomOutSpeed = zoomOutSpeedIdleRun;
+		if (wantClose) {
+			defaultDistanceToTarget = idleDistanceToTarget;
+		}
+		else {
+			defaultDistanceToTarget = runDistanceToTarget;
+		}
+	}
 }

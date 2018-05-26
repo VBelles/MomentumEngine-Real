@@ -50,12 +50,12 @@ bool CModuleGame::start() {
 	EngineScripting.reset();
 	json jboot = loadJson("data/boot.json");
 
-	GUI::CParser parser;
-	parser.parseFile("data/gui/hud.json");
-	EngineGUI.activateWidget("hud");
+	//GUI::CParser parser;
+	//parser.parseFile("data/gui/hud.json");
+	//EngineGUI.activateWidget("hud");
 
-	hudController = new GUI::CHudController();
-	EngineGUI.registerController(hudController);
+	//hudController = new GUI::CHudController();
+	//EngineGUI.registerController(hudController);
 
 	// Auto load some scenes
 	std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
@@ -86,8 +86,8 @@ bool CModuleGame::start() {
 }
 
 bool CModuleGame::stop() {
-	EngineGUI.deactivateWidget("hud");
-	EngineGUI.unregisterController(hudController);
+	//EngineGUI.deactivateWidget("hud");
+	//EngineGUI.unregisterController(hudController);
 	EngineScripting.reset();
 	Engine.getEntities().reset();
 	return true;

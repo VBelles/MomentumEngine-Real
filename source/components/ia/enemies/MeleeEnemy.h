@@ -10,6 +10,7 @@ class TCompTransform;
 class TCompCollider;
 class TCompSkeleton;
 class TCompRender;
+class TCompHitboxes;
 struct PowerStats;
 
 
@@ -34,10 +35,14 @@ private:
 	float attackCooldown = 5.f;
 	float attackDamage = 1.f;
 
+	std::map<std::string, AttackInfo> attackInfos;
+	std::map<std::string, VEC2> attacksFrameData;
+
 	float gravity = -55.f;
 	VEC3 maxVelocity = { 30, 30, 30 };
 
 	float propelDuration = 1.5f;
+	float defaultPropelDuration = propelDuration;
 	float floatingDuration = 1.5f;
 	float grabbedDuration = 0.8f;
 
@@ -51,6 +56,7 @@ private:
 	CHandle renderHandle;
 	CHandle skeletonHandle;
 	CHandle playerHandle;
+	CHandle hitboxesHandle;
 
 	VEC3 initialLaunchPos;
 	VEC3 spawnPosition;
@@ -103,22 +109,22 @@ private:
 	bool combatCondition(float delta = 0.f);
 	bool stepBackCondition(float delta = 0.f);
 
-	
-
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	void onPerfectDodged(const TMsgPerfectDodged& msg);
+	void onHitboxEnter(const TMsgHitboxEnter& msg);
 
 	void updateGravity(float delta);
 	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
-
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();
 	TCompSkeleton* getSkeleton();
 	TCompRender* getRender();
+	TCompHitboxes* getHitboxes();
 
 public:
 	CBehaviorTreeMeleeEnemy();

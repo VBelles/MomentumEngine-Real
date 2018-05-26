@@ -34,6 +34,9 @@ void TCompPlayerModel::registerMsgs() {
 }
 
 void TCompPlayerModel::debugInMenu() {
+	ImGui::Text("State: %s", States::toString(getStateManager()->getState()->state));
+	ImGui::Text("Concurrent state: %s", States::toString(getStateManager()->getConcurrentState()->concurrentState));
+
 	debugInMenu(powerStats[0], "Ssj1");
 	debugInMenu(powerStats[1], "Ssj2");
 	debugInMenu(powerStats[2], "Ssj3");
@@ -129,7 +132,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 
 		bool showWindow = true;
-		/*ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(50, 35));
 		ImGui::SetNextWindowSize(ImVec2(200, 300));
 		ImGui::Begin("HpPower", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
@@ -144,11 +147,11 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		std::string powerProgressBarText = "Power";
 		ImVec4 color = getPowerGauge()->getPowerLevel() == 1 ? ImColor{ 133, 78, 128 } : getPowerGauge()->getPowerLevel() == 2 ? ImColor{ 24, 174, 186 } : ImColor{ 255, 255, 255 };
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-		ImGui::ProgressBar((float)getPowerGauge()->getPower() / getPowerGauge()->getMaxPower(), ImVec2(-1, 0), powerProgressBarText.c_str());
+		ImGui::ProgressBar(getPowerGauge()->getBarPercentage(), ImVec2(-1, 0), powerProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		ImGui::End();
-		ImGui::PopStyleColor();*/
+		ImGui::PopStyleColor();
 
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 50, ImGui::GetIO().DisplaySize.y - 100));
@@ -319,8 +322,8 @@ void TCompPlayerModel::setHp(float hp) {
 		stateManager->changeState(Death);
 		stateManager->changeConcurrentState(Free);
 	}
-	EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
-	EngineGUI.getVariables().getVariant("hp")->setInt(hp);
+	//EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
+	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
 
 }
 

@@ -34,5 +34,6 @@ public:
 	void onStrongAttackButton() override {}
 	void onDodgeButton() override;
 	void onReleasePowerButton() override;
+	void onDamage(const TMsgAttackHit& msg) override;
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

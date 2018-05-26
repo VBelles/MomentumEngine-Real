@@ -6,6 +6,7 @@
 #include "components/comp_render.h"
 #include "components/comp_respawner.h"
 #include "components/comp_give_power.h"
+#include "components/comp_hitboxes.h"
 #include "components/player/power_stats.h"
 #include "skeleton/comp_skeleton.h"
 
@@ -82,6 +83,18 @@ void CBehaviorTreeMeleeEnemy::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("maxVelocity")) {
 		maxVelocity = loadVEC3(j["maxVelocity"]);
 	}
+	if (j.count("attacks")) {
+		for (int i = 0; i < j["attacks"].size(); ++i) {
+			const json& jAttack = j["attacks"][i];
+			std::string attackName = jAttack.value("name", "attack" + std::to_string(i));
+
+			attackInfos[attackName].load(jAttack);
+
+			if (jAttack.count("frameData")) {
+				attacksFrameData[attackName] = loadVEC2(jAttack["frameData"]);
+			}
+		}
+	}
 }
 
 void CBehaviorTreeMeleeEnemy::debugInMenu() {
@@ -92,6 +105,8 @@ void CBehaviorTreeMeleeEnemy::registerMsgs() {
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgAttackHit, onAttackHit);
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgRespawn, onRespawn);
 	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgPerfectDodged, onPerfectDodged);
+	DECL_MSG(CBehaviorTreeMeleeEnemy, TMsgHitboxEnter, onHitboxEnter);
 }
 
 void CBehaviorTreeMeleeEnemy::update(float delta) {
@@ -147,7 +162,12 @@ int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
 	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
-
+	if (receivedAttack.propel->duration > 0.f) {
+		propelDuration = receivedAttack.propel->duration;
+	}
+	else {
+		propelDuration = defaultPropelDuration;
+	}
 	getSkeleton()->setTimeFactor(0);
 
 	timer.reset();
@@ -360,30 +380,17 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(2))) {
-		//Parche para ir con la animación
-		if (!isFirstAttackLaunched && attackTimer.elapsed() >= (getSkeleton()->getAnimationDuration(2) * 0.5f)) {
-			if (combatCondition(delta)) {
-				TMsgAttackHit msg = {};
-				msg.attacker = CHandle(this);
-				msg.info.damage = attackDamage;
-				msg.info.stun = new AttackInfo::Stun{ 1.f };
-				msg.info.invulnerabilityTime = 1.f;
-				getPlayerEntity()->sendMsg(msg);
-			}
+		if (!isFirstAttackLaunched && attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x)) {
+			getHitboxes()->enable("attack");
 			isFirstAttackLaunched = true;
+		}
+		else if (attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x + attacksFrameData["attack"].y)) {
+			getHitboxes()->disable("attack");
 		}
 		return Stay;
 	}
 	else {
-		//de momento comprobar si sigue delante, al menos
-		if (combatCondition(delta)) {
-			TMsgAttackHit msg = {};
-			msg.attacker = CHandle(this);
-			msg.info.damage = attackDamage;
-			msg.info.invulnerabilityTime = 0.1f;
-			getPlayerEntity()->sendMsg(msg);
-		}
-		//attackTimer.reset();
+		getHitboxes()->disable("attack");
 		return Leave;
 	}
 }
@@ -460,6 +467,7 @@ void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg
 	colliderHandle = get<TCompCollider>();
 	renderHandle = get<TCompRender>();
 	skeletonHandle = get<TCompSkeleton>();
+	hitboxesHandle = get<TCompHitboxes>();
 	spawnPosition = getTransform()->getPosition();
 	playerHandle = getEntityByName(PLAYER_NAME);
 }
@@ -468,6 +476,7 @@ void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	getSkeleton()->blendCycle(0);
 	getSkeleton()->setTimeFactor(1);
 	isStunned = false;
+	getHitboxes()->disableAll();
 	receivedAttack = msg.info;
 	current = tree["onAttackHit"];
 }
@@ -478,6 +487,21 @@ void CBehaviorTreeMeleeEnemy::onRespawn(const TMsgRespawn& msg) {
 
 void CBehaviorTreeMeleeEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	current = tree["onDeath"];
+}
+
+void CBehaviorTreeMeleeEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
+	dbg("Damn! I've been dodged.\n");
+	//algo así podría estar guay
+	//getSkeleton()->setTimeFactor(0.25f);
+}
+
+void CBehaviorTreeMeleeEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
+	if (attackInfos.find(msg.hitbox) != attackInfos.end()) {
+		TMsgAttackHit attackHit = {};
+		attackHit.attacker = CHandle(this);
+		attackHit.info = attackInfos[msg.hitbox];
+		((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+	}
 }
 
 void CBehaviorTreeMeleeEnemy::updateGravity(float delta) {
@@ -530,8 +554,12 @@ TCompSkeleton* CBehaviorTreeMeleeEnemy::getSkeleton() {
 	return skeletonHandle;
 }
 
-TCompRender * CBehaviorTreeMeleeEnemy::getRender() {
+TCompRender* CBehaviorTreeMeleeEnemy::getRender() {
 	return renderHandle;
+}
+
+TCompHitboxes* CBehaviorTreeMeleeEnemy::getHitboxes() {
+	return hitboxesHandle;
 }
 
 CEntity* CBehaviorTreeMeleeEnemy::getPlayerEntity() {

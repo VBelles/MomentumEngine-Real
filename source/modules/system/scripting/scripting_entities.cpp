@@ -12,6 +12,7 @@ ScriptingEntities::~ScriptingEntities() {}
 
 void ScriptingEntities::bind(SLB::Manager* manager) {
 	assert(instance);
+	bindConstants(manager);
 	manager->set("spawnEntityAt", SLB::FuncCall::create(ScriptingEntities::spawnEntityAt));
 	manager->set("spawnGolemAt", SLB::FuncCall::create(ScriptingEntities::spawnGolemAt));
 	manager->set("spawnGolem", SLB::FuncCall::create(ScriptingEntities::spawnGolem));
@@ -21,6 +22,13 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("spawnMedusa", SLB::FuncCall::create(ScriptingEntities::spawnMedusa));
 	manager->set("stopEntities", SLB::FuncCall::create(ScriptingEntities::stopEntities));
 	manager->set("resumeEntities", SLB::FuncCall::create(ScriptingEntities::resumeEntities));
+}
+
+void ScriptingEntities::bindConstants(SLB::Manager* manager) {
+	manager->set("PREFAB_GOLEM", SLB::Value::copy(PREFAB_GOLEM));
+	manager->set("PREFAB_BALL", SLB::Value::copy(PREFAB_BALL));
+	manager->set("PREFAB_MEDUSA", SLB::Value::copy(PREFAB_MEDUSA));
+	manager->set("PREFAB_CHRYSALIS", SLB::Value::copy(PREFAB_CHRYSALIS));
 }
 
 std::string ScriptingEntities::spawnEntityAt(std::string prefabFilename, float x, float y, float z) {

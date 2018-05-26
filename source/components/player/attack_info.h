@@ -18,6 +18,7 @@ struct AttackInfo {
 	};
 	struct Propel {
 		VEC3 velocity;
+		float duration;
 	};
 	float damage = 0.f;
 	float invulnerabilityTime = 0.f;
@@ -33,6 +34,7 @@ struct AttackInfo {
 	AttackInfo();
 	AttackInfo(const AttackInfo& other);
 	AttackInfo& operator=(const AttackInfo& other);
+	void load(const json& j);
 	~AttackInfo();
 };
 

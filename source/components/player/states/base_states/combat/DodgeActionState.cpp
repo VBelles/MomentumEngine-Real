@@ -2,6 +2,7 @@
 #include "components/player/comp_player_model.h"
 #include "DodgeActionState.h"
 #include "components/comp_camera.h"
+#include "components/controllers/comp_camera_player.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
@@ -75,6 +76,10 @@ void DodgeActionState::onStateEnter(IActionState * lastState) {
 	//resetear el timer que me toca
 	staleTimers[staleTimerIndex].reset();
 	staleTimerIndex = (staleTimerIndex + 1) % (numberOfDodgesToStale - 1);
+
+	CEntity* cameraEntity = getEntityByName(PLAYER_CAMERA);
+	TCompCameraPlayer* camera = cameraEntity->get<TCompCameraPlayer>();
+	camera->moveCameraCloser(false);
 }
 
 void DodgeActionState::onStateExit(IActionState * nextState) {
@@ -144,6 +149,12 @@ void DodgeActionState::onMove(MoveState & moveState) {
 void DodgeActionState::onDamage(const TMsgAttackHit & msg) {
 	if (invencibilityTimer.elapsed() >= invencibilityTime) {
 		GroundedActionState::onDamage(msg);
+	}
+	else {
+		//enviar mensaje a enemigo conforme ha sido esquivado finamente
+		dbg("Can't touch this! Hammer Time!\n");
+		CEntity* attacker = msg.attacker.getOwner();
+		attacker->sendMsg(TMsgPerfectDodged{});
 	}
 }
 

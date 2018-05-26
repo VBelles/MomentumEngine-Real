@@ -8,7 +8,7 @@ private:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(10);
 	float hitEndTime = frames2sec(15);
-	float animationEndTime = frames2sec(10);
+	float animationEndTime = frames2sec(25);
 	float beginLauncherTime = frames2sec(15);
 
 	AttackPhases phase = AttackPhases::Launch;
@@ -28,10 +28,10 @@ public:
 	void setMovementInput(VEC2 input) override {}
 	void onJumpHighButton() override {}
 	void onJumpLongButton() override {}
-	void onFastAttackButton() override {}
-	void onStrongAttackButton() override {}
+	void onFastAttackButton() override;
+	void onStrongAttackButton() override;
 	void onDodgeButton() override;
-	void onReleasePowerButton() override {}
+	void onReleasePowerButton() override;
 	void onFastAttackButtonReleased() override;
 	void onLeavingGround() override;
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;

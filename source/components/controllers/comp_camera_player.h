@@ -16,6 +16,7 @@ private:
 	//Json configuration
 	std::string targetName;
 	float defaultDistanceToTarget = 0.f;
+	float idleDistanceToTarget = 0.f;
 	VEC2 cameraSpeed;
 	float zoomOutSpeed = 20.f;
 	float zoomInSpeed = 10.f;
@@ -24,6 +25,14 @@ private:
 	float maxPitch = 0.f;
 	float initialYaw = 0.f;
 	float initialPitch = 0.f;
+	float zoomInSpeedIdleRun = 0.f;
+	float zoomOutSpeedIdleRun = 0.f;
+	float minPitchOffset = 0.f;
+	float maxPitchOffset = 0.f;
+	float pitchOffsetThreshold = 0.f;
+
+	//float pitchOffset = deg2rad(10);
+	float pitchOffset = 16.f;
 	
 	CHandle targetHandle;
 	CHandle transformHandle;
@@ -33,7 +42,10 @@ private:
 	
 	float offset = 1.f;
 
+	float defaultZoomInSpeed;
+	float defaultZoomOutSpeed;
 	float currentDistanceToTarget = 0.f;
+	float runDistanceToTarget = 0.f;
 	VEC2 currentCenteringCameraSpeed;
 
 	bool isMovementLocked = false;
@@ -65,6 +77,7 @@ private:
 	bool isCameraInsideGeometry();
 	bool raycast(VEC3 origin, VEC3 destination, PxRaycastCallback& callback);
 	void sweepBack();
+	float calculatePitchOffset(float pitch);
 
 	CEntity* getTarget() { return targetHandle; }
 	TCompTransform* getTransform() { return transformHandle; }
@@ -81,5 +94,6 @@ public:
 	void placeCameraOnSuggestedPosition(VEC2 centeringSpeed);
 	void resetSuggested();
     void lockCameraInput(bool isLocked);
+	void moveCameraCloser(bool wantClose);
 };
 

@@ -6,6 +6,7 @@
 #include "components/comp_render.h"
 #include "components/comp_respawner.h"
 #include "components/comp_give_power.h"
+#include "components/comp_hitboxes.h"
 #include "components/player/power_stats.h"
 #include "entity/entity_parser.h"
 #include "skeleton/comp_skeleton.h"
@@ -14,9 +15,9 @@ DECL_OBJ_MANAGER("behaviorTree_flying_ranged_enemy", CBehaviorTreeFlyingRangedEn
 
 CBehaviorTreeFlyingRangedEnemy::CBehaviorTreeFlyingRangedEnemy()
 	: IBehaviorTree::IBehaviorTree() {
-	createRoot("meleeEnemy", Priority, nullptr, nullptr);
+	createRoot("flyingRangedEnemy", Priority, nullptr, nullptr);
 
-	addChild("meleeEnemy", "onAttackHit", Sequence, &CBehaviorTreeFlyingRangedEnemy::falseCondition, nullptr);
+	addChild("flyingRangedEnemy", "onAttackHit", Sequence, &CBehaviorTreeFlyingRangedEnemy::falseCondition, nullptr);
 	addChild("onAttackHit", "damageCalc", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::damageCalc);
 	addChild("onAttackHit", "deathCheck", Priority, nullptr, nullptr);
 	addChild("deathCheck", "onDeath", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::deathCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onDeath);
@@ -37,24 +38,28 @@ CBehaviorTreeFlyingRangedEnemy::CBehaviorTreeFlyingRangedEnemy()
 	addChild("verticalLaunchProperty", "verticalLaunchedFloat", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::floating);
 	addChild("attackProperties", "onStun", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::onStunCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onStun);
 
-	addChild("meleeEnemy", "onRespawn", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::falseCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::respawn);
+	addChild("flyingRangedEnemy", "onRespawn", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::falseCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::respawn);
 
-	addChild("meleeEnemy", "dead", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::deadCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::dead);
+	addChild("flyingRangedEnemy", "dead", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::deadCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::dead);
 
-	addChild("meleeEnemy", "stunned", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::stunCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::stunned);
+	addChild("flyingRangedEnemy", "stunned", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::stunCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::stunned);
+	
+	addChild("flyingRangedEnemy", "melee", Sequence, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::meleeAttackCondition, nullptr);
+	addChild("melee", "onMeleeAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onMeleeAttack);
+	addChild("melee", "meleeAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::meleeAttack);
 
-	addChild("meleeEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::returnToSpawn);
+	addChild("flyingRangedEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::returnToSpawn);
 
-	CBehaviorTreeNodeRandom *node = (CBehaviorTreeNodeRandom*)addChild("meleeEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::combatCondition, nullptr);
+	CBehaviorTreeNodeRandom *node = (CBehaviorTreeNodeRandom*)addChild("flyingRangedEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::combatCondition, nullptr);
 	addChild("combat", "idleWar", Sequence, nullptr, nullptr);
 	addChild("idleWar", "onIdleWar", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onIdleWar);
 	addChild("idleWar", "idleWarAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idleWar);
-	addChild("combat", "attack", Sequence, nullptr, nullptr);
-	addChild("attack", "onAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onAttack);
-	addChild("attack", "attackAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::attack);
+	addChild("combat", "rangedAttack", Sequence, nullptr, nullptr);
+	addChild("rangedAttack", "onRangedAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onRangedAttack);
+	addChild("rangedAttack", "rangedAttackAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::rangedAttack);
 	node->setProbability(std::vector<float>{ 0.75f, 0.25f });
 
-	addChild("meleeEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idle);
+	addChild("flyingRangedEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idle);
 }
 
 void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ctx) {
@@ -62,10 +67,10 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", 2.5f);
 	rotationSpeed = j.value("rotationSpeed", 20.f);
-	recallDistance = j.value("recallDistance", 5.f);
+	recallDistanceSqrd = j.value("recallDistanceSqrd", 25.f);
 	attackFov = deg2rad(j.value("attackFov", 60.f));
-	minCombatDistance = j.value("minCombatDistance", 2.f);
-	maxCombatDistance = j.value("maxCombatDistance", 20.f);
+	minCombatDistanceSqrd = j.value("minCombatDistanceSqrd", 4.f);
+	maxCombatDistanceSqrd = j.value("maxCombatDistanceSqrd", 400.f);
 	attackCooldown = j.value("attackCooldown", 2.f);
 	attackDamage = j.value("attackDamage", 1.f);
 	propelDuration = j.value("propelDuration", 1.5f);
@@ -78,6 +83,18 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	}
 	if (j.count("attackTargetOffset")) {
 		attackTargetOffset = loadVEC3(j["attackTargetOffset"]);
+	}	
+	if (j.count("attacks")) {
+		for (int i = 0; i < j["attacks"].size(); ++i) {
+			const json& jAttack = j["attacks"][i];
+			std::string attackName = jAttack.value("name", "attack" + std::to_string(i));
+
+			attackInfos[attackName].load(jAttack);
+
+			if (jAttack.count("frameData")) {
+				attacksFrameData[attackName] = loadVEC2(jAttack["frameData"]);
+			}
+		}
 	}
 }
 
@@ -89,6 +106,8 @@ void CBehaviorTreeFlyingRangedEnemy::registerMsgs() {
 	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgAttackHit, onAttackHit);
 	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgRespawn, onRespawn);
 	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgPerfectDodged, onPerfectDodged);
+	DECL_MSG(CBehaviorTreeFlyingRangedEnemy, TMsgHitboxEnter, onHitboxEnter);
 }
 
 void CBehaviorTreeFlyingRangedEnemy::update(float delta) {
@@ -146,7 +165,12 @@ int CBehaviorTreeFlyingRangedEnemy::grabbed(float delta) {
 int CBehaviorTreeFlyingRangedEnemy::onPropel(float delta) {
 	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
-
+	if (receivedAttack.propel->duration > 0.f) {
+		propelDuration = receivedAttack.propel->duration;
+	}
+	else {
+		propelDuration = defaultPropelDuration;
+	}
 	getSkeleton()->setTimeFactor(0);
 
 	timer.reset();
@@ -274,9 +298,9 @@ int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
 
 	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
 
-	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	if (VEC3::Distance(myPosition + deltaMovement, spawnPosition) < minCombatDistance
-		|| (distance < maxCombatDistance + maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
+	float distance = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	if (VEC3::DistanceSquared(myPosition + deltaMovement, spawnPosition) < minCombatDistanceSqrd
+		|| (distance < maxCombatDistanceSqrd + maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov))) {
 		return Leave;
 	}
 	else {
@@ -300,7 +324,7 @@ int CBehaviorTreeFlyingRangedEnemy::idleWar(float delta) {
 	}
 }
 
-int CBehaviorTreeFlyingRangedEnemy::onAttack(float delta) {
+int CBehaviorTreeFlyingRangedEnemy::onMeleeAttack(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < attackCooldown) {
 		current = nullptr;
@@ -308,12 +332,43 @@ int CBehaviorTreeFlyingRangedEnemy::onAttack(float delta) {
 	else {
 		hasAttacked = false;
 		attackTimer.reset();
-		getSkeleton()->executeAction(1, 0.0f, 0.0f);
+		getSkeleton()->executeAction(1, 0.2f, 0.2f);
 	}
 	return Leave;
 }
 
-int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
+int CBehaviorTreeFlyingRangedEnemy::meleeAttack(float delta) {
+	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
+	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(1))) {
+		if (!hasAttacked && attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x)) {
+			getHitboxes()->enable("attack");
+			hasAttacked = true;
+		}
+		else if (attackTimer.elapsed() >= frames2sec(attacksFrameData["attack"].x + attacksFrameData["attack"].y)) {
+			getHitboxes()->disable("attack");
+		}
+		return Stay;
+	}
+	else {
+		getHitboxes()->disable("attack");
+		return Leave;
+	}
+}
+
+int CBehaviorTreeFlyingRangedEnemy::onRangedAttack(float delta) {
+	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
+	if (attackTimer.elapsed() < attackCooldown) {
+		current = nullptr;
+	}
+	else {
+		hasAttacked = false;
+		attackTimer.reset();
+		getSkeleton()->executeAction(1, 0.2f, 0.2f);
+	}
+	return Leave;
+}
+
+int CBehaviorTreeFlyingRangedEnemy::rangedAttack(float delta) {
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(1))) {
 		if (!hasAttacked && (attackTimer.elapsed() >= (getSkeleton()->getAnimationDuration(1) * (180.f / 280.f)))) {
@@ -325,8 +380,8 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 
 				AttackInfo attackInfo;
 				attackInfo.damage = attackDamage;
-				//si le pongo stun así peta
-				//attackInfo.stun = new AttackInfo::Stun{ 1.f };
+
+				attackInfo.stun = new AttackInfo::Stun{ 1.f };
 				attackInfo.invulnerabilityTime = 1.2f;
 
 				VEC3 front = getTransform()->getFront();
@@ -343,12 +398,10 @@ int CBehaviorTreeFlyingRangedEnemy::attack(float delta) {
 				attackDirection += attackTargetOffset;
 				attackDirection.Normalize();
 
-				TMsgAssignRangedAttackOwner msg{ CHandle(this).getOwner(), attackInfo, attackInitialPos, attackDirection };
+				TMsgAssignRangedAttackOwner msg{ CHandle(this), attackInfo, attackInitialPos, attackDirection };
 
 				CEntity *attackEntity = ctx.entities_loaded[0];
 				attackEntity->sendMsg(msg);
-
-				//attackTimer.reset();
 			}
 		}
 		return Stay;
@@ -396,12 +449,16 @@ bool CBehaviorTreeFlyingRangedEnemy::stunCondition(float delta) {
 }
 
 bool CBehaviorTreeFlyingRangedEnemy::returnToSpawnCondition(float delta) {
-	return VEC3::Distance(getTransform()->getPosition(), spawnPosition) > recallDistance;
+	return VEC3::DistanceSquared(getTransform()->getPosition(), spawnPosition) > recallDistanceSqrd;
+}
+
+bool CBehaviorTreeFlyingRangedEnemy::meleeAttackCondition(float delta) {
+	return VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition()) < minCombatDistanceSqrd;
 }
 
 bool CBehaviorTreeFlyingRangedEnemy::combatCondition(float delta) {
-	float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distance < maxCombatDistance && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
+	float distance = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
+	return distance < maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
 }
 
 void CBehaviorTreeFlyingRangedEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
@@ -423,6 +480,19 @@ void CBehaviorTreeFlyingRangedEnemy::onRespawn(const TMsgRespawn& msg) {
 
 void CBehaviorTreeFlyingRangedEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	current = tree["onDeath"];
+}
+
+void CBehaviorTreeFlyingRangedEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
+	dbg("Damn! I've been dodged.\n");
+}
+
+void CBehaviorTreeFlyingRangedEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
+	if (attackInfos.find(msg.hitbox) != attackInfos.end()) {
+		TMsgAttackHit attackHit = {};
+		attackHit.attacker = CHandle(this);
+		attackHit.info = attackInfos[msg.hitbox];
+		((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+	}
 }
 
 void CBehaviorTreeFlyingRangedEnemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
@@ -461,4 +531,8 @@ TCompTransform* CBehaviorTreeFlyingRangedEnemy::getPlayerTransform() {
 
 TCompSkeleton* CBehaviorTreeFlyingRangedEnemy::getSkeleton() {
 	return get<TCompSkeleton>();
+}
+
+TCompHitboxes* CBehaviorTreeFlyingRangedEnemy::getHitboxes() {
+	return get<TCompHitboxes>();
 }

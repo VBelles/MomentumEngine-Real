@@ -154,10 +154,16 @@
     <ClCompile Include="components\player\power_stats.cpp" />
     <ClCompile Include="components\player\states\AttackState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\DodgeActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\FastFinisher1ActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\FastFinisher2ActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\HorizontalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\LauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\ReleasePowerGroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\StrongAttack2ActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\StrongAttack3ActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\StrongAttackActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\StrongFinisher1ActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\combat\StrongFinisher2ActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\VerticalLauncherActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\moving_around\IdleActionState.cpp" />
@@ -175,6 +181,7 @@
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackActionState.cpp" />
+    <ClCompile Include="components\player\states\concurrent_states\FastAttack2ActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FastAttackAirActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\FreeActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabActionState.cpp" />
@@ -201,6 +208,7 @@
     <ClCompile Include="components\player\states\base_states\normal_jump\JumpSquatActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\normal_jump\PropelHighActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
+    <ClCompile Include="components\postfx\comp_render_fog.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
     <ClCompile Include="components\postfx\comp_color_grading.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
@@ -273,6 +281,7 @@
     <ClCompile Include="modules\system\scripting\scripting_manager.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
     <ClCompile Include="modules\system\module_multithread.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_sound.cpp" />
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
@@ -380,10 +389,16 @@
     <ClInclude Include="components\player\power_stats.h" />
     <ClInclude Include="components\player\states\AttackState.h" />
     <ClInclude Include="components\player\states\base_states\combat\DodgeActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\FastFinisher1ActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\FastFinisher2ActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\HorizontalLauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\LauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\ReleasePowerGroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\StrongAttack2ActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\StrongAttack3ActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\StrongAttackActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\StrongFinisher1ActionState.h" />
+    <ClInclude Include="components\player\states\base_states\combat\StrongFinisher2ActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\VerticalLauncherActionState.h" />
     <ClInclude Include="components\player\states\base_states\knockback\HardKnockbackAirActionState.h" />
     <ClInclude Include="components\player\states\base_states\moving_around\IdleActionState.h" />
@@ -401,6 +416,7 @@
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatPlummetActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackActionState.h" />
+    <ClInclude Include="components\player\states\concurrent_states\FastAttack2ActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttackAirActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\FreeActionState.h" />
     <ClInclude Include="components\player\states\concurrent_states\GrabActionState.h" />
@@ -427,6 +443,7 @@
     <ClInclude Include="components\player\states\base_states\normal_jump\JumpSquatActionState.h" />
     <ClInclude Include="components\player\states\base_states\normal_jump\PropelHighActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
+    <ClInclude Include="components\postfx\comp_render_fog.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
     <ClInclude Include="components\postfx\comp_color_grading.h" />
     <ClInclude Include="components\postfx\comp_render_ao.h" />
@@ -513,6 +530,7 @@
     <ClInclude Include="modules\system\scripting\scripting_manager.h" />
     <ClInclude Include="modules\system\scripting\scripting_player.h" />
     <ClInclude Include="modules\system\module_multithread.h" />
+    <ClInclude Include="modules\system\scripting\scripting_sound.h" />
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game\physics\ragdoll.h" />
     <ClInclude Include="modules\game\physics\ragdoll_core.h" />
