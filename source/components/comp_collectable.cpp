@@ -10,6 +10,8 @@ DECL_OBJ_MANAGER("collectable", TCompCollectable);
 void TCompCollectable::debugInMenu() {
 }
 
+
+
 void TCompCollectable::registerMsgs() {
 	DECL_MSG(TCompCollectable, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompCollectable, TMsgTriggerEnter, onTriggerEnter);
@@ -27,6 +29,7 @@ void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	transformHandle = get<TCompTransform>();
+	assert(transformHandle.isValid());
 }
 
 void TCompCollectable::update(float delta) {
@@ -63,4 +66,8 @@ TCompCollectable::Type TCompCollectable::getTypeByName(std::string name) {
 		return typeByName[name];
 	}
 	return Type::UNDEFINED;
+}
+
+TCompTransform * TCompCollectable::getTransform() {
+	return transformHandle;
 }

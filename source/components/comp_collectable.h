@@ -32,10 +32,7 @@ private:
 	float rotation = 0.f;
 
 	CHandle transformHandle;
-	TCompTransform* getTransform() { return transformHandle; }
-
-
-
+	TCompTransform* getTransform();
 
 public:
 	DECL_SIBLING_ACCESS();
