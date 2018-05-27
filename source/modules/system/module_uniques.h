@@ -1,18 +1,28 @@
 #pragma once
 
-struct UniqueThing {
+struct UniqueElement {
 	bool done;
 	VEC3 position;
 	std::string level;
 };
 
+
 class CModuleUniques : public IModule {
 private:
+	enum ElementType {
+		COIN,
+		CHRYSALIS,
+		ALTAR,
+		EVENT
+	};
+
 	//maps
-	std::map<std::string, UniqueThing> coins;
-	std::map<std::string, UniqueThing> chrysalis;
-	std::map<std::string, UniqueThing> altars;
-	std::map<std::string, UniqueThing> events;
+	std::map<std::string, UniqueElement> coins;
+	std::map<std::string, UniqueElement> chrysalides;
+	std::map<std::string, UniqueElement> altars;
+	std::map<std::string, UniqueElement> events;
+
+	void parseChunk(const json& j, ElementType type);
 
 public:
 	CModuleUniques(const std::string& aname) : IModule(aname) {}
@@ -20,10 +30,10 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 
-	UniqueThing* getUniqueCoin(std::string id);
-	UniqueThing* getUniqueChrysalis(std::string id);
-	UniqueThing* getUniqueAltar(std::string id);
-	UniqueThing* getUniqueEvent(std::string id);
+	UniqueElement* getUniqueCoin(std::string id);
+	UniqueElement* getUniqueChrysalis(std::string id);
+	UniqueElement* getUniqueAltar(std::string id);
+	UniqueElement* getUniqueEvent(std::string id);
 
 	void setCoinTaken(std::string id, bool isTaken);
 	void setChrysalisTaken(std::string id, bool isTaken);

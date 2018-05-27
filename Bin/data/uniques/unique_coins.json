@@ -1,0 +1,24 @@
+{
+    "unique_coins" : [
+        {
+            "id" : "ms2_coin154",
+            "done": false,
+            "position":"0 1 2",
+            "level": "level01"
+        },
+        {
+            "id" : "ms2_coin153",
+            "done": true,
+            "position":"5 4 3",
+            "level": "level02"
+        }
+    ],
+    "unique_altars" : [
+        {
+            "id" : "altarin",
+            "done": false,
+            "position":"6 6 6",
+            "level": "jkhksdf"
+        }
+    ]
+}
