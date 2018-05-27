@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Recast.h"
-#include "RecastDebugDraw.h"
-#include "DetourDebugDraw.h"
-#include "DetourNavMesh.h"
-#include "DetourNavMeshQuery.h"
-#include "DetourCrowd.h"
+#include <Recast.h>
+#include <RecastDebugDraw.h>
+#include <DetourDebugDraw.h>
+#include <DetourNavMesh.h>
+#include <DetourNavMeshQuery.h>
+#include <DetourCrowd.h>
 
 #include "resources/resource.h"
 #include "navmesh_render.h"

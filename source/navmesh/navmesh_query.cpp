@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "navmesh_query.h"
-#include "DetourCommon.h"
+#include <DetourCommon.h>
 
 inline bool inRange(const float* v1, const float* v2, const float r, const float h) {
 	const float dx = v2[0] - v1[0];

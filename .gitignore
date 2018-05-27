@@ -25,3 +25,4 @@ tools/Coroutines/bin/*.pdb
 tools/Coroutines/Debug/*.lib
 tools/Coroutines/Debug/*.idb
 tools/Coroutines/Debug/*.pdb
+Recast/x64/

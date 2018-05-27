@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DebugUtils\Include\DebugDraw.h" />
+    <ClInclude Include="DebugUtils\Include\DetourDebugDraw.h" />
+    <ClInclude Include="DebugUtils\Include\RecastDebugDraw.h" />
+    <ClInclude Include="DebugUtils\Include\RecastDump.h" />
+    <ClInclude Include="Detour\Include\DetourAlloc.h" />
+    <ClInclude Include="Detour\Include\DetourAssert.h" />
+    <ClInclude Include="Detour\Include\DetourCommon.h" />
+    <ClInclude Include="Detour\Include\DetourMath.h" />
+    <ClInclude Include="Detour\Include\DetourNavMesh.h" />
+    <ClInclude Include="Detour\Include\DetourNavMeshBuilder.h" />
+    <ClInclude Include="Detour\Include\DetourNavMeshQuery.h" />
+    <ClInclude Include="Detour\Include\DetourNode.h" />
+    <ClInclude Include="Detour\Include\DetourStatus.h" />
+    <ClInclude Include="DetourCrowd\Include\DetourCrowd.h" />
+    <ClInclude Include="DetourCrowd\Include\DetourLocalBoundary.h" />
+    <ClInclude Include="DetourCrowd\Include\DetourObstacleAvoidance.h" />
+    <ClInclude Include="DetourCrowd\Include\DetourPathCorridor.h" />
+    <ClInclude Include="DetourCrowd\Include\DetourPathQueue.h" />
+    <ClInclude Include="DetourCrowd\Include\DetourProximityGrid.h" />
+    <ClInclude Include="DetourTileCache\Include\DetourTileCache.h" />
+    <ClInclude Include="DetourTileCache\Include\DetourTileCacheBuilder.h" />
+    <ClInclude Include="Recast\Include\Recast.h" />
+    <ClInclude Include="Recast\Include\RecastAlloc.h" />
+    <ClInclude Include="Recast\Include\RecastAssert.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DebugUtils\Source\DebugDraw.cpp" />
+    <ClCompile Include="DebugUtils\Source\DetourDebugDraw.cpp" />
+    <ClCompile Include="DebugUtils\Source\RecastDebugDraw.cpp" />
+    <ClCompile Include="DebugUtils\Source\RecastDump.cpp" />
+    <ClCompile Include="Detour\Source\DetourAlloc.cpp" />
+    <ClCompile Include="Detour\Source\DetourAssert.cpp" />
+    <ClCompile Include="Detour\Source\DetourCommon.cpp" />
+    <ClCompile Include="Detour\Source\DetourNavMesh.cpp" />
+    <ClCompile Include="Detour\Source\DetourNavMeshBuilder.cpp" />
+    <ClCompile Include="Detour\Source\DetourNavMeshQuery.cpp" />
+    <ClCompile Include="Detour\Source\DetourNode.cpp" />
+    <ClCompile Include="DetourCrowd\Source\DetourCrowd.cpp" />
+    <ClCompile Include="DetourCrowd\Source\DetourLocalBoundary.cpp" />
+    <ClCompile Include="DetourCrowd\Source\DetourObstacleAvoidance.cpp" />
+    <ClCompile Include="DetourCrowd\Source\DetourPathCorridor.cpp" />
+    <ClCompile Include="DetourCrowd\Source\DetourPathQueue.cpp" />
+    <ClCompile Include="DetourCrowd\Source\DetourProximityGrid.cpp" />
+    <ClCompile Include="DetourTileCache\Source\DetourTileCache.cpp" />
+    <ClCompile Include="DetourTileCache\Source\DetourTileCacheBuilder.cpp" />
+    <ClCompile Include="Recast\Source\Recast.cpp" />
+    <ClCompile Include="Recast\Source\RecastAlloc.cpp" />
+    <ClCompile Include="Recast\Source\RecastArea.cpp" />
+    <ClCompile Include="Recast\Source\RecastAssert.cpp" />
+    <ClCompile Include="Recast\Source\RecastContour.cpp" />
+    <ClCompile Include="Recast\Source\RecastFilter.cpp" />
+    <ClCompile Include="Recast\Source\RecastLayers.cpp" />
+    <ClCompile Include="Recast\Source\RecastMesh.cpp" />
+    <ClCompile Include="Recast\Source\RecastMeshDetail.cpp" />
+    <ClCompile Include="Recast\Source\RecastRasterization.cpp" />
+    <ClCompile Include="Recast\Source\RecastRegion.cpp" />
+  </ItemGroup>
+</Project>

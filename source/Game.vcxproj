@@ -45,12 +45,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(SolutionDir)..\tools\Navmeshes\DebugUtils\Include;$(SolutionDir)..\tools\Navmeshes\Detour\Include;$(SolutionDir)..\tools\Navmeshes\Recast\Include;$(SolutionDir)..\tools\Navmeshes\DetourCrowd\Include;$(SolutionDir)..\tools\Navmeshes\DetourTileCache\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(ProjectDir)..\Recast\DebugUtils\Include;$(ProjectDir)..\Recast\Detour\Include;$(ProjectDir)..\Recast\Recast\Include;$(ProjectDir)..\Recast\DetourCrowd\Include;$(ProjectDir)..\Recast\DetourTileCache\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(SolutionDir)..\tools\Navmeshes\DebugUtils\Include;$(SolutionDir)..\tools\Navmeshes\Detour\Include;$(SolutionDir)..\tools\Navmeshes\Recast\Include;$(SolutionDir)..\tools\Navmeshes\DetourCrowd\Include;$(SolutionDir)..\tools\Navmeshes\DetourTileCache\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(ProjectDir)..\Recast\DebugUtils\Include;$(ProjectDir)..\Recast\Detour\Include;$(ProjectDir)..\Recast\Recast\Include;$(ProjectDir)..\Recast\DetourCrowd\Include;$(ProjectDir)..\Recast\DetourTileCache\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -65,7 +65,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)$(Platform)\$(Configuration);$(TargetDir);$(TargetDir)..\libs\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Cal3D.lib;SLB.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Cal3D.lib;SLB.lib;Recast.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -87,7 +87,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)$(Platform)\$(Configuration);$(SolutionDir)../libs/$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Cal3D.lib;SLB.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Cal3D.lib;SLB.lib;Recast.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
