@@ -147,15 +147,16 @@ static bool getSteerTarget(dtNavMeshQuery* navQuery, const float* startPos, cons
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
-void CNavmeshQuery::findPath(TPos& start, TPos& end) {
+void CNavMeshQuery::findPath(VEC3 start, VEC3 end) {
 	m_pathFindStatus = DT_FAILURE;
 	m_pathIterNum = 0;
 
 	dtNavMeshQuery*	navQuery = data->getNavMeshQuery();
 
-	if (start.set && end.set && m_startRef && m_endRef) {
+    bool different = start != end;
+	if (different && m_startRef && m_endRef) {
 		navQuery->findPath(m_startRef, m_endRef,
-						   &start.p.x, &end.p.x,
+						   &start.x, &end.x,
 						   &m_filter, m_polys, &m_npolys, MAX_POLYS);
 		m_nsmoothPath = 0;
 
@@ -166,8 +167,8 @@ void CNavmeshQuery::findPath(TPos& start, TPos& end) {
 			int npolys = m_npolys;
 
 			float iterPos[3], targetPos[3];
-			navQuery->closestPointOnPoly(m_startRef, &start.p.x, iterPos, 0);
-			navQuery->closestPointOnPoly(polys[npolys - 1], &end.p.x, targetPos, 0);
+			navQuery->closestPointOnPoly(m_startRef, &start.x, iterPos, 0);
+			navQuery->closestPointOnPoly(polys[npolys - 1], &end.x, targetPos, 0);
 
 			static const float STEP_SIZE = 0.5f;
 			static const float SLOP = 0.01f;
@@ -264,7 +265,6 @@ void CNavmeshQuery::findPath(TPos& start, TPos& end) {
 						iterPos[1] = eh;
 					}
 				}
-
 				// Store results.
 				if (m_nsmoothPath < MAX_SMOOTH) {
 					dtVcopy(&m_smoothPath[m_nsmoothPath * 3], iterPos);
@@ -279,37 +279,43 @@ void CNavmeshQuery::findPath(TPos& start, TPos& end) {
 	}
 }
 
-void CNavmeshQuery::wallDistance(TPos& pos) {
+void CNavMeshQuery::wallDistance(VEC3 pos) {
 	float distanceToWall = 0;
-	if (pos.set && m_startRef) {
+	if (m_startRef) {
 		distanceToWall = 0.0f;
-		data->getNavMeshQuery()->findDistanceToWall(m_startRef, &pos.p.x, 100.0f, &m_filter, &distanceToWall, m_hitPos, m_hitNormal);
+		data->getNavMeshQuery()->findDistanceToWall(m_startRef, &pos.x,
+                                                    100.0f, &m_filter,
+                                                    &distanceToWall,
+                                                    m_hitPos, m_hitNormal);
 	}
 }
 
-void CNavmeshQuery::raycast(TPos& start, TPos& end) {
+void CNavMeshQuery::raycast(VEC3 start, VEC3 end) {
 	int nstraightPath = 0;
 	float straightPath[MAX_POLYS * 3];
 	bool hitResult;
 
 	dtNavMeshQuery*	navQuery = data->getNavMeshQuery();
 
-	if (start.set && end.set && m_startRef) {
+    bool different = start != end;
+    if (different && m_startRef) {
 		float t = 0;
 		m_npolys = 0;
 		nstraightPath = 2;
-		straightPath[0] = start.p.x;
-		straightPath[1] = start.p.y;
-		straightPath[2] = start.p.z;
-		navQuery->raycast(m_startRef, &start.p.x, &end.p.x, &m_filter, &t, m_hitNormal, m_polys, &m_npolys, MAX_POLYS);
+		straightPath[0] = start.x;
+		straightPath[1] = start.y;
+		straightPath[2] = start.z;
+		navQuery->raycast(m_startRef, &start.x, &end.x,
+                          &m_filter, &t, m_hitNormal,
+                          m_polys, &m_npolys, MAX_POLYS);
 		if (t > 1) {
 			// No hit
-			dtVcopy(m_hitPos, &end.p.x);
+			dtVcopy(m_hitPos, &end.x);
 			hitResult = false;
 		}
 		else {
 			// Hit
-			dtVlerp(m_hitPos, &start.p.x, &end.p.x, t);
+			dtVlerp(m_hitPos, &start.x, &end.x, t);
 			hitResult = true;
 		}
 		// Adjust height.

@@ -1,5 +1,4 @@
-#ifndef INC_RENDER_MANAGER_H_
-#define INC_RENDER_MANAGER_H_
+#pragma once
 
 #include "entity/entity.h"
 
@@ -10,7 +9,6 @@ class CMaterial;
 class CRenderManager {
 
 public:
-
 	struct TRenderKey {
 		CHandle                h_render_owner;     // Propietario de esta key
 		CHandle                h_transform;        // sibling component transform handle
@@ -27,7 +25,6 @@ public:
 private:
 	template < typename TClassKey >
 	struct TContainerKeys : public std::vector< TClassKey > {
-
 		void deleteByOwner(CHandle h_owner) {
 			auto it = begin();
 			while (it != end()) {
@@ -63,7 +60,6 @@ private:
 	CHandle                    h_camera;
 
 public:
-
 	void delRenderKeys(CHandle h_owner);
 	void addRenderKey(CHandle h_comp_render_owner
 		, const CRenderMesh* mesh
@@ -80,5 +76,3 @@ public:
 
 	static CRenderManager& get();
 };
-
-#endif

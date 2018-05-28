@@ -59,9 +59,9 @@ public:
 
     bool isValid() const;
 
-    dtNavMesh*      getNavMesh() { return navMesh; }
-    dtNavMeshQuery* getNavMeshQuery() { return navQuery; }
-    dtCrowd*        getCrowd() { return crowd; }
+    dtNavMesh*      getNavMesh() const { return navMesh; }
+    dtNavMeshQuery* getNavMeshQuery() const { return navQuery; }
+    dtCrowd*        getCrowd() const { return crowd; }
 
 private:
 	dtNavMesh*				navMesh = nullptr;

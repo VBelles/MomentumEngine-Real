@@ -2,25 +2,18 @@
 
 #include "navmesh.h"
 
-class CNavmeshQuery {
+class CNavMeshQuery {
 
 public:
-	struct TPos {
-		VEC3 p;
-		bool   set;
-		TPos() : p(0, 0, 0), set(false) {}
-	};
+	const CNavMesh* data;
 
-	CNavMesh* data;
-	TPos    p1;
-	TPos    p2;
+    CNavMeshQuery(const CNavMesh* aNavMesh) : data{aNavMesh} {}
 
-	void findPath(TPos& start, TPos& end);
-	void wallDistance(TPos& pos);
-	void raycast(TPos& start, TPos& end);
+	void findPath(VEC3 start, VEC3 end);
+	void wallDistance(VEC3 pos);
+	void raycast(VEC3 start, VEC3 end);
 
 private:
-	
 	dtQueryFilter m_filter;
 
 	dtStatus m_pathFindStatus;

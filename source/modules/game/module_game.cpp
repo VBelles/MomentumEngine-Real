@@ -19,6 +19,8 @@
 #include "geometry/curve.h"
 #include "gui/gui_parser.h"
 #include "gui/controllers/hud_controller.h"
+#include "navmesh/navmesh.h"
+#include "navmesh/navmesh_query.h"
 
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
@@ -71,6 +73,12 @@ bool CModuleGame::start() {
 	Engine.getCameras().setDefaultCamera(h_playerCamera);
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
+
+    // Navmesh test
+    auto navmesh = Resources.get("data/solo_navmesh.bin")->as<CNavMesh>();
+    CNavMeshQuery navquery{navmesh};
+    int n = navmesh->getNavMesh()->getMaxTiles();
+    navquery.findPath(VEC3(0,0,0), VEC3(3,0,3));
 
     EngineScripting.throwEvent(onGameStart,"");
 	EngineScripting.throwEvent(onLevelStart, "1"); 
