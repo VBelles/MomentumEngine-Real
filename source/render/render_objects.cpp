@@ -336,22 +336,22 @@ void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture)
     mesh->activateAndRender();
 }
 
-void renderDots(TVtxPosClr vertices[]) {
+void renderDots(TVtxPosClr vertices[], int numVertices) {
 	CRenderMesh* mesh = new CRenderMesh;
 	//float vertices[] = {pos.x, pos.y, pos.z, color.x, color.y, color.z, color.w};
-	if (mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::POINT_LIST))
+	if (mesh->create(vertices, sizeof(TVtxPosClr) * numVertices, "PosClr", CRenderMesh::POINT_LIST))
 		mesh->activateAndRender();
 }
 
-void renderTriangles(TVtxPosClr vertices[]) {
+void renderTriangles(TVtxPosClr vertices[], int numVertices) {
 	CRenderMesh* mesh = new CRenderMesh;
-	if (mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::TRIANGLE_LIST)) // No sé si esto funciona tal cual o hay que hacer algo con el sizeof.
+	if (mesh->create(vertices, sizeof(TVtxPosClr) * numVertices, "PosClr", CRenderMesh::TRIANGLE_LIST)) // No rula, sizeof va mal.
 		mesh->activateAndRender();
 }
 
-void renderLines(TVtxPosClr vertices[]) {
+void renderLines(TVtxPosClr vertices[], int numVertices) {
 	CRenderMesh* mesh = new CRenderMesh;
-	if (mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::LINE_LIST)) // No sé si esto funciona tal cual o hay que hacer algo con el sizeof.
+	if (mesh->create(vertices, sizeof(TVtxPosClr) * numVertices, "PosClr", CRenderMesh::LINE_LIST)) // No rula, sizeof va mal.
 		mesh->activateAndRender();
 }
 

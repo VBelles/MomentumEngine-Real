@@ -10,8 +10,11 @@ public:
 	CNavMeshQuery(const CNavMesh* aNavMesh);
 
 	void findPath(VEC3 start, VEC3 end);
-	void wallDistance(VEC3 pos);
+	std::vector<VEC3> getSmoothPath(VEC3 start, VEC3 end);
+	void wallDistance(VEC3 fromPos);
+	float getWallDistance(VEC3 fromPos);
 	void raycast(VEC3 start, VEC3 end);
+	// TODO: Añadir un getRaycast si lo queremos usar.
 
 private:
 	dtQueryFilter m_filter;
@@ -34,6 +37,7 @@ private:
 	
 	int m_pathIterNum;
 	
+	float m_distanceToWall;
 	float m_hitPos[3];
 	float m_hitNormal[3];
 };

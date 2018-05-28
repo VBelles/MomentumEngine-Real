@@ -79,8 +79,9 @@ bool CModuleGame::start() {
     // Navmesh test
     auto navmesh = Resources.get("data/solo_navmesh.bin")->as<CNavMesh>();
     CNavMeshQuery navquery{navmesh};
-    int n = navmesh->getNavMesh()->getMaxTiles();
-    navquery.findPath(VEC3(0,0,0), VEC3(3,0,3));
+    auto path = navquery.getSmoothPath(VEC3(0,0,0), VEC3(0,0,100));
+	float wallDist = navquery.getWallDistance(VEC3(0,0,0));
+	//const_cast<CNavMesh*>(navmesh)->render(false);
 
     EngineScripting.throwEvent(onGameStart,"");
 	EngineScripting.throwEvent(onLevelStart, "1"); 
@@ -145,6 +146,10 @@ void CModuleGame::render() {
 	else {
 		activateCamera(camera, Render.width, Render.height);
 	}
+
+	// Navmesh test
+	auto navmesh = Resources.get("data/solo_navmesh.bin")->as<CNavMesh>();
+	const_cast<CNavMesh*>(navmesh)->render(false);
 
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
 	solid->activate();

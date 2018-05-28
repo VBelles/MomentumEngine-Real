@@ -30,7 +30,7 @@ CNavMesh::CNavMesh() {
     navQuery = dtAllocNavMeshQuery();
     crowd = dtAllocCrowd();
 
-	drawMode = EDrawMode::NAVMESH_DRAW_COUNTOURS;
+	drawMode = EDrawMode::NAVMESH_DRAW_MESH;
 
     cfg.tileSize = 32;
     cfg.cs = 0.3f;

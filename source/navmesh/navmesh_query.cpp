@@ -287,15 +287,28 @@ void CNavMeshQuery::findPath(VEC3 start, VEC3 end) {
 	}
 }
 
+std::vector<VEC3> CNavMeshQuery::getSmoothPath(VEC3 start, VEC3 end) {
+	findPath(start, end);
+	std::vector<VEC3> path;
+	for (int i = 0; i < m_npolys; i += 3) {
+		path.push_back(VEC3(m_smoothPath[i], m_smoothPath[i + 1], m_smoothPath[i + 2]));
+	}
+	return path;
+}
+
 void CNavMeshQuery::wallDistance(VEC3 pos) {
-	float distanceToWall = 0;
 	if (m_startRef) {
-		distanceToWall = 0.0f;
+		m_distanceToWall = 0.0f;
 		data->getNavMeshQuery()->findDistanceToWall(m_startRef, &pos.x,
                                                     100.0f, &m_filter,
-                                                    &distanceToWall,
+                                                    &m_distanceToWall,
                                                     m_hitPos, m_hitNormal);
 	}
+}
+
+float CNavMeshQuery::getWallDistance(VEC3 fromPos) {
+	wallDistance(fromPos);
+	return m_distanceToWall;
 }
 
 void CNavMeshQuery::raycast(VEC3 start, VEC3 end) {

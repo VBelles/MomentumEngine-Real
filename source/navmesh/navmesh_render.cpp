@@ -54,12 +54,12 @@ void NavMeshDebugDrawDX::vertex(const float x, const float y, const float z, uns
 
 void NavMeshDebugDrawDX::end() {
 	if (primitive == DU_DRAW_POINTS) {
-		renderDots(colored_vertices);
+		renderDots(colored_vertices, num_colored_vertices);
 		
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_POINTLIST, num_colored_vertices, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_LINES) {
-		renderLines(colored_vertices);
+		if (num_colored_vertices) renderLines(colored_vertices, num_colored_vertices);
 		
 		/*int pairsOfVertices = num_colored_vertices / 2;
         for (int i = 0; i < pairsOfVertices; ++i) {
@@ -71,7 +71,7 @@ void NavMeshDebugDrawDX::end() {
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_LINELIST, num_colored_vertices / 2, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_TRIS) {
-		renderTriangles(colored_vertices);
+		renderTriangles(colored_vertices, num_colored_vertices);
 
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, num_colored_vertices / 3, colored_vertices, sizeof(TVtxPosClr));
 	}
