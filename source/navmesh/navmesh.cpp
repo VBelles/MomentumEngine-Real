@@ -121,6 +121,9 @@ bool CNavMesh::create(const std::string& binFilePath) {
     }
     fclose(fp);
 
+	dtStatus st = navQuery->init(navMesh, 2048);
+	if (dtStatusFailed(st)) dbg("NAVMESH PREPARATION FAILED!\n");
+
     return true;
 }
 

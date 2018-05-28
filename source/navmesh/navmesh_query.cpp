@@ -144,6 +144,12 @@ static bool getSteerTarget(dtNavMeshQuery* navQuery, const float* startPos, cons
 	return true;
 }
 
+CNavMeshQuery::CNavMeshQuery(const CNavMesh* aNavMesh) : data{ aNavMesh } {
+	m_polyPickExt[0] = 2;
+	m_polyPickExt[1] = 4;
+	m_polyPickExt[2] = 2;
+}
+
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
@@ -151,6 +157,8 @@ void CNavMeshQuery::findPath(VEC3 start, VEC3 end) {
 	m_pathFindStatus = DT_FAILURE;
 	m_pathIterNum = 0;
 
+	data->getNavMeshQuery()->findNearestPoly(&start.x, m_polyPickExt, &m_filter, &m_startRef, 0);
+	data->getNavMeshQuery()->findNearestPoly(&end.x,   m_polyPickExt, &m_filter, &m_endRef, 0);
 	dtNavMeshQuery*	navQuery = data->getNavMeshQuery();
 
     bool different = start != end;
