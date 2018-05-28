@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mcv_platform.h"
+
 
 namespace GUI {
 	class CWidget;

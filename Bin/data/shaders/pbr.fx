@@ -328,7 +328,7 @@ float4 PS_ambient(
   float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + 
                               albedo.xyz * irradiance * g_AmbientLightIntensity
                               , 1.0f) + self_illum;
-
+  
   return final_color * global_ambient_adjustment * ao;
 }
 

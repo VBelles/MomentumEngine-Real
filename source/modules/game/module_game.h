@@ -4,7 +4,7 @@
 
 class CModuleGame : public IModule {
 private:
-	GUI::CHudController controller;
+	//GUI::CHudController* hudController;
 
 public:
 	CModuleGame(const std::string& aname) : IModule(aname) {}

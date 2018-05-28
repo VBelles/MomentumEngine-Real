@@ -9,6 +9,7 @@
 #include "modules/system/scripting/scripting_door.h"
 #include "modules/system/scripting/scripting_manager.h"
 #include "modules/system/scripting/scripting_cameras.h"
+#include "modules/system/scripting/scripting_sound.h"
 
 CModuleScripting* CModuleScripting::instance = nullptr;
 
@@ -40,13 +41,13 @@ void CModuleScripting::initSLB() {
 	script->setPrintCallback(&printCallback);
 
 	//Bind clases
-	ScriptingManager::bindGameConstants(manager);
 	ScriptingManager::bind(manager);
 	ScriptingPlayer::bind(manager);
 	ScriptingCameras::bind(manager);
 	ScriptingEntities::create();
 	ScriptingEntities::bind(manager);
 	ScriptingDoor::bind(manager);
+	ScriptingSound::bind(manager);
 
 	//Create binded objects
 	execString("SLB.using(SLB)");

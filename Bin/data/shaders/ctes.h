@@ -12,6 +12,7 @@
 #define CB_BLOOM        7
 #define CB_FOCUS        8
 #define CB_GUI          9
+#define CB_FOG          10
 
 // -------------------------------------------------
 // Texture Slots
@@ -193,3 +194,13 @@ CB_DEF(CCteGUI, CB_GUI) {
     VEC2 maxUV;
     VEC4 tint_color;
 };
+
+CB_DEF(CCteFog, CB_FOG) {
+	VEC4 fogColor;
+	// Align x4
+	float fogDensity;
+	float fogMaxRatio;
+	float fog_pad1;
+	float fog_pad2;
+};
+

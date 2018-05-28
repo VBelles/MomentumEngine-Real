@@ -35,6 +35,12 @@
 #include "components/player/states/base_states/wall_jump/WallJumpPlummetActionState.h"
 #include "components/player/states/base_states/FallingAttackActionState.h"
 #include "components/player/states/base_states/combat/StrongAttackActionState.h"
+#include "components/player/states/base_states/combat/StrongAttack2ActionState.h"
+#include "components/player/states/base_states/combat/StrongAttack3ActionState.h"
+#include "components/player/states/base_states/combat/StrongFinisher1ActionState.h"
+#include "components/player/states/base_states/combat/StrongFinisher2ActionState.h"
+#include "components/player/states/base_states/combat/FastFinisher1ActionState.h"
+#include "components/player/states/base_states/combat/FastFinisher2ActionState.h"
 #include "components/player/states/base_states/combat/HorizontalLauncherActionState.h"
 #include "components/player/states/base_states/combat/VerticalLauncherActionState.h"
 #include "components/player/states/base_states/combat/ReleasePowerGroundActionState.h"
@@ -50,6 +56,7 @@
 #include "components/player/states/concurrent_states/SoftKnockbackAirActionState.h"
 #include "components/player/states/concurrent_states/FreeActionState.h"
 #include "components/player/states/concurrent_states/FastAttackActionState.h"
+#include "components/player/states/concurrent_states/FastAttack2ActionState.h"
 #include "components/player/states/concurrent_states/FastAttackAirActionState.h"
 #include "components/player/states/concurrent_states/GrabHighActionState.h"
 #include "components/player/states/concurrent_states/GrabLongActionState.h"
@@ -99,6 +106,12 @@ void StateManager::registerStates() {
 	registerState(AirborneWallJumpActionState);
 	registerState(FallingAttackActionState);
 	registerState(StrongAttackActionState);
+	registerState(StrongAttack2ActionState);
+	registerState(StrongAttack3ActionState);
+	registerState(StrongFinisher1ActionState);
+	registerState(StrongFinisher2ActionState);
+	registerState(FastFinisher1ActionState);
+	registerState(FastFinisher2ActionState);
 	registerState(VerticalLauncherActionState);
 	registerState(HorizontalLauncherActionState);
 	registerState(ReleasePowerGroundActionState);
@@ -116,6 +129,7 @@ void StateManager::registerStates() {
 
 	registerConcurrentState(FreeActionState);
 	registerConcurrentState(FastAttackActionState);
+	registerConcurrentState(FastAttack2ActionState);
 	registerConcurrentState(FastAttackAirActionState);
 	registerConcurrentState(GrabHighActionState);
 	registerConcurrentState(GrabLongActionState);

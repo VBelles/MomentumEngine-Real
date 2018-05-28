@@ -16,11 +16,15 @@ ReleasePowerAirActionState::ReleasePowerAirActionState(StateManager* stateManage
 	AttackState(stateManager) {
 	cancelableTime = frames2sec(6);
 	interruptibleTime = frames2sec(43);
+	invulnerabilityStartTime = frames2sec(7);
+	invulnerabilityEndTime = frames2sec(10);
+	superarmorStartTime = frames2sec(0);
+	superarmorEndTime = frames2sec(7);
 }
 
 void ReleasePowerAirActionState::update(float delta) {
 	PxExtendedVec3 cctPos = getCollider()->controller->getPosition();
-	getBlurRadial()->setCenterInWorldCoordinates(toVec3(cctPos));
+	getBlurRadial()->setCenterInWorldCoordinates(extendedToVec3(cctPos));
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
@@ -98,6 +102,22 @@ void ReleasePowerAirActionState::onReleasePowerButton() {
 		getPowerGauge()->releasePower();
 	}
 	if (phase == AttackPhases::Recovery) getPowerGauge()->releasePower();
+}
+
+void ReleasePowerAirActionState::onDamage(const TMsgAttackHit & msg) {
+	if (hasInvulnerability()) {
+		//enviar mensaje a enemigo conforme ha sido esquivado finamente
+		dbg("Can't touch this! Hammer Time!\n");
+		CEntity* attacker = msg.attacker.getOwner();
+		attacker->sendMsg(TMsgPerfectDodged{});
+	}
+	else if (hasSuperArmor()) {
+		dbg("super armor!\n");
+		IActionState::onDamage(msg);
+	}
+	else {
+		AirborneActionState::onDamage(msg);
+	}
 }
 
 void ReleasePowerAirActionState::onLanding() {

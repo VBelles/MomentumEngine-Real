@@ -31,6 +31,7 @@ void AttackState::onStateEnter(IActionState * lastState) {
 	phase = AttackPhases::Startup;
 	timer.reset();
 	cancelTimer.reset();
+	invulnerableTimer.reset();
 }
 
 void AttackState::onStateExit(IActionState * nextState) {
@@ -46,6 +47,20 @@ bool AttackState::isCancelable() {
 
 bool AttackState::isInterruptible() {
 	if (cancelTimer.elapsed() >= interruptibleTime) {
+		return true;
+	}
+	return false;
+}
+
+bool AttackState::hasInvulnerability() {
+	if (invulnerableTimer.elapsed() >= invulnerabilityStartTime && invulnerableTimer.elapsed() < invulnerabilityEndTime) {
+		return true;
+	}
+	return false;
+}
+
+bool AttackState::hasSuperArmor() {
+	if (invulnerableTimer.elapsed() >= superarmorStartTime && invulnerableTimer.elapsed() < superarmorEndTime) {
 		return true;
 	}
 	return false;

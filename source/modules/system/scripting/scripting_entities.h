@@ -12,6 +12,8 @@ private:
 	std::map<std::string, int> spawnCounters;
 	TCompTransform* getPlayerTransform();
 
+	static void bindConstants(SLB::Manager* manager);
+
 public:
 	static void create() { if (!instance) instance = new ScriptingEntities(); }
 	static void destroy() { SAFE_DELETE(instance) }

@@ -49,6 +49,7 @@ void StrongAttackActionState::update(float delta) {
 void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
+	dbg("Strong 1\n");
 	phase = AttackPhases::Launch;
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
@@ -60,6 +61,10 @@ void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 }
 
+void StrongAttackActionState::onStrongAttackButton() {
+	if (isInterruptible()) stateManager->changeState(StrongAttack2);
+}
+
 void StrongAttackActionState::onStrongAttackButtonReleased() {
 	if (phase == AttackPhases::Launch) {
 		phase = AttackPhases::Startup;
@@ -67,12 +72,16 @@ void StrongAttackActionState::onStrongAttackButtonReleased() {
 	}
 }
 
-void StrongAttackActionState::onDodgeButton() {
-	if(isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
+void StrongAttackActionState::onFastAttackButton() {
+	if (isInterruptible()) stateManager->changeState(FastFinisher1);
 }
 
-void StrongAttackActionState::onLeavingGround() {
-	stateManager->changeState(GhostJumpWindow);
+void StrongAttackActionState::onDodgeButton() {
+	if (isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
+}
+
+void StrongAttackActionState::onReleasePowerButton() {
+	if (isInterruptible()) GroundedActionState::onReleasePowerButton();
 }
 
 void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

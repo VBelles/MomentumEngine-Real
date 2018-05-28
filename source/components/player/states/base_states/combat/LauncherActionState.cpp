@@ -40,7 +40,7 @@ void LauncherActionState::onStateExit(IActionState * nextState) {
 }
 
 void LauncherActionState::onDodgeButton() {
-	if (isCancelable() || isInterruptible()) stateManager->changeState(Dodge);
+	if (isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
 }
 
 void LauncherActionState::onLeavingGround() {

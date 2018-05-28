@@ -8,5 +8,10 @@
         "name" : "power_progress",
         "type" : "float",
         "value" : 0.0
+    },
+    {
+        "name" : "hp",
+        "type" : "int",
+        "value" : 0
     }
 ]

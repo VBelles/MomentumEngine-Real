@@ -7,11 +7,13 @@ private:
 	int powerLevel = 1;	//Ex: 1, 2, 3 (ssj)
 	float power = 0.f;	//Ex: 2300
 	float maxPower = 0.f;
-	float powerPerLevel = 0.f;
-	float dropSpeed = 0.f;
+	float powerPerLevel[NUMBER_OF_POWER_LEVELS];
+	float dropSpeed[NUMBER_OF_POWER_LEVELS];
 	bool isPure = true;
 	float freezeDropTime = 1.f;
 	CTimer freezeDropTimer;
+
+	float getPowerLevelPercentage();
 
 public:
 
@@ -29,5 +31,5 @@ public:
 	float getPower();
 	float getMaxPower();
 
-
+	float getBarPercentage();
 };

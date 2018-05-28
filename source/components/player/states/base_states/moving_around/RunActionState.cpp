@@ -3,6 +3,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_render.h"
 #include "components/comp_camera.h"
+#include "components/controllers/comp_camera_player.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
@@ -73,6 +74,10 @@ void RunActionState::update(float delta) {
 void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+
+	CEntity* cameraEntity = getEntityByName(PLAYER_CAMERA);
+	TCompCameraPlayer* camera = cameraEntity->get<TCompCameraPlayer>();
+	camera->moveCameraCloser(false);
 }
 
 void RunActionState::onStateExit(IActionState * nextState) {

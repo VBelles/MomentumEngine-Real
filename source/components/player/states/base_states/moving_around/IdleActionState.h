@@ -5,6 +5,8 @@
 class IdleActionState : public GroundedActionState {
 private:
 	std::string animation = "idle";
+	CTimer closeCameraTimer;
+	float closeCameraTime = 3.f;
 
 public:
 	IdleActionState(StateManager* stateManager);
