@@ -138,8 +138,6 @@ void SimpleConsole::Draw(const char* title, bool* p_open) {
 		
 	}
 	
-	
-
 	ImGui::End();
 }
 

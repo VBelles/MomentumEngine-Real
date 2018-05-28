@@ -8,6 +8,8 @@
 #include "utils/json.hpp"
 #include "windows/app.h"
 #include <fstream>
+#include "modules/system/scripting/scripting_player.h"
+
 
 CModuleInput::CModuleInput(const std::string& name)
     : IModule(name) {
@@ -88,6 +90,9 @@ void CModuleInput::update(float delta) {
 		CApp::get().showDebug = !CApp::get().showDebug;
 		CApp::get().resetCursorPos = !CApp::get().resetCursorPos;
 		ShowCursor(CApp::get().showDebug);
+		if (!CApp::get().showDebug  && EngineModules.getCurrentGameState()->getName() == "game_state") {
+			ScriptingPlayer::givePlayerControl();
+		}
 	}
 	if (CApp::get().resetCursorPos && CApp::get().isWindowFocused) {
 		RECT rect;
