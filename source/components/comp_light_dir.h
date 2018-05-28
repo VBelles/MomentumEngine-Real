@@ -30,5 +30,6 @@ public:
 
 	void activate();
 	void generateShadowMap();
+	std::string getShadowsCategory();
 
 };

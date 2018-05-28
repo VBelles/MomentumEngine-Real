@@ -201,6 +201,16 @@
     "z": "disable_all",
     "blend": "additive"
   },
+  "pbr_dir_lights_player": {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "vertex_type": "PosClr",
+    "ps_file": "data/shaders/pbr.fx",
+    "ps_entry_point": "PS_dir_lights_player",
+    "category": "pbr_proc",
+    "priority": 310,
+    "z": "disable_all",
+    "blend": "additive"
+  },
   "pbr_point_lights": {
     "vs_file": "data/shaders/pbr.fx",
     "ps_file": "data/shaders/pbr.fx",

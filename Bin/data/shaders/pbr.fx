@@ -399,6 +399,43 @@ float4 PS_dir_lights( in float4 iPosition : SV_Position ) : SV_Target
   return shade( iPosition, true );
 }
 
+float4 PS_dir_lights_player( in float4 iPosition : SV_Position ) : SV_Target
+{
+  // Decode GBuffer information
+  float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+  float  roughness;
+  decodeGBuffer( iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir );
+
+  // Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
+  float shadow_factor =  computeShadowFactor( wPos ); 
+  if(shadow_factor < 1) shadow_factor = 0;
+
+  // From wPos to Light
+  //camera_front.xyz de la luz
+  float3 light_dir_full = -light_front;//-light_front;  //float3( 0, 1, 0 ); //light_pos.xyz - wPos;
+  float  distance_to_light = length( light_dir_full );
+  float3 light_dir = light_dir_full / distance_to_light;
+
+  float  NdL = saturate(dot(N, light_dir));
+  float  NdV = saturate(dot(N, view_dir));
+  float3 h   = normalize(light_dir + view_dir); // half vector
+
+  float  NdH = saturate(dot(N, h));
+  float  VdH = saturate(dot(view_dir, h));
+  float  LdV = saturate(dot(light_dir, view_dir));
+  float  a   = max(0.001f, roughness * roughness);
+  float3 cDiff = Diffuse(albedo);
+  float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
+
+  float  att = ( 1. - smoothstep( 0.90, 0.98, distance_to_light / light_radius ));
+  // att *= 1 / distance_to_light;
+
+  float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;
+  if(shadow_factor < 1)
+    return float4( 0,0,0, 1 );
+  return float4(final_color, 1);
+}
+
 
 // ----------------------------------------
 void VS_skybox( 

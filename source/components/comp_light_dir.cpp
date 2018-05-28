@@ -120,3 +120,7 @@ void TCompLightDir::generateShadowMap() {
 
 	CRenderManager::get().renderCategory(shadows_category.c_str());
 }
+
+std::string TCompLightDir::getShadowsCategory() {
+	return shadows_category;
+}
