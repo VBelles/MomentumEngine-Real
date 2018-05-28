@@ -22,6 +22,8 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("spawnMedusa", SLB::FuncCall::create(ScriptingEntities::spawnMedusa));
 	manager->set("stopEntities", SLB::FuncCall::create(ScriptingEntities::stopEntities));
 	manager->set("resumeEntities", SLB::FuncCall::create(ScriptingEntities::resumeEntities));
+	manager->set("stopEnemies", SLB::FuncCall::create(ScriptingEntities::stopEnemies));
+	manager->set("resumeEnemies", SLB::FuncCall::create(ScriptingEntities::resumeEnemies));
 }
 
 void ScriptingEntities::bindConstants(SLB::Manager* manager) {
@@ -105,4 +107,16 @@ void ScriptingEntities::resumeEntities() {
 	Engine.getEntities().setManagerUpdate("platform_move", true);
 	Engine.getEntities().setManagerUpdate("platform_rotative", true);
 	Engine.getEntities().setManagerUpdate("follow_curve", true);
+}
+
+void ScriptingEntities::stopEnemies() {
+	Engine.getEntities().setManagerUpdate("behaviorTree_melee_enemy", false);
+	Engine.getEntities().setManagerUpdate("behaviorTree_ball_enemy", false);
+	Engine.getEntities().setManagerUpdate("behaviorTree_flying_ranged_enemy", false);
+}
+
+void ScriptingEntities::resumeEnemies() {
+	Engine.getEntities().setManagerUpdate("behaviorTree_melee_enemy", true);
+	Engine.getEntities().setManagerUpdate("behaviorTree_ball_enemy", true);
+	Engine.getEntities().setManagerUpdate("behaviorTree_flying_ranged_enemy", true);
 }

@@ -30,4 +30,6 @@ public:
 
 	static void stopEntities();
 	static void resumeEntities();
+	static void ScriptingEntities::stopEnemies();
+	static void ScriptingEntities::resumeEnemies();
 };
