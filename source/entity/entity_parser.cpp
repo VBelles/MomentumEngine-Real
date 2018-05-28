@@ -4,6 +4,7 @@
 #include "common_msgs.h"
 #include "resources/json_resource.h"
 #include "components/comp_group.h"
+#include "components/comp_name.h"
 
 // Find in the current list of entities created, the first entity matching
 // the given name
@@ -103,19 +104,29 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 	// Create a comp_group automatically if there is more than one entity
 	if (ctx.entities_loaded.size() > 1) {
-		// The first entity becomes the head of the group. He is NOT in the group
-		CHandle h_root_of_group = ctx.entities_loaded[0];
-		CEntity* e_root_of_group = h_root_of_group;
+		//Create new entity for group root
+		CHandle groupRootEntity;
+		groupRootEntity.create<CEntity>();
+		CEntity* e_root_of_group = groupRootEntity;
 		assert(e_root_of_group);
+
 		// Create a new instance of the TCompGroup
 		CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
 		// Add it to the entity
 		e_root_of_group->set(h_group.getType(), h_group);
+
+		// Add name component
+		TCompName* nameComp = getObjectManager<TCompName>()->createHandle();
+		nameComp->setName(("group_root_" + filename).c_str());
+		e_root_of_group->set(CHandle(nameComp).getType(), nameComp);
+
 		// Now add the rest of entities created to the group, starting at 1 because 0 is the head
 		TCompGroup* c_group = h_group;
 		for (size_t i = 1; i < ctx.entities_loaded.size(); ++i) {
 			c_group->add(ctx.entities_loaded[i]);
 		}
+
+		
 	}
 
 	// Notify each entity created that we have finished
