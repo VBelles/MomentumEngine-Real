@@ -31,6 +31,12 @@ void VS(
   oWorldPos = world_pos.xyz;
 }
 
+float getZViewSpace( float3 worldPos ){
+	float3 delta = (worldPos - camera_pos);
+	float z = dot(delta, camera_front);
+	return z;
+}
+
 //--------------------------------------------------------------------------------------
 float scale(float A, float A1, float A2, float Min, float Max) {
 	float percentage = (A - A1) / (A1 - A2);
@@ -57,12 +63,12 @@ float4 PS(
 	float2 pos_camera_unit_space = float2((1 + pos_homo_space.x) * 0.5, (1 - pos_homo_space.y) * 0.5);
 
 	float4 background_color;
-	float zlinear = txGBufferLinearDepth.Sample(samLinear, pos_camera_unit_space + noise.xy).x;
-	if (zlinear > length(iWorldPos - camera_pos) / (camera_zfar - camera_znear)) {
-		background_color = txGBufferAlbedos.Sample(samLinear, pos_camera_unit_space + noise.xy);
+	float zlinear = txGBufferLinearDepth.Sample(samClampPoint, pos_camera_unit_space + noise.xy).x;
+	if (zlinear * camera_zfar > getZViewSpace(iWorldPos)) {
+		background_color = txGBufferAlbedos.Sample(samClampPoint, pos_camera_unit_space + noise.xy);	
 	}
 	else {
-		background_color = txGBufferAlbedos.Sample(samLinear, pos_camera_unit_space);
+		background_color = txGBufferAlbedos.Sample(samClampLinear, pos_camera_unit_space);
 	}
 
 	float4 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, normal, 6);
