@@ -17,6 +17,7 @@ Bin/*.cpuprofile
 SLB/x64/
 tools/Navmeshes/source/
 tools/Navmeshes/demos/crowds/.vs/
+tools/Navmeshes/demos/crowds/Debug/
 tools/Coroutines/.vs/
 tools/Coroutines/bin/*.lib
 tools/Coroutines/bin/*.ilk
