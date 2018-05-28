@@ -132,6 +132,8 @@ public:
 	void strongAttackButtonReleased();
 	void centerCameraButtonPressed();
 	void releasePowerButtonPressed();
+	void spendCoinsButtonPressed();
+	void spendCoinsButtonReleased();
 	void dodgeButtonPressed();
 	void walkButtonPressed();
 	void gainPowerButtonPressed();

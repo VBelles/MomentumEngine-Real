@@ -3,6 +3,7 @@
 #include "components/player/states/IActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/comp_power_gauge.h"
+#include "components/player/comp_collectable_manager.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
@@ -13,6 +14,7 @@
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/base_states/GhostJumpWindowActionState.h"
+#include "components/player/states/base_states/SpendCoinsActionState.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
 #include "components/player/states/base_states/moving_around/WalkActionState.h"
 #include "components/player/states/base_states/moving_around/TurnAroundActionState.h"
@@ -71,7 +73,8 @@ StateManager::StateManager(CHandle entityHandle) :
 	renderHandle(getEntity()->get<TCompRender>()),
 	skeletonHandle(getEntity()->get<TCompSkeleton>()),
 	hitboxesHandle(getEntity()->get<TCompHitboxes>()),
-	powerGaugeHandle(getEntity()->get<TCompPowerGauge>()) {
+	powerGaugeHandle(getEntity()->get<TCompPowerGauge>()),
+	collectableManagerHandle(getEntity()->get<TCompCollectableManager>()) {
 
 	registerStates();
 }
@@ -126,6 +129,7 @@ void StateManager::registerStates() {
 	registerState(HardKnockbackAirActionState);
 	registerState(SpringJumpActionState);
 	registerState(DodgeActionState);
+	registerState(SpendCoinsActionState);
 
 	registerConcurrentState(FreeActionState);
 	registerConcurrentState(FastAttackActionState);
@@ -206,4 +210,6 @@ TCompCamera* StateManager::getCamera() { return ((CEntity *)getEntityByName(GAME
 TCompSkeleton* StateManager::getSkeleton() { return skeletonHandle; }
 TCompHitboxes* StateManager::getHitboxes() { return hitboxesHandle; }
 TCompPowerGauge* StateManager::getPowerGauge() { return powerGaugeHandle; }
+TCompCollectableManager * StateManager::getCollectableManager() { return collectableManagerHandle; }
+
 

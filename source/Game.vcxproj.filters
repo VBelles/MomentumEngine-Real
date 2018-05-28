@@ -228,6 +228,7 @@
     <ClCompile Include="components\postfx\comp_render_fog.cpp" />
     <ClCompile Include="modules\system\module_uniques.cpp" />
     <ClCompile Include="components\player\comp_collectable_manager.cpp" />
+    <ClCompile Include="components\player\states\base_states\SpendCoinsActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -489,6 +490,7 @@
     <ClInclude Include="components\postfx\comp_render_fog.h" />
     <ClInclude Include="modules\system\module_uniques.h" />
     <ClInclude Include="components\player\comp_collectable_manager.h" />
+    <ClInclude Include="components\player\states\base_states\SpendCoinsActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -386,6 +386,14 @@ void TCompPlayerModel::releasePowerButtonPressed() {
 	stateManager->getConcurrentState()->onReleasePowerButton();
 }
 
+void TCompPlayerModel::spendCoinsButtonPressed() {
+	dbg("pressed\n");
+}
+
+void TCompPlayerModel::spendCoinsButtonReleased() {
+	dbg("released\n");
+}
+
 void TCompPlayerModel::dodgeButtonPressed() {
 	if (!lockAttack) {
 		stateManager->getState()->onDodgeButton();

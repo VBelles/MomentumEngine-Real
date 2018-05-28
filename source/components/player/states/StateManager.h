@@ -12,6 +12,7 @@ class TCompHitboxes;
 class TCompRenderBlurRadial;
 class TCompPowerGauge;
 class IActionState;
+class TCompCollectableManager;
 
 class StateManager {
 
@@ -25,6 +26,7 @@ private:
 	CHandle skeletonHandle;
 	CHandle hitboxesHandle;
 	CHandle powerGaugeHandle;
+	CHandle collectableManagerHandle;
 
 	std::map<State, IActionState*> states;
 	std::map<ConcurrentState, IActionState*> concurrentStates;
@@ -81,6 +83,7 @@ public:
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
 	TCompPowerGauge* getPowerGauge();
+	TCompCollectableManager* getCollectableManager();
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;

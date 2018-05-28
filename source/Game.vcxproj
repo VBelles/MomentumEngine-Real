@@ -177,6 +177,7 @@
     <ClCompile Include="components\player\states\base_states\death\DeathActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\knockback\HardKnockbackGroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\SpendCoinsActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\spring_jump\SpringJumpActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
@@ -409,6 +410,7 @@
     <ClInclude Include="components\player\states\base_states\death\DeathActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\knockback\HardKnockbackGroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\SpendCoinsActionState.h" />
     <ClInclude Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\spring_jump\SpringJumpActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
