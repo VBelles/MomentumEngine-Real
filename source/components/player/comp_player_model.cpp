@@ -12,12 +12,10 @@
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/StateManager.h"
-#include "components/player/attack_info.h"
 
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
-using namespace physx;
 
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
@@ -125,7 +123,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
-	
+
 	respawnPosition = getTransform()->getPosition();
 
 	renderUI->registerOnRenderUI([&]() {
@@ -297,7 +295,7 @@ void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
 }
 
 void TCompPlayerModel::onControllerHit(const TMsgControllerHit& msg) {
-	
+
 }
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
@@ -478,8 +476,8 @@ TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
 }
 
 TCompPlayerModel::~TCompPlayerModel() {
-	SAFE_DELETE(powerStats[0]);
-	SAFE_DELETE(powerStats[1]);
-	SAFE_DELETE(powerStats[2]);
+	for (int i = 0; i < NUMBER_OF_POWER_LEVELS; i++) {
+		SAFE_DELETE(powerStats[i]);
+	}
 	SAFE_DELETE(stateManager);
 }

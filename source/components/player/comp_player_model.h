@@ -48,8 +48,8 @@ private:
 
 	MoveState moveState;
 
-	std::string materials[3];
-	PowerStats* powerStats[3];
+	std::string materials[NUMBER_OF_POWER_LEVELS];
+	PowerStats* powerStats[NUMBER_OF_POWER_LEVELS];
 	PowerStats* currentPowerStats = nullptr;
 
 	const float PLAYER_MAX_HP = 8.f;

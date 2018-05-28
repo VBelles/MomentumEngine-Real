@@ -6,7 +6,6 @@
 class CCollisionMesh;
 struct TMsgEntityCreated;
 
-using namespace physx;
 
 struct TMsgTriggerEnter {
 	CHandle h_other_entity;
