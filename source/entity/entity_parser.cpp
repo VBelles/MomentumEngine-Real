@@ -120,9 +120,9 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 		nameComp->setName(("group_root_" + filename).c_str());
 		e_root_of_group->set(CHandle(nameComp).getType(), nameComp);
 
-		// Now add the rest of entities created to the group, starting at 1 because 0 is the head
+		// Now add the rest of entities
 		TCompGroup* c_group = h_group;
-		for (size_t i = 1; i < ctx.entities_loaded.size(); ++i) {
+		for (size_t i = 0; i < ctx.entities_loaded.size(); ++i) {
 			c_group->add(ctx.entities_loaded[i]);
 		}
 
