@@ -387,11 +387,17 @@ void TCompPlayerModel::releasePowerButtonPressed() {
 }
 
 void TCompPlayerModel::spendCoinsButtonPressed() {
-	dbg("pressed\n");
+	if (!lockAttack) {
+		stateManager->getState()->onSpendCoinsButton();
+	}
+	stateManager->getConcurrentState()->onSpendCoinsButton();
 }
 
 void TCompPlayerModel::spendCoinsButtonReleased() {
-	dbg("released\n");
+	if (!lockAttack) {
+		stateManager->getState()->onSpendCoinsButtonReleased();
+	}
+	stateManager->getConcurrentState()->onSpendCoinsButtonReleased();
 }
 
 void TCompPlayerModel::dodgeButtonPressed() {

@@ -4,7 +4,10 @@
 
 class SpendCoinsActionState : public GroundedActionState {
 private:
+	std::string animation = "idle";
+
 	CTimer spendTimer;
+	bool buttonReleased = false;
 
 public:
 	SpendCoinsActionState(StateManager* stateManager);
@@ -18,5 +21,6 @@ public:
 	void onFastAttackButton() override {}
 	//estos quizá mejor sin override
 	void onReleasePowerButton() override {}
-	//void onDodgeButton() override {}
+	void onDodgeButton() override {}
+	void onSpendCoinsButtonReleased() override;
 };

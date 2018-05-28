@@ -87,6 +87,8 @@ public:
 	virtual void onFastAttackButton() {}
 	virtual void onDodgeButton() {}
 	virtual void onFastAttackButtonReleased() {}
+	virtual void onSpendCoinsButton() {}
+	virtual void onSpendCoinsButtonReleased() {}
 	virtual void onReleasePowerButton() {}
 	virtual void onHitboxEnter(std::string hitbox, CHandle entity) {}
 	virtual void onDead();

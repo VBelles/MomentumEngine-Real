@@ -13,4 +13,5 @@ public:
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
+	void onSpendCoinsButton() override;
 };
