@@ -16,6 +16,7 @@ void TCompLightDir::debugInMenu() {
 	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 100.f);
 	ImGui::ColorEdit3("Color", &color.x);
 	ImGui::DragFloat("Step Size", &shadows_step, 0.01f, 0.f, 5.f);
+	ImGui::LabelText("Shadows Category", "%s", shadows_category.c_str());
 }
 
 void TCompLightDir::renderDebug() {
@@ -26,6 +27,8 @@ void TCompLightDir::load(const json& j, TEntityParseContext& ctx) {
 	TCompCamera::load(j, ctx);
 	if (j.count("color")) color = loadVEC4(j["color"]);
 	intensity = j.value("intensity", intensity);
+
+	shadows_category = j.value("shadows_category", "shadows");
 
 	if (j.count("projector")) {
 		std::string projector_name = j.value("projector", "");
@@ -105,7 +108,7 @@ void TCompLightDir::generateShadowMap() {
 	// same time
 	CTexture::setNullTexture(TS_LIGHT_SHADOW_MAP);
 
-	CTraceScoped gpu_scope(shadows_rt->getName().c_str());
+ 	CTraceScoped gpu_scope(shadows_rt->getName().c_str());
 	shadows_rt->activateRT();
 
 	{
@@ -115,5 +118,5 @@ void TCompLightDir::generateShadowMap() {
 		activateCamera(*camera, shadows_rt->getWidth(), shadows_rt->getHeight());
 	}
 
-	CRenderManager::get().renderCategory("shadows");
+	CRenderManager::get().renderCategory(shadows_category.c_str());
 }

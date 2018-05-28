@@ -49,7 +49,8 @@
 				"casts_shadows" : true,
 				"shadows_step" : 1.5,
 				"shadows_resolution" : 2048,
-				"shadows_fmt" : "R32_TYPELESS"
+				"shadows_fmt" : "R32_TYPELESS",
+				"shadows_category" : "shadows_player"
 			},
 			"follow_transform" : {
 				"entityName" : "The Player",

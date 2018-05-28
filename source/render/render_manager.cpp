@@ -26,6 +26,9 @@ bool operator<(uint32_t category_id, CRenderManager::TRenderKey& k1) {
 
 // General function to render keys
 bool CRenderManager::sortRenderKeys(const TRenderKey& k1, const TRenderKey& k2) {
+	// Category
+	if (k1.material->tech->getCategoryID() != k2.material->tech->getCategoryID())
+		return k1.material->tech->getCategoryID() < k2.material->tech->getCategoryID();
 	// Render tech
 	auto t1 = k1.material->tech;
 	auto t2 = k2.material->tech;
@@ -34,9 +37,6 @@ bool CRenderManager::sortRenderKeys(const TRenderKey& k1, const TRenderKey& k2) 
 			return t1->getPriority() < t2->getPriority();
 		return t1 < t2;
 	}
-	// Category
-	if (k1.material->tech->getCategoryID() != k2.material->tech->getCategoryID())
-		return k1.material->tech->getCategoryID() < k2.material->tech->getCategoryID();
 	// NonSkin -> Skin  
 	if (k1.material->tech->usesSkin() != k2.material->tech->usesSkin())
 		return k1.material->tech->usesSkin() < k2.material->tech->usesSkin();
@@ -77,18 +77,19 @@ void CRenderManager::addRenderKey(
 	render_keys.addKey(key);
 
 	if (material->castsShadows()) {
-
 		const CMaterial* shadow_mat = nullptr;
-		if (material->tech->usesSkin()) {
-			shadow_mat = Resources.get("data/materials/shadows_skin.material")->as<CMaterial>();
-    }
-    else if (material->tech->usesInstancing()) {
+		const std::string& shadows_mat = material->tech->getShadowsMaterial();
 
-      if( material->tech->vs->getVertexDecl()->name == "Pos_x_InstancedPos")
-        shadow_mat = Resources.get("data/materials/shadows_grass_instanced.material")->as<CMaterial>();
-      else
-        shadow_mat = Resources.get("data/materials/shadows_instanced.material")->as<CMaterial>();
-    }
+		if (material->tech->usesSkin()) {
+			shadow_mat = Resources.get(shadows_mat)->as<CMaterial>();
+		}
+		else if (material->tech->usesInstancing()) {
+
+			if (material->tech->vs->getVertexDecl()->name == "Pos_x_InstancedPos")
+				shadow_mat = Resources.get("data/materials/shadows_grass_instanced.material")->as<CMaterial>();
+			else
+				shadow_mat = Resources.get("data/materials/shadows_instanced.material")->as<CMaterial>();
+		}
 		else {
 			//if(mesh->getVertexDecl()->name == "PosNUvCvTan" )
 			//  shadow_mat = Resources.get("data/materials/shadows_mix.material")->as<CMaterial>();
@@ -110,7 +111,7 @@ void CRenderManager::addRenderKey(
 void CRenderManager::TRenderKey::debugInMenu() {
 	char key_name[256];
 	std::string mat_name = material->getName();
-	snprintf(key_name, 255, "%s %s %s [%d]", material->tech->getCategory().c_str(), mat_name.c_str(), mesh->getName().c_str(), subgroup_idx);
+	snprintf(key_name, 255, "%08x %s %s %s [%d]", material->tech->getCategoryID(), material->tech->getCategory().c_str(), mat_name.c_str(), mesh->getName().c_str(), subgroup_idx);
 	if (ImGui::TreeNode(key_name)) {
 		auto ncmaterial = const_cast<CMaterial*>(material);
 		if (ImGui::TreeNode(material->getName().c_str())) {

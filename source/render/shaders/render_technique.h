@@ -16,6 +16,7 @@ class CRenderTechnique : public IResource {
 	bool        uses_skin = false;
 
 	std::string category = "default";
+	std::string shadows_material = "data/materials/shadows_skin.material";
 	// To compare categories string faster than comparing strings
 	uint32_t category_id = 0;
 	uint32_t priority = 0;
@@ -52,4 +53,5 @@ public:
 	uint32_t getPriority() const { return priority; }
 	uint32_t getCategoryID() const { return category_id; }
 	const std::string& getCategory() const { return category; }
+	const std::string& getShadowsMaterial() const { return shadows_material; }
 };

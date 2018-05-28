@@ -20,6 +20,8 @@ private:
 	float             shadows_step = 1.f;
 	CRenderToTexture* shadows_rt = nullptr;
 
+	std::string       shadows_category;
+
 public:
 	void debugInMenu();
 	void renderDebug();
