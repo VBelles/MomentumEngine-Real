@@ -215,7 +215,8 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 
     // Now dump contents to the destination buffer.
     rt_destination->activateRT();
-    rt_acc_light->activate(TS_DEFERRED_ACC_LIGHTS);
+	rt_acc_light->activate(TS_DEFERRED_ACC_LIGHTS);
+	rt_acc_light->activate(TS_DEFERRED_ALBEDOS); //TODO preguntar si dara problemas, con esto el shader glass refleja el skybox
 
     // Combine the results
     renderFullScreenQuad("gbuffer_resolve.tech", nullptr);
