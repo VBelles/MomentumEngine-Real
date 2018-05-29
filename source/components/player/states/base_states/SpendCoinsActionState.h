@@ -7,8 +7,11 @@ private:
 	std::string animation = "idle";
 
 	CTimer spendTimer;
-	bool buttonReleased = false;
-
+	int coinsEachCycle = 1;
+	float cycleTime = 7 / 60.f;
+	float powerPerCoin = 1000.f;
+	float powerCycleTime = cycleTime;
+	
 public:
 	SpendCoinsActionState(StateManager* stateManager);
 

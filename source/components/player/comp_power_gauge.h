@@ -12,6 +12,9 @@ private:
 	float freezeDropTime = 1.f;
 	CTimer freezeDropTimer;
 
+	float targetPower;
+	float powerIncreaseSpeed;
+
 	float getPowerLevelPercentage();
 
 public:
@@ -26,6 +29,8 @@ public:
 	void resetPower();
 	void increasePower(float increment);
 	void setPower(float power);
+
+	void increasePowerInTime(float power, float time);
 
 	int getPowerLevel();
 	float getPower();

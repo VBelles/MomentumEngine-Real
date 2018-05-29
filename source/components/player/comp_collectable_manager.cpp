@@ -47,7 +47,10 @@ int TCompCollectableManager::getNumberOfCoins() {
 	return objectsCollected[Type::COIN];
 }
 
-void TCompCollectableManager::spendCoins(int number) {
+bool TCompCollectableManager::spendCoins(int number) {
+	if (number > objectsCollected[Type::COIN]) {
+		return false;
+	}
 	objectsCollected[Type::COIN] -= number;
 	//Avisar a ModuleUniques
 	for (int i = 0; i < number; i++) {
@@ -56,6 +59,8 @@ void TCompCollectableManager::spendCoins(int number) {
 	uniqueObjectsCollected[Type::COIN].erase(uniqueObjectsCollected[Type::COIN].begin(), uniqueObjectsCollected[Type::COIN].begin() + number - 1);
 	//Faltaria avisar a quién tenga que respawnearlos
 
+
+	return true;
 }
 
 void TCompCollectableManager::clear() {

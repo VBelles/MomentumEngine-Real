@@ -27,7 +27,7 @@ public:
 	void addCollectable(TCompCollectable::Type type, int amount);
 	int getNumberOfChrysalis();
 	int getNumberOfCoins();
-	void spendCoins(int number);
+	bool spendCoins(int number);
 
 	void clear();
 };
