@@ -59,19 +59,19 @@ void NavMeshDebugDrawDX::end() {
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_POINTLIST, num_colored_vertices, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_LINES) {
-		if (num_colored_vertices) renderLines(colored_vertices, num_colored_vertices);
+		//if (num_colored_vertices) renderLines(colored_vertices, num_colored_vertices);
 		
-		/*int pairsOfVertices = num_colored_vertices / 2;
+		int pairsOfVertices = num_colored_vertices / 2;
         for (int i = 0; i < pairsOfVertices; ++i) {
             renderLine(colored_vertices[i].pos,
                        colored_vertices[i + pairsOfVertices].pos,
                        colored_vertices[i].color);
-        }*/
+        }
 
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_LINELIST, num_colored_vertices / 2, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_TRIS) {
-		renderTriangles(colored_vertices, num_colored_vertices);
+		//renderTriangles(colored_vertices, num_colored_vertices);
 
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, num_colored_vertices / 3, colored_vertices, sizeof(TVtxPosClr));
 	}

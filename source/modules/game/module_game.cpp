@@ -77,7 +77,7 @@ bool CModuleGame::start() {
 	Engine.getCameras().setOutputCamera(h_camera);
 
     // Navmesh test
-    auto navmesh = Resources.get("data/solo_navmesh.bin")->as<CNavMesh>();
+    navmesh = Resources.get("data/solo_navmesh.bin")->as<CNavMesh>();
     CNavMeshQuery navquery{navmesh};
     auto path = navquery.getSmoothPath(VEC3(0,0,0), VEC3(0,0,100));
 	float wallDist = navquery.getWallDistance(VEC3(0,0,0));
@@ -148,7 +148,6 @@ void CModuleGame::render() {
 	}
 
 	// Navmesh test
-	auto navmesh = Resources.get("data/solo_navmesh.bin")->as<CNavMesh>();
 	const_cast<CNavMesh*>(navmesh)->render(false);
 
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
