@@ -1,6 +1,7 @@
 
 #include "mcv_platform.h"
 #include "console.h"
+#include "modules/system/scripting/scripting_player.h"
 
 SimpleConsole::SimpleConsole(std::function<void(const char *)> consoleListener) : consoleListener(consoleListener) {
 	ClearLog();
@@ -116,7 +117,7 @@ void SimpleConsole::Draw(const char* title, bool* p_open) {
 	ImGui::Separator();
 
 	// Command-line
-	bool reclaim_focus = false;
+	bool reclaim_focus = EngineInput["debug_mode"].isPressed();
 	if (ImGui::InputText("Input", InputBuf, IM_ARRAYSIZE(InputBuf), ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackCompletion | ImGuiInputTextFlags_CallbackHistory, &TextEditCallbackStub, (void*)this)) {
 		char* input_end = InputBuf + strlen(InputBuf);
 		while (input_end > InputBuf && input_end[-1] == ' ') { input_end--; } *input_end = 0;
@@ -125,12 +126,18 @@ void SimpleConsole::Draw(const char* title, bool* p_open) {
 		strcpy(InputBuf, "");
 		reclaim_focus = true;
 	}
+	ScriptingPlayer::takePlayerControl();
+	if (!ImGui::IsItemActive() && !ImGui::IsItemClicked()) {
+		ScriptingPlayer::givePlayerControl();
+	}
 
 	// Demonstrate keeping focus on the input box
 	ImGui::SetItemDefaultFocus();
-	if (reclaim_focus)
+	if (reclaim_focus) {
 		ImGui::SetKeyboardFocusHere(-1); // Auto focus previous widget
-
+		
+	}
+	
 	ImGui::End();
 }
 

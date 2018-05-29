@@ -8,6 +8,8 @@
 #include "utils/json.hpp"
 #include "windows/app.h"
 #include <fstream>
+#include "modules/system/scripting/scripting_player.h"
+
 
 CModuleInput::CModuleInput(const std::string& name)
     : IModule(name) {
@@ -71,7 +73,7 @@ bool CModuleInput::start() {
 }
 
 void CModuleInput::render() {
-    if (CApp::get().showDebug) {
+    if (CApp::get().isDebug()) {
         renderInMenu();
     }
 }
@@ -84,14 +86,10 @@ void CModuleInput::update(float delta) {
     for (auto& host : _hosts) {
         host.update(delta);
     }
-	if (EngineInput["debug_mode"].getsPressed()) {
-		CApp::get().showDebug = !CApp::get().showDebug;
-		CApp::get().resetCursorPos = !CApp::get().resetCursorPos;
-		ShowCursor(CApp::get().showDebug);
-	}
-	if (CApp::get().resetCursorPos && CApp::get().isWindowFocused) {
+	CApp& app = CApp::get();
+	if (app.shoulResetMouse()) {
 		RECT rect;
-		GetWindowRect(CApp::get().getWnd(), &rect);
+		GetWindowRect(app.getWnd(), &rect);
 		SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
 	}
 }

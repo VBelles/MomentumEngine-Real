@@ -4,6 +4,7 @@
 using namespace GUI;
 
 void CText::render() {
+	_textParams._text = _textParams._templateText.toString(variableCallback);
 	float textWidth = _textParams._text.size() * _textParams._size;
 	float textHeight = _textParams._size;
 	VEC2 offset;
@@ -18,9 +19,10 @@ void CText::render() {
 
 	MAT44 tr = MAT44::CreateTranslation(offset.x, offset.y, 0.f);
 	MAT44 w = MAT44::CreateScale(_textParams._size) * tr * _absolute;
-    EngineGUI.renderText(w, _textParams._text, _textParams._color);
+	EngineGUI.renderText(w, _textParams._text, _textParams._color);
 }
 
 TTextParams* CText::getTextParams() {
 	return &_textParams;
 }
+

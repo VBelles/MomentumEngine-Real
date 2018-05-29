@@ -19,6 +19,7 @@
 #include "geometry/curve.h"
 #include "gui/gui_parser.h"
 #include "gui/controllers/hud_controller.h"
+#include "modules/system/scripting/scripting_player.h"
 
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
@@ -53,7 +54,9 @@ bool CModuleGame::start() {
 	//GUI::CParser parser;
 	//parser.parseFile("data/gui/hud.json");
 	//EngineGUI.activateWidget("hud");
-	//EngineGUI.registerController(&controller);
+
+	//hudController = new GUI::CHudController();
+	//EngineGUI.registerController(hudController);
 
 	// Auto load some scenes
 	std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
@@ -80,18 +83,27 @@ bool CModuleGame::start() {
 
     EngineScripting.throwEvent(onGameStart,"");
 	EngineScripting.throwEvent(onLevelStart, "1"); 
+
+	CApp::get().setResetMouse(true);
 	return true;
 }
 
 bool CModuleGame::stop() {
-	/*EngineGUI.deactivateWidget("hud");
-	EngineGUI.unregisterController(&controller);*/
+	//EngineGUI.deactivateWidget("hud");
+	//EngineGUI.unregisterController(hudController);
+	CApp::get().setDebugMode(false);
 	EngineScripting.reset();
 	Engine.getEntities().reset();
 	return true;
 }
 
 void CModuleGame::update(float delta) {
+	CApp& app = CApp::get();
+	if (EngineInput["debug_mode"].getsPressed()) {
+		if (!app.toggleDebug()) {
+			ScriptingPlayer::givePlayerControl();
+		}
+	}
   //  if (EngineInput['1'].getsPressed()) {
 		//CHandle h_camera = getEntityByName(PLAYER_CAMERA);
   //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);

@@ -115,7 +115,7 @@ void CModuleEntities::reset() {
 }
 
 void CModuleEntities::render() {
-	if (CApp::get().showDebug) {
+	if (CApp::get().isDebug()) {
 		Resources.debugInMenu();
 
 		ImGui::DragFloat("Time Factor", &time_scale_factor, 0.01f, 0.f, 1.0f);

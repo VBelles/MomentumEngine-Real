@@ -1,22 +1,41 @@
 #pragma once
 
-#define toVec3(pxVec3) VEC3(pxVec3.x, pxVec3.y, pxVec3.z)
-#define toQuat(pxQuat) QUAT(pxQuat.x, pxQuat.y, pxQuat.z, pxQuat.w)
-#define toTransform(pxTransform) CTransform(toVec3(pxTransform.p), toQuat(pxTransform.q))
 
-#define toPxVec3(vec3) physx::PxVec3(vec3.x, vec3.y, vec3.z)
-#define toPxtendedVec3(vec3) physx::PxExtendedVec3(vec3.x, vec3.y, vec3.z)
-#define toPxQuat(quat) physx::PxQuat(quat.x, quat.y, quat.z, quat.w)
+inline VEC3 toVec3(const physx::PxVec3& pxVec3) {
+	return VEC3(pxVec3.x, pxVec3.y, pxVec3.z);
+}
 
-template <typename T>
-physx::PxTransform toPxTransform(T transform) {
+inline VEC3 extendedToVec3(const physx::PxExtendedVec3& pxVec3) {
+	return VEC3(float(pxVec3.x), float(pxVec3.y), float(pxVec3.z));
+}
+
+inline QUAT toQuat(const physx::PxQuat& pxQuat) {
+	return QUAT(pxQuat.x, pxQuat.y, pxQuat.z, pxQuat.w);
+}
+
+inline CTransform toTransform(const physx::PxTransform& pxTransform) {
+	return CTransform(toVec3(pxTransform.p), toQuat(pxTransform.q));
+}
+
+inline physx::PxVec3 toPxVec3(const VEC3& vec3) {
+	return physx::PxVec3(vec3.x, vec3.y, vec3.z);
+}
+
+inline physx::PxExtendedVec3 toPxtendedVec3(const VEC3& vec3) { 
+	return physx::PxExtendedVec3(vec3.x, vec3.y, vec3.z); 
+}
+
+inline physx::PxQuat toPxQuat(const QUAT& quat) {
+	return physx::PxQuat(quat.x, quat.y, quat.z, quat.w);
+}
+
+inline physx::PxTransform toPxTransform(const CTransform& transform) {
 	return physx::PxTransform(toPxVec3(transform.getPosition()), toPxQuat(transform.getRotation()));
 }
-template <typename T>
-physx::PxTransform toPxTransform(T* transform) {
+
+inline physx::PxTransform toPxTransform(const CTransform* transform) {
 	return physx::PxTransform(toPxVec3(transform->getPosition()), toPxQuat(transform->getRotation()));
 }
-
 
 physx::PxFilterData getFilterData(const physx::PxController* controller);
 

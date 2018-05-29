@@ -102,7 +102,7 @@ void TCompFixedCamera::updateInput() {
 				input.x -= padInput.x * panningSpeed;
 				input.y += padInput.y * panningSpeed;
 			}
-			else if (!CApp::get().showDebug) {
+			else if (!CApp::get().isDebug()) {
 				input.x -= mouse.position_delta.x * panningSpeed;
 				input.y -= mouse.position_delta.y * panningSpeed;
 			}

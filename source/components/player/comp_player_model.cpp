@@ -13,12 +13,10 @@
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/StateManager.h"
-#include "components/player/attack_info.h"
 
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
-using namespace physx;
 
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
@@ -131,7 +129,6 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	renderUI->registerOnRenderUI([&]() {
 
-
 		bool showWindow = true;
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(50, 35));
@@ -186,12 +183,11 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 			ImGui::PopStyleColor();
 		}
 
-		if (!CApp::get().showDebug) return;
-
-		ImGui::Begin("Params Main Character", &showWindow);
-		debugInMenu();
-		ImGui::End();
-
+		if (CApp::get().isDebug()) {
+			ImGui::Begin("Params Main Character", &showWindow);
+			debugInMenu();
+			ImGui::End();
+		}
 
 	});
 
@@ -274,7 +270,7 @@ void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
 }
 
 void TCompPlayerModel::onControllerHit(const TMsgControllerHit& msg) {
-	
+
 }
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
@@ -299,7 +295,9 @@ void TCompPlayerModel::setHp(float hp) {
 		stateManager->changeState(Death);
 		stateManager->changeConcurrentState(Free);
 	}
-	EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
+	//EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
+	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
+
 }
 
 void TCompPlayerModel::setRespawnPosition(VEC3 position) {
@@ -471,8 +469,8 @@ TCompCollectableManager* TCompPlayerModel::getCollectableManager() {
 }
 
 TCompPlayerModel::~TCompPlayerModel() {
-	SAFE_DELETE(powerStats[0]);
-	SAFE_DELETE(powerStats[1]);
-	SAFE_DELETE(powerStats[2]);
+	for (int i = 0; i < NUMBER_OF_POWER_LEVELS; i++) {
+		SAFE_DELETE(powerStats[i]);
+	}
 	SAFE_DELETE(stateManager);
 }

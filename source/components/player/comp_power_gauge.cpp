@@ -99,8 +99,7 @@ void TCompPowerGauge::increasePower(float increment) {
 			((CEntity*)purity.getOwner())->sendMsg(msg);
 		});
 	}
-	EngineGUI.getVariables().getVariant("power_progress")->setFloat(power / maxPower);
-
+	//EngineGUI.getVariables().getVariant("power_progress")->setFloat(getBarPercentage());
 	targetPower = power;
 }
 

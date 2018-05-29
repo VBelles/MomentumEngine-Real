@@ -228,7 +228,7 @@ void renderInterpolator(const char* name, Interpolator::IInterpolator& interpola
 }
 
 void CModuleCameras::renderInMenu() {
-	if (CApp::get().showDebug) {
+	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Cameras")) {
 			ImGui::Columns(5);
 			ImGui::SetColumnWidth(0, 200);

@@ -20,7 +20,6 @@ struct HitState;
 struct MoveState;
 struct TMsgAttackHit;
 
-using namespace physx;
 
 class IActionState {
 

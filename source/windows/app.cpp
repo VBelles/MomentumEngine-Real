@@ -139,14 +139,14 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
     case WM_SETFOCUS:
         if (Engine.isStarted())
             EngineInput.setActive(true);
-        app_instance->isWindowFocused = true;
+		app_instance->setWindowFocused(true);
         break;
 
     case WM_KILLFOCUS:
         if (Engine.isStarted()) {
             EngineInput.setActive(false);
         }
-        app_instance->isWindowFocused = false;
+		app_instance->setWindowFocused(false);
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -211,6 +211,9 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
     Rid[0].hwndTarget = hWnd;
     RegisterRawInputDevices(Rid, 1, sizeof(Rid[0]));
 
+	//setResetMouse(false);
+	showCursor = true;
+
     return true;
 }
 
@@ -241,8 +244,7 @@ bool CApp::readConfig() {
 
     resolution = loadVEC2(jScreen["resolution"]);
     fullscreen = jScreen["fullscreen"];
-    showDebug = j["showDebug"];
-    ShowCursor(showDebug);
+    
     //16:9 resolutions:
     //1280x720  = 720p HD
     //1920x1080 = 1080p HD
@@ -267,10 +269,37 @@ bool CApp::stop() {
     return Engine.stop();
 }
 
+void CApp::setDebugMode(bool debug) {
+	this->debug = debug;
+	setResetMouse(!debug);
+}
+
+void CApp::setWindowFocused(bool windowFocused) {
+	this->windowFocused = windowFocused; 
+}
+
+bool CApp::shoulResetMouse() {
+	return resetMouse && windowFocused;
+}
+
+void CApp::setResetMouse(bool resetMouse) {
+	this->resetMouse = resetMouse;
+
+	if (resetMouse && showCursor) {
+		showCursor = false;
+		int res = ShowCursor(showCursor);
+	}
+	else if (!resetMouse && !showCursor) {
+		showCursor = true;
+		int res = ShowCursor(showCursor);
+	}
+}
+
+
 void CApp::doFrame() {
     PROFILE_FRAME_BEGINS();
     PROFILE_FUNCTION("App::doFrame");
-
+	//ShowCursor(showCursor);
     /*double frameTime = time_since_last_render.elapsedAndReset();
     if (frameTime > 0.25)
         frameTime = 0.25;

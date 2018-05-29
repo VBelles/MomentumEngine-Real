@@ -11,6 +11,10 @@ namespace GUI {
 
 	private:
 		TTextParams _textParams;
+		VTemplate::VariableCallback variableCallback = [](const std::string& name) {
+			CVariant* variant = EngineGUI.getVariables().getVariant(name);
+			return variant ? variant->toString() : "";
+		};
 
 		friend class CParser;
 	};

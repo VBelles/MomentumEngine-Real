@@ -225,6 +225,9 @@
     <ClCompile Include="gui\controllers\gui_main_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\hud_controller.cpp" />
     <ClCompile Include="gui\effects\gui_animate_uv.cpp" />
+    <ClCompile Include="gui\gui_params.cpp" />
+    <ClCompile Include="gui\gui_effect.cpp" />
+    <ClCompile Include="gui\gui_controller.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_behavior.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_hit_callback.cpp" />
     <ClCompile Include="modules\game\physics\basic_filter_shader.cpp" />
@@ -281,6 +284,7 @@
     <ClCompile Include="modules\system\scripting\scripting_manager.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_player.cpp" />
     <ClCompile Include="modules\system\module_multithread.cpp" />
+    <ClCompile Include="modules\system\scripting\scripting_sound.cpp" />
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game\physics\ragdoll_core.cpp" />
@@ -316,6 +320,7 @@
     <ClCompile Include="components\player\states\StateManager.cpp" />
     <ClCompile Include="utils\physx_utils.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
+    <ClCompile Include="utils\template_engine.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="windows\windowsUtils.cpp" />
@@ -531,6 +536,7 @@
     <ClInclude Include="modules\system\scripting\scripting_manager.h" />
     <ClInclude Include="modules\system\scripting\scripting_player.h" />
     <ClInclude Include="modules\system\module_multithread.h" />
+    <ClInclude Include="modules\system\scripting\scripting_sound.h" />
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game\physics\ragdoll.h" />
     <ClInclude Include="modules\game\physics\ragdoll_core.h" />
@@ -574,6 +580,7 @@
     <ClInclude Include="utils\physx_utils.h" />
     <ClInclude Include="utils\json.hpp" />
     <ClInclude Include="utils\murmur3\murmur3.h" />
+    <ClInclude Include="utils\template_engine.h" />
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="utils\variant.h" />
