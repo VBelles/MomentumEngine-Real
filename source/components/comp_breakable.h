@@ -7,6 +7,7 @@ struct TMsgEntitiesGroupCreated;
 struct TMsgColliderDestroyed;
 struct TMsgAttackHit;
 
+//Breakable only by player
 class TCompBreakable : public TCompBase {
 private:
 	//json

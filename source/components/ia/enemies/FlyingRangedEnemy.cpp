@@ -521,7 +521,7 @@ void CBehaviorTreeFlyingRangedEnemy::onPerfectDodged(const TMsgPerfectDodged & m
 void CBehaviorTreeFlyingRangedEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (attackInfos.find(msg.hitbox) != attackInfos.end()) {
 		TMsgAttackHit attackHit = {};
-		attackHit.attacker = CHandle(this);
+		attackHit.attacker = CHandle(this).getOwner();
 		attackHit.info = attackInfos[msg.hitbox];
 		((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
 	}
