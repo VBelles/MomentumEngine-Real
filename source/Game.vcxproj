@@ -264,6 +264,7 @@
     <ClCompile Include="modules\game\module_game.cpp" />
     <ClCompile Include="modules\game\physics\basic_controller_filter_callback.cpp" />
     <ClCompile Include="modules\system\module_entities.cpp" />
+    <ClCompile Include="modules\system\module_navmesh.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="modules\system\scripting\console.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_cameras.cpp" />
@@ -515,6 +516,7 @@
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\game\module_game.h" />
     <ClInclude Include="modules\game\physics\basic_controller_filter_callback.h" />
+    <ClInclude Include="modules\system\module_navmesh.h" />
     <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="modules\system\scripting\console.h" />
     <ClInclude Include="modules\system\scripting\scripting_cameras.h" />

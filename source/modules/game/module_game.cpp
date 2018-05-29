@@ -19,8 +19,6 @@
 #include "geometry/curve.h"
 #include "gui/gui_parser.h"
 #include "gui/controllers/hud_controller.h"
-#include "navmesh/navmesh.h"
-#include "navmesh/navmesh_query.h"
 
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
@@ -76,13 +74,6 @@ bool CModuleGame::start() {
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
 
-    // Navmesh test
-    navmesh = Resources.get("data/solo_navmesh.bin")->as<CNavMesh>();
-    CNavMeshQuery navquery{navmesh};
-    auto path = navquery.getSmoothPath(VEC3(0,0,0), VEC3(0,0,100));
-	float wallDist = navquery.getWallDistance(VEC3(0,0,0));
-	//const_cast<CNavMesh*>(navmesh)->render(false);
-
     EngineScripting.throwEvent(onGameStart,"");
 	EngineScripting.throwEvent(onLevelStart, "1"); 
 	return true;
@@ -131,7 +122,6 @@ void CModuleGame::update(float delta) {
 	TCompTransform* t_curve = e_curve->get<TCompTransform>();
 	pos = t_curve->getPosition();
 	dbg("pos: x: %f y: %f z: %f\n", pos.x, pos.y, pos.z);*/
-
 }
 
 void CModuleGame::render() {
@@ -146,9 +136,6 @@ void CModuleGame::render() {
 	else {
 		activateCamera(camera, Render.width, Render.height);
 	}
-
-	// Navmesh test
-	const_cast<CNavMesh*>(navmesh)->render(false);
 
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
 	solid->activate();

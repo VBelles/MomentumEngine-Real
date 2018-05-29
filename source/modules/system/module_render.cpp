@@ -9,7 +9,6 @@
 #include "components/comp_light_dir.h"
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
-#include "navmesh/navmesh.h"
 #include "resources/json_resource.h"
 #include "skeleton/game_core_skeleton.h"
 #include "camera/camera.h"
@@ -54,7 +53,6 @@ bool CModuleRender::start() {
     Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
     Resources.registerResourceClass(getResourceClassOf<CTexture>());
     Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
-    Resources.registerResourceClass(getResourceClassOf<CNavMesh>());
     Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
     Resources.registerResourceClass(getResourceClassOf<CMaterial>());
     Resources.registerResourceClass(getResourceClassOf<CCurve>());

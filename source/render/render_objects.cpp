@@ -10,6 +10,17 @@ CRenderCte<CCteBlur>    cb_blur("Blur");
 CRenderCte<CCteGUI>     cb_gui("Gui");
 CRenderCte<CCteFog>     cb_fog("Fog");
 
+CRenderMesh* createDot() {
+	CRenderMesh* mesh = new CRenderMesh;
+	float vertices[] =
+	{
+		0.0f, 0.0f, 0.0f,  1, 1, 1, 1
+	};
+	if (!mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::POINT_LIST))
+		return nullptr;
+	return mesh;
+}
+
 CRenderMesh* createLineZ() {
     CRenderMesh* mesh = new CRenderMesh;
     // Axis aligned X,Y,Z of sizes 1,2,3
@@ -185,7 +196,8 @@ void registerMesh(CRenderMesh* new_mesh, const char* name) {
 bool createRenderObjects() {
     registerMesh(createAxis(), "axis.mesh");
     registerMesh(createGridXZ(20), "grid.mesh");
-    registerMesh(createLineZ(), "line.mesh");
+	registerMesh(createDot(), "dot.mesh");
+	registerMesh(createLineZ(), "line.mesh");
     registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
     registerMesh(createCameraFrustum(), "unit_frustum.mesh");
     registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
@@ -336,23 +348,22 @@ void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture)
     mesh->activateAndRender();
 }
 
-void renderDots(TVtxPosClr vertices[], int numVertices) {
-	CRenderMesh* mesh = new CRenderMesh;
-	//float vertices[] = {pos.x, pos.y, pos.z, color.x, color.y, color.z, color.w};
-	if (mesh->create(vertices, sizeof(TVtxPosClr) * numVertices, "PosClr", CRenderMesh::POINT_LIST))
-		mesh->activateAndRender();
-}
+//void renderDots(TVtxPosClr vertices[], int numVertices) {
+//	CRenderMesh* mesh = new CRenderMesh;
+//	//float vertices[] = {pos.x, pos.y, pos.z, color.x, color.y, color.z, color.w};
+//	if (mesh->create(vertices, sizeof(TVtxPosClr) * numVertices, "PosClr", CRenderMesh::POINT_LIST))
+//		mesh->activateAndRender();
+//}
 
-void renderTriangles(TVtxPosClr vertices[], int numVertices) {
-	CRenderMesh* mesh = new CRenderMesh;
-	if (mesh->create(vertices, sizeof(TVtxPosClr) * numVertices, "PosClr", CRenderMesh::TRIANGLE_LIST)) // No rula, sizeof va mal.
-		mesh->activateAndRender();
-}
+void renderDots(VEC3 src, VEC4 color) {
+	MAT44 world;
+	world = MAT44::CreateTranslation(src);
+	cb_object.obj_world = world;
+	cb_object.obj_color = color;
+	cb_object.updateGPU();
 
-void renderLines(TVtxPosClr vertices[], int numVertices) {
-	CRenderMesh* mesh = new CRenderMesh;
-	if (mesh->create(vertices, sizeof(TVtxPosClr) * numVertices, "PosClr", CRenderMesh::LINE_LIST)) // No rula, sizeof va mal.
-		mesh->activateAndRender();
+	auto mesh = Resources.get("dot.mesh")->as<CRenderMesh>(); // dot.mesh is an sphere of radius 1.
+	mesh->activateAndRender();
 }
 
 void renderLine(VEC3 src, VEC3 dst, VEC4 color) {

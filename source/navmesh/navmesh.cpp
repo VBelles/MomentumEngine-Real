@@ -4,28 +4,6 @@
 
 //https://github.com/recastnavigation/recastnavigation
 
-class CNavMeshResourceClass : public CResourceClass {
-public:
-	CNavMeshResourceClass() {
-        class_name = "NavMeshes";
-        extensions = { ".bin" };
-    }
-    IResource* create(const std::string& name) const override {
-        CNavMesh* res = nullptr;
-        if (name.find(".bin") != std::string::npos)
-            res = loadNavMesh(name.c_str());
-        return res;
-    }
-};
-
-// A specialization of the template defined at the top of this file
-// If someone class getResourceClassOf<CTexture>, use this function:
-template<>
-const CResourceClass* getResourceClassOf<CNavMesh>() {
-    static CNavMeshResourceClass the_resource_class;
-    return &the_resource_class;
-}
-
 CNavMesh::CNavMesh() {
     navQuery = dtAllocNavMeshQuery();
     crowd = dtAllocCrowd();

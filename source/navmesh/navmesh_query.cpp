@@ -144,7 +144,7 @@ static bool getSteerTarget(dtNavMeshQuery* navQuery, const float* startPos, cons
 	return true;
 }
 
-CNavMeshQuery::CNavMeshQuery(const CNavMesh* aNavMesh) : data{ aNavMesh } {
+CNavMeshQuery::CNavMeshQuery(CNavMesh* aNavMesh) : data{ aNavMesh } {
 	m_polyPickExt[0] = 2;
 	m_polyPickExt[1] = 4;
 	m_polyPickExt[2] = 2;

@@ -54,25 +54,37 @@ void NavMeshDebugDrawDX::vertex(const float x, const float y, const float z, uns
 
 void NavMeshDebugDrawDX::end() {
 	if (primitive == DU_DRAW_POINTS) {
-		renderDots(colored_vertices, num_colored_vertices);
-		
+		int numPoints = num_colored_vertices;
+		TVtxPosClr vs[1];
+		for (int i = 0; i < numPoints; ++i) {
+			TVtxPosClr& v1 = colored_vertices[i];
+			vs[0] = TVtxPosClr(VEC3(v1.pos.x, v1.pos.y, v1.pos.z), v1.color);
+
+			renderDots(VEC3(vs[0].pos.x, vs[0].pos.y, vs[0].pos.z),
+					   VEC4(1, 0, 0, 1));
+		}
+
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_POINTLIST, num_colored_vertices, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_LINES) {
-		//if (num_colored_vertices) renderLines(colored_vertices, num_colored_vertices);
-		
 		int pairsOfVertices = num_colored_vertices / 2;
+		TVtxPosClr vs[2];
         for (int i = 0; i < pairsOfVertices; ++i) {
-            renderLine(colored_vertices[i].pos,
-                       colored_vertices[i + pairsOfVertices].pos,
-                       colored_vertices[i].color);
-        }
+			int idx = i * 2;
 
+			TVtxPosClr v1 = colored_vertices[idx];
+			TVtxPosClr v2 = colored_vertices[idx + 1];
+
+			vs[0] = TVtxPosClr(VEC3(v1.pos.x, v1.pos.y, v1.pos.z), v1.color);
+			vs[1] = TVtxPosClr(VEC3(v2.pos.x, v2.pos.y, v2.pos.z), v1.color);
+
+			renderLine(VEC3(vs[0].pos.x, vs[0].pos.y, vs[0].pos.z),
+					   VEC3(vs[1].pos.x, vs[1].pos.y, vs[1].pos.z),
+					   VEC4(1, 0, 0, 1));
+        }
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_LINELIST, num_colored_vertices / 2, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_TRIS) {
-		//renderTriangles(colored_vertices, num_colored_vertices);
-
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, num_colored_vertices / 3, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_QUADS) {
@@ -94,6 +106,9 @@ void NavMeshDebugDrawDX::end() {
             vs[4] = TVtxPosClr(VEC3(v4.pos.x, v4.pos.y, v4.pos.z), v4.color);
             vs[5] = TVtxPosClr(VEC3(v2.pos.x, v2.pos.y, v2.pos.z), v2.color);
 
+			renderLine(VEC3(vs[0].pos.x, vs[0].pos.y, vs[0].pos.z),
+					   VEC3(vs[1].pos.x, vs[1].pos.y, vs[1].pos.z),
+					   VEC4(1, 0, 0, 1));
 			//g_pd3dDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, vs, sizeof(TVtxPosClr));
 		}
 	}

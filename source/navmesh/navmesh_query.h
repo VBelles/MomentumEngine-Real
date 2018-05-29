@@ -5,9 +5,9 @@
 class CNavMeshQuery {
 
 public:
-	const CNavMesh* data;
+	CNavMesh* data;
 
-	CNavMeshQuery(const CNavMesh* aNavMesh);
+	CNavMeshQuery(CNavMesh* aNavMesh);
 
 	void findPath(VEC3 start, VEC3 end);
 	std::vector<VEC3> getSmoothPath(VEC3 start, VEC3 end);

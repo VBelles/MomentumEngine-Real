@@ -11,6 +11,7 @@
     "cameras",
     "render",
 	  "gui",
+      "navmesh",
     "test_instancing",
     "scripting",
     "sound"
@@ -24,6 +25,7 @@
     "pause",
     "input",
 	  "gui",
+      "navmesh",
     "scripting"
   ]
 }

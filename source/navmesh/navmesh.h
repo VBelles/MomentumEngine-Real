@@ -10,7 +10,7 @@
 #include "resources/resource.h"
 #include "navmesh_render.h"
 
-class CNavMesh : public IResource {
+class CNavMesh {
 
 public:
     static const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; //'MSET';
@@ -54,14 +54,14 @@ public:
     void debugInMenu();
 
     bool create(const std::string& binFilePath);
-    void destroy() override;
-	void render(bool use_z_test);
+    void destroy();
+	void render(bool use_z_test = false);
 
     bool isValid() const;
 
-    dtNavMesh*      getNavMesh() const { return navMesh; }
-    dtNavMeshQuery* getNavMeshQuery() const { return navQuery; }
-    dtCrowd*        getCrowd() const { return crowd; }
+    dtNavMesh*      getNavMesh() { return navMesh; }
+    dtNavMeshQuery* getNavMeshQuery() { return navQuery; }
+    dtCrowd*        getCrowd() { return crowd; }
 
 private:
 	dtNavMesh*				navMesh = nullptr;

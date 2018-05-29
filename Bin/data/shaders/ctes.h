@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INC_RENDER_CTES_H_ 
+#define INC_RENDER_CTES_H_ 
 
 // -------------------------------------------------
 // Constant Buffers
@@ -204,3 +205,4 @@ CB_DEF(CCteFog, CB_FOG) {
 	float fog_pad2;
 };
 
+#endif
