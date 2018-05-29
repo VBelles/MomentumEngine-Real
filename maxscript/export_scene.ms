@@ -520,7 +520,7 @@ struct TSceneExporter (
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider----------
 	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
-		if obj.layer.name == "trimesh" then meshType = "tri_mesh"
+		if obj.layer.name == "trimesh" then meshShape = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh then mesh_name = mesh_path + "plataformaPuraSI_tri.col_mesh"
 
@@ -595,7 +595,7 @@ struct TSceneExporter (
 	fn exportCompCollider obj first:true meshMode:false colliderGroups: masks: trig:false dyn:false mov:false = (
 		local objClass = classOf obj
 		local layerName = obj.layer.name
-		
+		if objClass == Editable_poly then convertToMesh obj
 		-- If the object has more than one child collider we need to add them in separate entities.
 		if not first then exportSeparateColliderEntity obj
 		
@@ -792,6 +792,7 @@ struct TSceneExporter (
 	-- --ENTITY with only COLLISION ----------------------------------------------
 	fn exportEntityCollision obj nValidObjs = (
 		local objClass = classOf obj
+		if objClass == Editable_poly then convertToMesh obj
 		if not isCollider obj and
 		   not objClass == Editable_mesh then return false
 		if nValidObjs > 0 then fs.writeComma()
@@ -1214,6 +1215,7 @@ struct TSceneExporter (
 	
 	-- --ENTITY: PLAYER ---------------------------------------------------
 	fn exportEntityPlayer obj nValidObjs = (
+		if classOf obj == Editable_poly then convertToMesh obj
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
