@@ -19,7 +19,7 @@
     "collider" : {
 				"shape": "sphere",
 				"radius" : 0.75,
-				"group": ["enemy"],
+				"group": ["enemy", "scenario"],
 				"mask": ["all"]
 			},
     "breakable": {
