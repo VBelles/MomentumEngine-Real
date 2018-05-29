@@ -73,7 +73,7 @@
     "ps_entry_point": "",
     "rs_config": "shadows",
     "category": "shadows_player",
-    "priority": 70,
+    "priority": 500,
     "uses_skin": true
   },
   "shadows_instanced": {
@@ -207,9 +207,9 @@
     "ps_file": "data/shaders/pbr.fx",
     "ps_entry_point": "PS_dir_lights_player",
     "category": "pbr_proc",
-    "priority": 310,
+    "priority": 320,
     "z": "disable_all",
-    "blend": "additive"
+    "blend": "combinative"
   },
   "pbr_point_lights": {
     "vs_file": "data/shaders/pbr.fx",
