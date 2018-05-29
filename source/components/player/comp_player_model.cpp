@@ -128,7 +128,6 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	renderUI->registerOnRenderUI([&]() {
 
-
 		bool showWindow = true;
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
 		ImGui::SetNextWindowPos(ImVec2(50, 35));
@@ -183,12 +182,11 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 			ImGui::PopStyleColor();
 		}
 
-		if (!CApp::get().showDebug) return;
-
-		ImGui::Begin("Params Main Character", &showWindow);
-		debugInMenu();
-		ImGui::End();
-
+		if (CApp::get().isDebug()) {
+			ImGui::Begin("Params Main Character", &showWindow);
+			debugInMenu();
+			ImGui::End();
+		}
 
 	});
 

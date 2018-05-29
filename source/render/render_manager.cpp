@@ -125,7 +125,7 @@ void CRenderManager::TRenderKey::debugInMenu() {
 }
 
 void CRenderManager::debugInMenu() {
-	if (CApp::get().showDebug) {
+	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Render Manager")) {
 			auto it = render_keys.begin();
 			while (it != render_keys.end()) {

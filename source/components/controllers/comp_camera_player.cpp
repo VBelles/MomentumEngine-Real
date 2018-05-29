@@ -112,7 +112,7 @@ void TCompCameraPlayer::updateInput() {
 			input.x -= padInput.x * cameraSpeed.x;
 			input.y += padInput.y * cameraSpeed.y;
 		}
-		else if (!CApp::get().showDebug) {
+		else if (!CApp::get().isDebug()) {
 			auto& mouse = EngineInput[Input::PLAYER_1].mouse();
 			input.x -= mouse.position_delta.x * cameraSpeed.x;
 			input.y -= mouse.position_delta.y * cameraSpeed.y;
