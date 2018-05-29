@@ -158,8 +158,10 @@ void CDeferredRenderer::renderDirectionalLights() {
     CTraceScoped gpu_scope("renderDirectionalLights");
 
     // Activate tech for the light dir 
-    auto* tech = Resources.get("pbr_dir_lights.tech")->as<CRenderTechnique>();
-    tech->activate();
+	auto* tech = Resources.get("pbr_dir_lights.tech")->as<CRenderTechnique>();
+	auto* tech_player = Resources.get("pbr_dir_lights_player.tech")->as<CRenderTechnique>();
+    //tech->activate();
+	//tech_player->activate();
 
     // All light directional use the same mesh
     //cogemos unit quad en vez del frustum para que pinte luz en toda la pantalla, independientemente de si est� en el frustum
@@ -168,7 +170,13 @@ void CDeferredRenderer::renderDirectionalLights() {
     mesh->activate();
 
     // Para todas las luces... pintala
-    getObjectManager<TCompLightDir>()->forEach([mesh](TCompLightDir* c) {
+    getObjectManager<TCompLightDir>()->forEach([&](TCompLightDir* c) {
+		if (c->getShadowsCategory() == "shadows_player") {
+			tech_player->activate();
+		}
+		else {
+			tech->activate();
+		}
 
         // subir las contantes de la posicion/dir
         // activar el shadow map...

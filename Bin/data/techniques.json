@@ -66,6 +66,16 @@
     "priority": 70,
     "uses_skin": true
   },
+  "shadows_skin_player": {
+    "vs_file": "data/shaders/shadows.fx",
+    "vs_entry_point": "VS_Skin",
+    "vertex_type": "PosNUvUvTSkin",
+    "ps_entry_point": "",
+    "rs_config": "shadows",
+    "category": "shadows_player",
+    "priority": 500,
+    "uses_skin": true
+  },
   "shadows_instanced": {
     "vs_file": "data/shaders/shadows.fx",
     "vs_entry_point": "VS_Instanced",
@@ -190,6 +200,16 @@
     "priority": 310,
     "z": "disable_all",
     "blend": "additive"
+  },
+  "pbr_dir_lights_player": {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "vertex_type": "PosClr",
+    "ps_file": "data/shaders/pbr.fx",
+    "ps_entry_point": "PS_dir_lights_player",
+    "category": "pbr_proc",
+    "priority": 320,
+    "z": "disable_all",
+    "blend": "combinative"
   },
   "pbr_point_lights": {
     "vs_file": "data/shaders/pbr.fx",
@@ -391,6 +411,7 @@
     "vertex_type": "PosNUvUvTSkin",
     "category": "gbuffer",
     "uses_skin": true,
+    "shadows_material" : "data/materials/shadows_skin_player.material",
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
