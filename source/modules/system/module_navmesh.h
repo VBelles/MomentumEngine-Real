@@ -17,4 +17,7 @@ public:
 	void render() override;
 	bool stop() override;
 	void update(float delta) override;
+
+    CNavMesh& getNavMesh() { return navmesh; }
+    CNavMeshQuery& getNavQuery() { return navQuery; }
 };

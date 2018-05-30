@@ -68,7 +68,6 @@ void NavMeshDebugDrawDX::end() {
 			renderDots(VEC3(vs[0].pos.x, vs[0].pos.y, vs[0].pos.z),
 					   VEC4(1, 0, 0, 1));
 		}
-
 		//g_pd3dDevice->DrawPrimitiveUP(D3DPT_POINTLIST, num_colored_vertices, colored_vertices, sizeof(TVtxPosClr));
 	}
 	else if (primitive == DU_DRAW_LINES) {

@@ -5,18 +5,19 @@
 class CNavMeshQuery {
 
 public:
-	CNavMesh* data;
-
 	CNavMeshQuery(CNavMesh* aNavMesh);
+	
+    CNavMesh* data;
 
-	void findPath(VEC3 start, VEC3 end);
-	std::vector<VEC3> getSmoothPath(VEC3 start, VEC3 end);
-	void wallDistance(VEC3 fromPos);
-	float getWallDistance(VEC3 fromPos);
-	void raycast(VEC3 start, VEC3 end);
+	std::vector<VEC3> getSmoothPath(const VEC3 start, const VEC3 end);
+	float getWallDistance(const VEC3 fromPos);
 	// TODO: Añadir un getRaycast si lo queremos usar.
 
 private:
+	void findPath(const VEC3 start, const VEC3 end);
+	void wallDistance(const VEC3 fromPos);
+	void raycast(const VEC3 start, const VEC3 end);
+
 	dtQueryFilter m_filter;
 
 	dtStatus m_pathFindStatus;
