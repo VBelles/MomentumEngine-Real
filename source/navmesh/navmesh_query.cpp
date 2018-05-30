@@ -322,10 +322,15 @@ bool CNavMeshQuery::existsConnection(const VEC3 start, const VEC3 end) {
 	return m_polys[m_npolys - 1] == m_endRef;
 }
 
+bool CNavMeshQuery::raycast2D(const VEC3 start, const VEC3 end) {
+	raycast(start, end);
+
+	return m_hitResult;
+}
+
 void CNavMeshQuery::raycast(VEC3 start, VEC3 end) {
 	int nstraightPath = 0;
 	float straightPath[MAX_POLYS * 3];
-	bool hitResult;
 
 	dtNavMeshQuery*	navQuery = data->getNavMeshQuery();
 
@@ -343,12 +348,12 @@ void CNavMeshQuery::raycast(VEC3 start, VEC3 end) {
 		if (t > 1) {
 			// No hit
 			dtVcopy(m_hitPos, &end.x);
-			hitResult = false;
+			m_hitResult = false;
 		}
 		else {
 			// Hit
 			dtVlerp(m_hitPos, &start.x, &end.x, t);
-			hitResult = true;
+			m_hitResult = true;
 		}
 		// Adjust height.
 		if (m_npolys > 0) {

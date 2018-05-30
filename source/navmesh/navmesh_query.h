@@ -12,7 +12,7 @@ public:
 	std::vector<VEC3> getSmoothPath(const VEC3 start, const VEC3 end);
 	float getWallDistance(const VEC3 fromPos);
 	bool existsConnection(const VEC3 start, const VEC3 end);
-	// TODO: Añadir un getRaycast si lo queremos usar.
+	bool raycast2D(const VEC3 start, const VEC3 end);
 
 private:
 	void findPath(const VEC3 start, const VEC3 end);
@@ -39,6 +39,7 @@ private:
 	int m_pathIterNum;
 	
 	float m_distanceToWall;
+	bool m_hitResult = false;
 	float m_hitPos[3];
 	float m_hitNormal[3];
 };
