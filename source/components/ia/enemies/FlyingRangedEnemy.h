@@ -52,6 +52,9 @@ private:
 	VEC3 spawnPosition;
 	VEC3 velocityVector;
 
+	int currentWaypoint = 0;
+	std::vector<VEC3> wayPoints;
+
 	CTimer timer;
 	CTimer idleWarTimer;
 	CTimer attackTimer;
@@ -82,6 +85,7 @@ private:
 	int idle(float delta = 0.f);
 	int onMeleeAttack(float delta = 0.f);
 	int meleeAttack(float delta = 0.f);
+	int patrol(float delta = 0.f);
 
 	bool deathCondition(float delta = 0.f);
 	bool deadCondition(float delta = 0.f);
@@ -94,6 +98,7 @@ private:
 	bool returnToSpawnCondition(float delta = 0.f);
 	bool combatCondition(float delta = 0.f);
 	bool meleeAttackCondition(float delta = 0.f);
+	bool patrolCondition(float delta = 0.f);
 
 	CEntity* getPlayerEntity();
 	TCompTransform* getPlayerTransform();

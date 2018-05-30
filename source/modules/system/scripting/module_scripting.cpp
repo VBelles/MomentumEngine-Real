@@ -116,7 +116,7 @@ void CModuleScripting::update(float delta) {
 
 void CModuleScripting::render() {
 	//Render console on debug
-	if (CApp::get().showDebug) {
+	if (CApp::get().isDebug()) {
 		bool open = true;
 		console->Draw("LUA Console", &open);
 	}

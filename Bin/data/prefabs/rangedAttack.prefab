@@ -11,11 +11,11 @@
 			},
 			"collider": {
 				"shape": "sphere",
-				"type": "dynamic",
+				"type": "kinematic",
 				"is_trigger": true,
 				"radius": 0.1,
 				"group": ["enemy"],
-				"mask": ["player"]
+				"mask": ["all"]
 			},
 			"ranged_attack": {
 				"speed": 15,

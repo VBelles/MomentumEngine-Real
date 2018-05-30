@@ -3,9 +3,9 @@
 #include "gui/gui_parser.h"
 
 bool CModuleMainMenu::start() {
-	ShowCursor(true);
-	CApp::get().resetCursorPos = false;
-
+	CApp& app = CApp::get();
+	app.setResetMouse(false);
+	
 	GUI::CParser parser;
 	parser.parseFile("data/gui/test.json");
 
@@ -31,8 +31,6 @@ bool CModuleMainMenu::stop() {
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);
 	Engine.getGUI().unregisterWidget("test", true);
-	CApp::get().resetCursorPos = true;
-	ShowCursor(false);
 	return true;
 }
 

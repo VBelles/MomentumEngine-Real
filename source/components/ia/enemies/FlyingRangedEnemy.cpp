@@ -43,7 +43,7 @@ CBehaviorTreeFlyingRangedEnemy::CBehaviorTreeFlyingRangedEnemy()
 	addChild("flyingRangedEnemy", "dead", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::deadCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::dead);
 
 	addChild("flyingRangedEnemy", "stunned", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::stunCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::stunned);
-	
+
 	addChild("flyingRangedEnemy", "melee", Sequence, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::meleeAttackCondition, nullptr);
 	addChild("melee", "onMeleeAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onMeleeAttack);
 	addChild("melee", "meleeAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::meleeAttack);
@@ -58,6 +58,8 @@ CBehaviorTreeFlyingRangedEnemy::CBehaviorTreeFlyingRangedEnemy()
 	addChild("rangedAttack", "onRangedAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onRangedAttack);
 	addChild("rangedAttack", "rangedAttackAction", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::rangedAttack);
 	node->setProbability(std::vector<float>{ 0.75f, 0.25f });
+
+	addChild("flyingRangedEnemy", "patrol", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::patrolCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::patrol);
 
 	addChild("flyingRangedEnemy", "idle", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::trueCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::idle);
 }
@@ -83,7 +85,7 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 	}
 	if (j.count("attackTargetOffset")) {
 		attackTargetOffset = loadVEC3(j["attackTargetOffset"]);
-	}	
+	}
 	if (j.count("attacks")) {
 		for (int i = 0; i < j["attacks"].size(); ++i) {
 			const json& jAttack = j["attacks"][i];
@@ -94,6 +96,14 @@ void CBehaviorTreeFlyingRangedEnemy::load(const json& j, TEntityParseContext& ct
 			if (jAttack.count("frameData")) {
 				attacksFrameData[attackName] = loadVEC2(jAttack["frameData"]);
 			}
+		}
+	}
+	wayPoints.clear();
+	if (j.count("wayPoints")) {
+		currentWaypoint = 0;
+		for (int i = 0; i < j["wayPoints"].size(); ++i) {
+			const json& jWayPoint = j["wayPoints"][i];
+			wayPoints.push_back(loadVEC3(jWayPoint));
 		}
 	}
 }
@@ -133,7 +143,7 @@ int CBehaviorTreeFlyingRangedEnemy::onDeath(float delta) {
 	TCompRespawner* spawner = get<TCompRespawner>();
 	spawner->onDead();
 
-    EngineScripting.throwEvent(onEnemyKilled, ((CEntity*)CHandle(this).getOwner())->getName());
+	EngineScripting.throwEvent(onEnemyKilled, ((CEntity*)CHandle(this).getOwner())->getName());
 
 	return Leave;
 }
@@ -411,6 +421,24 @@ int CBehaviorTreeFlyingRangedEnemy::rangedAttack(float delta) {
 	}
 }
 
+int CBehaviorTreeFlyingRangedEnemy::patrol(float delta) {
+	VEC3 myPosition = getTransform()->getPosition();
+	if (VEC3::DistanceSquared(myPosition, wayPoints[currentWaypoint]) < 0.2f) {
+		currentWaypoint = (currentWaypoint + 1) % wayPoints.size();
+	}
+
+	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
+	rotateTowards(delta, wayPoints[currentWaypoint], rotationSpeed);
+
+	VEC3 deltaMovement = wayPoints[currentWaypoint] - myPosition;
+	deltaMovement.Normalize();
+	deltaMovement = deltaMovement * movementSpeed * delta;
+
+	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+
+	return Leave;
+}
+
 int CBehaviorTreeFlyingRangedEnemy::idle(float delta) {
 	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
 	return Leave;
@@ -461,6 +489,10 @@ bool CBehaviorTreeFlyingRangedEnemy::combatCondition(float delta) {
 	return distance < maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
 }
 
+bool CBehaviorTreeFlyingRangedEnemy::patrolCondition(float delta) {
+	return wayPoints.size() > 0;
+}
+
 void CBehaviorTreeFlyingRangedEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
 	playerHandle = getEntityByName(PLAYER_NAME);
@@ -489,7 +521,7 @@ void CBehaviorTreeFlyingRangedEnemy::onPerfectDodged(const TMsgPerfectDodged & m
 void CBehaviorTreeFlyingRangedEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (attackInfos.find(msg.hitbox) != attackInfos.end()) {
 		TMsgAttackHit attackHit = {};
-		attackHit.attacker = CHandle(this);
+		attackHit.attacker = CHandle(this).getOwner();
 		attackHit.info = attackInfos[msg.hitbox];
 		((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
 	}

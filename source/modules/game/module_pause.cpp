@@ -1,6 +1,7 @@
 ﻿#include "mcv_platform.h"
 #include "module_pause.h"
 #include "gui/gui_parser.h"
+#include "modules/system/scripting/scripting_player.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -38,8 +39,6 @@ bool CModulePause::stop() {
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);
 	Engine.getGUI().unregisterWidget("test_pause_menu", true);
-	ShowCursor(false);
-	CApp::get().resetCursorPos = true;
 	return true;
 }
 
@@ -56,6 +55,8 @@ void CModulePause::onPausePressed() {
 		Engine.getGUI().registerController(controller);
 		controller->setCurrentOption(0);
 		Engine.getGUI().activateWidget("test_pause_menu");
+		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
+		CApp::get().setDebugMode(false);
 	}
 	else {
 		Engine.getGUI().deactivateWidget("test_pause_menu");
@@ -71,8 +72,8 @@ void CModulePause::onPausePressed() {
 		}
 	}
 
-	ShowCursor(pause);
-	CApp::get().resetCursorPos = !pause;
+	CApp::get().setResetMouse(!pause);
+	
 }
 
 void CModulePause::render() {}

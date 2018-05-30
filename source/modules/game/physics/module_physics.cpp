@@ -23,6 +23,7 @@
 #pragma comment(lib, "PxPvdSDK_x64.lib")
 #pragma comment(lib, "PhysX3CharacterKinematic_x64.lib")
 
+
 bool CModulePhysics::start() {
 	if (!createPhysx()) return false;
 	if (!createScene()) return false;

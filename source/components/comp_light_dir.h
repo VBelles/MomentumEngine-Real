@@ -20,6 +20,8 @@ private:
 	float             shadows_step = 1.f;
 	CRenderToTexture* shadows_rt = nullptr;
 
+	std::string       shadows_category;
+
 public:
 	void debugInMenu();
 	void renderDebug();
@@ -28,5 +30,6 @@ public:
 
 	void activate();
 	void generateShadowMap();
+	std::string getShadowsCategory();
 
 };

@@ -40,6 +40,10 @@ public:
 		reset();
 		return delta;
 	}
+	
+	void setTimeStamp(uint64_t value) {
+		time_stamp = value;
+	}
 };
 
 #endif

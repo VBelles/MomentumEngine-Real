@@ -33,7 +33,8 @@ void TCompBreakable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompBreakable::onHit(const TMsgAttackHit & msg) {
-	if (msg.info.damage > 0.f) {
+	CEntity* entity = msg.attacker;
+	if (entity->getName() == PLAYER_NAME && msg.info.damage > 0.f) {
 		hp -= 1;
 		if (hp <= 0) {
 			onDie();

@@ -148,3 +148,4 @@ TCompCamera* IActionState::getCamera() { return stateManager->getCamera(); }
 TCompRenderBlurRadial* IActionState::getBlurRadial() { return getCamera()->get<TCompRenderBlurRadial>(); }
 TCompSkeleton* IActionState::getSkeleton() { return stateManager->getSkeleton(); }
 TCompPowerGauge* IActionState::getPowerGauge() { return stateManager->getPowerGauge(); }
+TCompCollectableManager* IActionState::getCollectableManager() { return stateManager->getCollectableManager(); }

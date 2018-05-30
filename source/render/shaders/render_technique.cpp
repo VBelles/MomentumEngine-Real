@@ -65,6 +65,8 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	ps_file = j.value("ps_file", vs_file);
 	ps_entry_point = j.value("ps_entry_point", "PS");
 
+	shadows_material = j.value("shadows_material", shadows_material);
+
 	if (!reloadVS()) return false;
 	if (!reloadPS()) return false;
 
@@ -133,6 +135,7 @@ void CRenderTechnique::activate() const {
 }
 
 void CRenderTechnique::debugInMenu() {
+	ImGui::LabelText("Category", "%08x %s", category_id, category.c_str());
 	ImGui::LabelText("VS FX", "%s", vs_file.c_str());
 	ImGui::LabelText("VS", "%s", vs_entry_point.c_str());
 	ImGui::LabelText("PS FX", "%s", ps_file.c_str());

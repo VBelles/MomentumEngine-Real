@@ -57,7 +57,7 @@ void CModuleManager::render() {
             mod->render();
         }
     }
-    if (CApp::get().showDebug) {
+    if (CApp::get().isDebug()) {
         renderDebug();
     }
 }

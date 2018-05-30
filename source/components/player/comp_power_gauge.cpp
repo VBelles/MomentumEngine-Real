@@ -35,7 +35,11 @@ void TCompPowerGauge::load(const json & j, TEntityParseContext & ctx) {
 }
 
 void TCompPowerGauge::update(float delta) {
-	if (freezeDropTimer.elapsed() > freezeDropTime) {
+	if (power < targetPower) {
+		increasePower(powerIncreaseSpeed * delta);
+		freezeDropTimer.reset();
+	}
+	else if (freezeDropTimer.elapsed() > freezeDropTime) {
 		increasePower(-dropSpeed[powerLevel - 1] * delta);
 	}
 }
@@ -96,10 +100,16 @@ void TCompPowerGauge::increasePower(float increment) {
 		});
 	}
 	//EngineGUI.getVariables().getVariant("power_progress")->setFloat(getBarPercentage());
+	targetPower = power;
 }
 
 void TCompPowerGauge::setPower(float power) {
 	increasePower(power - this->power);
+}
+
+void TCompPowerGauge::increasePowerInTime(float power, float time) {
+	targetPower += power;
+	powerIncreaseSpeed = (targetPower - this->power) / time;
 }
 
 int TCompPowerGauge::getPowerLevel() { return powerLevel; }

@@ -83,3 +83,7 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 void RunActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 }
+
+void RunActionState::onSpendCoinsButton() {
+	stateManager->changeState(SpendCoins);
+}

@@ -14,12 +14,12 @@ class TCompHitboxes;
 class TCompRenderBlurRadial;
 class TCompSkeleton;
 class TCompPowerGauge;
+class TCompCollectableManager;
 
 struct HitState;
 struct MoveState;
 struct TMsgAttackHit;
 
-using namespace physx;
 
 class IActionState {
 
@@ -38,6 +38,7 @@ protected:
 	TCompRenderBlurRadial* getBlurRadial();
 	TCompSkeleton* getSkeleton();
 	TCompPowerGauge* getPowerGauge();
+	TCompCollectableManager *getCollectableManager();
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
@@ -87,6 +88,8 @@ public:
 	virtual void onFastAttackButton() {}
 	virtual void onDodgeButton() {}
 	virtual void onFastAttackButtonReleased() {}
+	virtual void onSpendCoinsButton() {}
+	virtual void onSpendCoinsButtonReleased() {}
 	virtual void onReleasePowerButton() {}
 	virtual void onHitboxEnter(std::string hitbox, CHandle entity) {}
 	virtual void onDead();

@@ -234,6 +234,9 @@
     <ClCompile Include="components\player\states\base_states\combat\FastFinisher1ActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\combat\FastFinisher2ActionState.cpp" />
     <ClCompile Include="components\postfx\comp_render_fog.cpp" />
+    <ClCompile Include="modules\system\module_uniques.cpp" />
+    <ClCompile Include="components\player\comp_collectable_manager.cpp" />
+    <ClCompile Include="components\player\states\base_states\SpendCoinsActionState.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_sound.cpp" />
     <ClCompile Include="modules\system\module_navmesh.cpp" />
   </ItemGroup>
@@ -500,6 +503,9 @@
     <ClInclude Include="components\player\states\base_states\combat\FastFinisher1ActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\FastFinisher2ActionState.h" />
     <ClInclude Include="components\postfx\comp_render_fog.h" />
+    <ClInclude Include="modules\system\module_uniques.h" />
+    <ClInclude Include="components\player\comp_collectable_manager.h" />
+    <ClInclude Include="components\player\states\base_states\SpendCoinsActionState.h" />
     <ClInclude Include="modules\system\scripting\scripting_sound.h" />
     <ClInclude Include="modules\system\module_navmesh.h" />
   </ItemGroup>

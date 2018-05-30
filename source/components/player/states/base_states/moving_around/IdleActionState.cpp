@@ -64,3 +64,7 @@ void IdleActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 }
 
+void IdleActionState::onSpendCoinsButton() {
+	stateManager->changeState(SpendCoins);
+}
+

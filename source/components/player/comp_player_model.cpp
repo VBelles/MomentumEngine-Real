@@ -9,21 +9,19 @@
 #include "components/comp_respawn_point.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/comp_power_gauge.h"
+#include "components/player/comp_collectable_manager.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/StateManager.h"
-#include "components/player/attack_info.h"
 
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
-using namespace physx;
 
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompPlayerModel, TMsgAttackHit, onAttackHit);
 	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, onHitboxEnter);
-	DECL_MSG(TCompPlayerModel, TMsgCollect, onCollect);
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, onGainPower);
 	DECL_MSG(TCompPlayerModel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(TCompPlayerModel, TMsgPowerLvlChange, onLevelChange);
@@ -125,11 +123,11 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	powerGaugeHandle = get<TCompPowerGauge>();
-	
+	collectableManagerHandle = get<TCompCollectableManager>();
+
 	respawnPosition = getTransform()->getPosition();
 
 	renderUI->registerOnRenderUI([&]() {
-
 
 		bool showWindow = true;
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
@@ -159,13 +157,13 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 
 		//Chrysalis counter
-		std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(chrysalis) + "/" + std::to_string(chrysalisTarget);
+		std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(getCollectableManager()->getNumberOfChrysalis()) + "/" + std::to_string(chrysalisTarget);
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
-		ImGui::ProgressBar((float)chrysalis / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
+		ImGui::ProgressBar((float)getCollectableManager()->getNumberOfChrysalis() / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		//Coin counter
-		std::string coinText = "Coins: " + std::to_string(coins);
+		std::string coinText = "Coins: " + std::to_string(getCollectableManager()->getNumberOfCoins());
 		ImGui::ProgressBar(0, ImVec2(-1, 0), coinText.c_str());
 
 		ImGui::End();
@@ -185,12 +183,11 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 			ImGui::PopStyleColor();
 		}
 
-		if (!CApp::get().showDebug) return;
-
-		ImGui::Begin("Params Main Character", &showWindow);
-		debugInMenu();
-		ImGui::End();
-
+		if (CApp::get().isDebug()) {
+			ImGui::Begin("Params Main Character", &showWindow);
+			debugInMenu();
+			ImGui::End();
+		}
 
 	});
 
@@ -198,30 +195,6 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	stateManager = new StateManager(CHandle(this).getOwner());
 
-}
-
-void TCompPlayerModel::onCollect(const TMsgCollect& msg) {
-	TCompCollectable* collectable = msg.collectableHandle;
-	switch (msg.type) {
-	case TCompCollectable::Type::CHRYSALIS:
-		collectable->collect();
-		++chrysalis;
-		if (chrysalis == chrysalisTarget) {
-			// Open boss door.
-			CEntity* door = (CEntity*)getEntityByName("door");
-			if (door) door->sendMsg(TMsgDestroy{});
-			dialogTimer.reset();
-			showVictoryDialog = true;
-		}
-		break;
-	case TCompCollectable::Type::COIN:
-		collectable->collect();
-		++coins;
-		break;
-	default:
-		dbg("Collected unknown object %d\n", msg.type);
-		break;
-	}
 }
 
 void TCompPlayerModel::update(float delta) {
@@ -297,7 +270,7 @@ void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
 }
 
 void TCompPlayerModel::onControllerHit(const TMsgControllerHit& msg) {
-	
+
 }
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
@@ -411,6 +384,20 @@ void TCompPlayerModel::releasePowerButtonPressed() {
 	stateManager->getConcurrentState()->onReleasePowerButton();
 }
 
+void TCompPlayerModel::spendCoinsButtonPressed() {
+	if (!lockAttack) {
+		stateManager->getState()->onSpendCoinsButton();
+	}
+	stateManager->getConcurrentState()->onSpendCoinsButton();
+}
+
+void TCompPlayerModel::spendCoinsButtonReleased() {
+	if (!lockAttack) {
+		stateManager->getState()->onSpendCoinsButtonReleased();
+	}
+	stateManager->getConcurrentState()->onSpendCoinsButtonReleased();
+}
+
 void TCompPlayerModel::dodgeButtonPressed() {
 	if (!lockAttack) {
 		stateManager->getState()->onDodgeButton();
@@ -477,9 +464,13 @@ TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
 	return powerGaugeHandle;
 }
 
+TCompCollectableManager* TCompPlayerModel::getCollectableManager() {
+	return collectableManagerHandle;
+}
+
 TCompPlayerModel::~TCompPlayerModel() {
-	SAFE_DELETE(powerStats[0]);
-	SAFE_DELETE(powerStats[1]);
-	SAFE_DELETE(powerStats[2]);
+	for (int i = 0; i < NUMBER_OF_POWER_LEVELS; i++) {
+		SAFE_DELETE(powerStats[i]);
+	}
 	SAFE_DELETE(stateManager);
 }

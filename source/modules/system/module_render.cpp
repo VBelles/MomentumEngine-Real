@@ -146,7 +146,7 @@ void CModuleRender::update(float delta) {
 void CModuleRender::render() {
     // Notify ImGUI that we are starting a new frame
     ImGui_ImplDX11_NewFrame();
-    if (CApp::get().showDebug) {
+    if (CApp::get().isDebug()) {
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
         static int nframes = 5;
         ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);

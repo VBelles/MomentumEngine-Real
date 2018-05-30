@@ -190,7 +190,7 @@ struct CRasterizers {
           FALSE,            // BOOL FrontCounterClockwise;
           13,               // INT DepthBias;
           0.0f,             // FLOAT DepthBiasClamp;
-          4.0f,             // FLOAT SlopeScaledDepthBias;
+		  10.0f,             // FLOAT SlopeScaledDepthBias;
           TRUE,             // BOOL DepthClipEnable;
           FALSE,            // BOOL ScissorEnable;
           FALSE,            // BOOL MultisampleEnable;

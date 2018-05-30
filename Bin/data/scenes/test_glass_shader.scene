@@ -1,0 +1,18 @@
+[
+  {
+    "entity": {
+      "name": "test glass",
+      "transform": {
+        "pos": "-5 8.5 -49"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Hedra001.mesh",
+          "materials": [
+            "data/materials/ambar.material"
+          ]
+        }
+      ]
+    }
+  }
+]

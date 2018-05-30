@@ -9,7 +9,7 @@ bool CModuleNavmesh::start() {
 }
 
 void CModuleNavmesh::render() {
-    if (CApp::get().showDebug) {
+    if (CApp::get().isDebug()) {
         ImGui::Checkbox("Show navmesh", &showNavmesh);
 
         if (showNavmesh) {

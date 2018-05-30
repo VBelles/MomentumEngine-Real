@@ -12,10 +12,9 @@ class TCompTransform;
 class TCompPowerGauge;
 class TCompSkeleton;
 class StateManager;
+class TCompCollectableManager;
 
 struct TMsgRespawnChanged;
-struct TMsgCollect;
-
 
 struct HitState {
 	CHandle entity;
@@ -38,6 +37,7 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle powerGaugeHandle;
+	CHandle collectableManagerHandle;
 
 	VEC3 respawnPosition;
 	VEC3 deltaMovement;
@@ -48,8 +48,8 @@ private:
 
 	MoveState moveState;
 
-	std::string materials[3];
-	PowerStats* powerStats[3];
+	std::string materials[NUMBER_OF_POWER_LEVELS];
+	PowerStats* powerStats[NUMBER_OF_POWER_LEVELS];
 	PowerStats* currentPowerStats = nullptr;
 
 	const float PLAYER_MAX_HP = 8.f;
@@ -75,7 +75,6 @@ private:
 
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	void onCollect(const TMsgCollect& msg);
 	void onShapeHit(const TMsgShapeHit & msg);
 	void onControllerHit(const TMsgControllerHit & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);
@@ -133,6 +132,8 @@ public:
 	void strongAttackButtonReleased();
 	void centerCameraButtonPressed();
 	void releasePowerButtonPressed();
+	void spendCoinsButtonPressed();
+	void spendCoinsButtonReleased();
 	void dodgeButtonPressed();
 	void walkButtonPressed();
 	void gainPowerButtonPressed();
@@ -141,6 +142,7 @@ public:
 	TCompCollider* getCollider();
 	PxCapsuleController* getController();
 	TCompPowerGauge* getPowerGauge();
+	TCompCollectableManager* getCollectableManager();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }
 	VEC3* getVelocityVector() { return &velocityVector; }

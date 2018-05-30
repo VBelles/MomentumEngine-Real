@@ -40,9 +40,7 @@ void TCompRangedAttack::update(float delta) {
 }
 
 void TCompRangedAttack::onCreate(const TMsgEntityCreated& msg) {
-	TCompCollider* collider = get<TCompCollider>();
-	PxRigidDynamic* rigidDynamic = (PxRigidDynamic*)collider->actor;
-	rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
+
 }
 
 void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg) {
@@ -60,7 +58,7 @@ void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 		AttackInfo msgAttackInfo = attackInfo;
 		CEntity *otherEntity = msg.h_other_entity;
-		otherEntity->sendMsg(TMsgAttackHit{ ownerHandle, msgAttackInfo });
+		otherEntity->sendMsg(TMsgAttackHit{ ownerHandle.getOwner(), msgAttackInfo });
 
 		hit = true;
 	}

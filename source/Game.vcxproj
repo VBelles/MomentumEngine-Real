@@ -148,6 +148,7 @@
     <ClCompile Include="components\platforms\comp_platform_rotative.cpp" />
     <ClCompile Include="components\platforms\comp_platform_simple.cpp" />
     <ClCompile Include="components\player\attack_info.cpp" />
+    <ClCompile Include="components\player\comp_collectable_manager.cpp" />
     <ClCompile Include="components\player\comp_player_controller.cpp" />
     <ClCompile Include="components\player\comp_player_model.cpp" />
     <ClCompile Include="components\player\comp_power_gauge.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="components\player\states\base_states\death\DeathActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\knockback\HardKnockbackGroundActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\SpendCoinsActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\spring_jump\SpringJumpActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.cpp" />
@@ -266,6 +268,7 @@
     <ClCompile Include="modules\system\module_entities.cpp" />
     <ClCompile Include="modules\system\module_navmesh.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
+    <ClCompile Include="modules\system\module_uniques.cpp" />
     <ClCompile Include="modules\system\scripting\console.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_cameras.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_door.cpp" />
@@ -388,6 +391,7 @@
     <ClInclude Include="components\platforms\comp_platform_rotative.h" />
     <ClInclude Include="components\platforms\comp_platform_simple.h" />
     <ClInclude Include="components\player\attack_info.h" />
+    <ClInclude Include="components\player\comp_collectable_manager.h" />
     <ClInclude Include="components\player\comp_player_controller.h" />
     <ClInclude Include="components\player\comp_player_model.h" />
     <ClInclude Include="components\player\comp_power_gauge.h" />
@@ -416,6 +420,7 @@
     <ClInclude Include="components\player\states\base_states\death\DeathActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />
     <ClInclude Include="components\player\states\base_states\knockback\HardKnockbackGroundActionState.h" />
+    <ClInclude Include="components\player\states\base_states\SpendCoinsActionState.h" />
     <ClInclude Include="components\player\states\base_states\spring_jump\JumpSquatSpringActionState.h" />
     <ClInclude Include="components\player\states\base_states\spring_jump\SpringJumpActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpPlummetActionState.h" />
@@ -518,6 +523,7 @@
     <ClInclude Include="modules\game\physics\basic_controller_filter_callback.h" />
     <ClInclude Include="modules\system\module_navmesh.h" />
     <ClInclude Include="modules\system\module_sound.h" />
+    <ClInclude Include="modules\system\module_uniques.h" />
     <ClInclude Include="modules\system\scripting\console.h" />
     <ClInclude Include="modules\system\scripting\scripting_cameras.h" />
     <ClInclude Include="modules\system\scripting\scripting_door.h" />

@@ -73,6 +73,11 @@ void TCompPlayerController::update(float delta) {
 		if (EngineInput["center_camera"].getsPressed()) {
 			playerModel->centerCameraButtonPressed();
 		}
+		if (EngineInput["spend_coins"].getsPressed()) {
+			playerModel->spendCoinsButtonPressed();
+		}else if (EngineInput["spend_coins"].getsReleased()) {
+			playerModel->spendCoinsButtonReleased();
+		}
 		if (EngineInput["release_power"].getsPressed()) {
 			playerModel->releasePowerButtonPressed();
 		}

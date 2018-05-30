@@ -22,7 +22,8 @@ CEngine::CEngine()
 	, _module_scripting("scripting")
 	, _module_gui("gui")
 	, _module_navmesh("navmesh")
-	, _module_sound("sound") {
+	, _module_sound("sound")
+	, _module_uniques("uniques") {
 }
 
 bool CEngine::start() {
@@ -41,6 +42,7 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_navmesh);
 	_modules.registerSystemModule(&_module_sound);
 	_modules.registerSystemModule(&_module_multithread);
+	_modules.registerSystemModule(&_module_uniques);
 
 	_modules.registerGameModule(&_module_physics);
 	_modules.registerGameModule(&module_splash);

@@ -84,3 +84,7 @@ void WalkActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->setTimeFactor(1);
 }
 
+void WalkActionState::onSpendCoinsButton() {
+	stateManager->changeState(SpendCoins);
+}
+
