@@ -11,6 +11,7 @@ public:
 
 	std::vector<VEC3> getSmoothPath(const VEC3 start, const VEC3 end);
 	float getWallDistance(const VEC3 fromPos);
+	bool existsConnection(const VEC3 start, const VEC3 end);
 	// TODO: Añadir un getRaycast si lo queremos usar.
 
 private:

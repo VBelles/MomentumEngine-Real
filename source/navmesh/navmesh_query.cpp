@@ -312,6 +312,16 @@ float CNavMeshQuery::getWallDistance(VEC3 fromPos) {
 	return m_distanceToWall;
 }
 
+bool CNavMeshQuery::existsConnection(const VEC3 start, const VEC3 end) {
+	findPath(start, end);
+	// If the end polygon cannot be reached through the navigation graph,
+	// the last polygon in the path will be the nearest to the end polygon.
+
+	data->getNavMeshQuery()->findNearestPoly(&end.x, m_polyPickExt, &m_filter, &m_endRef, 0);
+
+	return m_polys[m_npolys - 1] == m_endRef;
+}
+
 void CNavMeshQuery::raycast(VEC3 start, VEC3 end) {
 	int nstraightPath = 0;
 	float straightPath[MAX_POLYS * 3];

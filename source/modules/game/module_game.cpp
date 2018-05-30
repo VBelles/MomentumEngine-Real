@@ -99,7 +99,8 @@ void CModuleGame::update(float delta) {
 		}
 	}
 
-	//auto path = EngineNavmesh.getNavQuery().getSmoothPath(VEC3(0,0,0), VEC3(-8.8, 2.25, 14)); // test pathfind
+	auto path = EngineNavmesh.getNavQuery().getSmoothPath(VEC3(0, 0, 0), VEC3(-8.8, 2.25, 14)); // test pathfind
+	bool connected = EngineNavmesh.getNavQuery().existsConnection(VEC3(0,0,0), VEC3(-8.8, 2.25, 14)); // test pathfind
 
   //  if (EngineInput['1'].getsPressed()) {
 		//CHandle h_camera = getEntityByName(PLAYER_CAMERA);
