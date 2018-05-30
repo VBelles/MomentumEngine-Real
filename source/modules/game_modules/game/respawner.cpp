@@ -12,9 +12,7 @@ Respawner::Respawner() {
 
 void Respawner::update(float delta) {
 	for (std::map<std::string, Respawnable>::iterator iter = elementsToSpawn.begin(); iter != elementsToSpawn.end();) {
-		dbg("name: %s, respawnTime: %f\n", (*iter).first.c_str(), (*iter).second.respawnTime);
 		if ((*iter).second.respawnTimer.elapsed() >= (*iter).second.respawnTime) {
-			dbg("mierdecilla cualquiera\n");
 			TEntityParseContext ctx;
 			CTransform transform;
 			transform.setPosition((*iter).second.position);
@@ -25,7 +23,7 @@ void Respawner::update(float delta) {
 			assert(nameComp);
 			nameComp->setName((*iter).first.c_str());
 			//delete element
-			elementsToSpawn.erase(iter);
+			iter = elementsToSpawn.erase(iter);
 		}
 		else {
 			iter++;
