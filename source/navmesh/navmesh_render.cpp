@@ -9,13 +9,11 @@ void NavMeshDebugDrawDX::depthMask(bool state) {
 }
 
 void NavMeshDebugDrawDX::texture(bool state) {
-	/*if (state)
-	{
+	/*if (state) {
 		glEnable(GL_TEXTURE_2D);
 		g_tex.bind();
 	}
-	else
-	{
+	else {
 		glDisable(GL_TEXTURE_2D);
 	}*/
 }
@@ -121,5 +119,4 @@ void NavMeshDebugDrawDX::end() {
 
 	num_colored_vertices = 0;
 	num_textured_colored_vertices = 0;
-    firstRender = false;
 }

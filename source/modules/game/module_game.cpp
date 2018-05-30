@@ -98,6 +98,9 @@ void CModuleGame::update(float delta) {
 			ScriptingPlayer::givePlayerControl();
 		}
 	}
+
+	//auto path = EngineNavmesh.getNavQuery().getSmoothPath(VEC3(0,0,0), VEC3(-8.8, 2.25, 14)); // test pathfind
+
   //  if (EngineInput['1'].getsPressed()) {
 		//CHandle h_camera = getEntityByName(PLAYER_CAMERA);
   //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);

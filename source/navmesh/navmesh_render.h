@@ -14,11 +14,10 @@ private:
 	int                     num_colored_vertices;
 	int                     num_textured_colored_vertices;
 
-    // Do some calculations only on first render because data won't change.
-    bool                    firstRender = true;
 
 public:
-	// No sería necesario actualizar todo esto cada frame, no cambiará.
+    // TODO: Do some calculations only on first render because data won't change.
+    bool                    firstRender = true;
 
 	virtual void depthMask(bool state);
 	virtual void texture(bool state);

@@ -291,7 +291,7 @@ void CNavMeshQuery::findPath(VEC3 start, VEC3 end) {
 std::vector<VEC3> CNavMeshQuery::getSmoothPath(VEC3 start, VEC3 end) {
 	findPath(start, end);
 	std::vector<VEC3> path;
-	for (int i = 0; i < m_npolys; i += 3) {
+	for (int i = 0; i < m_nsmoothPath * 3; i += 3) {
 		path.push_back(VEC3(m_smoothPath[i], m_smoothPath[i + 1], m_smoothPath[i + 2]));
 	}
 	return path;

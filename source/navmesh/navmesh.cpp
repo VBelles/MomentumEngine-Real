@@ -134,7 +134,9 @@ void CNavMesh::render(bool use_z_test) {
 	input_data.aabb.getMinMax( aabb_min, aabb_max );*/
 
 	// render the bounding box
-	/*duDebugDrawBoxWire( &m_draw, aabb_min.x, aabb_min.y, aabb_min.z, aabb_max.x, aabb_max.y, aabb_max.z, duRGBA( 255, 255, 255, 128 ), 1.0f );
+	/*duDebugDrawBoxWire( &m_draw, aabb_min.x, aabb_min.y, aabb_min.z,
+						  aabb_max.x, aabb_max.y, aabb_max.z,
+						  duRGBA( 255, 255, 255, 128 ), 1.0f );
 	draw.begin( DU_DRAW_POINTS, 5.0f );
 	draw.vertex( aabb_min.x, aabb_min.y, aabb_min.z, duRGBA( 255, 255, 255, 128 ) );
 	draw.end( );*/
@@ -153,12 +155,16 @@ void CNavMesh::render(bool use_z_test) {
 		 drawMode == NAVMESH_DRAW_NODES  ||
 		 drawMode == NAVMESH_DRAW_INVIS)) {
 		if (drawMode != NAVMESH_DRAW_INVIS)
-			duDebugDrawNavMeshWithClosedList(&draw, *navMesh, *navQuery, navMeshDrawFlags);
+			duDebugDrawNavMeshWithClosedList(&draw, *navMesh, *navQuery,
+											 navMeshDrawFlags);
 		if (drawMode == NAVMESH_DRAW_BVTREE)
 			duDebugDrawNavMeshBVTree(&draw, *navMesh);
 		if (drawMode == NAVMESH_DRAW_NODES)
 			duDebugDrawNavMeshNodes(&draw, *navQuery);
-		duDebugDrawNavMeshPolysWithFlags(&draw, *navMesh, SAMPLE_POLYFLAGS_DISABLED, duRGBA(0, 0, 255, 128));
+
+		duDebugDrawNavMeshPolysWithFlags(&draw, *navMesh,
+										 SAMPLE_POLYFLAGS_DISABLED,
+										 duRGBA(0, 0, 255, 128));
 	}
 
 	//Renderer.enableZWrite( );
@@ -168,7 +174,6 @@ void CNavMesh::render(bool use_z_test) {
 		duDebugDrawContours(&draw, *cset);
 		//Renderer.enableZWrite( );
 	}
-
 	if (pmesh && drawMode == NAVMESH_DRAW_POLYMESH) {
 		//Renderer.disableZWrite( );
 		duDebugDrawPolyMesh(&draw, *pmesh);
@@ -186,4 +191,6 @@ void CNavMesh::render(bool use_z_test) {
 	/*Renderer.enableZWrite( );
 	if( !use_z_test )
 	Renderer.enableZTest( );*/
+
+	draw.firstRender = false;
 }
