@@ -103,5 +103,10 @@
 		"name" : "menu_back",
 		"all" : false,
 		"buttons" : ["escape", "pad_b"]
+	},
+	{
+		"name" : "down",
+		"all" : false,
+		"buttons" : ["z", "x"]
 	}
 ]

@@ -66,9 +66,6 @@ bool CModuleGame::start() {
 		parseScene(scene_name, ctx);
 	}
 
-	//const CCurve* curve = Resources.get("data/curves/test_curve.curve")->as<CCurve>();
-	//registerMesh(createCurveMesh(*curve, 100), "curve.mesh");
-
 	//All scenes created
 	TMsgAllScenesCreated msg;
 	for (auto& comp : TCompName::all_names) {
@@ -81,10 +78,11 @@ bool CModuleGame::start() {
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
 
-    EngineScripting.throwEvent(onGameStart,"");
-	EngineScripting.throwEvent(onLevelStart, "1"); 
+	EngineScripting.throwEvent(onGameStart, "");
+	EngineScripting.throwEvent(onLevelStart, "1");
 
 	CApp::get().setResetMouse(true);
+
 	return true;
 }
 
@@ -98,52 +96,16 @@ bool CModuleGame::stop() {
 }
 
 void CModuleGame::update(float delta) {
-	CApp& app = CApp::get();
 	if (EngineInput["debug_mode"].getsPressed()) {
-		if (!app.toggleDebug()) {
+		if (!CApp::get().toggleDebug()) {
 			ScriptingPlayer::givePlayerControl();
 		}
 	}
-  //  if (EngineInput['1'].getsPressed()) {
-		//CHandle h_camera = getEntityByName(PLAYER_CAMERA);
-  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-  //  }
-  //  if (EngineInput['2'].getsPressed()) {
-  //      CHandle h_camera = getEntityByName("fixed_camera");
-  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-  //  }
-  //  if (EngineInput['3'].getsPressed()) {
-  //      CHandle h_camera = getEntityByName("test_camera_curve");
-  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-  //  }
-    
-    /*static float time = 0.f;
-    time += delta;
-    VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
-    CEntity* e_curve = getEntityByName("test_camera_curve");
-    TCompCurve* c_curve = e_curve->get<TCompCurve>();
-    float ratio = (pos.x + 10.f) / 20.f;
-    c_curve->setRatio(ratio);*/
-
-	/*static float time = 0.f;
-	time += delta;
-	VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
-	CEntity* e_curve = getEntityByName("test_camera_curve");
-	TCompCurve* c_curve = e_curve->get<TCompCurve>();
-	float ratio = (pos.x + 10.f) / 20.f;
-	c_curve->setRatio(ratio);*/
-
-	/*//DEBUG:
-	CEntity* e_curve = getEntityByName("test_camera_curve");
-	TCompTransform* t_curve = e_curve->get<TCompTransform>();
-	pos = t_curve->getPosition();
-	dbg("pos: x: %f y: %f z: %f\n", pos.x, pos.y, pos.z);*/
-
 }
 
 void CModuleGame::render() {
-	// Find the entity with name 'game_camera'
-	CHandle h_e_camera = getEntityByName(GAME_CAMERA);
+	/*std::string cameraName = CApp::get().isDebug() ? DEBUG_CAMERA : GAME_CAMERA;
+	CHandle h_e_camera = getEntityByName(cameraName);
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;
 		TCompCamera* c_camera = e_camera->get<TCompCamera>();
@@ -151,9 +113,9 @@ void CModuleGame::render() {
 		activateCamera(*c_camera->getCamera(), Render.width, Render.height);
 	}
 	else {
+		dbg("Invalid camera\n");
 		activateCamera(camera, Render.width, Render.height);
-	}
-
+	}*/
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
 	solid->activate();
 }
