@@ -118,7 +118,7 @@ void CModuleEntities::render() {
 	if (CApp::get().isDebug()) {
 		Resources.debugInMenu();
 
-		ImGui::DragFloat("Time Factor", &time_scale_factor, 0.01f, 0.f, 1.0f);
+        ImGui::DragFloat("Time Factor", &time_scale_factor, 0.01f, 0.f, 1.0f);
 
 		if (ImGui::TreeNode("All Entities...")) {
 			ImGui::SameLine();

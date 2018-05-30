@@ -153,7 +153,6 @@ void CModuleRender::render() {
         if (ImGui::SmallButton("Start CPU Trace Capturing")) {
             PROFILE_SET_NFRAMES(nframes);
         }
-
         if (ImGui::TreeNode("Render Control")) {
             ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
             ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
@@ -194,8 +193,8 @@ void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
 void CModuleRender::activateMainCamera() {
     CCamera* cam = &camera;
 
-    // Find the entity with name 'game_camera'
-    h_e_camera = getEntityByName(GAME_CAMERA);
+	std::string cameraName = freeCamera ? DEBUG_CAMERA : GAME_CAMERA;
+    h_e_camera = getEntityByName(cameraName);
     if (h_e_camera.isValid()) {
         CEntity* e_camera = h_e_camera;
         TCompCamera* c_camera = e_camera->get< TCompCamera >();

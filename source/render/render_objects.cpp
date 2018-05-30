@@ -10,12 +10,16 @@ CRenderCte<CCteBlur>    cb_blur("Blur");
 CRenderCte<CCteGUI>     cb_gui("Gui");
 CRenderCte<CCteFog>     cb_fog("Fog");
 
-struct TVtxPosClr {
-    VEC3 pos;
-    VEC4 color;
-    TVtxPosClr() {}
-    TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
-};
+CRenderMesh* createDot() {
+	CRenderMesh* mesh = new CRenderMesh;
+	float vertices[] =
+	{
+		0.0f, 0.0f, 0.0f,  1, 1, 1, 1
+	};
+	if (!mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::POINT_LIST))
+		return nullptr;
+	return mesh;
+}
 
 CRenderMesh* createLineZ() {
     CRenderMesh* mesh = new CRenderMesh;
@@ -192,7 +196,8 @@ void registerMesh(CRenderMesh* new_mesh, const char* name) {
 bool createRenderObjects() {
     registerMesh(createAxis(), "axis.mesh");
     registerMesh(createGridXZ(20), "grid.mesh");
-    registerMesh(createLineZ(), "line.mesh");
+	registerMesh(createDot(), "dot.mesh");
+	registerMesh(createLineZ(), "line.mesh");
     registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
     registerMesh(createCameraFrustum(), "unit_frustum.mesh");
     registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
@@ -332,9 +337,6 @@ void renderSphere(CTransform* transform, float radius, VEC4 color) {
 		t.setYawPitchRoll(y, p, r);
 		r += M_PI_4;
 	}
-	
-	
-	
 }
 
 void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture) {
@@ -346,6 +348,17 @@ void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture)
     mesh->activateAndRender();
 }
 
+void renderDots(VEC3 src, VEC4 color) {
+	MAT44 world;
+	world = MAT44::CreateTranslation(src);
+	cb_object.obj_world = world;
+	cb_object.obj_color = color;
+	cb_object.updateGPU();
+
+	auto mesh = Resources.get("dot.mesh")->as<CRenderMesh>();
+	mesh->activateAndRender();
+}
+
 void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
     MAT44 world = MAT44::CreateLookAt(src, dst, VEC3(0, 1, 0)).Invert();
     float distance = VEC3::Distance(src, dst);
@@ -355,24 +368,23 @@ void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
     cb_object.obj_color = color;
     cb_object.updateGPU();
 
-
     auto mesh = Resources.get("line.mesh")->as<CRenderMesh>();
     mesh->activateAndRender();
 }
 
 bool createDepthStencil(const std::string& aname,
-    int width, int height,
-    DXGI_FORMAT format,
-    // outputs
-    ID3D11Texture2D** depth_stencil_resource,
-    ID3D11DepthStencilView** depth_stencil_view,
-    CTexture** out_ztexture) {
+                        int width, int height,
+                        DXGI_FORMAT format,
+                        // outputs
+                        ID3D11Texture2D** depth_stencil_resource,
+                        ID3D11DepthStencilView** depth_stencil_view,
+                        CTexture** out_ztexture) {
 
-    assert(format == DXGI_FORMAT_R32_TYPELESS
-           || format == DXGI_FORMAT_R24G8_TYPELESS
-           || format == DXGI_FORMAT_R16_TYPELESS
-           || format == DXGI_FORMAT_D24_UNORM_S8_UINT
-           || format == DXGI_FORMAT_R8_TYPELESS);
+    assert(format == DXGI_FORMAT_R32_TYPELESS      ||
+           format == DXGI_FORMAT_R24G8_TYPELESS    ||
+           format == DXGI_FORMAT_R16_TYPELESS      ||
+           format == DXGI_FORMAT_D24_UNORM_S8_UINT ||
+           format == DXGI_FORMAT_R8_TYPELESS);
 
     // Crear un ZBuffer de la resolucion de mi backbuffer
     D3D11_TEXTURE2D_DESC desc;

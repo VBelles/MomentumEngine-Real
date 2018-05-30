@@ -25,11 +25,11 @@ void TCompHierarchy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	setParentEntity(h_parent);
 
 	h_my_collider = get<TCompCollider>();
-	if (h_my_collider.isValid()) {
-		TCompCollider *collider = h_my_collider;
-		PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
-		rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
-	}
+	assert(h_my_collider.isValid());
+	TCompCollider *collider = h_my_collider;
+	assert(collider->config.type != "static");
+	PxRigidDynamic *rigidDynamic = (PxRigidDynamic*)collider->actor;
+	rigidDynamic->setRigidBodyFlag(PxRigidBodyFlag::eKINEMATIC, true);
 }
 
 void TCompHierarchy::debugInMenu() {

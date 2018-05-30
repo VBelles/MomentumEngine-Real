@@ -5,23 +5,23 @@
 			"transform": {
 				"pos": "0 0 0"
 			},
-			"camera" : {
-				"fov" : 80 
+			"camera": {
+				"fov": 80
 			},
-			"render_blur" : {
-				"enabled" :  false
+			"render_blur": {
+				"enabled": false
 			},
-			"render_blur_radial" : {
-				"enabled" :  false
+			"render_blur_radial": {
+				"enabled": false
 			},
-			"render_ao" : {
-				"enabled" : false
+			"render_ao": {
+				"enabled": false
 			},
-			"render_outlines" : {
-				"enabled" : true
+			"render_outlines": {
+				"enabled": true
 			},
-			"render_fog" : {
-				"enabled" : true,
+			"render_fog": {
+				"enabled": true,
 				"fog_color": "0.8 0.8 0.8 1",
 				"fog_density": 0.0025,
 				"fog_max_ratio": 0.5
@@ -29,15 +29,25 @@
 		}
 	},
 	{
-		"entity":{
-			"name" : "curve_interpolation_camera",
-			"transform" : {
-				"pos" : "0 0 0"
+		"entity": {
+			"name": "curve_interpolation_camera",
+			"transform": {
+				"pos": "0 0 0"
 			},
-			"camera" :{
-				"fov" : 80
+			"camera": {
+				"fov": 80
 			},
-			"camera_curve_interpolation" :{}
+			"camera_curve_interpolation": {}
+		}
+	},
+	{
+		"entity": {
+			"name": "debug_camera",
+			"transform": {},
+			"camera": {
+				"fov": 80
+			},
+			"free_camera": {}
 		}
 	}
 ]

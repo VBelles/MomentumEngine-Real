@@ -1,3 +1,4 @@
+#include "mcv_platform.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "navmesh.h"
@@ -10,20 +11,25 @@ CNavmesh::CNavmesh( )
 {
   m_navQuery = dtAllocNavMeshQuery( );
   m_ctx = &m_context;
+	
 }
 
 void CNavmesh::build( ) {
   destroy( );
   m_ctx->resetLog( );
 
+
+  rcVcopy(m_rcConfigGUI.bmin, &m_input.aabb_min.x);
+  rcVcopy(m_rcConfigGUI.bmax, &m_input.aabb_max.x);
+  /*
   rcConfig config;
   rcVcopy( config.bmin, &m_input.aabb_min.x );
   rcVcopy( config.bmax, &m_input.aabb_max.x );
   config.tileSize = 32;
-  config.cs = 0.05;
+  config.cs = 0.55;
   config.ch = 0.05;
   config.walkableHeight = 2.0;
-  config.walkableRadius = 0;
+  config.walkableRadius = 0.8;
   config.walkableClimb = 0.1;
   config.walkableSlopeAngle = 45.0f;
   config.minRegionArea = 1;
@@ -33,15 +39,20 @@ void CNavmesh::build( ) {
   config.maxVertsPerPoly = 6;
   config.detailSampleDist = 1.0f;
   config.detailSampleMaxError = 0.1f;
+  */
 
-  m_navMesh = create( config );
+
+  //Build the Navegation Mesh
+  m_navMesh = create(m_rcConfigGUI);
+  // Prepare the navegation mesh to attend requests
   if( m_navMesh )
     prepareQueries( );
 
+  dbg("-------- end building navmesh\n");
   dumpLog( );
 }
 
-dtNavMesh* CNavmesh::create( const rcConfig& cfg ) {
+dtNavMesh* CNavmesh::create( const rcConfigGUI& cfg ) {
   // WARNING: We will admit animated meshes, but the first snapshot will be the used to generate the navmesh
   //assert( mesh->header.nsnapshots == 1 ); // must be a static mesh!
 
@@ -360,6 +371,8 @@ void CNavmesh::render( bool use_z_test ) {
   m_draw.vertex( aabb_min.x, aabb_min.y, aabb_min.z, duRGBA( 255, 255, 255, 128 ) );
   m_draw.end( );*/
 
+	//TODO:MARC
+
   unsigned char m_navMeshDrawFlags( DU_DRAWNAVMESH_OFFMESHCONS | DU_DRAWNAVMESH_CLOSEDLIST | DU_DRAWNAVMESH_COLOR_TILES );
   const int SAMPLE_POLYFLAGS_DISABLED = 0xffff;
 
@@ -371,6 +384,7 @@ void CNavmesh::render( bool use_z_test ) {
       m_draw_mode == NAVMESH_DRAW_BVTREE ||
       m_draw_mode == NAVMESH_DRAW_NODES ||
       m_draw_mode == NAVMESH_DRAW_INVIS) ) {
+
     if( m_draw_mode != NAVMESH_DRAW_INVIS )
       duDebugDrawNavMeshWithClosedList( &m_draw, *m_navMesh, *m_navQuery, m_navMeshDrawFlags );
     if( m_draw_mode == NAVMESH_DRAW_BVTREE )
@@ -399,10 +413,33 @@ void CNavmesh::render( bool use_z_test ) {
     //Renderer.enableZWrite( );
   }
 
+  
+
+
   /*if( type == NAVMESH_STATIC_MESH )
     static_mesh.render( m_draw, draw_mode );*/
 
   /*Renderer.enableZWrite( );
   if( !use_z_test )
     Renderer.enableZTest( );*/
+}
+
+
+void CNavmesh::resetRecastConfigGUIValues()
+{
+	m_rcConfigGUI.tileSize = 32;
+	m_rcConfigGUI.cs = 0.55f;
+	m_rcConfigGUI.ch = 0.1f;
+	m_rcConfigGUI.walkableHeight = 2.f;
+	m_rcConfigGUI.walkableRadius = 0.5f;
+	m_rcConfigGUI.walkableClimb = 0.1f;
+	m_rcConfigGUI.walkableSlopeAngle = 45.0f;
+	m_rcConfigGUI.minRegionArea = 1.f;
+	m_rcConfigGUI.mergeRegionArea = 1.f;
+	m_rcConfigGUI.maxEdgeLen = 10.f;
+	m_rcConfigGUI.maxSimplificationError = 1.0f;
+	m_rcConfigGUI.maxVertsPerPoly = 6;
+	m_rcConfigGUI.detailSampleDist = 1.0f;
+	m_rcConfigGUI.detailSampleMaxError = 0.1f;
+
 }

@@ -21,6 +21,7 @@ CEngine::CEngine()
 	, _module_cameras("cameras")
 	, _module_scripting("scripting")
 	, _module_gui("gui")
+	, _module_navmesh("navmesh")
 	, _module_sound("sound")
 	, _module_uniques("uniques") {
 }
@@ -38,6 +39,7 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_scripting);
 	_modules.registerSystemModule(&_module_gui);
+	_modules.registerSystemModule(&_module_navmesh);
 	_modules.registerSystemModule(&_module_sound);
 	_modules.registerSystemModule(&_module_multithread);
 	_modules.registerSystemModule(&_module_uniques);

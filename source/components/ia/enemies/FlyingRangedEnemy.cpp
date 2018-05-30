@@ -193,7 +193,7 @@ int CBehaviorTreeFlyingRangedEnemy::onPropel(float delta) {
 int CBehaviorTreeFlyingRangedEnemy::propelled(float delta) {
 	if (timer.elapsed() < propelDuration) {
 		VEC3 deltaMovement = velocityVector * delta;
-		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+		EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 		return Stay;
 	}
 	else {
@@ -212,7 +212,7 @@ int CBehaviorTreeFlyingRangedEnemy::onHorizontalLaunch(float delta) {
 
 int CBehaviorTreeFlyingRangedEnemy::horizontalLaunched(float delta) {
 	VEC3 deltaMovement = velocityVector * delta;
-	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 	velocityVector.y += gravity * delta;
 	if (getTransform()->getPosition().y + deltaMovement.y - initialLaunchPos.y <= 0.001) {
 		velocityVector.x = 0;
@@ -235,7 +235,7 @@ int CBehaviorTreeFlyingRangedEnemy::onVerticalLaunch(float delta) {
 
 int CBehaviorTreeFlyingRangedEnemy::verticalLaunched(float delta) {
 	VEC3 deltaMovement = velocityVector * delta;
-	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 	velocityVector.y += gravity * delta;
 	if (velocityVector.y <= 0) {
 		timer.reset();
@@ -306,7 +306,7 @@ int CBehaviorTreeFlyingRangedEnemy::returnToSpawn(float delta) {
 	deltaMovement.Normalize();
 	deltaMovement = deltaMovement * movementSpeed * delta;
 
-	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 
 	float distance = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
 	if (VEC3::DistanceSquared(myPosition + deltaMovement, spawnPosition) < minCombatDistanceSqrd
@@ -434,7 +434,7 @@ int CBehaviorTreeFlyingRangedEnemy::patrol(float delta) {
 	deltaMovement.Normalize();
 	deltaMovement = deltaMovement * movementSpeed * delta;
 
-	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 
 	return Leave;
 }

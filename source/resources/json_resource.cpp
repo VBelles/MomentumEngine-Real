@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "json_resource.h"
 
-// ----------------------------------------------
 class CJsonResourceClass : public CResourceClass {
 public:
 	CJsonResourceClass() {
@@ -25,7 +24,6 @@ const CResourceClass* getResourceClassOf<CJsonResource>() {
 	return &the_resource_class;
 }
 
-// ----------------------------------------------------------
 bool CJsonResource::create(const std::string& name) {
 	json_contents = loadJson(name);
 	return true;

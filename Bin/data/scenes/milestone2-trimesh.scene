@@ -11,7 +11,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/plataforma_rocosa1_low008_col001.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "static"
       }
     }
@@ -28,7 +28,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/plataforma_rocosa1_low008_col.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "static"
       }
     }

@@ -25,12 +25,6 @@
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
 
-struct TVtxPosClr {
-	VEC3 pos;
-	VEC4 color;
-	TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
-};
-
 // ---------------------------------------------------
 CRenderMesh* createCurveMesh(const CCurve& curve, int nsteps) {
 	CRenderMesh* mesh = new CRenderMesh;
@@ -103,19 +97,27 @@ bool CModuleGame::stop() {
 }
 
 void CModuleGame::update(float delta) {
-	CApp& app = CApp::get();
 	if (EngineInput["debug_mode"].getsPressed()) {
-		if (!app.toggleDebug()) {
+		if (!CApp::get().toggleDebug()) {
 			ScriptingPlayer::givePlayerControl();
 		}
 	}
 
 	respawner->update(delta);
+
+	if (EngineInput["free_camera"].getsPressed()) {
+		if (!EngineRender.toggleFreeCamera()) {
+			ScriptingPlayer::givePlayerControl();
+		}
+		else {
+			ScriptingPlayer::takePlayerControl();
+		}
+	}
 }
 
 void CModuleGame::render() {
-	// Find the entity with name 'game_camera'
-	CHandle h_e_camera = getEntityByName(GAME_CAMERA);
+	/*std::string cameraName = CApp::get().isDebug() ? DEBUG_CAMERA : GAME_CAMERA;
+	CHandle h_e_camera = getEntityByName(cameraName);
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;
 		TCompCamera* c_camera = e_camera->get<TCompCamera>();
@@ -123,9 +125,9 @@ void CModuleGame::render() {
 		activateCamera(*c_camera->getCamera(), Render.width, Render.height);
 	}
 	else {
+		dbg("Invalid camera\n");
 		activateCamera(camera, Render.width, Render.height);
-	}
-
+	}*/
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
 	solid->activate();
 }

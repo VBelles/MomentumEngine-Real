@@ -45,12 +45,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(ProjectDir)..\Recast\DebugUtils\Include;$(ProjectDir)..\Recast\Detour\Include;$(ProjectDir)..\Recast\Recast\Include;$(ProjectDir)..\Recast\DetourCrowd\Include;$(ProjectDir)..\Recast\DetourTileCache\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
-    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\tools\PhysX\PxShared\Include;$(ProjectDir)..\tools\PhysX\PhysX_3.4\Include;$(ProjectDir)..\Cal3D;$(ProjectDir)..\SLB\include;$(ProjectDir)..\tools\FMOD\include;$(SolutionDir)..\tools\tbb2017_20170412oss\Include;$(ProjectDir)..\Recast\DebugUtils\Include;$(ProjectDir)..\Recast\Detour\Include;$(ProjectDir)..\Recast\Recast\Include;$(ProjectDir)..\Recast\DetourCrowd\Include;$(ProjectDir)..\Recast\DetourTileCache\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -65,7 +65,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)$(Platform)\$(Configuration);$(TargetDir);$(TargetDir)..\libs\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Cal3D.lib;SLB.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Cal3D.lib;SLB.lib;Recast.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -87,7 +87,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)$(Platform)\$(Configuration);$(SolutionDir)../libs/$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Cal3D.lib;SLB.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Cal3D.lib;SLB.lib;Recast.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -119,6 +119,7 @@
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
     <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
+    <ClCompile Include="components\controllers\comp_free_camera.cpp" />
     <ClCompile Include="components\ia\enemies\BallEnemy.cpp" />
     <ClCompile Include="components\platforms\comp_platform.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
@@ -272,6 +273,7 @@
     <ClCompile Include="modules\system_modules\scripting\scripting_cameras.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_door.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_entities.cpp" />
+    <ClCompile Include="modules\system_modules\module_navmesh.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\game_modules\physics\module_physics.cpp" />
     <ClCompile Include="modules\system_modules\module_render.cpp" />
@@ -288,6 +290,10 @@
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll_core.cpp" />
+    <ClCompile Include="navmesh\navmesh.cpp" />
+    <ClCompile Include="navmesh\navmesh_loader.cpp" />
+    <ClCompile Include="navmesh\navmesh_query.cpp" />
+    <ClCompile Include="navmesh\navmesh_render.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
@@ -358,6 +364,7 @@
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
     <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />
+    <ClInclude Include="components\controllers\comp_free_camera.h" />
     <ClInclude Include="components\ia\enemies\BallEnemy.h" />
     <ClInclude Include="components\platforms\comp_platform.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
@@ -523,6 +530,7 @@
     <ClInclude Include="modules\system_modules\scripting\scripting_cameras.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_door.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_entities.h" />
+    <ClInclude Include="modules\system_modules\module_navmesh.h" />
     <ClInclude Include="modules\module.h" />
     <ClInclude Include="modules\system_modules\module_entities.h" />
     <ClInclude Include="modules\module_manager.h" />
@@ -541,6 +549,10 @@
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll_core.h" />
+    <ClInclude Include="navmesh\navmesh.h" />
+    <ClInclude Include="navmesh\navmesh_loader.h" />
+    <ClInclude Include="navmesh\navmesh_query.h" />
+    <ClInclude Include="navmesh\navmesh_render.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />

@@ -190,6 +190,10 @@
     <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="utils\physx_utils.cpp" />
     <ClCompile Include="gui\controllers\hud_controller.cpp" />
+    <ClCompile Include="navmesh\navmesh_render.cpp" />
+    <ClCompile Include="navmesh\navmesh_loader.cpp" />
+    <ClCompile Include="navmesh\navmesh.cpp" />
+    <ClCompile Include="navmesh\navmesh_query.cpp" />
     <ClCompile Include="utils\template_engine.cpp" />
     <ClCompile Include="gui\gui_params.cpp" />
     <ClCompile Include="gui\gui_effect.cpp" />
@@ -235,6 +239,8 @@
     <ClCompile Include="modules\system_modules\module_uniques.cpp" />
     <ClCompile Include="modules\game_modules\game\module_game.cpp" />
     <ClCompile Include="modules\game_modules\game\respawner.cpp" />
+    <ClCompile Include="modules\system_modules\module_navmesh.cpp" />
+    <ClCompile Include="components\controllers\comp_free_camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -458,6 +464,10 @@
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="utils\physx_utils.h" />
     <ClInclude Include="gui\controllers\hud_controller.h" />
+    <ClInclude Include="navmesh\navmesh_render.h" />
+    <ClInclude Include="navmesh\navmesh_loader.h" />
+    <ClInclude Include="navmesh\navmesh.h" />
+    <ClInclude Include="navmesh\navmesh_query.h" />
     <ClInclude Include="utils\template_engine.h" />
     <ClInclude Include="components\player\states\concurrent_states\FastAttack2ActionState.h" />
     <ClInclude Include="components\player\states\base_states\combat\StrongAttack2ActionState.h" />
@@ -500,6 +510,8 @@
     <ClInclude Include="modules\system_modules\module_uniques.h" />
     <ClInclude Include="modules\game_modules\game\module_game.h" />
     <ClInclude Include="modules\game_modules\game\respawner.h" />
+    <ClInclude Include="modules\system_modules\module_navmesh.h" />
+    <ClInclude Include="components\controllers\comp_free_camera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

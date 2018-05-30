@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\source",
+    "\\source\\navmesh",
+    "\\tools"
   ],
+  "SelectedNode": "\\source\\navmesh\\navmesh.h",
   "PreviewInSolutionExplorer": false
 }

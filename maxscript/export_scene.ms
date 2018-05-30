@@ -1338,8 +1338,24 @@ struct TSceneExporter (
 		return true
 	),
 	
+	-- -------------------------------------------------------------------
+	-- -------------------------------------------------------------------
+	
+	fn exportUniques = (
+		local filePath = project_path + scenes_path + ofilename + "-uniques.json"
+		fs.begin scenePath
+				fs.beginArray()
+		
+				fs.endArray()
+		fs.end()
+	),
+	
 	fn exportAll = (
 		deselect objects -- Deselect all objects, export is faster.
+		
+		global uniqueCoins  = #()
+		global uniqueAltars = #()
+		
 		-- Loop over all layers.
 		for i = 0 to LayerManager.count - 1 do (
 			-- Get the layer by index.
@@ -1403,6 +1419,8 @@ struct TSceneExporter (
 			) else format "WARNING: Layer % [%] NOT exported.\n" layerName scenePath
 		format "---------------------------------------------------------------------\n"
 		)
+		-- All layers and objects processed, begin export of stored unique objects.
+		exportUniques()
 	)
 )
 
@@ -1412,6 +1430,9 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
+
+TODO: Generar arrays de strings con los nombres de los objetos únicos,
+	    luego recuperar el objeto con (getNodeByName "altar") y generar el archivo uniques/unique.json.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */

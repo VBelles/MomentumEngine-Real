@@ -12,63 +12,69 @@ SlideActionState::SlideActionState(StateManager* stateManager) :
 
 void SlideActionState::update(float delta) {
 	AirborneActionState::update(delta);
-	//deltaMovement = VEC3::Zero;
-	//deltaMovement.y = velocityVector->y * delta;
-
-	/*bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
-	VEC3 desiredDirection = getCamera()->TransformToWorld(movementInput);
-	desiredDirection.y = 0.f;
-	float yaw, pitch;
-	getYawPitchFromVector(hitNormal, &yaw, &pitch);
-	VEC3 tangentVector = getVectorFromYawPitch(yaw, pitch - M_PI_2);
-
-
-	float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
-	deltaMovement = tangentVector * module;
-
-	if (hasInput) {
-		VEC3 sidewaysVector;
-		//float yawDifference = abs(getYawFromVector(desiredDirection) - (yaw + M_PI_2));
-		//if (yawDifference < M_PI_2 || yawDifference > 3.f * M_PI_2) {
-		//	sidewaysVector = getVectorFromYawPitch(yaw + M_PI_2, pitch);//derecha mirando hacia la pred
-		//}
-		//else {
-		//	sidewaysVector = getVectorFromYawPitch(yaw - M_PI_2, pitch);//izquierda mirando hacia la pred
-		//}
-		sidewaysVector = getVectorFromYawPitch(yaw + M_PI_2, pitch);
-		sidewaysVector.y = 0.f;
-		sidewaysVector.Normalize();
-		sidewaysVector *= sidewaysVector.Dot(desiredDirection);
-		deltaMovement += sidewaysVector * sidewaysSlidingVelocity;
+	if (stuckTimer.elapsed() >= STUCK_TIME) {
+		float y = getPlayerTransform()->getPosition().y;
+		if (abs(y - stuckY) < STUCK_THRESHOLD) {
+			canJump = true;
+		}
+		else {
+			stuckY = y;
+			canJump = false;
+		}
+		stuckTimer.reset();
 	}
-
-	if (deltaMovement.Length() > maxVerticalSlidingVelocity) {
-		deltaMovement.Normalize();
-		deltaMovement *= maxVerticalSlidingVelocity;
+	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
+	if (isJumping) {
+		velocityVector->y = 0.f;
+		*velocityVector += currentPowerStats->jumpVelocityVector;
+		deltaMovement = *velocityVector * delta;
+		deltaMovement.y += 0.15f;
+		getPlayerModel()->wannaJump = true;
+		stateManager->changeState(AirborneNormal);
 	}
-
-	TCompTransform* transform = getPlayerTransform();
-	transform->getYawPitchRoll(&yaw, &pitch);
-	transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);*/
+	if (isLongJumping) {
+		*velocityVector = getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
+		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
+		deltaMovement = *velocityVector * delta;
+		deltaMovement.y += 0.15f;
+		getPlayerModel()->wannaJump = true;
+		stateManager->changeState(AirborneLong);
+	}
 }
 
 void SlideActionState::onStateEnter(IActionState* lastState) {
 	AirborneActionState::onStateEnter(lastState);
+
 	TCompTransform* transform = getPlayerTransform();
 	float yaw, pitch;
 	transform->getYawPitchRoll(&yaw, &pitch);
-	//transform->setYawPitchRoll(getYawFromVector(hitNormal), pitch);
 
 	getPlayerModel()->maxVerticalSpeed = maxVerticalSlidingVelocity;
 
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
-	//velocityVector->y = 0.f;
-	//velocityVector->x = 0.f;
-	//velocityVector->z = 0.f;
+
+	stuckY = transform->getPosition().y;
+	stuckTimer.reset();
+
+	canJump = false;
+	isJumping = false;
+	isLongJumping = false;
 }
 
 void SlideActionState::onStateExit(IActionState* nextState) {
 	AirborneActionState::onStateExit(nextState);
+}
+
+void SlideActionState::onJumpHighButton() {
+	if (canJump) {
+		isJumping = true;
+	}
+}
+
+void SlideActionState::onJumpLongButton() {
+	if (canJump) {
+		isLongJumping = true;
+	}
 }
 
 void SlideActionState::onMove(MoveState& moveState) {
@@ -79,4 +85,3 @@ void SlideActionState::onMove(MoveState& moveState) {
 		stateManager->changeState(Walk);
 	}
 }
-

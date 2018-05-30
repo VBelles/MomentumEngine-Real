@@ -1,24 +1,23 @@
-#ifndef INC_RENDER_H_
-#define INC_RENDER_H_
+#pragma once
 
 class CRender {
 
 public:
-  ID3D11Device*             device = nullptr;
-  ID3D11DeviceContext*      ctx = nullptr;
-  ID3D11RenderTargetView*   renderTargetView = nullptr;
-  IDXGISwapChain*           swapChain = nullptr;
+    ID3D11Device*             device = nullptr;
+    ID3D11DeviceContext*      ctx = nullptr;
+    ID3D11RenderTargetView*   renderTargetView = nullptr;
+    IDXGISwapChain*           swapChain = nullptr;
 
-  ID3D11Texture2D*          depthTexture = nullptr;
-  ID3D11DepthStencilView*   depthStencilView = nullptr;
-  ID3D11ShaderResourceView* depth_shader_resource_view = nullptr;
+    ID3D11Texture2D*          depthTexture = nullptr;
+    ID3D11DepthStencilView*   depthStencilView = nullptr;
+    ID3D11ShaderResourceView* depth_shader_resource_view = nullptr;
 
-  int width = 0;
-  int height = 0;
+    int width = 0;
+    int height = 0;
 
-  bool createDevice(int new_width, int new_height);
-  void destroyDevice();
-  void startRenderInBackbuffer();
+    bool createDevice(int new_width, int new_height);
+    void destroyDevice();
+    void startRenderInBackbuffer();
 };
 
 extern CRender Render;
@@ -33,7 +32,3 @@ extern CRender Render;
 #include "render/mesh/mesh.h"
 #include "render/shaders/render_technique.h"
 #include "render/shaders/vertex_declarations.h"
-
-#endif
-
-

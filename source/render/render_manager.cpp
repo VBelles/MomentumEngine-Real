@@ -245,4 +245,3 @@ void CRenderManager::renderCategory(const char* category_name) {
 		++it;
 	}
 }
-
