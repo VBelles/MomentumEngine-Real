@@ -5,7 +5,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
-#include "modules/game/physics/basic_query_filter_callback.h"
+#include "modules/game_modules/physics/basic_query_filter_callback.h"
 #include "components/player/states/StateManager.h"
 
 

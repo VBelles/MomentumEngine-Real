@@ -5,7 +5,7 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "skeleton/cal3d2engine.h"
-#include "modules/game/physics/basic_query_filter_callback.h"
+#include "modules/game_modules/physics/basic_query_filter_callback.h"
 #include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("hitboxes", TCompHitboxes);

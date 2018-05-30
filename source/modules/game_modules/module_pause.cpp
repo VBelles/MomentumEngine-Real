@@ -1,7 +1,7 @@
 ﻿#include "mcv_platform.h"
 #include "module_pause.h"
 #include "gui/gui_parser.h"
-#include "modules/system/scripting/scripting_player.h"
+#include "modules/system_modules/scripting/scripting_player.h"
 
 bool CModulePause::start() {
 	pause = false;

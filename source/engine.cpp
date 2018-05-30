@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
 #include "engine.h"
-#include "modules/game/module_splash.h"
-#include "modules/game/module_main_menu.h"
-#include "modules/game/module_gameover.h"
-#include "modules/game/module_game.h"
-#include "modules/game/module_pause.h"
+#include "modules/game_modules/module_splash.h"
+#include "modules/game_modules/module_main_menu.h"
+#include "modules/game_modules/module_gameover.h"
+#include "modules/game_modules/game/module_game.h"
+#include "modules/game_modules/module_pause.h"
 #include "modules/test/module_test_instancing.h"
 
 CEngine& CEngine::get() {

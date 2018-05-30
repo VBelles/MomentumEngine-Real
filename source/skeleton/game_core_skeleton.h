@@ -3,7 +3,7 @@
 #include "resources/resource.h"
 #include "cal3d/cal3d.h"
 #include "bone_correction.h"
-#include "modules/game/physics/ragdoll_core.h"
+#include "modules/game_modules/physics/ragdoll_core.h"
 
 // This is the CalCoreModel + IResource interface + other metadata
 // we might need in the future and is shared between all instances

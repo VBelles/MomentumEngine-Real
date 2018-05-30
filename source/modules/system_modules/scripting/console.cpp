@@ -1,7 +1,7 @@
 
 #include "mcv_platform.h"
 #include "console.h"
-#include "modules/system/scripting/scripting_player.h"
+#include "modules/system_modules/scripting/scripting_player.h"
 
 SimpleConsole::SimpleConsole(std::function<void(const char *)> consoleListener) : consoleListener(consoleListener) {
 	ClearLog();

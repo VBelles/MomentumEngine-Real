@@ -4,12 +4,12 @@
 #include <SLB/lua.hpp>
 #include <SLB/SLB.hpp>
 #include "console.h"
-#include "modules/system/scripting/scripting_player.h"
-#include "modules/system/scripting/scripting_entities.h"
-#include "modules/system/scripting/scripting_door.h"
-#include "modules/system/scripting/scripting_manager.h"
-#include "modules/system/scripting/scripting_cameras.h"
-#include "modules/system/scripting/scripting_sound.h"
+#include "modules/system_modules/scripting/scripting_player.h"
+#include "modules/system_modules/scripting/scripting_entities.h"
+#include "modules/system_modules/scripting/scripting_door.h"
+#include "modules/system_modules/scripting/scripting_manager.h"
+#include "modules/system_modules/scripting/scripting_cameras.h"
+#include "modules/system_modules/scripting/scripting_sound.h"
 
 CModuleScripting* CModuleScripting::instance = nullptr;
 

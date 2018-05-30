@@ -4,7 +4,7 @@
 #include "PxPhysicsAPI.h"
 #include "entity/entity.h"
 #include "entity/common_msgs.h"
-#include "modules/game/physics/ragdoll.h"
+#include "modules/game_modules/physics/ragdoll.h"
 
 class CEntity;
 

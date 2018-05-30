@@ -8,7 +8,7 @@
 #include "utils/json.hpp"
 #include "windows/app.h"
 #include <fstream>
-#include "modules/system/scripting/scripting_player.h"
+#include "modules/system_modules/scripting/scripting_player.h"
 
 
 CModuleInput::CModuleInput(const std::string& name)

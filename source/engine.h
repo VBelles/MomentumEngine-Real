@@ -1,16 +1,16 @@
 #pragma once
 
 #include "modules/module_manager.h"
-#include "modules/system/module_render.h"
-#include "modules/system/module_entities.h"
-#include "modules/game/physics/module_physics.h"
-#include "modules/system/module_multithread.h"
-#include "modules/system/module_input.h"
-#include "modules/system/module_cameras.h"
-#include "modules/system/scripting/module_scripting.h"
-#include "modules/system/module_gui.h"
-#include "modules/system/module_uniques.h"
-#include "modules/system/module_sound.h"
+#include "modules/system_modules/module_render.h"
+#include "modules/system_modules/module_entities.h"
+#include "modules/game_modules/physics/module_physics.h"
+#include "modules/system_modules/module_multithread.h"
+#include "modules/system_modules/module_input.h"
+#include "modules/system_modules/module_cameras.h"
+#include "modules/system_modules/scripting/module_scripting.h"
+#include "modules/system_modules/module_gui.h"
+#include "modules/system_modules/module_uniques.h"
+#include "modules/system_modules/module_sound.h"
 
 class CEngine {
 public:

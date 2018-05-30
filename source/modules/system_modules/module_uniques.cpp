@@ -2,7 +2,7 @@
 #include "module_uniques.h"
 #include "modules/module.h"
 #include "entity/entity.h"
-#include "modules/system/module_entities.h"
+#include "modules/system_modules/module_entities.h"
 #include "handle/handle.h"
 #include "components/comp_name.h"
 #include "components/comp_transform.h"

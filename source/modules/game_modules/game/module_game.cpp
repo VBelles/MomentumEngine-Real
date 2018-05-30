@@ -4,7 +4,7 @@
 #include "camera/camera.h"
 #include "render/render_objects.h"
 #include "entity/entity.h"
-#include "modules/system/module_entities.h"
+#include "modules/system_modules/module_entities.h"
 #include "resources/resources_manager.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
@@ -19,7 +19,7 @@
 #include "geometry/curve.h"
 #include "gui/gui_parser.h"
 #include "gui/controllers/hud_controller.h"
-#include "modules/system/scripting/scripting_player.h"
+#include "modules/system_modules/scripting/scripting_player.h"
 
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
