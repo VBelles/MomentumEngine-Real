@@ -348,13 +348,6 @@ void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture)
     mesh->activateAndRender();
 }
 
-//void renderDots(TVtxPosClr vertices[], int numVertices) {
-//	CRenderMesh* mesh = new CRenderMesh;
-//	//float vertices[] = {pos.x, pos.y, pos.z, color.x, color.y, color.z, color.w};
-//	if (mesh->create(vertices, sizeof(TVtxPosClr) * numVertices, "PosClr", CRenderMesh::POINT_LIST))
-//		mesh->activateAndRender();
-//}
-
 void renderDots(VEC3 src, VEC4 color) {
 	MAT44 world;
 	world = MAT44::CreateTranslation(src);
@@ -362,7 +355,7 @@ void renderDots(VEC3 src, VEC4 color) {
 	cb_object.obj_color = color;
 	cb_object.updateGPU();
 
-	auto mesh = Resources.get("dot.mesh")->as<CRenderMesh>(); // dot.mesh is an sphere of radius 1.
+	auto mesh = Resources.get("dot.mesh")->as<CRenderMesh>();
 	mesh->activateAndRender();
 }
 

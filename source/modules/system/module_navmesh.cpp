@@ -5,13 +5,17 @@ CModuleNavmesh::CModuleNavmesh(const std::string& name) : IModule(name) {
 }
 
 bool CModuleNavmesh::start() {
-	navmesh.create("data/solo_navmesh.bin");
-	//navQuery = CNavMeshQuery{ &navmesh };
-	return true;
+	return navmesh.create("data/solo_navmesh.bin");
 }
 
 void CModuleNavmesh::render() {
-	navmesh.render();
+    if (CApp::get().showDebug) {
+        ImGui::Checkbox("Show navmesh", &showNavmesh);
+
+        if (showNavmesh) {
+            navmesh.render();
+        }
+    }
 }
 
 bool CModuleNavmesh::stop() {

@@ -26,12 +26,11 @@ private:
 
 	dtPolyRef m_startRef;
 	dtPolyRef m_endRef;
-	dtPolyRef m_polys[MAX_POLYS]; // pathfind result.
+	dtPolyRef m_polys[MAX_POLYS]; // Pathfind result (polygons).
 	dtPolyRef m_parent[MAX_POLYS];
 	int m_npolys;
 	int m_nsmoothPath;
-
-	float m_smoothPath[MAX_SMOOTH * 3];
+	float m_smoothPath[MAX_SMOOTH * 3]; // Pathfind result.
 
 	float m_polyPickExt[3];
 	

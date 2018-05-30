@@ -9,6 +9,8 @@ private:
 	CNavMesh navmesh;
 	CNavMeshQuery navQuery{&navmesh};
 
+    bool showNavmesh = false;
+
 public:
 	CModuleNavmesh(const std::string& name);
 	bool start() override;
