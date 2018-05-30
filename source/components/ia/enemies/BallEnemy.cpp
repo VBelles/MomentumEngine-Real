@@ -187,7 +187,8 @@ int CBehaviorTreeBallEnemy::propelled(float delta) {
 	if (timer.elapsed() < propelDuration) {
 		VEC3 deltaMovement = velocityVector * delta;
 		updateGravity(delta);
-		getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+		//EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta)
+		EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 		return Stay;
 	}
 	else {
@@ -207,7 +208,7 @@ int CBehaviorTreeBallEnemy::onHorizontalLaunch(float delta) {
 int CBehaviorTreeBallEnemy::horizontalLaunched(float delta) {
 	updateGravity(delta);
 	VEC3 deltaMovement = velocityVector * delta;
-	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, 0, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	EnginePhysics.move(getCollider()->controller, PxVec3(deltaMovement.x, 0, deltaMovement.z), delta);
 	if (getTransform()->getPosition().y + deltaMovement.y - initialLaunchPos.y <= 0.001 || grounded) {
 		velocityVector.x = 0;
 		velocityVector.z = 0;
@@ -310,7 +311,7 @@ int CBehaviorTreeBallEnemy::returnToSpawn(float delta) {
 	VEC3 myFront = getTransform()->getFront();
 	myFront.Normalize();
 	VEC3 deltaMovement = myFront * movementSpeed * delta;
-	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 
 	float distanceSquared = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
 	if (VEC3::DistanceSquared(myPosition, targetPos) < minCombatDistanceSqrd
@@ -333,7 +334,7 @@ int CBehaviorTreeBallEnemy::chase(float delta) {
 	VEC3 myFront = getTransform()->getFront();
 	myFront.Normalize();
 	VEC3 deltaMovement = myFront * movementSpeed * delta;
-	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 	return Leave;
 }
 
@@ -347,7 +348,7 @@ int CBehaviorTreeBallEnemy::stepBack(float delta) {
 	VEC3 myFront = getTransform()->getFront();
 	myFront.Normalize();
 	VEC3 deltaMovement = -myFront * stepBackSpeed * delta;
-	getCollider()->controller->move(physx::PxVec3(deltaMovement.x, deltaMovement.y, deltaMovement.z), 0.f, delta, physx::PxControllerFilters());
+	EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 	return Leave;
 }
 
@@ -497,7 +498,7 @@ void CBehaviorTreeBallEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
 
 void CBehaviorTreeBallEnemy::updateGravity(float delta) {
 	float deltaY = calculateVerticalDeltaMovement(delta, gravity, maxVelocity.y);
-	physx::PxControllerCollisionFlags myFlags = getCollider()->controller->move(physx::PxVec3(0, deltaY, 0), 0.f, delta, physx::PxControllerFilters());
+	physx::PxControllerCollisionFlags myFlags = EnginePhysics.move(getCollider()->controller, PxVec3(0, deltaY, 0), delta);
 	grounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
 	if (grounded) {
 		velocityVector.y = 0;
