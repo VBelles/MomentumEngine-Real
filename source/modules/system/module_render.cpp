@@ -153,10 +153,6 @@ void CModuleRender::render() {
         if (ImGui::SmallButton("Start CPU Trace Capturing")) {
             PROFILE_SET_NFRAMES(nframes);
         }
-		if (ImGui::SmallButton("Toggle free camera")) {
-			freeCamera = !freeCamera;
-		}
-
         if (ImGui::TreeNode("Render Control")) {
             ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
             ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);

@@ -112,6 +112,11 @@
 	{
 		"name" : "turbo",
 		"all" : false,
-		"buttons" : ["lshift"]
+		"buttons" : ["lshift", "pad_r1"]
+	},
+	{
+		"name" : "free_camera",
+		"all" : false,
+		"buttons" : ["f3"]
 	}
 ]

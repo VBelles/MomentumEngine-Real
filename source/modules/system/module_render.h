@@ -25,6 +25,8 @@ public:
 
 	CHandle getCurrentCameraHandle() { return h_e_camera; }
 
+	bool toggleFreeCamera() { freeCamera = !freeCamera; return freeCamera; }
+
 private:
     CHandle h_e_camera;
     CCamera camera;

@@ -101,6 +101,14 @@ void CModuleGame::update(float delta) {
 			ScriptingPlayer::givePlayerControl();
 		}
 	}
+	if (EngineInput["free_camera"].getsPressed()) {
+		if (!EngineRender.toggleFreeCamera()) {
+			ScriptingPlayer::givePlayerControl();
+		}
+		else {
+			ScriptingPlayer::takePlayerControl();
+		}
+	}
 }
 
 void CModuleGame::render() {

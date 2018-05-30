@@ -61,7 +61,7 @@ void TCompFreeCamera::updatePosition(float delta) {
 	VEC3 input = VEC2::Zero;
 	VEC2 lPadInput = VEC2(EngineInput[Input::PAD_LANALOG_X].value, EngineInput[Input::PAD_LANALOG_Y].value);
 	if (lPadInput.Length() > PAD_DEAD_ZONE) {
-		input.x = lPadInput.x;
+		input.x = -lPadInput.x;
 		input.z = lPadInput.y;
 	}
 	else { //Detecto el teclado
