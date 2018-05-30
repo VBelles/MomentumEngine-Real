@@ -7,18 +7,10 @@
             "level": "level01"
         },
         {
-            "id" : "ms2_coin153",
-            "done": true,
-            "position":"5 4 3",
-            "level": "level02"
-        }
-    ],
-    "unique_altars" : [
-        {
-            "id" : "altarin",
+            "id" : "prueba_coin",
             "done": false,
-            "position":"6 6 6",
-            "level": "jkhksdf"
+            "position":"-5 8.0 -44",
+            "level": "level02"
         }
     ]
 }

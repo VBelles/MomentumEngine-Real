@@ -3,6 +3,8 @@
 #include "utils/utils.h"
 #include "entity/common_msgs.h"
 #include "comp_player_model.h"
+#include "modules/game_modules/game/respawner.h"
+#include "modules/game_modules/game/module_game.h"
 
 DECL_OBJ_MANAGER("collectable_manager", TCompCollectableManager);
 
@@ -54,11 +56,16 @@ bool TCompCollectableManager::spendCoins(int number) {
 	objectsCollected[Type::COIN] -= number;
 	//Avisar a ModuleUniques
 	for (int i = 0; i < number; i++) {
+		UniqueElement* element = EngineUniques.getUniqueCoin(uniqueObjectsCollected[Type::COIN][i]);
+		((CModuleGame*)(EngineModules.getModule("game")))->getRespawner()->addElementToSpawn(
+			uniqueObjectsCollected[Type::COIN][i], 
+			PREFAB_COIN, 
+			element->position,
+			timeToRespawnCoin
+		);
 		EngineUniques.setCoinTaken(uniqueObjectsCollected[Type::COIN][i], false);
 	}
 	uniqueObjectsCollected[Type::COIN].erase(uniqueObjectsCollected[Type::COIN].begin(), uniqueObjectsCollected[Type::COIN].begin() + number - 1);
-	//Faltaria avisar a quién tenga que respawnearlos
-
 
 	return true;
 }

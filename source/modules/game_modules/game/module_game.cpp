@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "module_game.h"
 #include "modules/module.h"
+#include "modules/game_modules/game/respawner.h"
 #include "camera/camera.h"
 #include "render/render_objects.h"
 #include "entity/entity.h"
@@ -81,8 +82,11 @@ bool CModuleGame::start() {
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
 
+	respawner = new Respawner();
+
     EngineScripting.throwEvent(onGameStart,"");
 	EngineScripting.throwEvent(onLevelStart, "1"); 
+
 
 	CApp::get().setResetMouse(true);
 	return true;
@@ -94,6 +98,7 @@ bool CModuleGame::stop() {
 	CApp::get().setDebugMode(false);
 	EngineScripting.reset();
 	Engine.getEntities().reset();
+	SAFE_DELETE(respawner);
 	return true;
 }
 
@@ -104,41 +109,8 @@ void CModuleGame::update(float delta) {
 			ScriptingPlayer::givePlayerControl();
 		}
 	}
-  //  if (EngineInput['1'].getsPressed()) {
-		//CHandle h_camera = getEntityByName(PLAYER_CAMERA);
-  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-  //  }
-  //  if (EngineInput['2'].getsPressed()) {
-  //      CHandle h_camera = getEntityByName("fixed_camera");
-  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-  //  }
-  //  if (EngineInput['3'].getsPressed()) {
-  //      CHandle h_camera = getEntityByName("test_camera_curve");
-  //      Engine.getCameras().blendInCamera(h_camera, 1.f, CModuleCameras::EPriority::GAMEPLAY);
-  //  }
-    
-    /*static float time = 0.f;
-    time += delta;
-    VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
-    CEntity* e_curve = getEntityByName("test_camera_curve");
-    TCompCurve* c_curve = e_curve->get<TCompCurve>();
-    float ratio = (pos.x + 10.f) / 20.f;
-    c_curve->setRatio(ratio);*/
 
-	/*static float time = 0.f;
-	time += delta;
-	VEC3 pos(10.f * sinf(time), 0.f, 2.0f * cosf(time));
-	CEntity* e_curve = getEntityByName("test_camera_curve");
-	TCompCurve* c_curve = e_curve->get<TCompCurve>();
-	float ratio = (pos.x + 10.f) / 20.f;
-	c_curve->setRatio(ratio);*/
-
-	/*//DEBUG:
-	CEntity* e_curve = getEntityByName("test_camera_curve");
-	TCompTransform* t_curve = e_curve->get<TCompTransform>();
-	pos = t_curve->getPosition();
-	dbg("pos: x: %f y: %f z: %f\n", pos.x, pos.y, pos.z);*/
-
+	respawner->update(delta);
 }
 
 void CModuleGame::render() {
@@ -156,4 +128,8 @@ void CModuleGame::render() {
 
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
 	solid->activate();
+}
+
+Respawner * CModuleGame::getRespawner() {
+	return respawner;
 }

@@ -3,6 +3,17 @@
   {
     "entity":
     {
+      "name": "prueba_coin",
+      "transform":
+      {
+        "pos": "-5 8.0 -44"
+      },
+      "prefab": "data/prefabs/coin.prefab"
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms2_coin154",
       "transform":
       {

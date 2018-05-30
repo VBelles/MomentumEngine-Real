@@ -234,6 +234,7 @@
     <ClCompile Include="modules\system_modules\module_sound.cpp" />
     <ClCompile Include="modules\system_modules\module_uniques.cpp" />
     <ClCompile Include="modules\game_modules\game\module_game.cpp" />
+    <ClCompile Include="modules\game_modules\game\respawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -498,6 +499,7 @@
     <ClInclude Include="modules\system_modules\module_sound.h" />
     <ClInclude Include="modules\system_modules\module_uniques.h" />
     <ClInclude Include="modules\game_modules\game\module_game.h" />
+    <ClInclude Include="modules\game_modules\game\respawner.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
