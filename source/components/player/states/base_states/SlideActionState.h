@@ -10,14 +10,24 @@ private:
 
 	std::string animation = "jump_volando";
 
+	constexpr static float STUCK_TIME = 2.f;
+	constexpr static float STUCK_THRESHOLD = 0.5f;
+	bool canJump = false;
+	float stuckY = 0.f;
+	CTimer stuckTimer;
+
+	bool isJumping = false;
+	bool isLongJumping = false;
+
+
 public:
 	SlideActionState(StateManager* stateManager);
 
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
-	void onJumpHighButton() override {}
-	void onJumpLongButton() override {}
+	void onJumpHighButton() override;
+	void onJumpLongButton() override;
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
 	void onReleasePowerButton() override {}

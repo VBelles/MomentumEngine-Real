@@ -103,5 +103,20 @@
 		"name" : "menu_back",
 		"all" : false,
 		"buttons" : ["escape", "pad_b"]
+	},
+	{
+		"name" : "down",
+		"all" : false,
+		"buttons" : ["z", "x"]
+	},
+	{
+		"name" : "turbo",
+		"all" : false,
+		"buttons" : ["lshift", "pad_r1"]
+	},
+	{
+		"name" : "free_camera",
+		"all" : false,
+		"buttons" : ["f3"]
 	}
 ]

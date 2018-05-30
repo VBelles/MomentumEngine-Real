@@ -239,6 +239,7 @@
     <ClCompile Include="components\player\states\base_states\SpendCoinsActionState.cpp" />
     <ClCompile Include="modules\system\scripting\scripting_sound.cpp" />
     <ClCompile Include="modules\system\module_navmesh.cpp" />
+    <ClCompile Include="components\controllers\comp_free_camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -508,6 +509,7 @@
     <ClInclude Include="components\player\states\base_states\SpendCoinsActionState.h" />
     <ClInclude Include="modules\system\scripting\scripting_sound.h" />
     <ClInclude Include="modules\system\module_navmesh.h" />
+    <ClInclude Include="components\controllers\comp_free_camera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

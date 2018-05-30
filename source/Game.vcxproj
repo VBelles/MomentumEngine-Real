@@ -119,6 +119,7 @@
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
     <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
+    <ClCompile Include="components\controllers\comp_free_camera.cpp" />
     <ClCompile Include="components\ia\enemies\BallEnemy.cpp" />
     <ClCompile Include="components\platforms\comp_platform.cpp" />
     <ClCompile Include="components\comp_out_of_bounds.cpp" />
@@ -362,6 +363,7 @@
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
     <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />
+    <ClInclude Include="components\controllers\comp_free_camera.h" />
     <ClInclude Include="components\ia\enemies\BallEnemy.h" />
     <ClInclude Include="components\platforms\comp_platform.h" />
     <ClInclude Include="components\comp_out_of_bounds.h" />
