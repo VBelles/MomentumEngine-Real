@@ -23,7 +23,7 @@ void RunActionState::update(float delta) {
 		wantToWalk = true;
 	}
 
-	//Buscamos un punto en la dirección en la que el jugador querría ir y, según si queda a izquierda o derecha, rotamos
+	//Buscamos un punto en la direcciï¿½n en la que el jugador querrï¿½a ir y, segï¿½n si queda a izquierda o derecha, rotamos
 	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 	bool isTurnAround = getPlayerModel()->getTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
 	if (hasInput && !isTurnAround) {
@@ -31,7 +31,7 @@ void RunActionState::update(float delta) {
 		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
 	}
 
-	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
+	//Si hay input se traslada toda la velocidad antigua a la nueva direcciï¿½n de front y se le aï¿½ade lo acelerado
 	if (hasInput && !wantToWalk) {
 		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
 			getPlayerTransform()->getFront(), currentPowerStats->acceleration,
@@ -74,10 +74,7 @@ void RunActionState::update(float delta) {
 void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
-
-	CEntity* cameraEntity = getEntityByName(PLAYER_CAMERA);
-	TCompCameraPlayer* camera = cameraEntity->get<TCompCameraPlayer>();
-	camera->moveCameraCloser(false);
+	getCameraPlayer()->moveCameraCloser(false);
 }
 
 void RunActionState::onStateExit(IActionState * nextState) {

@@ -10,6 +10,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
 #include "components/player/comp_power_gauge.h"
+#include "components/controllers/comp_camera_player.h"
 
 
 IActionState::IActionState(StateManager* stateManager, State state, ConcurrentState concurrentState) :
@@ -139,13 +140,46 @@ bool IActionState::isWalkable(MoveState& moveState) {
 
 
 //Component getters
-TCompPlayerModel* IActionState::getPlayerModel() { return stateManager->getPlayerModel(); }
-TCompTransform* IActionState::getPlayerTransform() { return stateManager->getTransform(); }
-TCompCollider* IActionState::getCollider() { return stateManager->getCollider(); }
-TCompRender* IActionState::getRender() { return stateManager->getRender(); }
-TCompHitboxes* IActionState::getHitboxes() { return stateManager->getHitboxes(); }
-TCompCamera* IActionState::getCamera() { return stateManager->getCamera(); }
-TCompRenderBlurRadial* IActionState::getBlurRadial() { return getCamera()->get<TCompRenderBlurRadial>(); }
-TCompSkeleton* IActionState::getSkeleton() { return stateManager->getSkeleton(); }
-TCompPowerGauge* IActionState::getPowerGauge() { return stateManager->getPowerGauge(); }
-TCompCollectableManager* IActionState::getCollectableManager() { return stateManager->getCollectableManager(); }
+TCompPlayerModel* IActionState::getPlayerModel() { 
+	return stateManager->getPlayerModel(); 
+}
+
+TCompTransform* IActionState::getPlayerTransform() {
+	return stateManager->getTransform(); 
+}
+
+TCompCollider* IActionState::getCollider() { 
+	return stateManager->getCollider(); 
+}
+
+TCompRender* IActionState::getRender() { 
+	return stateManager->getRender(); 
+}
+
+TCompHitboxes* IActionState::getHitboxes() {
+	return stateManager->getHitboxes(); 
+}
+
+TCompCamera* IActionState::getCamera() {
+	return stateManager->getCamera(); 
+}
+
+TCompRenderBlurRadial* IActionState::getBlurRadial() {
+	return getCamera()->get<TCompRenderBlurRadial>(); 
+}
+
+TCompSkeleton* IActionState::getSkeleton() { 
+	return stateManager->getSkeleton(); 
+}
+
+TCompPowerGauge* IActionState::getPowerGauge() { 
+	return stateManager->getPowerGauge(); 
+}
+
+TCompCollectableManager* IActionState::getCollectableManager() { 
+	return stateManager->getCollectableManager();
+}
+
+TCompCameraPlayer* IActionState::getCameraPlayer() {
+	return stateManager->getCameraPlayer();;
+}

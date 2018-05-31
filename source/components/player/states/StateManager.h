@@ -13,6 +13,7 @@ class TCompRenderBlurRadial;
 class TCompPowerGauge;
 class IActionState;
 class TCompCollectableManager;
+class TCompCameraPlayer;
 
 class StateManager {
 
@@ -22,11 +23,12 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle renderHandle;
-	CHandle cameraHandle;
 	CHandle skeletonHandle;
 	CHandle hitboxesHandle;
 	CHandle powerGaugeHandle;
 	CHandle collectableManagerHandle;
+	CHandle gameCameraHandle;
+	CHandle playerCameraHandle;
 
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
@@ -83,6 +85,7 @@ public:
 	TCompCollider* getCollider();
 	TCompRender* getRender();
 	TCompCamera* getCamera();
+	TCompCameraPlayer * getCameraPlayer();
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
 	TCompPowerGauge* getPowerGauge();

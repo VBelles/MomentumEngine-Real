@@ -11,6 +11,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 #include "components/postfx/comp_render_blur_radial.h"
+#include "components/controllers/comp_camera_player.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/base_states/GhostJumpWindowActionState.h"
@@ -75,6 +76,11 @@ StateManager::StateManager(CHandle entityHandle) :
 	hitboxesHandle(getEntity()->get<TCompHitboxes>()),
 	powerGaugeHandle(getEntity()->get<TCompPowerGauge>()),
 	collectableManagerHandle(getEntity()->get<TCompCollectableManager>()) {
+
+	CEntity* gameCameraEntity = getEntityByName(GAME_CAMERA);
+	gameCameraHandle = gameCameraEntity->get<TCompCamera>();
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	playerCameraHandle = playerCameraEntity->get<TCompCameraPlayer>();
 
 	registerStates();
 }
@@ -225,7 +231,10 @@ TCompRender* StateManager::getRender() {
 	return renderHandle;
 }
 TCompCamera* StateManager::getCamera() {
-	return ((CEntity *)getEntityByName(GAME_CAMERA))->get<TCompCamera>();
+	return gameCameraHandle;
+}
+TCompCameraPlayer* StateManager::getCameraPlayer() {
+	return playerCameraHandle;
 }
 TCompSkeleton* StateManager::getSkeleton() {
 	return skeletonHandle;

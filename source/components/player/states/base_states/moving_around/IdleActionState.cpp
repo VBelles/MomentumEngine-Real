@@ -48,9 +48,7 @@ void IdleActionState::update(float delta) {
 	}
 
 	if (closeCameraTimer.elapsed() >= closeCameraTime) {
-		CEntity* cameraEntity = getEntityByName(PLAYER_CAMERA);
-		TCompCameraPlayer* camera = cameraEntity->get<TCompCameraPlayer>();
-		camera->moveCameraCloser(true);
+		getCameraPlayer()->moveCameraCloser(true);
 	}
 }
 
