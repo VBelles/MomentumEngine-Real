@@ -89,57 +89,57 @@ StateManager::~StateManager() {
 }
 
 void StateManager::registerStates() {
-	registerState(IdleActionState);
-	registerState(JumpSquatActionState);
-	registerState(GhostJumpSquatActionState);
-	registerState(GhostJumpWindowActionState);
-	registerState(RunActionState);
-	registerState(WalkActionState);
-	registerState(AirborneNormalActionState);
-	registerState(GhostJumpSquatLongActionState);
-	registerState(JumpSquatLongActionState);
-	registerState(AirborneLongActionState);
-	registerState(TurnAroundActionState);
-	registerState(LandingActionState);
-	registerState(FallingAttackLandingActionState);
-	registerState(PropelHighActionState);
-	registerState(PropelLongActionState);
-	registerState(HuggingWallActionState);
-	registerState(WallJumpSquatActionState);
-	registerState(AirborneWallJumpActionState);
-	registerState(FallingAttackActionState);
-	registerState(StrongAttackActionState);
-	registerState(StrongAttack2ActionState);
-	registerState(StrongAttack3ActionState);
-	registerState(StrongFinisher1ActionState);
-	registerState(StrongFinisher2ActionState);
-	registerState(FastFinisher1ActionState);
-	registerState(FastFinisher2ActionState);
-	registerState(VerticalLauncherActionState);
-	registerState(HorizontalLauncherActionState);
-	registerState(ReleasePowerGroundActionState);
-	registerState(JumpSquatSpringActionState);
-	registerState(IdleTurnAroundActionState);
-	registerState(WallJumpSquatPlummetActionState);
-	registerState(WallJumpPlummetActionState);
-	registerState(DeathActionState);
-	registerState(PitFallingActionState);
-	registerState(SlideActionState);
-	registerState(HardKnockbackGroundActionState);
-	registerState(HardKnockbackAirActionState);
-	registerState(SpringJumpActionState);
-	registerState(DodgeActionState);
-	registerState(SpendCoinsActionState);
+	registerState<IdleActionState>();
+	registerState<JumpSquatActionState>();
+	registerState<GhostJumpSquatActionState>();
+	registerState<GhostJumpWindowActionState>();
+	registerState<RunActionState>();
+	registerState<WalkActionState>();
+	registerState<AirborneNormalActionState>();
+	registerState<GhostJumpSquatLongActionState>();
+	registerState<JumpSquatLongActionState>();
+	registerState<AirborneLongActionState>();
+	registerState<TurnAroundActionState>();
+	registerState<LandingActionState>();
+	registerState<FallingAttackLandingActionState>();
+	registerState<PropelHighActionState>();
+	registerState<PropelLongActionState>();
+	registerState<HuggingWallActionState>();
+	registerState<WallJumpSquatActionState>();
+	registerState<AirborneWallJumpActionState>();
+	registerState<FallingAttackActionState>();
+	registerState<StrongAttackActionState>();
+	registerState<StrongAttack2ActionState>();
+	registerState<StrongAttack3ActionState>();
+	registerState<StrongFinisher1ActionState>();
+	registerState<StrongFinisher2ActionState>();
+	registerState<FastFinisher1ActionState>();
+	registerState<FastFinisher2ActionState>();
+	registerState<VerticalLauncherActionState>();
+	registerState<HorizontalLauncherActionState>();
+	registerState<ReleasePowerGroundActionState>();
+	registerState<JumpSquatSpringActionState>();
+	registerState<IdleTurnAroundActionState>();
+	registerState<WallJumpSquatPlummetActionState>();
+	registerState<WallJumpPlummetActionState>();
+	registerState<DeathActionState>();
+	registerState<PitFallingActionState>();
+	registerState<SlideActionState>();
+	registerState<HardKnockbackGroundActionState>();
+	registerState<HardKnockbackAirActionState>();
+	registerState<SpringJumpActionState>();
+	registerState<DodgeActionState>();
+	registerState<SpendCoinsActionState>();
 
-	registerConcurrentState(FreeActionState);
-	registerConcurrentState(FastAttackActionState);
-	registerConcurrentState(FastAttack2ActionState);
-	registerConcurrentState(FastAttackAirActionState);
-	registerConcurrentState(GrabHighActionState);
-	registerConcurrentState(GrabLongActionState);
-	registerConcurrentState(ReleasePowerAirActionState);
-	registerConcurrentState(SoftKnockbackGroundActionState);
-	registerConcurrentState(SoftKnockbackAirActionState);
+	registerConcurrentState<FreeActionState>();
+	registerConcurrentState<FastAttackActionState>();
+	registerConcurrentState<FastAttack2ActionState>();
+	registerConcurrentState<FastAttackAirActionState>();
+	registerConcurrentState<GrabHighActionState>();
+	registerConcurrentState<GrabLongActionState>();
+	registerConcurrentState<ReleasePowerAirActionState>();
+	registerConcurrentState<SoftKnockbackGroundActionState>();
+	registerConcurrentState<SoftKnockbackAirActionState>();
 
 	changeState(Idle);
 	changeConcurrentState(Free);
@@ -190,26 +190,52 @@ void StateManager::performStateChange() {
 	}
 }
 
-IActionState* StateManager::getState() { return baseState; }
-IActionState* StateManager::getConcurrentState() { return concurrentState; }
+IActionState* StateManager::getState() {
+	return baseState;
+}
+IActionState* StateManager::getConcurrentState() {
+	return concurrentState;
+}
 
-IActionState* StateManager::getState(State state) { return states[state]; }
-IActionState* StateManager::getConcurrentState(ConcurrentState state) { return concurrentStates[state]; }
+IActionState* StateManager::getState(State state) {
+	return states[state];
+}
+IActionState* StateManager::getConcurrentState(ConcurrentState state) {
+	return concurrentStates[state];
+}
 
 bool StateManager::isConcurrentActionFree() {
 	return concurrentState->concurrentState == Free;
 }
 
 //Component getters
-CEntity* StateManager::getEntity() { return entityHandle; }
-TCompPlayerModel* StateManager::getPlayerModel() { return playerModelHandle; }
-TCompTransform* StateManager::getTransform() { return transformHandle; }
-TCompCollider* StateManager::getCollider() { return colliderHandle; }
-TCompRender* StateManager::getRender() { return renderHandle; }
-TCompCamera* StateManager::getCamera() { return ((CEntity *)getEntityByName(GAME_CAMERA))->get<TCompCamera>(); }
-TCompSkeleton* StateManager::getSkeleton() { return skeletonHandle; }
-TCompHitboxes* StateManager::getHitboxes() { return hitboxesHandle; }
-TCompPowerGauge* StateManager::getPowerGauge() { return powerGaugeHandle; }
-TCompCollectableManager * StateManager::getCollectableManager() { return collectableManagerHandle; }
-
-
+CEntity* StateManager::getEntity() {
+	return entityHandle;
+}
+TCompPlayerModel* StateManager::getPlayerModel() {
+	return playerModelHandle;
+}
+TCompTransform* StateManager::getTransform() {
+	return transformHandle;
+}
+TCompCollider* StateManager::getCollider() {
+	return colliderHandle;
+}
+TCompRender* StateManager::getRender() {
+	return renderHandle;
+}
+TCompCamera* StateManager::getCamera() {
+	return ((CEntity *)getEntityByName(GAME_CAMERA))->get<TCompCamera>();
+}
+TCompSkeleton* StateManager::getSkeleton() {
+	return skeletonHandle;
+}
+TCompHitboxes* StateManager::getHitboxes() {
+	return hitboxesHandle;
+}
+TCompPowerGauge* StateManager::getPowerGauge() {
+	return powerGaugeHandle;
+}
+TCompCollectableManager * StateManager::getCollectableManager() {
+	return collectableManagerHandle;
+}

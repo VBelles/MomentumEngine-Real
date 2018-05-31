@@ -14,9 +14,7 @@
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/StateManager.h"
 
-
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
-
 
 void TCompPlayerModel::registerMsgs() {
 	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
@@ -84,7 +82,6 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	powerStats[2] = loadPowerStats(j["ssj3"]);
 
 	resetHp();
-
 }
 
 PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
@@ -106,7 +103,6 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 	ssj->plummetTime = j.value("plummetTime", 0.0f);
 	return ssj;
 }
-
 
 void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	currentPowerStats = powerStats[msg.powerLvl - 1];
@@ -194,7 +190,6 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	currentPowerStats = powerStats[0];
 
 	stateManager = new StateManager(CHandle(this).getOwner());
-
 }
 
 void TCompPlayerModel::update(float delta) {
@@ -234,7 +229,6 @@ void TCompPlayerModel::applyGravity(float delta) {
 	}
 	velocityVector.y += currentGravity * delta;
 	velocityVector.y = clamp(velocityVector.y, -maxVerticalSpeed, maxVerticalSpeed);
-
 }
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
@@ -269,9 +263,7 @@ void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
 	}
 }
 
-void TCompPlayerModel::onControllerHit(const TMsgControllerHit& msg) {
-
-}
+void TCompPlayerModel::onControllerHit(const TMsgControllerHit& msg) {}
 
 //Aqui llega sin normalizar, se debe hacer justo antes de aplicar el movimiento si se quiere que pueda caminar
 void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
@@ -297,7 +289,6 @@ void TCompPlayerModel::setHp(float hp) {
 	}
 	//EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
 	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
-
 }
 
 void TCompPlayerModel::setRespawnPosition(VEC3 position) {
@@ -413,7 +404,6 @@ void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only
 	getPowerGauge()->gainPower();
 }
 
-
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
 		receivedAttack = msg.info;
@@ -433,7 +423,6 @@ void TCompPlayerModel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 void TCompPlayerModel::onGainPower(const TMsgGainPower& msg) {
 	getPowerGauge()->increasePower(msg.power);
 }
-
 
 void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	stateManager->changeConcurrentState(Free);

@@ -28,8 +28,8 @@ private:
 	CHandle powerGaugeHandle;
 	CHandle collectableManagerHandle;
 
-	std::map<State, IActionState*> states;
-	std::map<ConcurrentState, IActionState*> concurrentStates;
+	std::unordered_map<State, IActionState*> states;
+	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
 
 	IActionState* baseState;
 	IActionState* concurrentState;
@@ -38,22 +38,15 @@ private:
 
 	void registerStates();
 
-#define toStrt(stateClass) \
-	{\
-	IActionState* s = new stateClass(this); \
-	states[s->state] = s;\
+	template <class T>
+	void registerState() {
+		T* s = new T(this);
+		states[s->state] = s;
 	}
-
-#define registerState(stateClass) \
-	{\
-	IActionState* s = new stateClass(this); \
-	states[s->state] = s;\
-	}
-
-#define registerConcurrentState(stateClass) \
-	{\
-	IActionState* s = new stateClass(this); \
-	concurrentStates[s->concurrentState] = s;\
+	template <class T>
+	void registerConcurrentState() {
+		T* s = new T(this);
+		concurrentStates[s->concurrentState] = s;
 	}
 
 public:
@@ -72,6 +65,16 @@ public:
 	IActionState* getState(State state);
 	IActionState* getConcurrentState(ConcurrentState state);
 
+	template <typename T>
+	T* getState(State state) { 
+		return static_cast<T*>(getState(state)); 
+	}
+
+	template <typename T>
+	T* getConcurrentState(ConcurrentState state) { 
+		return static_cast<T*>(getConcurrentState(state)); 
+	}
+
 	bool isConcurrentActionFree();
 
 	CEntity* getEntity();
@@ -89,5 +92,3 @@ public:
 	bool isChangingConcurrentState = false;
 
 };
-
-

@@ -6,14 +6,11 @@
 #include "components/player/attack_info.h"
 
 class IActionState;
-class TCompCamera;
 class TCompCollider;
 class TCompTransform;
 class TCompPowerGauge;
-class TCompSkeleton;
-class StateManager;
 class TCompCollectableManager;
-
+class StateManager;
 struct TMsgRespawnChanged;
 
 struct HitState {
@@ -60,10 +57,7 @@ private:
 	CTimer invulnerableTimer;
 	float invulnerableTime = 1.f;
 
-	int coins = 0;
-
 	//TODO Esto aqu� es criminal, milestone 1 ftw 
-	int chrysalis = 0;
 	int chrysalisTarget = 5;
 	bool showVictoryDialog = false;
 	CTimer dialogTimer;
