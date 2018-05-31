@@ -330,6 +330,16 @@ struct TSceneExporter (
 			fs.beginObj() -- - - start new entity  - - - - - - -
 	),
 	
+	-- --CHILD POSITIONS  ----------------------------------------------------
+	fn exportChildPositions obj = (
+		fs.beginArray()		
+			for i = 1 to obj.children.count do (
+				if i > 1 then fs.writeComma()
+				fs.writeValue (maxPosToMcv obj.children[i].pos) addIndent:true
+			)
+		fs.endArray()
+	),
+	
 	-- --STRING ARRAY (generic for tags, groups, masks )---------
 	fn exportStringArray arrayName strings = (
 		fs.writeKey arrayName
@@ -790,6 +800,16 @@ struct TSceneExporter (
 		)
 	),
 
+	fn exportAltar obj = (
+		fs.writeKey "altar"
+		fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			fs.writeKeyValue "prefab" (prefabPath + "crisalida.prefab")
+			fs.writeComma()
+			fs.writeKey "spawn_positions"
+			exportChildPositions obj
+		fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+	),
+	
 	-- ----------------------------------------------------------
 	-- -- · ENTITIES · ------------------------------------
 	-- ----------------------------------------------------------
@@ -806,6 +826,27 @@ struct TSceneExporter (
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				exportEntityCollider obj meshMode:(not (isCollider obj and objClass != Editable_mesh)) dyn:(hasChildLine obj)
+			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+		return true
+	),
+	
+	-- --ENTITY: ALTAR ----------------------------------------------------------------
+	fn exportEntityAltar obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		else fs.writeDummyEntity "altar"
+		
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				fs.writeKeyValue "prefab" (prefabPath + "altar.prefab")
+				fs.writeComma()
+				exportTransform obj
+				exportBreakable()
+				fs.writeComma()
+				exportAltar obj
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
 		return true
@@ -1417,6 +1458,7 @@ struct TSceneExporter (
 					if obj.parent == undefined and not obj.isHidden then (
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof obj) as string) obj.name --DEBUG
 						case layerName of (
+							"altars":       ( wasValid = exportEntityAltar     obj nValidObjs )
 							"cameras":      ( wasValid = exportEntityCamera    obj nValidObjs )
 							"chrysalis":    ( wasValid = exportEntityChrysalis obj nValidObjs )
 							"coins": 	    ( wasValid = exportEntityCoin      obj nValidObjs )
