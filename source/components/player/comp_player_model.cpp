@@ -123,48 +123,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	respawnPosition = getTransform()->getPosition();
 
-	renderUI->registerOnRenderUI([&]() {
-
-		bool showWindow = true;
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
-		ImGui::SetNextWindowPos(ImVec2(50, 35));
-		ImGui::SetNextWindowSize(ImVec2(200, 300));
-		ImGui::Begin("HpPower", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-
-		//Hp bar
-		std::string hpProgressBarText = "HP: " + std::to_string((int)hp) + "/" + std::to_string((int)maxHp);
-		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 34, 177, 76 });
-		ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
-		ImGui::PopStyleColor();
-
-		//Power bar
-		std::string powerProgressBarText = "Power";
-		ImVec4 color = getPowerGauge()->getPowerLevel() == 1 ? ImColor{ 133, 78, 128 } : getPowerGauge()->getPowerLevel() == 2 ? ImColor{ 24, 174, 186 } : ImColor{ 255, 255, 255 };
-		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-		ImGui::ProgressBar(getPowerGauge()->getBarPercentage(), ImVec2(-1, 0), powerProgressBarText.c_str());
-		ImGui::PopStyleColor();
-
-		ImGui::End();
-		ImGui::PopStyleColor();
-
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
-		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x - 200 - 50, ImGui::GetIO().DisplaySize.y - 100));
-		ImGui::SetNextWindowSize(ImVec2(200, 300));
-		ImGui::Begin("Ui", &showWindow, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-
-		//Chrysalis counter
-		std::string chrysalisProgressBarText = "Chrysalis: " + std::to_string(getCollectableManager()->getNumberOfChrysalis()) + "/" + std::to_string(chrysalisTarget);
-		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 255, 191, 0 });
-		ImGui::ProgressBar((float)getCollectableManager()->getNumberOfChrysalis() / chrysalisTarget, ImVec2(-1, 0), chrysalisProgressBarText.c_str());
-		ImGui::PopStyleColor();
-
-		//Coin counter
-		std::string coinText = "Coins: " + std::to_string(getCollectableManager()->getNumberOfCoins());
-		ImGui::ProgressBar(0, ImVec2(-1, 0), coinText.c_str());
-
-		ImGui::End();
-		ImGui::PopStyleColor();
-
+	renderUI->registerOnRenderUI([&]() {		
 		if (showVictoryDialog) {
 			//-------- WIN DIALOG --------------------------------
 			ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 120 });
@@ -180,16 +139,17 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 		}
 
 		if (CApp::get().isDebug()) {
-			ImGui::Begin("Params Main Character", &showWindow);
+			ImGui::Begin("Params Main Character");
 			debugInMenu();
 			ImGui::End();
 		}
-
 	});
 
 	currentPowerStats = powerStats[0];
 
 	stateManager = new StateManager(CHandle(this).getOwner());
+
+	EngineGUI.getVariables().getVariant("chrysalis_goal")->setInt(chrysalisTarget);
 }
 
 void TCompPlayerModel::update(float delta) {
@@ -213,6 +173,9 @@ void TCompPlayerModel::update(float delta) {
 	updateMovement(delta, deltaMovement);
 
 	stateManager->performStateChange();
+
+	EngineGUI.getVariables().getVariant("chrysalis")->setInt(getCollectableManager()->getNumberOfChrysalis());
+	EngineGUI.getVariables().getVariant("coins")->setInt(getCollectableManager()->getNumberOfCoins());
 }
 
 void TCompPlayerModel::applyGravity(float delta) {
@@ -287,8 +250,8 @@ void TCompPlayerModel::setHp(float hp) {
 		stateManager->changeState(Death);
 		stateManager->changeConcurrentState(Free);
 	}
-	//EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
-	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
+	EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
+	EngineGUI.getVariables().getVariant("hp")->setInt(hp);
 }
 
 void TCompPlayerModel::setRespawnPosition(VEC3 position) {

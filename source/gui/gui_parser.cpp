@@ -5,6 +5,7 @@
 #include "gui/widgets/gui_bar.h"
 #include "gui/widgets/gui_button.h"
 #include "gui/effects/gui_animate_uv.h"
+#include "gui/widgets/gui_power_bar.h"
 #include "utils/template_engine.h"
 
 namespace {
@@ -48,6 +49,7 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent) {
 	else if (type == "text")    wdgt = parseText(data);
 	else if (type == "bar")     wdgt = parseBar(data);
 	else if (type == "button")  wdgt = parseButton(data);
+	else if (type == "power_bar")  wdgt = parsePowerBar(data);
 	else                        wdgt = parseWidget(data);
 
 	wdgt->_name = name;
@@ -155,6 +157,16 @@ CWidget* CParser::parseBar(const json& data) {
 	return wdgt;
 }
 
+CWidget* CParser::parsePowerBar(const json& data) {
+	CPowerBar* wdgt = new CPowerBar();
+
+	parseParams(wdgt->_params, data);
+	parseImageParams(wdgt->_imageParams, data);
+	parsePowerBarParams(wdgt->_powerBarParams, data);
+
+	return wdgt;
+}
+
 void CParser::parseParams(TParams& params, const json& data) {
 	params._visible = data.value("visible", true);
 	params._position = loadVEC2(data.value("position", "0 0"));
@@ -190,4 +202,14 @@ void CParser::parseBarParams(TBarParams& params, const json& data) {
 	params._variable = data.value("variable", "");
 	const std::string direction = data.value("direction", "horizontal");
 	params._direction = direction == "vertical" ? TBarParams::Vertical : TBarParams::Horizontal;
+}
+
+void GUI::CParser::parsePowerBarParams(TPowerBarParams & params, const json & data) {
+	params._progressVariable = data.value("progress", "");
+	params._colorIndexVariable = data.value("color_index", "");
+	if (data.count("colors")) {
+		for (auto& jColor : data["colors"]) {
+			params._colors.push_back(loadVEC4(jColor));
+		}
+	}
 }

@@ -1,0 +1,37 @@
+[
+    {
+        "name" : "hp_progress",
+        "type" : "float",
+        "value" : 0.0
+    },
+    {
+        "name" : "power_progress",
+        "type" : "float",
+        "value" : 0.0
+    },
+    {
+        "name" : "hp",
+        "type" : "int",
+        "value" : 0
+    },
+    {
+        "name" : "power_level",
+        "type" : "int",
+        "value" : 0
+    },
+    {
+        "name" : "coins",
+        "type" : "int",
+        "value" : 0
+    },
+    {
+        "name" : "chrysalis",
+        "type" : "int",
+        "value" : 0
+    },
+    {
+        "name" : "chrysalis_goal",
+        "type" : "int",
+        "value" : 0
+    }
+]

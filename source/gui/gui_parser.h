@@ -16,6 +16,7 @@ namespace GUI {
 		CWidget* parseText(const json& data);
 		CWidget* parseButton(const json& data);
 		CWidget* parseBar(const json& data);
+		CWidget* parsePowerBar(const json& data);
 
 		CEffect* parseEffect(const json& data, CWidget* wdgt);
 		CEffect* parseAnimateUVEffect(const json& data);
@@ -24,5 +25,6 @@ namespace GUI {
 		void parseImageParams(TImageParams& params, const json& data);
 		void parseTextParams(TTextParams& params, const json& data);
 		void parseBarParams(TBarParams& params, const json& data);
+		void parsePowerBarParams(TPowerBarParams& params, const json& data);
 	};
 }

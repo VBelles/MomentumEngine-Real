@@ -46,12 +46,9 @@ bool CModuleGame::start() {
 	EngineScripting.reset();
 	json jboot = loadJson("data/boot.json");
 
-	//GUI::CParser parser;
-	//parser.parseFile("data/gui/hud.json");
-	//EngineGUI.activateWidget("hud");
-
-	//hudController = new GUI::CHudController();
-	//EngineGUI.registerController(hudController);
+	GUI::CParser parser;
+	parser.parseFile("data/gui/hud.json");
+	EngineGUI.activateWidget("hud");
 
 	// Auto load some scenes
 	std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
@@ -87,7 +84,7 @@ bool CModuleGame::start() {
 }
 
 bool CModuleGame::stop() {
-	//EngineGUI.deactivateWidget("hud");
+	EngineGUI.deactivateWidget("hud");
 	//EngineGUI.unregisterController(hudController);
 	CApp::get().setDebugMode(false);
 	EngineScripting.reset();
@@ -116,20 +113,8 @@ void CModuleGame::update(float delta) {
 }
 
 void CModuleGame::render() {
-	/*std::string cameraName = CApp::get().isDebug() ? DEBUG_CAMERA : GAME_CAMERA;
-	CHandle h_e_camera = getEntityByName(cameraName);
-	if (h_e_camera.isValid()) {
-		CEntity* e_camera = h_e_camera;
-		TCompCamera* c_camera = e_camera->get<TCompCamera>();
-		assert(c_camera);
-		activateCamera(*c_camera->getCamera(), Render.width, Render.height);
-	}
-	else {
-		dbg("Invalid camera\n");
-		activateCamera(camera, Render.width, Render.height);
-	}*/
-	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
-	solid->activate();
+	//auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
+	//solid->activate();
 }
 
 Respawner * CModuleGame::getRespawner() {

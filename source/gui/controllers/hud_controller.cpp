@@ -5,10 +5,6 @@
 
 namespace GUI {
 	CHudController::CHudController() {
-		json& j = loadJson("data/gui/hud_variables.json");
-		for (json& jData : j) {
-			EngineGUI.getVariables().setVariant(jData);
-		}
 	}
 	void CHudController::update(float delta) {
 

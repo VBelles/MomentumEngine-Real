@@ -41,5 +41,11 @@ namespace GUI {
 		TTextParams _textParams;
 	};
 
+	struct TPowerBarParams {
+		std::string _progressVariable;
+		std::string _colorIndexVariable;
+		std::vector<VEC4> _colors;
+	};
+
 	using GUICallback = std::function<void()>;
 }

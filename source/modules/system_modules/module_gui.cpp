@@ -19,6 +19,11 @@ bool CModuleGUI::start() {
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	_fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
 
+	json& j = loadJson("data/gui/variables.json");
+	for (json& jData : j) {
+		_variables.setVariant(jData);
+	}
+
 
 	return true;
 }
