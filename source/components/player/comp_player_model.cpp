@@ -193,6 +193,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 }
 
 void TCompPlayerModel::update(float delta) {
+	PROFILE_FUNCTION("update");
 	if (isInvulnerable && invulnerableTimer.elapsed() >= invulnerableTime) {
 		isInvulnerable = false;
 	}
@@ -216,6 +217,7 @@ void TCompPlayerModel::update(float delta) {
 }
 
 void TCompPlayerModel::applyGravity(float delta) {
+	PROFILE_FUNCTION("applyGravity");
 	if (dynamic_cast<GroundedActionState*>(stateManager->getState()) && !wannaJump) {
 		float horizontalVelocity = clamp((VEC2(velocityVector.x, velocityVector.z)).Length(), 3.f, 100.f);
 		deltaMovement.y -= horizontalVelocity * 2.f * delta;
@@ -232,6 +234,7 @@ void TCompPlayerModel::applyGravity(float delta) {
 }
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
+	PROFILE_FUNCTION("updateMovement");
 	moveState = MoveState();
 	PxControllerCollisionFlags moveFlags = EnginePhysics.move(getController(), toPxVec3(deltaMovement), delta);
 	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
