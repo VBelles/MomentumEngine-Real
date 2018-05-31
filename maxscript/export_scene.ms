@@ -800,6 +800,7 @@ struct TSceneExporter (
 		)
 	),
 
+	-- --COMP: ALTAR -------------------------------------------------------------------------
 	fn exportAltar obj = (
 		fs.writeKey "altar"
 		fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -834,7 +835,7 @@ struct TSceneExporter (
 	-- --ENTITY: ALTAR ----------------------------------------------------------------
 	fn exportEntityAltar obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
-		else fs.writeDummyEntity "altar"
+		--else fs.writeDummyEntity "altar"
 		
 		fs.beginObj()
 			fs.writeKey "entity"
@@ -855,7 +856,7 @@ struct TSceneExporter (
 	-- --ENTITY: COIN-------------------------------------------------------
 	fn exportEntityCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
-		else fs.writeDummyEntity "coin"
+		--else fs.writeDummyEntity "coin"
 		
 		if isUnique obj then append uniqueCoins obj.name
 
@@ -939,8 +940,8 @@ struct TSceneExporter (
 	-- --ENTITY: CHRYSALIS (also exports child line)----------------------------
 	fn exportEntityChrysalis obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
+		--else fs.writeDummyEntity "chrysalis"
 		
-		else fs.writeDummyEntity "chrysalis"
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -961,8 +962,8 @@ struct TSceneExporter (
 	-- --ENTITY: ENEMY (also exports child line)--------------------------------------
 	fn exportEntityEnemy obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
+		--else fs.writeDummyEntity "enemy"
 		
-		else fs.writeDummyEntity "enemy"
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1106,7 +1107,7 @@ struct TSceneExporter (
 			return false
 		)
 		if nValidObjs > 0 then fs.writeComma()
-		else fs.writeDummyEntity obj.layer.name
+		--else fs.writeDummyEntity obj.layer.name
 		
 		fs.beginObj()
 			fs.writeKey "entity"
@@ -1403,6 +1404,7 @@ struct TSceneExporter (
 	
 	-- Globals uniqueCoins and uniqueAltars contain the object names.
 	fn exportUniques = (
+		if uniqueCoins.count == 0 and uniqueAltars.count == 0 then return
 		local ofilename = getFilenameFile maxFileName
 		local uniquesPath = project_path + uniques_path + ofilename + "-uniques.json"
 		fs.begin uniquesPath
