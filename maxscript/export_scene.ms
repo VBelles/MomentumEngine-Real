@@ -273,6 +273,7 @@ struct TSceneExporter (
 	project_path = "",
 	base_path = "data/",
 	scenes_path = base_path + "scenes/",
+	uniques_path = base_path + "uniques/",
 	mesh_path = base_path + "meshes/",
 	mats_path = base_path + "materials/",
 	prefabPath = base_path + "prefabs/",
@@ -313,6 +314,10 @@ struct TSceneExporter (
 			if isCollider child then return true
 		)
 		return false
+	),
+	
+	fn isUnique obj = (
+		return (stringContainsSubstring obj.name "unique")
 	),
 	
 	-- Ends one entity and starts a new one.
@@ -809,8 +814,10 @@ struct TSceneExporter (
 	-- --ENTITY: COIN-------------------------------------------------------
 	fn exportEntityCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
-		
 		else fs.writeDummyEntity "coin"
+		
+		if isUnique obj then append uniqueCoins obj.name
+
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1341,13 +1348,37 @@ struct TSceneExporter (
 	-- -------------------------------------------------------------------
 	-- -------------------------------------------------------------------
 	
+	fn exportUniqueObj obj = (
+		fs.beginObj()
+			fs.writeKeyValue "id" obj.name
+			fs.writeComma()
+			fs.writeKeyValue "done" false
+			fs.writeComma()
+			fs.writeKeyValue "position" (maxPosToMcv obj.pos)
+			fs.writeComma()
+			fs.writeKeyValue "level" "level00"
+		fs.endObj()
+	),
+	
+	-- Globals uniqueCoins and uniqueAltars contain the object names.
 	fn exportUniques = (
-		local filePath = project_path + scenes_path + ofilename + "-uniques.json"
-		fs.begin scenePath
+		local ofilename = getFilenameFile maxFileName
+		local uniquesPath = project_path + uniques_path + ofilename + "-uniques.json"
+		fs.begin uniquesPath
+			fs.beginObj()
+				fs.writeKey "unique_coins"
 				fs.beginArray()
-		
+				for i = 1 to uniqueCoins.count do (
+					local obj = getNodeByName uniqueCoins[i]
+					if obj != undefined then (
+						if i > 1 then fs.writeComma()
+						exportUniqueObj obj
+					)
+				)
 				fs.endArray()
+			fs.endObj()
 		fs.end()
+		-- TODO: Export also Altars.
 	),
 	
 	fn exportAll = (
@@ -1430,9 +1461,6 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
-
-TODO: Generar arrays de strings con los nombres de los objetos únicos,
-	    luego recuperar el objeto con (getNodeByName "altar") y generar el archivo uniques/unique.json.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
