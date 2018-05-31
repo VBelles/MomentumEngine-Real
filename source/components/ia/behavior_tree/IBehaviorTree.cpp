@@ -30,12 +30,12 @@ IBehaviorTreeNode* IBehaviorTree::createNode(std::string name, EBehaviorTreeNode
 }
 
 IBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
-	if (tree.find(name) == tree.end()) {
-		return nullptr;
-	}
-	else {
+	PROFILE_FUNCTION("findNode");
+	auto it = tree.find(name);
+	if (it != tree.end()) {
 		return tree[name];
 	}
+	return nullptr;
 }
 
 bool IBehaviorTree::falseCondition(float delta) {
@@ -82,6 +82,7 @@ void IBehaviorTree::addCondition(std::string conditionName, BehaviorTreeConditio
 }
 
 bool IBehaviorTree::testCondition(std::string conditionName, float delta) {
+	PROFILE_FUNCTION("testCondition");
 	if (conditions.find(conditionName) == conditions.end()) {
 		return true;	// error: no condition defined, we assume TRUE
 	}
@@ -100,6 +101,7 @@ void IBehaviorTree::addAction(std::string actionName, BehaviorTreeAction action)
 }
 
 int IBehaviorTree::execAction(std::string actionName, float delta) {
+	PROFILE_FUNCTION("execAction");
 	if (actions.find(actionName) == actions.end()) {
 		printf("ERROR: Missing node action for node %s\n", actionName.c_str());
 		return Leave; // error: action does not exist
@@ -110,6 +112,7 @@ int IBehaviorTree::execAction(std::string actionName, float delta) {
 }
 
 void IBehaviorTree::recalc(float delta) {
+	PROFILE_FUNCTION("Recalc");
 	if (current == nullptr) {
 		root->recalc(this, delta);
 	}
