@@ -12,6 +12,7 @@
 #include "modules/system_modules/module_navmesh.h"
 #include "modules/system_modules/module_uniques.h"
 #include "modules/system_modules/module_sound.h"
+#include "modules/system_modules/instancing/module_instancing.h"
 
 class CEngine {
 public:
@@ -31,10 +32,11 @@ public:
 	CModuleCameras& getCameras() { return _module_cameras; }
 	CModuleScripting& getScripting() { return _module_scripting; }
 	CModuleGUI& getGUI() { return _module_gui; }
-	CModuleNavmesh& getNavmesh()		 { return _module_navmesh; }
+	CModuleNavmesh& getNavmesh() { return _module_navmesh; }
 	CModuleSound& getSound() { return _module_sound; }
-  CModuleMultithread& getMultithread() { return _module_multithread; }
+	CModuleMultithread& getMultithread() { return _module_multithread; }
 	CModuleUniques& getUniques() { return _module_uniques; }
+	CModuleInstancing& getInstancing() { return _module_instancing; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
@@ -52,6 +54,7 @@ private:
 	CModuleSound     _module_sound;
 	CModuleMultithread  _module_multithread;
 	CModuleUniques _module_uniques;
+	CModuleInstancing _module_instancing;
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
@@ -67,3 +70,4 @@ private:
 #define EngineNavmesh CEngine::get().getNavmesh()
 #define EngineSound CEngine::get().getSound()
 #define EngineUniques CEngine::get().getUniques()
+#define EngineInstancing CEngine::get().getInstancing()

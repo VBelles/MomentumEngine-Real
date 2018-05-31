@@ -12,7 +12,6 @@
     "render",
 	  "gui",
       "navmesh",
-    "test_instancing",
     "scripting",
     "sound"
   ],
