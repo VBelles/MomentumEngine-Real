@@ -77,7 +77,6 @@ void TCompCollectableManager::clear() {
 	uniqueObjectsCollected[Type::COIN].clear();
 }
 
-
 void TCompCollectableManager::onEntityCreated(const TMsgEntityCreated & msg) {
 	clear();
 }

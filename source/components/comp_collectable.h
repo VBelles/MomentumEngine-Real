@@ -21,8 +21,7 @@ public:
 	    { "chrysalis", CHRYSALIS },
 	    { "coin", COIN }
 	};
-
-
+	
 private:
 	bool collected = false;
 	Type type;

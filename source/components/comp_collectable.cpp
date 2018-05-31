@@ -4,13 +4,10 @@
 #include "components/comp_collider.h"
 #include "entity/common_msgs.h"
 
-
 DECL_OBJ_MANAGER("collectable", TCompCollectable);
 
 void TCompCollectable::debugInMenu() {
 }
-
-
 
 void TCompCollectable::registerMsgs() {
 	DECL_MSG(TCompCollectable, TMsgEntitiesGroupCreated, onGroupCreated);
@@ -53,7 +50,6 @@ void TCompCollectable::collect() {
 		collected = true;
 		getComp<TCompCollider>()->destroy();
 	}
-
 }
 
 void TCompCollectable::onColliderDestroyed(const TMsgColliderDestroyed& msg) {

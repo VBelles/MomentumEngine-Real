@@ -109,6 +109,7 @@
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_hitboxes.cpp" />
+    <ClCompile Include="components\comp_life_regenerator.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
     <ClCompile Include="components\comp_light_point.cpp" />
     <ClCompile Include="components\comp_hitbox.cpp" />
@@ -354,6 +355,7 @@
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_hitboxes.h" />
+    <ClInclude Include="components\comp_life_regenerator.h" />
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="components\comp_light_point.h" />
     <ClInclude Include="components\comp_hitbox.h" />

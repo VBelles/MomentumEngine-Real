@@ -1,5 +1,4 @@
-#ifndef INC_COMMON_ENTITY_MSGS_
-#define INC_COMMON_ENTITY_MSGS_
+#pragma once
 
 #include "msgs.h"
 
@@ -28,7 +27,6 @@ struct TMsgMechanismActivated {
 	DECL_MSG_ID();
 };
 
-
 struct TMsgMechanismDeactivated {
 	DECL_MSG_ID();
 };
@@ -46,11 +44,16 @@ struct TMsgAssignBulletOwner {
 	DECL_MSG_ID();
 };
 
-
 struct TMsgDamage {
 	CHandle h_sender;
 	CHandle h_bullet;
 	int damage;
+	DECL_MSG_ID();
+};
+
+struct TMsgHeal {
+	CHandle h_sender;
+	int heal;
 	DECL_MSG_ID();
 };
 
@@ -113,7 +116,3 @@ struct TMsgOnContact {
 	physx::PxContactPair pair;
 	DECL_MSG_ID();
 };
-
-
-
-#endif

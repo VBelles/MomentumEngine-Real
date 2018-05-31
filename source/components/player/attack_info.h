@@ -51,4 +51,3 @@ struct TMsgAttackHit {
 	AttackInfo info;
 	DECL_MSG_ID();
 };
-

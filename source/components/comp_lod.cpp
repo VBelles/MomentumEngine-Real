@@ -10,7 +10,7 @@
 
 DECL_OBJ_MANAGER("lod", TCompLOD);
 
-// TODO. If the children are prefabs and contains other entities
+// TODO. If the children are prefabs and contain other entities
 // we currently will not notify those entities as the msg is only
 // sent to the entity names associated to me in the json.
 // One option is to make the comp_group component forward the 

@@ -1,5 +1,4 @@
 [
-  { "entity": { "name": "0Dummy" } },
   {
     "entity":
     {
@@ -37,6 +36,13 @@
           ]
         }
       ]
+    }
+  },
+  {
+    "entity": {
+      "name": "Piramid00",
+      "transform": { "pos": "-40 0 40" },
+      "prefab" : "data/prefabs/piramid_with_lod.prefab"
     }
   }
 ]

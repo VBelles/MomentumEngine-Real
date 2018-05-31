@@ -24,7 +24,6 @@ void TCompAltar::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 	prefabToSpawn = j["prefab"].get<std::string>();
-	
 }
 
 void TCompAltar::onAllScenesCreated(const TMsgAllScenesCreated & msg) {

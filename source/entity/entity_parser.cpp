@@ -125,8 +125,6 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 		for (size_t i = 0; i < ctx.entities_loaded.size(); ++i) {
 			c_group->add(ctx.entities_loaded[i]);
 		}
-
-		
 	}
 
 	// Notify each entity created that we have finished
