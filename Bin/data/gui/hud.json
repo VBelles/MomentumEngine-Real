@@ -10,25 +10,11 @@
 				"position": "75 75",
 				"children": [
 					{
-						"name": "background",
-						"type": "image",
-						"size": "300 30",
-						"texture": "data/textures/gui/transparent.dds"
-					},
-					{
-						"name": "foreground",
-						"type": "bar",
-						"size": "300 30",
-						"texture": "data/textures/gui/solid.dds",
-						"color": "0.15 0.69 0.3 1",
-						"variable": "hp_progress"
-					},
-					{
-						"name": "hp_text",
-						"type": "text",
-						"text": "HP: {{hp}}",
-		        		"font_color" : "0.5 0.5 0.5 1",
-		        		"font_size" : 32
+						"name": "hp",
+						"type": "hp_bar",
+						"texture": "data/textures/gui/hud/heart.dds",
+						"texture_empty": "data/textures/gui/hud/heart_empty.dds",
+						"variable": "hp"
 					}
 				]
 			},
@@ -50,14 +36,11 @@
 						"texture": "data/textures/gui/solid.dds",
 						"progress": "power_progress",
 						"color_index": "power_level",
-						"colors": ["1 1 0 1", "1 0.5 0 1", "1 0 0 1"]
-					},
-					{
-						"name": "power_text",
-						"type": "text",
-						"text": "POWER",
-		        		"font_color" : "0.5 0.5 0.5 1",
-		        		"font_size" : 32
+						"colors": [
+							"1 1 0 1",
+							"1 0.5 0 1",
+							"1 0 0 1"
+						]
 					}
 				]
 			},
@@ -76,8 +59,8 @@
 						"name": "chrysalis_text",
 						"type": "text",
 						"text": "CHRYSALIS: {{chrysalis}}/{{chrysalis_goal}}",
-		        		"font_color" : "0.7 0.7 0.7 1",
-		        		"font_size" : 32
+						"font_color": "0.7 0.7 0.7 1",
+						"font_size": 32
 					}
 				]
 			},
@@ -96,8 +79,8 @@
 						"name": "coins_text",
 						"type": "text",
 						"text": "COINS: {{coins}}",
-		        		"font_color" : "0.7 0.7 0.7 1",
-		        		"font_size" : 32
+						"font_color": "0.7 0.7 0.7 1",
+						"font_size": 32
 					}
 				]
 			},
@@ -116,23 +99,23 @@
 						"name": "title",
 						"type": "text",
 						"text": "CONGRATULATIONS!",
-		        		"font_color" : "0.7 0.7 0.7 1",
-		        		"font_size" : 32
+						"font_color": "0.7 0.7 0.7 1",
+						"font_size": 32
 					},
 					{
 						"name": "l2",
 						"type": "text",
 						"text": "THE PATH TO THE BOSS IS OPEN",
-		        		"font_color" : "0.7 0.7 0.7 1",
-						"font_size" : 24,
+						"font_color": "0.7 0.7 0.7 1",
+						"font_size": 24,
 						"position": "0 80"
 					},
 					{
 						"name": "l2",
 						"type": "text",
 						"text": "YOU CAN EXPLORE AND COLLECT MORE CHRYSALIS",
-		        		"font_color" : "0.7 0.7 0.7 1",
-						"font_size" : 24,
+						"font_color": "0.7 0.7 0.7 1",
+						"font_size": 24,
 						"position": "0 120"
 					}
 				]

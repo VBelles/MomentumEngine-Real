@@ -242,6 +242,7 @@
     <ClCompile Include="modules\system_modules\module_navmesh.cpp" />
     <ClCompile Include="components\controllers\comp_free_camera.cpp" />
     <ClCompile Include="gui\widgets\gui_power_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_hp_bar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -514,6 +515,7 @@
     <ClInclude Include="modules\system_modules\module_navmesh.h" />
     <ClInclude Include="components\controllers\comp_free_camera.h" />
     <ClInclude Include="gui\widgets\gui_power_bar.h" />
+    <ClInclude Include="gui\widgets\gui_hp_bar.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

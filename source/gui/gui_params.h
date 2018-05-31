@@ -47,5 +47,12 @@ namespace GUI {
 		std::vector<VEC4> _colors;
 	};
 
+	struct THpBarParams {
+		std::string _hpVariable;
+		std::string _maxHpVariable;
+		VEC4 _color;
+		VEC4 _colorEmpty;
+	};
+
 	using GUICallback = std::function<void()>;
 }
