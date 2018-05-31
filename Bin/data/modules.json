@@ -10,22 +10,23 @@
     "game",
     "cameras",
     "render",
-	  "gui",
-      "navmesh",
+    "gui",
+    "navmesh",
     "test_instancing",
     "scripting",
     "sound"
   ],
   "render": [
-    "render",    
+    "render",
+    "physics",
     "game",
     "main_menu",
     "cameras",
     "entities",
     "pause",
     "input",
-	  "gui",
-      "navmesh",
+    "gui",
+    "navmesh",
     "scripting"
   ]
 }

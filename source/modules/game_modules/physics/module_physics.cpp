@@ -275,6 +275,16 @@ void CModulePhysics::update(float delta) {
 	releaseColliders();
 }
 
+void CModulePhysics::render() {
+	if (CApp::get().isDebug()) {
+		if (ImGui::TreeNode("Physx")) {
+			ImGui::Text("Total actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC));
+			ImGui::Text("Static actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_STATIC));
+			ImGui::Text("Dynamic actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC));
+		}
+	}
+}
+
 void CModulePhysics::setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask) {
 	PxFilterData filterData(filterGroup, filterMask, 0, 0);
 	shape->setSimulationFilterData(filterData);

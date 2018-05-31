@@ -31,9 +31,9 @@ public:
 	CModuleCameras& getCameras() { return _module_cameras; }
 	CModuleScripting& getScripting() { return _module_scripting; }
 	CModuleGUI& getGUI() { return _module_gui; }
-	CModuleNavmesh& getNavmesh()		 { return _module_navmesh; }
+	CModuleNavmesh& getNavmesh() { return _module_navmesh; }
 	CModuleSound& getSound() { return _module_sound; }
-  CModuleMultithread& getMultithread() { return _module_multithread; }
+	CModuleMultithread& getMultithread() { return _module_multithread; }
 	CModuleUniques& getUniques() { return _module_uniques; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }

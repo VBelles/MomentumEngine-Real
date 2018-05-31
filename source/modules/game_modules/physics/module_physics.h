@@ -76,7 +76,7 @@ public:
     virtual bool start() override;
     virtual bool stop() override;
     virtual void update(float delta) override;
-    virtual void render() override {}
+	virtual void render() override;
 
     void createRagdoll(TCompRagdoll& comp_ragdoll);
     void createRagdollJoints(TCompRagdoll& comp_ragdoll, int bone_id);
