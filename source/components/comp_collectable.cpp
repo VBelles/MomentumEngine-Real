@@ -51,7 +51,7 @@ void TCompCollectable::onTriggerEnter(const TMsgTriggerEnter & msg) {
 void TCompCollectable::collect() {
 	if (!collected) {
 		collected = true;
-		getComp<TCompCollider>()->destroy();
+		((TCompCollider*)get<TCompCollider>())->destroy();
 	}
 
 }

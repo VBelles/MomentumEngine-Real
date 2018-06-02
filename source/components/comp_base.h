@@ -23,12 +23,5 @@ struct TCompBase {
 		  return CHandle();                      \
 		return e->get<TComp>();                  \
 	}											 \
-	template< typename TComp >    \
-	TComp* getComp() {                            \
-		CEntity* e = CHandle(this).getOwner();   \
-		if (!e)                                  \
-		  return CHandle();                      \
-		return e->get<TComp>();                  \
-	  }
 
 #endif
