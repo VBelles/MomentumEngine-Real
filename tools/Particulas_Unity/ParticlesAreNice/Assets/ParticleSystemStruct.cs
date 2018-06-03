@@ -60,17 +60,21 @@ public class Shape
 public class ColorOverLifetime
 {
     public string[] color;
-    //public string colorMax;
 }
 
 [Serializable]
 public class SizeOverLifetime
 {
-
+    public float[] size;
 }
 
 [Serializable]
 public class Renderer
 {
-
+    public string renderMode;
+    public string shadowCastingMode;
+    public float normalDirection;
+    public float minParticleSize;
+    public float maxParticleSize;
+    public bool receiveShadows;
 }

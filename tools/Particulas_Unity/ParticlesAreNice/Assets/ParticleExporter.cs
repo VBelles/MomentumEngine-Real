@@ -11,11 +11,19 @@ public class ParticleExporter : MonoBehaviour
     void Start()
     {
         Export(system);
-        //string system.colorOverLifetime.color.colorMin.r
+        //system.
     }
 
     void Export(ParticleSystem system)
     {
+        ParticleSystemRenderer systemRenderer = system.GetComponent<ParticleSystemRenderer>();
+        Color systemStartColor = system.main.startColor.color;
+        ParticleSystem.MinMaxGradient colorGradient = new ParticleSystem.MinMaxGradient();
+        if (system.colorOverLifetime.enabled)
+        {
+            colorGradient = system.colorOverLifetime.color;
+        }
+
         ParticleSystemStruct p = new ParticleSystemStruct
         {
             main = new Main
@@ -31,7 +39,7 @@ public class ParticleExporter : MonoBehaviour
                 startRotation3D = system.main.startRotation3D,
                 startRotation = system.main.startRotation.constant,
                 randomizeRotationDirection = system.main.randomizeRotationDirection,
-                startColor = system.main.startColor.color.r + " " + system.main.startColor.color.g + " " + system.main.startColor.color.b + " " + system.main.startColor.color.a,
+                startColor = systemStartColor.r + " " + systemStartColor.g + " " + systemStartColor.b + " " + systemStartColor.a,
                 gravityModifier = system.main.gravityModifier.constant,
                 simulationSpeed = system.main.simulationSpeed,
                 playOnAwake = system.main.playOnAwake,
@@ -42,7 +50,8 @@ public class ParticleExporter : MonoBehaviour
                 rateOverTime = system.emission.rateOverTime.constant,
                 rateOverDistance = system.emission.rateOverDistance.constant
             } : null,
-            shape = system.shape.enabled ? new Shape {
+            shape = system.shape.enabled ? new Shape
+            {
                 shapeType = system.shape.shapeType.ToString(),
                 radiusMode = system.shape.radiusMode.ToString(),
                 randomDirectionAmount = system.shape.randomDirectionAmount,
@@ -52,26 +61,43 @@ public class ParticleExporter : MonoBehaviour
                 angle = system.shape.angle,
                 alignToDirection = system.shape.alignToDirection
             } : null,
-            colorOverLifetime = system.colorOverLifetime.enabled ? new ColorOverLifetime {
+            colorOverLifetime = system.colorOverLifetime.enabled ? new ColorOverLifetime
+            {
                 color = new string[]{
-                system.colorOverLifetime.color.Evaluate(0).r        + " " + system.colorOverLifetime.color.Evaluate(0).g        + " " + system.colorOverLifetime.color.Evaluate(0).b        + " " + system.colorOverLifetime.color.Evaluate(0).a,
-                system.colorOverLifetime.color.Evaluate(0.125f).r   + " " + system.colorOverLifetime.color.Evaluate(0.125f).g   + " " + system.colorOverLifetime.color.Evaluate(0.125f).b   + " " + system.colorOverLifetime.color.Evaluate(0.125f).a,
-                system.colorOverLifetime.color.Evaluate(0.25f).r    + " " + system.colorOverLifetime.color.Evaluate(0.25f).g    + " " + system.colorOverLifetime.color.Evaluate(0.25f).b    + " " + system.colorOverLifetime.color.Evaluate(0.25f).a,
-                system.colorOverLifetime.color.Evaluate(0.375f).r   + " " + system.colorOverLifetime.color.Evaluate(0.375f).g   + " " + system.colorOverLifetime.color.Evaluate(0.375f).b   + " " + system.colorOverLifetime.color.Evaluate(0.375f).a,
-                system.colorOverLifetime.color.Evaluate(0.5f).r     + " " + system.colorOverLifetime.color.Evaluate(0.5f).g     + " " + system.colorOverLifetime.color.Evaluate(0.5f).b     + " " + system.colorOverLifetime.color.Evaluate(0.5f).a,
-                system.colorOverLifetime.color.Evaluate(0.625f).r   + " " + system.colorOverLifetime.color.Evaluate(0.625f).g   + " " + system.colorOverLifetime.color.Evaluate(0.625f).b   + " " + system.colorOverLifetime.color.Evaluate(0.625f).a,
-                system.colorOverLifetime.color.Evaluate(0.75f).r    + " " + system.colorOverLifetime.color.Evaluate(0.75f).g    + " " + system.colorOverLifetime.color.Evaluate(0.75f).b    + " " + system.colorOverLifetime.color.Evaluate(0.75f).a,
-                system.colorOverLifetime.color.Evaluate(0.875f).r   + " " + system.colorOverLifetime.color.Evaluate(0.875f).g   + " " + system.colorOverLifetime.color.Evaluate(0.875f).b   + " " + system.colorOverLifetime.color.Evaluate(0.875f).a,
-                system.colorOverLifetime.color.Evaluate(1).r        + " " + system.colorOverLifetime.color.Evaluate(1).g        + " " + system.colorOverLifetime.color.Evaluate(1).b        + " " + system.colorOverLifetime.color.Evaluate(1).a,
-                
-                }   
-            }: null//,
-            //sizeOverLifetime = system.sizeOverLifetime.enabled ? new SizeOverLifetime {
-
-            //}: null,
-            //renderer =  new Renderer {
-
-            //}
+                colorGradient.Evaluate(0).r        + " " + colorGradient.Evaluate(0).g        + " " + colorGradient.Evaluate(0).b        + " " + colorGradient.Evaluate(0).a,
+                colorGradient.Evaluate(0.125f).r   + " " + colorGradient.Evaluate(0.125f).g   + " " + colorGradient.Evaluate(0.125f).b   + " " + colorGradient.Evaluate(0.125f).a,
+                colorGradient.Evaluate(0.25f).r    + " " + colorGradient.Evaluate(0.25f).g    + " " + colorGradient.Evaluate(0.25f).b    + " " + colorGradient.Evaluate(0.25f).a,
+                colorGradient.Evaluate(0.375f).r   + " " + colorGradient.Evaluate(0.375f).g   + " " + colorGradient.Evaluate(0.375f).b   + " " + colorGradient.Evaluate(0.375f).a,
+                colorGradient.Evaluate(0.5f).r     + " " + colorGradient.Evaluate(0.5f).g     + " " + colorGradient.Evaluate(0.5f).b     + " " + colorGradient.Evaluate(0.5f).a,
+                colorGradient.Evaluate(0.625f).r   + " " + colorGradient.Evaluate(0.625f).g   + " " + colorGradient.Evaluate(0.625f).b   + " " + colorGradient.Evaluate(0.625f).a,
+                colorGradient.Evaluate(0.75f).r    + " " + colorGradient.Evaluate(0.75f).g    + " " + colorGradient.Evaluate(0.75f).b    + " " + colorGradient.Evaluate(0.75f).a,
+                colorGradient.Evaluate(0.875f).r   + " " + colorGradient.Evaluate(0.875f).g   + " " + colorGradient.Evaluate(0.875f).b   + " " + colorGradient.Evaluate(0.875f).a,
+                colorGradient.Evaluate(1).r        + " " + colorGradient.Evaluate(1).g        + " " + colorGradient.Evaluate(1).b        + " " + colorGradient.Evaluate(1).a
+                }
+            } : null,
+            sizeOverLifetime = system.sizeOverLifetime.enabled ? new SizeOverLifetime
+            {
+                size = new float[]{
+                    system.sizeOverLifetime.size.Evaluate(0),
+                    system.sizeOverLifetime.size.Evaluate(0.125f),
+                    system.sizeOverLifetime.size.Evaluate(0.25f),
+                    system.sizeOverLifetime.size.Evaluate(0.375f),
+                    system.sizeOverLifetime.size.Evaluate(0.5f),
+                    system.sizeOverLifetime.size.Evaluate(0.625f),
+                    system.sizeOverLifetime.size.Evaluate(0.75f),
+                    system.sizeOverLifetime.size.Evaluate(0.875f),
+                    system.sizeOverLifetime.size.Evaluate(1)
+                }
+            } : null,
+            renderer = systemRenderer.enabled ? new Renderer
+            {
+                renderMode = systemRenderer.renderMode.ToString(),
+                shadowCastingMode = systemRenderer.shadowCastingMode.ToString(),
+                normalDirection = systemRenderer.normalDirection,
+                minParticleSize = systemRenderer.minParticleSize,
+                maxParticleSize = systemRenderer.maxParticleSize,
+                receiveShadows = systemRenderer.receiveShadows
+            } : null
         };
         string dataAsJson = JsonUtility.ToJson(p, true);
         string filePath = Application.dataPath + "/" + system.name + ".json";
