@@ -39,19 +39,28 @@ public class Main
 [Serializable]
 public class Emission
 {
-
+    public float rateOverTime;
+    public float rateOverDistance;
 }
 
 [Serializable]
 public class Shape
 {
-
+    public string shapeType;
+    public string radiusMode;
+    public float randomDirectionAmount;
+    public float sphericalDirectionAmount;
+    public float radius;
+    public float radiusSpeed;
+    public float angle;
+    public bool alignToDirection;
 }
 
 [Serializable]
 public class ColorOverLifetime
 {
-
+    public string[] color;
+    //public string colorMax;
 }
 
 [Serializable]

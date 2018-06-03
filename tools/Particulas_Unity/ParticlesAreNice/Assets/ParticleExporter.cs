@@ -3,37 +3,23 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class ParticleExporter : MonoBehaviour {
+public class ParticleExporter : MonoBehaviour
+{
     public ParticleSystem system;
 
-	// Use this for initialization
-	void Start () {
-
+    // Use this for initialization
+    void Start()
+    {
         Export(system);
-        //system.main.duration;
-        //bool system.main.loop;
-        //bool system.main.prewarm;
-        //float dfjndf = system.main.startDelay.constant;
-        //float system.main.startLifetime.constant;
-        //float system.main.startSpeed.constant;
-        //bool system.main.startSize3D;
-        //float system.main.startSize;
-        //bool system.main.startRotation3D;
-        //float system.main.startRotation;
-        //float system.main.randomizeRotationDirection;
-        //string color = system.main.startColor.color;
-        //float system.main.gravityModifier;
-        //float system.main.simulationSpeed;
-        //bool system.main.playOnAwake;
-        //int system.main.maxParticles;
-
+        //string system.colorOverLifetime.color.colorMin.r
     }
-	
+
     void Export(ParticleSystem system)
     {
         ParticleSystemStruct p = new ParticleSystemStruct
         {
-            main = new Main {
+            main = new Main
+            {
                 duration = system.main.duration,
                 loop = system.main.loop,
                 prewarm = system.main.prewarm,
@@ -50,16 +36,36 @@ public class ParticleExporter : MonoBehaviour {
                 simulationSpeed = system.main.simulationSpeed,
                 playOnAwake = system.main.playOnAwake,
                 maxParticles = system.main.maxParticles
-            }//,
-            //emission = system.emission.enabled ? new Emission {
-                 
-            //} : null,
-            //shape = system.shape.enabled ? new Shape {
-
-            //} : null,
-            //colorOverLifetime = system.colorOverLifetime.enabled ? new ColorOverLifetime {
-
-            //}: null,
+            },
+            emission = system.emission.enabled ? new Emission
+            {
+                rateOverTime = system.emission.rateOverTime.constant,
+                rateOverDistance = system.emission.rateOverDistance.constant
+            } : null,
+            shape = system.shape.enabled ? new Shape {
+                shapeType = system.shape.shapeType.ToString(),
+                radiusMode = system.shape.radiusMode.ToString(),
+                randomDirectionAmount = system.shape.randomDirectionAmount,
+                sphericalDirectionAmount = system.shape.sphericalDirectionAmount,
+                radius = system.shape.radius,
+                radiusSpeed = system.shape.radiusSpeed.constant,
+                angle = system.shape.angle,
+                alignToDirection = system.shape.alignToDirection
+            } : null,
+            colorOverLifetime = system.colorOverLifetime.enabled ? new ColorOverLifetime {
+                color = new string[]{
+                system.colorOverLifetime.color.Evaluate(0).r        + " " + system.colorOverLifetime.color.Evaluate(0).g        + " " + system.colorOverLifetime.color.Evaluate(0).b        + " " + system.colorOverLifetime.color.Evaluate(0).a,
+                system.colorOverLifetime.color.Evaluate(0.125f).r   + " " + system.colorOverLifetime.color.Evaluate(0.125f).g   + " " + system.colorOverLifetime.color.Evaluate(0.125f).b   + " " + system.colorOverLifetime.color.Evaluate(0.125f).a,
+                system.colorOverLifetime.color.Evaluate(0.25f).r    + " " + system.colorOverLifetime.color.Evaluate(0.25f).g    + " " + system.colorOverLifetime.color.Evaluate(0.25f).b    + " " + system.colorOverLifetime.color.Evaluate(0.25f).a,
+                system.colorOverLifetime.color.Evaluate(0.375f).r   + " " + system.colorOverLifetime.color.Evaluate(0.375f).g   + " " + system.colorOverLifetime.color.Evaluate(0.375f).b   + " " + system.colorOverLifetime.color.Evaluate(0.375f).a,
+                system.colorOverLifetime.color.Evaluate(0.5f).r     + " " + system.colorOverLifetime.color.Evaluate(0.5f).g     + " " + system.colorOverLifetime.color.Evaluate(0.5f).b     + " " + system.colorOverLifetime.color.Evaluate(0.5f).a,
+                system.colorOverLifetime.color.Evaluate(0.625f).r   + " " + system.colorOverLifetime.color.Evaluate(0.625f).g   + " " + system.colorOverLifetime.color.Evaluate(0.625f).b   + " " + system.colorOverLifetime.color.Evaluate(0.625f).a,
+                system.colorOverLifetime.color.Evaluate(0.75f).r    + " " + system.colorOverLifetime.color.Evaluate(0.75f).g    + " " + system.colorOverLifetime.color.Evaluate(0.75f).b    + " " + system.colorOverLifetime.color.Evaluate(0.75f).a,
+                system.colorOverLifetime.color.Evaluate(0.875f).r   + " " + system.colorOverLifetime.color.Evaluate(0.875f).g   + " " + system.colorOverLifetime.color.Evaluate(0.875f).b   + " " + system.colorOverLifetime.color.Evaluate(0.875f).a,
+                system.colorOverLifetime.color.Evaluate(1).r        + " " + system.colorOverLifetime.color.Evaluate(1).g        + " " + system.colorOverLifetime.color.Evaluate(1).b        + " " + system.colorOverLifetime.color.Evaluate(1).a,
+                
+                }   
+            }: null//,
             //sizeOverLifetime = system.sizeOverLifetime.enabled ? new SizeOverLifetime {
 
             //}: null,
