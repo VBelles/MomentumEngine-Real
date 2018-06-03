@@ -43,7 +43,7 @@ void TCompLOD::load(const json& j, TEntityParseContext& ctx) {
     }
     // In case the children AABB are moving each frame
     children_dynamic = j.value("children_dynamic", false);
-    camera_name = j.value("camera", GAME_CAMERA);
+    camera_name = j.value("camera", PLAYER_CAMERA);
     lod_threshold = j.value("threshold", lod_threshold);
     h_camera = ctx.findEntityByName(camera_name);
 }
@@ -72,7 +72,6 @@ void TCompLOD::updateLevel() {
     TCompTransform* my_trans = get<TCompTransform>();
     assert(my_trans);
 
-    //Engine.getRender().getName.getCameras().setOutputCamera
     CEntity* e_camera = h_camera;
     if (!e_camera) return;
     TCompCamera* camera_render = e_camera->get<TCompCamera>();

@@ -41,7 +41,7 @@
   {
     "entity": {
       "name": "Piramid00",
-      "transform": { "pos": "-40 0 40" },
+      "transform": { "pos": "-27 0 -75" },
       "prefab" : "data/prefabs/piramid_with_lod.prefab"
     }
   }
