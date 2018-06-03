@@ -16,8 +16,6 @@ DECL_OBJ_MANAGER("lod", TCompLOD);
 // One option is to make the comp_group component forward the 
 // TMsgSetVisible msg to his children.
 
-// TODO camera name should be removed and not computed everytime
-
 void TCompLOD::debugInMenu() {
     ImGui::DragFloat("Threshold", &lod_threshold, 0.001f, 0.0f, 0.1f);
     ImGui::Text("Current: %f", lod_level);
@@ -99,8 +97,7 @@ void TCompLOD::update(float delta) {
     if (children_dynamic || aabb_update_required)
         updateAABBFromChildren();
 
-    // TODO remove this line, cache the camera_pos somewhere
-    h_camera = ::getEntityByName(camera_name);
+    h_camera = Engine.getCameras().getCurrentBlendedCamera();
 
     bool was_using_lod = using_lod;
     updateLevel();
