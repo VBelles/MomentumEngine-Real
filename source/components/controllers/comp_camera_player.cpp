@@ -62,7 +62,7 @@ void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	assert(transformHandle.isValid());
 
 	getTransform()->setYawPitchRoll(initialYaw, initialPitch);
-	sphereCastRadius = ((TCompCamera*)getComp<TCompCamera>())->getCamera()->getZNear() * 2;
+	sphereCastRadius = ((TCompCamera*)get<TCompCamera>())->getCamera()->getZNear() * 2;
 }
 
 void TCompCameraPlayer::update(float delta) {
