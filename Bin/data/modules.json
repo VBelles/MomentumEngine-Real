@@ -10,8 +10,9 @@
     "game",
     "cameras",
     "render",
-	  "gui",
-      "navmesh",
+	"gui",
+    "particles",
+    "navmesh",
     "scripting",
     "sound"
   ],
@@ -23,8 +24,9 @@
     "entities",
     "pause",
     "input",
-	  "gui",
-      "navmesh",
+    "gui",
+    "particles",
+    "navmesh",
     "scripting"
   ]
 }

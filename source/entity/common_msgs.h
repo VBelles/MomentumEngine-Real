@@ -7,6 +7,10 @@ struct TMsgEntityCreated {
 	DECL_MSG_ID();
 };
 
+struct TMsgEntityDestroyed {
+    DECL_MSG_ID();
+};
+
 // Sent to all entities from a parsed file once all the entities
 // in that file have been created. Used to link entities between them
 struct TEntityParseContext;

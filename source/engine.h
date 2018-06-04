@@ -3,16 +3,17 @@
 #include "modules/module_manager.h"
 #include "modules/system_modules/module_render.h"
 #include "modules/system_modules/module_entities.h"
-#include "modules/game_modules/physics/module_physics.h"
-#include "modules/system_modules/module_multithread.h"
 #include "modules/system_modules/module_input.h"
+#include "modules/game_modules/physics/module_physics.h"
 #include "modules/system_modules/module_cameras.h"
 #include "modules/system_modules/scripting/module_scripting.h"
 #include "modules/system_modules/module_gui.h"
 #include "modules/system_modules/module_navmesh.h"
-#include "modules/system_modules/module_uniques.h"
 #include "modules/system_modules/module_sound.h"
+#include "modules/system_modules/module_multithread.h"
+#include "modules/system_modules/module_uniques.h"
 #include "modules/system_modules/instancing/module_instancing.h"
+#include "modules/system_modules/module_particles.h"
 
 class CEngine {
 public:
@@ -37,6 +38,7 @@ public:
 	CModuleMultithread& getMultithread() { return _module_multithread; }
 	CModuleUniques& getUniques() { return _module_uniques; }
 	CModuleInstancing& getInstancing() { return _module_instancing; }
+    CModuleParticles& getParticles() { return _module_particles; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
@@ -45,8 +47,8 @@ private:
 	CModuleManager   _modules;
 	CModuleRender    _module_render;
 	CModuleEntities  _module_entities;
-	CModulePhysics   _module_physics;
 	CModuleInput     _module_input;
+	CModulePhysics   _module_physics;
 	CModuleCameras   _module_cameras;
 	CModuleScripting _module_scripting;
 	CModuleGUI       _module_gui;
@@ -55,6 +57,7 @@ private:
 	CModuleMultithread  _module_multithread;
 	CModuleUniques _module_uniques;
 	CModuleInstancing _module_instancing;
+    CModuleParticles  _module_particles;
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
@@ -62,12 +65,14 @@ private:
 
 #define Engine CEngine::get()
 #define EngineModules CEngine::get().getModules()
+#define EngineRender CEngine::get().getRender()
 #define EngineInput CEngine::get().getInput()
 #define EnginePhysics CEngine::get().getPhysics()
-#define EngineRender CEngine::get().getRender()
+#define EngineCameras CEngine::get().getCameras()
 #define EngineScripting CEngine::get().getScripting()
 #define EngineGUI CEngine::get().getGUI()
 #define EngineNavmesh CEngine::get().getNavmesh()
 #define EngineSound CEngine::get().getSound()
 #define EngineUniques CEngine::get().getUniques()
 #define EngineInstancing CEngine::get().getInstancing()
+#define EngineParticles CEngine::get().getParticles()

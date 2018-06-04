@@ -332,6 +332,17 @@
     "z": "test_but_no_write"
   },
 
+  "particles_albert" : { 
+    "vs_file": "data/shaders/particles_albert.fx", 
+    "vs_entry_point": "VS_Particles", 
+    "ps_entry_point": "PS_Particles", 
+    "vertex_type" : "PosClr", 
+    "category" : "particles", 
+    "z" : "test_but_no_write", 
+    "rs" : "cull_none", 
+    "blend" : "additive_by_src_alpha" 
+  },
+
   "grass": {
     "vs_file": "data/shaders/grass.fx",
     "vertex_type": "Pos_x_InstancedPos",
