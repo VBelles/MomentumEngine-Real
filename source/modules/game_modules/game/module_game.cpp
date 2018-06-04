@@ -78,9 +78,10 @@ bool CModuleGame::start() {
 
 	respawner = new Respawner();
 
-    EngineScripting.throwEvent(onGameStart,"");
-	EngineScripting.throwEvent(onLevelStart, "1"); 
+	EngineScripting.throwEvent(onGameStart, "");
+	EngineScripting.throwEvent(onLevelStart, "1");
 
+	EngineParticles.launchSystem("data/particles/wildfire.particles", getEntityByName(PLAYER_NAME), "Bip001 L Hand");
 
 	CApp::get().setResetMouse(true);
 	return true;
