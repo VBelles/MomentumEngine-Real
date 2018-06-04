@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class ParticleExporter : MonoBehaviour
 {
-    public ParticleSystem system;
+    //public ParticleSystem system;
+    private ParticleSystem[] systems;
 
-    // Use this for initialization
+    void Awake(){
+        systems = FindObjectsOfType<ParticleSystem>();
+    }
+
     void Start()
     {
-        Export(system);
-        //system.
+        foreach(ParticleSystem system in systems){
+            Export(system);
+        }
     }
 
     void Export(ParticleSystem system)
