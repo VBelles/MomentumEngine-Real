@@ -60,6 +60,26 @@ Particles::TParticleHandle CModuleParticles::launchSystem(
 }
 
 Particles::TParticleHandle CModuleParticles::launchSystem(
+	const Particles::TCoreSystem* cps, CHandle entity) {
+	assert(cps);
+	Particles::CSystem* ps = new Particles::CSystem(cps, entity);
+	ps->launch();
+	_activeSystems.push_back(ps);
+
+	return ps->getHandle();
+}
+
+Particles::TParticleHandle CModuleParticles::launchSystem(
+	const Particles::TCoreSystem* cps, CHandle entity, VEC3 offset) {
+	assert(cps);
+	Particles::CSystem* ps = new Particles::CSystem(cps, entity, "", offset);
+	ps->launch();
+	_activeSystems.push_back(ps);
+
+	return ps->getHandle();
+}
+
+Particles::TParticleHandle CModuleParticles::launchSystem(
 	const Particles::TCoreSystem* cps, CHandle entity, std::string bone, VEC3 offset) {
 	assert(cps);
 	Particles::CSystem* ps = new Particles::CSystem(cps, entity, bone, offset);

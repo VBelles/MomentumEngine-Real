@@ -28,7 +28,8 @@
 				"pos": "-25 2 -54"
 			},
 			"particles" : {
-				"core" : "data/particles/animated_fire.particles"
+				"core" : "data/particles/animated_fire.particles",
+				"offset": "0 5 0"
 			}
 		}
 	},
