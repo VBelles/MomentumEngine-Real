@@ -12,8 +12,7 @@
 #include "modules/system_modules/module_sound.h"
 #include "modules/system_modules/module_multithread.h"
 #include "modules/system_modules/module_uniques.h"
-#include "modules/system_modules/instancing/module_instancing.h"
-#include "modules/system_modules/module_particles.h"
+#include "modules/system_modules/particles/module_particles.h"
 
 class CEngine {
 public:
@@ -37,7 +36,6 @@ public:
 	CModuleSound& getSound() { return _module_sound; }
 	CModuleMultithread& getMultithread() { return _module_multithread; }
 	CModuleUniques& getUniques() { return _module_uniques; }
-	CModuleInstancing& getInstancing() { return _module_instancing; }
     CModuleParticles& getParticles() { return _module_particles; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
@@ -56,7 +54,6 @@ private:
 	CModuleSound     _module_sound;
 	CModuleMultithread  _module_multithread;
 	CModuleUniques _module_uniques;
-	CModuleInstancing _module_instancing;
     CModuleParticles  _module_particles;
 
 	float           current_unscaled_delta_time = 0.f;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "components/comp_base.h"
-#include "particles/particle_system.h"
+#include "modules/system_modules/particles/particle_system.h"
 
 struct TCompParticles : public TCompBase {
     const Particles::TCoreSystem* _core = nullptr;
@@ -15,5 +15,5 @@ struct TCompParticles : public TCompBase {
     void load(const json& j, TEntityParseContext& ctx);
     void onCreated(const TMsgEntityCreated&);
     void onDestroyed(const TMsgEntityDestroyed&);
-    void renderInMenu();
+    void debugInMenu();
 };

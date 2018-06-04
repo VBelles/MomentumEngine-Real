@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "particle_parser.h"
-#include "particles/particle_system.h"
+#include "modules/system_modules/particles/particle_system.h"
 
 namespace Particles {
     void CParser::parseFile(const std::string& filename) {

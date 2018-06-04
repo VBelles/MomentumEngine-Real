@@ -9,6 +9,11 @@ namespace Particles {
 }
 
 class CModuleParticles : public IModule {
+private:
+    std::vector<Particles::CSystem*> _activeSystems;
+    VEC3                             _windVelocity = VEC3::Zero;
+    Particles::TParticleHandle       _lastHandle;
+
 public:
     CModuleParticles(const std::string& name);
     bool start() override;
@@ -21,9 +26,4 @@ public:
     void kill(Particles::TParticleHandle ph, float fade_out = 0.f);
 
     const VEC3& getWindVelocity() const;
-
-private:
-    std::vector<Particles::CSystem*> _activeSystems;
-    VEC3                             _windVelocity = VEC3::Zero;
-    Particles::TParticleHandle       _lastHandle;
 };

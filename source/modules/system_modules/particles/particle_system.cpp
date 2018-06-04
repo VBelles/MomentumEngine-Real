@@ -109,7 +109,7 @@ namespace Particles {
     }
 
     void CSystem::render() {
-        const CRenderTechnique* technique = Resources.get("particles_albert.tech")->as<CRenderTechnique>();
+        const CRenderTechnique* technique = Resources.get("particles.tech")->as<CRenderTechnique>();
         const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
         CEntity* eCurrentCamera = EngineCameras.getCurrentBlendedCamera();
         assert(technique && quadMesh && eCurrentCamera);

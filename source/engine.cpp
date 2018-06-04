@@ -24,7 +24,6 @@ CEngine::CEngine()
 	, _module_navmesh("navmesh")
 	, _module_sound("sound")
 	, _module_uniques("uniques")
-    , _module_instancing("instancing")
     , _module_particles("particles") {
 }
 
@@ -45,7 +44,6 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_sound);
 	_modules.registerSystemModule(&_module_multithread);
 	_modules.registerSystemModule(&_module_uniques);
-	_modules.registerSystemModule(&_module_instancing);
     _modules.registerSystemModule(&_module_particles);
 
 	_modules.registerGameModule(&_module_physics);

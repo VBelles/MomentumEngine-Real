@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "module_particles.h"
-#include "particles/particle_system.h"
-#include "particles/particle_parser.h"
+#include "modules/system_modules/particles/particle_system.h"
+#include "modules/system_modules/particles/particle_parser.h"
 
 CModuleParticles::CModuleParticles(const std::string& name)
     : IModule(name)
@@ -11,13 +11,7 @@ CModuleParticles::CModuleParticles(const std::string& name)
 bool CModuleParticles::start() {
     Resources.registerResourceClass(getResourceClassOf<Particles::TCoreSystem>());
 
-    /*Particles::CParser parser;
-    parser.parseFile("data/particles.json");
-
-    const Particles::TCoreSystem* fire = Resources.get("data/particles/fire.particles")->as<Particles::TCoreSystem>();
-    launchSystem(fire);*/
-
-    _windVelocity = VEC3(1, 0, 0);
+    _windVelocity = VEC3(0, 0, 0);
 
     return true;
 }

@@ -21,7 +21,6 @@
 #include "gui/gui_parser.h"
 #include "gui/controllers/hud_controller.h"
 #include "modules/system_modules/scripting/scripting_player.h"
-#include "modules/system_modules/instancing/module_instancing.h"
 
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
@@ -72,17 +71,12 @@ bool CModuleGame::start() {
 		entity->sendMsg(msg);
 	}
 
-	TEntityParseContext ctx;
-	parseScene("data/instances/instances.json", ctx);
-
 	CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
 	Engine.getCameras().setDefaultCamera(h_playerCamera);
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
 	Engine.getCameras().setOutputCamera(h_camera);
 
 	respawner = new Respawner();
-
-	EngineInstancing.addInstance(Grass, VEC3(-5, 8.0, -49));
 
     EngineScripting.throwEvent(onGameStart,"");
 	EngineScripting.throwEvent(onLevelStart, "1"); 

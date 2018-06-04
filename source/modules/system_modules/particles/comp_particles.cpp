@@ -9,7 +9,7 @@ void TCompParticles::registerMsgs() {
     DECL_MSG(TCompParticles, TMsgEntityDestroyed, onDestroyed);
 }
 
-void TCompParticles::renderInMenu() {
+void TCompParticles::debugInMenu() {
     if (_core) {
         ImGui::Text("Core: %s", _core->getName().c_str());
     }
