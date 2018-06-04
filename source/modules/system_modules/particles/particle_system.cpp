@@ -43,6 +43,17 @@ namespace {
 namespace Particles {
 	TParticleHandle CSystem::_lastHandle = 0;
 
+	CSystem::CSystem(const TCoreSystem* core, VEC3 position)
+		: _core(core) {
+		assert(_core);
+		_handle = ++_lastHandle;
+		offset = VEC3(0, 0, 0);
+		_entity = CHandle();
+		boneName = "";
+		boneId = -1;
+		this->position = position;
+	}
+
 	CSystem::CSystem(const TCoreSystem* core, CHandle entity, std::string bone, VEC3 offset)
 		: _core(core)
 		, _entity(entity) {
@@ -171,6 +182,9 @@ namespace Particles {
 				world = e_transform->asMatrix();
 				rotation = e_transform->getRotation();
 			}
+		}
+		else {
+			world = MAT44::CreateTranslation(position);
 		}
 
 		for (int i = 0; i < _core->emission.count && _particles.size() < _core->life.maxParticles; ++i) {

@@ -82,6 +82,7 @@ bool CModuleGame::start() {
 	EngineScripting.throwEvent(onLevelStart, "1");
 
 	EngineParticles.launchSystem("data/particles/wildfire.particles", getEntityByName(PLAYER_NAME), "Bip001 L Hand");
+	EngineParticles.launchSystem("data/particles/wildfire.particles", VEC3(-5.0, 10.0, -49.0));
 
 	CApp::get().setResetMouse(true);
 	return true;

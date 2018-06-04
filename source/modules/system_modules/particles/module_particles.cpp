@@ -42,6 +42,12 @@ void CModuleParticles::render() {
 }
 
 Particles::TParticleHandle CModuleParticles::launchSystem(
+	const std::string& name, VEC3 position) {
+	const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
+	return launchSystem(cps, position);
+}
+
+Particles::TParticleHandle CModuleParticles::launchSystem(
 	const std::string& name, CHandle entity) {
 	const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
 	return launchSystem(cps, entity, "", VEC3(0, 0, 0));
@@ -57,6 +63,16 @@ Particles::TParticleHandle CModuleParticles::launchSystem(
 	const std::string& name, CHandle entity, std::string bone, VEC3 offset) {
 	const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
 	return launchSystem(cps, entity, bone, offset);
+}
+
+Particles::TParticleHandle CModuleParticles::launchSystem(
+	const Particles::TCoreSystem* cps, VEC3 position) {
+	assert(cps);
+	Particles::CSystem* ps = new Particles::CSystem(cps, position);
+	ps->launch();
+	_activeSystems.push_back(ps);
+
+	return ps->getHandle();
 }
 
 Particles::TParticleHandle CModuleParticles::launchSystem(

@@ -21,10 +21,12 @@ public:
 	void update(float delta) override;
 	void render() override;
 
+	Particles::TParticleHandle launchSystem(const std::string& name, VEC3 position);
 	Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity = CHandle());
 	Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity, VEC3 offset);
 	Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity, std::string bone, VEC3 offset = {0,0,0});
 
+	Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, VEC3 position);
 	Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle entity = CHandle());
 	Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle entity, VEC3 offset);
 	Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle entity, std::string bone, VEC3 offset = { 0,0,0 });

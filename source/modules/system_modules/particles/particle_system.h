@@ -64,6 +64,8 @@ namespace Particles {
 		VEC3 generatePosition() const;
 		VEC3 generateVelocity() const;
 
+		VEC3 position = { 0, 0, 0 };
+
 		VEC3 offset;
 		std::string boneName;
 		int boneId;
@@ -79,6 +81,7 @@ namespace Particles {
 		static TParticlesHandle _lastHandle;
 
 	public:
+		CSystem(const TCoreSystem* core, VEC3 position);
 		CSystem(const TCoreSystem* core, CHandle entity, std::string bone = "", VEC3 offset = { 0,0,0 });
 		bool update(float delta);
 		void render();
