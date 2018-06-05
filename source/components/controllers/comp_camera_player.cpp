@@ -63,6 +63,8 @@ void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 
 	getTransform()->setYawPitchRoll(initialYaw, initialPitch);
 	sphereCastRadius = ((TCompCamera*)get<TCompCamera>())->getCamera()->getZNear() * 2;
+
+	prevTargetPosition = getTransform()->getPosition() + VEC3::Up * offset;
 }
 
 void TCompCameraPlayer::update(float delta) {
@@ -71,13 +73,15 @@ void TCompCameraPlayer::update(float delta) {
 	transform->getYawPitchRoll(&y, &p, &r);
 	//transform->setYawPitchRoll(y, p - pitchOffset);
 	transform->setYawPitchRoll(y, p - deg2rad(pitchOffset));
-	updateTargetTransform();
+	updateTargetTransform(delta);
 	updateInput();
 	if (centeringCamera) {
 		updateCenteringCamera(delta);
 	}
 	else {
-		updateMovement(delta);
+		updateRotation(delta);
+		updatePosition(delta);
+
 	}
 
 	if (!isMovementLocked && (isCameraInsideGeometry() || sphereCast())) {
@@ -93,11 +97,19 @@ void TCompCameraPlayer::update(float delta) {
 	transform->setYawPitchRoll(y, p + deg2rad(pitchOffset));
 }
 
-void TCompCameraPlayer::updateTargetTransform() {
+void TCompCameraPlayer::updateTargetTransform(float delta) {
 	//Target transform is player transform + offset
 	TCompTransform* transform = getTarget()->get<TCompTransform>();
-	targetTransform.setPosition(transform->getPosition() + VEC3::Up * offset);
+
+	VEC3 desiredPosition = transform->getPosition() + VEC3::Up * offset;
+
+	const float f = 0.000001f;
+	desiredPosition = VEC3::Lerp(prevTargetPosition, desiredPosition, 1 - pow(f, delta));
+
+	targetTransform.setPosition(desiredPosition);
 	targetTransform.setRotation(transform->getRotation());
+
+	prevTargetPosition = targetTransform.getPosition();
 }
 
 void TCompCameraPlayer::updateInput() {
@@ -120,20 +132,48 @@ void TCompCameraPlayer::updateInput() {
 	}
 }
 
-void TCompCameraPlayer::updateMovement(float delta) {
+void TCompCameraPlayer::updateRotation(float delta) {
 	TCompTransform* transform = getTransform();
 
 	//Move the camera to the target position
 	transform->setPosition(targetTransform.getPosition());
 
 	//Rotate the camera
-	float y, p, r;
-	transform->getYawPitchRoll(&y, &p, &r);
-	y += input.x * delta;
-	p += input.y * delta;
-	p = clamp(p, minPitch, maxPitch);
-	transform->setYawPitchRoll(y, p, r);
-	moveCameraTowardsDefaultDistance(delta);
+	VEC2 yawPitch;
+	transform->getYawPitchRoll(&yawPitch.x, &yawPitch.y);
+
+	VEC2 desiredYawPitch = yawPitch + input * delta;
+	desiredYawPitch.y = clamp(desiredYawPitch.y, minPitch, maxPitch);
+
+	const float f = 0.75f;
+	desiredYawPitch = VEC2::Lerp(desiredYawPitch, yawPitch, 1 - pow(f, delta));
+
+	transform->setYawPitchRoll(desiredYawPitch.x, desiredYawPitch.y);
+}
+
+void TCompCameraPlayer::updatePosition(float delta) {
+	float distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
+	bool isCloserThanDefault = currentDistanceToTarget < distance ? true : false;
+	if (isCloserThanDefault) {
+		if (zoomOutSpeed * delta < abs(currentDistanceToTarget - distance)) {
+			currentDistanceToTarget = currentDistanceToTarget + zoomOutSpeed * delta;
+		}
+		else {
+			currentDistanceToTarget = distance;
+		}
+	}
+	else {
+		if (zoomInSpeed * delta < abs(currentDistanceToTarget - distance)) {
+			currentDistanceToTarget = currentDistanceToTarget - zoomInSpeed * delta;
+		}
+		else {
+			currentDistanceToTarget = distance;
+		}
+	}
+	TCompTransform* transform = getTransform();
+	VEC3 desiredPos = transform->getPosition() - transform->getFront() * currentDistanceToTarget;
+	VEC3 finalPos = desiredPos; //TODO lerepe
+	transform->setPosition(finalPos);
 }
 
 void TCompCameraPlayer::updateCenteringCamera(float delta) {
@@ -171,88 +211,15 @@ void TCompCameraPlayer::updateCenteringCamera(float delta) {
 
 	transform->setYawPitchRoll(yaw, pitch, r);
 
-	moveCameraTowardsDefaultDistance(delta);
+	updatePosition(delta);
 }
-void TCompCameraPlayer::sweepBack() {
-	TCompTransform* transform = getTransform();
-	VEC3 targetPosition = targetTransform.getPosition();
-	VEC3 position = transform->getPosition();
-	QUAT rotation = transform->getRotation();
-	VEC3 direction = position - targetPosition;
-	direction.Normalize();
-	PxSphereGeometry geometry(sphereCastRadius);
-	PxReal distance;
-	distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
-	PxSweepBuffer sweepBuffer;
-	PxQueryFilterData fd;
-	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
-	fd.flags |= PxQueryFlag::ePREFILTER;
-	PxHitFlags hitFlags = PxHitFlag::eDEFAULT;
 
-	bool status = EnginePhysics.getScene()->sweep(geometry, PxTransform(toPxVec3(targetPosition), toPxQuat(rotation)), toPxVec3(direction), distance, sweepBuffer,
-		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
-	//Si empiezas el sweep fuera de la cápsula del player la cámara hará el loco si allí hay un collider...
-	if (status) {
-		PxSweepHit& hit = sweepBuffer.block;
-		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);
-		transform->setPosition(toVec3(newPosition));
-		currentDistanceToTarget = VEC3::Distance(transform->getPosition(), targetTransform.getPosition());
-		//dbg("%f, %f, %f\n", newPosition.x, newPosition.y, newPosition.z);
-		//dbg("Distance: %f\n", currentDistanceToTarget);
-		
-	}
-	else {
-		currentDistanceToTarget = distance;
-	}
-	//dbg("Status: %d\n", status);
-}
 
 float TCompCameraPlayer::calculatePitchOffset(float pitch) {
 	if (pitch > pitchOffsetThreshold) return maxPitchOffset;
 	float ratio = abs(pitch - pitchOffsetThreshold) / abs(minPitch - pitchOffsetThreshold);
 	float res = lerp(maxPitchOffset, minPitchOffset, ratio);
 	return res;
-}
-
-
-bool TCompCameraPlayer::sphereCast() {
-	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
-	PxTransform pxTransform = toPxTransform(getTransform());
-	PxOverlapBuffer buf;
-	PxQueryFilterData fd;
-	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
-	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
-	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, buf, fd, EnginePhysics.getGameQueryFilterCallback());
-	return status;
-}
-
-bool TCompCameraPlayer::isCameraInsideGeometry() {
-	VEC3 cameraPosition = getTransform()->getPosition();
-	VEC3 targetPosition = targetTransform.getPosition();
-
-	const PxU32 bufferSize = 256;        // [in] size of 'hitBuffer'
-	PxRaycastHit hitBuffer[bufferSize];  // [out] User provided buffer for results
-	PxRaycastBuffer buf1(hitBuffer, bufferSize); // [out] Blocking and touching hits stored here
-	raycast(targetPosition, cameraPosition, buf1);
-	PxRaycastHit hitBuffer2[bufferSize];  // [out] User provided buffer for results
-	PxRaycastBuffer buf2(hitBuffer2, bufferSize); // [out] Blocking and touching hits stored here
-	raycast(cameraPosition, targetPosition, buf2);
-
-	//dbg("Buf1: %d\n", buf1.nbTouches);
-	//dbg("Buf2: %d\n", buf2.nbTouches);
-
-	return buf1.nbTouches != buf2.nbTouches;
-}
-
-bool TCompCameraPlayer::raycast(VEC3 origin, VEC3 destination, PxRaycastCallback& callback) {
-	VEC3 dir = destination - origin;
-	dir.Normalize();
-	float distance = VEC3::Distance(origin, destination);
-	PxHitFlags hitflags = PxHitFlags(PxHitFlag::eDEFAULT);
-	PxQueryFilterData filterData(PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0),
-		PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK);
-	bool status = EnginePhysics.getScene()->raycast(toPxVec3(origin), toPxVec3(dir), distance, callback, hitflags, filterData, EnginePhysics.getGameQueryFilterCallback());
-	return status;
 }
 
 
@@ -286,29 +253,7 @@ void TCompCameraPlayer::centerCamera() {
 	}
 }
 
-void TCompCameraPlayer::moveCameraTowardsDefaultDistance(float delta) {
-	float distance;
-	distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
-	bool isCloserThanDefault = currentDistanceToTarget < distance ? true : false;
-	if (isCloserThanDefault) {
-		if (zoomOutSpeed * delta < abs(currentDistanceToTarget - distance)) {
-			currentDistanceToTarget = currentDistanceToTarget + zoomOutSpeed * delta;
-		}
-		else {
-			currentDistanceToTarget = distance;
-		}
-	}
-	else {
-		if (zoomInSpeed * delta < abs(currentDistanceToTarget - distance)) {
-			currentDistanceToTarget = currentDistanceToTarget - zoomInSpeed * delta;
-		}
-		else {
-			currentDistanceToTarget = distance;
-		}
-	}
-	TCompTransform* transform = getTransform();
-	transform->setPosition(transform->getPosition() - transform->getFront() * currentDistanceToTarget);
-}
+
 
 void TCompCameraPlayer::suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool hasOppositeYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera) {
 	suggestedYaw = yaw;
@@ -367,4 +312,78 @@ void TCompCameraPlayer::moveCameraCloser(bool wantClose) {
 			defaultDistanceToTarget = runDistanceToTarget;
 		}
 	}
+}
+
+void TCompCameraPlayer::sweepBack() {
+	TCompTransform* transform = getTransform();
+	VEC3 targetPosition = targetTransform.getPosition();
+	VEC3 position = transform->getPosition();
+	QUAT rotation = transform->getRotation();
+	VEC3 direction = position - targetPosition;
+	direction.Normalize();
+	PxSphereGeometry geometry(sphereCastRadius);
+	PxReal distance;
+	distance = isDistanceForced ? forcedDistance : defaultDistanceToTarget;
+	PxSweepBuffer sweepBuffer;
+	PxQueryFilterData fd;
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
+	fd.flags |= PxQueryFlag::ePREFILTER;
+	PxHitFlags hitFlags = PxHitFlag::eDEFAULT;
+
+	bool status = EnginePhysics.getScene()->sweep(geometry, PxTransform(toPxVec3(targetPosition), toPxQuat(rotation)), toPxVec3(direction), distance, sweepBuffer,
+		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
+	//Si empiezas el sweep fuera de la cápsula del player la cámara hará el loco si allí hay un collider...
+	if (status) {
+		PxSweepHit& hit = sweepBuffer.block;
+		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);
+		transform->setPosition(toVec3(newPosition));
+		currentDistanceToTarget = VEC3::Distance(transform->getPosition(), targetTransform.getPosition());
+		//dbg("%f, %f, %f\n", newPosition.x, newPosition.y, newPosition.z);
+		//dbg("Distance: %f\n", currentDistanceToTarget);
+
+	}
+	else {
+		currentDistanceToTarget = distance;
+	}
+	//dbg("Status: %d\n", status);
+}
+
+bool TCompCameraPlayer::sphereCast() {
+	PxSphereGeometry sphereShape(sphereCastRadius); //shape to test for overlaps
+	PxTransform pxTransform = toPxTransform(getTransform());
+	PxOverlapBuffer buf;
+	PxQueryFilterData fd;
+	fd.data = PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0);
+	fd.flags |= PxQueryFlag::eANY_HIT | PxQueryFlag::ePREFILTER;
+	bool status = EnginePhysics.getScene()->overlap(sphereShape, pxTransform, buf, fd, EnginePhysics.getGameQueryFilterCallback());
+	return status;
+}
+
+bool TCompCameraPlayer::isCameraInsideGeometry() {
+	VEC3 cameraPosition = getTransform()->getPosition();
+	VEC3 targetPosition = targetTransform.getPosition();
+
+	const PxU32 bufferSize = 256;        // [in] size of 'hitBuffer'
+	PxRaycastHit hitBuffer[bufferSize];  // [out] User provided buffer for results
+	PxRaycastBuffer buf1(hitBuffer, bufferSize); // [out] Blocking and touching hits stored here
+	raycast(targetPosition, cameraPosition, buf1);
+	PxRaycastHit hitBuffer2[bufferSize];  // [out] User provided buffer for results
+	PxRaycastBuffer buf2(hitBuffer2, bufferSize); // [out] Blocking and touching hits stored here
+	raycast(cameraPosition, targetPosition, buf2);
+
+	//dbg("Buf1: %d\n", buf1.nbTouches);
+	//dbg("Buf2: %d\n", buf2.nbTouches);
+
+	return buf1.nbTouches != buf2.nbTouches;
+}
+
+bool TCompCameraPlayer::raycast(VEC3 origin, VEC3 destination, PxRaycastCallback& callback) {
+	VEC3 dir = destination - origin;
+	dir.Normalize();
+	float distance = VEC3::Distance(origin, destination);
+	PxHitFlags hitflags = PxHitFlags(PxHitFlag::eDEFAULT);
+	PxQueryFilterData filterData(PxFilterData(EnginePhysics.Player, EnginePhysics.Scenario, 0, 0),
+		PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK);
+	bool status = EnginePhysics.getScene()->raycast(toPxVec3(origin), toPxVec3(dir), distance, callback, hitflags, filterData, EnginePhysics.getGameQueryFilterCallback());
+	return status;
 }
