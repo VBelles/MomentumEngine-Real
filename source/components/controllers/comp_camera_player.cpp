@@ -15,6 +15,7 @@ void TCompCameraPlayer::debugInMenu() {
 	ImGui::DragFloat("Pitch offset", &pitchOffset, 0.1f, -360.f, 360.f);
 	ImGui::DragFloat("Zoom in speed", &zoomInSpeed, 0.1f, 0.1f, 20.f);
 	ImGui::DragFloat("Zoom out speed", &zoomOutSpeed, 0.1f, 0.1f, 20.f);
+	ImGui::DragFloat("Mouse Lerp", &mouseLerpCoef, 0.1f, 0.f, 100000.f);
 }
 
 // -------------------------------------------------
@@ -28,7 +29,7 @@ void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	currentDistanceToTarget = defaultDistanceToTarget;
 	runDistanceToTarget = defaultDistanceToTarget;
 	idleDistanceToTarget = j.value("idle_distance_to_target", 2.5f);
-	cameraSpeed = loadVEC2(j["camera_speed"]); 
+	cameraSpeed = loadVEC2(j["camera_speed"]);
 	zoomOutSpeed = (j.value("zoomOutSpeed", 20.f));
 	defaultZoomOutSpeed = zoomOutSpeed;
 	zoomInSpeed = (j.value("zoomInSpeed", 10.f));
@@ -105,7 +106,7 @@ void TCompCameraPlayer::updateTargetTransform(float delta) {
 	TCompTransform* transform = getTarget()->get<TCompTransform>();
 	VEC3 desiredPosition = transform->getPosition() + VEC3::Up * offset;
 	float speed = playerVelocityVector->Length();
-	float f = lerp(0.000001f, 0.00000001f, clamp(speed, 0.f, 20.f)/20.f);
+	float f = lerp(0.000001f, 0.00000001f, clamp(speed, 0.f, 20.f) / 20.f);
 	//const float f = 0.0000001f;
 	desiredPosition = VEC3::Lerp(prevTargetPosition, desiredPosition, 1 - pow(f, delta));
 
@@ -147,11 +148,11 @@ void TCompCameraPlayer::updateRotation(float delta) {
 
 	VEC2 desiredYawPitch = yawPitch + input * delta;
 	desiredYawPitch.y = clamp(desiredYawPitch.y, minPitch, maxPitch);
-
-	//const float f = 0.000000001f;
-	//desiredYawPitch = VEC2::Lerp(yawPitch, desiredYawPitch, 1 - pow(f, delta));
-
-	transform->setYawPitchRoll(desiredYawPitch.x, desiredYawPitch.y);
+	
+	yawPitch = VEC2::Lerp(yawPitch, desiredYawPitch, 1 - exp(-mouseLerpCoef * delta));
+	//yawPitch = desiredYawPitch;
+	
+	transform->setYawPitchRoll(yawPitch.x, yawPitch.y);
 }
 
 void TCompCameraPlayer::updatePosition(float delta) {
@@ -300,8 +301,8 @@ void TCompCameraPlayer::resetSuggested() {
 }
 
 void TCompCameraPlayer::lockCameraInput(bool isLocked) {
-    isMovementLocked = isLocked;
-    centeringCamera = false; //Avoid bugs
+	isMovementLocked = isLocked;
+	centeringCamera = false; //Avoid bugs
 }
 
 void TCompCameraPlayer::moveCameraCloser(bool wantClose) {
