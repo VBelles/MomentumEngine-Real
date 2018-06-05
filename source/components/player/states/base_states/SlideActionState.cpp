@@ -50,6 +50,7 @@ void SlideActionState::onStateEnter(IActionState* lastState) {
 	transform->getYawPitchRoll(&yaw, &pitch);
 
 	getPlayerModel()->maxVerticalSpeed = maxVerticalSlidingVelocity;
+	velocityVector->y = clamp(velocityVector->y, -maxVerticalSlidingVelocity, maxVerticalSlidingVelocity);
 
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 

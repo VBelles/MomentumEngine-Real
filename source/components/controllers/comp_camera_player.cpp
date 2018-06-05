@@ -105,7 +105,7 @@ void TCompCameraPlayer::updateTargetTransform(float delta) {
 	TCompTransform* transform = getTarget()->get<TCompTransform>();
 	VEC3 desiredPosition = transform->getPosition() + VEC3::Up * offset;
 	float speed = playerVelocityVector->Length();
-	float f = lerp(0.000001f, 0.00000001f, clamp(speed, 0.f, 20.f)/20.f);
+	float f = lerp(0.00000005f, 0.0000000001f, clamp(speed, 0.f, 20.f)/20.f);
 	//const float f = 0.0000001f;
 	desiredPosition = VEC3::Lerp(prevTargetPosition, desiredPosition, 1 - pow(f, delta));
 
