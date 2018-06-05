@@ -168,20 +168,26 @@ namespace Particles {
 		if (_entity.isValid()) {
 			CEntity* e = _entity;
 
-			if (boneName != "") {
+			if (boneName != "" && boneId == -1) {
 				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);
 			}
 
+			MAT44 transform;
+			VEC3 translation;
 			if (boneId != -1) {
 				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getSkeleton()->getBone(boneId);
 				rotation = Cal2DX(bone->getRotationAbsolute());
-				world = MAT44::CreateFromQuaternion(rotation) * MAT44::CreateTranslation(Cal2DX(bone->getTranslationAbsolute()));
+				transform = MAT44::CreateFromQuaternion(rotation);
+				translation = Cal2DX(bone->getTranslationAbsolute());
 			}
 			else {
 				TCompTransform* e_transform = e->get<TCompTransform>();
-				world = e_transform->asMatrix();
-				rotation = e_transform->getRotation();
+				transform = e_transform->asMatrix();
+				translation = e_transform->getPosition();
 			}
+			VEC3 desiredDirection = transform.Backward() * offset.z + transform.Right() * offset.x;
+			desiredDirection.y = offset.y;
+			world = MAT44::CreateFromQuaternion(rotation) * MAT44::CreateTranslation(translation + desiredDirection);
 		}
 		else {
 			world = MAT44::CreateTranslation(position);
@@ -189,7 +195,7 @@ namespace Particles {
 
 		for (int i = 0; i < _core->emission.count && _particles.size() < _core->life.maxParticles; ++i) {
 			TParticle particle;
-			particle.position = VEC3::Transform(generatePosition(), world) + offset;
+			particle.position = VEC3::Transform(generatePosition(), world);
 			particle.velocity = generateVelocity();
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
