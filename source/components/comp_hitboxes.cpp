@@ -145,7 +145,7 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 	}
 	else{
 		PxExtendedVec3 extendedPos = getController()->getPosition();
-		VEC3 pos = VEC3(extendedPos.x, extendedPos.y, extendedPos.z) + hitbox->offset;
+		VEC3 pos = PhysxUtils::toVec3(extendedPos) + hitbox->offset;
 		hitbox->transform->setPosition(pos);
 	}
 
@@ -163,7 +163,7 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 		//dbg("%s - Hits: %d\n", hitbox->name.c_str(), overlapCallback.getNbAnyHits());
 		CEntity* owner = CHandle(this).getOwner();
 		
-		for (int i = 0; i < overlapCallback.getNbTouches(); i++) {
+		for (PxU32 i = 0; i < overlapCallback.getNbTouches(); i++) {
 			auto hit = overlapCallback.getTouch(i);
 			CHandle hitEntity = getEntity(hit.actor);
 			if (hitbox->hits.insert(hitEntity).second) { //Inserted

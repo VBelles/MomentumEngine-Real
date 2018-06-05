@@ -11,7 +11,7 @@
 
 HuggingWallActionState::HuggingWallActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, HuggingWall),
-	huggingWallMinPitch(cosf(getPlayerModel()->huggingWallMinPitch + M_PI_2)) {
+	huggingWallMinPitch(cosf(static_cast<float>(getPlayerModel()->huggingWallMinPitch + M_PI_2))) {
 }
 
 void HuggingWallActionState::update(float delta) {
@@ -40,7 +40,7 @@ void HuggingWallActionState::update(float delta) {
 			}
 		}
 		else if (isClimbing) {
-			tangentVector = getVectorFromYawPitch(yaw, pitch + M_PI_2);
+			tangentVector = getVectorFromYawPitch(yaw, static_cast<float>(pitch + M_PI_2));
 			float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
 			deltaMovement = tangentVector * module;
 			if (climbTimer.elapsed() >= climbTime) {
@@ -52,7 +52,7 @@ void HuggingWallActionState::update(float delta) {
 			}
 		}
 		else {
-			tangentVector = getVectorFromYawPitch(yaw, pitch - M_PI_2);
+			tangentVector = getVectorFromYawPitch(yaw, static_cast<float>(pitch - M_PI_2));
 			float module = (abs(deltaMovement.y) / abs(tangentVector.y)) * tangentVector.Length();
 			deltaMovement = tangentVector * module;
 		}

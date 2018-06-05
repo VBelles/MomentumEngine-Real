@@ -494,7 +494,7 @@ void CModulePhysics::createRagdollJoints(TCompRagdoll& comp_ragdoll, int bone_id
         if (joint) {
             auto* spherical = static_cast<PxSphericalJoint*>(joint);
             spherical->setProjectionLinearTolerance(0.1f);
-            spherical->setLimitCone(physx::PxJointLimitCone(0.01, 0.f, 0.01f));
+            spherical->setLimitCone(physx::PxJointLimitCone(0.01f, 0.f, 0.01f));
             spherical->setSphericalJointFlag(physx::PxSphericalJointFlag::eLIMIT_ENABLED, true);
         }
         /*
