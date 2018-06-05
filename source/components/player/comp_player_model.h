@@ -15,8 +15,12 @@ struct TMsgRespawnChanged;
 
 struct HitState {
 	CHandle entity;
-	PxControllerShapeHit hit;
+	const PxControllerShapeHit& hit;
 	float dotUp = 0.f;
+
+	HitState(CHandle entity, const PxControllerShapeHit& hit) :
+		entity(entity), hit(hit), dotUp(hit.worldNormal.dot(PxVec3(0, 1, 0))) {
+	}
 };
 
 struct MoveState {

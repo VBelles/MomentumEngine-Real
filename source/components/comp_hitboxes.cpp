@@ -165,13 +165,10 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 		
 		for (int i = 0; i < overlapCallback.getNbTouches(); i++) {
 			auto hit = overlapCallback.getTouch(i);
-			CHandle colliderHandle;
-			colliderHandle.fromVoidPtr(hit.actor->userData);
-			CHandle hitHandle = colliderHandle.getOwner();
-			if (hitbox->hits.insert(hitHandle).second) { //Inserted
-				owner->sendMsg(TMsgHitboxEnter{hitbox->name, hitHandle });
-				//CEntity* entity = hitHandle;
-				//dbg("Name: %s\n", entity->getName());
+			CHandle hitEntity = getEntity(hit.actor);
+			if (hitbox->hits.insert(hitEntity).second) { //Inserted
+				owner->sendMsg(TMsgHitboxEnter{hitbox->name, hitEntity });
+				dbg("Name: %s\n", static_cast<CEntity*>(hitEntity)->getName());
 			}
 		}
 	
