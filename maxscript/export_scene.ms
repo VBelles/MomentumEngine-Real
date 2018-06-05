@@ -237,6 +237,7 @@ struct TMaterialExporter (
 		--format "material class: %\n" matClass as string --DEBUG
 		
 		if mat == undefined then (
+			setMaterialIDs obj --set Material IDs to 1.
 			--throw ("Obj " + obj.name + " does NOT have a material")
 			local mat_name = mat_path + "empty.material"
 			append exported_materials mat_name
