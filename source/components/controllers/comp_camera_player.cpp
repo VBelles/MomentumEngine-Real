@@ -15,6 +15,7 @@ void TCompCameraPlayer::debugInMenu() {
 	ImGui::DragFloat("Pitch offset", &pitchOffset, 0.1f, -360.f, 360.f);
 	ImGui::DragFloat("Zoom in speed", &zoomInSpeed, 0.1f, 0.1f, 20.f);
 	ImGui::DragFloat("Zoom out speed", &zoomOutSpeed, 0.1f, 0.1f, 20.f);
+	ImGui::DragFloat("Mouse Lerp", &mouseLerpCoef, 0.1f, 0.f, 100000.f);
 }
 
 // -------------------------------------------------
@@ -28,7 +29,7 @@ void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	currentDistanceToTarget = defaultDistanceToTarget;
 	runDistanceToTarget = defaultDistanceToTarget;
 	idleDistanceToTarget = j.value("idle_distance_to_target", 2.5f);
-	cameraSpeed = loadVEC2(j["camera_speed"]); 
+	cameraSpeed = loadVEC2(j["camera_speed"]);
 	zoomOutSpeed = (j.value("zoomOutSpeed", 20.f));
 	defaultZoomOutSpeed = zoomOutSpeed;
 	zoomInSpeed = (j.value("zoomInSpeed", 10.f));
@@ -94,7 +95,7 @@ void TCompCameraPlayer::update(float delta) {
 	}
 
 	transform->getYawPitchRoll(&y, &p, &r);
-	//calcular pitchOffset según pitch
+	//calcular pitchOffset segï¿½n pitch
 	pitchOffset = calculatePitchOffset(p);
 	//transform->setYawPitchRoll(y, p + pitchOffset);
 	transform->setYawPitchRoll(y, p + deg2rad(pitchOffset));
@@ -105,6 +106,7 @@ void TCompCameraPlayer::updateTargetTransform(float delta) {
 	TCompTransform* transform = getTarget()->get<TCompTransform>();
 	VEC3 desiredPosition = transform->getPosition() + VEC3::Up * offset;
 	float speed = playerVelocityVector->Length();
+
 	float f = lerp(0.00000005f, 0.0000000001f, clamp(speed, 0.f, 20.f)/20.f);
 	//const float f = 0.0000001f;
 	desiredPosition = VEC3::Lerp(prevTargetPosition, desiredPosition, 1 - pow(f, delta));
@@ -117,7 +119,7 @@ void TCompCameraPlayer::updateTargetTransform(float delta) {
 
 void TCompCameraPlayer::updateInput() {
 	input = VEC2::Zero;
-	//Hacer sólo si la cámara está mixeada
+	//Hacer sï¿½lo si la cï¿½mara estï¿½ mixeada
 	if (!isMovementLocked) {
 		VEC2 padInput = VEC2(
 			EngineInput[Input::EPadButton::PAD_RANALOG_X].value,
@@ -147,11 +149,11 @@ void TCompCameraPlayer::updateRotation(float delta) {
 
 	VEC2 desiredYawPitch = yawPitch + input * delta;
 	desiredYawPitch.y = clamp(desiredYawPitch.y, minPitch, maxPitch);
-
-	//const float f = 0.000000001f;
-	//desiredYawPitch = VEC2::Lerp(yawPitch, desiredYawPitch, 1 - pow(f, delta));
-
-	transform->setYawPitchRoll(desiredYawPitch.x, desiredYawPitch.y);
+	
+	yawPitch = VEC2::Lerp(yawPitch, desiredYawPitch, 1 - exp(-mouseLerpCoef * delta));
+	//yawPitch = desiredYawPitch;
+	
+	transform->setYawPitchRoll(yawPitch.x, yawPitch.y);
 }
 
 void TCompCameraPlayer::updatePosition(float delta) {
@@ -300,8 +302,8 @@ void TCompCameraPlayer::resetSuggested() {
 }
 
 void TCompCameraPlayer::lockCameraInput(bool isLocked) {
-    isMovementLocked = isLocked;
-    centeringCamera = false; //Avoid bugs
+	isMovementLocked = isLocked;
+	centeringCamera = false; //Avoid bugs
 }
 
 void TCompCameraPlayer::moveCameraCloser(bool wantClose) {
@@ -335,7 +337,7 @@ void TCompCameraPlayer::sweepBack() {
 
 	bool status = EnginePhysics.getScene()->sweep(geometry, PxTransform(toPxVec3(targetPosition), toPxQuat(rotation)), toPxVec3(direction), distance, sweepBuffer,
 		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
-	//Si empiezas el sweep fuera de la cápsula del player la cámara hará el loco si allí hay un collider...
+	//Si empiezas el sweep fuera de la cï¿½psula del player la cï¿½mara harï¿½ el loco si allï¿½ hay un collider...
 	if (status) {
 		PxSweepHit& hit = sweepBuffer.block;
 		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);
