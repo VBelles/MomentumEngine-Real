@@ -13,9 +13,9 @@ typedef int (IBehaviorTree::*BehaviorTreeAction)(float delta);
 
 class IBehaviorTree {
 protected:
-	std::map<std::string, IBehaviorTreeNode *>tree;
-	std::map<std::string, BehaviorTreeCondition> conditions;
-	std::map<std::string, BehaviorTreeAction> actions;
+	std::unordered_map<std::string, IBehaviorTreeNode *>tree;
+	std::unordered_map<std::string, BehaviorTreeCondition> conditions;
+	std::unordered_map<std::string, BehaviorTreeAction> actions;
 
 	IBehaviorTreeNode *root;
 	IBehaviorTreeNode *current;

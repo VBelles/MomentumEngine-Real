@@ -1,0 +1,25 @@
+{
+    "main": {
+        "duration": 0.5,
+        "loop": true,
+        "prewarm": false,
+        "startDelay": 0.0,
+        "startLifetime": 1.0,
+        "startSpeed": 0.0,
+        "startSize3D": false,
+        "startSize": 500.0,
+        "startRotation3D": false,
+        "startRotation": 0.0,
+        "randomizeRotationDirection": 0.0,
+        "startColor": "1 1 1 1",
+        "gravityModifier": 0.0,
+        "simulationSpeed": 1.0,
+        "playOnAwake": true,
+        "maxParticles": 1
+    },
+    "emission": {},
+    "shape": {},
+    "colorOverLifetime": {},
+    "sizeOverLifetime": {},
+    "renderer": {}
+}

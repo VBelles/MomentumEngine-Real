@@ -91,10 +91,7 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	enterFront = getPlayerTransform()->getFront();
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
-
-	CEntity* cameraEntity = getEntityByName(PLAYER_CAMERA);
-	TCompCameraPlayer* camera = cameraEntity->get<TCompCameraPlayer>();
-	camera->moveCameraCloser(false);
+	getCameraPlayer()->moveCameraCloser(false);
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {

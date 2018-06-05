@@ -114,12 +114,14 @@ void CBehaviorTreeMeleeEnemy::update(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::damageCalc(float delta) {
+	PROFILE_FUNCTION("damageCalc");
 	health -= receivedAttack.damage;
 	getRender()->TurnRed(0.5f);
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
+	PROFILE_FUNCTION("onDeath");
 	health = 0.f;
 	isDead = true;
 
@@ -136,10 +138,12 @@ int CBehaviorTreeMeleeEnemy::onDeath(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::dead(float delta) {
+	PROFILE_FUNCTION("dead");
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
+	PROFILE_FUNCTION("onGrab");
 	dbg("grabbed\n");
 	getSkeleton()->setTimeFactor(0);
 	getCollider()->destroy();
@@ -149,6 +153,7 @@ int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
+	PROFILE_FUNCTION("grabbed");
 	if (timer.elapsed() >= grabbedDuration) {
 		getCollider()->create();
 		getSkeleton()->setTimeFactor(1);
@@ -160,6 +165,7 @@ int CBehaviorTreeMeleeEnemy::grabbed(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
+	PROFILE_FUNCTION("onPropel");
 	getCollider()->create();
 	velocityVector = receivedAttack.propel->velocity;
 	if (receivedAttack.propel->duration > 0.f) {
@@ -177,6 +183,7 @@ int CBehaviorTreeMeleeEnemy::onPropel(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::propelled(float delta) {
+	PROFILE_FUNCTION("propelled");
 	if (timer.elapsed() < propelDuration) {
 		VEC3 deltaMovement = velocityVector * delta;
 		updateGravity(delta);
@@ -190,6 +197,7 @@ int CBehaviorTreeMeleeEnemy::propelled(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onHorizontalLaunch(float delta) {
+	PROFILE_FUNCTION("onHorizontalLaunch");
 	getSkeleton()->setTimeFactor(0);
 	floatingDuration = receivedAttack.horizontalLauncher->suspensionDuration;
 	initialLaunchPos = getTransform()->getPosition();
@@ -198,6 +206,7 @@ int CBehaviorTreeMeleeEnemy::onHorizontalLaunch(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::horizontalLaunched(float delta) {
+	PROFILE_FUNCTION("horizontalLaunched");
 	updateGravity(delta);
 	VEC3 deltaMovement = velocityVector * delta;
 	EnginePhysics.move(getCollider()->controller, PxVec3(deltaMovement.x, 0, deltaMovement.z), delta);
@@ -214,6 +223,7 @@ int CBehaviorTreeMeleeEnemy::horizontalLaunched(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onVerticalLaunch(float delta) {
+	PROFILE_FUNCTION("onVerticalLaunch");
 	getSkeleton()->setTimeFactor(0);
 	floatingDuration = receivedAttack.verticalLauncher->suspensionDuration;
 	velocityVector = receivedAttack.verticalLauncher->velocity;
@@ -221,6 +231,7 @@ int CBehaviorTreeMeleeEnemy::onVerticalLaunch(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::verticalLaunched(float delta) {
+	PROFILE_FUNCTION("verticalLaunched");
 	updateGravity(delta);
 	if (velocityVector.y <= 0) {
 		timer.reset();
@@ -233,6 +244,7 @@ int CBehaviorTreeMeleeEnemy::verticalLaunched(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::floating(float delta) {
+	PROFILE_FUNCTION("floating");
 	getSkeleton()->setTimeFactor(0);
 	if (timer.elapsed() > floatingDuration) {
 		getSkeleton()->setTimeFactor(1);
@@ -244,6 +256,7 @@ int CBehaviorTreeMeleeEnemy::floating(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onStun(float delta) {
+	PROFILE_FUNCTION("onStun");
 	getSkeleton()->setTimeFactor(0);
 	stunDuration = receivedAttack.stun->duration;
 	stunTimer.reset();
@@ -252,6 +265,7 @@ int CBehaviorTreeMeleeEnemy::onStun(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::stunned(float delta) {
+	PROFILE_FUNCTION("stunned");
 	updateGravity(delta);
 	if (stunTimer.elapsed() > stunDuration) {
 		isStunned = false;
@@ -264,12 +278,14 @@ int CBehaviorTreeMeleeEnemy::stunned(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::airborne(float delta) {
+	PROFILE_FUNCTION("airborne");
 	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 	return Leave;
 }
 
 int CBehaviorTreeMeleeEnemy::respawn(float delta) {
+	PROFILE_FUNCTION("respawn");
 	health = maxHealth;
 	isDead = false;
 
@@ -289,6 +305,7 @@ int CBehaviorTreeMeleeEnemy::respawn(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
+	PROFILE_FUNCTION("returnToSpawn");
 	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
@@ -315,6 +332,7 @@ int CBehaviorTreeMeleeEnemy::returnToSpawn(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::chase(float delta) {
+	PROFILE_FUNCTION("chase");
 	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
@@ -330,6 +348,7 @@ int CBehaviorTreeMeleeEnemy::chase(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::stepBack(float delta) {
+	PROFILE_FUNCTION("stepBack");
 	getSkeleton()->blendCycle(1, 0.2f, 0.2f);
 	updateGravity(delta);
 
@@ -344,6 +363,7 @@ int CBehaviorTreeMeleeEnemy::stepBack(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onIdleWar(float delta) {
+	PROFILE_FUNCTION("onIdleWar");
 	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
@@ -352,6 +372,7 @@ int CBehaviorTreeMeleeEnemy::onIdleWar(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
+	PROFILE_FUNCTION("idleWar");
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (idleWarTimer.elapsed() > getSkeleton()->getAnimationDuration(0)) {
@@ -363,6 +384,7 @@ int CBehaviorTreeMeleeEnemy::idleWar(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::onAttack(float delta) {
+	PROFILE_FUNCTION("onAttack");
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < attackCooldown) {
@@ -377,6 +399,7 @@ int CBehaviorTreeMeleeEnemy::onAttack(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::attack(float delta) {
+	PROFILE_FUNCTION("attack");
 	updateGravity(delta);
 	rotateTowards(delta, getPlayerTransform()->getPosition(), rotationSpeed);
 	if (attackTimer.elapsed() < (getSkeleton()->getAnimationDuration(2))) {
@@ -396,63 +419,77 @@ int CBehaviorTreeMeleeEnemy::attack(float delta) {
 }
 
 int CBehaviorTreeMeleeEnemy::idle(float delta) {
+	PROFILE_FUNCTION("idle");
 	getSkeleton()->blendCycle(0, 0.2f, 0.2f);
 	updateGravity(delta);
 	return Leave;
 }
 
 bool CBehaviorTreeMeleeEnemy::deathCondition(float delta) {
+	PROFILE_FUNCTION("deathCondition");
 	return health <= 0;
 }
 
 bool CBehaviorTreeMeleeEnemy::deadCondition(float delta) {
+	PROFILE_FUNCTION("deadCondition");
 	return isDead;
 }
 
 bool CBehaviorTreeMeleeEnemy::grabCondition(float delta) {
+	PROFILE_FUNCTION("grabCondition");
 	return receivedAttack.grab;
 }
 
 bool CBehaviorTreeMeleeEnemy::propelCondition(float delta) {
+	PROFILE_FUNCTION("propelCondition");
 	return receivedAttack.propel;
 }
 
 bool CBehaviorTreeMeleeEnemy::horizontalLaunchCondition(float delta) {
+	PROFILE_FUNCTION("horizontalLaunchCondition");
 	return receivedAttack.horizontalLauncher;
 }
 
 bool CBehaviorTreeMeleeEnemy::verticalLaunchCondition(float delta) {
+	PROFILE_FUNCTION("verticalLaunchCondition");
 	return receivedAttack.verticalLauncher;
 }
 
 bool CBehaviorTreeMeleeEnemy::onStunCondition(float delta) {
+	PROFILE_FUNCTION("onStunCondition");
 	return receivedAttack.stun;
 }
 
 bool CBehaviorTreeMeleeEnemy::stunCondition(float delta) {
+	PROFILE_FUNCTION("stunCondition");
 	return isStunned;
 }
 
 bool CBehaviorTreeMeleeEnemy::airborneCondition(float delta) {
+	PROFILE_FUNCTION("airborneCondition");
 	return !grounded;
 }
 
 bool CBehaviorTreeMeleeEnemy::returnToSpawnCondition(float delta) {
+	PROFILE_FUNCTION("returnToSpawnCondition");
 	return VEC3::DistanceSquared(getTransform()->getPosition(), spawnPosition) > recallDistanceSqrd;
 }
 
 bool CBehaviorTreeMeleeEnemy::chaseCondition(float delta) {
+	PROFILE_FUNCTION("chaseCondition");
 	float distanceSqrd = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
 	bool isPlayerInFov = getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
 	return distanceSqrd > minCombatDistanceSqrd && (distanceSqrd < smallChaseRadiusSqrd || (distanceSqrd < fovChaseDistanceSqrd && isPlayerInFov));
 }
 
 bool CBehaviorTreeMeleeEnemy::combatCondition(float delta) {
+	PROFILE_FUNCTION("combatCondition");
 	float distanceSqrd = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
 	return distanceSqrd < maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
 }
 
 bool CBehaviorTreeMeleeEnemy::stepBackCondition(float delta) {
+	PROFILE_FUNCTION("stepBackCondition");
 	VEC3 myPos = getTransform()->getPosition();
 	VEC3 playerPos = getPlayerTransform()->getPosition();
 	myPos.y = 0;
@@ -473,6 +510,7 @@ void CBehaviorTreeMeleeEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg
 }
 
 void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
+	PROFILE_FUNCTION("onAttackHit");
 	getSkeleton()->blendCycle(0);
 	getSkeleton()->setTimeFactor(1);
 	isStunned = false;
@@ -482,20 +520,24 @@ void CBehaviorTreeMeleeEnemy::onAttackHit(const TMsgAttackHit& msg) {
 }
 
 void CBehaviorTreeMeleeEnemy::onRespawn(const TMsgRespawn& msg) {
+	PROFILE_FUNCTION("onRespawn");
 	current = tree["onRespawn"];
 }
 
 void CBehaviorTreeMeleeEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
+	PROFILE_FUNCTION("onOutOfBounds");
 	current = tree["onDeath"];
 }
 
 void CBehaviorTreeMeleeEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
+	PROFILE_FUNCTION("onPerfectDodged");
 	dbg("Damn! I've been dodged.\n");
 	//algo así podría estar guay
 	//getSkeleton()->setTimeFactor(0.25f);
 }
 
 void CBehaviorTreeMeleeEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
+	PROFILE_FUNCTION("onHitboxEnter");
 	if (attackInfos.find(msg.hitbox) != attackInfos.end()) {
 		TMsgAttackHit attackHit = {};
 		attackHit.attacker = CHandle(this).getOwner();
@@ -505,6 +547,7 @@ void CBehaviorTreeMeleeEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
 }
 
 void CBehaviorTreeMeleeEnemy::updateGravity(float delta) {
+	PROFILE_FUNCTION("updateGravity");
 	float deltaY = calculateVerticalDeltaMovement(delta, gravity, maxVelocity.y);
 	physx::PxControllerCollisionFlags myFlags = EnginePhysics.move(getCollider()->controller, PxVec3(0, deltaY, 0), delta);
 	grounded = myFlags.isSet(physx::PxControllerCollisionFlag::Enum::eCOLLISION_DOWN);
@@ -517,6 +560,7 @@ void CBehaviorTreeMeleeEnemy::updateGravity(float delta) {
 }
 
 float CBehaviorTreeMeleeEnemy::calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical) {
+	PROFILE_FUNCTION("calculateVerticalDeltaMovement");
 	float resultingDeltaMovement;
 	resultingDeltaMovement = velocityVector.y * delta + 0.5f * acceleration * delta * delta;
 	//clampear distancia vertical
@@ -525,6 +569,7 @@ float CBehaviorTreeMeleeEnemy::calculateVerticalDeltaMovement(float delta, float
 }
 
 void CBehaviorTreeMeleeEnemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
+	PROFILE_FUNCTION("rotateTowards");
 	float deltaYaw = getTransform()->getDeltaYawToAimTo(targetPos);
 	float y, p, r;
 	getTransform()->getYawPitchRoll(&y, &p, &r);

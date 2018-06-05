@@ -77,9 +77,7 @@ void DodgeActionState::onStateEnter(IActionState * lastState) {
 	staleTimers[staleTimerIndex].reset();
 	staleTimerIndex = (staleTimerIndex + 1) % (numberOfDodgesToStale - 1);
 
-	CEntity* cameraEntity = getEntityByName(PLAYER_CAMERA);
-	TCompCameraPlayer* camera = cameraEntity->get<TCompCameraPlayer>();
-	camera->moveCameraCloser(false);
+	getCameraPlayer()->moveCameraCloser(false);
 }
 
 void DodgeActionState::onStateExit(IActionState * nextState) {
