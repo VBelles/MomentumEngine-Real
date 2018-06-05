@@ -14,6 +14,7 @@
 #define CB_FOCUS        8
 #define CB_GUI          9
 #define CB_FOG          10
+#define CB_PARTICLE     11
 
 // -------------------------------------------------
 // Texture Slots
@@ -203,6 +204,12 @@ CB_DEF(CCteFog, CB_FOG) {
 	float fogMaxRatio;
 	float fog_pad1;
 	float fog_pad2;
+};
+
+CB_DEF(CCteParticle, CB_PARTICLE) {
+    VEC2 particle_minUV;
+    VEC2 particle_maxUV;
+    VEC4 particle_color;
 };
 
 #endif

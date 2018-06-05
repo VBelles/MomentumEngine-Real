@@ -78,9 +78,12 @@ bool CModuleGame::start() {
 
 	respawner = new Respawner();
 
-    EngineScripting.throwEvent(onGameStart,"");
-	EngineScripting.throwEvent(onLevelStart, "1"); 
+	EngineScripting.throwEvent(onGameStart, "");
+	EngineScripting.throwEvent(onLevelStart, "1");
 
+	EngineParticles.launchSystem("data/particles/wildfire.particles", getEntityByName(PLAYER_NAME), "Bip001 Pelvis", VEC3(0.0, 0.0, -1.f));
+	EngineParticles.launchSystem("data/particles/wildfire.particles", getEntityByName(PLAYER_NAME), VEC3(0.0, 1.5, -1.f));
+	EngineParticles.launchSystem("data/particles/wildfire.particles", VEC3(-5.0, 10.0, -49.0));
 
 	CApp::get().setResetMouse(true);
 	return true;
