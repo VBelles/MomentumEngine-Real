@@ -103,7 +103,7 @@ void TCompCameraPlayer::updateTargetTransform(float delta) {
 
 	VEC3 desiredPosition = transform->getPosition() + VEC3::Up * offset;
 
-	const float f = 0.000001f;
+	const float f = 0.0000001f;
 	desiredPosition = VEC3::Lerp(prevTargetPosition, desiredPosition, 1 - pow(f, delta));
 
 	targetTransform.setPosition(desiredPosition);
@@ -145,8 +145,8 @@ void TCompCameraPlayer::updateRotation(float delta) {
 	VEC2 desiredYawPitch = yawPitch + input * delta;
 	desiredYawPitch.y = clamp(desiredYawPitch.y, minPitch, maxPitch);
 
-	const float f = 0.75f;
-	desiredYawPitch = VEC2::Lerp(desiredYawPitch, yawPitch, 1 - pow(f, delta));
+	//const float f = 0.000000001f;
+	//desiredYawPitch = VEC2::Lerp(yawPitch, desiredYawPitch, 1 - pow(f, delta));
 
 	transform->setYawPitchRoll(desiredYawPitch.x, desiredYawPitch.y);
 }
