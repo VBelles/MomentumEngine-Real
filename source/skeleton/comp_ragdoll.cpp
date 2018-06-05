@@ -66,8 +66,8 @@ void TCompRagdoll::updateRagdollFromSkeleton() {
                                 (transform.getLeft()*ragdoll_bone.core->height * 0.5f));
 
                             physx::PxTransform px_transform;
-                            px_transform.p = VEC3_TO_PXVEC3(transform.getPosition());
-                            px_transform.q = QUAT_TO_PXQUAT(transform.getRotation());
+                            px_transform.p = toPxVec3(transform.getPosition());
+                            px_transform.q = toPxQuat(transform.getRotation());
 
                             ragdoll_bone.actor->setGlobalPose(px_transform);
                         }
@@ -157,8 +157,8 @@ void TCompRagdoll::update(float elapsed) {
                                 CTransform trans;
                                 auto t = ragdoll_bone.actor->getGlobalPose();
 
-                                trans.setPosition(PXVEC3_TO_VEC3(t.p));
-                                trans.setRotation(PXQUAT_TO_QUAT(t.q));
+                                trans.setPosition(toVec3(t.p));
+                                trans.setRotation(toQuat(t.q));
 
                                 bone->clearState();
                                 bone->blendState(1.f,
@@ -194,11 +194,11 @@ void TCompRagdoll::renderDebug() {
         physx::PxTransform& px_transform = ragdoll_bone.actor->getGlobalPose();
         CTransform transform;
 
-        transform.setRotation(PXQUAT_TO_QUAT(px_transform.q));
+        transform.setRotation(toQuat(px_transform.q));
         VEC3 offset = ragdoll_bone.core->height*0.5f*transform.getFront();
-        transform.setPosition(PXVEC3_TO_VEC3(px_transform.p) - offset);
+        transform.setPosition(toVec3(px_transform.p) - offset);
         MAT44 world1 = transform.asMatrix();
-        transform.setPosition(PXVEC3_TO_VEC3(px_transform.p) + offset);
+        transform.setPosition(toVec3(px_transform.p) + offset);
 
         MAT44 world2 = transform.asMatrix();
 
