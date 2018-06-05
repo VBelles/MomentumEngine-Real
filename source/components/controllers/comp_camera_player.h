@@ -39,6 +39,8 @@ private:
 	CTransform targetTransform;
 	VEC3 prevTargetPosition;
 
+	VEC3* playerVelocityVector;
+
 	VEC2 input;
 	
 	float offset = 1.f;

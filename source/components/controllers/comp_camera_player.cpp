@@ -2,6 +2,7 @@
 #include "comp_camera_player.h"
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
+#include "components/player/comp_player_model.h"
 #include "modules/game_modules/physics/basic_query_filter_callback.h"
 #include "game_constants.h"
 #include "entity/common_msgs.h"
@@ -60,7 +61,9 @@ void TCompCameraPlayer::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	transformHandle = get<TCompTransform>();
 	assert(targetHandle.isValid());
 	assert(transformHandle.isValid());
-
+	CEntity* entity = targetHandle;
+	TCompPlayerModel* model = entity->get<TCompPlayerModel>();
+	playerVelocityVector = model->getVelocityVector();
 	getTransform()->setYawPitchRoll(initialYaw, initialPitch);
 	sphereCastRadius = ((TCompCamera*)get<TCompCamera>())->getCamera()->getZNear() * 2;
 
@@ -100,10 +103,10 @@ void TCompCameraPlayer::update(float delta) {
 void TCompCameraPlayer::updateTargetTransform(float delta) {
 	//Target transform is player transform + offset
 	TCompTransform* transform = getTarget()->get<TCompTransform>();
-
 	VEC3 desiredPosition = transform->getPosition() + VEC3::Up * offset;
-
-	const float f = 0.0000001f;
+	float speed = playerVelocityVector->Length();
+	float f = lerp(0.000001f, 0.00000001f, clamp(speed, 0.f, 20.f)/20.f);
+	//const float f = 0.0000001f;
 	desiredPosition = VEC3::Lerp(prevTargetPosition, desiredPosition, 1 - pow(f, delta));
 
 	targetTransform.setPosition(desiredPosition);
