@@ -14,9 +14,13 @@ public:
 
 	void setDefaultCamera(CHandle camera);
 	void setOutputCamera(CHandle camera);
-	void blendInCamera(CHandle camera, float blendTime = 0.f, EPriority priority = EPriority::DEFAULT, Interpolator::IInterpolator* interpolator = nullptr);
+	void blendInCamera(CHandle camera, float blendTime = 0.f,
+                       EPriority priority = EPriority::DEFAULT,
+                       Interpolator::IInterpolator* interpolator = nullptr);
 	void blendOutCamera(CHandle camera, float blendTime = 0.f);
 	bool IsCameraAloneInMix(CHandle camera);
+
+    CHandle getCurrentBlendedCamera() { return _mixedCameras.front().camera; }
 
 	Interpolator::IInterpolator* getInterpolator(std::string interpolator);
 
@@ -42,7 +46,9 @@ private:
 	using VMixedCameras = std::vector<TMixedCamera>;
 
 	TMixedCamera* getMixedCamera(CHandle camera);
-	void blendCameras(const CCamera* camera1, const CCamera* camera2, float ratio, CCamera* output) const;
+	void blendCameras(const CCamera* camera1,
+                      const CCamera* camera2,
+                      float ratio, CCamera* output) const;
 	void checkDeprecated();
 
 	VMixedCameras _mixedCameras;

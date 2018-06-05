@@ -10,6 +10,7 @@
     "game",
     "cameras",
     "render",
+    "particles",
     "gui",
     "navmesh",
     "test_instancing",
@@ -25,6 +26,7 @@
     "entities",
     "pause",
     "input",
+    "particles",
     "gui",
     "navmesh",
     "scripting"
