@@ -5,6 +5,9 @@ fileIn "export_mesh.ms" -- To avoid error on first execution.
 fileIn "add-attributes.ms" -- To avoid error on first execution.
 fileIn "utils.ms"
 
+global uniqueCoins  = #()
+global uniqueAltars = #()
+
 -------------------------------------------------------------
 struct TJsonFormatter (
 	ofilename,			-- Name of output file
@@ -241,6 +244,7 @@ struct TMaterialExporter (
 		)
 		
 		if matClass == StandardMaterial then (
+			setMaterialIDs obj --set Material IDs to 1.
 			local mat_name = mat_path + (cleanName mat.name) + ".material"
 			append exported_materials mat_name
 			exportStdMaterial mat mat_name
@@ -1404,7 +1408,7 @@ struct TSceneExporter (
 	
 	-- Globals uniqueCoins and uniqueAltars contain the object names.
 	fn exportUniques = (
-		if uniqueCoins.count == 0 and uniqueAltars.count == 0 then return
+		if uniqueCoins.count == 0 and uniqueAltars.count == 0 then return false
 		local ofilename = getFilenameFile maxFileName
 		local uniquesPath = project_path + uniques_path + ofilename + "-uniques.json"
 		fs.begin uniquesPath
@@ -1426,10 +1430,7 @@ struct TSceneExporter (
 	
 	fn exportAll = (
 		deselect objects -- Deselect all objects, export is faster.
-		
-		global uniqueCoins  = #()
-		global uniqueAltars = #()
-		
+			
 		-- Loop over all layers.
 		for i = 0 to LayerManager.count - 1 do (
 			-- Get the layer by index.
