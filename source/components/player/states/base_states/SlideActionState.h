@@ -5,7 +5,7 @@
 class SlideActionState : public AirborneActionState {
 private:
 	VEC3 hitNormal;
-	float maxVerticalSlidingVelocity = 10.f;
+	float maxVerticalSlidingVelocity = 2.f;
 	float sidewaysSlidingVelocity = 2.f;
 
 	std::string animation = "jump_volando";
