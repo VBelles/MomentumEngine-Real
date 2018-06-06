@@ -17,6 +17,7 @@ bool CModuleParticles::start() {
 }
 
 bool CModuleParticles::stop() {
+	reset();
 	return true;
 }
 
@@ -69,7 +70,7 @@ Particles::TParticleHandle CModuleParticles::launchSystem(
 }
 
 Particles::TParticleHandle CModuleParticles::launchSystem(
-	const std::string& name, CHandle entity, std::string bone, VEC3 offset) {
+	const std::string& name, CHandle entity, const std::string& bone, VEC3 offset) {
 	const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
 	return launchSystem(cps, entity, bone, offset);
 }
@@ -105,7 +106,7 @@ Particles::TParticleHandle CModuleParticles::launchSystem(
 }
 
 Particles::TParticleHandle CModuleParticles::launchSystem(
-	const Particles::TCoreSystem* cps, CHandle entity, std::string bone, VEC3 offset) {
+	const Particles::TCoreSystem* cps, CHandle entity, const std::string& bone, VEC3 offset) {
 	assert(cps);
 	Particles::CSystem* ps = new Particles::CSystem(cps, entity, bone, offset);
 	ps->launch();
