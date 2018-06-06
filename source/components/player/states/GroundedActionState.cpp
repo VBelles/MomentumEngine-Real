@@ -23,6 +23,7 @@ void GroundedActionState::onStateEnter(IActionState * lastState) {
 	if (currentPowerStats) getPlayerModel()->maxVerticalSpeed = currentPowerStats->maxVelocityVertical;
 	getPlayerModel()->resetGravity();
 	backwardsMaxDotProduct = cos(backwardsdMinAngle);
+	slideWindowTimer.reset();
 }
 
 void GroundedActionState::onStateExit(IActionState * nextState) {
@@ -62,10 +63,16 @@ void GroundedActionState::onMove(MoveState& moveState) {
 	}
 	else {
 		if (!isWalkable(moveState)) { //Slide
-			stateManager->changeState(Slide);
+			if (slideWindowTimer.elapsed() >= slideWindowTime) {
+				stateManager->changeState(Slide);
+			}
+		}
+		else {
+			slideWindowTimer.reset();
 		}
 		velocityVector->y = 0.f;
 	}
+	
 }
 
 void GroundedActionState::onLeavingGround() {

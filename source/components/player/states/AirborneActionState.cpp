@@ -92,6 +92,7 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	sidewaysMaxDotProduct = cos(deg2rad(sidewaysdMinAngle));
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 	getCameraPlayer()->moveCameraCloser(false);
+	slideWindowTimer.reset();
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {
@@ -170,11 +171,16 @@ void AirborneActionState::onMove(MoveState& moveState) {
 	}
 	if (moveState.isTouchingBot) {
 		if (!isWalkable(moveState)) {
-			stateManager->changeState(Slide);
+			if (slideWindowTimer.elapsed() >= slideWindowTime) {
+				stateManager->changeState(Slide);
+			}
 		}
 		else {
-			onLanding();
+			onLanding();	
 		}
+	}
+	else {
+		slideWindowTimer.reset();
 	}
 
 

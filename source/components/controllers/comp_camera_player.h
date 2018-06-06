@@ -37,6 +37,9 @@ private:
 	CHandle targetHandle;
 	CHandle transformHandle;
 	CTransform targetTransform;
+	VEC3 prevTargetPosition;
+
+	VEC3* playerVelocityVector;
 
 	VEC2 input;
 	
@@ -65,19 +68,22 @@ private:
 	bool isCenteringCameraForced = false;
 	bool hasOppositeYaw = false;
 
+	float mouseLerpCoef = 35.f;
+
 	//Msgs
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onLockCameraInput(const TMsgLockCameraInput& msg);
 
-	void updateTargetTransform();
+	void updateTargetTransform(float delta);
 	void updateInput();
-	void updateMovement(float delta);
+	void updateRotation(float delta);
+	void updatePosition(float delta);
 	void updateCenteringCamera(float delta);
+	float calculatePitchOffset(float pitch);
 	bool sphereCast();
 	bool isCameraInsideGeometry();
 	bool raycast(VEC3 origin, VEC3 destination, PxRaycastCallback& callback);
 	void sweepBack();
-	float calculatePitchOffset(float pitch);
 
 	CEntity* getTarget() { return targetHandle; }
 	TCompTransform* getTransform() { return transformHandle; }
@@ -89,7 +95,6 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	void centerCamera();
-	void moveCameraTowardsDefaultDistance(float delta);
 	void suggestYawPitchDistance(float yaw, float pitch, float distance, bool suggestYaw, bool hasOppositeYaw, bool suggestPitch, bool forceDistance, bool changeCenteringCamera);
 	void placeCameraOnSuggestedPosition(VEC2 centeringSpeed);
 	void resetSuggested();
