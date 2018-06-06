@@ -161,7 +161,7 @@ void TCompCameraPlayer::updateRotation(float delta) {
 	desiredYawPitch.y = clamp(desiredYawPitch.y, minPitch, maxPitch);
 	
 	yawPitch = VEC2::Lerp(yawPitch, desiredYawPitch, 1 - exp(-mouseLerpCoef * delta));
-	
+	yawPitch = desiredYawPitch;
 	transform->setYawPitchRoll(yawPitch.x, yawPitch.y);
 }
 
