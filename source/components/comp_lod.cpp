@@ -97,7 +97,7 @@ void TCompLOD::update(float delta) {
     if (children_dynamic || aabb_update_required)
         updateAABBFromChildren();
 
-    h_camera = Engine.getCameras().getCurrentBlendedCamera();
+    h_camera = EngineCameras.getCurrentBlendedCamera();
 
     bool was_using_lod = using_lod;
     updateLevel();

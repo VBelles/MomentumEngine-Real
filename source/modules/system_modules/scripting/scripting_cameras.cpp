@@ -51,8 +51,8 @@ void ScriptingCameras::bindConstants(SLB::Manager* manager) {
 void ScriptingCameras::blendInCamera(std::string cameraName, float timeToMixIn, int priority, std::string interpolator) {
 	CHandle h_camera = getEntityByName(cameraName);
 	CModuleCameras::EPriority prio = static_cast<CModuleCameras::EPriority>(priority);
-	Interpolator::IInterpolator* interp = Engine.getCameras().getInterpolator(interpolator);
-	Engine.getCameras().blendInCamera(h_camera, timeToMixIn, prio, interp);
+	Interpolator::IInterpolator* interp = EngineCameras.getInterpolator(interpolator);
+	EngineCameras.blendInCamera(h_camera, timeToMixIn, prio, interp);
 }
 
 void ScriptingCameras::copyRotationFromCamToCam(std::string copyCamName, std::string pasteCamName) {

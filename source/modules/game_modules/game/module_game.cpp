@@ -72,9 +72,9 @@ bool CModuleGame::start() {
 	}
 
 	CHandle h_playerCamera = getEntityByName(PLAYER_CAMERA);
-	Engine.getCameras().setDefaultCamera(h_playerCamera);
+	EngineCameras.setDefaultCamera(h_playerCamera);
 	CHandle h_camera = getEntityByName(GAME_CAMERA);
-	Engine.getCameras().setOutputCamera(h_camera);
+	EngineCameras.setOutputCamera(h_camera);
 
 	respawner = new Respawner();
 

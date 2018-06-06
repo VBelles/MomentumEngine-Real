@@ -79,7 +79,7 @@ void TCompCameraCurveInterpolation::update(float delta) {
 		if (weight == 1.f) {
 			isInterpolating = false;
 			//mixear siguiente cámara
-			Engine.getCameras().blendInCamera(cameraToBlend, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
+			EngineCameras.blendInCamera(cameraToBlend, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 			return;
 		}
 	}

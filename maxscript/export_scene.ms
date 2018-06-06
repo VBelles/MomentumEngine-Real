@@ -82,20 +82,20 @@ struct TJsonFormatter (
 		indent()
 		format "\"%\": {},\n" key_str to:fs
 	),
-		-- --------------------
+	
+	-- --------------------
 	fn writeValue val addIndent:false = (
-		if classof val == string then (
-			if addIndent then indent()
+		if addIndent then indent()
+		if classOf val == string then (
 			format " \"%\"" val to:fs
-		) else if classof val == Point3 then (
-			if addIndent then indent()
+		) else if classOf val == Point3 then (
 			format " \"% % %\"" val.x val.y val.z to:fs
-		) else if classof val == quat then (
-			if addIndent then indent()
+		) else if classOf val == quat then (
 			-- Quats rotate in the opposite direction
 			format " \"% % % %\"" val.x val.y val.z -val.w to:fs
+		) else if val == undefined then (
+			format " null" to:fs
 		) else (
-			if addIndent then indent()
 			format " %" val to:fs
 		)
 	),
@@ -302,11 +302,11 @@ struct TSceneExporter (
 	),
 	
 	fn isCollider obj = (
-		if  classof obj != Box 	 and
-			classof obj != Sphere and
-			classof obj != Capsule and
-			classof obj != Editable_Mesh and
-			classof obj != Plane then (
+		if  classOf obj != Box 	 and
+			classOf obj != Sphere and
+			classOf obj != Capsule and
+			classOf obj != Editable_Mesh and
+			classOf obj != Plane then (
 			format "Wrong object %. Collisions must be Spheres, Boxes, Capsules, Planes or meshes.\n" obj.name
 			return false
 		)
@@ -321,22 +321,44 @@ struct TSceneExporter (
 		return false
 	),
 	
+	fn isDummyLOD obj = (
+		if classOf obj == Dummy and
+		(stricmp obj.name "lod") == 0 then return true
+		else return false
+	),
+	
+	-- Returns true if has dummy child and the dummy also has children.
 	fn hasChildDummy obj = (
 		if obj.children == undefined then return false
 		for child in obj.children do (
-			if classOf child == Dummy then return true
+			if classOf child == Dummy and
+			   child.children != undefined then return true
 		)
 		return false
+	),
+	
+	fn getChildrenNames obj = (
+		if obj.children == undefined then return undefined
+		local childNames = #()
+		for child in obj.children do (
+			format "child name: %\n" child.name
+			append childNames child.name
+		)
+		return childNames
 	),
 	
 	fn isUnique obj = (
 		return (stringContainsSubstring obj.name "unique")
 	),
 	
-	-- Ends one entity and starts a new one.
-	fn startNewEntity = (
+	fn endEntity = (
 			fs.endObj() -- - - - - - - end previous entity - - -
 		fs.endObj() -- - - - end previous json object - - - - - -
+	),
+	
+	-- Ends one entity and starts a new one.
+	fn startNewEntity = (
+		endEntity()
 		fs.writeComma()
 		fs.beginObj() -- - - - - start new json object - - - - - -
 			fs.writeKey "entity"
@@ -602,16 +624,29 @@ struct TSceneExporter (
 		fs.writeKeyValue "slope" 45
 	),
 	
-	fn exportLOD obj = (
-		fs.writeKeyValue "local_aabb" null
+	fn exportEmptyAABBs = (
 		fs.writeComma()
-		fs.writeKeyValue "abs_aabb" null
+		fs.writeKeyValue "local_aabb" undefined
+		fs.writeComma()
+		fs.writeKeyValue "abs_aabb" undefined
+	),
+	
+	fn exportLOD obj = (
+		exportEmptyAABBs()
 		fs.writeComma()
 		fs.writeKey "lod"
 		fs.beginObj()
 			fs.writeKeyValue "threshold" 0.08
-			fs.writeComma()
-			exportStringArray "children" #("children1", "children2")
+			
+			for child in obj.children do (
+				if isDummyLOD child then (
+					local childNames = getChildrenNames child
+					if childNames != undefined then (
+						fs.writeComma()
+						exportStringArray "children" childNames
+					)
+				)
+			)
 		fs.endObj()
 	),
 	
@@ -796,6 +831,7 @@ struct TSceneExporter (
 			if pure then exportPurity() 
 			else exportRenderMesh obj
 		fs.endArray()
+		if hasChildDummy obj then exportLOD obj
 		
 		local colliderCount = 0
 		if hasChildCollider obj then (
@@ -821,10 +857,14 @@ struct TSceneExporter (
 					if rot then exportPlatfRotation()
 					if mech then exportMech child
 				)
+				else if isDummyLOD child then (
+					for i = 1 to child.children.count do (
+						startNewEntity()
+						exportEditableMesh child.children[i]
+						exportEmptyAABBs()
+					)
+				)
 			)
-		)
-		if hasDummyCollider obj then (
-			--TODO: Export children of dummy as lod. (The one called lod is the low-res object)
 		)
 	),
 
@@ -854,8 +894,7 @@ struct TSceneExporter (
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				exportEntityCollider obj meshMode:(not (isCollider obj and objClass != Editable_mesh)) dyn:(hasChildLine obj)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 	
@@ -875,8 +914,7 @@ struct TSceneExporter (
 				exportBreakable()
 				fs.writeComma()
 				exportAltar obj
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 	
@@ -895,8 +933,7 @@ struct TSceneExporter (
 				exportTransform obj noRot:true
 				fs.writeComma()
 				fs.writeKeyValue "prefab" (prefabPath + "coin.prefab")
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -942,8 +979,7 @@ struct TSceneExporter (
 						exportSpline obj
 					)
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
-				fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-			fs.endObj()
+				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		)
 
 		if hasChildCollider obj then (
@@ -956,8 +992,7 @@ struct TSceneExporter (
 						-- Add trigger.
 						if objClass == FreeCamera then exportCameraTrigger child
 						else exportSuggestCameraTrigger child
-					fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-				fs.endObj()
+					endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 				return true
 			)
 		)
@@ -981,8 +1016,7 @@ struct TSceneExporter (
 				if hasChildLine obj then (
 					exportSpline obj
 				)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1019,8 +1053,7 @@ struct TSceneExporter (
 				if hasChildLine obj then (
 					exportSpline obj type:"patrolPath"
 				)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1069,8 +1102,7 @@ struct TSceneExporter (
 				if hasChildLine obj then (
 					exportSpline obj
 				)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 	
@@ -1104,8 +1136,7 @@ struct TSceneExporter (
 				if hasChildLine obj then (
 					exportSpline obj
 				)
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 	
@@ -1121,8 +1152,7 @@ struct TSceneExporter (
 				fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
 				fs.writeComma()
 				exportTransform obj
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1139,8 +1169,7 @@ struct TSceneExporter (
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - -
 				exportEditableMesh obj
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1175,8 +1204,7 @@ struct TSceneExporter (
 						)
 					fs.endArray()
 				fs.endObj()
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 
 		for child in obj.children do (
 			exportDefault child (nValidObjs + 1)
@@ -1243,8 +1271,7 @@ struct TSceneExporter (
 				exportBehaviorTree enemyType
 				
 				exportCompCollider obj colliderGroups:#("enemy") masks:#("all")
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		
 		exportChildHitboxes obj obj.height
 		
@@ -1282,8 +1309,7 @@ struct TSceneExporter (
 							--TODO: this should be different now that we use platform_simple instead of follow_curve.
 							exportSpline child type:"hitboxPath"
 						)
-					fs.endObj() -- - - - - - - - - - - - - - - - - - - - -
-				fs.endObj()
+					endEntity() -- - - - - - - - - - - - - - - - -
 			)
 		)
 	),
@@ -1404,8 +1430,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKeyEmpty "render_ui"
 				exportShadow()
-			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
-		fs.endObj()
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		
 		exportChildHitboxes obj capsuleHeight
 
@@ -1529,8 +1554,6 @@ TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
 
-TODO: Añadir local_aabb y abs_abb null a los objetos con lod.
-
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 
@@ -1562,6 +1585,8 @@ Los triggers		    deben estar en una layer llamada "triggers".
 Los colliders invisibles     deben estar en una layer llamada "collisions".
 
 Las monedas únicas tienen que contener "unique" en el nombre.
+ 
+El objeto low-res del LOD debe ser padre de un dummy que contiene los objetos a los que sustituye cuando está activo.
  
 Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
 El proyecto debe tener las siguientes carpetas:

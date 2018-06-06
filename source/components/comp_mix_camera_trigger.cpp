@@ -26,12 +26,12 @@ void TCompMixCameraTrigger::registerMsgs() {
 }
 
 void TCompMixCameraTrigger::onCreate(const TMsgEntityCreated& msg) {
-	cubicInInterpolator = (TCubicInInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_CUBIC_IN);
-	cubicOutInterpolator = (TCubicOutInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_CUBIC_OUT);
-	cubicInOutInterpolator = (TCubicInOutInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_CUBIC_IN_OUT);
-	expoInInterpolator = (TExpoInInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_EXPO_IN);
-	expoOutInterpolator = (TExpoOutInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_EXPO_OUT);
-	expoInOutInterpolator = (TExpoInOutInterpolator*)Engine.getCameras().getInterpolator(INTERPOLATOR_EXPO_IN_OUT);
+	cubicInInterpolator = (TCubicInInterpolator*)EngineCameras.getInterpolator(INTERPOLATOR_CUBIC_IN);
+	cubicOutInterpolator = (TCubicOutInterpolator*)EngineCameras.getInterpolator(INTERPOLATOR_CUBIC_OUT);
+	cubicInOutInterpolator = (TCubicInOutInterpolator*)EngineCameras.getInterpolator(INTERPOLATOR_CUBIC_IN_OUT);
+	expoInInterpolator = (TExpoInInterpolator*)EngineCameras.getInterpolator(INTERPOLATOR_EXPO_IN);
+	expoOutInterpolator = (TExpoOutInterpolator*)EngineCameras.getInterpolator(INTERPOLATOR_EXPO_OUT);
+	expoInOutInterpolator = (TExpoInOutInterpolator*)EngineCameras.getInterpolator(INTERPOLATOR_EXPO_IN_OUT);
 }
 
 void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
@@ -49,7 +49,7 @@ void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		VEC2 cameraToMixFront2D = VEC2(cameraToMixTransform->getFront().x, cameraToMixTransform->getFront().z);
 		
 		if (playerCameraFront2D.Dot(cameraToMixFront2D) >= 0) {
-			Engine.getCameras().blendInCamera(h_camera, timeToMixIn, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
+			EngineCameras.blendInCamera(h_camera, timeToMixIn, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
 		}
 		else {
 			//Copiar parámetros camera player a curve_interpolation_camera
@@ -68,7 +68,7 @@ void TCompMixCameraTrigger::onTriggerEnter(const TMsgTriggerEnter & msg) {
 			//interpolationCamera->lookAt(interpolationCameraTransform->getPosition(), interpolationCameraTransform->getPosition() + interpolationCameraTransform->getFront());
 
 			//Blendear en 0 segundos
-			Engine.getCameras().blendInCamera(interpolationCameraHandle, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
+			EngineCameras.blendInCamera(interpolationCameraHandle, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 			
 			//Llamar a su función startInterpolation
 			CCamera* cameraToMix = ((TCompCamera*)cameraToMixEntity->get<TCompCamera>())->getCamera();
@@ -92,12 +92,12 @@ void TCompMixCameraTrigger::onTriggerExit(const TMsgTriggerExit & msg) {
 		interpolationCameraComp->stopInterpolating();
 
 		CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
-		if (!Engine.getCameras().IsCameraAloneInMix(playerCameraHandle)) {
+		if (!EngineCameras.IsCameraAloneInMix(playerCameraHandle)) {
 			if (modifyPlayerCameraRotation) {
 				CopyRotationFromMixedCameraToPlayerCamera();
 				CEntity* cameraToMixEntity = getEntityByName(cameraToMix);
 				cameraToMixEntity->sendMsg(TMsgLockCameraInput{ true }); 
-				Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
+				EngineCameras.blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
 			}
 		}
 	}

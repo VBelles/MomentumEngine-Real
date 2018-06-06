@@ -94,7 +94,7 @@ void TCompFixedCamera::updateInput() {
 				CopyRotationFromMixedCameraToPlayerCamera();
 			}
 			CHandle playerCameraHandle = getEntityByName(PLAYER_CAMERA);
-			Engine.getCameras().blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
+			EngineCameras.blendInCamera(playerCameraHandle, timeToMixOut, CModuleCameras::EPriority::GAMEPLAY, cubicOutInterpolator);
 			isMovementLocked = true;
 		}
 		else {
