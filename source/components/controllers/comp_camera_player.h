@@ -68,7 +68,7 @@ private:
 	bool isCenteringCameraForced = false;
 	bool hasOppositeYaw = false;
 
-	float mouseLerpCoef = 350.f;
+	float mouseLerpCoef = 35.f;
 
 	//Msgs
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
