@@ -60,6 +60,8 @@ void SlideActionState::onStateEnter(IActionState* lastState) {
 	canJump = false;
 	isJumping = false;
 	isLongJumping = false;
+
+
 }
 
 void SlideActionState::onStateExit(IActionState* nextState) {

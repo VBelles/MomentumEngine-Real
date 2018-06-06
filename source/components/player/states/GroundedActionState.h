@@ -7,6 +7,9 @@ protected:
 	float backwardsdMinAngle = deg2rad(130.f);
 	float backwardsMaxDotProduct;
 
+	CTimer slideWindowTimer;
+	float slideWindowTime = frames2sec(5);
+
 public:
 	GroundedActionState(StateManager* stateManager, State state);
 	GroundedActionState(StateManager* stateManager, ConcurrentState state);

@@ -25,6 +25,9 @@ protected:
 	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
 
+	CTimer slideWindowTimer;
+	float slideWindowTime = frames2sec(5);
+
 
 public:
 	AirborneActionState(StateManager* stateManager, State state);
