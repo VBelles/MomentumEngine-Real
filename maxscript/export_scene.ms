@@ -277,11 +277,11 @@ struct TSceneExporter (
 	fs = TJsonFormatter(),
 	project_path = "",
 	base_path = "data/",
-	scenes_path = base_path + "scenes/",
+	scenes_path  = base_path + "scenes/",
 	uniques_path = base_path + "uniques/",
-	mesh_path = base_path + "meshes/",
-	mats_path = base_path + "materials/",
-	prefabPath = base_path + "prefabs/",
+	mesh_path    = base_path + "meshes/",
+	mats_path    = base_path + "materials/",
+	prefabPath   = base_path + "prefabs/",
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -811,7 +811,7 @@ struct TSceneExporter (
 			)
 		)
 		if hasDummyCollider obj then (
-			--TODO: Export children of dummy as lod.
+			--TODO: Export children of dummy as lod. (The one called lod is the low-res object)
 		)
 	),
 
@@ -1437,8 +1437,8 @@ struct TSceneExporter (
 	),
 	
 	fn exportAll = (
-		deselect objects -- Deselect all objects, export is faster.
-			
+		deselect objects -- Deselect all objects so export is faster.
+
 		-- Loop over all layers.
 		for i = 0 to LayerManager.count - 1 do (
 			-- Get the layer by index.
