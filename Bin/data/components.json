@@ -43,6 +43,7 @@
     "light_dir",
     "render",
     "lod",
+    "particles",
     "spikes"
   ],
   "render_debug" : [

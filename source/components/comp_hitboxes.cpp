@@ -145,7 +145,7 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 	}
 	else{
 		PxExtendedVec3 extendedPos = getController()->getPosition();
-		VEC3 pos = VEC3(extendedPos.x, extendedPos.y, extendedPos.z) + hitbox->offset;
+		VEC3 pos = PhysxUtils::toVec3(extendedPos) + hitbox->offset;
 		hitbox->transform->setPosition(pos);
 	}
 
@@ -163,15 +163,12 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 		//dbg("%s - Hits: %d\n", hitbox->name.c_str(), overlapCallback.getNbAnyHits());
 		CEntity* owner = CHandle(this).getOwner();
 		
-		for (int i = 0; i < overlapCallback.getNbTouches(); i++) {
+		for (PxU32 i = 0; i < overlapCallback.getNbTouches(); i++) {
 			auto hit = overlapCallback.getTouch(i);
-			CHandle colliderHandle;
-			colliderHandle.fromVoidPtr(hit.actor->userData);
-			CHandle hitHandle = colliderHandle.getOwner();
-			if (hitbox->hits.insert(hitHandle).second) { //Inserted
-				owner->sendMsg(TMsgHitboxEnter{hitbox->name, hitHandle });
-				//CEntity* entity = hitHandle;
-				//dbg("Name: %s\n", entity->getName());
+			CHandle hitEntity = getEntity(hit.actor);
+			if (hitbox->hits.insert(hitEntity).second) { //Inserted
+				owner->sendMsg(TMsgHitboxEnter{hitbox->name, hitEntity });
+				dbg("Name: %s\n", static_cast<CEntity*>(hitEntity)->getName());
 			}
 		}
 	

@@ -242,6 +242,10 @@
     <ClCompile Include="modules\system_modules\module_navmesh.cpp" />
     <ClCompile Include="components\controllers\comp_free_camera.cpp" />
     <ClCompile Include="components\comp_life_regenerator.cpp" />
+    <ClCompile Include="modules\system_modules\particles\particle_parser.cpp" />
+    <ClCompile Include="modules\system_modules\particles\particle_system.cpp" />
+    <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
+    <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -514,6 +518,12 @@
     <ClInclude Include="modules\system_modules\module_navmesh.h" />
     <ClInclude Include="components\controllers\comp_free_camera.h" />
     <ClInclude Include="components\comp_life_regenerator.h" />
+    <ClInclude Include="utils\track.h" />
+    <ClInclude Include="modules\system_modules\particles\particle.h" />
+    <ClInclude Include="modules\system_modules\particles\particle_parser.h" />
+    <ClInclude Include="modules\system_modules\particles\particle_system.h" />
+    <ClInclude Include="modules\system_modules\particles\module_particles.h" />
+    <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

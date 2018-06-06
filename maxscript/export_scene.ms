@@ -321,6 +321,14 @@ struct TSceneExporter (
 		return false
 	),
 	
+	fn hasChildDummy obj = (
+		if obj.children == undefined then return false
+		for child in obj.children do (
+			if classOf child == Dummy then return true
+		)
+		return false
+	),
+	
 	fn isUnique obj = (
 		return (stringContainsSubstring obj.name "unique")
 	),
@@ -615,7 +623,6 @@ struct TSceneExporter (
 	fn exportCompCollider obj first:true meshMode:false colliderGroups: masks: trig:false dyn:false mov:false = (
 		local objClass = classOf obj
 		local layerName = obj.layer.name
-		if objClass == Editable_poly then convertToMesh obj
 		-- If the object has more than one child collider we need to add them in separate entities.
 		if not first then exportSeparateColliderEntity obj
 		
@@ -775,7 +782,7 @@ struct TSceneExporter (
 		fs.beginArray()
 			if pure then exportPurity() 
 			else exportRenderMesh obj
-		fs.endArray()				
+		fs.endArray()
 		
 		local colliderCount = 0
 		if hasChildCollider obj then (
@@ -803,6 +810,9 @@ struct TSceneExporter (
 				)
 			)
 		)
+		if hasDummyCollider obj then (
+			--TODO: Export children of dummy as lod.
+		)
 	),
 
 	-- --COMP: ALTAR -------------------------------------------------------------------------
@@ -823,7 +833,6 @@ struct TSceneExporter (
 	-- --ENTITY with only COLLISION ----------------------------------------------
 	fn exportEntityCollision obj nValidObjs = (
 		local objClass = classOf obj
-		if objClass == Editable_poly then convertToMesh obj
 		if not isCollider obj and
 		   not objClass == Editable_mesh then return false
 		if nValidObjs > 0 then fs.writeComma()
@@ -1106,7 +1115,6 @@ struct TSceneExporter (
 
 	-- --ENTITY: DEFAULT (exports editable mesh)---------------------------
 	fn exportEntityDefault obj nValidObjs = (
-		if classOf obj == Editable_poly then convertToMesh obj
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -1116,7 +1124,7 @@ struct TSceneExporter (
 		
 		fs.beginObj()
 			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			fs.beginObj() -- - - - - - - - - - - - - - - - - -
 				exportEditableMesh obj
 			fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 		fs.endObj()
@@ -1269,7 +1277,6 @@ struct TSceneExporter (
 	
 	-- --ENTITY: PLAYER ---------------------------------------------------
 	fn exportEntityPlayer obj nValidObjs = (
-		if classOf obj == Editable_poly then convertToMesh obj
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -1461,6 +1468,7 @@ struct TSceneExporter (
 					-- Avoid child objects, they will be added through parent. Also, don't export hidden objects.
 					if obj.parent == undefined and not obj.isHidden then (
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof obj) as string) obj.name --DEBUG
+						if classOf obj == Editable_poly then convertToMesh obj
 						case layerName of (
 							"altars":       ( wasValid = exportEntityAltar     obj nValidObjs )
 							"cameras":      ( wasValid = exportEntityCamera    obj nValidObjs )
@@ -1537,6 +1545,8 @@ Las cámaras		    deben estar en una layer llamada "cameras".
 Las luces			    deben estar en una layer llamada "lights".
 Los triggers		    deben estar en una layer llamada "triggers".
 Los colliders invisibles     deben estar en una layer llamada "collisions".
+
+Las monedas únicas tienen que contener "unique" en el nombre.
  
 Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
 El proyecto debe tener las siguientes carpetas:

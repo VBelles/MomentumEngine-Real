@@ -9,19 +9,19 @@ DECL_OBJ_MANAGER("skeleton", TCompSkeleton);
 
 // ---------------------------------------------------------------------------------------
 // Cal2DX conversions, VEC3 are the same, QUAT must change the sign of w
-CalVector DX2Cal(VEC3 p) {
+CalVector DX2Cal(const VEC3& p) {
 	return CalVector(p.x, p.y, p.z);
 }
-CalQuaternion DX2Cal(QUAT q) {
+CalQuaternion DX2Cal(const QUAT& q) {
 	return CalQuaternion(q.x, q.y, q.z, -q.w);
 }
-VEC3 Cal2DX(CalVector p) {
+VEC3 Cal2DX(const CalVector& p) {
 	return VEC3(p.x, p.y, p.z);
 }
-QUAT Cal2DX(CalQuaternion q) {
+QUAT Cal2DX(const CalQuaternion& q) {
 	return QUAT(q.x, q.y, q.z, -q.w);
 }
-MAT44 Cal2DX(CalVector trans, CalQuaternion rot) {
+MAT44 Cal2DX(const CalVector& trans, const CalQuaternion& rot) {
 	return MAT44::CreateFromQuaternion(Cal2DX(rot)) * MAT44::CreateTranslation(Cal2DX(trans));
 }
 
@@ -183,7 +183,7 @@ void TCompSkeleton::renderDebug() {
 	TCompTransform* transform = get<TCompTransform>();
 	float scale = transform->getScale();
 	for (int currLine = 0; currLine < nrLines; currLine++)
-		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale * 1.0000001, VEC4(1, 1, 1, 1));
+		renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale * 1.0000001f, VEC4(1, 1, 1, 1));
 
 	// Show list of bones
 	auto mesh = Resources.get("axis.mesh")->as<CRenderMesh>();

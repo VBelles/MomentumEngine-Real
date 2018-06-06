@@ -3,6 +3,7 @@
 #include "skeleton/comp_ragdoll.h"
 
 using namespace physx;
+using namespace PhysxUtils;
 
 class TCompCollider;
 struct ColliderConfig;
@@ -14,11 +15,6 @@ struct ColliderConfig;
 #include "basic_controller_filter_callback.h"
 #include "basic_controller_behavior.h"
 
-#define VEC3_TO_PXVEC3(vec3) physx::PxVec3(vec3.x,vec3.y,vec3.z)
-#define PXVEC3_TO_VEC3(pxvec3) VEC3(pxvec3.x,pxvec3.y,pxvec3.z)
-
-#define QUAT_TO_PXQUAT(quat) physx::PxQuat(quat.x,quat.y,quat.z, quat.w)
-#define PXQUAT_TO_QUAT(pxquat) QUAT(pxquat.x,pxquat.y,pxquat.z, pxquat.w)
 
 class CModulePhysics : public IModule {
 private:
@@ -96,6 +92,8 @@ public:
     BasicControllerHitCallback* getGameControllerHitCallback() { return &basicControllerHitCallback; }
     BasicQueryFilterCallback* getGameQueryFilterCallback() { return &basicQueryFilterCallback; }
     BasicControllerFilterCallback* getControllerFilterCallback() { return &basicControllerFilterCallback; }
+
+
 };
 
 #define PX_RELEASE(x)  if(x) x->release(), x = nullptr;

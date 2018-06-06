@@ -244,13 +244,10 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 }
 
 void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
-	CHandle colliderHandle;
-	colliderHandle.fromVoidPtr(msg.hit.actor->userData);
-	HitState hitState;
-	hitState.entity = colliderHandle.getOwner();
-	hitState.hit = msg.hit;
-	hitState.dotUp = hitState.hit.worldNormal.dot(PxVec3(0, 1, 0));
-
+	HitState hitState = HitState(
+		getEntity(msg.hit.actor), //Entity
+		msg.hit //Hit
+	);
 	PxCapsuleController* controller = getController();
 	PxExtendedVec3 hitPos = msg.hit.worldPos;
 	PxExtendedVec3 cctPos = controller->getPosition();
