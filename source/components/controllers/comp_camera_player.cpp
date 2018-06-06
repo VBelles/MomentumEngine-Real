@@ -103,7 +103,7 @@ void TCompCameraPlayer::update(float delta) {
 
 void TCompCameraPlayer::updateTargetTransform(float delta) {
 	//Target transform is player transform + offset
-	TCompTransform* transform = getTarget()->get<TCompTransform>();
+	/*TCompTransform* transform = getTarget()->get<TCompTransform>();
 	VEC3 desiredPosition = transform->getPosition() + VEC3::Up * offset;
 	float speed = playerVelocityVector->Length();
 
@@ -114,7 +114,17 @@ void TCompCameraPlayer::updateTargetTransform(float delta) {
 	targetTransform.setPosition(desiredPosition);
 	targetTransform.setRotation(transform->getRotation());
 
-	prevTargetPosition = targetTransform.getPosition();
+	prevTargetPosition = targetTransform.getPosition();*/
+
+	TCompTransform* transform = getTarget()->get<TCompTransform>();
+	VEC3 desiredPosition = transform->getPosition() + VEC3::Up * offset;
+	float speed = playerVelocityVector->Length();
+
+	float lerpCoef = clamp(speed, 10.f, 20.f);
+
+	prevTargetPosition = VEC3::Lerp(prevTargetPosition, desiredPosition, 1 - exp(-lerpCoef * delta));
+	targetTransform.setPosition(prevTargetPosition);
+	targetTransform.setRotation(transform->getRotation());
 }
 
 void TCompCameraPlayer::updateInput() {
