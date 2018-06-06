@@ -95,6 +95,7 @@ bool CModuleGame::stop() {
 	CApp::get().setDebugMode(false);
 	EngineScripting.reset();
 	Engine.getEntities().reset();
+	EngineParticles.reset();
 	SAFE_DELETE(respawner);
 	return true;
 }

@@ -64,6 +64,8 @@ namespace Particles {
 		VEC3 generatePosition() const;
 		VEC3 generateVelocity() const;
 
+		MAT44 getWorld();
+
 		VEC3 position = { 0, 0, 0 };
 
 		VEC3 offset;

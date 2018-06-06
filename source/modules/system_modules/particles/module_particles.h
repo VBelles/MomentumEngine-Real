@@ -20,6 +20,7 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 	void render() override;
+	void reset();
 
 	Particles::TParticleHandle launchSystem(const std::string& name, VEC3 position);
 	Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity = CHandle());

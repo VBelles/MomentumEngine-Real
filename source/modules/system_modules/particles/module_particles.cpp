@@ -20,6 +20,15 @@ bool CModuleParticles::stop() {
 	return true;
 }
 
+void CModuleParticles::reset() {
+	_lastHandle = 0;
+
+	for (Particles::CSystem* system : _activeSystems) {
+		SAFE_DELETE(system);
+	}
+	_activeSystems.clear();
+}
+
 void CModuleParticles::update(float delta) {
 	for (auto it = _activeSystems.begin(); it != _activeSystems.end();) {
 		Particles::CSystem* ps = *it;
