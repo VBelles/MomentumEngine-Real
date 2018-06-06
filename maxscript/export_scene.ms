@@ -332,7 +332,7 @@ struct TSceneExporter (
 		if obj.children == undefined then return false
 		for child in obj.children do (
 			if classOf child == Dummy and
-			   child.children != undefined then return true
+			   child.children.count > 0 then return true
 		)
 		return false
 	),
@@ -641,7 +641,8 @@ struct TSceneExporter (
 			for child in obj.children do (
 				if isDummyLOD child then (
 					local childNames = getChildrenNames child
-					if childNames != undefined then (
+					if childNames != undefined and
+					   childNames.count > 0 then (
 						fs.writeComma()
 						exportStringArray "children" childNames
 					)
