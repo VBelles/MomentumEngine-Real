@@ -151,7 +151,6 @@ void TCompCameraPlayer::updateRotation(float delta) {
 	desiredYawPitch.y = clamp(desiredYawPitch.y, minPitch, maxPitch);
 	
 	yawPitch = VEC2::Lerp(yawPitch, desiredYawPitch, 1 - exp(-mouseLerpCoef * delta));
-	//yawPitch = desiredYawPitch;
 	
 	transform->setYawPitchRoll(yawPitch.x, yawPitch.y);
 }
@@ -176,9 +175,8 @@ void TCompCameraPlayer::updatePosition(float delta) {
 		}
 	}
 	TCompTransform* transform = getTransform();
-	VEC3 desiredPos = transform->getPosition() - transform->getFront() * currentDistanceToTarget;
-	VEC3 finalPos = desiredPos; //TODO lerepe
-	transform->setPosition(finalPos);
+	VEC3 pos = transform->getPosition() - transform->getFront() * currentDistanceToTarget;
+	transform->setPosition(pos);
 }
 
 void TCompCameraPlayer::updateCenteringCamera(float delta) {
