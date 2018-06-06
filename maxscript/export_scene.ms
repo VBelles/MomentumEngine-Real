@@ -602,6 +602,19 @@ struct TSceneExporter (
 		fs.writeKeyValue "slope" 45
 	),
 	
+	fn exportLOD obj = (
+		fs.writeKeyValue "local_aabb" null
+		fs.writeComma()
+		fs.writeKeyValue "abs_aabb" null
+		fs.writeComma()
+		fs.writeKey "lod"
+		fs.beginObj()
+			fs.writeKeyValue "threshold" 0.08
+			fs.writeComma()
+			exportStringArray "children" #("children1", "children2")
+		fs.endObj()
+	),
+	
 	fn exportHierarchy parentName = (
 		fs.writeKey "hierarchy"
 		fs.beginObj()
@@ -1515,6 +1528,8 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
+
+TODO: Añadir local_aabb y abs_abb null a los objetos con lod.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
