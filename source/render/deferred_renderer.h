@@ -8,7 +8,8 @@ public:
     CRenderToTexture * rt_normals = nullptr;
     CRenderToTexture* rt_albedos = nullptr;;
     CRenderToTexture* rt_depth = nullptr;;
-    CRenderToTexture* rt_acc_light = nullptr;;
+	CRenderToTexture* rt_acc_light = nullptr;;
+	CRenderToTexture* rt_self_illum = nullptr;;
 
     void renderGBuffer();
     void renderGBufferDecals();

@@ -80,6 +80,7 @@ void PS_GBuffer(
 	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum  : SV_Target3
 ) {
 	//if the source texture for occlusion, roughness and metallic is the same, we must
 	//pick the appropriate channel for each one of them
@@ -94,6 +95,8 @@ void PS_GBuffer(
 	// Save roughness in the alpha coord of the N render target
 	float roughness = /*1.f - */txRoughness.Sample(samLinear, iTex0).r;
 	o_normal = encodeNormal(N, roughness);
+
+  	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
 
 	// REMOVE ALL THIS
 	// Si el material lo pide, sobreescribir los valores de la textura
@@ -187,6 +190,7 @@ void decodeGBuffer(
 	, out float  roughness
 	, out float3 reflected_dir
 	, out float3 view_dir
+   	, out float3 self_illum
 ) {
 
 	int3 ss_load_coords = uint3(iPosition.xy, 0);
@@ -208,6 +212,8 @@ void decodeGBuffer(
 	// and in the alpha of the normal, we stored the roughness
 	float  metallic = albedo.a;
 	roughness = N_rt.a;
+
+  	self_illum = txGBufferSelfIllum.Load(ss_load_coords).xyz;
 
 	// Apply gamma correction to albedo to bring it back to linear.
 	albedo.rgb = pow(abs(albedo.rgb), 2.2f);
@@ -284,9 +290,9 @@ float4 PS_ambient(
 {
 
 	// Declare some float3 to store the values from the GBuffer
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
 	float  roughness;
-	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir);
+	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
 	// if roughness = 0 -> I want to use the miplevel 0, the all-detailed image
 	// if roughness = 1 -> I will use the most blurred image, the 8-th mipmap, If image was 256x256 => 1x1
@@ -310,13 +316,12 @@ float4 PS_ambient(
 	  float g_AmbientLightIntensity = 1.0;
 
 	  float ao = txAO.Sample(samLinear, iUV).x;
-
-	  float4 self_illum = float4(0,0,0,0); //txGSelfIllum.Load(uint3(iPosition.xy,0));
+	  
 	  //return float4(roughness, roughness, roughness, 1 );
-
+		//return float4(self_illum, 1);
 	  float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity +
-								  albedo.xyz * irradiance * g_AmbientLightIntensity
-								  , 1.0f) + self_illum;
+								  albedo.xyz * irradiance * g_AmbientLightIntensity + self_illum
+								  , 1.0f);
 
 	  return final_color * global_ambient_adjustment * ao;
 }
@@ -346,9 +351,9 @@ float4 shade(
 	, bool   use_shadows
 ) {
 	// Decode GBuffer information
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
 	float  roughness;
-	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir);
+	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
 	// Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.;
@@ -372,7 +377,7 @@ float4 shade(
 
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
 	// att *= 1 / distance_to_light;
-
+	//return float4(self_illum, 1);
 	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;
 	return float4(final_color, 1);
 }
@@ -390,9 +395,9 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 float4 PS_dir_lights_player(in float4 iPosition : SV_Position) : SV_Target
 {
 	// Decode GBuffer information
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
 	float roughness;
-	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir);
+	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
 	// Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
 	float shadow_factor = computeShadowFactor(wPos);

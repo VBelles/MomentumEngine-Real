@@ -7,6 +7,7 @@ Texture2D    txAlbedo         SLOT(TS_ALBEDO);
 Texture2D    txNormal         SLOT(TS_NORMAL);
 Texture2D    txMetallic       SLOT(TS_METALLIC);
 Texture2D    txRoughness      SLOT(TS_ROUGHNESS);
+Texture2D    txSelfIllum      SLOT( TS_SELF_ILLUM );
 
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
@@ -20,6 +21,7 @@ Texture3D    txLUT            SLOT(TS_LUT_COLOR_GRADING);
 Texture2D    txGBufferAlbedos     SLOT(TS_DEFERRED_ALBEDOS);
 Texture2D    txGBufferNormals     SLOT(TS_DEFERRED_NORMALS);
 Texture2D    txGBufferLinearDepth SLOT(TS_DEFERRED_LINEAR_DEPTH);
+Texture2D    txGBufferSelfIllum   SLOT( TS_DEFERRED_SELF_ILLUM );
 Texture2D    txAccLights          SLOT(TS_DEFERRED_ACC_LIGHTS);
 Texture2D    txAO                 SLOT(TS_DEFERRED_AO);
 

@@ -6,6 +6,7 @@
     "albedo": "data/textures/formacion_rocosa1_low_default_BaseColor.dds",
     "normal": "data/textures/formacion_rocosa1_low_default_Normal.dds",
     "metallic": "data/textures/formacion_rocosa1_low_default_Metallic.dds",
-    "roughness": "data/textures/formacion_rocosa1_low_default_Roughness.dds"
+    "roughness": "data/textures/formacion_rocosa1_low_default_Roughness.dds",
+    "self_illum" : "data/textures/formacion_rocosa1_low_default_BaseColor.dds"
   }
 }
