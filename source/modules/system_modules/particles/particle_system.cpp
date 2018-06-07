@@ -163,35 +163,7 @@ namespace Particles {
 	}
 
 	void CSystem::emit() {
-		MAT44 world = MAT44::Identity;
-		QUAT rotation = QUAT::Identity;
-		if (_entity.isValid()) {
-			CEntity* e = _entity;
-
-			if (boneName != "" && boneId == -1) {
-				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);
-			}
-
-			MAT44 transform;
-			VEC3 translation;
-			if (boneId != -1) {
-				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getSkeleton()->getBone(boneId);
-				rotation = Cal2DX(bone->getRotationAbsolute());
-				transform = MAT44::CreateFromQuaternion(rotation);
-				translation = Cal2DX(bone->getTranslationAbsolute());
-			}
-			else {
-				TCompTransform* e_transform = e->get<TCompTransform>();
-				transform = e_transform->asMatrix();
-				translation = e_transform->getPosition();
-			}
-			VEC3 desiredDirection = transform.Backward() * offset.z + transform.Right() * offset.x;
-			desiredDirection.y = offset.y;
-			world = MAT44::CreateFromQuaternion(rotation) * MAT44::CreateTranslation(translation + desiredDirection);
-		}
-		else {
-			world = MAT44::CreateTranslation(position);
-		}
+		MAT44 world = getWorld();
 
 		for (int i = 0; i < _core->emission.count && _particles.size() < _core->life.maxParticles; ++i) {
 			TParticle particle;
@@ -262,4 +234,38 @@ namespace Particles {
 	void CSystem::setOffset(VEC3 offset) {
 		this->offset = offset;
 	}
+
+	MAT44 CSystem::getWorld() {
+		MAT44 world = MAT44::Identity;
+		QUAT rotation = QUAT::Identity;
+		if (_entity.isValid()) {
+			CEntity* e = _entity;
+
+			if (boneName != "" && boneId == -1) {
+				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);
+			}
+
+			MAT44 transform;
+			VEC3 translation;
+			if (boneId != -1) {
+				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getSkeleton()->getBone(boneId);
+				rotation = Cal2DX(bone->getRotationAbsolute());
+				transform = MAT44::CreateFromQuaternion(rotation);
+				translation = Cal2DX(bone->getTranslationAbsolute());
+			}
+			else {
+				TCompTransform* e_transform = e->get<TCompTransform>();
+				transform = e_transform->asMatrix();
+				translation = e_transform->getPosition();
+			}
+			VEC3 desiredDirection = transform.Backward() * offset.z + transform.Right() * offset.x;
+			desiredDirection.y = offset.y;
+			world = MAT44::CreateFromQuaternion(rotation) * MAT44::CreateTranslation(translation + desiredDirection);
+		}
+		else {
+			world = MAT44::CreateTranslation(position);
+		}
+		return world;
+	}
+
 }
