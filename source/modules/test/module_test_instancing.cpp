@@ -92,9 +92,9 @@ void CModuleTestInstancing::update(float delta)
     if (ImGui::TreeNode("Grass")) {
       bool changed = false;
       ImGui::Text("Num Instances: %ld / %ld. GPU:%d", grass_instances.size(), grass_instances.capacity(), grass_instances_mesh->getVertexsCount());
-      int num_changed = num * 100;
+      size_t num_changed = num * 100;
       if (ImGui::Button("Add 100")) {
-        for (int i = 0; i < num_changed; ++i) {
+        for (size_t i = 0; i < num_changed; ++i) {
           TGrassParticle new_instance;
           new_instance.pos = VEC3(randomFloat(-sz, sz), 0, randomFloat(-sz, sz));
           grass_instances.push_back(new_instance);

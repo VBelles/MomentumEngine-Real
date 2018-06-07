@@ -249,8 +249,8 @@ void TCompCameraPlayer::centerCamera() {
 					//mirar si nos va mejor ir al opuesto
 					float currentYaw, pitch;
 					getTransform()->getYawPitchRoll(&currentYaw, &pitch);
-					if (abs(suggestedYaw - currentYaw) > M_PI / 2 && abs(suggestedYaw - currentYaw) < M_PI * 1.5f) {
-						centeringYaw = suggestedYaw + M_PI;
+					if (abs(suggestedYaw - currentYaw) > (float)M_PI / 2 && abs(suggestedYaw - currentYaw) < (float)M_PI * 1.5f) {
+						centeringYaw = suggestedYaw + (float)M_PI;
 					}
 				}
 			}
@@ -275,8 +275,8 @@ void TCompCameraPlayer::suggestYawPitchDistance(float yaw, float pitch, float di
 		//mirar si nos va mejor ir al opuesto
 		float currentYaw, pitch;
 		getTransform()->getYawPitchRoll(&currentYaw, &pitch);
-		if (abs(yaw - currentYaw) > M_PI / 2 && abs(yaw - currentYaw) < M_PI * 1.5f) {
-			suggestedYaw = yaw + M_PI;
+		if (abs(yaw - currentYaw) > (float)M_PI / 2 && abs(yaw - currentYaw) < (float)M_PI * 1.5f) {
+			suggestedYaw = yaw + (float)M_PI;
 		}
 	}
 	suggestedPitch = pitch;

@@ -325,6 +325,6 @@ void CApp::doFrame() {
     Engine.render();*/
 
     double frameTime = time_since_last_render.elapsedAndReset();
-    Engine.update(frameTime);
+    Engine.update((float)frameTime);
     Engine.render();
 }

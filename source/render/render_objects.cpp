@@ -336,7 +336,7 @@ void renderSphere(CTransform* transform, float radius, VEC4 color) {
 			* t.asMatrix();
 		renderMesh(mesh, circle, color);
 		t.setYawPitchRoll(y, p, r);
-		r += M_PI_4;
+		r += (float)M_PI_4;
 	}
 }
 

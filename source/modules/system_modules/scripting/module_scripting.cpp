@@ -164,7 +164,7 @@ void CModuleScripting::doFile(std::string filename) {
 void CModuleScripting::throwEvent(LuaCall event, std::string params) {
 	std::string call;
 	if (callsFirstParamOnFunction.find(event) != callsFirstParamOnFunction.end()) {
-		int delimiterPos = params.find(",");
+		size_t delimiterPos = params.find(",");
 		std::string firstParam = params.substr(0, delimiterPos);
 		std::string otherParams = "";
 		if (delimiterPos >= 0) {

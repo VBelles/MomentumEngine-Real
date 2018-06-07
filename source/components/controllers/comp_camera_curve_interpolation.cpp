@@ -133,13 +133,13 @@ void TCompCameraCurveInterpolation::startInterpolating(
 	//endingOrbitYaw será startingOrbitYaw +- PI según startingYaw y endingYaw
 	float yawDifference = endingYaw - startingYaw;
 	int sign = 1;
-	if (abs(yawDifference) < M_PI) {
+	if (abs(yawDifference) < (float)M_PI) {
 		sign = yawDifference < 0 ? -1 : 1;
 	}
 	else {
 		sign = yawDifference < 0 ? 1 : -1;
 	}
-	endingOrbitYaw = startingOrbitYaw + M_PI * sign;
+	endingOrbitYaw = startingOrbitYaw + (float)M_PI * sign;
 
 	VEC2 startingFront2D = VEC2(startingFront.x, startingFront.z);
 	VEC2 endingFront2D = VEC2(endingFront.x, endingFront.z);

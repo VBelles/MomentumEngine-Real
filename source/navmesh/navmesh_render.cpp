@@ -28,7 +28,7 @@ void NavMeshDebugDrawDX::begin(duDebugDrawPrimitives prim, float size) {
 void NavMeshDebugDrawDX::vertex(const float* pos, unsigned int color) {
     //if (!firstRender) return;
 	assert(num_colored_vertices < MAX_VERTICES - 1);
-	colored_vertices[num_colored_vertices] = TVtxPosClr(VEC3(pos[0], pos[1], pos[2]), VEC4(color));
+	colored_vertices[num_colored_vertices] = TVtxPosClr(VEC3(pos[0], pos[1], pos[2]), VEC4((float)color));
 	++num_colored_vertices;
 }
 
@@ -36,7 +36,7 @@ void NavMeshDebugDrawDX::vertex(const float x, const float y, const float z,
                                 unsigned int color) {
     //if (!firstRender) return;
     assert(num_colored_vertices < MAX_VERTICES - 1);
-	colored_vertices[num_colored_vertices] = TVtxPosClr(VEC3(x, y, z), VEC4(color));
+	colored_vertices[num_colored_vertices] = TVtxPosClr(VEC3(x, y, z), VEC4((float)color));
 	++num_colored_vertices;
 }
 
