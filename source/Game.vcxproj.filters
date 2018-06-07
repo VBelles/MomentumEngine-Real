@@ -247,6 +247,7 @@
     <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
     <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_particles.cpp" />
+    <ClCompile Include="components\comp_slash.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -526,6 +527,7 @@
     <ClInclude Include="modules\system_modules\particles\module_particles.h" />
     <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_particles.h" />
+    <ClInclude Include="components\comp_slash.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
