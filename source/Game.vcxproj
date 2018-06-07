@@ -287,6 +287,7 @@
     <ClCompile Include="modules\game_modules\physics\basic_simulation_event_callback.cpp" />
     <ClCompile Include="modules\system_modules\scripting\module_scripting.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_manager.cpp" />
+    <ClCompile Include="modules\system_modules\scripting\scripting_particles.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_player.cpp" />
     <ClCompile Include="modules\system_modules\module_multithread.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_sound.cpp" />
@@ -551,6 +552,7 @@
     <ClInclude Include="modules\game_modules\physics\basic_simulation_event_callback.h" />
     <ClInclude Include="modules\system_modules\scripting\module_scripting.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_manager.h" />
+    <ClInclude Include="modules\system_modules\scripting\scripting_particles.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_player.h" />
     <ClInclude Include="modules\system_modules\module_multithread.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_sound.h" />

@@ -49,6 +49,13 @@ Funciones:
 	void stopSoundEvent(SOUND_EVENT, SOUND_STOP)
 	void emitSoundEvent(SOUND_EVENT)
 
+	int launchParticleAtPos(PARTICLE, float x, float y, float z)
+	int launchParticleAtEntity(PARTICLE, string entityName)
+	int launchParticleAtEntityOffset(PARTICLE, string entityName, float x, float y, float z)
+	int launchParticleAtBone(PARTICLE, string entityName, string bone)
+	int launchParticleAtBoneOffset(PARTICLE, string&entityName, string bone, float x, float y, float z)
+	void killParticle(int particle_handle, float fade_out)
+
 Constantes:
 	PLAYER_NAME
 	PLAYER_CAMERA
@@ -99,3 +106,8 @@ Constantes:
 	SOUND_EVENT_TEST
 	SOUND_STOP_ALLOWFADEOUT
 	SOUND_STOP_IMMEDIATE
+
+	PARTICLE_ANIMATED_FIRE
+	PARTICLE_SNOW
+	PARTICLE_SPARKS
+	PARTICLE_WILDFIRE
