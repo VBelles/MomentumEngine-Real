@@ -5,6 +5,9 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/grass/grass.dds"
+    "albedo": "data/textures/grass/grass.dds",
+    "normal": "data/textures/black.dds",
+    "metallic": "data/textures/black.dds",
+    "roughness": "data/textures/black.dds"
   }
 }
