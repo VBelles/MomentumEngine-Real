@@ -2,6 +2,7 @@
 
 #include "components/comp_base.h"
 
+class TCompTransform;
 
 class TCompSlash: public TCompBase {
 private:
@@ -11,6 +12,8 @@ private:
 	VEC3 up;
 	float width;
 
+	CHandle targetTransformHandle;
+	TCompTransform * getTargetTransform();
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -19,6 +22,8 @@ public:
     void debugInMenu();
     void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
+
+	void onAllScenesCreated(const TMsgAllScenesCreated & msg);
 
 	void setEnable(bool enabled);
 };

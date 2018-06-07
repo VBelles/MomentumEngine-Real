@@ -23,6 +23,7 @@ void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	assert(entity);
 	targetTransformHandle = entity->get<TCompTransform>();
 	assert(targetTransformHandle.isValid());
+
 }
 
 void TCompSlash::update(float delta) {
