@@ -31,7 +31,8 @@ void VS(
   float z_start_fadeout = 150; 
   float alpha = 1.0 - smoothstep( z_start_fadeout, z_start_fadeout + 50, length ( iCenter.xyz - camera_pos.xyz ) );
 
-  float scale_factor = 2.0f + 2.0f * unit_rand_val;
+  float scale_factor = 1.0f;
+  scale_factor = scale_factor + scale_factor * unit_rand_val;
 
   local_pos *= scale_factor * alpha;
 
@@ -67,7 +68,7 @@ void PS(
   , out float4 o_albedo : SV_Target0
   , out float4 o_normal : SV_Target1
   , out float1 o_depth  : SV_Target2
-
+  , out float4 o_self_illum : SV_Target3
 )
 {
   float4 texture_color = txAlbedo.Sample(samLinear, iUV) * iColor;
@@ -78,9 +79,9 @@ void PS(
   o_albedo.xyz = texture_color.xyz;
   o_albedo.a = 0.;
 
-  //float shadow = computeShadowFactor( iWorldPos );
-  //texture_color.xyz *= shadow;
-  //texture_color.a = 1;
+  // float shadow = computeShadowFactor( iWorldPos );
+  // texture_color.xyz *= shadow;
+  // texture_color.a = 1;
 
   // Fake values for metallic, roughness and N
   float3 N = float3(0,1,0);
@@ -92,6 +93,8 @@ void PS(
   // Compute the Z in linear space, and normalize it in the range 0...1
   float3 camera2wpos = iWorldPos - camera_pos;
   o_depth = dot( camera_front.xyz, camera2wpos ) / camera_zfar;
+
+  o_self_illum = txSelfIllum.Sample(samLinear, iUV);
 }
 
 //--------------------------------------------------------------------------------------

@@ -365,7 +365,7 @@ float4 shade(
 	float3 light_dir = light_dir_full / distance_to_light;
 
 	float  NdL = saturate(dot(N, light_dir));
-	float  NdV = saturate(dot(N, view_dir));
+	float  NdV = lerp(dot(N, view_dir), 1, 0.5);//saturate(dot(N, view_dir));
 	float3 h = normalize(light_dir + view_dir); // half vector
 
 	float  NdH = saturate(dot(N, h));
