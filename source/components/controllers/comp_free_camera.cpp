@@ -21,7 +21,7 @@ void TCompFreeCamera::load(const json& j, TEntityParseContext& ctx) {
 	movementSpeed = j.value("movement_speed", movementSpeed);
 	speedMultiplier = j.value("speed_multiplier", speedMultiplier);
 	rotationSpeed = j.count("rotation_speed") ? loadVEC2(j["rotation_speed"]) : rotationSpeed;
-	pitchRange = j.count("pitch_range") ? loadVEC2(j["pitch_range"]) *  ((float)M_PI / 180.f) : pitchRange;
+	pitchRange = j.count("pitch_range") ? loadVEC2(j["pitch_range"]) * ((float)M_PI / 180.f) : pitchRange;
 }
 
 void TCompFreeCamera::onCreated(const TMsgEntityCreated& msg) {

@@ -57,6 +57,7 @@ void CModuleSound::releaseEvent(std::string event) {
 		eventInstances.erase(event);
 	}
 	catch (const std::out_of_range& e) {
+        UNREFERENCED_PARAMETER(e);
 		dbg("Releasing an uninstanced event\n");
 	}
 }
@@ -66,6 +67,7 @@ void CModuleSound::startEvent(std::string event) {
 		eventInstances.at(event.c_str())->start();
 	}
 	catch (const std::out_of_range& e) {
+        UNREFERENCED_PARAMETER(e);
 		dbg("Starting an uninstanced event\n");
 	}
 }
@@ -75,6 +77,7 @@ void CModuleSound::stopEvent(std::string event, FMOD_STUDIO_STOP_MODE mode) {
 		eventInstances.at(event.c_str())->stop(mode);
 	}
 	catch (const std::out_of_range& e) {
+        UNREFERENCED_PARAMETER(e);
 		dbg("Stoping an uninstanced event\n");
 	}
 }
@@ -87,6 +90,3 @@ void CModuleSound::emitEvent(std::string event) {
 	eventInstance->start();
 	eventInstance->release();
 }
-
-
-
