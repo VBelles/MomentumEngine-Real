@@ -5,6 +5,7 @@
 #include "comp_player_model.h"
 #include "modules/game_modules/game/respawner.h"
 #include "modules/game_modules/game/module_game.h"
+#include <algorithm>
 
 DECL_OBJ_MANAGER("collectable_manager", TCompCollectableManager);
 
@@ -23,16 +24,19 @@ void TCompCollectableManager::update(float delta) {
 
 void TCompCollectableManager::addUniqueCollectable(Type type, std::string id) {
 	if (uniqueObjectsCollected.find(type) != uniqueObjectsCollected.end()) {
-		uniqueObjectsCollected[type].push_back(id);
 		addCollectable(type, 1);
 		//llamar a module uniques si el tipo es coin, chrysalis...
+		bool isUnique = false;
 		switch (type) {
 		case Type::CHRYSALIS:
-			EngineUniques.setChrysalisTaken(id, true);
+			isUnique = EngineUniques.setChrysalisTaken(id, true);
 			break;
 		case Type::COIN:
-			EngineUniques.setCoinTaken(id, true);
+			isUnique = EngineUniques.setCoinTaken(id, true);
 			break;
+		}
+		if (isUnique) {
+			uniqueObjectsCollected[type].push_back(id);
 		}
 	}
 }
@@ -54,18 +58,22 @@ bool TCompCollectableManager::spendCoins(int number) {
 		return false;
 	}
 	objectsCollected[Type::COIN] -= number;
+
 	//Avisar a ModuleUniques
-	for (int i = 0; i < number; i++) {
-		UniqueElement* element = EngineUniques.getUniqueCoin(uniqueObjectsCollected[Type::COIN][i]);
-		((CModuleGame*)(EngineModules.getModule("game")))->getRespawner()->addElementToSpawn(
-			uniqueObjectsCollected[Type::COIN][i], 
-			PREFAB_COIN, 
-			element->position,
-			timeToRespawnCoin
-		);
-		EngineUniques.setCoinTaken(uniqueObjectsCollected[Type::COIN][i], false);
+	int nUniquesToErase = std::min(number, (int)uniqueObjectsCollected[Type::COIN].size());
+	if (nUniquesToErase > 0) {
+		for (int i = 0; i < nUniquesToErase; i++) {
+			UniqueElement* element = EngineUniques.getUniqueCoin(uniqueObjectsCollected[Type::COIN][i]);
+			((CModuleGame*)(EngineModules.getModule("game")))->getRespawner()->addElementToSpawn(
+				uniqueObjectsCollected[Type::COIN][i],
+				PREFAB_COIN,
+				element->position,
+				timeToRespawnCoin
+			);
+			EngineUniques.setCoinTaken(uniqueObjectsCollected[Type::COIN][i], false);
+		}
+		uniqueObjectsCollected[Type::COIN].erase(uniqueObjectsCollected[Type::COIN].begin(), uniqueObjectsCollected[Type::COIN].begin() + nUniquesToErase - 1);
 	}
-	uniqueObjectsCollected[Type::COIN].erase(uniqueObjectsCollected[Type::COIN].begin(), uniqueObjectsCollected[Type::COIN].begin() + number - 1);
 
 	return true;
 }
@@ -87,13 +95,11 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	switch (msg.type) {
 	case Type::CHRYSALIS:
 		collectable->collect();
-		uniqueObjectsCollected[Type::CHRYSALIS].push_back(entity->getName());
-		objectsCollected[Type::CHRYSALIS]++;
+		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		break;
 	case Type::COIN:
 		collectable->collect();
-		uniqueObjectsCollected[Type::COIN].push_back(entity->getName());
-		objectsCollected[Type::COIN]++;
+		addUniqueCollectable(Type::COIN, entity->getName());
 		break;
 	default:
 		dbg("Collected unknown object %d\n", msg.type);

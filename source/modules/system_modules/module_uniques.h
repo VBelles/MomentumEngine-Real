@@ -35,8 +35,8 @@ public:
 	UniqueElement* getUniqueAltar(std::string id);
 	UniqueElement* getUniqueEvent(std::string id);
 
-	void setCoinTaken(std::string id, bool isTaken);
-	void setChrysalisTaken(std::string id, bool isTaken);
-	void setAltarBroken(std::string id, bool isBroken);
-	void setEventTriggered(std::string id, bool isTriggered);
+	bool setCoinTaken(std::string id, bool isTaken);
+	bool setChrysalisTaken(std::string id, bool isTaken);
+	bool setAltarBroken(std::string id, bool isBroken);
+	bool setEventTriggered(std::string id, bool isTriggered);
 };

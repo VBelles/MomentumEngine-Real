@@ -121,38 +121,46 @@ UniqueElement* CModuleUniques::getUniqueEvent(std::string id) {
 	return nullptr;
 }
 
-void CModuleUniques::setCoinTaken(std::string id, bool isTaken) {
+bool CModuleUniques::setCoinTaken(std::string id, bool isTaken) {
 	if (coins.find(id) != coins.end()) {
 		coins[id].done = isTaken;
+		return true;
 	}
 	else {
 		dbg("No encuentro este unique!!\n");
+		return false;
 	}
 }
 
-void CModuleUniques::setChrysalisTaken(std::string id, bool isTaken) {
+bool CModuleUniques::setChrysalisTaken(std::string id, bool isTaken) {
 	if (chrysalides.find(id) != chrysalides.end()) {
 		chrysalides[id].done = isTaken;
+		return true;
 	}
 	else {
 		dbg("No encuentro este unique!!\n");
+		return false;
 	}
 }
 
-void CModuleUniques::setAltarBroken(std::string id, bool isBroken) {
+bool CModuleUniques::setAltarBroken(std::string id, bool isBroken) {
 	if (altars.find(id) != altars.end()) {
 		altars[id].done = isBroken;
+		return true;
 	}
 	else {
 		dbg("No encuentro este unique!!\n");
+		return false;
 	}
 }
 
-void CModuleUniques::setEventTriggered(std::string id, bool isTriggered) {
+bool CModuleUniques::setEventTriggered(std::string id, bool isTriggered) {
 	if (events.find(id) != events.end()) {
 		events[id].done = isTriggered;
+		return true;
 	}
 	else {
 		dbg("No encuentro este unique!!\n");
+		return false;
 	}
 }
