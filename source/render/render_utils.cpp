@@ -416,7 +416,6 @@ struct CSamplers {
         if (FAILED(hr)) return false;
         setDXName(all_samplers[SAMPLER_PCF_SHADOWS_WHITE_BORDER], "SAMPLER_PCF_SHADOWS_WHITE_BORDER");
 
-        /*
         ZeroMemory(&sampDesc, sizeof(sampDesc));
         sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
         sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
@@ -427,7 +426,6 @@ struct CSamplers {
         if (FAILED(hr))
         return false;
         setDXName(all_samplers[SAMPLER_CLAMP_POINT], "CLAMP_POINT");
-        */
 
         return true;
     }
