@@ -25,7 +25,7 @@ ReleasePowerGroundActionState::ReleasePowerGroundActionState(StateManager* state
 
 void ReleasePowerGroundActionState::update(float delta) {
 	PxExtendedVec3 cctPos = getCollider()->controller->getPosition();
-	getBlurRadial()->setCenterInWorldCoordinates(VEC3(cctPos.x, cctPos.y, cctPos.z));
+	getBlurRadial()->setCenterInWorldCoordinates(VEC3((float)cctPos.x, (float)cctPos.y, (float)cctPos.z));
 	deltaMovement = VEC3::Zero;
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		if (!stateManager->isChangingBaseState) {
