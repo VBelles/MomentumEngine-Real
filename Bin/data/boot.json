@@ -17,7 +17,8 @@
     "data/scenes/milestone2-triggers.scene",
     "data/scenes/milestone2-trimesh.scene",
     "data/scenes/particles.scene",
-    "data/scenes/milestone2_camaras_definitivas.scene"
+    "data/scenes/milestone2_camaras_definitivas.scene",
+    "data/scenes/test_instancing.scene"
   ],
   "unused_scenes": [
     "data/scenes/testExporter-0.scene",

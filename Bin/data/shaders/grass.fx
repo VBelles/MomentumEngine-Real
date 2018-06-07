@@ -67,7 +67,7 @@ void PS(
   , out float4 o_albedo : SV_Target0
   , out float4 o_normal : SV_Target1
   , out float1 o_depth  : SV_Target2
-
+  //, out float4 o_self_illum : SV_Target3
 )
 {
   float4 texture_color = txAlbedo.Sample(samLinear, iUV) * iColor;
@@ -92,6 +92,8 @@ void PS(
   // Compute the Z in linear space, and normalize it in the range 0...1
   float3 camera2wpos = iWorldPos - camera_pos;
   o_depth = dot( camera_front.xyz, camera2wpos ) / camera_zfar;
+
+  //o_self_illum = txSelfIllum.Sample(samLinear, iUV);
 }
 
 //--------------------------------------------------------------------------------------
