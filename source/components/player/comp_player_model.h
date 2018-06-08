@@ -31,6 +31,7 @@ struct MoveState {
 	std::vector<HitState> topHits;
 	std::vector<HitState> botHits;
 	std::vector<HitState> sideHits;
+	std::vector<HitState> allHits;
 };
 
 class TCompPlayerModel : public TCompBase {

@@ -42,6 +42,7 @@ public:
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
 	void onMove(MoveState& moveState) override;
+	bool hugWall(const HitState & hitstate);
 	void onDamage(const TMsgAttackHit& msg) override;
 
 	virtual void onLanding();
