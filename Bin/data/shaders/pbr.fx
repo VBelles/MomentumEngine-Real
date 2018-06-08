@@ -321,10 +321,24 @@ float4 PS_ambient(
 	  //return float4(roughness, roughness, roughness, 1 );
 		//return float4(self_illum, 1);
 	  float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity +
-								  albedo.xyz * irradiance * g_AmbientLightIntensity + (self_illum.xyz * self_illum.a)
+								  albedo.xyz * irradiance * g_AmbientLightIntensity
 								  , 1.0f);
 
-	  return final_color * global_ambient_adjustment * ao;
+	float3 light_dir_full = -light_front;//-light_front;  //float3( 0, 1, 0 ); //light_pos.xyz - wPos;
+	float  distance_to_light = length(light_dir_full);
+	float3 light_dir = light_dir_full / distance_to_light;
+	float intensity = dot(normalize(light_dir), N);
+	if (intensity > 0.9){
+		final_color = final_color * global_ambient_adjustment * ao;
+	}
+	else if (intensity > 0.5){
+		final_color = final_color * global_ambient_adjustment * ao * float4(0.9,0.9,0.9,1);
+	}
+	else{
+		final_color = final_color * global_ambient_adjustment * ao * float4(0.8,0.8,0.8,1);
+	}
+	return final_color  + float4((self_illum.xyz * self_illum.a),0);
+	//return final_color * global_ambient_adjustment * ao;
 }
 
 //--------------------------------------------------------------------------------------
