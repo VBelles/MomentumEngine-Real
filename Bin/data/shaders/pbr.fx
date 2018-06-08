@@ -190,7 +190,7 @@ void decodeGBuffer(
 	, out float  roughness
 	, out float3 reflected_dir
 	, out float3 view_dir
-   	, out float3 self_illum
+   	, out float4 self_illum
 ) {
 
 	int3 ss_load_coords = uint3(iPosition.xy, 0);
@@ -213,7 +213,7 @@ void decodeGBuffer(
 	float  metallic = albedo.a;
 	roughness = N_rt.a;
 
-  	self_illum = txGBufferSelfIllum.Load(ss_load_coords).xyz;
+  	self_illum = txGBufferSelfIllum.Load(ss_load_coords);
 
 	// Apply gamma correction to albedo to bring it back to linear.
 	albedo.rgb = pow(abs(albedo.rgb), 2.2f);
@@ -290,7 +290,8 @@ float4 PS_ambient(
 {
 
 	// Declare some float3 to store the values from the GBuffer
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float4 self_illum;
 	float  roughness;
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
@@ -320,7 +321,7 @@ float4 PS_ambient(
 	  //return float4(roughness, roughness, roughness, 1 );
 		//return float4(self_illum, 1);
 	  float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity +
-								  albedo.xyz * irradiance * g_AmbientLightIntensity + self_illum
+								  albedo.xyz * irradiance * g_AmbientLightIntensity + (self_illum.xyz * self_illum.a)
 								  , 1.0f);
 
 	  return final_color * global_ambient_adjustment * ao;
@@ -351,7 +352,8 @@ float4 shade(
 	, bool   use_shadows
 ) {
 	// Decode GBuffer information
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float4 self_illum;
 	float  roughness;
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
@@ -378,7 +380,7 @@ float4 shade(
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
 	// att *= 1 / distance_to_light;
 	//return float4(self_illum, 1);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor + (self_illum.xyz * self_illum.a);
 	return float4(final_color, 1);
 }
 
@@ -395,7 +397,8 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 float4 PS_dir_lights_player(in float4 iPosition : SV_Position) : SV_Target
 {
 	// Decode GBuffer information
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float4 self_illum;
 	float roughness;
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
