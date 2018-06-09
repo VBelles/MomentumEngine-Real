@@ -3,6 +3,7 @@
 #include "components/comp_base.h"
 
 class TCompTransform;
+class TCompRender;
 class CRenderMesh;
 
 class TCompSlash: public TCompBase {
@@ -10,7 +11,7 @@ private:
 	float width = 0.f;
 	float time = 0.f;
 	float minVertexDistanceSquared = 0.f;
-	float maxVertex = 0.f;
+	int maxVertex = 0;
 	VEC3 offset;
 	std::string targetName;
 	CHandle targetTransformHandle;
@@ -18,7 +19,6 @@ private:
 
 	bool enabled = false;
 
-	//std::vector<VEC3> positions;
 	std::list<VEC3> positions;
 
 	CRenderMesh* mesh;

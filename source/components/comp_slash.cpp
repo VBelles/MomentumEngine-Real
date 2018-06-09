@@ -21,9 +21,11 @@ void TCompSlash::load(const json& j, TEntityParseContext& ctx) {
 	width = j.value("width", width);
 	minVertexDistanceSquared = j.value("min_vertex_distance", sqrt(minVertexDistanceSquared));
 	minVertexDistanceSquared *= minVertexDistanceSquared;
+	maxVertex = j.value("max_vertex", maxVertex);
+
 
 	mesh = new CRenderMesh();
-	mesh->create(nullptr, sizeof(float) * 3 * maxVertex, "PosClr", CRenderMesh::eTopology::LINE_LIST, nullptr, 0, 0, nullptr, true);
+	mesh->create(nullptr, sizeof(float) * 3 * maxVertex, "PosClr", CRenderMesh::eTopology::POINT_LIST, nullptr, 0, 0, nullptr, true);
 }
 
 void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
@@ -40,7 +42,7 @@ void TCompSlash::update(float delta) {
 
 	TCompTransform* targetTransform = getTargetTransform();
 	VEC3 position = targetTransform->getPosition();
-	VEC3& last = positions.back;
+	VEC3 last = positions.back();
 	if (VEC3::DistanceSquared(position, last) >= minVertexDistanceSquared) {
 		positions.push_back(position);
 		if (positions.size() > maxVertex) {

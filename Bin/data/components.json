@@ -43,8 +43,9 @@
     "light_dir",
     "render",
     "lod",
+    "spikes",
     "particles",
-    "spikes"
+    "slash"
   ],
   "render_debug" : [
     "transform",
