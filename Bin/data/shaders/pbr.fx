@@ -80,7 +80,7 @@ void PS_GBuffer(
 	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
-	, out float4 o_selfIllum  : SV_Target3
+	, out float4 o_selfIllum : SV_Target3
 ) {
 	//if the source texture for occlusion, roughness and metallic is the same, we must
 	//pick the appropriate channel for each one of them
@@ -96,7 +96,7 @@ void PS_GBuffer(
 	float roughness = /*1.f - */txRoughness.Sample(samLinear, iTex0).r;
 	o_normal = encodeNormal(N, roughness);
 
-  	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
+	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
 
 	// REMOVE ALL THIS
 	// Si el material lo pide, sobreescribir los valores de la textura
@@ -190,7 +190,7 @@ void decodeGBuffer(
 	, out float  roughness
 	, out float3 reflected_dir
 	, out float3 view_dir
-   	, out float3 self_illum
+	, out float4 self_illum
 ) {
 
 	int3 ss_load_coords = uint3(iPosition.xy, 0);
@@ -213,7 +213,7 @@ void decodeGBuffer(
 	float  metallic = albedo.a;
 	roughness = N_rt.a;
 
-  	self_illum = txGBufferSelfIllum.Load(ss_load_coords).xyz;
+	self_illum = txGBufferSelfIllum.Load(ss_load_coords);
 
 	// Apply gamma correction to albedo to bring it back to linear.
 	albedo.rgb = pow(abs(albedo.rgb), 2.2f);
@@ -290,7 +290,8 @@ float4 PS_ambient(
 {
 
 	// Declare some float3 to store the values from the GBuffer
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float4 self_illum;
 	float  roughness;
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
@@ -309,21 +310,35 @@ float4 PS_ambient(
 	float3 irradiance_texture = txIrradianceMap.Sample(samLinear, N).xyz;
 	float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 	//return float4( irradiance, 1 );
-	  // How much the environment we see
-	  float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
+	// How much the environment we see
+	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
 
-	  float g_ReflectionIntensity = 1.0;
-	  float g_AmbientLightIntensity = 1.0;
+	float g_ReflectionIntensity = 1.0;
+	float g_AmbientLightIntensity = 1.0;
 
-	  float ao = txAO.Sample(samLinear, iUV).x;
-	  
-	  //return float4(roughness, roughness, roughness, 1 );
-		//return float4(self_illum, 1);
-	  float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity +
-								  albedo.xyz * irradiance * g_AmbientLightIntensity + self_illum
-								  , 1.0f);
+	float ao = txAO.Sample(samLinear, iUV).x;
 
-	  return final_color * global_ambient_adjustment * ao;
+	//return float4(roughness, roughness, roughness, 1 );
+	//return float4(self_illum, 1);
+	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity +
+								albedo.xyz * irradiance * g_AmbientLightIntensity
+								, 1.0f);
+
+	float3 light_dir_full = -light_front;//-light_front;  //float3( 0, 1, 0 ); //light_pos.xyz - wPos;
+	float  distance_to_light = length(light_dir_full);
+	float3 light_dir = light_dir_full / distance_to_light;
+	float intensity = dot(normalize(light_dir), N);
+	if (intensity > 0.9) {
+		final_color = final_color * global_ambient_adjustment * ao;
+	}
+	else if (intensity > 0.5) {
+		final_color = final_color * global_ambient_adjustment * ao * float4(0.9,0.9,0.9,1);
+	}
+	else {
+		final_color = final_color * global_ambient_adjustment * ao * float4(0.8,0.8,0.8,1);
+	}
+	return final_color + float4((self_illum.xyz * self_illum.a),0);
+	//return final_color * global_ambient_adjustment * ao;
 }
 
 //--------------------------------------------------------------------------------------
@@ -351,7 +366,8 @@ float4 shade(
 	, bool   use_shadows
 ) {
 	// Decode GBuffer information
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float4 self_illum;
 	float  roughness;
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
@@ -378,7 +394,7 @@ float4 shade(
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
 	// att *= 1 / distance_to_light;
 	//return float4(self_illum, 1);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor + (self_illum.xyz * self_illum.a);
 	return float4(final_color, 1);
 }
 
@@ -395,7 +411,8 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 float4 PS_dir_lights_player(in float4 iPosition : SV_Position) : SV_Target
 {
 	// Decode GBuffer information
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir, self_illum;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float4 self_illum;
 	float roughness;
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
@@ -441,7 +458,7 @@ void VS_skybox(
 // --------------------------------------------------------
 float4 PS_skybox(in float4 iPosition : SV_Position) : SV_Target
 {
-  float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
-  float4 skybox_color = txEnvironmentMap.Sample(samLinear, view_dir);
-  return float4(skybox_color.xyz,1) * global_ambient_adjustment;
+	float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
+	float4 skybox_color = txEnvironmentMap.Sample(samLinear, view_dir);
+	return float4(skybox_color.xyz,1) * global_ambient_adjustment;
 }

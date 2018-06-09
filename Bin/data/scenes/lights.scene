@@ -9,7 +9,7 @@
 			},
 			"light_dir": {
 				"intensity": 5,
-				"color" :  "1 1 1 1",
+				"color" :  "1 0.87 0.67 1",
 				"projector" : "data/textures/white.dds",
 				"isOrthographic" : true,
 				"orthographicWidth" : 200,
