@@ -3,17 +3,28 @@
 #include "components/comp_base.h"
 
 class TCompTransform;
+class CRenderMesh;
 
 class TCompSlash: public TCompBase {
 private:
+	float width = 0.f;
+	float time = 0.f;
+	float minVertexDistanceSquared = 0.f;
+	float maxVertex = 0.f;
+	VEC3 offset;
 	std::string targetName;
+	CHandle targetTransformHandle;
+	CHandle renderHandle;
 
 	bool enabled = false;
-	VEC3 up;
-	float width;
 
-	CHandle targetTransformHandle;
-	TCompTransform * getTargetTransform();
+	//std::vector<VEC3> positions;
+	std::list<VEC3> positions;
+
+	CRenderMesh* mesh;
+
+	TCompTransform* getTargetTransform();
+	TCompRender* getRender();
 
 public:
 	DECL_SIBLING_ACCESS();
