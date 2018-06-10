@@ -34,7 +34,6 @@ void TCompPurity::onPurityChange(const TMsgPurityChange& msg) {
 		collider->setupFiltering(collider->config.group, collider->config.mask | EnginePhysics.Player);
 		render->meshes[0].enabled = true;
 		render->meshes[1].enabled = false;
-		render->refreshMeshesInRenderManager();
 	}
 	else { //Player can NOT stand on
 		collider->setupFiltering(collider->config.group, collider->config.mask & !EnginePhysics.Player);

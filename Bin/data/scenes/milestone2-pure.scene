@@ -273,8 +273,8 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plataforma_pura_aristas.mesh",
-          "materials": ["data/materials/pure.material"],
+          "mesh": "data/meshes/plataforma_puraNO.mesh",
+          "materials": ["data/materials/pure_platform_special.material"],
           "enabled": false
         }
       ],
