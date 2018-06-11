@@ -19,9 +19,9 @@ private:
 
 	bool enabled = false;
 
-	std::list<VEC3> positions;
+	std::list<CTransform> points;
 
-	CRenderMesh* mesh;
+	CRenderMesh* mesh = nullptr;
 
 	TCompTransform* getTargetTransform();
 	TCompRender* getRender();

@@ -22,10 +22,6 @@ void TCompSlash::load(const json& j, TEntityParseContext& ctx) {
 	minVertexDistanceSquared = j.value("min_vertex_distance", sqrt(minVertexDistanceSquared));
 	minVertexDistanceSquared *= minVertexDistanceSquared;
 	maxVertex = j.value("max_vertex", maxVertex);
-
-
-	mesh = new CRenderMesh();
-	mesh->create(nullptr, sizeof(float) * 3 * maxVertex, "PosClr", CRenderMesh::eTopology::POINT_LIST, nullptr, 0, 0, nullptr, true);
 }
 
 void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
@@ -40,18 +36,34 @@ void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 void TCompSlash::update(float delta) {
 	if (!enabled) return;
 
-	TCompTransform* targetTransform = getTargetTransform();
-	VEC3 position = targetTransform->getPosition();
-	VEC3 last = positions.back();
-	if (VEC3::DistanceSquared(position, last) >= minVertexDistanceSquared) {
-		positions.push_back(position);
-		if (positions.size() > maxVertex) {
-			positions.pop_front();
+	CTransform transform = *getTargetTransform();
+	if (points.size() > 0) {
+		CTransform last = points.back();
+		if (VEC3::DistanceSquared(transform.getPosition(), last.getPosition()) >= minVertexDistanceSquared) {
+			points.push_back(transform);
+			if (points.size() > maxVertex) {
+				//points.pop_front();
+			}
 		}
 	}
+	else {
+		points.push_back(transform);
+	}
 
-	std::vector<VEC3> vertexData(std::begin(positions), std::end(positions));
-	mesh->updateFromCPU(&vertexData[0], sizeof(float) * 3 * maxVertex);
+	std::vector<TVtxPosClr> vertices;
+	vertices.resize(points.size() * 2);
+	VEC4 clr(1, 0, 0, 1);
+	int i = 0;
+	for (const CTransform& t : points) {
+		VEC3 increment = t.getLeft() * width * 0.5;
+		VEC3 pos = t.getPosition();
+		vertices[i++] = TVtxPosClr(pos + increment, clr);
+		vertices[i++] = TVtxPosClr(pos - increment, clr);
+	}
+
+	SAFE_DELETE(mesh);
+	mesh = new CRenderMesh();
+	mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::TRIANGLE_STRIP);
 	getRender()->meshes[0].mesh = mesh;
 	getRender()->refreshMeshesInRenderManager();
 
