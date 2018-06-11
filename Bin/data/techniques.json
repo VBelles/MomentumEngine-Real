@@ -484,7 +484,8 @@
     "priority": 390,
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds",
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
+      "irradiance": "data/textures/cubemaps/irradiance.dds",
+      "noise": "data/textures/noise_cloud3.dds"
     }
   }
 
