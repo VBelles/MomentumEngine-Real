@@ -55,27 +55,27 @@ float4 PS(
 )  : SV_Target0
 {
 	// Obtain a random value associated to each pos in the surface
-   //float4 noise0 = txNoiseMap.Sample( samLinear, iTex0 * 2.0 + 0.8 * global_world_time * float2(.5,0)) * 2 - 1;      // -1..1
-   //float4 noise1 = txNoiseMap.Sample( samLinear, iTex0 * 8.0 + 0.7 * global_world_time * float2(.5,0.1)) * 2 - 1;      // -1..1
-   //float4 noise2 = txNoiseMap.Sample( samLinear, iTex0 * 16 + 0.7 * global_world_time * float2(.55,-0.123)) * 2 - 1;      // -1..1
+	float4 noise0 = txNoiseMap.Sample( samLinear, iTex0 * 2.0 + 0.2 * global_world_time * float2(.5,0)) * 2 - 1;      // -1..1
+	float4 noise1 = txNoiseMap.Sample( samLinear, iTex0 * 8.0 + 0.1 * global_world_time * float2(.5,0.1)) * 2 - 1;      // -1..1
+	float4 noise2 = txNoiseMap.Sample( samLinear, iTex0 * 16 + 0.1 * global_world_time * float2(.55,-0.123)) * 2 - 1;      // -1..1
 
-  // Add 3 octaves to break pattern repetition
-  //float2 noiseF = noise0.xy + noise1.xy * 0.5 + noise2.xy * .25;
+	// Add 3 octaves to break pattern repetition
+	float2 noiseF = noise0.xy + noise1.xy * 0.5 + noise2.xy * .25;
 
 	float3 normal = computeNormalMap(iNormal, iTangent, iTex0);
 	float3 noise = normal * 0.01f;
 
 	float4 albedo = txAlbedo.Sample(samClampLinear, iTex0);
 	albedo.rgb = saturate(albedo.rgb * 1.7);
-	albedo.r += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z );
-	albedo.g += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z );
-	albedo.b += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z );
+	albedo.r += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z ) + 0.3 * sin(noiseF.x);
+	albedo.g += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z ) + 0.3 * sin(noiseF.x);
+	albedo.b += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z ) + 0.3 * sin(noiseF.x);
 
 	float4 pos_proj_space = mul(float4(iWorldPos, 1), camera_view_proj);
 	float3 pos_homo_space = pos_proj_space.xyz / pos_proj_space.w;    // -1..1
 	float2 pos_camera_unit_space = float2(
-		(1 + pos_homo_space.x) * 0.5 + 0.0005 * (1 - sin( 3 * global_world_time + iWorldPos.x + iWorldPos.z + iWorldPos.y)), 
-		(1 - pos_homo_space.y) * 0.5 + 0.0005 * (1 - sin( 5 * global_world_time + iWorldPos.x + iWorldPos.z + iWorldPos.y))
+		(1 + pos_homo_space.x) * 0.5 + 0.0005 * (1 - sin( 3 * global_world_time + iWorldPos.x + iWorldPos.z + iWorldPos.y)) + 0.05 * noiseF.x, 
+		(1 - pos_homo_space.y) * 0.5 + 0.0005 * (1 - sin( 5 * global_world_time + iWorldPos.x + iWorldPos.z + iWorldPos.y)) + 0.05 * noiseF.y
 		);
 
 	float4 background_color;
