@@ -3,6 +3,7 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/lila_coin.dds"
+    "albedo": "data/textures/lila_coin.dds",
+    "self_illum" : "data/textures/lila_coin.dds"    
   }
 }

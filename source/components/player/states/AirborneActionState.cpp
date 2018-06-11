@@ -124,51 +124,15 @@ void AirborneActionState::onReleasePowerButton() {
 }
 
 void AirborneActionState::onMove(MoveState& moveState) {
-	//Hugging wall
-	for (HitState& hitState : moveState.sideHits) {
-		if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hitState.hit.worldNormal) < 0.8f
-			|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
-
-			VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
-
-			VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(stateManager->getState()->getMovementInput());
-			if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
-				|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
-				float pitch = asin(-hitNormal.y);
-				if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
-					HuggingWallActionState* actionState = (HuggingWallActionState*) stateManager->getState(HuggingWall);
-					actionState->setHuggingWallNormal(hitNormal);
-					stateManager->changeState(HuggingWall);
-				}
-			}
-		}
+	//Try to hug wall
+	for (const HitState& hitState : moveState.allHits) {
+		if (hugWall(hitState)) break;
 	}
-	/*for (HitState& hitState : moveState.sideHits) {
-		//Restar inercia
-		VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
-
-		//float angle = acos(hitNormal.Dot(VEC3::Up));
-
-		VEC2 normal = VEC2(hitNormal.x, hitNormal.z);
-		VEC2 velocity2 = VEC2(getPlayerModel()->getVelocityVector()->x, getPlayerModel()->getVelocityVector()->z);
-		VEC2 velocityNormal = VEC2(velocity2);
-		velocityNormal.Normalize();
-
-		VEC2 perpendicularNormal = VEC2(-normal.y, normal.x);
-
-		float dot = normal.Dot(velocityNormal);
-		float det = normal.x * velocityNormal.y - normal.y * velocityNormal.x;
-		float a = atan2(det, dot);
-
-		velocity2 = perpendicularNormal * (sin(a) * velocity2.Length());
-
-		velocityVector->x = velocity2.x;
-		velocityVector->z = velocity2.y;
-	}*/
-
+	//Touching top
 	if (moveState.isTouchingTop && velocityVector->y > 0.f) {
 		velocityVector->y = 0.f;
 	}
+	//Land or slide
 	if (moveState.isTouchingBot) {
 		if (!isWalkable(moveState)) {
 			if (slideWindowTimer.elapsed() >= slideWindowTime) {
@@ -176,14 +140,33 @@ void AirborneActionState::onMove(MoveState& moveState) {
 			}
 		}
 		else {
-			onLanding();	
+			onLanding();
 		}
 	}
 	else {
 		slideWindowTimer.reset();
 	}
+}
 
+bool AirborneActionState::hugWall(const HitState& hitState) {
+	if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hitState.hit.worldNormal) < 0.8f
+		|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
 
+		VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
+
+		VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(stateManager->getState()->getMovementInput());
+		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
+			|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
+			float pitch = asin(-hitNormal.y);
+			if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
+				HuggingWallActionState* actionState = (HuggingWallActionState*)stateManager->getState(HuggingWall);
+				actionState->setHuggingWallNormal(hitNormal);
+				stateManager->changeState(HuggingWall);
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 

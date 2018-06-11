@@ -261,6 +261,7 @@ void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
 	else { //Side hit
 		moveState.sideHits.push_back(hitState);
 	}
+	moveState.allHits.push_back(hitState);
 }
 
 void TCompPlayerModel::onControllerHit(const TMsgControllerHit& msg) {}

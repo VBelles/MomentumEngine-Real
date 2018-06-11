@@ -3,48 +3,50 @@
 #include "modules/module.h"
 #include "render/mesh/mesh_instanced.h"
 
-class CModuleTestInstancing : public IModule
-{
+class CModuleTestInstancing : public IModule {
+private:
+	// -------------------------------------------------------------------
+	struct TInstance {
+		MAT44 world;
+	};
+	CRenderMeshInstanced* instances_mesh = nullptr;
+	std::vector< TInstance > instances;
 
-  // -------------------------------------------------------------------
-  struct TInstance {
-    MAT44 world;
-  };
-  CRenderMeshInstanced* instances_mesh = nullptr;
-  std::vector< TInstance > instances;
+	// -------------------------------------------------------------------
+	struct TInstanceBlood {
+		MAT44 world;
+		VEC4  color;
+	};
+	CRenderMeshInstanced* blood_instances_mesh = nullptr;
+	std::vector< TInstanceBlood > blood_instances;
 
-  // -------------------------------------------------------------------
-  struct TInstanceBlood {
-    MAT44 world;
-    VEC4  color;
-  };
-  CRenderMeshInstanced* blood_instances_mesh = nullptr;
-  std::vector< TInstanceBlood > blood_instances;
+	// -------------------------------------------------------------------
+	struct TRenderParticle {
+		VEC3  pos;      // Maps to iCenter.xyz
+		float angle;    // Maps to iCenter.w
+		VEC4  color;
+		float scale_x;
+		float scale_y;
+		float nframe;
+	};
+	CRenderMeshInstanced* particles_instances_mesh = nullptr;
+	std::vector< TRenderParticle > particles_instances;
 
-  // -------------------------------------------------------------------
-  struct TRenderParticle {
-    VEC3  pos;      // Maps to iCenter.xyz
-    float angle;    // Maps to iCenter.w
-    VEC4  color;
-    float scale_x;
-    float scale_y;
-    float nframe;
-  };
-  CRenderMeshInstanced* particles_instances_mesh = nullptr;
-  std::vector< TRenderParticle > particles_instances;
+	// -------------------------------------------------------------------
+	struct TGrassParticle {
+		VEC3  pos;
+	};
+	CRenderMeshInstanced* grass_instances_mesh = nullptr;
+	std::vector< TGrassParticle > grass_instances;
 
-  // -------------------------------------------------------------------
-  struct TGrassParticle {
-    VEC3  pos;      
-  };
-  CRenderMeshInstanced* grass_instances_mesh = nullptr;
-  std::vector< TGrassParticle > grass_instances;
-
+	int nGrassToInstance = 0;
+	float sz = 50.f;
 
 public:
-  CModuleTestInstancing(const std::string& name)
-		: IModule(name)
-	{}
-  bool start() override;
-  void update(float delta) override;
+	CModuleTestInstancing(const std::string& name)
+		: IModule(name) {
+	}
+	bool start() override;
+	void update(float delta) override;
+	void render() override;
 };
