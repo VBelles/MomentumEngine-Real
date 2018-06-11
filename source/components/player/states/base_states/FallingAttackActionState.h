@@ -17,7 +17,7 @@ private:
 	std::string animation = "ataquecaida";
 
 	std::string hitbox = "falling_attack";
-	std::string animationPositioning = "jump_inicio";
+	std::string animationPositioning = "ataquecaida_posicionamiento";
 
 public:
 	FallingAttackActionState(StateManager* stateManager);

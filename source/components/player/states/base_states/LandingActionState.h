@@ -8,7 +8,7 @@ protected:
 	float landingLagTime = frames2sec(9);
 	float enteringSpeed;
 
-	std::string animation = "jump_caida";
+	std::string animation = "landing_soft";
 
 public:
 	LandingActionState(StateManager* stateManager, State state = Landing);
