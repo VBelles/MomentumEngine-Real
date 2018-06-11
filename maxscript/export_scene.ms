@@ -1208,7 +1208,7 @@ struct TSceneExporter (
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 
 		for child in obj.children do (
-			exportDefault child (nValidObjs + 1)
+			exportEntityDefault child (nValidObjs + 1)
 		)
 		return true
 	),
