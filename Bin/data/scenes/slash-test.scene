@@ -11,9 +11,12 @@
             "slash": {
                 "enabled": true,
                 "target": "The Player",
+                "offset": "0 0.5 0",
                 "width": 0.2,
                 "min_vertex_distance": 0.25,
-                "max_vertex": 10
+                "max_vertex": 10,
+                "tail_multiplier": 0.2,
+                "head_multiplier": 0.5                
             }
         }
     }

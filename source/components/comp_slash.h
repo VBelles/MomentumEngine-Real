@@ -8,16 +8,18 @@ class CRenderMesh;
 
 class TCompSlash: public TCompBase {
 private:
+	std::string targetName;
+	bool enabled = false;
 	float width = 0.f;
 	float time = 0.f;
 	float minVertexDistanceSquared = 0.f;
 	int maxVertex = 0;
 	VEC3 offset;
-	std::string targetName;
+	float tailMultiplier = 0.f;
+	float headMultiplier = 0.f;
+
 	CHandle targetTransformHandle;
 	CHandle renderHandle;
-
-	bool enabled = false;
 
 	std::list<CTransform> points;
 
