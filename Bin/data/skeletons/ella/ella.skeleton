@@ -1,28 +1,36 @@
 {
 	"name":"ella",
 	"anims" : [
-		{ "name" : "idle"},
-		{ "name" : "run"},
-		{ "name" : "jump_inicio"},
-		{ "name" : "jump_volando"},
-		{ "name" : "jump_caida"},
-		{ "name" : "melee"},
-		{ "name" : "melee_strong"},
-		{ "name" : "liberarenergia"},
-		{ "name" : "recibedanio"},
-		{ "name" : "ataquecaida_posicionamiento"},
 		{ "name" : "ataquecaida"},
-		{ "name" : "hard_landing"},
-		{ "name" : "longJump_caida"},
-		{ "name" : "longJump_inicio"},
-		{ "name" : "longJump_volando"},
-		{ "name" : "vertical_launcher"},
+		{ "name" : "ataquecaida_posicionamiento"},
+		{ "name" : "bajandopared"},
 		{ "name" : "correporlapared"},
-		{ "name" : "bajandopared"}
+		{ "name" : "hard_landing"},
+
+		{ "name" : "impulso_horizontal"},
+		{ "name" : "impulso_vertical"},
+		{ "name" : "jump_loop"},
+		{ "name" : "jump_salto"},
+		{ "name" : "jump_squat"},
+		{ "name" : "landing_soft"},
+		{ "name" : "longJump_loop"},
+
+
+		{ "name" : "run"},
+		{ "name" : "salto_pared"},
+		{ "name" : "salto_pared_loop"},
+		{ "name" : "springJump_agacharse"},
+		{ "name" : "springJump_salto"},
+		{ "name" : "walk"}
 	],
 	"bone_ids_to_debug" : [
 		3
 	],
-		"meshes" : [
+	"meshes" : [
+		"cintacorta_der",
+		"cintacorta_izq",
+		"cintalarga_der",
+		"cintalarga_izq",
+		"ella_low"
 	]
 }
