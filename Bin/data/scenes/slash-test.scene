@@ -11,9 +11,9 @@
             "slash": {
                 "enabled": true,
                 "target": "The Player",
-                "width": 0.1,
-                "min_vertex_distance": 0.1,
-                "max_vertex": 200
+                "width": 0.2,
+                "min_vertex_distance": 0.25,
+                "max_vertex": 10
             }
         }
     }

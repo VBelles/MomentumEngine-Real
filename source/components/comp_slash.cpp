@@ -42,7 +42,7 @@ void TCompSlash::update(float delta) {
 		if (VEC3::DistanceSquared(transform.getPosition(), last.getPosition()) >= minVertexDistanceSquared) {
 			points.push_back(transform);
 			if (points.size() > maxVertex) {
-				//points.pop_front();
+				points.pop_front();
 			}
 		}
 	}
