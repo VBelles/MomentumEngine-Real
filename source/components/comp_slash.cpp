@@ -39,7 +39,11 @@ void TCompSlash::update(float delta) {
 	if (!enabled) return;
 
 	CTransform transform = *getTargetTransform();
-	transform.setPosition(transform.getPosition() + offset);
+
+	VEC3 desiredDirection = transform.getFront() * offset.z - transform.getLeft() * offset.x;
+	desiredDirection.y = offset.y;
+
+	transform.setPosition(transform.getPosition() + desiredDirection);
 
 	if (points.size() > 0) {
 		CTransform last = points.back();
