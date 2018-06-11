@@ -3,7 +3,11 @@
         "entity": {
             "name": "dash01",
             "transform": {},
-            "render": {},
+            "render": {
+                "materials": [
+                    "data/materials/slash.material"
+                ]
+            },
             "slash": {
                 "enabled": true,
                 "target": "The Player",

@@ -472,6 +472,18 @@
       "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
+  },
+
+  "slash": {
+    "vs_file": "data/shaders/solid.fx",
+    "vs_entry_point": "VS",
+    "vertex_type": "PosClr",
+    "ps_file": "data/shaders/solid.fx",
+    "ps_entry_point": "PS",
+    "category": "general",
+    "rs_config": "cull_none",
+    "priority": 90
+    
   }
 
 
