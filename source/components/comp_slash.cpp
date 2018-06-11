@@ -61,7 +61,10 @@ void TCompSlash::update(float delta) {
 		vertices[i++] = TVtxPosClr(pos - increment, clr);
 	}
 
-	SAFE_DELETE(mesh);
+	if (mesh) {
+		mesh->destroy();
+		SAFE_DELETE(mesh);
+	}
 	mesh = new CRenderMesh();
 	mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::TRIANGLE_STRIP);
 	getRender()->meshes[0].mesh = mesh;
