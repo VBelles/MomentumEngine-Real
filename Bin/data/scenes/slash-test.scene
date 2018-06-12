@@ -11,12 +11,13 @@
             "slash": {
                 "enabled": true,
                 "target": "The Player",
-                "offset": "1 0.5 0",
+                "bone": "Bip001 R Hand",
+                "offset": "0 0 0.5",
                 "width": 0.2,
                 "min_vertex_distance": 0.25,
                 "max_vertex": 10,
-                "tail_multiplier": 0.2,
-                "head_multiplier": 0.5                
+                "tail_multiplier": 0.0,
+                "head_multiplier": 0.0                
             }
         }
     }

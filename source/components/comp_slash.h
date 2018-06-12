@@ -4,36 +4,47 @@
 
 class TCompTransform;
 class TCompRender;
+class TCompSkeleton;
 class CRenderMesh;
 
-class TCompSlash: public TCompBase {
+class TCompSlash : public TCompBase {
 private:
+	struct TControlPoint {
+		TControlPoint(CTransform transform, float duration = 0.f) : transform(transform), duration(duration) {}
+		CTransform transform;
+		float duration = 0.f;
+	};
+
 	std::string targetName;
+	CHandle targetTransformHandle;
+	std::string boneName;
+	int boneId = -1;
 	bool enabled = false;
-	float width = 0.f;
-	float time = 0.f;
-	float minVertexDistanceSquared = 0.f;
-	int maxVertex = 0;
+	float width = 0.1f;
+	float minVertexDistanceSquared = pow(0.25f, 2);
+	int maxVertex = 10;
 	VEC3 offset;
 	float tailMultiplier = 0.f;
 	float headMultiplier = 0.f;
+	float duration = 1.f;
 
-	CHandle targetTransformHandle;
 	CHandle renderHandle;
+	CHandle skeletonHandle;
 
-	std::list<CTransform> points;
+	std::list<TControlPoint> points;
 
 	CRenderMesh* mesh = nullptr;
 
 	TCompTransform* getTargetTransform();
 	TCompRender* getRender();
+	TCompSkeleton* getSkeleton();
 
 public:
 	DECL_SIBLING_ACCESS();
 
-    static void registerMsgs();
-    void debugInMenu();
-    void load(const json& j, TEntityParseContext& ctx);
+	static void registerMsgs();
+	void debugInMenu();
+	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
 
 	void onAllScenesCreated(const TMsgAllScenesCreated & msg);
