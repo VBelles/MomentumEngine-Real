@@ -10,9 +10,9 @@ class CRenderMesh;
 class TCompSlash : public TCompBase {
 private:
 	struct TControlPoint {
-		TControlPoint(CTransform transform, float duration = 0.f) : transform(transform), duration(duration) {}
+		TControlPoint(CTransform transform, float time = 0.f) : transform(transform), time(time) {}
 		CTransform transform;
-		float duration = 0.f;
+		float time = 0.f;
 	};
 
 	std::string targetName;

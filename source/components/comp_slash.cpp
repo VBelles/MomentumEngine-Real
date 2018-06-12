@@ -50,6 +50,19 @@ void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 void TCompSlash::update(float delta) {
 	if (!enabled) return;
 
+	//Update time and remove
+	std::list<TControlPoint>::iterator iter = points.begin();
+	while (iter != points.end()) {
+		(*iter).time += delta;
+		if ((*iter).time >= duration) {
+			points.erase(iter++);
+		}
+		else {
+			++iter;
+		}
+	}
+
+	//Add new control point
 	CTransform transform;
 	if (boneId != -1) {
 		CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(boneId);
@@ -68,16 +81,17 @@ void TCompSlash::update(float delta) {
 	if (points.size() > 0) {
 		TControlPoint last = points.back();
 		if (VEC3::DistanceSquared(transform.getPosition(), last.transform.getPosition()) >= minVertexDistanceSquared) {
-			points.emplace_back(transform, duration);
+			points.emplace_back(transform);
 			if (points.size() > maxVertex) {
 				points.pop_front();
 			}
 		}
 	}
 	else {
-		points.emplace_back(transform, duration);
+		points.emplace_back(transform);
 	}
 
+	//Generate mesh
 	int verticesSize = static_cast<int>(points.size()) * 2;
 	if (headMultiplier) ++verticesSize;
 	if (tailMultiplier) ++verticesSize;
@@ -85,8 +99,8 @@ void TCompSlash::update(float delta) {
 	std::vector<TVtxPosClr> vertices;
 	vertices.resize(verticesSize);
 	VEC4 clr(1, 0, 0, 1);
-	int i = 0;
 
+	int i = 0;
 	for (const TControlPoint& controlPoint : points) {
 		const CTransform& t = controlPoint.transform;
 		VEC3 pos = t.getPosition();
@@ -106,6 +120,7 @@ void TCompSlash::update(float delta) {
 		}
 	}
 
+	//Clear previous mesh and generate a new one
 	if (mesh) {
 		mesh->destroy();
 		SAFE_DELETE(mesh);
@@ -114,7 +129,6 @@ void TCompSlash::update(float delta) {
 	mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::TRIANGLE_STRIP);
 	getRender()->meshes[0].mesh = mesh;
 	getRender()->refreshMeshesInRenderManager();
-
 }
 
 
