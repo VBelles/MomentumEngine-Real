@@ -6,7 +6,7 @@
 		{ "name" : "bajandopared"},
 		{ "name" : "correporlapared"},
 		{ "name" : "hard_landing"},
-
+		{ "name" : "idle"},
 		{ "name" : "impulso_horizontal"},
 		{ "name" : "impulso_vertical"},
 		{ "name" : "jump_loop"},
@@ -14,8 +14,8 @@
 		{ "name" : "jump_squat"},
 		{ "name" : "landing_soft"},
 		{ "name" : "longJump_loop"},
-
-
+		{ "name" : "longJump_salto"},
+		{ "name" : "longJump_squat"},
 		{ "name" : "run"},
 		{ "name" : "salto_pared"},
 		{ "name" : "salto_pared_loop"},

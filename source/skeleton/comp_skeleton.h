@@ -27,6 +27,8 @@ public:
 	void removeAction(int animationId, float delay = 0.0f);
 	void removeAction(std::string animation, float delay = 0.0f);
 	void clear(float delay = 0.0f);
+	void clearActions(float delay = 0.0f);
+	void clearAnimations(float delay = 0.0f);
 	void setTimeFactor(float timeFactor);
 	float getAnimationTime();
 	float getAnimationDuration(int animationId);

@@ -11,7 +11,8 @@ private:
 
 	float enteringVelocity = 0.f;
 
-	std::string animation = "jump_squat";
+	std::string animationSquat = "jump_squat";
+	std::string animationJump = "jump_salto";
 
 public:
 	JumpSquatActionState(StateManager* stateManager);

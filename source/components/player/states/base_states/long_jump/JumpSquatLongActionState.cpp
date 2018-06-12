@@ -23,6 +23,7 @@ void JumpSquatLongActionState::update(float delta) {
 		velocityVector->y = currentPowerStats->longJumpVelocityVector.y;
 		deltaMovement = *velocityVector * delta;
 		getPlayerModel()->wannaJump = true;
+		getSkeleton()->executeAction(animationJump, 0.2f, 0.2f);
 	}
 }
 
@@ -30,7 +31,7 @@ void JumpSquatLongActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	//dbg("Entrando en JumpSquatLong\n");
 	timer.reset();
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animationSquat, 0.2f, 0.2f);
 }
 
 void JumpSquatLongActionState::onStateExit(IActionState * nextState) {

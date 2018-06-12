@@ -32,6 +32,7 @@ void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 	hitboxTimer.reset();
 	springJumpTimer.reset();
 	fallingAttackHitboxTimer.reset();
+	getSkeleton()->clearActions();
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 

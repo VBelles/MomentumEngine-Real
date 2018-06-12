@@ -7,7 +7,8 @@ private:
 	CTimer timer;
 	float squatTime = frames2sec(8);
 
-	std::string animation = "longJump_inicio";
+	std::string animationSquat = "longJump_squat";
+	std::string animationJump = "longJump_salto";
 
 public:
 	JumpSquatLongActionState(StateManager* stateManager);

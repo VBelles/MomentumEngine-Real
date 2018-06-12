@@ -21,6 +21,7 @@ void JumpSquatActionState::update(float delta) {
 		//Dejamos que el cambio de estado se haga cuando lo detecte ground sensor
 		deltaMovement = *velocityVector * delta;
 		getPlayerModel()->wannaJump = true;
+		getSkeleton()->executeAction(animationJump, 0.2f, 0.2f);
 	}
 	else {
 		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
@@ -36,7 +37,7 @@ void JumpSquatActionState::onStateEnter(IActionState * lastState) {
 	isShortHop = false;
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animationSquat, 0.2f, 0.2f);
 }
 
 void JumpSquatActionState::onStateExit(IActionState * nextState) {

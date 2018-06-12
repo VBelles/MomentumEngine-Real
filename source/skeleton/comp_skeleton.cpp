@@ -200,15 +200,11 @@ void TCompSkeleton::renderDebug() {
 }
 
 void TCompSkeleton::blendCycle(int animationId, float in_delay, float out_delay, float weight, bool clearPrevious) {
-	model->getMixer()->blendCycle(animationId, weight, in_delay);
-
 	if (clearPrevious) {
-		CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
-		for (auto a : model->getMixer()->getAnimationCycle()) {
-			int id = core->getCoreAnimationId(a->getCoreAnimation()->getName());
-			if (id != animationId) model->getMixer()->clearCycle(id, out_delay);
-		}
+		clearAnimations(out_delay);
 	}
+
+	model->getMixer()->blendCycle(animationId, weight, in_delay);
 }
 
 void TCompSkeleton::blendCycle(std::string animation, float in_delay, float out_delay, float weight, bool clearPrevious) {
@@ -253,13 +249,29 @@ void TCompSkeleton::removeAction(std::string animation, float delay) {
 }
 
 void TCompSkeleton::clear(float delay) {
+	clearAnimations(delay);
+	clearActions(delay);
+}
+
+void TCompSkeleton::clearActions(float delay) {
+	std::vector<std::string> toRemove;
+	for (auto a : model->getMixer()->getAnimationActionList()) {
+		toRemove.push_back(a->getCoreAnimation()->getName());
+	}
+	for (std::string s : toRemove) {
+		removeAction(s, delay);
+	}
+}
+
+void TCompSkeleton::clearAnimations(float delay) {
+	std::vector<int> toRemove;
 	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
 	for (auto a : model->getMixer()->getAnimationCycle()) {
 		int id = core->getCoreAnimationId(a->getCoreAnimation()->getName());
-		model->getMixer()->clearCycle(id, delay);
+		toRemove.push_back(id);
 	}
-	for (auto a : model->getMixer()->getAnimationActionList()) {
-		removeAction(a->getCoreAnimation()->getName(), delay);
+	for (int i : toRemove) {
+		model->getMixer()->clearCycle(i, delay);
 	}
 }
 

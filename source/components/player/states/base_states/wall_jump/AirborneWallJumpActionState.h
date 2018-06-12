@@ -4,7 +4,8 @@
 
 class AirborneWallJumpActionState : public AirborneActionState {
 private:
-	std::string animation = "jump_volando";
+	std::string animationJump = "salto_pared";
+	std::string animationLoop = "salto_pared_loop";
 
 public:
 	AirborneWallJumpActionState(StateManager* stateManager);
