@@ -3,11 +3,6 @@
         "entity": {
             "name": "dash01",
             "transform": {},
-            "render": {
-                "materials": [
-                    "data/materials/slash.material"
-                ]
-            },
             "slash": {
                 "enabled": true,
                 "target": "The Player",
@@ -18,7 +13,8 @@
                 "min_vertex_distance": 0.05,
                 "max_vertex": 500,
                 "tail_multiplier": 0.0,
-                "head_multiplier": 0.0                
+                "head_multiplier": 0.0,
+                "texture": "data/textures/black.dds"
             }
         }
     }

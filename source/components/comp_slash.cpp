@@ -36,6 +36,8 @@ void TCompSlash::load(const json& j, TEntityParseContext& ctx) {
 	tailMultiplier = j.value("tail_multiplier", tailMultiplier);
 	headMultiplier = j.value("head_multiplier", headMultiplier);
 	duration = j.value("duration", duration);
+
+	texture = Resources.get(j.value("texture", ""))->as<CTexture>();
 }
 
 void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
@@ -43,8 +45,6 @@ void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	assert(entity);
 	targetTransformHandle = entity->get<TCompTransform>();
 	assert(targetTransformHandle.isValid());
-	renderHandle = get<TCompRender>();
-	assert(renderHandle.isValid());
 	if (!boneName.empty()) {
 		skeletonHandle = entity->get<TCompSkeleton>();
 		assert(skeletonHandle.isValid());
@@ -119,7 +119,7 @@ void TCompSlash::update(float delta) {
 
 	std::vector<TVtxPosClr> vertices;
 	vertices.resize(verticesSize);
-	VEC4 clr(1, 0, 0, 1);
+	VEC4 clr(1, 1, 1, 1);
 
 	int i = 0;
 	for (const TControlPoint& controlPoint : points) {
@@ -148,8 +148,6 @@ void TCompSlash::update(float delta) {
 	}
 	mesh = new CRenderMesh();
 	mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::TRIANGLE_STRIP);
-	getRender()->meshes[0].mesh = mesh;
-	getRender()->refreshMeshesInRenderManager();
 }
 
 
@@ -159,10 +157,6 @@ void TCompSlash::setEnable(bool enabled) {
 
 TCompTransform* TCompSlash::getTargetTransform() {
 	return targetTransformHandle;
-}
-
-TCompRender* TCompSlash::getRender() {
-	return renderHandle;
 }
 
 TCompSkeleton* TCompSlash::getSkeleton() {

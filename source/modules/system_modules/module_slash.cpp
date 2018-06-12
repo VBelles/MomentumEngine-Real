@@ -1,8 +1,9 @@
 #include "mcv_platform.h"
 #include "module_slash.h"
+#include "components/comp_slash.h"
+#include "components/comp_transform.h"
 
-
-CModuleSlash::CModuleSlash(const std::string& name) 
+CModuleSlash::CModuleSlash(const std::string& name)
 	: IModule(name) {
 }
 
@@ -18,6 +19,22 @@ void CModuleSlash::update(float delta) {
 }
 
 void CModuleSlash::render() {
+	const CRenderTechnique* technique = Resources.get("slash.tech")->as<CRenderTechnique>();
+	assert(technique);
+	technique->activate();
+	getObjectManager<TCompSlash>()->forEach([](TCompSlash* slashComp) {
+		if (!slashComp->texture || !slashComp->mesh) return;
+
+		slashComp->texture->activate(TS_ALBEDO);
+
+		TCompTransform* transform = slashComp->get<TCompTransform>();
+		cb_object.obj_world = transform->asMatrix();
+		cb_object.obj_color = VEC4(1, 1, 1, 1);
+		cb_object.updateGPU();
+
+		slashComp->mesh->activateAndRender();
+	});
+
 }
 
 

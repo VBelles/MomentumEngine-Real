@@ -220,7 +220,7 @@ void CModuleRender::generateFrame() {
 			deferred.render(rt_main, h_e_camera);
 		}
 
-		//CRenderManager::get().renderCategory("");
+		CRenderManager::get().renderCategory("slash");
 		CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
 		CRenderManager::get().renderCategory("textured");

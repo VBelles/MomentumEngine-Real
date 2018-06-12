@@ -480,7 +480,7 @@
     "vertex_type": "PosClr",
     "ps_file": "data/shaders/solid.fx",
     "ps_entry_point": "PS",
-    "category": "general",
+    "category": "slash",
     "rs_config": "cull_none",
     "priority": 90
     

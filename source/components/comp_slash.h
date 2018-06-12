@@ -34,7 +34,6 @@ private:
 
 	std::list<TControlPoint> points;
 
-	CRenderMesh* mesh = nullptr;
 
 	TCompTransform* getTargetTransform();
 	TCompRender* getRender();
@@ -42,6 +41,9 @@ private:
 
 public:
 	DECL_SIBLING_ACCESS();
+
+	CRenderMesh* mesh = nullptr;
+	const CTexture* texture = nullptr;
 
 	~TCompSlash();
 
