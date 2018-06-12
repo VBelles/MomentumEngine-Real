@@ -24,6 +24,7 @@ private:
 	float minVertexDistanceSquared = pow(0.25f, 2);
 	int maxVertex = 10;
 	VEC3 offset;
+	VEC3 rotOffset;
 	float tailMultiplier = 0.f;
 	float headMultiplier = 0.f;
 	float duration = 1.f;

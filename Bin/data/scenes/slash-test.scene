@@ -12,10 +12,11 @@
                 "enabled": true,
                 "target": "The Player",
                 "bone": "Bip001 R Hand",
-                "offset": "0 0 0.5",
+                "offset": "0 0 0.6",
+                "rot_offset": "0 0 90",
                 "width": 0.2,
-                "min_vertex_distance": 0.25,
-                "max_vertex": 10,
+                "min_vertex_distance": 0.05,
+                "max_vertex": 500,
                 "tail_multiplier": 0.0,
                 "head_multiplier": 0.0                
             }

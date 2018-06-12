@@ -28,6 +28,7 @@ void TCompSlash::load(const json& j, TEntityParseContext& ctx) {
 	targetName = j.value("target", "");
 	boneName = j.value("bone", "");
 	offset = j.count("offset") ? loadVEC3(j["offset"]) : offset;
+	rotOffset = j.count("rot_offset") ? loadVEC3(j["rot_offset"]) * (float)M_PI / 180.f : rotOffset;
 	width = j.value("width", width);
 	minVertexDistanceSquared = j.value("min_vertex_distance", sqrt(minVertexDistanceSquared));
 	minVertexDistanceSquared *= minVertexDistanceSquared;
@@ -74,16 +75,29 @@ void TCompSlash::update(float delta) {
 	if (boneId != -1) {
 		CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(boneId);
 		transform.setPosition(Cal2DX(bone->getTranslationAbsolute()));
-		transform.setRotation(Cal2DX(bone->getRotationAbsolute()));
+		transform.setRotation(getTargetTransform()->getRotation());
 	}
 	else {
 		transform = *getTargetTransform();
 	}
 
-	VEC3 desiredDirection = transform.getFront() * offset.z - transform.getLeft() * offset.x;
-	desiredDirection.y = offset.y;
+	if (offset != VEC3::Zero) {
+		VEC3 desiredDirection = transform.getFront() * offset.z - transform.getLeft() * offset.x;
+		desiredDirection.y = offset.y;
+		transform.setPosition(transform.getPosition() + desiredDirection);
+	}
 
-	transform.setPosition(transform.getPosition() + desiredDirection);
+	if (boneId != -1) {
+		CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(boneId);
+		transform.setRotation(Cal2DX(bone->getRotationAbsolute()));
+	}
+
+	if (rotOffset != VEC3::Zero) {
+		VEC3 yawPitchRoll;
+		transform.getYawPitchRoll(&yawPitchRoll.x, &yawPitchRoll.y, &yawPitchRoll.z);
+		yawPitchRoll += rotOffset;
+		transform.setYawPitchRoll(yawPitchRoll.x, yawPitchRoll.y, yawPitchRoll.z);
+	}
 
 	if (points.size() > 0) {
 		TControlPoint last = points.back();
