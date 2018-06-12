@@ -388,7 +388,10 @@ struct TSceneExporter (
 	
 	fn getCircularMovementOffset platform circleObj = (
 		local center = circleObj.pos
-		local circlePoint = getKnotPoint circleObj 1 1
+		local objCopy = copy circleObj
+		convertToSplineShape objCopy
+		local circlePoint = getKnotPoint objCopy 1 1
+		delete objCopy
 		local platformPos = platform.pos
 		
 		-- TODO: Aquí la idea sería aumentar el move_offset según el ángulo de la plataforma respecto
@@ -1208,7 +1211,7 @@ struct TSceneExporter (
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 
 		for child in obj.children do (
-			exportDefault child (nValidObjs + 1)
+			exportEntityDefault child (nValidObjs + 1)
 		)
 		return true
 	),
