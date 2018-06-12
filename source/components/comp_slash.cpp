@@ -12,6 +12,13 @@ void TCompSlash::debugInMenu() {
 	ImGui::Checkbox("Enabled", &enabled);
 }
 
+TCompSlash::~TCompSlash() {
+	if (mesh) {
+		mesh->destroy();
+		SAFE_DELETE(mesh);
+	}
+}
+
 void TCompSlash::registerMsgs() {
 	DECL_MSG(TCompSlash, TMsgAllScenesCreated, onAllScenesCreated);
 }

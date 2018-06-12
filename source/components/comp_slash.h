@@ -42,6 +42,8 @@ private:
 public:
 	DECL_SIBLING_ACCESS();
 
+	~TCompSlash();
+
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
