@@ -119,7 +119,7 @@ void TCompSlash::updateMesh() {
 	if (headMultiplier) ++verticesSize;
 	if (tailMultiplier) ++verticesSize;
 
-	std::vector<TVtxPosClr> vertices;
+	std::vector<TVtxPosNUv> vertices;
 	vertices.resize(verticesSize);
 	VEC4 clr(1, 1, 1, 1);
 
@@ -130,16 +130,16 @@ void TCompSlash::updateMesh() {
 		//Tail
 		if (tailMultiplier && i == 0 && tailMultiplier) {
 			VEC3 tailIncrement = -t.getFront() * tailMultiplier;
-			vertices[i++] = TVtxPosClr(pos + tailIncrement, clr);
+			vertices[i++] = TVtxPosNUv(pos + tailIncrement, VEC3::Zero, VEC2::Zero);
 		}
 		//Body
 		VEC3 increment = t.getLeft() * width * 0.5;
-		vertices[i++] = TVtxPosClr(pos + increment, clr);
-		vertices[i++] = TVtxPosClr(pos - increment, clr);
+		vertices[i++] = TVtxPosNUv(pos + increment, VEC3::Zero, VEC2::Zero);
+		vertices[i++] = TVtxPosNUv(pos - increment, VEC3::Zero, VEC2::Zero);
 		//Head
 		if (headMultiplier && i == vertices.size() - 1) {
 			VEC3 headIncrement = t.getFront() * headMultiplier;
-			vertices[i++] = TVtxPosClr(pos + headIncrement, clr);
+			vertices[i++] = TVtxPosNUv(pos + headIncrement, VEC3::Zero, VEC2::Zero);
 		}
 	}
 
@@ -149,7 +149,7 @@ void TCompSlash::updateMesh() {
 		SAFE_DELETE(mesh);
 	}
 	mesh = new CRenderMesh();
-	mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::TRIANGLE_STRIP);
+	mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosNUv), "PosNUv", CRenderMesh::TRIANGLE_STRIP);
 }
 
 

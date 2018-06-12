@@ -15,6 +15,14 @@ private:
 		float time = 0.f;
 	};
 
+	struct TVtxPosNUv {
+		VEC3 pos;
+		VEC3 normal;
+		VEC2 uv;
+		TVtxPosNUv() {}
+		TVtxPosNUv(VEC3 pos, VEC3 normal, VEC2 uv) : pos(pos), normal(normal), uv(uv) {}
+	};
+
 	std::string targetName;
 	CHandle targetTransformHandle;
 	std::string boneName;
@@ -38,7 +46,7 @@ private:
 	TCompSkeleton* getSkeleton();
 
 public:
-	CRenderMesh* mesh = nullptr;
+	CRenderMesh * mesh = nullptr;
 	const CTexture* texture = nullptr;
 
 	DECL_SIBLING_ACCESS();

@@ -475,11 +475,11 @@
   },
 
   "slash": {
-    "vs_file": "data/shaders/solid.fx",
-    "ps_file": "data/shaders/solid.fx",
+    "vs_file": "data/shaders/slash.fx",
+    "ps_file": "data/shaders/slash.fx",
     "vs_entry_point": "VS",
     "ps_entry_point": "PS",
-    "vertex_type": "PosClr",
+    "vertex_type": "PosNUv",
     "category": "slash",
     "priority": 60,
     "rs_config": "cull_none",
