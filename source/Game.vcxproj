@@ -295,6 +295,7 @@
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll_core.cpp" />
+    <ClCompile Include="modules\system_modules\module_slash.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_loader.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
@@ -561,6 +562,7 @@
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll_core.h" />
+    <ClInclude Include="modules\system_modules\module_slash.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_loader.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
