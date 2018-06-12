@@ -36,7 +36,6 @@ void TCompSlash::load(const json& j, TEntityParseContext& ctx) {
 	tailMultiplier = j.value("tail_multiplier", tailMultiplier);
 	headMultiplier = j.value("head_multiplier", headMultiplier);
 	duration = j.value("duration", duration);
-
 	texture = Resources.get(j.value("texture", ""))->as<CTexture>();
 }
 
@@ -51,13 +50,15 @@ void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 		boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);
 		assert(boneId != -1);
 	}
-
-
 }
 
 void TCompSlash::update(float delta) {
 	if (!enabled) return;
+	updatePoints(delta);
+	updateMesh();
+}
 
+void TCompSlash::updatePoints(float delta) {
 	//Update time and remove
 	std::list<TControlPoint>::iterator iter = points.begin();
 	while (iter != points.end()) {
@@ -69,7 +70,6 @@ void TCompSlash::update(float delta) {
 			++iter;
 		}
 	}
-
 	//Add new control point
 	CTransform transform;
 	if (boneId != -1) {
@@ -111,7 +111,9 @@ void TCompSlash::update(float delta) {
 	else {
 		points.emplace_back(transform);
 	}
+}
 
+void TCompSlash::updateMesh() {
 	//Generate mesh
 	int verticesSize = static_cast<int>(points.size()) * 2;
 	if (headMultiplier) ++verticesSize;

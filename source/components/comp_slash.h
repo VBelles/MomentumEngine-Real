@@ -34,16 +34,14 @@ private:
 
 	std::list<TControlPoint> points;
 
-
 	TCompTransform* getTargetTransform();
-	TCompRender* getRender();
 	TCompSkeleton* getSkeleton();
 
 public:
-	DECL_SIBLING_ACCESS();
-
 	CRenderMesh* mesh = nullptr;
 	const CTexture* texture = nullptr;
+
+	DECL_SIBLING_ACCESS();
 
 	~TCompSlash();
 
@@ -51,6 +49,9 @@ public:
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
+
+	void updatePoints(float delta);
+	void updateMesh();
 
 	void onAllScenesCreated(const TMsgAllScenesCreated & msg);
 

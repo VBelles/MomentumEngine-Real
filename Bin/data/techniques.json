@@ -476,14 +476,15 @@
 
   "slash": {
     "vs_file": "data/shaders/solid.fx",
-    "vs_entry_point": "VS",
-    "vertex_type": "PosClr",
     "ps_file": "data/shaders/solid.fx",
+    "vs_entry_point": "VS",
     "ps_entry_point": "PS",
+    "vertex_type": "PosClr",
     "category": "slash",
+    "priority": 60,
     "rs_config": "cull_none",
-    "priority": 90
-    
+    "z" : "test_but_no_write", 
+    "blend" : "additive_by_src_alpha" 
   }
 
 
