@@ -1,0 +1,63 @@
+[
+  {
+    "entity":
+    {
+      "name": "Camera001",
+      "transform":
+      {
+        "pos": "-649.52 85.0501 -874.75",
+        "lookat": "-649.52 84.0501 -875.75"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Camera001_trig",
+      "transform":
+      {
+        "pos": "-649.52 85.0501 -874.75",
+        "lookat": "-649.52 85.0501 -875.75"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "30 150 30",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "Camera001",
+        "suggestYaw": false,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 10,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "5 2"
+      }
+    }
+  }
+]
