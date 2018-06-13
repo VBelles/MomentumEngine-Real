@@ -287,6 +287,11 @@ struct TSceneExporter (
 		fs.writeKeyValue "name" obj.name
 	),
 
+	fn isCamera obj = (
+		return classOf obj == FreeCamera or 
+			   classOf obj == TargetCamera
+	),
+	
 	fn isLine obj = (
 		return classOf obj == line or 
 			   classOf obj == circle or
@@ -437,7 +442,7 @@ struct TSceneExporter (
 	),
 	
 	-- ----------------------------------------------------------------------
-	-- -- · COMPONENTS · -------------------------------------------
+	-- -- · COMPONENTS · ---------------------------------------
 	-- ----------------------------------------------------------------------
 
 	-- --COMP: TRANSFORM-----------------------------------------------
@@ -452,7 +457,13 @@ struct TSceneExporter (
 				if lookAtCoord == unsupplied then (
 					local transf = obj.transform
 					if relative then transf = getTransfRelativeToParent obj
-					fs.writeKeyValue "rotation" (maxRotToMcv transf)
+					if classOf obj == FreeCamera then (
+						local camCopy = copy obj
+						camCopy.transform = (rotateXMatrix 90) * camCopy.transform --Compensate camera axis shenanigans.
+						fs.writeKeyValue "rotation" (maxRotToMcv camCopy.transform)
+						delete camCopy
+					)
+					else fs.writeKeyValue "rotation" (maxRotToMcv transf)
 				) else (
 					fs.writeKeyValue "lookat" lookAtCoord
 				)
@@ -460,11 +471,6 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- --PURITY--------------------------------------------------------------------
-	fn exportPurity = (
-
-	),
-	
 	-- --RENDER MESH (also exports MATERIAL)----------------------------------------
 	fn exportRenderMesh obj pure:false = (
 		local mat = obj.material
@@ -937,24 +943,24 @@ struct TSceneExporter (
 		local objClass = classOf obj
 		format "name: %\n" obj.name
 		if objClass == TargetCamera or
-				objClass == FreeCamera then (
+		   objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
-					
+
 			fs.beginObj()
 				fs.writeKey "entity"
 				fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 					exportName obj
 					fs.writeComma()
 					if objClass == TargetCamera then (
-						exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+						exportTransform obj lookAtCoord:(maxPosToMcv obj.Target[3].pos) --[3] is the Transform.
 					) else exportTransform obj
-					
+
 					fs.writeComma()
 					fs.writeKey "camera"
 					fs.beginObj()
 						fs.writeKeyValue "fov" obj.fov
 					fs.endObj()
-					
+
 					fs.writeComma()
 					fs.writeKey "fixed_camera"
 					fs.beginObj()
@@ -976,10 +982,11 @@ struct TSceneExporter (
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
 				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		)
+		else return false
 
 		if hasChildCollider obj then (
 			local child = obj.children[1]
-			if classof child == Box then (
+			if isCollider child then (
 				fs.writeComma()
 				fs.beginObj()
 					fs.writeKey "entity"
