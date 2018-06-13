@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "FallingAttackActionState.h"
-#include "FallingAttackLandingActionState.h"
+#include "HardLandingActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
@@ -59,16 +59,16 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 	getSkeleton()->removeAction(animationPositioning, 0.2f);
-	if (!dynamic_cast<FallingAttackLandingActionState*>(nextState)) {
-		getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack si es posible
+	if (!dynamic_cast<HardLandingActionState*>(nextState)) {
+		getHitboxes()->disable(hitbox); //que la deshabilite HardLanding si es posible
 	}
 	getPlayerModel()->resetGravity();
 }
 
 void FallingAttackActionState::onLanding() {
-	//getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack
+	//getHitboxes()->disable(hitbox); //que la deshabilite HardLanding
 	*velocityVector = VEC3::Zero;
-	stateManager->changeState(LandingFallingAttack);
+	stateManager->changeState(HardLanding);
 	stateManager->changeConcurrentState(Free);
 }
 

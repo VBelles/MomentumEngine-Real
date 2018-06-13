@@ -92,7 +92,6 @@
     <ClCompile Include="components\player\states\base_states\normal_jump\PropelHighActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\AirborneWallJumpActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\HuggingWallActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\FallingAttackLandingActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\GhostJumpWindowActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\LandingActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\FallingAttackActionState.cpp" />
@@ -247,6 +246,8 @@
     <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
     <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_particles.cpp" />
+    <ClCompile Include="components\player\states\base_states\HardLandingActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\SoftLandingActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -368,7 +369,6 @@
     <ClInclude Include="components\player\states\base_states\normal_jump\PropelHighActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\AirborneWallJumpActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\HuggingWallActionState.h" />
-    <ClInclude Include="components\player\states\base_states\FallingAttackLandingActionState.h" />
     <ClInclude Include="components\player\states\base_states\GhostJumpWindowActionState.h" />
     <ClInclude Include="components\player\states\base_states\LandingActionState.h" />
     <ClInclude Include="components\player\states\base_states\FallingAttackActionState.h" />
@@ -526,6 +526,8 @@
     <ClInclude Include="modules\system_modules\particles\module_particles.h" />
     <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_particles.h" />
+    <ClInclude Include="components\player\states\base_states\HardLandingActionState.h" />
+    <ClInclude Include="components\player\states\base_states\SoftLandingActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

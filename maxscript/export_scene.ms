@@ -276,7 +276,7 @@ struct TMaterialExporter (
 struct TSceneExporter (
 	fs = TJsonFormatter(),
 	project_path = "",
-	base_path = "data/",
+	base_path    = "data/",
 	scenes_path  = base_path + "scenes/",
 	uniques_path = base_path + "uniques/",
 	mesh_path    = base_path + "meshes/",
@@ -388,7 +388,10 @@ struct TSceneExporter (
 	
 	fn getCircularMovementOffset platform circleObj = (
 		local center = circleObj.pos
-		local circlePoint = getKnotPoint circleObj 1 1
+		local objCopy = copy circleObj
+		convertToSplineShape objCopy
+		local circlePoint = getKnotPoint objCopy 1 1
+		delete objCopy
 		local platformPos = platform.pos
 		
 		-- TODO: Aquí la idea sería aumentar el move_offset según el ángulo de la plataforma respecto
@@ -457,8 +460,13 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
+	-- --PURITY--------------------------------------------------------------------
+	fn exportPurity = (
+
+	),
+	
 	-- --RENDER MESH (also exports MATERIAL)----------------------------------------
-	fn exportRenderMesh obj = (
+	fn exportRenderMesh obj pure:false = (
 		local mat = obj.material
 		if mat == undefined then (
 			format "Warning: Obj % doesn't have a material, a default will be assigned.\n" obj.name
@@ -486,7 +494,20 @@ struct TSceneExporter (
 
 			fs.writeKey "materials"
 			fs.arrayOfStrings exported_materials
-		fs.endObj()
+			if pure then (
+					fs.writeComma()
+					fs.writeKeyValue "enabled" false
+				fs.endObj() -- End first pure material object.
+				fs.writeComma()
+				fs.beginObj() -- Begin second pure material object.
+					fs.writeKeyValue "mesh" mesh_name
+					fs.writeComma()
+					fs.writeKey "materials"
+					fs.arrayOfStrings #(mats_path + "pure_platform_special.material")
+					fs.writeComma()
+					fs.writeKeyValue "enabled" false
+			)
+		fs.endObj() -- End render object.
 	),
 
 	-- --SPLINE-------------------------------------------------------
@@ -693,8 +714,7 @@ struct TSceneExporter (
 				
 				fs.writeComma()
 				if dyn then fs.writeKeyValue "type" "dynamic"
-				else if mov or layerName == "pure" then
-					fs.writeKeyValue "type" "kinematic"
+				else if mov then fs.writeKeyValue "type" "kinematic"
 				else fs.writeKeyValue "type" "static"
 			)
 
@@ -790,31 +810,6 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --PURITY--------------------------------------------------------------------
-	fn exportPurity = (
-		fs.beginObj()
-			fs.writeKeyValue "mesh" (mesh_path + "plataforma_puraNO.mesh")
-			fs.writeComma()
-			fs.writeKey "materials"
-			fs.beginArray()
-				fs.writeValue (mats_path + "NOpure.material") addIndent:true
-			fs.endArray()
-			fs.writeComma()
-			fs.writeKeyValue "enabled" false
-		fs.endObj()
-		fs.writeComma()
-		fs.beginObj()
-			fs.writeKeyValue "mesh" (mesh_path + "plataforma_pura_aristas.mesh")
-			fs.writeComma()
-			fs.writeKey "materials"
-			fs.beginArray()
-				fs.writeValue (mats_path + "pure.material") addIndent:true
-			fs.endArray()
-			fs.writeComma()
-			fs.writeKeyValue "enabled" false
-		fs.endObj()
-	),
-
 	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)--------------------------------
 	fn exportEditableMesh obj = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string) --DEBUG
@@ -829,8 +824,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKey "render"
 		fs.beginArray()
-			if pure then exportPurity() 
-			else exportRenderMesh obj
+			exportRenderMesh obj pure:pure
 		fs.endArray()
 		if hasChildDummy obj then exportLOD obj
 		
@@ -851,7 +845,7 @@ struct TSceneExporter (
 						fs.writeKeyEmpty "purity"
 						objToExport = obj
 					)
-					exportCompCollider objToExport first:isFirst meshMode:pure mov:(movable or rot) colliderGroups:groups
+					exportCompCollider objToExport first:isFirst mov:(movable or rot) colliderGroups:groups
 
 					if breakable then exportBreakable()
 					if movable then exportSpline child
@@ -1208,7 +1202,7 @@ struct TSceneExporter (
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 
 		for child in obj.children do (
-			exportDefault child (nValidObjs + 1)
+			exportEntityDefault child (nValidObjs + 1)
 		)
 		return true
 	),

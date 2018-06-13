@@ -391,7 +391,7 @@ int CBehaviorTreeFlyingRangedEnemy::rangedAttack(float delta) {
 				AttackInfo attackInfo;
 				attackInfo.damage = attackDamage;
 
-				attackInfo.stun = new AttackInfo::Stun{ 1.f };
+				//attackInfo.stun = new AttackInfo::Stun{ 1.f };
 				attackInfo.invulnerabilityTime = 1.2f;
 
 				VEC3 front = getTransform()->getFront();
