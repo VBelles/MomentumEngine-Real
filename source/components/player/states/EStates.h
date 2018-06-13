@@ -26,7 +26,7 @@
 	etype(PropelLong), \
 	etype(TurnAround), \
 	etype(Landing), \
-	etype(LandingFallingAttack), \
+	etype(HardLanding), \
 	etype(HuggingWall), \
 	etype(WallJumpSquat), \
 	etype(HuggingWallLongJumpSquat), \

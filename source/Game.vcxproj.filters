@@ -247,6 +247,7 @@
     <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_particles.cpp" />
     <ClCompile Include="components\player\states\base_states\HardLandingActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\SoftLandingActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -526,6 +527,7 @@
     <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_particles.h" />
     <ClInclude Include="components\player\states\base_states\HardLandingActionState.h" />
+    <ClInclude Include="components\player\states\base_states\SoftLandingActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

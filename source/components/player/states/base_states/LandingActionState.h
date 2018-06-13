@@ -8,10 +8,8 @@ protected:
 	float landingLagTime = frames2sec(9);
 	float enteringSpeed;
 
-	std::string animation = "jump_caida";
-
 public:
-	LandingActionState(StateManager* stateManager, State state = Landing);
+	LandingActionState(StateManager* stateManager, State state);
 
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;

@@ -52,7 +52,7 @@ void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 	clampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 
 	if (!dynamic_cast<HardLandingActionState*>(nextState)) {
-		getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack si es posible
+		getHitboxes()->disable(hitbox); //que la deshabilite HardLanding si es posible
 	}
 
 }
@@ -78,7 +78,7 @@ void WallJumpPlummetActionState::onStrongAttackButton() {
 }
 
 void WallJumpPlummetActionState::onLanding() {
-	stateManager->changeState(LandingFallingAttack);
+	stateManager->changeState(HardLanding);
 }
 
 void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

@@ -118,6 +118,7 @@
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\player\states\base_states\SoftLandingActionState.cpp" />
     <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
     <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
@@ -369,6 +370,7 @@
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_name.h" />
+    <ClInclude Include="components\player\states\base_states\SoftLandingActionState.h" />
     <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
     <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />

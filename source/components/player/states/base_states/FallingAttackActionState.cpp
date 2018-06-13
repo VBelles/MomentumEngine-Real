@@ -60,15 +60,15 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 	getSkeleton()->removeAction(animationPositioning, 0.2f);
 	if (!dynamic_cast<HardLandingActionState*>(nextState)) {
-		getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack si es posible
+		getHitboxes()->disable(hitbox); //que la deshabilite HardLanding si es posible
 	}
 	getPlayerModel()->resetGravity();
 }
 
 void FallingAttackActionState::onLanding() {
-	//getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack
+	//getHitboxes()->disable(hitbox); //que la deshabilite HardLanding
 	*velocityVector = VEC3::Zero;
-	stateManager->changeState(LandingFallingAttack);
+	stateManager->changeState(HardLanding);
 	stateManager->changeConcurrentState(Free);
 }
 

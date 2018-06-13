@@ -9,7 +9,8 @@
 
 
 HardLandingActionState::HardLandingActionState(StateManager* stateManager) :
-	LandingActionState(stateManager, LandingFallingAttack) {
+	LandingActionState(stateManager, HardLanding) {
+	landingLagTime = frames2sec(40);
 }
 
 void HardLandingActionState::update(float delta) {
@@ -25,7 +26,6 @@ void HardLandingActionState::update(float delta) {
 
 void HardLandingActionState::onStateEnter(IActionState * lastState) {
 	LandingActionState::onStateEnter(lastState);
-	landingLagTime = newLandingLagTime;
 	hasTriedSpringJump = false;
 	movementInput = VEC2::Zero;
 	getHitboxes()->enable(hitbox);
@@ -56,13 +56,11 @@ void HardLandingActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
 	if (hitbox == hitboxFallingAttack) {
-		//dbg("Those nice frames\n");
 		otherEntity->sendMsg(TMsgGetPower{ playerEntity, fallingAttackPowerToGet });
 		msgAtackHit.info.damage = fallingAttackDamage;
 		msgAtackHit.info.givesPower = true;
 	}
 	else {
-		//dbg("Landing\n");
 		msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	}
 
