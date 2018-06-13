@@ -30,7 +30,7 @@
 #include "components/player/states/base_states/long_jump/JumpSquatLongActionState.h"
 #include "components/player/states/base_states/long_jump/PropelLongActionState.h"
 #include "components/player/states/base_states/LandingActionState.h"
-#include "components/player/states/base_states/FallingAttackLandingActionState.h"
+#include "components/player/states/base_states/HardLandingActionState.h"
 #include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
 #include "components/player/states/base_states/wall_jump/WallJumpSquatActionState.h"
 #include "components/player/states/base_states/wall_jump/AirborneWallJumpActionState.h"
@@ -107,7 +107,7 @@ void StateManager::registerStates() {
 	registerState<AirborneLongActionState>();
 	registerState<TurnAroundActionState>();
 	registerState<LandingActionState>();
-	registerState<FallingAttackLandingActionState>();
+	registerState<HardLandingActionState>();
 	registerState<PropelHighActionState>();
 	registerState<PropelLongActionState>();
 	registerState<HuggingWallActionState>();

@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "WallJumpPlummetActionState.h"
-#include "components/player/states/base_states/FallingAttackLandingActionState.h"
+#include "components/player/states/base_states/HardLandingActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
@@ -51,7 +51,7 @@ void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	clampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 
-	if (!dynamic_cast<FallingAttackLandingActionState*>(nextState)) {
+	if (!dynamic_cast<HardLandingActionState*>(nextState)) {
 		getHitboxes()->disable(hitbox); //que la deshabilite LandingFallingAttack si es posible
 	}
 

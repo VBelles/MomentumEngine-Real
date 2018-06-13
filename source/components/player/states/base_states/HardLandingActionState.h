@@ -2,7 +2,7 @@
 
 #include "LandingActionState.h"
 
-class FallingAttackLandingActionState : public LandingActionState {
+class HardLandingActionState : public LandingActionState {
 private:
 	CTimer hitboxTimer;
 	float impactAttackDurationTime = frames2sec(3);
@@ -26,7 +26,7 @@ private:
 	std::string hitboxPlummet = "plummet_attack";
 
 public:
-	FallingAttackLandingActionState(StateManager* stateManager);
+	HardLandingActionState(StateManager* stateManager);
 
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
