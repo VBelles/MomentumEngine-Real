@@ -88,7 +88,7 @@ float4 PS(
   float shadow_factor = computeShadowFactor( iWorldPos ); 
   float water_surface_shadow_factor = 0.5 + saturate( 0.5 + shadow_factor);
 
-  // A random N in tangen space
+  // A random N in tangent space
   float3 normal_color = float3( noiseF.xy, 1.5 );
   float3x3 TBN = computeTBN( iNormal, iTangent );
   float3 N = normalize( mul( normal_color, TBN ) );
