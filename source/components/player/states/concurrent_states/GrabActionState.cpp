@@ -49,7 +49,7 @@ void GrabActionState::onStateExit(IActionState * nextState) {
 
 void GrabActionState::onLanding() {
 	getHitboxes()->disable(hitbox);
-	stateManager->changeState(Landing);
+	stateManager->changeState(SoftLanding);
 	stateManager->changeConcurrentState(Free);
 }
 

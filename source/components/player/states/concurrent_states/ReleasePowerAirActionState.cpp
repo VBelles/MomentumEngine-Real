@@ -121,7 +121,7 @@ void ReleasePowerAirActionState::onDamage(const TMsgAttackHit & msg) {
 }
 
 void ReleasePowerAirActionState::onLanding() {
-	stateManager->changeState(Landing);
+	stateManager->changeState(SoftLanding);
 	stateManager->changeConcurrentState(Free);
 }
 

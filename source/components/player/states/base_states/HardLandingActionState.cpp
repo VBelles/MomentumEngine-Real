@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "FallingAttackLandingActionState.h"
+#include "HardLandingActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_render.h"
@@ -8,11 +8,12 @@
 #include "components/player/states/StateManager.h"
 
 
-FallingAttackLandingActionState::FallingAttackLandingActionState(StateManager* stateManager) :
-	LandingActionState(stateManager, LandingFallingAttack) {
+HardLandingActionState::HardLandingActionState(StateManager* stateManager) :
+	LandingActionState(stateManager, HardLanding) {
+	landingLagTime = frames2sec(40);
 }
 
-void FallingAttackLandingActionState::update(float delta) {
+void HardLandingActionState::update(float delta) {
 	LandingActionState::update(delta);
 	if (hitboxTimer.elapsed() >= impactAttackDurationTime) {
 		getHitboxes()->disable(hitbox);
@@ -23,9 +24,8 @@ void FallingAttackLandingActionState::update(float delta) {
 	}
 }
 
-void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
+void HardLandingActionState::onStateEnter(IActionState * lastState) {
 	LandingActionState::onStateEnter(lastState);
-	landingLagTime = newLandingLagTime;
 	hasTriedSpringJump = false;
 	movementInput = VEC2::Zero;
 	getHitboxes()->enable(hitbox);
@@ -35,34 +35,32 @@ void FallingAttackLandingActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
-void FallingAttackLandingActionState::onStateExit(IActionState * nextState) {
+void HardLandingActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
 	getHitboxes()->disable(hitboxFallingAttack); //Por si las moscas
 	getHitboxes()->disable(hitboxPlummet); //Por si las moscas
 }
 
-void FallingAttackLandingActionState::onJumpHighButton() {
+void HardLandingActionState::onJumpHighButton() {
 	if (!hasTriedSpringJump && springJumpTimer.elapsed() >= springJumpWindowStartTime && springJumpTimer.elapsed() <= springJumpWindowEndTime) {
 		stateManager->changeState(JumpSquatSpring);
 	}
 	hasTriedSpringJump = true;
 }
 
-void FallingAttackLandingActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
+void HardLandingActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
 	if (hitbox == hitboxFallingAttack) {
-		//dbg("Those nice frames\n");
 		otherEntity->sendMsg(TMsgGetPower{ playerEntity, fallingAttackPowerToGet });
 		msgAtackHit.info.damage = fallingAttackDamage;
 		msgAtackHit.info.givesPower = true;
 	}
 	else {
-		//dbg("Landing\n");
 		msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	}
 
