@@ -121,7 +121,6 @@ void TCompSlash::updateMesh() {
 
 	std::vector<TVtxPosNUv> vertices;
 	vertices.resize(verticesSize);
-	VEC4 clr(1, 1, 1, 1);
 
 	int i = 0;
 	for (const TControlPoint& controlPoint : points) {
@@ -130,16 +129,16 @@ void TCompSlash::updateMesh() {
 		//Tail
 		if (tailMultiplier && i == 0 && tailMultiplier) {
 			VEC3 tailIncrement = -t.getFront() * tailMultiplier;
-			vertices[i++] = TVtxPosNUv(pos + tailIncrement, VEC3::Zero, VEC2::Zero);
+			vertices[i++] = TVtxPosNUv(pos + tailIncrement, VEC3::Zero, VEC2(0, 0.5));
 		}
 		//Body
 		VEC3 increment = t.getLeft() * width * 0.5;
-		vertices[i++] = TVtxPosNUv(pos + increment, VEC3::Zero, VEC2::Zero);
-		vertices[i++] = TVtxPosNUv(pos - increment, VEC3::Zero, VEC2::Zero);
+		vertices[i++] = TVtxPosNUv(pos + increment, VEC3::Zero, VEC2(0, 1));
+		vertices[i++] = TVtxPosNUv(pos - increment, VEC3::Zero, VEC2(0, 0));
 		//Head
 		if (headMultiplier && i == vertices.size() - 1) {
 			VEC3 headIncrement = t.getFront() * headMultiplier;
-			vertices[i++] = TVtxPosNUv(pos + headIncrement, VEC3::Zero, VEC2::Zero);
+			vertices[i++] = TVtxPosNUv(pos + headIncrement, VEC3::Zero, VEC2(0, 0.5));
 		}
 	}
 

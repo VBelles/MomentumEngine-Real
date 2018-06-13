@@ -14,7 +14,7 @@
                 "max_vertex": 500,
                 "tail_multiplier": 0.0,
                 "head_multiplier": 0.0,
-                "texture": "data/textures/black.dds"
+                "texture": "data/textures/slash/slash-test.dds"
             }
         }
     }
