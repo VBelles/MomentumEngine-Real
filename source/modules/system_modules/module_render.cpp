@@ -92,7 +92,8 @@ bool CModuleRender::start() {
     if (!cb_blur.create(CB_BLUR))          return false;
     if (!cb_gui.create(CB_GUI))            return false;
     if (!cb_fog.create(CB_FOG))            return false;
-    if (!cb_particles.create(CB_PARTICLE)) return false;
+	if (!cb_particles.create(CB_PARTICLE)) return false;
+	if (!cb_slash.create(CB_SLASH))		   return false;
 
 
     cb_globals.global_exposure_adjustment = 1.f;
@@ -109,7 +110,8 @@ bool CModuleRender::start() {
     cb_blur.activate();
 	cb_gui.activate();
 	cb_fog.activate();
-    cb_particles.activate();
+	cb_particles.activate();
+	cb_slash.activate();
 
     //activateMainCamera();
 
@@ -129,7 +131,8 @@ bool CModuleRender::stop() {
 	cb_blur.destroy();
 	cb_gui.destroy();
 	cb_fog.destroy();
-    cb_particles.destroy();
+	cb_particles.destroy();
+	cb_slash.destroy();
 
     ImGui_ImplDX11_Shutdown();
 

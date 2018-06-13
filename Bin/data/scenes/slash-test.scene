@@ -4,7 +4,7 @@
             "name": "slash01",
             "transform": {},
             "slash": {
-                "enabled": true,
+                "enabled": false,
                 "target": "The Player",
                 "bone": "Bip001 R Hand",
                 "offset": "0 0 0",

@@ -15,6 +15,7 @@
 #define CB_GUI          9
 #define CB_FOG          10
 #define CB_PARTICLE     11
+#define CB_SLASH        12
 
 // -------------------------------------------------
 // Texture Slots
@@ -212,6 +213,13 @@ CB_DEF(CCteParticle, CB_PARTICLE) {
     VEC2 particle_minUV;
     VEC2 particle_maxUV;
     VEC4 particle_color;
+};
+
+CB_DEF(CCteSlash, CB_SLASH) {
+	float duration;
+	float slash_pad1;
+	float slash_pad2;
+	float slash_pad3;
 };
 
 #endif
