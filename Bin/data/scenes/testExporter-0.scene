@@ -1,0 +1,95 @@
+[
+  {
+    "entity":
+    {
+      "name": "mud17",
+      "transform":
+      {
+        "pos": "1.06746 2.8 2.22602",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mud17.mesh",
+          "materials":
+          [
+            "data/materials/Material_#4.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/mud17_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mud15",
+      "transform":
+      {
+        "pos": "-17.1941 2.8023 -12.9856",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mud15.mesh",
+          "materials":
+          [
+            "data/materials/Material_#3.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/mud15_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mud16",
+      "transform":
+      {
+        "pos": "-21.3422 2.79968 6.80904",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mud16.mesh",
+          "materials":
+          [
+            "data/materials/Material_#2.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/mud16_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  }
+]

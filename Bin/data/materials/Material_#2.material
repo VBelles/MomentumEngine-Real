@@ -1,0 +1,11 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/material_102_base_color.dds",
+    "normal": "data/textures/material_102_normals.dds",
+    "metallic": "data/textures/material_102_roughness.dds",
+    "roughness": "data/textures/null_roughness.dds"
+  }
+}
