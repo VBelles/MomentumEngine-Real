@@ -9,7 +9,7 @@ protected:
 	VEC3 movingVelocity;
 	CHandle propelTarget;
 
-	std::string animation = "jump_inicio";
+	std::string animation = "impulso_horizontal";
 
 public:
 	PropelLongActionState(StateManager* stateManager);

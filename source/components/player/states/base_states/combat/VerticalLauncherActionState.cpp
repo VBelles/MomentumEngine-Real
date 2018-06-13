@@ -8,7 +8,7 @@
 #include "components/player/states/StateManager.h"
 
 VerticalLauncherActionState::VerticalLauncherActionState(StateManager * stateManager) :
-	LauncherActionState(stateManager, VerticalLauncher, "vertical_launcher", "vertical_launcher") {
+	LauncherActionState(stateManager, VerticalLauncher, "Vlauncher", "vertical_launcher") {
 }
 
 void VerticalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

@@ -25,8 +25,8 @@ private:
 
 	bool isMoving = true;
 
-	std::string animation = "ataquecaida";
-	std::string recoveryAnimation = "jump_caida";
+	std::string animation = "dodge";
+	std::string recoveryAnimation = "hard_landing";
 
 public:
 	DodgeActionState(StateManager* stateManager);

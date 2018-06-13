@@ -10,7 +10,7 @@
 
 
 HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stateManager) :
-	LauncherActionState(stateManager, HorizontalLauncher, "vertical_launcher", "horizontal_launcher") {
+	LauncherActionState(stateManager, HorizontalLauncher, "Hlauncher", "horizontal_launcher") {
 }
 
 void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
