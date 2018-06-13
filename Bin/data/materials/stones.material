@@ -3,8 +3,8 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/piedras_c.dds"
-    ,
-    "normal": "data/textures/piedras_n.dds"
+    "albedo": "data/textures/piedras_c.dds",
+    "normal": "data/textures/piedras_n.dds",
+    "height": "data/textures/piedras_height.dds"
   }
 }
