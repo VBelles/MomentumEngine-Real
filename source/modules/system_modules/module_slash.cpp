@@ -29,8 +29,11 @@ void CModuleSlash::render() {
 
 		TCompTransform* transform = slashComp->get<TCompTransform>();
 		cb_object.obj_world = transform->asMatrix();
-		cb_object.obj_color = VEC4(1, 1, 1, 1);
+		cb_object.obj_color = slashComp->color;
 		cb_object.updateGPU();
+
+		cb_slash.slash_duration = slashComp->duration;
+		cb_slash.updateGPU();
 
 		slashComp->mesh->activateAndRender();
 	});

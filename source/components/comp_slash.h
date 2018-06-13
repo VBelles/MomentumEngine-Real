@@ -35,7 +35,6 @@ private:
 	VEC3 rotOffset;
 	float tailMultiplier = 0.f;
 	float headMultiplier = 0.f;
-	float duration = 0.f;
 
 	CHandle renderHandle;
 	CHandle skeletonHandle;
@@ -48,6 +47,8 @@ private:
 public:
 	CRenderMesh * mesh = nullptr;
 	const CTexture* texture = nullptr;
+	float duration = 0.f;
+	VEC4 color = VEC4(1, 1, 1, 1);
 
 	DECL_SIBLING_ACCESS();
 

@@ -20,7 +20,8 @@ float4 PS(
       float4 iPos       : SV_POSITION
     , float3 iNormal    : NORMAL
     , float2 iTex0      : TEXCOORD0
-    ) : SV_Target { 
-    float4 oDiffuse = txAlbedo.Sample(samClampLinear, iTex0);
-    return oDiffuse;
+    ) : SV_Target {
+    
+    float4 textureColor = txAlbedo.Sample(samClampLinear, iTex0);
+    return textureColor * obj_color;
 }
