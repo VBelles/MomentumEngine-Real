@@ -445,7 +445,7 @@ struct TSceneExporter (
 	-- -- · COMPONENTS · ---------------------------------------
 	-- ----------------------------------------------------------------------
 
-	-- --COMP: TRANSFORM-----------------------------------------------
+	-- --COMP: TRANSFORM------------------------------------
 	fn exportTransform obj lookAtCoord: noRot:false relative:false = (
 		fs.writeKey "transform"
 		fs.beginObj()
