@@ -85,6 +85,11 @@ void PS_GBuffer(
 	//if the source texture for occlusion, roughness and metallic is the same, we must
 	//pick the appropriate channel for each one of them
 
+	//parallax: cambiar iTex0 antes de pillarlo para el albedo
+	// float height =  txAlbedo.Sample(samLinear, iTex0).g;    
+    // vec2 p = viewDir.xy / viewDir.z * (height * height_scale);
+    // iTex0 = iTex0 - p; 
+
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
