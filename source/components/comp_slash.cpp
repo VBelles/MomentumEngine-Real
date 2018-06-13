@@ -154,6 +154,13 @@ void TCompSlash::updateMesh() {
 
 void TCompSlash::setEnable(bool enabled) {
 	this->enabled = enabled;
+	if (!enabled) {
+		if (mesh) {
+			mesh->destroy();
+			SAFE_DELETE(mesh);
+		}
+		points.clear();
+	}
 }
 
 TCompTransform* TCompSlash::getTargetTransform() {

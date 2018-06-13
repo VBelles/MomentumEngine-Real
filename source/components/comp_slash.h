@@ -35,7 +35,7 @@ private:
 	VEC3 rotOffset;
 	float tailMultiplier = 0.f;
 	float headMultiplier = 0.f;
-	float duration = 1.f;
+	float duration = 0.f;
 
 	CHandle renderHandle;
 	CHandle skeletonHandle;

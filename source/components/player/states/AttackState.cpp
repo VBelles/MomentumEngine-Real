@@ -3,6 +3,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/player/states/StateManager.h"
+#include "components/comp_slash.h"
 
 
 AttackState::AttackState(StateManager* stateManager) {
@@ -10,6 +11,8 @@ AttackState::AttackState(StateManager* stateManager) {
 }
 
 void AttackState::update(float delta) {
+	CEntity* slashEntity = getEntityByName("slash01");
+	TCompSlash* slash = slashEntity->get<TCompSlash>();
 	if (phase == AttackPhases::Recovery && timer.elapsed() >= animationEndTime) {
 		if (!_stateManager->isChangingBaseState) {
 			_stateManager->changeState(Idle);
@@ -19,6 +22,7 @@ void AttackState::update(float delta) {
 		timer.reset();
 		getAttackHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
+		slash->setEnable(false);
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
@@ -32,10 +36,17 @@ void AttackState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	cancelTimer.reset();
 	invulnerableTimer.reset();
+	CEntity* slashEntity = getEntityByName("slash01");
+	TCompSlash* slash = slashEntity->get<TCompSlash>();
+	slash->setEnable(true);
+
 }
 
 void AttackState::onStateExit(IActionState * nextState) {
 	getAttackHitboxes()->disable(hitbox);
+	CEntity* slashEntity = getEntityByName("slash01");
+	TCompSlash* slash = slashEntity->get<TCompSlash>();
+	slash->setEnable(false);
 }
 
 bool AttackState::isCancelable() {

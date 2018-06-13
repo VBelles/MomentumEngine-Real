@@ -1,20 +1,21 @@
 [
     {
         "entity": {
-            "name": "dash01",
+            "name": "slash01",
             "transform": {},
             "slash": {
                 "enabled": true,
                 "target": "The Player",
                 "bone": "Bip001 R Hand",
-                "offset": "0 0 0.6",
+                "offset": "0 0 0",
                 "rot_offset": "0 0 90",
                 "width": 0.2,
                 "min_vertex_distance": 0.05,
                 "max_vertex": 500,
                 "tail_multiplier": 0.0,
                 "head_multiplier": 0.0,
-                "texture": "data/textures/slash/slash-test.dds"
+                "texture": "data/textures/slash/slash-test.dds",
+                "duration": 0.15
             }
         }
     }
