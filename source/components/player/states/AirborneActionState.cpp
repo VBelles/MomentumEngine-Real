@@ -172,7 +172,7 @@ bool AirborneActionState::hugWall(const HitState& hitState) {
 
 void AirborneActionState::onLanding() {
 	//Ir a landing action state
-	stateManager->changeState(Landing);
+	stateManager->changeState(SoftLanding);
 }
 
 

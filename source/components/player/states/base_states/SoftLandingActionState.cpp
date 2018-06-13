@@ -9,7 +9,7 @@
 
 
 SoftLandingActionState::SoftLandingActionState(StateManager* stateManager):
-	LandingActionState(stateManager, Landing){
+	LandingActionState(stateManager, SoftLanding){
 }
 
 void SoftLandingActionState::update (float delta) {
