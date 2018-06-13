@@ -21,7 +21,10 @@ float4 PS(
     , float3 iNormal    : NORMAL
     , float2 iTex0      : TEXCOORD0
     ) : SV_Target {
-    
+
+    float time = iNormal.x;
     float4 textureColor = txAlbedo.Sample(samClampLinear, iTex0);
-    return textureColor * obj_color;
+    float4 color =  textureColor * obj_color;
+    color.a -= time / slash_duration;
+    return color;
 }
