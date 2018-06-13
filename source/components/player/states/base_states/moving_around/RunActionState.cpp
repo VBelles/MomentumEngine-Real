@@ -84,3 +84,10 @@ void RunActionState::onStateExit(IActionState * nextState) {
 void RunActionState::onSpendCoinsButton() {
 	stateManager->changeState(SpendCoins);
 }
+
+void RunActionState ::setAnimation(int powerLevel) {
+	animation = animations[powerLevel - 1];
+	if (stateManager->getState()->state == state) {
+		getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	}
+}

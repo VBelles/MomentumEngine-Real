@@ -4,7 +4,8 @@
 
 class RunActionState : public GroundedActionState {
 private:
-	std::string animation = "run";
+	std::string animations[3] = { "runSS1", "runSS2", "runSS3" };
+	std::string animation = "runSS1";
 
 public:
 	RunActionState(StateManager* stateManager);
@@ -13,4 +14,6 @@ public:
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 	void onSpendCoinsButton() override;
+
+	void setAnimation(int powerLevel);
 };

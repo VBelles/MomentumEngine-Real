@@ -206,6 +206,7 @@ IActionState* StateManager::getConcurrentState() {
 IActionState* StateManager::getState(State state) {
 	return states[state];
 }
+
 IActionState* StateManager::getConcurrentState(ConcurrentState state) {
 	return concurrentStates[state];
 }
