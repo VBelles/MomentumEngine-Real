@@ -78,8 +78,6 @@ bool CModuleGame::start() {
 
 	respawner = new Respawner();
 
-	EngineParticles.launchSystem("data/particles/dust.particles",getEntityByName(PLAYER_NAME), VEC3(0,0.3,0));
-
 	EngineScripting.throwEvent(onGameStart, "");
 	EngineScripting.throwEvent(onLevelStart, "1");
 

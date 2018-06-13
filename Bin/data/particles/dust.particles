@@ -2,13 +2,13 @@
   "life" : {
       "duration" : 0.5,
       "duration_variation" : 0.25,
-      "max_particles" : 20,
+      "max_particles" : 60,
       "time_factor" : 1.0
   },
   "emission" : {
       "type" : "point",
       "angle" : 10.0,
-      "interval" : 0.00001,
+      "interval" : 0.1,
       "count" : 1,
       "cyclic" : true
   },
@@ -24,8 +24,8 @@
       "texture" : "data/textures/particles/dust.dds"
   },
   "size" : {
-    "scale" : 0.8,
-    "scale_variation" : 0.5,
+    "scale" : 0.9,
+    "scale_variation" : 0.25,
     "sizes" : [
       [0.0, 1.0],
       [0.50, 0.75],
@@ -36,7 +36,8 @@
   "color" : {
     "opacity" : 1.0,
     "colors" : [
-      [0.0, "1 1 1 1"]
+      [0.0, "1 1 1 1"],
+      [1.0, "1 1 1 1"]
     ] 
   }
 }
