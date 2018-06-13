@@ -82,23 +82,26 @@ void PS_GBuffer(
 	, out float1 o_depth : SV_Target2
 	, out float4 o_selfIllum : SV_Target3
 ) {
-	//if the source texture for occlusion, roughness and metallic is the same, we must
-	//pick the appropriate channel for each one of them
 
-	//parallax: cambiar iTex0 antes de pillarlo para el albedo
-	// float height =  txAlbedo.Sample(samLinear, iTex0).g;    
-    // vec2 p = viewDir.xy / viewDir.z * (height * height_scale);
-    // iTex0 = iTex0 - p; 
+	float3 camera2wpos = iWorldPos - camera_pos;
+	float3 view_dir = camera_pos - iWorldPos;
+	//parallax	
+	float height =  /*1.f - */ txHeight.Sample(samLinear, iTex0).r;//puede que se tenga que invertir, creo que usan depth map en vez de height map 
+    float2 p = view_dir.xy / view_dir.z * (height * 0.00075);//height_scale por si el efecto es demasiado fuerte
+    iTex0 = iTex0 - p; 
+	// if(iTex0.x > 1.0 || iTex0.y > 1.0 || iTex0.x < 0.0 || iTex0.y < 0.0){
+    // 	discard;
+	// }
 
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
-	o_albedo.a = /*1.f - */txMetallic.Sample(samLinear, iTex0).r;
+	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 
 	// Save roughness in the alpha coord of the N render target
-	float roughness = /*1.f - */txRoughness.Sample(samLinear, iTex0).r;
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	o_normal = encodeNormal(N, roughness);
 
 	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
@@ -114,7 +117,6 @@ void PS_GBuffer(
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
-	float3 camera2wpos = iWorldPos - camera_pos;
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 }
 
