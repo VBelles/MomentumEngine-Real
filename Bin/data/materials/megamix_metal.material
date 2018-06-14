@@ -1,0 +1,15 @@
+{
+  "technique": "pbr.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/megamix/metal_grunge_albedo.dds",
+    "normal": "data/textures/megamix/metal_grunge_normal.dds",
+    "metallic": "data/textures/megamix/metal_grunge_metallic.dds",
+    "roughness": "data/textures/megamix/metal_grunge_roughness.dds",
+    "self_illum": "data/textures/megamix/metal_grunge_self_illum.dds",
+    "height": "data/textures/megamix/metal_grunge_height.dds"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/megamix/grass_albedo.dds",
+    "normal": "data/textures/megamix/grass_normal.dds",
+    "metallic": "data/textures/megamix/grass_metallic.dds",
+    "roughness": "data/textures/megamix/grass_roughness.dds",
+    "self_illum": "data/textures/megamix/grass_self_illum.dds",
+    "height": "data/textures/megamix/grass_height.dds"
+  }
+}
