@@ -2,7 +2,6 @@
 #include "comp_slash.h"
 #include "entity/common_msgs.h"
 #include "components/comp_transform.h"
-#include "components/comp_render.h"
 #include "skeleton/comp_skeleton.h"
 #include "skeleton/cal3d2engine.h"
 
@@ -70,6 +69,14 @@ void TCompSlash::updatePoints(float delta) {
 			++iter;
 		}
 	}
+	
+	if (!emitting) {
+		if (points.empty()) { //Finished emitting, auto disable
+			setEnable(false);
+		}
+		return;
+	}
+
 	//Add new control point
 	CTransform transform;
 	if (boneId != -1) {
@@ -147,10 +154,16 @@ void TCompSlash::updateMesh() {
 		mesh->destroy();
 		SAFE_DELETE(mesh);
 	}
-	mesh = new CRenderMesh();
-	mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosNUv), "PosNUv", CRenderMesh::TRIANGLE_STRIP);
+	if (vertices.size() > 0) {
+		mesh = new CRenderMesh();
+		mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosNUv), "PosNUv", CRenderMesh::TRIANGLE_STRIP);
+	}
 }
 
+
+void TCompSlash::stopEmitting() {
+	this->emitting = false;
+}
 
 void TCompSlash::setEnable(bool enabled) {
 	this->enabled = enabled;
@@ -161,6 +174,7 @@ void TCompSlash::setEnable(bool enabled) {
 		}
 		points.clear();
 	}
+	this->emitting = enabled;
 }
 
 TCompTransform* TCompSlash::getTargetTransform() {

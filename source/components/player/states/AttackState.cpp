@@ -22,7 +22,7 @@ void AttackState::update(float delta) {
 		timer.reset();
 		getAttackHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
-		slash->setEnable(false);
+		slash->stopEmitting();
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
@@ -46,7 +46,7 @@ void AttackState::onStateExit(IActionState * nextState) {
 	getAttackHitboxes()->disable(hitbox);
 	CEntity* slashEntity = getEntityByName("slash01");
 	TCompSlash* slash = slashEntity->get<TCompSlash>();
-	slash->setEnable(false);
+	slash->stopEmitting();
 }
 
 bool AttackState::isCancelable() {

@@ -41,6 +41,8 @@ private:
 
 	std::list<TControlPoint> points;
 
+	bool emitting; //For deferred disabling 
+
 	TCompTransform* getTargetTransform();
 	TCompSkeleton* getSkeleton();
 
@@ -64,5 +66,6 @@ public:
 
 	void onAllScenesCreated(const TMsgAllScenesCreated & msg);
 
+	void stopEmitting();
 	void setEnable(bool enabled);
 };
