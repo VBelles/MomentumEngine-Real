@@ -43,6 +43,7 @@ private:
 
 	bool emitting; //For deferred disabling 
 
+	void clearMesh();
 	TCompTransform* getTargetTransform();
 	TCompSkeleton* getSkeleton();
 
@@ -64,7 +65,7 @@ public:
 	void updatePoints(float delta);
 	void updateMesh();
 
-	void onAllScenesCreated(const TMsgAllScenesCreated & msg);
+	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 
 	void stopEmitting();
 	void setEnable(bool enabled);

@@ -150,11 +150,8 @@ void TCompSlash::updateMesh() {
 	}
 
 	//Clear previous mesh and generate a new one
-	if (mesh) {
-		mesh->destroy();
-		SAFE_DELETE(mesh);
-	}
-	if (vertices.size() > 0) {
+	clearMesh();
+	if (!vertices.empty()) {
 		mesh = new CRenderMesh();
 		mesh->create(vertices.data(), vertices.size() * sizeof(TVtxPosNUv), "PosNUv", CRenderMesh::TRIANGLE_STRIP);
 	}
@@ -168,13 +165,17 @@ void TCompSlash::stopEmitting() {
 void TCompSlash::setEnable(bool enabled) {
 	this->enabled = enabled;
 	if (!enabled) {
-		if (mesh) {
-			mesh->destroy();
-			SAFE_DELETE(mesh);
-		}
+		clearMesh();
 		points.clear();
 	}
 	this->emitting = enabled;
+}
+
+void TCompSlash::clearMesh() {
+	if (mesh) {
+		mesh->destroy();
+		SAFE_DELETE(mesh);
+	}
 }
 
 TCompTransform* TCompSlash::getTargetTransform() {
