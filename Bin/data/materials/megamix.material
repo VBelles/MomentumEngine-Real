@@ -5,9 +5,9 @@
   "textures":
   { },
   "mats":[
-    "data/materials/mix_grass.material",
-    "data/materials/mix_sand.material",
-    "data/materials/mix_stones.material"
+    "data/materials/megamix_grass.material",
+    "data/materials/megamix_metal.material",
+    "data/materials/megamix_bricks.material"
   ],
-  "mix_blend_weights" : "data/textures/mix/mixing_blend.dds"
+  "mix_blend_weights" : "data/textures/megamix/mixing_blend.dds"
 }
