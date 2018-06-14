@@ -71,7 +71,7 @@ float2 parallaxMapping(in float3 V, in float2 T)
 {
    // determine optimal number of layers
    const float minLayers = 10;
-   const float maxLayers = 15;
+   const float maxLayers = 64;
    float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0, 0, 1), V)));
 
    // height of each layer
@@ -79,7 +79,7 @@ float2 parallaxMapping(in float3 V, in float2 T)
    // current depth of the layer
    float curLayerHeight = 0;
    // shift of texture coordinates for each layer
-   float parallax_scale = 0.1;
+   float parallax_scale = 0.04;
    float2 dtex = parallax_scale * V.xy / numLayers;
 
    // current texture coordinates
@@ -101,7 +101,7 @@ float2 parallaxMapping(in float3 V, in float2 T)
    ///////////////////////////////////////////////////////////
 
    // previous texture coordinates
-   float texStep = 64;
+   float texStep = dtex/64;
    float2 prevTCoords = currentTextureCoords + texStep;
 
    // heights for linear interpolation
@@ -140,16 +140,15 @@ void PS_GBuffer(
 	float3x3 TBN = computeTBN(iNormal, iTangent);
 	float3x3 wTBN = transpose(TBN);
 	float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
-	view_dir = view_dir;
 	//parallax	
-	float height =  1.f - txHeight.Sample(samLinear, iTex0).r;//puede que se tenga que invertir, creo que usan depth map en vez de height map 
-    float2 p = view_dir.xy * (height * 0.07);//height_scale por si el efecto es demasiado fuerte
-    iTex0 = iTex0 - p; 
+	// float height =  1.f - txHeight.Sample(samLinear, iTex0).r;//puede que se tenga que invertir, creo que usan depth map en vez de height map 
+    // float2 p = view_dir.xy * (height * 0.07);//height_scale por si el efecto es demasiado fuerte
+    // iTex0 = iTex0 - p; 
 	//   if(iTex0.x > 1.0 || iTex0.y > 1.0 || iTex0.x < 0.0 || iTex0.y < 0.0){
     //   	discard;
 	//   }
 
-	 //iTex0 = parallaxMapping(view_dir, iTex0);
+	 iTex0 = parallaxMapping(view_dir, iTex0);
 
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
