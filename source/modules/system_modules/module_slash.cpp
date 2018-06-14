@@ -33,6 +33,7 @@ void CModuleSlash::render() {
 		cb_object.updateGPU();
 
 		cb_slash.slash_duration = slashComp->duration;
+		cb_slash.slash_fadeout_multiplier = slashComp->fadeoutMultiplier;
 		cb_slash.updateGPU();
 
 		slashComp->mesh->activateAndRender();

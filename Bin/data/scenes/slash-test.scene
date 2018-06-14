@@ -4,7 +4,7 @@
             "name": "slash01",
             "transform": {},
             "slash": {
-                "enabled": false,
+                "texture": "data/textures/slash/slash-test.dds",
                 "target": "The Player",
                 "bone": "Bip001 R Hand",
                 "offset": "0 0 0",
@@ -13,7 +13,7 @@
                 "duration": 0.6,
                 "min_vertex_distance": 0.05,
                 "max_vertex": 500,
-                "texture": "data/textures/slash/slash-test.dds"
+                "fadeout_multiplier": 1
             }
         }
     }

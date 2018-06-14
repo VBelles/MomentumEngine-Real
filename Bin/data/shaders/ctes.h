@@ -217,7 +217,7 @@ CB_DEF(CCteParticle, CB_PARTICLE) {
 
 CB_DEF(CCteSlash, CB_SLASH) {
 	float slash_duration;
-	float slash_pad1;
+	float slash_fadeout_multiplier;
 	float slash_pad2;
 	float slash_pad3;
 };

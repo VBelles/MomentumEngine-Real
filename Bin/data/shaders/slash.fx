@@ -25,6 +25,6 @@ float4 PS(
     float time = iNormal.x;
     float4 textureColor = txAlbedo.Sample(samClampLinear, iTex0);
     float4 color =  textureColor * obj_color;
-    color.a -= time / slash_duration;
+    color.a -= (time / slash_duration) * slash_fadeout_multiplier;
     return color;
 }

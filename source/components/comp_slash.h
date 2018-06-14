@@ -51,6 +51,7 @@ public:
 	CRenderMesh * mesh = nullptr;
 	const CTexture* texture = nullptr;
 	float duration = 0.f;
+	float fadeoutMultiplier = 1.f;
 	VEC4 color = VEC4(1, 1, 1, 1);
 
 	DECL_SIBLING_ACCESS();
