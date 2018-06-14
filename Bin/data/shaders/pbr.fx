@@ -67,6 +67,59 @@ void VS_GBuffer_Skin(
 }
 
 
+float2 parallaxMapping(in float3 V, in float2 T)
+{
+   // determine optimal number of layers
+   const float minLayers = 10;
+   const float maxLayers = 64;
+   float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0, 0, 1), V)));
+
+   // height of each layer
+   float layerHeight = 1.0 / numLayers;
+   // current depth of the layer
+   float curLayerHeight = 0;
+   // shift of texture coordinates for each layer
+   float parallax_scale = 0.04;
+   float2 dtex = parallax_scale * V.xy / numLayers;
+
+   // current texture coordinates
+   float2 currentTextureCoords = T;
+
+   // depth from heightmap
+   float heightFromTexture = 1 - txHeight.Sample(samLinear, currentTextureCoords).r;
+
+    // while point is above the surface
+   [unroll(230)] while(heightFromTexture > curLayerHeight) 
+   {
+      // to the next layer
+      curLayerHeight += layerHeight; 
+      // shift of texture coordinates
+      currentTextureCoords -= dtex;
+      // new depth from heightmap
+      heightFromTexture = 1 - txHeight.Sample(samLinear, currentTextureCoords).r;
+   }
+   ///////////////////////////////////////////////////////////
+
+   // previous texture coordinates
+   float texStep = dtex/64;
+   float2 prevTCoords = currentTextureCoords + texStep;
+
+   // heights for linear interpolation
+   float nextH	= heightFromTexture - curLayerHeight;
+   float prevH	= (1 - txHeight.Sample(samLinear, prevTCoords).r)
+                           - curLayerHeight + layerHeight;
+
+   // proportions for linear interpolation
+   float weight = nextH / (nextH - prevH);
+
+   // interpolation of texture coordinates
+   float2 finalTexCoords = prevTCoords * weight + currentTextureCoords * (1.0-weight);
+
+   // return result
+   return finalTexCoords;
+}
+
+
 //--------------------------------------------------------------------------------------
 // GBuffer generation pass. Pixel shader
 //--------------------------------------------------------------------------------------
@@ -82,23 +135,30 @@ void PS_GBuffer(
 	, out float1 o_depth : SV_Target2
 	, out float4 o_selfIllum : SV_Target3
 ) {
-	//if the source texture for occlusion, roughness and metallic is the same, we must
-	//pick the appropriate channel for each one of them
 
-	//parallax: cambiar iTex0 antes de pillarlo para el albedo
-	// float height =  txAlbedo.Sample(samLinear, iTex0).g;    
-    // vec2 p = viewDir.xy / viewDir.z * (height * height_scale);
+	float3 camera2wpos = iWorldPos - camera_pos;
+	float3x3 TBN = computeTBN(iNormal, iTangent);
+	float3x3 wTBN = transpose(TBN);
+	float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
+	//parallax	
+	// float height =  1.f - txHeight.Sample(samLinear, iTex0).r;//puede que se tenga que invertir, creo que usan depth map en vez de height map 
+    // float2 p = view_dir.xy * (height * 0.07);//height_scale por si el efecto es demasiado fuerte
     // iTex0 = iTex0 - p; 
+	//   if(iTex0.x > 1.0 || iTex0.y > 1.0 || iTex0.x < 0.0 || iTex0.y < 0.0){
+    //   	discard;
+	//   }
+
+	 iTex0 = parallaxMapping(view_dir, iTex0);
 
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
-	o_albedo.a = /*1.f - */txMetallic.Sample(samLinear, iTex0).r;
+	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 
 	// Save roughness in the alpha coord of the N render target
-	float roughness = /*1.f - */txRoughness.Sample(samLinear, iTex0).r;
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	o_normal = encodeNormal(N, roughness);
 
 	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
@@ -114,9 +174,9 @@ void PS_GBuffer(
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
-	float3 camera2wpos = iWorldPos - camera_pos;
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 }
+
 
 //--------------------------------------------------------------------------------------
 void PS_GBufferMix(
