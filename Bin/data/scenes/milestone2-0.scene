@@ -135,5 +135,26 @@
         ]
       }
     }
+  },
+  {
+    "entity":
+    {
+      "name": "test_megamix",
+      "transform":
+      {
+        "pos": "-5 10.0 -45",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_rocosa1_low_col.mesh",
+          "materials":
+          [
+            "data/materials/megamix.material"
+          ]
+        }
+      ]
+    }
   }
 ]

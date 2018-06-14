@@ -52,13 +52,21 @@
 
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
-// 17,18,19 goes for extra textures of second material
 #define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
 
-#define TS_ALBEDO1 20
-#define TS_NORMAL1 21
-#define TS_ALBEDO2 22
-#define TS_NORMAL2 23
+#define TS_ALBEDO1		20
+#define TS_NORMAL1		21
+#define TS_METALLIC1	22
+#define TS_ROUGHNESS1	23
+#define TS_SELF_ILLUM1	24
+#define TS_HEIGHT1		25
+
+#define TS_ALBEDO2		26
+#define TS_NORMAL2		27
+#define TS_METALLIC2	28
+#define TS_ROUGHNESS2	29
+#define TS_SELF_ILLUM2	30
+#define TS_HEIGHT2		31
 
 // -------------------------------------------------
 #define RO_COMPLETE     0

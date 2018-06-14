@@ -101,7 +101,7 @@ float2 parallaxMapping(in float3 V, in float2 T)
    ///////////////////////////////////////////////////////////
 
    // previous texture coordinates
-   float texStep = dtex/64;
+   float texStep = dtex / 64.0;
    float2 prevTCoords = currentTextureCoords + texStep;
 
    // heights for linear interpolation
@@ -198,11 +198,16 @@ void PS_GBufferMix(
 	float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
 	float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
 
+	float heightR = txHeight.Sample(samLinear, iTex0).r;
+	float heightG = txHeight1.Sample(samLinear, iTex0).r;
+	float heightB = txHeight2.Sample(samLinear, iTex0).r;
+
 	// Use the alpha of the albedo as heights + texture blending extra weights + material ctes extra weights (imgui)
+	//Not_Juan: Como tenemos el height map a parte, lo usamos en vez de albedo.a
 	float w1, w2, w3;
-	computeBlendWeights(albedoR.a + mix_boost_r + weight_texture_boost.r
-		, albedoG.a + mix_boost_g + weight_texture_boost.g
-		, albedoB.a + mix_boost_b + weight_texture_boost.b
+	computeBlendWeights(heightR + mix_boost_r + weight_texture_boost.r
+		, heightG + mix_boost_g + weight_texture_boost.g
+		, heightB + mix_boost_b + weight_texture_boost.b
 		, w1, w2, w3);
 
 	// Use the weight to 'blend' the albedo colors
