@@ -276,7 +276,7 @@ struct TMaterialExporter (
 struct TSceneExporter (
 	fs = TJsonFormatter(),
 	project_path = "",
-	base_path = "data/",
+	base_path    = "data/",
 	scenes_path  = base_path + "scenes/",
 	uniques_path = base_path + "uniques/",
 	mesh_path    = base_path + "meshes/",
@@ -287,6 +287,11 @@ struct TSceneExporter (
 		fs.writeKeyValue "name" obj.name
 	),
 
+	fn isCamera obj = (
+		return classOf obj == FreeCamera or 
+			   classOf obj == TargetCamera
+	),
+	
 	fn isLine obj = (
 		return classOf obj == line or 
 			   classOf obj == circle or
@@ -437,10 +442,10 @@ struct TSceneExporter (
 	),
 	
 	-- ----------------------------------------------------------------------
-	-- -- · COMPONENTS · -------------------------------------------
+	-- -- · COMPONENTS · ---------------------------------------
 	-- ----------------------------------------------------------------------
 
-	-- --COMP: TRANSFORM-----------------------------------------------
+	-- --COMP: TRANSFORM------------------------------------
 	fn exportTransform obj lookAtCoord: noRot:false relative:false = (
 		fs.writeKey "transform"
 		fs.beginObj()
@@ -452,7 +457,13 @@ struct TSceneExporter (
 				if lookAtCoord == unsupplied then (
 					local transf = obj.transform
 					if relative then transf = getTransfRelativeToParent obj
-					fs.writeKeyValue "rotation" (maxRotToMcv transf)
+					if classOf obj == FreeCamera then (
+						local camCopy = copy obj
+						camCopy.transform = (rotateXMatrix 90) * camCopy.transform --Compensate camera axis shenanigans.
+						fs.writeKeyValue "rotation" (maxRotToMcv camCopy.transform)
+						delete camCopy
+					)
+					else fs.writeKeyValue "rotation" (maxRotToMcv transf)
 				) else (
 					fs.writeKeyValue "lookat" lookAtCoord
 				)
@@ -461,7 +472,7 @@ struct TSceneExporter (
 	),
 
 	-- --RENDER MESH (also exports MATERIAL)----------------------------------------
-	fn exportRenderMesh obj = (
+	fn exportRenderMesh obj pure:false = (
 		local mat = obj.material
 		if mat == undefined then (
 			format "Warning: Obj % doesn't have a material, a default will be assigned.\n" obj.name
@@ -489,7 +500,20 @@ struct TSceneExporter (
 
 			fs.writeKey "materials"
 			fs.arrayOfStrings exported_materials
-		fs.endObj()
+			if pure then (
+					fs.writeComma()
+					fs.writeKeyValue "enabled" false
+				fs.endObj() -- End first pure material object.
+				fs.writeComma()
+				fs.beginObj() -- Begin second pure material object.
+					fs.writeKeyValue "mesh" mesh_name
+					fs.writeComma()
+					fs.writeKey "materials"
+					fs.arrayOfStrings #(mats_path + "pure_platform_special.material")
+					fs.writeComma()
+					fs.writeKeyValue "enabled" false
+			)
+		fs.endObj() -- End render object.
 	),
 
 	-- --SPLINE-------------------------------------------------------
@@ -696,8 +720,7 @@ struct TSceneExporter (
 				
 				fs.writeComma()
 				if dyn then fs.writeKeyValue "type" "dynamic"
-				else if mov or layerName == "pure" then
-					fs.writeKeyValue "type" "kinematic"
+				else if mov then fs.writeKeyValue "type" "kinematic"
 				else fs.writeKeyValue "type" "static"
 			)
 
@@ -793,31 +816,6 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --PURITY--------------------------------------------------------------------
-	fn exportPurity = (
-		fs.beginObj()
-			fs.writeKeyValue "mesh" (mesh_path + "plataforma_puraNO.mesh")
-			fs.writeComma()
-			fs.writeKey "materials"
-			fs.beginArray()
-				fs.writeValue (mats_path + "NOpure.material") addIndent:true
-			fs.endArray()
-			fs.writeComma()
-			fs.writeKeyValue "enabled" false
-		fs.endObj()
-		fs.writeComma()
-		fs.beginObj()
-			fs.writeKeyValue "mesh" (mesh_path + "plataforma_pura_aristas.mesh")
-			fs.writeComma()
-			fs.writeKey "materials"
-			fs.beginArray()
-				fs.writeValue (mats_path + "pure.material") addIndent:true
-			fs.endArray()
-			fs.writeComma()
-			fs.writeKeyValue "enabled" false
-		fs.endObj()
-	),
-
 	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)--------------------------------
 	fn exportEditableMesh obj = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string) --DEBUG
@@ -832,8 +830,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKey "render"
 		fs.beginArray()
-			if pure then exportPurity() 
-			else exportRenderMesh obj
+			exportRenderMesh obj pure:pure
 		fs.endArray()
 		if hasChildDummy obj then exportLOD obj
 		
@@ -854,7 +851,7 @@ struct TSceneExporter (
 						fs.writeKeyEmpty "purity"
 						objToExport = obj
 					)
-					exportCompCollider objToExport first:isFirst meshMode:pure mov:(movable or rot) colliderGroups:groups
+					exportCompCollider objToExport first:isFirst mov:(movable or rot) colliderGroups:groups
 
 					if breakable then exportBreakable()
 					if movable then exportSpline child
@@ -946,24 +943,24 @@ struct TSceneExporter (
 		local objClass = classOf obj
 		format "name: %\n" obj.name
 		if objClass == TargetCamera or
-				objClass == FreeCamera then (
+		   objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
-					
+
 			fs.beginObj()
 				fs.writeKey "entity"
 				fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 					exportName obj
 					fs.writeComma()
 					if objClass == TargetCamera then (
-						exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+						exportTransform obj lookAtCoord:(maxPosToMcv obj.Target[3].pos) --[3] is the Transform.
 					) else exportTransform obj
-					
+
 					fs.writeComma()
 					fs.writeKey "camera"
 					fs.beginObj()
 						fs.writeKeyValue "fov" obj.fov
 					fs.endObj()
-					
+
 					fs.writeComma()
 					fs.writeKey "fixed_camera"
 					fs.beginObj()
@@ -985,10 +982,11 @@ struct TSceneExporter (
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
 				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		)
+		else return false
 
 		if hasChildCollider obj then (
 			local child = obj.children[1]
-			if classof child == Box then (
+			if isCollider child then (
 				fs.writeComma()
 				fs.beginObj()
 					fs.writeKey "entity"

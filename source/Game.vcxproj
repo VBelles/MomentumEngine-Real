@@ -119,6 +119,7 @@
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_slash.cpp" />
+    <ClCompile Include="components\player\states\base_states\SoftLandingActionState.cpp" />
     <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
     <ClCompile Include="components\controllers\comp_camera_curve_interpolation.cpp" />
@@ -194,7 +195,7 @@
     <ClCompile Include="components\player\states\concurrent_states\GrabHighActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\GrabLongActionState.cpp" />
     <ClCompile Include="components\player\states\AirborneActionState.cpp" />
-    <ClCompile Include="components\player\states\base_states\FallingAttackLandingActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\HardLandingActionState.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\ReleasePowerAirActionState.cpp" />
     <ClCompile Include="components\player\states\EStates.cpp" />
     <ClCompile Include="components\player\states\concurrent_states\SoftKnockbackAirActionState.cpp" />
@@ -372,6 +373,7 @@
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_slash.h" />
+    <ClInclude Include="components\player\states\base_states\SoftLandingActionState.h" />
     <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
     <ClInclude Include="components\controllers\comp_camera_curve_interpolation.h" />
@@ -452,7 +454,7 @@
     <ClInclude Include="components\player\states\concurrent_states\SoftKnockbackGroundActionState.h" />
     <ClInclude Include="components\player\states\IActionState.h" />
     <ClInclude Include="components\player\states\AirborneActionState.h" />
-    <ClInclude Include="components\player\states\base_states\FallingAttackLandingActionState.h" />
+    <ClInclude Include="components\player\states\base_states\HardLandingActionState.h" />
     <ClInclude Include="components\player\states\base_states\GhostJumpWindowActionState.h" />
     <ClInclude Include="components\player\states\GroundedActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\AirborneWallJumpActionState.h" />
