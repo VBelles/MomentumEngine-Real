@@ -148,7 +148,7 @@ void PS_GBuffer(
     //   	discard;
 	//   }
 
-	 iTex0 = parallaxMapping(view_dir, iTex0);
+	iTex0 = parallaxMapping(view_dir, iTex0);
 
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
@@ -189,14 +189,17 @@ void PS_GBufferMix(
 	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
 ) {
 	// This is different -----------------------------------------
 	// Using second set of texture coords
 	float4 weight_texture_boost = txMixBlendWeights.Sample(samLinear, iTex1);
 
-	float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
-	float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
-	float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
+	// float3x3 TBN = computeTBN(iNormal, iTangent);
+	// float3x3 wTBN = transpose(TBN);
+	// float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
+	// iTex0 = parallaxMapping(view_dir, iTex0);
+
 
 	float heightR = txHeight.Sample(samLinear, iTex0).r;
 	float heightG = txHeight1.Sample(samLinear, iTex0).r;
@@ -209,6 +212,10 @@ void PS_GBufferMix(
 		, heightG + mix_boost_g + weight_texture_boost.g
 		, heightB + mix_boost_b + weight_texture_boost.b
 		, w1, w2, w3);
+
+	float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
+	float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
+	float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
 
 	// Use the weight to 'blend' the albedo colors
 	float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
@@ -226,7 +233,21 @@ void PS_GBufferMix(
 	float3 N = normalize(wN);
 
 	// Missing: Do the same with the metallic & roughness channels
-	// ...
+	float metallicR = txMetallic.Sample(samLinear, iTex0).r;
+	float metallicG = txMetallic1.Sample(samLinear, iTex0).r;
+	float metallicB = txMetallic2.Sample(samLinear, iTex0).r;
+	o_albedo.a = metallicR * w1 + metallicG * w2 + metallicB * w3;
+
+	float roughnessR = txRoughness.Sample(samLinear, iTex0).r;
+	float roughnessG = txRoughness1.Sample(samLinear, iTex0).r;
+	float roughnessB = txRoughness2.Sample(samLinear, iTex0).r;
+	float roughness = roughnessR * w1 + roughnessG * w2 + roughnessB * w3;
+	o_normal = encodeNormal(N, roughness);
+
+	float4 selfIllumR = txSelfIllum.Sample(samLinear, iTex0);
+	float4 selfIllumG = txSelfIllum1.Sample(samLinear, iTex0);
+	float4 selfIllumB = txSelfIllum2.Sample(samLinear, iTex0);
+	o_selfIllum = selfIllumR * w1 + selfIllumG * w2 + selfIllumB * w3;
 
 	// Possible plain blending without heights
 	//o_albedo.xyz = lerp( albedoB.xyz, albedoG.xyz, weight_texture_boost.y );
@@ -235,13 +256,6 @@ void PS_GBufferMix(
 	//o_albedo.xyz = float3( iTex1.xy, 0 );		// Show the texture coords1
 
 	//o_albedo.xyz = weight_texture_boost.xyz;	// Show the extra weight textures
-
-	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-
-	// This is the same -----------------------------------------
-	// Save roughness in the alpha coord of the N render target
-	float roughness = txRoughness.Sample(samLinear, iTex0).r;
-	o_normal = encodeNormal(N, roughness);
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
