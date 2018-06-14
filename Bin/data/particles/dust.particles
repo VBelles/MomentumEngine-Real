@@ -21,10 +21,10 @@
       "ground" : true
   }, 
   "render" : {
-      "texture" : "data/textures/particles/dust.dds"
+      "texture" : "data/textures/particles/glow.dds"
   },
   "size" : {
-    "scale" : 0.9,
+    "scale" : 1.5,
     "scale_variation" : 0.25,
     "sizes" : [
       [0.0, 1.0],
@@ -36,8 +36,7 @@
   "color" : {
     "opacity" : 1.0,
     "colors" : [
-      [0.0, "1 1 1 1"],
-      [1.0, "1 1 1 1"]
+      [0.0, "0.349 0.349 0.349 1"]
     ] 
   }
 }
