@@ -75,10 +75,12 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 	getCameraPlayer()->moveCameraCloser(false);
+	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntityByName(PLAYER_NAME), VEC3(0, 0.3, 0));
 }
 
 void RunActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+	EngineParticles.kill(dustParticlesHandle, 0.5f);
 }
 
 void RunActionState::onSpendCoinsButton() {

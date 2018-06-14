@@ -77,11 +77,13 @@ void WalkActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 	getSkeleton()->setTimeFactor(0.5f);
+	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntityByName(PLAYER_NAME), VEC3(0, 0.3, 0));
 }
 
 void WalkActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	getSkeleton()->setTimeFactor(1);
+	EngineParticles.kill(dustParticlesHandle, 0.5f);
 }
 
 void WalkActionState::onSpendCoinsButton() {
