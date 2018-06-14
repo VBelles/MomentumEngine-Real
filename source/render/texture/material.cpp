@@ -53,7 +53,7 @@ bool CMaterial::create(const json& j) {
 	cast_shadows = j.value("shadows", true);
 
 	textures[TS_SELF_ILLUM] = Resources.get("data/textures/black.dds")->as<CTexture>();
-	textures[TS_HEIGHT] = Resources.get("data/textures/white.dds")->as<CTexture>();
+	textures[TS_HEIGHT] = Resources.get("data/textures/black.dds")->as<CTexture>();
 
 
 	if (j.count("textures")) {

@@ -86,17 +86,17 @@ float2 parallaxMapping(in float3 V, in float2 T)
    float2 currentTextureCoords = T;
 
    // depth from heightmap
-   float heightFromTexture = 1 - txHeight.Sample(samLinear, currentTextureCoords).r;
+   float heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
 
     // while point is above the surface
-   [unroll(230)] while(heightFromTexture > curLayerHeight) 
+   [unroll(230)] while(heightFromTexture > curLayerHeight)
    {
       // to the next layer
       curLayerHeight += layerHeight; 
       // shift of texture coordinates
       currentTextureCoords -= dtex;
       // new depth from heightmap
-      heightFromTexture = 1 - txHeight.Sample(samLinear, currentTextureCoords).r;
+      heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
    }
    ///////////////////////////////////////////////////////////
 
@@ -106,7 +106,7 @@ float2 parallaxMapping(in float3 V, in float2 T)
 
    // heights for linear interpolation
    float nextH	= heightFromTexture - curLayerHeight;
-   float prevH	= (1 - txHeight.Sample(samLinear, prevTCoords).r)
+   float prevH	= (txHeight.Sample(samLinear, prevTCoords).r)
                            - curLayerHeight + layerHeight;
 
    // proportions for linear interpolation
@@ -201,9 +201,9 @@ void PS_GBufferMix(
 	// iTex0 = parallaxMapping(view_dir, iTex0);
 
 
-	float heightR = txHeight.Sample(samLinear, iTex0).r;
-	float heightG = txHeight1.Sample(samLinear, iTex0).r;
-	float heightB = txHeight2.Sample(samLinear, iTex0).r;
+	float heightR = 1 - txHeight.Sample(samLinear, iTex0).r;
+	float heightG = 1 - txHeight1.Sample(samLinear, iTex0).r;
+	float heightB = 1 - txHeight2.Sample(samLinear, iTex0).r;
 
 	// Use the alpha of the albedo as heights + texture blending extra weights + material ctes extra weights (imgui)
 	//Not_Juan: Como tenemos el height map a parte, lo usamos en vez de albedo.a
