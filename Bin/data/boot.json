@@ -18,7 +18,8 @@
     "data/scenes/milestone2-trimesh.scene",
     "data/scenes/milestone2_camaras_definitivas.scene",
     "data/scenes/test_instancing.scene",
-    "data/scenes/slash-test.scene"
+    "data/scenes/slash-test.scene",
+    "data/scenes/rigid_anim2.scene"
   ],
   "unused_scenes": [
     "data/scenes/particles.scene",
