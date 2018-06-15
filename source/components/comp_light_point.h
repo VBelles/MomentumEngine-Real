@@ -3,7 +3,7 @@
 #include "comp_base.h"
 
 class TCompLightPoint : public TCompBase {
-
+private:
 	// Light params
 	VEC4            color = VEC4(1, 1, 1, 1);
 	float           intensity = 1.0f;
@@ -17,4 +17,7 @@ public:
 
 	void activate();
 	MAT44 getWorld();
+
+	float getIntensity();
+	void setIntensity(float newIntensity);
 };

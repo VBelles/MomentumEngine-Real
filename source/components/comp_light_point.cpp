@@ -49,3 +49,11 @@ void TCompLightPoint::activate() {
 	cb_light.light_view_proj_offset = MAT44::Identity;
 	cb_light.updateGPU();
 }
+
+float TCompLightPoint::getIntensity() {
+	return intensity;
+}
+
+void TCompLightPoint::setIntensity(float newIntensity) {
+	intensity = newIntensity;
+}
