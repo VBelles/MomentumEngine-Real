@@ -34,6 +34,7 @@ fn mcvPosToMax p = (
 	return p * rotateXMatrix 90
 )
 
+-- Returns a quaternion.
 fn maxRotToMcv transf = (
 	-- From mcv, we will go to max, apply the max transform and go back to mcv coord system.
 	local mcvTransform = rotateXMatrix 90 * transf * rotateXMatrix -90

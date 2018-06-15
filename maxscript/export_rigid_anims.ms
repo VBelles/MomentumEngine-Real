@@ -1,14 +1,15 @@
 clearListener()
 
--- ----------------------------------------------------------
+fileIn "utils.ms"
+
 -- ----------------------------------------------------------
 -- ----------------------------------------------------------
 struct TRigidAnimTrack (
 	track_name,
-	fps = 1,
-	begin_time = 0,
-	end_time = 1,
-	keys = #()
+	fps			= 1,
+	begin_time	= 0,
+	end_time	= 1,
+	keys		= #()
 )
 
 struct TRigidAnimKey (
@@ -16,21 +17,16 @@ struct TRigidAnimKey (
 )
 
 struct TRigidAnimExporter (
-
-	project_path = "d:/code/mcv_2018/engine/bin/",
+	project_path = "",
 	base_path = "data/",
 	anims_path = base_path + "anims/",
-	
-	fn isValidName aname = (
-		return findString aname " " == undefined 
-	),
 	
 	-- ----------------------------------------------------------
 	fn writeFixedStr fs str max_bytes = (
 		-- Write the vertex type as 32 bytes string with zero paddings
-		format "Wringing name '%'\n" str
+		format "Writing name '%'\n" str
 		WriteString fs str
-		for i = str.count+1 to ( max_bytes - 1 ) do WriteByte fs 0
+		for i = str.count + 1 to ( max_bytes - 1 ) do WriteByte fs 0
 	),
 	
 	-- ----------------------------------------------------------
@@ -65,22 +61,18 @@ struct TRigidAnimExporter (
 		
 		format "Limits of % are %\n" obj.name limits
 		
-		local max2mcv = rotateXMatrix -90
-		local mcv2max = rotateXMatrix 90
-		local mcv_position = obj.position * max2mcv
-		-- From mcv, we will go to max, apply the max transform and go back to mcv coord system
+		local mcv_position = maxPosToMcv obj.position
 		
 		local t = limits.x
 		while t <= limits.y do (
 			local k = TRigidAnimKey()
 			at time t (
-				-- obj.transform is evaluated at every time
-				local mcv_transform = mcv2max * obj.transform * max2mcv
+				-- obj.transform is evaluated every time
+				local mcv_transform = maxRotToMcv obj.transform
 				
-				k.pos = obj.pos * max2mcv 
-				k.rot = inverse (mcv_transform.rotationPart as quat)
+				k.pos = maxPosToMcv obj.pos 
+				k.rot = inverse mcv_transform
 				k.scale = obj.scale.x
-				
 			)
 			append keys k
 			t += 1.0 / fps
@@ -99,12 +91,12 @@ struct TRigidAnimExporter (
 		t.track_name = obj.name
 		t.keys = track_info.keys
 		local frames_to_second = 1.0 / (float) frameRate
-		t.begin_time = (track_info.limits.x as integer )* frames_to_second
+		t.begin_time = (track_info.limits.x as integer ) * frames_to_second
 		t.end_time = (track_info.limits.y as integer) * frames_to_second
 		format "Track % has length %\n" t.track_name t.end_time
 		return t
 	),
-			
+
 	-- ----------------------------------------------------------
 	fn writeData ofilename tracks = (
 		local fs = fopen ofilename "wb"
@@ -126,13 +118,13 @@ struct TRigidAnimExporter (
 		-- Save header
 		-- Total Bytes, NumIdxs, 
 		local headerSize = 8
-		local version = 2
-		WriteLong fs magicHeader		-- version
-		WriteLong fs version		-- version
-		WriteLong fs tracks.count	-- NumTracks
-		WriteLong fs num_keys	-- Total num keys
-		WriteLong fs track_name_length
-		WriteLong fs bytes_per_track
+		local version    = 2
+		WriteLong  fs magicHeader		-- version
+		WriteLong  fs version			-- version
+		WriteLong  fs tracks.count		-- NumTracks
+		WriteLong  fs num_keys			-- Total num keys
+		WriteLong  fs track_name_length
+		WriteLong  fs bytes_per_track
 		writeFloat fs total_duration
 
 		-- Save the names and index info
@@ -141,7 +133,7 @@ struct TRigidAnimExporter (
 			format "Track % uses % keys\n" t.track_name t.keys.count
 			local num_keys = t.keys.count
 			writeFixedStr fs t.track_name track_name_length
-			writeLong fs key0				-- Index of first key
+			writeLong fs key0			-- Index of first key
 			writeLong fs num_keys		-- Num keys for this track
 			writeFloat fs t.fps		
 			writeFloat fs t.begin_time		
@@ -151,19 +143,15 @@ struct TRigidAnimExporter (
 
 		-- Save all the keys
 		for t in tracks do (
-			for k in t.keys do (
-				writeKey fs k
-			)
+			for k in t.keys do writeKey fs k
 		)
-		
 		fclose fs
 		
-		format "File % saved\n" ofilename
+		format "File % saved.\n" ofilename
 	),
-			
+
 	-- ----------------------------------------------------------
 	fn exportAll objs = (
-		
 		-- Decide output filename based on .max filename
 		local ofilename = getFilenameFile maxFileName
 		local full_path = project_path + anims_path + ofilename + ".anims"
@@ -174,14 +162,11 @@ struct TRigidAnimExporter (
 			local t = getTrack obj
 			append tracks t
 		)
-		
 		writeData full_path tracks
 	)
-	
 )
 
-exporter = TRigidAnimExporter()
+global exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_rigid_anims.ms" "Bin\\")
+exporter = TRigidAnimExporter project_path:exportPath
+
 exporter.exportAll ($* as array)
-
-
-
