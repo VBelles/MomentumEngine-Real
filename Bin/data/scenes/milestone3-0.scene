@@ -2,6 +2,27 @@
   {
     "entity":
     {
+      "name": "ms3_Cylinder135",
+      "transform":
+      {
+        "pos": "-346.029 355.465 -1099.83",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_Cylinder135.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_plataforma_rocosa2_low211",
       "transform":
       {

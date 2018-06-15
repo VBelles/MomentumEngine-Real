@@ -2,15 +2,15 @@
   {
     "entity":
     {
-      "name": "ms3_Cylinder135",
+      "name": "ms3_Cylinder136",
       "transform":
       {
-        "pos": "-350.807 362.025 -1095.9",
+        "pos": "-346.029 355.465 -1099.83",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_Cylinder135.col_mesh",
+        "mesh_src": "data/meshes/ms3_Cylinder136.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
