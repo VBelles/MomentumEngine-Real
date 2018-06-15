@@ -5,6 +5,7 @@
 class WalkActionState : public GroundedActionState {
 private:
 	std::string animation = "run";
+	int dustParticlesHandle = 0;
 
 public:
 	WalkActionState(StateManager* stateManager);
