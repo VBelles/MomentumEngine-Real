@@ -2,11 +2,83 @@
   {
     "entity":
     {
+      "name": "ms3_rotate005",
+      "transform":
+      {
+        "pos": "-349.75 386.455 -1164.2",
+        "rotation": "-0.0962341 -0.73097 0.0881822 -0.66981"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate005.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0 0 1",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate003",
+      "transform":
+      {
+        "pos": "-272.991 376.176 -1165.85",
+        "rotation": "0.0 0.67559 0.0 -0.737277"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate003.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0 0 1",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_rotate001",
       "transform":
       {
-        "pos": "-129.308 377.71 -1199.77",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-195.549 376.176 -1179.41",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
       },
       "render":
       [
@@ -20,7 +92,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_rotate001col.col_mesh",
+        "mesh_src": "data/meshes/ms3_rotate002.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -30,8 +102,8 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "1 0 0",
-        "rotation_speed": 1
+        "rotation_axis": "0 0 1",
+        "rotation_speed": 0.3
       }
     }
   }
