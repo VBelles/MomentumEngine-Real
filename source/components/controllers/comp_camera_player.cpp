@@ -345,10 +345,15 @@ void TCompCameraPlayer::sweepBack() {
 
 	bool status = EnginePhysics.getScene()->sweep(geometry, PxTransform(toPxVec3(targetPosition), toPxQuat(rotation)), toPxVec3(direction), distance, sweepBuffer,
 		hitFlags, fd, EnginePhysics.getGameQueryFilterCallback());
-	//Si empiezas el sweep fuera de la c�psula del player la c�mara har� el loco si all� hay un collider...
+	//Si empiezas el sweep fuera de la capsula del player la camara hara el loco si alli hay un collider...
 	if (status) {
 		PxSweepHit& hit = sweepBuffer.block;
 		PxVec3 newPosition = hit.position + (hit.normal * sphereCastRadius);
+		float safeguardDistance = 11.f;//por si se va a cuenca
+		float resetDistance = 11.f;
+		if (VEC3::Distance(toVec3(newPosition), targetTransform.getPosition()) > safeguardDistance) {
+			newPosition = toPxVec3(targetTransform.getPosition()) - (hit.normal * resetDistance);
+		}
 		transform->setPosition(toVec3(newPosition));
 		currentDistanceToTarget = VEC3::Distance(transform->getPosition(), targetTransform.getPosition());
 		//dbg("%f, %f, %f\n", newPosition.x, newPosition.y, newPosition.z);
