@@ -279,6 +279,7 @@ setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTI
 -- ----------------------------------------------------------
 struct TSceneExporter (
 	fs = TJsonFormatter(),
+	attrManager = TAttributeManager(),
 	project_path = "",
 	base_path    = "data/",
 	scenes_path  = base_path + "scenes/",
@@ -570,13 +571,18 @@ struct TSceneExporter (
 	),
 	
 	-- --COMP: ROTATE (platform_simple)-----------------------------------------------------
-	fn exportPlatfRotation = (
+	fn exportPlatfRotation obj = (
 		fs.writeComma()
 		fs.writeKey "platform_simple"
 		fs.beginObj()
-			fs.writeKeyValue "rotation_axis" "1 0 0"
+			--TODO: Get this from attribute.
+			local xRot = attrManager.getAttributeValue obj #rotateData #x --TODO: ver add-attributes.ms
+			format "obj: % xRot: %\n" obj.name (xRot as string)
+			if xRot != undefined then format "attribute: xRot found\n"
+			
+			fs.writeKeyValue "rotation_axis" "0 0 1"
 			fs.writeComma()
-			fs.writeKeyValue "rotation_speed" 1
+			fs.writeKeyValue "rotation_speed" 0.5
 		fs.endObj()
 	),
 	
@@ -859,7 +865,7 @@ struct TSceneExporter (
 
 					if breakable then exportBreakable()
 					if movable then exportSpline child
-					if rot then exportPlatfRotation()
+					if rot then exportPlatfRotation obj
 					if mech then exportMech child
 				)
 				else if isDummyLOD child then (
@@ -1560,6 +1566,8 @@ TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
 
+TODO: Si conviertes en mesh un objeto ocn atributos, el atributo se pone ocn los generales, igual da problemas.
+
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional para whitebox.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
@@ -1574,7 +1582,7 @@ Pasos para instalar los scripts:
 2. Seleccionar Proyecto\Bin\maxscript\autoboot\
 3. Darle a Use Path.
 4. Reiniciar Max.
-5. Ir a pestaña Utilities, en el desplegable Utilities seleccionar MCV Exporter.
+5. Ir a pestaña Utilities, darle al botón MAXScript, en el desplegable Utilities que aparece abajo seleccionar MCV Exporter.
 6. Ya se pueden usar los scripts dándole a los botones que han aparecido debajo.
 -------------------------------
 Condiciones de exportación:

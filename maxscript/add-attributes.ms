@@ -6,6 +6,8 @@ http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=GUID-7EAA7D84-5775-4E4C-9936
 http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_ADFD29E4_9751_4F55_98CC_F7C721C9AEE2_htm
 http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_0A1E08F8_A8C5_4737_AA6F_39194AD16559_htm
 */
+
+-- def #enemyData
 global enemiesData = attributes enemyData (
 	parameters main rollout:params (
 		hitPoints type: #integer ui:HP default:5
@@ -24,6 +26,22 @@ global enemiesData = attributes enemyData (
 		spinner chaseFov "Chase fov" type: #integer
 		spinner attackFov "Attack fov" type: #integer
 		dropdownlist enemyType "Enemy Type" items:# ("melee","air")
+	)
+)
+
+-- def #rotateData
+global rotationsData = attributes rotateData (
+	parameters main rollout:params (
+		x type: #integer ui:xRot default:1
+		y type: #integer ui:yRot default:0
+		z type: #integer ui:zRot default:0 
+		rotSpeed type: #float ui:rotSpeed default:1.0
+	)
+	rollout params "Rotation Data" (
+		spinner xRot "x axis" type: #integer range:[0, 1, 0]
+		spinner yRot "y axis" type: #integer range:[0, 0, 0]
+		spinner zRot "z axis" type: #integer range:[0, 0, 0]
+		spinner rotSpeed "Rotation speed" type: #float
 	)
 )
 
@@ -65,7 +83,9 @@ struct TAttributeManager (
 		return undefined
 	),
 
+	--TODO: Esto debería encontrar en cualquier parte, porque al colapsar nuestros atributos se van a Edit_Mesh. !!!!
 	fn getAttributeValue obj defName attribute = (
+		format "has valid modifier: %\n" (hasValidModifier obj) as string --DEBUG
 		if not hasValidModifier obj then return undefined
 		local idxFound = findAttribute obj defName
 		if idxFound != undefined then (
@@ -78,14 +98,17 @@ struct TAttributeManager (
 	),
 	
 	-- Adds attribute of type defName to object's Attribute Holder modifier.
+	-- TODO: Si ya tiene el atributo en otro lado, usar ese. Importante si se ha colapsado la mesh. !!!
 	fn addAttribute obj defName = (
 		addAttributeHolderModifier obj
 		format "------------\n"
 		--if hasAttribute obj defName then format "hasAttribute=TRUE\n" else format "hasAttribute=FALSE\n" -- DEBUG
 		if not hasAttribute obj defName then (
+			--format "defName: %\n" (defName as string) --DEBUG
 			case defName of (
-				#enemyData: ( attrDef = enemiesData )
-				default:    ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
+				#enemyData:  ( attrDef = enemiesData )
+				#rotateData: ( attrDef = rotationsData )
+				default:     ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
 			)
 			--format "defName: %.\n" defName -- DEBUG
 			--format "attrDef: %.\n" attrDef -- DEBUG
@@ -117,9 +140,8 @@ struct TAttributeManager (
 	)
 )
 
---format "------------------------\n" -- DEBUG
---attributeManager = TAttributeManager()
+format "------------------------\n" -- DEBUG
+attributeManager = TAttributeManager()
 --attributeManager.addAttributeToSel(#enemyData)
 --attributeManager.delAttributeFromSel(#enemyData)
---attributeManager.getAttributeValue $ #enemyData #hitPoints
-
+attributeManager.getAttributeValue $ #rotateData #x
