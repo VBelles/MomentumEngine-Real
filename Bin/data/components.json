@@ -46,6 +46,7 @@
     "lod",
     "spikes",
     "particles",
+    "light_flicker",
     "slash"
   ],
   "render_debug" : [

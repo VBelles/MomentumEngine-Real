@@ -119,6 +119,7 @@
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_slash.cpp" />
+    <ClCompile Include="components\lights\comp_light_flicker.cpp" />
     <ClCompile Include="components\player\states\base_states\SoftLandingActionState.cpp" />
     <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
@@ -375,6 +376,7 @@
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_slash.h" />
+    <ClInclude Include="components\lights\comp_light_flicker.h" />
     <ClInclude Include="components\player\states\base_states\SoftLandingActionState.h" />
     <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
     <ClInclude Include="components\comp_respawn_point.h" />

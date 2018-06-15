@@ -1,0 +1,21 @@
+[
+	{
+		"entity":
+		{
+			"name": "Fire",
+			"transform": {},
+			"light_point": {
+				"intensity": 2,
+				"radius": 5,
+				"color" :  "1 1 1 1"
+			},
+			"particles": {
+				"core": "data/particles/animated_fire.particles"
+			},
+		    "light_flicker": {
+				"intensityVariation": 0.9,
+				"variationSpeed": 2.0
+			}
+		}
+	}
+]
