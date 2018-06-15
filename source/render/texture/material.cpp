@@ -53,6 +53,7 @@ bool CMaterial::create(const json& j) {
 	cast_shadows = j.value("shadows", true);
 
 	textures[TS_SELF_ILLUM] = Resources.get("data/textures/black.dds")->as<CTexture>();
+	textures[TS_HEIGHT] = Resources.get("data/textures/black.dds")->as<CTexture>();
 
 
 	if (j.count("textures")) {
@@ -67,6 +68,7 @@ bool CMaterial::create(const json& j) {
 			else if (slot == "metallic")	ts = TS_METALLIC;
 			else if (slot == "roughness")	ts = TS_ROUGHNESS;
 			else if (slot == "self_illum")	ts = TS_SELF_ILLUM;
+			else if (slot == "height")		ts = TS_HEIGHT;
 
 			assert(ts != TS_NUM_MATERIALS_SLOTS || fatal("Material %s has an invalid texture slot %s\n", name.c_str(), slot.c_str()));
 

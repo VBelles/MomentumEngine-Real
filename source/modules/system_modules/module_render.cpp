@@ -13,6 +13,7 @@
 #include "skeleton/game_core_skeleton.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
+#include "geometry/rigid_anim.h"
 #include "render/mesh/collision_mesh.h" 
 #include "components/postfx/comp_render_focus.h"
 #include "components/postfx/comp_render_blur.h"
@@ -58,6 +59,7 @@ bool CModuleRender::start() {
     Resources.registerResourceClass(getResourceClassOf<CCurve>());
     Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 	Resources.registerResourceClass(getResourceClassOf<CCollisionMesh>());
+	Resources.registerResourceClass(getResourceClassOf<RigidAnims::CRigidAnimResource>());
 
     if (!createRenderObjects()) return false;
 

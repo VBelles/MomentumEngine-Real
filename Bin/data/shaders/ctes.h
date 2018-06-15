@@ -20,43 +20,53 @@
 // -------------------------------------------------
 // Texture Slots
 // Materials
-#define TS_ALBEDO              0
-#define TS_NORMAL              1
-#define TS_METALLIC            2
-#define TS_ROUGHNESS           3
-#define TS_SELF_ILLUM          4
+#define TS_ALBEDO				0
+#define TS_NORMAL				1
+#define TS_METALLIC				2
+#define TS_ROUGHNESS			3
+#define TS_SELF_ILLUM			4
+#define TS_HEIGHT				5
 
 // .. Other slots of the material
-#define TS_NUM_MATERIALS_SLOTS 5
+#define TS_NUM_MATERIALS_SLOTS 6
 
 // Here goes the slots NOT associated to a material
-#define TS_LIGHT_PROJECTOR     6
-#define TS_LIGHT_SHADOW_MAP    7 
-#define TS_ENVIRONMENT_MAP     8
-#define TS_IRRADIANCE_MAP      9
-#define TS_NOISE_MAP           10
+#define TS_LIGHT_PROJECTOR     7
+#define TS_LIGHT_SHADOW_MAP    8 
+#define TS_ENVIRONMENT_MAP     9
+#define TS_IRRADIANCE_MAP      10
+#define TS_NOISE_MAP           11
 
-#define TS_DEFERRED_ALBEDOS				11
-#define TS_DEFERRED_NORMALS				12
-#define TS_DEFERRED_LINEAR_DEPTH		13
-#define TS_DEFERRED_SELF_ILLUM			14
-#define TS_DEFERRED_ACC_LIGHTS			15
-#define TS_DEFERRED_AO					16
+#define TS_DEFERRED_ALBEDOS				12
+#define TS_DEFERRED_NORMALS				13
+#define TS_DEFERRED_LINEAR_DEPTH		14
+#define TS_DEFERRED_SELF_ILLUM			15
+#define TS_DEFERRED_HEIGHT				16
+#define TS_DEFERRED_ACC_LIGHTS			17
+#define TS_DEFERRED_AO					18
 
 // LookUpTable for the color grading
-#define TS_LUT_COLOR_GRADING          17
+#define TS_LUT_COLOR_GRADING          19
 
-#define TS_MIX_BLEND_WEIGHTS          17
+#define TS_MIX_BLEND_WEIGHTS          19
 
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
-// 17,18,19 goes for extra textures of second material
 #define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
 
-#define TS_ALBEDO1 18
-#define TS_NORMAL1 19
-#define TS_ALBEDO2 20
-#define TS_NORMAL2 21
+#define TS_ALBEDO1		20
+#define TS_NORMAL1		21
+#define TS_METALLIC1	22
+#define TS_ROUGHNESS1	23
+#define TS_SELF_ILLUM1	24
+#define TS_HEIGHT1		25
+
+#define TS_ALBEDO2		26
+#define TS_NORMAL2		27
+#define TS_METALLIC2	28
+#define TS_ROUGHNESS2	29
+#define TS_SELF_ILLUM2	30
+#define TS_HEIGHT2		31
 
 // -------------------------------------------------
 #define RO_COMPLETE     0

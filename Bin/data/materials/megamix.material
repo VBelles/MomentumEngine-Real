@@ -1,0 +1,13 @@
+{
+  "technique": "pbr_mix.tech",
+  "type": "mix",
+  "shadows": true,
+  "textures":
+  { },
+  "mats":[
+    "data/materials/megamix_grass.material",
+    "data/materials/megamix_metal.material",
+    "data/materials/megamix_bricks.material"
+  ],
+  "mix_blend_weights" : "data/textures/megamix/mixing_blend.dds"
+}
