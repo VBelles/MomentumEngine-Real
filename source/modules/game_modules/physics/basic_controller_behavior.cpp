@@ -11,7 +11,7 @@ PxControllerBehaviorFlags BasicControllerBehavior::getBehaviorFlags(const PxShap
 	CEntity* player = getEntityByName(PLAYER_NAME);
 	TCompPlayerModel* playerModel = player->get<TCompPlayerModel>();
 	if (dynamic_cast<SlideActionState*>(playerModel->getStateManager()->getState())) {
-		return PxControllerBehaviorFlag::eCCT_SLIDE | PxControllerBehaviorFlag::eCCT_CAN_RIDE_ON_OBJECT;
+		return PxControllerBehaviorFlag::eCCT_SLIDE;
 	}
 	return PxControllerBehaviorFlag::eCCT_CAN_RIDE_ON_OBJECT;
 }
