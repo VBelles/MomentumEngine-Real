@@ -26,12 +26,15 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	//Rotation
 	rotationSpeed = j.value("rotation_speed", 0.f);
 	if (j.count("rotation_axis")) {
-		rotationAxis = loadVEC3(j["rotation_axis"]);
+		rotationAxisLocal = loadVEC3(j["rotation_axis"]);
 	}
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
-	transformHandle = get<TCompTransform>();
+	TCompTransform* transform = get<TCompTransform>();
+	//combinar up/left/front para encontrar la rotationAxisGlobal
+	rotationAxisGlobal = transform->getLeft() * rotationAxisLocal.x + transform->getUp() * rotationAxisLocal.y + transform->getFront() * rotationAxisLocal.z;
+	transformHandle = CHandle(transform);
 	assert(transformHandle.isValid());
 	colliderHandle = get<TCompCollider>();
 	assert(colliderHandle.isValid());
@@ -69,7 +72,7 @@ void TCompPlatformSimple::update(float delta) {
 
 	//Rotation
 	if (rotationSpeed > 0) {
-		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
+		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
 		transform->setRotation(transform->getRotation() * quat);
 	}
 

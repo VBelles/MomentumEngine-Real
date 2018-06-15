@@ -2,6 +2,18 @@
   {
     "entity":
     {
+      "name": "ms3_chrysalis013",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-345.645 357.802 -1098.72",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_chrysalis012",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":

@@ -16,7 +16,8 @@ private:
 	bool moveBackwards = false;
 
 	float rotationSpeed;
-	VEC3 rotationAxis;
+	VEC3 rotationAxisLocal;
+	VEC3 rotationAxisGlobal;
 	
 	CHandle transformHandle;
 	CHandle colliderHandle;

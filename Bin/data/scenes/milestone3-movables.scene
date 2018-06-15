@@ -2,6 +2,55 @@
   {
     "entity":
     {
+      "name": "ms3_pared_insider",
+      "transform":
+      {
+        "pos": "-180.883 269.552 -1208.94",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pared_insider.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pared_insider_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0 1 0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-181.112 269.162 -1209.16",
+           "-181.112 269.162 -1209.16",
+           "-169.889 269.162 -1217.02",
+           "-169.889 269.162 -1217.02"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_move_fast164",
       "transform":
       {

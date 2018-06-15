@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "ms3_Cylinder136",
+      "transform":
+      {
+        "pos": "-346.029 355.465 -1099.83",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_Cylinder136.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_plataforma_rocosa2_low212",
       "transform":
       {
@@ -912,23 +929,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/ms3_PLAYER_REF020.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_PLAYER_REF019",
-      "transform":
-      {
-        "pos": "-351.507 53.83 -813.813",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_PLAYER_REF019.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
