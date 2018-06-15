@@ -140,13 +140,6 @@ void PS_GBuffer(
 	float3x3 TBN = computeTBN(iNormal, iTangent);
 	float3x3 wTBN = transpose(TBN);
 	float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
-	//parallax	
-	// float height =  1.f - txHeight.Sample(samLinear, iTex0).r;//puede que se tenga que invertir, creo que usan depth map en vez de height map 
-    // float2 p = view_dir.xy * (height * 0.07);//height_scale por si el efecto es demasiado fuerte
-    // iTex0 = iTex0 - p; 
-	//   if(iTex0.x > 1.0 || iTex0.y > 1.0 || iTex0.x < 0.0 || iTex0.y < 0.0){
-    //   	discard;
-	//   }
 
 	iTex0 = parallaxMapping(view_dir, iTex0);
 
@@ -195,12 +188,7 @@ void PS_GBufferMix(
 	// Using second set of texture coords
 	float4 weight_texture_boost = txMixBlendWeights.Sample(samLinear, iTex1);
 
-	// float3x3 TBN = computeTBN(iNormal, iTangent);
-	// float3x3 wTBN = transpose(TBN);
-	// float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
-	// iTex0 = parallaxMapping(view_dir, iTex0);
-
-
+	//como las texturas son realmente depths, usamos 1 - ...
 	float heightR = 1 - txHeight.Sample(samLinear, iTex0).r;
 	float heightG = 1 - txHeight1.Sample(samLinear, iTex0).r;
 	float heightB = 1 - txHeight2.Sample(samLinear, iTex0).r;
