@@ -1,0 +1,38 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms3_rotate001",
+      "transform":
+      {
+        "pos": "-129.308 377.71 -1199.77",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate001.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate001col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "1 0 0",
+        "rotation_speed": 1
+      }
+    }
+  }
+]

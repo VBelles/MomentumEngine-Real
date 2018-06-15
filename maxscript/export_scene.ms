@@ -225,6 +225,10 @@ struct TMaterialExporter (
 				fs.writeKeyValue "albedo" "data/textures/null_albedo.dds"
 				fs.writeComma()
 				fs.writeKeyValue "normal" "data/textures/null_normal.dds"
+				fs.writeComma()
+				fs.writeKeyValue "metallic" "data/textures/null_metallic.dds"
+				fs.writeComma()
+				fs.writeKeyValue "roughness" "data/textures/null_roughness.dds"
 			fs.endObj()
 		fs.endObj()
 		fs.end()
@@ -252,7 +256,7 @@ struct TMaterialExporter (
 
 		) else if matClass == MultiMaterial then (
 			local multi_mat = mat
-
+setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
 			local materials_of_mesh = getMaterialsUsedByMesh obj
 			for mat_idx = 1 to materials_of_mesh.count do (
 				if materials_of_mesh[ mat_idx ] == undefined then continue
@@ -532,7 +536,7 @@ struct TSceneExporter (
 				)
 				
 				local closed = false
-				local followSpeed = 0.2
+				local followSpeed = 0.3
 				if childClass == circle then closed = true
 				else closed = isClosed child 1
 				
@@ -1555,6 +1559,8 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
+
+TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional para whitebox.
 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */

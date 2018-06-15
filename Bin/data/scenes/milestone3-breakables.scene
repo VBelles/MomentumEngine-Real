@@ -1,0 +1,110 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms3_breakable001mesh002",
+      "transform":
+      {
+        "pos": "-486.108 41.3186 -750.676",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_breakable001mesh002.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_breakable003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_breakable001mesh001",
+      "transform":
+      {
+        "pos": "-155.801 156.822 -1137.71",
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_breakable001mesh001.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_breakable002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_breakable001mesh",
+      "transform":
+      {
+        "pos": "-51.3197 243.787 -1173.36",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_breakable001mesh.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_breakable001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "hp": 1
+      }
+    }
+  }
+]
