@@ -9,7 +9,20 @@
 DECL_OBJ_MANAGER("platform_simple", TCompPlatformSimple);
 
 void TCompPlatformSimple::debugInMenu() {
+	if (ImGui::DragFloat("ratio", &ratio, 0.01f, 0.f, 1.f)) {
+		TCompTransform* transform = getTransform();
+		transform->setPosition(curve.evaluate(ratio, transform->getPosition()));
+	}
+
 	ImGui::DragFloat("speed", &speed, 0.01f, 0.f, 20.f);
+	ImGui::Checkbox("automove", &automove);
+	ImGui::Checkbox("moveBackwards", &moveBackwards);
+
+	ImGui::DragFloat("rotationSpeed", &rotationSpeed, 0.001f, 0.f, 2.f);
+	if (ImGui::DragFloat3("rotationAxis", &rotationAxisLocal.x, 0.5f, -1.f, 1.f)) {
+		TCompTransform* transform = get<TCompTransform>();
+		rotationAxisGlobal = transform->getLeft() * rotationAxisLocal.x + transform->getUp() * rotationAxisLocal.y + transform->getFront() * rotationAxisLocal.z;
+	}
 }
 
 void TCompPlatformSimple::registerMsgs() {
@@ -66,9 +79,9 @@ void TCompPlatformSimple::update(float delta) {
 		// Evaluar curva con dicho ratio
 		position = curve.evaluate(ratio, position);
 		//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
+		transform->setPosition(position);
 	}
 
-	transform->setPosition(position);
 
 	//Rotation
 	if (rotationSpeed > 0) {
