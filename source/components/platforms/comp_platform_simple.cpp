@@ -19,7 +19,8 @@ void TCompPlatformSimple::debugInMenu() {
 	ImGui::Checkbox("moveBackwards", &moveBackwards);
 	bool isLooping = curve.isLooping();
 	ImGui::Checkbox("loop", &isLooping);
-	curve.setLoop(isLooping);
+	curve.setLoop(isLooping); 
+	ImGui::DragFloat("travelWaitTime", &travelWaitTime, 0.01f, 0.f, 20.f);
 
 
 	ImGui::DragFloat("rotationSpeed", &rotationSpeed, 0.001f, 0.f, 2.f);
@@ -45,6 +46,7 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	else {
 		isClosed = j.value("closed", false);
 	}
+	travelWaitTime = j.value("travel_wait_time", 0.f);
 
 	//Rotation
 	rotationSpeed = j.value("rotation_speed", 0.f);
@@ -67,6 +69,12 @@ void TCompPlatformSimple::update(float delta) {
 	TCompTransform* transform = getTransform();
 	VEC3 position = transform->getPosition();
 
+	if (!automove && curve.isLooping()) {
+		if (travelWaitTimer.elapsed() >= travelWaitTime) {
+			automove = true;
+		}
+	}
+
 	//Position
 	if (automove) {
 		// Actualizar ratio
@@ -80,6 +88,8 @@ void TCompPlatformSimple::update(float delta) {
 				else {
 					moveBackwards = !moveBackwards;
 					ratio = clamp(ratio, 0.f, 1.f);
+					automove = false;
+					travelWaitTimer.reset();
 				}
 			}
 			else {
@@ -89,34 +99,6 @@ void TCompPlatformSimple::update(float delta) {
 			}
 		}
 
-
-
-		//if (!moveBackwards) {
-		//	ratio += speed * delta;
-		//	if (ratio >= 1.f) { // Reaches the end of the spline.
-		//		if (curve.isLooping()) {
-		//			if (isClosed) {
-		//				ratio = ratio - floor(ratio);
-		//			}
-		//			else {
-		//				moveBackwards = true;
-		//				ratio = 1.f;
-		//			}
-		//		}
-		//		else {
-		//			automove = false; // If doesn't loop, stop moving.
-		//			ratio = 1.f;
-		//		}
-		//	}
-		//}
-		//else {
-		//	ratio -= speed * delta;
-		//	if (ratio <= 0.f) {
-		//		moveBackwards = false;
-		//		ratio = 0.f;
-		//	}
-
-		//}
 		// Evaluar curva con dicho ratio
 		position = curve.evaluate(ratio, position);
 		//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);

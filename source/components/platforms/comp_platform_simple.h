@@ -16,6 +16,9 @@ private:
 	bool moveBackwards = false;
 	bool isClosed = false;
 
+	CTimer travelWaitTimer;
+	float travelWaitTime = 0.f;
+
 	float rotationSpeed;
 	VEC3 rotationAxisLocal;
 	VEC3 rotationAxisGlobal;
