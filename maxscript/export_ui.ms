@@ -1,4 +1,6 @@
-fileIn "add-attributes.ms" -- To avoid error on first execution.
+fileIn "export_scene.ms"
+--fileIn "export_skeletons.ms"
+--fileIn "export_rigid_anims.ms"
 
 utility MyMCVExporter "MCV Exporter" (
 	rollout exporter "Momentum Exporter" (
@@ -97,11 +99,11 @@ utility MyMCVExporter "MCV Exporter" (
 			)
 		)
 		
-		on btn_addAttrEnemy pressed do ( addAttribute #enemyData )
-		on btn_delAttrEnemy pressed do ( delAttribute #enemyData )
+		on btn_addAttrEnemy pressed do ( addAttribute "enemyData" )
+		on btn_delAttrEnemy pressed do ( delAttribute "enemyData" )
 		
-		on btn_addRotation pressed do ( addAttribute #rotateData )
-		on btn_delRotation pressed do ( delAttribute #rotateData )
+		on btn_addRotation pressed do ( addAttribute "rotateData" )
+		on btn_delRotation pressed do ( delAttribute "rotateData" )
 		
 	) -- end attribute rollout creator
 

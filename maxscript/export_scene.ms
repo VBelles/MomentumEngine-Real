@@ -1,8 +1,8 @@
 clearListener()
 gc()
 
-fileIn "export_mesh.ms" -- To avoid error on first execution.
-fileIn "add-attributes.ms" -- To avoid error on first execution.
+fileIn "export_mesh.ms"
+fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
 global uniqueCoins  = #()
@@ -575,14 +575,21 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKey "platform_simple"
 		fs.beginObj()
-			--TODO: Get this from attribute.
-			local xRot = attrManager.getAttributeValue obj #rotateData #x --TODO: ver add-attributes.ms
-			format "obj: % xRot: %\n" obj.name (xRot as string)
-			if xRot != undefined then format "attribute: xRot found\n"
+			local rotAxis = Point3 0 0 1
+			local rotSpeed = 0.5
+			--Get from attribute if it exists.
+			if attrManager.hasAttribute obj "rotateData" then (
+				local xRot = attrManager.getAttributeValue obj "rotateData" #x
+				local yRot = attrManager.getAttributeValue obj "rotateData" #y
+				local zRot = attrManager.getAttributeValue obj "rotateData" #z
+
+				rotAxis = Point3 xRot yRot zRot
+				rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
+			)
 			
-			fs.writeKeyValue "rotation_axis" "0 0 1"
+			fs.writeKeyValue "rotation_axis" rotAxis
 			fs.writeComma()
-			fs.writeKeyValue "rotation_speed" 0.5
+			fs.writeKeyValue "rotation_speed" rotSpeed
 		fs.endObj()
 	),
 	
@@ -1565,8 +1572,6 @@ TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
-
-TODO: Si conviertes en mesh un objeto ocn atributos, el atributo se pone ocn los generales, igual da problemas.
 
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional para whitebox.
 
