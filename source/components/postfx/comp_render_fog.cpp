@@ -8,7 +8,7 @@ DECL_OBJ_MANAGER("render_fog", TCompRenderFog);
 void TCompRenderFog::debugInMenu() {
 	ImGui::Checkbox("Enabled", &enabled);
 	ImGui::DragFloat3("Fog color", &fogColor.x, 0.001f, 0.0f, 1.0f);
-	ImGui::DragFloat("Fog density", &fogDensity, 0.001f, 0.0f, 1.0f);
+	ImGui::DragFloat("Fog density", &fogDensity, 0.0001f, 0.0f, 1.0f);
 	ImGui::DragFloat("Fog max ratio", &fogMaxRatio, 0.001f, 0.0f, 1.0f);
 }
 
