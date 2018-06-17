@@ -115,7 +115,7 @@ VEC3 CCurve::evaluateAsCatmull(float ratio) const {
 }
 
 VEC3 CCurve::evaluateAsCircle(float ratio, VEC3 pos) const {
-    float angle = ratio * 360.f;
+    float angle = ratio * M_PI * 2;
     // TODO: Do this properly in 3D.
     float x = _center.x + _radius * cos(angle);
     float z = _center.z + _radius * sin(angle);

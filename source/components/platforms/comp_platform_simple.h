@@ -14,6 +14,7 @@ private:
 	float ratio = 0.f;
 	bool automove = false;
 	bool moveBackwards = false;
+	bool isClosed = false;
 
 	float rotationSpeed;
 	VEC3 rotationAxisLocal;
