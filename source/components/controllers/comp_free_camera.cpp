@@ -32,10 +32,15 @@ void TCompFreeCamera::onCreated(const TMsgEntityCreated& msg) {
 }
 
 void TCompFreeCamera::update(float delta) {
+	if (EngineInput["release_power"].getsPressed()) {
+		moveInDebug = !moveInDebug;
+	}
 	//sólo si no está en debug
-	if (cameraHandle.getOwner() != EngineRender.getCurrentCameraHandle()) return;
-	updateRotation(delta);
-	updatePosition(delta);
+	if (!CApp::get().isDebug() || (CApp::get().isDebug() && moveInDebug)) {
+		if (cameraHandle.getOwner() != EngineRender.getCurrentCameraHandle()) return;
+		updateRotation(delta);
+		updatePosition(delta);
+	}
 }
 
 void TCompFreeCamera::updateRotation(float delta) {

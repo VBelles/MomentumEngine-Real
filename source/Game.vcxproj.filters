@@ -253,6 +253,7 @@
     <ClCompile Include="geometry\rigid_anim.cpp" />
     <ClCompile Include="components\controllers\comp_rigid_anim.cpp" />
     <ClCompile Include="components\lights\comp_light_flicker.cpp" />
+    <ClCompile Include="components\comp_sun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -538,6 +539,7 @@
     <ClInclude Include="geometry\rigid_anim.h" />
     <ClInclude Include="components\controllers\comp_rigid_anim.h" />
     <ClInclude Include="components\lights\comp_light_flicker.h" />
+    <ClInclude Include="components\comp_sun.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

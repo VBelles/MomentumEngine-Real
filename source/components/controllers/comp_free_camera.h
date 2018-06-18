@@ -12,6 +12,8 @@ private:
 	VEC2 pitchRange = VEC2(deg2rad(-80), deg2rad(80));
 	float speedMultiplier = 10.f;
 
+	bool moveInDebug = true;
+
 	CHandle cameraHandle;
 	CHandle transformHandle;
 
