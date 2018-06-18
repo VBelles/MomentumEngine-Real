@@ -2,6 +2,222 @@
   {
     "entity":
     {
+      "name": "ms3_rotate024",
+      "transform":
+      {
+        "pos": "-294.734 362.245 -1122.26",
+        "rotation": "0.0607425 -0.116685 0.457736 -0.879302"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate024.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate025.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate022",
+      "transform":
+      {
+        "pos": "-278.757 361.848 -1126.58",
+        "rotation": "-0.0284724 -0.128431 -0.214559 -0.967812"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate022.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate023.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate020",
+      "transform":
+      {
+        "pos": "-263.467 361.24 -1130.71",
+        "rotation": "0.0340473 -0.127066 0.25657 -0.957532"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate020.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate021.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate018",
+      "transform":
+      {
+        "pos": "-321.763 358.69 -1114.21",
+        "rotation": "-0.069548 -0.861536 -0.139776 -0.483096"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate018.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate019.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate016",
+      "transform":
+      {
+        "pos": "-239.671 357.743 -1139.59",
+        "rotation": "-0.0793524 -0.787188 0.103635 -0.602742"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate016.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate017.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.8
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate014",
+      "transform":
+      {
+        "pos": "-205.15 367.907 -1156.74",
+        "rotation": "0.224277 -0.837014 0.129178 -0.4821"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate014.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate015.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_pared_insider",
       "transform":
       {
@@ -30,7 +246,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -79,7 +295,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -128,7 +344,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -177,7 +393,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -226,7 +442,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -275,7 +491,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -324,7 +540,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -373,7 +589,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -422,7 +638,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -471,7 +687,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -520,7 +736,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -569,7 +785,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -618,7 +834,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -670,7 +886,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -722,7 +938,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -774,7 +990,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -826,7 +1042,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -878,7 +1094,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -930,7 +1146,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -982,7 +1198,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -1034,7 +1250,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1083,7 +1299,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1132,7 +1348,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1181,7 +1397,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1230,7 +1446,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1279,7 +1495,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1328,7 +1544,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1377,7 +1593,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1426,7 +1642,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1475,7 +1691,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
@@ -1524,14 +1740,14 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.0,
-        "speed": 0.04,
+        "move_offset": 0.128431,
+        "speed": 0.001,
         "knots":
         [
            "-246.197 94.401 -770.003",
@@ -1576,14 +1792,14 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.25,
-        "speed": 0.04,
+        "move_offset": 0.63284,
+        "speed": 0.001,
         "knots":
         [
            "-246.197 94.401 -770.003",
@@ -1628,14 +1844,14 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.5,
-        "speed": 0.04,
+        "move_offset": 0.630487,
+        "speed": 0.001,
         "knots":
         [
            "-246.197 94.401 -770.003",
@@ -1680,14 +1896,14 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.75,
-        "speed": 0.04,
+        "move_offset": 0.867754,
+        "speed": 0.001,
         "knots":
         [
            "-246.197 94.401 -770.003",
@@ -1732,7 +1948,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -1784,7 +2000,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -1836,7 +2052,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -1888,7 +2104,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "circular",
         "automove": true,
@@ -1940,14 +2156,13 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time" : 1.0,
         "speed": 0.3,
         "knots":
         [
@@ -1990,14 +2205,13 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0 1 0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0,
         "curve_type": "catmull-rom",
         "automove": true,
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time" : 1.0,
         "speed": 0.3,
         "knots":
         [

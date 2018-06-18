@@ -848,8 +848,7 @@ struct TSceneExporter (
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
 		local mech		= obj.layer.name == "mechanisms"
-		local onlyRot   = not isMovable obj
-		
+				
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -869,6 +868,7 @@ struct TSceneExporter (
 					if isFirst then fs.writeComma()
 					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
 					local movable = hasChildLine child
+					local onlyRot = not movable and attrManager.hasAttribute obj "rotateData"
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
 
@@ -1607,11 +1607,12 @@ se exportará en la escena collisions.
 Las meshes		    deben estar en una layer llamada "0".
 Los enemigos		    deben estar en una layer llamada "enemies".
 Las crisálidas 		    deben estar en una layer llamada "chrysalis".
-Las plataformas móviles  deben estar en una layer llamada "movables".
+Las plataformas móviles deben estar en una layer llamada "movables" (excepto si son puras, en ese caso van en pure).
 Las cámaras		    deben estar en una layer llamada "cameras".
+Las puras			    deben estar en una layer llamada "pure".
 Las luces			    deben estar en una layer llamada "lights".
 Los triggers		    deben estar en una layer llamada "triggers".
-Los colliders invisibles     deben estar en una layer llamada "collisions".
+Los colliders invisibles   deben estar en una layer llamada "collisions".
 
 Las monedas únicas tienen que contener "unique" en el nombre.
  
