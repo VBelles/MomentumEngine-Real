@@ -1,4 +1,4 @@
-fileIn "export_scene.ms"
+--fileIn "export_scene.ms"
 --fileIn "export_skeletons.ms"
 --fileIn "export_rigid_anims.ms"
 
@@ -13,7 +13,8 @@ utility MyMCVExporter "MCV Exporter" (
 		on btn_scene pressed do (
 			try (
 				gc()
-				local exporter = TSceneExporter()
+				global exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_ui.ms" "Bin\\")
+				local exporter = TSceneExporter project_path:exportPath
 				exporter.exportAll()	
 				MessageBox "All exported OK"
 			) catch (

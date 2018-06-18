@@ -403,7 +403,7 @@ struct TSceneExporter (
 			)
 		fs.endArray()
 	),
-	
+
 	fn getCircularMovementOffset platform circleObj = (
 		local center = circleObj.pos
 		local objCopy = copy circleObj
@@ -411,13 +411,16 @@ struct TSceneExporter (
 		local circlePoint = getKnotPoint objCopy 1 1
 		delete objCopy
 		local platformPos = platform.pos
-		
-		-- TODO: Aquí la idea sería aumentar el move_offset según el ángulo de la plataforma respecto
-		-- al centro del círculo, si no todas las plataforms que comparten centro se mueven superpuestas.
-		-- Ahora mismo no va fino, necesito ángulos negativos también.
+
+		-- Avoid all platforms starting at the same point of the circle.
+		-- 90º -> 0.25, 180º -> 0.5, 270º -> 0.75, 360º -> 0.0
 		local anglePlatformToCircle = get3pointAngle center circlePoint platformPos
+		format "center: % circlePoint: % platfPos: % anglePlatfToCircle: %\n" center circlePoint platformPos anglePlatformToCircle
 		if anglePlatformToCircle == 0 then return 0
-		else return anglePlatformToCircle / 180
+		else (
+			if anglePlatformToCircle < 0 then return (360 + anglePlatformToCircle) / 360
+			else return anglePlatformToCircle / 360
+		)
 	),
 	
 	fn exportSplineKnots obj = (
@@ -569,14 +572,14 @@ struct TSceneExporter (
 					curveType = "circular"
 					moveOffset = getCircularMovementOffset obj child
 				)
-				
+
 				local closed = false
 				local followSpeed = 0.3
 				if childClass == circle then closed = true
 				else closed = isClosed child 1
-				
-				if closed then followSpeed = 0.001
-				
+
+				if closed then followSpeed = 0.04
+
 				fs.writeComma()
 				fs.writeKey type
 				fs.beginObj()
@@ -591,6 +594,8 @@ struct TSceneExporter (
 					fs.writeKeyValue "closed" closed
 					fs.writeComma()
 					fs.writeKeyValue "move_offset" moveOffset
+					fs.writeComma()
+					fs.writeKeyValue "travel_wait_time" 1.0
 					fs.writeComma()
 					fs.writeKeyValue "speed" followSpeed
 					fs.writeComma()

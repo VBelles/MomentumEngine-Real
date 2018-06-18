@@ -56,24 +56,23 @@ fn getPosRelativeToParent child = (
 	return (getTransfRelativeToParent child).pos
 )
 
--- Returns the angle between two vectors (from 0 to 180 degrees).
--- TODO: Esto debería devolver el ángulo en negativo si se da el caso (añadiendo referencia).
+-- Returns the angle between two vectors (from 0 to 180 degrees, with sign).
 fn getVecAngle v1 v2 = (
 	local n1 = normalize v1
 	local n2 = normalize v2
-	local crossProd = cross v1 v2
-	--return atan2 (dot (cross v2 v1) (normalize crossProd)) (dot v1 v2)
-	return acos(dot n1 n2)
+	local d = dot v1 v2
+	local det = v1.x*v2.y - v1.y*v2.x
+	return atan2 det d
 )
 
--- Returns the angle between 3 points (from 0 to 180 degrees).
+-- Returns the angle between 3 points (from 0 to 180 degrees, with sign).
 fn get3pointAngle p1 p2 p3 = (
 	local v1 = p2 - p1
 	local v2 = p3 - p1
 	return getVecAngle v1 v2
 )
 
-------- MATERIALS  AND NAMES ------------------------------------------------------
+------- MATERIALS AND NAMES ------------------------------------------------------
 
 -- Sets to <id> the material ID of all faces of an object.
 fn setMaterialIDs obj id:1 = (
