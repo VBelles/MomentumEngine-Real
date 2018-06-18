@@ -1,0 +1,15 @@
+### MILESTONE 3: ###
+Huevo inicio:
+teleportPlayer(-280,100,-400)
+
+Inicio cementerio:
+teleportPlayer(-252,54,-670)
+Primer altar:
+teleportPlayer(-132,93,-806)
+
+Montaña más alta:
+teleportPlayer(-134.5, 372, -1168)
+
+Pie faro:
+teleportPlayer(-629, 75, -908)
+
