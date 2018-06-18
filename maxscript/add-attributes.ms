@@ -38,9 +38,9 @@ global rotationsData = attributes rotateData (
 		rotSpeed type: #float ui:rotSpeed default:0.5
 	)
 	rollout params "Rotation Data" (
-		spinner xRot "x axis" type: #integer range:[0, 0, 0]
-		spinner yRot "y axis" type: #integer range:[0, 0, 0]
-		spinner zRot "z axis" type: #integer range:[0, 1, 0]
+		spinner xRot "x axis" type: #integer range:[-1, 1, 0] --min, max, initial value
+		spinner yRot "y axis" type: #integer range:[-1, 1, 0]
+		spinner zRot "z axis" type: #integer range:[-1, 1, 1]
 		spinner rotSpeed "Rotation speed" type: #float
 	)
 )
