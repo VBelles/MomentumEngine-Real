@@ -311,6 +311,14 @@ struct TSceneExporter (
 		return false
 	),
 	
+	fn isMovable obj = (
+		if obj.children == undefined then return false
+		for child in obj.children do (
+			if hasChildLine child then return true
+		)
+		return false
+	),
+	
 	fn isCollider obj = (
 		if  classOf obj != Box 	 and
 			classOf obj != Sphere and
@@ -521,6 +529,32 @@ struct TSceneExporter (
 		fs.endObj() -- End render object.
 	),
 
+	-- --COMP: ROTATE (platform_simple)-----------------------------------------------------
+	fn exportPlatfRotation obj = (
+		local rotAxis = Point3 0 0 1
+		local rotSpeed = 0
+		--Get from attribute if it exists.
+		if attrManager.hasAttribute obj "rotateData" then (
+			local xRot = attrManager.getAttributeValue obj "rotateData" #x
+			local yRot = attrManager.getAttributeValue obj "rotateData" #y
+			local zRot = attrManager.getAttributeValue obj "rotateData" #z
+
+			rotAxis = Point3 xRot yRot zRot
+			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
+		)
+		fs.writeKeyValue "rotation_axis" rotAxis
+		fs.writeComma()
+		fs.writeKeyValue "rotation_speed" rotSpeed
+	),
+	
+	fn exportPlatfRotationOnly obj = (
+		fs.writeComma()
+		fs.writeKey "platform_simple"
+		fs.beginObj()
+			exportPlatfRotation obj
+		fs.endObj()
+	),
+	
 	-- --SPLINE-------------------------------------------------------
 	fn exportSpline obj type:"platform_simple" = (
 		-- Executed only if we already know it has a child line.
@@ -546,9 +580,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKey type
 				fs.beginObj()
-					fs.writeKeyValue "rotation_axis" "0 1 0"
-					fs.writeComma()
-					fs.writeKeyValue "rotation_speed" 0
+					exportPlatfRotation obj.parent
 					fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
@@ -568,29 +600,6 @@ struct TSceneExporter (
 				return true -- Only exports the first line found.
 			)
 		)
-	),
-	
-	-- --COMP: ROTATE (platform_simple)-----------------------------------------------------
-	fn exportPlatfRotation obj = (
-		fs.writeComma()
-		fs.writeKey "platform_simple"
-		fs.beginObj()
-			local rotAxis = Point3 0 0 1
-			local rotSpeed = 0.5
-			--Get from attribute if it exists.
-			if attrManager.hasAttribute obj "rotateData" then (
-				local xRot = attrManager.getAttributeValue obj "rotateData" #x
-				local yRot = attrManager.getAttributeValue obj "rotateData" #y
-				local zRot = attrManager.getAttributeValue obj "rotateData" #z
-
-				rotAxis = Point3 xRot yRot zRot
-				rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
-			)
-			
-			fs.writeKeyValue "rotation_axis" rotAxis
-			fs.writeComma()
-			fs.writeKeyValue "rotation_speed" rotSpeed
-		fs.endObj()
 	),
 	
 	-- --COMP: BREAKABLE------------------------------------------------
@@ -838,8 +847,8 @@ struct TSceneExporter (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string) --DEBUG
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
-		local rot		= obj.layer.name == "rotate"
 		local mech		= obj.layer.name == "mechanisms"
+		local onlyRot   = not isMovable obj
 		
 		exportName obj
 		fs.writeComma()
@@ -868,11 +877,11 @@ struct TSceneExporter (
 						fs.writeKeyEmpty "purity"
 						objToExport = obj
 					)
-					exportCompCollider objToExport first:isFirst mov:(movable or rot) colliderGroups:groups
+					exportCompCollider objToExport first:isFirst mov:(movable or onlyRot) colliderGroups:groups
 
 					if breakable then exportBreakable()
 					if movable then exportSpline child
-					if rot then exportPlatfRotation obj
+					if onlyRot then exportPlatfRotationOnly obj
 					if mech then exportMech child
 				)
 				else if isDummyLOD child then (
@@ -1492,7 +1501,7 @@ struct TSceneExporter (
 		fs.end()
 		-- TODO: Export also Altars.
 	),
-	
+
 	fn exportAll = (
 		deselect objects -- Deselect all objects so export is faster.
 
@@ -1539,7 +1548,6 @@ struct TSceneExporter (
 							"prefabBall":   ( wasValid = exportEnemyPrefab	   obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab 	   obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab	   obj nValidObjs )
-							"rotate": 		( wasValid = exportEntityDefault   obj nValidObjs )
 							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
 							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
 							"mechanisms":	( wasValid = exportEntityMechSys   obj nValidObjs )
