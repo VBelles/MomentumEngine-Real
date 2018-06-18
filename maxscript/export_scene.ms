@@ -415,14 +415,14 @@ struct TSceneExporter (
 		-- Avoid all platforms starting at the same point of the circle.
 		-- 90º -> 0.25, 180º -> 0.5, 270º -> 0.75, 360º -> 0.0
 		local anglePlatformToCircle = get3pointAngle center circlePoint platformPos
-		format "center: % circlePoint: % platfPos: % anglePlatfToCircle: %\n" center circlePoint platformPos anglePlatformToCircle
+		--format "center: % circlePoint: % platfPos: % anglePlatfToCircle: %\n" center circlePoint platformPos anglePlatformToCircle --DEBUG
 		if anglePlatformToCircle == 0 then return 0
 		else (
 			if anglePlatformToCircle < 0 then return (360 + anglePlatformToCircle) / 360
 			else return anglePlatformToCircle / 360
 		)
 	),
-	
+
 	fn exportSplineKnots obj = (
 		fs.beginArray()
 			--Create a copy and convert it to SplineShape to be able to get the knots.
@@ -580,6 +580,17 @@ struct TSceneExporter (
 
 				if closed then followSpeed = 0.04
 
+				local auto = true
+				local loop = true
+				local wait = 0.0
+				--Get from attribute if it exists.
+				if attrManager.hasAttribute obj.parent "moveData" then (
+					auto 		= attrManager.getAttributeValue obj.parent "moveData" #auto
+					loop 		= attrManager.getAttributeValue obj.parent "moveData" #loop
+					wait 		= attrManager.getAttributeValue obj.parent "moveData" #wait
+					followSpeed = attrManager.getAttributeValue obj.parent "moveData" #spd
+				)
+
 				fs.writeComma()
 				fs.writeKey type
 				fs.beginObj()
@@ -587,15 +598,15 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
-					fs.writeKeyValue "automove" true
+					fs.writeKeyValue "automove" auto
 					fs.writeComma()
-					fs.writeKeyValue "loop" true
+					fs.writeKeyValue "loop" loop
 					fs.writeComma()
 					fs.writeKeyValue "closed" closed
 					fs.writeComma()
 					fs.writeKeyValue "move_offset" moveOffset
 					fs.writeComma()
-					fs.writeKeyValue "travel_wait_time" 1.0
+					fs.writeKeyValue "travel_wait_time" wait
 					fs.writeComma()
 					fs.writeKeyValue "speed" followSpeed
 					fs.writeComma()
