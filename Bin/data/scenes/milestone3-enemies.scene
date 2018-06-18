@@ -1,0 +1,1178 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir039",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "43.4424 227.675 -1170.22",
+        "lookat": "-1.0 227.675 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee027",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "23.1409 235.124 -1276.65",
+        "lookat": "-1.0 235.124 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee026",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-24.4262 235.124 -1255.77",
+        "lookat": "-1.0 235.124 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee025",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-2.7238 235.124 -1293.17",
+        "lookat": "-1.0 235.124 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall034",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-42.6605 234.726 -1245.5",
+        "lookat": "-1.0 234.726 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall033",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "13.4835 234.726 -1298.91",
+        "lookat": "-1.0 234.726 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall032",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-42.3656 234.726 -1276.11",
+        "lookat": "-1.0 234.726 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee024",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-214.946 168.102 -1377.62",
+        "lookat": "-1.0 168.102 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall031",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-311.913 125.691 -1370.69",
+        "lookat": "-1.0 125.691 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall030",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-244.833 107.88 -1397.73",
+        "lookat": "-1.0 107.88 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall029",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-231.297 107.88 -1432.74",
+        "lookat": "-1.0 107.88 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee023",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-293.47 125.448 -1371.27",
+        "lookat": "-1.0 125.448 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee022",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-303.908 125.448 -1394.25",
+        "lookat": "-1.0 125.448 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee021",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-251.585 107.268 -1418.4",
+        "lookat": "-1.0 107.268 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee020",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-221.693 107.268 -1410.12",
+        "lookat": "-1.0 107.268 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee019",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-280.151 125.448 -1390.16",
+        "lookat": "-1.0 125.448 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall028",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "44.0813 151.537 -1146.76",
+        "lookat": "-1.0 151.537 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall027",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "62.0473 151.537 -1202.94",
+        "lookat": "-1.0 151.537 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall026",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "44.3763 151.537 -1177.37",
+        "lookat": "-1.0 151.537 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee018",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "71.7047 151.936 -1180.67",
+        "lookat": "-1.0 151.936 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee017",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "62.3156 151.936 -1157.03",
+        "lookat": "-1.0 151.936 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee016",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "45.84 151.936 -1197.19",
+        "lookat": "-1.0 151.936 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir038",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "20.9164 182.9 -1317.89",
+        "lookat": "-1.0 182.9 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir037",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "30.3725 182.9 -1308.72",
+        "lookat": "-1.0 182.9 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir036",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "20.9435 182.9 -1315.12",
+        "lookat": "-1.0 182.9 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee015",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-179.609 156.711 -1148.26",
+        "lookat": "-1.0 156.711 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee014",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-215.588 153.798 -1121.51",
+        "lookat": "-1.0 153.798 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall025",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-65.7202 168.047 -1100.09",
+        "lookat": "-1.0 168.047 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee013",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-86.2988 169.502 -1091.85",
+        "lookat": "-1.0 169.502 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee012",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-71.8248 169.502 -1116.17",
+        "lookat": "-1.0 169.502 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir035",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-199.955 148.731 -1106.2",
+        "lookat": "-1.0 148.731 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir034",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-55.1711 245.189 -1162.87",
+        "lookat": "-1.0 245.189 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall024",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-348.848 73.0217 -680.137",
+        "lookat": "-1.0 73.0217 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee011",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-362.2 51.7562 -725.383",
+        "lookat": "-1.0 51.7562 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall023",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-459.703 50.5916 -719.287",
+        "lookat": "-1.0 50.5916 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir033",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-635.766 121.294 -881.54",
+        "lookat": "-1.0 121.294 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir032",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-635.766 110.657 -881.54",
+        "lookat": "-1.0 110.657 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir031",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-635.766 99.0769 -881.54",
+        "lookat": "-1.0 99.0769 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir030",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-635.766 91.7381 -881.54",
+        "lookat": "-1.0 91.7381 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir029",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-635.766 83.4817 -881.54",
+        "lookat": "-1.0 83.4817 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir028",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-442.757 87.6884 -699.901",
+        "lookat": "-1.0 87.6884 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir026",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-429.776 71.6787 -703.052",
+        "lookat": "-1.0 71.6787 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee010",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-451.205 104.004 -735.634",
+        "lookat": "-1.0 104.004 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir025",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-248.976 197.857 -1016.78",
+        "lookat": "-1.0 197.857 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir024",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-208.52 292.675 -1078.33",
+        "lookat": "-1.0 292.675 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir023",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-192.512 301.288 -1100.08",
+        "lookat": "-1.0 301.288 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir022",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-176.989 310.188 -1124.0",
+        "lookat": "-1.0 310.188 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee009",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-459.615 90.6113 -871.408",
+        "lookat": "-1.0 90.6113 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir021",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-418.276 95.4345 -800.505",
+        "lookat": "-1.0 95.4345 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir020",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-412.107 95.4345 -807.322",
+        "lookat": "-1.0 95.4345 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir019",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-406.691 95.4345 -801.19",
+        "lookat": "-1.0 95.4345 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir018",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-402.102 95.4345 -807.475",
+        "lookat": "-1.0 95.4345 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir017",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-395.663 95.4969 -801.254",
+        "lookat": "-1.0 95.4969 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee008",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-351.418 97.1503 -779.328",
+        "lookat": "-1.0 97.1503 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall022",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-410.121 69.1339 -901.978",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir016",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-320.197 103.082 -751.073",
+        "lookat": "-1.0 103.082 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir015",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-310.076 104.261 -756.541",
+        "lookat": "-1.0 104.261 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir014",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-299.056 105.771 -762.003",
+        "lookat": "-1.0 105.771 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee007",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-278.517 98.2146 -774.239",
+        "lookat": "-1.0 98.2146 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir013",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-258.32 99.4497 -787.103",
+        "lookat": "-1.0 99.4497 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir012",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-263.821 99.4497 -755.984",
+        "lookat": "-1.0 99.4497 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir011",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-216.531 97.183 -761.72",
+        "lookat": "-1.0 97.183 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir010",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-201.79 97.183 -759.64",
+        "lookat": "-1.0 97.183 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir009",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-209.536 97.183 -760.515",
+        "lookat": "-1.0 97.183 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall021",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-528.619 87.4991 -768.878",
+        "lookat": "-1.0 87.4991 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall020",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-497.577 87.4991 -801.666",
+        "lookat": "-1.0 87.4991 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall019",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-506.55 87.4991 -803.434",
+        "lookat": "-1.0 87.4991 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall018",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-490.776 87.4991 -808.831",
+        "lookat": "-1.0 87.4991 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee006",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-520.548 87.5763 -794.547",
+        "lookat": "-1.0 87.5763 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee005",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-520.548 87.5763 -780.573",
+        "lookat": "-1.0 87.5763 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee004",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-439.351 69.1295 -835.502",
+        "lookat": "-1.0 69.1295 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall017",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-430.444 65.0972 -745.151",
+        "lookat": "-1.0 65.0972 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall016",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-430.444 65.0972 -727.311",
+        "lookat": "-1.0 65.0972 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall015",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-409.679 65.0972 -727.311",
+        "lookat": "-1.0 65.0972 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall014",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-435.583 69.1339 -841.728",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall013",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-441.856 69.1339 -831.185",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall012",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-434.608 69.1339 -823.757",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall011",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-434.608 69.1339 -829.372",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall010",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-507.468 18.239 -819.528",
+        "lookat": "-1.0 18.239 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall009",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-488.801 18.649 -794.067",
+        "lookat": "-1.0 18.649 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall008",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-480.691 25.7767 -807.02",
+        "lookat": "-1.0 25.7767 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall007",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-505.059 29.0267 -834.868",
+        "lookat": "-1.0 29.0267 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall006",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-528.963 29.9781 -813.378",
+        "lookat": "-1.0 29.9781 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall005",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-523.136 26.6639 -793.643",
+        "lookat": "-1.0 26.6639 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall004",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-526.073 19.5025 -812.314",
+        "lookat": "-1.0 19.5025 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee003",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-495.273 20.2357 -824.955",
+        "lookat": "-1.0 20.2357 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall003",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-508.138 20.503 -783.383",
+        "lookat": "-1.0 20.503 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall002",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-189.099 76.9359 -732.728",
+        "lookat": "-1.0 76.9359 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee002",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-86.3811 84.4275 -888.837",
+        "lookat": "-1.0 84.4275 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir008",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-94.2363 76.5511 -855.538",
+        "lookat": "-1.0 76.5511 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir007",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-91.4322 79.1502 -862.83",
+        "lookat": "-1.0 79.1502 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir006",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-197.77 85.5845 -763.176",
+        "lookat": "-1.0 85.5845 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir005",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-187.757 79.0196 -744.658",
+        "lookat": "-1.0 79.0196 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir004",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-184.031 77.5751 -742.415",
+        "lookat": "-1.0 77.5751 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir003",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-179.474 76.0856 -741.455",
+        "lookat": "-1.0 76.0856 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyBall001",
+      "prefab": "data/prefabs/enemy_ball.prefab",
+      "transform":
+      {
+        "pos": "-316.807 42.8224 -545.868",
+        "lookat": "-1.0 42.8224 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir002",
+      "prefab": "data/prefabs/enemy_flying.prefab",
+      "transform":
+      {
+        "pos": "-322.965 44.0165 -551.361",
+        "lookat": "-1.0 44.0165 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee001",
+      "prefab": "data/prefabs/enemy_melee.prefab",
+      "transform":
+      {
+        "pos": "-320.689 43.5893 -549.204",
+        "lookat": "-1.0 43.5893 -1.0"
+      }
+    }
+  }
+]

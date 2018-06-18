@@ -487,6 +487,19 @@
       "irradiance": "data/textures/cubemaps/irradiance.dds",
       "noise": "data/textures/noise_cloud3.dds"
     }
+  },
+
+  "slash": {
+    "vs_file": "data/shaders/slash.fx",
+    "ps_file": "data/shaders/slash.fx",
+    "vs_entry_point": "VS",
+    "ps_entry_point": "PS",
+    "vertex_type": "PosNUv",
+    "category": "slash",
+    "priority": 60,
+    "rs_config": "cull_none",
+    "z" : "test_but_no_write", 
+    "blend" : "additive_by_src_alpha"
   }
 
 

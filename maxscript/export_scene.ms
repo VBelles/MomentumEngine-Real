@@ -1,8 +1,8 @@
 clearListener()
 gc()
 
-fileIn "export_mesh.ms" -- To avoid error on first execution.
-fileIn "add-attributes.ms" -- To avoid error on first execution.
+fileIn "export_mesh.ms"
+fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
 global uniqueCoins  = #()
@@ -225,6 +225,10 @@ struct TMaterialExporter (
 				fs.writeKeyValue "albedo" "data/textures/null_albedo.dds"
 				fs.writeComma()
 				fs.writeKeyValue "normal" "data/textures/null_normal.dds"
+				fs.writeComma()
+				fs.writeKeyValue "metallic" "data/textures/null_metallic.dds"
+				fs.writeComma()
+				fs.writeKeyValue "roughness" "data/textures/null_roughness.dds"
 			fs.endObj()
 		fs.endObj()
 		fs.end()
@@ -252,7 +256,7 @@ struct TMaterialExporter (
 
 		) else if matClass == MultiMaterial then (
 			local multi_mat = mat
-
+setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
 			local materials_of_mesh = getMaterialsUsedByMesh obj
 			for mat_idx = 1 to materials_of_mesh.count do (
 				if materials_of_mesh[ mat_idx ] == undefined then continue
@@ -275,6 +279,7 @@ struct TMaterialExporter (
 -- ----------------------------------------------------------
 struct TSceneExporter (
 	fs = TJsonFormatter(),
+	attrManager = TAttributeManager(),
 	project_path = "",
 	base_path    = "data/",
 	scenes_path  = base_path + "scenes/",
@@ -287,6 +292,11 @@ struct TSceneExporter (
 		fs.writeKeyValue "name" obj.name
 	),
 
+	fn isCamera obj = (
+		return classOf obj == FreeCamera or 
+			   classOf obj == TargetCamera
+	),
+	
 	fn isLine obj = (
 		return classOf obj == line or 
 			   classOf obj == circle or
@@ -297,6 +307,14 @@ struct TSceneExporter (
 		if obj.children == undefined then return false
 		for child in obj.children do (
 			if isLine child then return true
+		)
+		return false
+	),
+	
+	fn isMovable obj = (
+		if obj.children == undefined then return false
+		for child in obj.children do (
+			if hasChildLine child then return true
 		)
 		return false
 	),
@@ -437,10 +455,10 @@ struct TSceneExporter (
 	),
 	
 	-- ----------------------------------------------------------------------
-	-- -- · COMPONENTS · -------------------------------------------
+	-- -- · COMPONENTS · ---------------------------------------
 	-- ----------------------------------------------------------------------
 
-	-- --COMP: TRANSFORM-----------------------------------------------
+	-- --COMP: TRANSFORM------------------------------------
 	fn exportTransform obj lookAtCoord: noRot:false relative:false = (
 		fs.writeKey "transform"
 		fs.beginObj()
@@ -452,7 +470,13 @@ struct TSceneExporter (
 				if lookAtCoord == unsupplied then (
 					local transf = obj.transform
 					if relative then transf = getTransfRelativeToParent obj
-					fs.writeKeyValue "rotation" (maxRotToMcv transf)
+					if classOf obj == FreeCamera then (
+						local camCopy = copy obj
+						camCopy.transform = (rotateXMatrix 90) * camCopy.transform --Compensate camera axis shenanigans.
+						fs.writeKeyValue "rotation" (maxRotToMcv camCopy.transform)
+						delete camCopy
+					)
+					else fs.writeKeyValue "rotation" (maxRotToMcv transf)
 				) else (
 					fs.writeKeyValue "lookat" lookAtCoord
 				)
@@ -460,11 +484,6 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- --PURITY--------------------------------------------------------------------
-	fn exportPurity = (
-
-	),
-	
 	-- --RENDER MESH (also exports MATERIAL)----------------------------------------
 	fn exportRenderMesh obj pure:false = (
 		local mat = obj.material
@@ -510,6 +529,32 @@ struct TSceneExporter (
 		fs.endObj() -- End render object.
 	),
 
+	-- --COMP: ROTATE (platform_simple)-----------------------------------------------------
+	fn exportPlatfRotation obj = (
+		local rotAxis = Point3 0 0 1
+		local rotSpeed = 0
+		--Get from attribute if it exists.
+		if attrManager.hasAttribute obj "rotateData" then (
+			local xRot = attrManager.getAttributeValue obj "rotateData" #x
+			local yRot = attrManager.getAttributeValue obj "rotateData" #y
+			local zRot = attrManager.getAttributeValue obj "rotateData" #z
+
+			rotAxis = Point3 xRot yRot zRot
+			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
+		)
+		fs.writeKeyValue "rotation_axis" rotAxis
+		fs.writeComma()
+		fs.writeKeyValue "rotation_speed" rotSpeed
+	),
+	
+	fn exportPlatfRotationOnly obj = (
+		fs.writeComma()
+		fs.writeKey "platform_simple"
+		fs.beginObj()
+			exportPlatfRotation obj
+		fs.endObj()
+	),
+	
 	-- --SPLINE-------------------------------------------------------
 	fn exportSpline obj type:"platform_simple" = (
 		-- Executed only if we already know it has a child line.
@@ -526,7 +571,7 @@ struct TSceneExporter (
 				)
 				
 				local closed = false
-				local followSpeed = 0.2
+				local followSpeed = 0.3
 				if childClass == circle then closed = true
 				else closed = isClosed child 1
 				
@@ -535,9 +580,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKey type
 				fs.beginObj()
-					fs.writeKeyValue "rotation_axis" "0 1 0"
-					fs.writeComma()
-					fs.writeKeyValue "rotation_speed" 0
+					exportPlatfRotation obj.parent
 					fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
@@ -557,17 +600,6 @@ struct TSceneExporter (
 				return true -- Only exports the first line found.
 			)
 		)
-	),
-	
-	-- --COMP: ROTATE (platform_simple)-----------------------------------------------------
-	fn exportPlatfRotation = (
-		fs.writeComma()
-		fs.writeKey "platform_simple"
-		fs.beginObj()
-			fs.writeKeyValue "rotation_axis" "1 0 0"
-			fs.writeComma()
-			fs.writeKeyValue "rotation_speed" 1
-		fs.endObj()
 	),
 	
 	-- --COMP: BREAKABLE------------------------------------------------
@@ -815,9 +847,8 @@ struct TSceneExporter (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string) --DEBUG
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
-		local rot		= obj.layer.name == "rotate"
 		local mech		= obj.layer.name == "mechanisms"
-		
+				
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -837,6 +868,7 @@ struct TSceneExporter (
 					if isFirst then fs.writeComma()
 					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
 					local movable = hasChildLine child
+					local onlyRot = not movable and attrManager.hasAttribute obj "rotateData"
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
 
@@ -845,11 +877,11 @@ struct TSceneExporter (
 						fs.writeKeyEmpty "purity"
 						objToExport = obj
 					)
-					exportCompCollider objToExport first:isFirst mov:(movable or rot) colliderGroups:groups
+					exportCompCollider objToExport first:isFirst mov:(movable or onlyRot) colliderGroups:groups
 
 					if breakable then exportBreakable()
 					if movable then exportSpline child
-					if rot then exportPlatfRotation()
+					if onlyRot then exportPlatfRotationOnly obj
 					if mech then exportMech child
 				)
 				else if isDummyLOD child then (
@@ -937,24 +969,24 @@ struct TSceneExporter (
 		local objClass = classOf obj
 		format "name: %\n" obj.name
 		if objClass == TargetCamera or
-				objClass == FreeCamera then (
+		   objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
-					
+
 			fs.beginObj()
 				fs.writeKey "entity"
 				fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 					exportName obj
 					fs.writeComma()
 					if objClass == TargetCamera then (
-						exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+						exportTransform obj lookAtCoord:(maxPosToMcv obj.Target[3].pos) --[3] is the Transform.
 					) else exportTransform obj
-					
+
 					fs.writeComma()
 					fs.writeKey "camera"
 					fs.beginObj()
 						fs.writeKeyValue "fov" obj.fov
 					fs.endObj()
-					
+
 					fs.writeComma()
 					fs.writeKey "fixed_camera"
 					fs.beginObj()
@@ -976,10 +1008,11 @@ struct TSceneExporter (
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
 				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		)
+		else return false
 
 		if hasChildCollider obj then (
 			local child = obj.children[1]
-			if classof child == Box then (
+			if isCollider child then (
 				fs.writeComma()
 				fs.beginObj()
 					fs.writeKey "entity"
@@ -1468,7 +1501,7 @@ struct TSceneExporter (
 		fs.end()
 		-- TODO: Export also Altars.
 	),
-	
+
 	fn exportAll = (
 		deselect objects -- Deselect all objects so export is faster.
 
@@ -1515,7 +1548,6 @@ struct TSceneExporter (
 							"prefabBall":   ( wasValid = exportEnemyPrefab	   obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab 	   obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab	   obj nValidObjs )
-							"rotate": 		( wasValid = exportEntityDefault   obj nValidObjs )
 							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
 							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
 							"mechanisms":	( wasValid = exportEntityMechSys   obj nValidObjs )
@@ -1549,6 +1581,8 @@ TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
 
+TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional para whitebox.
+
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 
@@ -1561,7 +1595,7 @@ Pasos para instalar los scripts:
 2. Seleccionar Proyecto\Bin\maxscript\autoboot\
 3. Darle a Use Path.
 4. Reiniciar Max.
-5. Ir a pestaña Utilities, en el desplegable Utilities seleccionar MCV Exporter.
+5. Ir a pestaña Utilities, darle al botón MAXScript, en el desplegable Utilities que aparece abajo seleccionar MCV Exporter.
 6. Ya se pueden usar los scripts dándole a los botones que han aparecido debajo.
 -------------------------------
 Condiciones de exportación:
@@ -1573,11 +1607,12 @@ se exportará en la escena collisions.
 Las meshes		    deben estar en una layer llamada "0".
 Los enemigos		    deben estar en una layer llamada "enemies".
 Las crisálidas 		    deben estar en una layer llamada "chrysalis".
-Las plataformas móviles  deben estar en una layer llamada "movables".
+Las plataformas móviles deben estar en una layer llamada "movables" (excepto si son puras, en ese caso van en pure).
 Las cámaras		    deben estar en una layer llamada "cameras".
+Las puras			    deben estar en una layer llamada "pure".
 Las luces			    deben estar en una layer llamada "lights".
 Los triggers		    deben estar en una layer llamada "triggers".
-Los colliders invisibles     deben estar en una layer llamada "collisions".
+Los colliders invisibles   deben estar en una layer llamada "collisions".
 
 Las monedas únicas tienen que contener "unique" en el nombre.
  

@@ -14,9 +14,14 @@ private:
 	float ratio = 0.f;
 	bool automove = false;
 	bool moveBackwards = false;
+	bool isClosed = false;
+
+	CTimer travelWaitTimer;
+	float travelWaitTime = 0.f;
 
 	float rotationSpeed;
-	VEC3 rotationAxis;
+	VEC3 rotationAxisLocal;
+	VEC3 rotationAxisGlobal;
 	
 	CHandle transformHandle;
 	CHandle colliderHandle;

@@ -14,6 +14,7 @@ extern CRenderCte<CCteBlur>     cb_blur;
 extern CRenderCte<CCteGUI>	    cb_gui;
 extern CRenderCte<CCteFog>	    cb_fog;
 extern CRenderCte<CCteParticle> cb_particles;
+extern CRenderCte<CCteSlash>    cb_slash;
 
 class CTexture;
 

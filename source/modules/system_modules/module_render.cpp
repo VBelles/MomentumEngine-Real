@@ -13,6 +13,7 @@
 #include "skeleton/game_core_skeleton.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
+#include "geometry/rigid_anim.h"
 #include "render/mesh/collision_mesh.h" 
 #include "components/postfx/comp_render_focus.h"
 #include "components/postfx/comp_render_blur.h"
@@ -58,6 +59,7 @@ bool CModuleRender::start() {
     Resources.registerResourceClass(getResourceClassOf<CCurve>());
     Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 	Resources.registerResourceClass(getResourceClassOf<CCollisionMesh>());
+	Resources.registerResourceClass(getResourceClassOf<RigidAnims::CRigidAnimResource>());
 
     if (!createRenderObjects()) return false;
 
@@ -92,7 +94,8 @@ bool CModuleRender::start() {
     if (!cb_blur.create(CB_BLUR))          return false;
     if (!cb_gui.create(CB_GUI))            return false;
     if (!cb_fog.create(CB_FOG))            return false;
-    if (!cb_particles.create(CB_PARTICLE)) return false;
+	if (!cb_particles.create(CB_PARTICLE)) return false;
+	if (!cb_slash.create(CB_SLASH))		   return false;
 
 
     cb_globals.global_exposure_adjustment = 1.f;
@@ -109,7 +112,8 @@ bool CModuleRender::start() {
     cb_blur.activate();
 	cb_gui.activate();
 	cb_fog.activate();
-    cb_particles.activate();
+	cb_particles.activate();
+	cb_slash.activate();
 
     //activateMainCamera();
 
@@ -129,7 +133,8 @@ bool CModuleRender::stop() {
 	cb_blur.destroy();
 	cb_gui.destroy();
 	cb_fog.destroy();
-    cb_particles.destroy();
+	cb_particles.destroy();
+	cb_slash.destroy();
 
     ImGui_ImplDX11_Shutdown();
 
@@ -220,6 +225,7 @@ void CModuleRender::generateFrame() {
 			deferred.render(rt_main, h_e_camera);
 		}
 
+		CRenderManager::get().renderCategory("slash");
 		CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
 		CRenderManager::get().renderCategory("textured");

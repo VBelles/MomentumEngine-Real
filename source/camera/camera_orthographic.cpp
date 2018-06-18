@@ -7,7 +7,7 @@ void CCameraOrthographic::debugInMenu() {
 	float width = getOrtographicWidth();
 	float height = getOrtographicHeight();
 	bool changed = ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 5.0f);
-	changed |= ImGui::DragFloat("Z Far", &new_zfar, 0.001f, 0.01f, 300.0f);
+	changed |= ImGui::DragFloat("Z Far", &new_zfar, 0.1f, 6.f, 1000.0f);
 	changed |= ImGui::DragFloat("ortographicWidth", &width, 1.0f, 1.0f, 3000.0f);
 	changed |= ImGui::DragFloat("ortographicHeight", &height, 1.0f, 1.0f, 3000.0f);
 	if (changed) {

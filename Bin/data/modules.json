@@ -11,6 +11,7 @@
     "cameras",
     "render",
     "particles",
+    "slash",
     "gui",
     "navmesh",
     "test_instancing",
@@ -28,6 +29,7 @@
     "input",
     "test_instancing",
     "particles",
+    "slash",
     "gui",
     "navmesh",
     "scripting"

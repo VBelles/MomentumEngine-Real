@@ -1,0 +1,20 @@
+[
+    {
+        "entity": {
+            "name": "slash01",
+            "transform": {},
+            "slash": {
+                "texture": "data/textures/slash/slash-test.dds",
+                "target": "The Player",
+                "bone": "Bip001 R Hand",
+                "offset": "0 0 0",
+                "rot_offset": "0 0 90",
+                "width": 0.2,
+                "duration": 0.6,
+                "min_vertex_distance": 0.05,
+                "max_vertex": 500,
+                "fadeout_multiplier": 1
+            }
+        }
+    }
+]

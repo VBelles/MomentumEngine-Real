@@ -118,6 +118,8 @@
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\comp_slash.cpp" />
+    <ClCompile Include="components\lights\comp_light_flicker.cpp" />
     <ClCompile Include="components\player\states\base_states\SoftLandingActionState.cpp" />
     <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
     <ClCompile Include="components\comp_respawn_point.cpp" />
@@ -215,6 +217,7 @@
     <ClCompile Include="components\player\states\base_states\normal_jump\PropelHighActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.cpp" />
     <ClCompile Include="components\postfx\comp_render_fog.cpp" />
+    <ClCompile Include="components\controllers\comp_rigid_anim.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
     <ClCompile Include="components\postfx\comp_color_grading.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
@@ -238,6 +241,7 @@
     <ClCompile Include="geometry\angular.cpp" />
     <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="geometry\geometry.cpp" />
+    <ClCompile Include="geometry\rigid_anim.cpp" />
     <ClCompile Include="geometry\SimpleMath.cpp" />
     <ClCompile Include="geometry\transform.cpp" />
     <ClCompile Include="gui\gui_parser.cpp" />
@@ -295,6 +299,7 @@
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll_core.cpp" />
+    <ClCompile Include="modules\system_modules\module_slash.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_loader.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
@@ -370,6 +375,8 @@
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_name.h" />
+    <ClInclude Include="components\comp_slash.h" />
+    <ClInclude Include="components\lights\comp_light_flicker.h" />
     <ClInclude Include="components\player\states\base_states\SoftLandingActionState.h" />
     <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
     <ClInclude Include="components\comp_respawn_point.h" />
@@ -467,6 +474,7 @@
     <ClInclude Include="components\player\states\base_states\normal_jump\PropelHighActionState.h" />
     <ClInclude Include="components\player\states\base_states\wall_jump\WallJumpSquatActionState.h" />
     <ClInclude Include="components\postfx\comp_render_fog.h" />
+    <ClInclude Include="components\controllers\comp_rigid_anim.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
     <ClInclude Include="components\postfx\comp_color_grading.h" />
     <ClInclude Include="components\postfx\comp_render_ao.h" />
@@ -493,6 +501,7 @@
     <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\geometry.h" />
     <ClInclude Include="geometry\interpolators.h" />
+    <ClInclude Include="geometry\rigid_anim.h" />
     <ClInclude Include="geometry\SimpleMath.h" />
     <ClInclude Include="geometry\transform.h" />
     <ClInclude Include="gui\gui_params.h" />
@@ -561,6 +570,7 @@
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll_core.h" />
+    <ClInclude Include="modules\system_modules\module_slash.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_loader.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />

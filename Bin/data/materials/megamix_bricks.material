@@ -1,0 +1,15 @@
+{
+  "technique": "pbr.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/megamix/brick_wall_albedo.dds",
+    "normal": "data/textures/megamix/brick_wall_normal.dds",
+    "metallic": "data/textures/megamix/brick_wall_metallic.dds",
+    "roughness": "data/textures/megamix/brick_wall_roughness.dds",
+    "self_illum": "data/textures/megamix/brick_wall_self_illum.dds",
+    "height": "data/textures/megamix/brick_wall_height.dds"
+  }
+}

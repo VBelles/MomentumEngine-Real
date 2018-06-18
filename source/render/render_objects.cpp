@@ -10,6 +10,7 @@ CRenderCte<CCteBlur>     cb_blur("Blur");
 CRenderCte<CCteGUI>      cb_gui("Gui");
 CRenderCte<CCteFog>      cb_fog("Fog");
 CRenderCte<CCteParticle> cb_particles("Particles");
+CRenderCte<CCteSlash>	 cb_slash("Slash");
 
 CRenderMesh* createDot() {
 	CRenderMesh* mesh = new CRenderMesh;

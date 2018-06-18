@@ -6,6 +6,7 @@ class RunActionState : public GroundedActionState {
 private:
 	std::string animations[3] = { "runSS1", "runSS2", "runSS3" };
 	std::string animation = "runSS1";
+	int dustParticlesHandle = 0;
 
 public:
 	RunActionState(StateManager* stateManager);

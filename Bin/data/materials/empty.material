@@ -4,6 +4,8 @@
   "textures":
   {
     "albedo": "data/textures/null_albedo.dds",
-    "normal": "data/textures/null_normal.dds"
+    "normal": "data/textures/null_normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/null_roughness.dds"
   }
 }

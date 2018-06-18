@@ -93,6 +93,7 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	backwardsMaxDotProduct = cos(deg2rad(backwardsdMinAngle));
 	getCameraPlayer()->moveCameraCloser(false);
 	slideWindowTimer.reset();
+	hardLandingTimer.reset();
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {
@@ -172,7 +173,12 @@ bool AirborneActionState::hugWall(const HitState& hitState) {
 
 void AirborneActionState::onLanding() {
 	//Ir a landing action state
-	stateManager->changeState(SoftLanding);
+	if (hardLandingTimer.elapsed() < hardLandingTime) {
+		stateManager->changeState(SoftLanding);
+	}
+	else {
+		stateManager->changeState(HardLanding);
+	}
 }
 
 

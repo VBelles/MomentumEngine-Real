@@ -1,0 +1,827 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms3_rotate001",
+      "transform":
+      {
+        "pos": "-176.163 367.907 -1181.37",
+        "rotation": "0.0 -0.866541 0.0 -0.499106"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate001.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_rotate001.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma_rocosa2_low181",
+      "transform":
+      {
+        "pos": "-215.412 138.534 -1375.82",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low181.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low181.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_rocosa2_low181.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma_rocosa2_low142",
+      "transform":
+      {
+        "pos": "-143.536 113.397 -1100.24",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low142.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low142.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_rocosa2_low142.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma_rocosa2_low119",
+      "transform":
+      {
+        "pos": "-156.485 132.93 -1128.01",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low119.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low119.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_rocosa2_low119.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma_rocosa2_low117",
+      "transform":
+      {
+        "pos": "-152.618 130.148 -1120.6",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low117.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low117.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_rocosa2_low117.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma_rocosa2_low115",
+      "transform":
+      {
+        "pos": "-150.976 124.446 -1113.78",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low115.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low115.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_rocosa2_low115.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma_rocosa2_low103",
+      "transform":
+      {
+        "pos": "-144.848 109.143 -1092.83",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low103.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low103.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_rocosa2_low103.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder131",
+      "transform":
+      {
+        "pos": "-338.748 58.2603 -653.159",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder131.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder131.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder131.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder129",
+      "transform":
+      {
+        "pos": "-332.306 54.4514 -650.599",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder129.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder129.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder129.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder127",
+      "transform":
+      {
+        "pos": "-326.447 50.6518 -649.183",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder127.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder127.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder127.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder125",
+      "transform":
+      {
+        "pos": "-345.301 69.8682 -661.995",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder125.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder125.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder125.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder123",
+      "transform":
+      {
+        "pos": "-337.641 66.0593 -665.272",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder123.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder123.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder123.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder121",
+      "transform":
+      {
+        "pos": "-336.953 62.2597 -659.371",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder121.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder121.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder121.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder119",
+      "transform":
+      {
+        "pos": "-448.082 92.8876 -696.924",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder119.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder119.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder119.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder117",
+      "transform":
+      {
+        "pos": "-511.803 123.05 -771.414",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder117.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder117.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder117.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder115",
+      "transform":
+      {
+        "pos": "-504.804 120.456 -769.229",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder115.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder115.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder115.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder113",
+      "transform":
+      {
+        "pos": "-443.604 100.23 -723.633",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder113.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder113.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder113.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder111",
+      "transform":
+      {
+        "pos": "-441.818 83.2652 -705.739",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder111.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder111.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder111.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder109",
+      "transform":
+      {
+        "pos": "-437.331 79.4564 -705.402",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder109.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder109.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder109.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pure_Cylinder107",
+      "transform":
+      {
+        "pos": "-433.695 75.6567 -703.945",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder107.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_pure_Cylinder107.mesh",
+          "materials":
+          [
+            "data/materials/pure_platform_special.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pure_Cylinder107.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  }
+]

@@ -29,7 +29,7 @@ void WallJumpSquatPlummetActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->setGravityMultiplier(0.f);
 	getPlayerModel()->maxVerticalSpeed = abs(verticalVelocity);
 	timer.reset();
-	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void WallJumpSquatPlummetActionState::onStateExit(IActionState * nextState) {

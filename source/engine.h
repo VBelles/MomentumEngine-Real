@@ -13,6 +13,7 @@
 #include "modules/system_modules/module_multithread.h"
 #include "modules/system_modules/module_uniques.h"
 #include "modules/system_modules/particles/module_particles.h"
+#include "modules/system_modules/module_slash.h"
 
 class CEngine {
 public:
@@ -36,7 +37,8 @@ public:
 	CModuleSound&       getSound()       { return _module_sound; }
 	CModuleMultithread& getMultithread() { return _module_multithread; }
     CModuleUniques&     getUniques()     { return _module_uniques; }
-    CModuleParticles&   getParticles()   { return _module_particles; }
+	CModuleParticles&   getParticles()	 { return _module_particles; }
+	CModuleSlash&		getSlash()		 { return _module_slash; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
@@ -54,7 +56,8 @@ private:
 	CModuleSound        _module_sound;
 	CModuleMultithread  _module_multithread;
 	CModuleUniques      _module_uniques;
-    CModuleParticles    _module_particles;
+	CModuleParticles    _module_particles;
+	CModuleSlash		_module_slash;
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
@@ -72,3 +75,4 @@ private:
 #define EngineSound     CEngine::get().getSound()
 #define EngineUniques   CEngine::get().getUniques()
 #define EngineParticles CEngine::get().getParticles()
+#define EngineSlash		CEngine::get().getSlash()

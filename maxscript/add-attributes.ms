@@ -6,6 +6,8 @@ http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=GUID-7EAA7D84-5775-4E4C-9936
 http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_ADFD29E4_9751_4F55_98CC_F7C721C9AEE2_htm
 http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_0A1E08F8_A8C5_4737_AA6F_39194AD16559_htm
 */
+
+-- def #enemyData
 global enemiesData = attributes enemyData (
 	parameters main rollout:params (
 		hitPoints type: #integer ui:HP default:5
@@ -27,80 +29,71 @@ global enemiesData = attributes enemyData (
 	)
 )
 
+-- def #rotateData
+global rotationsData = attributes rotateData (
+	parameters main rollout:params (
+		x type: #integer ui:xRot default:0
+		y type: #integer ui:yRot default:0
+		z type: #integer ui:zRot default:1 
+		rotSpeed type: #float ui:rotSpeed default:0.5
+	)
+	rollout params "Rotation Data" (
+		spinner xRot "x axis" type: #integer range:[-1, 1, 0] --min, max, initial value
+		spinner yRot "y axis" type: #integer range:[-1, 1, 0]
+		spinner zRot "z axis" type: #integer range:[-1, 1, 1]
+		spinner rotSpeed "Rotation speed" type: #float
+	)
+)
+
 -- -----------------------------------------------------------
 
 struct TAttributeManager (
-	fn hasValidModifier obj = (
-		local emptyModif = EmptyModifier()
-		return validModifier obj emptyModif and obj.modifiers.count > 0
-	),
-	
-	-- Adds Attribute Holder if it doesn't have one. Just to keep attributes separated in some special modifier.
-	fn addAttributeHolderModifier obj = (
-		if not hasValidModifier obj then (
-			-- If it doesn't have any modifier validModifier returns true, so we also have to check that.
-			format "Doesn't have Attribute Holder empty modifier.\n"
-			local emptyModif = EmptyModifier()
-			addModifier obj emptyModif
-		)
-	),
-
 	fn hasAttribute obj defName = (
-		local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
-		if objDefs == undefined then return false
-		for objdef in objDefs do (
-			format "objdef: %\n" (custAttributes.getDefClass objdef) as string -- DEBUG
-			format "objdef.name: %\n" objdef.name -- DEBUG
-			if objdef.name == defName then return true
+		for i = 1 to custAttributes.count obj do (
+			att = custAttributes.get obj i
+			if att.name == defName then return true
 		)
 		return false
 	),
 
 	fn findAttribute obj defName = (
-		local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
+		local objDefs = custAttributes.getDefs obj
+		--format "objDefs: %\n" objDefs --DEBUG
 		if objDefs == undefined then return undefined
 		for i = 1 to objDefs.count do (
-			if objDefs[i].name == defName then return i
+			--format "objDef.name: % -- defName: %\n" (objDefs[i].name as string) defName -- DEBUG
+			if objDefs[i].name as string == defName then return i
 		)
 		return undefined
 	),
 
 	fn getAttributeValue obj defName attribute = (
-		if not hasValidModifier obj then return undefined
 		local idxFound = findAttribute obj defName
 		if idxFound != undefined then (
-			local objDefs = custAttributes.getDefs obj.modifiers[#Attribute_Holder]
-			a = custAttributes.get obj.modifiers[#Attribute_Holder] idxFound
+			local objDefs = custAttributes.getDefs obj
+			a = custAttributes.get obj idxFound
 			return a[attribute].value
-			--return obj.modifiers[#Attribute_Holder].defName.attribute
 		)
 		return undefined
 	),
 	
-	-- Adds attribute of type defName to object's Attribute Holder modifier.
+	-- Adds attribute of type defName to object.
 	fn addAttribute obj defName = (
-		addAttributeHolderModifier obj
-		format "------------\n"
-		--if hasAttribute obj defName then format "hasAttribute=TRUE\n" else format "hasAttribute=FALSE\n" -- DEBUG
 		if not hasAttribute obj defName then (
 			case defName of (
-				#enemyData: ( attrDef = enemiesData )
-				default:    ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
+				"enemyData":  ( attrDef = enemiesData )
+				"rotateData": ( attrDef = rotationsData )
+				default:     ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
 			)
-			--format "defName: %.\n" defName -- DEBUG
-			--format "attrDef: %.\n" attrDef -- DEBUG
-			custAttributes.add obj.modifiers[#Attribute_Holder] attrDef
-			--format "Added attribute to %.\n" obj.name -- DEBUG
-			obj.modifiers[#Attribute_Holder].enabled = false -- If it's enabled, the class of the object will be Editable_mesh.
-		) else format "Attribute % not added.\n" defName -- DEBUG
+			custAttributes.add obj attrDef
+		) else format "Attribute % not added, already exists.\n" defName -- DEBUG
 	),
 
-	-- Deletes attribute if it exists (inside #Attribute_Holder).
+	-- Deletes attribute if it exists.
 	fn delAttribute obj defName = (
 		local idxFound = findAttribute obj defName
 		if idxFound != undefined then (
-			custAttributes.delete obj.modifiers[#Attribute_Holder] idxFound
-			obj.modifiers[#Attribute_Holder].enabled = false
+			custAttributes.delete obj idxFound
 		)
 	),
 
@@ -119,7 +112,10 @@ struct TAttributeManager (
 
 --format "------------------------\n" -- DEBUG
 --attributeManager = TAttributeManager()
---attributeManager.addAttributeToSel(#enemyData)
---attributeManager.delAttributeFromSel(#enemyData)
+--attributeManager.addAttributeToSel("enemyData")
+--attributeManager.delAttributeFromSel("enemyData")
 --attributeManager.getAttributeValue $ #enemyData #hitPoints
-
+----
+--attributeManager.addAttribute $ "rotateData"
+--attributeManager.delAttributeFromSel("rotateData")
+--attributeManager.getAttributeValue $ #rotateData #y

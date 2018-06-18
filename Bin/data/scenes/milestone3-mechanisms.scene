@@ -1,0 +1,719 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms3_mech005_12s",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-219.768 147.937 -1372.3",
+        "rotation": "-0.092296 0.701057 -0.701057 -0.092296"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms3_mech005_platf182",
+           "ms3_mech005_platf183",
+           "ms3_mech005_platf184",
+           "ms3_mech005_platf188",
+           "ms3_mech005_platf190",
+           "ms3_mech005_platf192"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech005_platf182",
+      "transform":
+      {
+        "pos": "-228.967 145.992 -1372.15",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech005_platf182.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech005_platf187.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech005_platf183",
+      "transform":
+      {
+        "pos": "-231.166 145.472 -1384.27",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech005_platf183.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech005_platf185.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech005_platf184",
+      "transform":
+      {
+        "pos": "-238.513 149.622 -1383.32",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech005_platf184.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech005_platf186.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech005_platf188",
+      "transform":
+      {
+        "pos": "-243.777 150.115 -1372.83",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech005_platf188.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech005_platf189.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech005_platf190",
+      "transform":
+      {
+        "pos": "-237.201 154.191 -1369.61",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech005_platf190.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech005_platf191.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech005_platf192",
+      "transform":
+      {
+        "pos": "-230.277 158.337 -1370.84",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech005_platf192.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech005_platf193.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech004_13s",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-225.844 120.718 -1369.81",
+        "rotation": "-0.092296 0.701057 -0.701057 -0.092296"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms3_mech004_platf173",
+           "ms3_mech004_platf174",
+           "ms3_mech004_platf175",
+           "ms3_mech004_platf176",
+           "ms3_mech004_platf178",
+           "ms3_mech004_platf179",
+           "ms3_mech004_platf181"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech004_platf173",
+      "transform":
+      {
+        "pos": "-221.029 120.547 -1372.62",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech004_platf173.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech004_platf182.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech004_platf174",
+      "transform":
+      {
+        "pos": "-213.404 124.905 -1374.84",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech004_platf174.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech004_platf184.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech004_platf175",
+      "transform":
+      {
+        "pos": "-215.831 129.955 -1382.46",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech004_platf175.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech004_platf182.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech004_platf176",
+      "transform":
+      {
+        "pos": "-210.77 134.284 -1379.37",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech004_platf176.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech004_platf183.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech004_platf178",
+      "transform":
+      {
+        "pos": "-203.114 141.463 -1382.78",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech004_platf178.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech004_platf185.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech004_platf179",
+      "transform":
+      {
+        "pos": "-195.274 148.416 -1389.17",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech004_platf179.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech004_platf187.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech004_platf181",
+      "transform":
+      {
+        "pos": "-190.69 155.508 -1390.82",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech004_platf181.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech004_platf186.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech003",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "14.477 185.514 -1317.7",
+        "rotation": "-0.521334 0.477714 -0.477714 -0.521334"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms3_mech003_Box783"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech003_Box783",
+      "transform":
+      {
+        "pos": "0.329206 155.225 -1316.05",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech003_Box783.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech003_Box782.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech002",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-424.546 105.493 -804.519",
+        "rotation": "0.5 0.5 -0.5 0.5"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms3_mech002_tumba_226"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech002_tumba_226",
+      "transform":
+      {
+        "pos": "-480.464 86.904 -827.181",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech002_tumba_226.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech002_tumba_226_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech001",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-350.968 99.2132 -803.119",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5,
+        "isResettable": true,
+        "reactivationTime": 3,
+        "systems":
+        [
+           "ms3_mech001_Box332",
+           "ms3_mech001_Box333"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech001_Box332",
+      "transform":
+      {
+        "pos": "-355.362 57.2921 -817.269",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech001_Box332.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech001_Box334.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_mech001_Box333",
+      "transform":
+      {
+        "pos": "-346.267 61.1293 -816.943",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_mech001_Box333.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_mech001_Box335.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      }
+    }
+  }
+]

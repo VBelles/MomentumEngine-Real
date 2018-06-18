@@ -246,8 +246,13 @@
     <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
     <ClCompile Include="modules\system_modules\particles\comp_particles.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_particles.cpp" />
+    <ClCompile Include="components\comp_slash.cpp" />
+    <ClCompile Include="modules\system_modules\module_slash.cpp" />
     <ClCompile Include="components\player\states\base_states\HardLandingActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\SoftLandingActionState.cpp" />
+    <ClCompile Include="geometry\rigid_anim.cpp" />
+    <ClCompile Include="components\controllers\comp_rigid_anim.cpp" />
+    <ClCompile Include="components\lights\comp_light_flicker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -526,8 +531,13 @@
     <ClInclude Include="modules\system_modules\particles\module_particles.h" />
     <ClInclude Include="modules\system_modules\particles\comp_particles.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_particles.h" />
+    <ClInclude Include="components\comp_slash.h" />
+    <ClInclude Include="modules\system_modules\module_slash.h" />
     <ClInclude Include="components\player\states\base_states\HardLandingActionState.h" />
     <ClInclude Include="components\player\states\base_states\SoftLandingActionState.h" />
+    <ClInclude Include="geometry\rigid_anim.h" />
+    <ClInclude Include="components\controllers\comp_rigid_anim.h" />
+    <ClInclude Include="components\lights\comp_light_flicker.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

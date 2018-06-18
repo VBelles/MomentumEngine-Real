@@ -1,4 +1,6 @@
-fileIn "add-attributes.ms" -- To avoid error on first execution.
+fileIn "export_scene.ms"
+--fileIn "export_skeletons.ms"
+--fileIn "export_rigid_anims.ms"
 
 utility MyMCVExporter "MCV Exporter" (
 	rollout exporter "Momentum Exporter" (
@@ -6,6 +8,7 @@ utility MyMCVExporter "MCV Exporter" (
 		button btn_mesh "Export Mesh" tooltip:"Exports the current selection mesh to file"
 		button btn_skeleton "Export Skeleton & Meshes"
 		button btn_skel_anims "Export Animation" tooltip:"Uses max animation range and frame rate to specify the range to export"
+		button btn_rigid_anims "Export Rigid Animation"
 		
 		on btn_scene pressed do (
 			try (
@@ -53,12 +56,26 @@ utility MyMCVExporter "MCV Exporter" (
 				MessageBox ("Error Exporting Skeleton Animation:\n" + getCurrentException())
 			)
 		)
+		
+		-- Exports the current selection mesh to file
+		on btn_rigid_anims pressed do (
+			try (
+				gc()
+				local se = TRigidAnimExporter()
+				se.exportAll()
+				MessageBox "Rigid Animation exported OK"
+			) catch (
+				MessageBox ("Error Exporting Rigid Animation:\n" + getCurrentException())
+			)
+		)
 	) -- end exporter rollout creator
 	
 	rollout attribute "Momentum Attributes" (
 		button btn_addAttrEnemy "+ enemy" across:2 tooltip:"Adds enemy attributes to selected objects"
 		button btn_delAttrEnemy "- enemy" tooltip:"Deletes enemy attributes from selected objects"
 		
+		button btn_addRotation "+ rotation" across:2 tooltip:"Adds rotation attributes to selected objects"
+		button btn_delRotation "- rotation" tooltip:"Deletes rotation attributes from selected objects"
 		
 		fn addAttribute defName = (
 			try (
@@ -82,9 +99,11 @@ utility MyMCVExporter "MCV Exporter" (
 			)
 		)
 		
-		on btn_addAttrEnemy pressed do ( addAttribute #enemyData )
+		on btn_addAttrEnemy pressed do ( addAttribute "enemyData" )
+		on btn_delAttrEnemy pressed do ( delAttribute "enemyData" )
 		
-		on btn_delAttrEnemy pressed do ( delAttribute #enemyData )
+		on btn_addRotation pressed do ( addAttribute "rotateData" )
+		on btn_delRotation pressed do ( delAttribute "rotateData" )
 		
 	) -- end attribute rollout creator
 

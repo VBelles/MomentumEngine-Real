@@ -67,6 +67,59 @@ void VS_GBuffer_Skin(
 }
 
 
+float2 parallaxMapping(in float3 V, in float2 T)
+{
+   // determine optimal number of layers
+   const float minLayers = 10;
+   const float maxLayers = 64;
+   float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0, 0, 1), V)));
+
+   // height of each layer
+   float layerHeight = 1.0 / numLayers;
+   // current depth of the layer
+   float curLayerHeight = 0;
+   // shift of texture coordinates for each layer
+   float parallax_scale = 0.04;
+   float2 dtex = parallax_scale * V.xy / numLayers;
+
+   // current texture coordinates
+   float2 currentTextureCoords = T;
+
+   // depth from heightmap
+   float heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
+
+    // while point is above the surface
+   [unroll(230)] while(heightFromTexture > curLayerHeight)
+   {
+      // to the next layer
+      curLayerHeight += layerHeight; 
+      // shift of texture coordinates
+      currentTextureCoords -= dtex;
+      // new depth from heightmap
+      heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
+   }
+   ///////////////////////////////////////////////////////////
+
+   // previous texture coordinates
+   float texStep = dtex / 64.0;
+   float2 prevTCoords = currentTextureCoords + texStep;
+
+   // heights for linear interpolation
+   float nextH	= heightFromTexture - curLayerHeight;
+   float prevH	= (txHeight.Sample(samLinear, prevTCoords).r)
+                           - curLayerHeight + layerHeight;
+
+   // proportions for linear interpolation
+   float weight = nextH / (nextH - prevH);
+
+   // interpolation of texture coordinates
+   float2 finalTexCoords = prevTCoords * weight + currentTextureCoords * (1.0-weight);
+
+   // return result
+   return finalTexCoords;
+}
+
+
 //--------------------------------------------------------------------------------------
 // GBuffer generation pass. Pixel shader
 //--------------------------------------------------------------------------------------
@@ -82,23 +135,23 @@ void PS_GBuffer(
 	, out float1 o_depth : SV_Target2
 	, out float4 o_selfIllum : SV_Target3
 ) {
-	//if the source texture for occlusion, roughness and metallic is the same, we must
-	//pick the appropriate channel for each one of them
 
-	//parallax: cambiar iTex0 antes de pillarlo para el albedo
-	// float height =  txAlbedo.Sample(samLinear, iTex0).g;    
-    // vec2 p = viewDir.xy / viewDir.z * (height * height_scale);
-    // iTex0 = iTex0 - p; 
+	float3 camera2wpos = iWorldPos - camera_pos;
+	float3x3 TBN = computeTBN(iNormal, iTangent);
+	float3x3 wTBN = transpose(TBN);
+	float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
+
+	iTex0 = parallaxMapping(view_dir, iTex0);
 
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
-	o_albedo.a = /*1.f - */txMetallic.Sample(samLinear, iTex0).r;
+	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 
 	// Save roughness in the alpha coord of the N render target
-	float roughness = /*1.f - */txRoughness.Sample(samLinear, iTex0).r;
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	o_normal = encodeNormal(N, roughness);
 
 	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
@@ -114,9 +167,9 @@ void PS_GBuffer(
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
-	float3 camera2wpos = iWorldPos - camera_pos;
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 }
+
 
 //--------------------------------------------------------------------------------------
 void PS_GBufferMix(
@@ -129,21 +182,28 @@ void PS_GBufferMix(
 	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
 ) {
 	// This is different -----------------------------------------
 	// Using second set of texture coords
 	float4 weight_texture_boost = txMixBlendWeights.Sample(samLinear, iTex1);
 
+	//como las texturas son realmente depths, usamos 1 - ...
+	float heightR = 1 - txHeight.Sample(samLinear, iTex0).r;
+	float heightG = 1 - txHeight1.Sample(samLinear, iTex0).r;
+	float heightB = 1 - txHeight2.Sample(samLinear, iTex0).r;
+
+	// Use the alpha of the albedo as heights + texture blending extra weights + material ctes extra weights (imgui)
+	//Not_Juan: Como tenemos el height map a parte, lo usamos en vez de albedo.a
+	float w1, w2, w3;
+	computeBlendWeights(heightR + mix_boost_r + weight_texture_boost.r
+		, heightG + mix_boost_g + weight_texture_boost.g
+		, heightB + mix_boost_b + weight_texture_boost.b
+		, w1, w2, w3);
+
 	float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
 	float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
 	float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
-
-	// Use the alpha of the albedo as heights + texture blending extra weights + material ctes extra weights (imgui)
-	float w1, w2, w3;
-	computeBlendWeights(albedoR.a + mix_boost_r + weight_texture_boost.r
-		, albedoG.a + mix_boost_g + weight_texture_boost.g
-		, albedoB.a + mix_boost_b + weight_texture_boost.b
-		, w1, w2, w3);
 
 	// Use the weight to 'blend' the albedo colors
 	float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
@@ -161,7 +221,21 @@ void PS_GBufferMix(
 	float3 N = normalize(wN);
 
 	// Missing: Do the same with the metallic & roughness channels
-	// ...
+	float metallicR = txMetallic.Sample(samLinear, iTex0).r;
+	float metallicG = txMetallic1.Sample(samLinear, iTex0).r;
+	float metallicB = txMetallic2.Sample(samLinear, iTex0).r;
+	o_albedo.a = metallicR * w1 + metallicG * w2 + metallicB * w3;
+
+	float roughnessR = txRoughness.Sample(samLinear, iTex0).r;
+	float roughnessG = txRoughness1.Sample(samLinear, iTex0).r;
+	float roughnessB = txRoughness2.Sample(samLinear, iTex0).r;
+	float roughness = roughnessR * w1 + roughnessG * w2 + roughnessB * w3;
+	o_normal = encodeNormal(N, roughness);
+
+	float4 selfIllumR = txSelfIllum.Sample(samLinear, iTex0);
+	float4 selfIllumG = txSelfIllum1.Sample(samLinear, iTex0);
+	float4 selfIllumB = txSelfIllum2.Sample(samLinear, iTex0);
+	o_selfIllum = selfIllumR * w1 + selfIllumG * w2 + selfIllumB * w3;
 
 	// Possible plain blending without heights
 	//o_albedo.xyz = lerp( albedoB.xyz, albedoG.xyz, weight_texture_boost.y );
@@ -170,13 +244,6 @@ void PS_GBufferMix(
 	//o_albedo.xyz = float3( iTex1.xy, 0 );		// Show the texture coords1
 
 	//o_albedo.xyz = weight_texture_boost.xyz;	// Show the extra weight textures
-
-	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-
-	// This is the same -----------------------------------------
-	// Save roughness in the alpha coord of the N render target
-	float roughness = txRoughness.Sample(samLinear, iTex0).r;
-	o_normal = encodeNormal(N, roughness);
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
@@ -381,6 +448,46 @@ float4 shade(
 
 	// From wPos to Light
 	//camera_front.xyz de la luz
+	float3 light_dir_full = light_pos.xyz - wPos;
+	float  distance_to_light = length(light_dir_full);
+	float3 light_dir = light_dir_full / distance_to_light;
+
+	float  NdL = saturate(dot(N, light_dir));
+	float  NdV = lerp(dot(N, view_dir), 1, 0.5);//saturate(dot(N, view_dir));
+	float3 h = normalize(light_dir + view_dir); // half vector
+
+	float  NdH = saturate(dot(N, h));
+	float  VdH = saturate(dot(view_dir, h));
+	float  LdV = saturate(dot(light_dir, view_dir));
+	float  a = max(0.001f, roughness * roughness);
+	float3 cDiff = Diffuse(albedo);
+	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
+
+	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
+	 //att *= 1 / distance_to_light;
+	//return float4(self_illum, 1);
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor + (self_illum.xyz * self_illum.a);
+	return float4(final_color, 1);
+}
+
+float4 PS_point_lights(in float4 iPosition : SV_Position) : SV_Target
+{
+  return shade(iPosition, false);
+}
+
+float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
+{
+	// Decode GBuffer information
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float4 self_illum;
+	float  roughness;
+	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
+
+	// Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
+	float shadow_factor = computeShadowFactor(wPos);
+	
+	// From wPos to Light
+	//camera_front.xyz de la luz
 	float3 light_dir_full = -light_front;//-light_front;  //float3( 0, 1, 0 ); //light_pos.xyz - wPos;
 	float  distance_to_light = length(light_dir_full);
 	float3 light_dir = light_dir_full / distance_to_light;
@@ -401,16 +508,7 @@ float4 shade(
 	//return float4(self_illum, 1);
 	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor + (self_illum.xyz * self_illum.a);
 	return float4(final_color, 1);
-}
-
-float4 PS_point_lights(in float4 iPosition : SV_Position) : SV_Target
-{
-  return shade(iPosition, false);
-}
-
-float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
-{
-  return shade(iPosition, true);
+  //return shade(iPosition, true);
 }
 
 float4 PS_dir_lights_player(in float4 iPosition : SV_Position) : SV_Target
