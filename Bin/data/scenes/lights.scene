@@ -4,27 +4,23 @@
 		{
 			"name": "LightDir00",
 			"transform": {
-				"pos": "0 150 0",
-				"lookat": "4 0 4"
+				"pos": "-326 600 -1099",
+				"lookat": "-321 76 -1095"
 			},
 			"light_dir": {
 				"intensity": 5,
 				"color" :  "1 0.87 0.67 1",
 				"projector" : "data/textures/white.dds",
 				"isOrthographic" : true,
-				"orthographicWidth" : 200,
-				"orthographicHeight" : 200,
+				"orthographicWidth" : 1200,
+				"orthographicHeight" : 1200,
         		"z_near" : 5,
-				"z_far" : 300,
+				"z_far" : 700,
 				"fov": 50,
 				"casts_shadows" : true,
-				"shadows_step" : 1.5,
-				"shadows_resolution" : 2048,
+				"shadows_step" : 1,
+				"shadows_resolution" : 8192,
 				"shadows_fmt" : "R32_TYPELESS"
-			},
-			"follow_transform" : {
-				"entityName" : "The Player",
-				"offset" : "0 150 0"
 			}
 		}
 	},
@@ -37,17 +33,17 @@
 				"lookat": "4 0 4"
 			},
 			"light_dir": {
-				"intensity": 3,
+				"intensity": 0,
 				"color" :  "1 1 1 1",
 				"projector" : "data/textures/white.dds",
 				"isOrthographic" : true,
 				"orthographicWidth" : 3,
 				"orthographicHeight" : 3,
         		"z_near" : 0.1,
-				"z_far" : 90,
+				"z_far" : 700,
 				"fov": 90,
 				"casts_shadows" : true,
-				"shadows_step" : 1.5,
+				"shadows_step" : 0.1,
 				"shadows_resolution" : 512,
 				"shadows_fmt" : "R32_TYPELESS",
 				"shadows_category" : "shadows_player"

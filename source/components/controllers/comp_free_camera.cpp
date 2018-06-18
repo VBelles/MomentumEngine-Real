@@ -32,6 +32,7 @@ void TCompFreeCamera::onCreated(const TMsgEntityCreated& msg) {
 }
 
 void TCompFreeCamera::update(float delta) {
+	//sólo si no está en debug
 	if (cameraHandle.getOwner() != EngineRender.getCurrentCameraHandle()) return;
 	updateRotation(delta);
 	updatePosition(delta);

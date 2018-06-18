@@ -52,12 +52,12 @@ Texture2D    txBloom2         SLOT(2);
 Texture2D    txBloom3         SLOT(3);
 
 //--------------------------------------------------------------------------------------
-SamplerState samLinear                    : register(s0);
-SamplerState samBorderLinear              : register(s1);
-SamplerComparisonState samPCF             : register(s2);
-SamplerComparisonState samPCFWhiteBorder  : register(s3);
-SamplerState samClampLinear               : register(s4);
-SamplerState samClampPoint               : register(s5);
+SamplerState samLinear                    	: register(s0);
+SamplerState samBorderLinear              	: register(s1);
+SamplerComparisonState samPCF             	: register(s2);
+SamplerComparisonState samPCFWhiteBorder  	: register(s3);
+SamplerState samClampLinear               	: register(s4);
+SamplerState samClampPoint               	: register(s5);
 //--------------------------------------------------------------------------------------
 // 
 //--------------------------------------------------------------------------------------

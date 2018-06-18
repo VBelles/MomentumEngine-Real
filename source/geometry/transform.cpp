@@ -70,7 +70,7 @@ void CTransform::lookAt(VEC3 new_pos, VEC3 new_target) {
 bool CTransform::debugInMenu() {
     bool changed = false;
 
-    changed |= ImGui::DragFloat3("Pos", &pos.x, 0.025f, -150.f, 150.f);
+    changed |= ImGui::DragFloat3("Pos", &pos.x, 0.025f, -2000.f, 2000.f);
     changed |= ImGui::DragFloat("Scale", &scale, 0.01f, -20.f, 20.f);
 
     // Angulos

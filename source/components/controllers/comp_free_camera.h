@@ -10,7 +10,7 @@ private:
 	float movementSpeed = 10.f;
 	VEC2 rotationSpeed = VEC2(2.5, 1.25);
 	VEC2 pitchRange = VEC2(deg2rad(-80), deg2rad(80));
-	float speedMultiplier = 3.f;
+	float speedMultiplier = 10.f;
 
 	CHandle cameraHandle;
 	CHandle transformHandle;
