@@ -12,8 +12,8 @@ protected:
 	float damage = 3;
 	float powerToGet = 4000.f;
 
-	std::string animation = "salto_pared";
-	std::string animationLoop = "salto_pared_loop";
+	std::string animation = "wallJump_plummet";
+	std::string animationLoop = "wallJump_plummet_loop";
 
 	std::string hitbox = "plummet_attack";
 

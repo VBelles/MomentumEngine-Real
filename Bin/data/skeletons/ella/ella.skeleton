@@ -5,6 +5,7 @@
 		{ "name" : "ataquecaida_posicionamiento"},
 		{ "name" : "bajandopared"},
 		{ "name" : "correporlapared"},
+		{ "name" : "death"},
 		{ "name" : "dodge"},
 		{ "name" : "fast_attack"},
 		{ "name" : "fast_attack2"},
@@ -42,7 +43,9 @@
 		{ "name" : "strong_finisher1"},
 		{ "name" : "strong_finisher2"},
 		{ "name" : "Vlauncher"},
-		{ "name" : "walk"}
+		{ "name" : "walk"},
+		{ "name" : "wallJump_plummet"},
+		{ "name" : "wallJump_plummet_loop"}
 	],
 	"bone_ids_to_debug" : [
 		3
