@@ -42,7 +42,8 @@ void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
 	endingTime = currentPowerStats->plummetTime;
 	getHitboxes()->enable(hitbox);
 	timer.reset();
-	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->blendCycle(animationLoop, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
