@@ -18,16 +18,16 @@
 				"z_far" : 1300,
 				"fov": 50,
 				"casts_shadows" : true,
-				"shadows_step" : 1,
-				"shadows_resolution" : 8192,
+				"shadows_step" : 0.1,
+				"shadows_resolution" : 16384,
 				"shadows_fmt" : "R32_TYPELESS"
 			},
 			"sun":{
 				"rotation_center" : "-326 300 -950",
-				"rotation_speed" : 5,
+				"rotation_speed" : 0.2,
 				"distance" : 600,
 				"initial_pitch" : -30,
-				"initial_yaw" : 90,
+				"initial_yaw" : -180,
 				"initial_roll" : 60
 			}
 		}
@@ -51,7 +51,7 @@
 				"z_far" : 700,
 				"fov": 90,
 				"casts_shadows" : true,
-				"shadows_step" : 0.1,
+				"shadows_step" : 0.12,
 				"shadows_resolution" : 512,
 				"shadows_fmt" : "R32_TYPELESS",
 				"shadows_category" : "shadows_player"

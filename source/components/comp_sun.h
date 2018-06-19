@@ -18,6 +18,9 @@ struct TCompSun : public TCompBase {
 	float currentPitch;
 	float currentRoll;
 
+	CTimer rotationUpdateTimer;
+	float rotationUpdateTime = 0.15f;
+
 	CHandle transformHandle;
 
 	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
