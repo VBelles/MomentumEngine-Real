@@ -1,6 +1,7 @@
 #pragma once
 
 class TCompTransform;
+class TCompLightDir;
 struct TMsgAllScenesCreated;
 
 struct TCompSun : public TCompBase {
@@ -21,6 +22,12 @@ struct TCompSun : public TCompBase {
 	CTimer rotationUpdateTimer;
 	float rotationUpdateTime = 0.15f;
 
+	float startSunsetYaw = -70.f;
+	float endSunsetYaw = -65.f;
+
+	float noonLightIntensity;
+
+	CHandle lightHandle;
 	CHandle transformHandle;
 
 	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
@@ -31,4 +38,5 @@ struct TCompSun : public TCompBase {
 	void debugInMenu();
 
 	TCompTransform* getTransform() { return transformHandle; }
+	TCompLightDir* getLight() { return lightHandle; }
 };

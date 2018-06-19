@@ -32,4 +32,6 @@ public:
 	void generateShadowMap();
 	std::string getShadowsCategory();
 
+	float getIntensity() { return intensity; }
+	void setIntensity(float intensity) { this->intensity = intensity; }
 };

@@ -19,15 +19,15 @@
 				"fov": 50,
 				"casts_shadows" : true,
 				"shadows_step" : 0.1,
-				"shadows_resolution" : 16384,
+				"shadows_resolution" : 8192,
 				"shadows_fmt" : "R32_TYPELESS"
 			},
 			"sun":{
 				"rotation_center" : "-326 300 -950",
-				"rotation_speed" : 0.2,
+				"rotation_speed" : 0.0,
 				"distance" : 600,
 				"initial_pitch" : -30,
-				"initial_yaw" : -180,
+				"initial_yaw" : -150,
 				"initial_roll" : 60
 			}
 		}
