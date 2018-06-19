@@ -66,7 +66,6 @@ void VS_GBuffer_Skin(
 	oWorldPos = world_pos.xyz;
 }
 
-
 float2 parallaxMapping(in float3 V, in float2 T)
 {
    // determine optimal number of layers
@@ -79,9 +78,9 @@ float2 parallaxMapping(in float3 V, in float2 T)
    // current depth of the layer
    float curLayerHeight = 0;
    // shift of texture coordinates for each layer
-   float parallax_scale = 0.04;
+   float parallax_scale = 0.0002;
    float2 dtex = parallax_scale * V.xy / numLayers;
-
+ 
    // current texture coordinates
    float2 currentTextureCoords = T;
 
@@ -118,7 +117,6 @@ float2 parallaxMapping(in float3 V, in float2 T)
    // return result
    return finalTexCoords;
 }
-
 
 //--------------------------------------------------------------------------------------
 // GBuffer generation pass. Pixel shader

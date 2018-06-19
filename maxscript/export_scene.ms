@@ -192,15 +192,17 @@ struct TMaterialExporter (
 				exportMap mat.glossinessMap "metallic" "null_metallic"
 				fs.writeComma()
 				exportMap mat.specularLevelMap "roughness" "null_roughness"
+				fs.writeComma()
+				exportMap mat.selfIllumMap "self_illum" "null_self_illum"
+				fs.writeComma()
+				exportMap mat.displacementMap "height" "null_height"
 				
 				--ambientMap
 				--specularMap
-				--selfIllumMap
 				--opacityMap
 				--filterMap
 				--reflectionMap
 				--refractionMap
-				--displacementMap
 			)
 
 			fs.endObj()
@@ -229,6 +231,10 @@ struct TMaterialExporter (
 				fs.writeKeyValue "metallic" "data/textures/null_metallic.dds"
 				fs.writeComma()
 				fs.writeKeyValue "roughness" "data/textures/null_roughness.dds"
+				fs.writeComma()
+				fs.writeKeyValue "self_illum" "data/textures/null_self_illum.dds"
+				fs.writeComma()
+				fs.writeKeyValue "height" "data/textures/null_height.dds"
 			fs.endObj()
 		fs.endObj()
 		fs.end()
@@ -256,7 +262,7 @@ struct TMaterialExporter (
 
 		) else if matClass == MultiMaterial then (
 			local multi_mat = mat
-setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
+		setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
 			local materials_of_mesh = getMaterialsUsedByMesh obj
 			for mat_idx = 1 to materials_of_mesh.count do (
 				if materials_of_mesh[ mat_idx ] == undefined then continue

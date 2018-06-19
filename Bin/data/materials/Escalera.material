@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/escaleras_A_low_Material _842_BaseColor.dds",
+    "normal": "data/textures/escaleras_A_low_Material _842_Normal.dds",
+    "metallic": "data/textures/escaleras_A_low_Material _842_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/escaleras_A_low_Material _842_Height.dds"
+  }
+}

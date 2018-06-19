@@ -67,3 +67,18 @@ end
 function onMechanismSystemDeactivated_ms2_mech005_appear001mesh()
 	openDoor("ms2_mech005_appear001mesh", 0)
 end
+
+function onMechanismSystemActivated_ms3_mech001_Box332()
+	closeDoor("ms3_mech001_Box332", 0)
+end
+function onMechanismSystemDeactivated_ms3_mech001_Box332()
+	openDoor("ms3_mech001_Box332", 0)
+end
+
+--~ MILESTONE 3 ~--
+function onMechanismSystemActivated_ms3_mech001_Box333()
+	closeDoor("ms3_mech001_Box333", 0)
+end
+function onMechanismSystemDeactivated_ms3_mech001_Box333()
+	openDoor("ms3_mech001_Box333", 0)
+end
