@@ -81,6 +81,9 @@ utility MyMCVExporter "MCV Exporter" (
 		button btn_addMovement "+ move" across:2 tooltip:"Adds movement attributes to selected objects"
 		button btn_delMovement "- move" tooltip:"Deletes movement attributes from selected objects"
 		
+		button btn_addMechanism "+ mech" across:2 tooltip:"Adds mechanism attributes to selected objects"
+		button btn_delMechanism "- mech" tooltip:"Deletes mechanism attributes from selected objects"
+
 		fn addAttribute defName = (
 			try (
 				gc()
@@ -111,6 +114,9 @@ utility MyMCVExporter "MCV Exporter" (
 		
 		on btn_addMovement pressed do ( addAttribute "moveData" )
 		on btn_delMovement pressed do ( delAttribute "moveData" )
+
+		on btn_addMechanism pressed do ( addAttribute "mechData" )
+		on btn_delMechanism pressed do ( delAttribute "mechData" )
 	) -- end attribute rollout creator
 
 	on MyMCVExporter open do (
