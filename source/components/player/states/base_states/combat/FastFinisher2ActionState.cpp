@@ -43,7 +43,7 @@ void FastFinisher2ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
 	dbg("Fast Finisher 2\n");
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.05f, 0.05f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
 }
@@ -51,7 +51,7 @@ void FastFinisher2ActionState::onStateEnter(IActionState * lastState) {
 void FastFinisher2ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
-	getSkeleton()->removeAction(animation, 0.2f);
+	getSkeleton()->removeAction(animation, 0.05f);
 }
 
 void FastFinisher2ActionState::onDodgeButton() {

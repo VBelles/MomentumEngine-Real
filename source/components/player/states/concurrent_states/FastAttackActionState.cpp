@@ -52,7 +52,7 @@ void FastAttackActionState::onStateExit(IActionState * nextState) {
 	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockAttack = false;
 	getPlayerModel()->lockWalk = false;
-	getSkeleton()->removeAction(animation, 0.2f);
+	getSkeleton()->removeAction(animation, 0.05f);
 }
 
 void FastAttackActionState::onFastAttackButton() {
@@ -74,7 +74,7 @@ void FastAttackActionState::onReleasePowerButton() {
 void FastAttackActionState::onFastAttackButtonReleased() {
 	if (phase == AttackPhases::Launch) {
 		phase = AttackPhases::Startup;
-		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+		getSkeleton()->executeAction(animation, 0.05f, 0.05f);
 	}
 }
 
