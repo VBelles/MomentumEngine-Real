@@ -1243,10 +1243,10 @@ struct TSceneExporter (
 				local resettable = true
 
 				--Get from attribute if it exists.
-				if attrManager.hasAttribute obj.parent "mechData" then (
-					deacTime	= attrManager.getAttributeValue obj.parent "mechData" #deacT
-					reacTime 	= attrManager.getAttributeValue obj.parent "mechData" #reacT
-					resettable  = attrManager.getAttributeValue obj.parent "mechData" #reset
+				if attrManager.hasAttribute obj "mechData" then (
+					deacTime	= attrManager.getAttributeValue obj "mechData" #deacT
+					reacTime 	= attrManager.getAttributeValue obj "mechData" #reacT
+					resettable  = attrManager.getAttributeValue obj "mechData" #reset
 				)
 		
 				fs.writeKey "mechanism"
