@@ -135,9 +135,9 @@ void PS_GBuffer(
 ) {
 
 	float3 camera2wpos = iWorldPos - camera_pos;
-	float3x3 TBN = computeTBN(iNormal, iTangent);
-	float3x3 wTBN = transpose(TBN);
-	float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
+	// float3x3 TBN = computeTBN(iNormal, iTangent);
+	// float3x3 wTBN = transpose(TBN);
+	// float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
 
 	//iTex0 = parallaxMapping(view_dir, iTex0);
 

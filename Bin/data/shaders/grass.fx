@@ -52,7 +52,7 @@ void VS(
   oUV = 1-uv;
 
   // Remove the color for the fire sample
-  oColor = float4( 1,unit_rand_val,1,alpha); //float4( iColor.xyz, 1 );
+  oColor = float4( 1,1,1,alpha); //float4( iColor.xyz, 1 );
 
   // To compute the shadows in the PS
   oWorldPos = world_pos.xyz;
