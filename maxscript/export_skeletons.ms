@@ -155,5 +155,5 @@ se = TSkeletonsExporter project_path: exportPath skel_name:"ella"
 
 --gc()
 --se = TSkeletonsExporter()
-se.exportSkelAndMeshes()
+--se.exportSkelAndMeshes()
 se.exportAnim()
