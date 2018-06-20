@@ -1237,14 +1237,25 @@ struct TSceneExporter (
 				fs.writeComma()
 				exportTransform obj
 				fs.writeComma()
+
+				local deacTime = 5
+				local reacTime = 3
+				local resettable = true
+
+				--Get from attribute if it exists.
+				if attrManager.hasAttribute obj.parent "mechData" then (
+					deacTime	= attrManager.getAttributeValue obj.parent "mechData" #deacT
+					reacTime 	= attrManager.getAttributeValue obj.parent "mechData" #reacT
+					resettable  = attrManager.getAttributeValue obj.parent "mechData" #reset
+				)
 		
 				fs.writeKey "mechanism"
 				fs.beginObj()
-					fs.writeKeyValue "deactivationTime" 5
+					fs.writeKeyValue "deactivationTime" deacTime
 					fs.writeComma()
-					fs.writeKeyValue "isResettable" true
+					fs.writeKeyValue "reactivationTime" reacTime
 					fs.writeComma()
-					fs.writeKeyValue "reactivationTime" 3
+					fs.writeKeyValue "isResettable" resettable
 					fs.writeComma()
 					fs.writeKey "systems"
 					fs.beginArray()
