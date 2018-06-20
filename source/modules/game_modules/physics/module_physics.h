@@ -32,14 +32,13 @@ private:
 
     BasicControllerHitCallback basicControllerHitCallback;
     BasicControllerFilterCallback basicControllerFilterCallback;
-    BasicControllerBehavior basicControllerBehavior;
     BasicQueryFilterCallback basicQueryFilterCallback;
 
     std::set<CHandle> toRelease;
 
     bool createPhysx();
     bool createScene();
-    PxController* createCCT(const ColliderConfig& config, PxTransform& initialTransform);
+	void createCCT(TCompCollider& compCollider, const ColliderConfig& config, PxTransform& initialTransform, CHandle entityHandle);
     PxRigidActor* createRigidBody(const ColliderConfig& config, PxTransform& initialTransform);
     void releaseColliders();
 

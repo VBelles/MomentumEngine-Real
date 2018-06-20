@@ -190,6 +190,7 @@ void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	currentPowerStats = powerStats[0];
 
 	stateManager = new StateManager(CHandle(this).getOwner());
+
 }
 
 void TCompPlayerModel::update(float delta) {
