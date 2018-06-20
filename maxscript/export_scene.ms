@@ -119,11 +119,11 @@ struct TJsonFormatter (
 		format ("{ \"entity\": { \"name\": \"" + prefix + "Dummy\" } },\n") to:fs
 	),
 	
-	fn arrayOfStrings arr = (
+	fn arrayOfStrings arr suffix:""= (
 		beginArray()
 		for idx = 1 to arr.count do (
 			if idx != 1 then writeComma()
-			writeName arr[idx]
+			writeName (arr[idx] + suffix)
 		)
 		endArray()
 	)
@@ -172,58 +172,31 @@ struct TMaterialExporter (
 		fs.writeKeyValue alias json_filename
 	),
 
-	-- Exports a single std material to a json format
-	fn exportStdMaterial mat mat_name = (
-		--format "Exporting material % % %\n" mat_name mat (classof mat as string)
-		fs.begin (project_path + mat_name )
+	fn exportMaterialContent mat: tech:"pbr" = (
 		fs.beginObj()
-			fs.writeKeyValue "technique" "pbr.tech"
+			fs.writeKeyValue "technique" (tech + ".tech")
 			fs.writeComma()
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
 			fs.writeKey "textures"
 			fs.beginObj()
 		
-			if classOf mat == StandardMaterial then (
-				exportMap mat.diffuseMap "albedo" "null_albedo"
-			    fs.writeComma()
-				exportMap mat.bumpMap "normal" "null_normal"
-				fs.writeComma()
-				exportMap mat.glossinessMap "metallic" "null_metallic"
-				fs.writeComma()
-				exportMap mat.specularLevelMap "roughness" "null_roughness"
-				fs.writeComma()
-				exportMap mat.selfIllumMap "self_illum" "null_self_illum"
-				fs.writeComma()
-				exportMap mat.displacementMap "height" "null_height"
-				
-				--ambientMap
-				--specularMap
-				--opacityMap
-				--filterMap
-				--reflectionMap
-				--refractionMap
-			)
-
-			fs.endObj()
-		fs.endObj()
-		fs.end()
-	),
-	
-	-- Exports an empty solid material to a json format
-	fn exportEmptyMaterial mat_name = (
-		/*exportMap undefined "albedo" "null_albedo"
-		fs.writeComma()
-		exportMap undefined "normal" "null_normal"*/
-		
-		fs.begin (project_path + mat_name )
-		fs.beginObj()
-			fs.writeKeyValue "technique" "pbr.tech"
-			fs.writeComma()
-			fs.writeKeyValue "shadows" true
-			fs.writeComma()
-			fs.writeKey "textures"
-			fs.beginObj()
+			if mat != unsupplied then (
+				if classOf mat == StandardMaterial then (
+					exportMap mat.diffuseMap "albedo" "null_albedo"
+					fs.writeComma()
+					exportMap mat.bumpMap "normal" "null_normal"
+					fs.writeComma()
+					exportMap mat.glossinessMap "metallic" "null_metallic"
+					fs.writeComma()
+					exportMap mat.specularLevelMap "roughness" "null_roughness"
+					fs.writeComma()
+					exportMap mat.selfIllumMap "self_illum" "null_self_illum"
+					fs.writeComma()
+					exportMap mat.displacementMap "height" "null_height"
+					--More: ambientMap, specularMap, opacityMap, filterMap, reflectionMap, refractionMap.
+				)
+			) else ( -- Empty material.
 				fs.writeKeyValue "albedo" "data/textures/null_albedo.dds"
 				fs.writeComma()
 				fs.writeKeyValue "normal" "data/textures/null_normal.dds"
@@ -235,8 +208,30 @@ struct TMaterialExporter (
 				fs.writeKeyValue "self_illum" "data/textures/null_self_illum.dds"
 				fs.writeComma()
 				fs.writeKeyValue "height" "data/textures/null_height.dds"
+			)
 			fs.endObj()
 		fs.endObj()
+	),
+
+	-- Exports a single std material to a json format
+	fn exportStdMaterial mat mat_name pure:false = (
+		--format "Exporting material % % %\n" mat_name mat (classof mat as string)
+		fs.begin (project_path + mat_name + ".material")
+			exportMaterialContent mat:mat
+		fs.end()
+
+		if pure then (
+		    -- Generate identical material but with pure.tech.
+			fs.begin (project_path + mat_name + "_pure.material")
+				exportMaterialContent mat:mat tech:"pure"
+			fs.end()
+		)
+	),
+	
+	-- Exports an empty solid material to a json format
+	fn exportEmptyMaterial mat_name = (
+		fs.begin (project_path + mat_name + ".material")
+			exportMaterialContent()
 		fs.end()
 	),
 	
@@ -249,17 +244,18 @@ struct TMaterialExporter (
 		if mat == undefined then (
 			setMaterialIDs obj --set Material IDs to 1.
 			--throw ("Obj " + obj.name + " does NOT have a material")
-			local mat_name = mat_path + "empty.material"
+			local mat_name = mat_path + "empty"
 			append exported_materials mat_name
 			exportEmptyMaterial mat_name
 		)
 		
+		local pure = obj.layer.name == "pure"
+
 		if matClass == StandardMaterial then (
 			setMaterialIDs obj --set Material IDs to 1.
-			local mat_name = mat_path + (cleanName mat.name) + ".material"
+			local mat_name = mat_path + (cleanName mat.name)
 			append exported_materials mat_name
-			exportStdMaterial mat mat_name
-
+			exportStdMaterial mat mat_name pure:pure
 		) else if matClass == MultiMaterial then (
 			local multi_mat = mat
 		setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
@@ -271,9 +267,9 @@ struct TMaterialExporter (
 				if mat_of_mesh == undefined then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string)+ " but the multimat does not have this submat")
 				if classof mat_of_mesh != StandardMaterial then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat in this slot is not a stdMaterial")
 
-				local mat_name = mat_path + mat_of_mesh.name + ".material"
+				local mat_name = mat_path + mat_of_mesh.name
 				append exported_materials mat_name
-				exportStdMaterial mat_of_mesh mat_name
+				exportStdMaterial mat_of_mesh mat_name pure:pure
 			)
 		)
 		return exported_materials
@@ -505,7 +501,7 @@ struct TSceneExporter (
 		)
 
 		fs.beginObj()
-			-- Export Mesh
+			-- -- ·Export Mesh· -- --
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
 			
@@ -514,14 +510,14 @@ struct TSceneExporter (
 
 			fs.writeComma()
 
-			-- Export material
+			-- -- ·Export material· -- --
 			--local mat_name = mats_path + mat.name + ".material"
 			--fs.writeKeyValue "material" mat_name
 			local me = TMaterialExporter project_path:project_path base_path:base_path
 			local exported_materials = me.exportMaterial mat mats_path obj
 
 			fs.writeKey "materials"
-			fs.arrayOfStrings exported_materials
+			fs.arrayOfStrings exported_materials suffix:".material"
 			if pure then (
 					fs.writeComma()
 					fs.writeKeyValue "enabled" false
@@ -531,7 +527,7 @@ struct TSceneExporter (
 					fs.writeKeyValue "mesh" mesh_name
 					fs.writeComma()
 					fs.writeKey "materials"
-					fs.arrayOfStrings #(mats_path + "pure_platform_special.material")
+					fs.arrayOfStrings #(mats_path + (cleanName mat.name) + "_pure.material")
 					fs.writeComma()
 					fs.writeKeyValue "enabled" false
 			)
