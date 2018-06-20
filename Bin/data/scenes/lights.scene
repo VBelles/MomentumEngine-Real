@@ -12,10 +12,10 @@
 				"color" :  "1 0.87 0.67 1",
 				"projector" : "data/textures/white.dds",
 				"isOrthographic" : true,
-				"orthographicWidth" : 1300,
-				"orthographicHeight" : 1300,
+				"orthographicWidth" : 750,
+				"orthographicHeight" : 1125,
         		"z_near" : 5,
-				"z_far" : 1300,
+				"z_far" : 1200,
 				"fov": 50,
 				"casts_shadows" : true,
 				"shadows_step" : 0.1,
@@ -23,9 +23,9 @@
 				"shadows_fmt" : "R32_TYPELESS"
 			},
 			"sun":{
-				"rotation_center" : "-326 300 -950",
+				"rotation_center" : "-219 146 -950",
 				"rotation_speed" : 0.0,
-				"distance" : 600,
+				"distance" : 500,
 				"initial_pitch" : -30,
 				"initial_yaw" : -150,
 				"initial_roll" : 60

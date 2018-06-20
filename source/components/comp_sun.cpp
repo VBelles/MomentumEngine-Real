@@ -60,24 +60,25 @@ void TCompSun::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 
 void TCompSun::update(float dt) {
 	//if (rotationUpdateTimer.elapsed() >= rotationUpdateTime) {
-	//	TCompTransform* transform = getTransform();
-	//	transform->setPosition(rotationCenter);
-	//	//transform->getYawPitchRoll(&currentYaw, &currentPitch, &currentRoll);
-	//	currentYaw += rotationSpeed * rotationUpdateTimer.elapsed();//usamos el yaw para evitar el límite de 89.95 del pitch
-	//	//crear matrices yaw, pitch, roll
-	//	MAT44 yawMatrix = MAT44::CreateFromYawPitchRoll(deg2rad(currentYaw), 0, 0);
-	//	MAT44 pitchMatrix = MAT44::CreateFromYawPitchRoll(0, deg2rad(currentPitch), 0);
-	//	MAT44 rollMatrix = MAT44::CreateFromYawPitchRoll(0, 0 , deg2rad(currentRoll));
-	//	//multiplicar en el orden deseado
-	//	MAT44 finalMatrix = yawMatrix * rollMatrix * pitchMatrix;
+		//TCompTransform* transform = getTransform();
+		//transform->setPosition(rotationCenter);
 
-	//	transform->setRotation(finalMatrix);
+		//currentYaw += rotationSpeed * rotationUpdateTimer.elapsed();//usamos el yaw para evitar el límite de 89.95 del pitch
 
-	//	VEC3 pos = transform->getPosition() - transform->getFront() * distance;
-	//	transform->setPosition(pos);
-	//	if (currentYaw >= startSunsetYaw) {
+		////crear matrices yaw, pitch, roll
+		//MAT44 yawMatrix = MAT44::CreateFromYawPitchRoll(deg2rad(currentYaw), 0, 0);
+		//MAT44 pitchMatrix = MAT44::CreateFromYawPitchRoll(0, deg2rad(currentPitch), 0);
+		//MAT44 rollMatrix = MAT44::CreateFromYawPitchRoll(0, 0 , deg2rad(currentRoll));
+		////multiplicar en el orden deseado
+		//MAT44 finalMatrix = yawMatrix * rollMatrix * pitchMatrix;
 
-	//	}
-	//	rotationUpdateTimer.reset();
+		//transform->setRotation(finalMatrix);
+
+		//VEC3 pos = transform->getPosition() - transform->getFront() * distance;
+		//transform->setPosition(pos);
+		//if (currentYaw >= startSunsetYaw) {
+
+		//}
+		//rotationUpdateTimer.reset();
 	//}
 }

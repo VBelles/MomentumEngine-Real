@@ -139,7 +139,7 @@ void PS_GBuffer(
 	float3x3 wTBN = transpose(TBN);
 	float3 view_dir = normalize(mul(camera_pos, wTBN) - mul(iWorldPos, wTBN));
 
-	iTex0 = parallaxMapping(view_dir, iTex0);
+	//iTex0 = parallaxMapping(view_dir, iTex0);
 
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
