@@ -635,7 +635,7 @@
       },
       "mechanism":
       {
-        "deactivationTime": 5,
+        "deactivationTime": 12,
         "isResettable": true,
         "reactivationTime": 3,
         "systems":
@@ -678,6 +678,9 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door" : {
+        "startsClosed" : false
       }
     }
   },
@@ -713,6 +716,9 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door" : {
+        "startsClosed" : false
       }
     }
   }

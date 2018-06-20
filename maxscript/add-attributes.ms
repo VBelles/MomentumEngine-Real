@@ -10,38 +10,54 @@ http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_0A1E08F8_A8C5_4
 -- def #enemyData
 global enemiesData = attributes enemyData (
 	parameters main rollout:params (
-		hitPoints type: #integer ui:HP default:5
-		moveSpeed type: #float ui:moveSpeed default:2.5
-		powerGiven type: #integer ui:powerGiven default:3400 
+		hitPoints 	   type: #integer ui:HP				default:5
+		moveSpeed 	   type: #float   ui:moveSpeed		default:2.5
+		powerGiven	   type: #integer ui:powerGiven 	default:3400 
 		recallDistance type: #integer ui:recallDistance default:28
-		chaseFov type: #integer ui:chaseFov default:60
-		attackFov type: #integer ui:attackFov default:60
-		enemyType type: #string
+		chaseFov	   type: #integer ui:chaseFov		default:60
+		attackFov	   type: #integer ui:attackFov		default:60
+		enemyType	   type: #string
 	)
 	rollout params "Enemy Data" (
-		spinner HP "Hit Points" type: #integer
-		spinner moveSpeed "Move Speed" type: #float
-		spinner powerGiven "Power Given" type: #integer range:[0, 100000, 3400]
+		spinner HP "Hit Points"					 type: #integer
+		spinner moveSpeed "Move Speed"			 type: #float
+		spinner powerGiven "Power Given"		 type: #integer range:[0, 100000, 3400]
 		spinner recallDistance "Recall distance" type: #integer
-		spinner chaseFov "Chase fov" type: #integer
-		spinner attackFov "Attack fov" type: #integer
-		dropdownlist enemyType "Enemy Type" items:# ("melee","air")
+		spinner chaseFov "Chase fov"			 type: #integer
+		spinner attackFov "Attack fov"			 type: #integer
+		dropdownlist enemyType "Enemy Type" 	 items:# ("melee","air")
 	)
 )
 
 -- def #rotateData
 global rotationsData = attributes rotateData (
 	parameters main rollout:params (
-		x type: #integer ui:xRot default:0
-		y type: #integer ui:yRot default:0
-		z type: #integer ui:zRot default:1 
-		rotSpeed type: #float ui:rotSpeed default:0.5
+		x 		 type: #integer ui:xRot 	default:0
+		y 		 type: #integer ui:yRot 	default:0
+		z 		 type: #integer ui:zRot 	default:1 
+		rotSpeed type: #float   ui:rotSpeed default:0.5
 	)
 	rollout params "Rotation Data" (
-		spinner xRot "x axis" type: #integer range:[0, 0, 0]
-		spinner yRot "y axis" type: #integer range:[0, 0, 0]
-		spinner zRot "z axis" type: #integer range:[0, 1, 0]
+		spinner xRot "x axis" type: #integer range:[-1, 1, 0] --min, max, initial value
+		spinner yRot "y axis" type: #integer range:[-1, 1, 0]
+		spinner zRot "z axis" type: #integer range:[-1, 1, 1]
 		spinner rotSpeed "Rotation speed" type: #float
+	)
+)
+
+-- def #moveData
+global movesData = attributes moveData (
+	parameters main rollout:params (
+		auto type: #boolean ui:autoMove default:true
+		loop type: #boolean ui:loops    default:true
+		wait type: #float   ui:waitTime default:1.0 
+		spd  type: #float   ui:movSpeed default:0.3
+	)
+	rollout params "Movement Data" (
+		checkbox autoMove "Automove" 	   type: #boolean align:#right
+		checkbox loops 	  "Loops" 		   type: #boolean align:#right
+		spinner  waitTime "Wait time" 	   type: #float range:[0, 100.0, 1.0] --min, max, initial value
+		spinner  movSpeed "Movement speed" type: #float range:[0, 100.0, 0.3]
 	)
 )
 
@@ -82,6 +98,7 @@ struct TAttributeManager (
 		if not hasAttribute obj defName then (
 			case defName of (
 				"enemyData":  ( attrDef = enemiesData )
+				"moveData":   ( attrDef = movesData )
 				"rotateData": ( attrDef = rotationsData )
 				default:     ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
 			)

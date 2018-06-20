@@ -192,15 +192,17 @@ struct TMaterialExporter (
 				exportMap mat.glossinessMap "metallic" "null_metallic"
 				fs.writeComma()
 				exportMap mat.specularLevelMap "roughness" "null_roughness"
+				fs.writeComma()
+				exportMap mat.selfIllumMap "self_illum" "null_self_illum"
+				fs.writeComma()
+				exportMap mat.displacementMap "height" "null_height"
 				
 				--ambientMap
 				--specularMap
-				--selfIllumMap
 				--opacityMap
 				--filterMap
 				--reflectionMap
 				--refractionMap
-				--displacementMap
 			)
 
 			fs.endObj()
@@ -229,6 +231,10 @@ struct TMaterialExporter (
 				fs.writeKeyValue "metallic" "data/textures/null_metallic.dds"
 				fs.writeComma()
 				fs.writeKeyValue "roughness" "data/textures/null_roughness.dds"
+				fs.writeComma()
+				fs.writeKeyValue "self_illum" "data/textures/null_self_illum.dds"
+				fs.writeComma()
+				fs.writeKeyValue "height" "data/textures/null_height.dds"
 			fs.endObj()
 		fs.endObj()
 		fs.end()
@@ -256,7 +262,7 @@ struct TMaterialExporter (
 
 		) else if matClass == MultiMaterial then (
 			local multi_mat = mat
-setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
+		setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
 			local materials_of_mesh = getMaterialsUsedByMesh obj
 			for mat_idx = 1 to materials_of_mesh.count do (
 				if materials_of_mesh[ mat_idx ] == undefined then continue
@@ -307,6 +313,14 @@ struct TSceneExporter (
 		if obj.children == undefined then return false
 		for child in obj.children do (
 			if isLine child then return true
+		)
+		return false
+	),
+	
+	fn isMovable obj = (
+		if obj.children == undefined then return false
+		for child in obj.children do (
+			if hasChildLine child then return true
 		)
 		return false
 	),
@@ -395,7 +409,7 @@ struct TSceneExporter (
 			)
 		fs.endArray()
 	),
-	
+
 	fn getCircularMovementOffset platform circleObj = (
 		local center = circleObj.pos
 		local objCopy = copy circleObj
@@ -403,15 +417,18 @@ struct TSceneExporter (
 		local circlePoint = getKnotPoint objCopy 1 1
 		delete objCopy
 		local platformPos = platform.pos
-		
-		-- TODO: Aquí la idea sería aumentar el move_offset según el ángulo de la plataforma respecto
-		-- al centro del círculo, si no todas las plataforms que comparten centro se mueven superpuestas.
-		-- Ahora mismo no va fino, necesito ángulos negativos también.
+
+		-- Avoid all platforms starting at the same point of the circle.
+		-- 90º -> 0.25, 180º -> 0.5, 270º -> 0.75, 360º -> 0.0
 		local anglePlatformToCircle = get3pointAngle center circlePoint platformPos
+		--format "center: % circlePoint: % platfPos: % anglePlatfToCircle: %\n" center circlePoint platformPos anglePlatformToCircle --DEBUG
 		if anglePlatformToCircle == 0 then return 0
-		else return anglePlatformToCircle / 180
+		else (
+			if anglePlatformToCircle < 0 then return (360 + anglePlatformToCircle) / 360
+			else return anglePlatformToCircle / 360
+		)
 	),
-	
+
 	fn exportSplineKnots obj = (
 		fs.beginArray()
 			--Create a copy and convert it to SplineShape to be able to get the knots.
@@ -521,6 +538,32 @@ struct TSceneExporter (
 		fs.endObj() -- End render object.
 	),
 
+	-- --COMP: ROTATE (platform_simple)-----------------------------------------------------
+	fn exportPlatfRotation obj = (
+		local rotAxis = Point3 0 0 1
+		local rotSpeed = 0
+		--Get from attribute if it exists.
+		if attrManager.hasAttribute obj "rotateData" then (
+			local xRot = attrManager.getAttributeValue obj "rotateData" #x
+			local yRot = attrManager.getAttributeValue obj "rotateData" #y
+			local zRot = attrManager.getAttributeValue obj "rotateData" #z
+
+			rotAxis = Point3 xRot yRot zRot
+			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
+		)
+		fs.writeKeyValue "rotation_axis" rotAxis
+		fs.writeComma()
+		fs.writeKeyValue "rotation_speed" rotSpeed
+	),
+	
+	fn exportPlatfRotationOnly obj = (
+		fs.writeComma()
+		fs.writeKey "platform_simple"
+		fs.beginObj()
+			exportPlatfRotation obj
+		fs.endObj()
+	),
+	
 	-- --SPLINE-------------------------------------------------------
 	fn exportSpline obj type:"platform_simple" = (
 		-- Executed only if we already know it has a child line.
@@ -535,30 +578,41 @@ struct TSceneExporter (
 					curveType = "circular"
 					moveOffset = getCircularMovementOffset obj child
 				)
-				
+
 				local closed = false
 				local followSpeed = 0.3
 				if childClass == circle then closed = true
 				else closed = isClosed child 1
-				
-				if closed then followSpeed = 0.001
-				
+
+				if closed then followSpeed = 0.04
+
+				local auto = true
+				local loop = true
+				local wait = 0.0
+				--Get from attribute if it exists.
+				if attrManager.hasAttribute obj.parent "moveData" then (
+					auto 		= attrManager.getAttributeValue obj.parent "moveData" #auto
+					loop 		= attrManager.getAttributeValue obj.parent "moveData" #loop
+					wait 		= attrManager.getAttributeValue obj.parent "moveData" #wait
+					followSpeed = attrManager.getAttributeValue obj.parent "moveData" #spd
+				)
+
 				fs.writeComma()
 				fs.writeKey type
 				fs.beginObj()
-					fs.writeKeyValue "rotation_axis" "0 1 0"
-					fs.writeComma()
-					fs.writeKeyValue "rotation_speed" 0
+					exportPlatfRotation obj.parent
 					fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
-					fs.writeKeyValue "automove" true
+					fs.writeKeyValue "automove" auto
 					fs.writeComma()
-					fs.writeKeyValue "loop" true
+					fs.writeKeyValue "loop" loop
 					fs.writeComma()
 					fs.writeKeyValue "closed" closed
 					fs.writeComma()
 					fs.writeKeyValue "move_offset" moveOffset
+					fs.writeComma()
+					fs.writeKeyValue "travel_wait_time" wait
 					fs.writeComma()
 					fs.writeKeyValue "speed" followSpeed
 					fs.writeComma()
@@ -568,29 +622,6 @@ struct TSceneExporter (
 				return true -- Only exports the first line found.
 			)
 		)
-	),
-	
-	-- --COMP: ROTATE (platform_simple)-----------------------------------------------------
-	fn exportPlatfRotation obj = (
-		fs.writeComma()
-		fs.writeKey "platform_simple"
-		fs.beginObj()
-			local rotAxis = Point3 0 0 1
-			local rotSpeed = 0.5
-			--Get from attribute if it exists.
-			if attrManager.hasAttribute obj "rotateData" then (
-				local xRot = attrManager.getAttributeValue obj "rotateData" #x
-				local yRot = attrManager.getAttributeValue obj "rotateData" #y
-				local zRot = attrManager.getAttributeValue obj "rotateData" #z
-
-				rotAxis = Point3 xRot yRot zRot
-				rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
-			)
-			
-			fs.writeKeyValue "rotation_axis" rotAxis
-			fs.writeComma()
-			fs.writeKeyValue "rotation_speed" rotSpeed
-		fs.endObj()
 	),
 	
 	-- --COMP: BREAKABLE------------------------------------------------
@@ -838,9 +869,8 @@ struct TSceneExporter (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string) --DEBUG
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
-		local rot		= obj.layer.name == "rotate"
 		local mech		= obj.layer.name == "mechanisms"
-		
+				
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -860,6 +890,7 @@ struct TSceneExporter (
 					if isFirst then fs.writeComma()
 					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
 					local movable = hasChildLine child
+					local onlyRot = not movable and attrManager.hasAttribute obj "rotateData"
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
 
@@ -868,11 +899,11 @@ struct TSceneExporter (
 						fs.writeKeyEmpty "purity"
 						objToExport = obj
 					)
-					exportCompCollider objToExport first:isFirst mov:(movable or rot) colliderGroups:groups
+					exportCompCollider objToExport first:isFirst mov:(movable or onlyRot) colliderGroups:groups
 
 					if breakable then exportBreakable()
 					if movable then exportSpline child
-					if rot then exportPlatfRotation obj
+					if onlyRot then exportPlatfRotationOnly obj
 					if mech then exportMech child
 				)
 				else if isDummyLOD child then (
@@ -1492,7 +1523,7 @@ struct TSceneExporter (
 		fs.end()
 		-- TODO: Export also Altars.
 	),
-	
+
 	fn exportAll = (
 		deselect objects -- Deselect all objects so export is faster.
 
@@ -1539,7 +1570,6 @@ struct TSceneExporter (
 							"prefabBall":   ( wasValid = exportEnemyPrefab	   obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab 	   obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab	   obj nValidObjs )
-							"rotate": 		( wasValid = exportEntityDefault   obj nValidObjs )
 							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
 							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
 							"mechanisms":	( wasValid = exportEntityMechSys   obj nValidObjs )
@@ -1599,11 +1629,12 @@ se exportará en la escena collisions.
 Las meshes		    deben estar en una layer llamada "0".
 Los enemigos		    deben estar en una layer llamada "enemies".
 Las crisálidas 		    deben estar en una layer llamada "chrysalis".
-Las plataformas móviles  deben estar en una layer llamada "movables".
+Las plataformas móviles deben estar en una layer llamada "movables" (excepto si son puras, en ese caso van en pure).
 Las cámaras		    deben estar en una layer llamada "cameras".
+Las puras			    deben estar en una layer llamada "pure".
 Las luces			    deben estar en una layer llamada "lights".
 Los triggers		    deben estar en una layer llamada "triggers".
-Los colliders invisibles     deben estar en una layer llamada "collisions".
+Los colliders invisibles   deben estar en una layer llamada "collisions".
 
 Las monedas únicas tienen que contener "unique" en el nombre.
  

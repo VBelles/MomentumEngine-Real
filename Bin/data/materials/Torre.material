@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/torre_low_DefaultMaterial_BaseColor.dds",
+    "normal": "data/textures/torre_low_DefaultMaterial_Normal.dds",
+    "metallic": "data/textures/torre_low_DefaultMaterial_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/torre_low_DefaultMaterial_Emissive.dds",
+    "height": "data/textures/torre_low_DefaultMaterial_Height.dds"
+  }
+}

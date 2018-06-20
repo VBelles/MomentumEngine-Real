@@ -1,4 +1,4 @@
-fileIn "export_scene.ms"
+--fileIn "export_scene.ms"
 --fileIn "export_skeletons.ms"
 --fileIn "export_rigid_anims.ms"
 
@@ -13,14 +13,15 @@ utility MyMCVExporter "MCV Exporter" (
 		on btn_scene pressed do (
 			try (
 				gc()
-				local exporter = TSceneExporter()
+				global exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_ui.ms" "Bin\\")
+				local exporter = TSceneExporter project_path:exportPath
 				exporter.exportAll()	
 				MessageBox "All exported OK"
 			) catch (
 				MessageBox ("Error Exporting:\n" + getCurrentException())
 			)
 		)
-		
+
 		-- Exports the current selection mesh to file
 		on btn_mesh pressed do (
 			try (
@@ -44,7 +45,7 @@ utility MyMCVExporter "MCV Exporter" (
 				MessageBox ("Error Exporting Skeleton:\n" + getCurrentException())
 			)
 		)
-		
+
 		-- Exports the current selection mesh to file
 		on btn_skel_anims pressed do (
 			try (
@@ -56,7 +57,7 @@ utility MyMCVExporter "MCV Exporter" (
 				MessageBox ("Error Exporting Skeleton Animation:\n" + getCurrentException())
 			)
 		)
-		
+
 		-- Exports the current selection mesh to file
 		on btn_rigid_anims pressed do (
 			try (
@@ -76,6 +77,9 @@ utility MyMCVExporter "MCV Exporter" (
 		
 		button btn_addRotation "+ rotation" across:2 tooltip:"Adds rotation attributes to selected objects"
 		button btn_delRotation "- rotation" tooltip:"Deletes rotation attributes from selected objects"
+		
+		button btn_addMovement "+ move" across:2 tooltip:"Adds movement attributes to selected objects"
+		button btn_delMovement "- move" tooltip:"Deletes movement attributes from selected objects"
 		
 		fn addAttribute defName = (
 			try (
@@ -105,6 +109,8 @@ utility MyMCVExporter "MCV Exporter" (
 		on btn_addRotation pressed do ( addAttribute "rotateData" )
 		on btn_delRotation pressed do ( delAttribute "rotateData" )
 		
+		on btn_addMovement pressed do ( addAttribute "moveData" )
+		on btn_delMovement pressed do ( delAttribute "moveData" )
 	) -- end attribute rollout creator
 
 	on MyMCVExporter open do (
