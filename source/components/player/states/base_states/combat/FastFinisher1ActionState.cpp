@@ -13,11 +13,11 @@
 FastFinisher1ActionState::FastFinisher1ActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, FastFinisher1),
 	AttackState(stateManager) {
-	hitboxOutTime = frames2sec(60);
+	hitboxOutTime = frames2sec(20);
 	hitEndTime = frames2sec(10);
-	animationEndTime = frames2sec(60);
-	cancelableTime = frames2sec(50);
-	interruptibleTime = frames2sec(110);
+	animationEndTime = frames2sec(30);
+	cancelableTime = frames2sec(9);
+	interruptibleTime = frames2sec(50);
 	hitbox = "strong_attack";
 }
 

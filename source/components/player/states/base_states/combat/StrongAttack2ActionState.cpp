@@ -13,11 +13,11 @@
 StrongAttack2ActionState::StrongAttack2ActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, StrongAttack2),
 	AttackState(stateManager) {
-	hitboxOutTime = frames2sec(60);
+	hitboxOutTime = frames2sec(10);
 	hitEndTime = frames2sec(10);
-	animationEndTime = frames2sec(60);
-	cancelableTime = frames2sec(50);
-	interruptibleTime = frames2sec(80);
+	animationEndTime = frames2sec(50);
+	cancelableTime = frames2sec(2);
+	interruptibleTime = frames2sec(30);
 	hitbox = "strong_attack";
 }
 
