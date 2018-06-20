@@ -36,7 +36,7 @@ void JumpSquatActionState::onStateEnter(IActionState * lastState) {
 	isShortHop = false;
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
-	getSkeleton()->executeAction(animationSquat, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animationSquat, 0.05f, 0.05f);
 }
 
 void JumpSquatActionState::onStateExit(IActionState * nextState) {
@@ -52,7 +52,7 @@ void JumpSquatActionState::onJumpHighButtonReleased() {
 void JumpSquatActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
-		getSkeleton()->executeAction(animationJump, 0.2f, 0.2f);
+		getSkeleton()->executeAction(animationJump, 0.05f, 0.05f);
 		stateManager->changeState(AirborneNormal);
 	}
 	else {

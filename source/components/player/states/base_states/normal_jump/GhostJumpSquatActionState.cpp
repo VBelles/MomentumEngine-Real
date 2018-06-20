@@ -22,7 +22,7 @@ void GhostJumpSquatActionState::update(float delta) {
 			*velocityVector += currentPowerStats->jumpVelocityVector;
 			deltaMovement = *velocityVector * delta;
 			//Como estamos ya en el aire, hacemos el cambio nosotros mismos
-			getSkeleton()->executeAction(animationJump, 0.2f, 0.2f);
+			getSkeleton()->executeAction(animationJump, 0.05f, 0.05f);
 			stateManager->changeState(AirborneNormal);
 		}
 	}

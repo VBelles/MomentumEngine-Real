@@ -25,7 +25,7 @@ void AirborneWallJumpActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	getPlayerModel()->maxVerticalSpeed = enteringPowerStats->maxVelocityVertical;
 	getPlayerModel()->setGravityMultiplier(1.1f);
-	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 }
 
 void AirborneWallJumpActionState::onStateExit(IActionState * nextState) {

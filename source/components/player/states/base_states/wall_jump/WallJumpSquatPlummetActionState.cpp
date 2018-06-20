@@ -19,7 +19,7 @@ void WallJumpSquatPlummetActionState::update(float delta) {
 			velocityVector->y = verticalVelocity;
 
 			deltaMovement = *velocityVector * delta;
-			getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+			getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 			stateManager->changeState(WallJumpPlummet);
 		}
 	}
@@ -29,6 +29,7 @@ void WallJumpSquatPlummetActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	getPlayerModel()->setGravityMultiplier(0.f);
 	getPlayerModel()->maxVerticalSpeed = abs(verticalVelocity);
+	getSkeleton()->blendCycle(animationHugging, 0.1f, 0.1f);
 	timer.reset();
 }
 

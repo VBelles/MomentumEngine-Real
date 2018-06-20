@@ -23,14 +23,15 @@ void WallJumpSquatActionState::update(float delta) {
 			velocityVector->y = currentPowerStats->wallJumpVelocityVector.y;
 
 			deltaMovement = *velocityVector * delta;
-			getSkeleton()->executeAction(animation, 0.2f, 0.2f);
-			stateManager->changeState(AirborneWallJump);
+			getSkeleton()->executeAction(animation, 0.1f, 0.1f);
+			stateManager->changeState(AirborneWallJump); 
 		}
 	}
 }
 
 void WallJumpSquatActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
+	getSkeleton()->blendCycle(animationHugging, 0.1f, 0.1f);
 	timer.reset();
 }
 

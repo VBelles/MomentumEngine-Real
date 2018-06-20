@@ -8,6 +8,7 @@ protected:
 	float endingTime = frames2sec(4);
 
 	std::string animation = "wall_jump";
+	std::string animationHugging = "hugging_wall";
 
 public:
 	WallJumpSquatActionState(StateManager* stateManager);

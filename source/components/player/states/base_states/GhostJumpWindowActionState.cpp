@@ -24,7 +24,7 @@ void GhostJumpWindowActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 }
 
 void GhostJumpWindowActionState::onStateExit(IActionState * nextState) {

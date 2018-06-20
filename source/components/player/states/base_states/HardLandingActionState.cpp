@@ -10,7 +10,7 @@
 
 HardLandingActionState::HardLandingActionState(StateManager* stateManager) :
 	LandingActionState(stateManager, HardLanding) {
-	landingLagTime = frames2sec(40);
+	landingLagTime = frames2sec(38);
 }
 
 void HardLandingActionState::update(float delta) {
@@ -32,7 +32,8 @@ void HardLandingActionState::onStateEnter(IActionState * lastState) {
 	hitboxTimer.reset();
 	springJumpTimer.reset();
 	fallingAttackHitboxTimer.reset();
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->clear();
+	getSkeleton()->executeAction(animation, 0.05f, 0.05f);
 }
 
 void HardLandingActionState::onStateExit(IActionState * nextState) {

@@ -8,8 +8,9 @@ protected:
 	float endingTime = frames2sec(20);
 	float frontVelocity = 30.f;
 	float verticalVelocity = -30.f;
-
+	
 	std::string animation = "wall_jump_plummet";
+	std::string animationHugging = "hugging_wall";
 
 public:
 	WallJumpSquatPlummetActionState(StateManager* stateManager);
