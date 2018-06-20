@@ -26,8 +26,8 @@ private:
 
 	VEC3 huggingWallNormal;
 
-	std::string animation = "bajandopared";
-	std::string animationClimbing = "correporlapared";
+	std::string animation = "hugging_wall";
+	std::string animationClimbing = "running_wall";
 
 	float huggingWallMinPitch = 0.f;
 

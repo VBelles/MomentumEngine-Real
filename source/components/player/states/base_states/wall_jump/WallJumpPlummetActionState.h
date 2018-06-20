@@ -12,7 +12,7 @@ protected:
 	float damage = 3;
 	float powerToGet = 4000.f;
 
-	std::string animation = "jump_volando";
+	std::string animation = "wall_jump_plummet_loop";
 
 	std::string hitbox = "plummet_attack";
 

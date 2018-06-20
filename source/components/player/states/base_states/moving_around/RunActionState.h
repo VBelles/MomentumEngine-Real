@@ -4,7 +4,7 @@
 
 class RunActionState : public GroundedActionState {
 private:
-	std::string animation = "run";
+	std::string animation = "run1";
 	int dustParticlesHandle = 0;
 
 public:

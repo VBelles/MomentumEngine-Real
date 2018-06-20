@@ -16,7 +16,7 @@ private:
 	float damage = 0.f;
 	float stunDuration = 3.f;
 
-	std::string animation = "liberarenergia";
+	std::string animation = "release_power";
 
 	std::string smallHitbox = "release_power_small";
 	std::string bigHitbox = "release_power_big";

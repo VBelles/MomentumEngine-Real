@@ -4,7 +4,7 @@
 
 class SoftLandingActionState : public LandingActionState {
 protected:
-	std::string animation = "jump_caida";
+	std::string animation = "landing_soft";
 
 public:
 	SoftLandingActionState(StateManager* stateManager);

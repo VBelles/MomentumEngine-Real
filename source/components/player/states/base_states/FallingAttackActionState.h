@@ -14,10 +14,10 @@ private:
 	float damage = 2.f;
 	float powerToGet = 4000.f;
 
-	std::string animation = "ataquecaida";
+	std::string animation = "falling_attack";
+	std::string animationPositioning = "falling_attack_positioning";
 
 	std::string hitbox = "falling_attack";
-	std::string animationPositioning = "jump_inicio";
 
 public:
 	FallingAttackActionState(StateManager* stateManager);

@@ -4,7 +4,7 @@
 
 class AirborneLongActionState : public AirborneActionState {
 private:
-	std::string animation = "longJump_volando";
+	std::string animation = "long_jump_loop";
 
 public:
 	AirborneLongActionState(StateManager* stateManager);

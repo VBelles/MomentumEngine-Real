@@ -10,7 +10,7 @@ private:
 	float powerToGet = 3000.f;
 	float damage = 5.f;
 
-	std::string animation = "melee_strong";
+	std::string animation = "strong_attack2";
 
 public:
 	StrongAttack2ActionState(StateManager* stateManager);

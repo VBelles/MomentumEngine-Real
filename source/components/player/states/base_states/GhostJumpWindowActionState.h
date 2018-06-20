@@ -8,6 +8,8 @@ private:
 	float squatTime = frames2sec(6);
 	float enteringVelocity = 0.f;
 
+	std::string animation = "free_fall";
+
 public:
 	GhostJumpWindowActionState(StateManager* stateManager);
 

@@ -18,7 +18,7 @@ private:
 
 	std::string smallHitbox = "release_power_small";
 	std::string bigHitbox = "release_power_big";
-	std::string animation = "liberarenergia";
+	std::string animation = "release_power";
 
 public:
 	ReleasePowerAirActionState(StateManager* stateManager);

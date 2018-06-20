@@ -7,7 +7,7 @@ protected:
 	CTimer timer;
 	float endingTime = frames2sec(4);
 
-	std::string animation = "jump_inicio";
+	std::string animation = "wall_jump";
 
 public:
 	WallJumpSquatActionState(StateManager* stateManager);

@@ -7,7 +7,8 @@ private:
 	CTimer timer;
 	float duration = 0.8f;
 
-	std::string animation = "recibedanio";
+	std::string animation = "hard_knockback_air";
+	std::string animationLoop = "hard_knockback_air_falling";
 
 public:
 	HardKnockbackAirActionState(StateManager* stateManager);

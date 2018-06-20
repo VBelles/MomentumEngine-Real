@@ -5,7 +5,7 @@
 class DeathActionState : public IActionState {
 private:
 	bool finish = false;
-	std::string animation = "walk";
+	std::string animation = "death";
 
 public:
 	DeathActionState(StateManager* stateManager);

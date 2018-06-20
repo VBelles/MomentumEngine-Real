@@ -9,7 +9,7 @@ protected:
 	float frontVelocity = 30.f;
 	float verticalVelocity = -30.f;
 
-	std::string animation = "jump_inicio";
+	std::string animation = "wall_jump_plummet";
 
 public:
 	WallJumpSquatPlummetActionState(StateManager* stateManager);

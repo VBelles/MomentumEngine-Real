@@ -7,6 +7,8 @@ private:
 	CTimer timer;
 	float squatTime = frames2sec(2);
 	float enteringVelocity = 0.f;
+
+	std::string animationJump = "normal_jump";
 public:
 	GhostJumpSquatActionState(StateManager* stateManager);
 

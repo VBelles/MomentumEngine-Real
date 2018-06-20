@@ -7,7 +7,7 @@ private:
 	CTimer timer;
 	float squatTime = frames2sec(12);
 
-	std::string animation = "jump_inicio";
+	std::string animation = "spring_jump_squat";
 
 public:
 	JumpSquatSpringActionState(StateManager* stateManager);

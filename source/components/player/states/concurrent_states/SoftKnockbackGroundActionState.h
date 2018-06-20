@@ -7,7 +7,7 @@ private:
 	CTimer timer;
 	float duration = 0.8f;
 
-	std::string animation = "ataquecaida";
+	std::string animation = "soft_knockback_ground";
 
 public:
 	SoftKnockbackGroundActionState(StateManager* stateManager);

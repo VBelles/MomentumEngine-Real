@@ -2,6 +2,7 @@
 #include "GhostJumpWindowActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_transform.h"
+#include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
 
 
@@ -23,6 +24,7 @@ void GhostJumpWindowActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
 void GhostJumpWindowActionState::onStateExit(IActionState * nextState) {

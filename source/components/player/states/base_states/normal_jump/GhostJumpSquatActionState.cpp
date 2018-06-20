@@ -3,6 +3,7 @@
 #include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/states/StateManager.h"
+#include "skeleton/comp_skeleton.h"
 
 
 GhostJumpSquatActionState::GhostJumpSquatActionState(StateManager* stateManager) :
@@ -21,6 +22,7 @@ void GhostJumpSquatActionState::update(float delta) {
 			*velocityVector += currentPowerStats->jumpVelocityVector;
 			deltaMovement = *velocityVector * delta;
 			//Como estamos ya en el aire, hacemos el cambio nosotros mismos
+			getSkeleton()->executeAction(animationJump, 0.2f, 0.2f);
 			stateManager->changeState(AirborneNormal);
 		}
 	}

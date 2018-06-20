@@ -15,7 +15,7 @@ private:
 
 	float powerToGet = 1000.f;
 
-	std::string animation = "melee";
+	std::string animation = "fast_attack";
 	std::string hitbox = "fast_attack";
 
 public:

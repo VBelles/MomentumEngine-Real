@@ -16,7 +16,7 @@ private:
 	float damage = 1.f;
 	float powerToGet = 2000.f;
 
-	std::string animation = "ataquecaida";
+	std::string animation = "fast_attack2";
 	std::string hitbox = "fast_attack";
 
 public:

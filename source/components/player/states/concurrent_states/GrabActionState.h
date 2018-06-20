@@ -16,7 +16,7 @@ protected:
 	int damage = 0;
 	float powerToGet = 1000.f;
 
-	std::string animation = "melee";
+	std::string animation = "grab";
 	std::string hitbox = "grab";
 
 public:

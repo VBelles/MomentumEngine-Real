@@ -19,7 +19,7 @@ private:
 	float fallingAttackDamage = 2.f;
 	float fallingAttackPowerToGet = 4000.f;
 
-	std::string animation = "hard_landing";
+	std::string animation = "landing_hard";
 
 	std::string hitbox = "landing_falling_attack";
 	std::string hitboxFallingAttack = "falling_attack";

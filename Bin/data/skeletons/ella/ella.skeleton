@@ -26,7 +26,7 @@
     { "name": "normal_jump" },
     { "name": "propel_high" },
     { "name": "propel_long" },
-    { "name": "release_energy" },
+    { "name": "release_power" },
     { "name": "run1" },
     { "name": "run2" },
     { "name": "run3" },

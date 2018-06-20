@@ -6,7 +6,7 @@ class PitFallingActionState : public IActionState {
 private:
 	bool finish = false;
 	float fallingDamage = 1;
-	std::string animation = "walk";
+	std::string animation = "free_fall";
 
 public:
 	PitFallingActionState(StateManager* stateManager);
