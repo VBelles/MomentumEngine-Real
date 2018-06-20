@@ -527,7 +527,10 @@ struct TSceneExporter (
 					fs.writeKeyValue "mesh" mesh_name
 					fs.writeComma()
 					fs.writeKey "materials"
-					fs.arrayOfStrings #(mats_path + (cleanName mat.name) + "_pure.material")
+					local matName
+					if mat == undefined then matName = "empty"
+					else matName = cleanName mat.name
+					fs.arrayOfStrings #(mats_path + matName + "_pure.material")
 					fs.writeComma()
 					fs.writeKeyValue "enabled" false
 			)
