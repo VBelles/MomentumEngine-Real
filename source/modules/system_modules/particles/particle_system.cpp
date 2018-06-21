@@ -125,10 +125,19 @@ namespace Particles {
 	}
 
 	void CSystem::render() {
-		const CRenderTechnique* technique = Resources.get("particles.tech")->as<CRenderTechnique>();
-		const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+		const CRenderTechnique* technique;
+		const CRenderMesh* particleMesh;
+		bool isBillboardParticle = !_core->render.mesh;
+		if (isBillboardParticle) {
+			technique = Resources.get("particles.tech")->as<CRenderTechnique>();
+			particleMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+		}
+		else {
+			technique = Resources.get("particles_mesh.tech")->as<CRenderTechnique>();
+			particleMesh = _core->render.mesh;
+		}
 		CEntity* eCurrentCamera = EngineCameras.getCurrentBlendedCamera();
-		assert(technique && quadMesh && eCurrentCamera);
+		assert(technique && particleMesh && eCurrentCamera);
 		TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 		assert(camera);
 		const VEC3 cameraPos = camera->getCamera()->getPosition();
@@ -140,16 +149,22 @@ namespace Particles {
 		_core->render.texture->activate(TS_ALBEDO);
 
 		for (auto& p : _particles) {
-			MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
-			MAT44 sc = MAT44::CreateScale(p.size * p.scale);
-			MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
-
+			if (isBillboardParticle) {
+				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
+				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
+				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
+				cb_object.obj_world = rt * sc * bb;
+			}
+			else {
+				CTransform transform(p.position, QUAT::CreateFromAxisAngle(VEC3(1, 1, 1), p.rotation));
+				cb_object.obj_world = transform.asMatrix();
+			}
+			
 			int row = p.frame / frameCols;
 			int col = p.frame % frameCols;
 			VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
 			VEC2 maxUV = minUV + _core->render.frameSize;
 
-			cb_object.obj_world = rt * sc * bb;
 			cb_object.obj_color = VEC4(1, 1, 1, 1);
 			cb_object.updateGPU();
 
@@ -158,7 +173,7 @@ namespace Particles {
 			cb_particles.particle_color = p.color;
 			cb_particles.updateGPU();
 
-			quadMesh->activateAndRender();
+			particleMesh->activateAndRender();
 		}
 	}
 

@@ -43,5 +43,16 @@
 				"core" : "data/particles/sparks.particles"
 			}
 		}
+	},
+	{
+		"entity": {
+			"name": "particles_test_mesh",
+			"transform": {
+				"pos": "-23.461 0.4 -51"
+			},
+			"particles" : {
+				"core" : "data/particles/test_mesh.particles"
+			}
+		}
 	}
 ]

@@ -59,6 +59,10 @@ namespace Particles {
         cps->render.numFrames = render.value("num_frames", cps->render.numFrames);
         cps->render.frameSpeed = render.value("frame_speed", cps->render.frameSpeed);
         cps->render.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
+		dbg("eaea\n");
+		if (render.count("mesh")) {
+			cps->render.mesh = Resources.get(render.value("mesh", ""))->as<CRenderMesh>();
+		}
         // color
         const json& color = data["color"];
         cps->color.opacity = color.value("opacity", cps->color.opacity);

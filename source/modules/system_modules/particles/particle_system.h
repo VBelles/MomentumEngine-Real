@@ -32,6 +32,7 @@ namespace Particles {
 		};
 		struct TRender {
 			const CTexture* texture = nullptr; // particle texture
+			const CRenderMesh* mesh = nullptr; // particle mesh (optional)
 			VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
 			int numFrames = 1;                 // number of animation frames
 			int initialFrame = 0;              // initial frame
