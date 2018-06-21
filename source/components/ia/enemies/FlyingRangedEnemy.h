@@ -24,7 +24,7 @@ private:
 	float recallDistanceSqrd = 28.f;
 
 	float attackFov = deg2rad(60);
-	float minCombatDistanceSqrd = 2.f;
+	float minCombatDistanceSqrd = 0.01f;
 	float maxCombatDistanceSqrd = 20.f;
 	float attackCooldown = 7.f;
 	float attackDamage = 1.f;

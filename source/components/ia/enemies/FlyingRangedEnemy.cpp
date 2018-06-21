@@ -44,11 +44,11 @@ CBehaviorTreeFlyingRangedEnemy::CBehaviorTreeFlyingRangedEnemy()
 
 	addChild("flyingRangedEnemy", "stunned", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::stunCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::stunned);
 
+	addChild("flyingRangedEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::returnToSpawn);
+
 	addChild("flyingRangedEnemy", "melee", Sequence, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::meleeAttackCondition, nullptr);
 	addChild("melee", "onMeleeAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::onMeleeAttack);
 	addChild("melee", "meleeAttack", Action, nullptr, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::meleeAttack);
-
-	addChild("flyingRangedEnemy", "returnToSpawn", Action, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::returnToSpawnCondition, (BehaviorTreeAction)&CBehaviorTreeFlyingRangedEnemy::returnToSpawn);
 
 	CBehaviorTreeNodeRandom *node = (CBehaviorTreeNodeRandom*)addChild("flyingRangedEnemy", "combat", Random, (BehaviorTreeCondition)&CBehaviorTreeFlyingRangedEnemy::combatCondition, nullptr);
 	addChild("combat", "idleWar", Sequence, nullptr, nullptr);
