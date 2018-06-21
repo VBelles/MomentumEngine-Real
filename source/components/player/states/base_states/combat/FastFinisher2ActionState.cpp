@@ -18,6 +18,7 @@ FastFinisher2ActionState::FastFinisher2ActionState(StateManager * stateManager) 
 	animationEndTime = frames2sec(40);
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(60);
+	walkableTime = frames2sec(65);
 	hitbox = "fast_finisher2";
 }
 
@@ -52,6 +53,13 @@ void FastFinisher2ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
+}
+
+void FastFinisher2ActionState::setMovementInput(VEC2 input) {
+	IActionState::setMovementInput(input);
+	if (input.Length() > PAD_DEAD_ZONE) {
+		if (canWalk()) stateManager->changeState(Walk);
+	}
 }
 
 void FastFinisher2ActionState::onDodgeButton() {

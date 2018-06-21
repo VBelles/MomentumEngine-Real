@@ -17,6 +17,7 @@ ReleasePowerGroundActionState::ReleasePowerGroundActionState(StateManager* state
 	AttackState(stateManager) {
 	cancelableTime = frames2sec(6);
 	interruptibleTime = frames2sec(43);
+	walkableTime = frames2sec(60);
 	invulnerabilityStartTime = frames2sec(7);
 	invulnerabilityEndTime = frames2sec(10);
 	superarmorStartTime = frames2sec(0);
@@ -90,6 +91,13 @@ void ReleasePowerGroundActionState::onStateExit(IActionState * nextState) {
 	getHitboxes()->disable(bigHitbox);
 	getBlurRadial()->setEnable(false);
 	getSkeleton()->removeAction(animation, 0.2f);
+}
+
+void ReleasePowerGroundActionState::setMovementInput(VEC2 input) {
+	IActionState::setMovementInput(input);
+	if (input.Length() > PAD_DEAD_ZONE) {
+		if (canWalk()) stateManager->changeState(Walk);
+	}
 }
 
 void ReleasePowerGroundActionState::onDodgeButton() {

@@ -16,8 +16,9 @@ StrongAttack3ActionState::StrongAttack3ActionState(StateManager * stateManager) 
 	hitboxOutTime = frames2sec(18);
 	hitEndTime = frames2sec(17);
 	animationEndTime = frames2sec(50);
-	cancelableTime = frames2sec(20);
-	interruptibleTime = frames2sec(85);
+	cancelableTime = frames2sec(17);
+	interruptibleTime = frames2sec(70);
+	walkableTime = frames2sec(80);
 	hitbox = "strong_attack3";
 }
 
@@ -52,6 +53,13 @@ void StrongAttack3ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
+}
+
+void StrongAttack3ActionState::setMovementInput(VEC2 input) {
+	IActionState::setMovementInput(input);
+	if (input.Length() > PAD_DEAD_ZONE) {
+		if (canWalk()) stateManager->changeState(Walk);
+	}
 }
 
 void StrongAttack3ActionState::onDodgeButton() {

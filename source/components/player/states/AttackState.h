@@ -21,6 +21,7 @@ protected:
 	CTimer cancelTimer;
 	float cancelableTime;
 	float interruptibleTime;
+	float walkableTime = frames2sec(120.f);
 
 	CTimer invulnerableTimer;
 	float invulnerabilityStartTime;
@@ -42,6 +43,7 @@ public:
 	void onStateExit(IActionState* nextState);
 	bool isCancelable();
 	bool isInterruptible();
+	bool canWalk();
 	bool hasInvulnerability();
 	bool hasSuperArmor();
 };

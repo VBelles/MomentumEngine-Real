@@ -63,6 +63,13 @@ bool AttackState::isInterruptible() {
 	return false;
 }
 
+bool AttackState::canWalk() {
+	if (cancelTimer.elapsed() >= walkableTime) {
+		return true;
+	}
+	return false;
+}
+
 bool AttackState::hasInvulnerability() {
 	if (invulnerableTimer.elapsed() >= invulnerabilityStartTime && invulnerableTimer.elapsed() < invulnerabilityEndTime) {
 		return true;

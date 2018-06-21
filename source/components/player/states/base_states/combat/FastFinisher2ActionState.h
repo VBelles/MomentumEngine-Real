@@ -22,6 +22,7 @@ public:
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
+	void setMovementInput(VEC2 input) override;
 	void onJumpHighButton() override {}
 	void onJumpLongButton() override {}
 	void onStrongAttackButton() override {}

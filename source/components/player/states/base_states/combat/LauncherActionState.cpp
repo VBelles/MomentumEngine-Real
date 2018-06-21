@@ -18,6 +18,7 @@ LauncherActionState::LauncherActionState(StateManager* stateManager, State state
 	animationEndTime = frames2sec(17);
 	cancelableTime = frames2sec(4);
 	interruptibleTime = frames2sec(25);
+	walkableTime = frames2sec(30);
 	this->hitbox = constructorHitbox;
 }
 
@@ -37,6 +38,13 @@ void LauncherActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
+}
+
+void LauncherActionState::setMovementInput(VEC2 input) {
+	IActionState::setMovementInput(input);
+	if (input.Length() > PAD_DEAD_ZONE) {
+		if (canWalk()) stateManager->changeState(Walk);
+	}
 }
 
 void LauncherActionState::onDodgeButton() {

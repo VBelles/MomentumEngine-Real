@@ -18,6 +18,7 @@ StrongAttack2ActionState::StrongAttack2ActionState(StateManager * stateManager) 
 	animationEndTime = frames2sec(50);
 	cancelableTime = frames2sec(2);
 	interruptibleTime = frames2sec(30);
+	walkableTime = frames2sec(55);
 	hitbox = "strong_attack2";
 }
 
@@ -60,6 +61,13 @@ void StrongAttack2ActionState::onStrongAttackButton() {
 
 void StrongAttack2ActionState::onFastAttackButton() {
 	if (isInterruptible()) stateManager->changeState(FastFinisher2);
+}
+
+void StrongAttack2ActionState::setMovementInput(VEC2 input) {
+	IActionState::setMovementInput(input);
+	if (input.Length() > PAD_DEAD_ZONE) {
+		if (canWalk()) stateManager->changeState(Walk);
+	}
 }
 
 void StrongAttack2ActionState::onDodgeButton() {
