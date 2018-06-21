@@ -10,12 +10,16 @@
 #include "components/player/states/StateManager.h"
 
 
-PropelHighActionState::PropelHighActionState(StateManager* stateManager): 
-	AirborneActionState(stateManager, PropelHigh){
+PropelHighActionState::PropelHighActionState(StateManager* stateManager) :
+	AirborneActionState(stateManager, PropelHigh) {
 }
 
 
-void PropelHighActionState::update (float delta) {
+void PropelHighActionState::update(float delta) {
+	if (!propelTarget.isValid()) {
+		stateManager->changeState(AirborneNormal);
+		return;
+	}
 	deltaMovement = VEC3::Zero;
 	//deltaMovement.y = velocityVector->y * delta;
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
@@ -53,13 +57,18 @@ void PropelHighActionState::update (float delta) {
 void PropelHighActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	propelTarget = getPlayerModel()->grabTarget;
-	CEntity* targetEntity = propelTarget;
-	TCompTransform* targetTransform = targetEntity->get<TCompTransform>();
-	movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - getPlayerTransform()->getPosition();
-	movingVelocity /= endingTime;
-	timer.reset();
-	getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	if (propelTarget.isValid()) {
+		CEntity* targetEntity = propelTarget;
+		TCompTransform* targetTransform = targetEntity->get<TCompTransform>();
+		movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - getPlayerTransform()->getPosition();
+		movingVelocity /= endingTime;
+		timer.reset();
+		getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
+		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	}
+	else {
+		stateManager->changeState(AirborneNormal);
+	}
 }
 
 void PropelHighActionState::onStateExit(IActionState * nextState) {
