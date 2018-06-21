@@ -37,6 +37,7 @@ void TCompSlash::load(const json& j, TEntityParseContext& ctx) {
 	duration = j.value("duration", duration);
 	texture = Resources.get(j.value("texture", ""))->as<CTexture>();
 	fadeoutMultiplier = j.value("fadeout_multiplier", fadeoutMultiplier);
+	color = j.count("color") ? loadVEC4(j["color"]) : color;
 }
 
 void TCompSlash::onAllScenesCreated(const TMsgAllScenesCreated& msg) {

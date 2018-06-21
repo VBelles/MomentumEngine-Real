@@ -13,7 +13,8 @@
                 "duration": 0.6,
                 "min_vertex_distance": 0.05,
                 "max_vertex": 500,
-                "fadeout_multiplier": 1
+                "fadeout_multiplier": 1,
+                "color": "1 1 1 1"
             }
         }
     }

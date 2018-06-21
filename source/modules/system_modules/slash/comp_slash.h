@@ -41,7 +41,7 @@ private:
 
 	std::list<TControlPoint> points;
 
-	bool emitting; //For deferred disabling 
+	bool emitting; //For deferred disabling
 
 	void clearMesh();
 	TCompTransform* getTargetTransform();
