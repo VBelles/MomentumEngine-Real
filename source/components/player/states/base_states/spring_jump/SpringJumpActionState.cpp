@@ -23,7 +23,6 @@ void SpringJumpActionState::update(float delta) {
 
 void SpringJumpActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	getSkeleton()->removeAction("landing_hard", 0.05f);
 	getSkeleton()->blendCycle(animationFalling, 0.1f, 0.1f);
 	getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 }
