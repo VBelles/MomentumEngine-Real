@@ -3,7 +3,7 @@
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/player/states/StateManager.h"
-#include "components/comp_slash.h"
+#include "modules/system_modules/slash/comp_slash.h"
 
 
 AttackState::AttackState(StateManager* stateManager) {

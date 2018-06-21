@@ -13,7 +13,7 @@
 #include "modules/system_modules/module_multithread.h"
 #include "modules/system_modules/module_uniques.h"
 #include "modules/system_modules/particles/module_particles.h"
-#include "modules/system_modules/module_slash.h"
+#include "modules/system_modules/slash/module_slash.h"
 
 class CEngine {
 public:

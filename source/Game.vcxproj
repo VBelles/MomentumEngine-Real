@@ -118,7 +118,7 @@
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
-    <ClCompile Include="components\comp_slash.cpp" />
+    <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
     <ClCompile Include="components\comp_sun.cpp" />
     <ClCompile Include="components\lights\comp_light_flicker.cpp" />
     <ClCompile Include="components\player\states\base_states\SoftLandingActionState.cpp" />
@@ -300,7 +300,7 @@
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll_core.cpp" />
-    <ClCompile Include="modules\system_modules\module_slash.cpp" />
+    <ClCompile Include="modules\system_modules\slash\module_slash.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_loader.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
@@ -376,7 +376,7 @@
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_name.h" />
-    <ClInclude Include="components\comp_slash.h" />
+    <ClInclude Include="modules\system_modules\slash\comp_slash.h" />
     <ClInclude Include="components\comp_sun.h" />
     <ClInclude Include="components\lights\comp_light_flicker.h" />
     <ClInclude Include="components\player\states\base_states\SoftLandingActionState.h" />
@@ -572,7 +572,7 @@
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll_core.h" />
-    <ClInclude Include="modules\system_modules\module_slash.h" />
+    <ClInclude Include="modules\system_modules\slash\module_slash.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_loader.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
