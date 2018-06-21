@@ -544,8 +544,8 @@ struct TSceneExporter (
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
 			local xRot = attrManager.getAttributeValue obj "rotateData" #x
-			local yRot = attrManager.getAttributeValue obj "rotateData" #y
-			local zRot = attrManager.getAttributeValue obj "rotateData" #z
+			local yRot = attrManager.getAttributeValue obj "rotateData" #z -- !!! inverted.
+			local zRot = attrManager.getAttributeValue obj "rotateData" #y -- !!! inverted.
 
 			rotAxis = Point3 xRot yRot zRot
 			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed

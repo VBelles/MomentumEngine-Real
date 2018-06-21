@@ -4,5 +4,6 @@ mcv_scripts_path += "/../"
 --filein (mcv_scripts_path + "export_scene.ms")
 --filein (mcv_scripts_path + "export_skeletons.ms")
 filein (mcv_scripts_path + "export_ui.ms")
+filein (mcv_scripts_path + "add-attributes.ms")
 --filein (mcv_scripts_path + "export_scene.ms")
 --filein (mcv_scripts_path + "export_ui.ms")
