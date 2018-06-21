@@ -16,7 +16,7 @@ HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stat
 	animationEndTime = frames2sec(26);
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(40);
-	walkableTime = frames2sec(52);
+	walkableTime = frames2sec(44);
 }
 
 void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
