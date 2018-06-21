@@ -6,6 +6,8 @@
     "albedo": "data/textures/escultura_difuso.dds",
     "normal": "data/textures/escultura_normals.dds",
     "metallic": "data/textures/escultura_metallic.dds",
-    "roughness": "data/textures/escultura_roughness.dds"
+    "roughness": "data/textures/escultura_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/null_height.dds"
   }
 }

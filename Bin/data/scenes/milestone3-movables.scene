@@ -2,6 +2,343 @@
   {
     "entity":
     {
+      "name": "ms3_rotateTriang003",
+      "transform":
+      {
+        "pos": "-627.351 217.62 -896.639",
+        "rotation": "-0.612373 0.612372 -0.353554 -0.353553"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotateTriang003.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotateTriang004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 1.0 0.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Cylinder142",
+      "transform":
+      {
+        "pos": "-638.834 187.651 -880.738",
+        "rotation": "0.0 -0.843391 0.0 -0.5373"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_Cylinder142.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_Cylinder143.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.690972,
+        "travel_wait_time": 0.0,
+        "speed": 0.4,
+        "knots":
+        [
+           "-632.471 187.987 -881.155",
+           "-629.659 187.987 -875.125",
+           "-629.659 187.987 -875.125",
+           "-626.441 187.987 -883.966",
+           "-635.283 187.987 -887.185",
+           "-638.501 187.987 -878.343",
+           "-638.501 187.987 -878.343"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotateTriang001",
+      "transform":
+      {
+        "pos": "-605.281 125.566 -871.048",
+        "rotation": "-0.706434 0.379928 -0.0308437 -0.596368"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotateTriang001.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotateTriang002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Cylinder137",
+      "transform":
+      {
+        "pos": "-624.766 182.685 -882.246",
+        "rotation": "0.0 -0.843391 0.0 -0.5373"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_Cylinder137.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_Cylinder141.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.690972,
+        "travel_wait_time": 0.0,
+        "speed": 0.04,
+        "knots":
+        [
+           "-618.403 183.021 -882.663",
+           "-615.591 183.021 -876.633",
+           "-615.591 183.021 -876.633",
+           "-612.373 183.021 -885.475",
+           "-621.215 183.021 -888.693",
+           "-624.433 183.021 -879.851",
+           "-624.433 183.021 -879.851"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Cylinder136",
+      "transform":
+      {
+        "pos": "-611.891 182.685 -882.898",
+        "rotation": "0.0 0.5373 0.0 -0.843392"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_Cylinder136.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_Cylinder140.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.186317,
+        "travel_wait_time": 0.0,
+        "speed": 0.04,
+        "knots":
+        [
+           "-618.403 183.021 -882.663",
+           "-615.591 183.021 -876.633",
+           "-615.591 183.021 -876.633",
+           "-612.373 183.021 -885.474",
+           "-621.215 183.021 -888.693",
+           "-624.433 183.021 -879.851",
+           "-624.433 183.021 -879.851"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Cylinder135",
+      "transform":
+      {
+        "pos": "-618.075 182.685 -876.172",
+        "rotation": "0.0 -0.976296 0.0 0.21644"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_Cylinder135.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_Cylinder139.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.938588,
+        "travel_wait_time": 0.0,
+        "speed": 0.04,
+        "knots":
+        [
+           "-618.403 183.021 -882.663",
+           "-615.591 183.021 -876.633",
+           "-615.591 183.021 -876.633",
+           "-612.373 183.021 -885.475",
+           "-621.215 183.021 -888.693",
+           "-624.433 183.021 -879.851",
+           "-624.433 183.021 -879.851"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Cylinder134",
+      "transform":
+      {
+        "pos": "-618.67 182.685 -888.96",
+        "rotation": "0.0 -0.21644 0.0 -0.976296"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_Cylinder134.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_Cylinder138.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.437303,
+        "travel_wait_time": 0.0,
+        "speed": 0.04,
+        "knots":
+        [
+           "-618.403 183.021 -882.663",
+           "-615.591 183.021 -876.633",
+           "-615.591 183.021 -876.633",
+           "-612.373 183.021 -885.474",
+           "-621.215 183.021 -888.693",
+           "-624.433 183.021 -879.851",
+           "-624.433 183.021 -879.851"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_rotate024",
       "transform":
       {
