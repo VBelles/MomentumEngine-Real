@@ -48,7 +48,8 @@ namespace Particles {
         const json& movement = data["movement"];
         cps->movement.velocity = movement.value("velocity", cps->movement.velocity);
         cps->movement.acceleration = movement.value("acceleration", cps->movement.acceleration);
-        cps->movement.spin = deg2rad(movement.value("spin", rad2deg(cps->movement.spin)));
+		cps->movement.spin = deg2rad(movement.value("spin", rad2deg(cps->movement.spin)));
+		cps->movement.spin_axis = movement.count("spin_axis") ? loadVEC3(movement["spin_axis"]) : cps->movement.spin_axis;
         cps->movement.wind = movement.value("wind", cps->movement.wind);
         cps->movement.gravity = movement.value("gravity", cps->movement.gravity);
         cps->movement.ground = movement.value("ground", cps->movement.ground);
@@ -59,10 +60,7 @@ namespace Particles {
         cps->render.numFrames = render.value("num_frames", cps->render.numFrames);
         cps->render.frameSpeed = render.value("frame_speed", cps->render.frameSpeed);
         cps->render.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
-		dbg("eaea\n");
-		if (render.count("mesh")) {
-			cps->render.mesh = Resources.get(render.value("mesh", ""))->as<CRenderMesh>();
-		}
+		cps->render.mesh = render.count("mesh") ? Resources.get(render.value("mesh", ""))->as<CRenderMesh>() : nullptr;
         // color
         const json& color = data["color"];
         cps->color.opacity = color.value("opacity", cps->color.opacity);

@@ -16,6 +16,7 @@
       "velocity" : 0.0,
       "acceleration" : 0.0,
       "spin" : 360.0,
+      "spin_axis":  "0 1 0",
       "wind" : 0.0,
       "gravity" : -0.1
   },

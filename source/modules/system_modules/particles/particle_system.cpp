@@ -96,7 +96,13 @@ namespace Particles {
 				p.velocity += kGravity * _core->movement.gravity * delta;
 				p.position += p.velocity * delta;
 				p.position += kWindVelocity * _core->movement.wind * delta;
-				p.rotation += _core->movement.spin * delta;
+				if (!_core->render.mesh) { //Billboard particle
+					p.rotation += _core->movement.spin * delta;
+				}
+				else { //Mesh particle
+					QUAT quat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, _core->movement.spin * delta);
+					p.rotationQuat *=  quat;
+				}
 				if (_core->movement.ground) {
 					p.position.y = std::max(0.f, p.position.y);
 				}
@@ -156,7 +162,7 @@ namespace Particles {
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else {
-				CTransform transform(p.position, QUAT::CreateFromAxisAngle(VEC3(1, 1, 1), p.rotation));
+				CTransform transform(p.position, p.rotationQuat);
 				cb_object.obj_world = transform.asMatrix();
 			}
 			
