@@ -11,6 +11,12 @@
 
 HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stateManager) :
 	LauncherActionState(stateManager, HorizontalLauncher, "horizontal_launcher", "horizontal_launcher") {
+	hitboxOutTime = frames2sec(22);
+	hitEndTime = frames2sec(12);
+	animationEndTime = frames2sec(26);
+	cancelableTime = frames2sec(15);
+	interruptibleTime = frames2sec(40);
+	walkableTime = frames2sec(52);
 }
 
 void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
