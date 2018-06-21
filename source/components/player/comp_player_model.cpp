@@ -12,6 +12,7 @@
 #include "components/player/comp_collectable_manager.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
+#include "components/player/states/base_states/moving_around/RunActionState.h"
 #include "components/player/states/StateManager.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
@@ -109,6 +110,8 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 
 	TCompRender *render = get<TCompRender>();
 	render->setAllMaterials(0, (int)render->meshes.size() / 2, materials[msg.powerLvl - 1]);
+
+	getStateManager()->getState<RunActionState>(Run)->setAnimation(msg.powerLvl);
 
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
