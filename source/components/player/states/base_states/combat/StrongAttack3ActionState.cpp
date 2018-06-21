@@ -15,7 +15,7 @@ StrongAttack3ActionState::StrongAttack3ActionState(StateManager * stateManager) 
 	AttackState(stateManager) {
 	hitboxOutTime = frames2sec(18);
 	hitEndTime = frames2sec(17);
-	animationEndTime = frames2sec(50);
+	animationEndTime = frames2sec(70);
 	cancelableTime = frames2sec(17);
 	interruptibleTime = frames2sec(70);
 	walkableTime = frames2sec(80);
