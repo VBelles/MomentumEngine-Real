@@ -10,7 +10,9 @@ private:
 	float beginLauncherTime = frames2sec(20);
 
 	float powerToGet = 3000.f;
-	float damage = 5.f;
+	float damage = 2.f;
+	float suspensionTime = 0.5f;
+	VEC2 launchSpeed = {15.f, 3.f};
 
 	std::string animation = "fast_finisher2";
 

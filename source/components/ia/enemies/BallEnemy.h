@@ -16,15 +16,15 @@ struct TMsgAttackHit;
 class CBehaviorTreeBallEnemy : public IBehaviorTree, public TCompBase {
 	DECL_SIBLING_ACCESS();
 private:
-	float maxHealth = 5.f;
+	float maxHealth = 300.f;
 	float health = maxHealth;
-	float movementSpeed = 2.0f;
-	float stepBackSpeed = 2.5f;
-	float rotationSpeed;
+	float movementSpeed = 2.5f;
+	float stepBackSpeed = 3.5f;
+	float rotationSpeed = 20.f;
 
-	float recallDistanceSqrd = 28.f;
+	float recallDistanceSqrd = 784.f;
 
-	float chaseFov = deg2rad(60);
+	float chaseFov;
 	float fovChaseDistanceSqrd = 25.f;
 	float smallChaseRadiusSqrd = 10.f;
 

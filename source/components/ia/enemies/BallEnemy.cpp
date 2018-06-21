@@ -69,12 +69,12 @@ CBehaviorTreeBallEnemy::CBehaviorTreeBallEnemy()
 }
 
 void CBehaviorTreeBallEnemy::load(const json& j, TEntityParseContext& ctx) {
-	maxHealth = j.value("maxHealth", 5.0f);
+	maxHealth = j.value("maxHealth", maxHealth);
 	health = maxHealth;
-	movementSpeed = j.value("movementSpeed", 2.5f);
-	stepBackSpeed = j.value("stepBackSpeed", 3.5f);
-	rotationSpeed = j.value("rotationSpeed", 20.f);
-	recallDistanceSqrd = j.value("recallDistanceSqrd", 784.f);
+	movementSpeed = j.value("movementSpeed", movementSpeed);
+	stepBackSpeed = j.value("stepBackSpeed", stepBackSpeed);
+	rotationSpeed = j.value("rotationSpeed", rotationSpeed);
+	recallDistanceSqrd = j.value("recallDistanceSqrd", recallDistanceSqrd);
 	chaseFov = deg2rad(j.value("chaseFov", 60.f));
 	fovChaseDistanceSqrd = j.value("fovChaseDistanceSqrd", 625.f);
 	smallChaseRadiusSqrd = j.value("smallChaseRadiusSqrd", 100.f);
@@ -83,7 +83,7 @@ void CBehaviorTreeBallEnemy::load(const json& j, TEntityParseContext& ctx) {
 	maxCombatDistanceSqrd = j.value("maxCombatDistanceSqrd", 6.25f);
 	attackCooldown = j.value("attackCooldown", 2.f);
 	attackDamage = j.value("attackDamage", 1.f);
-	propelDuration = j.value("propelDuration", 1.5f);
+	propelDuration = j.value("propelDuration", propelDuration);
 	gravity = j.value("gravity", -55.f);
 	if (j.count("maxVelocity")) {
 		maxVelocity = loadVEC3(j["maxVelocity"]);

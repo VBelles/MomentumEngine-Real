@@ -12,7 +12,7 @@ FastAttack2ActionState::FastAttack2ActionState(StateManager* stateManager)
 	: GroundedActionState(stateManager, FastAttack2),
 	AttackState(stateManager) {
 	cancelableTime = frames2sec(9);;
-	interruptibleTime = frames2sec(30);
+	interruptibleTime = frames2sec(26);
 }
 
 void FastAttack2ActionState::update(float delta) {

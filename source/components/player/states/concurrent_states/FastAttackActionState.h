@@ -8,7 +8,7 @@ private:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(10);
 	float hitEndTime = frames2sec(15);
-	float animationEndTime = frames2sec(25);
+	float animationEndTime = frames2sec(40);
 	float beginLauncherTime = frames2sec(15);
 
 	AttackPhases phase = AttackPhases::Launch;

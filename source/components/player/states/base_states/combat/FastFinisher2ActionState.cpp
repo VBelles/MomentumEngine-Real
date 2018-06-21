@@ -18,7 +18,7 @@ FastFinisher2ActionState::FastFinisher2ActionState(StateManager * stateManager) 
 	animationEndTime = frames2sec(40);
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(60);
-	hitbox = "strong_attack";
+	hitbox = "fast_finisher2";
 }
 
 void FastFinisher2ActionState::update(float delta) {
@@ -65,6 +65,12 @@ void FastFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
+	VEC3 launchVelocity = getPlayerTransform()->getFront() * launchSpeed.x;
+	launchVelocity.y = launchSpeed.y;
+	msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+		suspensionTime,
+		launchVelocity
+	};
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAtackHit);

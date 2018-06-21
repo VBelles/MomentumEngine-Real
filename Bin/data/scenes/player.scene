@@ -167,7 +167,7 @@
 					{
 						"name": "strong_attack",
 						"shape": "sphere",
-						"radius": 0.8,
+						"radius": 1.2,
 						"group": [
 							"player"
 						],
@@ -175,6 +175,30 @@
 							"enemy"
 						],
 						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "strong_attack2",
+						"shape": "sphere",
+						"radius": 1.2,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "strong_attack3",
+						"shape": "sphere",
+						"radius": 2.1,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 Pelvis"
 					},
 					{
 						"name": "fast_attack",
@@ -189,9 +213,69 @@
 						"bone": "Bip001 R Hand"
 					},
 					{
+						"name": "fast_attack2",
+						"shape": "sphere",
+						"radius": 0.7,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "strong_finisher1",
+						"shape": "sphere",
+						"radius": 0.8,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Foot"
+					},
+					{
+						"name": "strong_finisher2",
+						"shape": "sphere",
+						"radius": 0.8,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "fast_finisher1",
+						"shape": "sphere",
+						"radius": 1.2,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "fast_finisher2",
+						"shape": "sphere",
+						"radius": 1.2,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Hand"
+					},
+					{
 						"name": "horizontal_launcher",
 						"shape": "sphere",
-						"radius": 0.9,
+						"radius": 1.2,
 						"group": [
 							"player"
 						],
@@ -203,7 +287,7 @@
 					{
 						"name": "vertical_launcher",
 						"shape": "sphere",
-						"radius": 0.9,
+						"radius": 1.2,
 						"group": [
 							"player"
 						],

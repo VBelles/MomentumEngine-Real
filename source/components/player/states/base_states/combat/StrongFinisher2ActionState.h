@@ -7,10 +7,8 @@ class StrongFinisher2ActionState : public GroundedActionState, public AttackStat
 private:
 	//parameters set in constructor
 
-	float beginLauncherTime = frames2sec(20);
-
 	float powerToGet = 3000.f;
-	float damage = 5.f;
+	float damage = 3.f;
 
 	std::string animation = "strong_finisher2";
 

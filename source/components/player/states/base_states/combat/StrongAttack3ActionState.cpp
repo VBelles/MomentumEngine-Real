@@ -13,12 +13,12 @@
 StrongAttack3ActionState::StrongAttack3ActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, StrongAttack3),
 	AttackState(stateManager) {
-	hitboxOutTime = frames2sec(25);
-	hitEndTime = frames2sec(10);
+	hitboxOutTime = frames2sec(18);
+	hitEndTime = frames2sec(17);
 	animationEndTime = frames2sec(50);
 	cancelableTime = frames2sec(20);
 	interruptibleTime = frames2sec(85);
-	hitbox = "strong_attack";
+	hitbox = "strong_attack3";
 }
 
 void StrongAttack3ActionState::update(float delta) {
@@ -60,11 +60,20 @@ void StrongAttack3ActionState::onDodgeButton() {
 
 void StrongAttack3ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = CHandle(stateManager->getEntity());
-	CEntity *otherEntity = entity;
+	CEntity* otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
+	TCompTransform* otherTransform = otherEntity->get<TCompTransform>();
+	VEC3 launchVelocity = otherTransform->getPosition() - getPlayerTransform()->getPosition();
+	launchVelocity.Normalize();
+	launchVelocity *= launchSpeed.x;
+	launchVelocity.y = launchSpeed.y;
+	msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+		suspensionTime,
+		launchVelocity
+	};
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAtackHit);

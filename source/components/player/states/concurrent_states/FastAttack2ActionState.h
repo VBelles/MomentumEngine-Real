@@ -8,7 +8,7 @@ private:
 	CTimer timer;
 	float hitboxOutTime = frames2sec(10);
 	float hitEndTime = frames2sec(15);
-	float animationEndTime = frames2sec(25);
+	float animationEndTime = frames2sec(40);
 	float beginLauncherTime = frames2sec(15);
 
 	AttackPhases phase = AttackPhases::Launch;
@@ -17,7 +17,7 @@ private:
 	float powerToGet = 2000.f;
 
 	std::string animation = "fast_attack2";
-	std::string hitbox = "fast_attack";
+	std::string hitbox = "fast_attack2";
 
 public:
 	FastAttack2ActionState(StateManager* stateManager);

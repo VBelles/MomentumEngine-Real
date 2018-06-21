@@ -18,7 +18,7 @@ StrongFinisher1ActionState::StrongFinisher1ActionState(StateManager * stateManag
 	animationEndTime = frames2sec(30);
 	cancelableTime = frames2sec(20);
 	interruptibleTime = frames2sec(60);
-	hitbox = "strong_attack";
+	hitbox = "strong_finisher1";
 }
 
 void StrongFinisher1ActionState::update(float delta) {

@@ -18,7 +18,7 @@ StrongAttack2ActionState::StrongAttack2ActionState(StateManager * stateManager) 
 	animationEndTime = frames2sec(50);
 	cancelableTime = frames2sec(2);
 	interruptibleTime = frames2sec(30);
-	hitbox = "strong_attack";
+	hitbox = "strong_attack2";
 }
 
 void StrongAttack2ActionState::update(float delta) {

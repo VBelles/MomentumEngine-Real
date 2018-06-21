@@ -10,7 +10,7 @@ private:
 	float beginLauncherTime = frames2sec(20);
 	
 	float powerToGet = 3000.f;
-	float damage = 5.f;
+	float damage = 2.f;
 
 	std::string animation = "strong_attack";
 
