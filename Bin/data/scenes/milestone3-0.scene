@@ -2,6 +2,48 @@
   {
     "entity":
     {
+      "name": "ms3_escalera_rota005",
+      "transform":
+      {
+        "pos": "-609.92 228.246 -875.897",
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_escalera_rota005.mesh",
+          "materials":
+          [
+            "data/materials/Escalera_Rota.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_platf017",
+      "transform":
+      {
+        "pos": "-605.57 245.152 -876.862",
+        "rotation": "0.0 0.5373 0.0 -0.843391"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf017.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_escaleraGrande001",
       "transform":
       {
@@ -257,8 +299,8 @@
       "name": "ms3_escultura_gigante001",
       "transform":
       {
-        "pos": "-149.947 223.53 -1167.3",
-        "rotation": "0.0805214 0.381227 0.033353 -0.920364"
+        "pos": "-146.031 237.304 -1174.48",
+        "rotation": "0.0 0.0436194 0.0 -0.999048"
       },
       "render":
       [
