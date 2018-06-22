@@ -13,12 +13,12 @@
 StrongFinisher1ActionState::StrongFinisher1ActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, StrongFinisher1),
 	AttackState(stateManager) {
-	hitboxOutTime = frames2sec(25);
-	hitEndTime = frames2sec(20);
-	animationEndTime = frames2sec(30);
-	cancelableTime = frames2sec(20);
-	interruptibleTime = frames2sec(60);
-	walkableTime = frames2sec(70);
+	hitboxOutTime = frames2sec(33);
+	hitEndTime = frames2sec(19);
+	animationEndTime = frames2sec(48);
+	cancelableTime = frames2sec(15);
+	interruptibleTime = frames2sec(70);
+	walkableTime = frames2sec(80);
 	hitbox = "strong_finisher1";
 }
 
@@ -75,5 +75,9 @@ void StrongFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entit
 	msgAtackHit.info = {};
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
+	msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
+		suspensionTime,
+		getPlayerModel()->getPowerStats()->jumpVelocityVector
+	};
 	otherEntity->sendMsg(msgAtackHit);
 }

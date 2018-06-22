@@ -13,12 +13,12 @@
 FastFinisher1ActionState::FastFinisher1ActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, FastFinisher1),
 	AttackState(stateManager) {
-	hitboxOutTime = frames2sec(20);
-	hitEndTime = frames2sec(10);
-	animationEndTime = frames2sec(30);
-	cancelableTime = frames2sec(9);
+	hitboxOutTime = frames2sec(24);
+	hitEndTime = frames2sec(11);
+	animationEndTime = frames2sec(85);
+	cancelableTime = frames2sec(5);
 	interruptibleTime = frames2sec(50);
-	walkableTime = frames2sec(55);
+	walkableTime = frames2sec(54);
 	hitbox = "fast_finisher1";
 }
 
@@ -73,10 +73,6 @@ void FastFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
-	msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
-		suspensionTime,
-		getPlayerModel()->getPowerStats()->jumpVelocityVector
-	};
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAtackHit);

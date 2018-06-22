@@ -13,12 +13,12 @@
 FastFinisher2ActionState::FastFinisher2ActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, FastFinisher2),
 	AttackState(stateManager) {
-	hitboxOutTime = frames2sec(20);
-	hitEndTime = frames2sec(10);
-	animationEndTime = frames2sec(40);
-	cancelableTime = frames2sec(15);
-	interruptibleTime = frames2sec(60);
-	walkableTime = frames2sec(65);
+	hitboxOutTime = frames2sec(30);
+	hitEndTime = frames2sec(13);
+	animationEndTime = frames2sec(65);
+	cancelableTime = frames2sec(3);
+	interruptibleTime = frames2sec(48);
+	walkableTime = frames2sec(53);
 	hitbox = "fast_finisher2";
 }
 

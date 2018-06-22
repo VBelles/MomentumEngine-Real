@@ -9,6 +9,7 @@ private:
 
 	float powerToGet = 3000.f;
 	float damage = 3.f;
+	float suspensionTime = 1.5f;
 
 	std::string animation = "strong_finisher1";
 

@@ -11,7 +11,6 @@ private:
 
 	float powerToGet = 3000.f;
 	float damage = 2.f;
-	float suspensionTime = 1.5f;
 
 	std::string animation = "fast_finisher1";
 
