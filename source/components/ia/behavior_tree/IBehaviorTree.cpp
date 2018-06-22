@@ -73,42 +73,37 @@ void IBehaviorTree::setCurrent(IBehaviorTreeNode *newCurrent) {
 }
 
 void IBehaviorTree::addCondition(std::string conditionName, BehaviorTreeCondition condition) {
-	if (conditions.find(conditionName) != conditions.end()) {
-		printf("Error: node %s already has a condition\n", conditionName.c_str());
-	}
-	else {
-		conditions[conditionName] = condition;
+	auto res = conditions.emplace(conditionName, condition);
+	if (!res.second) {
+		dbg("Error: node %s already has an action\n", conditionName.c_str());
 	}
 }
 
 bool IBehaviorTree::testCondition(std::string conditionName, float delta) {
 	PROFILE_FUNCTION("testCondition");
-	if (conditions.find(conditionName) == conditions.end()) {
-		return true;	// error: no condition defined, we assume TRUE
+	auto it = conditions.find(conditionName);
+	if (it == conditions.end()) {
+		dbg("ERROR: Missing node action for node %s\n", conditionName.c_str());
+		return Leave; // error: action does not exist
 	}
-	else {
-		return (this->*conditions[conditionName])(delta);
-	}
+	return (this->*it->second)(delta);
 }
 
 void IBehaviorTree::addAction(std::string actionName, BehaviorTreeAction action) {
-	if (actions.find(actionName) != actions.end()) {
-		printf("Error: node %s already has an action\n", actionName.c_str());
-	}
-	else {
-		actions[actionName] = action;
+	auto res = actions.emplace(actionName, action);
+	if (!res.second) {
+		dbg("Error: node %s already has an action\n", actionName.c_str());
 	}
 }
 
 int IBehaviorTree::execAction(std::string actionName, float delta) {
 	PROFILE_FUNCTION("execAction");
-	if (actions.find(actionName) == actions.end()) {
-		printf("ERROR: Missing node action for node %s\n", actionName.c_str());
+	auto it = actions.find(actionName);
+	if (it == actions.end()) {
+		dbg("ERROR: Missing node action for node %s\n", actionName.c_str());
 		return Leave; // error: action does not exist
 	}
-	else {
-		return (this->*actions[actionName])(delta);
-	}
+	return (this->*it->second)(delta);
 }
 
 void IBehaviorTree::recalc(float delta) {
