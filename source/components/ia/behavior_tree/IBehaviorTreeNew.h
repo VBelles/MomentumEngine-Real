@@ -1,21 +1,20 @@
 #pragma once
 
-
 #include "nodes/IBehaviorTreeNode.h"
 #include "nodes/BehaviorTreeNodeRandom.h"
 #include "nodes/BehaviorTreeNodeSequence.h"
 #include "nodes/BehaviorTreeNodePriority.h"
 #include "nodes/BehaviorTreeNodeAction.h"
+#include "IBehaviorTreeAction.h"
+#include "IBehaviorTreeCondition.h"
+#include "IBehaviorTree.h"
 
-typedef bool (IBehaviorTree::*BehaviorTreeCondition)(float delta);
-typedef int (IBehaviorTree::*BehaviorTreeAction)(float delta);
 
-
-class IBehaviorTree {
+class IBehaviorTreeNew: public IBehaviorTree {
 protected:
 	std::unordered_map<std::string, IBehaviorTreeNode *>tree;
-	std::unordered_map<std::string, BehaviorTreeCondition> conditions;
-	std::unordered_map<std::string, BehaviorTreeAction> actions;
+	std::unordered_map<std::string, IBehaviorTreeCondition*> conditions;
+	std::unordered_map<std::string, IBehaviorTreeAction*> actions;
 
 	IBehaviorTreeNode *root;
 	IBehaviorTreeNode *current;
@@ -27,17 +26,17 @@ protected:
 	bool trueCondition(float delta = 0.f);
 
 public:
-	IBehaviorTree();
+	IBehaviorTreeNew();
 
-	IBehaviorTreeNode *createRoot(std::string rootName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
-	IBehaviorTreeNode *addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, BehaviorTreeCondition condition, BehaviorTreeAction action);
+	IBehaviorTreeNode *createRoot(std::string rootName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
+	IBehaviorTreeNode *addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
 
 	void setCurrent(IBehaviorTreeNode *newCurrent);
 
-	void addCondition(std::string conditionName, BehaviorTreeCondition condition);
+	void addCondition(std::string conditionName, IBehaviorTreeCondition* condition);
 	bool testCondition(std::string conditionName, float delta = 0.f);
 
-	void addAction(std::string actionName, BehaviorTreeAction action);
+	void addAction(std::string actionName, IBehaviorTreeAction* action);
 	int execAction(std::string actionName, float delta = 0.f);
 
 	void recalc(float delta = 0.f);
