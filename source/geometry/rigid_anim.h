@@ -2,6 +2,7 @@
 
 #include "resources/resource.h"
 
+class TCompTransform;
 namespace RigidAnims {
 
 	class CRigidAnimResource;
@@ -20,6 +21,8 @@ namespace RigidAnims {
 		uint32_t                  track_index = invalid_track_index;
 		std::string               track_name;
 		bool sample(TKey* out_key, float t) const;
+		void setInitialTransform(TCompTransform* transform);
+		CTransform initialTransform;
 	};
 
 	// ----------------------------------------------
@@ -35,7 +38,7 @@ namespace RigidAnims {
 
 	// ----------------------------------------------
 	class CRigidAnimResource : public IResource {
-
+	private:
 		std::vector< TTrackInfo > tracks;
 		std::vector< TKey > keys;
 		float total_duration = 0.f;
@@ -43,9 +46,10 @@ namespace RigidAnims {
 	public:
 		bool create(const std::string& name);
 		void debugInMenu() override;
-		bool sample(uint32_t track_index, TKey* out_key, float t) const;
+
+		bool sample(uint32_t track_index, TKey* out_key, float t, VEC3 position = VEC3::Zero, QUAT rotation = QUAT::Identity, float scale = 1.f) const;
 		void onFileChanged(const std::string& filename) override;
 		uint32_t findTrackIndexByName(const std::string& name) const;
-	};
 
+	};
 }

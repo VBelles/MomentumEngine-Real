@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "rigid_anim.h"
 #include "utils/data_provider.h"
+#include "components/comp_transform.h"
 
 // ----------------------------------------------
 class CRigidAnimResourceClass : public CResourceClass {
@@ -91,7 +92,13 @@ namespace RigidAnims {
 	}
 
 	bool CController::sample(TKey* out_key, float t) const {
-		return anims->sample(track_index, out_key, t);
+		return anims->sample(track_index, out_key, t, initialTransform.getPosition(), initialTransform.getRotation(), initialTransform.getScale());
+	}
+
+	void CController::setInitialTransform(TCompTransform * transform) {
+		initialTransform.setPosition(transform->getPosition());
+		initialTransform.setRotation(transform->getRotation());
+		initialTransform.setScale(transform->getScale());
 	}
 
 	uint32_t CRigidAnimResource::findTrackIndexByName(const std::string& name) const {
@@ -108,7 +115,7 @@ namespace RigidAnims {
 		create(filename);
 	}
 
-	bool CRigidAnimResource::sample(uint32_t track_index, TKey* out_key, float t) const {
+	bool CRigidAnimResource::sample(uint32_t track_index, TKey* out_key, float t, VEC3 position, QUAT rotation, float scale) const {
 
 		// asking for an invalid track, nothing to do.
 		if (track_index >= tracks.size())
@@ -135,6 +142,9 @@ namespace RigidAnims {
 		// Check time limits
 		if (ut < 0) {
 			*out_key = keys[track->first_key];
+			out_key->pos += position;
+			out_key->rot = rotation * out_key->rot;
+			out_key->scale *= scale;
 			return false;
 		}
 
@@ -144,6 +154,9 @@ namespace RigidAnims {
 			// Copy my last key
 			*out_key = keys[track->first_key + track->num_keys - 1];
 			// Return true only when the whole animation has loop
+			out_key->pos += position;
+			out_key->rot = rotation * out_key->rot;
+			out_key->scale *= scale;
 			return t >= this->total_duration;
 		}
 
@@ -155,9 +168,9 @@ namespace RigidAnims {
 
 		auto prev_key = &keys[key_index];
 		auto next_key = &keys[key_index + 1];
-		out_key->pos = lerp(prev_key->pos, next_key->pos, amount_of_next_key);
-		out_key->rot = lerp(prev_key->rot, next_key->rot, amount_of_next_key);
-		out_key->scale = lerp(prev_key->scale, next_key->scale, amount_of_next_key);
+		out_key->pos = lerp(position + prev_key->pos, position + next_key->pos, amount_of_next_key);
+		out_key->rot = lerp(rotation * prev_key->rot, rotation * next_key->rot, amount_of_next_key);
+		out_key->scale = lerp(scale * prev_key->scale, scale * next_key->scale, amount_of_next_key);
 		return false;
 	}
 

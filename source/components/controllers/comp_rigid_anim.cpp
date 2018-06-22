@@ -27,6 +27,15 @@ void TCompRigidAnim::debugInMenu() {
 	ImGui::Checkbox("Loops", &loops);
 }
 
+void TCompRigidAnim::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
+	TCompTransform* transform = get<TCompTransform>();
+	//controller.setInitialTransform(transform);
+}
+
+void TCompRigidAnim::registerMsgs() {
+	DECL_MSG(TCompRigidAnim, TMsgEntitiesGroupCreated, onGroupCreated);
+}
+
 void TCompRigidAnim::update(float dt) {
 
 	if (!is_moving)
