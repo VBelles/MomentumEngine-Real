@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
-#include "OnDeathAction.h"
+#include "OnGrabAction.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-OnDeathAction::OnDeathAction(Dreidel* dreidle): dreidel(dreidel) {
+OnGrabAction::OnGrabAction(Dreidel* dreidle): dreidel(dreidel) {
 }
 
-int OnDeathAction::execAction(float delta) {
+int OnGrabAction::execAction(float delta) {
 	return 0;
 }

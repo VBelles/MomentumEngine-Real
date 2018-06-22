@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
-#include "DeathCondition.h"
+#include "StepBackCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-DeathCondition::DeathCondition(Dreidel* dreidle): dreidel(dreidel) {
+StepBackCondition::StepBackCondition(Dreidel* dreidle): dreidel(dreidel) {
 }
 
-bool DeathCondition::testCondition(float delta) {
+bool StepBackCondition::testCondition(float delta) {
 	return false;
 }

@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
-#include "DeathCondition.h"
+#include "PropelCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-DeathCondition::DeathCondition(Dreidel* dreidle): dreidel(dreidel) {
+PropelCondition::PropelCondition(Dreidel* dreidle): dreidel(dreidel) {
 }
 
-bool DeathCondition::testCondition(float delta) {
+bool PropelCondition::testCondition(float delta) {
 	return false;
 }

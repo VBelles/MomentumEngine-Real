@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
-#include "DeathCondition.h"
+#include "ReturnToSpawnCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-DeathCondition::DeathCondition(Dreidel* dreidle): dreidel(dreidel) {
+ReturnToSpawnCondition::ReturnToSpawnCondition(Dreidel* dreidle): dreidel(dreidel) {
 }
 
-bool DeathCondition::testCondition(float delta) {
+bool ReturnToSpawnCondition::testCondition(float delta) {
 	return false;
 }

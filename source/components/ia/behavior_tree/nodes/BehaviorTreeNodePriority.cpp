@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "BehaviorTreeNodePriority.h"
-#include "IBehaviorTree.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 
 CBehaviorTreeNodePriority::CBehaviorTreeNodePriority(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {

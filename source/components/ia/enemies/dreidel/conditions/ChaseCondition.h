@@ -4,10 +4,10 @@
 
 class Dreidel;
 
-class DeathCondition: public IBehaviorTreeCondition {
+class ChaseCondition : public IBehaviorTreeCondition {
 private:
 	Dreidel* dreidel;
 public:
-	DeathCondition(Dreidel* dreidle);
+	ChaseCondition(Dreidel* dreidle);
 	bool testCondition(float delta) override;
 };

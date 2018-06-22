@@ -4,10 +4,10 @@
 
 class Dreidel;
 
-class OnDeathAction : public IBehaviorTreeAction {
+class OnHorizontalLaunchAction : public IBehaviorTreeAction {
 private:
 	Dreidel* dreidel;
 public:
-	OnDeathAction(Dreidel* dreidle);
+	OnHorizontalLaunchAction(Dreidel* dreidle);
 	int execAction(float delta) override;
 };

@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "IBehaviorTreeNode.h"
-#include "IBehaviorTree.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 
 IBehaviorTreeNode::IBehaviorTreeNode(std::string name) {
 	this->name = name;

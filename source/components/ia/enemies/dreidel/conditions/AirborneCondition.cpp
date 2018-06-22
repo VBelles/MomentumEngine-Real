@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
-#include "DeathCondition.h"
+#include "AirborneCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-DeathCondition::DeathCondition(Dreidel* dreidle): dreidel(dreidel) {
+AirborneCondition::AirborneCondition(Dreidel* dreidle): dreidel(dreidel) {
 }
 
-bool DeathCondition::testCondition(float delta) {
+bool AirborneCondition::testCondition(float delta) {
 	return false;
 }

@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
-#include "DeathCondition.h"
+#include "OnStunCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-DeathCondition::DeathCondition(Dreidel* dreidle): dreidel(dreidel) {
+OnStunCondition::OnStunCondition(Dreidel* dreidle): dreidel(dreidel) {
 }
 
-bool DeathCondition::testCondition(float delta) {
+bool OnStunCondition::testCondition(float delta) {
 	return false;
 }

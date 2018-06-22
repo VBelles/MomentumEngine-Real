@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "BehaviorTreeNodeRandom.h"
-#include "IBehaviorTree.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 
 CBehaviorTreeNodeRandom::CBehaviorTreeNodeRandom(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {

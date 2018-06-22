@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "BehaviorTreeNodeAction.h"
 #include "BehaviorTreeNodeSequence.h"
-#include "IBehaviorTree.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 
 CBehaviorTreeNodeAction::CBehaviorTreeNodeAction(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
