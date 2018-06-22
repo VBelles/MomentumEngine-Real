@@ -83,7 +83,7 @@ bool IBehaviorTree::testCondition(std::string conditionName, float delta) {
 	PROFILE_FUNCTION("testCondition");
 	auto it = conditions.find(conditionName);
 	if (it == conditions.end()) {
-		dbg("ERROR: Missing node condition for node %s\n", conditionName.c_str());
+		//dbg("ERROR: Missing node condition for node %s\n", conditionName.c_str());
 		return true; // error: condition does not exist
 	}
 	return (this->*it->second)(delta);
