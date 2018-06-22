@@ -282,7 +282,7 @@
 						"mask": [
 							"enemy"
 						],
-						"bone": "Bip001 R Hand"
+						"bone": "Bip001 L Hand"
 					},
 					{
 						"name": "vertical_launcher",
@@ -294,7 +294,7 @@
 						"mask": [
 							"enemy"
 						],
-						"bone": "Bip001 R Hand"
+						"bone": "Bip001 L Hand"
 					},
 					{
 						"name": "grab",

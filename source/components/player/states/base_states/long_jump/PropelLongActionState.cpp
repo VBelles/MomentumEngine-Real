@@ -64,7 +64,7 @@ void PropelLongActionState::onStateEnter(IActionState * lastState) {
 		movingVelocity = targetTransform->getPosition() + VEC3::Up * 2.f - getPlayerTransform()->getPosition();
 		movingVelocity /= endingTime;
 		timer.reset();
-		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+		getSkeleton()->executeAction(animation, 0.03f, 0.2f);
 		getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 	}
 	else {
