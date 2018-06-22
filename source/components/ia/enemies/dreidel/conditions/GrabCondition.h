@@ -6,8 +6,8 @@ class Dreidel;
 
 class GrabCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	GrabCondition(Dreidel* dreidle);
+	GrabCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

@@ -2,9 +2,9 @@
 #include "DeadAction.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-DeadAction::DeadAction(Dreidel* dreidle): dreidel(dreidel) {
+DeadAction::DeadAction(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 int DeadAction::execAction(float delta) {
-	return 0;
+	return Leave;
 }

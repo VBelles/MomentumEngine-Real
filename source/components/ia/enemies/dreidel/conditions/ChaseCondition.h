@@ -6,8 +6,8 @@ class Dreidel;
 
 class ChaseCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	ChaseCondition(Dreidel* dreidle);
+	ChaseCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

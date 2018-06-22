@@ -2,7 +2,7 @@
 #include "GrabCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-GrabCondition::GrabCondition(Dreidel* dreidle): dreidel(dreidel) {
+GrabCondition::GrabCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool GrabCondition::testCondition(float delta) {

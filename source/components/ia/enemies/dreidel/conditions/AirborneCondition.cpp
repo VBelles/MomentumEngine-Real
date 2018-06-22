@@ -2,7 +2,7 @@
 #include "AirborneCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-AirborneCondition::AirborneCondition(Dreidel* dreidle): dreidel(dreidel) {
+AirborneCondition::AirborneCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool AirborneCondition::testCondition(float delta) {

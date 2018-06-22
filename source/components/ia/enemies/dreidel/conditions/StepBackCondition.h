@@ -6,8 +6,8 @@ class Dreidel;
 
 class StepBackCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	StepBackCondition(Dreidel* dreidle);
+	StepBackCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

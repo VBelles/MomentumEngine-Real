@@ -6,8 +6,8 @@ class Dreidel;
 
 class StunCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	StunCondition(Dreidel* dreidle);
+	StunCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

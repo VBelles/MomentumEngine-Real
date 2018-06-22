@@ -6,8 +6,8 @@ class Dreidel;
 
 class OnStunAction : public IBehaviorTreeAction {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	OnStunAction(Dreidel* dreidle);
+	OnStunAction(Dreidel* dreidel);
 	int execAction(float delta) override;
 };

@@ -6,8 +6,8 @@ class Dreidel;
 
 class OnGrabAction : public IBehaviorTreeAction {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	OnGrabAction(Dreidel* dreidle);
+	OnGrabAction(Dreidel* dreidel);
 	int execAction(float delta) override;
 };

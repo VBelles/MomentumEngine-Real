@@ -2,7 +2,7 @@
 #include "ReturnToSpawnCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-ReturnToSpawnCondition::ReturnToSpawnCondition(Dreidel* dreidle): dreidel(dreidel) {
+ReturnToSpawnCondition::ReturnToSpawnCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool ReturnToSpawnCondition::testCondition(float delta) {

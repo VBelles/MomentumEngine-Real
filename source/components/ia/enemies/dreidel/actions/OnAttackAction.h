@@ -6,8 +6,8 @@ class Dreidel;
 
 class OnAttackAction : public IBehaviorTreeAction {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	OnAttackAction(Dreidel* dreidle);
+	OnAttackAction(Dreidel* dreidel);
 	int execAction(float delta) override;
 };

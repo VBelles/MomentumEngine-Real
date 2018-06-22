@@ -6,8 +6,8 @@ class Dreidel;
 
 class ReturnToSpawnAction : public IBehaviorTreeAction {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	ReturnToSpawnAction(Dreidel* dreidle);
+	ReturnToSpawnAction(Dreidel* dreidel);
 	int execAction(float delta) override;
 };

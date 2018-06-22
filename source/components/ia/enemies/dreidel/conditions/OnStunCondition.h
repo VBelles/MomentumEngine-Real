@@ -6,8 +6,8 @@ class Dreidel;
 
 class OnStunCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	OnStunCondition(Dreidel* dreidle);
+	OnStunCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

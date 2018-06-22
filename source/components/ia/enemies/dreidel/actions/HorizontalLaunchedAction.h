@@ -6,8 +6,8 @@ class Dreidel;
 
 class HorizontalLaunchedAction : public IBehaviorTreeAction {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	HorizontalLaunchedAction(Dreidel* dreidle);
+	HorizontalLaunchedAction(Dreidel* dreidel);
 	int execAction(float delta) override;
 };

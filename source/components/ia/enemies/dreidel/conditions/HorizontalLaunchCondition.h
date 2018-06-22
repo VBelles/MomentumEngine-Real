@@ -6,8 +6,8 @@ class Dreidel;
 
 class HorizontalLaunchCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	HorizontalLaunchCondition(Dreidel* dreidle);
+	HorizontalLaunchCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

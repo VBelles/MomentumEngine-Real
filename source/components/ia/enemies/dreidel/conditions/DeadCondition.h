@@ -6,8 +6,8 @@ class Dreidel;
 
 class DeadCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	DeadCondition(Dreidel* dreidle);
+	DeadCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

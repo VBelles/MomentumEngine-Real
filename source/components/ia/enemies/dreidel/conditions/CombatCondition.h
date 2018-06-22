@@ -6,8 +6,8 @@ class Dreidel;
 
 class CombatCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	CombatCondition(Dreidel* dreidle);
+	CombatCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

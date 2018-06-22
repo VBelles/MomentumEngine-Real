@@ -6,8 +6,8 @@ class Dreidel;
 
 class AirborneCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	AirborneCondition(Dreidel* dreidle);
+	AirborneCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

@@ -14,8 +14,33 @@ struct PowerStats;
 struct TMsgAttackHit;
 
 class Dreidel : public IBehaviorTreeNew, public TCompBase {
-	DECL_SIBLING_ACCESS();
 private:
+
+	bool deathCondition(float delta = 0.f);
+	bool deadCondition(float delta = 0.f);
+	bool grabCondition(float delta = 0.f);
+	bool propelCondition(float delta = 0.f);
+	bool horizontalLaunchCondition(float delta = 0.f);
+	bool verticalLaunchCondition(float delta = 0.f);
+	bool onStunCondition(float delta = 0.f);
+	bool stunCondition(float delta = 0.f);
+	bool airborneCondition(float delta = 0.f);
+	bool returnToSpawnCondition(float delta = 0.f);
+	bool chaseCondition(float delta = 0.f);
+	bool combatCondition(float delta = 0.f);
+	bool stepBackCondition(float delta = 0.f);
+
+
+	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onAttackHit(const TMsgAttackHit& msg);
+	void onRespawn(const TMsgRespawn& msg);
+	void onOutOfBounds(const TMsgOutOfBounds& msg);
+	void onPerfectDodged(const TMsgPerfectDodged& msg);
+	void onHitboxEnter(const TMsgHitboxEnter& msg);
+
+public:
+	DECL_SIBLING_ACCESS();
+
 	float maxHealth = 300.f;
 	float health = maxHealth;
 	float movementSpeed = 2.5f;
@@ -64,62 +89,6 @@ private:
 
 	AttackInfo receivedAttack;
 
-	int damageCalc(float delta = 0.f);
-	int onDeath(float delta = 0.f);
-	int dead(float delta = 0.f);
-	int onGrab(float delta = 0.f);
-	int grabbed(float delta = 0.f);
-	int onPropel(float delta = 0.f);
-	int propelled(float delta = 0.f);
-	int onHorizontalLaunch(float delta = 0.f);
-	int horizontalLaunched(float delta = 0.f);
-	int onVerticalLaunch(float delta = 0.f);
-	int verticalLaunched(float delta = 0.f);
-	int floating(float delta = 0.f);
-	int onStun(float delta = 0.f);
-	int stunned(float delta = 0.f);
-	int airborne(float delta = 0.f);
-	int respawn(float delta = 0.f);
-	int returnToSpawn(float delta = 0.f);
-	int chase(float delta = 0.f);
-	int stepBack(float delta = 0.f);
-	int onIdleWar(float delta = 0.f);
-	int idleWar(float delta = 0.f);
-	int onAttack(float delta = 0.f);
-	int attack(float delta = 0.f);
-	int idle(float delta = 0.f);
-
-	bool deathCondition(float delta = 0.f);
-	bool deadCondition(float delta = 0.f);
-	bool grabCondition(float delta = 0.f);
-	bool propelCondition(float delta = 0.f);
-	bool horizontalLaunchCondition(float delta = 0.f);
-	bool verticalLaunchCondition(float delta = 0.f);
-	bool onStunCondition(float delta = 0.f);
-	bool stunCondition(float delta = 0.f);
-	bool airborneCondition(float delta = 0.f);
-	bool returnToSpawnCondition(float delta = 0.f);
-	bool chaseCondition(float delta = 0.f);
-	bool combatCondition(float delta = 0.f);
-	bool stepBackCondition(float delta = 0.f);
-
-	CEntity* getPlayerEntity();
-	TCompTransform* getPlayerTransform();
-	TCompSkeleton* getSkeleton();
-	TCompHitboxes* getHitboxes();
-
-	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
-	void onAttackHit(const TMsgAttackHit& msg);
-	void onRespawn(const TMsgRespawn& msg);
-	void onOutOfBounds(const TMsgOutOfBounds& msg);
-	void onPerfectDodged(const TMsgPerfectDodged& msg);
-	void onHitboxEnter(const TMsgHitboxEnter& msg);
-
-	void updateGravity(float delta);
-	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
-	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
-
-public:
 	Dreidel();
 
 	void load(const json& j, TEntityParseContext& ctx);
@@ -127,6 +96,14 @@ public:
 	static void registerMsgs();
 	void update(float delta);
 
+	void updateGravity(float delta);
+	float calculateVerticalDeltaMovement(float delta, float acceleration, float maxVelocityVertical);
+	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
+
+	CEntity* getPlayerEntity();
+	TCompTransform* getPlayerTransform();
+	TCompSkeleton* getSkeleton();
+	TCompHitboxes* getHitboxes();
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
 };

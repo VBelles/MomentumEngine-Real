@@ -2,7 +2,7 @@
 #include "DeadCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-DeadCondition::DeadCondition(Dreidel* dreidle): dreidel(dreidel) {
+DeadCondition::DeadCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool DeadCondition::testCondition(float delta) {

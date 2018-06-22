@@ -2,7 +2,7 @@
 #include "StunCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-StunCondition::StunCondition(Dreidel* dreidle): dreidel(dreidel) {
+StunCondition::StunCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool StunCondition::testCondition(float delta) {

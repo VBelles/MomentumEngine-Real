@@ -6,8 +6,8 @@ class Dreidel;
 
 class ReturnToSpawnCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	ReturnToSpawnCondition(Dreidel* dreidle);
+	ReturnToSpawnCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };

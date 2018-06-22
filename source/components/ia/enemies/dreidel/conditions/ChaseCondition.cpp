@@ -2,7 +2,7 @@
 #include "ChaseCondition.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-ChaseCondition::ChaseCondition(Dreidel* dreidle): dreidel(dreidel) {
+ChaseCondition::ChaseCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool ChaseCondition::testCondition(float delta) {

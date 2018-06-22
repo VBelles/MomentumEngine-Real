@@ -6,8 +6,8 @@ class Dreidel;
 
 class StepBackAction : public IBehaviorTreeAction {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	StepBackAction(Dreidel* dreidle);
+	StepBackAction(Dreidel* dreidel);
 	int execAction(float delta) override;
 };

@@ -6,5 +6,6 @@ DamageCalcAction::DamageCalcAction(Dreidel* dreidle): dreidel(dreidel) {
 }
 
 int DamageCalcAction::execAction(float delta) {
-	return 0;
+	dreidel->health -= dreidel->receivedAttack.damage;
+	return Leave;
 }

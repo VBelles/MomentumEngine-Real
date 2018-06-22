@@ -6,8 +6,8 @@ class Dreidel;
 
 class PropelCondition : public IBehaviorTreeCondition {
 private:
-	Dreidel* dreidel;
+	Dreidel* dreidel = nullptr;
 public:
-	PropelCondition(Dreidel* dreidle);
+	PropelCondition(Dreidel* dreidel);
 	bool testCondition(float delta) override;
 };
