@@ -6,5 +6,5 @@ AirborneCondition::AirborneCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool AirborneCondition::testCondition(float delta) {
-	return false;
+	return !dreidel->grounded;
 }

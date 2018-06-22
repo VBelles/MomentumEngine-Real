@@ -6,5 +6,5 @@ PropelCondition::PropelCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool PropelCondition::testCondition(float delta) {
-	return false;
+	return dreidel->receivedAttack.propel;
 }

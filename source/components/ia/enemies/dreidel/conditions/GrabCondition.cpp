@@ -6,5 +6,5 @@ GrabCondition::GrabCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool GrabCondition::testCondition(float delta) {
-	return false;
+	return dreidel->receivedAttack.grab;
 }

@@ -6,5 +6,5 @@ StunCondition::StunCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool StunCondition::testCondition(float delta) {
-	return false;
+	return dreidel->isStunned;
 }

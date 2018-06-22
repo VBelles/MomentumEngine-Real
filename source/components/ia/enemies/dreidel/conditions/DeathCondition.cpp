@@ -6,5 +6,5 @@ DeathCondition::DeathCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool DeathCondition::testCondition(float delta) {
-	return false;
+	return dreidel->health <= 0;
 }

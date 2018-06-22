@@ -6,5 +6,5 @@ HorizontalLaunchCondition::HorizontalLaunchCondition(Dreidel* dreidel): dreidel(
 }
 
 bool HorizontalLaunchCondition::testCondition(float delta) {
-	return false;
+	return dreidel->receivedAttack.horizontalLauncher;
 }

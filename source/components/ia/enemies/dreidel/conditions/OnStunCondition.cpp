@@ -6,5 +6,5 @@ OnStunCondition::OnStunCondition(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 bool OnStunCondition::testCondition(float delta) {
-	return false;
+	return dreidel->receivedAttack.stun;
 }

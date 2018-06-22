@@ -57,6 +57,10 @@ DECL_OBJ_MANAGER("dreidel", Dreidel);
 
 Dreidel::Dreidel()
 	: IBehaviorTreeNew::IBehaviorTreeNew() {
+	
+}
+
+void Dreidel::load(const json& j, TEntityParseContext& ctx) {
 	createRoot("meleeEnemy", Priority, nullptr, nullptr);
 
 	IBehaviorTreeCondition* falseCondition = new FalseCondition();
@@ -142,9 +146,7 @@ Dreidel::Dreidel()
 	attackInfos["attack"].damage = attackDamage;
 	attackInfos["attack"].stun = new AttackInfo::Stun{ 1.f };
 	attackInfos["attack"].invulnerabilityTime = 1.f;
-}
 
-void Dreidel::load(const json& j, TEntityParseContext& ctx) {
 	maxHealth = j.value("maxHealth", maxHealth);
 	health = maxHealth;
 	movementSpeed = j.value("movementSpeed", movementSpeed);
@@ -192,69 +194,6 @@ void Dreidel::registerMsgs() {
 
 void Dreidel::update(float delta) {
 	recalc(delta);
-}
-
-
-
-bool Dreidel::deathCondition(float delta) {
-	return health <= 0;
-}
-
-bool Dreidel::deadCondition(float delta) {
-	return isDead;
-}
-
-bool Dreidel::grabCondition(float delta) {
-	return receivedAttack.grab;
-}
-
-bool Dreidel::propelCondition(float delta) {
-	return receivedAttack.propel;
-}
-
-bool Dreidel::horizontalLaunchCondition(float delta) {
-	return receivedAttack.horizontalLauncher;
-}
-
-bool Dreidel::verticalLaunchCondition(float delta) {
-	return receivedAttack.verticalLauncher;
-}
-
-bool Dreidel::onStunCondition(float delta) {
-	return receivedAttack.stun;
-}
-
-bool Dreidel::stunCondition(float delta) {
-	return isStunned;
-}
-
-bool Dreidel::airborneCondition(float delta) {
-	return !grounded;
-}
-
-bool Dreidel::returnToSpawnCondition(float delta) {
-	return VEC3::DistanceSquared(getTransform()->getPosition(), spawnPosition) > recallDistanceSqrd;
-}
-
-bool Dreidel::chaseCondition(float delta) {
-	float distanceSqrd = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	bool isPlayerInFov = getTransform()->isInFov(getPlayerTransform()->getPosition(), chaseFov);
-	return distanceSqrd > minCombatDistanceSqrd && (distanceSqrd < smallChaseRadiusSqrd || (distanceSqrd < fovChaseDistanceSqrd && isPlayerInFov));
-}
-
-bool Dreidel::combatCondition(float delta) {
-	float distanceSqrd = VEC3::DistanceSquared(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	return distanceSqrd < maxCombatDistanceSqrd && getTransform()->isInFov(getPlayerTransform()->getPosition(), attackFov);
-}
-
-bool Dreidel::stepBackCondition(float delta) {
-	VEC3 myPos = getTransform()->getPosition();
-	VEC3 playerPos = getPlayerTransform()->getPosition();
-	myPos.y = 0;
-	playerPos.y = 0;
-	//float distance = VEC3::Distance(getTransform()->getPosition(), getPlayerTransform()->getPosition());
-	float distanceSqrd = VEC3::DistanceSquared(myPos, playerPos);
-	return distanceSqrd < minCombatDistanceSqrd;
 }
 
 void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {

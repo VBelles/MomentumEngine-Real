@@ -6,5 +6,5 @@ VerticalLaunchCondition::VerticalLaunchCondition(Dreidel* dreidel): dreidel(drei
 }
 
 bool VerticalLaunchCondition::testCondition(float delta) {
-	return false;
+	return dreidel->receivedAttack.verticalLauncher;
 }
