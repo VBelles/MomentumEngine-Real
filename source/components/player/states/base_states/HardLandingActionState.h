@@ -10,8 +10,8 @@ private:
 	float fallingAttackTime = frames2sec(5);
 
 	CTimer springJumpTimer;
-	float springJumpWindowStartTime = frames2sec(8);
-	float springJumpWindowEndTime = frames2sec(28);
+	float springJumpWindowStartTime = frames2sec(15);
+	float springJumpWindowEndTime = frames2sec(30);
 	bool hasTriedSpringJump = false;
 
 	float stunTime = 1.5f;

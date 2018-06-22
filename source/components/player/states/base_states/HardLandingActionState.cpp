@@ -10,7 +10,7 @@
 
 HardLandingActionState::HardLandingActionState(StateManager* stateManager) :
 	LandingActionState(stateManager, HardLanding) {
-	landingLagTime = frames2sec(38);
+	landingLagTime = frames2sec(50);
 }
 
 void HardLandingActionState::update(float delta) {
@@ -32,12 +32,12 @@ void HardLandingActionState::onStateEnter(IActionState * lastState) {
 	hitboxTimer.reset();
 	springJumpTimer.reset();
 	fallingAttackHitboxTimer.reset();
-	getSkeleton()->clear();
 	getSkeleton()->executeAction(animation, 0.05f, 0.05f);
 }
 
 void HardLandingActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+	getSkeleton()->removeAction(animation, 0.4f);
 	getHitboxes()->disable(hitbox);
 	getHitboxes()->disable(hitboxFallingAttack); //Por si las moscas
 	getHitboxes()->disable(hitboxPlummet); //Por si las moscas

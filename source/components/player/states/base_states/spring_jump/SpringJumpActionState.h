@@ -4,7 +4,8 @@
 
 class SpringJumpActionState : public AirborneActionState {
 private:
-	std::string animation = "spring_jump";
+	std::string animation = "normal_jump";
+	std::string animationFalling = "free_fall";
 	float driftSpeedThreshold = 10.f;
 
 public:

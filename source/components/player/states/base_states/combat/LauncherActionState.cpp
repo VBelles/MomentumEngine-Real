@@ -47,6 +47,14 @@ void LauncherActionState::setMovementInput(VEC2 input) {
 	}
 }
 
+void LauncherActionState::onJumpHighButton() {
+	if (canWalk()) GroundedActionState::onJumpHighButton();
+}
+
+void LauncherActionState::onJumpLongButton() {
+	if (canWalk()) GroundedActionState::onJumpLongButton();
+}
+
 void LauncherActionState::onDodgeButton() {
 	if (isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
 }
