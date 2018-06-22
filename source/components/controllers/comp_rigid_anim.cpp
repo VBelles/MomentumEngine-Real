@@ -29,7 +29,7 @@ void TCompRigidAnim::debugInMenu() {
 
 void TCompRigidAnim::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	TCompTransform* transform = get<TCompTransform>();
-	//controller.setInitialTransform(transform);
+	controller.setInitialTransform(transform);
 }
 
 void TCompRigidAnim::registerMsgs() {

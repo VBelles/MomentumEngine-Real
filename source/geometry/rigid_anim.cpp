@@ -143,7 +143,7 @@ namespace RigidAnims {
 		if (ut < 0) {
 			*out_key = keys[track->first_key];
 			out_key->pos += position;
-			out_key->rot = rotation * out_key->rot;
+			out_key->rot = out_key->rot * rotation;
 			out_key->scale *= scale;
 			return false;
 		}
@@ -155,7 +155,7 @@ namespace RigidAnims {
 			*out_key = keys[track->first_key + track->num_keys - 1];
 			// Return true only when the whole animation has loop
 			out_key->pos += position;
-			out_key->rot = rotation * out_key->rot;
+			out_key->rot = out_key->rot * rotation;
 			out_key->scale *= scale;
 			return t >= this->total_duration;
 		}
@@ -168,9 +168,9 @@ namespace RigidAnims {
 
 		auto prev_key = &keys[key_index];
 		auto next_key = &keys[key_index + 1];
-		out_key->pos = lerp(position + prev_key->pos, position + next_key->pos, amount_of_next_key);
-		out_key->rot = lerp(rotation * prev_key->rot, rotation * next_key->rot, amount_of_next_key);
-		out_key->scale = lerp(scale * prev_key->scale, scale * next_key->scale, amount_of_next_key);
+		out_key->pos = position + lerp(prev_key->pos,  next_key->pos, amount_of_next_key);
+		out_key->rot =  lerp( prev_key->rot, next_key->rot, amount_of_next_key) * rotation;
+		out_key->scale = scale * lerp( prev_key->scale,  next_key->scale, amount_of_next_key);
 		return false;
 	}
 
