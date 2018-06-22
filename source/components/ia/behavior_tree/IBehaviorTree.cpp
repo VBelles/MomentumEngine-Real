@@ -33,7 +33,7 @@ IBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
 	PROFILE_FUNCTION("findNode");
 	auto it = tree.find(name);
 	if (it != tree.end()) {
-		return tree[name];
+		return it->second;
 	}
 	return nullptr;
 }
@@ -83,8 +83,8 @@ bool IBehaviorTree::testCondition(std::string conditionName, float delta) {
 	PROFILE_FUNCTION("testCondition");
 	auto it = conditions.find(conditionName);
 	if (it == conditions.end()) {
-		dbg("ERROR: Missing node action for node %s\n", conditionName.c_str());
-		return Leave; // error: action does not exist
+		dbg("ERROR: Missing node condition for node %s\n", conditionName.c_str());
+		return true; // error: condition does not exist
 	}
 	return (this->*it->second)(delta);
 }
