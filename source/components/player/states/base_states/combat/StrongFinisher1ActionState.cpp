@@ -17,8 +17,8 @@ StrongFinisher1ActionState::StrongFinisher1ActionState(StateManager * stateManag
 	hitEndTime = frames2sec(6);
 	animationEndTime = frames2sec(60);
 	cancelableTime = frames2sec(15);
-	interruptibleTime = frames2sec(70);
-	walkableTime = frames2sec(80);
+	interruptibleTime = frames2sec(50);
+	walkableTime = frames2sec(60);
 	hitbox = "strong_finisher1";
 }
 
@@ -60,6 +60,14 @@ void StrongFinisher1ActionState::setMovementInput(VEC2 input) {
 	if (input.Length() > PAD_DEAD_ZONE) {
 		if (canWalk()) stateManager->changeState(Walk);
 	}
+}
+
+void StrongFinisher1ActionState::onJumpHighButton() {
+	if (canWalk()) GroundedActionState::onJumpHighButton();
+}
+
+void StrongFinisher1ActionState::onJumpLongButton() {
+	if (canWalk()) GroundedActionState::onJumpLongButton();
 }
 
 void StrongFinisher1ActionState::onDodgeButton() {
