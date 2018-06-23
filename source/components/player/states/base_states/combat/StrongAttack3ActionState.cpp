@@ -35,7 +35,7 @@ void StrongAttack3ActionState::update(float delta) {
 		if (hasInput) {
 			VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 			VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
-			rotatePlayerTowards(delta, targetPos, 3.f);
+			rotatePlayerTowards(delta, targetPos, 10.f);
 		}
 	}
 }

@@ -227,19 +227,19 @@
 					{
 						"name": "strong_finisher1",
 						"shape": "sphere",
-						"radius": 0.8,
+						"radius": 1.2,
 						"group": [
 							"player"
 						],
 						"mask": [
 							"enemy"
 						],
-						"bone": "Bip001 R Foot"
+						"bone": "Bip001 R Hand"
 					},
 					{
 						"name": "strong_finisher2",
 						"shape": "sphere",
-						"radius": 0.8,
+						"radius": 1.2,
 						"group": [
 							"player"
 						],
@@ -251,19 +251,19 @@
 					{
 						"name": "fast_finisher1",
 						"shape": "sphere",
-						"radius": 1.2,
+						"radius": 0.8,
 						"group": [
 							"player"
 						],
 						"mask": [
 							"enemy"
 						],
-						"bone": "Bip001 R Hand"
+						"bone": "Bip001 R Foot"
 					},
 					{
 						"name": "fast_finisher2",
 						"shape": "sphere",
-						"radius": 1.2,
+						"radius": 0.8,
 						"group": [
 							"player"
 						],
