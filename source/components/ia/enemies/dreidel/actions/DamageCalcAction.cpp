@@ -2,7 +2,7 @@
 #include "DamageCalcAction.h"
 #include "components/ia/enemies/dreidel/Dreidel.h"
 
-DamageCalcAction::DamageCalcAction(Dreidel* dreidle): dreidel(dreidel) {
+DamageCalcAction::DamageCalcAction(Dreidel* dreidel): dreidel(dreidel) {
 }
 
 int DamageCalcAction::execAction(float delta) {

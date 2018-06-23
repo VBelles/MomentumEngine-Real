@@ -8,6 +8,6 @@ class DamageCalcAction : public IBehaviorTreeAction {
 private:
 	Dreidel* dreidel;
 public:
-	DamageCalcAction(Dreidel* dreidle);
+	DamageCalcAction(Dreidel* dreidel);
 	int execAction(float delta) override;
 };

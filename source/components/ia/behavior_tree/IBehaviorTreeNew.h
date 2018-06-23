@@ -10,7 +10,7 @@
 #include "IBehaviorTree.h"
 
 
-class IBehaviorTreeNew: public IBehaviorTree {
+class IBehaviorTreeNew {
 protected:
 	std::unordered_map<std::string, IBehaviorTreeNode *>tree;
 	std::unordered_map<std::string, IBehaviorTreeCondition*> conditions;

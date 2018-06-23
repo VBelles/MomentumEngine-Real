@@ -4,6 +4,7 @@
 #include <vector>
 
 class IBehaviorTree;
+class IBehaviorTreeNew;
 
 enum EBehaviorTreeNodeType { Random, Sequence, Priority, Action };
 enum EBehaviorTreeNodeEndAction { Stay, Leave };
@@ -28,4 +29,5 @@ public:
 	virtual void addChild(IBehaviorTreeNode *child);
 
 	virtual void recalc(IBehaviorTree *behaviorTree, float delta = 0.f) {}
+	virtual void recalc(IBehaviorTreeNew *behaviorTree, float delta = 0.f) {}
 };

@@ -94,6 +94,9 @@ void IBehaviorTreeNew::addAction(std::string actionName, IBehaviorTreeAction* ac
 	if (!res.second) {
 		dbg("Error: node %s already has an action\n", actionName.c_str());
 	}
+	else {
+		dbg("Node action %s added\n", actionName.c_str());
+	}
 }
 
 int IBehaviorTreeNew::execAction(std::string actionName, float delta) {

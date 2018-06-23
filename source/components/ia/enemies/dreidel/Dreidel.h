@@ -15,22 +15,6 @@ struct TMsgAttackHit;
 
 class Dreidel : public IBehaviorTreeNew, public TCompBase {
 private:
-
-	bool deathCondition(float delta = 0.f);
-	bool deadCondition(float delta = 0.f);
-	bool grabCondition(float delta = 0.f);
-	bool propelCondition(float delta = 0.f);
-	bool horizontalLaunchCondition(float delta = 0.f);
-	bool verticalLaunchCondition(float delta = 0.f);
-	bool onStunCondition(float delta = 0.f);
-	bool stunCondition(float delta = 0.f);
-	bool airborneCondition(float delta = 0.f);
-	bool returnToSpawnCondition(float delta = 0.f);
-	bool chaseCondition(float delta = 0.f);
-	bool combatCondition(float delta = 0.f);
-	bool stepBackCondition(float delta = 0.f);
-
-
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onRespawn(const TMsgRespawn& msg);

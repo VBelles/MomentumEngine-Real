@@ -8,6 +8,6 @@ class OnDeathAction : public IBehaviorTreeAction {
 private:
 	Dreidel* dreidel;
 public:
-	OnDeathAction(Dreidel* dreidle);
+	OnDeathAction(Dreidel* dreidel);
 	int execAction(float delta) override;
 };
