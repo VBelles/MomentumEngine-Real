@@ -15,10 +15,10 @@ StrongAttack3ActionState::StrongAttack3ActionState(StateManager * stateManager) 
 	AttackState(stateManager) {
 	hitboxOutTime = frames2sec(18);
 	hitEndTime = frames2sec(17);
-	animationEndTime = frames2sec(70);
+	animationEndTime = frames2sec(40);
 	cancelableTime = frames2sec(17);
 	interruptibleTime = frames2sec(70);
-	walkableTime = frames2sec(80);
+	walkableTime = frames2sec(70);
 	hitbox = "strong_attack3";
 }
 
@@ -44,7 +44,7 @@ void StrongAttack3ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
 	dbg("Strong 3\n");
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.0f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
 }

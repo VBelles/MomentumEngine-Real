@@ -15,7 +15,7 @@ StrongFinisher1ActionState::StrongFinisher1ActionState(StateManager * stateManag
 	AttackState(stateManager) {
 	hitboxOutTime = frames2sec(24);
 	hitEndTime = frames2sec(6);
-	animationEndTime = frames2sec(60);
+	animationEndTime = frames2sec(41);
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(50);
 	walkableTime = frames2sec(60);

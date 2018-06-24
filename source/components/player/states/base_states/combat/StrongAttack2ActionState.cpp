@@ -15,7 +15,7 @@ StrongAttack2ActionState::StrongAttack2ActionState(StateManager * stateManager) 
 	AttackState(stateManager) {
 	hitboxOutTime = frames2sec(10);
 	hitEndTime = frames2sec(7);
-	animationEndTime = frames2sec(78);
+	animationEndTime = frames2sec(63);
 	cancelableTime = frames2sec(2);
 	interruptibleTime = frames2sec(34);
 	walkableTime = frames2sec(65);
@@ -28,7 +28,7 @@ void StrongAttack2ActionState::update(float delta) {
 
 	AttackState::update(delta);
 
-	if (phase == AttackPhases::Startup){
+	if (phase == AttackPhases::Startup) {
 		//posicionamiento
 		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
@@ -44,23 +44,27 @@ void StrongAttack2ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
 	dbg("Strong 2\n");
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.0f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
 }
 
 void StrongAttack2ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	AttackState::onStateExit(nextState); 
+	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 }
 
 void StrongAttack2ActionState::onStrongAttackButton() {
-	if (isInterruptible()) stateManager->changeState(StrongAttack3);
+	if (isInterruptible()) {
+		stateManager->changeState(StrongAttack3);
+	}
 }
 
 void StrongAttack2ActionState::onFastAttackButton() {
-	if (isInterruptible()) stateManager->changeState(FastFinisher2);
+	if (isInterruptible()) {
+		stateManager->changeState(FastFinisher2);
+	}
 }
 
 void StrongAttack2ActionState::setMovementInput(VEC2 input) {
@@ -71,12 +75,15 @@ void StrongAttack2ActionState::setMovementInput(VEC2 input) {
 }
 
 void StrongAttack2ActionState::onDodgeButton() {
-	if(isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
+	if (isCancelable() || isInterruptible()) {
+		GroundedActionState::onDodgeButton();
+	}
 }
 
 void StrongAttack2ActionState::onReleasePowerButton() {
-	if (isInterruptible()) GroundedActionState::onReleasePowerButton();
-
+	if (isInterruptible()) {
+		GroundedActionState::onReleasePowerButton();
+	}
 }
 
 void StrongAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

@@ -73,7 +73,7 @@ void RunActionState::update(float delta) {
 
 void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
-	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->blendCycle(animation, 0.3f, 0.3f);
 	getCameraPlayer()->moveCameraCloser(false);
 	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntityByName(PLAYER_NAME), VEC3(0, 0.3, 0));
 }
