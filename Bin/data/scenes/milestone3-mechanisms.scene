@@ -6,14 +6,14 @@
       "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
-        "pos": "-219.768 147.937 -1372.3",
+        "pos": "-229.257 120.618 -1368.82",
         "rotation": "-0.092296 0.701057 -0.701057 -0.092296"
       },
       "mechanism":
       {
-        "deactivationTime": 5,
+        "deactivationTime": 25.0,
+        "reactivationTime": 3.0,
         "isResettable": true,
-        "reactivationTime": 3,
         "systems":
         [
            "ms3_mech005_platf182",
@@ -58,6 +58,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -93,6 +97,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -128,6 +136,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -163,6 +175,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -172,7 +188,7 @@
       "name": "ms3_mech005_platf190",
       "transform":
       {
-        "pos": "-237.201 154.191 -1369.61",
+        "pos": "-237.201 154.19 -1369.61",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -198,6 +214,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -233,6 +253,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -248,9 +272,9 @@
       },
       "mechanism":
       {
-        "deactivationTime": 5,
+        "deactivationTime": 13.0,
+        "reactivationTime": 3.0,
         "isResettable": true,
-        "reactivationTime": 3,
         "systems":
         [
            "ms3_mech004_platf173",
@@ -296,6 +320,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -331,6 +359,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -366,6 +398,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -401,6 +437,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -436,6 +476,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -471,6 +515,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -506,6 +554,10 @@
       "mechanism_system":
       {
         "number_of_mechanisms": 1
+      },
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -522,8 +574,8 @@
       "mechanism":
       {
         "deactivationTime": 5,
-        "isResettable": true,
         "reactivationTime": 3,
+        "isResettable": true,
         "systems":
         [
            "ms3_mech003_Box783"
@@ -579,8 +631,8 @@
       "mechanism":
       {
         "deactivationTime": 5,
-        "isResettable": true,
         "reactivationTime": 3,
+        "isResettable": true,
         "systems":
         [
            "ms3_mech002_tumba_226"
@@ -635,9 +687,9 @@
       },
       "mechanism":
       {
-        "deactivationTime": 12,
-        "isResettable": true,
-        "reactivationTime": 3,
+        "deactivationTime": 12.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
         "systems":
         [
            "ms3_mech001_Box332",
@@ -679,8 +731,9 @@
       {
         "number_of_mechanisms": 1
       },
-      "door" : {
-        "startsClosed" : false
+      "door":
+      {
+        "startsClosed": false
       }
     }
   },
@@ -717,8 +770,9 @@
       {
         "number_of_mechanisms": 1
       },
-      "door" : {
-        "startsClosed" : false
+      "door":
+      {
+        "startsClosed": false
       }
     }
   }

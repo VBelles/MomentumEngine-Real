@@ -56,22 +56,24 @@ global movesData = attributes moveData (
 	rollout params "Movement Data" (
 		checkbox autoMove "Automove" 	   type: #boolean align:#right
 		checkbox loops 	  "Loops" 		   type: #boolean align:#right
-		spinner  waitTime "Wait time" 	   type: #float range:[0, 100.0, 1.0] --min, max, initial value
-		spinner  movSpeed "Movement speed" type: #float range:[0, 100.0, 0.3]
+		spinner  waitTime "Wait time" 	   type: #float   range:[0, 100.0, 1.0] --min, max, initial value
+		spinner  movSpeed "Movement speed" type: #float   range:[0, 100.0, 0.3]
 	)
 )
 
 -- def #mechData
 global mechsData = attributes mechData (
 	parameters main rollout:params (
-		deacT type: #float   ui:deacTime 	 default:5.0 
-		reacT type: #float   ui:reacTime 	 default:3.0
-		reset type: #boolean ui:isResettable default:true
+		deacT  type: #float   ui:deacTime 	  default:5.0 
+		reacT  type: #float   ui:reacTime 	  default:3.0
+		reset  type: #boolean ui:isResettable default:true
+		appear type: #boolean ui:appears 	  default:true
 	)
 	rollout params "Mechanisms Data" (
-		spinner  deacTime "Deactivation time" type: #float range:[0, 1000.0, 5.0] --min, max, initial value
-		spinner  reacTime "Reactivation time" type: #float range:[0, 1000.0, 3.0]
+		spinner  deacTime "Deactivation time" type: #float   range:[0, 1000.0, 5.0] --min, max, initial value
+		spinner  reacTime "Reactivation time" type: #float   range:[0, 1000.0, 3.0]
 		checkbox isResettable "Is resettable" type: #boolean align:#right
+		checkbox appears "Appears" 			  type: #boolean align:#right --TODO: use dropdownlist instead to offer more options.
 	)
 )
 

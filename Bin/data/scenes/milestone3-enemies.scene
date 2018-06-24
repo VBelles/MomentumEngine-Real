@@ -78,8 +78,8 @@
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform":
       {
-        "pos": "-600.167 159.733 -877.947",
-        "lookat": "-1.0 159.733 -1.0"
+        "pos": "-606.361 156.044 -881.229",
+        "lookat": "-1.0 156.044 -1.0"
       }
     }
   },
@@ -558,8 +558,8 @@
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform":
       {
-        "pos": "-609.42 250.235 -872.22",
-        "lookat": "-1.0 250.235 -1.0"
+        "pos": "-609.42 251.215 -872.22",
+        "lookat": "-1.0 251.215 -1.0"
       }
     }
   },
@@ -570,8 +570,8 @@
       "prefab": "data/prefabs/enemy_flying.prefab",
       "transform":
       {
-        "pos": "-609.42 241.979 -872.22",
-        "lookat": "-1.0 241.979 -1.0"
+        "pos": "-609.42 240.71 -872.22",
+        "lookat": "-1.0 240.71 -1.0"
       }
     }
   },

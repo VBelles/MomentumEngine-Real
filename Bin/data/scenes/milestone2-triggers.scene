@@ -222,7 +222,7 @@
       "collider":
       {
         "shape": "box",
-        "halfExtent": "1292.56 31.4117 1252.0",
+        "halfExtent": "1500 30 1500",
         "is_trigger": true,
         "type": "static",
         "group":
