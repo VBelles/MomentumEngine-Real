@@ -11,6 +11,8 @@ private:
 	float damage = 3.f;
 	float suspensionTime = 1.5f;
 
+	CTimer movementTimer;
+
 	std::string animation = "strong_finisher1";
 
 public:

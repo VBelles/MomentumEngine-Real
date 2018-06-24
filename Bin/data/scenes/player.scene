@@ -227,7 +227,7 @@
 					{
 						"name": "strong_finisher1",
 						"shape": "sphere",
-						"radius": 1.2,
+						"radius": 1.9,
 						"group": [
 							"player"
 						],
