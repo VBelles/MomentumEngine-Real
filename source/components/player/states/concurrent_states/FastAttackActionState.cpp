@@ -79,11 +79,6 @@ void FastAttackActionState::onFastAttackButtonReleased() {
 	}
 }
 
-void FastAttackActionState::onLeavingGround() {
-	stateManager->changeState(GhostJumpWindow);
-}
-
-
 void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity* otherEntity = entity;

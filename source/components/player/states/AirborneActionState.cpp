@@ -173,6 +173,7 @@ bool AirborneActionState::hugWall(const HitState& hitState) {
 
 void AirborneActionState::onLanding() {
 	//Ir a landing action state
+	stateManager->changeConcurrentState(Free);
 	if (hardLandingTimer.elapsed() < hardLandingTime) {
 		stateManager->changeState(SoftLanding);
 	}
