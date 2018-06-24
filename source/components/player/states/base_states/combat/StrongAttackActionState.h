@@ -11,6 +11,10 @@ private:
 	
 	float powerToGet = 3000.f;
 	float damage = 2.f;
+	float suspensionTime = 0.3f;
+	VEC2 launchSpeed = { 12.f, 3.f };
+
+	CTimer movementTimer;
 
 	std::string animation = "strong_attack";
 

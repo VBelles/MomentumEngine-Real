@@ -43,7 +43,7 @@ void StrongAttack2ActionState::update(float delta) {
 	float maxSpeed = 30.f;
 	float deceleration = 40.f;
 
-	if (timer.elapsed() >= frames2sec(3) && timer.elapsed() < frames2sec(9)) {
+	if (movementTimer.elapsed() >= frames2sec(3) && movementTimer.elapsed() < frames2sec(9)) {
 		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
 		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
 			getPlayerTransform()->getFront(), acceleration,
@@ -74,6 +74,7 @@ void StrongAttack2ActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->executeAction(animation, 0.0f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
+	movementTimer.reset();
 }
 
 void StrongAttack2ActionState::onStateExit(IActionState * nextState) {
