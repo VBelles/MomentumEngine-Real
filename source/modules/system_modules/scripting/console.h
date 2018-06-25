@@ -14,6 +14,8 @@ private:
 	ImVector<const char*> Commands;
 	std::function<void(const char *)> consoleListener;
 
+	InputType previousInputType = InputType::Game;
+
 public:
 
 	SimpleConsole(std::function<void(const char *)> consoleListener);

@@ -15,6 +15,10 @@
 #include "modules/system_modules/particles/module_particles.h"
 #include "modules/system_modules/slash/module_slash.h"
 
+enum InputType {
+	None, Menu, Game, Console
+};
+
 class CEngine {
 public:
 	CEngine();
@@ -43,6 +47,10 @@ public:
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
 
+	InputType getInputType();
+	InputType getPreviousInputType();
+	void setInputType(InputType newType);
+
 private:
 	CModuleManager      _modules;
 	CModuleRender       _module_render;
@@ -61,6 +69,8 @@ private:
 
 	float           current_unscaled_delta_time = 0.f;
 	bool started = false;
+
+	InputType inputType = None;
 };
 
 #define Engine          CEngine::get()
