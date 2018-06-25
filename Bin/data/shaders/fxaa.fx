@@ -9,11 +9,11 @@ float rgb2luma(float3 rgb){
 }
 
 float QUALITY(int i){
-	if(i < 5) return i;
-	if(i < 6) return i + 1.5;
-	if(i < 11) return i + 2.0;
-	if(i < 12) return i + 4.0;
-	return i + 8.0;
+	if(i < 5) return 1;
+	if(i < 6) return 1.5;
+	if(i < 11) return 2.0;
+	if(i < 12) return 4.0;
+	return 8.0;
 }
 
 //--------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ float4 PS(
 	int ITERATIONS = 16;
 	float SUBPIXEL_QUALITY = 0.75;
 
-	float3 colorCenter = txAlbedo.Sample(samClampLinear, iTex0.xy).xyz;
+	float3 colorCenter = txAlbedo.Sample(samClampBiLinear, iTex0.xy).xyz;
 	
 	// Luma at the current fragment
 	float lumaCenter = rgb2luma(colorCenter);
@@ -220,6 +220,6 @@ float4 PS(
 	}
 
 	// Read the color at the new UV coordinates, and use it.
-	float4 finalColor = txAlbedo.Sample(samClampLinear, finalUv);
+	float4 finalColor = txAlbedo.Sample(samClampBiLinear, finalUv);
 	return finalColor;
 }
