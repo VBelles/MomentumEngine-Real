@@ -17,8 +17,9 @@ private:
 	bool fromRun = false;
 
 	CTimer movementTimer;
-
+	
 	std::string animation = "strong_attack";
+	std::string animationIdle = "idle";
 
 public:
 	StrongAttackActionState(StateManager* stateManager);
