@@ -47,7 +47,7 @@ namespace RigidAnims {
 		bool create(const std::string& name);
 		void debugInMenu() override;
 
-		bool sample(uint32_t track_index, TKey* out_key, float t, VEC3 position = VEC3::Zero, QUAT rotation = QUAT::Identity, float scale = 1.f) const;
+		bool sample(uint32_t track_index, TKey* out_key, float t, const CTransform& initialTransform) const;
 		void onFileChanged(const std::string& filename) override;
 		uint32_t findTrackIndexByName(const std::string& name) const;
 

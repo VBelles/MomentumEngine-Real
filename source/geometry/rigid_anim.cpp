@@ -92,7 +92,7 @@ namespace RigidAnims {
 	}
 
 	bool CController::sample(TKey* out_key, float t) const {
-		return anims->sample(track_index, out_key, t, initialTransform.getPosition(), initialTransform.getRotation(), initialTransform.getScale());
+		return anims->sample(track_index, out_key, t, initialTransform);
 	}
 
 	void CController::setInitialTransform(TCompTransform * transform) {
@@ -115,7 +115,10 @@ namespace RigidAnims {
 		create(filename);
 	}
 
-	bool CRigidAnimResource::sample(uint32_t track_index, TKey* out_key, float t, VEC3 position, QUAT rotation, float scale) const {
+	bool CRigidAnimResource::sample(uint32_t track_index, TKey* out_key, float t, const CTransform& initialTransform) const {
+		VEC3 position = initialTransform.getPosition();
+		QUAT rotation = initialTransform.getRotation();
+		float scale = initialTransform.getScale();
 
 		// asking for an invalid track, nothing to do.
 		if (track_index >= tracks.size())
@@ -168,7 +171,13 @@ namespace RigidAnims {
 
 		auto prev_key = &keys[key_index];
 		auto next_key = &keys[key_index + 1];
-		out_key->pos = position + lerp(prev_key->pos,  next_key->pos, amount_of_next_key);
+
+		VEC3 lerpeo = lerp(prev_key->pos, next_key->pos, amount_of_next_key);
+
+		VEC3 desiredDirection = initialTransform.getFront() * lerpeo.z + (-initialTransform.getLeft()) * lerpeo.x;
+		desiredDirection.y = lerpeo.y;
+		//world = MAT44::CreateFromQuaternion(rotation) * MAT44::CreateTranslation(translation + desiredDirection);
+		out_key->pos = position + desiredDirection;
 		out_key->rot =  lerp( prev_key->rot, next_key->rot, amount_of_next_key) * rotation;
 		out_key->scale = scale * lerp( prev_key->scale,  next_key->scale, amount_of_next_key);
 		return false;
