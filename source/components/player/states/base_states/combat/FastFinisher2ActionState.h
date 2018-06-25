@@ -14,6 +14,8 @@ private:
 	float suspensionTime = 0.4f;
 	VEC2 launchSpeed = {15.f, 3.f};
 
+	CTimer movementTimer;
+
 	std::string animation = "fast_finisher2";
 
 public:
