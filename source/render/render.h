@@ -14,8 +14,9 @@ public:
 
     int width = 0;
     int height = 0;
+	bool vsync = false;
 
-    bool createDevice(int new_width, int new_height);
+    bool createDevice(int new_width, int new_height, bool vsync);
     void destroyDevice();
     void startRenderInBackbuffer();
 };
