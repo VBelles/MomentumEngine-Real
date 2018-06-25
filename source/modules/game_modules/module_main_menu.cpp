@@ -24,6 +24,8 @@ bool CModuleMainMenu::start() {
 	controller->setCurrentOption(0);
 	Engine.getGUI().registerController(controller);
 
+	Engine.setInputType(InputType::Menu);
+
 	return true;
 }
 

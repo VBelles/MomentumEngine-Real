@@ -20,7 +20,7 @@ void TCompPlayerController::onGroupCreated(const TMsgEntitiesGroupCreated& msg) 
 
 
 void TCompPlayerController::update(float delta) {
-	if (!controlIsLocked) {
+	if (Engine.getInputType() == InputType::Game) {
 		TCompPlayerModel* playerModel = getPlayerModel();
 		VEC2 translationInput = VEC2::Zero;
 		VEC2 leftAnalogInput = VEC2(
@@ -91,21 +91,21 @@ void TCompPlayerController::update(float delta) {
 	}
 }
 
-bool TCompPlayerController::takePlayerControl() {
-	if (!controlIsLocked) {
-		controlIsLocked = true;
-		return true;
-	}
-	return false;
-}
-
-bool TCompPlayerController::givePlayerControl() {
-	if (controlIsLocked) {
-		controlIsLocked = false;
-		return true;
-	}
-	return false;
-}
+//bool TCompPlayerController::takePlayerControl() {
+//	if (!controlIsLocked) {
+//		controlIsLocked = true;
+//		return true;
+//	}
+//	return false;
+//}
+//
+//bool TCompPlayerController::givePlayerControl() {
+//	if (controlIsLocked) {
+//		controlIsLocked = false;
+//		return true;
+//	}
+//	return false;
+//}
 
 TCompPlayerModel * TCompPlayerController::getPlayerModel() {
 	return playerModelHandle;
