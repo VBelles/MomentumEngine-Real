@@ -318,9 +318,20 @@
 
   "fog": {
     "vs_file": "data/shaders/fog.fx",
+    "ps_file": "data/shaders/fog.fx",
     "vertex_type": "PosClr",
     "category" : "fx",
-    "z": "default"
+    "priority": 20,
+    "z": "disable_all"
+  },
+
+  "fxaa": {
+    "vs_file": "data/shaders/fxaa.fx",
+    "ps_file": "data/shaders/fxaa.fx",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "priority": 20,
+    "z": "disable_all"
   },
 
   "particles" : { 
