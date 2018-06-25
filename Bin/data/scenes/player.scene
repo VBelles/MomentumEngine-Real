@@ -287,7 +287,7 @@
 					{
 						"name": "vertical_launcher",
 						"shape": "sphere",
-						"radius": 1.2,
+						"radius": 1.4,
 						"group": [
 							"player"
 						],

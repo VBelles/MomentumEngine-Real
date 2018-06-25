@@ -32,6 +32,7 @@ void LauncherActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	movementTimer.reset();
 }
 
 void LauncherActionState::onStateExit(IActionState * nextState) {

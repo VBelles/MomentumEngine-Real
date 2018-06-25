@@ -11,6 +11,8 @@ protected:
 	float damage = 0;
 	float powerToGet = 2000.f;
 
+	CTimer movementTimer;
+
 	std::string animation;
 	std::string constructorHitbox;
 
