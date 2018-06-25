@@ -8,6 +8,7 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "components/player/states/base_states/moving_around/RunActionState.h"
 
 
 StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
@@ -35,9 +36,9 @@ void StrongAttackActionState::update(float delta) {
 		AttackState::update(delta);
 	}
 
+		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 	if (phase == AttackPhases::Startup || phase == AttackPhases::Launch) {
 		//posicionamiento
-		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
 		if (hasInput) {
 			VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
@@ -45,11 +46,13 @@ void StrongAttackActionState::update(float delta) {
 			rotatePlayerTowards(delta, targetPos, 3.f);
 		}
 	}
-
+	
 	float acceleration = 100.f;
-	float maxSpeed = 40.f;
+	float maxSpeed = 10.f;
 	float deceleration = 12.f;
-
+	if (fromRun) {
+		maxSpeed = 40.f;
+	}
 	if (movementTimer.elapsed() > frames2sec(30) && movementTimer.elapsed() < frames2sec(45)) {
 		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
 		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
@@ -81,7 +84,8 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	phase = AttackPhases::Launch;
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
-	movementTimer.reset();
+	movementTimer.reset(); 
+	fromRun = dynamic_cast<RunActionState*>(lastState) ? true : false;
 }
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
