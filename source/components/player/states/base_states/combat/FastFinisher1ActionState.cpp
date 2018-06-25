@@ -15,10 +15,10 @@ FastFinisher1ActionState::FastFinisher1ActionState(StateManager * stateManager) 
 	AttackState(stateManager) {
 	hitboxOutTime = frames2sec(24);
 	hitEndTime = frames2sec(11);
-	animationEndTime = frames2sec(20);
+	animationEndTime = frames2sec(65);
 	cancelableTime = frames2sec(5);
-	interruptibleTime = frames2sec(50);
-	walkableTime = frames2sec(54);
+	interruptibleTime = frames2sec(75);
+	walkableTime = frames2sec(75);
 	hitbox = "fast_finisher1";
 }
 
