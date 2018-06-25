@@ -278,7 +278,7 @@ void CModuleRender::generateFrame() {
 
 			TCompFxaa* c_fxaa = e_cam->get< TCompFxaa >();
 			if (c_fxaa)
-				curr_rt = c_fxaa->apply(curr_rt);
+				curr_rt = c_fxaa->apply(curr_rt); 
 
 		}
 

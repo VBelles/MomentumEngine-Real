@@ -35,10 +35,10 @@ float4 PS(
 	, in float2 iTex0 : TEXCOORD0
 ) : SV_Target
 {
-	
-	float EDGE_THRESHOLD_MIN = 0.0312;
-	float EDGE_THRESHOLD_MAX = 0.125;
-	int ITERATIONS = 24;
+	//http://blog.simonrodriguez.fr/articles/30-07-2016_implementing_fxaa.html
+	float EDGE_THRESHOLD_MIN = 0.0833;
+	float EDGE_THRESHOLD_MAX = 0.166;
+	int ITERATIONS = 16;
 	float SUBPIXEL_QUALITY = 0.75;
 
 	float3 colorCenter = txAlbedo.Sample(samClampLinear, iTex0.xy).xyz;
@@ -47,10 +47,10 @@ float4 PS(
 	float lumaCenter = rgb2luma(colorCenter);
 
 	// Luma at the four direct neighbours of the current fragment.
-	float lumaDown = rgb2luma(txAlbedo.Sample(samClampLinear, iTex0.xy + float2(0, -1)).xyz);
-	float lumaUp = rgb2luma(txAlbedo.Sample(samClampLinear, iTex0.xy + float2(0, 1)).xyz);
-	float lumaLeft = rgb2luma(txAlbedo.Sample(samClampLinear, iTex0.xy + float2(-1, 0)).xyz);
-	float lumaRight = rgb2luma(txAlbedo.Sample(samClampLinear, iTex0.xy + float2(1, 0)).xyz);
+	float lumaDown = rgb2luma(txAlbedo.Sample(samClampBiLinear, iTex0.xy + float2(0, -1)).xyz);
+	float lumaUp = rgb2luma(txAlbedo.Sample(samClampBiLinear, iTex0.xy + float2(0, 1)).xyz);
+	float lumaLeft = rgb2luma(txAlbedo.Sample(samClampBiLinear, iTex0.xy + float2(-1, 0)).xyz);
+	float lumaRight = rgb2luma(txAlbedo.Sample(samClampBiLinear, iTex0.xy + float2(1, 0)).xyz);
 
 	// Find the maximum and minimum luma around the current fragment.
 	float lumaMin = min(lumaCenter,min(min(lumaDown,lumaUp),min(lumaLeft,lumaRight)));
@@ -64,10 +64,10 @@ float4 PS(
 		return float4(colorCenter, 1);
 	}
 
-	float lumaDownLeft = rgb2luma(txAlbedo.Sample(samClampLinear, iTex0.xy + float2(-1,-1)).xyz);
-	float lumaUpRight = rgb2luma(txAlbedo.Sample(samClampLinear, iTex0.xy + float2(1, 1)).xyz);
-	float lumaUpLeft = rgb2luma(txAlbedo.Sample(samClampLinear, iTex0.xy + float2(-1, 1)).xyz);
-	float lumaDownRight = rgb2luma(txAlbedo.Sample(samClampLinear, iTex0.xy + float2(1, -1)).xyz);
+	float lumaDownLeft = rgb2luma(txAlbedo.Sample(samClampBiLinear, iTex0.xy + float2(-1,-1)).xyz);
+	float lumaUpRight = rgb2luma(txAlbedo.Sample(samClampBiLinear, iTex0.xy + float2(1, 1)).xyz);
+	float lumaUpLeft = rgb2luma(txAlbedo.Sample(samClampBiLinear, iTex0.xy + float2(-1, 1)).xyz);
+	float lumaDownRight = rgb2luma(txAlbedo.Sample(samClampBiLinear, iTex0.xy + float2(1, -1)).xyz);
 
 	// Combine the four edges lumas (using intermediary variables for future computations with the same values).
 	float lumaDownUp = lumaDown + lumaUp;
@@ -127,8 +127,8 @@ float4 PS(
 	float2 uv2 = currentUv + offset;
 
 	// Read the lumas at both current extremities of the exploration segment, and compute the delta wrt to the local average luma.
-	float lumaEnd1 = rgb2luma(txAlbedo.Sample(samClampLinear, uv1).xyz);
-	float lumaEnd2 = rgb2luma(txAlbedo.Sample(samClampLinear, uv2).xyz);
+	float lumaEnd1 = rgb2luma(txAlbedo.Sample(samClampBiLinear, uv1).xyz);
+	float lumaEnd2 = rgb2luma(txAlbedo.Sample(samClampBiLinear, uv2).xyz);
 	lumaEnd1 -= lumaLocalAverage;
 	lumaEnd2 -= lumaLocalAverage;
 
@@ -150,12 +150,12 @@ float4 PS(
 		for(int i = 2; i < ITERATIONS; i++){
 			// If needed, read luma in 1st direction, compute delta.
 			if(!reached1){
-				lumaEnd1 = rgb2luma(txAlbedo.Sample(samClampLinear, uv1).xyz);
+				lumaEnd1 = rgb2luma(txAlbedo.Sample(samClampBiLinear, uv1).xyz);
 				lumaEnd1 = lumaEnd1 - lumaLocalAverage;
 			}
 			// If needed, read luma in opposite direction, compute delta.
 			if(!reached2){
-				lumaEnd2 = rgb2luma(txAlbedo.Sample(samClampLinear, uv2).xyz);
+				lumaEnd2 = rgb2luma(txAlbedo.Sample(samClampBiLinear, uv2).xyz);
 				lumaEnd2 = lumaEnd2 - lumaLocalAverage;
 			}
 			// If the luma deltas at the current extremities is larger than the local gradient, we have reached the side of the edge.
