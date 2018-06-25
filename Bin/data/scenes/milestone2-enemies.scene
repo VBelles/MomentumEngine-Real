@@ -6,10 +6,19 @@
   },
   {
     "entity": {
+      "name": "bola_new",
+      "prefab": "data/prefabs/bola_new.prefab",
+      "transform": {
+        "pos": "-6 8 -50"
+      }
+    }
+  },
+  {
+    "entity": {
       "name": "medusa_new",
       "prefab": "data/prefabs/medusa_new.prefab",
       "transform": {
-        "pos": "-10 10 -50"
+        "pos": "-8 8 -50"
       }
     }
   },
