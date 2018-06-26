@@ -16,6 +16,7 @@
 #define CB_FOG          10
 #define CB_PARTICLE     11
 #define CB_SLASH        12
+#define CB_LENS_FLARE   13
 
 // -------------------------------------------------
 // Texture Slots
@@ -230,6 +231,16 @@ CB_DEF(CCteSlash, CB_SLASH) {
 	float slash_fadeout_multiplier;
 	float slash_pad2;
 	float slash_pad3;
+};
+
+CB_DEF(CCteLensFlare, CB_LENS_FLARE) {
+	VEC4 lensFlareColor;
+
+	int lensFlareSamples;
+	float lensFlareTexScale;
+	float lensFlareBlurScale;
+	float lensFlare_pad1;
+
 };
 
 #endif

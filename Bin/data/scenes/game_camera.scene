@@ -29,6 +29,9 @@
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4
+			},
+			"render_lens_flare":{
+				"enabled": false
 			}
 		}
 	},

@@ -87,15 +87,16 @@ bool CModuleRender::start() {
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
-	if (!cb_camera.create(CB_CAMERA))      return false;
-	if (!cb_object.create(CB_OBJECT))      return false;
-	if (!cb_light.create(CB_LIGHT))        return false;
-	if (!cb_globals.create(CB_GLOBALS))    return false;
-	if (!cb_blur.create(CB_BLUR))          return false;
-	if (!cb_gui.create(CB_GUI))            return false;
-	if (!cb_fog.create(CB_FOG))            return false;
-	if (!cb_particles.create(CB_PARTICLE)) return false;
-	if (!cb_slash.create(CB_SLASH))		   return false;
+	if (!cb_camera.create(CB_CAMERA))			return false;
+	if (!cb_object.create(CB_OBJECT))			return false;
+	if (!cb_light.create(CB_LIGHT))				return false;
+	if (!cb_globals.create(CB_GLOBALS))			return false;
+	if (!cb_blur.create(CB_BLUR))				return false;
+	if (!cb_gui.create(CB_GUI))					return false;
+	if (!cb_fog.create(CB_FOG))					return false;
+	if (!cb_particles.create(CB_PARTICLE))		return false;
+	if (!cb_slash.create(CB_SLASH))				return false;
+	if (!cb_lens_flare.create(CB_LENS_FLARE))	return false;
 
 
 	cb_globals.global_exposure_adjustment = 1.f;
@@ -114,6 +115,7 @@ bool CModuleRender::start() {
 	cb_fog.activate();
 	cb_particles.activate();
 	cb_slash.activate();
+	cb_lens_flare.activate();
 
 	//activateMainCamera();
 
@@ -136,6 +138,7 @@ bool CModuleRender::stop() {
 	cb_fog.destroy();
 	cb_particles.destroy();
 	cb_slash.destroy();
+	cb_lens_flare.destroy();
 
 	ImGui_ImplDX11_Shutdown();
 

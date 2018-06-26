@@ -6,15 +6,16 @@ void destroyRenderObjects();
 #include "render/cte_buffer.h"
 #include "ctes.h"
 
-extern CRenderCte<CCteCamera>   cb_camera;
-extern CRenderCte<CCteObject>   cb_object;
-extern CRenderCte<CCteLight>    cb_light;
-extern CRenderCte<CCteGlobals>  cb_globals;
-extern CRenderCte<CCteBlur>     cb_blur;
-extern CRenderCte<CCteGUI>	    cb_gui;
-extern CRenderCte<CCteFog>	    cb_fog;
-extern CRenderCte<CCteParticle> cb_particles;
-extern CRenderCte<CCteSlash>    cb_slash;
+extern CRenderCte<CCteCamera>    cb_camera;
+extern CRenderCte<CCteObject>    cb_object;
+extern CRenderCte<CCteLight>     cb_light;
+extern CRenderCte<CCteGlobals>   cb_globals;
+extern CRenderCte<CCteBlur>      cb_blur;
+extern CRenderCte<CCteGUI>	     cb_gui;
+extern CRenderCte<CCteFog>	     cb_fog;
+extern CRenderCte<CCteParticle>  cb_particles;
+extern CRenderCte<CCteSlash>     cb_slash;
+extern CRenderCte<CCteLensFlare> cb_lens_flare;
 
 class CTexture;
 

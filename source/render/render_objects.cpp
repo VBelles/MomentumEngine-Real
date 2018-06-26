@@ -2,15 +2,16 @@
 #include "render_objects.h"
 #include "texture/texture.h"
 
-CRenderCte<CCteCamera>   cb_camera("Camera");
-CRenderCte<CCteObject>   cb_object("Object");
-CRenderCte<CCteLight>    cb_light("Light");
-CRenderCte<CCteGlobals>  cb_globals("Globals");
-CRenderCte<CCteBlur>     cb_blur("Blur");
-CRenderCte<CCteGUI>      cb_gui("Gui");
-CRenderCte<CCteFog>      cb_fog("Fog");
-CRenderCte<CCteParticle> cb_particles("Particles");
-CRenderCte<CCteSlash>	 cb_slash("Slash");
+CRenderCte<CCteCamera>    cb_camera("Camera");
+CRenderCte<CCteObject>    cb_object("Object");
+CRenderCte<CCteLight>     cb_light("Light");
+CRenderCte<CCteGlobals>   cb_globals("Globals");
+CRenderCte<CCteBlur>      cb_blur("Blur");
+CRenderCte<CCteGUI>       cb_gui("Gui");
+CRenderCte<CCteFog>       cb_fog("Fog");
+CRenderCte<CCteParticle>  cb_particles("Particles");
+CRenderCte<CCteSlash>	  cb_slash("Slash");
+CRenderCte<CCteLensFlare> cb_lens_flare("LensFlare");
 
 CRenderMesh* createDot() {
 	CRenderMesh* mesh = new CRenderMesh;

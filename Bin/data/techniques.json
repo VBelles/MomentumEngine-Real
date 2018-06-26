@@ -373,6 +373,16 @@
     "blend": "additive"
   },
 
+  "lens_flare": {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "ps_file": "data/shaders/lens_flare.fx",
+    "vertex_type": "PosClr",
+    "category": "fx",
+    "priority": 20,
+    "z": "disable_all",
+    "blend": "additive"
+  },
+
   "pbr_outline": {
     "vs_file": "data/shaders/pbr.fx",
     "vs_entry_point": "VS_GBuffer",
