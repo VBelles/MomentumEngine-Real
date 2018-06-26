@@ -26,7 +26,9 @@ void TCompPlatformSimple::debugInMenu() {
 	ImGui::DragFloat("rotationSpeed", &rotationSpeed, 0.001f, 0.f, 2.f);
 	if (ImGui::DragFloat3("rotationAxis", &rotationAxisLocal.x, 0.5f, -1.f, 1.f)) {
 		TCompTransform* transform = get<TCompTransform>();
-		rotationAxisGlobal = transform->getLeft() * rotationAxisLocal.x + transform->getUp() * rotationAxisLocal.y + transform->getFront() * rotationAxisLocal.z;
+		rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
+							 transform->getUp()    * rotationAxisLocal.y +
+							 transform->getFront() * rotationAxisLocal.z;
 	}
 }
 
@@ -58,7 +60,9 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 	TCompTransform* transform = get<TCompTransform>();
 	//combinar up/left/front para encontrar la rotationAxisGlobal
-	rotationAxisGlobal = transform->getLeft() * rotationAxisLocal.x + transform->getUp() * rotationAxisLocal.y + transform->getFront() * rotationAxisLocal.z;
+	rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
+						 transform->getUp()    * rotationAxisLocal.y +
+						 transform->getFront() * rotationAxisLocal.z;
 	transformHandle = CHandle(transform);
 	assert(transformHandle.isValid());
 	colliderHandle = get<TCompCollider>();
@@ -105,7 +109,6 @@ void TCompPlatformSimple::update(float delta) {
 		transform->setPosition(position);
 	}
 
-
 	//Rotation
 	if (rotationSpeed > 0) {
 		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
@@ -114,7 +117,6 @@ void TCompPlatformSimple::update(float delta) {
 
 	//Update collider
 	getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
-
 }
 
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }

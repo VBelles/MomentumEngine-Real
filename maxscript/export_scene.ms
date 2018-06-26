@@ -1571,7 +1571,6 @@ struct TSceneExporter (
 			local layerObjs
 			layer.nodes &layerObjs
 			-- Output filename based on .max filename.
-			--format "Layer: %, objs: %\n" layerName layerObjs --DEBUG
 			local ofilename = getFilenameFile maxFileName
 			local scenePath = project_path + scenes_path + ofilename + "-" + layerName + ".scene"
 			if layerName == "player" then scenePath = project_path + scenes_path + "test_player.scene"
@@ -1662,20 +1661,20 @@ Las layers invisibles o vacías no se exportan.
 Lo visible como Editable Mesh.
 Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) o una mesh como hija. Si no es hija
 se exportará en la escena collisions.
-Las meshes		    deben estar en una layer llamada "0".
-Los enemigos		    deben estar en una layer llamada "enemies".
-Las crisálidas 		    deben estar en una layer llamada "chrysalis".
-Las plataformas móviles deben estar en una layer llamada "movables" (excepto si son puras, en ese caso van en pure).
-Las cámaras		    deben estar en una layer llamada "cameras".
-Las puras			    deben estar en una layer llamada "pure".
-Las luces			    deben estar en una layer llamada "lights".
-Los triggers		    deben estar en una layer llamada "triggers".
-Los colliders invisibles   deben estar en una layer llamada "collisions".
+Las meshes		   	 	 deben estar en una layer llamada "0".
+Los enemigos		     deben estar en una layer llamada "enemies".
+Las crisálidas 		     deben estar en una layer llamada "chrysalis".
+Las plataformas móviles  deben estar en una layer llamada "movables" (excepto si son puras, en ese caso van en pure).
+Las cámaras		    	 deben estar en una layer llamada "cameras".
+Las puras			     deben estar en una layer llamada "pure".
+Las luces			     deben estar en una layer llamada "lights".
+Los triggers		     deben estar en una layer llamada "triggers".
+Los colliders invisibles deben estar en una layer llamada "collisions".
 
 Las monedas únicas tienen que contener "unique" en el nombre.
- 
+
 El objeto low-res del LOD debe ser padre de un dummy que contiene los objetos a los que sustituye cuando está activo.
- 
+
 Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
 El proyecto debe tener las siguientes carpetas:
  bin/data/scenes/

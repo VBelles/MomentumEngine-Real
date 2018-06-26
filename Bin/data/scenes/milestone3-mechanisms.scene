@@ -687,7 +687,7 @@
       },
       "mechanism":
       {
-        "deactivationTime": 5.0,
+        "deactivationTime": 12.0,
         "reactivationTime": 3.0,
         "isResettable": false,
         "systems":

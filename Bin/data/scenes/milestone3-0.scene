@@ -2,6 +2,528 @@
   {
     "entity":
     {
+      "name": "ms3_platf027",
+      "transform":
+      {
+        "pos": "-468.648 109.998 -897.053",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf027.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_platf_col007.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna061",
+      "transform":
+      {
+        "pos": "-611.581 75.2926 -921.944",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna061.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna059",
+      "transform":
+      {
+        "pos": "-581.142 75.2926 -939.607",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna059.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna057",
+      "transform":
+      {
+        "pos": "-547.175 75.2926 -955.475",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna057.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna055",
+      "transform":
+      {
+        "pos": "-515.175 75.2926 -973.416",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna055.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna053",
+      "transform":
+      {
+        "pos": "-576.927 75.2926 -859.523",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna053.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna051",
+      "transform":
+      {
+        "pos": "-547.982 75.2926 -869.509",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna051.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna049",
+      "transform":
+      {
+        "pos": "-514.015 75.2926 -885.377",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna049.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna047",
+      "transform":
+      {
+        "pos": "-482.016 75.2926 -903.318",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna047.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_platf026",
+      "transform":
+      {
+        "pos": "-459.809 106.762 -893.923",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf026.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_platf_col006.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_platf025",
+      "transform":
+      {
+        "pos": "-441.188 74.3757 -881.881",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf025.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_platf_col005.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma_rocosa2_low245",
+      "transform":
+      {
+        "pos": "-186.703 64.687 -914.804",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low245.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma_rocosa2_low243",
+      "transform":
+      {
+        "pos": "-183.245 58.9572 -910.605",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma_rocosa2_low243.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna046",
+      "transform":
+      {
+        "pos": "-170.661 56.9224 -890.946",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna046.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_columna_col003.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna045",
+      "transform":
+      {
+        "pos": "-184.549 56.9224 -878.562",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna045.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_columna_col002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna044",
+      "transform":
+      {
+        "pos": "-195.774 56.9224 -893.092",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna044.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_columna_col001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna042",
+      "transform":
+      {
+        "pos": "-232.799 61.0112 -833.879",
+        "rotation": "-0.10571 0.137764 0.599513 -0.781301"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna042.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna040",
+      "transform":
+      {
+        "pos": "-460.017 69.636 -845.255",
+        "rotation": "-0.440378 0.266729 -0.13885 -0.845957"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna040.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_columna038",
+      "transform":
+      {
+        "pos": "-515.293 87.3246 -788.26",
+        "rotation": "0.659576 0.146224 0.159576 -0.719801"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_columna038.mesh",
+          "materials":
+          [
+            "data/materials/Columna.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_platf023",
+      "transform":
+      {
+        "pos": "-449.105 74.2503 -734.932",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf023.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_platf021",
+      "transform":
+      {
+        "pos": "-449.199 77.5238 -741.733",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf021.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_platf019",
+      "transform":
+      {
+        "pos": "-447.646 70.8768 -728.641",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf019.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_escalera_rota005",
       "transform":
       {
@@ -68,7 +590,7 @@
       "name": "ms3_platf015",
       "transform":
       {
-        "pos": "-351.378 358.87 -1096.18",
+        "pos": "-346.816 358.87 -1098.88",
         "rotation": "0.0 0.300706 0.0 -0.953717"
       },
       "render":

@@ -92,7 +92,7 @@
       "name": "ms3_plataforma_rocosa2_low142",
       "transform":
       {
-        "pos": "-143.536 113.397 -1100.24",
+        "pos": "-143.536 113.191 -1100.24",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -256,7 +256,7 @@
       "name": "ms3_plataforma_rocosa2_low103",
       "transform":
       {
-        "pos": "-144.848 109.143 -1092.83",
+        "pos": "-144.848 108.937 -1092.83",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
