@@ -22,8 +22,10 @@ private:
 	//double dt = 1.f / 60.f;
 	//double accumulator = 0.0;
 
+	void getDesktopResolution(int& horizontal, int& vertical);
+
 public:
-	VEC2 resolution;
+	int resX = 0, resY = 0;
 	bool fullscreen = false;
 
 	bool stopMainLoop = false;

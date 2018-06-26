@@ -640,6 +640,17 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKeyValue "number_of_mechanisms" 1
 		fs.endObj()
+
+		--Get from attribute if it exists.
+		if attrManager.hasAttribute obj.parent.parent "mechData" then (
+			local appear = attrManager.getAttributeValue obj.parent.parent "mechData" #appear
+
+			fs.writeComma()
+			fs.writeKey "door"
+			fs.beginObj()
+				fs.writeKeyValue "startsClosed" (not appear) --false means it starts invisible.
+			fs.endObj()
+		)
 	),
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider----------

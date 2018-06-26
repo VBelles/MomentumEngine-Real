@@ -42,7 +42,6 @@ void JumpSquatLongActionState::onLeavingGround() {
 	if (timer.elapsed() >= squatTime) {
 		timer.reset();
 		stateManager->changeState(AirborneLong);
-
 	}
 	else {
 		//En caso de que el comportamiento fuera diferente si cae antes de poder saltar

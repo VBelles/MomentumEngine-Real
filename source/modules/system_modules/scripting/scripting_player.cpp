@@ -38,11 +38,15 @@ void ScriptingPlayer::setPlayerRespawnPosition(float x, float y, float z) {
 }
 
 bool ScriptingPlayer::takePlayerControl() {
-	return getPlayerController()->takePlayerControl();
+	bool ret = InputType::Menu != Engine.getInputType();
+	Engine.setInputType(InputType::Menu);
+	return ret;
 }
 
 bool ScriptingPlayer::givePlayerControl() {
-	return getPlayerController()->givePlayerControl();
+	bool ret = InputType::Game != Engine.getInputType();
+	Engine.setInputType(InputType::Game);
+	return ret;
 }
 
 void ScriptingPlayer::lockPlayerCameraInput() {

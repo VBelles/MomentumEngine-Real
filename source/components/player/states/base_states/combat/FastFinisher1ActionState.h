@@ -11,7 +11,11 @@ private:
 
 	float powerToGet = 3000.f;
 	float damage = 2.f;
-	float suspensionTime = 1.5f;
+
+	float suspensionTime = 0.4f;
+	VEC2 launchSpeed = { 14.f, 5.f };
+
+	CTimer movementTimer;
 
 	std::string animation = "fast_finisher1";
 

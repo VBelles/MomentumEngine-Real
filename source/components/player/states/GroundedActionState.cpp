@@ -32,10 +32,12 @@ void GroundedActionState::onStateExit(IActionState * nextState) {
 }
 
 void GroundedActionState::onJumpHighButton() {
+	stateManager->changeConcurrentState(Free);
 	stateManager->changeState(JumpSquat);
 }
 
 void GroundedActionState::onJumpLongButton() {
+	stateManager->changeConcurrentState(Free);
 	stateManager->changeState(JumpSquatLong);
 }
 
@@ -77,6 +79,7 @@ void GroundedActionState::onMove(MoveState& moveState) {
 
 void GroundedActionState::onLeavingGround() {
 	//Set state a alguno por defecto, luego las clases derivadas de esta ya sabr�n qu� hacer
+	stateManager->changeConcurrentState(Free);
 	stateManager->changeState(GhostJumpWindow);
 }
 

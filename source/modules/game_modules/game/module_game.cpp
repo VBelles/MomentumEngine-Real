@@ -77,11 +77,13 @@ bool CModuleGame::start() {
 	EngineCameras.setOutputCamera(h_camera);
 
 	respawner = new Respawner();
+	CApp::get().setResetMouse(true);
+
+	Engine.setInputType(InputType::Game);
 
 	EngineScripting.throwEvent(onGameStart, "");
 	EngineScripting.throwEvent(onLevelStart, "1");
 
-	CApp::get().setResetMouse(true);
 	return true;
 }
 
@@ -99,7 +101,7 @@ bool CModuleGame::stop() {
 void CModuleGame::update(float delta) {
 	if (EngineInput["debug_mode"].getsPressed()) {
 		if (!CApp::get().toggleDebug()) {
-			ScriptingPlayer::givePlayerControl();
+			Engine.setInputType(InputType::Game);
 		}
 	}
 
@@ -107,10 +109,10 @@ void CModuleGame::update(float delta) {
 
 	if (EngineInput["free_camera"].getsPressed()) {
 		if (!EngineRender.toggleFreeCamera()) {
-			ScriptingPlayer::givePlayerControl();
+			Engine.setInputType(InputType::Game);
 		}
 		else {
-			ScriptingPlayer::takePlayerControl();
+			Engine.setInputType(InputType::Menu);
 		}
 	}
 }

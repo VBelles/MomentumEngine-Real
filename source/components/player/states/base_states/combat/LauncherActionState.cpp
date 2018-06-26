@@ -32,6 +32,7 @@ void LauncherActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	movementTimer.reset();
 }
 
 void LauncherActionState::onStateExit(IActionState * nextState) {
@@ -45,6 +46,14 @@ void LauncherActionState::setMovementInput(VEC2 input) {
 	if (input.Length() > PAD_DEAD_ZONE) {
 		if (canWalk()) stateManager->changeState(Walk);
 	}
+}
+
+void LauncherActionState::onJumpHighButton() {
+	if (canWalk()) GroundedActionState::onJumpHighButton();
+}
+
+void LauncherActionState::onJumpLongButton() {
+	if (canWalk()) GroundedActionState::onJumpLongButton();
 }
 
 void LauncherActionState::onDodgeButton() {

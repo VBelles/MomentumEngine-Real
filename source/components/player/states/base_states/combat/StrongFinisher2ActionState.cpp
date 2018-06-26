@@ -13,12 +13,12 @@
 StrongFinisher2ActionState::StrongFinisher2ActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, StrongFinisher2),
 	AttackState(stateManager) {
-	hitboxOutTime = frames2sec(30);
-	hitEndTime = frames2sec(15);
-	animationEndTime = frames2sec(30);
-	cancelableTime = frames2sec(20);
-	interruptibleTime = frames2sec(60);
-	walkableTime = frames2sec(70);
+	hitboxOutTime = frames2sec(31);
+	hitEndTime = frames2sec(13);
+	animationEndTime = frames2sec(50);
+	cancelableTime = frames2sec(23);
+	interruptibleTime = frames2sec(50);
+	walkableTime = frames2sec(55);
 	hitbox = "strong_finisher2";
 }
 
@@ -38,6 +38,33 @@ void StrongFinisher2ActionState::update(float delta) {
 			rotatePlayerTowards(delta, targetPos, 3.f);
 		}
 	}
+
+	float acceleration = 100.f;
+	float maxSpeed = 18.f;
+	float deceleration = 40.f;
+
+	if (movementTimer.elapsed() >= frames2sec(29) && movementTimer.elapsed() < frames2sec(42)) {
+		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+			getPlayerTransform()->getFront(), acceleration,
+			maxSpeed);
+
+		transferVelocityToDirectionAndAccelerate(delta, true, getPlayerTransform()->getFront(), acceleration);
+		clampHorizontalVelocity(maxSpeed);
+	}
+	else {
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		if (deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+				-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
+
+			transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
+		}
+		else {
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
+		}
+	}
 }
 
 void StrongFinisher2ActionState::onStateEnter(IActionState * lastState) {
@@ -47,6 +74,7 @@ void StrongFinisher2ActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
+	movementTimer.reset();
 }
 
 void StrongFinisher2ActionState::onStateExit(IActionState * nextState) {
@@ -62,6 +90,14 @@ void StrongFinisher2ActionState::setMovementInput(VEC2 input) {
 	}
 }
 
+void StrongFinisher2ActionState::onJumpHighButton() {
+	if (canWalk()) GroundedActionState::onJumpHighButton();
+}
+
+void StrongFinisher2ActionState::onJumpLongButton() {
+	if (canWalk()) GroundedActionState::onJumpLongButton();
+}
+
 void StrongFinisher2ActionState::onDodgeButton() {
 	if (isCancelable() || isInterruptible()) GroundedActionState::onDodgeButton();
 }
@@ -73,6 +109,12 @@ void StrongFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entit
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
+	VEC3 launchVelocity = getPlayerTransform()->getFront() * getPlayerModel()->getPowerStats()->longJumpVelocityVector.z;
+	launchVelocity.y = getPlayerModel()->getPowerStats()->longJumpVelocityVector.y;
+	msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+		suspensionTime,
+		launchVelocity
+	};
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAtackHit);

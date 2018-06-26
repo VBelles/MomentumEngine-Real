@@ -9,6 +9,9 @@ private:
 
 	float powerToGet = 3000.f;
 	float damage = 3.f;
+	float suspensionTime = 1.5f;
+
+	CTimer movementTimer;
 
 	std::string animation = "strong_finisher1";
 
@@ -19,8 +22,8 @@ public:
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 	void setMovementInput(VEC2 input) override;
-	void onJumpHighButton() override {}
-	void onJumpLongButton() override {}
+	void onJumpHighButton() override;
+	void onJumpLongButton() override;
 	void onStrongAttackButton() override {}
 	void onFastAttackButton() override {}
 	void onDodgeButton() override;

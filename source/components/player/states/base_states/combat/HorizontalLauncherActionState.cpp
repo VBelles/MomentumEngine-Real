@@ -7,10 +7,48 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "components/comp_transform.h"
 
 
 HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stateManager) :
 	LauncherActionState(stateManager, HorizontalLauncher, "horizontal_launcher", "horizontal_launcher") {
+	hitboxOutTime = frames2sec(22);
+	hitEndTime = frames2sec(12);
+	animationEndTime = frames2sec(26);
+	cancelableTime = frames2sec(15);
+	interruptibleTime = frames2sec(40);
+	walkableTime = frames2sec(44);
+}
+
+void HorizontalLauncherActionState::update(float delta) {
+	LauncherActionState::update(delta);
+
+	float acceleration = 100.f;
+	float maxSpeed = 10.f;
+	float deceleration = 8.f;
+
+	if (movementTimer.elapsed() >= frames2sec(20) && movementTimer.elapsed() < frames2sec(28)) {
+		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+			getPlayerTransform()->getFront(), acceleration,
+			maxSpeed);
+
+		transferVelocityToDirectionAndAccelerate(delta, true, getPlayerTransform()->getFront(), acceleration);
+		clampHorizontalVelocity(maxSpeed);
+	}
+	else {
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		if (deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+				-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
+
+			transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
+		}
+		else {
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
+		}
+	}
 }
 
 void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

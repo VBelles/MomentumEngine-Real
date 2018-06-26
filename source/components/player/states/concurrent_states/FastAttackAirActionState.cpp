@@ -47,6 +47,7 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = false;
+	getSkeleton()->removeAction(animation, 0.2f);
 }
 
 void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

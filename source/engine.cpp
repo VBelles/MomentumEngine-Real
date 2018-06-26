@@ -80,3 +80,11 @@ void CEngine::render() {
 	PROFILE_FUNCTION("CEngine::render");
 	_module_render.generateFrame();
 }
+
+InputType CEngine::getInputType() {
+	return inputType;
+}
+
+void CEngine::setInputType(InputType newType) {
+	inputType = newType;
+}

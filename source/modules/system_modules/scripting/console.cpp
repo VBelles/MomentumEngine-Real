@@ -126,9 +126,13 @@ void SimpleConsole::Draw(const char* title, bool* p_open) {
 		strcpy(InputBuf, "");
 		reclaim_focus = true;
 	}
-	ScriptingPlayer::takePlayerControl();
+
+	//ScriptingPlayer::takePlayerControl();
+	if (Engine.getInputType() != InputType::Console) previousInputType = Engine.getInputType();
+	Engine.setInputType(InputType::Console);
 	if (!ImGui::IsItemActive() && !ImGui::IsItemClicked()) {
-		ScriptingPlayer::givePlayerControl();
+		//ScriptingPlayer::givePlayerControl();
+		Engine.setInputType(previousInputType);
 	}
 
 	// Demonstrate keeping focus on the input box

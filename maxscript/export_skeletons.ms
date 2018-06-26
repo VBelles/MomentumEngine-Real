@@ -10,7 +10,7 @@ struct  TSkeletonsExporter (
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return (classof obj == Biped_Object or classof obj == Dummy or classof obj == BoneGeometry)
+		return (classof obj == Biped_Object or classof obj == Dummy or classof obj == BoneGeometry or classof obj == Point) and not obj.isHidden
 	),
 	
 	-- Search the root bones in the scene to define the .csf
@@ -18,7 +18,7 @@ struct  TSkeletonsExporter (
 		local obj_bones = #()
 		for obj in $* do (
 			format "% is classof %\n" obj.name (classof obj)
-			if (classof obj == BoneGeometry) then bone_geometry = true
+			if (classof obj == BoneGeometry or classof obj == Point) then bone_geometry = true
 			if isBone obj and obj.parent == undefined then (
 				format "% is a root bone\n" obj.name
 				append obj_bones obj
@@ -151,9 +151,9 @@ struct  TSkeletonsExporter (
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 global exportPath = (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
 exportPath = substituteString exportPath "\\" "/"
-se = TSkeletonsExporter project_path: exportPath skel_name:"ella"
+se = TSkeletonsExporter project_path: exportPath skel_name:"bola_new"
 
 --gc()
 --se = TSkeletonsExporter()
-se.exportSkelAndMeshes()
+--se.exportSkelAndMeshes()
 se.exportAnim()

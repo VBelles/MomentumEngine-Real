@@ -27,7 +27,7 @@ void JumpSquatSpringActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	timer.reset();
 	getPlayerModel()->maxVerticalSpeed = getPlayerModel()->maxVelocityUpwards;
-	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	//getSkeleton()->executeAction(animation, 0.05f, 0.05f);
 }
 
 void JumpSquatSpringActionState::onStateExit(IActionState * nextState) {

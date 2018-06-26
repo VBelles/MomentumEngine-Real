@@ -155,6 +155,14 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
     return 0;
 }
 
+void CApp::getDesktopResolution(int& horizontal, int& vertical) {
+	RECT desktop;
+	const HWND hDesktop = GetDesktopWindow();
+	GetWindowRect(hDesktop, &desktop);
+	horizontal = desktop.right;
+	vertical = desktop.bottom;
+}
+
 //--------------------------------------------------------------------------------------
 // Register class and create window
 //--------------------------------------------------------------------------------------
@@ -179,7 +187,7 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 
     // Create window
     if (!fullscreen) {
-        RECT rc = { 0, 0, static_cast<LONG>(resolution.x), static_cast<LONG>(resolution.y) };
+        RECT rc = { 0, 0, resX, resY };
         AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
         hWnd = CreateWindow("MCVWindowsClass", "Momentum",
                             WS_OVERLAPPEDWINDOW,
@@ -242,8 +250,16 @@ bool CApp::readConfig() {
     json j = loadJson("data/configuration.json");
     json& jScreen = j["screen"];
 
-    resolution = loadVEC2(jScreen["resolution"]);
-    fullscreen = jScreen["fullscreen"];
+	std::string res = jScreen.value("resolution", "auto");
+	if (res == "auto") {
+		getDesktopResolution(resX, resY);
+	}
+	else {
+		int n = sscanf(res.c_str(), "%d %d", &resX, &resY);
+		if(n != 2) getDesktopResolution(resX, resY);
+	}
+	fullscreen = jScreen.value("fullscreen", true);
+	bool vsync = jScreen.value("vsync", false);
     
     //16:9 resolutions:
     //1280x720  = 720p HD
@@ -255,7 +271,7 @@ bool CApp::readConfig() {
 
     time_since_last_render.reset();
 
-    EngineRender.configure(static_cast<int>(resolution.x), static_cast<int>(resolution.y));
+    EngineRender.configure(resX, resY, vsync);
     return true;
 }
 

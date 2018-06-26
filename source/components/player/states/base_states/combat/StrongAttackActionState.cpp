@@ -8,17 +8,18 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "components/player/states/base_states/moving_around/RunActionState.h"
 
 
 StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, StrongAttack),
 	AttackState(stateManager) {
 	hitboxOutTime = frames2sec(30);
-	hitEndTime = frames2sec(25);
-	animationEndTime = frames2sec(40);
-	cancelableTime = frames2sec(20);
-	interruptibleTime = frames2sec(40);
-	walkableTime = frames2sec(70);
+	hitEndTime = frames2sec(26);
+	animationEndTime = frames2sec(47);
+	cancelableTime = frames2sec(29);
+	interruptibleTime = frames2sec(57);
+	walkableTime = frames2sec(90);
 	hitbox = "strong_attack";
 }
 
@@ -35,14 +36,60 @@ void StrongAttackActionState::update(float delta) {
 		AttackState::update(delta);
 	}
 
+	bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 	if (phase == AttackPhases::Startup || phase == AttackPhases::Launch) {
 		//posicionamiento
-		bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
 
 		if (hasInput) {
 			VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 			VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
 			rotatePlayerTowards(delta, targetPos, 3.f);
+		}
+	}
+
+	float acceleration = 100.f;
+	float maxSpeed = 10.f;
+	float deceleration = 12.f;
+
+	if (fromRun) {
+		maxSpeed = 40.f;
+	}
+
+	if (phase == AttackPhases::Launch && fromRun) {
+		deceleration = 1.f;
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		if (deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+				-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
+
+			transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
+		}
+		else {
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
+		}
+	}
+
+	if (movementTimer.elapsed() > frames2sec(30) && movementTimer.elapsed() < frames2sec(45)) {
+		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+			getPlayerTransform()->getFront(), acceleration,
+			maxSpeed);
+
+		transferVelocityToDirectionAndAccelerate(delta, true, getPlayerTransform()->getFront(), acceleration);
+		clampHorizontalVelocity(maxSpeed);
+	}
+	else {
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		if (deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+				-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
+
+			transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
+		}
+		else {
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
 		}
 	}
 }
@@ -52,8 +99,11 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	AttackState::onStateEnter(lastState);
 	dbg("Strong 1\n");
 	phase = AttackPhases::Launch;
-	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
+	movementTimer.reset(); 
+	getSkeleton()->blendCycle(animationIdle, 0.4f, 0.4f);
+	fromRun = dynamic_cast<RunActionState*>(lastState) ? true : false;
+	if(!fromRun) *velocityVector = VEC3::Zero;
 }
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
@@ -69,6 +119,7 @@ void StrongAttackActionState::onStrongAttackButton() {
 void StrongAttackActionState::onStrongAttackButtonReleased() {
 	if (phase == AttackPhases::Launch) {
 		phase = AttackPhases::Startup;
+		*velocityVector = VEC3::Zero;
 		getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	}
 }
@@ -96,11 +147,23 @@ void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) 
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-	TMsgAttackHit msgAtackHit = {};
-	msgAtackHit.attacker = playerEntity;
-	msgAtackHit.info = {};
-	msgAtackHit.info.givesPower = true;
-	msgAtackHit.info.damage = damage;
-	otherEntity->sendMsg(msgAtackHit);
+	TMsgAttackHit msgAttackHit = {};
+	msgAttackHit.attacker = playerEntity;
+	msgAttackHit.info = {};
+	TCompTransform* otherTransform = otherEntity->get<TCompTransform>();
+	VEC3 launchVelocity = otherTransform->getPosition() - getPlayerTransform()->getPosition();
+	launchVelocity.Normalize();
+	launchVelocity *= launchSpeed.x;
+	launchVelocity.y = launchSpeed.y;
+	msgAttackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+		suspensionTime,
+		launchVelocity
+	};
+	msgAttackHit.info.stun = new AttackInfo::Stun{
+		0.8f
+	};
+	msgAttackHit.info.givesPower = true;
+	msgAttackHit.info.damage = damage;
+	otherEntity->sendMsg(msgAttackHit);
 
 }

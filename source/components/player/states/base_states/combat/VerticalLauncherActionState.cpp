@@ -6,9 +6,20 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "components/comp_transform.h"
 
 VerticalLauncherActionState::VerticalLauncherActionState(StateManager * stateManager) :
 	LauncherActionState(stateManager, VerticalLauncher, "vertical_launcher", "vertical_launcher") {
+	hitboxOutTime = frames2sec(18);
+	hitEndTime = frames2sec(7);
+	animationEndTime = frames2sec(35);
+	cancelableTime = frames2sec(15);
+	interruptibleTime = frames2sec(30);
+	walkableTime = frames2sec(44);
+}
+
+void VerticalLauncherActionState::update(float delta) {
+	LauncherActionState::update(delta);
 }
 
 void VerticalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
