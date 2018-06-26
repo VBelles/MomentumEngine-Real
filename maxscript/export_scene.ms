@@ -215,12 +215,16 @@ struct TMaterialExporter (
 
 	-- Exports a single std material to a json format
 	fn exportStdMaterial mat mat_name pure:false = (
-		--format "Exporting material % % %\n" mat_name mat (classof mat as string)
-		fs.begin (project_path + mat_name + ".material")
-			exportMaterialContent mat:mat
-		fs.end()
-
-		if pure then (
+		if not pure then (
+			--format "Exporting material % % %\n" mat_name mat (classof mat as string)
+			fs.begin (project_path + mat_name + ".material")
+				exportMaterialContent mat:mat
+			fs.end()
+		) else ( --Is pure.
+			-- Generate normal material but with pureON.tech.
+			fs.begin (project_path + mat_name + "_pureON.material")
+				exportMaterialContent mat:mat tech:"pureON"
+			fs.end()
 		    -- Generate identical material but with pure.tech.
 			fs.begin (project_path + mat_name + "_pure.material")
 				exportMaterialContent mat:mat tech:"pure"
@@ -229,10 +233,19 @@ struct TMaterialExporter (
 	),
 	
 	-- Exports an empty solid material to a json format
-	fn exportEmptyMaterial mat_name = (
-		fs.begin (project_path + mat_name + ".material")
-			exportMaterialContent()
+	fn exportEmptyMaterial mat_name pure:false= (
+		local suffix = ""
+		if pure then suffix = "_pure"
+		fs.begin (project_path + mat_name + suffix + ".material")
+			if pure then exportMaterialContent tech:"pure"
+			else exportMaterialContent()
 		fs.end()
+		if pure then (
+			suffix = "_pureON"
+			fs.begin (project_path + mat_name + suffix + ".material")
+				exportMaterialContent tech:"pureON"
+			fs.end()
+		)
 	),
 	
 	-- Will return an array of all the materials names used by obj and exported by us
@@ -241,15 +254,15 @@ struct TMaterialExporter (
 		local matClass = classOf mat
 		--format "material class: %\n" matClass as string --DEBUG
 		
+		local pure = obj.layer.name == "pure"
+
 		if mat == undefined then (
 			setMaterialIDs obj --set Material IDs to 1.
 			--throw ("Obj " + obj.name + " does NOT have a material")
 			local mat_name = mat_path + "empty"
 			append exported_materials mat_name
-			exportEmptyMaterial mat_name
+			exportEmptyMaterial mat_name pure:pure
 		)
-		
-		local pure = obj.layer.name == "pure"
 
 		if matClass == StandardMaterial then (
 			setMaterialIDs obj --set Material IDs to 1.
@@ -517,7 +530,9 @@ struct TSceneExporter (
 			local exported_materials = me.exportMaterial mat mats_path obj
 
 			fs.writeKey "materials"
-			fs.arrayOfStrings exported_materials suffix:".material"
+			local suffix = ".material"
+			if pure then suffix = "_pureON.material"
+			fs.arrayOfStrings exported_materials suffix:suffix
 			if pure then (
 					fs.writeComma()
 					fs.writeKeyValue "enabled" false

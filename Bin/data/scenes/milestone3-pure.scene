@@ -14,7 +14,7 @@
           "mesh": "data/meshes/ms3_rotate001.mesh",
           "materials":
           [
-            "data/materials/empty.material"
+            "data/materials/empty_pureON.material"
           ],
           "enabled": false
         },
@@ -40,7 +40,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 1.0 0.0",
+        "rotation_axis": "0.0 0.0 1.0",
         "rotation_speed": 0.5
       }
     }
@@ -60,7 +60,7 @@
           "mesh": "data/meshes/ms3_plataforma_rocosa2_low181.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -101,7 +101,7 @@
           "mesh": "data/meshes/ms3_plataforma_rocosa2_low142.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -142,7 +142,7 @@
           "mesh": "data/meshes/ms3_plataforma_rocosa2_low119.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -183,7 +183,7 @@
           "mesh": "data/meshes/ms3_plataforma_rocosa2_low117.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -224,7 +224,7 @@
           "mesh": "data/meshes/ms3_plataforma_rocosa2_low115.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -265,7 +265,7 @@
           "mesh": "data/meshes/ms3_plataforma_rocosa2_low103.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -306,7 +306,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder131.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -347,7 +347,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder129.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -388,7 +388,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder127.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -429,7 +429,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder125.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -470,7 +470,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder123.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -511,7 +511,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder121.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -552,7 +552,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder119.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -593,7 +593,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder117.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -634,7 +634,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder115.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -675,7 +675,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder113.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -716,7 +716,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder111.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -757,7 +757,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder109.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
@@ -798,7 +798,7 @@
           "mesh": "data/meshes/ms3_pure_Cylinder107.mesh",
           "materials":
           [
-            "data/materials/empty_gray.material"
+            "data/materials/empty_gray_pureON.material"
           ],
           "enabled": false
         },
