@@ -233,7 +233,7 @@ struct TMaterialExporter (
 	),
 	
 	-- Exports an empty solid material to a json format
-	fn exportEmptyMaterial mat_name pure:false= (
+	fn exportEmptyMaterial mat_name pure:false = (
 		local suffix = ""
 		if pure then suffix = "_pure"
 		fs.begin (project_path + mat_name + suffix + ".material")
