@@ -82,8 +82,14 @@ StateManager::StateManager(CHandle entityHandle) :
 	gameCameraHandle = gameCameraEntity->get<TCompCamera>();
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	playerCameraHandle = playerCameraEntity->get<TCompCameraPlayer>();
-	CEntity* slashEntity = getEntityByName("slash01");
-	slashHandle = slashEntity->get<TCompSlash>();
+
+	CEntity* slashRightHandEntity = getEntityByName("slashRightHand");
+	slashRightHandHandle = slashRightHandEntity->get<TCompSlash>();
+	CEntity* slashLeftHandEntity = getEntityByName("slashLeftHand");
+	slashLeftHandHandle = slashLeftHandEntity->get<TCompSlash>();
+
+
+
 	registerStates();
 }
 
@@ -251,6 +257,14 @@ TCompCollectableManager * StateManager::getCollectableManager() {
 	return collectableManagerHandle;
 }
 
-TCompSlash * StateManager::getSlash() {
-	return slashHandle;
+TCompSlash * StateManager::getSlash(SlashType type) {
+	switch (type) {
+		case SlashType::LEFT_HAND:
+			return slashLeftHandHandle;
+		case SlashType::RIGHT_HAND:
+			return slashRightHandHandle;
+		default:
+			dbg("No se reconoce el tipo de slash\n");
+			return slashRightHandHandle;
+	}
 }

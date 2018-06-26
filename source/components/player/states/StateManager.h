@@ -30,7 +30,8 @@ private:
 	CHandle collectableManagerHandle;
 	CHandle gameCameraHandle;
 	CHandle playerCameraHandle;
-	CHandle slashHandle;
+	CHandle slashRightHandHandle;
+	CHandle slashLeftHandHandle;
 
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
@@ -92,7 +93,7 @@ public:
 	TCompHitboxes* getHitboxes();
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
-	TCompSlash* getSlash();
+	TCompSlash* getSlash(SlashType type);
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;

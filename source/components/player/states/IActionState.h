@@ -42,7 +42,7 @@ protected:
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
 	TCompCameraPlayer* getCameraPlayer();
-	TCompSlash* getSlash();
+	TCompSlash* getSlash(SlashType type);
 
 	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
 	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
