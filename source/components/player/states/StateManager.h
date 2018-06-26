@@ -14,6 +14,7 @@ class TCompPowerGauge;
 class IActionState;
 class TCompCollectableManager;
 class TCompCameraPlayer;
+class TCompSlash;
 
 class StateManager {
 
@@ -29,6 +30,7 @@ private:
 	CHandle collectableManagerHandle;
 	CHandle gameCameraHandle;
 	CHandle playerCameraHandle;
+	CHandle slashHandle;
 
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
@@ -68,13 +70,13 @@ public:
 	IActionState* getConcurrentState(ConcurrentState state);
 
 	template <typename T>
-	T* getState(State state) { 
-		return static_cast<T*>(getState(state)); 
+	T* getState(State state) {
+		return static_cast<T*>(getState(state));
 	}
 
 	template <typename T>
-	T* getConcurrentState(ConcurrentState state) { 
-		return static_cast<T*>(getConcurrentState(state)); 
+	T* getConcurrentState(ConcurrentState state) {
+		return static_cast<T*>(getConcurrentState(state));
 	}
 
 	bool isConcurrentActionFree();
@@ -90,6 +92,7 @@ public:
 	TCompHitboxes* getHitboxes();
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
+	TCompSlash* getSlash();
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;

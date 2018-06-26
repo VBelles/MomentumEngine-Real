@@ -10,6 +10,7 @@
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
+#include "modules/system_modules/slash/comp_slash.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/states/AirborneActionState.h"
@@ -81,7 +82,8 @@ StateManager::StateManager(CHandle entityHandle) :
 	gameCameraHandle = gameCameraEntity->get<TCompCamera>();
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	playerCameraHandle = playerCameraEntity->get<TCompCameraPlayer>();
-
+	CEntity* slashEntity = getEntityByName("slash01");
+	slashHandle = slashEntity->get<TCompSlash>();
 	registerStates();
 }
 
@@ -247,4 +249,8 @@ TCompPowerGauge* StateManager::getPowerGauge() {
 }
 TCompCollectableManager * StateManager::getCollectableManager() {
 	return collectableManagerHandle;
+}
+
+TCompSlash * StateManager::getSlash() {
+	return slashHandle;
 }
