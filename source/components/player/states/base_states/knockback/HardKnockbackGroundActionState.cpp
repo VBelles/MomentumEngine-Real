@@ -24,8 +24,8 @@ void HardKnockbackGroundActionState::update(float delta) {
 void HardKnockbackGroundActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	*velocityVector = VEC3::Zero; 
-	getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
-	getSkeleton()->executeAction(animation, 0.2f, 0.05f);
+	getSkeleton()->blendCycle(animationLoop, 0.2f, 0.1f);
+	//getSkeleton()->executeAction(animation, 0.2f, 0.0f);
 	timer.reset();
 	//s�lo entra en este estado si tiene stun
 	duration = getPlayerModel()->getReceivedAttack()->stun->duration;
