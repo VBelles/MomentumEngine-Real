@@ -59,8 +59,8 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 	getSkeleton()->removeAction(animationPositioning, 0.2f);
-	if (!dynamic_cast<HardLandingActionState*>(nextState)) {
-		getHitboxes()->disable(hitbox); //que la deshabilite HardLanding si es posible
+	if (nextState->state != HardLanding) {
+		getHitboxes()->disable(hitbox);
 	}
 	getPlayerModel()->resetGravity();
 }
@@ -70,12 +70,14 @@ void FallingAttackActionState::onLanding() {
 	*velocityVector = VEC3::Zero;
 	stateManager->changeState(HardLanding);
 	stateManager->changeConcurrentState(Free);
+	getPlayerModel()->lockFallingAttack = false;
 }
 
 
 void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	//Para y su velocidad se transmite al enemigo
 	*velocityVector = VEC3::Zero;
+	//getPlayerModel()->lockFallingAttack = true;
 	stateManager->changeState(AirborneNormal);
 
 	CHandle playerEntity = CHandle(stateManager->getEntity());
@@ -90,5 +92,4 @@ void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	msgAtackHit.info.damage = damage;
 	msgAtackHit.info.propel = new AttackInfo::Propel{ propelVelocity };
 	otherEntity->sendMsg(msgAtackHit);
-
 }

@@ -8,6 +8,7 @@ private:
 	float duration = 0.8f;
 
 	std::string animation = "hard_knockback";
+	std::string animationLoop = "hard_knockback_loop";
 
 public:
 	HardKnockbackGroundActionState(StateManager* stateManager);
