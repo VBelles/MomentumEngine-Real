@@ -11,6 +11,7 @@
 #include "components/player/states/StateManager.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/controllers/comp_camera_player.h"
+#include "modules/system_modules/slash/comp_slash.h"
 
 
 IActionState::IActionState(StateManager* stateManager, State state, ConcurrentState concurrentState) :
@@ -181,5 +182,9 @@ TCompCollectableManager* IActionState::getCollectableManager() {
 }
 
 TCompCameraPlayer* IActionState::getCameraPlayer() {
-	return stateManager->getCameraPlayer();;
+	return stateManager->getCameraPlayer();
+}
+
+TCompSlash * IActionState::getSlash(SlashType type) {
+	return stateManager->getSlash(type);
 }

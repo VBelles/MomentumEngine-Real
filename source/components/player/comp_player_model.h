@@ -73,7 +73,7 @@ private:
 	AttackInfo receivedAttack;
 
 	//Messages
-	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onShapeHit(const TMsgShapeHit & msg);
 	void onControllerHit(const TMsgControllerHit & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);

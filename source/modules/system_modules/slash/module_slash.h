@@ -1,6 +1,10 @@
 #pragma once
 #include "modules/module.h"
 
+enum SlashType {
+	LEFT_HAND, RIGHT_HAND
+};
+
 class CModuleSlash : public IModule {
 public:
 	CModuleSlash(const std::string& name);

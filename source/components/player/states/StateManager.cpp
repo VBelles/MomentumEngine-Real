@@ -10,6 +10,7 @@
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
+#include "modules/system_modules/slash/comp_slash.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/states/AirborneActionState.h"
@@ -81,6 +82,13 @@ StateManager::StateManager(CHandle entityHandle) :
 	gameCameraHandle = gameCameraEntity->get<TCompCamera>();
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	playerCameraHandle = playerCameraEntity->get<TCompCameraPlayer>();
+
+	CEntity* slashRightHandEntity = getEntityByName("slashRightHand");
+	slashRightHandHandle = slashRightHandEntity->get<TCompSlash>();
+	CEntity* slashLeftHandEntity = getEntityByName("slashLeftHand");
+	slashLeftHandHandle = slashLeftHandEntity->get<TCompSlash>();
+
+
 
 	registerStates();
 }
@@ -247,4 +255,16 @@ TCompPowerGauge* StateManager::getPowerGauge() {
 }
 TCompCollectableManager * StateManager::getCollectableManager() {
 	return collectableManagerHandle;
+}
+
+TCompSlash * StateManager::getSlash(SlashType type) {
+	switch (type) {
+		case SlashType::LEFT_HAND:
+			return slashLeftHandHandle;
+		case SlashType::RIGHT_HAND:
+			return slashRightHandHandle;
+		default:
+			dbg("No se reconoce el tipo de slash\n");
+			return slashRightHandHandle;
+	}
 }
