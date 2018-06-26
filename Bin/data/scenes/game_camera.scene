@@ -33,6 +33,11 @@
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4
+			},
+			"color_grading":{
+				"enabled": false,
+				"amount": 1,
+				"lut": "data/textures/lut/candlelight.dds"						
 			}
 		}
 	},
