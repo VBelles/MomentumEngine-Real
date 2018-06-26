@@ -94,6 +94,12 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	getCameraPlayer()->moveCameraCloser(false);
 	slideWindowTimer.reset();
 	hardLandingTimer.reset();
+	if (lastState->state == FallingAttack) {
+		getPlayerModel()->lockFallingAttack = true;
+	}
+	else {
+		getPlayerModel()->lockFallingAttack = false;
+	}
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {

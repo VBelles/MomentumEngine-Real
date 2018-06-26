@@ -60,7 +60,7 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 	getSkeleton()->removeAction(animationPositioning, 0.2f);
 	if (nextState->state != HardLanding) {
-		getHitboxes()->disable(hitbox); //que la deshabilite HardLanding si es posible
+		getHitboxes()->disable(hitbox);
 	}
 	getPlayerModel()->resetGravity();
 }
@@ -77,7 +77,7 @@ void FallingAttackActionState::onLanding() {
 void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	//Para y su velocidad se transmite al enemigo
 	*velocityVector = VEC3::Zero;
-	getPlayerModel()->lockFallingAttack = true;
+	//getPlayerModel()->lockFallingAttack = true;
 	stateManager->changeState(AirborneNormal);
 
 	CHandle playerEntity = CHandle(stateManager->getEntity());
