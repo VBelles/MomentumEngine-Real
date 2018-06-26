@@ -98,6 +98,8 @@ public:
 	bool wannaJump = false;
 	bool isWalking = false;
 
+	bool lockFallingAttack = false;
+
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;

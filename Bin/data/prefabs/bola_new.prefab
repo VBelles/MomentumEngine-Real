@@ -1,0 +1,22 @@
+[
+  {
+    "entity": {
+      "name": "ball",
+      "transform": {},
+      "render": [
+        {
+          "mesh": "data/skeletons/bola_new/Object001.mesh",
+          "materials": [
+            "data/skeletons/enemigoBola/enemigoBola.material"
+          ]
+        }
+      ],
+      "tags": [
+        "enemy"
+      ],
+      "skeleton": {
+        "skeleton": "data/skeletons/bola_new/bola_new.skeleton"
+      }
+    }
+  }
+]

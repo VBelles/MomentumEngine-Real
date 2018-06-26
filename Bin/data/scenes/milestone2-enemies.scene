@@ -6,6 +6,24 @@
   },
   {
     "entity": {
+      "name": "bola_new",
+      "prefab": "data/prefabs/bola_new.prefab",
+      "transform": {
+        "pos": "-6 8 -50"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "medusa_new",
+      "prefab": "data/prefabs/medusa_new.prefab",
+      "transform": {
+        "pos": "-8 8 -50"
+      }
+    }
+  },
+  {
+    "entity": {
       "name": "ms2_enemyBall015",
       "prefab": "data/prefabs/enemy_ball.prefab",
       "transform": {

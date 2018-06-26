@@ -1,0 +1,19 @@
+{
+	"name":"medusa_new",
+	"anims" : [
+		{ "name" : "medusa_idle"},
+		{ "name" : "medusa_aparicion"},
+		{ "name" : "medusa_death"},
+		{ "name" : "medusa_desaparicion"},
+		{ "name" : "medusa_idle_war"},
+		{ "name" : "medusa_damage"},
+		{ "name" : "medusa_revolverse"},
+		{ "name" : "medusa_shot"},
+		{ "name" : "medusa_stun"}
+	],
+	"bone_ids_to_debug" : [
+		3
+	],
+		"meshes" : [
+	]
+}
