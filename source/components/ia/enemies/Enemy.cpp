@@ -1,6 +1,19 @@
 #include "mcv_platform.h"
 #include "Enemy.h"
+
+#include "components/comp_transform.h"
+#include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/comp_hitboxes.h"
+
+
+void Enemy::set(CHandle playerHandle, CHandle transformHandle, CHandle colliderHandle, CHandle skeletonHandle, CHandle hitboxesHandle) {
+	this->playerHandle = playerHandle;
+	this->transformHandle = transformHandle;
+	this->colliderHandle = colliderHandle;
+	this->skeletonHandle = skeletonHandle;
+	this->hitboxesHandle = hitboxesHandle;
+}
 
 void Enemy::load(const json& j, TEntityParseContext& ctx) {
 	//Base
@@ -43,4 +56,24 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 		attacks[attackName] = attack;
 	}
 
+}
+
+CEntity* Enemy::getPlayer() {
+	return playerHandle;
+}
+
+TCompTransform* Enemy::getTransform() {
+	return transformHandle;
+}
+
+TCompCollider* Enemy::getCollider() {
+	return colliderHandle;
+}
+
+TCompSkeleton* Enemy::getSkeleton() {
+	return skeletonHandle;
+}
+
+TCompHitboxes* Enemy::getHitboxes() {
+	return hitboxesHandle;
 }
