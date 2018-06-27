@@ -317,6 +317,14 @@
     <ClCompile Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\DisappearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\OnDeathAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\OnDeathCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\OnDisappearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\DeathAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\stun\OnStunAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\stun\StunAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -666,6 +674,14 @@
     <ClInclude Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\death\DisappearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\death\OnDeathAction.h" />
+    <ClInclude Include="components\ia\enemies\common\death\OnDeathCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\death\OnDisappearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\death\DeathAction.h" />
+    <ClInclude Include="components\ia\enemies\common\stun\OnStunAction.h" />
+    <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\stun\StunAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

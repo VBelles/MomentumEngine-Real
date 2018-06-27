@@ -126,6 +126,11 @@
     <ClCompile Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\DeathAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\DisappearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\OnDeathAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\OnDeathCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\death\OnDisappearAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\grab\GrabAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\grab\OnGrabAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.cpp" />
@@ -143,6 +148,9 @@
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\OnPropelAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\PropelAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\stun\OnStunAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\stun\StunAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\AttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\ChaseAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\DamageCalcAction.cpp" />
@@ -447,6 +455,11 @@
     <ClInclude Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.h" />
+    <ClInclude Include="components\ia\enemies\common\death\DeathAction.h" />
+    <ClInclude Include="components\ia\enemies\common\death\DisappearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\death\OnDeathAction.h" />
+    <ClInclude Include="components\ia\enemies\common\death\OnDeathCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\death\OnDisappearAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\GrabAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.h" />
@@ -464,6 +477,9 @@
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\OnPropelAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\PropelAction.h" />
+    <ClInclude Include="components\ia\enemies\common\stun\OnStunAction.h" />
+    <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\stun\StunAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\AttackAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\ChaseAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\DamageCalcAction.h" />

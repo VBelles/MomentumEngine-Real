@@ -64,6 +64,7 @@ public:
 	//Timers
 	CTimer timer;
 	CTimer animationTimer;
+	CTimer stunTimer;
 
 	//Handles
 	CHandle playerHandle;

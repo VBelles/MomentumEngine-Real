@@ -23,5 +23,7 @@ int OnHit::execAction(float delta) {
 	}
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
+	enemy->stunDuration = attackInfo.stun->duration;
+	enemy->stunTimer.reset();
 	return Leave;
 }
