@@ -160,6 +160,7 @@
     <ClCompile Include="components\ia\enemies\dreidel\conditions\StunCondition.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\conditions\VerticalLaunchCondition.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\Dreidel.cpp" />
+    <ClCompile Include="components\ia\enemies\Enemy.cpp" />
     <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
     <ClCompile Include="components\comp_sun.cpp" />
     <ClCompile Include="components\lights\comp_light_flicker.cpp" />
@@ -460,6 +461,7 @@
     <ClInclude Include="components\ia\enemies\dreidel\conditions\StunCondition.h" />
     <ClInclude Include="components\ia\enemies\dreidel\conditions\VerticalLaunchCondition.h" />
     <ClInclude Include="components\ia\enemies\dreidel\Dreidel.h" />
+    <ClInclude Include="components\ia\enemies\Enemy.h" />
     <ClInclude Include="modules\system_modules\slash\comp_slash.h" />
     <ClInclude Include="components\comp_sun.h" />
     <ClInclude Include="components\lights\comp_light_flicker.h" />

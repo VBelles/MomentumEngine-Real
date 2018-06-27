@@ -296,6 +296,7 @@
     <ClCompile Include="components\ia\enemies\dreidel\actions\IdleWarAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\OnIdleWarAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\conditions\StepBackCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -624,6 +625,7 @@
     <ClInclude Include="components\ia\enemies\dreidel\actions\IdleWarAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\OnIdleWarAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\conditions\StepBackCondition.h" />
+    <ClInclude Include="components\ia\enemies\Enemy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
