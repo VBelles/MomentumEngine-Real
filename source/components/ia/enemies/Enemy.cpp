@@ -1,19 +1,10 @@
 #include "mcv_platform.h"
 #include "Enemy.h"
-
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 
-
-void Enemy::set(CHandle playerHandle, CHandle transformHandle, CHandle colliderHandle, CHandle skeletonHandle, CHandle hitboxesHandle) {
-	this->playerHandle = playerHandle;
-	this->transformHandle = transformHandle;
-	this->colliderHandle = colliderHandle;
-	this->skeletonHandle = skeletonHandle;
-	this->hitboxesHandle = hitboxesHandle;
-}
 
 void Enemy::load(const json& j, TEntityParseContext& ctx) {
 	//Base
@@ -26,7 +17,7 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 	movementSpeed = j.value("movement_speed", movementSpeed);
 	rotationSpeed = j.value("rotation_speed", rotationSpeed);
 	gravity = j.value("gravity", gravity);
-	maxVelocity = j.value("max_velocity", maxVelocity);
+	maxVerticalVelocity = j.value("max_velocity", maxVerticalVelocity);
 
 	//Chase
 	chaseFov = deg2rad(j.value("chase_fov", rad2deg(chaseFov)));
@@ -56,6 +47,38 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 		attacks[attackName] = attack;
 	}
 
+}
+
+void Enemy::updateGravity(float delta) {
+	deltaMovement.y += velocity.y * delta + 0.5f * gravity * delta * delta;
+	velocity.y += gravity * delta;
+	velocity.y = clamp(velocity.y, -maxVerticalVelocity, maxVerticalVelocity);
+}
+
+void Enemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
+	float deltaYaw = getTransform()->getDeltaYawToAimTo(targetPos);
+	float y, p, r;
+	getTransform()->getYawPitchRoll(&y, &p, &r);
+	float rotationIncrement = rotationSpeed * delta;
+	if (abs(deltaYaw) >= rotationIncrement) {
+		y += (deltaYaw > 0) ? (rotationIncrement) : (-rotationIncrement);
+	}
+	else {
+		y += deltaYaw;
+	}
+	getTransform()->setYawPitchRoll(y, p, r);
+}
+
+void Enemy::move(float delta) {
+	PxControllerCollisionFlags flags = EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
+	grounded = flags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
+	if (grounded && velocity.y < 0.f) {
+		velocity.y = 0;
+	}
+}
+
+bool Enemy::hasSuperArmor() {
+	return superArmorAmount > 0 && superArmorTimer.elapsed() < superArmorTime;
 }
 
 CEntity* Enemy::getPlayer() {

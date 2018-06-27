@@ -2,12 +2,12 @@
 
 #include "components/ia/behavior_tree/IBehaviorTreeAction.h"
 
-class Dreidel;
+class Enemy;
 
 class OnAttackAction : public IBehaviorTreeAction {
 private:
-	Dreidel* dreidel = nullptr;
+	Enemy* enemy = nullptr;
 public:
-	OnAttackAction(Dreidel* dreidel);
+	OnAttackAction(Enemy* enemy);
 	int execAction(float delta) override;
 };

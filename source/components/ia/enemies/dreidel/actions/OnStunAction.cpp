@@ -1,15 +1,15 @@
 #include "mcv_platform.h"
 #include "OnStunAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
+
 #include "skeleton/comp_skeleton.h"
 
-OnStunAction::OnStunAction(Dreidel* dreidel): dreidel(dreidel) {
+OnStunAction::OnStunAction(Enemy* enemy): enemy(enemy) {
 }
 
 int OnStunAction::execAction(float delta) {
-	dreidel->getSkeleton()->setTimeFactor(0);
-	dreidel->stunDuration = dreidel->receivedAttack.stun->duration;
-	dreidel->stunTimer.reset();
-	dreidel->isStunned = true;
+	enemy->getSkeleton()->setTimeFactor(0);
+	enemy->stunDuration = enemy->receivedAttack.stun->duration;
+	enemy->stunTimer.reset();
+	enemy->isStunned = true;
 	return Leave;
 }

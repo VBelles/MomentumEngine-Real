@@ -1,33 +1,33 @@
 #include "mcv_platform.h"
 #include "ReturnToSpawnAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
+
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 
-ReturnToSpawnAction::ReturnToSpawnAction(Dreidel* dreidel): dreidel(dreidel) {
+ReturnToSpawnAction::ReturnToSpawnAction(Enemy* enemy): enemy(enemy) {
 }
 
 int ReturnToSpawnAction::execAction(float delta) {
-	dreidel->getSkeleton()->blendCycle(1, 0.2f, 0.2f);
-	dreidel->updateGravity(delta);
+	enemy->getSkeleton()->blendCycle(1, 0.2f, 0.2f);
+	enemy->updateGravity(delta);
 
-	dreidel->rotateTowards(delta, dreidel->spawnPosition, dreidel->rotationSpeed);
-	TCompTransform* transform = dreidel->getTransform();
+	enemy->rotateTowards(delta, enemy->spawnPosition, enemy->rotationSpeed);
+	TCompTransform* transform = enemy->getTransform();
 	//Move forward
 	VEC3 myPosition = transform->getPosition();
 	myPosition.y = 0;
-	VEC3 targetPos = dreidel->spawnPosition;
+	VEC3 targetPos = enemy->spawnPosition;
 	targetPos.y = 0;
 	VEC3 myFront = transform->getFront();
 	myFront.Normalize();
-	VEC3 deltaMovement = myFront * dreidel->movementSpeed * delta;
-	EnginePhysics.move(dreidel->getCollider()->controller, toPxVec3(deltaMovement), delta);
+	VEC3 deltaMovement = myFront * enemy->movementSpeed * delta;
+	EnginePhysics.move(enemy->getCollider()->controller, toPxVec3(deltaMovement), delta);
 
-	float distanceSquared = VEC3::DistanceSquared(transform->getPosition(), dreidel->getPlayerTransform()->getPosition());
-	if (VEC3::DistanceSquared(myPosition, targetPos) < dreidel->minCombatDistanceSqrd
-		|| (distanceSquared < dreidel->fovChaseDistanceSqrd + dreidel->minCombatDistanceSqrd 
-			&& transform->isInFov(dreidel->getPlayerTransform()->getPosition(), dreidel->attackFov))) {
+	float distanceSquared = VEC3::DistanceSquared(transform->getPosition(), enemy->getPlayerTransform()->getPosition());
+	if (VEC3::DistanceSquared(myPosition, targetPos) < enemy->minCombatDistanceSqrd
+		|| (distanceSquared < enemy->fovChaseDistanceSqrd + enemy->minCombatDistanceSqrd 
+			&& transform->isInFov(enemy->getPlayerTransform()->getPosition(), enemy->attackFov))) {
 		return Leave;
 	}
 	else {

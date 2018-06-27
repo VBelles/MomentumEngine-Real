@@ -1,14 +1,14 @@
 #include "mcv_platform.h"
 #include "OnVerticalLaunchAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
+
 #include "skeleton/comp_skeleton.h"
 
-OnVerticalLaunchAction::OnVerticalLaunchAction(Dreidel* dreidel): dreidel(dreidel) {
+OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy): enemy(enemy) {
 }
 
 int OnVerticalLaunchAction::execAction(float delta) {
-	dreidel->getSkeleton()->setTimeFactor(0);
-	dreidel->floatingDuration = dreidel->receivedAttack.verticalLauncher->suspensionDuration;
-	dreidel->velocityVector = dreidel->receivedAttack.verticalLauncher->velocity;
+	enemy->getSkeleton()->setTimeFactor(0);
+	enemy->floatingDuration = enemy->receivedAttack.verticalLauncher->suspensionDuration;
+	enemy->velocity = enemy->receivedAttack.verticalLauncher->velocity;
 	return Leave;
 }

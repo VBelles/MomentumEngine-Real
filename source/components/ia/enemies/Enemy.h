@@ -16,7 +16,7 @@ struct EnemyAttack {
 };
 
 class Enemy : public IBehaviorTree {
-protected:
+public:
 	//HP
 	float hp = 0.f;
 	float maxHp = 0.f;
@@ -26,11 +26,14 @@ protected:
 	float maxDistanceFromSpawnSqrd = 0.f;
 
 	//Movement
+	VEC3 deltaMovement;
 	VEC3 velocity;
-	float movementSpeed;
-	float rotationSpeed;
-	float gravity;
-	float maxVelocity;
+	float movementSpeed = 0.f;
+	float rotationSpeed = 0.f;
+	float gravity = 0.f;
+	float maxVerticalVelocity = 0.f;
+	bool grounded = false;
+	bool airborne = false;
 
 	//Combat
 	AttackInfo receivedAttack;
@@ -48,9 +51,15 @@ protected:
 	std::map<std::string, EnemyAttack> attacks;
 
 	float propelDuration = 0.f;
-	float floatingDuration = 0.f;
 	float grabbedDuration = 0.f;
 	float stunDuration = 0.f;
+	VEC3 initialLaunchPos;
+
+	CTimer superArmorTimer;
+	float superArmorTime = 0.f;
+	int superArmorAmount = 0;
+	bool isBlocking = false;
+	bool blockingBroken = false;
 
 	//Timers
 	CTimer timer;
@@ -63,9 +72,13 @@ protected:
 	CHandle skeletonHandle;
 	CHandle hitboxesHandle;
 
-public:
-	void set(CHandle playerHandle, CHandle transformHandle, CHandle colliderHandle, CHandle skeletonHandle, CHandle hitboxesHandle);
 	void load(const json& j, TEntityParseContext & ctx);
+
+	void updateGravity(float delta);
+	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
+	void move(float delta);
+
+	bool hasSuperArmor();
 
 	CEntity* getPlayer();
 	TCompTransform* getTransform();

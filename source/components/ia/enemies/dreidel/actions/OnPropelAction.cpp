@@ -1,27 +1,27 @@
 #include "mcv_platform.h"
 #include "OnPropelAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
+
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
 #include "skeleton/comp_skeleton.h"
 
-OnPropelAction::OnPropelAction(Dreidel* dreidel): dreidel(dreidel) {
+OnPropelAction::OnPropelAction(Enemy* enemy): enemy(enemy) {
 }
 
 int OnPropelAction::execAction(float delta) {
-	dreidel->getCollider()->create();
-	dreidel->velocityVector = dreidel->receivedAttack.propel->velocity;
-	if (dreidel->receivedAttack.propel->duration > 0.f) {
-		dreidel->propelDuration = dreidel->receivedAttack.propel->duration;
+	enemy->getCollider()->create();
+	enemy->velocity = enemy->receivedAttack.propel->velocity;
+	if (enemy->receivedAttack.propel->duration > 0.f) {
+		enemy->propelDuration = enemy->receivedAttack.propel->duration;
 	}
 	else {
-		dreidel->propelDuration = dreidel->defaultPropelDuration;
+		enemy->propelDuration = enemy->defaultPropelDuration;
 	}
-	dreidel->getSkeleton()->setTimeFactor(0);
+	enemy->getSkeleton()->setTimeFactor(0);
 
-	dreidel->timer.reset();
+	enemy->timer.reset();
 
-	TCompRender* render = dreidel->get<TCompRender>();
+	TCompRender* render = enemy->get<TCompRender>();
 	render->TurnRed(0.5f);
 	return Leave;
 }

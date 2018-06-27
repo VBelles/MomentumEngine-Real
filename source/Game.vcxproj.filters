@@ -258,7 +258,6 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeCondition.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNew.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\Dreidel.cpp" />
-    <ClCompile Include="components\ia\enemies\common\conditions\FalseCondition.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\conditions\DeathCondition.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\conditions\GrabCondition.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\conditions\HorizontalLaunchCondition.cpp" />
@@ -291,12 +290,26 @@
     <ClCompile Include="components\ia\enemies\dreidel\actions\StepBackACtion.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\StunnedAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\VerticalLaunchedAction.cpp" />
-    <ClCompile Include="components\ia\enemies\dreidel\actions\AirborneAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\AttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\IdleWarAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\OnIdleWarAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\conditions\StepBackCondition.cpp" />
     <ClCompile Include="components\ia\enemies\Enemy.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\hit\HitStun.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\hit\OnHit.cpp" />
+    <ClCompile Include="components\ia\enemies\common\airborne\AirborneAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\airborne\OnAirborneAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\airborne\AirborneCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\airborne\OnAirborneCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\FalseCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\HorizontalLaunchedAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\VerticalLaunchedAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -587,7 +600,6 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeCondition.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNew.h" />
     <ClInclude Include="components\ia\enemies\dreidel\Dreidel.h" />
-    <ClInclude Include="components\ia\enemies\common\conditions\FalseCondition.h" />
     <ClInclude Include="components\ia\enemies\dreidel\conditions\DeathCondition.h" />
     <ClInclude Include="components\ia\enemies\dreidel\conditions\DeadCondition.h" />
     <ClInclude Include="components\ia\enemies\dreidel\conditions\GrabCondition.h" />
@@ -620,12 +632,26 @@
     <ClInclude Include="components\ia\enemies\dreidel\actions\StepBackACtion.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\StunnedAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\VerticalLaunchedAction.h" />
-    <ClInclude Include="components\ia\enemies\dreidel\actions\AirborneAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\AttackAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\IdleWarAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\OnIdleWarAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\conditions\StepBackCondition.h" />
     <ClInclude Include="components\ia\enemies\Enemy.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\hit\HitStun.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\hit\OnHit.h" />
+    <ClInclude Include="components\ia\enemies\common\airborne\AirborneAction.h" />
+    <ClInclude Include="components\ia\enemies\common\airborne\OnAirborneAction.h" />
+    <ClInclude Include="components\ia\enemies\common\airborne\AirborneCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\airborne\OnAirborneCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\FalseCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\HorizontalLaunchedAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\VerticalLaunchedAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

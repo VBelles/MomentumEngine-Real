@@ -1,31 +1,31 @@
 #include "mcv_platform.h"
 #include "RespawnAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
+
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
 #include "components/comp_give_power.h"
 #include "skeleton/comp_skeleton.h"
 
-RespawnAction::RespawnAction(Dreidel* dreidel): dreidel(dreidel) {
+RespawnAction::RespawnAction(Enemy* enemy): enemy(enemy) {
 }
 
 int RespawnAction::execAction(float delta) {
-	dreidel->health = dreidel->maxHealth;
-	dreidel->isDead = false;
+	enemy->health = enemy->maxHealth;
+	enemy->isDead = false;
 
-	dreidel->getCollider()->create();
-	dreidel->getTransform()->setPosition(dreidel->spawnPosition);
-	dreidel->getCollider()->controller->setFootPosition(toPxtendedVec3(dreidel->spawnPosition));
+	enemy->getCollider()->create();
+	enemy->getTransform()->setPosition(enemy->spawnPosition);
+	enemy->getCollider()->controller->setFootPosition(toPxtendedVec3(enemy->spawnPosition));
 
-	TCompRender *render = dreidel->get<TCompRender>();
+	TCompRender *render = enemy->get<TCompRender>();
 	render->enable();
 
-	TCompGivePower *power = dreidel->get<TCompGivePower>();
+	TCompGivePower *power = enemy->get<TCompGivePower>();
 	power->reset();
 
-	dreidel->getSkeleton()->blendCycle(0);
-	dreidel->getSkeleton()->setTimeFactor(1);
+	enemy->getSkeleton()->blendCycle(0);
+	enemy->getSkeleton()->setTimeFactor(1);
 
 	return Leave;
 }

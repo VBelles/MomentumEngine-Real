@@ -30,6 +30,7 @@ public:
 	void setTimeFactor(float timeFactor);
 	float getAnimationTime();
 	float getAnimationDuration(int animationId);
+	float getAnimationDuration(std::string animation);
 };
 
 #endif

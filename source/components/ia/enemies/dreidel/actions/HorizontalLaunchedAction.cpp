@@ -1,22 +1,22 @@
 #include "mcv_platform.h"
 #include "HorizontalLaunchedAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
+
 #include "components/comp_collider.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 
-HorizontalLaunchedAction::HorizontalLaunchedAction(Dreidel* dreidel): dreidel(dreidel) {
+HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy): enemy(enemy) {
 }
 
 int HorizontalLaunchedAction::execAction(float delta) {
-	dreidel->updateGravity(delta);
-	VEC3 deltaMovement = dreidel->velocityVector * delta;
-	EnginePhysics.move(dreidel->getCollider()->controller, PxVec3(deltaMovement.x, 0, deltaMovement.z), delta);
-	if (dreidel->getTransform()->getPosition().y + deltaMovement.y - dreidel->initialLaunchPos.y <= 0.001 || dreidel->grounded) {
-		dreidel->velocityVector.x = 0;
-		dreidel->velocityVector.z = 0;
-		dreidel->timer.reset();
-		dreidel->getSkeleton()->setTimeFactor(1);
+	enemy->updateGravity(delta);
+	VEC3 deltaMovement = enemy->velocity * delta;
+	EnginePhysics.move(enemy->getCollider()->controller, PxVec3(deltaMovement.x, 0, deltaMovement.z), delta);
+	if (enemy->getTransform()->getPosition().y + deltaMovement.y - enemy->initialLaunchPos.y <= 0.001 || enemy->grounded) {
+		enemy->velocity.x = 0;
+		enemy->velocity.z = 0;
+		enemy->timer.reset();
+		enemy->getSkeleton()->setTimeFactor(1);
 		return Leave;
 	}
 	else {

@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "DeadAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
 
-DeadAction::DeadAction(Dreidel* dreidel): dreidel(dreidel) {
+
+DeadAction::DeadAction(Enemy* enemy): enemy(enemy) {
 }
 
 int DeadAction::execAction(float delta) {

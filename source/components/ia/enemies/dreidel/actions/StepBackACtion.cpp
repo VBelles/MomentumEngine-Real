@@ -1,23 +1,23 @@
 #include "mcv_platform.h"
 #include "StepBackAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
+
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 
-StepBackAction::StepBackAction(Dreidel* dreidel): dreidel(dreidel) {
+StepBackAction::StepBackAction(Enemy* enemy): enemy(enemy) {
 }
 
 int StepBackAction::execAction(float delta) {
-	dreidel->getSkeleton()->blendCycle(1, 0.2f, 0.2f);
-	dreidel->updateGravity(delta);
+	enemy->getSkeleton()->blendCycle(1, 0.2f, 0.2f);
+	enemy->updateGravity(delta);
 
-	dreidel->rotateTowards(delta, dreidel->getPlayerTransform()->getPosition(), dreidel->rotationSpeed);
+	enemy->rotateTowards(delta, enemy->getPlayerTransform()->getPosition(), enemy->rotationSpeed);
 
-	VEC3 myPosition = dreidel->getTransform()->getPosition();
-	VEC3 myFront = dreidel->getTransform()->getFront();
+	VEC3 myPosition = enemy->getTransform()->getPosition();
+	VEC3 myFront = enemy->getTransform()->getFront();
 	myFront.Normalize();
-	VEC3 deltaMovement = -myFront * dreidel->stepBackSpeed * delta;
-	EnginePhysics.move(dreidel->getCollider()->controller, toPxVec3(deltaMovement), delta);
+	VEC3 deltaMovement = -myFront * enemy->stepBackSpeed * delta;
+	EnginePhysics.move(enemy->getCollider()->controller, toPxVec3(deltaMovement), delta);
 	return Leave;
 }

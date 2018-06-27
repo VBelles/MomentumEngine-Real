@@ -270,6 +270,13 @@ void TCompSkeleton::setTimeFactor(float timeFactor) {
 float TCompSkeleton::getAnimationTime() {
 	return model->getMixer()->getAnimationTime();
 }
+
 float TCompSkeleton::getAnimationDuration(int animationId) {
 	return model->getCoreModel()->getCoreAnimation(animationId)->getDuration();
+}
+
+float TCompSkeleton::getAnimationDuration(std::string animation) {
+	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
+	int animationId = core->getCoreAnimationId(animation);
+	return getAnimationDuration(animationId);
 }

@@ -1,11 +1,11 @@
 #include "mcv_platform.h"
 #include "DamageCalcAction.h"
-#include "components/ia/enemies/dreidel/Dreidel.h"
 
-DamageCalcAction::DamageCalcAction(Dreidel* dreidel): dreidel(dreidel) {
+
+DamageCalcAction::DamageCalcAction(Enemy* enemy): enemy(enemy) {
 }
 
 int DamageCalcAction::execAction(float delta) {
-	dreidel->health -= dreidel->receivedAttack.damage;
+	enemy->health -= enemy->receivedAttack.damage;
 	return Leave;
 }
