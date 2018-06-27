@@ -105,14 +105,14 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->blendCycle(animationIdle, 0.4f, 0.4f);
 	fromRun = dynamic_cast<RunActionState*>(lastState) ? true : false;
 	if(!fromRun) *velocityVector = VEC3::Zero;
-	getSlash(SlashType::RIGHT_HAND)->setEnable(true);
+	getSlash(SlashType::RIGHT_TENTACLE_SHORT)->setEnable(true);
 }
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
-	getSlash(SlashType::RIGHT_HAND)->stopEmitting();
+	getSlash(SlashType::RIGHT_TENTACLE_SHORT)->stopEmitting();
 }
 
 void StrongAttackActionState::onStrongAttackButton() {
