@@ -39,5 +39,5 @@ public:
 	void addAction(std::string actionName, IBehaviorTreeAction* action);
 	int execAction(std::string actionName, float delta = 0.f);
 
-	void recalc(float delta = 0.f);
+	virtual void recalc(float delta = 0.f);
 };
