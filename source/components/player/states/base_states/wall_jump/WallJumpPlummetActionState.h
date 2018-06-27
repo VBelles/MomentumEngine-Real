@@ -11,6 +11,7 @@ protected:
 
 	float damage = 3;
 	float powerToGet = 4000.f;
+	float propelDuration = 0.5f;
 
 	std::string animation = "wall_jump_plummet_loop";
 

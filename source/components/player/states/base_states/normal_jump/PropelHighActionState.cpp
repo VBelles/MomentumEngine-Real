@@ -42,9 +42,7 @@ void PropelHighActionState::update(float delta) {
 			TMsgAttackHit msgAtackHit = {};
 			msgAtackHit.attacker = playerEntity;
 			msgAtackHit.info = {};
-			msgAtackHit.info.propel = new AttackInfo::Propel{
-				propelVelocity
-			};
+			msgAtackHit.info.propel = new AttackInfo::Propel{ propelDuration, propelVelocity };
 			targetEntity->sendMsg(msgAtackHit);
 		}
 	}

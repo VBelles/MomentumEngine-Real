@@ -88,7 +88,7 @@ void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	msgAtackHit.info = {};
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
-	msgAtackHit.info.propel = new AttackInfo::Propel{ propelVelocity };
+	msgAtackHit.info.propel = new AttackInfo::Propel{ propelDuration, propelVelocity };
 	otherEntity->sendMsg(msgAtackHit);
 
 }

@@ -1,107 +1,101 @@
 #include "mcv_platform.h"
 #include "Dreidel.h"
-#include "entity/common_msgs.h"
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
-#include "components/comp_render.h"
-#include "components/comp_respawner.h"
-#include "components/comp_give_power.h"
-#include "components/comp_hitboxes.h"
-#include "components/player/power_stats.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/attack_info.h"
-#include "components/ia/enemies/common/conditions/FalseCondition.h"
-#include "actions/DamageCalcAction.h"
-#include "conditions/DeathCondition.h"
-#include "actions/OnDeathAction.h"
-#include "conditions/GrabCondition.h"
-#include "actions/OnGrabAction.h"
-#include "actions/GrabbedAction.h"
-#include "conditions/PropelCondition.h"
-#include "actions/OnPropelAction.h"
-#include "actions/PropelledAction.h"
-#include "conditions/HorizontalLaunchCondition.h"
-#include "actions/OnHorizontalLaunchAction.h"
-#include "actions/HorizontalLaunchedAction.h"
-#include "actions/FloatingAction.h"
-#include "conditions/HorizontalLaunchCondition.h"
-#include "actions/FloatingAction.h"
-#include "conditions/VerticalLaunchCondition.h"
-#include "actions/OnVerticalLaunchAction.h"
-#include "actions/VerticalLaunchedAction.h"
-#include "conditions/OnStunCondition.h"
-#include "actions/OnStunAction.h"
-#include "actions/RespawnAction.h"
-#include "conditions/DeadCondition.h"
-#include "actions/DeadAction.h"
-#include "conditions/StunCondition.h"
-#include "actions/StunnedAction.h"
-#include "conditions/AirborneCondition.h"
-#include "actions/AirborneAction.h"
-#include "conditions/ReturnToSpawnCondition.h"
-#include "actions/ReturnToSpawnAction.h"
-#include "conditions/StepBackCondition.h"
-#include "actions/StepBackAction.h"
 
-#include "conditions/CombatCondition.h"
-#include "actions/OnIdleWarAction.h"
-#include "actions/IdleWarAction.h"
-#include "actions/OnAttackAction.h"
-#include "actions/AttackAction.h"
-#include "conditions/ChaseCondition.h"
-#include "actions/ChaseAction.h"
-#include "actions/IdleAction.h"
-
+#include "components/ia/enemies/common/FalseCondition.h"
+#include "components/ia/enemies/common/bloking_break/BlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakCondition.h"
+#include "components/ia/enemies/common/airborne/AirborneAction.h"
+#include "components/ia/enemies/common/airborne/AirborneCondition.h"
+#include "components/ia/enemies/common/airborne/OnAirborneAction.h"
+#include "components/ia/enemies/common/airborne/OnAirborneCondition.h"
+#include "components/ia/enemies/common/FalseCondition.h"
+#include "components/ia/enemies/common/bloking_break/BlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakCondition.h"
+#include "components/ia/enemies/common/airborne/AirborneAction.h"
+#include "components/ia/enemies/common/airborne/AirborneCondition.h"
+#include "components/ia/enemies/common/airborne/OnAirborneAction.h"
+#include "components/ia/enemies/common/airborne/OnAirborneCondition.h"
+#include "components/ia/enemies/common/FalseCondition.h"
+#include "components/ia/enemies/common/bloking_break/BlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakCondition.h"
+#include "components/ia/enemies/common/airborne/AirborneAction.h"
+#include "components/ia/enemies/common/airborne/AirborneCondition.h"
+#include "components/ia/enemies/common/airborne/OnAirborneAction.h"
+#include "components/ia/enemies/common/airborne/OnAirborneCondition.h"
+#include "components/ia/enemies/common/FalseCondition.h"
+#include "components/ia/enemies/common/bloking_break/BlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakCondition.h"
+#include "components/ia/enemies/common/airborne/AirborneAction.h"
+#include "components/ia/enemies/common/airborne/AirborneCondition.h"
+#include "components/ia/enemies/common/airborne/OnAirborneAction.h"
+#include "components/ia/enemies/common/airborne/OnAirborneCondition.h"
+#include "components/ia/enemies/common/FalseCondition.h"
+#include "components/ia/enemies/common/bloking_break/BlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakCondition.h"
+#include "components/ia/enemies/common/airborne/AirborneAction.h"
+#include "components/ia/enemies/common/airborne/AirborneCondition.h"
+#include "components/ia/enemies/common/airborne/OnAirborneAction.h"
+#include "components/ia/enemies/common/airborne/OnAirborneCondition.h"
+#include "components/ia/enemies/common/getting_hit/grab/GrabAction.h"
+#include "components/ia/enemies/common/getting_hit/grab/OnGrabAction.h"
+#include "components/ia/enemies/common/getting_hit/grab/OnGrabCondition.h"
+#include "components/ia/enemies/common/getting_hit/hit/HitStun.h"
+#include "components/ia/enemies/common/getting_hit/hit/OnHit.h"
+#include "components/ia/enemies/common/FalseCondition.h"
+#include "components/ia/enemies/common/bloking_break/BlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakAction.h"
+#include "components/ia/enemies/common/bloking_break/OnBlockingBreakCondition.h"
+#include "components/ia/enemies/common/airborne/AirborneAction.h"
+#include "components/ia/enemies/common/airborne/AirborneCondition.h"
+#include "components/ia/enemies/common/airborne/OnAirborneAction.h"
+#include "components/ia/enemies/common/airborne/OnAirborneCondition.h"
+#include "components/ia/enemies/common/getting_hit/grab/GrabAction.h"
+#include "components/ia/enemies/common/getting_hit/grab/OnGrabAction.h"
+#include "components/ia/enemies/common/getting_hit/grab/OnGrabCondition.h"
+#include "components/ia/enemies/common/getting_hit/hit/HitStun.h"
+#include "components/ia/enemies/common/getting_hit/hit/OnHit.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
-Dreidel::Dreidel()
-	: IBehaviorTreeNew::IBehaviorTreeNew() {
-	
-}
-
-void Dreidel::load(const json& j, TEntityParseContext& ctx) {
-	createRoot("meleeEnemy", Priority, nullptr, nullptr);
-
+void Dreidel::initBehaviorTree() {
 	IBehaviorTreeCondition* falseCondition = new FalseCondition();
-	IBehaviorTreeAction* damageCalcAction = new DamageCalcAction(this);
-	IBehaviorTreeCondition* deathCondition = new DeathCondition(this);
-	IBehaviorTreeAction* onDeathAction = new OnDeathAction(this);
-	IBehaviorTreeCondition* grabCondition = new GrabCondition(this);
-	IBehaviorTreeAction* onGrabAction = new OnGrabAction(this);
-	IBehaviorTreeAction* grabbedAction = new GrabbedAction(this);
-	IBehaviorTreeCondition* propelCondition = new PropelCondition(this);
-	IBehaviorTreeAction* onPropelAction = new OnPropelAction(this);
-	IBehaviorTreeAction* propelledAction = new PropelledAction(this);
-	IBehaviorTreeCondition* horizontalLaunchCondition = new HorizontalLaunchCondition(this);
-	IBehaviorTreeAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this);
-	IBehaviorTreeAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this);
-	IBehaviorTreeAction* floatingAction = new FloatingAction(this);
-	IBehaviorTreeCondition* verticalLaunchCondition = new VerticalLaunchCondition(this);
-	IBehaviorTreeAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this);
-	IBehaviorTreeAction* verticalLaunchedAction = new VerticalLaunchedAction(this);
-	IBehaviorTreeCondition* onStunCondition = new OnStunCondition(this);
-	IBehaviorTreeAction* onStunAction = new OnStunAction(this);
-	IBehaviorTreeAction* respawnAction = new RespawnAction(this);
-	IBehaviorTreeCondition* deadCondition = new DeadCondition(this);
-	IBehaviorTreeAction* deadAction = new DeadAction(this);
-	IBehaviorTreeCondition* stunCondition = new StunCondition(this);
-	IBehaviorTreeAction* stunnedAction = new StunnedAction(this);
-	IBehaviorTreeCondition* airborneCondition = new AirborneCondition(this);
-	IBehaviorTreeAction* airborneAction = new AirborneAction(this);
-	IBehaviorTreeCondition* returnToSpawnCondition = new ReturnToSpawnCondition(this);
-	IBehaviorTreeAction* returnToSpawnAction = new ReturnToSpawnAction(this);
-	IBehaviorTreeCondition* stepBackCondition = new StepBackCondition(this);
-	IBehaviorTreeAction* stepBackAction = new StepBackAction(this);
+	AirborneAction* airborneAction = new AirborneAction(this);
+	AirborneCondition* airborneCondition = new AirborneCondition(this);
+	OnAirborneAction* onAirborneAction = new OnAirborneAction(this, AirborneAnimation);
+	OnAirborneCondition* onAirborneCondition = new OnAirborneCondition(this);
+	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(this, blockingBreakAnimation);
+	OnBlockingBreakAction* nnBlockingBreakAction = new OnBlockingBreakAction(this, blockingBreakAnimation);
+	OnBlockingBreakCondition* nnBlockingBreakCondition = new OnBlockingBreakCondition(this);
+	DeathAction* deathAction = new DeathAction(this, deathAnimation);
+	DisappearAction* disappearAction = new DisappearAction(this, DisapparAnimation);
+	OnDeathAction* nnDeathAction = new OnDeathAction(this, DeathAnimation);
+	OnDeathCondition* onDeathCondition = new OnDeathCondition(this);
+	OnDisappearAction* onDisappearAction = new OnDisappearAction(this, DisapparAnimation);
+	GrabAction* grabAction = new GrabAction(this);
+	OnGrabAction* onGrabAction = new OnGrabAction(this);
+	OnGrabCondition* onGrabCondition = new OnGrabCondition(this);
+	HitStun* hitStun = new HitStun(this, HitAnimation);
+	OnHit* onHit = new OnHit(this, HitAnimation);
+	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this);
+	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, HitAnimation);
+	OnHorizontalLaunchCondition* onHorizontalLaunchCondition = new OnHorizontalLaunchCondition(this);
+	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this, HitAnimation);
+	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(this);
+	VerticalLaunchedAction* verticalLaunchedAction = new VerticalLaunchedAction(this);
+	OnPropelAction* onPropelAction = new OnPropelAction(this);
+	OnPropelCondition * onPropelCondition = new OnPropelCondition(this);
+	PropelAction* propelAction = new PropelAction(this);
+	OnStunAction* onStunAction = new OnStunAction(this, stunAnimation);
+	OnStunCondition* onStunCondition = new OnStunCondition(this);
+	StunAction* stunAction = new StunAction(this);
 
-	IBehaviorTreeCondition* combatCondition = new CombatCondition(this);
-	IBehaviorTreeAction* onIdleWarAction = new OnIdleWarAction(this);
-	IBehaviorTreeAction* idleWarAction = new IdleWarAction(this);
-	IBehaviorTreeAction* onAttackAction = new OnAttackAction(this);
-	IBehaviorTreeAction* attackAction = new AttackAction(this);
-	IBehaviorTreeCondition* chaseCondition = new ChaseCondition(this);
-	IBehaviorTreeAction* chaseAction = new ChaseAction(this);
-	IBehaviorTreeAction* idleAction = new IdleAction(this);
+
+	createRoot("meleeEnemy", Priority, nullptr, nullptr);
 
 	addChild("meleeEnemy", "onAttackHit", Sequence, falseCondition, nullptr);
 	addChild("onAttackHit", "damageCalc", Action, nullptr, damageCalcAction);
@@ -142,7 +136,9 @@ void Dreidel::load(const json& j, TEntityParseContext& ctx) {
 	addChild("meleeEnemy", "chase", Action, chaseCondition, chaseAction);
 
 	addChild("meleeEnemy", "idle", Action, nullptr, idleAction);
+}
 
+void Dreidel::load(const json& j, TEntityParseContext& ctx) {
 	attackInfos["attack"].damage = attackDamage;
 	attackInfos["attack"].stun = new AttackInfo::Stun{ 1.f };
 	attackInfos["attack"].invulnerabilityTime = 1.f;

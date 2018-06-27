@@ -90,7 +90,7 @@ void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entit
 	msgAtackHit.info = {};
 	msgAtackHit.info.damage = damage;
 	msgAtackHit.info.givesPower = true;
-	msgAtackHit.info.propel = new AttackInfo::Propel{ *velocityVector };
+	msgAtackHit.info.propel = new AttackInfo::Propel{ propelDuration, *velocityVector };
 	otherEntity->sendMsg(msgAtackHit);
 
 }

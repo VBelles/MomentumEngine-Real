@@ -8,19 +8,17 @@
     "data/scenes/milestone3-breakables.scene",
     "data/scenes/milestone3-chrysalis.scene",
     "data/scenes/milestone3-coins.scene",
-    "data/scenes/milestone3-enemies.scene",
     "data/scenes/milestone3-movables.scene",
     "data/scenes/milestone3-pure.scene",
     "data/scenes/milestone3-mechanisms.scene",
     "data/scenes/milestone3-trimesh.scene",
-
+    
     "data/scenes/milestone2-0.scene",
     "data/scenes/milestone2-altar.scene",
     "data/scenes/milestone2-breakables.scene",
     "data/scenes/milestone2-chrysalis.scene",
     "data/scenes/milestone2-collisions.scene",
     "data/scenes/milestone2-coins.scene",
-    "data/scenes/milestone2-enemies.scene",
     "data/scenes/milestone2-movables.scene",
     "data/scenes/milestone2-pure.scene",
     "data/scenes/milestone2-rotate.scene",
@@ -33,6 +31,8 @@
     "data/scenes/rigid_anim2.scene"
   ],
   "unused_scenes": [
+    "data/scenes/milestone3-enemies.scene",
+    "data/scenes/milestone2-enemies.scene",
     "data/scenes/particles.scene",
     "data/scenes/testExporter-0.scene",
     "data/scenes/milestone2-spikes.scene",
