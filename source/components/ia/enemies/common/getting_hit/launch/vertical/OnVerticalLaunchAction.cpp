@@ -13,5 +13,7 @@ int OnVerticalLaunchAction::execAction(float delta) {
 	enemy->stunDuration = enemy->receivedAttack.verticalLauncher->suspensionDuration;
 	enemy->velocity = enemy->receivedAttack.verticalLauncher->velocity;
 	enemy->initialLaunchPos = enemy->getTransform()->getPosition();
+	enemy->isBlocking = false;
+	enemy->blockingBroken = false;
 	return Leave;
 }

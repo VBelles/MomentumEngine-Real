@@ -10,5 +10,7 @@ int OnPropelAction::execAction(float delta) {
 	enemy->velocity = enemy->receivedAttack.propel->velocity;
 	enemy->propelDuration = enemy->receivedAttack.propel->duration;
 	enemy->timer.reset();
+	enemy->isBlocking = false;
+	enemy->blockingBroken = false;
 	return Leave;
 }

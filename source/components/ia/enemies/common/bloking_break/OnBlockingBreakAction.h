@@ -2,11 +2,11 @@
 
 #include "components/ia/behavior_tree/IBehaviorTreeAction.h"
 
-
-class PropelAction : public IBehaviorTreeAction {
+class OnBlockingBreakAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
+	std::string animation;
 public:
-	PropelAction(Enemy* enemy);
+	OnBlockingBreakAction(Enemy* enemy, std::string animation);
 	int execAction(float delta) override;
 };

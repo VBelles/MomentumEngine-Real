@@ -123,6 +123,11 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNew.cpp" />
     <ClCompile Include="components\ia\enemies\common\airborne\AirborneAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\airborne\OnAirborneAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\grab\GrabAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\grab\OnGrabAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\hit\HitStun.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\hit\OnHit.cpp" />
@@ -135,7 +140,9 @@
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\VerticalLaunchedAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\propel\OnPropelAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\propel\PropelAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\AttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\ChaseAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\actions\DamageCalcAction.cpp" />
@@ -437,6 +444,11 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNew.h" />
     <ClInclude Include="components\ia\enemies\common\airborne\AirborneAction.h" />
     <ClInclude Include="components\ia\enemies\common\airborne\OnAirborneAction.h" />
+    <ClInclude Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.h" />
+    <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\grab\GrabAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\hit\HitStun.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\hit\OnHit.h" />
@@ -449,7 +461,9 @@
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchCondition.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\VerticalLaunchedAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\propel\OnPropelAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\propel\PropelAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\AttackAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\ChaseAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\actions\DamageCalcAction.h" />

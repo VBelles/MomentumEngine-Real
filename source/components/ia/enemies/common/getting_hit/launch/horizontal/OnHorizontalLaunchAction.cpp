@@ -13,5 +13,7 @@ int OnHorizontalLaunchAction::execAction(float delta) {
 	enemy->stunDuration = enemy->receivedAttack.horizontalLauncher->suspensionDuration;
 	enemy->velocity = enemy->receivedAttack.horizontalLauncher->velocity;
 	enemy->initialLaunchPos = enemy->getTransform()->getPosition();
+	enemy->isBlocking = false;
+	enemy->blockingBroken = false;
 	return Leave;
 }
