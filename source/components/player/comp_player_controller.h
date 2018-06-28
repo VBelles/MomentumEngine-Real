@@ -16,6 +16,6 @@ private:
 public:
 	static void registerMsgs();
 	void update(float delta);
-	bool takePlayerControl();
-	bool givePlayerControl();
+	//bool takePlayerControl();
+	//bool givePlayerControl();
 };

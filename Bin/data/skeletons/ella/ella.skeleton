@@ -12,6 +12,7 @@
     { "name": "free_fall" },
     { "name": "grab" },
     { "name": "hard_knockback" },
+    { "name": "hard_knockback_loop" },
     { "name": "hard_knockback_air" },
     { "name": "hard_knockback_air_falling" },
     { "name": "horizontal_launcher" },

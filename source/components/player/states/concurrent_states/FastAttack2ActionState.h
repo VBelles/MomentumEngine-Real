@@ -15,6 +15,8 @@ private:
 
 	float damage = 1.f;
 	float powerToGet = 2000.f;
+	float suspensionTime = 0.0f;
+	VEC2 launchSpeed = { 0.5f, 8.f };
 
 	std::string animation = "fast_attack2";
 	std::string hitbox = "fast_attack2";
@@ -33,6 +35,5 @@ public:
 	void onDodgeButton() override;
 	void onReleasePowerButton() override;
 	void onFastAttackButtonReleased() override;
-	void onLeavingGround() override;
 	void onHitboxEnter(std::string hitbox, CHandle entity) override;
 };

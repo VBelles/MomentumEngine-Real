@@ -13,12 +13,12 @@
 FastFinisher2ActionState::FastFinisher2ActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, FastFinisher2),
 	AttackState(stateManager) {
-	hitboxOutTime = frames2sec(20);
-	hitEndTime = frames2sec(10);
-	animationEndTime = frames2sec(40);
-	cancelableTime = frames2sec(15);
-	interruptibleTime = frames2sec(60);
-	walkableTime = frames2sec(65);
+	hitboxOutTime = frames2sec(30);
+	hitEndTime = frames2sec(13);
+	animationEndTime = frames2sec(65);
+	cancelableTime = frames2sec(3);
+	interruptibleTime = frames2sec(85);
+	walkableTime = frames2sec(85);
 	hitbox = "fast_finisher2";
 }
 
@@ -35,7 +35,38 @@ void FastFinisher2ActionState::update(float delta) {
 		if (hasInput) {
 			VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
 			VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
-			rotatePlayerTowards(delta, targetPos, 3.f);
+			rotatePlayerTowards(delta, targetPos, 10.f);
+		}
+	}
+
+	float acceleration = 100.f;
+	float maxSpeed = 30.f;
+	float deceleration = 10.f;
+
+	if (movementTimer.elapsed() >= frames2sec(7) && movementTimer.elapsed() < frames2sec(20)) {
+		deltaMovement += -getPlayerTransform()->getFront() * 2.5F * delta;
+	}
+
+	if (movementTimer.elapsed() >= frames2sec(27) && movementTimer.elapsed() < frames2sec(35)) {
+		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+			getPlayerTransform()->getFront(), acceleration,
+			maxSpeed);
+
+		transferVelocityToDirectionAndAccelerate(delta, true, getPlayerTransform()->getFront(), acceleration);
+		clampHorizontalVelocity(maxSpeed);
+	}
+	else {
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		if (deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+				-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
+
+			transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
+		}
+		else {
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
 		}
 	}
 }
@@ -47,6 +78,7 @@ void FastFinisher2ActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
+	movementTimer.reset();
 }
 
 void FastFinisher2ActionState::onStateExit(IActionState * nextState) {

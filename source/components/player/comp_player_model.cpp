@@ -18,7 +18,7 @@
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
 void TCompPlayerModel::registerMsgs() {
-	DECL_MSG(TCompPlayerModel, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompPlayerModel, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(TCompPlayerModel, TMsgAttackHit, onAttackHit);
 	DECL_MSG(TCompPlayerModel, TMsgHitboxEnter, onHitboxEnter);
 	DECL_MSG(TCompPlayerModel, TMsgGainPower, onGainPower);
@@ -116,7 +116,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
 
-void TCompPlayerModel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
 	transformHandle = get<TCompTransform>();

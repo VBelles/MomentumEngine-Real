@@ -94,6 +94,12 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	getCameraPlayer()->moveCameraCloser(false);
 	slideWindowTimer.reset();
 	hardLandingTimer.reset();
+	if (lastState->state == FallingAttack) {
+		getPlayerModel()->lockFallingAttack = true;
+	}
+	else {
+		getPlayerModel()->lockFallingAttack = false;
+	}
 }
 
 void AirborneActionState::onStateExit(IActionState * nextState) {
@@ -109,7 +115,9 @@ void AirborneActionState::onJumpLongButton() {
 }
 
 void AirborneActionState::onStrongAttackButton() {
-	stateManager->changeState(FallingAttack);
+	if (!getPlayerModel()->lockFallingAttack) {
+		stateManager->changeState(FallingAttack);
+	}
 }
 
 void AirborneActionState::onFastAttackButton() {
@@ -138,6 +146,7 @@ void AirborneActionState::onMove(MoveState& moveState) {
 		if (!isWalkable(moveState)) {
 			if (slideWindowTimer.elapsed() >= slideWindowTime) {
 				stateManager->changeState(Slide);
+				getPlayerModel()->lockFallingAttack = false;
 			}
 		}
 		else {
@@ -163,6 +172,7 @@ bool AirborneActionState::hugWall(const HitState& hitState) {
 				HuggingWallActionState* actionState = (HuggingWallActionState*)stateManager->getState(HuggingWall);
 				actionState->setHuggingWallNormal(hitNormal);
 				stateManager->changeState(HuggingWall);
+				getPlayerModel()->lockFallingAttack = false;
 				return true;
 			}
 		}
@@ -173,12 +183,14 @@ bool AirborneActionState::hugWall(const HitState& hitState) {
 
 void AirborneActionState::onLanding() {
 	//Ir a landing action state
+	stateManager->changeConcurrentState(Free);
 	if (hardLandingTimer.elapsed() < hardLandingTime) {
 		stateManager->changeState(SoftLanding);
 	}
 	else {
 		stateManager->changeState(HardLanding);
 	}
+	getPlayerModel()->lockFallingAttack = false;
 }
 
 

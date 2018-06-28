@@ -41,7 +41,7 @@ void TCompMechanism::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 }
 
 void TCompMechanism::update(float dt) {
-	if (isActivated && deactivationTimer.elapsed() >= deactivationTime) {
+	if (isActivated && isResettable && deactivationTimer.elapsed() >= deactivationTime) {
 		isActivated = false;
 		reactivationTimer.reset();
 		for (auto& system : mechanismSystems) {

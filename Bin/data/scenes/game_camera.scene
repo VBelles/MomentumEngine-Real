@@ -15,7 +15,11 @@
 				"enabled": false
 			},
 			"render_ao": {
-				"enabled": false
+				"enabled": true,
+				"amount": 0.4,
+				"radius": 0.3,
+				"zrange_discard": 0.02,
+				"amount_spreading": 0.7
 			},
 			"render_outlines": {
 				"enabled": true
@@ -29,6 +33,11 @@
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4
+			},
+			"color_grading":{
+				"enabled": false,
+				"amount": 1,
+				"lut": "data/textures/lut/candlelight.dds"						
 			}
 		}
 	},

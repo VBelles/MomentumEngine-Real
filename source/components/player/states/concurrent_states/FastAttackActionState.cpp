@@ -6,6 +6,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 #include "components/player/states/StateManager.h"
+#include "components/comp_transform.h"
 
 
 FastAttackActionState::FastAttackActionState(StateManager* stateManager)
@@ -78,11 +79,6 @@ void FastAttackActionState::onFastAttackButtonReleased() {
 	}
 }
 
-void FastAttackActionState::onLeavingGround() {
-	stateManager->changeState(GhostJumpWindow);
-}
-
-
 void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity* otherEntity = entity;
@@ -92,6 +88,12 @@ void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
+	VEC3 launchVelocity = getPlayerTransform()->getFront() * launchSpeed.x;
+	launchVelocity.y = launchSpeed.y;
+	msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+		suspensionTime,
+		launchVelocity
+	};
 	msgAtackHit.info.givesPower = true;
 	msgAtackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAtackHit);

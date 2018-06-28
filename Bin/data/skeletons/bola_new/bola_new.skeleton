@@ -1,0 +1,24 @@
+{
+	"name":"bola_new",
+	"anims" : [
+		{ "name" : "enemigo_bola_idle"},
+		{ "name" : "enemigo_bola_aparecer"},
+		{ "name" : "enemigo_bola_ataquelento"},
+		{ "name" : "enemigo_bola_ataquelento_altern"},
+		{ "name" : "enemigo_bola_ataquerapido"},
+		{ "name" : "enemigo_bola_chase"},
+		{ "name" : "enemigo_bola_desaparecer"},
+		{ "name" : "enemigo_bola_guardia"},
+		{ "name" : "enemigo_bola_idle_war"},
+		{ "name" : "enemigo_bola_muerte"},
+		{ "name" : "enemigo_bola_placaje"},
+		{ "name" : "enemigo_bola_recibirdanio"},
+		{ "name" : "enemigo_bola_run"},
+		{ "name" : "enemigo_bola_stun"}
+	],
+	"bone_ids_to_debug" : [
+		3
+	],
+		"meshes" : [
+	]
+}

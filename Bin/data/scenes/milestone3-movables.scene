@@ -2,6 +2,185 @@
   {
     "entity":
     {
+      "name": "ms3_platf028",
+      "transform":
+      {
+        "pos": "-493.502 112.273 -910.092",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf028.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_platf_col008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-493.606 111.966 -909.92",
+           "-493.606 111.966 -909.92",
+           "-541.97 111.966 -946.663",
+           "-547.951 111.966 -880.868",
+           "-576.832 111.966 -930.428",
+           "-520.437 111.966 -898.983",
+           "-510.525 111.966 -963.581",
+           "-510.525 111.966 -963.581"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Cylinder144",
+      "transform":
+      {
+        "pos": "-178.332 69.2952 -902.667",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_Cylinder144.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_Cylinder145.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.434012,
+        "travel_wait_time": 0.0,
+        "speed": 0.2,
+        "knots":
+        [
+           "-183.287 69.6315 -891.409",
+           "-183.287 69.6315 -878.708",
+           "-183.287 69.6315 -878.708",
+           "-170.587 69.6315 -891.409",
+           "-183.287 69.6315 -904.109",
+           "-195.987 69.6315 -891.409",
+           "-195.987 69.6315 -891.409"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotateTriang007",
+      "transform":
+      {
+        "pos": "-604.844 125.206 -871.283",
+        "rotation": "0.0 -0.887011 0.0 0.461749"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotateTriang007.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotateTriang008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "-1.0 0.0 0.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotateTriang005",
+      "transform":
+      {
+        "pos": "-617.525 263.057 -869.382",
+        "rotation": "0.596368 -0.627211 0.379928 0.326505"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotateTriang005.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotateTriang006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_rotateTriang003",
       "transform":
       {
@@ -74,7 +253,7 @@
         "closed": true,
         "move_offset": 0.690972,
         "travel_wait_time": 0.0,
-        "speed": 0.4,
+        "speed": 0.25,
         "knots":
         [
            "-632.471 187.987 -881.155",
@@ -85,42 +264,6 @@
            "-638.501 187.987 -878.343",
            "-638.501 187.987 -878.343"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_rotateTriang001",
-      "transform":
-      {
-        "pos": "-605.281 125.566 -871.048",
-        "rotation": "-0.706434 0.379928 -0.0308437 -0.596368"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_rotateTriang001.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_rotateTriang002.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.5
       }
     }
   },
@@ -163,7 +306,7 @@
         "closed": true,
         "move_offset": 0.690972,
         "travel_wait_time": 0.0,
-        "speed": 0.04,
+        "speed": 0.25,
         "knots":
         [
            "-618.403 183.021 -882.663",
@@ -216,7 +359,7 @@
         "closed": true,
         "move_offset": 0.186317,
         "travel_wait_time": 0.0,
-        "speed": 0.04,
+        "speed": 0.25,
         "knots":
         [
            "-618.403 183.021 -882.663",
@@ -269,7 +412,7 @@
         "closed": true,
         "move_offset": 0.938588,
         "travel_wait_time": 0.0,
-        "speed": 0.04,
+        "speed": 0.25,
         "knots":
         [
            "-618.403 183.021 -882.663",
@@ -322,7 +465,7 @@
         "closed": true,
         "move_offset": 0.437303,
         "travel_wait_time": 0.0,
-        "speed": 0.04,
+        "speed": 0.25,
         "knots":
         [
            "-618.403 183.021 -882.663",

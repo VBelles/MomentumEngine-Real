@@ -73,7 +73,7 @@ private:
 	AttackInfo receivedAttack;
 
 	//Messages
-	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onShapeHit(const TMsgShapeHit & msg);
 	void onControllerHit(const TMsgControllerHit & msg);
 	void onLevelChange(const TMsgPowerLvlChange& msg);
@@ -97,6 +97,8 @@ public:
 	bool lockAttack = false;
 	bool wannaJump = false;
 	bool isWalking = false;
+
+	bool lockFallingAttack = false;
 
 	float maxVerticalSpeed = 0.f;
 
