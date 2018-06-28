@@ -1,0 +1,4 @@
+Modo de uso
+Copiar auto_converter.bat junto con texconv.exe a la carpeta deseada
+Ejecutar auto_converter.bat
+Todos los archivos *.tga se guardaran en la carpeta relativa /dds como *.dds
