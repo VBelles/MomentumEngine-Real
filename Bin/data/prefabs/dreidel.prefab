@@ -1,0 +1,80 @@
+[
+  {
+    "entity": {
+      "name": "ball",
+      "transform": {},
+      "render": [
+        {
+          "mesh": "data/skeletons/bola_new/Object001.mesh",
+          "materials": [
+            "data/skeletons/enemigoBola/enemigoBola.material"
+          ]
+        }
+      ],
+      "tags": [
+        "enemy"
+      ],
+      "skeleton": {
+        "skeleton": "data/skeletons/bola_new/bola_new.skeleton"
+      },
+      "givePower": {
+        "maxPowerToGive": 50000.0,
+        "baseMultiplier": 1.2
+      },
+      "dreidel": {
+        "max_hp": 5,
+        "max_distance_from_spawn": 20,
+        "movement_speed": 3,
+        "rotation_speed": 25,
+        "gravity": -50,
+        "max_velocity": 20,
+        "chase_fov": 90,
+        "fov_chase_distance": 15,
+        "small_chase_radius": 2,
+        "attack_fov": 90,
+        "short_combat_distance": 2,
+        "medium_combat_distance": 4,
+        "long_combat_distance": 10,
+        "step_back_distance": 0.3,
+        "attacks": [
+          {
+            "name": "attack",
+            "frame_data": "5 40",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "attack"
+          }
+        ]
+      },
+      "collider": {
+        "shape": "capsule",
+        "type": "cct",
+        "radius": 0.5,
+        "height": 0.1,
+        "step": 0.3,
+        "group": [
+          "enemy"
+        ],
+        "mask": [
+          "all"
+        ]
+      },
+      "hitboxes": {
+        "hitboxes": [
+          {
+            "name": "attack",
+            "shape": "sphere",
+            "radius": 0.8,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

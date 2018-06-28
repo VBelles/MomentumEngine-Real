@@ -5,10 +5,8 @@
 #include "nodes/BehaviorTreeNodeSequence.h"
 #include "nodes/BehaviorTreeNodePriority.h"
 #include "nodes/BehaviorTreeNodeAction.h"
-#include "IBehaviorTreeAction.h"
-#include "IBehaviorTreeCondition.h"
-#include "IBehaviorTree.h"
-
+#include "components/ia/behavior_tree/IBehaviorTreeAction.h"
+#include "components/ia/behavior_tree/IBehaviorTreeCondition.h"
 
 class IBehaviorTreeNew {
 protected:

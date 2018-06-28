@@ -2,6 +2,8 @@
 
 #include "components/ia/behavior_tree/IBehaviorTreeCondition.h"
 
+class Enemy;
+
 class AirborneCondition : public IBehaviorTreeCondition {
 private:
 	Enemy * enemy;

@@ -2,6 +2,7 @@
 #include "PropelAction.h"
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 PropelAction::PropelAction(Enemy* enemy): enemy(enemy) {
 }

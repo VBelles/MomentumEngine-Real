@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "OnDeathCondition.h"
+#include "components/ia/enemies/Enemy.h"
 
 OnDeathCondition::OnDeathCondition(Enemy* enemy) : enemy(enemy) {
 }

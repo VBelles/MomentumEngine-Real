@@ -59,12 +59,14 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompSkeleton::update(float dt) {
 	PROFILE_FUNCTION("updateSkel");
-	assert(model);
-	TCompTransform* tmx = get<TCompTransform>();
-	VEC3 pos = tmx->getPosition();
-	QUAT rot = tmx->getRotation();
-	model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
-	model->update(dt);
+	if (!stopped) {
+		assert(model);
+		TCompTransform* tmx = get<TCompTransform>();
+		VEC3 pos = tmx->getPosition();
+		QUAT rot = tmx->getRotation();
+		model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
+		model->update(dt);
+	}
 }
 
 void TCompSkeleton::debugInMenu() {
@@ -279,4 +281,12 @@ float TCompSkeleton::getAnimationDuration(std::string animation) {
 	CGameCoreSkeleton *core = (CGameCoreSkeleton*)model->getCoreModel();
 	int animationId = core->getCoreAnimationId(animation);
 	return getAnimationDuration(animationId);
+}
+
+void TCompSkeleton::stop() {
+	stopped = true;
+}
+
+void TCompSkeleton::resume() {
+	stopped = false;
 }

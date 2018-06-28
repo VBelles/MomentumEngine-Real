@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "AirborneCondition.h"
+#include "components/ia/enemies/Enemy.h"
 
 AirborneCondition::AirborneCondition(Enemy* enemy) : enemy(enemy) {
 }

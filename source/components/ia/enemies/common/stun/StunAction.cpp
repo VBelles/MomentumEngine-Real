@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "StunAction.h"
+#include "components/ia/enemies/Enemy.h"
 
 StunAction::StunAction(Enemy* enemy) :
 	enemy(enemy) {

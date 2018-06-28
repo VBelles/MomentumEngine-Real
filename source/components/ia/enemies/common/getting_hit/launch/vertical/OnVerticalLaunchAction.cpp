@@ -2,6 +2,7 @@
 #include "OnVerticalLaunchAction.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy, std::string animation) :
 	enemy(enemy),

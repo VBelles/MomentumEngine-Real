@@ -33,6 +33,7 @@ Funciones:
 	void enablePlayerOutline()
 
 	string spawnEntityAt(PREFAB, float x, float y, float z)
+	string spawnEntity(PREFAB)
 	string spawnGolemAt(float x, float y, float z)
 	string spawnGolem()
 	string spawnBallAt(float x, float y, float z)
@@ -65,6 +66,7 @@ Constantes:
 	PREFAB_BALL
 	PREFAB_MEDUSA
 	PREFAB_CHRYSALIS
+	PREFAB_DREIDEL
 
 	INTERPOLATOR_LINEAR
 	INTERPOLATOR_QUAD_IN

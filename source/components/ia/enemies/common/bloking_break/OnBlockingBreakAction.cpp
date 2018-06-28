@@ -2,6 +2,7 @@
 #include "OnBlockingBreakAction.h"
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 OnBlockingBreakAction::OnBlockingBreakAction(Enemy* enemy, std::string animation): 
 	enemy(enemy),

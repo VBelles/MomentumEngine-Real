@@ -2,6 +2,8 @@
 
 #include "components/ia/behavior_tree/IBehaviorTreeCondition.h"
 
+class Enemy;
+
 class OnBlockingBreakCondition : public IBehaviorTreeCondition {
 private:
 	Enemy * enemy;

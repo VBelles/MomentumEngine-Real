@@ -3,6 +3,7 @@
 #include "components/comp_collider.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 VerticalLaunchedAction::VerticalLaunchedAction(Enemy* enemy) : enemy(enemy) {
 }

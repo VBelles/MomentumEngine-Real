@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "HitStun.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 HitStun::HitStun(Enemy* enemy, std::string animation) :
 	enemy(enemy),

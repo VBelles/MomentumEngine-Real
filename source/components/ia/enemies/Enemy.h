@@ -1,6 +1,6 @@
 #pragma once
 
-#include "components/ia/behavior_tree/IBehaviorTree.h"
+#include "components/ia/behavior_tree/IBehaviorTreeNew.h"
 #include "components/player/attack_info.h"
 
 class TCompTransform;
@@ -15,7 +15,7 @@ struct EnemyAttack {
 	float hitboxEnd = 0.f;
 };
 
-class Enemy : public IBehaviorTree {
+class Enemy : public IBehaviorTreeNew {
 public:
 	//HP
 	float hp = 0.f;

@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "OnHorizontalLaunchCondition.h"
+#include "components/ia/enemies/Enemy.h"
 
 OnHorizontalLaunchCondition::OnHorizontalLaunchCondition(Enemy* enemy) : enemy(enemy) {
 }

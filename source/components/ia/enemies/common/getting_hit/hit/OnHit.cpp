@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "OnHit.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 OnHit::OnHit(Enemy* enemy, std::string animation) :
 	enemy(enemy),
@@ -23,7 +24,12 @@ int OnHit::execAction(float delta) {
 	}
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
-	enemy->stunDuration = attackInfo.stun->duration;
+	if (attackInfo.stun) {
+		enemy->stunDuration = attackInfo.stun->duration;
+	}
+	else {
+		enemy->stunDuration = 0;
+	}
 	enemy->stunTimer.reset();
 	return Leave;
 }

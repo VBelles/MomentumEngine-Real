@@ -11,6 +11,7 @@
   ],
   "update": [
     "fwd_msg",
+    "dreidel",
     "skeleton",
     "skel_lookat",
     "bone_tracker",

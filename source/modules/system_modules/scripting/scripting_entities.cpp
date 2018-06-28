@@ -14,6 +14,7 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	assert(instance);
 	bindConstants(manager);
 	manager->set("spawnEntityAt", SLB::FuncCall::create(ScriptingEntities::spawnEntityAt));
+	manager->set("spawnEntity", SLB::FuncCall::create(ScriptingEntities::spawnEntity));
 	manager->set("spawnGolemAt", SLB::FuncCall::create(ScriptingEntities::spawnGolemAt));
 	manager->set("spawnGolem", SLB::FuncCall::create(ScriptingEntities::spawnGolem));
 	manager->set("spawnBallAt", SLB::FuncCall::create(ScriptingEntities::spawnBallAt));
@@ -31,6 +32,7 @@ void ScriptingEntities::bindConstants(SLB::Manager* manager) {
 	manager->set("PREFAB_BALL", SLB::Value::copy(PREFAB_BALL));
 	manager->set("PREFAB_MEDUSA", SLB::Value::copy(PREFAB_MEDUSA));
 	manager->set("PREFAB_CHRYSALIS", SLB::Value::copy(PREFAB_CHRYSALIS));
+	manager->set("PREFAB_DREIDEL", SLB::Value::copy(PREFAB_DREIDEL));
 }
 
 std::string ScriptingEntities::spawnEntityAt(std::string prefabFilename, float x, float y, float z) {
@@ -47,6 +49,11 @@ std::string ScriptingEntities::spawnEntityAt(std::string prefabFilename, float x
 	get()->spawnCounters[nameComp->getName()] = spawnCounter + 1;
 	nameComp->setName(name.c_str());
 	return name;
+}
+
+std::string ScriptingEntities::spawnEntity(std::string prefabFilename) {
+	VEC3 spawnPosition = get()->getPlayerTransform()->getPosition() + (get()->getPlayerTransform()->getFront() * 2);
+	return spawnEntityAt(prefabFilename, spawnPosition.x, spawnPosition.y, spawnPosition.z);
 }
 
 std::string ScriptingEntities::spawnGolemAt(float x, float y, float z) {

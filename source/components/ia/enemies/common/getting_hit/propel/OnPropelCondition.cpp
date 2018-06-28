@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "OnPropelCondition.h"
+#include "components/ia/enemies/Enemy.h"
 
 OnPropelCondition::OnPropelCondition(Enemy* enemy) : enemy(enemy) {
 }

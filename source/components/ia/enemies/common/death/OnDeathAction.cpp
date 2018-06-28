@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "OnDeathAction.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 OnDeathAction::OnDeathAction(Enemy* enemy, std::string animation):
 	enemy(enemy),

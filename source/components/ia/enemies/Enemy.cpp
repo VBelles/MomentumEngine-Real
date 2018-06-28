@@ -38,7 +38,7 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 
 		attack.attackInfo.load(jAttack);
 
-		attack.hitboxName = j.value("hitbox", "");
+		attack.hitboxName = jAttack.value("hitbox", "");
 		assert(!attack.hitboxName.empty());
 
 		int n = sscanf(jAttack.value("frame_data", "").c_str(), "%f %f", &attack.hitboxStart, &attack.hitboxEnd);
@@ -72,8 +72,11 @@ void Enemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 void Enemy::move(float delta) {
 	PxControllerCollisionFlags flags = EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 	grounded = flags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
-	if (grounded && velocity.y < 0.f) {
-		velocity.y = 0;
+	if (grounded) {
+		airborne = false;
+		if (velocity.y < 0.f) {
+			velocity.y = 0;
+		}
 	}
 }
 

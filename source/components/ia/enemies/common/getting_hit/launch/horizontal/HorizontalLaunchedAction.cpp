@@ -1,9 +1,9 @@
 #include "mcv_platform.h"
 #include "HorizontalLaunchedAction.h"
-
 #include "components/comp_collider.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy) : enemy(enemy) {
 }

@@ -1,9 +1,11 @@
 #pragma once
 
-#include "components/ia/behavior_tree/IBehaviorTreeNew.h"
+#include "components/ia/enemies/Enemy.h"
 #include "components/comp_base.h"
 #include "entity/common_msgs.h"
 #include "components/player/attack_info.h"
+
+struct TMsgColliderDestroyed;
 
 class Dreidel : public Enemy, public TCompBase {
 private:
@@ -11,10 +13,10 @@ private:
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
-	void onRespawn(const TMsgRespawn& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
 	void onPerfectDodged(const TMsgPerfectDodged& msg);
-	void onHitboxEnter(const TMsgHitboxEnter& msg);
+	void onColliderDestroyed(const TMsgColliderDestroyed& msg);
+	//void onHitboxEnter(const TMsgHitboxEnter& msg);
 
 public:
 	DECL_SIBLING_ACCESS();

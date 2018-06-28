@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "OnDisappearAction.h"
 #include "skeleton/comp_skeleton.h"
+#include "components/ia/enemies/Enemy.h"
 
 OnDisappearAction::OnDisappearAction(Enemy* enemy, std::string animation):
 	enemy(enemy),

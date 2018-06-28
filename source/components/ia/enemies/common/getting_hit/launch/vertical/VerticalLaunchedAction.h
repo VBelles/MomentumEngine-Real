@@ -2,6 +2,7 @@
 
 #include "components/ia/behavior_tree/IBehaviorTreeAction.h"
 
+class Enemy;
 
 class VerticalLaunchedAction : public IBehaviorTreeAction {
 private:

@@ -2,7 +2,7 @@
 #include "DisappearAction.h"
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
-
+#include "components/ia/enemies/Enemy.h"
 
 DisappearAction::DisappearAction(Enemy* enemy, std::string animation) :
 	enemy(enemy),
@@ -14,6 +14,7 @@ int DisappearAction::execAction(float delta) {
 		return Stay;
 	}
 	else {
+		enemy->getCollider()->toDestroy = true; //TODO enable/disable bien
 		enemy->getCollider()->destroy();
 		return Leave;
 	}

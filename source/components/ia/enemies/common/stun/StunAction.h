@@ -2,6 +2,8 @@
 
 #include "components/ia/behavior_tree/IBehaviorTreeAction.h"
 
+class Enemy;
+
 class StunAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
