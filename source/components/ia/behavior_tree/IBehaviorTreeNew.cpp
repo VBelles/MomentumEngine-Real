@@ -4,6 +4,21 @@
 IBehaviorTreeNew::IBehaviorTreeNew() {
 }
 
+IBehaviorTreeNew::~IBehaviorTreeNew() {
+	for (auto& pair : tree) {
+		SAFE_DELETE(pair.second);
+	}
+	for (auto& pair : conditions) {
+		SAFE_DELETE(pair.second);
+	}
+	for (auto& pair : actions) {
+		SAFE_DELETE(pair.second);
+	}
+	tree.clear();
+	conditions.clear();
+	actions.clear();
+}
+
 IBehaviorTreeNode* IBehaviorTreeNew::createNode(std::string name, EBehaviorTreeNodeType type) {
 	if (findNode(name)) {
 		dbg("Error: node %s already exists\n", name.c_str());

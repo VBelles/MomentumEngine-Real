@@ -53,8 +53,10 @@
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
+Dreidel::~Dreidel() {
+}
+
 void Dreidel::initBehaviorTree() {
-	//TODO delete
 	FalseCondition* falseCondition = new FalseCondition();
 	AirborneAction* airborneAction = new AirborneAction(this);
 	AirborneCondition* airborneCondition = new AirborneCondition(this);

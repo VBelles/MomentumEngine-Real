@@ -5,6 +5,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 
+Enemy::~Enemy() {
+}
 
 void Enemy::load(const json& j, TEntityParseContext& ctx) {
 	//Base

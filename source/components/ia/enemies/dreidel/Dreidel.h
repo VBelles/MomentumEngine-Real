@@ -21,6 +21,8 @@ private:
 public:
 	DECL_SIBLING_ACCESS();
 
+	~Dreidel();
+
 	void load(const json& j, TEntityParseContext& ctx);
 	void debugInMenu();
 	static void registerMsgs();

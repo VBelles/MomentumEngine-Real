@@ -17,6 +17,8 @@ struct EnemyAttack {
 
 class Enemy : public IBehaviorTreeNew {
 public:
+	virtual ~Enemy();
+
 	//HP
 	float hp = 0.f;
 	float maxHp = 0.f;
