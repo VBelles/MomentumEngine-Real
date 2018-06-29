@@ -38,7 +38,8 @@
 #include "components/ia/enemies/common/stun/StunAction.h"
 #include "components/ia/enemies/common/idle/OnIdleAction.h"
 #include "components/ia/enemies/common/idle/IdleAction.h"
-
+#include "components/ia/enemies/common/idle/OnStrollAction.h"
+#include "components/ia/enemies/common/idle/StrollAction.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
@@ -76,6 +77,10 @@ void Dreidel::initBehaviorTree() {
 	StunAction* stunAction = new StunAction(this);
 	OnIdleAction* onIdleAction = new OnIdleAction(this, "enemigo_bola_idle");
 	IdleAction* idleAction = new IdleAction(this, "enemigo_bola_idle");
+	OnIdleAction* onIdleLoop = new OnIdleAction(this, "enemigo_bola_idle");
+	IdleAction* idleLoop = new IdleAction(this, "enemigo_bola_idle");
+	OnStrollAction* onStrollAction = new OnStrollAction(this, "enemigo_bola_run");
+	StrollAction* strollAction = new StrollAction(this);
 
 	createRoot("dreidel", Priority, nullptr, nullptr);
 
@@ -114,9 +119,17 @@ void Dreidel::initBehaviorTree() {
 	addChild("dreidel", "onAirborneAction", Action, onAirborneCondition, onAirborneAction);
 	addChild("dreidel", "airborneAction", Action, airborneCondition, airborneAction);
 
-	addChild("dreidel", "idle", Sequence, nullptr, nullptr);
-	addChild("idle", "onIdleAction", Action, nullptr, onIdleAction);
-	addChild("idle", "idleAction", Action, nullptr, idleAction);
+
+	addChild("dreidel", "idle", Random, nullptr, nullptr);
+	addChild("idle", "idleActionSeq", Sequence, nullptr, nullptr);
+	addChild("idleActionSeq", "onIdleAction", Action, nullptr, onIdleAction);
+	addChild("idleActionSeq", "idleAction", Action, nullptr, idleAction);
+	addChild("idle", "idleLoopSeq", Sequence, nullptr, nullptr);
+	addChild("idleLoopSeq", "onIdleLoop", Action, nullptr, onIdleLoop);
+	addChild("idleLoopSeq", "idleLoop", Action, nullptr, idleLoop);
+	addChild("idle", "stroll", Sequence, nullptr, nullptr);
+	addChild("stroll", "onStrollAction", Action, nullptr, onStrollAction);
+	addChild("stroll", "strollAction", Action, nullptr, strollAction);
 }
 
 void Dreidel::load(const json& j, TEntityParseContext& ctx) {

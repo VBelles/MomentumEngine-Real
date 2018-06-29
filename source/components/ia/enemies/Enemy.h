@@ -35,6 +35,9 @@ public:
 	bool grounded = false;
 	bool airborne = false;
 
+	float strollRadius = 0.f;
+	VEC3 nextWaypoint;
+
 	//Combat
 	AttackInfo receivedAttack;
 	float chaseFov = 0.f;

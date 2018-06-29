@@ -28,6 +28,7 @@
         "rotation_speed": 25,
         "gravity": -50,
         "max_velocity": 20,
+        "stroll_radius": 2,
         "chase_fov": 90,
         "fov_chase_distance": 15,
         "small_chase_radius": 2,

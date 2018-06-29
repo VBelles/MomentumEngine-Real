@@ -150,6 +150,8 @@
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\PropelAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\IdleAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnIdleAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\idle\OnStrollAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\idle\StrollAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\StunAction.cpp" />
@@ -445,6 +447,8 @@
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\PropelAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\IdleAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnIdleAction.h" />
+    <ClInclude Include="components\ia\enemies\common\idle\OnStrollAction.h" />
+    <ClInclude Include="components\ia\enemies\common\idle\StrollAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
     <ClInclude Include="components\ia\enemies\common\stun\StunAction.h" />

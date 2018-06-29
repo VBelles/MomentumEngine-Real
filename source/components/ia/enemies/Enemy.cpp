@@ -19,6 +19,8 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 	gravity = j.value("gravity", gravity);
 	maxVerticalVelocity = j.value("max_velocity", maxVerticalVelocity);
 
+	strollRadius = j.value("stroll_radius", strollRadius);
+
 	//Chase
 	chaseFov = deg2rad(j.value("chase_fov", rad2deg(chaseFov)));
 	fovChaseDistanceSqrd = pow(j.value("fov_chase_distance", sqrt(fovChaseDistanceSqrd)), 2);
