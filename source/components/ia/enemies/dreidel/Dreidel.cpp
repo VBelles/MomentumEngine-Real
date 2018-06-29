@@ -43,6 +43,9 @@
 #include "components/ia/enemies/common/teleport/OnTeleportAction.h"
 #include "components/ia/enemies/common/teleport/OnTeleportCondition.h"
 #include "components/ia/enemies/common/teleport/TeleportAction.h"
+#include "components/ia/enemies/common/return_to_spawn/OnReturnToSpawnAction.h"
+#include "components/ia/enemies/common/return_to_spawn/OnReturnToSpawnCondition.h"
+#include "components/ia/enemies/common/return_to_spawn/ReturnToSpawnAction.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
@@ -87,6 +90,9 @@ void Dreidel::initBehaviorTree() {
 	OnTeleportAction* onTeleportAction = new OnTeleportAction(this, "enemigo_bola_desaparecer");
 	OnTeleportCondition* onTeleportCondition = new OnTeleportCondition(this);
 	TeleportAction* teleportAction = new TeleportAction(this, "enemigo_bola_desaparecer");
+	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "enemigo_bola_run");
+	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
+	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(this);
 
 	createRoot("dreidel", Priority, nullptr, nullptr);
 
@@ -125,9 +131,13 @@ void Dreidel::initBehaviorTree() {
 	addChild("dreidel", "onAirborneAction", Action, onAirborneCondition, onAirborneAction);
 	addChild("dreidel", "airborneAction", Action, airborneCondition, airborneAction);
 
-	addChild("dreidel", "teleportCondition", Sequence, onTeleportCondition, nullptr);
-	addChild("teleportCondition", "onTeleportAction", Action, nullptr, onTeleportAction);
-	addChild("teleportCondition", "teleportAction", Action, nullptr, teleportAction);
+	addChild("dreidel", "teleport", Sequence, onTeleportCondition, nullptr);
+	addChild("teleport", "onTeleportAction", Action, nullptr, onTeleportAction);
+	addChild("teleport", "teleportAction", Action, nullptr, teleportAction);
+
+	addChild("dreidel", "returnToSpawn", Sequence, onReturnToSpawnCondition, nullptr);
+	addChild("returnToSpawn", "onReturnToSpawnAction", Action, nullptr, onReturnToSpawnAction);
+	addChild("returnToSpawn", "returnToSpawnAction", Action, nullptr, returnToSpawnAction);
 
 	addChild("dreidel", "idle", Random, nullptr, nullptr);
 	addChild("idle", "idleActionSeq", Sequence, nullptr, nullptr);

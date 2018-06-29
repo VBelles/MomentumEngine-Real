@@ -296,6 +296,9 @@
     <ClCompile Include="components\ia\enemies\common\teleport\OnTeleportAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\teleport\OnTeleportCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\teleport\TeleportAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -624,6 +627,9 @@
     <ClInclude Include="components\ia\enemies\common\teleport\TeleportAction.h" />
     <ClInclude Include="components\ia\enemies\common\teleport\OnTeleportAction.h" />
     <ClInclude Include="components\ia\enemies\common\teleport\OnTeleportCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnAction.h" />
+    <ClInclude Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnAction.h" />
+    <ClInclude Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnCondition.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
