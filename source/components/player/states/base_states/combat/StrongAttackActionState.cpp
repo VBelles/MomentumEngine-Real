@@ -125,6 +125,8 @@ void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
+	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }
 
 void StrongAttackActionState::onStrongAttackButton() {

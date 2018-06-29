@@ -99,6 +99,8 @@ void StrongAttack3ActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
+	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 }
 
 void StrongAttack3ActionState::setMovementInput(VEC2 input) {
