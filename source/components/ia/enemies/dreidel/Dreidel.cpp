@@ -36,6 +36,8 @@
 #include "components/ia/enemies/common/stun/OnStunAction.h"
 #include "components/ia/enemies/common/stun/OnStunCondition.h"
 #include "components/ia/enemies/common/stun/StunAction.h"
+#include "components/ia/enemies/common/idle/OnIdleAction.h"
+#include "components/ia/enemies/common/idle/IdleAction.h"
 
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
@@ -47,31 +49,33 @@ void Dreidel::initBehaviorTree() {
 	AirborneCondition* airborneCondition = new AirborneCondition(this);
 	OnAirborneAction* onAirborneAction = new OnAirborneAction(this, "enemigo_bola_idle");
 	OnAirborneCondition* onAirborneCondition = new OnAirborneCondition(this);
-	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(this, "enemigo_bola_idle");
-	OnBlockingBreakAction* onBlockingBreakAction = new OnBlockingBreakAction(this, "enemigo_bola_idle");
+	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(this, "enemigo_bola_guardia");
+	OnBlockingBreakAction* onBlockingBreakAction = new OnBlockingBreakAction(this, "enemigo_bola_guardia");
 	OnBlockingBreakCondition* onBlockingBreakCondition = new OnBlockingBreakCondition(this);
-	DeathAction* deathAction = new DeathAction(this, "enemigo_bola_idle");
-	DisappearAction* disappearAction = new DisappearAction(this, "enemigo_bola_idle");
-	OnDeathAction* onDeathAction = new OnDeathAction(this, "enemigo_bola_idle");
+	DeathAction* deathAction = new DeathAction(this, "enemigo_bola_muerte");
+	DisappearAction* disappearAction = new DisappearAction(this, "enemigo_bola_desaparecer");
+	OnDeathAction* onDeathAction = new OnDeathAction(this, "enemigo_bola_muerte");
 	OnDeathCondition* onDeathCondition = new OnDeathCondition(this);
-	OnDisappearAction* onDisappearAction = new OnDisappearAction(this, "enemigo_bola_idle");
+	OnDisappearAction* onDisappearAction = new OnDisappearAction(this, "enemigo_bola_desaparecer");
 	GrabAction* grabAction = new GrabAction(this);
 	OnGrabAction* onGrabAction = new OnGrabAction(this);
 	OnGrabCondition* onGrabCondition = new OnGrabCondition(this);
-	HitStun* hitStun = new HitStun(this, "enemigo_bola_idle");
-	OnHit* onHit = new OnHit(this, "enemigo_bola_idle");
+	HitStun* hitStun = new HitStun(this, "enemigo_bola_recibirdanio");
+	OnHit* onHit = new OnHit(this, "enemigo_bola_recibirdanio");
 	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this);
-	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "enemigo_bola_idle");
+	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "enemigo_bola_recibirdanio");
 	OnHorizontalLaunchCondition* onHorizontalLaunchCondition = new OnHorizontalLaunchCondition(this);
-	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this, "enemigo_bola_idle");
+	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this, "enemigo_bola_recibirdanio");
 	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(this);
 	VerticalLaunchedAction* verticalLaunchedAction = new VerticalLaunchedAction(this);
 	OnPropelAction* onPropelAction = new OnPropelAction(this);
 	OnPropelCondition * onPropelCondition = new OnPropelCondition(this);
 	PropelAction* propelAction = new PropelAction(this);
-	OnStunAction* onStunAction = new OnStunAction(this, "enemigo_bola_idle");
+	OnStunAction* onStunAction = new OnStunAction(this, "enemigo_bola_stun");
 	OnStunCondition* onStunCondition = new OnStunCondition(this);
 	StunAction* stunAction = new StunAction(this);
+	OnIdleAction* onIdleAction = new OnIdleAction(this, "enemigo_bola_idle");
+	IdleAction* idleAction = new IdleAction(this, "enemigo_bola_idle");
 
 	createRoot("dreidel", Priority, nullptr, nullptr);
 
@@ -109,6 +113,10 @@ void Dreidel::initBehaviorTree() {
 
 	addChild("dreidel", "onAirborneAction", Action, onAirborneCondition, onAirborneAction);
 	addChild("dreidel", "airborneAction", Action, airborneCondition, airborneAction);
+
+	addChild("dreidel", "idle", Sequence, nullptr, nullptr);
+	addChild("idle", "onIdleAction", Action, nullptr, onIdleAction);
+	addChild("idle", "idleAction", Action, nullptr, idleAction);
 }
 
 void Dreidel::load(const json& j, TEntityParseContext& ctx) {

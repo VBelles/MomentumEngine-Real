@@ -289,6 +289,8 @@
     <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\StunAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\Dreidel.cpp" />
+    <ClCompile Include="components\ia\enemies\common\idle\IdleAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\idle\OnIdleAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -610,6 +612,8 @@
     <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
     <ClInclude Include="components\ia\enemies\common\stun\StunAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\Dreidel.h" />
+    <ClInclude Include="components\ia\enemies\common\idle\IdleAction.h" />
+    <ClInclude Include="components\ia\enemies\common\idle\OnIdleAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

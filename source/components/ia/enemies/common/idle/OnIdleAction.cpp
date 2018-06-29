@@ -1,14 +1,15 @@
 #include "mcv_platform.h"
-#include "OnStunAction.h"
+#include "OnIdleAction.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
-OnStunAction::OnStunAction(Enemy* enemy, std::string animation):
+OnIdleAction::OnIdleAction(Enemy* enemy, std::string animation):
 	enemy(enemy),
 	animation(animation){
 }
 
-int OnStunAction::execAction(float delta) {
+int OnIdleAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
+	enemy->animationTimer.reset();
 	return Leave;
 }
