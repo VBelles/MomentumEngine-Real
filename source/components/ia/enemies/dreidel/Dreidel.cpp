@@ -40,6 +40,9 @@
 #include "components/ia/enemies/common/idle/IdleAction.h"
 #include "components/ia/enemies/common/idle/OnStrollAction.h"
 #include "components/ia/enemies/common/idle/StrollAction.h"
+#include "components/ia/enemies/common/teleport/OnTeleportAction.h"
+#include "components/ia/enemies/common/teleport/OnTeleportCondition.h"
+#include "components/ia/enemies/common/teleport/TeleportAction.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
@@ -81,6 +84,9 @@ void Dreidel::initBehaviorTree() {
 	IdleAction* idleLoop = new IdleAction(this, "enemigo_bola_idle");
 	OnStrollAction* onStrollAction = new OnStrollAction(this, "enemigo_bola_run");
 	StrollAction* strollAction = new StrollAction(this);
+	OnTeleportAction* onTeleportAction = new OnTeleportAction(this, "enemigo_bola_desaparecer");
+	OnTeleportCondition* onTeleportCondition = new OnTeleportCondition(this);
+	TeleportAction* teleportAction = new TeleportAction(this, "enemigo_bola_desaparecer");
 
 	createRoot("dreidel", Priority, nullptr, nullptr);
 
@@ -119,6 +125,9 @@ void Dreidel::initBehaviorTree() {
 	addChild("dreidel", "onAirborneAction", Action, onAirborneCondition, onAirborneAction);
 	addChild("dreidel", "airborneAction", Action, airborneCondition, airborneAction);
 
+	addChild("dreidel", "teleportCondition", Sequence, onTeleportCondition, nullptr);
+	addChild("teleportCondition", "onTeleportAction", Action, nullptr, onTeleportAction);
+	addChild("teleportCondition", "teleportAction", Action, nullptr, teleportAction);
 
 	addChild("dreidel", "idle", Random, nullptr, nullptr);
 	addChild("idle", "idleActionSeq", Sequence, nullptr, nullptr);

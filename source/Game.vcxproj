@@ -155,6 +155,9 @@
     <ClCompile Include="components\ia\enemies\common\stun\OnStunAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\StunAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\teleport\OnTeleportAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\teleport\OnTeleportCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\teleport\TeleportAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\Dreidel.cpp" />
     <ClCompile Include="components\ia\enemies\Enemy.cpp" />
     <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
@@ -452,6 +455,9 @@
     <ClInclude Include="components\ia\enemies\common\stun\OnStunAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
     <ClInclude Include="components\ia\enemies\common\stun\StunAction.h" />
+    <ClInclude Include="components\ia\enemies\common\teleport\OnTeleportAction.h" />
+    <ClInclude Include="components\ia\enemies\common\teleport\OnTeleportCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\teleport\TeleportAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\Dreidel.h" />
     <ClInclude Include="components\ia\enemies\Enemy.h" />
     <ClInclude Include="modules\system_modules\slash\comp_slash.h" />
