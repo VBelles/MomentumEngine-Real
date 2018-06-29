@@ -123,6 +123,8 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNew.cpp" />
     <ClCompile Include="components\ia\enemies\common\airborne\AirborneAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\airborne\OnAirborneAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\appear\AppearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\appear\OnAppearAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.cpp" />
@@ -149,7 +151,9 @@
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\PropelAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\IdleAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\idle\IdleLoop.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnIdleAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\idle\OnIdleLoop.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnStrollAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\StrollAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnAction.cpp" />
@@ -426,6 +430,8 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNew.h" />
     <ClInclude Include="components\ia\enemies\common\airborne\AirborneAction.h" />
     <ClInclude Include="components\ia\enemies\common\airborne\OnAirborneAction.h" />
+    <ClInclude Include="components\ia\enemies\common\appear\AppearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\appear\OnAppearAction.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.h" />
@@ -452,7 +458,9 @@
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\PropelAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\IdleAction.h" />
+    <ClInclude Include="components\ia\enemies\common\idle\IdleLoop.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnIdleAction.h" />
+    <ClInclude Include="components\ia\enemies\common\idle\OnIdleLoop.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnStrollAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\StrollAction.h" />
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnAction.h" />

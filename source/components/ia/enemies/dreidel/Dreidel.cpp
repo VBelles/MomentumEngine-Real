@@ -37,6 +37,8 @@
 #include "components/ia/enemies/common/stun/OnStunCondition.h"
 #include "components/ia/enemies/common/stun/StunAction.h"
 #include "components/ia/enemies/common/idle/OnIdleAction.h"
+#include "components/ia/enemies/common/idle/IdleLoop.h"
+#include "components/ia/enemies/common/idle/OnIdleLoop.h"
 #include "components/ia/enemies/common/idle/IdleAction.h"
 #include "components/ia/enemies/common/idle/OnStrollAction.h"
 #include "components/ia/enemies/common/idle/StrollAction.h"
@@ -46,6 +48,8 @@
 #include "components/ia/enemies/common/return_to_spawn/OnReturnToSpawnAction.h"
 #include "components/ia/enemies/common/return_to_spawn/OnReturnToSpawnCondition.h"
 #include "components/ia/enemies/common/return_to_spawn/ReturnToSpawnAction.h"
+#include "components/ia/enemies/common/appear/AppearAction.h"
+#include "components/ia/enemies/common/appear/OnAppearAction.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
@@ -83,8 +87,8 @@ void Dreidel::initBehaviorTree() {
 	StunAction* stunAction = new StunAction(this);
 	OnIdleAction* onIdleAction = new OnIdleAction(this, "enemigo_bola_idle");
 	IdleAction* idleAction = new IdleAction(this, "enemigo_bola_idle");
-	OnIdleAction* onIdleLoop = new OnIdleAction(this, "enemigo_bola_idle");
-	IdleAction* idleLoop = new IdleAction(this, "enemigo_bola_idle");
+	OnIdleLoop* onIdleLoop = new OnIdleLoop(this, "enemigo_bola_idle");
+	IdleLoop* idleLoop = new IdleLoop(this, "enemigo_bola_idle");
 	OnStrollAction* onStrollAction = new OnStrollAction(this, "enemigo_bola_run");
 	StrollAction* strollAction = new StrollAction(this);
 	OnTeleportAction* onTeleportAction = new OnTeleportAction(this, "enemigo_bola_desaparecer");
@@ -93,6 +97,8 @@ void Dreidel::initBehaviorTree() {
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "enemigo_bola_run");
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
 	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(this);
+	AppearAction* appearAction = new AppearAction(this, "enemigo_bola_aparecer");
+	OnAppearAction* onAppearAction = new OnAppearAction(this, "enemigo_bola_aparecer");
 
 	createRoot("dreidel", Priority, nullptr, nullptr);
 
@@ -134,6 +140,9 @@ void Dreidel::initBehaviorTree() {
 	addChild("dreidel", "teleport", Sequence, onTeleportCondition, nullptr);
 	addChild("teleport", "onTeleportAction", Action, nullptr, onTeleportAction);
 	addChild("teleport", "teleportAction", Action, nullptr, teleportAction);
+	addChild("teleport", "appear", Sequence, nullptr, nullptr);
+	addChild("appear", "onAppearAction", Action, nullptr, onAppearAction);
+	addChild("appear", "appearAction", Action, nullptr, appearAction);
 
 	addChild("dreidel", "returnToSpawn", Sequence, onReturnToSpawnCondition, nullptr);
 	addChild("returnToSpawn", "onReturnToSpawnAction", Action, nullptr, onReturnToSpawnAction);
@@ -185,6 +194,8 @@ void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	hitboxesHandle = get<TCompHitboxes>();
 
 	spawnPosition = getTransform()->getPosition();
+
+	current = tree["appear"];
 }
 
 void Dreidel::onAttackHit(const TMsgAttackHit& msg) {
