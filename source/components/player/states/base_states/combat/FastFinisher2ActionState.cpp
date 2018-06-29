@@ -92,12 +92,14 @@ void FastFinisher2ActionState::onStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset();
+	isSlashOut = false;
 }
 
 void FastFinisher2ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
+	isSlashOut = false;
 	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }
