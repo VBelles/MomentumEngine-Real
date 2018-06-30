@@ -148,6 +148,8 @@ struct TMaterialExporter (
 
 		-- "C:\engine\bin\data\textures\bricks.dds" but also "C:\download\bricks.dds"
 		local mapFilename = map.filename
+		format "Map filename: %\n" mapFilename --DEBUG
+		--TODO: Aquí debería avisar si saca algo que no sea DDS.
 
 		-- bricks
 		local mapBaseName = getFilenameFile mapFilename
@@ -180,12 +182,15 @@ struct TMaterialExporter (
 			fs.writeComma()
 			fs.writeKey "textures"
 			fs.beginObj()
-		
+
 			if mat != unsupplied then (
 				if classOf mat == StandardMaterial then (
 					exportMap mat.diffuseMap "albedo" "null_albedo"
 					fs.writeComma()
-					exportMap mat.bumpMap "normal" "null_normal"
+					-- Make this work even if they used "Normal Bump" as Bump.
+					if isKindOf mat.bumpMap normal_bump then
+						exportMap mat.bumpMap.normal_map "normal" "null_normal"
+					else exportMap mat.bumpMap "normal" "null_normal"
 					fs.writeComma()
 					exportMap mat.glossinessMap "metallic" "null_metallic"
 					fs.writeComma()
