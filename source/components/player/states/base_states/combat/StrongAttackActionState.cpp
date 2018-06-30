@@ -115,7 +115,7 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset(); 
 	getSkeleton()->blendCycle(animationIdle, 0.4f, 0.4f);
-	fromRun = dynamic_cast<RunActionState*>(lastState) ? true : false;
+	fromRun = lastState->state == Run ? true : false;
 	if(!fromRun) *velocityVector = VEC3::Zero;
 	isSlashOut = false;
 }

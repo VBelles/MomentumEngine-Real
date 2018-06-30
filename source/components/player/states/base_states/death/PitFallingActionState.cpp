@@ -6,25 +6,54 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/states/StateManager.h"
+#include "components/comp_transform.h"
+#include "components/controllers/comp_camera_player.h"
 
 PitFallingActionState::PitFallingActionState(StateManager* stateManager) :
 	IActionState(stateManager, PitFalling) {
 }
 
 void PitFallingActionState::update(float delta) {
-	if (finish) {
-		respawn();
+	if (timer.elapsed() >= respawnTime) {
+		if (finish) {
+			if (frameCounter < 1) {
+				if (frameCounter == 0) {
+					//poner la cámara del player donde toca
+					getSkeleton()->blendCycle(animationIdle, 0.0f, 0.0f);
+					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+					TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
+					playerCamera->resetCurrentDistance();
+				}
+				frameCounter++;
+			}
+			else {
+				stateManager->changeConcurrentState(Free);
+				stateManager->changeState(AirborneNormal);
+			}
+		}
+		else {
+			respawn();
+			frameCounter = 0;
+			finish = true;
+		}
 	}
 }
 
 void PitFallingActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
-	getSkeleton()->blendCycle(animation);
-	finish = true;
+	//getSkeleton()->blendCycle(animation);
+	timer.reset();
+	finish = false;
+
+	copyCam();
+	CEntity* teleportCameraEntity = getEntityByName(TELEPORT_CAMERA);
+	EngineCameras.blendInCamera(teleportCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 void PitFallingActionState::onStateExit(IActionState* nextState) {
 	IActionState::onStateExit(nextState);
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 void PitFallingActionState::respawn() {
@@ -32,11 +61,20 @@ void PitFallingActionState::respawn() {
 	assert(getPlayerModel());
 	VEC3 respawnPosition = getPlayerModel()->getRespawnPosition();
 	getCollider()->controller->setFootPosition(PxExtendedVec3(respawnPosition.x, respawnPosition.y, respawnPosition.z));
-	stateManager->changeConcurrentState(Free);
-	stateManager->changeState(Idle);
 	getPlayerModel()->damage(fallingDamage);
-	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-	EngineCameras.blendInCamera(playerCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
+	if (getPlayerModel()->getHp() < 1) {
+		getPlayerModel()->resetHp();
+		getPowerGauge()->resetPower();
+	}
 }
 
+void PitFallingActionState::copyCam() {
+	//presupone que entramos siempre en player camera
+	CEntity* copyCamEntity = getEntityByName(PLAYER_CAMERA);
+	CEntity* pasteCamEntity = getEntityByName(TELEPORT_CAMERA);
 
+	TCompTransform* copyCamTransform = copyCamEntity->get<TCompTransform>();
+	TCompTransform* pasteCamTransform = pasteCamEntity->get<TCompTransform>();
+	pasteCamTransform->setPosition(copyCamTransform->getPosition());
+	pasteCamTransform->setRotation(copyCamTransform->getRotation());
+}
