@@ -93,6 +93,18 @@ void StrongAttackActionState::update(float delta) {
 			velocityVector->z = 0.f;
 		}
 	}
+
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24)) {
+		isSlashOut = true;
+		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+	}
+
+	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
+		isSlashOut = false;
+		getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+		getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+	}
 }
 
 void StrongAttackActionState::onStateEnter(IActionState * lastState) {
@@ -105,14 +117,16 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->blendCycle(animationIdle, 0.4f, 0.4f);
 	fromRun = dynamic_cast<RunActionState*>(lastState) ? true : false;
 	if(!fromRun) *velocityVector = VEC3::Zero;
-	getSlash(SlashType::RIGHT_HAND)->setEnable(true);
+	isSlashOut = false;
 }
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
-	getSlash(SlashType::RIGHT_HAND)->stopEmitting();
+	isSlashOut = false;
+	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }
 
 void StrongAttackActionState::onStrongAttackButton() {

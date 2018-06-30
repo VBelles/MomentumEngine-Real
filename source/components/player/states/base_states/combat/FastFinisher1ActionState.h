@@ -14,6 +14,7 @@ private:
 
 	float suspensionTime = 0.4f;
 	VEC2 launchSpeed = { 14.f, 5.f };
+	bool isSlashOut = false;
 
 	CTimer movementTimer;
 

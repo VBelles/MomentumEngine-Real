@@ -83,12 +83,22 @@ StateManager::StateManager(CHandle entityHandle) :
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	playerCameraHandle = playerCameraEntity->get<TCompCameraPlayer>();
 
-	CEntity* slashRightHandEntity = getEntityByName("slashRightHand");
-	slashRightHandHandle = slashRightHandEntity->get<TCompSlash>();
 	CEntity* slashLeftHandEntity = getEntityByName("slashLeftHand");
 	slashLeftHandHandle = slashLeftHandEntity->get<TCompSlash>();
-
-
+	CEntity* slashRightHandEntity = getEntityByName("slashRightHand");
+	slashRightHandHandle = slashRightHandEntity->get<TCompSlash>();
+	CEntity* slashLeftFootEntity = getEntityByName("slashLeftFoot");
+	slashLeftFootHandle = slashLeftFootEntity->get<TCompSlash>();
+	CEntity* slashRightFootEntity = getEntityByName("slashRightFoot");
+	slashRightFootHandle = slashRightFootEntity->get<TCompSlash>();
+	CEntity* slashLeftTentacleEntity = getEntityByName("slashLeftTentacle");
+	slashLeftTentacleHandle = slashLeftTentacleEntity->get<TCompSlash>();
+	CEntity* slashRightTentacleEntity = getEntityByName("slashRightTentacle");
+	slashRightTentacleHandle = slashRightTentacleEntity->get<TCompSlash>();
+	CEntity* slashLeftTentacleShortEntity = getEntityByName("slashLeftTentacleShort");
+	slashLeftTentacleShortHandle = slashLeftTentacleShortEntity->get<TCompSlash>();
+	CEntity* slashRightTentacleShortEntity = getEntityByName("slashRightTentacleShort");
+	slashRightTentacleShortHandle = slashRightTentacleShortEntity->get<TCompSlash>();
 
 	registerStates();
 }
@@ -263,6 +273,18 @@ TCompSlash * StateManager::getSlash(SlashType type) {
 			return slashLeftHandHandle;
 		case SlashType::RIGHT_HAND:
 			return slashRightHandHandle;
+		case SlashType::LEFT_FOOT:
+			return slashLeftFootHandle;
+		case SlashType::RIGHT_FOOT:
+			return slashRightFootHandle;
+		case SlashType::LEFT_TENTACLE:
+			return slashLeftTentacleHandle;
+		case SlashType::RIGHT_TENTACLE:
+			return slashRightTentacleHandle;
+		case SlashType::LEFT_TENTACLE_SHORT:
+			return slashLeftTentacleShortHandle;
+		case SlashType::RIGHT_TENTACLE_SHORT:
+			return slashRightTentacleShortHandle;
 		default:
 			dbg("No se reconoce el tipo de slash\n");
 			return slashRightHandHandle;
