@@ -148,8 +148,9 @@ struct TMaterialExporter (
 
 		-- "C:\engine\bin\data\textures\bricks.dds" but also "C:\download\bricks.dds"
 		local mapFilename = map.filename
-		format "Map filename: %\n" mapFilename --DEBUG
-		--TODO: Aquí debería avisar si saca algo que no sea DDS.
+		local mapFileType = getFilenameType mapFilename
+		--format "mapFileType: %\n" mapFileType --DEBUG
+		if mapFileType != ".DDS" and mapFileType != ".dds" then throw ("Map filename " + mapFilename + " is NOT a DDS file.") 
 
 		-- bricks
 		local mapBaseName = getFilenameFile mapFilename
