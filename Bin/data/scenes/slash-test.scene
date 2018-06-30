@@ -4,7 +4,7 @@
             "name": "slashRightHand",
             "transform": {},
             "slash": {
-                "texture": "data/textures/slash/slash-test.dds",
+                "texture": "data/textures/slash/slash-white.dds",
                 "target": "The Player",
                 "bone": "Bip001 R Hand",
                 "offset": "0 0 0",
@@ -24,9 +24,123 @@
             "name": "slashLeftHand",
             "transform": {},
             "slash": {
-                "texture": "data/textures/slash/slash-test.dds",
+                "texture": "data/textures/slash/slash-white.dds",
                 "target": "The Player",
                 "bone": "Bip001 L Hand",
+                "offset": "0 0 0",
+                "rot_offset": "0 0 90",
+                "width": 0.2,
+                "duration": 0.6,
+                "min_vertex_distance": 0.05,
+                "max_vertex": 500,
+                "fadeout_multiplier": 1,
+                "color": "1 1 1 1"
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "slashLeftFoot",
+            "transform": {},
+            "slash": {
+                "texture": "data/textures/slash/slash-white.dds",
+                "target": "The Player",
+                "bone": "Bip001 L Foot",
+                "offset": "0 0 0",
+                "rot_offset": "0 0 90",
+                "width": 0.2,
+                "duration": 0.6,
+                "min_vertex_distance": 0.05,
+                "max_vertex": 500,
+                "fadeout_multiplier": 1,
+                "color": "1 1 1 1"
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "slashRightFoot",
+            "transform": {},
+            "slash": {
+                "texture": "data/textures/slash/slash-white.dds",
+                "target": "The Player",
+                "bone": "Bip001 R Foot",
+                "offset": "0 0 0",
+                "rot_offset": "0 0 90",
+                "width": 0.2,
+                "duration": 0.6,
+                "min_vertex_distance": 0.05,
+                "max_vertex": 500,
+                "fadeout_multiplier": 1,
+                "color": "1 1 1 1"
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "slashLeftTentacle",
+            "transform": {},
+            "slash": {
+                "texture": "data/textures/slash/slash-white.dds",
+                "target": "The Player",
+                "bone": "Bip001 Xtra01Opp11",
+                "offset": "0 0 0",
+                "rot_offset": "0 0 90",
+                "width": 0.2,
+                "duration": 0.6,
+                "min_vertex_distance": 0.05,
+                "max_vertex": 500,
+                "fadeout_multiplier": 1,
+                "color": "1 1 1 1"
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "slashRightTentacle",
+            "transform": {},
+            "slash": {
+                "texture": "data/textures/slash/slash-white.dds",
+                "target": "The Player",
+                "bone": "Bip001 Xtra0111",
+                "offset": "0 0 0",
+                "rot_offset": "0 0 90",
+                "width": 0.2,
+                "duration": 0.6,
+                "min_vertex_distance": 0.05,
+                "max_vertex": 500,
+                "fadeout_multiplier": 1,
+                "color": "1 1 1 1"
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "slashLeftTentacleShort",
+            "transform": {},
+            "slash": {
+                "texture": "data/textures/slash/slash-white.dds",
+                "target": "The Player",
+                "bone": "Bip001 Xtra02Opp07",
+                "offset": "0 0 0",
+                "rot_offset": "0 0 90",
+                "width": 0.2,
+                "duration": 0.6,
+                "min_vertex_distance": 0.05,
+                "max_vertex": 500,
+                "fadeout_multiplier": 1,
+                "color": "1 1 1 1"
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "slashRightTentacleShort",
+            "transform": {},
+            "slash": {
+                "texture": "data/textures/slash/slash-white.dds",
+                "target": "The Player",
+                "bone": "Bip001 Xtra0207",
                 "offset": "0 0 0",
                 "rot_offset": "0 0 90",
                 "width": 0.2,

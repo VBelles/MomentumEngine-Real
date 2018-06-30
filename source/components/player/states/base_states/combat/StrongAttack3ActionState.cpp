@@ -8,6 +8,7 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/slash/comp_slash.h"
 
 
 StrongAttack3ActionState::StrongAttack3ActionState(StateManager * stateManager) :
@@ -68,6 +69,18 @@ void StrongAttack3ActionState::update(float delta) {
 			velocityVector->z = 0.f;
 		}
 	}
+
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(8)) {
+		isSlashOut = true;
+		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getSlash(SlashType::LEFT_TENTACLE_SHORT)->setEnable(true);
+	}
+
+	if (isSlashOut && movementTimer.elapsed() > frames2sec(35)) {
+		isSlashOut = false;
+		getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+		getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
+	}
 }
 
 void StrongAttack3ActionState::onStateEnter(IActionState * lastState) {
@@ -78,12 +91,16 @@ void StrongAttack3ActionState::onStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset();
+	isSlashOut = false;
 }
 
 void StrongAttack3ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
+	isSlashOut = false;
+	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 }
 
 void StrongAttack3ActionState::setMovementInput(VEC2 input) {

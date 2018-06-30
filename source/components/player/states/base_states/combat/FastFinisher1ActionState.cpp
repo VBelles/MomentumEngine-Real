@@ -8,6 +8,7 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/slash/comp_slash.h"
 
 
 FastFinisher1ActionState::FastFinisher1ActionState(StateManager * stateManager) :
@@ -65,6 +66,16 @@ void FastFinisher1ActionState::update(float delta) {
 			velocityVector->z = 0.f;
 		}
 	}
+
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24)) {
+		isSlashOut = true;
+		getSlash(SlashType::RIGHT_FOOT)->setEnable(true);
+	}
+
+	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
+		isSlashOut = false;
+		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+	}
 }
 
 void FastFinisher1ActionState::onStateEnter(IActionState * lastState) {
@@ -75,12 +86,15 @@ void FastFinisher1ActionState::onStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset();
+	isSlashOut = false;
 }
 
 void FastFinisher1ActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
+	isSlashOut = false;
+	getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 
 void FastFinisher1ActionState::setMovementInput(VEC2 input) {
