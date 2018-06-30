@@ -19,17 +19,25 @@ void DeathActionState::update(float delta) {
 	}
 	if (timer.elapsed() >= respawnTime) {
 		if (finish) {
-			stateManager->changeConcurrentState(Free);
-			stateManager->changeState(AirborneNormal);
+			if (frameCounter < 1) {
+				if (frameCounter == 0) {
+					//poner la cámara del player donde toca
+					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+					TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
+					playerCamera->resetCurrentDistance();
+				}
+				frameCounter++;
+			}
+			else {
+				stateManager->changeConcurrentState(Free);
+				stateManager->changeState(AirborneNormal);
+			}
 		}
 		else {
 			//Engine.getEntities().setManagerUpdate("skeleton", true);
 			respawn();
+			frameCounter = 0;
 			finish = true;
-			//poner la cámara del player donde toca
-			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-			TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
-			playerCamera->resetCurrentDistance();
 		}
 	}
 }
@@ -49,7 +57,7 @@ void DeathActionState::onStateEnter(IActionState* lastState) {
 void DeathActionState::onStateExit(IActionState* nextState) {
 	IActionState::onStateExit(nextState);
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-	EngineCameras.blendInCamera(playerCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
+	EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
 	//Engine.getEntities().setManagerUpdate("skeleton", true);
 
 }

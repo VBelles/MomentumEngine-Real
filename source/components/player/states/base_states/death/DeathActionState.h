@@ -8,6 +8,7 @@ private:
 	float deathTime = frames2sec(95);
 	float respawnTime = 2.2f;
 	bool finish = false;
+	int frameCounter = 0;
 	std::string animation = "death";
 
 public:
