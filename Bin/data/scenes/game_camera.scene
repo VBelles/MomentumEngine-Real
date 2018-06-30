@@ -55,6 +55,17 @@
 	},
 	{
 		"entity": {
+			"name": "teleport_camera",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"camera": {
+				"fov": 80
+			}
+		}
+	},
+	{
+		"entity": {
 			"name": "debug_camera",
 			"transform": {},
 			"camera": {

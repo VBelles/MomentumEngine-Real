@@ -6,6 +6,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/states/StateManager.h"
+#include "components/comp_transform.h"
+#include "components/controllers/comp_camera_player.h"
 
 DeathActionState::DeathActionState(StateManager* stateManager) :
 	IActionState(stateManager, Death) {
@@ -13,7 +15,22 @@ DeathActionState::DeathActionState(StateManager* stateManager) :
 
 void DeathActionState::update(float delta) {
 	if (timer.elapsed() >= deathTime) {
-		respawn();
+		//Engine.getEntities().setManagerUpdate("skeleton", false);
+	}
+	if (timer.elapsed() >= respawnTime) {
+		if (finish) {
+			stateManager->changeConcurrentState(Free);
+			stateManager->changeState(AirborneNormal);
+		}
+		else {
+			//Engine.getEntities().setManagerUpdate("skeleton", true);
+			respawn();
+			finish = true;
+			//poner la cámara del player donde toca
+			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+			TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
+			playerCamera->resetCurrentDistance();
+		}
 	}
 }
 
@@ -21,12 +38,20 @@ void DeathActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	getSkeleton()->executeAction(animation, 0.1f, 0.0f);
 	timer.reset();
-	//finish = true;
+	finish = false;
 	EngineScripting.throwEvent(onPlayerKilled, "");
+
+	copyCam();
+	CEntity* teleportCameraEntity = getEntityByName(TELEPORT_CAMERA);
+	EngineCameras.blendInCamera(teleportCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 void DeathActionState::onStateExit(IActionState* nextState) {
 	IActionState::onStateExit(nextState);
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	EngineCameras.blendInCamera(playerCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
+	//Engine.getEntities().setManagerUpdate("skeleton", true);
+
 }
 
 void DeathActionState::respawn() {
@@ -34,12 +59,19 @@ void DeathActionState::respawn() {
 	assert(getPlayerModel());
 	VEC3 respawnPosition = getPlayerModel()->getRespawnPosition();
 	getCollider()->controller->setFootPosition(PxExtendedVec3(respawnPosition.x, respawnPosition.y, respawnPosition.z));
-	stateManager->changeConcurrentState(Free);
-	stateManager->changeState(AirborneNormal);
 	getPlayerModel()->resetHp();
 	getPowerGauge()->resetPower();
-	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-	EngineCameras.blendInCamera(playerCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
+}
+
+void DeathActionState::copyCam() {
+	//presupone que entramos siempre en player camera
+	CEntity* copyCamEntity = getEntityByName(PLAYER_CAMERA);
+	CEntity* pasteCamEntity = getEntityByName(TELEPORT_CAMERA);
+
+	TCompTransform* copyCamTransform = copyCamEntity->get<TCompTransform>();
+	TCompTransform* pasteCamTransform = pasteCamEntity->get<TCompTransform>();
+	pasteCamTransform->setPosition(copyCamTransform->getPosition());
+	pasteCamTransform->setRotation(copyCamTransform->getRotation());
 }
 
 
