@@ -12,15 +12,16 @@ DeathActionState::DeathActionState(StateManager* stateManager) :
 }
 
 void DeathActionState::update(float delta) {
-	if (finish) {
+	if (timer.elapsed() >= deathTime) {
 		respawn();
 	}
 }
 
 void DeathActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
-	getSkeleton()->blendCycle(animation);
-	finish = true;
+	getSkeleton()->executeAction(animation, 0.1f, 0.0f);
+	timer.reset();
+	//finish = true;
 	EngineScripting.throwEvent(onPlayerKilled, "");
 }
 

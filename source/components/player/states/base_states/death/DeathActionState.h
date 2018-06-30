@@ -4,6 +4,8 @@
 
 class DeathActionState : public IActionState {
 private:
+	CTimer timer;
+	float deathTime = frames2sec(100);
 	bool finish = false;
 	std::string animation = "death";
 
