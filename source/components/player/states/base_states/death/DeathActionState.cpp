@@ -22,6 +22,7 @@ void DeathActionState::update(float delta) {
 			if (frameCounter < 1) {
 				if (frameCounter == 0) {
 					//poner la cámara del player donde toca
+					getSkeleton()->blendCycle(animationIdle, 0.0f, 0.0f);
 					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 					TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
 					playerCamera->resetCurrentDistance();
@@ -43,7 +44,8 @@ void DeathActionState::update(float delta) {
 }
 
 void DeathActionState::onStateEnter(IActionState* lastState) {
-	IActionState::onStateEnter(lastState);
+	IActionState::onStateEnter(lastState); 
+	getSkeleton()->blendCycle(animationLoop, 0.0f, 0.0f);
 	getSkeleton()->executeAction(animation, 0.1f, 0.0f);
 	timer.reset();
 	finish = false;
@@ -59,7 +61,6 @@ void DeathActionState::onStateExit(IActionState* nextState) {
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
 	//Engine.getEntities().setManagerUpdate("skeleton", true);
-
 }
 
 void DeathActionState::respawn() {

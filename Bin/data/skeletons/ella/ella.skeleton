@@ -2,6 +2,7 @@
   "name": "ella",
   "anims": [
     { "name": "death" },
+    { "name": "death_loop" },
     { "name": "dodge" },
     { "name": "falling_attack" },
     { "name": "falling_attack_positioning" },

@@ -10,6 +10,8 @@ private:
 	bool finish = false;
 	int frameCounter = 0;
 	std::string animation = "death";
+	std::string animationLoop = "death_loop";
+	std::string animationIdle = "idle";
 
 public:
 	DeathActionState(StateManager* stateManager);
