@@ -71,16 +71,12 @@ void StrongFinisher2ActionState::update(float delta) {
 		isSlashOut = true;
 		getSlash(SlashType::LEFT_HAND)->setEnable(true);
 		getSlash(SlashType::RIGHT_HAND)->setEnable(true);
-		/*getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
-		getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);*/
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(42)) {
 		isSlashOut = false;
 		getSlash(SlashType::LEFT_HAND)->stopEmitting();
 		getSlash(SlashType::RIGHT_HAND)->stopEmitting();
-		/*getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-		getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();*/
 	}
 }
 
@@ -102,8 +98,6 @@ void StrongFinisher2ActionState::onStateExit(IActionState * nextState) {
 	isSlashOut = false;
 	getSlash(SlashType::LEFT_HAND)->stopEmitting();
 	getSlash(SlashType::RIGHT_HAND)->stopEmitting();
-	//getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-	//getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }
 
 void StrongFinisher2ActionState::setMovementInput(VEC2 input) {

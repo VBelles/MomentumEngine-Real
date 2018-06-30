@@ -327,6 +327,20 @@ void TCompCameraPlayer::moveCameraCloser(bool wantClose) {
 	}
 }
 
+void TCompCameraPlayer::resetCurrentDistance() {
+	currentDistanceToTarget = defaultDistanceToTarget;
+	TCompTransform* playerTransform = getTarget()->get<TCompTransform>();
+	VEC3 desiredPosition = playerTransform->getPosition() + VEC3::Up * offset;
+	targetTransform.setPosition(desiredPosition);
+	targetTransform.setRotation(playerTransform->getRotation());
+	prevTargetPosition = desiredPosition;
+
+	TCompTransform* transform = get<TCompTransform>();
+	transform->setPosition(targetTransform.getPosition());
+	VEC3 pos = transform->getPosition() - transform->getFront() * currentDistanceToTarget;
+	transform->setPosition(pos);
+}
+
 void TCompCameraPlayer::sweepBack() {
 	TCompTransform* transform = getTransform();
 	VEC3 targetPosition = targetTransform.getPosition();

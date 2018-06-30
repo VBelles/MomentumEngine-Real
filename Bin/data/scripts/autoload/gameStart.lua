@@ -1,12 +1,7 @@
 function onGameStart()
-	blendInCamera("ms2_camera_altar", 0.001, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
 	lockPlayerCameraInput()
 	takePlayerControl()
-	wait(2)
-	blendInCamera("ms2_camera_begginning", 3, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
-	copyRotationFromCamToCam("ms2_camera_begginning", "player_camera")
-	wait(3)
-	blendInCamera("player_camera", 1, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
+	blendInCamera("player_camera", 0.001, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
 	wait(1)
 	givePlayerControl()
 end

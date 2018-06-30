@@ -100,5 +100,7 @@ public:
 	void resetSuggested();
     void lockCameraInput(bool isLocked);
 	void moveCameraCloser(bool wantClose);
+
+	void resetCurrentDistance();
 };
 
