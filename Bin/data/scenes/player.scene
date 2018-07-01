@@ -186,7 +186,7 @@
 						"mask": [
 							"enemy"
 						],
-						"bone": "Bip001 R Hand"
+						"bone": "Bip001 R Foot"
 					},
 					{
 						"name": "strong_attack3",
@@ -307,6 +307,18 @@
 							"enemy"
 						],
 						"bone": "Bip001 R Hand"
+					},
+					{
+						"name": "fast_attack_air",
+						"shape": "sphere",
+						"radius": 1.4,
+						"group": [
+							"player"
+						],
+						"mask": [
+							"enemy"
+						],
+						"bone": "Bip001 R Foot"
 					},
 					{
 						"name": "falling_attack",
