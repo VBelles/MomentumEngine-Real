@@ -6,6 +6,7 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/slash/comp_slash.h"
 
 FastAttackAirActionState::FastAttackAirActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, FastAttackAir),
@@ -29,6 +30,16 @@ void FastAttackAirActionState::update(float delta) {
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
 	}
+
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(10)) {
+		isSlashOut = true;
+		getSlash(SlashType::RIGHT_FOOT)->setEnable(true);
+	}
+
+	if (isSlashOut && movementTimer.elapsed() > frames2sec(21)) {
+		isSlashOut = false;
+		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+	}
 }
 
 void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
@@ -39,6 +50,8 @@ void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = true;
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	movementTimer.reset();
+	isSlashOut = false;
 }
 
 void FastAttackAirActionState::onStateExit(IActionState * nextState) {
@@ -48,6 +61,8 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockTurning = false;
 	getSkeleton()->removeAction(animation, 0.2f);
+	isSlashOut = false;
+	getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 
 void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

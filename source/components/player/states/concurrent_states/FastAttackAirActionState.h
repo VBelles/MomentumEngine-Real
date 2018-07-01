@@ -15,6 +15,10 @@ private:
 
 	float powerToGet = 1000.f;
 
+	bool isSlashOut = false;
+
+	CTimer movementTimer;
+
 	std::string animation = "strong_attack2";
 	std::string hitbox = "fast_attack_air";
 
