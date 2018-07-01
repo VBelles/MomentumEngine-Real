@@ -29,6 +29,7 @@
     { "name": "propel_high" },
     { "name": "propel_long" },
     { "name": "release_power" },
+    { "name": "release_power_air" },
     { "name": "run1" },
     { "name": "run2" },
     { "name": "run3" },
