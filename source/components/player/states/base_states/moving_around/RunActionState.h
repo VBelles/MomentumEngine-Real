@@ -8,6 +8,9 @@ private:
 	std::string animation = "run1";
 	int dustParticlesHandle = 0;
 
+	bool hasSlash = false;
+	CTimer movementTimer;
+
 public:
 	RunActionState(StateManager* stateManager);
 
@@ -15,5 +18,5 @@ public:
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 	void onSpendCoinsButton() override;
-	void setAnimation(int powerLevel);
+	void onLevelChange(int powerLevel);
 };

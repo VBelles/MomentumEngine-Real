@@ -111,7 +111,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	TCompRender *render = get<TCompRender>();
 	render->setAllMaterials(0, (int)render->meshes.size() / 2, materials[msg.powerLvl - 1]);
 
-	getStateManager()->getState<RunActionState>(Run)->setAnimation(msg.powerLvl);
+	getStateManager()->getState<RunActionState>(Run)->onLevelChange(msg.powerLvl);
 
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
