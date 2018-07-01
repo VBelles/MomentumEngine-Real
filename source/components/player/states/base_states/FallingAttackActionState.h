@@ -14,6 +14,9 @@ private:
 	float damage = 2.f;
 	float powerToGet = 4000.f;
 
+	bool isSlashOut = false;
+	CTimer movementTimer;
+
 	std::string animation = "falling_attack";
 	std::string animationPositioning = "falling_attack_positioning";
 
