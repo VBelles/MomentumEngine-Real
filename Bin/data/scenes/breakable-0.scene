@@ -1,0 +1,628 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_25",
+      "transform":
+      {
+        "pos": "-3.897584 22.90279 -0.837206",
+        "axis": "1 1 1",
+				"angle": 50
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_25.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_24",
+      "transform":
+      {
+        "pos": "-0.786299 2.91247 -0.185088",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_24.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_23",
+      "transform":
+      {
+        "pos": "-0.569979 1.49702 -0.482527",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_23.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_22",
+      "transform":
+      {
+        "pos": "-0.913214 1.18392 -0.46273",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_22.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_21",
+      "transform":
+      {
+        "pos": "-0.861861 2.32078 -0.560484",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_21.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_20",
+      "transform":
+      {
+        "pos": "1.10593 3.32587 0.650507",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_20.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_19",
+      "transform":
+      {
+        "pos": "1.18102 1.92064 0.699548",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_19.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_18",
+      "transform":
+      {
+        "pos": "0.148994 2.43776 0.131839",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_18.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_17",
+      "transform":
+      {
+        "pos": "1.05235 1.18182 0.544848",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_17.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_16",
+      "transform":
+      {
+        "pos": "0.406043 3.47465 0.180897",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_16.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_15",
+      "transform":
+      {
+        "pos": "-1.66551 0.404219 -0.650401",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_15.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_14",
+      "transform":
+      {
+        "pos": "-1.87449 3.3631 -0.661974",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_14.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_13",
+      "transform":
+      {
+        "pos": "-1.68079 1.31997 -0.732276",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_13.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_12",
+      "transform":
+      {
+        "pos": "-1.86098 2.49484 -0.747524",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_12.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_11",
+      "transform":
+      {
+        "pos": "-1.78025 2.1591 -0.714937",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_11.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_10",
+      "transform":
+      {
+        "pos": "0.555351 0.830064 0.225812",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_10.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_9",
+      "transform":
+      {
+        "pos": "0.0108181 0.282275 0.111417",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_9.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_8",
+      "transform":
+      {
+        "pos": "-0.720772 0.680555 -0.241554",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_8.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_7",
+      "transform":
+      {
+        "pos": "1.29231 0.463688 0.652411",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_7.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_6",
+      "transform":
+      {
+        "pos": "0.0993236 1.11377 0.397311",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_6.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_5",
+      "transform":
+      {
+        "pos": "-1.64321 0.692821 -0.995943",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_5.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_4",
+      "transform":
+      {
+        "pos": "-1.4929 0.230435 -0.984262",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_4.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_3",
+      "transform":
+      {
+        "pos": "-1.18683 0.72954 -0.938172",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_3.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_2",
+      "transform":
+      {
+        "pos": "-1.27714 0.327594 -0.728352",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_2.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms2_breakable001mesh001_Part_1",
+      "transform":
+      {
+        "pos": "-0.750235 0.418818 -0.774652",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms2_breakable001mesh001_Part_1.mesh",
+          "materials":
+          [
+            "data/materials/ambar.material"
+          ]
+        }
+      ],
+          "rigid_anim" : 
+      {
+        "src" : "data/anims/breakable.anims"
+      }
+    }
+  }
+]

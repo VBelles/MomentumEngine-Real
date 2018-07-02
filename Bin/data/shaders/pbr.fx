@@ -66,57 +66,57 @@ void VS_GBuffer_Skin(
 	oWorldPos = world_pos.xyz;
 }
 
-float2 parallaxMapping(in float3 V, in float2 T)
-{
-   // determine optimal number of layers
-   const float minLayers = 10;
-   const float maxLayers = 64;
-   float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0, 0, 1), V)));
+// float2 parallaxMapping(in float3 V, in float2 T)
+// {
+//    // determine optimal number of layers
+//    const float minLayers = 10;
+//    const float maxLayers = 64;
+//    float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0, 0, 1), V)));
 
-   // height of each layer
-   float layerHeight = 1.0 / numLayers;
-   // current depth of the layer
-   float curLayerHeight = 0;
-   // shift of texture coordinates for each layer
-   float parallax_scale = 0.0002;
-   float2 dtex = parallax_scale * V.xy / numLayers;
+//    // height of each layer
+//    float layerHeight = 1.0 / numLayers;
+//    // current depth of the layer
+//    float curLayerHeight = 0;
+//    // shift of texture coordinates for each layer
+//    float parallax_scale = 0.0002;
+//    float2 dtex = parallax_scale * V.xy / numLayers;
  
-   // current texture coordinates
-   float2 currentTextureCoords = T;
+//    // current texture coordinates
+//    float2 currentTextureCoords = T;
 
-   // depth from heightmap
-   float heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
+//    // depth from heightmap
+//    float heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
 
-    // while point is above the surface
-   [unroll(230)] while(heightFromTexture > curLayerHeight)
-   {
-      // to the next layer
-      curLayerHeight += layerHeight; 
-      // shift of texture coordinates
-      currentTextureCoords -= dtex;
-      // new depth from heightmap
-      heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
-   }
-   ///////////////////////////////////////////////////////////
+//     // while point is above the surface
+//    [unroll(230)] while(heightFromTexture > curLayerHeight)
+//    {
+//       // to the next layer
+//       curLayerHeight += layerHeight; 
+//       // shift of texture coordinates
+//       currentTextureCoords -= dtex;
+//       // new depth from heightmap
+//       heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
+//    }
+//    ///////////////////////////////////////////////////////////
 
-   // previous texture coordinates
-   float texStep = dtex / 64.0;
-   float2 prevTCoords = currentTextureCoords + texStep;
+//    // previous texture coordinates
+//    float texStep = dtex / 64.0;
+//    float2 prevTCoords = currentTextureCoords + texStep;
 
-   // heights for linear interpolation
-   float nextH	= heightFromTexture - curLayerHeight;
-   float prevH	= (txHeight.Sample(samLinear, prevTCoords).r)
-                           - curLayerHeight + layerHeight;
+//    // heights for linear interpolation
+//    float nextH	= heightFromTexture - curLayerHeight;
+//    float prevH	= (txHeight.Sample(samLinear, prevTCoords).r)
+//                            - curLayerHeight + layerHeight;
 
-   // proportions for linear interpolation
-   float weight = nextH / (nextH - prevH);
+//    // proportions for linear interpolation
+//    float weight = nextH / (nextH - prevH);
 
-   // interpolation of texture coordinates
-   float2 finalTexCoords = prevTCoords * weight + currentTextureCoords * (1.0-weight);
+//    // interpolation of texture coordinates
+//    float2 finalTexCoords = prevTCoords * weight + currentTextureCoords * (1.0-weight);
 
-   // return result
-   return finalTexCoords;
-}
+//    // return result
+//    return finalTexCoords;
+// }
 
 //--------------------------------------------------------------------------------------
 // GBuffer generation pass. Pixel shader
