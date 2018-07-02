@@ -1,0 +1,12 @@
+{
+  "technique": "pbr_skin_clear_stencil.tech",
+  "shadows": true,
+  "textures": {
+    "albedo": "data/textures/dreidel/cage_bola_low_Material_26_BaseColor.dds",
+    "normal": "data/textures/dreidel/cage_bola_low_Material_26_Normal.dds",
+    "metallic": "data/textures/dreidel/cage_bola_low_Material_26_Metallic.dds",
+    "roughness": "data/textures/dreidel/cage_bola_low_Material_26_Roughness.dds",
+    "self_illum": "data/textures/dreidel/cage_bola_low_Material_26_Emissive.dds",
+    "height": "data/textures/dreidel/cage_bola_low_Material_26_Height.dds"
+  }
+}

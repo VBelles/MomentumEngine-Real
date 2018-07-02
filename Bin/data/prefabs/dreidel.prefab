@@ -7,7 +7,7 @@
         {
           "mesh": "data/skeletons/bola_new/Object001.mesh",
           "materials": [
-            "data/skeletons/enemigoBola/enemigoBola.material"
+            "data/skeletons/bola_new/bola_new.material"
           ]
         }
       ],
