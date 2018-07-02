@@ -124,7 +124,9 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	powerGaugeHandle = get<TCompPowerGauge>();
 	collectableManagerHandle = get<TCompCollectableManager>();
 
+	float pitch;
 	respawnPosition = getTransform()->getPosition();
+	getTransform()->getYawPitchRoll(&respawnYaw, &pitch);
 
 	renderUI->registerOnRenderUI([&]() {
 
@@ -296,8 +298,9 @@ void TCompPlayerModel::setHp(float hp) {
 	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
 }
 
-void TCompPlayerModel::setRespawnPosition(VEC3 position) {
+void TCompPlayerModel::setRespawnPosition(VEC3 position, float yaw) {
 	respawnPosition = position;
+	respawnYaw = yaw;
 }
 
 void TCompPlayerModel::disableOutline() {
@@ -435,7 +438,7 @@ void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 }
 
 void TCompPlayerModel::onRespawnChanged(const TMsgRespawnChanged& msg) {
-	setRespawnPosition(msg.respawnPosition);
+	setRespawnPosition(msg.respawnPosition, msg.respawnYaw);
 }
 
 void TCompPlayerModel::onPurityChange(const TMsgPurityChange& msg) {

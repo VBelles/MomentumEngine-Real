@@ -67,6 +67,10 @@ void DeathActionState::respawn() {
 	*velocityVector = VEC3();
 	assert(getPlayerModel());
 	VEC3 respawnPosition = getPlayerModel()->getRespawnPosition();
+	TCompTransform* transform = getPlayerTransform();
+	float yaw, pitch;
+	transform->getYawPitchRoll(&yaw, &pitch);
+	transform->setYawPitchRoll(getPlayerModel()->getRespawnYaw(), pitch);
 	getCollider()->controller->setFootPosition(PxExtendedVec3(respawnPosition.x, respawnPosition.y, respawnPosition.z));
 	getPlayerModel()->resetHp();
 	getPowerGauge()->resetPower();
