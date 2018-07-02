@@ -105,14 +105,9 @@ void Dreidel::initBehaviorTree() {
 	IdleAction* idleAction = new IdleAction(this, "enemigo_bola_idle");
 	OnIdleLoop* onIdleLoop = new OnIdleLoop(this, "enemigo_bola_idle");
 	IdleLoop* idleLoop = new IdleLoop(this, "enemigo_bola_idle");
-	OnStrollAction* onStrollAction = new OnStrollAction(this, "enemigo_bola_run");
-	StrollAction* strollAction = new StrollAction(this);
 	OnTeleportAction* onTeleportAction = new OnTeleportAction(this, "enemigo_bola_desaparecer");
 	OnTeleportCondition* onTeleportCondition = new OnTeleportCondition(this);
 	TeleportAction* teleportAction = new TeleportAction(this, "enemigo_bola_desaparecer");
-	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "enemigo_bola_run");
-	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
-	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(this);
 	AppearAction* appearAction = new AppearAction(this, "enemigo_bola_aparecer");
 	OnAppearAction* onAppearAction = new OnAppearAction(this, "enemigo_bola_aparecer");
 	CombatCondition* combatCondition = new CombatCondition(this);
@@ -131,6 +126,11 @@ void Dreidel::initBehaviorTree() {
 	TackleAttackAction* tackleAttackAction = new TackleAttackAction(this, "enemigo_bola_placaje", "attack", movementSpeed * 1.5, 0.75f);
 	OnStepBackAction* onStepBackAction = new OnStepBackAction(this, "enemigo_bola_guardia");
 	StepBackAction* stepBackAction = new StepBackAction(this, "enemigo_bola_run", movementSpeed);
+	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "enemigo_bola_run");
+	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
+	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(this, combatCondition);
+	OnStrollAction* onStrollAction = new OnStrollAction(this, "enemigo_bola_run");
+	StrollAction* strollAction = new StrollAction(this, combatCondition);
 
 	//root
 	createRoot("dreidel", Priority, nullptr, nullptr);
