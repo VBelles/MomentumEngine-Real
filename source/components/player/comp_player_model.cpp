@@ -290,7 +290,7 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 void TCompPlayerModel::setHp(float hp) {
 	hp = clamp(hp, 0.f, maxHp);
 	this->hp = hp;
-	if (this->hp == 0.f && !stateManager->getState()->state == PitFalling) {
+	if (this->hp == 0.f && stateManager->getState()->state != PitFalling) {
 		stateManager->changeState(Death);
 		stateManager->changeConcurrentState(Free);
 	}

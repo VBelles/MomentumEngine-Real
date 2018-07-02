@@ -102,5 +102,6 @@ public:
 	void moveCameraCloser(bool wantClose);
 
 	void resetCurrentDistance();
+	float getInitialPitch() { return initialPitch; }
 };
 

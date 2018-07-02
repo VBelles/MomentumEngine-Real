@@ -72,6 +72,12 @@ void DeathActionState::respawn() {
 	transform->getYawPitchRoll(&yaw, &pitch);
 	transform->setYawPitchRoll(getPlayerModel()->getRespawnYaw(), pitch);
 	getCollider()->controller->setFootPosition(PxExtendedVec3(respawnPosition.x, respawnPosition.y, respawnPosition.z));
+
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	TCompTransform* cameraTransform = playerCameraEntity->get<TCompTransform>();
+	TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
+	cameraTransform->setYawPitchRoll(getPlayerModel()->getRespawnYaw(), playerCamera->getInitialPitch());
+
 	getPlayerModel()->resetHp();
 	getPowerGauge()->resetPower();
 }

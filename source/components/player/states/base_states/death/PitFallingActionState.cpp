@@ -65,6 +65,12 @@ void PitFallingActionState::respawn() {
 	transform->getYawPitchRoll(&yaw, &pitch);
 	transform->setYawPitchRoll(getPlayerModel()->getRespawnYaw(), pitch);
 	getCollider()->controller->setFootPosition(PxExtendedVec3(respawnPosition.x, respawnPosition.y, respawnPosition.z));
+
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	TCompTransform* cameraTransform = playerCameraEntity->get<TCompTransform>();
+	TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
+	cameraTransform->setYawPitchRoll(getPlayerModel()->getRespawnYaw(), playerCamera->getInitialPitch());
+
 	getPlayerModel()->damage(fallingDamage);
 	if (getPlayerModel()->getHp() < 1) {
 		getPlayerModel()->resetHp();
