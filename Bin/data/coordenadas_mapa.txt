@@ -1,4 +1,6 @@
 ### MILESTONE 3: ###
+teleportPlayer(0,10,0)
+
 Huevo inicio:
 teleportPlayer(-280,100,-400)
 

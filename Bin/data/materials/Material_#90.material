@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/plaza_baja_Material atril_BaseColor.dds",
+    "normal": "data/textures/plaza_baja_Material atril_Normal.dds",
+    "metallic": "data/textures/plaza_baja_Material atril_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/plaza_baja_Material atril_Emissive.dds",
+    "height": "data/textures/plaza_baja_Material plaza1_Height.dds"
+  }
+}

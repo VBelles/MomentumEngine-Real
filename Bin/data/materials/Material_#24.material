@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/fireplace_baja_DefaultMaterial_BaseColor.dds",
+    "normal": "data/textures/fireplace_baja_DefaultMaterial_Normal.dds",
+    "metallic": "data/textures/fireplace_baja_DefaultMaterial_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/fireplace_baja_DefaultMaterial_Emissive.dds",
+    "height": "data/textures/fireplace_baja_DefaultMaterial_Height.dds"
+  }
+}
