@@ -34,7 +34,7 @@
         "small_chase_radius": 2,
         "attack_fov": 90,
         "short_combat_distance": 2,
-        "medium_combat_distance": 4,
+        "medium_combat_distance": 6,
         "long_combat_distance": 10,
         "step_back_distance": 0.3,
         "attacks": [

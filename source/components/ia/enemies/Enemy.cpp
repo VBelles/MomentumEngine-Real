@@ -92,6 +92,10 @@ CEntity* Enemy::getPlayer() {
 	return playerHandle;
 }
 
+TCompTransform* Enemy::getPlayerTransform() {
+	return getPlayer()->get<TCompTransform>();
+}
+
 TCompTransform* Enemy::getTransform() {
 	return transformHandle;
 }

@@ -54,6 +54,7 @@ public:
 
 	//<AttackInfo, hitboxName, hitboxStart, hitboxEnd>
 	std::map<std::string, EnemyAttack> attacks;
+	std::string currentAttack = "";
 
 	float propelDuration = 0.f;
 	float grabbedDuration = 0.f;
@@ -87,6 +88,7 @@ public:
 	bool hasSuperArmor();
 
 	CEntity* getPlayer();
+	TCompTransform* getPlayerTransform();
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
 	TCompSkeleton* getSkeleton();

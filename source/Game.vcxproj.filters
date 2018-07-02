@@ -303,6 +303,20 @@
     <ClCompile Include="components\ia\enemies\common\appear\OnAppearAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnIdleLoop.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\IdleLoop.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\CombatCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\chase\ChaseAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\chase\OnChaseAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\short_distance\ShortDistanceCombatCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\long_distance\LongDistanceCombatCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\medium_distance\MediumDistanceCombatCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\idle_war\IdleWarAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\idle_war\OnIdleWarAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\attack\AttackAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\attack\OnAttackAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\tackle_attack\OnTackleAttackAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\tackle_attack\TackleAttackAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\step_back\OnStepBackAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\step_back\StepBackAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -638,6 +652,20 @@
     <ClInclude Include="components\ia\enemies\common\appear\OnAppearAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnIdleLoop.h" />
     <ClInclude Include="components\ia\enemies\common\idle\IdleLoop.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\CombatCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\chase\ChaseAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\chase\OnChaseAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\short_distance\ShortDistanceCombatCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\long_distance\LongDistanceCombatCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\medium_distance\MediumDistanceCombatCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\idle_war\OnIdleWarAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\idle_war\IdleWarAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\attack\OnAttackAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\attack\AttackAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\tackle_attack\TackleAttackAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\tackle_attack\OnTackleAttackAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\step_back\StepBackAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\step_back\OnStepBackAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

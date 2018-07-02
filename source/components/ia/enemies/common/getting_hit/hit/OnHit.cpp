@@ -2,6 +2,7 @@
 #include "OnHit.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_hitboxes.h"
 
 OnHit::OnHit(Enemy* enemy, std::string animation) :
 	enemy(enemy),
@@ -31,5 +32,6 @@ int OnHit::execAction(float delta) {
 		enemy->stunDuration = 0;
 	}
 	enemy->stunTimer.reset();
+	enemy->getHitboxes()->disableAll();
 	return Leave;
 }

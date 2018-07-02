@@ -50,6 +50,20 @@
 #include "components/ia/enemies/common/return_to_spawn/ReturnToSpawnAction.h"
 #include "components/ia/enemies/common/appear/AppearAction.h"
 #include "components/ia/enemies/common/appear/OnAppearAction.h"
+#include "components/ia/enemies/common/combat/CombatCondition.h"
+#include "components/ia/enemies/common/combat/attack/AttackAction.h"
+#include "components/ia/enemies/common/combat/attack/OnAttackAction.h"
+#include "components/ia/enemies/common/combat/chase/ChaseAction.h"
+#include "components/ia/enemies/common/combat/chase/OnChaseAction.h"
+#include "components/ia/enemies/common/combat/idle_war/IdleWarAction.h"
+#include "components/ia/enemies/common/combat/idle_war/OnIdleWarAction.h"
+#include "components/ia/enemies/common/combat/long_distance/LongDistanceCombatCondition.h"
+#include "components/ia/enemies/common/combat/medium_distance/MediumDistanceCombatCondition.h"
+#include "components/ia/enemies/common/combat/short_distance/ShortDistanceCombatCondition.h"
+#include "components/ia/enemies/common/combat/tackle_attack/OnTackleAttackAction.h"
+#include "components/ia/enemies/common/combat/tackle_attack/TackleAttackAction.h"
+#include "components/ia/enemies/common/combat/step_back/OnStepBackAction.h"
+#include "components/ia/enemies/common/combat/step_back/StepBackAction.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
@@ -101,62 +115,148 @@ void Dreidel::initBehaviorTree() {
 	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(this);
 	AppearAction* appearAction = new AppearAction(this, "enemigo_bola_aparecer");
 	OnAppearAction* onAppearAction = new OnAppearAction(this, "enemigo_bola_aparecer");
+	CombatCondition* combatCondition = new CombatCondition(this);
+	AttackAction* spinAttackAction = new AttackAction(this, "enemigo_bola_ataquelento", "attack");
+	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "enemigo_bola_ataquelento", "attack");
+	AttackAction* areaAttackAction = new AttackAction(this, "enemigo_bola_ataquelento_altern", "attack");
+	OnAttackAction* onAreaAttackAction = new OnAttackAction(this, "enemigo_bola_ataquelento_altern", "attack");
+	ChaseAction* chaseAction = new ChaseAction(this);
+	OnChaseAction* onChaseAction = new OnChaseAction(this, "enemigo_bola_chase");
+	IdleWarAction* idleWarAction = new IdleWarAction(this, "enemigo_bola_idle_war");
+	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(this, "enemigo_bola_idle_war");
+	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
+	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
+	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
+	OnTackleAttackAction* onTackleAttackAction = new OnTackleAttackAction(this, "enemigo_bola_placaje", "attack");
+	TackleAttackAction* tackleAttackAction = new TackleAttackAction(this, "enemigo_bola_placaje", "attack", movementSpeed * 1.5, 0.75f);
+	OnStepBackAction* onStepBackAction = new OnStepBackAction(this, "enemigo_bola_guardia");
+	StepBackAction* stepBackAction = new StepBackAction(this, "enemigo_bola_run", movementSpeed);
 
+	//root
 	createRoot("dreidel", Priority, nullptr, nullptr);
 
+	//getting hit
 	addChild("dreidel", "hit", Sequence, falseCondition, nullptr);
+	//damage calculation
 	addChild("hit", "onHit", Action, nullptr, onHit);
+	//attack properties
 	addChild("hit", "attackProperties", Priority, nullptr, nullptr);
+	//horizontal launch
 	addChild("attackProperties", "horizontalLaunch", Sequence, onHorizontalLaunchCondition, nullptr);
 	addChild("horizontalLaunch", "onHorizontalLaunchAction", Action, nullptr, onHorizontalLaunchAction);
 	addChild("horizontalLaunch", "horizontalLaunchedAction", Action, nullptr, horizontalLaunchedAction);
+	//vertical launch
 	addChild("attackProperties", "verticalLaunch", Sequence, onVerticalLaunchCondition, nullptr);
 	addChild("verticalLaunch", "onVerticalLaunchAction", Action, nullptr, onVerticalLaunchAction);
 	addChild("verticalLaunch", "verticalLaunchedAction", Action, nullptr, verticalLaunchedAction);
+	//grab
 	addChild("attackProperties", "grab", Sequence, onGrabCondition, nullptr);
 	addChild("grab", "onGrabAction", Action, nullptr, onGrabAction);
 	addChild("grab", "grabAction", Action, nullptr, grabAction);
+	//propel
 	addChild("attackProperties", "propel", Sequence, onPropelCondition, nullptr);
 	addChild("propel", "onPropelAction", Action, nullptr, onPropelAction);
 	addChild("propel", "propelAction", Action, nullptr, propelAction);
+	//hit stun
 	addChild("hit", "hitStun", Action, nullptr, hitStun);
 
+	//block break
 	addChild("dreidel", "blockingBreak", Sequence, onBlockingBreakCondition, nullptr);
 	addChild("blockingBreak", "onBlockingBreakAction", Action, nullptr, onBlockingBreakAction);
 	addChild("blockingBreak", "blockingBreakAction", Action, nullptr, blockingBreakAction);
 
+	//death
 	addChild("dreidel", "death", Sequence, onDeathCondition, nullptr);
 	addChild("death", "onDeathAction", Action, nullptr, onDeathAction);
 	addChild("death", "deathAction", Action, nullptr, deathAction);
+	//disappear
 	addChild("death", "disappear", Sequence, nullptr, nullptr);
 	addChild("disappear", "onDisappearAction", Action, nullptr, onDisappearAction);
 	addChild("disappear", "disappearAction", Action, nullptr, disappearAction);
 
+	//stun
 	addChild("dreidel", "stun", Sequence, onStunCondition, nullptr);
 	addChild("stun", "onStunAction", Action, nullptr, onStunAction);
 	addChild("stun", "stunAction", Action, nullptr, stunAction);
 
+	//airborne
 	addChild("dreidel", "onAirborneAction", Action, onAirborneCondition, onAirborneAction);
 	addChild("dreidel", "airborneAction", Action, airborneCondition, airborneAction);
 
+	//teleport to spawn
 	addChild("dreidel", "teleport", Sequence, onTeleportCondition, nullptr);
 	addChild("teleport", "onTeleportAction", Action, nullptr, onTeleportAction);
 	addChild("teleport", "teleportAction", Action, nullptr, teleportAction);
+	//appear
 	addChild("teleport", "appear", Sequence, nullptr, nullptr);
 	addChild("appear", "onAppearAction", Action, nullptr, onAppearAction);
 	addChild("appear", "appearAction", Action, nullptr, appearAction);
 
+	//combat
+	addChild("dreidel", "combat", Priority, combatCondition, nullptr);
+	//short distance combat
+	addChild("combat", "shortDistanceCombat", Random, shortDistanceCombatCondition, nullptr);
+	//idle war
+	addChild("shortDistanceCombat", "shortIdleWar", Sequence, nullptr, nullptr);
+	addChild("shortIdleWar", "onShortIdleWar", Action, nullptr, onIdleWarAction);
+	addChild("shortIdleWar", "shortIdleWarAction", Action, nullptr, idleWarAction);
+	//spin attack
+	addChild("shortDistanceCombat", "shortSpinAttack", Sequence, nullptr, nullptr);
+	addChild("shortSpinAttack", "onShortSpinAttackAction", Action, nullptr, onSpinAttackAction);
+	addChild("shortSpinAttack", "shortSpinAttackAction", Action, nullptr, spinAttackAction);
+	//step back
+	addChild("shortDistanceCombat", "stepBack", Sequence, nullptr, nullptr);
+	addChild("stepBack", "onStepBackAction", Action, nullptr, onStepBackAction);
+	addChild("stepBack", "stepBackAction", Action, nullptr, stepBackAction);
+	//medium distance combat
+	addChild("combat", "mediumDistanceCombat", Random, mediumDistanceCombatCondition, nullptr);
+	//idle war
+	addChild("mediumDistanceCombat", "mediumIdleWar", Sequence, nullptr, nullptr);
+	addChild("mediumIdleWar", "onMediumIdleWar", Action, nullptr, onIdleWarAction);
+	addChild("mediumIdleWar", "mediumIdleWarAction", Action, nullptr, idleWarAction);
+	//spin attack
+	addChild("mediumDistanceCombat", "mediumSpinAttack", Sequence, nullptr, nullptr);
+	addChild("mediumSpinAttack", "onMediumSpinAttackAction", Action, nullptr, onSpinAttackAction);
+	addChild("mediumSpinAttack", "mediumSpinAttackAction", Action, nullptr, spinAttackAction);
+	//area attack
+	addChild("mediumDistanceCombat", "mediumAreaAttack", Sequence, nullptr, nullptr);
+	addChild("mediumAreaAttack", "onMediumAreaAttackAction", Action, nullptr, onAreaAttackAction);
+	addChild("mediumAreaAttack", "mediumAreaAttackAction", Action, nullptr, areaAttackAction);
+	//tackle
+	addChild("mediumDistanceCombat", "mediumTackle", Sequence, nullptr, nullptr);
+	addChild("mediumTackle", "onMediumTackleAttackAction", Action, nullptr, onTackleAttackAction);
+	addChild("mediumTackle", "mediumTackleAttackAction", Action, nullptr, tackleAttackAction);
+	//long distance combat
+	addChild("combat", "longDistanceCombat", Random, longDistanceCombatCondition, nullptr);
+	//idle war
+	addChild("longDistanceCombat", "longIdleWar", Sequence, nullptr, nullptr);
+	addChild("longIdleWar", "onLongIdleWar", Action, nullptr, onIdleWarAction);
+	addChild("longIdleWar", "longIdleWarAction", Action, nullptr, idleWarAction);
+	//tackle
+	addChild("longDistanceCombat", "longTackle", Sequence, nullptr, nullptr);
+	addChild("longTackle", "onLongTackleAttackAction", Action, nullptr, onTackleAttackAction);
+	addChild("longTackle", "longTackleAttackAction", Action, nullptr, tackleAttackAction);
+	//chase
+	addChild("combat", "chase", Sequence, nullptr, nullptr);
+	addChild("chase", "onChaseAction", Action, nullptr, onChaseAction);
+	addChild("chase", "chaseAction", Action, nullptr, chaseAction);
+
+	//return to spawn walking
 	addChild("dreidel", "returnToSpawn", Sequence, onReturnToSpawnCondition, nullptr);
 	addChild("returnToSpawn", "onReturnToSpawnAction", Action, nullptr, onReturnToSpawnAction);
 	addChild("returnToSpawn", "returnToSpawnAction", Action, nullptr, returnToSpawnAction);
 
+	//idle
 	addChild("dreidel", "idle", Random, nullptr, nullptr);
+	//idle action
 	addChild("idle", "idleActionSeq", Sequence, nullptr, nullptr);
 	addChild("idleActionSeq", "onIdleAction", Action, nullptr, onIdleAction);
 	addChild("idleActionSeq", "idleAction", Action, nullptr, idleAction);
+	//idle loop
 	addChild("idle", "idleLoopSeq", Sequence, nullptr, nullptr);
 	addChild("idleLoopSeq", "onIdleLoop", Action, nullptr, onIdleLoop);
 	addChild("idleLoopSeq", "idleLoop", Action, nullptr, idleLoop);
+	//stroll
 	addChild("idle", "stroll", Sequence, nullptr, nullptr);
 	addChild("stroll", "onStrollAction", Action, nullptr, onStrollAction);
 	addChild("stroll", "strollAction", Action, nullptr, strollAction);
@@ -175,7 +275,7 @@ void Dreidel::registerMsgs() {
 	DECL_MSG(Dreidel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(Dreidel, TMsgPerfectDodged, onPerfectDodged);
 	DECL_MSG(Dreidel, TMsgColliderDestroyed, onColliderDestroyed);
-	//DECL_MSG(Dreidel, TMsgHitboxEnter, onHitboxEnter);
+	DECL_MSG(Dreidel, TMsgHitboxEnter, onHitboxEnter);
 }
 
 void Dreidel::update(float delta) {
@@ -226,11 +326,13 @@ void Dreidel::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	}
 }
 
-//void Dreidel::onHitboxEnter(const TMsgHitboxEnter& msg) {
-//	if (attackInfos.find(msg.hitbox) != attackInfos.end()) {
-//		TMsgAttackHit attackHit = {};
-//		attackHit.attacker = CHandle(this).getOwner();
-//		attackHit.info = attackInfos[msg.hitbox];
-//		((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
-//	}
-//}
+void Dreidel::onHitboxEnter(const TMsgHitboxEnter& msg) {
+	if (currentAttack != "") {
+		if (attacks[currentAttack].hitboxName == msg.hitbox) {
+			TMsgAttackHit attackHit = {};
+			attackHit.attacker = CHandle(this).getOwner();
+			attackHit.info = attacks[currentAttack].attackInfo;
+			((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+		}
+	}
+}

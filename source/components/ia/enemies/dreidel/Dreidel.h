@@ -16,7 +16,7 @@ private:
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
 	void onPerfectDodged(const TMsgPerfectDodged& msg);
 	void onColliderDestroyed(const TMsgColliderDestroyed& msg);
-	//void onHitboxEnter(const TMsgHitboxEnter& msg);
+	void onHitboxEnter(const TMsgHitboxEnter& msg);
 
 public:
 	DECL_SIBLING_ACCESS();
