@@ -42,6 +42,7 @@ private:
 	CHandle collectableManagerHandle;
 
 	VEC3 respawnPosition;
+	float respawnYaw;
 	VEC3 deltaMovement;
 	VEC3 accelerationVector;
 	VEC3 velocityVector;
@@ -160,8 +161,9 @@ public:
 	void resetHp() { maxHp = PLAYER_MAX_HP; setHp(maxHp); }
 	float getHp() { return hp; }
 	void setHp(float hp);
-	void setRespawnPosition(VEC3 position);
+	void setRespawnPosition(VEC3 position, float yaw = 0.f);
 	VEC3 getRespawnPosition() { return respawnPosition; }
+	float getRespawnYaw() { return respawnYaw; }
 	void disableOutline();
 	void enableOutline();
 

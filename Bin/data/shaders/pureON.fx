@@ -2,34 +2,31 @@
 
 //--------------------------------------------------------------------------------------
 void VS(
-  in float4 iPos     : POSITION
-, in float3 iNormal  : NORMAL0
-, in float2 iTex0    : TEXCOORD0
-, in float2 iTex1    : TEXCOORD1
-, in float4 iTangent : NORMAL1
+	in float4 iPos     : POSITION
+	, in float3 iNormal : NORMAL0
+	, in float2 iTex0 : TEXCOORD0
+	, in float2 iTex1 : TEXCOORD1
+	, in float4 iTangent : NORMAL1
 
-, out float4 oPos      : SV_POSITION
-, out float3 oNormal   : NORMAL0
-, out float4 oTangent  : NORMAL1
-, out float2 oTex0     : TEXCOORD0
-, out float2 oTex1     : TEXCOORD1
-, out float3 oWorldPos : TEXCOORD2
-)
-{
-  float4 world_pos = mul(iPos, obj_world);
+	, out float4 oPos : SV_POSITION
+	, out float3 oNormal : NORMAL0
+	, out float4 oTangent : NORMAL1
+	, out float2 oTex0 : TEXCOORD0
+	, out float2 oTex1 : TEXCOORD1
+	, out float3 oWorldPos : TEXCOORD2
+) {
+	float4 world_pos = mul(iPos, obj_world);
+	oPos = mul(world_pos, camera_view_proj);
 
-  // Rotar la normal segun la transform del objeto
-  oNormal = mul(iNormal, (float3x3)obj_world);
-  oTangent.xyz = mul(iTangent.xyz, (float3x3)obj_world);
-  oTangent.w = iTangent.w;
+	// Rotar la normal segun la transform del objeto
+	oNormal = mul(iNormal, (float3x3)obj_world);
+	oTangent.xyz = mul(iTangent.xyz, (float3x3)obj_world);
+	oTangent.w = iTangent.w;
 
-  //world_pos.y += /*oNormal **/ 0.005 * sin( 10 * global_world_time + world_pos.y * 0.0 + world_pos.x * 0.0 + world_pos.z * 0.0);
-  oPos = mul(world_pos, camera_view_proj);
-
-  // Las uv's se pasan directamente al ps
-  oTex0 = iTex0;
-  oTex1 = iTex1;
-  oWorldPos = world_pos.xyz;
+	// Las uv's se pasan directamente al ps
+	oTex0 = iTex0;
+	oTex1 = iTex1;
+	oWorldPos = world_pos.xyz;
 }
 
 float getZViewSpace( float3 worldPos ){
@@ -45,20 +42,18 @@ float scale(float A, float A1, float A2, float Min, float Max) {
 }
 
 
-float4 PS(
-  float4 iPosition : SV_POSITION    // Screen coords
-, float3 iNormal   : NORMAL0
-, float4 iTangent  : NORMAL1
-, float2 iTex0     : TEXCOORD0
-, float2 iTex1     : TEXCOORD1
-, float3 iWorldPos : TEXCOORD2
-)  : SV_Target0
-{
-    ////////////////////////////////////////////////////////////////
-    // TODO: CAMBIAR ESTO PARA QUE SE NOTE QUE ESTE OBJETO ES PURO
-    //       PERO TANGIBLE EN ESTE MOMENTO.
-    ////////////////////////////////////////////////////////////////
-
+void PS(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
+) {
 	// Obtain a random value associated to each pos in the surface
 	float4 noise0 = txNoiseMap.Sample( samLinear, iTex0 * 2.0 + 0.2 * global_world_time * float2(.5,0)) * 2 - 1;      // -1..1
 	float4 noise1 = txNoiseMap.Sample( samLinear, iTex0 * 8.0 + 0.1 * global_world_time * float2(.5,0.1)) * 2 - 1;      // -1..1
@@ -66,36 +61,37 @@ float4 PS(
 
 	// Add 3 octaves to break pattern repetition
 	float2 noiseF = noise0.xy + noise1.xy * 0.5 + noise2.xy * .25;
+	float3 camera2wpos = iWorldPos - camera_pos;
 
-	float3 normal = computeNormalMap(iNormal, iTangent, iTex0);
-	float3 noise = normal * 0.01f;
+	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
+	// the material
+	o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 
-	float4 albedo = txAlbedo.Sample(samClampLinear, iTex0);
-	albedo.rgb = saturate(albedo.rgb * 1.7);
-	albedo.r += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z ) + 0.3 * sin(noiseF.x);
-	albedo.g += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z ) + 0.3 * sin(noiseF.x);
-	albedo.b += 0.2 * sin(2 * global_world_time + iNormal.x  + iNormal.z ) + 0.3 * sin(noiseF.x);
+	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 
-	float4 pos_proj_space = mul(float4(iWorldPos, 1), camera_view_proj);
-	float3 pos_homo_space = pos_proj_space.xyz / pos_proj_space.w;    // -1..1
-	float2 pos_camera_unit_space = float2(
-		(1 + pos_homo_space.x) * 0.5 + 0.0005 * (1 - sin( 3 * global_world_time + iWorldPos.x + iWorldPos.z + iWorldPos.y)) + 0.05 * noiseF.x, 
-		(1 - pos_homo_space.y) * 0.5 + 0.0005 * (1 - sin( 5 * global_world_time + iWorldPos.x + iWorldPos.z + iWorldPos.y)) + 0.05 * noiseF.y
-		);
+	// Save roughness in the alpha coord of the N render target
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
+	o_normal = encodeNormal(N, roughness);
 
-	float4 background_color;
-	float zlinear = txGBufferLinearDepth.Sample(samClampPoint, pos_camera_unit_space + noise.xy).x;
-	if (zlinear * camera_zfar > getZViewSpace(iWorldPos)) {
-		background_color = txGBufferAlbedos.Sample(samClampPoint, pos_camera_unit_space + noise.xy);	
-	}
-	else {
-		background_color = txGBufferAlbedos.Sample(samClampLinear, pos_camera_unit_space);
-	}
+	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
 
-	float4 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, normal, 6);
-	float4 irradiance_texture = txIrradianceMap.Sample(samLinear, normal);
-	float4 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
+	float red = saturate	(-0.1 + 0.25 * sin(3.0 * global_world_time));
+	float green = saturate	(-0.1 + 0.25 * sin(3.0 * global_world_time));
+	float blue = saturate	(-0.1 + 0.25 * sin(3.0 * global_world_time));
+	float redThreshold 		= 0.13;
+	float greenThreshold 	= 0.13;
+	float blueThreshold 	= 0.14;
+	if(red > redThreshold) red = redThreshold;
+	if(green > greenThreshold) green = greenThreshold;
+	if(blue > blueThreshold) blue = blueThreshold;
+	o_selfIllum = float4(
+		red,
+		green,
+		blue,
+		1);
 
-	float4 final_color = lerp(irradiance, background_color, 0.75f);
-	return lerp(final_color, albedo, 0.8);
+	// Compute the Z in linear space, and normalize it in the range 0...1
+	// In the range z=0 to z=zFar of the camera (not zNear)
+	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 }

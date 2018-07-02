@@ -14,10 +14,11 @@ void TCompRespawnPoint::registerMsgs() {
 void TCompRespawnPoint::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("respawn_position")) {
 		respawnPosition = loadVEC3(j["respawn_position"]);
+		respawnYaw = j.value("respawn_yaw", respawnYaw);
 	}
 }
 
 void TCompRespawnPoint::onTriggerEnter(const TMsgTriggerEnter& msg) {
 	CEntity* entity = msg.h_other_entity;
-	entity->sendMsg(TMsgRespawnChanged{ respawnPosition });
+	entity->sendMsg(TMsgRespawnChanged{ respawnPosition , respawnYaw});
 }
