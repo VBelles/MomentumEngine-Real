@@ -165,15 +165,7 @@ void Dreidel::initBehaviorTree() {
 	addChild("propel", "onPropelAction", Action, nullptr, onPropelAction);
 	addChild("propel", "propelAction", Action, nullptr, propelAction);
 	//hit stun
-	addChild("hit", "hitStun", Action, nullptr, hitStun);
-
-	//block break
-	addChild("dreidel", "blockingBreak", Sequence, onBlockingBreakCondition, nullptr);
-	addChild("blockingBreak", "onBlockingBreakAction", Action, nullptr, onBlockingBreakAction);
-	addChild("blockingBreak", "blockingBreakAction", Action, nullptr, blockingBreakAction);
-
-	//block
-	addChild("dreidel", "blockAction", Action, blockCondition, blockAction);
+	addChild("attackProperties", "hitStun", Action, nullptr, hitStun);
 
 	//death
 	addChild("dreidel", "death", Sequence, onDeathCondition, nullptr);
@@ -188,6 +180,14 @@ void Dreidel::initBehaviorTree() {
 	addChild("dreidel", "stun", Sequence, onStunCondition, nullptr);
 	addChild("stun", "onStunAction", Action, nullptr, onStunAction);
 	addChild("stun", "stunAction", Action, nullptr, stunAction);
+
+	//block break
+	addChild("dreidel", "blockingBreak", Sequence, onBlockingBreakCondition, nullptr);
+	addChild("blockingBreak", "onBlockingBreakAction", Action, nullptr, onBlockingBreakAction);
+	addChild("blockingBreak", "blockingBreakAction", Action, nullptr, blockingBreakAction);
+
+	//block
+	addChild("dreidel", "blockAction", Action, blockCondition, blockAction);
 
 	//airborne
 	addChild("dreidel", "onAirborneAction", Action, onAirborneCondition, onAirborneAction);
@@ -293,6 +293,7 @@ void Dreidel::registerMsgs() {
 void Dreidel::update(float delta) {
 	if (!getCollider()->toDestroy) {
 		deltaMovement = VEC3::Zero;
+		if (current) dbg("%s\n",current->getName().c_str());
 		recalc(delta);
 		if (getCollider()->isCreated()) move(delta);
 	}

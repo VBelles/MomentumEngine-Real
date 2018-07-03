@@ -22,16 +22,16 @@ int OnHit::execAction(float delta) {
 	}
 	else {
 		enemy->hp -= attackInfo.damage;
+		if (attackInfo.stun) {
+			enemy->stunDuration = attackInfo.stun->duration;
+		}
+		else {
+			enemy->stunDuration = 0;
+		}
+		enemy->stunTimer.reset();
 	}
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
-	if (attackInfo.stun) {
-		enemy->stunDuration = attackInfo.stun->duration;
-	}
-	else {
-		enemy->stunDuration = 0;
-	}
-	enemy->stunTimer.reset();
 	enemy->getHitboxes()->disableAll();
 	return Leave;
 }

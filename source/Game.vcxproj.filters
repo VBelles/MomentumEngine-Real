@@ -315,7 +315,7 @@
     <ClCompile Include="components\ia\enemies\common\combat\step_back\StepBackAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\block\BlockAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\block\OnBlockAction.cpp" />
-    <ClCompile Include="components\ia\enemies\common\combat\block\blockCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\block\BlockCondition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -663,7 +663,7 @@
     <ClInclude Include="components\ia\enemies\common\combat\step_back\OnStepBackAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\block\OnBlockAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\block\BlockAction.h" />
-    <ClInclude Include="components\ia\enemies\common\combat\block\blockCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\block\BlockCondition.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
