@@ -1,0 +1,13 @@
+{
+  "technique": "pureON.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/plataforma_nueva_baja_DefaultMaterial_BaseColor.dds",
+    "normal": "data/textures/plataforma_nueva_baja_DefaultMaterial_Normal.dds",
+    "metallic": "data/textures/plataforma_nueva_baja_DefaultMaterial_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/plataforma_nueva_baja_DefaultMaterial_Emissive.dds",
+    "height": "data/textures/plataforma_nueva_baja_DefaultMaterial_Height.dds"
+  }
+}
