@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/terrenos_LOWPOLY_substance_Material__11_BaseColor.dds",
+    "normal": "data/textures/terrenos_LOWPOLY_substance_Material__11_Normal.dds",
+    "metallic": "data/textures/terrenos_LOWPOLY_substance_Material__11_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/terrenos_LOWPOLY_substance_Material__2_Height.dds"
+  }
+}

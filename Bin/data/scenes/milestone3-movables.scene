@@ -2,6 +2,27 @@
   {
     "entity":
     {
+      "name": "ms3_escaleraGrande001",
+      "transform":
+      {
+        "pos": "-293.708 71.4068 -957.216",
+        "rotation": "0.0 0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_escaleraGrande001.mesh",
+          "materials":
+          [
+            "data/materials/Material_#25.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_plataforma067",
       "transform":
       {
