@@ -7,8 +7,9 @@ class Enemy;
 class OnStunAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
-	std::string animation;
+	std::string animationStart;
+	std::string animationLoop;
 public:
-	OnStunAction(Enemy* enemy, std::string animation);
+	OnStunAction(Enemy* enemy, std::string animationStart, std::string animationLoop);
 	int execAction(float delta) override;
 };

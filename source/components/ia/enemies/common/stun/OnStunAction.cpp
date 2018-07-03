@@ -3,12 +3,14 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
-OnStunAction::OnStunAction(Enemy* enemy, std::string animation):
+OnStunAction::OnStunAction(Enemy* enemy, std::string animationStart, std::string animationLoop) :
 	enemy(enemy),
-	animation(animation){
+	animationStart(animationStart),
+	animationLoop(animationLoop) {
 }
 
 int OnStunAction::execAction(float delta) {
-	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
+	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
+	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
 	return Leave;
 }
