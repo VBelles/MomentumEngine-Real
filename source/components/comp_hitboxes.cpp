@@ -13,7 +13,7 @@ DECL_OBJ_MANAGER("hitboxes", TCompHitboxes);
 void TCompHitboxes::debugInMenu() {
 	for (auto& p : hitboxes) {
 		Hitbox* hitbox = p.second;
-		VEC3 pos = hitbox->transform->getPosition();
+		VEC3 pos = hitbox->transform.getPosition();
 		ImGui::Text("%s: %f, %f, %f", hitbox->name.c_str(), pos.x, pos.y, pos.z);
 	}
 }
@@ -23,17 +23,17 @@ void TCompHitboxes::renderDebug() {
 		Hitbox* hitbox = p.second;
 		if (hitbox->enabled) {
 			if (hitbox->radius) {
-				renderSphere(hitbox->transform, hitbox->radius, VEC4(0, 0, 1, 1));
+				renderSphere(&hitbox->transform, hitbox->radius, VEC4(0, 0, 1, 1));
 			}
 			else {
-				renderWiredCube(hitbox->transform, hitbox->halfExtent, VEC4(1, 0, 0, 1));
+				renderWiredCube(&hitbox->transform, hitbox->halfExtent, VEC4(1, 0, 0, 1));
 			}
 		}
 	}
 }
 
 void TCompHitboxes::registerMsgs() {
-	DECL_MSG(TCompHitboxes, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompHitboxes, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 void TCompHitboxes::load(const json& j, TEntityParseContext& ctx) {
@@ -84,17 +84,17 @@ TCompHitboxes::HitboxConfig TCompHitboxes::loadHitbox(const json& jHitbox) {
 	return config;
 }
 
-void TCompHitboxes::onCreate(const TMsgEntityCreated& msg) {
+void TCompHitboxes::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	skeletonHandle = get<TCompSkeleton>();
 	colliderHandle = get<TCompCollider>();
+	transformHandle = get<TCompTransform>();
 	assert(skeletonHandle.isValid());
 	assert(colliderHandle.isValid());
-	for (int i = 0; i < hitboxesConfig.size(); ++i) {
-		const HitboxConfig& config = hitboxesConfig[i];
+	assert(transformHandle.isValid());
+	for (const HitboxConfig& config : hitboxesConfig) {
 		Hitbox* hitbox = createHitbox(config);
 		hitboxes[hitbox->name] = hitbox;
 	}
-
 }
 
 TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
@@ -110,8 +110,6 @@ TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
 		hitbox->boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
 		assert(hitbox->boneId != -1);
 	}
-
-	hitbox->transform = new CTransform();
 	
 	hitbox->filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
 		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK));
@@ -138,18 +136,27 @@ void TCompHitboxes::update(float delta) {
 
 
 void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
-	if (hitbox->boneId != -1) {
-		CalBone* bone = getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId);
-		hitbox->transform->setPosition(Cal2DX(bone->getTranslationAbsolute()) + hitbox->offset);
-		hitbox->transform->setRotation(Cal2DX(bone->getRotationAbsolute()));
+	CTransform& transform = hitbox->transform;
+	CalBone* bone = hitbox->boneId != -1 ? getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId) : nullptr;
+	if (bone) {
+		transform.setPosition(Cal2DX(bone->getTranslationAbsolute()));
 	}
-	else{
-		PxExtendedVec3 extendedPos = getController()->getPosition();
-		VEC3 pos = PhysxUtils::toVec3(extendedPos) + hitbox->offset;
-		hitbox->transform->setPosition(pos);
+	else {
+		transform.setPosition(getTransform()->getPosition());
+	}
+	transform.setRotation(getTransform()->getRotation());
+
+	if (hitbox->offset != VEC3::Zero) {
+		VEC3 desiredDirection = hitbox->transform.getFront() * hitbox->offset.z - transform.getLeft() *  hitbox->offset.x;
+		desiredDirection.y = hitbox->offset.y;
+		transform.setPosition(transform.getPosition() + desiredDirection);
 	}
 
-	PxTransform pose = toPxTransform(hitbox->transform);
+	if (bone) {
+		transform.setRotation(Cal2DX(bone->getRotationAbsolute()));
+	}
+
+	PxTransform pose = toPxTransform(transform);
 
 	const PxU32 bufferSize = 16; //Hasta 16 enemigos por overlap query, suficientes e incluso excesivo
 	PxOverlapHit hitBuffer[bufferSize];
@@ -168,7 +175,7 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 			CHandle hitEntity = getEntity(hit.actor);
 			if (hitbox->hits.insert(hitEntity).second) { //Inserted
 				owner->sendMsg(TMsgHitboxEnter{hitbox->name, hitEntity });
-				dbg("Name: %s\n", static_cast<CEntity*>(hitEntity)->getName());
+				//dbg("Name: %s\n", static_cast<CEntity*>(hitEntity)->getName());
 			}
 		}
 	
@@ -197,6 +204,10 @@ void TCompHitboxes::disableAll() {
 	}
 }
 
+TCompTransform* TCompHitboxes::getTransform() {
+	return transformHandle;
+}
+
 TCompSkeleton* TCompHitboxes::getSkeleton() {
 	return skeletonHandle;
 }
@@ -204,6 +215,7 @@ TCompSkeleton* TCompHitboxes::getSkeleton() {
 TCompCollider* TCompHitboxes::getCollider() {
 	return colliderHandle;
 }
+
 PxController* TCompHitboxes::getController() {
 	return getCollider()->controller;
 }
