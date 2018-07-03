@@ -13,7 +13,7 @@
 						"size" : "1920 1080",
 						"texture" : "data/textures/gui/menu_anim_background.dds",
 						"minUV" : "0 0",
-						"maxUV" : "0.5 1",
+						"maxUV" : "1 1",
 						"effects" : [
 							{
 								"type" : "animate_uv",
@@ -26,26 +26,6 @@
 						"type" : "image",
 						"size" : "1920 1080",
 						"texture" : "data/textures/gui/menu_foreground.dds"
-					}
-				]
-			},
-			{
-				"name" : "test_bar",
-				"type" : "widget",
-				"position" : "1650 50",
-				"children" : [
-					{
-						"name" : "background",
-						"type" : "image",
-						"size" : "200 50",
-						"texture" : "data/textures/gui/battery_empty.dds"
-					},
-					{
-						"name" : "foreground",
-						"type" : "bar",
-						"size" : "200 50",
-						"texture" : "data/textures/gui/battery_full.dds",
-						"variable" : "progress"
 					}
 				]
 			},
@@ -99,18 +79,7 @@
 						}
 					}
 				]
-			},
-		    {
-		        "name" : "game_credits",
-		        "type" : "text",
-		        "position" : "1870 1030",
-		        "scale" : "0.5 1.0",
-		        "text" : "MCV 2017-2018",
-		        "font_color" : "0.5 0.5 0.5 1",
-		        "font_size" : 32,
-		        "halign" : "right",
-		        "valign" : "bottom"
-		    }
+			}
 		]
 	}
 ]
