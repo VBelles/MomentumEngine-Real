@@ -49,7 +49,6 @@
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
-    <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_render_ui.cpp" />
@@ -122,12 +121,9 @@
     <ClCompile Include="components\ia\enemies\FlyingRangedEnemy.cpp" />
     <ClCompile Include="components\ia\enemies\MeleeEnemy.cpp" />
     <ClCompile Include="components\comp_suggest_camera_pos_trigger.cpp" />
-    <ClCompile Include="components\platforms\comp_platform_rotative.cpp" />
-    <ClCompile Include="components\platforms\comp_platform_move.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
-    <ClCompile Include="components\platforms\comp_platform.cpp" />
     <ClCompile Include="components\ia\enemies\BallEnemy.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
     <ClCompile Include="components\comp_door.cpp" />
@@ -328,7 +324,6 @@
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
-    <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_render_ui.h" />
@@ -405,12 +400,9 @@
     <ClInclude Include="components\ia\enemies\MeleeEnemy.h" />
     <ClInclude Include="components\ia\enemies\FlyingRangedEnemy.h" />
     <ClInclude Include="components\comp_suggest_camera_pos_trigger.h" />
-    <ClInclude Include="components\platforms\comp_platform_rotative.h" />
-    <ClInclude Include="components\platforms\comp_platform_move.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
-    <ClInclude Include="components\platforms\comp_platform.h" />
     <ClInclude Include="components\ia\enemies\BallEnemy.h" />
     <ClInclude Include="components\player\power_stats.h" />
     <ClInclude Include="components\comp_door.h" />
