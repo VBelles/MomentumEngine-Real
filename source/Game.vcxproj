@@ -112,7 +112,6 @@
     <ClCompile Include="components\comp_life_regenerator.cpp" />
     <ClCompile Include="components\comp_light_dir.cpp" />
     <ClCompile Include="components\comp_light_point.cpp" />
-    <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_mechanism.cpp" />
     <ClCompile Include="components\comp_mechanism_system.cpp" />
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
@@ -367,7 +366,6 @@
     <ClInclude Include="components\comp_life_regenerator.h" />
     <ClInclude Include="components\comp_light_dir.h" />
     <ClInclude Include="components\comp_light_point.h" />
-    <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_mechanism.h" />
     <ClInclude Include="components\comp_mechanism_system.h" />
     <ClInclude Include="components\comp_mix_camera_trigger.h" />

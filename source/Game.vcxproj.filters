@@ -49,7 +49,6 @@
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
-    <ClCompile Include="components\comp_hitbox.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_render_ui.cpp" />
@@ -325,7 +324,6 @@
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
-    <ClInclude Include="components\comp_hitbox.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_render_ui.h" />
