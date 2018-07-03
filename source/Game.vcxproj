@@ -130,6 +130,8 @@
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\attack\AttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\attack\OnAttackAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\block\BlockAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\block\OnBlockAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\chase\ChaseAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\chase\OnChaseAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\CombatCondition.cpp" />
@@ -451,6 +453,8 @@
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\attack\AttackAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\attack\OnAttackAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\block\BlockAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\block\OnBlockAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\chase\ChaseAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\chase\OnChaseAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\CombatCondition.h" />

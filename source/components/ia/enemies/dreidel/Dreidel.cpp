@@ -64,6 +64,8 @@
 #include "components/ia/enemies/common/combat/tackle_attack/TackleAttackAction.h"
 #include "components/ia/enemies/common/combat/step_back/OnStepBackAction.h"
 #include "components/ia/enemies/common/combat/step_back/StepBackAction.h"
+#include "components/ia/enemies/common/combat/block/BlockAction.h"
+#include "components/ia/enemies/common/combat/block/OnBlockAction.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
@@ -76,9 +78,6 @@ void Dreidel::initBehaviorTree() {
 	AirborneCondition* airborneCondition = new AirborneCondition(this);
 	OnAirborneAction* onAirborneAction = new OnAirborneAction(this, "enemigo_bola_idle");
 	OnAirborneCondition* onAirborneCondition = new OnAirborneCondition(this);
-	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(this, "enemigo_bola_guardia");
-	OnBlockingBreakAction* onBlockingBreakAction = new OnBlockingBreakAction(this, "enemigo_bola_guardia");
-	OnBlockingBreakCondition* onBlockingBreakCondition = new OnBlockingBreakCondition(this);
 	DeathAction* deathAction = new DeathAction(this, "enemigo_bola_muerte");
 	DisappearAction* disappearAction = new DisappearAction(this, "enemigo_bola_desaparecer");
 	OnDeathAction* onDeathAction = new OnDeathAction(this, "enemigo_bola_muerte");
@@ -131,6 +130,11 @@ void Dreidel::initBehaviorTree() {
 	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(this, combatCondition);
 	OnStrollAction* onStrollAction = new OnStrollAction(this, "enemigo_bola_run");
 	StrollAction* strollAction = new StrollAction(this, combatCondition);
+	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(this, "enemigo_bola_recibirdanio_impacto");
+	OnBlockingBreakAction* onBlockingBreakAction = new OnBlockingBreakAction(this, "enemigo_bola_recibirdanio_impacto");
+	OnBlockingBreakCondition* onBlockingBreakCondition = new OnBlockingBreakCondition(this);
+	BlockAction* blockAction = new BlockAction(this);
+	OnBlockAction* onBlockAction = new OnBlockAction(this, "enemigo_bola_guardia", "enemigo_bola_guardia_loop");
 
 	//root
 	createRoot("dreidel", Priority, nullptr, nullptr);
@@ -208,6 +212,10 @@ void Dreidel::initBehaviorTree() {
 	addChild("shortDistanceCombat", "stepBack", Sequence, nullptr, nullptr);
 	addChild("stepBack", "onStepBackAction", Action, nullptr, onStepBackAction);
 	addChild("stepBack", "stepBackAction", Action, nullptr, stepBackAction);
+	//block
+	addChild("shortDistanceCombat", "block", Sequence, nullptr, nullptr);
+	addChild("block", "onBlockAction", Action, nullptr, onBlockAction);
+	addChild("block", "blockAction", Action, nullptr, blockAction);
 	//medium distance combat
 	addChild("combat", "mediumDistanceCombat", Random, mediumDistanceCombatCondition, nullptr);
 	//idle war

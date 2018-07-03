@@ -52,6 +52,8 @@ public:
 	float longCombatDistanceSqrd = 0.f;
 	float stepBackDistanceSqrd = 0.f;
 
+	float blockTime = 0.f;
+
 	//<AttackInfo, hitboxName, hitboxStart, hitboxEnd>
 	std::map<std::string, EnemyAttack> attacks;
 	std::string currentAttack = "";

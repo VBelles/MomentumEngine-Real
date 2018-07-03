@@ -37,6 +37,7 @@
         "medium_combat_distance": 6,
         "long_combat_distance": 10,
         "step_back_distance": 0.3,
+        "block_time": 1.5,
         "attacks": [
           {
             "name": "attack",
