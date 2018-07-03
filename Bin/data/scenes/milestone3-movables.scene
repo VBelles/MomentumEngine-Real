@@ -2,6 +2,1708 @@
   {
     "entity":
     {
+      "name": "ms3_plataforma067",
+      "transform":
+      {
+        "pos": "-611.733 183.059 -882.871",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma067.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider067.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.185537,
+        "travel_wait_time": 0.0,
+        "speed": 0.25,
+        "knots":
+        [
+           "-618.403 183.021 -882.663",
+           "-615.591 183.021 -876.633",
+           "-615.591 183.021 -876.633",
+           "-612.373 183.021 -885.474",
+           "-621.215 183.021 -888.693",
+           "-624.433 183.021 -879.851",
+           "-624.433 183.021 -879.851"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma066",
+      "transform":
+      {
+        "pos": "-618.584 183.059 -889.018",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma066.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider066.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.435093,
+        "travel_wait_time": 0.0,
+        "speed": 0.25,
+        "knots":
+        [
+           "-618.403 183.021 -882.663",
+           "-615.591 183.021 -876.633",
+           "-615.591 183.021 -876.633",
+           "-612.373 183.021 -885.474",
+           "-621.215 183.021 -888.693",
+           "-624.433 183.021 -879.851",
+           "-624.433 183.021 -879.851"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma065",
+      "transform":
+      {
+        "pos": "-624.791 183.059 -882.267",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma065.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider065.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.690391,
+        "travel_wait_time": 0.0,
+        "speed": 0.25,
+        "knots":
+        [
+           "-618.403 183.021 -882.663",
+           "-615.591 183.021 -876.633",
+           "-615.591 183.021 -876.633",
+           "-612.373 183.021 -885.475",
+           "-621.215 183.021 -888.693",
+           "-624.433 183.021 -879.851",
+           "-624.433 183.021 -879.851"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma064",
+      "transform":
+      {
+        "pos": "-618.082 183.059 -876.088",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma064.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider064.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma063",
+      "transform":
+      {
+        "pos": "-638.893 188.04 -880.771",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma063.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider063.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.690045,
+        "travel_wait_time": 0.0,
+        "speed": 0.25,
+        "knots":
+        [
+           "-632.471 187.987 -881.155",
+           "-629.659 187.987 -875.125",
+           "-629.659 187.987 -875.125",
+           "-626.441 187.987 -883.966",
+           "-635.283 187.987 -887.185",
+           "-638.501 187.987 -878.343",
+           "-638.501 187.987 -878.343"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma062",
+      "transform":
+      {
+        "pos": "-178.246 69.6714 -902.907",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma062.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider062.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.43424,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-183.287 69.6315 -891.409",
+           "-183.287 69.6315 -878.708",
+           "-183.287 69.6315 -878.708",
+           "-170.587 69.6315 -891.409",
+           "-183.287 69.6315 -904.109",
+           "-195.987 69.6315 -891.409",
+           "-195.987 69.6315 -891.409"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma061",
+      "transform":
+      {
+        "pos": "-599.276 115.241 -923.213",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma061.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider061.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-597.725 114.963 -922.617",
+           "-597.725 114.963 -922.617",
+           "-552.748 114.963 -881.799",
+           "-541.055 114.963 -946.823",
+           "-516.603 114.963 -894.934",
+           "-570.043 114.963 -931.175",
+           "-585.548 114.963 -867.686",
+           "-585.548 114.963 -867.686"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma060",
+      "transform":
+      {
+        "pos": "-493.529 112.32 -910.087",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma060.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider060.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-493.606 111.966 -909.92",
+           "-493.606 111.966 -909.92",
+           "-541.97 111.966 -946.663",
+           "-547.951 111.966 -880.868",
+           "-576.832 111.966 -930.428",
+           "-520.437 111.966 -898.983",
+           "-510.525 111.966 -963.581",
+           "-510.525 111.966 -963.581"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma059",
+      "transform":
+      {
+        "pos": "-480.373 119.138 -776.478",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma059.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider059.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.433123,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-485.495 119.097 -765.014",
+           "-485.495 119.097 -752.314",
+           "-485.495 119.097 -752.314",
+           "-472.795 119.097 -765.014",
+           "-485.495 119.097 -777.714",
+           "-498.195 119.097 -765.014",
+           "-498.195 119.097 -765.014"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma058",
+      "transform":
+      {
+        "pos": "-496.876 119.138 -769.908",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma058.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider058.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.685368,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-485.495 119.097 -765.014",
+           "-485.495 119.097 -752.314",
+           "-485.495 119.097 -752.314",
+           "-472.795 119.097 -765.014",
+           "-485.495 119.097 -777.714",
+           "-498.195 119.097 -765.014",
+           "-498.195 119.097 -765.014"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma057",
+      "transform":
+      {
+        "pos": "-490.452 119.138 -753.555",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma057.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider057.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.935016,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-485.495 119.097 -765.014",
+           "-485.495 119.097 -752.314",
+           "-485.495 119.097 -752.314",
+           "-472.795 119.097 -765.014",
+           "-485.495 119.097 -777.714",
+           "-498.195 119.097 -765.014",
+           "-498.195 119.097 -765.014"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma056",
+      "transform":
+      {
+        "pos": "-473.799 119.138 -759.901",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma056.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider056.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.184407,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-485.495 119.097 -765.014",
+           "-485.495 119.097 -752.314",
+           "-485.495 119.097 -752.314",
+           "-472.795 119.097 -765.014",
+           "-485.495 119.097 -777.714",
+           "-498.195 119.097 -765.014",
+           "-498.195 119.097 -765.014"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma055",
+      "transform":
+      {
+        "pos": "-461.928 116.156 -753.678",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma055.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider055.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.934204,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-456.856 116.111 -765.241",
+           "-456.856 116.111 -752.541",
+           "-456.856 116.111 -752.541",
+           "-444.156 116.111 -765.241",
+           "-456.856 116.111 -777.941",
+           "-469.556 116.111 -765.241",
+           "-469.556 116.111 -765.241"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma054",
+      "transform":
+      {
+        "pos": "-468.257 116.156 -770.233",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma054.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider054.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.684314,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-456.856 116.111 -765.241",
+           "-456.856 116.111 -752.541",
+           "-456.856 116.111 -752.541",
+           "-444.156 116.111 -765.241",
+           "-456.856 116.111 -777.941",
+           "-469.556 116.111 -765.241",
+           "-469.556 116.111 -765.241"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma053",
+      "transform":
+      {
+        "pos": "-451.844 116.156 -776.648",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma053.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider053.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.43412,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-456.856 116.111 -765.241",
+           "-456.856 116.111 -752.541",
+           "-456.856 116.111 -752.541",
+           "-444.156 116.111 -765.241",
+           "-456.856 116.111 -777.941",
+           "-469.556 116.111 -765.241",
+           "-469.556 116.111 -765.241"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma052",
+      "transform":
+      {
+        "pos": "-445.408 116.156 -760.275",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma052.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider052.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.184864,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-456.856 116.111 -765.241",
+           "-456.856 116.111 -752.541",
+           "-456.856 116.111 -752.541",
+           "-444.156 116.111 -765.241",
+           "-456.856 116.111 -777.941",
+           "-469.556 116.111 -765.241",
+           "-469.556 116.111 -765.241"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma051",
+      "transform":
+      {
+        "pos": "-273.42 97.5245 -785.902",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma051.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider051.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.433606,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-278.432 97.4877 -774.593",
+           "-278.432 97.4877 -761.893",
+           "-278.432 97.4877 -761.893",
+           "-265.732 97.4877 -774.593",
+           "-278.432 97.4877 -787.293",
+           "-291.132 97.4877 -774.593",
+           "-291.132 97.4877 -774.593"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma050",
+      "transform":
+      {
+        "pos": "-289.792 97.5245 -779.446",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma050.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider050.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.685744,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-278.432 97.4877 -774.593",
+           "-278.432 97.4877 -761.893",
+           "-278.432 97.4877 -761.893",
+           "-265.732 97.4877 -774.593",
+           "-278.432 97.4877 -787.293",
+           "-291.132 97.4877 -774.593",
+           "-291.132 97.4877 -774.593"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma049",
+      "transform":
+      {
+        "pos": "-283.363 97.5245 -763.204",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma049.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider049.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.93496,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-278.432 97.4877 -774.593",
+           "-278.432 97.4877 -761.893",
+           "-278.432 97.4877 -761.893",
+           "-265.732 97.4877 -774.593",
+           "-278.432 97.4877 -787.293",
+           "-291.132 97.4877 -774.593",
+           "-291.132 97.4877 -774.593"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma048",
+      "transform":
+      {
+        "pos": "-266.96 97.5245 -769.484",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma048.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider048.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.183322,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-278.432 97.4877 -774.593",
+           "-278.432 97.4877 -761.893",
+           "-278.432 97.4877 -761.893",
+           "-265.732 97.4877 -774.593",
+           "-278.432 97.4877 -787.293",
+           "-291.132 97.4877 -774.593",
+           "-291.132 97.4877 -774.593"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma047",
+      "transform":
+      {
+        "pos": "-241.106 94.4471 -781.173",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma047.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider047.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.431942,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-246.197 94.401 -770.003",
+           "-246.197 94.401 -757.302",
+           "-246.197 94.401 -757.302",
+           "-233.497 94.401 -770.003",
+           "-246.197 94.401 -782.703",
+           "-258.897 94.401 -770.003",
+           "-258.897 94.401 -770.003"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma046",
+      "transform":
+      {
+        "pos": "-257.574 94.4471 -774.964",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma046.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider046.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.684547,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-246.197 94.401 -770.003",
+           "-246.197 94.401 -757.302",
+           "-246.197 94.401 -757.302",
+           "-233.497 94.401 -770.003",
+           "-246.197 94.401 -782.703",
+           "-258.897 94.401 -770.003",
+           "-258.897 94.401 -770.003"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma045",
+      "transform":
+      {
+        "pos": "-251.15 94.4471 -758.611",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma045.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider045.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.934725,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-246.197 94.401 -770.003",
+           "-246.197 94.401 -757.302",
+           "-246.197 94.401 -757.302",
+           "-233.497 94.401 -770.003",
+           "-246.197 94.401 -782.703",
+           "-258.897 94.401 -770.003",
+           "-258.897 94.401 -770.003"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma044",
+      "transform":
+      {
+        "pos": "-234.736 94.4471 -764.968",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma044.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider044.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.184126,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-246.197 94.401 -770.003",
+           "-246.197 94.401 -757.302",
+           "-246.197 94.401 -757.302",
+           "-233.497 94.401 -770.003",
+           "-246.197 94.401 -782.703",
+           "-258.897 94.401 -770.003",
+           "-258.897 94.401 -770.003"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma043",
+      "transform":
+      {
+        "pos": "-226.216 94.5047 -767.211",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma043.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider043.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.25,
+        "knots":
+        [
+           "-226.26 94.1401 -767.469",
+           "-226.26 94.1401 -767.469",
+           "-193.527 94.1401 -761.979",
+           "-193.527 94.1401 -761.979"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plataforma042",
+      "transform":
+      {
+        "pos": "-194.702 94.5047 -754.234",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma042.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider042.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.25,
+        "knots":
+        [
+           "-194.39 94.1401 -754.261",
+           "-194.39 94.1401 -754.261",
+           "-227.124 94.1401 -759.751",
+           "-227.124 94.1401 -759.751"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pared_insider007",
+      "transform":
+      {
+        "pos": "-182.365 292.01 -1212.66",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pared_insider007.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pared_insider_col007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 2.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-182.594 291.62 -1212.89",
+           "-182.594 291.62 -1212.89",
+           "-171.372 291.62 -1220.74",
+           "-171.372 291.62 -1220.74"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pared_insider006",
+      "transform":
+      {
+        "pos": "-177.201 296.122 -1205.79",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pared_insider006.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pared_insider_col006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-177.43 295.732 -1206.01",
+           "-177.43 295.732 -1206.01",
+           "-166.207 295.732 -1213.87",
+           "-166.207 295.732 -1213.87"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pared_insider005",
+      "transform":
+      {
+        "pos": "-172.928 300.297 -1198.69",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pared_insider005.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pared_insider_col005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 2.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-173.158 299.907 -1198.91",
+           "-173.158 299.907 -1198.91",
+           "-161.935 299.907 -1206.77",
+           "-161.935 299.907 -1206.77"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pared_insider004",
+      "transform":
+      {
+        "pos": "-167.764 304.434 -1191.81",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pared_insider004.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pared_insider_col004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-167.993 304.044 -1192.03",
+           "-167.993 304.044 -1192.03",
+           "-156.771 304.044 -1199.89",
+           "-156.771 304.044 -1199.89"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pared_insider003",
+      "transform":
+      {
+        "pos": "-186.79 285.522 -1218.85",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pared_insider003.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pared_insider_col003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 2.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-187.019 285.132 -1219.07",
+           "-187.019 285.132 -1219.07",
+           "-175.796 285.132 -1226.93",
+           "-175.796 285.132 -1226.93"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pared_insider002",
+      "transform":
+      {
+        "pos": "-181.625 279.626 -1211.97",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pared_insider002.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pared_insider_col002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-181.854 279.236 -1212.19",
+           "-181.854 279.236 -1212.19",
+           "-170.632 279.236 -1220.05",
+           "-170.632 279.236 -1220.05"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_pared_insider001",
+      "transform":
+      {
+        "pos": "-177.353 275.447 -1204.87",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_pared_insider001.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_pared_insider_col001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 2.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-177.582 275.058 -1205.09",
+           "-177.582 275.058 -1205.09",
+           "-166.359 275.058 -1212.95",
+           "-166.359 275.058 -1212.95"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_rotate032",
       "transform":
       {
@@ -146,167 +1848,6 @@
   {
     "entity":
     {
-      "name": "ms3_platf029",
-      "transform":
-      {
-        "pos": "-599.268 115.195 -923.208",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_platf029.mesh",
-          "materials":
-          [
-            "data/materials/Plataforma.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_platf030.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "catmull-rom",
-        "automove": true,
-        "loop": true,
-        "closed": false,
-        "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.05,
-        "knots":
-        [
-           "-597.725 114.963 -922.617",
-           "-597.725 114.963 -922.617",
-           "-552.748 114.963 -881.799",
-           "-541.055 114.963 -946.823",
-           "-516.603 114.963 -894.934",
-           "-570.043 114.963 -931.175",
-           "-585.548 114.963 -867.686",
-           "-585.548 114.963 -867.686"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_platf028",
-      "transform":
-      {
-        "pos": "-493.502 112.273 -910.092",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_platf028.mesh",
-          "materials":
-          [
-            "data/materials/Plataforma.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_platf_col008.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "catmull-rom",
-        "automove": true,
-        "loop": true,
-        "closed": false,
-        "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.05,
-        "knots":
-        [
-           "-493.606 111.966 -909.92",
-           "-493.606 111.966 -909.92",
-           "-541.97 111.966 -946.663",
-           "-547.951 111.966 -880.868",
-           "-576.832 111.966 -930.428",
-           "-520.437 111.966 -898.983",
-           "-510.525 111.966 -963.581",
-           "-510.525 111.966 -963.581"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder144",
-      "transform":
-      {
-        "pos": "-178.332 69.2952 -902.667",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder144.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder145.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.434012,
-        "travel_wait_time": 0.0,
-        "speed": 0.2,
-        "knots":
-        [
-           "-183.287 69.6315 -891.409",
-           "-183.287 69.6315 -878.708",
-           "-183.287 69.6315 -878.708",
-           "-170.587 69.6315 -891.409",
-           "-183.287 69.6315 -904.109",
-           "-195.987 69.6315 -891.409",
-           "-195.987 69.6315 -891.409"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms3_rotateTriang007",
       "transform":
       {
@@ -409,271 +1950,6 @@
       {
         "rotation_axis": "0.0 1.0 0.0",
         "rotation_speed": 0.5
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder142",
-      "transform":
-      {
-        "pos": "-638.834 187.651 -880.738",
-        "rotation": "0.0 -0.843391 0.0 -0.5373"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder142.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder143.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.690972,
-        "travel_wait_time": 0.0,
-        "speed": 0.25,
-        "knots":
-        [
-           "-632.471 187.987 -881.155",
-           "-629.659 187.987 -875.125",
-           "-629.659 187.987 -875.125",
-           "-626.441 187.987 -883.966",
-           "-635.283 187.987 -887.185",
-           "-638.501 187.987 -878.343",
-           "-638.501 187.987 -878.343"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder137",
-      "transform":
-      {
-        "pos": "-624.766 182.685 -882.246",
-        "rotation": "0.0 -0.843391 0.0 -0.5373"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder137.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder141.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.690972,
-        "travel_wait_time": 0.0,
-        "speed": 0.25,
-        "knots":
-        [
-           "-618.403 183.021 -882.663",
-           "-615.591 183.021 -876.633",
-           "-615.591 183.021 -876.633",
-           "-612.373 183.021 -885.475",
-           "-621.215 183.021 -888.693",
-           "-624.433 183.021 -879.851",
-           "-624.433 183.021 -879.851"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder136",
-      "transform":
-      {
-        "pos": "-611.891 182.685 -882.898",
-        "rotation": "0.0 0.5373 0.0 -0.843392"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder136.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder140.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.186317,
-        "travel_wait_time": 0.0,
-        "speed": 0.25,
-        "knots":
-        [
-           "-618.403 183.021 -882.663",
-           "-615.591 183.021 -876.633",
-           "-615.591 183.021 -876.633",
-           "-612.373 183.021 -885.474",
-           "-621.215 183.021 -888.693",
-           "-624.433 183.021 -879.851",
-           "-624.433 183.021 -879.851"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder135",
-      "transform":
-      {
-        "pos": "-618.075 182.685 -876.172",
-        "rotation": "0.0 -0.976296 0.0 0.21644"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder135.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder139.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.938588,
-        "travel_wait_time": 0.0,
-        "speed": 0.25,
-        "knots":
-        [
-           "-618.403 183.021 -882.663",
-           "-615.591 183.021 -876.633",
-           "-615.591 183.021 -876.633",
-           "-612.373 183.021 -885.475",
-           "-621.215 183.021 -888.693",
-           "-624.433 183.021 -879.851",
-           "-624.433 183.021 -879.851"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder134",
-      "transform":
-      {
-        "pos": "-618.67 182.685 -888.96",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder134.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder138.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.437303,
-        "travel_wait_time": 0.0,
-        "speed": 0.25,
-        "knots":
-        [
-           "-618.403 183.021 -882.663",
-           "-615.591 183.021 -876.633",
-           "-615.591 183.021 -876.633",
-           "-612.373 183.021 -885.474",
-           "-621.215 183.021 -888.693",
-           "-624.433 183.021 -879.851",
-           "-624.433 183.021 -879.851"
-        ]
       }
     }
   },
@@ -899,7 +2175,7 @@
       "name": "ms3_pared_insider",
       "transform":
       {
-        "pos": "-180.883 269.552 -1208.94",
+        "pos": "-172.188 269.552 -1197.99",
         "rotation": "0.0 -0.300706 0.0 -0.953717"
       },
       "render":
@@ -931,14 +2207,14 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 0.0,
+        "travel_wait_time": 1.0,
         "speed": 0.3,
         "knots":
         [
-           "-181.112 269.162 -1209.16",
-           "-181.112 269.162 -1209.16",
-           "-169.889 269.162 -1217.02",
-           "-169.889 269.162 -1217.02"
+           "-172.418 269.162 -1198.22",
+           "-172.418 269.162 -1198.22",
+           "-161.195 269.162 -1206.08",
+           "-161.195 269.162 -1206.08"
         ]
       }
     }
@@ -1496,430 +2772,6 @@
   {
     "entity":
     {
-      "name": "ms3_Cylinder102",
-      "transform":
-      {
-        "pos": "-496.876 118.761 -769.861",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder102.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder106.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.685922,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-485.495 119.097 -765.014",
-           "-485.495 119.097 -752.314",
-           "-485.495 119.097 -752.314",
-           "-472.795 119.097 -765.014",
-           "-485.495 119.097 -777.714",
-           "-498.195 119.097 -765.014",
-           "-498.195 119.097 -765.014"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder101",
-      "transform":
-      {
-        "pos": "-474.056 118.761 -759.94",
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder101.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder105.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.183554,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-485.495 119.097 -765.014",
-           "-485.495 119.097 -752.314",
-           "-485.495 119.097 -752.314",
-           "-472.795 119.097 -765.014",
-           "-485.495 119.097 -777.714",
-           "-498.195 119.097 -765.014",
-           "-498.195 119.097 -765.014"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder100",
-      "transform":
-      {
-        "pos": "-490.477 118.761 -753.555",
-        "rotation": "0.0 -1.0 0.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder100.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder104.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.934732,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-485.495 119.097 -765.014",
-           "-485.495 119.097 -752.314",
-           "-485.495 119.097 -752.314",
-           "-472.795 119.097 -765.014",
-           "-485.495 119.097 -777.714",
-           "-498.195 119.097 -765.014",
-           "-498.195 119.097 -765.014"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder099",
-      "transform":
-      {
-        "pos": "-480.54 118.761 -776.272",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder099.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder103.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.434012,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-485.495 119.097 -765.014",
-           "-485.495 119.097 -752.314",
-           "-485.495 119.097 -752.314",
-           "-472.795 119.097 -765.014",
-           "-485.495 119.097 -777.714",
-           "-498.195 119.097 -765.014",
-           "-498.195 119.097 -765.014"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder094",
-      "transform":
-      {
-        "pos": "-468.236 115.775 -770.087",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder094.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder098.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.685922,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-456.856 116.111 -765.241",
-           "-456.856 116.111 -752.541",
-           "-456.856 116.111 -752.541",
-           "-444.156 116.111 -765.241",
-           "-456.856 116.111 -777.941",
-           "-469.556 116.111 -765.241",
-           "-469.556 116.111 -765.241"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder093",
-      "transform":
-      {
-        "pos": "-445.416 115.775 -760.167",
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder093.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder097.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.183554,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-456.856 116.111 -765.241",
-           "-456.856 116.111 -752.541",
-           "-456.856 116.111 -752.541",
-           "-444.156 116.111 -765.241",
-           "-456.856 116.111 -777.941",
-           "-469.556 116.111 -765.241",
-           "-469.556 116.111 -765.241"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder092",
-      "transform":
-      {
-        "pos": "-461.837 115.775 -753.782",
-        "rotation": "0.0 -1.0 0.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder092.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder096.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.934732,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-456.856 116.111 -765.241",
-           "-456.856 116.111 -752.541",
-           "-456.856 116.111 -752.541",
-           "-444.156 116.111 -765.241",
-           "-456.856 116.111 -777.941",
-           "-469.556 116.111 -765.241",
-           "-469.556 116.111 -765.241"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder091",
-      "transform":
-      {
-        "pos": "-451.9 115.775 -776.499",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder091.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder095.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.434012,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-456.856 116.111 -765.241",
-           "-456.856 116.111 -752.541",
-           "-456.856 116.111 -752.541",
-           "-444.156 116.111 -765.241",
-           "-456.856 116.111 -777.941",
-           "-469.556 116.111 -765.241",
-           "-469.556 116.111 -765.241"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms3_plataforma_rocosa2_low040",
       "transform":
       {
@@ -2413,530 +3265,6 @@
            "-110.409 85.2488 -781.478",
            "-109.787 85.2488 -768.347",
            "-109.787 85.2488 -768.347"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder053",
-      "transform":
-      {
-        "pos": "-257.578 94.0647 -774.849",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder053.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder063.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.685922,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-246.197 94.401 -770.003",
-           "-246.197 94.401 -757.302",
-           "-246.197 94.401 -757.302",
-           "-233.497 94.401 -770.003",
-           "-246.197 94.401 -782.703",
-           "-258.897 94.401 -770.003",
-           "-258.897 94.401 -770.003"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder052",
-      "transform":
-      {
-        "pos": "-234.758 94.0647 -764.928",
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder052.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder062.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.183554,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-246.197 94.401 -770.003",
-           "-246.197 94.401 -757.302",
-           "-246.197 94.401 -757.302",
-           "-233.497 94.401 -770.003",
-           "-246.197 94.401 -782.703",
-           "-258.897 94.401 -770.003",
-           "-258.897 94.401 -770.003"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder051",
-      "transform":
-      {
-        "pos": "-251.179 94.0647 -758.544",
-        "rotation": "0.0 -1.0 0.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder051.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder061.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.934731,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-246.197 94.401 -770.003",
-           "-246.197 94.401 -757.302",
-           "-246.197 94.401 -757.302",
-           "-233.497 94.401 -770.003",
-           "-246.197 94.401 -782.703",
-           "-258.897 94.401 -770.003",
-           "-258.897 94.401 -770.003"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder050",
-      "transform":
-      {
-        "pos": "-241.242 94.0647 -781.261",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder050.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder060.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.434012,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-246.197 94.401 -770.003",
-           "-246.197 94.401 -757.302",
-           "-246.197 94.401 -757.302",
-           "-233.497 94.401 -770.003",
-           "-246.197 94.401 -782.703",
-           "-258.897 94.401 -770.003",
-           "-258.897 94.401 -770.003"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder047",
-      "transform":
-      {
-        "pos": "-289.813 97.1514 -779.439",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder047.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder059.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.685922,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-278.432 97.4877 -774.593",
-           "-278.432 97.4877 -761.893",
-           "-278.432 97.4877 -761.893",
-           "-265.732 97.4877 -774.593",
-           "-278.432 97.4877 -787.293",
-           "-291.132 97.4877 -774.593",
-           "-291.132 97.4877 -774.593"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder046",
-      "transform":
-      {
-        "pos": "-266.992 97.1514 -769.519",
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder046.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder058.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.183554,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-278.432 97.4877 -774.593",
-           "-278.432 97.4877 -761.893",
-           "-278.432 97.4877 -761.893",
-           "-265.732 97.4877 -774.593",
-           "-278.432 97.4877 -787.293",
-           "-291.132 97.4877 -774.593",
-           "-291.132 97.4877 -774.593"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder045",
-      "transform":
-      {
-        "pos": "-283.413 97.1514 -763.134",
-        "rotation": "0.0 -1.0 0.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder045.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder057.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.934732,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-278.432 97.4877 -774.593",
-           "-278.432 97.4877 -761.893",
-           "-278.432 97.4877 -761.893",
-           "-265.732 97.4877 -774.593",
-           "-278.432 97.4877 -787.293",
-           "-291.132 97.4877 -774.593",
-           "-291.132 97.4877 -774.593"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder044",
-      "transform":
-      {
-        "pos": "-273.477 97.1514 -785.851",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder044.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder056.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.434012,
-        "travel_wait_time": 0.0,
-        "speed": 0.04,
-        "knots":
-        [
-           "-278.432 97.4877 -774.593",
-           "-278.432 97.4877 -761.893",
-           "-278.432 97.4877 -761.893",
-           "-265.732 97.4877 -774.593",
-           "-278.432 97.4877 -787.293",
-           "-291.132 97.4877 -774.593",
-           "-291.132 97.4877 -774.593"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder038",
-      "transform":
-      {
-        "pos": "-226.217 94.1282 -767.354",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder038.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder055.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "catmull-rom",
-        "automove": true,
-        "loop": true,
-        "closed": false,
-        "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.3,
-        "knots":
-        [
-           "-226.26 94.1401 -767.469",
-           "-226.26 94.1401 -767.469",
-           "-193.527 94.1401 -761.979",
-           "-193.527 94.1401 -761.979"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Cylinder037",
-      "transform":
-      {
-        "pos": "-194.736 94.1282 -754.218",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_Cylinder037.mesh",
-          "materials":
-          [
-            "data/materials/empty_gray.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_Cylinder054.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0,
-        "curve_type": "catmull-rom",
-        "automove": true,
-        "loop": true,
-        "closed": false,
-        "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.3,
-        "knots":
-        [
-           "-194.39 94.1401 -754.261",
-           "-194.39 94.1401 -754.261",
-           "-227.124 94.1401 -759.751",
-           "-227.124 94.1401 -759.751"
         ]
       }
     }
