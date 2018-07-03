@@ -28,13 +28,13 @@ struct TVtxPosClr {
 void activateCamera(CCamera& cam, int width, int height);
 void setWorldTransform(MAT44 new_matrix, VEC4 color = VEC4(1, 1, 1, 1));
 void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color = VEC4(1, 1, 1, 1));
-void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color);
+void renderWiredAABB(const AABB& aabb, const MAT44& world, const VEC4& color);
 void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture);
-void renderDots(VEC3 src, VEC4 color);
-void renderLine(VEC3 src, VEC3 dst, VEC4 color);
-void renderWiredCube(CTransform* transform, const VEC3 halfExent, VEC4 color);
-void renderCircle(CTransform* transform, float radius, VEC4 color);
-void renderSphere(CTransform* transform, float radius, VEC4 color);
+void renderDots(const VEC3& src, const VEC4& color);
+void renderLine(const VEC3& src, const VEC3& dst, const VEC4& color);
+void renderWiredCube(const CTransform* transform, const VEC3& halfExent, const VEC4& color);
+void renderCircle(const CTransform* transform, float radius, const VEC4& color);
+void renderSphere(const CTransform* transform, float radius, const VEC4& color);
 
 // Helper to create a depth stencil, returning all the dx objects
 bool createDepthStencil(const std::string& aname,

@@ -13,6 +13,9 @@ protected:
 	float powerToGet = 4000.f;
 	float propelDuration = 0.5f;
 
+	bool isSlashOut = false;
+	CTimer movementTimer;
+
 	std::string animation = "wall_jump_plummet_loop";
 
 	std::string hitbox = "plummet_attack";

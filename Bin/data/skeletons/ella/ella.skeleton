@@ -2,6 +2,7 @@
   "name": "ella",
   "anims": [
     { "name": "death" },
+    { "name": "death_loop" },
     { "name": "dodge" },
     { "name": "falling_attack" },
     { "name": "falling_attack_positioning" },
@@ -28,6 +29,7 @@
     { "name": "propel_high" },
     { "name": "propel_long" },
     { "name": "release_power" },
+    { "name": "release_power_air" },
     { "name": "run1" },
     { "name": "run2" },
     { "name": "run3" },

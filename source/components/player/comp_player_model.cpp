@@ -111,7 +111,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	TCompRender *render = get<TCompRender>();
 	render->setAllMaterials(0, (int)render->meshes.size() / 2, materials[msg.powerLvl - 1]);
 
-	getStateManager()->getState<RunActionState>(Run)->setAnimation(msg.powerLvl);
+	getStateManager()->getState<RunActionState>(Run)->onLevelChange(msg.powerLvl);
 
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 }
@@ -124,7 +124,9 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	powerGaugeHandle = get<TCompPowerGauge>();
 	collectableManagerHandle = get<TCompCollectableManager>();
 
+	float pitch;
 	respawnPosition = getTransform()->getPosition();
+	getTransform()->getYawPitchRoll(&respawnYaw, &pitch);
 
 	renderUI->registerOnRenderUI([&]() {
 
@@ -288,7 +290,7 @@ void TCompPlayerModel::setMovementInput(VEC2 input, float delta) {
 void TCompPlayerModel::setHp(float hp) {
 	hp = clamp(hp, 0.f, maxHp);
 	this->hp = hp;
-	if (this->hp == 0.f) {
+	if (this->hp == 0.f && stateManager->getState()->state != PitFalling) {
 		stateManager->changeState(Death);
 		stateManager->changeConcurrentState(Free);
 	}
@@ -296,8 +298,9 @@ void TCompPlayerModel::setHp(float hp) {
 	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
 }
 
-void TCompPlayerModel::setRespawnPosition(VEC3 position) {
+void TCompPlayerModel::setRespawnPosition(VEC3 position, float yaw) {
 	respawnPosition = position;
+	respawnYaw = yaw;
 }
 
 void TCompPlayerModel::disableOutline() {
@@ -435,7 +438,7 @@ void TCompPlayerModel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 }
 
 void TCompPlayerModel::onRespawnChanged(const TMsgRespawnChanged& msg) {
-	setRespawnPosition(msg.respawnPosition);
+	setRespawnPosition(msg.respawnPosition, msg.respawnYaw);
 }
 
 void TCompPlayerModel::onPurityChange(const TMsgPurityChange& msg) {

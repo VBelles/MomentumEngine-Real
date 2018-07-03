@@ -7,6 +7,7 @@ struct TMsgTriggerEnter;
 
 struct TMsgRespawnChanged {
 	VEC3 respawnPosition;
+	float respawnYaw = 0.f;
 	DECL_MSG_ID();
 };
 
@@ -14,6 +15,7 @@ class TCompRespawnPoint : public TCompBase {
 
 private:	
 	VEC3 respawnPosition;
+	float respawnYaw;
 
 public:
 	DECL_SIBLING_ACCESS();

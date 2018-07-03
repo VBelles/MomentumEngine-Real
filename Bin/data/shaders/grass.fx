@@ -31,7 +31,7 @@ void VS(
   float z_start_fadeout = 150; 
   float alpha = 1.0 - smoothstep( z_start_fadeout, z_start_fadeout + 50, length ( iCenter.xyz - camera_pos.xyz ) );
 
-  float scale_factor = 1.0f;
+  float scale_factor = 0.1f;
   scale_factor = scale_factor + scale_factor * unit_rand_val;
 
   local_pos *= scale_factor * alpha;
@@ -41,12 +41,15 @@ void VS(
   // Add some wind effect
   local_pos.x += sin( ( 3 + 1 * unit_rand_val ) * global_world_time ) * local_pos.y * 0.025;
 
+  // Add vertical offset.
+  local_pos.y -= 0.16f;
+
   // Base position is the position of the instance
   float4 world_pos = iCenter;
   // Option1 : Align to the camera
   // world_pos.xyz += ( local_pos.x * camera_left + local_pos.y * camera_up );
   // Option2 : Add a random orientation around the vertical axis
-  world_pos.xyz += 2 * ( local_pos.x * float3(cos(3*iInstancedID),0, sin(3*iInstancedID)) + local_pos.y * float3(0,1,0));
+  world_pos.xyz += 2 * ( local_pos.x * float3(cos(3*iInstancedID), 0, sin(3*iInstancedID)) + local_pos.y * float3(0,1,0));
 
   oPos = mul(world_pos, camera_view_proj);
   oUV = 1-uv;

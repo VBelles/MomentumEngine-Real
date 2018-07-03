@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/estaca_baja_Material _203_BaseColor.dds",
+    "normal": "data/textures/estaca_baja_Material _203_Normal.dds",
+    "metallic": "data/textures/estaca_baja_Material _203_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/estaca_baja_Material _203_Emissive.dds",
+    "height": "data/textures/estaca_baja_Material _203_Height.dds"
+  }
+}

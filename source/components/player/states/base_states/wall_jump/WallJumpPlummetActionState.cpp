@@ -7,6 +7,7 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/slash/comp_slash.h"
 
 
 WallJumpPlummetActionState::WallJumpPlummetActionState(StateManager* stateManager) :
@@ -31,6 +32,12 @@ void WallJumpPlummetActionState::update(float delta) {
 			stateManager->changeState(AirborneNormal);
 		}
 	}
+
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(2)) {
+		isSlashOut = true;
+		getSlash(SlashType::LEFT_HAND)->setEnable(true);
+		getSlash(SlashType::RIGHT_HAND)->setEnable(true);
+	}
 }
 
 void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
@@ -43,6 +50,8 @@ void WallJumpPlummetActionState::onStateEnter(IActionState * lastState) {
 	getHitboxes()->enable(hitbox);
 	timer.reset();
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	movementTimer.reset();
+	isSlashOut = false;
 }
 
 void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
@@ -51,10 +60,13 @@ void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	clampHorizontalVelocity(currentPowerStats->maxHorizontalSpeed);
 
-	if (!dynamic_cast<HardLandingActionState*>(nextState)) {
-		getHitboxes()->disable(hitbox); //que la deshabilite HardLanding si es posible
+	if (nextState->state != HardLanding) {
+		getHitboxes()->disable(hitbox);
 	}
 
+	isSlashOut = false;
+	getSlash(SlashType::LEFT_HAND)->stopEmitting();
+	getSlash(SlashType::RIGHT_HAND)->stopEmitting();
 }
 
 void WallJumpPlummetActionState::onJumpHighButton() {

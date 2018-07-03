@@ -30,8 +30,14 @@ private:
 	CHandle collectableManagerHandle;
 	CHandle gameCameraHandle;
 	CHandle playerCameraHandle;
-	CHandle slashRightHandHandle;
 	CHandle slashLeftHandHandle;
+	CHandle slashRightHandHandle;
+	CHandle slashLeftFootHandle;
+	CHandle slashRightFootHandle;
+	CHandle slashLeftTentacleHandle;
+	CHandle slashRightTentacleHandle;
+	CHandle slashLeftTentacleShortHandle;
+	CHandle slashRightTentacleShortHandle;
 
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;

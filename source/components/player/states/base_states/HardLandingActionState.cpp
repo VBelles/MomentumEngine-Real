@@ -62,7 +62,8 @@ void HardLandingActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 		msgAtackHit.info.givesPower = true;
 	}
 	else {
-		msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
+		//probemos sin stun, solo interrumpe
+		//msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	}
 
 	otherEntity->sendMsg(msgAtackHit);

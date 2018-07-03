@@ -12,6 +12,8 @@ private:
 	float suspensionTime = 0.4f;
 	VEC2 launchSpeed = { 30.f, 3.f };
 
+	bool isSlashOut = false;
+
 	CTimer movementTimer;
 
 	std::string animation = "strong_attack3";

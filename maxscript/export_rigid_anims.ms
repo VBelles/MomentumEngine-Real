@@ -55,9 +55,9 @@ struct TRigidAnimExporter (
 	fn getTracksKeys obj fps = (
 		local keys = #()
 		local limits = [ 100000f,-100000f ]
-		limits = expandLimits limits obj.pos.controller.keys
+		limits = expandLimits limits obj.pos.controller[1].keys
 		limits = expandLimits limits obj.scale.controller.keys
-		limits = expandLimits limits obj.rotation.controller.keys
+		limits = expandLimits limits obj.rotation.controller[1].keys
 		
 		format "Limits of % are %\n" obj.name limits
 		

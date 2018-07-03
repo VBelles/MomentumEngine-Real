@@ -9,6 +9,7 @@
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/slash/comp_slash.h"
 
 
 FallingAttackActionState::FallingAttackActionState(StateManager* stateManager) :
@@ -41,6 +42,14 @@ void FallingAttackActionState::update(float delta) {
 		}
 		getPlayerModel()->setGravityMultiplier(fallingMultiplier);
 	}
+
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(12)) {
+		isSlashOut = true;
+		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+		getSlash(SlashType::LEFT_TENTACLE_SHORT)->setEnable(true);
+		getSlash(SlashType::RIGHT_TENTACLE_SHORT)->setEnable(true);
+	}
 }
 
 void FallingAttackActionState::onStateEnter(IActionState * lastState) {
@@ -52,6 +61,8 @@ void FallingAttackActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 	getSkeleton()->executeAction(animationPositioning, 0.2f, 0.2f);
+	movementTimer.reset();
+	isSlashOut = false;
 }
 
 void FallingAttackActionState::onStateExit(IActionState * nextState) {
@@ -63,6 +74,11 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 		getHitboxes()->disable(hitbox);
 	}
 	getPlayerModel()->resetGravity();
+	isSlashOut = false;
+	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+	getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
+	getSlash(SlashType::RIGHT_TENTACLE_SHORT)->stopEmitting();
 }
 
 void FallingAttackActionState::onLanding() {

@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/altar_baja_default_BaseColor.dds",
+    "normal": "data/textures/altar_baja_default_Normal.dds",
+    "metallic": "data/textures/altar_baja_default_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/altar_baja_default_Emissive.dds",
+    "height": "data/textures/altar_baja_default_Height.dds"
+  }
+}

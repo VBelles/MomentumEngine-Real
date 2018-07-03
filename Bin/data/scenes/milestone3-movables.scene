@@ -2,6 +2,204 @@
   {
     "entity":
     {
+      "name": "ms3_rotate032",
+      "transform":
+      {
+        "pos": "-144.369 121.347 -1045.92",
+        "rotation": "-0.198765 0.493933 -0.0574562 -0.844524"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate032.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate033.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.8
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate030",
+      "transform":
+      {
+        "pos": "-174.25 111.78 -1023.17",
+        "rotation": "-0.182525 0.344785 0.234551 -0.89039"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate030.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate031.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate028",
+      "transform":
+      {
+        "pos": "-203.911 102.085 -1001.47",
+        "rotation": "-0.198765 0.493933 -0.0574562 -0.844524"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate028.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate029.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.8
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_rotate026",
+      "transform":
+      {
+        "pos": "-232.458 94.1627 -976.743",
+        "rotation": "-0.182525 0.344785 0.234551 -0.89039"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_rotate026.mesh",
+          "materials":
+          [
+            "data/materials/empty.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_rotate027.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_platf029",
+      "transform":
+      {
+        "pos": "-599.268 115.195 -923.208",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_platf029.mesh",
+          "materials":
+          [
+            "data/materials/Plataforma.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_platf030.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0,
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-597.725 114.963 -922.617",
+           "-597.725 114.963 -922.617",
+           "-552.748 114.963 -881.799",
+           "-541.055 114.963 -946.823",
+           "-516.603 114.963 -894.934",
+           "-570.043 114.963 -931.175",
+           "-585.548 114.963 -867.686",
+           "-585.548 114.963 -867.686"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_platf028",
       "transform":
       {

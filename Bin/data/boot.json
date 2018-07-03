@@ -3,16 +3,15 @@
     "data/scenes/game_camera.scene",
     "data/scenes/player.scene",
     "data/scenes/lights.scene",
-
+    "data/scenes/breakable-0.scene",
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-breakables.scene",
     "data/scenes/milestone3-chrysalis.scene",
     "data/scenes/milestone3-coins.scene",
+    "data/scenes/milestone3-mechanisms.scene",
     "data/scenes/milestone3-movables.scene",
     "data/scenes/milestone3-pure.scene",
-    "data/scenes/milestone3-mechanisms.scene",
     "data/scenes/milestone3-trimesh.scene",
-    
     "data/scenes/milestone2-0.scene",
     "data/scenes/milestone2-altar.scene",
     "data/scenes/milestone2-breakables.scene",

@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/modulos_baja_Material murito003_BaseColor.dds",
+    "normal": "data/textures/modulos_baja_Material murito003_Normal.dds",
+    "metallic": "data/textures/modulos_baja_Material murito003_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/modulos_baja_Material modulo001_Height.dds"
+  }
+}

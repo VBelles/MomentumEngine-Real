@@ -1,0 +1,13 @@
+{
+  "technique": "grass.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/vegetacion/espigas_2.dds",
+    "normal": "data/textures/vegetacion/espigas_normals.dds",
+    "metallic": "data/textures/black.dds",
+    "roughness": "data/textures/black.dds"
+  }
+}

@@ -495,8 +495,8 @@
     "vs_entry_point": "VS",
     "ps_entry_point": "PS",
     "vertex_type": "PosNUvUvT",
-    "category": "distorsions",
-    "priority": 390,
+    "category": "gbuffer",
+    "priority": 100,
     "textures": {
       "environment": "data/textures/cubemaps/momentum/posx.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds",

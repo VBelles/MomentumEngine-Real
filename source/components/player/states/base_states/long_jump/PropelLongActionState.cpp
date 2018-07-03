@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "PropelLongActionState.h"
-#include "components/comp_hitbox.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"

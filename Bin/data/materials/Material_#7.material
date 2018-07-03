@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/columna_baja_Material _85_BaseColor.dds",
+    "normal": "data/textures/columna_baja_Material _85_Normal.dds",
+    "metallic": "data/textures/columna_baja_Material _85_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/columna_baja_Material _34_Height.dds"
+  }
+}

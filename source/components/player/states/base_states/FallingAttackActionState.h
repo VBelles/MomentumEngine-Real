@@ -15,6 +15,9 @@ private:
 	float powerToGet = 4000.f;
 	float propelDuration = 0.5f;
 
+	bool isSlashOut = false;
+	CTimer movementTimer;
+
 	std::string animation = "falling_attack";
 	std::string animationPositioning = "falling_attack_positioning";
 

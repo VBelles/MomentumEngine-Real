@@ -148,6 +148,9 @@ struct TMaterialExporter (
 
 		-- "C:\engine\bin\data\textures\bricks.dds" but also "C:\download\bricks.dds"
 		local mapFilename = map.filename
+		local mapFileType = getFilenameType mapFilename
+		--format "mapFileType: %\n" mapFileType --DEBUG
+		if mapFileType != ".DDS" and mapFileType != ".dds" then throw ("Map filename " + mapFilename + " is NOT a DDS file.") 
 
 		-- bricks
 		local mapBaseName = getFilenameFile mapFilename
@@ -180,12 +183,15 @@ struct TMaterialExporter (
 			fs.writeComma()
 			fs.writeKey "textures"
 			fs.beginObj()
-		
+
 			if mat != unsupplied then (
 				if classOf mat == StandardMaterial then (
 					exportMap mat.diffuseMap "albedo" "null_albedo"
 					fs.writeComma()
-					exportMap mat.bumpMap "normal" "null_normal"
+					-- Make this work even if they used "Normal Bump" as Bump.
+					if isKindOf mat.bumpMap normal_bump then
+						exportMap mat.bumpMap.normal_map "normal" "null_normal"
+					else exportMap mat.bumpMap "normal" "null_normal"
 					fs.writeComma()
 					exportMap mat.glossinessMap "metallic" "null_metallic"
 					fs.writeComma()
@@ -438,15 +444,20 @@ struct TSceneExporter (
 		)
 	),
 
+	fn isClosedLine obj = (
+		return classOf obj == Line and isClosed obj 1
+	),
+
 	fn exportSplineKnots obj = (
 		fs.beginArray()
 			--Create a copy and convert it to SplineShape to be able to get the knots.
 			--We need this if the object is a circle. Also we avoid modifying the max file.
 			local objCopy = copy obj
-			convertToSplineShape objCopy
-		
+			convertToSplineShape objCopy --A line is still a line after this.
+
 			knotsInSpline = numKnots objCopy
-			for i = 1 to (knotsInSpline) do (
+			local firstKnotPos = maxPosToMcv (getKnotPoint objCopy 1 1)
+			for i = 1 to knotsInSpline do (
 				if i > 1 then fs.writeComma()
 				else if classOf objCopy == SplineShape then (
 					--Circular movement only needs the center and at least one knot.
@@ -454,27 +465,36 @@ struct TSceneExporter (
 					fs.writeValue center addIndent:true
 					fs.writeComma()
 				)
-				
-				-- getKnotPoint <shape> <spline_index_integer> <knot_index_integer>
-				local knotPos = getKnotPoint objCopy 1 i
+
+				local knotPos = getKnotPoint objCopy 1 i --getKnotPoint <shape> <spline_index> <knot_index>
 				local mcvKnotPos = maxPosToMcv knotPos
 				fs.writeValue mcvKnotPos addIndent:true
-				if (classOf objCopy == line or 
-					classOf objCopy == SplineShape) and
-				   (i == 1 or i == knotsInSpline) then (
-					-- Duplicate first and last knots. This avoids error if the spline has less than 4 knots in catmull.
-					-- This also forces following the real shape of the spline.
+				-- Duplicate first and last knots (except in closed lines).
+				-- This avoids error if the spline has less than 4 knots in catmull.
+				-- This also forces following the real shape of the spline.
+				if i == 1 then (
 					fs.writeComma()
 					fs.writeValue mcvKnotPos addIndent:true
+				) else if i == knotsInSpline then ( --Last knot.
+					fs.writeComma()
+					if isClosedLine objCopy then (
+						--Special case, add twice the first knot at the end.
+						fs.writeValue firstKnotPos addIndent:true
+						fs.writeComma()
+						fs.writeValue firstKnotPos addIndent:true
+					) else (
+						--Duplicate last knot.
+						fs.writeValue mcvKnotPos addIndent:true
+					)
 				)
 			)
 			delete objCopy
 		fs.endArray()
 	),
 	
-	-- ----------------------------------------------------------------------
-	-- -- · COMPONENTS · ---------------------------------------
-	-- ----------------------------------------------------------------------
+	-- -------------------------------------------------------------------------
+	-- -- · COMPONENTS · -------------------------------------------------------
+	-- -------------------------------------------------------------------------
 
 	-- --COMP: TRANSFORM------------------------------------
 	fn exportTransform obj lookAtCoord: noRot:false relative:false = (
@@ -502,7 +522,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	-- --RENDER MESH (also exports MATERIAL)----------------------------------------
+	-- --RENDER MESH (also exports MATERIAL)------------------------------------
 	fn exportRenderMesh obj pure:false = (
 		local mat = obj.material
 		if mat == undefined then (
@@ -552,7 +572,7 @@ struct TSceneExporter (
 		fs.endObj() -- End render object.
 	),
 
-	-- --COMP: ROTATE (platform_simple)-----------------------------------------------------
+	-- --COMP: ROTATE (platform_simple)-----------------------------------------
 	fn exportPlatfRotation obj = (
 		local rotAxis = Point3 0 0 1
 		local rotSpeed = 0
@@ -942,7 +962,7 @@ struct TSceneExporter (
 		)
 	),
 
-	-- --COMP: ALTAR -------------------------------------------------------------------------
+	-- --COMP: ALTAR -----------------------------------------------------------
 	fn exportAltar obj = (
 		fs.writeKey "altar"
 		fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -957,7 +977,7 @@ struct TSceneExporter (
 	-- -- · ENTITIES · ------------------------------------
 	-- ----------------------------------------------------------
 
-	-- --ENTITY with only COLLISION ----------------------------------------------
+	-- --ENTITY with only COLLISION --------------------------------------------
 	fn exportEntityCollision obj nValidObjs = (
 		local objClass = classOf obj
 		if not isCollider obj and
@@ -972,7 +992,7 @@ struct TSceneExporter (
 		return true
 	),
 	
-	-- --ENTITY: ALTAR ----------------------------------------------------------------
+	-- --ENTITY: ALTAR ---------------------------------------------------------
 	fn exportEntityAltar obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		--else fs.writeDummyEntity "altar"
@@ -1095,7 +1115,7 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --ENTITY: ENEMY (also exports child line)--------------------------------------
+	-- --ENTITY: ENEMY (also exports child line)--------------------------------
 	fn exportEntityEnemy obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		--else fs.writeDummyEntity "enemy"
@@ -1132,7 +1152,7 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --ENTITY: LIGHT (also exports child line)---------------------------------------
+	-- --ENTITY: LIGHT (also exports child line)--------------------------------
 	fn exportEntityLight obj nValidObjs = (
 		local objClass = classOf obj
 		if objClass != TargetDirectionallight and
@@ -1181,7 +1201,7 @@ struct TSceneExporter (
 		return true
 	),
 	
-	-- --ENTITY: TRIGGERS (also exports child line)-------------------------------------
+	-- --ENTITY: TRIGGERS (also exports child line)-----------------------------
 	fn exportEntityTrigger obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		
@@ -1636,6 +1656,7 @@ TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 4
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
 TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
+	--> Hay que poner el primer punto 4 veces, al principio y al final.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
 
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional para whitebox.

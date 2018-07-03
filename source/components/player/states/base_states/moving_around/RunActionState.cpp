@@ -7,6 +7,7 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/slash/comp_slash.h"
 
 
 RunActionState::RunActionState(StateManager* stateManager) :
@@ -76,20 +77,43 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->blendCycle(animation, 0.3f, 0.3f);
 	getCameraPlayer()->moveCameraCloser(false);
 	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntityByName(PLAYER_NAME), VEC3(0, 0.3, 0));
+
+	if (hasSlash) {
+		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+	}
 }
 
 void RunActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	EngineParticles.kill(dustParticlesHandle, 0.5f);
+	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }
 
 void RunActionState::onSpendCoinsButton() {
 	stateManager->changeState(SpendCoins);
 }
 
-void RunActionState::setAnimation(int powerLevel) {
+void RunActionState::onLevelChange(int powerLevel) {
 	animation = animations[powerLevel - 1];
 	if (stateManager->getState()->state == state) {
 		getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	}
+
+	if (powerLevel == 3) {
+		hasSlash = true;
+		if (stateManager->getState()->state == Run) {
+			getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+			getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+		}
+	}
+	else {
+		hasSlash = false;
+		if (stateManager->getState()->state == Run) {
+			getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+			getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+		}
+	}
+
 }

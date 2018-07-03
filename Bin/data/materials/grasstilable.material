@@ -3,9 +3,9 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/grass_texture.dds",
-    "normal": "data/textures/grass_texture_normals.dds",
-    "metallic": "data/textures/formacion_rocosa6_low_formacion_rocosa6_default_Metallic.dds",
-    "roughness": "data/textures/formacion_rocosa5_low_formacion_rocosa5_default_Roughness.dds"
+    "albedo": "data/textures/vegetacion/suelo_hierba.dds",
+    "normal": "data/textures/null_normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/null_roughness.dds"
   }
 }

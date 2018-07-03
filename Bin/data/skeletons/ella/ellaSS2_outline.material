@@ -1,6 +1,6 @@
 {
   "technique": "pbr_skin_outline.tech",
-  "shadows": true,
+  "shadows": false,
   "textures": {
     "albedo": "data/textures/ella/ella_basecolor_bluemarks.dds",
     "normal": "data/textures/ella/ella_normals.dds",

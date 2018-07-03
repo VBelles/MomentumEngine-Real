@@ -3,9 +3,10 @@
 static const std::string PLAYER_NAME = "The Player";
 static const std::string PLAYER_CAMERA = "player_camera";
 static const std::string GAME_CAMERA = "game_camera";
-static const std::string DEBUG_CAMERA = "debug_camera";
+static const std::string DEBUG_CAMERA = "debug_camera"; 
 
 static const std::string CURVE_INTERPOLATION_CAMERA = "curve_interpolation_camera";
+static const std::string TELEPORT_CAMERA = "teleport_camera";
 static const int NUMBER_OF_POWER_LEVELS = 3;
 static const float PAD_DEAD_ZONE = 0.1f;
 static const float PAD_RUN_THRESHOLD = 0.8f;
