@@ -1,13 +1,13 @@
 [
   {
     "entity": {
-      "name": "dreidel",
+      "name": "kippah",
       "transform": {},
       "render": [
         {
-          "mesh": "data/skeletons/bola_new/Object001.mesh",
+          "mesh": "data/skeletons/medusa_new/bolas medusa002.mesh",
           "materials": [
-            "data/skeletons/bola_new/bola_new.material"
+            "data/skeletons/medusa_new/medusa_new.material"
           ]
         }
       ],
@@ -15,29 +15,25 @@
         "enemy"
       ],
       "skeleton": {
-        "skeleton": "data/skeletons/bola_new/bola_new.skeleton"
+        "skeleton": "data/skeletons/medusa_new/medusa_new.skeleton"
       },
       "givePower": {
         "maxPowerToGive": 5000.0,
         "baseMultiplier": 1.2
       },
-      "dreidel": {
+      "kippah": {
         "max_hp": 5,
-        "max_distance_from_spawn": 20,
+        "max_distance_from_spawn": 25,
         "movement_speed": 3,
         "rotation_speed": 10,
         "gravity": -50,
         "max_velocity": 20,
-        "stroll_radius": 2,
-        "chase_fov": 90,
+        "chase_fov": 180,
         "fov_chase_distance": 15,
-        "small_chase_radius": 2,
-        "attack_fov": 90,
-        "short_combat_distance": 2,
-        "medium_combat_distance": 6,
-        "long_combat_distance": 10,
-        "step_back_distance": 0.3,
-        "block_time": 1.5,
+        "small_chase_radius": 0.3,
+        "attack_fov": 180,
+        "short_combat_distance": 0.3,
+        "long_combat_distance": 15,
         "attacks": [
           {
             "name": "attack",
