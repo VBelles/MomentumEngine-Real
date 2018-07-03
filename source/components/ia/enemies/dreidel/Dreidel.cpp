@@ -88,18 +88,18 @@ void Dreidel::initBehaviorTree() {
 	GrabAction* grabAction = new GrabAction(this);
 	OnGrabAction* onGrabAction = new OnGrabAction(this);
 	OnGrabCondition* onGrabCondition = new OnGrabCondition(this);
-	HitStun* hitStun = new HitStun(this, "enemigo_bola_recibirdanio_impacto");
-	OnHit* onHit = new OnHit(this, "enemigo_bola_recibirdanio_impacto");
+	HitStun* hitStun = new HitStun(this, "enemigo_bola_recibirdanio");
+	OnHit* onHit = new OnHit(this, "enemigo_bola_recibirdanio");
 	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this);
-	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "enemigo_bola_recibirdanio_impacto");
+	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "enemigo_bola_recibirdanio");
 	OnHorizontalLaunchCondition* onHorizontalLaunchCondition = new OnHorizontalLaunchCondition(this);
-	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this, "enemigo_bola_recibirdanio_impacto");
+	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this, "enemigo_bola_recibirdanio");
 	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(this);
 	VerticalLaunchedAction* verticalLaunchedAction = new VerticalLaunchedAction(this);
 	OnPropelAction* onPropelAction = new OnPropelAction(this);
 	OnPropelCondition * onPropelCondition = new OnPropelCondition(this);
 	PropelAction* propelAction = new PropelAction(this);
-	OnStunAction* onStunAction = new OnStunAction(this, "enemigo_bola_stun", "enemigo_bola_stun");
+	OnStunAction* onStunAction = new OnStunAction(this, "enemigo_bola_stun", "enemigo_bola_stun_loop");
 	OnStunCondition* onStunCondition = new OnStunCondition(this);
 	StunAction* stunAction = new StunAction(this);
 	OnIdleAction* onIdleAction = new OnIdleAction(this, "enemigo_bola_idle");
@@ -112,10 +112,10 @@ void Dreidel::initBehaviorTree() {
 	AppearAction* appearAction = new AppearAction(this, "enemigo_bola_aparecer");
 	OnAppearAction* onAppearAction = new OnAppearAction(this, "enemigo_bola_aparecer");
 	CombatCondition* combatCondition = new CombatCondition(this);
-	AttackAction* spinAttackAction = new AttackAction(this, "enemigo_bola_ataquerapido_loop", "attack");
-	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "enemigo_bola_ataquerapido_loop", "attack");
-	AttackAction* areaAttackAction = new AttackAction(this, "enemigo_bola_ataquelento_altern", "attack");
-	OnAttackAction* onAreaAttackAction = new OnAttackAction(this, "enemigo_bola_ataquelento_altern", "attack");
+	AttackAction* spinAttackAction = new AttackAction(this, "enemigo_bola_ataquerapido", "attack");
+	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "enemigo_bola_ataquerapido", "attack");
+	AttackAction* areaAttackAction = new AttackAction(this, "enemigo_bola_ataquelento", "attack");
+	OnAttackAction* onAreaAttackAction = new OnAttackAction(this, "enemigo_bola_ataquelento", "attack");
 	ChaseAction* chaseAction = new ChaseAction(this);
 	OnChaseAction* onChaseAction = new OnChaseAction(this, "enemigo_bola_chase");
 	IdleWarAction* idleWarAction = new IdleWarAction(this, "enemigo_bola_idle_war");
@@ -132,8 +132,8 @@ void Dreidel::initBehaviorTree() {
 	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(this, combatCondition);
 	OnStrollAction* onStrollAction = new OnStrollAction(this, "enemigo_bola_run");
 	StrollAction* strollAction = new StrollAction(this, combatCondition);
-	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(this, "enemigo_bola_recibirdanio_impacto");
-	OnBlockingBreakAction* onBlockingBreakAction = new OnBlockingBreakAction(this, "enemigo_bola_recibirdanio_impacto");
+	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(this, "enemigo_bola_recibirdanio");
+	OnBlockingBreakAction* onBlockingBreakAction = new OnBlockingBreakAction(this, "enemigo_bola_recibirdanio");
 	OnBlockingBreakCondition* onBlockingBreakCondition = new OnBlockingBreakCondition(this);
 	BlockAction* blockAction = new BlockAction(this);
 	OnBlockAction* onBlockAction = new OnBlockAction(this, "enemigo_bola_guardia", "enemigo_bola_guardia_loop");
@@ -293,7 +293,6 @@ void Dreidel::registerMsgs() {
 void Dreidel::update(float delta) {
 	if (!getCollider()->toDestroy) {
 		deltaMovement = VEC3::Zero;
-		if (current) dbg("%s\n",current->getName().c_str());
 		recalc(delta);
 		if (getCollider()->isCreated()) move(delta);
 	}

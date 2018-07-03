@@ -3,14 +3,7 @@
 	"anims" : [
 		{ "name" : "enemigo_bola_aparecer"},
 		{ "name" : "enemigo_bola_ataquelento"},
-		{ "name" : "enemigo_bola_ataquelento_altern"},
-		{ "name" : "enemigo_bola_ataquelento_cooldown"},
-		{ "name" : "enemigo_bola_ataquelento_loop"},
-		{ "name" : "enemigo_bola_ataquelento_warm"},
 		{ "name" : "enemigo_bola_ataquerapido"},
-		{ "name" : "enemigo_bola_ataquerapido_cooldown"},
-		{ "name" : "enemigo_bola_ataquerapido_loop"},
-		{ "name" : "enemigo_bola_ataquerapido_warm"},
 		{ "name" : "enemigo_bola_chase"},
 		{ "name" : "enemigo_bola_desaparecer"},
 		{ "name" : "enemigo_bola_guardia"},
@@ -18,16 +11,13 @@
 		{ "name" : "enemigo_bola_idle"},
 		{ "name" : "enemigo_bola_idle_war"},
 		{ "name" : "enemigo_bola_muerte"},
-		{ "name" : "enemigo_bola_muerte_loop"},
 		{ "name" : "enemigo_bola_placaje"},
 		{ "name" : "enemigo_bola_placaje_frenazo"},
 		{ "name" : "enemigo_bola_placaje_loop"},
 		{ "name" : "enemigo_bola_recibirdanio"},
-		{ "name" : "enemigo_bola_recibirdanio_cooldown"},
-		{ "name" : "enemigo_bola_recibirdanio_impacto"},
-		{ "name" : "enemigo_bola_recibirdanio_loop"},
 		{ "name" : "enemigo_bola_run"},
-		{ "name" : "enemigo_bola_stun"}
+		{ "name" : "enemigo_bola_stun"},
+		{ "name" : "enemigo_bola_stun_loop"}
 	],
 	"bone_ids_to_debug" : [
 		3
