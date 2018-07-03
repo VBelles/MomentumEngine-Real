@@ -35,14 +35,14 @@ public:
 	};
 private:
 	std::vector<HitboxConfig> hitboxesConfig;
-	std::map<std::string, Hitbox*> hitboxes;
+	std::map<std::string, Hitbox> hitboxes;
 
 	CHandle skeletonHandle;
 	CHandle colliderHandle;
 	CHandle transformHandle;
 	
 	TCompHitboxes::HitboxConfig loadHitbox(const json& jHitbox);
-	TCompHitboxes::Hitbox* createHitbox(const HitboxConfig& config);
+	TCompHitboxes::Hitbox createHitbox(const HitboxConfig& config);
 	void updateHitbox(Hitbox* hitbox, float delta);
 	void onGroupCreated(const TMsgEntitiesGroupCreated & msg);
 

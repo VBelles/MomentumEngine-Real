@@ -300,7 +300,7 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
     prev_tech->activate();
 }
 
-void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color) {
+void renderWiredAABB(const AABB& aabb, const MAT44& world, const VEC4& color) {
     // Accede a una mesh que esta centrada en el origen y
     // tiene 0.5 de half size
     auto mesh = Resources.get("wired_unit_cube.mesh")->as<CRenderMesh>();
@@ -310,7 +310,7 @@ void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color) {
     renderMesh(mesh, unit_cube_to_aabb, color);
 }
 
-void renderWiredCube(CTransform* transform, const VEC3 halfExent, VEC4 color) {
+void renderWiredCube(const CTransform* transform, const VEC3& halfExent, const VEC4& color) {
 	// Accede a una mesh que esta centrada en el origen y
 	// tiene 0.5 de half size
 	auto mesh = Resources.get("wired_unit_cube.mesh")->as<CRenderMesh>();
@@ -319,14 +319,14 @@ void renderWiredCube(CTransform* transform, const VEC3 halfExent, VEC4 color) {
 	renderMesh(mesh, cube, color);
 }
 
-void renderCircle(CTransform* transform, float radius, VEC4 color) {
+void renderCircle(const CTransform* transform, float radius, const VEC4& color) {
 	auto mesh = Resources.get("circle_xz.mesh")->as<CRenderMesh>();
 	MAT44 circle = MAT44::CreateScale(radius)
 		* transform->asMatrix();
 	renderMesh(mesh, circle, color);
 }
 
-void renderSphere(CTransform* transform, float radius, VEC4 color) {
+void renderSphere(const CTransform* transform, float radius, const VEC4& color) {
 	auto mesh = Resources.get("circle_xz.mesh")->as<CRenderMesh>();
 	CTransform t = CTransform(*transform);
 	float y, p, r;
@@ -350,7 +350,7 @@ void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture)
     mesh->activateAndRender();
 }
 
-void renderDots(VEC3 src, VEC4 color) {
+void renderDots(const VEC3& src, const VEC4& color) {
 	MAT44 world;
 	world = MAT44::CreateTranslation(src);
 	cb_object.obj_world = world;
@@ -361,7 +361,7 @@ void renderDots(VEC3 src, VEC4 color) {
 	mesh->activateAndRender();
 }
 
-void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
+void renderLine(const VEC3& src, const VEC3& dst, const VEC4& color) {
     MAT44 world = MAT44::CreateLookAt(src, dst, VEC3(0, 1, 0)).Invert();
     float distance = VEC3::Distance(src, dst);
     if (distance < 1e-3) return;

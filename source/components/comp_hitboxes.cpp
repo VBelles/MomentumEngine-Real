@@ -12,21 +12,21 @@ DECL_OBJ_MANAGER("hitboxes", TCompHitboxes);
 
 void TCompHitboxes::debugInMenu() {
 	for (auto& p : hitboxes) {
-		Hitbox* hitbox = p.second;
-		VEC3 pos = hitbox->transform.getPosition();
-		ImGui::Text("%s: %f, %f, %f", hitbox->name.c_str(), pos.x, pos.y, pos.z);
+		const Hitbox& hitbox = p.second;
+		VEC3 pos = hitbox.transform.getPosition();
+		ImGui::Text("%s: %f, %f, %f", hitbox.name.c_str(), pos.x, pos.y, pos.z);
 	}
 }
 
 void TCompHitboxes::renderDebug() {
 	for (auto& p : hitboxes) {
-		Hitbox* hitbox = p.second;
-		if (hitbox->enabled) {
-			if (hitbox->radius) {
-				renderSphere(&hitbox->transform, hitbox->radius, VEC4(0, 0, 1, 1));
+		const Hitbox& hitbox = p.second;
+		if (hitbox.enabled) {
+			if (hitbox.radius) {
+				renderSphere(&hitbox.transform, hitbox.radius, VEC4(0, 0, 1, 1));
 			}
 			else {
-				renderWiredCube(&hitbox->transform, hitbox->halfExtent, VEC4(1, 0, 0, 1));
+				renderWiredCube(&hitbox.transform, hitbox.halfExtent, VEC4(1, 0, 0, 1));
 			}
 		}
 	}
@@ -92,33 +92,33 @@ void TCompHitboxes::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	assert(colliderHandle.isValid());
 	assert(transformHandle.isValid());
 	for (const HitboxConfig& config : hitboxesConfig) {
-		Hitbox* hitbox = createHitbox(config);
-		hitboxes[hitbox->name] = hitbox;
+		Hitbox hitbox = createHitbox(config);
+		hitboxes[hitbox.name] = hitbox;
 	}
 }
 
-TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
-	Hitbox* hitbox = new Hitbox();
+TCompHitboxes::Hitbox TCompHitboxes::createHitbox(const HitboxConfig& config) {
+	Hitbox hitbox;
 
-	hitbox->name = config.name;
-	hitbox->offset = config.offset;
-	hitbox->halfExtent = config.halfExtent;
-	hitbox->radius = config.radius;
-	hitbox->boneId = -1;
+	hitbox.name = config.name;
+	hitbox.offset = config.offset;
+	hitbox.halfExtent = config.halfExtent;
+	hitbox.radius = config.radius;
+	hitbox.boneId = -1;
 
 	if (!config.boneName.empty()) {
-		hitbox->boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
+		hitbox.boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
 		assert(hitbox->boneId != -1);
 	}
 	
-	hitbox->filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
+	hitbox.filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
 		PxQueryFlags(PxQueryFlag::eDYNAMIC | PxQueryFlag::eSTATIC | PxQueryFlag::ePREFILTER | PxQueryFlag::eNO_BLOCK));
 
 	if (config.shape == "sphere") {
-		hitbox->geometry = new PxSphereGeometry(config.radius);
+		hitbox.geometry = new PxSphereGeometry(config.radius);
 	}
 	else if (config.shape == "box") {
-		hitbox->geometry = new PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z);
+		hitbox.geometry = new PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z);
 	}
 
 	return hitbox;
@@ -127,9 +127,8 @@ TCompHitboxes::Hitbox* TCompHitboxes::createHitbox(const HitboxConfig& config) {
 
 void TCompHitboxes::update(float delta) {
 	for (auto& p : hitboxes) {
-		Hitbox* hitbox = p.second;
-		if (hitbox->enabled) {
-			updateHitbox(hitbox, delta);
+		if (p.second.enabled) {
+			updateHitbox(&p.second, delta);
 		}
 	}
 }
@@ -185,22 +184,22 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 void TCompHitboxes::enable(std::string name) {
 	auto it = hitboxes.find(name);
 	if (it != hitboxes.end()) {
-		it->second->enabled = true;
+		it->second.enabled = true;
 	}
 }
 
 void TCompHitboxes::disable(std::string name) {
 	auto it = hitboxes.find(name);
 	if (it != hitboxes.end()) {
-		it->second->enabled = false;
-		it->second->hits.clear();
+		it->second.enabled = false;
+		it->second.hits.clear();
 	}
 }
 
 void TCompHitboxes::disableAll() {
 	for (auto &pair : hitboxes) {
-		pair.second->enabled = false;
-		pair.second->hits.clear();
+		pair.second.enabled = false;
+		pair.second.hits.clear();
 	}
 }
 
@@ -221,8 +220,6 @@ PxController* TCompHitboxes::getController() {
 }
 
 TCompHitboxes::~TCompHitboxes() {
-	for (auto& p : hitboxes) {
-		SAFE_DELETE(p.second);
-	}
+	
 }
 
