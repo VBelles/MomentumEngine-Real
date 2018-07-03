@@ -5,6 +5,7 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
+#include "components/comp_give_power.h"
 
 #include "components/ia/enemies/common/FalseCondition.h"
 #include "components/ia/enemies/common/airborne/AirborneAction.h"
@@ -66,6 +67,7 @@
 #include "components/ia/enemies/common/combat/step_back/StepBackAction.h"
 #include "components/ia/enemies/common/combat/block/BlockAction.h"
 #include "components/ia/enemies/common/combat/block/OnBlockAction.h"
+#include "components/ia/enemies/common/combat/block/BlockCondition.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
@@ -135,6 +137,7 @@ void Dreidel::initBehaviorTree() {
 	OnBlockingBreakCondition* onBlockingBreakCondition = new OnBlockingBreakCondition(this);
 	BlockAction* blockAction = new BlockAction(this);
 	OnBlockAction* onBlockAction = new OnBlockAction(this, "enemigo_bola_guardia", "enemigo_bola_guardia_loop");
+	BlockCondition* blockCondition = new BlockCondition(this);
 
 	//root
 	createRoot("dreidel", Priority, nullptr, nullptr);
@@ -168,6 +171,9 @@ void Dreidel::initBehaviorTree() {
 	addChild("dreidel", "blockingBreak", Sequence, onBlockingBreakCondition, nullptr);
 	addChild("blockingBreak", "onBlockingBreakAction", Action, nullptr, onBlockingBreakAction);
 	addChild("blockingBreak", "blockingBreakAction", Action, nullptr, blockingBreakAction);
+
+	//block
+	addChild("dreidel", "blockAction", Action, blockCondition, blockAction);
 
 	//death
 	addChild("dreidel", "death", Sequence, onDeathCondition, nullptr);
@@ -212,10 +218,8 @@ void Dreidel::initBehaviorTree() {
 	addChild("shortDistanceCombat", "stepBack", Sequence, nullptr, nullptr);
 	addChild("stepBack", "onStepBackAction", Action, nullptr, onStepBackAction);
 	addChild("stepBack", "stepBackAction", Action, nullptr, stepBackAction);
-	//block
-	addChild("shortDistanceCombat", "block", Sequence, nullptr, nullptr);
-	addChild("block", "onBlockAction", Action, nullptr, onBlockAction);
-	addChild("block", "blockAction", Action, nullptr, blockAction);
+	//block;
+	addChild("shortDistanceCombat", "onBlockAction", Action, nullptr, onBlockAction);
 	//medium distance combat
 	addChild("combat", "mediumDistanceCombat", Random, mediumDistanceCombatCondition, nullptr);
 	//idle war
@@ -302,6 +306,7 @@ void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	colliderHandle = get<TCompCollider>();
 	skeletonHandle = get<TCompSkeleton>();
 	hitboxesHandle = get<TCompHitboxes>();
+	powerHandle = get<TCompGivePower>();
 
 	spawnPosition = getTransform()->getPosition();
 

@@ -7,7 +7,7 @@ BlockAction::BlockAction(Enemy* enemy) :
 }
 
 int BlockAction::execAction(float delta) {
-	if (enemy->timer.elapsed() < enemy->blockTime) {
+	if (enemy->blockTimer.elapsed() < enemy->blockTime) {
 		return Stay;
 	}
 	enemy->isBlocking = false;

@@ -10,9 +10,11 @@
 
 class IBehaviorTreeNew {
 protected:
-	std::unordered_map<std::string, IBehaviorTreeNode *>tree;
+	std::unordered_map<std::string, IBehaviorTreeNode *> tree;
 	std::unordered_map<std::string, IBehaviorTreeCondition*> conditions;
+	std::set<IBehaviorTreeCondition*> allConditions;
 	std::unordered_map<std::string, IBehaviorTreeAction*> actions;
+	std::set<IBehaviorTreeAction*> allActions;
 
 	IBehaviorTreeNode *root;
 	IBehaviorTreeNode *current;

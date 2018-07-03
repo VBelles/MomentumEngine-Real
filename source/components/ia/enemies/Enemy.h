@@ -7,6 +7,7 @@ class TCompTransform;
 class TCompCollider;
 class TCompSkeleton;
 class TCompHitboxes;
+class TCompGivePower;
 
 struct EnemyAttack {
 	AttackInfo attackInfo;
@@ -73,6 +74,7 @@ public:
 	CTimer timer;
 	CTimer animationTimer;
 	CTimer stunTimer;
+	CTimer blockTimer;
 
 	//Handles
 	CHandle playerHandle;
@@ -80,6 +82,7 @@ public:
 	CHandle colliderHandle;
 	CHandle skeletonHandle;
 	CHandle hitboxesHandle;
+	CHandle powerHandle;
 
 	void load(const json& j, TEntityParseContext & ctx);
 
@@ -95,5 +98,6 @@ public:
 	TCompCollider* getCollider();
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
+	TCompGivePower* getPower();
 
 };

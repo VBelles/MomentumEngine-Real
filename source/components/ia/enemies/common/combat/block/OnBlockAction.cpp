@@ -12,7 +12,7 @@ OnBlockAction::OnBlockAction(Enemy* enemy, std::string animationStart, std::stri
 int OnBlockAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
-	enemy->timer.reset();
+	enemy->blockTimer.reset();
 	enemy->isBlocking = true;
 	return Leave;
 }

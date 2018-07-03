@@ -4,6 +4,7 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
+#include "components/comp_give_power.h"
 
 Enemy::~Enemy() {
 }
@@ -111,4 +112,8 @@ TCompSkeleton* Enemy::getSkeleton() {
 
 TCompHitboxes* Enemy::getHitboxes() {
 	return hitboxesHandle;
+}
+
+TCompGivePower* Enemy::getPower() {
+	return powerHandle;
 }

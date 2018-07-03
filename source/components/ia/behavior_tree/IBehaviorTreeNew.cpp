@@ -8,14 +8,16 @@ IBehaviorTreeNew::~IBehaviorTreeNew() {
 	for (auto& pair : tree) {
 		SAFE_DELETE(pair.second);
 	}
-	for (auto& pair : conditions) {
-		SAFE_DELETE(pair.second);
+	for (IBehaviorTreeCondition* condition : allConditions) {
+		SAFE_DELETE(condition);
 	}
-	for (auto& pair : actions) {
-		SAFE_DELETE(pair.second);
+	for (IBehaviorTreeAction* action : allActions) {
+		SAFE_DELETE(action);
 	}
 	tree.clear();
+	allConditions.clear();
 	conditions.clear();
+	allActions.clear();
 	actions.clear();
 }
 
@@ -89,6 +91,7 @@ void IBehaviorTreeNew::setCurrent(IBehaviorTreeNode *newCurrent) {
 
 void IBehaviorTreeNew::addCondition(std::string conditionName, IBehaviorTreeCondition* condition) {
 	auto res = conditions.emplace(conditionName, condition);
+	allConditions.insert(condition);
 	if (!res.second) {
 		dbg("Error: node %s already has an action\n", conditionName.c_str());
 	}
@@ -106,6 +109,7 @@ bool IBehaviorTreeNew::testCondition(std::string conditionName, float delta) {
 
 void IBehaviorTreeNew::addAction(std::string actionName, IBehaviorTreeAction* action) {
 	auto res = actions.emplace(actionName, action);
+	allActions.insert(action);
 	if (!res.second) {
 		dbg("Error: node %s already has an action\n", actionName.c_str());
 	}

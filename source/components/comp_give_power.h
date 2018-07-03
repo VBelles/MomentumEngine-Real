@@ -5,7 +5,6 @@
 struct TMsgGetPower;
 
 class TCompGivePower : public TCompBase {
-	DECL_SIBLING_ACCESS();
 private:
 	float maxPowerToGive = 0.f;
 	float powerToGive = maxPowerToGive;
@@ -14,10 +13,18 @@ private:
 
 	void onGetPower(const TMsgGetPower& msg);
 
+	CTimer resetTimer;
+	float resetTime = 0.f;
+
 public:
+	DECL_SIBLING_ACCESS();
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
+	void update(float dt);
+	void debugInMenu();
 
 	void setStateMultiplier(float multiplier);
 	void reset();
+
+	float getPowerToGive();
 };

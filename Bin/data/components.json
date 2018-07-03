@@ -48,7 +48,8 @@
     "spikes",
     "particles",
     "light_flicker",
-    "slash"
+    "slash",
+    "givePower"
   ],
   "render_debug" : [
     "transform",
