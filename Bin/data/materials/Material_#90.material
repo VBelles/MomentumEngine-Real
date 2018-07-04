@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/plaza_baja_Material atril_BaseColor.dds",
-    "normal": "data/textures/plaza_baja_Material atril_Normal.dds",
-    "metallic": "data/textures/plaza_baja_Material atril_Roughness.dds",
+    "albedo": "data/textures/hoja grande.dds",
+    "normal": "data/textures/hoja grande_normals.dds",
+    "metallic": "data/textures/null_metallic.dds",
     "roughness": "data/textures/null_roughness.dds",
-    "self_illum": "data/textures/plaza_baja_Material atril_Emissive.dds",
-    "height": "data/textures/plaza_baja_Material plaza1_Height.dds"
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/null_height.dds"
   }
 }

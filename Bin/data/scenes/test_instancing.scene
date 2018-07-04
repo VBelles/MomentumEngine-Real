@@ -55,7 +55,7 @@
   
   {
     "entity": {
-      "name": "Instanced Grass brizna 1",
+      "name": "Instanced Grass brizna 2",
       "transform": {
         "pos": "0 0 0"
       },
@@ -63,10 +63,10 @@
         {
           "mesh": "data/meshes/grass.instanced_mesh",
           "materials": [
-            "data/materials/instanced_brizna_1.material"
+            "data/materials/instanced_brizna_2.material"
           ]
         }
       ]
     }
-  }  
+  }
 ]

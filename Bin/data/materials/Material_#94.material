@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/escalera_piezas_baja_Material baranda03_BaseColor.dds",
-    "normal": "data/textures/escalera_piezas_baja_Material baranda03_Normal.dds",
-    "metallic": "data/textures/escalera_piezas_baja_Material baranda03_Roughness.dds",
+    "albedo": "data/textures/petalo.dds",
+    "normal": "data/textures/petalo_normals.dds",
+    "metallic": "data/textures/null_metallic.dds",
     "roughness": "data/textures/null_roughness.dds",
-    "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/escalera_piezas_baja_Material baranda01_Height.dds"
+    "self_illum": "data/textures/petalo_selfilumination.dds",
+    "height": "data/textures/null_height.dds"
   }
 }

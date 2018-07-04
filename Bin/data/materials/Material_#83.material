@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/rocas_low_roca 12_BaseColor.dds",
-    "normal": "data/textures/rocas_low_roca 12_Normal.dds",
-    "metallic": "data/textures/rocas_low_roca 12_Roughness.dds",
+    "albedo": "data/textures/musgo7.dds",
+    "normal": "data/textures/musgo7_normals.dds",
+    "metallic": "data/textures/null_metallic.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/rocas_low_roca3_Height.dds"
+    "height": "data/textures/null_height.dds"
   }
 }
