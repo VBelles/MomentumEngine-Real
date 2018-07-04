@@ -15,12 +15,14 @@ struct TCompRenderBloom : public TCompRenderBlur {
   VEC4                          add_weights;
   float                         threshold_min = 0.8f;
   float                         threshold_max = 1.f;
+  float                         self_illum_threshold_min = 0.2f;
+  float                         self_illum_threshold_max = 0.5f;
   float                         multiplier = 1.f;
 
   TCompRenderBloom();
   ~TCompRenderBloom();
 
-  void generateHighlights(CTexture* in_texture);
+  void generateHighlights(CTexture* mainTexture, CTexture* selfIllumTexture);
   void load(const json& j, TEntityParseContext& ctx);
   void debugInMenu();
   void addBloom();
