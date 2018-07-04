@@ -91,6 +91,9 @@ bool Enemy::hasSuperArmor() {
 }
 
 CEntity* Enemy::getPlayer() {
+	if (!playerHandle.isValid()) {
+		playerHandle = getEntityByName(PLAYER_NAME);
+	}
 	return playerHandle;
 }
 

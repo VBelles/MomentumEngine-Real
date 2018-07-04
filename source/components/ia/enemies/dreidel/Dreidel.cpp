@@ -301,7 +301,6 @@ void Dreidel::update(float delta) {
 void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	initBehaviorTree();
 
-	playerHandle = getEntityByName(PLAYER_NAME);
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	skeletonHandle = get<TCompSkeleton>();
