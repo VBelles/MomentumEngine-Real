@@ -7,7 +7,7 @@
     "normal": "data/textures/puente_alterna_baja_DefaultMaterial_Normal.dds",
     "metallic": "data/textures/puente_alterna_baja_DefaultMaterial_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
-    "self_illum": "data/textures/null_self_illum.dds",
+    "self_illum": "data/textures/puente_alterna_baja_DefaultMaterial_Emissive.dds",
     "height": "data/textures/puente_alterna_baja_DefaultMaterial_Height.dds"
   }
 }
