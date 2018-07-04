@@ -1,0 +1,13 @@
+[
+  {
+    "entity":
+    {
+      "name": "dreidel",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-313 42 -608"
+      }
+    }
+  }
+]

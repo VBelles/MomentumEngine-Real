@@ -323,6 +323,7 @@
     <ClCompile Include="components\ia\enemies\common\combat\idle_war\IdleWarActionFlying.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\attack\AttackActionFlying.cpp" />
     <ClCompile Include="components\ia\enemies\kippah\ranged_attack\RangedAttackAction.cpp" />
+    <ClCompile Include="modules\game_modules\game\enemy_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -678,6 +679,7 @@
     <ClInclude Include="components\ia\enemies\common\combat\idle_war\IdleWarActionFlying.h" />
     <ClInclude Include="components\ia\enemies\common\combat\attack\AttackActionFlying.h" />
     <ClInclude Include="components\ia\enemies\kippah\ranged_attack\RangedAttackAction.h" />
+    <ClInclude Include="modules\game_modules\game\enemy_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
