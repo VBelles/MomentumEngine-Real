@@ -162,6 +162,7 @@ struct TMaterialExporter (
 		-- "C:\engine\bin\data\textures\bricks.dds"
 		local ofull_path = project_path + json_filename
 		
+		--TODO: This ignores updates in textures.
 		if isPathInsidePath mapBasePath (project_path + base_path) then (
 			--Map is already inside project directory, no need to copy, just point to the right sub-folder.
 			local strippedPath = stripPathFromPath mapBasePath project_path
@@ -688,6 +689,16 @@ struct TSceneExporter (
 		)
 	),
 
+	fn confirmReset = (
+		local hwnd = dialogMonitorOps.getWindowHandle()
+
+		if UIAccessor.GetWindowText hwnd == "Unwrap UVW" then (
+			uiAccessor.pressDefaultButton()
+			return true
+		)
+		else return false
+	),
+
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider----------
 	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
 		if obj.layer.name == "trimesh" then meshShape = "tri_mesh"
@@ -700,8 +711,20 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "shape" meshShape
 
-		if not forceMesh then
+		if not forceMesh then (
+			try meshop.getMapFace obj 1 1 --If this fails, we got the Runtime error: Map support not enabled for specified map channel.
+			catch (
+				addModifier obj (Unwrap_UVW())
+
+				dialogMonitorOps.enabled = true
+				dialogMonitorOps.interactive = false
+				dialogMonitorOps.registerNotification confirmReset id:#unwrap_reset
+				obj.modifiers[#unwrap_uvw].reset()
+				dialogMonitorOps.enabled = false
+				convertToMesh obj
+			)
 			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"
+		)
 	),
 	
 	fn exportSphere obj = (
@@ -1655,12 +1678,13 @@ struct TSceneExporter (
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
-TODO: Probar spline cerrada, habría que poner el último knot al principio seguramente.
-	--> Hay que poner el primer punto 4 veces, al principio y al final.
 TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
 
-TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional para whitebox.
+TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
+	  para whitebox (está en función exportMaterial).
 
+NOTA: Si se actualiza un material que ya existía, hay que copiarlo a mano porque
+	  se evita exportarlo si ya existe. 
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 

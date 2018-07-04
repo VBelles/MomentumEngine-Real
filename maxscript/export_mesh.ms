@@ -15,7 +15,7 @@ function getMaterialsUsedByMesh obj = (
 		local mat_id = getFaceMatID obj face_id
 		if faces_by_mat[ mat_id ] == undefined then (
 			faces_by_mat[ mat_id ] = #()
-		)			
+		)
 		append faces_by_mat[ mat_id ] face_id
 	)
 	return faces_by_mat
@@ -27,12 +27,11 @@ function writeChunk fs id nbytes = (
 )
 
 function saveMeshToFile outfilename obj vtxs idxs vtxType subgroups = (
-	
-	local magicHeader = 0x44444444
-	local magicVtxs = 0x55554433
-	local magicIdxs = 0x55556677
+	local magicHeader	 = 0x44444444
+	local magicVtxs		 = 0x55554433
+	local magicIdxs		 = 0x55556677
 	local magicSubGroups = 0x55556688
-	local magicEoF = 0x55558888
+	local magicEoF		 = 0x55558888
 	
 	-- Chunk = MagicID(4bytes) + Size(4bytes)
 	-- Chunk HeaderData
@@ -55,15 +54,15 @@ function saveMeshToFile outfilename obj vtxs idxs vtxType subgroups = (
 	local headerSize = 4*(4+4)+32
 	writeChunk fs magicHeader headerSize	-- 8 bytes
 	
-	WriteLong fs vtxs.count		-- NumVertexs
-	WriteLong fs idxs.count		-- NumIndices
-	WriteLong fs triangle_list  -- PrimitiveType
-	WriteLong fs bytes_per_vtx  -- bytes_per_vtx
+	WriteLong fs vtxs.count		 -- NumVertexs
+	WriteLong fs idxs.count		 -- NumIndices
+	WriteLong fs triangle_list   -- PrimitiveType
+	WriteLong fs bytes_per_vtx   -- bytes_per_vtx
 	
-	WriteLong fs bytes_per_idx  -- bytes_per_idx
-	WriteLong fs subgroups.count   -- Num SubGroups
-	WriteLong fs 0              -- dummy2
-	WriteLong fs 0              -- dummy3
+	WriteLong fs bytes_per_idx   -- bytes_per_idx
+	WriteLong fs subgroups.count -- Num SubGroups
+	WriteLong fs 0               -- dummy2
+	WriteLong fs 0               -- dummy3
 	
 	-- Write the vertex type as 32 bytes string with zero paddings
 	WriteString fs vtxType
@@ -85,11 +84,8 @@ function saveMeshToFile outfilename obj vtxs idxs vtxType subgroups = (
 	writeChunk fs magicIdxs bytes_idxs
 	for v in idxs do (	-- Each idxs...
 		local v0 = v - 1  -- Because max starts at 1, but us at 0
-		if bytes_per_idx == 2 then (
-			writeShort fs v0 #unsigned
-		) else (
-			writeLong fs v0 #unsigned
-		)
+		if bytes_per_idx == 2 then writeShort fs v0 #unsigned
+		else writeLong fs v0 #unsigned
 	)
 	
 	-- Save subgroups
@@ -123,7 +119,6 @@ function computeTangentSpace vertexs idxs = (
 		tan1[ i ] = [0,0,0]
 		tan2[ i ] = [0,0,0]
 	)
-	
 	
 	local triangleCount = idxs.count / 3
 	local a = 0
@@ -177,7 +172,6 @@ function computeTangentSpace vertexs idxs = (
 	)
 
 	for a = 1 to vertexCount do (
-		
 		-- Extract normal
 		local n = [ vertexs[a][4], vertexs[a][5], vertexs[a][6] ]
 		local t = tan1[a];
@@ -195,11 +189,8 @@ function computeTangentSpace vertexs idxs = (
 		
 		-- Append to the end of our 'fat vertex' the new four 'float' components: 
 		join vertexs[a] #(new_tangent.x, new_tangent.y, new_tangent.z, new_w)
-		
 	)
-
 )
-
 
 function areEqualVertexs v1 v2 = (
 	for id = 1 to v1.count do (
@@ -209,7 +200,6 @@ function areEqualVertexs v1 v2 = (
 )
 
 function findIndexOrRegister ht vtxs new_vtx = (
-
 	-- Key is a string representation of all floats in new_vtx
 	local key = with printAllElements off new_vtx as string
 
@@ -224,12 +214,11 @@ function findIndexOrRegister ht vtxs new_vtx = (
 	return idx
 )
 
-
 function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
 	-- Convert the given object to triangular mesh
 	format "exportMeshObject filename: %\n" outfilename
 	local obj = given_obj
-	if classof obj != TriMesh then (
+	if classOf obj != TriMesh then (
 		obj = copy given_obj
 		obj.name = given_obj.name
 		convertToMesh obj
@@ -252,7 +241,7 @@ function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
 	)
 	
 	local maxLocalToWorld = obj.transform
-	local maxToMCV = rotateXMatrix  -90
+	local maxToMCV = rotateXMatrix -90
 	local maxWorldToLocal = inverse obj.transform
 	local maxWorldToLocalMCV = maxWorldToLocal * maxToMCV
 	
@@ -277,23 +266,21 @@ function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
 		
 		-- For each face using that material
 		for face_id in faces do (
-		
 			-- Retrieve the 3 indexes in the list of vertex positions
-			local face = getFace obj face_id
-			local faceA = meshop.getMapFace obj mapA face_id
-			local faceB = meshop.getMapFace obj mapB face_id
+			local face    = getFace obj face_id
+			local faceA   = meshop.getMapFace obj mapA face_id
+			local faceB   = meshop.getMapFace obj mapB face_id
 			local normals = meshop.getFaceRNormals obj face_id
-			
+
 			-- For each vertex of each face
 			local vtx_id
 			for vtx_id in #(1,3,2) do (
-				
 				-- Get the real vertex id: 1...num_vertexs
 				local posW = getVert obj face[ vtx_id ]
 				local pos = posW * maxWorldToLocalMCV
-			 
+
 				local new_vtx
-				if( vtxType == "PosNUvUvT") then (
+				if vtxType == "PosNUvUvT" then (
 					-- Get normals
 					local NW = normals[ vtx_id ]
 					local N = NW * maxWorldToLocalMCV.rotationpart
@@ -304,7 +291,7 @@ function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
 			 
 					new_vtx = #( pos.x, pos.y, pos.z, N.x, N.y, N.z, uvA.x, 1-uvA.y, uvB.x, 1-uvB.y ) 
 				)
-				else if( vtxType == "Pos" ) then (
+				else if vtxType == "Pos" then (
 					new_vtx = #( pos.x, pos.y, pos.z ) 
 				)
 				
@@ -315,7 +302,6 @@ function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
 				append idxs new_idx
 			)
 		)
-		
 		append subgroups new_subgroup
 	)
 
@@ -339,7 +325,6 @@ function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
 	
 	-- If we created a copy of the mesh, it's time to remove it
 	if obj != given_obj then delete obj
-	
 )
 
 -- This path has to include file name.
