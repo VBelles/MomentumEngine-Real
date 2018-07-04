@@ -12,9 +12,11 @@
 bool CModuleUniques::start() {
 	//de momento json, pero debería estar encriptado
 	std::vector<json> jUniques;
-	jUniques.push_back(loadJson("data/uniques/unique_coins.json"));//no hace falta que estén en archivos separados
-	//jUniques.push_back(loadJson("data/unique_chrysalides.json"));
-	//etc
+	jUniques.push_back(loadJson("data/uniques/coins-uniques.json"));//no hace falta que estén en archivos separados
+	jUniques.push_back(loadJson("data/uniques/chrysalides-uniques.json"));
+	jUniques.push_back(loadJson("data/uniques/altars-uniques.json"));
+	jUniques.push_back(loadJson("data/uniques/events-uniques.json"));
+	jUniques.push_back(loadJson("data/uniques/enemies-uniques.json"));
 
 	//parse
 	for (json jUnique : jUniques) {
@@ -50,6 +52,14 @@ bool CModuleUniques::start() {
 				}
 			}
 		}
+		if (jUnique.count("unique_enemies")) {
+			json jEvents = jUnique["unique_enemies"];
+			if (jEvents.is_array()) {
+				for (size_t i = 0; i < jEvents.size(); ++i) {
+					parseChunk(jEvents[i], ElementType::ENEMY);
+				}
+			}
+		}
 	}
 
 	return true;
@@ -64,18 +74,21 @@ void CModuleUniques::parseChunk(const json & j, ElementType type) {
 	element.level = j.value("level", "");
 
 	switch (type) {
-	case ElementType::COIN:
-		coins.emplace(id, element);
-		break;
-	case ElementType::CHRYSALIS:
-		chrysalides.emplace(id, element);
-		break;
-	case ElementType::ALTAR:
-		altars.emplace(id, element);
-		break;
-	case ElementType::EVENT:
-		events.emplace(id, element);
-		break;
+		case ElementType::COIN:
+			coins.emplace(id, element);
+			break;
+		case ElementType::CHRYSALIS:
+			chrysalides.emplace(id, element);
+			break;
+		case ElementType::ALTAR:
+			altars.emplace(id, element);
+			break;
+		case ElementType::EVENT:
+			events.emplace(id, element);
+			break;
+		case ElementType::ENEMY:
+			enemies.emplace(id, element);
+			break;
 	}
 
 }
@@ -86,6 +99,7 @@ bool CModuleUniques::stop() {
 	chrysalides.clear();
 	altars.clear();
 	events.clear();
+	enemies.clear();
 	return true;
 }
 
@@ -121,13 +135,20 @@ UniqueElement* CModuleUniques::getUniqueEvent(std::string id) {
 	return nullptr;
 }
 
+UniqueElement * CModuleUniques::getUniqueEnemy(std::string id) {
+	if (enemies.find(id) != enemies.end()) {
+		return &enemies[id];
+	}
+	return nullptr;
+}
+
 bool CModuleUniques::setCoinTaken(std::string id, bool isTaken) {
 	if (coins.find(id) != coins.end()) {
 		coins[id].done = isTaken;
 		return true;
 	}
 	else {
-		dbg("No encuentro este unique!!\n");
+		dbg("No encuentro este unique coin!!\n");
 		return false;
 	}
 }
@@ -138,7 +159,7 @@ bool CModuleUniques::setChrysalisTaken(std::string id, bool isTaken) {
 		return true;
 	}
 	else {
-		dbg("No encuentro este unique!!\n");
+		dbg("No encuentro este unique chrysalis!!\n");
 		return false;
 	}
 }
@@ -149,7 +170,7 @@ bool CModuleUniques::setAltarBroken(std::string id, bool isBroken) {
 		return true;
 	}
 	else {
-		dbg("No encuentro este unique!!\n");
+		dbg("No encuentro este unique altar!!\n");
 		return false;
 	}
 }
@@ -160,7 +181,18 @@ bool CModuleUniques::setEventTriggered(std::string id, bool isTriggered) {
 		return true;
 	}
 	else {
-		dbg("No encuentro este unique!!\n");
+		dbg("No encuentro este unique event!!\n");
+		return false;
+	}
+}
+
+bool CModuleUniques::setEnemyDead(std::string id, bool isDead) {
+	if (enemies.find(id) != enemies.end()) {
+		enemies[id].done = isDead;
+		return true;
+	}
+	else {
+		dbg("No encuentro este unique enemy!!\n");
 		return false;
 	}
 }

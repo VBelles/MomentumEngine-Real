@@ -27,6 +27,7 @@
     "data/scenes/milestone2_camaras_definitivas.scene",
     "data/scenes/test_instancing.scene",
     "data/scenes/slash-test.scene",
+    "data/scenes/test_combat.scene",
     "data/scenes/rigid_anim2.scene"
   ],
   "unused_scenes": [

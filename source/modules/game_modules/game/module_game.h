@@ -1,11 +1,13 @@
 #pragma once
 
 class Respawner;
+class EnemyManager;
 
 class CModuleGame : public IModule {
 private:
 	//GUI::CHudController* hudController;
 	Respawner* respawner;
+	EnemyManager* enemyManager;
 public:
 	CModuleGame(const std::string& aname) : IModule(aname) {}
 	bool start() override;
