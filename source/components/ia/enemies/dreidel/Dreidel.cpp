@@ -336,7 +336,7 @@ void Dreidel::onPerfectDodged(const TMsgPerfectDodged & msg) {
 
 void Dreidel::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	if (getCollider()->toDestroy) {
-		CEntity* entity = CHandle(this);
+		CEntity* entity = CHandle(this).getOwner();
 		((CModuleGame*)(EngineModules.getModule("game")))->getEnemyManager()->onDead(entity->getName());
 		getSkeleton()->stop();
 		CHandle(this).getOwner().destroy();

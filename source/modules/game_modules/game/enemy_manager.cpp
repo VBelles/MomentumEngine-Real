@@ -8,7 +8,8 @@
 #include "modules/game_modules/game/module_game.h"
 
 EnemyManager::EnemyManager() {
-	respawnTimes[EnemyType::DREIDEL] = 5.f;
+	//hacer que coincida más o menos con el tiempo que se tarda en perder el poder que da cada enemigo
+	respawnTimes[EnemyType::DREIDEL] = 15.f;
 	respawnTimes[EnemyType::KIPPAH] = 15.f;
 }
 
