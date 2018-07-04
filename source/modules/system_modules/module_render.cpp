@@ -242,7 +242,7 @@ void CModuleRender::generateFrame() {
 			// The bloom blurs the given input
 			TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
 			if (c_render_bloom) {
-				c_render_bloom->generateHighlights(curr_rt);
+				c_render_bloom->generateHighlights(rt_main, deferred.rt_self_illum);
 				c_render_bloom->addBloom();
 			}
 
