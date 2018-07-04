@@ -108,7 +108,7 @@ TCompHitboxes::Hitbox TCompHitboxes::createHitbox(const HitboxConfig& config) {
 
 	if (!config.boneName.empty()) {
 		hitbox.boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(config.boneName);
-		assert(hitbox->boneId != -1);
+		assert(hitbox.boneId != -1);
 	}
 	
 	hitbox.filterData = PxQueryFilterData(PxFilterData(config.group, config.mask, 0, 0),
