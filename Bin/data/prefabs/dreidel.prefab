@@ -40,12 +40,28 @@
         "block_time": 1.5,
         "attacks": [
           {
-            "name": "attack",
+            "name": "spin_attack",
+            "frame_data": "5 60",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "spin_attack"
+          },
+          {
+            "name": "area_attack",
+            "frame_data": "38 46",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "area_attack"
+          },
+          {
+            "name": "tackle",
             "frame_data": "5 40",
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
             "stun": 1.0,
-            "hitbox": "attack"
+            "hitbox": "tackle"
           }
         ]
       },
@@ -65,9 +81,33 @@
       "hitboxes": {
         "hitboxes": [
           {
-            "name": "attack",
+            "name": "spin_attack",
             "shape": "sphere",
-            "radius": 0.8,
+            "radius": 1.2,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ],
+            "bone": "Bone034"
+          },
+          {
+            "name": "area_attack",
+            "shape": "sphere",
+            "radius": 2.0,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ],
+            "bone": "Bone034"
+          },
+          {
+            "name": "tackle",
+            "shape": "sphere",
+            "radius": 1.2,
             "group": [
               "enemy"
             ],

@@ -9,6 +9,8 @@ OnDeathAction::OnDeathAction(Enemy* enemy, std::string animation):
 }
 
 int OnDeathAction::execAction(float delta) {
+	enemy->isBlocking = false;
+	enemy->blockingBroken = false;
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
 	return Leave;

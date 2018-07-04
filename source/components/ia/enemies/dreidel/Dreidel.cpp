@@ -112,10 +112,10 @@ void Dreidel::initBehaviorTree() {
 	AppearAction* appearAction = new AppearAction(this, "enemigo_bola_aparecer");
 	OnAppearAction* onAppearAction = new OnAppearAction(this, "enemigo_bola_aparecer");
 	CombatCondition* combatCondition = new CombatCondition(this);
-	AttackAction* spinAttackAction = new AttackAction(this, "enemigo_bola_ataquerapido", "attack");
-	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "enemigo_bola_ataquerapido", "attack");
-	AttackAction* areaAttackAction = new AttackAction(this, "enemigo_bola_ataquelento", "attack");
-	OnAttackAction* onAreaAttackAction = new OnAttackAction(this, "enemigo_bola_ataquelento", "attack");
+	AttackAction* spinAttackAction = new AttackAction(this, "enemigo_bola_ataquerapido", "spin_attack");
+	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "enemigo_bola_ataquerapido", "spin_attack");
+	AttackAction* areaAttackAction = new AttackAction(this, "enemigo_bola_ataquelento", "area_attack");
+	OnAttackAction* onAreaAttackAction = new OnAttackAction(this, "enemigo_bola_ataquelento", "area_attack");
 	ChaseAction* chaseAction = new ChaseAction(this);
 	OnChaseAction* onChaseAction = new OnChaseAction(this, "enemigo_bola_chase");
 	IdleWarAction* idleWarAction = new IdleWarAction(this, "enemigo_bola_idle_war");
@@ -123,8 +123,8 @@ void Dreidel::initBehaviorTree() {
 	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
 	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
 	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
-	OnTackleAttackAction* onTackleAttackAction = new OnTackleAttackAction(this, "enemigo_bola_placaje_loop", "attack");
-	TackleAttackAction* tackleAttackAction = new TackleAttackAction(this, "enemigo_bola_placaje_loop", "attack", movementSpeed * 2.0f, 0.75f);
+	OnTackleAttackAction* onTackleAttackAction = new OnTackleAttackAction(this, "enemigo_bola_placaje_loop", "tackle");
+	TackleAttackAction* tackleAttackAction = new TackleAttackAction(this, "enemigo_bola_placaje_loop", "tackle", movementSpeed * 2.0f, 0.75f);
 	OnStepBackAction* onStepBackAction = new OnStepBackAction(this, "enemigo_bola_run");
 	StepBackAction* stepBackAction = new StepBackAction(this, "enemigo_bola_run", movementSpeed);
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "enemigo_bola_run");
