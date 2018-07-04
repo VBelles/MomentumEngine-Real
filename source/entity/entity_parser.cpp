@@ -129,9 +129,10 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 	// Notify each entity created that we have finished
 	// processing this file
-	TMsgEntitiesGroupCreated msg = { ctx };
-	for (auto h : ctx.entities_loaded)
-		h.sendMsg(msg);
-
+	if (!ctx.parsing_prefab) {
+		TMsgEntitiesGroupCreated msg = { ctx };
+		for (auto h : ctx.entities_loaded)
+			h.sendMsg(msg);
+	}
 	return true;
 }
