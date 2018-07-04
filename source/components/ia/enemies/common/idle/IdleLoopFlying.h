@@ -4,11 +4,11 @@
 
 class Enemy;
 
-class IdleLoop : public IBehaviorTreeAction {
+class IdleLoopFlying : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation;
 public:
-	IdleLoop(Enemy* enemy, std::string animation);
+	IdleLoopFlying(Enemy* enemy, std::string animation);
 	int execAction(float delta) override;
 };

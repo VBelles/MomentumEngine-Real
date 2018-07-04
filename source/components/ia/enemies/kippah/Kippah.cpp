@@ -38,9 +38,9 @@
 #include "components/ia/enemies/common/stun/OnStunCondition.h"
 #include "components/ia/enemies/common/stun/StunAction.h"
 #include "components/ia/enemies/common/idle/OnIdleAction.h"
-#include "components/ia/enemies/common/idle/IdleLoop.h"
+#include "components/ia/enemies/common/idle/IdleLoopFlying.h"
 #include "components/ia/enemies/common/idle/OnIdleLoop.h"
-#include "components/ia/enemies/common/idle/IdleAction.h"
+#include "components/ia/enemies/common/idle/IdleActionFlying.h"
 #include "components/ia/enemies/common/idle/OnStrollAction.h"
 #include "components/ia/enemies/common/idle/StrollAction.h"
 #include "components/ia/enemies/common/teleport/OnTeleportAction.h"
@@ -48,15 +48,15 @@
 #include "components/ia/enemies/common/teleport/TeleportAction.h"
 #include "components/ia/enemies/common/return_to_spawn/OnReturnToSpawnAction.h"
 #include "components/ia/enemies/common/return_to_spawn/OnReturnToSpawnCondition.h"
-#include "components/ia/enemies/common/return_to_spawn/ReturnToSpawnAction.h"
+#include "components/ia/enemies/common/return_to_spawn/ReturnToSpawnFlyingAction.h"
 #include "components/ia/enemies/common/appear/AppearAction.h"
 #include "components/ia/enemies/common/appear/OnAppearAction.h"
 #include "components/ia/enemies/common/combat/CombatCondition.h"
-#include "components/ia/enemies/common/combat/attack/AttackAction.h"
+#include "components/ia/enemies/common/combat/attack/AttackActionFlying.h"
 #include "components/ia/enemies/common/combat/attack/OnAttackAction.h"
 #include "components/ia/enemies/common/combat/chase/ChaseAction.h"
 #include "components/ia/enemies/common/combat/chase/OnChaseAction.h"
-#include "components/ia/enemies/common/combat/idle_war/IdleWarAction.h"
+#include "components/ia/enemies/common/combat/idle_war/IdleWarActionFlying.h"
 #include "components/ia/enemies/common/combat/idle_war/OnIdleWarAction.h"
 #include "components/ia/enemies/common/combat/long_distance/LongDistanceCombatCondition.h"
 #include "components/ia/enemies/common/combat/medium_distance/MediumDistanceCombatCondition.h"
@@ -68,6 +68,7 @@
 #include "components/ia/enemies/common/combat/block/BlockAction.h"
 #include "components/ia/enemies/common/combat/block/OnBlockAction.h"
 #include "components/ia/enemies/common/combat/block/BlockCondition.h"
+#include "components/ia/enemies/kippah/ranged_attack/RangedAttackAction.h"
 
 DECL_OBJ_MANAGER("kippah", Kippah);
 
@@ -99,30 +100,31 @@ void Kippah::initBehaviorTree() {
 	OnPropelAction* onPropelAction = new OnPropelAction(this);
 	OnPropelCondition * onPropelCondition = new OnPropelCondition(this);
 	PropelAction* propelAction = new PropelAction(this);
-	OnStunAction* onStunAction = new OnStunAction(this, "medusa_stun", "medusa_stun");
+	OnStunAction* onStunAction = new OnStunAction(this, "", "medusa_stun");
 	OnStunCondition* onStunCondition = new OnStunCondition(this);
 	StunAction* stunAction = new StunAction(this);
 	OnIdleAction* onIdleAction = new OnIdleAction(this, "medusa_idle");
-	IdleAction* idleAction = new IdleAction(this, "medusa_idle");
+	IdleActionFlying* idleActionFlying = new IdleActionFlying(this, "medusa_idle");
 	OnIdleLoop* onIdleLoop = new OnIdleLoop(this, "medusa_idle");
-	IdleLoop* idleLoop = new IdleLoop(this, "medusa_idle");
+	IdleLoopFlying* idleLoopFlying = new IdleLoopFlying(this, "medusa_idle");
 	OnTeleportAction* onTeleportAction = new OnTeleportAction(this, "medusa_desaparicion");
 	OnTeleportCondition* onTeleportCondition = new OnTeleportCondition(this);
 	TeleportAction* teleportAction = new TeleportAction(this, "medusa_desaparicion");
 	AppearAction* appearAction = new AppearAction(this, "medusa_aparicion");
 	OnAppearAction* onAppearAction = new OnAppearAction(this, "medusa_aparicion");
 	CombatCondition* combatCondition = new CombatCondition(this);
-	AttackAction* spinAttackAction = new AttackAction(this, "medusa_revolverse", "attack");
+	AttackActionFlying* spinAttackAction = new AttackActionFlying(this, "medusa_revolverse", "attack");
 	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "medusa_revolverse", "attack");
-	IdleWarAction* idleWarAction = new IdleWarAction(this, "medusa_idle_war");
+	IdleWarActionFlying* idleWarActionFlying = new IdleWarActionFlying(this, "medusa_idle_war");
 	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(this, "medusa_idle_war");
 	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
 	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
 	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "medusa_idle");
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
-	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(this, combatCondition);
-
+	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(this, combatCondition);
+	OnAttackAction* onRangedAttackAction = new OnAttackAction(this, "medusa_shot", "attack");
+	RangedAttackAction* rangedAttackAction = new RangedAttackAction(this, "medusa_shot", "attack");
 	//root
 	createRoot("kippah", Priority, nullptr, nullptr);
 
@@ -177,37 +179,41 @@ void Kippah::initBehaviorTree() {
 	//combat
 	addChild("kippah", "combat", Priority, combatCondition, nullptr);
 	//short distance combat
-	addChild("combat", "shortDistanceCombat", Random, shortDistanceCombatCondition, nullptr);
-	//idle war
-	addChild("shortDistanceCombat", "shortIdleWar", Sequence, nullptr, nullptr);
-	addChild("shortIdleWar", "onShortIdleWar", Action, nullptr, onIdleWarAction);
-	addChild("shortIdleWar", "shortIdleWarAction", Action, nullptr, idleWarAction);
+	addChild("combat", "shortDistanceCombat", Sequence, shortDistanceCombatCondition, nullptr);
 	//spin attack
 	addChild("shortDistanceCombat", "shortSpinAttack", Sequence, nullptr, nullptr);
 	addChild("shortSpinAttack", "onShortSpinAttackAction", Action, nullptr, onSpinAttackAction);
 	addChild("shortSpinAttack", "shortSpinAttackAction", Action, nullptr, spinAttackAction);
+	//idle war
+	addChild("shortDistanceCombat", "shortIdleWar", Sequence, nullptr, nullptr);
+	addChild("shortIdleWar", "onShortIdleWar", Action, nullptr, onIdleWarAction);
+	addChild("shortIdleWar", "shortIdleWarAction", Action, nullptr, idleWarActionFlying);
 	//long distance combat
 	addChild("combat", "longDistanceCombat", Random, longDistanceCombatCondition, nullptr);
+	//ranged attack
+	addChild("longDistanceCombat", "rangedAttack", Sequence, nullptr, nullptr);
+	addChild("rangedAttack", "onRangedAttackAction", Action, nullptr, onRangedAttackAction);
+	addChild("rangedAttack", "rangedAttackAction", Action, nullptr, rangedAttackAction);
 	//idle war
 	addChild("longDistanceCombat", "longIdleWar", Sequence, nullptr, nullptr);
 	addChild("longIdleWar", "onLongIdleWar", Action, nullptr, onIdleWarAction);
-	addChild("longIdleWar", "longIdleWarAction", Action, nullptr, idleWarAction);
+	addChild("longIdleWar", "longIdleWarAction", Action, nullptr, idleWarActionFlying);
 
 	//return to spawn walking
 	addChild("kippah", "returnToSpawn", Sequence, onReturnToSpawnCondition, nullptr);
 	addChild("returnToSpawn", "onReturnToSpawnAction", Action, nullptr, onReturnToSpawnAction);
-	addChild("returnToSpawn", "returnToSpawnAction", Action, nullptr, returnToSpawnAction);
+	addChild("returnToSpawn", "returnToSpawnAction", Action, nullptr, returnToSpawnFlyingAction);
 
 	//idle
 	addChild("kippah", "idle", Random, nullptr, nullptr);
 	//idle action
 	addChild("idle", "idleActionSeq", Sequence, nullptr, nullptr);
 	addChild("idleActionSeq", "onIdleAction", Action, nullptr, onIdleAction);
-	addChild("idleActionSeq", "idleAction", Action, nullptr, idleAction);
+	addChild("idleActionSeq", "idleAction", Action, nullptr, idleActionFlying);
 	//idle loop
 	addChild("idle", "idleLoopSeq", Sequence, nullptr, nullptr);
 	addChild("idleLoopSeq", "onIdleLoop", Action, nullptr, onIdleLoop);
-	addChild("idleLoopSeq", "idleLoop", Action, nullptr, idleLoop);
+	addChild("idleLoopSeq", "idleLoop", Action, nullptr, idleLoopFlying);
 }
 
 void Kippah::load(const json& j, TEntityParseContext& ctx) {
@@ -215,6 +221,7 @@ void Kippah::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void Kippah::debugInMenu() {
+	Enemy::debugInMenu();
 }
 
 void Kippah::registerMsgs() {

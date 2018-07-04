@@ -128,6 +128,7 @@
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\attack\AttackAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\attack\AttackActionFlying.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\attack\OnAttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\block\BlockAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\block\BlockCondition.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="components\ia\enemies\common\combat\chase\OnChaseAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\CombatCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\idle_war\IdleWarAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\idle_war\IdleWarActionFlying.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\idle_war\OnIdleWarAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\long_distance\LongDistanceCombatCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\medium_distance\MediumDistanceCombatCondition.cpp" />
@@ -167,7 +169,9 @@
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\propel\PropelAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\IdleAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\idle\IdleActionFlying.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\IdleLoop.cpp" />
+    <ClCompile Include="components\ia\enemies\common\idle\IdleLoopFlying.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnIdleAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnIdleLoop.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnStrollAction.cpp" />
@@ -175,6 +179,7 @@
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnFlyingAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\StunAction.cpp" />
@@ -184,6 +189,7 @@
     <ClCompile Include="components\ia\enemies\dreidel\Dreidel.cpp" />
     <ClCompile Include="components\ia\enemies\Enemy.cpp" />
     <ClCompile Include="components\ia\enemies\kippah\Kippah.cpp" />
+    <ClCompile Include="components\ia\enemies\kippah\ranged_attack\RangedAttackAction.cpp" />
     <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
     <ClCompile Include="components\comp_sun.cpp" />
     <ClCompile Include="components\lights\comp_light_flicker.cpp" />
@@ -449,6 +455,7 @@
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\attack\AttackAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\attack\AttackActionFlying.h" />
     <ClInclude Include="components\ia\enemies\common\combat\attack\OnAttackAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\block\BlockAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\block\BlockCondition.h" />
@@ -457,6 +464,7 @@
     <ClInclude Include="components\ia\enemies\common\combat\chase\OnChaseAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\CombatCondition.h" />
     <ClInclude Include="components\ia\enemies\common\combat\idle_war\IdleWarAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\idle_war\IdleWarActionFlying.h" />
     <ClInclude Include="components\ia\enemies\common\combat\idle_war\OnIdleWarAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\long_distance\LongDistanceCombatCondition.h" />
     <ClInclude Include="components\ia\enemies\common\combat\medium_distance\MediumDistanceCombatCondition.h" />
@@ -488,7 +496,9 @@
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\OnPropelCondition.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\propel\PropelAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\IdleAction.h" />
+    <ClInclude Include="components\ia\enemies\common\idle\IdleActionFlying.h" />
     <ClInclude Include="components\ia\enemies\common\idle\IdleLoop.h" />
+    <ClInclude Include="components\ia\enemies\common\idle\IdleLoopFlying.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnIdleAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnIdleLoop.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnStrollAction.h" />
@@ -496,6 +506,7 @@
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnAction.h" />
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnCondition.h" />
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnAction.h" />
+    <ClInclude Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnFlyingAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
     <ClInclude Include="components\ia\enemies\common\stun\StunAction.h" />
@@ -505,6 +516,7 @@
     <ClInclude Include="components\ia\enemies\dreidel\Dreidel.h" />
     <ClInclude Include="components\ia\enemies\Enemy.h" />
     <ClInclude Include="components\ia\enemies\kippah\Kippah.h" />
+    <ClInclude Include="components\ia\enemies\kippah\ranged_attack\RangedAttackAction.h" />
     <ClInclude Include="modules\system_modules\slash\comp_slash.h" />
     <ClInclude Include="components\comp_sun.h" />
     <ClInclude Include="components\lights\comp_light_flicker.h" />
