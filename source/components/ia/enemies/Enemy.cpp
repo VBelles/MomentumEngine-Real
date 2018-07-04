@@ -55,6 +55,10 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 
 }
 
+void Enemy::debugInMenu() {
+		ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
+}
+
 void Enemy::updateGravity(float delta) {
 	deltaMovement.y += velocity.y * delta + 0.5f * gravity * delta * delta;
 	velocity.y += gravity * delta;

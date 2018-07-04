@@ -279,6 +279,7 @@ void Dreidel::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void Dreidel::debugInMenu() {
+	Enemy::debugInMenu();
 }
 
 void Dreidel::registerMsgs() {
