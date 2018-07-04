@@ -15,4 +15,5 @@ public:
 	void update(float delta) override;
 	void render() override;
 	Respawner* getRespawner();
+	EnemyManager * getEnemyManager();
 };

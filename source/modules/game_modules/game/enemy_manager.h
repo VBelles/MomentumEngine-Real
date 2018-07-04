@@ -1,22 +1,15 @@
 #pragma once
 
-class Respawner {
+class EnemyManager {
 private:
-	struct Respawnable {
-		std::string prefab;
-		VEC3 position;
-		float respawnTime;
-		CTimer respawnTimer;
-	};
+	//tiempos de respawn
+	std::map<EnemyType, float> respawnTimes;
 
-	std::map<std::string, Respawnable> elementsToSpawn;
-
-	
 public:
-	Respawner();
-	~Respawner();
+	EnemyManager();
+	~EnemyManager();
 
 	void update(float delta);
-	void addElementToSpawn(std::string name, std::string prefab, VEC3 position, float respawnTime);
+	void onDead(std::string id);
 };
 

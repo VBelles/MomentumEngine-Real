@@ -6,6 +6,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
+#include "modules/game_modules/game/module_game.h"
+#include "modules/game_modules/game/enemy_manager.h"
 
 #include "components/ia/enemies/common/FalseCondition.h"
 #include "components/ia/enemies/common/airborne/AirborneAction.h"
@@ -334,6 +336,8 @@ void Dreidel::onPerfectDodged(const TMsgPerfectDodged & msg) {
 
 void Dreidel::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	if (getCollider()->toDestroy) {
+		CEntity* entity = CHandle(this);
+		((CModuleGame*)(EngineModules.getModule("game")))->getEnemyManager()->onDead(entity->getName());
 		getSkeleton()->stop();
 		CHandle(this).getOwner().destroy();
 	}

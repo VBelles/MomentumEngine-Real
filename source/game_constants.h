@@ -17,6 +17,7 @@ static const std::string PREFAB_MEDUSA = "data/prefabs/enemy_flying.prefab";
 static const std::string PREFAB_CHRYSALIS = "data/prefabs/crisalida.prefab";
 static const std::string PREFAB_COIN = "data/prefabs/coin.prefab";
 static const std::string PREFAB_DREIDEL = "data/prefabs/dreidel.prefab";
+static const std::string PREFAB_KIPPAH = "data/prefabs/kippah.prefab";
 	
 static const std::string INTERPOLATOR_LINEAR = "Linear";
 static const std::string INTERPOLATOR_QUAD_IN = "Quad in";

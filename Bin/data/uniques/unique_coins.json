@@ -18,7 +18,8 @@
             "id" : "dreidel",
             "done": false,
             "position":"-313 42 -608",
-            "level": "level02"
+            "level": "level02",
+            "type": "dreidel"
         }
     ]
 }

@@ -137,6 +137,10 @@ void CModuleGame::render() {
 	solid->activate();
 }
 
-Respawner * CModuleGame::getRespawner() {
+Respawner* CModuleGame::getRespawner() {
 	return respawner;
+}
+
+EnemyManager* CModuleGame::getEnemyManager() {
+	return enemyManager;
 }
