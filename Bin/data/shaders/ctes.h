@@ -193,8 +193,8 @@ CB_DEF(CCteBloom, CB_BLOOM) {
     VEC4  bloom_weights;
     float bloom_threshold_min;
     float bloom_threshold_max;
-    float bloom_pad1;
-    float bloom_pad2;
+    float bloom_self_illum_threshold_min;
+    float bloom_self_illum_threshold_max;
 };
 
 CB_DEF(CCteFocus, CB_FOCUS) {
