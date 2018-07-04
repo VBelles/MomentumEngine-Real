@@ -10,4 +10,16 @@
       }
     }
   }
+  ,
+  {
+    "entity":
+    {
+      "name": "kippah",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-310 48 -608"
+      }
+    }
+  }
 ]
