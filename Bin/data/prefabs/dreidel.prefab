@@ -73,7 +73,8 @@
             ],
             "mask": [
               "player"
-            ]
+            ],
+            "bone": "Bone034"
           }
         ]
       }

@@ -16,7 +16,7 @@ int ReturnToSpawnAction::execAction(float delta) {
 	if (combatCondition->testCondition(delta)) {
 		return Leave;
 	}
-	else if (VEC3::DistanceSquared(enemy->spawnPosition, enemy->getTransform()->getPosition()) >= movementIncrement * movementIncrement) {
+	else if (VEC3::DistanceSquared(enemy->spawnPosition, enemy->getTransform()->getPosition()) >= spawnRadiusDistanceSquared) {
 		enemy->deltaMovement += enemy->getTransform()->getFront() * movementIncrement;
 		return Stay;
 	}
