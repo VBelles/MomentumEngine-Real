@@ -7,6 +7,7 @@ fileIn "utils.ms"
 
 global uniqueCoins  = #()
 global uniqueAltars = #()
+global brokenMaps   = #()
 
 -------------------------------------------------------------
 struct TJsonFormatter (
@@ -492,7 +493,39 @@ struct TSceneExporter (
 			delete objCopy
 		fs.endArray()
 	),
-	
+
+	/*fn confirmReset = (
+		local hwnd = dialogMonitorOps.getWindowHandle()
+
+		if UIAccessor.isWindow hwnd and
+		   UIAccessor.GetWindowText hwnd == "Unwrap UVW" then (
+			uiAccessor.pressDefaultButton()
+			return true
+		)
+		else return false
+	),*/
+
+	fn areMapsOk obj = (
+		try meshop.getMapFace obj 1 1 --If this fails, we got the Runtime error: Map support not enabled for specified map channel.
+		catch (
+			format "ERROR: Map support error in object %, should unwrap_reset.\n" obj.name
+			append brokenMaps obj.name
+			return false
+
+			/*
+			This provokes an EXCEPTION_ACCESS_VIOLATION.
+			addModifier obj (Unwrap_UVW())
+
+			dialogMonitorOps.enabled = true
+			dialogMonitorOps.interactive = false
+			dialogMonitorOps.registerNotification confirmReset id:#unwrap_reset
+			obj.modifiers[#unwrap_uvw].reset()
+			dialogMonitorOps.enabled = false
+			convertToMesh obj*/
+		)
+		return true
+	),
+
 	-- -------------------------------------------------------------------------
 	-- -- · COMPONENTS · -------------------------------------------------------
 	-- -------------------------------------------------------------------------
@@ -536,6 +569,8 @@ struct TSceneExporter (
 
 		fs.beginObj()
 			-- -- ·Export Mesh· -- --
+			if not areMapsOk obj then return false
+
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
 			
@@ -571,6 +606,7 @@ struct TSceneExporter (
 					fs.writeKeyValue "enabled" false
 			)
 		fs.endObj() -- End render object.
+		return true
 	),
 
 	-- --COMP: ROTATE (platform_simple)-----------------------------------------
@@ -689,16 +725,6 @@ struct TSceneExporter (
 		)
 	),
 
-	fn confirmReset = (
-		local hwnd = dialogMonitorOps.getWindowHandle()
-
-		if UIAccessor.GetWindowText hwnd == "Unwrap UVW" then (
-			uiAccessor.pressDefaultButton()
-			return true
-		)
-		else return false
-	),
-
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider----------
 	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
 		if obj.layer.name == "trimesh" then meshShape = "tri_mesh"
@@ -712,19 +738,11 @@ struct TSceneExporter (
 		fs.writeKeyValue "shape" meshShape
 
 		if not forceMesh then (
-			try meshop.getMapFace obj 1 1 --If this fails, we got the Runtime error: Map support not enabled for specified map channel.
-			catch (
-				addModifier obj (Unwrap_UVW())
+			if not areMapsOk obj then return false
 
-				dialogMonitorOps.enabled = true
-				dialogMonitorOps.interactive = false
-				dialogMonitorOps.registerNotification confirmReset id:#unwrap_reset
-				obj.modifiers[#unwrap_uvw].reset()
-				dialogMonitorOps.enabled = false
-				convertToMesh obj
-			)
 			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"
 		)
+		return true
 	),
 	
 	fn exportSphere obj = (
@@ -1603,6 +1621,12 @@ struct TSceneExporter (
 		-- TODO: Export also Altars.
 	),
 
+	fn showBrokenMaps = (
+		for objName in brokenMaps do (
+			format "ERROR: Map support error in object %, should unwrap_reset.\n" objName
+		)
+	),
+
 	fn exportAll = (
 		deselect objects -- Deselect all objects so export is faster.
 
@@ -1671,6 +1695,7 @@ struct TSceneExporter (
 		)
 		-- All layers and objects processed, begin export of stored unique objects.
 		exportUniques()
+		showBrokenMaps()
 	)
 )
 
