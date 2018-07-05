@@ -313,6 +313,7 @@ struct TSceneExporter (
 	mesh_path    = base_path + "meshes/",
 	mats_path    = base_path + "materials/",
 	prefabPath   = base_path + "prefabs/",
+	instancePath = base_path + "instancing/",
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -1366,6 +1367,47 @@ struct TSceneExporter (
 		return true
 	),
 
+	fn exportInstancing obj instanceCat:"" = (
+		local instancesPath = project_path + instancePath + "instancing_" + instanceCat + ".json"
+
+		fs.begin instancesPath --Create file.
+			fs.beginArray()
+			fs.beginObj()
+				fs.writeKeyValue "type" instanceCat
+				fs.writeComma
+				fs.writeKey "data"
+				fs.beginArray()
+				for i = 1 to obj.children.count do (
+					if i > 1 then fs.writeComma
+					fs.beginObj()
+						fs.writeKeyValue "pos" (maxPosToMcv obj.children[i].pos)
+						fs.writeComma
+						fs.writeKeyValue "scale" obj.children[i].scale
+						fs.writeComma
+						fs.writeKeyValue "rot" (maxRotToMcv obj.children[i].transform)
+					fs.endObj()
+				)
+				fs.endArray()
+				fs.writeKeyValue "num_instances_reserved" 8
+			fs.endObj()
+			fs.endArray()
+		fs.end()
+	),
+
+	fn exportInstancedMeshFile instanceCat:"" = (
+		local instancesPath = project_path + mesh_path + instanceCat + ".instanced_mesh"
+
+		fs.begin instancesPath --Create file.
+			fs.beginObj()
+				fs.writeKeyValue "instanced_mesh" (instanceCat + ".mesh")
+				fs.writeComma
+				fs.writeKeyValue "instances_type" "Instance"
+				fs.writeComma		
+				fs.writeKeyValue "num_instances_reserved" 8
+			fs.endObj()
+		fs.end()
+	),
+
 	-- --ENTITY: INSTANCES (also exports children)------------------------------
 	-- Each object is a dummy containing instances of dummy's name type.
 	fn exportEntityInstance obj nValidObjs = (
@@ -1393,8 +1435,12 @@ struct TSceneExporter (
 					fs.endObj()
 				fs.endArray()
 			endEntity() -- - - - - - - - - - - - - - - - - - -
+		fs.endObj()
+--TODO: FIX THIS
+		--exportInstancedMeshFile instanceCat:instanceCategory --.instanced_mesh
 
-			--TODO: Recorrer los hijos y exportar .instanced_mesh
+		--exportInstancing obj instanceCat:instanceCategory --/instancing/instancing.json
+
 		return true
 	),
 
