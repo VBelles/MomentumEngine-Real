@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Huevo inicio",
+        "pos": "-280 100 -400"
+    },
+    {
+        "name": "Inicio cementerio",
+        "pos": "-252 54 -670"
+    },
+    {
+        "name": "Primer altar",
+        "pos": "-132 93 -806"
+    },
+    {
+        "name": "Montaña más alta",
+        "pos": "-134.5 372 -1168"
+    },
+    {
+        "name": "Pie faro",
+        "pos": "-629 75 -908"
+    }
+]
