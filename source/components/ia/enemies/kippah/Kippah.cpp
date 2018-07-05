@@ -10,13 +10,6 @@
 #include "modules/game_modules/game/enemy_manager.h"
 
 #include "components/ia/enemies/common/FalseCondition.h"
-#include "components/ia/enemies/common/airborne/AirborneAction.h"
-#include "components/ia/enemies/common/airborne/AirborneCondition.h"
-#include "components/ia/enemies/common/airborne/OnAirborneAction.h"
-#include "components/ia/enemies/common/airborne/OnAirborneCondition.h"
-#include "components/ia/enemies/common/bloking_break/BlockingBreakAction.h"
-#include "components/ia/enemies/common/bloking_break/OnBlockingBreakAction.h"
-#include "components/ia/enemies/common/bloking_break/OnBlockingBreakCondition.h"
 #include "components/ia/enemies/common/death/DeathAction.h"
 #include "components/ia/enemies/common/death/DisappearAction.h"
 #include "components/ia/enemies/common/death/OnDeathAction.h"
@@ -43,8 +36,6 @@
 #include "components/ia/enemies/common/idle/IdleLoopFlying.h"
 #include "components/ia/enemies/common/idle/OnIdleLoop.h"
 #include "components/ia/enemies/common/idle/IdleActionFlying.h"
-#include "components/ia/enemies/common/idle/OnStrollAction.h"
-#include "components/ia/enemies/common/idle/StrollAction.h"
 #include "components/ia/enemies/common/teleport/OnTeleportAction.h"
 #include "components/ia/enemies/common/teleport/OnTeleportCondition.h"
 #include "components/ia/enemies/common/teleport/TeleportAction.h"
@@ -56,20 +47,11 @@
 #include "components/ia/enemies/common/combat/CombatCondition.h"
 #include "components/ia/enemies/common/combat/attack/AttackActionFlying.h"
 #include "components/ia/enemies/common/combat/attack/OnAttackAction.h"
-#include "components/ia/enemies/common/combat/chase/ChaseAction.h"
-#include "components/ia/enemies/common/combat/chase/OnChaseAction.h"
 #include "components/ia/enemies/common/combat/idle_war/IdleWarActionFlying.h"
 #include "components/ia/enemies/common/combat/idle_war/OnIdleWarAction.h"
 #include "components/ia/enemies/common/combat/long_distance/LongDistanceCombatCondition.h"
 #include "components/ia/enemies/common/combat/medium_distance/MediumDistanceCombatCondition.h"
 #include "components/ia/enemies/common/combat/short_distance/ShortDistanceCombatCondition.h"
-#include "components/ia/enemies/common/combat/tackle_attack/OnTackleAttackAction.h"
-#include "components/ia/enemies/common/combat/tackle_attack/TackleAttackAction.h"
-#include "components/ia/enemies/common/combat/step_back/OnStepBackAction.h"
-#include "components/ia/enemies/common/combat/step_back/StepBackAction.h"
-#include "components/ia/enemies/common/combat/block/BlockAction.h"
-#include "components/ia/enemies/common/combat/block/OnBlockAction.h"
-#include "components/ia/enemies/common/combat/block/BlockCondition.h"
 #include "components/ia/enemies/kippah/ranged_attack/RangedAttackAction.h"
 
 DECL_OBJ_MANAGER("kippah", Kippah);
@@ -83,10 +65,6 @@ Kippah::~Kippah() {
 
 void Kippah::initBehaviorTree() {
 	FalseCondition* falseCondition = new FalseCondition();
-	AirborneAction* airborneAction = new AirborneAction(this);
-	AirborneCondition* airborneCondition = new AirborneCondition(this);
-	OnAirborneAction* onAirborneAction = new OnAirborneAction(this, "medusa_idle");
-	OnAirborneCondition* onAirborneCondition = new OnAirborneCondition(this);
 	DeathAction* deathAction = new DeathAction(this, "medusa_death");
 	DisappearAction* disappearAction = new DisappearAction(this, "medusa_desaparicion");
 	OnDeathAction* onDeathAction = new OnDeathAction(this, "medusa_death");
