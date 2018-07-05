@@ -11,7 +11,7 @@ global uniqueAltars  = #()
 
 global brokenMaps    = #()
 
--------------------------------------------------------------
+--------------------------------------------------------------------------------
 struct TJsonFormatter (
 	ofilename,			-- Name of output file
 	fs, 				-- File stream
@@ -132,9 +132,9 @@ struct TJsonFormatter (
 	)
 )
 
--- ----------------------------------------------------------
--- ----------------------------------------------------------
--- ----------------------------------------------------------
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 struct TMaterialExporter (
 	fs = TJsonFormatter(),
 	project_path,           -- Assigned in the ctor. "D:\Dev\MomentumEngine-Real\Bin\"
@@ -299,9 +299,10 @@ struct TMaterialExporter (
 	)
 )
 
--- ----------------------------------------------------------
--- ----------------------------------------------------------
--- ----------------------------------------------------------
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 struct TSceneExporter (
 	fs = TJsonFormatter(),
 	attrManager = TAttributeManager(),
@@ -408,7 +409,7 @@ struct TSceneExporter (
 			fs.beginObj() -- - - start new entity  - - - - - - -
 	),
 	
-	-- --CHILD POSITIONS  ----------------------------------------------------
+	-- --CHILD POSITIONS  ------------------------------------------------------
 	fn exportChildPositions obj = (
 		fs.beginArray()		
 			for i = 1 to obj.children.count do (
@@ -418,7 +419,7 @@ struct TSceneExporter (
 		fs.endArray()
 	),
 	
-	-- --STRING ARRAY (generic for tags, groups, masks )---------
+	-- --STRING ARRAY (generic for tags, groups, masks )------------------------
 	fn exportStringArray arrayName strings = (
 		fs.writeKey arrayName
 		fs.beginArray()
@@ -532,7 +533,7 @@ struct TSceneExporter (
 	-- -- · COMPONENTS · -------------------------------------------------------
 	-- -------------------------------------------------------------------------
 
-	-- --COMP: TRANSFORM------------------------------------
+	-- --COMP: TRANSFORM--------------------------------------------------------
 	fn exportTransform obj lookAtCoord: noRot:false relative:false = (
 		fs.writeKey "transform"
 		fs.beginObj()
@@ -637,7 +638,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --SPLINE-------------------------------------------------------
+	-- --SPLINE-----------------------------------------------------------------
 	fn exportSpline obj type:"platform_simple" = (
 		-- Executed only if we already know it has a child line.
 		local curveType = "catmull-rom"
@@ -697,7 +698,7 @@ struct TSceneExporter (
 		)
 	),
 	
-	-- --COMP: BREAKABLE------------------------------------------------
+	-- --COMP: BREAKABLE--------------------------------------------------------
 	fn exportBreakable hp:1 = (
 		fs.writeComma()
 		fs.writeKey "breakable"
@@ -706,7 +707,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --COMP: MECHANISM SYSTEM------------------------------------------------
+	-- --COMP: MECHANISM SYSTEM-------------------------------------------------
 	-- What is affected when activating a mechanism.
 	fn exportMech obj = (
 		fs.writeComma()
@@ -727,7 +728,7 @@ struct TSceneExporter (
 		)
 	),
 
-	-- --CONTENTS OF THE collider_mesh or tri_mesh collider----------
+	-- --CONTENTS OF THE collider_mesh or tri_mesh collider---------------------
 	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
 		if obj.layer.name == "trimesh" then meshShape = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
@@ -831,7 +832,7 @@ struct TSceneExporter (
 		fs.writeComma()
 	),
 	
-	-- --COMP: COLLIDER------------------------------------------
+	-- --COMP: COLLIDER---------------------------------------------------------
 	fn exportCompCollider obj first:true meshMode:false colliderGroups: masks: trig:false dyn:false mov:false = (
 		local objClass = classOf obj
 		local layerName = obj.layer.name
@@ -872,7 +873,7 @@ struct TSceneExporter (
 		fs.endObj() -- End collider component.
 	),
 	
-	-- --COLLIDER (name, transform and collider)-----------
+	-- --COLLIDER (name, transform and collider)--------------------------------
 	fn exportEntityCollider obj meshMode: colliderGroups: masks: trig:false dyn:false = (
 		exportName obj
 		fs.writeComma()
@@ -909,7 +910,7 @@ struct TSceneExporter (
 		)
 	),
 
-	-- --COMP: CAMERA TRIGGER ------------------------------------------
+	-- --COMP: CAMERA TRIGGER --------------------------------------------------
 	fn exportCameraTrigger obj = (
 		exportEntityCollider obj colliderGroups:#("trigger") masks:#("player") trig:true
 		fs.writeComma()
@@ -952,7 +953,7 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)--------------------------------
+	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)---------
 	fn exportEditableMesh obj = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string) --DEBUG
 		local pure 		= obj.layer.name == "pure"
@@ -1016,9 +1017,9 @@ struct TSceneExporter (
 		fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 	),
 	
-	-- ----------------------------------------------------------
-	-- -- · ENTITIES · ------------------------------------
-	-- ----------------------------------------------------------
+	-- -------------------------------------------------------------------------
+	-- -- · ENTITIES · ---------------------------------------------------------
+	-- -------------------------------------------------------------------------
 
 	-- --ENTITY with only COLLISION --------------------------------------------
 	fn exportEntityCollision obj nValidObjs = (
@@ -1040,6 +1041,8 @@ struct TSceneExporter (
 		if nValidObjs > 0 then fs.writeComma()
 		--else fs.writeDummyEntity "altar"
 		
+		if isUnique obj then append uniqueAltars obj.name
+
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1055,7 +1058,7 @@ struct TSceneExporter (
 		return true
 	),
 	
-	-- --ENTITY: COIN-------------------------------------------------------
+	-- --ENTITY: COIN-----------------------------------------------------------
 	fn exportEntityCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		--else fs.writeDummyEntity "coin"
@@ -1074,7 +1077,7 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --ENTITY: CAMERA (also exports child line)--------------------------
+	-- --ENTITY: CAMERA (also exports child line)-------------------------------
 	fn exportEntityCamera obj nValidObjs = (
 		local objClass = classOf obj
 		format "name: %\n" obj.name
@@ -1296,7 +1299,7 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --ENTITY: DEFAULT (exports editable mesh)---------------------------
+	-- --ENTITY: DEFAULT (exports editable mesh)--------------------------------
 	fn exportEntityDefault obj nValidObjs = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
@@ -1313,7 +1316,7 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --ENTITY: MECHANISM (also exports children)----------------------
+	-- --ENTITY: MECHANISM (also exports children)------------------------------
 	-- The activator of the mechanism system.
 	fn exportEntityMechSys obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
@@ -1362,11 +1365,43 @@ struct TSceneExporter (
 		)
 		return true
 	),
+
+	-- --ENTITY: INSTANCES (also exports children)------------------------------
+	-- Each object is a dummy containing instances of dummy's name type.
+	fn exportEntityInstance obj nValidObjs = (
+		if obj.children == undefined or obj.children.count == 0 then return false
+		if nValidObjs > 0 then fs.writeComma()
+
+		local instanceCategory = obj.name
+
+		fs.beginObj()
+			fs.writeKey "entity"
+			fs.beginObj() -- - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				exportTransform obj
+				fs.writeComma()
+				fs.writeKey "render"
+				fs.beginArray()
+					fs.beginObj()
+						fs.writeKeyValue "mesh" (mesh_path + instanceCategory + ".instanced_mesh")
+						fs.writeComma()
+						fs.writeKey "materials"
+							fs.beginArray()
+								 fs.writeValue (mats_path + instanceCategory + ".material") addIndent:true
+							fs.endArray()
+					fs.endObj()
+				fs.endArray()
+			endEntity() -- - - - - - - - - - - - - - - - - - -
+
+			--TODO: Recorrer los hijos y exportar .instanced_mesh
+		return true
+	),
+
+	-- -------------------------------------------------------------------------
+	-- -------------------------------------------------------------------------
 	
-	-- ----------------------------------------------------------
-	-- ----------------------------------------------------------
-	
-	-- --ENEMY PREFAB ---------------------------------------
+	-- --ENEMY PREFAB ----------------------------------------------------------
 	fn exportEnemyPrefab obj nValidObjs = (
 		if classOf obj != Capsule and classOf obj != Sphere then return false
 		if obj.parent != undefined then return false
@@ -1429,7 +1464,7 @@ struct TSceneExporter (
 		return true
 	),
 	
-	-- --ENTITY: PLAYER HITBOXES--------------------------------------------
+	-- --ENTITY: PLAYER HITBOXES------------------------------------------------
 	fn exportChildHitboxes obj capsuleHeight = (
 		for child in obj.children do (
 			if isCollider child and
@@ -1465,7 +1500,7 @@ struct TSceneExporter (
 		)
 	),
 	
-	-- --ENTITY: PLAYER ---------------------------------------------------
+	-- --ENTITY: PLAYER --------------------------------------------------------
 	fn exportEntityPlayer obj nValidObjs = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
@@ -1588,8 +1623,8 @@ struct TSceneExporter (
 		return true
 	),
 	
-	-- -------------------------------------------------------------------
-	-- -------------------------------------------------------------------
+	-- -------------------------------------------------------------------------
+	-- -------------------------------------------------------------------------
 	
 	fn exportUniqueObj obj = (
 		local type = "none"
@@ -1688,7 +1723,7 @@ struct TSceneExporter (
 					obj.name = cleanName obj.name
 					-- Avoid child objects, they will be added through parent. Also, don't export hidden objects.
 					if obj.parent == undefined and not obj.isHidden then (
-						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classof obj) as string) obj.name --DEBUG
+						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classOf obj) as string) obj.name --DEBUG
 						if classOf obj == Editable_poly then convertToMesh obj
 						case layerName of (
 							"altars":       ( wasValid = exportEntityAltar     obj nValidObjs )
@@ -1697,6 +1732,7 @@ struct TSceneExporter (
 							"coins": 	    ( wasValid = exportEntityCoin      obj nValidObjs )
 							"collisions":   ( wasValid = exportEntityCollision obj nValidObjs )
 							"enemies":      ( wasValid = exportEntityEnemy	   obj nValidObjs )
+							"instancing":   ( wasValid = exportEntityInstance  obj nValidObjs )
 							"lights":       ( wasValid = exportEntityLight	   obj nValidObjs )
 							"movables":     ( wasValid = exportEntityDefault   obj nValidObjs )
 							"player":       ( wasValid = exportEntityPlayer	   obj nValidObjs )
@@ -1722,7 +1758,7 @@ struct TSceneExporter (
 				format "Export finished.\n"
 
 			) else format "WARNING: Layer % [%] NOT exported.\n" layerName scenePath
-		format "---------------------------------------------------------------------\n"
+		format "----------------------------------------------------------------\n"
 		)
 		-- All layers and objects processed, begin export of stored unique objects.
 		exportUniques()
@@ -1744,9 +1780,9 @@ NOTA: Si se actualiza un material que ya existía, hay que copiarlo a mano porqu
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 
-/*----------------------------------------------------------------------------------
+/*------------------------------------------------------------------------------
 -- Notas de uso:
-------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 Pasos para instalar los scripts:
 ------------------------------------------
 1. Customize > Configure System Paths... > Additional Startup Scripts > Modify...
@@ -1782,7 +1818,7 @@ El proyecto debe tener las siguientes carpetas:
  bin/data/meshes/
  bin/data/materials/
  maxscript/  --> Aquí tienen que estar estos scripts.
-----------------------------------------------------------------------------------*/
+--------------------------------------------------------------------------------*/
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 global exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
