@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/modulos_baja_Material modulo001_BaseColor.dds",
-    "normal": "data/textures/modulos_baja_Material modulo001_Normal.dds",
-    "metallic": "data/textures/modulos_baja_Material modulo001_Roughness.dds",
+    "albedo": "data/textures/test.dds",
+    "normal": "data/textures/null_normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/modulos_baja_Material modulo001_Height.dds"
+    "height": "data/textures/null_height.dds"
   }
 }
