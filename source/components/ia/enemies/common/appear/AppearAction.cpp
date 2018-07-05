@@ -9,7 +9,6 @@ AppearAction::AppearAction(Enemy* enemy, std::string animation) :
 }
 
 int AppearAction::execAction(float delta) {
-	enemy->updateGravity(delta);
 	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation)) {
 		return Stay;
 	}

@@ -74,6 +74,10 @@
 
 DECL_OBJ_MANAGER("kippah", Kippah);
 
+Kippah::Kippah() {
+	initBehaviorTree();
+}
+
 Kippah::~Kippah() {
 }
 
@@ -115,8 +119,8 @@ void Kippah::initBehaviorTree() {
 	AppearAction* appearAction = new AppearAction(this, "medusa_aparicion");
 	OnAppearAction* onAppearAction = new OnAppearAction(this, "medusa_aparicion");
 	CombatCondition* combatCondition = new CombatCondition(this);
-	AttackActionFlying* spinAttackAction = new AttackActionFlying(this, "medusa_revolverse", "attack");
-	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "medusa_revolverse", "attack");
+	AttackActionFlying* spinAttackAction = new AttackActionFlying(this, "medusa_revolverse", "spinAttack");
+	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "medusa_revolverse", "spinAttack");
 	IdleWarActionFlying* idleWarActionFlying = new IdleWarActionFlying(this, "medusa_idle_war");
 	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(this, "medusa_idle_war");
 	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
@@ -125,8 +129,9 @@ void Kippah::initBehaviorTree() {
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "medusa_idle");
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
 	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(this, combatCondition);
-	OnAttackAction* onRangedAttackAction = new OnAttackAction(this, "medusa_shot", "attack");
-	RangedAttackAction* rangedAttackAction = new RangedAttackAction(this, "medusa_shot", "attack");
+	OnAttackAction* onRangedAttackAction = new OnAttackAction(this, "medusa_shot", "rangedAttack");
+	RangedAttackAction* rangedAttackAction = new RangedAttackAction(this, "medusa_shot", "rangedAttack");
+
 	//root
 	createRoot("kippah", Priority, nullptr, nullptr);
 
@@ -244,8 +249,6 @@ void Kippah::update(float delta) {
 }
 
 void Kippah::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-	initBehaviorTree();
-
 	playerHandle = getEntityByName(PLAYER_NAME);
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();

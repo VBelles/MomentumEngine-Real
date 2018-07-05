@@ -15,11 +15,11 @@ RangedAttackAction::RangedAttackAction(Kippah* enemy, std::string animation, std
 int RangedAttackAction::execAction(float delta) {
 	EnemyAttack enemyAttack = enemy->attacks[attack];
 
-	if (enemy->animationTimer.elapsed() <= frames2sec(enemyAttack.hitboxStart)) {
-		attackLaunched = false;
-		return Stay;
+	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
+		return Leave;
 	}
-	else if (enemy->animationTimer.elapsed() <= frames2sec(enemyAttack.hitboxEnd)) {
+	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {
+		//Launch projectile
 		if (!attackLaunched) {
 			attackLaunched = true;
 			TEntityParseContext ctx;
@@ -47,10 +47,12 @@ int RangedAttackAction::execAction(float delta) {
 		}
 		return Stay;
 	}
-	else if (enemy->animationTimer.elapsed() <= enemy->getSkeleton()->getAnimationDuration(animation)) {
+	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
+		//TODO spawn projectile
 		return Stay;
 	}
 	else {
-		return Leave;
+		attackLaunched = false;
+		return Stay;
 	}
 }

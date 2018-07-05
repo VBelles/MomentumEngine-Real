@@ -4,9 +4,9 @@
 			"name": "rangedAttack",
 			"transform": {},
 			"render" : {
-				"mesh": "data/meshes/rangedAttackSphere.mesh",
+				"mesh": "data/meshes/rangedAttack.mesh",
 				"materials" : [
-					"data/materials/piedras.material"
+					"data/materials/rangedAttack.material"
 				]
 			},
 			"collider": {

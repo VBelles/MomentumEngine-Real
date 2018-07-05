@@ -18,7 +18,7 @@
         "skeleton": "data/skeletons/medusa_new/medusa_new.skeleton"
       },
       "givePower": {
-        "maxPowerToGive": 50000.0,
+        "maxPowerToGive": 5000.0,
         "baseMultiplier": 1.2
       },
       "kippah": {
@@ -29,15 +29,23 @@
         "gravity": -50,
         "max_velocity": 20,
         "chase_fov": 180,
-        "fov_chase_distance": 15,
-        "small_chase_radius": 1.5,
+        "fov_chase_distance": 30,
+        "small_chase_radius": 2.5,
         "attack_fov": 180,
-        "short_combat_distance": 1.5,
-        "long_combat_distance": 15,
+        "short_combat_distance": 2.5,
+        "long_combat_distance": 30,
         "attacks": [
           {
-            "name": "attack",
-            "frame_data": "5 40",
+            "name": "spinAttack",
+            "frame_data": "15 40",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "spinAttack"
+          },          
+          {
+            "name": "rangedAttack",
+            "frame_data": "25 80",
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
             "stun": 1.0,
@@ -61,9 +69,10 @@
       "hitboxes": {
         "hitboxes": [
           {
-            "name": "attack",
+            "name": "spinAttack",
             "shape": "sphere",
-            "radius": 0.8,
+            "radius": 2.5,
+            "bone": "Bone012",
             "group": [
               "enemy"
             ],
