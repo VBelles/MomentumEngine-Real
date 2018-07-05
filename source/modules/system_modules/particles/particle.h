@@ -7,7 +7,8 @@ namespace Particles {
         VEC4 color;
         VEC3 position;
         VEC3 velocity;
-        float rotation = 0.f;
+		float rotation = 0.f;
+		QUAT rotationQuat;
         float size = 1.f;
         float lifetime = 0.f;
         float max_lifetime = 0.f;
