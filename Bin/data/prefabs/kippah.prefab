@@ -72,7 +72,7 @@
             "name": "spinAttack",
             "shape": "sphere",
             "radius": 2.5,
-            "bone": "Bone012",
+            "bone": "Bone015",
             "group": [
               "enemy"
             ],
