@@ -5,9 +5,11 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
-global uniqueCoins  = #()
-global uniqueAltars = #()
-global brokenMaps   = #()
+global uniqueCoins   = #()
+global uniqueEnemies = #()
+global uniqueAltars  = #()
+
+global brokenMaps    = #()
 
 -------------------------------------------------------------
 struct TJsonFormatter (
@@ -1161,6 +1163,8 @@ struct TSceneExporter (
 		if nValidObjs > 0 then fs.writeComma()
 		--else fs.writeDummyEntity "enemy"
 		
+		if isUnique obj then append uniqueEnemies obj.name
+
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1588,6 +1592,18 @@ struct TSceneExporter (
 	-- -------------------------------------------------------------------
 	
 	fn exportUniqueObj obj = (
+		local type = "none"
+
+		case obj.layer.name of (
+			"altars":  type = "altars"
+			"coins":   type = "coins"
+			"enemies": (
+				if (stringContainsSubstring obj.name "melee") then type = "dreidel" --peonza
+				else type = "kippah" --medusa
+			)
+			default:   type = "none"
+		)
+
 		fs.beginObj()
 			fs.writeKeyValue "id" obj.name
 			fs.writeComma()
@@ -1596,20 +1612,28 @@ struct TSceneExporter (
 			fs.writeKeyValue "position" (maxPosToMcv obj.pos)
 			fs.writeComma()
 			fs.writeKeyValue "level" "level00"
+			fs.writeComma()
+			fs.writeKeyValue "type" type
 		fs.endObj()
 	),
-	
-	-- Globals uniqueCoins and uniqueAltars contain the object names.
-	fn exportUniques = (
-		if uniqueCoins.count == 0 and uniqueAltars.count == 0 then return false
-		local ofilename = getFilenameFile maxFileName
-		local uniquesPath = project_path + uniques_path + ofilename + "-uniques.json"
-		fs.begin uniquesPath
+
+	fn exportUniqueFile uniqueCategory:"" = (
+		--TODO: Change to "unique_" when finished.
+		local uniquesPath = project_path + uniques_path + "uniques_" + uniqueCategory + ".json"
+
+		local uniquesArray = #()
+		case uniqueCategory of (
+			"altars":  uniquesArray = uniqueAltars
+			"coins":   uniquesArray = uniqueCoins
+			"enemies": uniquesArray = uniqueEnemies
+			default:   return false --Unknown unique, export nothing.
+		)
+		fs.begin uniquesPath --Create file.
 			fs.beginObj()
-				fs.writeKey "unique_coins"
+				fs.writeKey ("unique_" + uniqueCategory)
 				fs.beginArray()
-				for i = 1 to uniqueCoins.count do (
-					local obj = getNodeByName uniqueCoins[i]
+				for i = 1 to uniquesArray.count do (
+					local obj = getNodeByName uniquesArray[i]
 					if obj != undefined then (
 						if i > 1 then fs.writeComma()
 						exportUniqueObj obj
@@ -1618,7 +1642,13 @@ struct TSceneExporter (
 				fs.endArray()
 			fs.endObj()
 		fs.end()
-		-- TODO: Export also Altars.
+	),
+
+	-- Globals uniqueCoins, uniqueAltars and uniqueEnemies contain the object names.
+	fn exportUniques = (
+		if uniqueAltars.count  > 0 then exportUniqueFile uniqueCategory:"altars"
+		if uniqueCoins.count   > 0 then exportUniqueFile uniqueCategory:"coins"
+		if uniqueEnemies.count > 0 then exportUniqueFile uniqueCategory:"enemies"
 	),
 
 	fn showBrokenMaps = (
