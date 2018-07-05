@@ -5,8 +5,8 @@
 			"transform": {
 				"pos": "-25 0.5 -48"
 			},
-			"particles" : {
-				"core" : "data/particles/wildfire.particles"
+			"particles": {
+				"core": "data/particles/wildfire.particles"
 			}
 		}
 	},
@@ -16,8 +16,8 @@
 			"transform": {
 				"pos": "-25 3 -48"
 			},
-			"particles" : {
-				"core" : "data/particles/snow.particles"
+			"particles": {
+				"core": "data/particles/snow.particles"
 			}
 		}
 	},
@@ -27,8 +27,8 @@
 			"transform": {
 				"pos": "-25 2 -54"
 			},
-			"particles" : {
-				"core" : "data/particles/animated_fire.particles",
+			"particles": {
+				"core": "data/particles/animated_fire.particles",
 				"offset": "0 5 0"
 			}
 		}
@@ -39,19 +39,19 @@
 			"transform": {
 				"pos": "-28 1 -54"
 			},
-			"particles" : {
-				"core" : "data/particles/sparks.particles"
+			"particles": {
+				"core": "data/particles/sparks.particles"
 			}
 		}
 	},
 	{
 		"entity": {
-			"name": "particles_sparks",
+			"name": "particles_slash",
 			"transform": {
 				"pos": "-315 44 -608"
 			},
-			"particles" : {
-				"core" : "data/particles/slash.particles"
+			"particles": {
+				"core": "data/particles/test_mesh.particles"
 			}
 		}
 	}
