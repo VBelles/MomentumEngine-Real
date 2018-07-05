@@ -23,15 +23,17 @@ namespace Particles {
 			float angle = 0.f;        // emission angle
 		};
 		struct TMovement {
-			float velocity = 0.f;     // initial speed
-			float acceleration = 0.f; // acceleration
-			float spin = 0.f;         // rotation speed (radians)
-			float gravity = 0.f;      // gravity factor
-			float wind = 0.f;         // wind factor
-			bool ground = false;      // limit by ground
+			float velocity = 0.f;			// initial speed
+			float acceleration = 0.f;		// acceleration
+			float spin = 0.f;				// rotation speed (radians)
+			VEC3 spin_axis = { 0, 1, 0 };	// spin axis
+			float gravity = 0.f;			// gravity factor
+			float wind = 0.f;				// wind factor
+			bool ground = false;			// limit by ground
 		};
 		struct TRender {
 			const CTexture* texture = nullptr; // particle texture
+			const CRenderMesh* mesh = nullptr; // particle mesh (optional)
 			VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
 			int numFrames = 1;                 // number of animation frames
 			int initialFrame = 0;              // initial frame

@@ -2,9 +2,14 @@
 
 class Respawner;
 
+struct PointOfInterest {
+	std::string name;
+	CTransform transform;
+};
 class CModuleGame : public IModule {
 private:
 	//GUI::CHudController* hudController;
+	std::vector<PointOfInterest> pointsOfInterest;
 	Respawner* respawner;
 public:
 	CModuleGame(const std::string& aname) : IModule(aname) {}

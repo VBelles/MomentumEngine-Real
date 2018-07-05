@@ -84,6 +84,14 @@ bool CModuleGame::start() {
 	EngineScripting.throwEvent(onGameStart, "");
 	EngineScripting.throwEvent(onLevelStart, "1");
 
+
+	json jPoints = loadJson("data/debug/points_of_interest.json");
+	for (auto& jPoint : jPoints) {
+		std::string name = jPoint.value("name", "undefined");
+		VEC3 pos = jPoint.count("pos") ? loadVEC3(jPoint["pos"]) : VEC3::Zero;
+		VEC4 rot = jPoint.count("rot") ? loadVEC4(jPoint["rot"]) : VEC4::Zero;
+		pointsOfInterest.push_back(PointOfInterest{ name, CTransform(pos, rot) });
+	}
 	return true;
 }
 
@@ -132,6 +140,18 @@ void CModuleGame::render() {
 	}*/
 	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
 	solid->activate();
+
+	if (CApp::get().isDebug()) {
+		if (ImGui::TreeNode("Points of interest")) {
+			for (auto& point : pointsOfInterest) {
+				if (ImGui::Button(point.name.c_str())) {
+					VEC3& pos = point.transform.getPosition();
+					ScriptingPlayer::teleportPlayer(pos.x, pos.y, pos.z);
+				}
+			}
+			ImGui::TreePop();
+		}
+	}
 }
 
 Respawner * CModuleGame::getRespawner() {

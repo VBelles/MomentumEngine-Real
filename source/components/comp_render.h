@@ -15,7 +15,7 @@ class TCompRender : public TCompBase {
 private:
 	void loadMesh(const json& j, TEntityParseContext& ctx);
 	void onDefineLocalAABB(const TMsgDefineLocalAABB& msg);
-  void onSetVisible(const TMsgSetVisible& msg);
+	void onSetVisible(const TMsgSetVisible& msg);
 
 	CTimer timer;
 	float timeToNormal;
@@ -44,6 +44,8 @@ public:
 	//void setMesh(std::string meshName, std::string materialName = "");
 
 	void setAllMaterials(int startingMesh, int endingMesh, std::string materialName);
+	std::vector<std::string> getMaterials(int mesh);
+	void setMeshEnabled(int mesh, bool enabled);
 	void setAllMaterials(std::vector<std::string> materialNames);
 
 	void update(float delta);
@@ -53,5 +55,7 @@ public:
 
 	void enable();
 	void disable();
+
+
 
 };
