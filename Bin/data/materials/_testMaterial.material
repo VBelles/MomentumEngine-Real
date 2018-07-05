@@ -1,8 +1,10 @@
 {
-  "shadows": true,
+  "technique": "vegetation.tech",
   "textures":
   {
-    "albedo": "data/textures/null_albedo.dds",
-    "normal": "data/textures/null_normal.dds"
+    "albedo": "data/textures/vegetacion/brizna.dds",
+    "normal": "data/textures/vegetacion/brizna_normals.dds",
+    "metallic": "data/textures/black.dds",
+    "roughness": "data/textures/black.dds"
   }
 }

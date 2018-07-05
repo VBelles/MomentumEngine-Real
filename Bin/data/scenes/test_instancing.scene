@@ -9,7 +9,7 @@
         {
           "mesh": "data/meshes/GeoSphere001.instanced_mesh",
           "materials": [
-            "data/textures/rustediron2/rustediron2_instanced.material"
+            "data/materials/_test_vegetation.material"
           ]
         }
       ]

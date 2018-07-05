@@ -31,6 +31,34 @@ bool CModuleTestInstancing::start() {
 		grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
 		grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
 	}
+
+	auto& json = loadJson("data/instancing/grass.json");
+	for (auto& mesh : json) {
+		std::string type = mesh.value("type", "");
+		if (type == "grass") {
+			for (auto& data : mesh["data"]) {
+				TGrassParticle new_instance;
+				new_instance.pos = loadVEC3(data["pos"]);
+				grass_instances.push_back(new_instance);
+			}
+		}
+		else if (type == "geosphere") {
+			for (auto& data : mesh["data"]) {
+				TInstance new_instance;
+				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+				float scale = data.value("scale", 1.f);
+				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+				instances.push_back(new_instance);
+			}
+		}
+	}
+	dbg("Instancing: %d grass\n", grass_instances.size());
+	dbg("Instancing: %d geosphere\n", instances.size());
+	grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
+	instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
+
+
 	return true;
 }
 
@@ -52,9 +80,9 @@ void CModuleTestInstancing::update(float delta) {
 	// Move the instances in the cpu
 	static float t = 0;
 	t += delta;
-	for (auto& p : instances)
-		p.world = p.world * MAT44::CreateTranslation(VEC3(0, 0.1f * sin(t), 0));
-	instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
+	//for (auto& p : instances)
+		//p.world = p.world * MAT44::CreateTranslation(VEC3(0, 0.1f * sin(t), 0));
+	//instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
 
 	blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
 
