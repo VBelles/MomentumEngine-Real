@@ -151,26 +151,5 @@
                 "color": "1 1 1 1"
             }
         }
-    },
-    {
-        "entity":
-        {
-          "name": "Mesh_Slash",
-          "transform":
-          {
-            "pos": "-315 44 -608",
-            "rotation": "0.707107 0.0 0.0 -0.707107"
-          },
-          "render":
-          [
-            {
-              "mesh": "data/meshes/Mesh_Slash.mesh",
-              "materials":
-              [
-                "data/materials/Material_#25.material"
-              ]
-            }
-          ]
-        }
-      }
+    }
 ]

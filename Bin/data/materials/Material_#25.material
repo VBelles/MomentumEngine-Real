@@ -3,7 +3,7 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/test.dds",
+    "albedo": "data/textures/fire_slash.dds",
     "normal": "data/textures/null_normal.dds",
     "metallic": "data/textures/null_metallic.dds",
     "roughness": "data/textures/null_roughness.dds",

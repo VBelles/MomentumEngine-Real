@@ -1,0 +1,23 @@
+[
+  {
+    "entity":
+    {
+      "name": "Mesh_Slash",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.707107 0.0 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Mesh_Slash.mesh",
+          "materials":
+          [
+            "data/materials/Material_#25.material"
+          ]
+        }
+      ]
+    }
+  }
+]

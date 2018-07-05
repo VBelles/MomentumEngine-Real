@@ -330,7 +330,6 @@
     "vertex_type" : "PosClr", 
     "category" : "particles", 
     "z" : "test_but_no_write", 
-    "rs_config" : "cull_none", 
     "blend" : "additive_by_src_alpha",
     "priority": 60    
   },
@@ -342,6 +341,7 @@
     "vertex_type" : "PosNUvUvT", 
     "category" : "particles",
     "blend" : "additive_by_src_alpha",
+    "rs_config" : "cull_none",
     "priority": 60    
   },
 
