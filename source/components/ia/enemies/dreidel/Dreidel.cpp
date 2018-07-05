@@ -73,6 +73,10 @@
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
+Dreidel::Dreidel() {
+	initBehaviorTree();
+}
+
 Dreidel::~Dreidel() {
 }
 
@@ -169,6 +173,15 @@ void Dreidel::initBehaviorTree() {
 	//hit stun
 	addChild("attackProperties", "hitStun", Action, nullptr, hitStun);
 
+	//stun
+	addChild("dreidel", "stun", Sequence, onStunCondition, nullptr);
+	addChild("stun", "onStunAction", Action, nullptr, onStunAction);
+	addChild("stun", "stunAction", Action, nullptr, stunAction);
+
+	//airborne
+	addChild("dreidel", "onAirborneAction", Action, onAirborneCondition, onAirborneAction);
+	addChild("dreidel", "airborneAction", Action, airborneCondition, airborneAction);
+
 	//death
 	addChild("dreidel", "death", Sequence, onDeathCondition, nullptr);
 	addChild("death", "onDeathAction", Action, nullptr, onDeathAction);
@@ -178,11 +191,6 @@ void Dreidel::initBehaviorTree() {
 	addChild("disappear", "onDisappearAction", Action, nullptr, onDisappearAction);
 	addChild("disappear", "disappearAction", Action, nullptr, disappearAction);
 
-	//stun
-	addChild("dreidel", "stun", Sequence, onStunCondition, nullptr);
-	addChild("stun", "onStunAction", Action, nullptr, onStunAction);
-	addChild("stun", "stunAction", Action, nullptr, stunAction);
-
 	//block break
 	addChild("dreidel", "blockingBreak", Sequence, onBlockingBreakCondition, nullptr);
 	addChild("blockingBreak", "onBlockingBreakAction", Action, nullptr, onBlockingBreakAction);
@@ -191,9 +199,6 @@ void Dreidel::initBehaviorTree() {
 	//block
 	addChild("dreidel", "blockAction", Action, blockCondition, blockAction);
 
-	//airborne
-	addChild("dreidel", "onAirborneAction", Action, onAirborneCondition, onAirborneAction);
-	addChild("dreidel", "airborneAction", Action, airborneCondition, airborneAction);
 
 	//teleport to spawn
 	addChild("dreidel", "teleport", Sequence, onTeleportCondition, nullptr);
@@ -302,8 +307,6 @@ void Dreidel::update(float delta) {
 }
 
 void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-	initBehaviorTree();
-
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	skeletonHandle = get<TCompSkeleton>();

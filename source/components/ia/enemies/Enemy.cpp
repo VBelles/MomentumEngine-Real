@@ -56,7 +56,18 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void Enemy::debugInMenu() {
-		ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
+	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
+	ImGui::Text("Hp: %f\n", hp);
+	ImGui::Text("Power to give: %f\n", getPower()->getPowerToGive());
+	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
+	ImGui::Text("Is blocking: %s\n", isBlocking ? "true" : "false");
+	ImGui::Text("Super armor: %f, has super armor: %s\n", superArmorAmount, hasSuperArmor() ? "true" : "false");
+	ImGui::Text("Player handle is valid: %s\n", playerHandle.isValid() ? "true" : "false");
+	ImGui::Text("Transform handle is valid: %s\n", transformHandle.isValid() ? "true" : "false");
+	ImGui::Text("Collider handle is valid: %s\n", colliderHandle.isValid() ? "true" : "false");
+	ImGui::Text("Skeleton handle is valid: %s\n", skeletonHandle.isValid() ? "true" : "false");
+	ImGui::Text("Hitboxes handle is valid: %s\n", hitboxesHandle.isValid() ? "true" : "false");
+	ImGui::Text("Power handle is valid: %s\n", powerHandle.isValid() ? "true" : "false");
 }
 
 void Enemy::updateGravity(float delta) {

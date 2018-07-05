@@ -10,6 +10,7 @@ OnAirborneAction::OnAirborneAction(Enemy* enemy, std::string animation) :
 }
 
 int OnAirborneAction::execAction(float delta) {
+	enemy->updateGravity(delta);
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	enemy->airborne = true;
 	return Leave;

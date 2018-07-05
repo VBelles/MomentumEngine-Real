@@ -3,6 +3,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
+#include "components/comp_give_power.h"
 
 OnHit::OnHit(Enemy* enemy, std::string animation) :
 	enemy(enemy),
@@ -30,8 +31,15 @@ int OnHit::execAction(float delta) {
 		}
 		enemy->stunTimer.reset();
 	}
+	if (enemy->hp <= 0 || enemy->getPower()->getPowerToGive() <= 0) {
+		enemy->hp = 0;
+		enemy->isBlocking = false;
+		enemy->blockingBroken = false;
+		enemy->superArmorAmount = 0;
+	}
+	enemy->getHitboxes()->disableAll();
+	enemy->velocity = VEC3::Zero;
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
-	enemy->getHitboxes()->disableAll();
 	return Leave;
 }

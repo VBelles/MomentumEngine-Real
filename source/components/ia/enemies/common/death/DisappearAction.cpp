@@ -10,12 +10,10 @@ DisappearAction::DisappearAction(Enemy* enemy, std::string animation) :
 }
 
 int DisappearAction::execAction(float delta) {
-	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation)) {
-		return Stay;
-	}
-	else {
+	if (enemy->animationTimer.elapsed() > enemy->getSkeleton()->getAnimationDuration(animation)
+		&& !enemy->getCollider()->toDestroy) {
 		enemy->getCollider()->toDestroy = true; //TODO enable/disable bien
 		enemy->getCollider()->destroy();
-		return Leave;
 	}
+	return Stay;
 }

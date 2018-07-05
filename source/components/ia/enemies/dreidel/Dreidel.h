@@ -21,6 +21,7 @@ private:
 public:
 	DECL_SIBLING_ACCESS();
 
+	Dreidel();
 	~Dreidel();
 
 	void load(const json& j, TEntityParseContext& ctx);
