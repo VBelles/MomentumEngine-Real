@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/tumbas_baja_Material tumba02_BaseColor.dds",
+    "normal": "data/textures/tumbas_baja_Material tumba02_Normal.dds",
+    "metallic": "data/textures/tumbas_baja_Material tumba01_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/tumbas_baja_Material tumba02_Emissive.dds",
+    "height": "data/textures/tumbas_baja_Material tumba01_Height.dds"
+  }
+}

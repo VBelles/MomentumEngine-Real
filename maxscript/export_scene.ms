@@ -1625,6 +1625,7 @@ struct TSceneExporter (
 		for objName in brokenMaps do (
 			format "ERROR: Map support error in object %, should unwrap_reset.\n" objName
 		)
+		if brokenMaps.count > 0 then format "------EXPORT FAILED!!!!------"
 	),
 
 	fn exportAll = (

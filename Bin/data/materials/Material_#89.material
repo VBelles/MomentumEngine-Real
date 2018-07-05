@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/real_bigmusgo.dds",
-    "normal": "data/textures/real_bigmusgo_normals.dds",
-    "metallic": "data/textures/null_metallic.dds",
+    "albedo": "data/textures/plaza_baja_Material plaza2_BaseColor.dds",
+    "normal": "data/textures/plaza_baja_Material plaza2_Normal.dds",
+    "metallic": "data/textures/plaza_baja_Material plaza2_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
-    "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/null_height.dds"
+    "self_illum": "data/textures/plaza_baja_Material plaza2_Emissive.dds",
+    "height": "data/textures/plaza_baja_Material plaza1_Height.dds"
   }
 }
