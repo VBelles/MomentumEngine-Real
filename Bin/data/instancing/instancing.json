@@ -17,7 +17,7 @@
         ]
     },
     {
-        "type": "geosphere",
+        "type": "grass_small_00",
         "data":[
             {
                 "pos": "0 15 0",

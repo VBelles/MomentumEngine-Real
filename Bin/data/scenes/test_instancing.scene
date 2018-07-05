@@ -49,24 +49,492 @@
       ]
     }
   }
-  ,
+  
+
+
+
+
+
+
+
 
 
   
+
+  ,
   {
     "entity": {
-      "name": "Instanced Grass brizna 1",
+      "name": "grass_small_00",
       "transform": {
         "pos": "0 0 0"
       },
       "render" : [
         {
-          "mesh": "data/meshes/grass.instanced_mesh",
+          "mesh": "data/meshes/grass_small_00.instanced_mesh",
           "materials": [
-            "data/materials/instanced_brizna_1.material"
+            "data/materials/grass_small_00.material"
           ]
         }
       ]
     }
-  }  
+  }
+,
+  {
+    "entity": {
+      "name": "grass_small_01",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/grass_small_01.instanced_mesh",
+          "materials": [
+            "data/materials/grass_small_01.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "grass_small_02",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/grass_small_02.instanced_mesh",
+          "materials": [
+            "data/materials/grass_small_02.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "grass_medium_00",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/grass_medium_00.instanced_mesh",
+          "materials": [
+            "data/materials/grass_medium_00.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "grass_medium_01",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/grass_medium_01.instanced_mesh",
+          "materials": [
+            "data/materials/grass_medium_01.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "grass_medium_02",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/grass_medium_02.instanced_mesh",
+          "materials": [
+            "data/materials/grass_medium_02.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "grass_large_00",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/grass_large_00.instanced_mesh",
+          "materials": [
+            "data/materials/grass_large_00.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "grass_large_01",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/grass_large_01.instanced_mesh",
+          "materials": [
+            "data/materials/grass_large_01.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "grass_large_02",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/grass_large_02.instanced_mesh",
+          "materials": [
+            "data/materials/grass_large_02.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_small_00",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_small_00.instanced_mesh",
+          "materials": [
+            "data/materials/moss_small_00.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_small_01",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_small_01.instanced_mesh",
+          "materials": [
+            "data/materials/moss_small_01.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_small_02",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_small_02.instanced_mesh",
+          "materials": [
+            "data/materials/moss_small_02.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_small_03",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_small_03.instanced_mesh",
+          "materials": [
+            "data/materials/moss_small_03.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_small_04",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_small_04.instanced_mesh",
+          "materials": [
+            "data/materials/moss_small_04.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_small_05",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_small_05.instanced_mesh",
+          "materials": [
+            "data/materials/moss_small_05.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_small_06",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_small_06.instanced_mesh",
+          "materials": [
+            "data/materials/moss_small_06.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_medium_00",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_medium_00.instanced_mesh",
+          "materials": [
+            "data/materials/moss_medium_00.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_medium_01",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_medium_01.instanced_mesh",
+          "materials": [
+            "data/materials/moss_medium_01.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_medium_02",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_medium_02.instanced_mesh",
+          "materials": [
+            "data/materials/moss_medium_02.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_large",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_large.instanced_mesh",
+          "materials": [
+            "data/materials/moss_large.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "moss_extra_large",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/moss_extra_large.instanced_mesh",
+          "materials": [
+            "data/materials/moss_extra_large.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "petal_00",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/petal_00.instanced_mesh",
+          "materials": [
+            "data/materials/petal_00.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "petal_01",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/petal_01.instanced_mesh",
+          "materials": [
+            "data/materials/petal_01.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "leaf_00",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/leaf_00.instanced_mesh",
+          "materials": [
+            "data/materials/leaf_00.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "leaf_01",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/leaf_01.instanced_mesh",
+          "materials": [
+            "data/materials/leaf_01.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "leaf_02",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/leaf_02.instanced_mesh",
+          "materials": [
+            "data/materials/leaf_02.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "leaf_03",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/leaf_03.instanced_mesh",
+          "materials": [
+            "data/materials/leaf_03.material"
+          ]
+        }
+      ]
+    }
+  }
+,
+  {
+    "entity": {
+      "name": "bush",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/bush.instanced_mesh",
+          "materials": [
+            "data/materials/bush.material"
+          ]
+        }
+      ]
+    }
+  }
 ]
