@@ -9,9 +9,9 @@
 				{
 					"mesh": "data/meshes/_mechPREFAB.mesh",
 					"materials": [
-						"data/materials/mec1.material"
-					],
-					"color": "0 0 1 1"
+						"data/materials/mec1.material",
+						"data/materials/mec1_activated.material"
+					]
 				}
 			],
 			"collider" : {

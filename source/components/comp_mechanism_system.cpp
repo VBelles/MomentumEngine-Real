@@ -17,17 +17,6 @@ void TCompMechanismSystem::registerMsgs() {
 void TCompMechanismSystem::load(const json& j, TEntityParseContext& ctx) {
 	numberOfMechanisms = j.value("number_of_mechanisms", 0);
 	numberOfMechanismsActivated = 0;
-	//if(j.count("mechanisms")) {
-	//	auto& mechanisms = j["mechanisms"];
-	//	assert(mechanisms.is_array());
-	//	for (auto& mechanism : mechanisms) {
-	//		if (mechanism.is_string()) {
-	//			mechanismsNames.push_back(mechanism);
-	//		}
-	//	}
-	//	numberOfMechanisms = mechanisms.size();
-	//}
-	//activationEffectFile = j["activationEffectFile"].get<std::string>();
 }
 
 void TCompMechanismSystem::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
@@ -37,13 +26,7 @@ void TCompMechanismSystem::onAllScenesCreated(const TMsgAllScenesCreated & msg) 
 }
 
 void TCompMechanismSystem::update(float dt) {
-	//Comprobar que todos están activados
-	//if (!isActivated) {
-	//	if (numberOfMechanismsActivated == numberOfMechanisms) {
-	//		EngineScripting.doFile(activationEffectFile);
-	//		isActivated = true;
-	//	}
-	//}
+
 }
 
 void TCompMechanismSystem::onActivate(const TMsgMechanismActivated & msg) {

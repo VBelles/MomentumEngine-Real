@@ -4,6 +4,7 @@
 #include "entity/common_msgs.h"
 #include "components/comp_collider.h"
 #include "components/player/attack_info.h"
+#include "components/comp_render.h"
 
 DECL_OBJ_MANAGER("mechanism", TCompMechanism);
 
@@ -38,11 +39,17 @@ void TCompMechanism::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 		mechanismSystems.push_back(getEntityByName(systemName));
 	}
 	reactivationTimer.reset();
+	TCompRender *render = get<TCompRender>();
+	materials = render->getMaterials(0);
+	render->setAllMaterials(0, 1, materials[0]);
 }
 
 void TCompMechanism::update(float dt) {
 	if (isActivated && isResettable && deactivationTimer.elapsed() >= deactivationTime) {
 		isActivated = false;
+		//cambiar material a desactivado
+		TCompRender *render = get<TCompRender>();
+		render->setAllMaterials(0, 1, materials[0]);
 		reactivationTimer.reset();
 		for (auto& system : mechanismSystems) {
 			CEntity* entity = system;
@@ -60,6 +67,9 @@ void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 			if (reactivationTimer.elapsed() >= reactivationTime) {
 				deactivationTimer.reset();
 				//activate
+				//cambiar material a activado
+				TCompRender *render = get<TCompRender>();
+				render->setAllMaterials(0, 1, materials[1]);
 				isActivated = true;
 				for (auto& system : mechanismSystems) {
 					CEntity* entity = system;

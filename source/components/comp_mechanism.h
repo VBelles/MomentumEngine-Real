@@ -18,6 +18,8 @@ private:
 	std::vector<std::string> mechanismSystemsNames;
 	std::vector<CHandle> mechanismSystems;
 
+	std::vector<std::string> materials;
+
 public:
     void debugInMenu();
     static void registerMsgs();

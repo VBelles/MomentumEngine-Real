@@ -166,6 +166,15 @@ void TCompRender::setAllMaterials(int startingMesh, int endingMesh, std::string 
 	refreshMeshesInRenderManager(true);
 }
 
+std::vector<std::string> TCompRender::getMaterials(int mesh) {
+	CMeshWithMaterials& meshWithMaterial = meshes[mesh];
+	std::vector<std::string> materials;
+	materials.reserve(meshWithMaterial.materials.size());
+	for (const CMaterial* material : meshWithMaterial.materials) {
+		materials.push_back(material->getName());
+	}
+	return materials;
+}
 void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
 	for (CMeshWithMaterials &m : meshes) {
 		m.materials.clear();
