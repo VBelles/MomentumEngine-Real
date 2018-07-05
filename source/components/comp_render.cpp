@@ -102,7 +102,7 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
 			}
 			mwm.materials.push_back(material);
 		}
-		assert(mwm.materials.size() <= mwm.mesh->getSubGroups().size());
+		//assert(mwm.materials.size() <= mwm.mesh->getSubGroups().size());
 	}
 	else {
 		const CMaterial* material = Resources.get("data/materials/solid.material")->as<CMaterial>();
@@ -164,6 +164,21 @@ void TCompRender::setAllMaterials(int startingMesh, int endingMesh, std::string 
 		m.materials.push_back(material);
 	}
 	refreshMeshesInRenderManager(true);
+}
+
+std::vector<std::string> TCompRender::getMaterials(int mesh) {
+	CMeshWithMaterials& meshWithMaterial = meshes[mesh];
+	std::vector<std::string> materials;
+	//materials.reserve(meshWithMaterial.materials.size());
+	for (const CMaterial* material : meshWithMaterial.materials) {
+		materials.push_back(material->getName());
+	}
+	return materials;
+}
+
+void TCompRender::setMeshEnabled(int mesh, bool enabled) {
+	CMeshWithMaterials& meshWithMaterial = meshes[mesh];
+	meshWithMaterial.enabled = enabled;
 }
 
 void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
