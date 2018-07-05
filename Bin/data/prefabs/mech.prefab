@@ -9,7 +9,12 @@
 				{
 					"mesh": "data/meshes/_mechPREFAB.mesh",
 					"materials": [
-						"data/materials/mec1.material",
+						"data/materials/mec1.material"
+					]
+				},
+				{
+					"mesh": "data/meshes/_mechPREFAB.mesh",
+					"materials": [
 						"data/materials/mec1_activated.material"
 					]
 				}

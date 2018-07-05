@@ -45,6 +45,7 @@ public:
 
 	void setAllMaterials(int startingMesh, int endingMesh, std::string materialName);
 	std::vector<std::string> getMaterials(int mesh);
+	void setMeshEnabled(int mesh, bool enabled);
 	void setAllMaterials(std::vector<std::string> materialNames);
 
 	void update(float delta);

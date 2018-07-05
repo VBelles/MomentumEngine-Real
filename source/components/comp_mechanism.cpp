@@ -40,16 +40,14 @@ void TCompMechanism::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 	}
 	reactivationTimer.reset();
 	TCompRender *render = get<TCompRender>();
-	materials = render->getMaterials(0);
-	render->setAllMaterials(0, 1, materials[0]);
+	onActivated(isActivated);
 }
 
 void TCompMechanism::update(float dt) {
 	if (isActivated && isResettable && deactivationTimer.elapsed() >= deactivationTime) {
 		isActivated = false;
 		//cambiar material a desactivado
-		TCompRender *render = get<TCompRender>();
-		render->setAllMaterials(0, 1, materials[0]);
+		onActivated(isActivated);
 		reactivationTimer.reset();
 		for (auto& system : mechanismSystems) {
 			CEntity* entity = system;
@@ -68,9 +66,8 @@ void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 				deactivationTimer.reset();
 				//activate
 				//cambiar material a activado
-				TCompRender *render = get<TCompRender>();
-				render->setAllMaterials(0, 1, materials[1]);
 				isActivated = true;
+				onActivated(isActivated);
 				for (auto& system : mechanismSystems) {
 					CEntity* entity = system;
 					dbg("Sending activating msg %s.\n", entity->getName());
@@ -82,4 +79,11 @@ void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 			deactivationTimer.reset();
 		}
 	}
+}
+
+void TCompMechanism::onActivated(bool isActive) {
+	TCompRender *render = get<TCompRender>();
+	render->setMeshEnabled(0, !isActive);
+	render->setMeshEnabled(1, isActive);
+	render->refreshMeshesInRenderManager();
 }
