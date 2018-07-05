@@ -162,8 +162,9 @@ namespace Particles {
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else {
-				CTransform transform(p.position, p.rotationQuat);
-				cb_object.obj_world = transform.asMatrix();
+				MAT44 transform = CTransform(p.position, p.rotationQuat).asMatrix();
+				MAT44 scale = MAT44::CreateScale(p.size * p.scale);
+				cb_object.obj_world = scale * transform;
 			}
 			
 			int row = p.frame / frameCols;
