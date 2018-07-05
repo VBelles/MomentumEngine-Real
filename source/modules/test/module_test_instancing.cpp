@@ -145,294 +145,329 @@ bool CModuleTestInstancing::start() {
 		instances_mesh_bush = (CRenderMeshInstanced*)rmesh;
 	}
 
-	auto& json = loadJson("data/instancing/instancing.json");
-	for (auto& mesh : json) {
-		std::string type = mesh.value("type", "");
-		if (type == "grass") {
-			for (auto& data : mesh["data"]) {
-				TGrassParticle new_instance;
-				new_instance.pos = loadVEC3(data["pos"]);
-				grass_instances.push_back(new_instance);
+
+
+	std::vector<json> instances;
+	instances.push_back(loadJson("data/instancing/instancing.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_small_00.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_small_01.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_small_02.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_medium_00.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_medium_01.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_medium_02.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_large_00.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_large_01.json"));
+	instances.push_back(loadJson("data/instancing/instancing_grass_large_02.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_small_00.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_small_01.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_small_02.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_small_03.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_small_04.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_small_05.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_small_06.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_medium_00.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_medium_01.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_medium_02.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_large.json"));
+	instances.push_back(loadJson("data/instancing/instancing_moss_extra_large.json"));
+	instances.push_back(loadJson("data/instancing/instancing_petal_00.json"));
+	instances.push_back(loadJson("data/instancing/instancing_petal_01.json"));
+	instances.push_back(loadJson("data/instancing/instancing_leaf_00.json"));
+	instances.push_back(loadJson("data/instancing/instancing_leaf_01.json"));
+	instances.push_back(loadJson("data/instancing/instancing_leaf_02.json"));
+	instances.push_back(loadJson("data/instancing/instancing_leaf_03.json"));
+	instances.push_back(loadJson("data/instancing/instancing_bush.json"));
+
+	for (json instance : instances) {
+
+		for (auto& mesh : instance) {
+			std::string type = mesh.value("type", "");
+			if (type == "grass") {
+				for (auto& data : mesh["data"]) {
+					TGrassParticle new_instance;
+					new_instance.pos = loadVEC3(data["pos"]);
+					grass_instances.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_small_00") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_small_00.push_back(new_instance);
+			else if (type == "grass_small_00") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_small_00.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_small_01") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_small_01.push_back(new_instance);
+			else if (type == "grass_small_01") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_small_01.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_small_02") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_small_02.push_back(new_instance);
+			else if (type == "grass_small_02") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_small_02.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_medium_00") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_medium_00.push_back(new_instance);
+			else if (type == "grass_medium_00") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_medium_00.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_medium_01") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_medium_01.push_back(new_instance);
+			else if (type == "grass_medium_01") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_medium_01.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_medium_02") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_medium_02.push_back(new_instance);
+			else if (type == "grass_medium_02") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_medium_02.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_large_00") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_large_00.push_back(new_instance);
+			else if (type == "grass_large_00") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_large_00.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_large_01") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_large_01.push_back(new_instance);
+			else if (type == "grass_large_01") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_large_01.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "grass_large_02") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_grass_large_02.push_back(new_instance);
+			else if (type == "grass_large_02") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_grass_large_02.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_small_00") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_small_00.push_back(new_instance);
+			else if (type == "moss_small_00") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_small_00.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_small_01") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_small_01.push_back(new_instance);
+			else if (type == "moss_small_01") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_small_01.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_small_02") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_small_02.push_back(new_instance);
+			else if (type == "moss_small_02") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_small_02.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_small_03") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_small_03.push_back(new_instance);
+			else if (type == "moss_small_03") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_small_03.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_small_04") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_small_04.push_back(new_instance);
+			else if (type == "moss_small_04") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_small_04.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_small_05") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_small_05.push_back(new_instance);
+			else if (type == "moss_small_05") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_small_05.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_small_06") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_small_06.push_back(new_instance);
+			else if (type == "moss_small_06") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_small_06.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_medium_00") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_medium_00.push_back(new_instance);
+			else if (type == "moss_medium_00") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_medium_00.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_medium_01") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_medium_01.push_back(new_instance);
+			else if (type == "moss_medium_01") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_medium_01.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_medium_02") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_medium_02.push_back(new_instance);
+			else if (type == "moss_medium_02") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_medium_02.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_large") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_large.push_back(new_instance);
+			else if (type == "moss_large") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_large.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "moss_extra_large") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_moss_extra_large.push_back(new_instance);
+			else if (type == "moss_extra_large") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_moss_extra_large.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "petal_00") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_petal_00.push_back(new_instance);
+			else if (type == "petal_00") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_petal_00.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "petal_01") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_petal_01.push_back(new_instance);
+			else if (type == "petal_01") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_petal_01.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "leaf_00") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_leaf_00.push_back(new_instance);
+			else if (type == "leaf_00") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_leaf_00.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "leaf_01") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_leaf_01.push_back(new_instance);
+			else if (type == "leaf_01") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_leaf_01.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "leaf_02") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_leaf_02.push_back(new_instance);
+			else if (type == "leaf_02") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_leaf_02.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "leaf_03") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_leaf_03.push_back(new_instance);
+			else if (type == "leaf_03") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_leaf_03.push_back(new_instance);
+				}
 			}
-		}
-		else if (type == "bush") {
-			for (auto& data : mesh["data"]) {
-				TInstance new_instance;
-				VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
-				VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
-				float scale = data.value("scale", 1.f);
-				new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-				instances_bush.push_back(new_instance);
+			else if (type == "bush") {
+				for (auto& data : mesh["data"]) {
+					TInstance new_instance;
+					VEC3 pos = data.count("pos") ? loadVEC3(data["pos"]) : VEC3::Zero;
+					VEC4 rot = data.count("rot") ? loadVEC4(data["rot"]) : VEC4::Zero;
+					float scale = data.value("scale", 1.f);
+					new_instance.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+					instances_bush.push_back(new_instance);
+				}
 			}
 		}
 	}
