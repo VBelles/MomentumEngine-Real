@@ -1115,8 +1115,10 @@ struct TSceneExporter (
 						fs.writeKeyValue "panningRadius" 3
 					fs.endObj()
 
-					-- Add child spline if it exists.
-					if hasChildLine obj then exportSpline obj
+					-- Add child spline if it exists.	
+					for i = 1 to obj.children.count do
+						if hasChildLine obj.children[i] then
+							exportSpline obj.children[i] type:"camera_move"
 
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
 				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
