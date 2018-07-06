@@ -117,6 +117,7 @@
     <ClCompile Include="components\comp_mix_camera_trigger.cpp" />
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="modules\game_modules\module_instancing.cpp" />
     <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
@@ -373,6 +374,7 @@
     <ClInclude Include="components\comp_mix_camera_trigger.h" />
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_name.h" />
+    <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="modules\game_modules\module_instancing.h" />
     <ClInclude Include="modules\system_modules\slash\comp_slash.h" />

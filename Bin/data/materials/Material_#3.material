@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/columna_baja_Material _98_BaseColor.dds",
-    "normal": "data/textures/columna_baja_Material _98_Normal.dds",
-    "metallic": "data/textures/columna_baja_Material _98_Roughness.dds",
+    "albedo": "data/textures/giratiempo_low_Material__2_BaseColor.dds",
+    "normal": "data/textures/giratiempo_low_Material__2_Normal.dds",
+    "metallic": "data/textures/giratiempo_low_Material__2_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
-    "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/columna_baja_Material _34_Height.dds"
+    "self_illum": "data/textures/giratiempo_low_Material__2_Emissive.dds",
+    "height": "data/textures/giratiempo_low_Material__2_Height.dds"
   }
 }

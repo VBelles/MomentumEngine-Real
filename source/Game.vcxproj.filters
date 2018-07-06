@@ -252,6 +252,7 @@
     <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="modules\game_modules\module_instancing.cpp" />
+    <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -536,6 +537,7 @@
     <ClInclude Include="modules\system_modules\slash\comp_slash.h" />
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="modules\game_modules\module_instancing.h" />
+    <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

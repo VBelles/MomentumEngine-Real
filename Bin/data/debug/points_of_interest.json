@@ -1,5 +1,9 @@
 [
     {
+        "name": "Centro coordenadas",
+        "pos": "0 0 0"
+    },
+    {
         "name": "Huevo inicio",
         "pos": "-280 100 -400"
     },

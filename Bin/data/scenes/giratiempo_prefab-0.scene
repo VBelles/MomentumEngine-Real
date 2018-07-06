@@ -1,0 +1,95 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms3_central_ring",
+      "transform":
+      {
+        "pos": "0.0 2.0 0.0",
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_central_ring.mesh",
+          "materials":
+          [
+            "data/materials/Material_#3.material"
+          ]
+        }
+      ],
+      "collider":{
+        "shape": "sphere",
+        "radius": 1.5,
+        "type": "static",
+        "group":
+        [
+           "scenario",
+           "enemy"
+        ]
+      },
+      "rigid_anim" : 
+      {
+        "src" : "data/anims/giratiempo_prefab.anims"
+      },
+      "altar":{},
+      "rigid_anims_director":{
+        "animated_entities":[
+          "ms3_inner_ring",
+          "ms3_central_ring",
+          "ms3_outer_ring"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_inner_ring",
+      "transform":
+      {
+        "pos": "0.0 2.0 0.0",
+        "rotation": "0.430459 -0.43046 -0.560986 -0.560985"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_inner_ring.mesh",
+          "materials":
+          [
+            "data/materials/Material_#3.material"
+          ]
+        }
+      ],
+      "rigid_anim" : 
+      {
+        "src" : "data/anims/giratiempo_prefab.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_outer_ring",
+      "transform":
+      {
+        "pos": "0.0 2.0 0.0",
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_outer_ring.mesh",
+          "materials":
+          [
+            "data/materials/Material_#3.material"
+          ]
+        }
+      ],
+      "rigid_anim" : 
+      {
+        "src" : "data/anims/giratiempo_prefab.anims"
+      }
+    }
+  }
+]
