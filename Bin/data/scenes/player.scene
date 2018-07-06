@@ -415,5 +415,17 @@
 				"pitch": -20
 			}
 		}
+	},
+	{
+		"entity": {
+			"name": "slash_fast_attack",
+			"transform": {},
+			"particles": {
+				"core": "data/particles/test_slash.particles",
+				"rotation_offset": "0.383 0 0 0.924",
+				"target": "The Player"
+			}
+		}
 	}
+	
 ]

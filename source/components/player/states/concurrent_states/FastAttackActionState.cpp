@@ -7,6 +7,7 @@
 #include "components/comp_hitboxes.h"
 #include "components/player/states/StateManager.h"
 #include "components/comp_transform.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 
 FastAttackActionState::FastAttackActionState(StateManager* stateManager)
@@ -29,6 +30,7 @@ void FastAttackActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
+		stateManager->getSlashFastAttack()->forceEmission(1);
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();

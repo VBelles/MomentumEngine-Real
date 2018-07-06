@@ -43,17 +43,6 @@
 				"core": "data/particles/sparks.particles"
 			}
 		}
-	},
-	{
-		"entity": {
-			"name": "particles_slash",
-			"transform": {
-				"pos": "-315 44 -608"
-			},
-			"particles": {
-				"core": "data/particles/test_slash.particles",
-				"rotation_offset": "0.383 0 0 0.924"
-			}
-		}
 	}
+	
 ]

@@ -13,6 +13,7 @@
 #include "modules/system_modules/slash/comp_slash.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/controllers/comp_camera_player.h"
+#include "modules/system_modules/particles/comp_particles.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/base_states/GhostJumpWindowActionState.h"
@@ -99,6 +100,8 @@ StateManager::StateManager(CHandle entityHandle) :
 	slashLeftTentacleShortHandle = slashLeftTentacleShortEntity->get<TCompSlash>();
 	CEntity* slashRightTentacleShortEntity = getEntityByName("slashRightTentacleShort");
 	slashRightTentacleShortHandle = slashRightTentacleShortEntity->get<TCompSlash>();
+
+	slashFastAttackHandle = static_cast<CEntity*>(getEntityByName("slash_fast_attack"))->get<TCompParticles>();
 
 	registerStates();
 }
@@ -290,3 +293,10 @@ TCompSlash * StateManager::getSlash(SlashType type) {
 			return slashRightHandHandle;
 	}
 }
+
+TCompParticles * StateManager::getSlashFastAttack() {
+	return slashFastAttackHandle;
+}
+
+
+

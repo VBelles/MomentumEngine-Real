@@ -143,14 +143,6 @@ void CModuleGame::render() {
 	solid->activate();
 
 	if (CApp::get().isDebug()) {
-		if (ImGui::TreeNode("Tests")) {
-			if (ImGui::Button("Emit slash")) {
-				CEntity* e = getEntityByName("particles_slash");
-				TCompParticles* particles = e->get<TCompParticles>();
-				particles->forceEmission(1);
-			}
-			ImGui::TreePop();
-		}
 		if (ImGui::TreeNode("Points of interest")) {
 			for (auto& point : pointsOfInterest) {
 				if (ImGui::Button(point.name.c_str())) {

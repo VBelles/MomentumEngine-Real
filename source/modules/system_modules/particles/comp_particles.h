@@ -10,6 +10,7 @@ struct TCompParticles : public TCompBase {
 	float _fadeOut = 0.f;
 	VEC3 offset = VEC3::Zero;
 	QUAT rotationOffset = QUAT::Identity;
+	std::string target;
 	std::string bone;
 
 	TCompParticles() = default;
@@ -18,7 +19,7 @@ struct TCompParticles : public TCompBase {
 	void load(const json& j, TEntityParseContext& ctx);
 
 	//Message callbacks
-	void onCreated(const TMsgEntityCreated&);
+	void onAllScenesCreated(const TMsgAllScenesCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
 
 	void forceEmission(int quantity);

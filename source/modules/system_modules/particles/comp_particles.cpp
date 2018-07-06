@@ -5,7 +5,7 @@
 DECL_OBJ_MANAGER("particles", TCompParticles);
 
 void TCompParticles::registerMsgs() {
-    DECL_MSG(TCompParticles, TMsgEntityCreated, onCreated);
+	DECL_MSG(TCompParticles, TMsgAllScenesCreated, onAllScenesCreated);
     DECL_MSG(TCompParticles, TMsgEntityDestroyed, onDestroyed);
 }
 
@@ -22,15 +22,24 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
     _core = Resources.get(particlesName)->as<Particles::TCoreSystem>();
 	offset = j.count("offset") ? loadVEC3(j["offset"]) : offset;
 	rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : rotationOffset;
-	
+	target = j.value("target", "");
+	bone = j.value("bone", "");
     assert(_core);
 }
 
-void TCompParticles::onCreated(const TMsgEntityCreated&) {
+void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
     if (_core && !_particles) {
-        _particles = EngineParticles.launchSystem(_core, CHandle(this).getOwner(), bone, offset, rotationOffset);
+		CHandle targetEntity;
+		if (!target.empty()) {
+			targetEntity = getEntityByName(target);
+		}
+		else {
+			targetEntity = CHandle(this).getOwner();
+		}
+        _particles = EngineParticles.launchSystem(_core, targetEntity, bone, offset, rotationOffset);
     }
 }
+
 
 void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
     if (_particles) {

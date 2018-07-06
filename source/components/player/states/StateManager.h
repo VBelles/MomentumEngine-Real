@@ -15,6 +15,7 @@ class IActionState;
 class TCompCollectableManager;
 class TCompCameraPlayer;
 class TCompSlash;
+class TCompParticles;
 
 class StateManager {
 
@@ -38,6 +39,7 @@ private:
 	CHandle slashRightTentacleHandle;
 	CHandle slashLeftTentacleShortHandle;
 	CHandle slashRightTentacleShortHandle;
+	CHandle slashFastAttackHandle;
 
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
@@ -100,6 +102,8 @@ public:
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
 	TCompSlash* getSlash(SlashType type);
+	TCompParticles* getSlashFastAttack();
+
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;
