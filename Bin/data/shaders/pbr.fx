@@ -407,7 +407,7 @@ float4 PS_ambient(
 	else {
 		final_color = final_color * global_ambient_adjustment * ao * float4(0.8,0.8,0.8,1);
 	}
-	return final_color + float4((self_illum.xyz * self_illum.a),0);
+	return final_color;// + float4((self_illum.xyz * self_illum.a),0);
 	//return final_color * global_ambient_adjustment * ao;
 }
 
@@ -464,7 +464,7 @@ float4 shade(
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
 	 //att *= 1 / distance_to_light;
 	//return float4(self_illum, 1);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor + (self_illum.xyz * self_illum.a);
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;// + (self_illum.xyz * self_illum.a);
 	return float4(final_color, 1);
 }
 
@@ -504,7 +504,7 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
 	// att *= 1 / distance_to_light;
 	//return float4(self_illum, 1);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor + (self_illum.xyz * self_illum.a);
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;// + (self_illum.xyz * self_illum.a);
 	return float4(final_color, 1);
   //return shade(iPosition, true);
 }

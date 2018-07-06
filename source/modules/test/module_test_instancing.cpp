@@ -31,6 +31,7 @@ bool CModuleTestInstancing::start() {
 		grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
 		grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
 	}
+
 	return true;
 }
 
@@ -52,9 +53,9 @@ void CModuleTestInstancing::update(float delta) {
 	// Move the instances in the cpu
 	static float t = 0;
 	t += delta;
-	for (auto& p : instances)
-		p.world = p.world * MAT44::CreateTranslation(VEC3(0, 0.1f * sin(t), 0));
-	instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
+	//for (auto& p : instances)
+		//p.world = p.world * MAT44::CreateTranslation(VEC3(0, 0.1f * sin(t), 0));
+	//instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
 
 	blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
 
