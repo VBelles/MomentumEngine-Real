@@ -37,3 +37,9 @@ void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
         EngineParticles.kill(_particles, _fadeOut);
     }
 }
+
+void TCompParticles::forceEmission(int quantity) {
+	if (_particles) {
+		EngineParticles.forceEmission(_particles, quantity);
+	}
+}

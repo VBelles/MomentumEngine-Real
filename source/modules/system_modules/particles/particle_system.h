@@ -93,7 +93,7 @@ namespace Particles {
 		void launch();
 		TParticlesHandle getHandle() const;
 		void fadeOut(float duration);
-
 		void setOffset(VEC3 offset);
+		void forceEmission(int quantity);
 	};
 }

@@ -12,9 +12,12 @@ struct TCompParticles : public TCompBase {
 
 	TCompParticles() = default;
 	static void registerMsgs();
-
+	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
+
+	//Message callbacks
 	void onCreated(const TMsgEntityCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
-	void debugInMenu();
+
+	void forceEmission(int quantity);
 };

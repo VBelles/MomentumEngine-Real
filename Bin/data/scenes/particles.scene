@@ -51,7 +51,7 @@
 				"pos": "-315 44 -608"
 			},
 			"particles": {
-				"core": "data/particles/test_mesh.particles"
+				"core": "data/particles/test_slash.particles"
 			}
 		}
 	}

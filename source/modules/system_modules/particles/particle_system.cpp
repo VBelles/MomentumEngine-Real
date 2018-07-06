@@ -203,6 +203,25 @@ namespace Particles {
 		}
 	}
 
+	void CSystem::forceEmission(int quantity) {
+		dbg("Forcing emission %d\n", quantity);
+		MAT44 world = getWorld();
+		for (int i = 0; i < quantity; ++i) {
+			TParticle particle;
+			particle.position = VEC3::Transform(generatePosition(), world);
+			particle.velocity = generateVelocity();
+			particle.color = _core->color.colors.get(0.f);
+			particle.size = _core->size.sizes.get(0.f);
+			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
+			particle.frame = _core->render.initialFrame;
+			particle.rotation = 0.f;
+			particle.lifetime = 0.f;
+			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
+
+			_particles.push_back(particle);
+		}
+	}
+
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;
 

@@ -21,6 +21,7 @@
 #include "gui/gui_parser.h"
 #include "gui/controllers/hud_controller.h"
 #include "modules/system_modules/scripting/scripting_player.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
@@ -142,6 +143,15 @@ void CModuleGame::render() {
 	solid->activate();
 
 	if (CApp::get().isDebug()) {
+		if (ImGui::TreeNode("Tests")) {
+			if (ImGui::Button("Emit slash")) {
+				CEntity* e = getEntityByName("particles_slash");
+				TCompParticles* particles = e->get<TCompParticles>();
+				particles->forceEmission(1);
+				dbg("Forcing particle emission\n");
+			}
+			ImGui::TreePop();
+		}
 		if (ImGui::TreeNode("Points of interest")) {
 			for (auto& point : pointsOfInterest) {
 				if (ImGui::Button(point.name.c_str())) {
