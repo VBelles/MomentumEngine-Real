@@ -1706,7 +1706,7 @@ struct TSceneExporter (
 
 	fn exportUniqueFile uniqueCategory:"" = (
 		--TODO: Change to "unique_" when finished.
-		local uniquesPath = project_path + uniques_path + "uniques_" + uniqueCategory + ".json"
+		local uniquesPath = project_path + uniques_path + "unique_" + uniqueCategory + ".json"
 
 		local uniquesArray = #()
 		case uniqueCategory of (
