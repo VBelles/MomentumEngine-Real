@@ -76,7 +76,7 @@ void WalkActionState::update(float delta) {
 void WalkActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
-	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntityByName(PLAYER_NAME), VEC3(0, 0.3, 0));
+	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", VEC3(0, 0.3, 0), getEntity());
 }
 
 void WalkActionState::onStateExit(IActionState * nextState) {

@@ -38,7 +38,7 @@ int ScriptingParticles::launchParticleAtBone(const std::string& name, const std:
 int ScriptingParticles::launchParticleAtBoneOffset(const std::string& name, const std::string& entityName, const std::string& bone, float x, float y, float z) {
 	CHandle entityHandle = getEntityByName(entityName);
 	if (entityHandle.isValid()) {
-		return EngineParticles.launchSystem(name, entityHandle, bone, VEC3(x, y, z));
+		return EngineParticles.launchSystem(name, VEC3(x, y, z), entityHandle, bone);
 	}
 	else {
 		return -1;

@@ -31,6 +31,7 @@ protected:
 	VEC3* accelerationVector;
 	VEC3* velocityVector;
 
+	CEntity* getEntity();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getPlayerTransform();
 	TCompCollider* getCollider();

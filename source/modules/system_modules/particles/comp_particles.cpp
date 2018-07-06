@@ -28,7 +28,7 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompParticles::onCreated(const TMsgEntityCreated&) {
     if (_core && !_particles) {
-        _particles = EngineParticles.launchSystem(_core, CHandle(this).getOwner(), offset);
+        _particles = EngineParticles.launchSystem(_core, offset, CHandle(this).getOwner());
     }
 }
 

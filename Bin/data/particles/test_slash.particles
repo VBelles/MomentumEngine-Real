@@ -1,42 +1,32 @@
 {
-  "life" : {
-      "duration" : 0.120,
-      "duration_variation" : 0,
-      "max_particles" : 10,
-      "time_factor" : 1.0
+  "life": {
+    "duration": 0.120,
+    "duration_variation": 0,
+    "max_particles": 10,
+    "time_factor": 1.0
   },
-  "emission" : {
-      "type" : "point",
-      "interval" : 1,
-      "count" : 0,
-      "cyclic" : true
+  "emission": {
+    "type": "point",
+    "interval": 1,
+    "count": 0,
+    "cyclic": true
   },
-  "movement" : {
-      "velocity" : 0.0,
-      "acceleration" : 0.0,
-      "spin" : 600,
-      "spin_axis":  "0 0 1",
-      "wind" : 0.0,
-      "gravity" : 0.0,
-      "initial_rotation" : "0.383 0 0 0.924"
+  "movement": {
+    "spin": 1000,
+    "spin_axis": "0 0 1",
+    "initial_rotation": "0.383 0 0 0.924"
   },
-  "render" : {
+  "render": {
     "mesh": "data/meshes/Mesh_Slash.mesh",
     "texture": "data/textures/fire_slash.dds"
   },
-  "size" : {
-    "scale" : 0.2,
-    "scale_variation" : 0.0,
-    "sizes" : [
-      [0.0, 0.2],
-      [0.5, 0.2],
-      [1.0, 0.2]
-    ]
+  "size": {
+    "scale": 0.2,
+    "scale_variation": 0.0,
+    "sizes": [ [0.0, 0.2] ]
   },
-  "color" : {
-    "opacity" : 1.0,
-    "colors" : [
-      [0.0, "1 0 0 1"]
-    ] 
+  "color": {
+    "opacity": 1.0,
+    "colors": [ [0.0, "0 0 0 1"] ]
   }
 }

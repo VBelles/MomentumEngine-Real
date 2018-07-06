@@ -141,6 +141,10 @@ bool IActionState::isWalkable(MoveState& moveState) {
 
 
 //Component getters
+CEntity* IActionState::getEntity() {
+	return stateManager->getEntity();
+}
+
 TCompPlayerModel* IActionState::getPlayerModel() { 
 	return stateManager->getPlayerModel(); 
 }

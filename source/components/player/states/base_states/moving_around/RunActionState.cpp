@@ -76,7 +76,7 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.3f, 0.3f);
 	getCameraPlayer()->moveCameraCloser(false);
-	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntityByName(PLAYER_NAME), VEC3(0, 0.3, 0));
+	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", VEC3(0, 0.3, 0), getEntity());
 
 	if (hasSlash) {
 		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
