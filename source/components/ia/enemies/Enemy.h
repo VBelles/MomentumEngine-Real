@@ -20,6 +20,10 @@ class Enemy : public IBehaviorTreeNew {
 public:
 	virtual ~Enemy();
 
+	CNavMeshQuery* navmesh;
+	std::vector<VEC3> smoothPath;
+	int currentPathPoint = 0;
+
 	//HP
 	float hp = 0.f;
 	float maxHp = 0.f;
@@ -39,7 +43,6 @@ public:
 	bool airborne = false;
 
 	float strollRadius = 0.f;
-	VEC3 nextWaypoint;
 
 	//Combat
 	AttackInfo receivedAttack;

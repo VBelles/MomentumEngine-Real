@@ -9,5 +9,12 @@ MediumDistanceCombatCondition::MediumDistanceCombatCondition(Enemy* enemy) : ene
 bool MediumDistanceCombatCondition::testCondition(float delta) {
 	VEC3 playerPosition = enemy->getPlayerTransform()->getPosition();
 	float distanceSqrd = VEC3::DistanceSquared(enemy->getTransform()->getPosition(), playerPosition);
-	return distanceSqrd <= enemy->mediumCombatDistanceSqrd;
+
+	if (enemy->navmesh) {
+		return distanceSqrd <= enemy->mediumCombatDistanceSqrd
+			&& enemy->navmesh->existsConnection(enemy->getTransform()->getPosition(), playerPosition);
+	}
+	else {
+		return distanceSqrd <= enemy->mediumCombatDistanceSqrd;
+	}
 }

@@ -6,8 +6,8 @@
 
 class CModuleNavmesh : public IModule {
 private:
-	CNavMesh navmesh;
-	CNavMeshQuery navQuery{&navmesh};
+	CNavMesh* navmesh;
+	CNavMeshQuery* navQuery;
 
     bool showNavmesh = false;
 
@@ -18,6 +18,6 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 
-    CNavMesh& getNavMesh() { return navmesh; }
-    CNavMeshQuery& getNavQuery() { return navQuery; }
+    CNavMesh* getNavMesh() { return navmesh; }
+    CNavMeshQuery* getNavQuery() { return navQuery; }
 };

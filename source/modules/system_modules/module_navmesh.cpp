@@ -5,7 +5,11 @@ CModuleNavmesh::CModuleNavmesh(const std::string& name) : IModule(name) {
 }
 
 bool CModuleNavmesh::start() {
-	return navmesh.create("data/solo_navmesh.bin");
+	//TODO map con todas las navmeshes
+	navmesh = new CNavMesh();
+	navmesh->create("data/solo_navmesh.bin");
+	navQuery = new CNavMeshQuery(navmesh);
+	return true;
 }
 
 void CModuleNavmesh::render() {
@@ -13,13 +17,14 @@ void CModuleNavmesh::render() {
         ImGui::Checkbox("Show navmesh", &showNavmesh);
 
         if (showNavmesh) {
-            navmesh.render();
+            navmesh->render();
         }
     }
 }
 
 bool CModuleNavmesh::stop() {
-	navmesh.destroy();
+	navmesh->destroy();
+	SAFE_DELETE(navmesh);
 	return true;
 }
 

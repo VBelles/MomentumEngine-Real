@@ -73,10 +73,6 @@
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
-Dreidel::Dreidel() {
-	initBehaviorTree();
-}
-
 Dreidel::~Dreidel() {
 }
 
@@ -130,7 +126,7 @@ void Dreidel::initBehaviorTree() {
 	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
 	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
 	OnTackleAttackAction* onTackleAttackAction = new OnTackleAttackAction(this, "enemigo_bola_placaje_loop", "tackle");
-	TackleAttackAction* tackleAttackAction = new TackleAttackAction(this, "enemigo_bola_placaje_loop", "tackle", movementSpeed * 2.0f, 0.75f);
+	TackleAttackAction* tackleAttackAction = new TackleAttackAction(this, "enemigo_bola_placaje_loop", "tackle", movementSpeed * 3.0f, 1.0f);
 	OnStepBackAction* onStepBackAction = new OnStepBackAction(this, "enemigo_bola_run");
 	StepBackAction* stepBackAction = new StepBackAction(this, "enemigo_bola_run", movementSpeed);
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "enemigo_bola_run");
@@ -307,6 +303,10 @@ void Dreidel::update(float delta) {
 }
 
 void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+	initBehaviorTree();
+	//TODO cargar navmesh desde json
+	navmesh = EngineNavmesh.getNavQuery();
+
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	skeletonHandle = get<TCompSkeleton>();

@@ -12,9 +12,13 @@ StepBackAction::StepBackAction(Enemy* enemy, std::string animation, float speed)
 
 int StepBackAction::execAction(float delta) {
 	enemy->updateGravity(delta);
-	enemy->deltaMovement += -enemy->getTransform()->getFront() * speed * delta;
 	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation)) {
-		return Stay;
+		VEC3 stepBackMovement = -enemy->getTransform()->getFront() * speed * delta;
+		VEC3 pos = enemy->getTransform()->getPosition();
+		if (enemy->navmesh->existsConnection(pos, pos + stepBackMovement)) {
+			enemy->deltaMovement += stepBackMovement;
+			return Stay;
+		}
 	}
 	return Leave;
 }

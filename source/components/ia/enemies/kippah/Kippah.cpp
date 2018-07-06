@@ -56,10 +56,6 @@
 
 DECL_OBJ_MANAGER("kippah", Kippah);
 
-Kippah::Kippah() {
-	initBehaviorTree();
-}
-
 Kippah::~Kippah() {
 }
 
@@ -227,6 +223,8 @@ void Kippah::update(float delta) {
 }
 
 void Kippah::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+	initBehaviorTree();
+
 	playerHandle = getEntityByName(PLAYER_NAME);
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
