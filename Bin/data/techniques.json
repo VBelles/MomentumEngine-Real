@@ -331,7 +331,7 @@
     "category" : "particles", 
     "z" : "test_but_no_write", 
     "rs_config" : "cull_none", 
-    "blend" : "additive_by_src_alpha",
+    "blend" : "combinative",
     "priority": 60    
   },
 

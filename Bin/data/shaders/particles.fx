@@ -13,10 +13,10 @@ VS_FULL_OUTPUT VS_Particles(
   ) 
 { 
   VS_FULL_OUTPUT output = (VS_FULL_OUTPUT)0; 
-  float4 pos = iPos - float4(0.5, 0.5, 0, 0); 
+  float4 pos = iPos -float4(0.5, 0.5, 0, 0);
   float4 world_pos = mul(pos, obj_world); 
   output.Pos = mul(world_pos, camera_view_proj); 
-  output.UV  = iPos.xy; 
+  output.UV  = iPos.xy;
   return output; 
 } 
  

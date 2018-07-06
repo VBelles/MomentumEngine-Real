@@ -8,12 +8,13 @@
       "count" : 1
   },
   "movement" : {
+    "initial_rotation": 180
   },
   "render" : {
-      "texture" : "data/textures/particles/fire.dds",
-      "frame_size" : "-0.25 -0.25",
+      "texture" : "data/textures/particles/SPRITES_FUEGO.dds",
+      "frame_size" : "0.2 0.2",
       "initial_frame" : 0,
-      "num_frames" : 16,
+      "num_frames" : 23,
       "frame_speed" : 10
   },
   "size" : {
