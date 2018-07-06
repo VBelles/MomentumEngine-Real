@@ -250,6 +250,7 @@
     <ClCompile Include="components\comp_sun.cpp" />
     <ClCompile Include="modules\system_modules\slash\module_slash.cpp" />
     <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
+    <ClCompile Include="modules\game_modules\module_instancing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -532,6 +533,7 @@
     <ClInclude Include="components\comp_sun.h" />
     <ClInclude Include="modules\system_modules\slash\module_slash.h" />
     <ClInclude Include="modules\system_modules\slash\comp_slash.h" />
+    <ClInclude Include="modules\game_modules\module_instancing.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
