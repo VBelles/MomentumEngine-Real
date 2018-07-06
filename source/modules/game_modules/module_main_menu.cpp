@@ -7,9 +7,9 @@ bool CModuleMainMenu::start() {
 	app.setResetMouse(false);
 	
 	GUI::CParser parser;
-	parser.parseFile("data/gui/test.json");
+	parser.parseFile("data/gui/main_menu.json");
 
-	Engine.getGUI().activateWidget("test");
+	Engine.getGUI().activateWidget("main_menu");
 
 	auto startGameCB = []() {
 		EngineModules.changeGameState("game_state");
@@ -32,7 +32,7 @@ bool CModuleMainMenu::start() {
 bool CModuleMainMenu::stop() {
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);
-	Engine.getGUI().unregisterWidget("test", true);
+	Engine.getGUI().unregisterWidget("main_menu", true);
 	return true;
 }
 
