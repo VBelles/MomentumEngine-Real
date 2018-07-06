@@ -1041,7 +1041,6 @@ struct TSceneExporter (
 	-- --ENTITY: ALTAR ---------------------------------------------------------
 	fn exportEntityAltar obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
-		--else fs.writeDummyEntity "altar"
 		
 		if isUnique obj then append uniqueAltars obj.name
 
@@ -1063,7 +1062,6 @@ struct TSceneExporter (
 	-- --ENTITY: COIN-----------------------------------------------------------
 	fn exportEntityCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
-		--else fs.writeDummyEntity "coin"
 		
 		if isUnique obj then append uniqueCoins obj.name
 
@@ -1082,7 +1080,7 @@ struct TSceneExporter (
 	-- --ENTITY: CAMERA (also exports child line)-------------------------------
 	fn exportEntityCamera obj nValidObjs = (
 		local objClass = classOf obj
-		format "name: %\n" obj.name
+		--format "name: %\n" obj.name --DEBUG
 		if objClass == TargetCamera or
 		   objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
@@ -1093,7 +1091,8 @@ struct TSceneExporter (
 					exportName obj
 					fs.writeComma()
 					if objClass == TargetCamera then (
-						exportTransform obj lookAtCoord:(maxPosToMcv obj.Target[3].pos) --[3] is the Transform.
+						--Target[3] is the Transform.
+						exportTransform obj lookAtCoord:(maxPosToMcv obj.Target[3].pos)
 					) else exportTransform obj
 
 					fs.writeComma()
@@ -1117,9 +1116,8 @@ struct TSceneExporter (
 					fs.endObj()
 
 					-- Add child spline if it exists.
-					if hasChildLine obj then (
-						exportSpline obj
-					)
+					if hasChildLine obj then exportSpline obj.children[1]
+
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
 				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		)
@@ -1145,7 +1143,6 @@ struct TSceneExporter (
 	-- --ENTITY: CHRYSALIS (also exports child line)----------------------------
 	fn exportEntityChrysalis obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
-		--else fs.writeDummyEntity "chrysalis"
 		
 		fs.beginObj()
 			fs.writeKey "entity"
@@ -1166,7 +1163,6 @@ struct TSceneExporter (
 	-- --ENTITY: ENEMY (also exports child line)--------------------------------
 	fn exportEntityEnemy obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
-		--else fs.writeDummyEntity "enemy"
 		
 		if isUnique obj then append uniqueEnemies obj.name
 
@@ -1314,7 +1310,6 @@ struct TSceneExporter (
 			return false
 		)
 		if nValidObjs > 0 then fs.writeComma()
-		--else fs.writeDummyEntity obj.layer.name
 		
 		fs.beginObj()
 			fs.writeKey "entity"
@@ -1378,9 +1373,11 @@ struct TSceneExporter (
 		local instancesPath = project_path + instancePath + "instancing_" + instanceCat + ".json"
 
 		fss.begin instancesPath --Create file.
+			fss.beginObj()
+			fss.writeKey "TInstance"
 			fss.beginArray()
 			fss.beginObj()
-				fss.writeKeyValue "type" instanceCat
+				fss.writeKeyValue "mesh" (mesh_path + instanceCat + ".instanced_mesh")
 				fss.writeComma()
 				fss.writeKey "data"
 				fss.beginArray()
@@ -1389,7 +1386,7 @@ struct TSceneExporter (
 					fss.beginObj()
 						fss.writeKeyValue "pos" (maxPosToMcv obj.children[i].pos)
 						fss.writeComma()
-						fss.writeKeyValue "scale" obj.children[i].scale
+						fss.writeKeyValue "scale" obj.children[i].scale.x --x,y,z should be the same.
 						fss.writeComma()
 						fss.writeKeyValue "rot" (maxRotToMcv obj.children[i].transform)
 					fss.endObj()
@@ -1397,6 +1394,7 @@ struct TSceneExporter (
 				fss.endArray()
 			fss.endObj()
 			fss.endArray()
+			fss.endObj()
 		fss.end()
 	),
 
@@ -1705,7 +1703,6 @@ struct TSceneExporter (
 	),
 
 	fn exportUniqueFile uniqueCategory:"" = (
-		--TODO: Change to "unique_" when finished.
 		local uniquesPath = project_path + uniques_path + "unique_" + uniqueCategory + ".json"
 
 		local uniquesArray = #()
