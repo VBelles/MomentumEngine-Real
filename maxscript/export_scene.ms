@@ -1260,21 +1260,27 @@ struct TSceneExporter (
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				if stringContainsSubstring obj.name "Bounds" then (
 					fs.writeKeyEmpty "outOfBounds"
-					exportEntityCollider obj trig:true dyn:true colliderGroups:#("all") masks:#("characters")
+					exportEntityCollider obj trig:true colliderGroups:#("trigger") masks:#("characters")
 				)
 				else exportEntityCollider obj trig:true colliderGroups:#("trigger") masks:#("player")
 
 				if stringContainsSubstring obj.name "respawn" and 
-					obj.children != undefined then (
+				   obj.children != undefined then (
 						local respawnPos = "0 0 0"
+						local respawnRot = "0 0 0 0"
 						for child in obj.children do (
-							if classOf child == Dummy then respawnPos = (maxPosToMcv child.position)
+							if classOf child == Dummy then (
+								respawnPos = (maxPosToMcv child.position)
+								respawnRot = (maxRotToMcv child.transform)
+							)
 						)
 						
 						fs.writeComma()
 						fs.writeKey "respawn_point"
 						fs.beginObj()
 							fs.writeKeyValue "respawn_position" respawnPos
+							fs.writeComma()
+							fs.writeKeyValue "respawn_rotation" respawnRot
 						fs.endObj()
 				)
 				-- Add child spline if it exists.
@@ -1439,7 +1445,7 @@ struct TSceneExporter (
 
 		exportInstancedMeshFile instanceCat:instanceCategory --.instanced_mesh
 
-		exportInstancing obj instanceCat:instanceCategory --/instancing/instancing.json
+		exportInstancing obj instanceCat:instanceCategory --/instancing/instanceCat_instancing.json
 
 		return true
 	),
