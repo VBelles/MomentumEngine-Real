@@ -13,8 +13,7 @@
   },
   "movement": {
     "spin": 1000,
-    "spin_axis": "0 0 1",
-    "initial_rotation": "0.383 0 0 0.924"
+    "spin_axis": "0 0 1"
   },
   "render": {
     "mesh": "data/meshes/Mesh_Slash.mesh",

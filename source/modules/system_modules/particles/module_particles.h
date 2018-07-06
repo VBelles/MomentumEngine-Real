@@ -22,8 +22,8 @@ public:
 	void render() override;
 	void reset();
 
-	Particles::TParticleHandle launchSystem(const std::string& name, VEC3 offset = VEC3::Zero, CHandle entity = CHandle(), const std::string& bone = "");
-	Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, VEC3 offset = VEC3::Zero, CHandle entity = CHandle(), const std::string& bone = "");
+	Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity = CHandle(), const std::string& bone = "", VEC3 offset = VEC3::Zero, QUAT initialRotation = QUAT::Identity);
+	Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle entity = CHandle(), const std::string& bone = "", VEC3 offset = VEC3::Zero, QUAT initialRotation = QUAT::Identity);
 
 	void kill(Particles::TParticleHandle ph, float fade_out = 0.f);
 

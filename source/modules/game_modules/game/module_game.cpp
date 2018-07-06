@@ -148,7 +148,6 @@ void CModuleGame::render() {
 				CEntity* e = getEntityByName("particles_slash");
 				TCompParticles* particles = e->get<TCompParticles>();
 				particles->forceEmission(1);
-				dbg("Forcing particle emission\n");
 			}
 			ImGui::TreePop();
 		}

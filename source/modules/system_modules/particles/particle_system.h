@@ -30,7 +30,6 @@ namespace Particles {
 			float gravity = 0.f;			// gravity factor
 			float wind = 0.f;				// wind factor
 			bool ground = false;			// limit by ground
-			QUAT initialRotation;			// initial mesh particle rotation
 		};
 		struct TRender {
 			const CTexture* texture = nullptr; // particle texture
@@ -72,8 +71,9 @@ namespace Particles {
 		VEC3 position = { 0, 0, 0 };
 
 		VEC3 offset;
+		QUAT rotationOffset;
 		std::string boneName;
-		int boneId;
+		int boneId = -1;
 
 		TParticlesHandle    _handle;
 		const TCoreSystem*  _core = nullptr;
@@ -86,8 +86,7 @@ namespace Particles {
 		static TParticlesHandle _lastHandle;
 
 	public:
-		CSystem(const TCoreSystem* core, VEC3 position);
-		CSystem(const TCoreSystem* core, CHandle entity, std::string bone = "", VEC3 offset = { 0,0,0 });
+		CSystem(const TCoreSystem* core, CHandle entity, std::string bone = "", VEC3 offset = VEC3::Zero, QUAT initialRotation = QUAT::Identity);
 		bool update(float delta);
 		void render();
 		void launch();

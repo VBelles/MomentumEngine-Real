@@ -8,7 +8,9 @@ struct TCompParticles : public TCompBase {
 	Particles::TParticlesHandle _particles = 0;
 	bool _launched = false;
 	float _fadeOut = 0.f;
-	VEC3 offset = { 0, 0, 0 };
+	VEC3 offset = VEC3::Zero;
+	QUAT rotationOffset = QUAT::Identity;
+	std::string bone;
 
 	TCompParticles() = default;
 	static void registerMsgs();

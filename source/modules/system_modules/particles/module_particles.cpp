@@ -48,14 +48,14 @@ void CModuleParticles::render() {
 	};
 }
 
-Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, VEC3 offset, CHandle entity, const std::string& bone) {
+Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, CHandle entity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
 	auto cps = Resources.get(name)->as<Particles::TCoreSystem>();
-	return launchSystem(cps, offset, entity, bone);
+	return launchSystem(cps, entity, bone, offset, rotationOffset);
 }
 
-Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, VEC3 offset, CHandle entity, const std::string& bone) {
+Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, CHandle entity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
 	assert(cps);
-	auto ps = new Particles::CSystem(cps, entity, bone, offset);
+	auto ps = new Particles::CSystem(cps, entity, bone, offset, rotationOffset);
 	ps->launch();
 	_activeSystems.push_back(ps);
 	return ps->getHandle();

@@ -43,25 +43,15 @@ namespace {
 namespace Particles {
 	TParticleHandle CSystem::_lastHandle = 0;
 
-	CSystem::CSystem(const TCoreSystem* core, VEC3 position)
-		: _core(core) {
-		assert(_core);
-		_handle = ++_lastHandle;
-		offset = VEC3(0, 0, 0);
-		_entity = CHandle();
-		boneName = "";
-		boneId = -1;
-		this->position = position;
-	}
-
-	CSystem::CSystem(const TCoreSystem* core, CHandle entity, std::string bone, VEC3 offset)
+	CSystem::CSystem(const TCoreSystem* core, CHandle entity, std::string bone, VEC3 offset, QUAT rotationOffset)
 		: _core(core)
-		, _entity(entity) {
+		, _entity(entity)
+		, _handle(++_lastHandle)
+		, boneName(bone)
+		, boneId(-1) 
+		, offset(offset)
+		, rotationOffset(rotationOffset) {
 		assert(_core);
-		_handle = ++_lastHandle;
-		this->offset = offset;
-		boneName = bone;
-		boneId = -1;
 	}
 
 	void CSystem::launch() {
@@ -162,11 +152,11 @@ namespace Particles {
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else {
-				MAT44 transform = CTransform(p.position, p.rotationQuat * _core->movement.initialRotation).asMatrix();
+				MAT44 transform = CTransform(p.position, p.rotationQuat * rotationOffset).asMatrix();
 				MAT44 scale = MAT44::CreateScale(p.size * p.scale);
 				cb_object.obj_world = scale * transform;
 			}
-			
+
 			int row = p.frame / frameCols;
 			int col = p.frame % frameCols;
 			VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
@@ -204,7 +194,6 @@ namespace Particles {
 	}
 
 	void CSystem::forceEmission(int quantity) {
-		dbg("Forcing emission %d\n", quantity);
 		MAT44 world = getWorld();
 		for (int i = 0; i < quantity; ++i) {
 			TParticle particle;

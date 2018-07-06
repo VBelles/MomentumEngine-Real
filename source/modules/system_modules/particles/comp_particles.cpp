@@ -20,15 +20,15 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
     _fadeOut = j.value("fade_out", 0.f);
     auto& particlesName = j.value("core", "");
     _core = Resources.get(particlesName)->as<Particles::TCoreSystem>();
-	if (j.count("offset")) {
-		offset = loadVEC3(j["offset"]);
-	}
+	offset = j.count("offset") ? loadVEC3(j["offset"]) : offset;
+	rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : rotationOffset;
+	
     assert(_core);
 }
 
 void TCompParticles::onCreated(const TMsgEntityCreated&) {
     if (_core && !_particles) {
-        _particles = EngineParticles.launchSystem(_core, offset, CHandle(this).getOwner());
+        _particles = EngineParticles.launchSystem(_core, CHandle(this).getOwner(), bone, offset, rotationOffset);
     }
 }
 

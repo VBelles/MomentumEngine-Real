@@ -53,7 +53,6 @@ namespace Particles {
         cps->movement.wind = movement.value("wind", cps->movement.wind);
         cps->movement.gravity = movement.value("gravity", cps->movement.gravity);
         cps->movement.ground = movement.value("ground", cps->movement.ground);
-		cps->movement.initialRotation = movement.count("initial_rotation") ? loadVEC4(movement["initial_rotation"]) : cps->movement.initialRotation;
 
         // render
         const json& render = data["render"];
