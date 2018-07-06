@@ -1,0 +1,22 @@
+{
+    "TInstance": [
+        {
+            "mesh": "data/meshes/GeoSphere001.instanced_mesh",
+            "data":[
+                {
+                    "pos": "0 15 0",
+                    "scale": 1
+                }
+            ]
+        },
+        {
+            "mesh": "data/meshes/grass_small_00.instanced_mesh",
+            "data":[
+                {
+                    "pos": "15 15 0",
+                    "scale": 2
+                }
+            ]
+        }
+    ]
+}
