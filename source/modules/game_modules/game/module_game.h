@@ -3,9 +3,14 @@
 class Respawner;
 class EnemyManager;
 
+struct PointOfInterest {
+	std::string name;
+	CTransform transform;
+};
 class CModuleGame : public IModule {
 private:
 	//GUI::CHudController* hudController;
+	std::vector<PointOfInterest> pointsOfInterest;
 	Respawner* respawner;
 	EnemyManager* enemyManager;
 public:

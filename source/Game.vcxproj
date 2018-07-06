@@ -190,7 +190,9 @@
     <ClCompile Include="components\ia\enemies\Enemy.cpp" />
     <ClCompile Include="components\ia\enemies\kippah\Kippah.cpp" />
     <ClCompile Include="components\ia\enemies\kippah\ranged_attack\RangedAttackAction.cpp" />
+    <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="modules\game_modules\game\enemy_manager.cpp" />
+    <ClCompile Include="modules\game_modules\module_instancing.cpp" />
     <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
     <ClCompile Include="components\comp_sun.cpp" />
     <ClCompile Include="components\lights\comp_light_flicker.cpp" />
@@ -518,7 +520,9 @@
     <ClInclude Include="components\ia\enemies\Enemy.h" />
     <ClInclude Include="components\ia\enemies\kippah\Kippah.h" />
     <ClInclude Include="components\ia\enemies\kippah\ranged_attack\RangedAttackAction.h" />
+    <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="modules\game_modules\game\enemy_manager.h" />
+    <ClInclude Include="modules\game_modules\module_instancing.h" />
     <ClInclude Include="modules\system_modules\slash\comp_slash.h" />
     <ClInclude Include="components\comp_sun.h" />
     <ClInclude Include="components\lights\comp_light_flicker.h" />

@@ -331,6 +331,16 @@
     "category" : "particles", 
     "z" : "test_but_no_write", 
     "rs_config" : "cull_none", 
+    "blend" : "combinative",
+    "priority": 60    
+  },
+
+  "particles_mesh" : { 
+    "vs_file": "data/shaders/particles.fx", 
+    "vs_entry_point": "VS_Particles_Mesh", 
+    "ps_entry_point": "PS_Particles_Mesh",
+    "vertex_type" : "PosNUvUvT", 
+    "category" : "particles",
     "blend" : "additive_by_src_alpha",
     "priority": 60    
   },
@@ -339,6 +349,16 @@
     "vs_file": "data/shaders/grass.fx",
     "vertex_type": "Pos_x_InstancedPos",
     "category": "gbuffer",
+    "textures": {
+      "environment": "data/textures/cubemaps/env.dds",
+      "irradiance": "data/textures/cubemaps/irradiance.dds"
+    }
+  },
+  "vegetation": {
+    "vs_file": "data/shaders/vegetation.fx",
+    "vertex_type": "PosNUvUvT_x_Instance",
+    "category": "gbuffer",
+    "rs_config": "cull_none",
     "textures": {
       "environment": "data/textures/cubemaps/env.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"

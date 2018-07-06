@@ -94,11 +94,15 @@ void AirborneActionState::onStateEnter(IActionState * lastState) {
 	getCameraPlayer()->moveCameraCloser(false);
 	slideWindowTimer.reset();
 	hardLandingTimer.reset();
-	if (lastState->state == FallingAttack) {
+	if (lastState->state == PropelHigh || lastState->state == PropelLong) {
+		getPlayerModel()->lockFallingAttack = false;
+		getPlayerModel()->lockAirDodge = false;
+	}
+	else if (lastState->state == FallingAttack) {
 		getPlayerModel()->lockFallingAttack = true;
 	}
-	else {
-		getPlayerModel()->lockFallingAttack = false;
+	else if (lastState->state == AirDodge) {
+		getPlayerModel()->lockAirDodge = true;
 	}
 }
 
@@ -132,6 +136,12 @@ void AirborneActionState::onReleasePowerButton() {
 	}
 }
 
+void AirborneActionState::onDodgeButton() {
+	if (!getPlayerModel()->lockAirDodge) {
+		stateManager->changeState(AirDodge);
+	}
+}
+
 void AirborneActionState::onMove(MoveState& moveState) {
 	//Try to hug wall
 	for (const HitState& hitState : moveState.allHits) {
@@ -147,6 +157,7 @@ void AirborneActionState::onMove(MoveState& moveState) {
 			if (slideWindowTimer.elapsed() >= slideWindowTime) {
 				stateManager->changeState(Slide);
 				getPlayerModel()->lockFallingAttack = false;
+				getPlayerModel()->lockAirDodge = false;
 			}
 		}
 		else {
@@ -171,8 +182,9 @@ bool AirborneActionState::hugWall(const HitState& hitState) {
 			if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
 				HuggingWallActionState* actionState = (HuggingWallActionState*)stateManager->getState(HuggingWall);
 				actionState->setHuggingWallNormal(hitNormal);
-				stateManager->changeState(HuggingWall);
+				stateManager->changeState(HuggingWall); 
 				getPlayerModel()->lockFallingAttack = false;
+				getPlayerModel()->lockAirDodge = false;
 				return true;
 			}
 		}
@@ -191,6 +203,7 @@ void AirborneActionState::onLanding() {
 		stateManager->changeState(HardLanding);
 	}
 	getPlayerModel()->lockFallingAttack = false;
+	getPlayerModel()->lockAirDodge = false;
 }
 
 

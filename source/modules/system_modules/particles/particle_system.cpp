@@ -96,7 +96,13 @@ namespace Particles {
 				p.velocity += kGravity * _core->movement.gravity * delta;
 				p.position += p.velocity * delta;
 				p.position += kWindVelocity * _core->movement.wind * delta;
-				p.rotation += _core->movement.spin * delta;
+				if (!_core->render.mesh) { //Billboard particle
+					p.rotation += _core->movement.spin * delta;
+				}
+				else { //Mesh particle
+					QUAT quat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, _core->movement.spin * delta);
+					p.rotationQuat *=  quat;
+				}
 				if (_core->movement.ground) {
 					p.position.y = std::max(0.f, p.position.y);
 				}
@@ -125,10 +131,19 @@ namespace Particles {
 	}
 
 	void CSystem::render() {
-		const CRenderTechnique* technique = Resources.get("particles.tech")->as<CRenderTechnique>();
-		const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+		const CRenderTechnique* technique;
+		const CRenderMesh* particleMesh;
+		bool isBillboardParticle = !_core->render.mesh;
+		if (isBillboardParticle) {
+			technique = Resources.get("particles.tech")->as<CRenderTechnique>();
+			particleMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+		}
+		else {
+			technique = Resources.get("particles_mesh.tech")->as<CRenderTechnique>();
+			particleMesh = _core->render.mesh;
+		}
 		CEntity* eCurrentCamera = EngineCameras.getCurrentBlendedCamera();
-		assert(technique && quadMesh && eCurrentCamera);
+		assert(technique && particleMesh && eCurrentCamera);
 		TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 		assert(camera);
 		const VEC3 cameraPos = camera->getCamera()->getPosition();
@@ -140,16 +155,22 @@ namespace Particles {
 		_core->render.texture->activate(TS_ALBEDO);
 
 		for (auto& p : _particles) {
-			MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
-			MAT44 sc = MAT44::CreateScale(p.size * p.scale);
-			MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
-
+			if (isBillboardParticle) {
+				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
+				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
+				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
+				cb_object.obj_world = rt * sc * bb;
+			}
+			else {
+				CTransform transform(p.position, p.rotationQuat);
+				cb_object.obj_world = transform.asMatrix();
+			}
+			
 			int row = p.frame / frameCols;
 			int col = p.frame % frameCols;
 			VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
 			VEC2 maxUV = minUV + _core->render.frameSize;
 
-			cb_object.obj_world = rt * sc * bb;
 			cb_object.obj_color = VEC4(1, 1, 1, 1);
 			cb_object.updateGPU();
 
@@ -158,7 +179,7 @@ namespace Particles {
 			cb_particles.particle_color = p.color;
 			cb_particles.updateGPU();
 
-			quadMesh->activateAndRender();
+			particleMesh->activateAndRender();
 		}
 	}
 
@@ -173,7 +194,7 @@ namespace Particles {
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
 			particle.frame = _core->render.initialFrame;
-			particle.rotation = 0.f;
+			particle.rotation = _core->movement.initialRotation;
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 

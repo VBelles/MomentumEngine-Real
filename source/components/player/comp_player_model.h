@@ -100,7 +100,8 @@ public:
 	bool isWalking = false;
 
 	bool lockFallingAttack = false;
-
+	bool lockAirDodge = false;
+	
 	float maxVerticalSpeed = 0.f;
 
 	float walkingSpeed = 0.f;
