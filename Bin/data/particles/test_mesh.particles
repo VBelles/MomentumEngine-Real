@@ -18,7 +18,8 @@
       "spin" : 600,
       "spin_axis":  "0 0 1",
       "wind" : 0.0,
-      "gravity" : -0.0
+      "gravity" : -0.0,
+      "initial_rotation" : "0.383 0 0 0.924"
   },
   "render" : {
     "mesh": "data/meshes/Mesh_Slash.mesh",

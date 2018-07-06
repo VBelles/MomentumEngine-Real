@@ -101,7 +101,7 @@ namespace Particles {
 				}
 				else { //Mesh particle
 					QUAT quat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, _core->movement.spin * delta);
-					p.rotationQuat *=  quat;
+					p.rotationQuat = p.rotationQuat * quat;
 				}
 				if (_core->movement.ground) {
 					p.position.y = std::max(0.f, p.position.y);
@@ -162,7 +162,7 @@ namespace Particles {
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else {
-				MAT44 transform = CTransform(p.position, p.rotationQuat).asMatrix();
+				MAT44 transform = CTransform(p.position, p.rotationQuat * _core->movement.initialRotation).asMatrix();
 				MAT44 scale = MAT44::CreateScale(p.size * p.scale);
 				cb_object.obj_world = scale * transform;
 			}

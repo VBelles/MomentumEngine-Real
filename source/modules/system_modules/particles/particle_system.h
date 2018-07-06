@@ -30,10 +30,11 @@ namespace Particles {
 			float gravity = 0.f;			// gravity factor
 			float wind = 0.f;				// wind factor
 			bool ground = false;			// limit by ground
+			QUAT initialRotation;			// initial mesh particle rotation
 		};
 		struct TRender {
 			const CTexture* texture = nullptr; // particle texture
-			const CRenderMesh* mesh = nullptr; // particle mesh (optional)
+			const CRenderMesh* mesh = nullptr; // mesh for mesh particles
 			VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
 			int numFrames = 1;                 // number of animation frames
 			int initialFrame = 0;              // initial frame
