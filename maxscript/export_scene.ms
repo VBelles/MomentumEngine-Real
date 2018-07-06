@@ -21,10 +21,10 @@ struct TJsonFormatter (
 	fn begin new_ofilename = (
 		ofilename = new_ofilename
 		--fs = listener
-		fs = createFile ofilename
-		if fs == undefined then (
+		try fs = createFile ofilename
+		catch (
 			-- Avoid error if the file didn't close properly last time.
-			flush fs
+			gc()
 			fs = createFile ofilename
 		)
 	),
@@ -1116,7 +1116,7 @@ struct TSceneExporter (
 					fs.endObj()
 
 					-- Add child spline if it exists.
-					if hasChildLine obj then exportSpline obj.children[1]
+					if hasChildLine obj then exportSpline obj
 
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
 				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
