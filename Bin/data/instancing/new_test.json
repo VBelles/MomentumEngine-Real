@@ -1,0 +1,13 @@
+{
+    "TInstance": [
+        {
+            "mesh": "data/meshes/GeoSphere001.instanced_mesh",
+            "data":[
+                {
+                    "pos": "0 15 0",
+                    "scale": 1
+                }
+            ]
+        }
+    ]
+}

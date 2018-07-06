@@ -5,6 +5,7 @@
 #include "modules/game_modules/module_gameover.h"
 #include "modules/game_modules/game/module_game.h"
 #include "modules/game_modules/module_pause.h"
+#include "modules/game_modules/module_instancing.h"
 #include "modules/test/module_test_instancing.h"
 
 CEngine& CEngine::get() {
@@ -34,6 +35,7 @@ bool CEngine::start() {
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleGame module_test_axis("game");
 	static CModulePause module_pause("pause");
+	static CModuleInstancing module_instancing("instancing");
 	static CModuleTestInstancing module_test_instancing("test_instancing");
 
 	_modules.registerSystemModule(&_module_entities);
@@ -55,6 +57,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_test_axis);
 	_modules.registerGameModule(&_module_cameras);
 	_modules.registerGameModule(&module_pause);
+	_modules.registerGameModule(&module_instancing);
 	_modules.registerGameModule(&module_test_instancing);
 
 	_modules.loadModules("data/modules.json");
