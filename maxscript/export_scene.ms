@@ -305,6 +305,7 @@ struct TMaterialExporter (
 -- -----------------------------------------------------------------------------
 struct TSceneExporter (
 	fs = TJsonFormatter(),
+	fss = TJsonFormatter(), --We need another stream for sub-files.
 	attrManager = TAttributeManager(),
 	project_path = "",
 	base_path    = "data/",
@@ -1370,42 +1371,41 @@ struct TSceneExporter (
 	fn exportInstancing obj instanceCat:"" = (
 		local instancesPath = project_path + instancePath + "instancing_" + instanceCat + ".json"
 
-		fs.begin instancesPath --Create file.
-			fs.beginArray()
-			fs.beginObj()
-				fs.writeKeyValue "type" instanceCat
-				fs.writeComma
-				fs.writeKey "data"
-				fs.beginArray()
+		fss.begin instancesPath --Create file.
+			fss.beginArray()
+			fss.beginObj()
+				fss.writeKeyValue "type" instanceCat
+				fss.writeComma()
+				fss.writeKey "data"
+				fss.beginArray()
 				for i = 1 to obj.children.count do (
-					if i > 1 then fs.writeComma
-					fs.beginObj()
-						fs.writeKeyValue "pos" (maxPosToMcv obj.children[i].pos)
-						fs.writeComma
-						fs.writeKeyValue "scale" obj.children[i].scale
-						fs.writeComma
-						fs.writeKeyValue "rot" (maxRotToMcv obj.children[i].transform)
-					fs.endObj()
+					if i > 1 then fss.writeComma()
+					fss.beginObj()
+						fss.writeKeyValue "pos" (maxPosToMcv obj.children[i].pos)
+						fss.writeComma()
+						fss.writeKeyValue "scale" obj.children[i].scale
+						fss.writeComma()
+						fss.writeKeyValue "rot" (maxRotToMcv obj.children[i].transform)
+					fss.endObj()
 				)
-				fs.endArray()
-				fs.writeKeyValue "num_instances_reserved" 8
-			fs.endObj()
-			fs.endArray()
-		fs.end()
+				fss.endArray()
+			fss.endObj()
+			fss.endArray()
+		fss.end()
 	),
 
 	fn exportInstancedMeshFile instanceCat:"" = (
 		local instancesPath = project_path + mesh_path + instanceCat + ".instanced_mesh"
 
-		fs.begin instancesPath --Create file.
-			fs.beginObj()
-				fs.writeKeyValue "instanced_mesh" (instanceCat + ".mesh")
-				fs.writeComma
-				fs.writeKeyValue "instances_type" "Instance"
-				fs.writeComma		
-				fs.writeKeyValue "num_instances_reserved" 8
-			fs.endObj()
-		fs.end()
+		fss.begin instancesPath --Create file.
+			fss.beginObj()
+				fss.writeKeyValue "instanced_mesh" (instanceCat + ".mesh")
+				fss.writeComma()
+				fss.writeKeyValue "instances_type" "Instance"
+				fss.writeComma()	
+				fss.writeKeyValue "num_instances_reserved" 8
+			fss.endObj()
+		fss.end()
 	),
 
 	-- --ENTITY: INSTANCES (also exports children)------------------------------
@@ -1435,11 +1435,11 @@ struct TSceneExporter (
 					fs.endObj()
 				fs.endArray()
 			endEntity() -- - - - - - - - - - - - - - - - - - -
-		fs.endObj()
---TODO: FIX THIS
-		--exportInstancedMeshFile instanceCat:instanceCategory --.instanced_mesh
+		--fs.endObj() is made outside this function.
 
-		--exportInstancing obj instanceCat:instanceCategory --/instancing/instancing.json
+		exportInstancedMeshFile instanceCat:instanceCategory --.instanced_mesh
+
+		exportInstancing obj instanceCat:instanceCategory --/instancing/instancing.json
 
 		return true
 	),
