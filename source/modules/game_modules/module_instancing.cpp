@@ -5,23 +5,25 @@
 #include "components/comp_transform.h"
 
 bool CModuleInstancing::start() {
-
-	auto& jInstances = loadJson("data/instancing/new_test.json");
-	for (auto& jTInstance : jInstances["TInstance"]) {
-		//Load mesh
-		std::string meshName = jTInstance.value("mesh", "");
-		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(meshName)->as<CRenderMesh>();
-		//Load data
-		std::vector<TInstance> instancesData;
-		for (auto& jData : jTInstance["data"]) {
-			TInstance instanceData;
-			VEC3 pos = jData.count("pos") ? loadVEC3(jData["pos"]) : VEC3::Zero;
-			VEC4 rot = jData.count("rot") ? loadVEC4(jData["rot"]) : VEC4::Zero;
-			float scale = jData.value("scale", 1.f);
-			instanceData.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-			instancesData.push_back(instanceData);
+	auto files = WindowsUtils::getAllFiles("data/instancing/", "*.json");
+	for (auto& file : files) {
+		auto& jInstances = loadJson(file);
+		for (auto& jTInstance : jInstances["TInstance"]) {
+			//Load mesh
+			std::string meshName = jTInstance.value("mesh", "");
+			auto instanceMesh = (CRenderMeshInstanced*)Resources.get(meshName)->as<CRenderMesh>();
+			//Load data
+			std::vector<TInstance> instancesData;
+			for (auto& jData : jTInstance["data"]) {
+				TInstance instanceData;
+				VEC3 pos = jData.count("pos") ? loadVEC3(jData["pos"]) : VEC3::Zero;
+				VEC4 rot = jData.count("rot") ? loadVEC4(jData["rot"]) : VEC4::Zero;
+				float scale = jData.value("scale", 1.f);
+				instanceData.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+				instancesData.push_back(instanceData);
+			}
+			instanceMesh->setInstancesData(instancesData.data(), instancesData.size(), sizeof(TInstance));
 		}
-		instanceMesh->setInstancesData(instancesData.data(), instancesData.size(), sizeof(TInstance));
 	}
 	
 	return true;

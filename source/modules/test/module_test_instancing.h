@@ -5,15 +5,22 @@
 
 class CModuleTestInstancing : public IModule {
 private:
+	// -------------------------------------------------------------------
 	struct TInstance {
 		MAT44 world;
 	};
+	CRenderMeshInstanced* instances_mesh = nullptr;
+	std::vector< TInstance > instances;
 
+	// -------------------------------------------------------------------
 	struct TInstanceBlood {
 		MAT44 world;
 		VEC4  color;
 	};
-	
+	CRenderMeshInstanced* blood_instances_mesh = nullptr;
+	std::vector< TInstanceBlood > blood_instances;
+
+	// -------------------------------------------------------------------
 	struct TRenderParticle {
 		VEC3  pos;      // Maps to iCenter.xyz
 		float angle;    // Maps to iCenter.w
@@ -22,11 +29,15 @@ private:
 		float scale_y;
 		float nframe;
 	};
-	
+	CRenderMeshInstanced* particles_instances_mesh = nullptr;
+	std::vector< TRenderParticle > particles_instances;
+
 	// -------------------------------------------------------------------
 	struct TGrassParticle {
 		VEC3  pos;
 	};
+	CRenderMeshInstanced* grass_instances_mesh = nullptr;
+	std::vector< TGrassParticle > grass_instances;
 
 	int nGrassToInstance = 0;
 	float sz = 50.f;

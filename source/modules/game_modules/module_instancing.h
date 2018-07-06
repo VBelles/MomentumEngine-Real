@@ -23,13 +23,9 @@ private:
 		float nframe;
 	};
 	
-	// -------------------------------------------------------------------
 	struct TGrassParticle {
 		VEC3  pos;
 	};
-
-	int nGrassToInstance = 0;
-	float sz = 50.f;
 
 public:
 	CModuleInstancing(const std::string& name)
