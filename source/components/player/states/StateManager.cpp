@@ -56,6 +56,7 @@
 #include "components/player/states/base_states/knockback/HardKnockbackGroundActionState.h"
 #include "components/player/states/base_states/knockback/HardKnockbackAirActionState.h"
 #include "components/player/states/base_states/SlideActionState.h"
+#include "components/player/states/base_states/AirDodgeActionState.h"
 #include "components/player/states/concurrent_states/SoftKnockbackGroundActionState.h"
 #include "components/player/states/concurrent_states/SoftKnockbackAirActionState.h"
 #include "components/player/states/concurrent_states/FreeActionState.h"
@@ -153,6 +154,7 @@ void StateManager::registerStates() {
 	registerState<HardKnockbackAirActionState>();
 	registerState<SpringJumpActionState>();
 	registerState<DodgeActionState>();
+	registerState<AirDodgeActionState>();
 	registerState<SpendCoinsActionState>();
 
 	registerConcurrentState<FreeActionState>();

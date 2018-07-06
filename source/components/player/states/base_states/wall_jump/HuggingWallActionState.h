@@ -43,6 +43,7 @@ public:
 	void onStateExit(IActionState* nextState) override;
 	void onJumpHighButton() override;
 	void onJumpLongButton() override;
+	void onDodgeButton() override {}
 	void onMove(MoveState& moveState) override;
 
 	void SetHit(PxControllerShapeHit hit) { this->hit = hit; }
