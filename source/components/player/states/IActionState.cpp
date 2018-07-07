@@ -12,6 +12,7 @@
 #include "components/player/comp_power_gauge.h"
 #include "components/controllers/comp_camera_player.h"
 #include "modules/system_modules/slash/comp_slash.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 
 IActionState::IActionState(StateManager* stateManager, State state, ConcurrentState concurrentState) :
@@ -139,49 +140,63 @@ bool IActionState::isWalkable(MoveState& moveState) {
 	return false;
 }
 
+void IActionState::slash(bool clockwise) {
+	float yaw = 0, pitch = 0;
+	getYawPitchFromVector(getPlayerTransform()->getFront(), &yaw, &pitch);
+	if (clockwise) {
+		stateManager->getSlashClockwise()->setRotationOffset(QUAT::CreateFromYawPitchRoll(yaw + deg2rad(180), deg2rad(-90), 0));
+		stateManager->getSlashClockwise()->forceEmission(1);
+	}
+	else {
+		stateManager->getSlashCounterClockwise()->setRotationOffset(QUAT::CreateFromYawPitchRoll(yaw + deg2rad(180), deg2rad(-90), 0));
+		stateManager->getSlashCounterClockwise()->forceEmission(1);
+	}
+
+}
+
 
 //Component getters
 CEntity* IActionState::getEntity() {
 	return stateManager->getEntity();
 }
 
-TCompPlayerModel* IActionState::getPlayerModel() { 
-	return stateManager->getPlayerModel(); 
+TCompPlayerModel* IActionState::getPlayerModel() {
+	return stateManager->getPlayerModel();
 }
 
 TCompTransform* IActionState::getPlayerTransform() {
-	return stateManager->getTransform(); 
+	return stateManager->getTransform();
 }
 
-TCompCollider* IActionState::getCollider() { 
-	return stateManager->getCollider(); 
+TCompCollider* IActionState::getCollider() {
+	return stateManager->getCollider();
 }
 
-TCompRender* IActionState::getRender() { 
-	return stateManager->getRender(); 
+TCompRender* IActionState::getRender() {
+	return stateManager->getRender();
 }
 
 TCompHitboxes* IActionState::getHitboxes() {
-	return stateManager->getHitboxes(); 
+	return stateManager->getHitboxes();
 }
 
 TCompCamera* IActionState::getCamera() {
-	return stateManager->getCamera(); 
+	return stateManager->getCamera();
 }
 
 TCompRenderBlurRadial* IActionState::getBlurRadial() {
-	return getCamera()->get<TCompRenderBlurRadial>(); 
+	return getCamera()->get<TCompRenderBlurRadial>();
 }
 
-TCompSkeleton* IActionState::getSkeleton() { 
-	return stateManager->getSkeleton(); 
+TCompSkeleton* IActionState::getSkeleton() {
+	return stateManager->getSkeleton();
 }
 
-TCompPowerGauge* IActionState::getPowerGauge() { 
-	return stateManager->getPowerGauge(); 
+TCompPowerGauge* IActionState::getPowerGauge() {
+	return stateManager->getPowerGauge();
 }
 
-TCompCollectableManager* IActionState::getCollectableManager() { 
+TCompCollectableManager* IActionState::getCollectableManager() {
 	return stateManager->getCollectableManager();
 }
 

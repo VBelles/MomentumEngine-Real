@@ -12,11 +12,11 @@
     "cyclic": true
   },
   "movement": {
-    "spin": -1000,
+    "spin": 1000,
     "spin_axis": "0 0 1"
   },
   "render": {
-    "mesh": "data/meshes/particle_slash_mirror.mesh",
+    "mesh": "data/meshes/particle_slash.mesh",
     "texture": "data/textures/fire_slash.dds"
   },
   "size": {

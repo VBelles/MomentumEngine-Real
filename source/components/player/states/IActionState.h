@@ -65,6 +65,8 @@ protected:
 
 	bool isWalkable(MoveState& moveState);
 
+	void slash(bool clockwise = true);
+
 public:
 
 	StateManager* stateManager;

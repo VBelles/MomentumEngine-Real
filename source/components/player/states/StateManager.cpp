@@ -101,7 +101,8 @@ StateManager::StateManager(CHandle entityHandle) :
 	CEntity* slashRightTentacleShortEntity = getEntityByName("slashRightTentacleShort");
 	slashRightTentacleShortHandle = slashRightTentacleShortEntity->get<TCompSlash>();
 
-	slashFastAttackHandle = static_cast<CEntity*>(getEntityByName("slash_fast_attack"))->get<TCompParticles>();
+	slashClockwiseHandle = static_cast<CEntity*>(getEntityByName("slash_clockwise"))->get<TCompParticles>();
+	slashCounterClockwiseHandle = static_cast<CEntity*>(getEntityByName("slash_counter_clockwise"))->get<TCompParticles>();
 
 	registerStates();
 }
@@ -294,9 +295,14 @@ TCompSlash * StateManager::getSlash(SlashType type) {
 	}
 }
 
-TCompParticles * StateManager::getSlashFastAttack() {
-	return slashFastAttackHandle;
+TCompParticles * StateManager::getSlashClockwise() {
+	return slashClockwiseHandle;
 }
+
+TCompParticles * StateManager::getSlashCounterClockwise() {
+	return slashCounterClockwiseHandle;
+}
+
 
 
 

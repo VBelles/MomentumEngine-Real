@@ -39,7 +39,8 @@ private:
 	CHandle slashRightTentacleHandle;
 	CHandle slashLeftTentacleShortHandle;
 	CHandle slashRightTentacleShortHandle;
-	CHandle slashFastAttackHandle;
+	CHandle slashClockwiseHandle;
+	CHandle slashCounterClockwiseHandle;
 
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
@@ -102,7 +103,8 @@ public:
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
 	TCompSlash* getSlash(SlashType type);
-	TCompParticles* getSlashFastAttack();
+	TCompParticles* getSlashClockwise();
+	TCompParticles* getSlashCounterClockwise();
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;
