@@ -5,14 +5,18 @@ IBehaviorTreeNew::IBehaviorTreeNew() {
 }
 
 IBehaviorTreeNew::~IBehaviorTreeNew() {
-	for (auto& pair : tree) {
-		SAFE_DELETE(pair.second);
-	}
+	clear();
+}
+
+void IBehaviorTreeNew::clear() {
 	for (IBehaviorTreeCondition* condition : allConditions) {
 		SAFE_DELETE(condition);
 	}
 	for (IBehaviorTreeAction* action : allActions) {
 		SAFE_DELETE(action);
+	}
+	for (auto& pair : tree) {
+		SAFE_DELETE(pair.second);
 	}
 	tree.clear();
 	allConditions.clear();

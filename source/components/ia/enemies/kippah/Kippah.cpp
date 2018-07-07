@@ -60,6 +60,8 @@ Kippah::~Kippah() {
 }
 
 void Kippah::initBehaviorTree() {
+	clear();
+
 	FalseCondition* falseCondition = new FalseCondition();
 	DeathAction* deathAction = new DeathAction(this, "medusa_death");
 	DisappearAction* disappearAction = new DisappearAction(this, "medusa_desaparicion");
@@ -207,6 +209,7 @@ void Kippah::debugInMenu() {
 
 void Kippah::registerMsgs() {
 	DECL_MSG(Kippah, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(Kippah, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(Kippah, TMsgAttackHit, onAttackHit);
 	DECL_MSG(Kippah, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(Kippah, TMsgPerfectDodged, onPerfectDodged);
@@ -235,6 +238,10 @@ void Kippah::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
 
 	current = tree["appear"];
+}
+
+void Kippah::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
+	playerHandle = getEntityByName(PLAYER_NAME);
 }
 
 void Kippah::onAttackHit(const TMsgAttackHit& msg) {

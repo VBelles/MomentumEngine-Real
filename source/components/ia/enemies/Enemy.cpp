@@ -53,6 +53,9 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 		attacks[attackName] = attack;
 	}
 
+	//Nav mesh
+	navMeshId = j.value("nav_mesh", "");
+	navMeshQuery = EngineNavMesh.getNavQuery(navMeshId);
 }
 
 void Enemy::debugInMenu() {
@@ -62,6 +65,7 @@ void Enemy::debugInMenu() {
 	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
 	ImGui::Text("Is blocking: %s\n", isBlocking ? "true" : "false");
 	ImGui::Text("Super armor: %f, has super armor: %s\n", superArmorAmount, hasSuperArmor() ? "true" : "false");
+	ImGui::Text("Nav mesh: %s\n", navMeshQuery ? navMeshId.c_str() : "None");
 	ImGui::Text("Player handle is valid: %s\n", playerHandle.isValid() ? "true" : "false");
 	ImGui::Text("Transform handle is valid: %s\n", transformHandle.isValid() ? "true" : "false");
 	ImGui::Text("Collider handle is valid: %s\n", colliderHandle.isValid() ? "true" : "false");

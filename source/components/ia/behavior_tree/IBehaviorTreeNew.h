@@ -29,6 +29,8 @@ public:
 	IBehaviorTreeNew();
 	virtual ~IBehaviorTreeNew();
 
+	void clear();
+
 	IBehaviorTreeNode *createRoot(std::string rootName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
 	IBehaviorTreeNode *addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
 

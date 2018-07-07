@@ -77,6 +77,8 @@ Dreidel::~Dreidel() {
 }
 
 void Dreidel::initBehaviorTree() {
+	clear();
+
 	FalseCondition* falseCondition = new FalseCondition();
 	AirborneAction* airborneAction = new AirborneAction(this);
 	AirborneCondition* airborneCondition = new AirborneCondition(this);
@@ -287,6 +289,7 @@ void Dreidel::debugInMenu() {
 
 void Dreidel::registerMsgs() {
 	DECL_MSG(Dreidel, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(Dreidel, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(Dreidel, TMsgAttackHit, onAttackHit);
 	DECL_MSG(Dreidel, TMsgOutOfBounds, onOutOfBounds);
 	DECL_MSG(Dreidel, TMsgPerfectDodged, onPerfectDodged);
@@ -304,8 +307,6 @@ void Dreidel::update(float delta) {
 
 void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	initBehaviorTree();
-	//TODO cargar navmesh desde json
-	navmesh = EngineNavmesh.getNavQuery();
 
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
@@ -316,6 +317,10 @@ void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	spawnPosition = getTransform()->getPosition();
 
 	current = tree["appear"];
+}
+
+void Dreidel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
+	playerHandle = getEntityByName(PLAYER_NAME);
 }
 
 void Dreidel::onAttackHit(const TMsgAttackHit& msg) {

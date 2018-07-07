@@ -7,9 +7,9 @@ OnTeleportCondition::OnTeleportCondition(Enemy* enemy) : enemy(enemy) {
 }
 
 bool OnTeleportCondition::testCondition(float delta) {
-	if (enemy->navmesh) {
+	if (enemy->navMeshQuery) {
 		return VEC3::DistanceSquared(enemy->spawnPosition, enemy->getTransform()->getPosition()) > enemy->maxDistanceFromSpawnSqrd
-			|| !enemy->navmesh->existsConnection(enemy->getTransform()->getPosition(), enemy->spawnPosition);
+			|| !enemy->navMeshQuery->existsConnection(enemy->getTransform()->getPosition(), enemy->spawnPosition);
 	}
 	else {
 		return VEC3::DistanceSquared(enemy->spawnPosition, enemy->getTransform()->getPosition()) > enemy->maxDistanceFromSpawnSqrd;

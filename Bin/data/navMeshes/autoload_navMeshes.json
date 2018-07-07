@@ -1,0 +1,8 @@
+{
+  "nav_meshes": [
+    {
+      "id": "dreidel_nav_mesh",
+      "file": "data/navMeshes/solo_navmesh.bin"
+    }
+  ]
+}

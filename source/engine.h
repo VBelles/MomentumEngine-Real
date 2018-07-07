@@ -37,7 +37,7 @@ public:
 	CModuleCameras&     getCameras()     { return _module_cameras; }
 	CModuleScripting&   getScripting()   { return _module_scripting; }
 	CModuleGUI&         getGUI()         { return _module_gui; }
-	CModuleNavmesh&     getNavmesh()     { return _module_navmesh; }
+	CModuleNavmesh&     getNavMesh()     { return _module_navmesh; }
 	CModuleSound&       getSound()       { return _module_sound; }
 	CModuleMultithread& getMultithread() { return _module_multithread; }
     CModuleUniques&     getUniques()     { return _module_uniques; }
@@ -81,7 +81,7 @@ private:
 #define EngineCameras   CEngine::get().getCameras()
 #define EngineScripting CEngine::get().getScripting()
 #define EngineGUI       CEngine::get().getGUI()
-#define EngineNavmesh   CEngine::get().getNavmesh()
+#define EngineNavMesh   CEngine::get().getNavMesh()
 #define EngineSound     CEngine::get().getSound()
 #define EngineUniques   CEngine::get().getUniques()
 #define EngineParticles CEngine::get().getParticles()

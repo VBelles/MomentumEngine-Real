@@ -20,7 +20,8 @@ class Enemy : public IBehaviorTreeNew {
 public:
 	virtual ~Enemy();
 
-	CNavMeshQuery* navmesh;
+	std::string navMeshId;
+	CNavMeshQuery* navMeshQuery = nullptr;
 	std::vector<VEC3> smoothPath;
 	int currentPathPoint = 0;
 

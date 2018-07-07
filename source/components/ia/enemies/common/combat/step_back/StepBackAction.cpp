@@ -15,10 +15,17 @@ int StepBackAction::execAction(float delta) {
 	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation)) {
 		VEC3 stepBackMovement = -enemy->getTransform()->getFront() * speed * delta;
 		VEC3 pos = enemy->getTransform()->getPosition();
-		if (enemy->navmesh->existsConnection(pos, pos + stepBackMovement)) {
-			enemy->deltaMovement += stepBackMovement;
-			return Stay;
+
+		if (enemy->navMeshQuery) {
+			if (enemy->navMeshQuery->existsConnection(pos, pos + stepBackMovement)) {
+				enemy->deltaMovement += stepBackMovement;
+			}
 		}
+		else {
+			enemy->deltaMovement += stepBackMovement;
+		}
+
+		return Stay;
 	}
 	return Leave;
 }
