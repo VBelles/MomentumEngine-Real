@@ -81,6 +81,11 @@ void StrongAttack3ActionState::update(float delta) {
 		getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 		getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 	}
+
+	if (!isUltraSlashOut && phase == AttackPhases::Active) {
+		isUltraSlashOut = true;
+		slash(stateManager->getSlashStrong3(), 0);
+	}
 }
 
 void StrongAttack3ActionState::onStateEnter(IActionState * lastState) {
@@ -92,6 +97,7 @@ void StrongAttack3ActionState::onStateEnter(IActionState * lastState) {
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset();
 	isSlashOut = false;
+	isUltraSlashOut = false;
 }
 
 void StrongAttack3ActionState::onStateExit(IActionState * nextState) {
@@ -99,6 +105,7 @@ void StrongAttack3ActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
+	isUltraSlashOut = false;
 	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 	getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 }

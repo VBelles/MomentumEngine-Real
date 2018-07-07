@@ -1,0 +1,31 @@
+{
+  "life": {
+    "duration": 0.4,
+    "duration_variation": 0,
+    "max_particles": 10,
+    "time_factor": 1.0
+  },
+  "emission": {
+    "type": "point",
+    "interval": 1,
+    "count": 0,
+    "cyclic": true
+  },
+  "movement": {
+    "spin": 1500,
+    "spin_axis": "0 0 1"
+  },
+  "render": {
+    "mesh": "data/meshes/particle_slash.mesh",
+    "texture": "data/textures/fire_slash.dds"
+  },
+  "size": {
+    "scale": 0.2,
+    "scale_variation": 0.0,
+    "sizes": [ [0.0, 0.2] ]
+  },
+  "color": {
+    "opacity": 1.0,
+    "colors": [ [0.0, "0 0 0 1"] ]
+  }
+}

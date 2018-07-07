@@ -140,18 +140,11 @@ bool IActionState::isWalkable(MoveState& moveState) {
 	return false;
 }
 
-void IActionState::slash(bool clockwise) {
+void IActionState::slash(TCompParticles* slash, float angle) {
 	float yaw = 0, pitch = 0;
 	getYawPitchFromVector(getPlayerTransform()->getFront(), &yaw, &pitch);
-	if (clockwise) {
-		stateManager->getSlashClockwise()->setRotationOffset(QUAT::CreateFromYawPitchRoll(yaw + deg2rad(180), deg2rad(-90), 0));
-		stateManager->getSlashClockwise()->forceEmission(1);
-	}
-	else {
-		stateManager->getSlashCounterClockwise()->setRotationOffset(QUAT::CreateFromYawPitchRoll(yaw + deg2rad(180), deg2rad(-90), 0));
-		stateManager->getSlashCounterClockwise()->forceEmission(1);
-	}
-
+	slash->setRotationOffset(QUAT::CreateFromYawPitchRoll(yaw + deg2rad(180), deg2rad(-90 + angle), deg2rad(0)));
+	slash->forceEmission(1);
 }
 
 

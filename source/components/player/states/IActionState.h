@@ -17,6 +17,7 @@ class TCompPowerGauge;
 class TCompCollectableManager;
 class TCompCameraPlayer;
 class TCompSlash;
+class TCompParticles;
 
 struct HitState;
 struct MoveState;
@@ -65,7 +66,7 @@ protected:
 
 	bool isWalkable(MoveState& moveState);
 
-	void slash(bool clockwise = true);
+	void slash(TCompParticles* slash, float angle = 0.f);
 
 public:
 

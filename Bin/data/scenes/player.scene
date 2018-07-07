@@ -437,6 +437,17 @@
 				"target": "The Player"
 			}
 		}
+	},
+	{
+		"entity": {
+			"name": "slash_strong_3",
+			"transform": {},
+			"particles": {
+				"core": "data/particles/slash_strong_3.particles",
+				"offset": "0 1.3 0",
+				"target": "The Player"
+			}
+		}
 	}
 	
 ]

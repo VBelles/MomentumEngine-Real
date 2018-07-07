@@ -104,6 +104,7 @@ StateManager::StateManager(CHandle entityHandle) :
 
 	slashClockwiseHandle = static_cast<CEntity*>(getEntityByName("slash_clockwise"))->get<TCompParticles>();
 	slashCounterClockwiseHandle = static_cast<CEntity*>(getEntityByName("slash_counter_clockwise"))->get<TCompParticles>();
+	slashStrong3 = static_cast<CEntity*>(getEntityByName("slash_strong_3"))->get<TCompParticles>();
 
 	registerStates();
 }
@@ -297,12 +298,16 @@ TCompSlash * StateManager::getSlash(SlashType type) {
 	}
 }
 
-TCompParticles * StateManager::getSlashClockwise() {
+TCompParticles* StateManager::getSlashClockwise() {
 	return slashClockwiseHandle;
 }
 
-TCompParticles * StateManager::getSlashCounterClockwise() {
+TCompParticles* StateManager::getSlashCounterClockwise() {
 	return slashCounterClockwiseHandle;
+}
+
+TCompParticles* StateManager::getSlashStrong3() {
+	return slashStrong3;
 }
 
 

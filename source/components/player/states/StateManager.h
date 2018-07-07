@@ -41,6 +41,7 @@ private:
 	CHandle slashRightTentacleShortHandle;
 	CHandle slashClockwiseHandle;
 	CHandle slashCounterClockwiseHandle;
+	CHandle slashStrong3;
 
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
@@ -105,6 +106,7 @@ public:
 	TCompSlash* getSlash(SlashType type);
 	TCompParticles* getSlashClockwise();
 	TCompParticles* getSlashCounterClockwise();
+	TCompParticles* getSlashStrong3();
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;
