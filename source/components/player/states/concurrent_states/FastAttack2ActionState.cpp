@@ -29,7 +29,7 @@ void FastAttack2ActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
-		slash(stateManager->getSlashCounterClockwise(), 0);
+		slash(stateManager->getSlashClockwise(), 0);
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();

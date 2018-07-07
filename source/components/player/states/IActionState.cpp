@@ -144,10 +144,11 @@ void IActionState::slash(TCompParticles* slash, float yaw, float pitch, float ro
 	float y = 0, p = 0;
 	getYawPitchFromVector(getPlayerTransform()->getFront(), &y, &p);
 	slash->setRotationOffset(
-		 QUAT::CreateFromAxisAngle(VEC3(1, 0, 0), deg2rad(pitch))
-		* QUAT::CreateFromAxisAngle(VEC3(0, 1, 0), deg2rad(yaw))
-		* QUAT::CreateFromAxisAngle(VEC3(0, 0, 1), deg2rad(roll))
-		* QUAT::CreateFromYawPitchRoll(y, p, 0)
+		QUAT::CreateFromAxisAngle(VEC3(1, 0, 0), pitch + deg2rad(90)) *
+		QUAT::CreateFromAxisAngle(VEC3(0, 1, 0), yaw) *
+		QUAT::CreateFromAxisAngle(VEC3(0, 0, 1), roll) *
+		// QUAT::CreateFromYawPitchRoll(deg2rad(yaw), deg2rad(pitch), deg2rad(roll)) *
+		QUAT::CreateFromYawPitchRoll(y, p, 0)
 	);
 	slash->forceEmission(1);
 }

@@ -455,8 +455,8 @@
 			"name": "slash_vertical",
 			"transform": {},
 			"particles": {
-				"core": "data/particles/slash_counter_clockwise.particles",
-				"offset": "0 0 0",
+				"core": "data/particles/slash_clockwise.particles",
+				"offset": "0 1 0",
 				"target": "The Player"
 			}
 		}
