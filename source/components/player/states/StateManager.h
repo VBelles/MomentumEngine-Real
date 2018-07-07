@@ -104,7 +104,6 @@ public:
 	TCompSlash* getSlash(SlashType type);
 	TCompParticles* getSlashFastAttack();
 
-
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;
 

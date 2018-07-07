@@ -30,6 +30,9 @@ void FastAttackActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
+		float yaw = 0.f, pitch = 0.f;
+		getYawPitchFromVector(getPlayerTransform()->getFront(), &yaw, &pitch);
+		stateManager->getSlashFastAttack()->setRotationOffset(QUAT::CreateFromYawPitchRoll(yaw, deg2rad(-90), deg2rad(180)));
 		stateManager->getSlashFastAttack()->forceEmission(1);
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {

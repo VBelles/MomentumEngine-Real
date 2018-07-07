@@ -422,6 +422,7 @@
 			"transform": {},
 			"particles": {
 				"core": "data/particles/test_slash.particles",
+				"offset": "0 1 0",
 				"rotation_offset": "0.383 0 0 0.924",
 				"target": "The Player"
 			}
