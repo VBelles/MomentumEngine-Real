@@ -17,8 +17,7 @@ void TCompGivePower::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompGivePower::update(float dt) {
 	if (resetTimer.elapsed() >= resetTime) {
-		powerToGive = maxPowerToGive;
-		resetTimer.reset();
+		reset();
 	}
 }
 
@@ -34,6 +33,7 @@ void TCompGivePower::onGetPower(const TMsgGetPower& msg) {
 	powerToGive -= powerGiven;
 	CEntity *entity = msg.sender;
 	entity->sendMsg(TMsgGainPower{ CHandle(this).getOwner(), powerGiven });
+	resetTimer.reset();
 }
 
 void TCompGivePower::setStateMultiplier(float multiplier) {
@@ -42,8 +42,13 @@ void TCompGivePower::setStateMultiplier(float multiplier) {
 
 void TCompGivePower::reset() {
 	powerToGive = maxPowerToGive;
+	resetTimer.reset();
 }
 
 float TCompGivePower::getPowerToGive() {
 	return powerToGive;
+}
+
+void TCompGivePower::setPowerToGive(float amount) {
+	powerToGive = clamp(amount, 0.f, maxPowerToGive);
 }

@@ -19,6 +19,7 @@ int OnHit::execAction(float delta) {
 		if (attackInfo.ignoresBlock) {
 			enemy->hp -= attackInfo.damage;
 			enemy->blockingBroken = true;
+			enemy->getPower()->setStateMultiplier(1.f);
 		}
 	}
 	else {
@@ -36,6 +37,12 @@ int OnHit::execAction(float delta) {
 		enemy->isBlocking = false;
 		enemy->blockingBroken = false;
 		enemy->superArmorAmount = 0;
+
+		if (enemy->getPower()->getPowerToGive() > 0) {
+			CEntity *entity = enemy->playerHandle;
+			entity->sendMsg(TMsgGainPower{ CHandle(enemy->getPower()).getOwner(), enemy->getPower()->getPowerToGive() });
+			enemy->getPower()->setPowerToGive(0.f);
+		}
 	}
 	enemy->getHitboxes()->disableAll();
 	enemy->velocity = VEC3::Zero;

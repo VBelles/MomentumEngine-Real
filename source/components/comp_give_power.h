@@ -27,4 +27,5 @@ public:
 	void reset();
 
 	float getPowerToGive();
+	void setPowerToGive(float amount);
 };

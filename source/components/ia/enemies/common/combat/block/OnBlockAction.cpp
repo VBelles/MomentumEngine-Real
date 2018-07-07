@@ -2,6 +2,7 @@
 #include "OnBlockAction.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_give_power.h"
 
 OnBlockAction::OnBlockAction(Enemy* enemy, std::string animationStart, std::string animationLoop) :
 	enemy(enemy),
@@ -12,6 +13,7 @@ OnBlockAction::OnBlockAction(Enemy* enemy, std::string animationStart, std::stri
 int OnBlockAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
+	enemy->getPower()->setStateMultiplier(0.f);
 	enemy->blockTimer.reset();
 	enemy->isBlocking = true;
 	return Leave;

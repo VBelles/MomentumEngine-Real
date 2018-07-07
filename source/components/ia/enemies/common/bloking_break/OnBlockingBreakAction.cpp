@@ -3,6 +3,7 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_give_power.h"
 
 OnBlockingBreakAction::OnBlockingBreakAction(Enemy* enemy, std::string animation): 
 	enemy(enemy),
@@ -14,5 +15,6 @@ int OnBlockingBreakAction::execAction(float delta) {
 	enemy->animationTimer.reset();
 	enemy->blockingBroken = false;
 	enemy->isBlocking = false;
+	enemy->getPower()->setStateMultiplier(1.f);
 	return Leave;
 }
