@@ -67,7 +67,7 @@
             "hitbox": "tackle"
           }
         ],
-        "nav_mesh": "dreidel_nav_mesh"
+        "nav_mesh": ""
       },
       "collider": {
         "shape": "capsule",

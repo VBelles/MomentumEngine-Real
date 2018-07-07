@@ -242,6 +242,7 @@ void Kippah::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 void Kippah::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	playerHandle = getEntityByName(PLAYER_NAME);
+	spawnPosition = getTransform()->getPosition();
 }
 
 void Kippah::onAttackHit(const TMsgAttackHit& msg) {

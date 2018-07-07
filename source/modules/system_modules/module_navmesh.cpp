@@ -22,6 +22,7 @@ bool CModuleNavmesh::start() {
 				}
 				else {
 					delete navMesh;
+					dbg("NavMesh %s is invalid, discarded\n", id.c_str());
 				}
 			}
 			else {

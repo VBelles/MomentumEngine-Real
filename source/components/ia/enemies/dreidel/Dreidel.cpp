@@ -321,6 +321,7 @@ void Dreidel::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 void Dreidel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	playerHandle = getEntityByName(PLAYER_NAME);
+	spawnPosition = getTransform()->getPosition();
 }
 
 void Dreidel::onAttackHit(const TMsgAttackHit& msg) {
