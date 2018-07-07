@@ -82,8 +82,16 @@ void StrongAttack3ActionState::update(float delta) {
 		getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 	}
 
-	if (!isUltraSlashOut && phase == AttackPhases::Active) {
-		isUltraSlashOut = true;
+	if (!isUltraSlash1Out && movementTimer.elapsed() > frames2sec(18)) {
+		isUltraSlash1Out = true;
+		slash(stateManager->getSlashStrong3(), 0);
+	}
+	if (!isUltraSlash2Out && movementTimer.elapsed() > frames2sec(25)) {
+		isUltraSlash2Out = true;
+		slash(stateManager->getSlashStrong3(), 0);
+	}
+	if (!isUltraSlash3Out && movementTimer.elapsed() > frames2sec(32)) {
+		isUltraSlash3Out = true;
 		slash(stateManager->getSlashStrong3(), 0);
 	}
 }
@@ -97,7 +105,9 @@ void StrongAttack3ActionState::onStateEnter(IActionState * lastState) {
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset();
 	isSlashOut = false;
-	isUltraSlashOut = false;
+	isUltraSlash1Out = false;
+	isUltraSlash2Out = false;
+	isUltraSlash3Out = false;
 }
 
 void StrongAttack3ActionState::onStateExit(IActionState * nextState) {
@@ -105,7 +115,9 @@ void StrongAttack3ActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
-	isUltraSlashOut = false;
+	isUltraSlash1Out = false;
+	isUltraSlash2Out = false;
+	isUltraSlash3Out = false;
 	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 	getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 }

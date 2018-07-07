@@ -13,7 +13,9 @@ private:
 	VEC2 launchSpeed = { 30.f, 3.f };
 
 	bool isSlashOut = false;
-	bool isUltraSlashOut = false;
+	bool isUltraSlash1Out = false;
+	bool isUltraSlash2Out = false;
+	bool isUltraSlash3Out = false;
 
 	CTimer movementTimer;
 
