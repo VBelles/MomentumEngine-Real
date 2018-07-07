@@ -8,6 +8,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 
 RunActionState::RunActionState(StateManager* stateManager) :

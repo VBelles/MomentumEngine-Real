@@ -79,20 +79,24 @@ namespace Particles {
 		const TCoreSystem*  _core = nullptr;
 		VParticles          _particles;
 		float               _time = 0.f;
-		CHandle             _entity;
 		float               _fadeDuration = 0.f;
 		float               _fadeTime = 0.f;
+		CHandle             particleEntityHandle;
+		CHandle             targetEntity;
 
 		static TParticlesHandle _lastHandle;
 
 	public:
-		CSystem(const TCoreSystem* core, CHandle entity, std::string bone = "", VEC3 offset = VEC3::Zero, QUAT initialRotation = QUAT::Identity);
+		CSystem(const TCoreSystem* core, CHandle particleEntityHandle, CHandle targetEntity, std::string bone, VEC3 offset, QUAT rotationOffset);
 		bool update(float delta);
 		void render();
 		void launch();
 		TParticlesHandle getHandle() const;
 		void fadeOut(float duration);
 		void setOffset(VEC3 offset);
+		void setRotationOffset(QUAT rotationOffset);
 		void forceEmission(int quantity);
+		CHandle getParticleEntityHandle();
+
 	};
 }

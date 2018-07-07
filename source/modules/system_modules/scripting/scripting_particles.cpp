@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "scripting_particles.h"
 #include <SLB/SLB.hpp>
+#include "modules/system_modules/particles/comp_particles.h"
 
 void ScriptingParticles::bind(SLB::Manager* manager) {
 	bindConstants(manager);

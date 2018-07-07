@@ -3,9 +3,10 @@
 #include "components/comp_base.h"
 #include "modules/system_modules/particles/particle_system.h"
 
-struct TCompParticles : public TCompBase {
+class TCompParticles : public TCompBase {
+private:
 	const Particles::TCoreSystem* _core = nullptr;
-	Particles::TParticlesHandle _particles = 0;
+	Particles::CSystem* _particles = nullptr;
 	bool _launched = false;
 	float _fadeOut = 0.f;
 	VEC3 offset = VEC3::Zero;
@@ -13,14 +14,19 @@ struct TCompParticles : public TCompBase {
 	std::string target;
 	std::string bone;
 
+	//Message callbacks
+	void onAllScenesCreated(const TMsgAllScenesCreated&);
+	void onDestroyed(const TMsgEntityDestroyed&);
+	void onParticleSystemDestroyed(const TMsgParticleSystemDestroyed &);
+
+
+public:
+	DECL_SIBLING_ACCESS();
 	TCompParticles() = default;
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
-
-	//Message callbacks
-	void onAllScenesCreated(const TMsgAllScenesCreated&);
-	void onDestroyed(const TMsgEntityDestroyed&);
-
 	void forceEmission(int quantity);
+	void setOffset(VEC3 offset);
+	void setRotationOffset(QUAT rotationOffset);
 };

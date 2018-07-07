@@ -6,6 +6,7 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 
 WalkActionState::WalkActionState(StateManager* stateManager) :

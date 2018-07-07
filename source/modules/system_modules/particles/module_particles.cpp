@@ -33,6 +33,9 @@ void CModuleParticles::update(float delta) {
 
 		bool active = ps->update(delta);
 		if (!active) {
+			if (ps->getParticleEntityHandle().isValid()) {
+				static_cast<CEntity*>(ps->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ ps->getHandle() });
+			}
 			delete ps;
 			it = _activeSystems.erase(it);
 		}
@@ -48,17 +51,27 @@ void CModuleParticles::render() {
 	};
 }
 
-Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, CHandle entity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
+Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, CHandle targetEntity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
 	auto cps = Resources.get(name)->as<Particles::TCoreSystem>();
-	return launchSystem(cps, entity, bone, offset, rotationOffset);
+	return launchSystem(cps, targetEntity, bone, offset, rotationOffset);
 }
 
-Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, CHandle entity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
+Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, CHandle targetEntity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
 	assert(cps);
-	auto ps = new Particles::CSystem(cps, entity, bone, offset, rotationOffset);
+	auto ps = new Particles::CSystem(cps, CHandle(), targetEntity, bone, offset, rotationOffset);
 	ps->launch();
 	_activeSystems.push_back(ps);
 	return ps->getHandle();
+}
+
+Particles::CSystem* CModuleParticles::launchSystemFromComponent(const Particles::TCoreSystem* cps, CHandle particleComponent, CHandle targetEntity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
+	dbg("Launching system from component\n");
+	assert(cps);
+	assert(particleComponent.isValid());
+	auto ps = new Particles::CSystem(cps, particleComponent.getOwner(), targetEntity, bone, offset, rotationOffset);
+	ps->launch();
+	_activeSystems.push_back(ps);
+	return ps;
 }
 
 void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
@@ -73,6 +86,9 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 			(*it)->fadeOut(fadeOutTime);
 		}
 		else {
+			if ((*it)->getParticleEntityHandle().isValid()) {
+				static_cast<CEntity*>((*it)->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ (*it)->getHandle() });
+			}
 			delete *it;
 			_activeSystems.erase(it);
 		}

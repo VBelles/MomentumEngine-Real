@@ -43,12 +43,13 @@ namespace {
 namespace Particles {
 	TParticleHandle CSystem::_lastHandle = 0;
 
-	CSystem::CSystem(const TCoreSystem* core, CHandle entity, std::string bone, VEC3 offset, QUAT rotationOffset)
+	CSystem::CSystem(const TCoreSystem* core, CHandle particleEntityHandle, CHandle targetEntity, std::string bone, VEC3 offset, QUAT rotationOffset)
 		: _core(core)
-		, _entity(entity)
 		, _handle(++_lastHandle)
+		, particleEntityHandle(particleEntityHandle)
+		, targetEntity(targetEntity)
 		, boneName(bone)
-		, boneId(-1) 
+		, boneId(-1)
 		, offset(offset)
 		, rotationOffset(rotationOffset) {
 		assert(_core);
@@ -58,6 +59,7 @@ namespace Particles {
 		_time = 0.f;
 		emit();
 	}
+
 
 	bool CSystem::update(float delta) {
 		const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
@@ -211,6 +213,10 @@ namespace Particles {
 		}
 	}
 
+	CHandle CSystem::getParticleEntityHandle() {
+		return particleEntityHandle;
+	}
+
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;
 
@@ -265,11 +271,15 @@ namespace Particles {
 		this->offset = offset;
 	}
 
+	void CSystem::setRotationOffset(QUAT rotationOffset) {
+		this->rotationOffset = rotationOffset;
+	}
+
 	MAT44 CSystem::getWorld() {
 		MAT44 world = MAT44::Identity;
 		QUAT rotation = QUAT::Identity;
-		if (_entity.isValid()) {
-			CEntity* e = _entity;
+		if (targetEntity.isValid()) {
+			CEntity* e = targetEntity;
 
 			if (boneName != "" && boneId == -1) {
 				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);
