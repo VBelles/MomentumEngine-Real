@@ -13,6 +13,7 @@ private:
 	bool                    is_moving = true;
 	bool					stopOnNextLoop = false;
 	float                   speed_factor = 1.0f;
+	CTransform				initialTransform;
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 public:
 	DECL_SIBLING_ACCESS();

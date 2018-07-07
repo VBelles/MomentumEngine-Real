@@ -5,8 +5,8 @@
       "name": "ms3_central_ring",
       "transform":
       {
-        "pos": "0.0 2.0 0.0",
-        "rotation": "0.0 0.0 -0.707107 -0.707107"
+        "pos": "0.0 2.5 0.0",
+        "rotation": "0 0 0 1"
       },
       "render":
       [
@@ -20,7 +20,7 @@
       ],
       "collider":{
         "shape": "sphere",
-        "radius": 1.5,
+        "radius": 0.5,
         "type": "static",
         "group":
         [
@@ -48,8 +48,8 @@
       "name": "ms3_inner_ring",
       "transform":
       {
-        "pos": "0.0 2.0 0.0",
-        "rotation": "0.430459 -0.43046 -0.560986 -0.560985"
+        "pos": "0.0 2.5 0.0",
+        "rotation": "0 0 0 1"
       },
       "render":
       [
@@ -73,8 +73,8 @@
       "name": "ms3_outer_ring",
       "transform":
       {
-        "pos": "0.0 2.0 0.0",
-        "rotation": "0.0 0.0 -0.707107 -0.707107"
+        "pos": "0.0 2.5 0.0",
+        "rotation": "0 0 0 1"
       },
       "render":
       [

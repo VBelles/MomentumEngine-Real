@@ -31,10 +31,10 @@
     "data/scenes/milestone2_camaras_definitivas.scene",
     "data/scenes/test_instancing.scene",
     "data/scenes/slash-test.scene",
+    "data/scenes/rigid_anim2.scene",
     "data/scenes/particles.scene"
   ],
   "unused_scenes": [
-    "data/scenes/rigid_anim2.scene",
     "data/scenes/breakable-0.scene",
     "data/scenes/testExporter-0.scene",
     "data/scenes/milestone2-spikes.scene",
