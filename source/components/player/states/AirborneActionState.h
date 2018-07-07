@@ -43,6 +43,7 @@ public:
 	void onStrongAttackButton() override;
 	void onFastAttackButton() override;
 	void onReleasePowerButton() override;
+	void onDodgeButton() override;
 	void onMove(MoveState& moveState) override;
 	bool hugWall(const HitState & hitstate);
 	void onDamage(const TMsgAttackHit& msg) override;

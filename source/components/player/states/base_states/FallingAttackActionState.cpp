@@ -15,7 +15,7 @@
 FallingAttackActionState::FallingAttackActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, FallingAttack),
 	AttackState(stateManager) {
-	cancelableTime = frames2sec(11);
+	cancelableTime = frames2sec(16);
 }
 
 void FallingAttackActionState::update(float delta) {
@@ -79,6 +79,12 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 	getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 	getSlash(SlashType::RIGHT_TENTACLE_SHORT)->stopEmitting();
+}
+
+void FallingAttackActionState::onDodgeButton() {
+	if (isCancelable()) {
+		AirborneActionState::onDodgeButton();
+	}
 }
 
 void FallingAttackActionState::onLanding() {

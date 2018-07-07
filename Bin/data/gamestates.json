@@ -16,7 +16,7 @@
 		},
 		{
 			"name" : "game_state",
-			"modules" : [ "physics", "cameras", "game", "pause", "test_instancing" ]
+			"modules" : [ "physics", "instancing","cameras", "game", "pause", "test_instancing" ]
 		}
 	]
 }

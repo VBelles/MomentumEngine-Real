@@ -17,9 +17,9 @@ bool CModuleUniques::start() {
 	//etc
 
 	//parse
-	for (json jUnique : jUniques) {
+	for (auto& jUnique : jUniques) {
 		if (jUnique.count("unique_coins")) {
-			json jCoins = jUnique["unique_coins"];
+			auto& jCoins = jUnique["unique_coins"];
 			if (jCoins.is_array()) {
 				for (size_t i = 0; i < jCoins.size(); ++i) {
 					parseChunk(jCoins[i], ElementType::COIN);
@@ -27,7 +27,7 @@ bool CModuleUniques::start() {
 			}
 		}
 		if (jUnique.count("unique_chrysalides")) {
-			json jChrysalides = jUnique["unique_chrysalides"];
+			auto& jChrysalides = jUnique["unique_chrysalides"];
 			if (jChrysalides.is_array()) {
 				for (size_t i = 0; i < jChrysalides.size(); ++i) {
 					parseChunk(jChrysalides[i], ElementType::CHRYSALIS);
@@ -35,7 +35,7 @@ bool CModuleUniques::start() {
 			}
 		}
 		if (jUnique.count("unique_altars")) {
-			json jAltars = jUnique["unique_altars"];
+			auto& jAltars = jUnique["unique_altars"];
 			if (jAltars.is_array()) {
 				for (size_t i = 0; i < jAltars.size(); ++i) {
 					parseChunk(jAltars[i], ElementType::ALTAR);
@@ -43,7 +43,7 @@ bool CModuleUniques::start() {
 			}
 		}
 		if (jUnique.count("unique_events")) {
-			json jEvents = jUnique["unique_events"];
+			auto& jEvents = jUnique["unique_events"];
 			if (jEvents.is_array()) {
 				for (size_t i = 0; i < jEvents.size(); ++i) {
 					parseChunk(jEvents[i], ElementType::EVENT);

@@ -10,10 +10,10 @@
     "game",
     "cameras",
     "render",
-    "particles",
-    "slash",
-    "gui",
     "navmesh",
+    "particles",
+    "gui",
+    "slash",
     "test_instancing",
     "scripting",
     "sound"
@@ -28,10 +28,10 @@
     "pause",
     "input",
     "test_instancing",
-    "particles",
-    "slash",
-    "gui",
     "navmesh",
+    "particles",
+    "gui",
+    "slash",
     "scripting"
   ]
 }

@@ -1,0 +1,79 @@
+[
+	{
+		"name" : "main_menu",
+		"type" : "widget",
+		"size" : "1920 1080",
+		"children" : [
+			{
+				"name" : "background",
+				"children" : [
+					{
+						"name" : "background",
+						"type" : "image",
+						"size" : "1920 1080",
+						"texture" : "data/textures/gui/menu_background.dds",
+						"minUV" : "0 0",
+						"maxUV" : "1 1"
+					},
+					{
+						"name" : "foreground",
+						"type" : "image",
+						"size" : "1920 1080",
+						"texture" : "data/textures/gui/menu_title.dds"
+					}
+				]
+			},
+			{
+				"name" : "test_buttons",
+				"type" : "widget",
+				"position" : "810 650",
+				"children" : [
+					{
+						"name" : "start_game",
+						"type" : "button",
+						"position" : "0 0",
+						"size" : "400 50",
+						"texture" : "data/textures/gui/menu_boton.dds",
+						"font_size" : 32.0,
+						"text" : "START GAME",
+						"halign" : "center",
+						"valign" : "center",
+						"color" : "0.5 0.5 0.5 1",
+						"selected" : {
+							"position" : "30 0",
+							"font_size" : 36.0,
+							"color" : "1 1 1 1"
+						},
+						"pressed" : {
+							"position" : "30 0",
+							"font_size" : 36.0,
+							"font_color" : "0.8 0.8 1 1"
+						}
+					},
+					{
+						"name" : "exit_game",
+						"type" : "button",
+						"position" : "0 80",
+						"size" : "400 50",
+						"texture" : "data/textures/gui/menu_boton.dds",
+						"font_size" : 32.0,
+						"text" : "EXIT GAME",
+						"halign" : "center",
+						"valign" : "center",
+						"color" : "0.5 0.5 0.5 1",
+						"selected" : {
+							"position" : "30 80",
+							"font_size" : 36.0,
+							"color" : "1 1 1 1"
+						},
+						"pressed" : {
+							"position" : "30 80",
+							"font_size" : 36.0,
+							"font_color" : "0.8 0.8 1 1"
+						}
+					}
+				]
+			}
+		]
+	}
+]

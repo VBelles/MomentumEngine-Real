@@ -30,6 +30,7 @@ public:
 	void onJumpLongButton() override;
 	void onFastAttackButton() override {}
 	void onStrongAttackButton() override {}
+	void onDodgeButton() override {}
 	void onReleasePowerButton() override {}
 	void onMove(MoveState& moveState) override;
 };
