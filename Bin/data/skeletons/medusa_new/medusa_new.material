@@ -1,0 +1,12 @@
+{
+  "technique": "pbr_skin_clear_stencil.tech",
+  "shadows": true,
+  "textures": {
+    "albedo": "data/textures/kippah/cage_medusa_low_Material_28_BaseColor.dds",
+    "normal": "data/textures/kippah/cage_medusa_low_Material_28_Normal.dds",
+    "metallic": "data/textures/kippah/cage_medusa_low_Material_28_Metallic.dds",
+    "roughness": "data/textures/kippah/cage_medusa_low_Material_28_Roughness.dds",
+    "self_illum": "data/textures/kippah/cage_medusa_low_Material_28_Emissive.dds",
+    "height": "data/textures/kippah/cage_medusa_low_Material_28_Height.dds"
+  }
+}

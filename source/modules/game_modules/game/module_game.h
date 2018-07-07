@@ -1,6 +1,7 @@
 #pragma once
 
 class Respawner;
+class EnemyManager;
 
 struct PointOfInterest {
 	std::string name;
@@ -11,6 +12,7 @@ private:
 	//GUI::CHudController* hudController;
 	std::vector<PointOfInterest> pointsOfInterest;
 	Respawner* respawner;
+	EnemyManager* enemyManager;
 public:
 	CModuleGame(const std::string& aname) : IModule(aname) {}
 	bool start() override;
@@ -18,4 +20,5 @@ public:
 	void update(float delta) override;
 	void render() override;
 	Respawner* getRespawner();
+	EnemyManager * getEnemyManager();
 };

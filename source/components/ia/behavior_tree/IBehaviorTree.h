@@ -1,15 +1,15 @@
 #pragma once
 
-#include <string>
-#include <map>
-#include "IBehaviorTreeNode.h"
-#include "BehaviorTreeNodeRandom.h"
-#include "BehaviorTreeNodeSequence.h"
-#include "BehaviorTreeNodePriority.h"
-#include "BehaviorTreeNodeAction.h"
+
+#include "nodes/IBehaviorTreeNode.h"
+#include "nodes/BehaviorTreeNodeRandom.h"
+#include "nodes/BehaviorTreeNodeSequence.h"
+#include "nodes/BehaviorTreeNodePriority.h"
+#include "nodes/BehaviorTreeNodeAction.h"
 
 typedef bool (IBehaviorTree::*BehaviorTreeCondition)(float delta);
 typedef int (IBehaviorTree::*BehaviorTreeAction)(float delta);
+
 
 class IBehaviorTree {
 protected:

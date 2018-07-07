@@ -42,27 +42,30 @@ void AttackInfo::load(const json& j) {
 	SAFE_DELETE(propel);
 
 	damage = j.value("damage", 0.0f);
-	invulnerabilityTime = j.value("invulnerabilityTime", 0.f);
-	givesPower = j.value("givesPower", false);
-	activatesMechanism = j.value("activatesMechanism", false);
+	invulnerabilityTime = j.value("invulnerability_time", 0.f);
+	givesPower = j.value("gives_power", false);
+	activatesMechanism = j.value("activates_mechanism", false);
+	ignoresBlock = j.value("ignores_block", false);
+	superArmorDamage = j.value("super_armor_damage", 0);
 
 	if (j.count("stun")) {
 		stun = new AttackInfo::Stun{ j.value("stun", 1.0f) };
 	}
-	if (j.count("verticalLauncher")) {
-		const json& jVerticalLauncher = j["verticalLauncher"];
-		verticalLauncher = new AttackInfo::VerticalLauncher{ jVerticalLauncher.value("suspensionDuration", 1.0f),
+	if (j.count("vertical_launcher")) {
+		const json& jVerticalLauncher = j["vertical_launcher"];
+		verticalLauncher = new AttackInfo::VerticalLauncher{ jVerticalLauncher.value("suspension_duration", 1.0f),
 			loadVEC3(jVerticalLauncher["velocity"]) };
 	}
-	if (j.count("horizontalLauncher")) {
-		const json& jHorizontalLauncher = j["horizontalLauncher"];
-		verticalLauncher = new AttackInfo::VerticalLauncher{ jHorizontalLauncher.value("suspensionDuration", 1.0f),
+	if (j.count("horizontal_launcher")) {
+		const json& jHorizontalLauncher = j["horizontal_launcher"];
+		verticalLauncher = new AttackInfo::VerticalLauncher{ jHorizontalLauncher.value("suspension_duration", 1.0f),
 			loadVEC3(jHorizontalLauncher["velocity"]) };
 	}
 	if (j.count("grab")) {
 		grab = new AttackInfo::Grab{ j.value("grab", 1.0f) };
 	}
 	if (j.count("propel")) {
-		propel = new AttackInfo::Propel{ loadVEC3(j["propel"]) };
+		const json& jPropel = j["propel"];
+		propel = new AttackInfo::Propel{jPropel.value("duration", 0.f), loadVEC3(j["propel"])};
 	}
 }

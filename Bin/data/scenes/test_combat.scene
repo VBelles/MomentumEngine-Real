@@ -1,0 +1,25 @@
+[
+  {
+    "entity":
+    {
+      "name": "dreidel",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-313 42 -608"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "kippah",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-310 48 -608"
+      }
+    }
+  }
+]

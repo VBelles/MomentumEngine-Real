@@ -1,0 +1,9 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/poyectil_emissive.dds",
+    "self_illum": "data/textures/poyectil_emissive.dds"
+  }
+}

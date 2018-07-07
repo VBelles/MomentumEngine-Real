@@ -9,6 +9,7 @@ class CalModel;
 
 class TCompSkeleton : public TCompBase {
 	DECL_SIBLING_ACCESS();
+	bool stopped = false;
 public:
 	CRenderCte<CCteSkinBones> cb_bones;
 	CalModel* model = nullptr;
@@ -30,6 +31,10 @@ public:
 	void setTimeFactor(float timeFactor);
 	float getAnimationTime();
 	float getAnimationDuration(int animationId);
+	float getAnimationDuration(std::string animation);
+
+	void stop();
+	void resume();
 };
 
 #endif

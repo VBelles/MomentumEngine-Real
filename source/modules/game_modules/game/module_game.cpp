@@ -2,6 +2,7 @@
 #include "module_game.h"
 #include "modules/module.h"
 #include "modules/game_modules/game/respawner.h"
+#include "modules/game_modules/game/enemy_manager.h"
 #include "camera/camera.h"
 #include "render/render_objects.h"
 #include "entity/entity.h"
@@ -78,6 +79,7 @@ bool CModuleGame::start() {
 	EngineCameras.setOutputCamera(h_camera);
 
 	respawner = new Respawner();
+	enemyManager = new EnemyManager();
 	CApp::get().setResetMouse(true);
 
 	Engine.setInputType(InputType::Game);
@@ -104,6 +106,7 @@ bool CModuleGame::stop() {
 	Engine.getEntities().reset();
 	EngineParticles.reset();
 	SAFE_DELETE(respawner);
+	SAFE_DELETE(enemyManager);
 	return true;
 }
 
@@ -155,6 +158,10 @@ void CModuleGame::render() {
 	}
 }
 
-Respawner * CModuleGame::getRespawner() {
+Respawner* CModuleGame::getRespawner() {
 	return respawner;
+}
+
+EnemyManager* CModuleGame::getEnemyManager() {
+	return enemyManager;
 }

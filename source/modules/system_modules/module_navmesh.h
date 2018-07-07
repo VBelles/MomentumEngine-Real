@@ -6,10 +6,8 @@
 
 class CModuleNavmesh : public IModule {
 private:
-	CNavMesh navmesh;
-	CNavMeshQuery navQuery{&navmesh};
-
-    bool showNavmesh = false;
+	std::map<std::string, std::pair<CNavMesh*, CNavMeshQuery*>> navMeshes;
+	std::map<std::string, bool> renderNavMesh;
 
 public:
 	CModuleNavmesh(const std::string& name);
@@ -18,6 +16,6 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 
-    CNavMesh& getNavMesh() { return navmesh; }
-    CNavMeshQuery& getNavQuery() { return navQuery; }
+	CNavMesh* getNavMesh(std::string id);
+	CNavMeshQuery* getNavQuery(std::string id);
 };

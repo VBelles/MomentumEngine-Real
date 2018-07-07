@@ -21,6 +21,7 @@ public:
 	static void bind(SLB::Manager* manager);
 
 	static std::string spawnEntityAt(std::string prefabFilename, float x, float y, float z);
+	static std::string spawnEntity(std::string prefabFilename);
 	static std::string spawnGolemAt(float x, float y, float z);
 	static std::string spawnGolem();
 	static std::string spawnBallAt(float x, float y, float z);

@@ -1,0 +1,87 @@
+[
+  {
+    "entity": {
+      "name": "kippah",
+      "transform": {},
+      "render": [
+        {
+          "mesh": "data/skeletons/medusa_new/bolas medusa002.mesh",
+          "materials": [
+            "data/skeletons/medusa_new/medusa_new.material"
+          ]
+        }
+      ],
+      "tags": [
+        "enemy"
+      ],
+      "skeleton": {
+        "skeleton": "data/skeletons/medusa_new/medusa_new.skeleton"
+      },
+      "givePower": {
+        "maxPowerToGive": 5000.0,
+        "baseMultiplier": 1.2
+      },
+      "kippah": {
+        "max_hp": 1,
+        "max_distance_from_spawn": 25,
+        "movement_speed": 3,
+        "rotation_speed": 10,
+        "gravity": -50,
+        "max_velocity": 20,
+        "chase_fov": 180,
+        "fov_chase_distance": 30,
+        "small_chase_radius": 2.5,
+        "attack_fov": 180,
+        "short_combat_distance": 2,
+        "long_combat_distance": 30,
+        "attacks": [
+          {
+            "name": "spinAttack",
+            "frame_data": "15 40",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "spinAttack"
+          },          
+          {
+            "name": "rangedAttack",
+            "frame_data": "25 80",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "attack"
+          }
+        ]
+      },
+      "collider": {
+        "shape": "capsule",
+        "type": "cct",
+        "radius": 0.5,
+        "height": 0.1,
+        "step": 0.3,
+        "group": [
+          "enemy"
+        ],
+        "mask": [
+          "all"
+        ]
+      },
+      "hitboxes": {
+        "hitboxes": [
+          {
+            "name": "spinAttack",
+            "shape": "sphere",
+            "radius": 2,
+            "bone": "Bone015",
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

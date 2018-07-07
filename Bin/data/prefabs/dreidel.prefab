@@ -1,0 +1,127 @@
+[
+  {
+    "entity": {
+      "name": "dreidel",
+      "transform": {},
+      "render": [
+        {
+          "mesh": "data/skeletons/bola_new/Object001.mesh",
+          "materials": [
+            "data/skeletons/bola_new/bola_new.material"
+          ]
+        }
+      ],
+      "tags": [
+        "enemy"
+      ],
+      "skeleton": {
+        "skeleton": "data/skeletons/bola_new/bola_new.skeleton"
+      },
+      "givePower": {
+        "maxPowerToGive": 12000.0,
+        "baseMultiplier": 1.0
+      },
+      "respawner": {
+        "respawnTime": 5
+      },
+      "dreidel": {
+        "max_hp": 5,
+        "max_distance_from_spawn": 20,
+        "movement_speed": 3,
+        "rotation_speed": 10,
+        "gravity": -55,
+        "max_velocity": 20,
+        "stroll_radius": 2,
+        "chase_fov": 90,
+        "fov_chase_distance": 15,
+        "small_chase_radius": 2,
+        "attack_fov": 90,
+        "short_combat_distance": 2,
+        "medium_combat_distance": 6,
+        "long_combat_distance": 10,
+        "step_back_distance": 0.3,
+        "block_time": 1.5,
+        "attacks": [
+          {
+            "name": "spin_attack",
+            "frame_data": "10 60",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "spin_attack"
+          },
+          {
+            "name": "area_attack",
+            "frame_data": "38 46",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "area_attack"
+          },
+          {
+            "name": "tackle",
+            "frame_data": "5 40",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.0,
+            "stun": 1.0,
+            "hitbox": "tackle"
+          }
+        ],
+        "nav_mesh": ""
+      },
+      "collider": {
+        "shape": "capsule",
+        "type": "cct",
+        "radius": 0.5,
+        "height": 0.1,
+        "step": 0.3,
+        "group": [
+          "enemy"
+        ],
+        "mask": [
+          "all"
+        ]
+      },
+      "hitboxes": {
+        "hitboxes": [
+          {
+            "name": "spin_attack",
+            "shape": "sphere",
+            "radius": 1.2,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ],
+            "bone": "Bone034"
+          },
+          {
+            "name": "area_attack",
+            "shape": "sphere",
+            "radius": 2.0,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ],
+            "bone": "Bone034"
+          },
+          {
+            "name": "tackle",
+            "shape": "sphere",
+            "radius": 1.2,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ],
+            "bone": "Bone034"
+          }
+        ]
+      }
+    }
+  }
+]

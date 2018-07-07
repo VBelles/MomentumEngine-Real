@@ -17,13 +17,15 @@ struct AttackInfo {
 		float duration;
 	};
 	struct Propel {
-		VEC3 velocity;
 		float duration;
+		VEC3 velocity;
 	};
 	float damage = 0.f;
 	float invulnerabilityTime = 0.f;
 	bool givesPower = false;
 	bool activatesMechanism = false;
+	bool ignoresBlock = false;
+	int superArmorDamage = 0;
 
 	Stun* stun = nullptr;
 	VerticalLauncher* verticalLauncher = nullptr;

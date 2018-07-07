@@ -9,6 +9,8 @@ protected:
 	VEC3 movingVelocity;
 	CHandle propelTarget;
 
+	float propelDuration = 0.5f;
+
 	std::string animation = "propel_high";
 
 public:
