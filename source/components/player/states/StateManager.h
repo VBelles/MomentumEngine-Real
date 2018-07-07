@@ -42,6 +42,7 @@ private:
 	CHandle slashClockwiseHandle;
 	CHandle slashCounterClockwiseHandle;
 	CHandle slashStrong3;
+	CHandle slashVertical;
 
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
@@ -107,6 +108,7 @@ public:
 	TCompParticles* getSlashClockwise();
 	TCompParticles* getSlashCounterClockwise();
 	TCompParticles* getSlashStrong3();
+	TCompParticles* getSlashVertical();
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;

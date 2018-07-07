@@ -66,7 +66,7 @@ protected:
 
 	bool isWalkable(MoveState& moveState);
 
-	void slash(TCompParticles* slash, float angle = 0.f);
+	void slash(TCompParticles* slash, float yaw = 0, float pitch = 0, float roll = 0);
 
 public:
 

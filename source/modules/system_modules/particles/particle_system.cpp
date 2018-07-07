@@ -154,9 +154,10 @@ namespace Particles {
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else {
-				MAT44 transform = CTransform(p.position, p.rotationQuat * rotationOffset).asMatrix();
-				MAT44 scale = MAT44::CreateScale(p.size * p.scale);
-				cb_object.obj_world = scale * transform;
+				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
+					* MAT44::CreateFromQuaternion(p.rotationQuat)
+					* MAT44::CreateFromQuaternion(rotationOffset)
+					* MAT44::CreateTranslation(p.position);
 			}
 
 			int row = p.frame / frameCols;
