@@ -135,26 +135,28 @@ void TCompHitboxes::update(float delta) {
 
 
 void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
-	CTransform& transform = hitbox->transform;
+	VEC3 translation;
+	QUAT rotation;
+	
 	CalBone* bone = hitbox->boneId != -1 ? getSkeleton()->model->getSkeleton()->getBone(hitbox->boneId) : nullptr;
 	if (bone) {
-		transform.setPosition(Cal2DX(bone->getTranslationAbsolute()));
+		translation = Cal2DX(bone->getTranslationAbsolute());
+		rotation = Cal2DX(bone->getRotationAbsolute());
 	}
 	else {
-		transform.setPosition(getTransform()->getPosition());
-	}
-	transform.setRotation(getTransform()->getRotation());
-
-	if (hitbox->offset != VEC3::Zero) {
-		VEC3 desiredDirection = hitbox->transform.getFront() * hitbox->offset.z - transform.getLeft() *  hitbox->offset.x;
-		desiredDirection.y = hitbox->offset.y;
-		transform.setPosition(transform.getPosition() + desiredDirection);
+		translation = getTransform()->getPosition();
+		rotation = getTransform()->getRotation();
 	}
 
-	if (bone) {
-		transform.setRotation(Cal2DX(bone->getRotationAbsolute()));
-	}
+	MAT44 world = MAT44::CreateTranslation(hitbox->offset)
+		* MAT44::CreateFromQuaternion(rotation)
+		* MAT44::CreateTranslation(translation);
 
+	QUAT::CreateFromRotationMatrix(world);
+
+	CTransform& transform = hitbox->transform;
+	transform.setPosition(world.Translation());
+	transform.setRotation(world);
 	PxTransform pose = toPxTransform(transform);
 
 	const PxU32 bufferSize = 16; //Hasta 16 enemigos por overlap query, suficientes e incluso excesivo
