@@ -63,6 +63,9 @@ void Kippah::initBehaviorTree() {
 	clear();
 
 	FalseCondition* falseCondition = new FalseCondition();
+	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
+	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
+	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
 	DeathAction* deathAction = new DeathAction(this, "medusa_death");
 	DisappearAction* disappearAction = new DisappearAction(this, "medusa_desaparicion");
 	OnDeathAction* onDeathAction = new OnDeathAction(this, "medusa_death");
@@ -86,9 +89,9 @@ void Kippah::initBehaviorTree() {
 	OnStunCondition* onStunCondition = new OnStunCondition(this);
 	StunAction* stunAction = new StunAction(this);
 	OnIdleAction* onIdleAction = new OnIdleAction(this, "medusa_idle");
-	IdleActionFlying* idleActionFlying = new IdleActionFlying(this, "medusa_idle");
+	IdleActionFlying* idleActionFlying = new IdleActionFlying(this, "medusa_idle", shortDistanceCombatCondition);
 	OnIdleLoop* onIdleLoop = new OnIdleLoop(this, "medusa_idle");
-	IdleLoopFlying* idleLoopFlying = new IdleLoopFlying(this, "medusa_idle");
+	IdleLoopFlying* idleLoopFlying = new IdleLoopFlying(this, "medusa_idle", shortDistanceCombatCondition);
 	OnTeleportAction* onTeleportAction = new OnTeleportAction(this, "medusa_desaparicion");
 	OnTeleportCondition* onTeleportCondition = new OnTeleportCondition(this);
 	TeleportAction* teleportAction = new TeleportAction(this, "medusa_desaparicion");
@@ -99,14 +102,11 @@ void Kippah::initBehaviorTree() {
 	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "medusa_revolverse", "spinAttack");
 	IdleWarActionFlying* idleWarActionFlying = new IdleWarActionFlying(this, "medusa_idle_war");
 	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(this, "medusa_idle_war");
-	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
-	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
-	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "medusa_idle");
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
 	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(this, combatCondition);
 	OnAttackAction* onRangedAttackAction = new OnAttackAction(this, "medusa_shot", "rangedAttack");
-	RangedAttackAction* rangedAttackAction = new RangedAttackAction(this, "medusa_shot", "rangedAttack");
+	RangedAttackAction* rangedAttackAction = new RangedAttackAction(this, "medusa_shot", "rangedAttack", shortDistanceCombatCondition);
 
 	//root
 	createRoot("kippah", Priority, nullptr, nullptr);

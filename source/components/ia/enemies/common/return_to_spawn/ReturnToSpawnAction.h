@@ -8,10 +8,9 @@ class IBehaviorTreeCondition;
 class ReturnToSpawnAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
-	IBehaviorTreeCondition* combatCondition = nullptr;
-	float spawnRadiusDistanceSquared = 1.f;
+	IBehaviorTreeCondition* cancelCondition = nullptr;
 
 public:
-	ReturnToSpawnAction(Enemy* enemy, IBehaviorTreeCondition* combatCondition);
+	ReturnToSpawnAction(Enemy* enemy, IBehaviorTreeCondition* cancelCondition = nullptr);
 	int execAction(float delta) override;
 };

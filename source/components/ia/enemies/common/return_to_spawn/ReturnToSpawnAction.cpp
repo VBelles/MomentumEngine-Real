@@ -4,18 +4,18 @@
 #include "components/comp_transform.h"
 #include "components/ia/behavior_tree/IBehaviorTreeCondition.h"
 
-ReturnToSpawnAction::ReturnToSpawnAction(Enemy* enemy, IBehaviorTreeCondition* combatCondition) :
+ReturnToSpawnAction::ReturnToSpawnAction(Enemy* enemy, IBehaviorTreeCondition* cancelCondition) :
 	enemy(enemy),
-	combatCondition(combatCondition) {
+	cancelCondition(cancelCondition) {
 }
 
 int ReturnToSpawnAction::execAction(float delta) {
 	enemy->updateGravity(delta);
 	float movementIncrement = enemy->movementSpeed * delta;
-	if (combatCondition->testCondition(delta) || enemy->currentPathPoint >= enemy->smoothPath.size()) {
+	if (enemy->currentPathPoint >= enemy->smoothPath.size() || (cancelCondition && cancelCondition->testCondition(delta))) {
 		return Leave;
 	}
-	else if (VEC3::DistanceSquared(enemy->smoothPath[enemy->currentPathPoint], enemy->getTransform()->getPosition()) >= movementIncrement) {
+	else if (VEC3::DistanceSquared(enemy->smoothPath[enemy->currentPathPoint], enemy->getTransform()->getPosition()) >= movementIncrement * movementIncrement) {
 		enemy->rotateTowards(delta, enemy->smoothPath[enemy->currentPathPoint], enemy->rotationSpeed);
 		VEC3 dir = enemy->smoothPath[enemy->currentPathPoint] - enemy->getTransform()->getPosition();
 		dir.Normalize();

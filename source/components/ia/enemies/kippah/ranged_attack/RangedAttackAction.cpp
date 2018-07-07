@@ -6,16 +6,20 @@
 #include "components/comp_transform.h"
 #include "entity/entity_parser.h"
 
-RangedAttackAction::RangedAttackAction(Kippah* enemy, std::string animation, std::string attack) :
+RangedAttackAction::RangedAttackAction(Kippah* enemy, std::string animation, std::string attack, IBehaviorTreeCondition* cancelCondition) :
 	enemy(enemy),
 	animation(animation),
-	attack(attack) {
+	attack(attack),
+	cancelCondition(cancelCondition) {
 }
 
 int RangedAttackAction::execAction(float delta) {
 	EnemyAttack enemyAttack = enemy->attacks[attack];
 
-	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
+	if (cancelCondition && cancelCondition->testCondition(delta)) {
+		return Leave;
+	}
+	else if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
 		return Leave;
 	}
 	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {

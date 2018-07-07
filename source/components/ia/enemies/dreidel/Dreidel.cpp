@@ -81,6 +81,9 @@ void Dreidel::initBehaviorTree() {
 
 	FalseCondition* falseCondition = new FalseCondition();
 	AirborneAction* airborneAction = new AirborneAction(this);
+	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
+	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
+	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
 	AirborneCondition* airborneCondition = new AirborneCondition(this);
 	OnAirborneAction* onAirborneAction = new OnAirborneAction(this, "enemigo_bola_idle");
 	OnAirborneCondition* onAirborneCondition = new OnAirborneCondition(this);
@@ -124,9 +127,6 @@ void Dreidel::initBehaviorTree() {
 	OnChaseAction* onChaseAction = new OnChaseAction(this, "enemigo_bola_chase");
 	IdleWarAction* idleWarAction = new IdleWarAction(this, "enemigo_bola_idle_war");
 	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(this, "enemigo_bola_idle_war");
-	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
-	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
-	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
 	OnTackleAttackAction* onTackleAttackAction = new OnTackleAttackAction(this, "enemigo_bola_placaje_loop", "tackle");
 	TackleAttackAction* tackleAttackAction = new TackleAttackAction(this, "enemigo_bola_placaje_loop", "tackle", movementSpeed * 3.0f, 1.0f);
 	OnStepBackAction* onStepBackAction = new OnStepBackAction(this, "enemigo_bola_run");

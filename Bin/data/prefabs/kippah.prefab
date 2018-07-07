@@ -32,7 +32,7 @@
         "fov_chase_distance": 30,
         "small_chase_radius": 2.5,
         "attack_fov": 180,
-        "short_combat_distance": 2.5,
+        "short_combat_distance": 2,
         "long_combat_distance": 30,
         "attacks": [
           {
@@ -71,7 +71,7 @@
           {
             "name": "spinAttack",
             "shape": "sphere",
-            "radius": 2.5,
+            "radius": 2,
             "bone": "Bone015",
             "group": [
               "enemy"
