@@ -11,6 +11,8 @@
   ],
   "update": [
     "fwd_msg",
+    "dreidel",
+    "kippah",
     "skeleton",
     "skel_lookat",
     "bone_tracker",
@@ -47,7 +49,8 @@
     "spikes",
     "particles",
     "light_flicker",
-    "slash"
+    "slash",
+    "givePower"
   ],
   "render_debug" : [
     "transform",

@@ -82,6 +82,12 @@ void FastFinisher2ActionState::update(float delta) {
 		getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 		getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 	}
+
+	if (!isUltraSlashOut && movementTimer.elapsed() > frames2sec(45)) {
+		isUltraSlashOut = true;
+		slash(stateManager->getSlashClockwise(), deg2rad(0), deg2rad(0), deg2rad(45));
+		slash(stateManager->getSlashCounterClockwise(), deg2rad(0), deg2rad(0), deg2rad(-45));
+	}
 }
 
 void FastFinisher2ActionState::onStateEnter(IActionState * lastState) {
@@ -93,6 +99,7 @@ void FastFinisher2ActionState::onStateEnter(IActionState * lastState) {
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset();
 	isSlashOut = false;
+	isUltraSlashOut = false;
 }
 
 void FastFinisher2ActionState::onStateExit(IActionState * nextState) {
@@ -100,6 +107,7 @@ void FastFinisher2ActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
+	isUltraSlashOut = false;
 	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }

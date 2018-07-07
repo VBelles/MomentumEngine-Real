@@ -6,7 +6,7 @@ IBehaviorTree::IBehaviorTree() {
 
 IBehaviorTreeNode* IBehaviorTree::createNode(std::string name, EBehaviorTreeNodeType type) {
 	if (findNode(name)) {
-		printf("Error: node %s already exists\n", name.c_str());
+		dbg("Error: node %s already exists\n", name.c_str());
 		return nullptr;
 	}
 	else {

@@ -21,10 +21,10 @@ struct TJsonFormatter (
 	fn begin new_ofilename = (
 		ofilename = new_ofilename
 		--fs = listener
-		fs = createFile ofilename
-		if fs == undefined then (
+		try fs = createFile ofilename
+		catch (
 			-- Avoid error if the file didn't close properly last time.
-			flush fs
+			gc()
 			fs = createFile ofilename
 		)
 	),
@@ -517,8 +517,7 @@ struct TSceneExporter (
 			append brokenMaps obj.name
 			return false
 
-			/*
-			This provokes an EXCEPTION_ACCESS_VIOLATION.
+			/* This provokes an EXCEPTION_ACCESS_VIOLATION.
 			addModifier obj (Unwrap_UVW())
 
 			dialogMonitorOps.enabled = true
@@ -1116,7 +1115,9 @@ struct TSceneExporter (
 					fs.endObj()
 
 					-- Add child spline if it exists.
-					if hasChildLine obj then exportSpline obj.children[1]
+					for i = 1 to obj.children.count do
+						if hasChildLine obj.children[i] then
+							exportSpline obj.children[i] type:"camera_move"
 
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
 				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
@@ -1169,19 +1170,15 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				local enemyAirPrefabName   = "enemy_flying"
-				local enemyMeleePrefabName = "enemy_melee"
-				local enemyBolaPrefabName  = "enemy_ball"
+				local enemyAirPrefabName   = "kippah"  --flying
+				local enemyMeleePrefabName = "dreidel" --melee
+				local enemyBolaPrefabName  = "dreidel" --ball
 				local prefabName = enemyAirPrefabName -- Flying by default.
 				if stringContainsSubstring obj.name "melee" then
 					prefabName = enemyMeleePrefabName
-				if stringContainsSubstring obj.name "Ball" then
+				if stringContainsSubstring obj.name "dreidel" then
 					prefabName = enemyBolaPrefabName
-				
-				local attributeManager = TAttributeManager()
-				local hp = attributeManager.getAttributeValue obj #enemyData #hitPoints
-				if hp != undefined then format "would export hp: %\n" hp
-				
+
 				exportName obj
 				fs.writeComma()
 				fs.writeKeyValue "prefab" (prefabPath + prefabName + ".prefab")
@@ -1191,8 +1188,10 @@ struct TSceneExporter (
 				exportTransform obj lookAtCoord:lookAtPos
 				
 				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj type:"patrolPath"
+				for child in obj.children do (
+					if hasChildLine child then (
+						exportSpline child type:"patrol_path"
+					)
 				)
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
@@ -1728,7 +1727,7 @@ struct TSceneExporter (
 		fs.end()
 	),
 
-	-- Globals uniqueCoins, uniqueAltars and uniqueEnemies contain the object names.
+	--Globals uniqueCoins, uniqueAltars & uniqueEnemies contain the object names.
 	fn exportUniques = (
 		if uniqueAltars.count  > 0 then exportUniqueFile uniqueCategory:"altars"
 		if uniqueCoins.count   > 0 then exportUniqueFile uniqueCategory:"coins"
@@ -1743,7 +1742,7 @@ struct TSceneExporter (
 	),
 
 	fn exportAll = (
-		deselect objects -- Deselect all objects so export is faster.
+		deselect objects --Deselect all objects so export is faster.
 
 		-- Loop over all layers.
 		for i = 0 to LayerManager.count - 1 do (
@@ -1759,18 +1758,19 @@ struct TSceneExporter (
 			if layerName == "prefabMelee"  then scenePath = project_path + prefabPath + "test_enemyMelee.prefab"
 			if layerName == "prefabFlying" then scenePath = project_path + prefabPath + "test_enemyFlying.prefab"
 
-			-- Avoid creating scenes if layer is empty or invisible.
+			-- Avoid creating scene if layer is empty or invisible.
 			if layerObjs.count >= 1 and not layer.isHidden then (
 				format "Exporting to %\n" scenePath
 				format "Please wait...\n"
 				local nValidObjs = 0
 				local wasValid = false
-				-- Create scene file.
-				fs.begin scenePath
+				
+				fs.begin scenePath -- Create scene file.
 				fs.beginArray()
 				for obj in layerObjs do (
 					obj.name = cleanName obj.name
-					-- Avoid child objects, they will be added through parent. Also, don't export hidden objects.
+					-- Avoid child objects, they will be added through parent.
+					-- Also, don't export hidden objects.
 					if obj.parent == undefined and not obj.isHidden then (
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classOf obj) as string) obj.name --DEBUG
 						if classOf obj == Editable_poly then convertToMesh obj
@@ -1807,7 +1807,7 @@ struct TSceneExporter (
 				format "Export finished.\n"
 
 			) else format "WARNING: Layer % [%] NOT exported.\n" layerName scenePath
-		format "----------------------------------------------------------------\n"
+		format "-------------------------------------------------------------\n"
 		)
 		-- All layers and objects processed, begin export of stored unique objects.
 		exportUniques()
@@ -1819,13 +1819,18 @@ struct TSceneExporter (
 TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
 TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
 TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
-TODO: Si la spline hija es de una cámara o luz, habría que exportarlo diferente.
 
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
+TODO: Mirar si hay algún motivo para seguir poniendo las splines como hijas del
+	  collider de los objetos en lugar del objeto padre. Si no lo hay, mover
+	  todas al parent.
 
 NOTA: Si se actualiza un material que ya existía, hay que copiarlo a mano porque
 	  se evita exportarlo si ya existe. 
+NOTA: En las splines hijas de las cámaras y enemigos se exporta información
+	  sobre plataforma móvil que no viene muy a cuento, pero así al menos
+	  se tienen los knots por si hacen falta.
 NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 

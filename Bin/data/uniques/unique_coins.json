@@ -12,5 +12,21 @@
             "position":"-5 8.0 -44",
             "level": "level02"
         }
+    ],
+    "unique_enemies":[
+        {
+            "id" : "dreidel",
+            "done": false,
+            "position":"-313 42 -608",
+            "level": "level02",
+            "type": "dreidel"
+        },
+        {
+            "id" : "kippah",
+            "done": false,
+            "position":"-310 48 -608",
+            "level": "level02",
+            "type": "kippah"
+        }
     ]
 }

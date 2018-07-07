@@ -6,6 +6,7 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 
 WalkActionState::WalkActionState(StateManager* stateManager) :
@@ -76,7 +77,7 @@ void WalkActionState::update(float delta) {
 void WalkActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
-	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntityByName(PLAYER_NAME), VEC3(0, 0.3, 0));
+	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntity(), "", VEC3(0, 0.3, 0));
 }
 
 void WalkActionState::onStateExit(IActionState * nextState) {

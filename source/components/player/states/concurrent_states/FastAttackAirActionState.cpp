@@ -40,6 +40,11 @@ void FastAttackAirActionState::update(float delta) {
 		isSlashOut = false;
 		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 	}
+
+	if (!isUltraSlashOut && phase == AttackPhases::Active) {
+		isUltraSlashOut = true;
+		slash(stateManager->getSlashVertical(), deg2rad(80), deg2rad(-90));
+	}
 }
 
 void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
@@ -52,6 +57,7 @@ void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	movementTimer.reset();
 	isSlashOut = false;
+	isUltraSlashOut = false;
 }
 
 void FastAttackAirActionState::onStateExit(IActionState * nextState) {
@@ -62,6 +68,7 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->lockTurning = false;
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
+	isUltraSlashOut = false;
 	getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 

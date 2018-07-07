@@ -13,6 +13,7 @@ private:
 
 	float damage = 2.f;
 	float powerToGet = 4000.f;
+	float propelDuration = 0.5f;
 
 	bool isSlashOut = false;
 	CTimer movementTimer;

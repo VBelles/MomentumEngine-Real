@@ -17,6 +17,7 @@ class TCompPowerGauge;
 class TCompCollectableManager;
 class TCompCameraPlayer;
 class TCompSlash;
+class TCompParticles;
 
 struct HitState;
 struct MoveState;
@@ -31,6 +32,7 @@ protected:
 	VEC3* accelerationVector;
 	VEC3* velocityVector;
 
+	CEntity* getEntity();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getPlayerTransform();
 	TCompCollider* getCollider();
@@ -63,6 +65,8 @@ protected:
 	void clampHorizontalVelocity(float maxHorizontalSpeed);
 
 	bool isWalkable(MoveState& moveState);
+
+	void slash(TCompParticles* slash, float yaw = 0, float pitch = 0, float roll = 0);
 
 public:
 

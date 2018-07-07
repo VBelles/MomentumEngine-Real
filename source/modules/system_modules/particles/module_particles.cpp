@@ -10,9 +10,6 @@ CModuleParticles::CModuleParticles(const std::string& name)
 
 bool CModuleParticles::start() {
 	Resources.registerResourceClass(getResourceClassOf<Particles::TCoreSystem>());
-
-	_windVelocity = VEC3(0, 0, 0);
-
 	return true;
 }
 
@@ -36,6 +33,9 @@ void CModuleParticles::update(float delta) {
 
 		bool active = ps->update(delta);
 		if (!active) {
+			if (ps->getParticleEntityHandle().isValid()) {
+				static_cast<CEntity*>(ps->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ ps->getHandle() });
+			}
 			delete ps;
 			it = _activeSystems.erase(it);
 		}
@@ -51,68 +51,27 @@ void CModuleParticles::render() {
 	};
 }
 
-Particles::TParticleHandle CModuleParticles::launchSystem(
-	const std::string& name, VEC3 position) {
-	const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
-	return launchSystem(cps, position);
+Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, CHandle targetEntity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
+	auto cps = Resources.get(name)->as<Particles::TCoreSystem>();
+	return launchSystem(cps, targetEntity, bone, offset, rotationOffset);
 }
 
-Particles::TParticleHandle CModuleParticles::launchSystem(
-	const std::string& name, CHandle entity) {
-	const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
-	return launchSystem(cps, entity, "", VEC3(0, 0, 0));
-}
-
-Particles::TParticleHandle CModuleParticles::launchSystem(
-	const std::string& name, CHandle entity, VEC3 offset) {
-	const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
-	return launchSystem(cps, entity, "", offset);
-}
-
-Particles::TParticleHandle CModuleParticles::launchSystem(
-	const std::string& name, CHandle entity, const std::string& bone, VEC3 offset) {
-	const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
-	return launchSystem(cps, entity, bone, offset);
-}
-
-Particles::TParticleHandle CModuleParticles::launchSystem(
-	const Particles::TCoreSystem* cps, VEC3 position) {
+Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, CHandle targetEntity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
 	assert(cps);
-	Particles::CSystem* ps = new Particles::CSystem(cps, position);
+	auto ps = new Particles::CSystem(cps, CHandle(), targetEntity, bone, offset, rotationOffset);
 	ps->launch();
 	_activeSystems.push_back(ps);
-
 	return ps->getHandle();
 }
 
-Particles::TParticleHandle CModuleParticles::launchSystem(
-	const Particles::TCoreSystem* cps, CHandle entity) {
+Particles::CSystem* CModuleParticles::launchSystemFromComponent(const Particles::TCoreSystem* cps, CHandle particleComponent, CHandle targetEntity, const std::string& bone, VEC3 offset, QUAT rotationOffset) {
+	dbg("Launching system from component\n");
 	assert(cps);
-	Particles::CSystem* ps = new Particles::CSystem(cps, entity);
+	assert(particleComponent.isValid());
+	auto ps = new Particles::CSystem(cps, particleComponent.getOwner(), targetEntity, bone, offset, rotationOffset);
 	ps->launch();
 	_activeSystems.push_back(ps);
-
-	return ps->getHandle();
-}
-
-Particles::TParticleHandle CModuleParticles::launchSystem(
-	const Particles::TCoreSystem* cps, CHandle entity, VEC3 offset) {
-	assert(cps);
-	Particles::CSystem* ps = new Particles::CSystem(cps, entity, "", offset);
-	ps->launch();
-	_activeSystems.push_back(ps);
-
-	return ps->getHandle();
-}
-
-Particles::TParticleHandle CModuleParticles::launchSystem(
-	const Particles::TCoreSystem* cps, CHandle entity, const std::string& bone, VEC3 offset) {
-	assert(cps);
-	Particles::CSystem* ps = new Particles::CSystem(cps, entity, bone, offset);
-	ps->launch();
-	_activeSystems.push_back(ps);
-
-	return ps->getHandle();
+	return ps;
 }
 
 void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
@@ -127,8 +86,20 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 			(*it)->fadeOut(fadeOutTime);
 		}
 		else {
+			if ((*it)->getParticleEntityHandle().isValid()) {
+				static_cast<CEntity*>((*it)->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ (*it)->getHandle() });
+			}
 			delete *it;
 			_activeSystems.erase(it);
+		}
+	}
+}
+
+void CModuleParticles::forceEmission(Particles::TParticleHandle ph, int quantity) {
+	for (auto system : _activeSystems) {
+		if (system->getHandle() == ph) {
+			system->forceEmission(quantity);
+			break;
 		}
 	}
 }

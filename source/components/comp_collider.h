@@ -63,5 +63,7 @@ public:
 	void disableSceneQuery();
 	bool isCreated() { return created; }
 	void setupFiltering(PxU32 filterGroup, PxU32 filterMask);
+
+	bool toDestroy = false; //TODO enable/disable bien
 };
 

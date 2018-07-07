@@ -76,6 +76,11 @@ void StrongAttack2ActionState::update(float delta) {
 		isSlashOut = false;
 		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 	}
+
+	if (!isUltraSlashOut && phase == Active) {
+		isUltraSlashOut = true;
+		slash(stateManager->getSlashVertical(), deg2rad(80), deg2rad(-90));
+	}
 }
 
 void StrongAttack2ActionState::onStateEnter(IActionState * lastState) {
@@ -87,6 +92,7 @@ void StrongAttack2ActionState::onStateEnter(IActionState * lastState) {
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset();
 	isSlashOut = false;
+	isUltraSlashOut = false;
 }
 
 void StrongAttack2ActionState::onStateExit(IActionState * nextState) {
@@ -94,6 +100,7 @@ void StrongAttack2ActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
+	isUltraSlashOut = false;
 	getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 

@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "scripting_particles.h"
 #include <SLB/SLB.hpp>
+#include "modules/system_modules/particles/comp_particles.h"
 
 void ScriptingParticles::bind(SLB::Manager* manager) {
 	bindConstants(manager);
@@ -20,7 +21,7 @@ void ScriptingParticles::bindConstants(SLB::Manager* manager) {
 }
 
 int ScriptingParticles::launchParticleAtPos(const std::string& name, float x, float y, float z) {
-	return EngineParticles.launchSystem(name, VEC3(x, y, z));
+	return EngineParticles.launchSystem(name, CHandle(), "", VEC3(x, y, z));
 }
 
 int ScriptingParticles::launchParticleAtEntity(const std::string& name, const std::string& entityName) {

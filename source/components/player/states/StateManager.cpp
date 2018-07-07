@@ -13,6 +13,7 @@
 #include "modules/system_modules/slash/comp_slash.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/controllers/comp_camera_player.h"
+#include "modules/system_modules/particles/comp_particles.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/base_states/GhostJumpWindowActionState.h"
@@ -100,6 +101,11 @@ StateManager::StateManager(CHandle entityHandle) :
 	slashLeftTentacleShortHandle = slashLeftTentacleShortEntity->get<TCompSlash>();
 	CEntity* slashRightTentacleShortEntity = getEntityByName("slashRightTentacleShort");
 	slashRightTentacleShortHandle = slashRightTentacleShortEntity->get<TCompSlash>();
+
+	slashClockwiseHandle = static_cast<CEntity*>(getEntityByName("slash_clockwise"))->get<TCompParticles>();
+	slashCounterClockwiseHandle = static_cast<CEntity*>(getEntityByName("slash_counter_clockwise"))->get<TCompParticles>();
+	slashStrong3 = static_cast<CEntity*>(getEntityByName("slash_strong_3"))->get<TCompParticles>();
+	slashVertical = static_cast<CEntity*>(getEntityByName("slash_vertical"))->get<TCompParticles>();
 
 	registerStates();
 }
@@ -292,3 +298,23 @@ TCompSlash * StateManager::getSlash(SlashType type) {
 			return slashRightHandHandle;
 	}
 }
+
+TCompParticles* StateManager::getSlashClockwise() {
+	return slashClockwiseHandle;
+}
+
+TCompParticles* StateManager::getSlashCounterClockwise() {
+	return slashCounterClockwiseHandle;
+}
+
+TCompParticles* StateManager::getSlashStrong3() {
+	return slashStrong3;
+}
+
+TCompParticles * StateManager::getSlashVertical() {
+	return slashVertical;
+}
+
+
+
+

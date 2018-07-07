@@ -43,31 +43,23 @@ namespace {
 namespace Particles {
 	TParticleHandle CSystem::_lastHandle = 0;
 
-	CSystem::CSystem(const TCoreSystem* core, VEC3 position)
-		: _core(core) {
-		assert(_core);
-		_handle = ++_lastHandle;
-		offset = VEC3(0, 0, 0);
-		_entity = CHandle();
-		boneName = "";
-		boneId = -1;
-		this->position = position;
-	}
-
-	CSystem::CSystem(const TCoreSystem* core, CHandle entity, std::string bone, VEC3 offset)
+	CSystem::CSystem(const TCoreSystem* core, CHandle particleEntityHandle, CHandle targetEntity, std::string bone, VEC3 offset, QUAT rotationOffset)
 		: _core(core)
-		, _entity(entity) {
+		, _handle(++_lastHandle)
+		, particleEntityHandle(particleEntityHandle)
+		, targetEntity(targetEntity)
+		, boneName(bone)
+		, boneId(-1)
+		, offset(offset)
+		, rotationOffset(rotationOffset) {
 		assert(_core);
-		_handle = ++_lastHandle;
-		this->offset = offset;
-		boneName = bone;
-		boneId = -1;
 	}
 
 	void CSystem::launch() {
 		_time = 0.f;
 		emit();
 	}
+
 
 	bool CSystem::update(float delta) {
 		const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
@@ -101,7 +93,7 @@ namespace Particles {
 				}
 				else { //Mesh particle
 					QUAT quat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, _core->movement.spin * delta);
-					p.rotationQuat *=  quat;
+					p.rotationQuat = p.rotationQuat * quat;
 				}
 				if (_core->movement.ground) {
 					p.position.y = std::max(0.f, p.position.y);
@@ -162,10 +154,12 @@ namespace Particles {
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else {
-				CTransform transform(p.position, p.rotationQuat);
-				cb_object.obj_world = transform.asMatrix();
+				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
+					* MAT44::CreateFromQuaternion(p.rotationQuat)
+					* MAT44::CreateFromQuaternion(rotationOffset)
+					* MAT44::CreateTranslation(p.position);
 			}
-			
+
 			int row = p.frame / frameCols;
 			int col = p.frame % frameCols;
 			VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
@@ -194,12 +188,34 @@ namespace Particles {
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
 			particle.frame = _core->render.initialFrame;
+			particle.rotation = _core->movement.initialRotation;
+			particle.lifetime = 0.f;
+			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
+
+			_particles.push_back(particle);
+		}
+	}
+
+	void CSystem::forceEmission(int quantity) {
+		MAT44 world = getWorld();
+		for (int i = 0; i < quantity; ++i) {
+			TParticle particle;
+			particle.position = VEC3::Transform(generatePosition(), world);
+			particle.velocity = generateVelocity();
+			particle.color = _core->color.colors.get(0.f);
+			particle.size = _core->size.sizes.get(0.f);
+			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
+			particle.frame = _core->render.initialFrame;
 			particle.rotation = 0.f;
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 
 			_particles.push_back(particle);
 		}
+	}
+
+	CHandle CSystem::getParticleEntityHandle() {
+		return particleEntityHandle;
 	}
 
 	VEC3 CSystem::generatePosition() const {
@@ -256,11 +272,15 @@ namespace Particles {
 		this->offset = offset;
 	}
 
+	void CSystem::setRotationOffset(QUAT rotationOffset) {
+		this->rotationOffset = rotationOffset;
+	}
+
 	MAT44 CSystem::getWorld() {
 		MAT44 world = MAT44::Identity;
 		QUAT rotation = QUAT::Identity;
-		if (_entity.isValid()) {
-			CEntity* e = _entity;
+		if (targetEntity.isValid()) {
+			CEntity* e = targetEntity;
 
 			if (boneName != "" && boneId == -1) {
 				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);

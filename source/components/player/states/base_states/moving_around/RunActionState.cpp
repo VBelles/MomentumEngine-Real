@@ -8,6 +8,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 
 RunActionState::RunActionState(StateManager* stateManager) :
@@ -76,7 +77,7 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.3f, 0.3f);
 	getCameraPlayer()->moveCameraCloser(false);
-	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntityByName(PLAYER_NAME), VEC3(0, 0.3, 0));
+	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntity(), "", VEC3(0, 0.3, 0));
 
 	if (hasSlash) {
 		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);

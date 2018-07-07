@@ -331,7 +331,7 @@
     "category" : "particles", 
     "z" : "test_but_no_write", 
     "rs_config" : "cull_none", 
-    "blend" : "additive_by_src_alpha",
+    "blend" : "combinative",
     "priority": 60    
   },
 
@@ -341,7 +341,9 @@
     "ps_entry_point": "PS_Particles_Mesh",
     "vertex_type" : "PosNUvUvT", 
     "category" : "particles",
-    "blend" : "additive_by_src_alpha",
+    "z" : "test_but_no_write", 
+    "blend" : "combinative",
+    "rs_config" : "cull_none",
     "priority": 60    
   },
 

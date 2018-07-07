@@ -25,6 +25,7 @@ namespace Particles {
 		struct TMovement {
 			float velocity = 0.f;			// initial speed
 			float acceleration = 0.f;		// acceleration
+			float initialRotation = 0;
 			float spin = 0.f;				// rotation speed (radians)
 			VEC3 spin_axis = { 0, 1, 0 };	// spin axis
 			float gravity = 0.f;			// gravity factor
@@ -33,7 +34,7 @@ namespace Particles {
 		};
 		struct TRender {
 			const CTexture* texture = nullptr; // particle texture
-			const CRenderMesh* mesh = nullptr; // particle mesh (optional)
+			const CRenderMesh* mesh = nullptr; // mesh for mesh particles
 			VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
 			int numFrames = 1;                 // number of animation frames
 			int initialFrame = 0;              // initial frame
@@ -71,28 +72,32 @@ namespace Particles {
 		VEC3 position = { 0, 0, 0 };
 
 		VEC3 offset;
+		QUAT rotationOffset;
 		std::string boneName;
-		int boneId;
+		int boneId = -1;
 
 		TParticlesHandle    _handle;
 		const TCoreSystem*  _core = nullptr;
 		VParticles          _particles;
 		float               _time = 0.f;
-		CHandle             _entity;
 		float               _fadeDuration = 0.f;
 		float               _fadeTime = 0.f;
+		CHandle             particleEntityHandle;
+		CHandle             targetEntity;
 
 		static TParticlesHandle _lastHandle;
 
 	public:
-		CSystem(const TCoreSystem* core, VEC3 position);
-		CSystem(const TCoreSystem* core, CHandle entity, std::string bone = "", VEC3 offset = { 0,0,0 });
+		CSystem(const TCoreSystem* core, CHandle particleEntityHandle, CHandle targetEntity, std::string bone, VEC3 offset, QUAT rotationOffset);
 		bool update(float delta);
 		void render();
 		void launch();
 		TParticlesHandle getHandle() const;
 		void fadeOut(float duration);
-
 		void setOffset(VEC3 offset);
+		void setRotationOffset(QUAT rotationOffset);
+		void forceEmission(int quantity);
+		CHandle getParticleEntityHandle();
+
 	};
 }
