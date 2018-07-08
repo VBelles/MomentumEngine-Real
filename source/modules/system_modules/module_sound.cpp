@@ -90,7 +90,7 @@ void CModuleSound::emitEvent(std::string event) {
 	res = system->getEvent(event.c_str(), &descriptor);
 	Studio::EventInstance* eventInstance = nullptr;
 	res = descriptor->createInstance(&eventInstance);
-	dbg("RES: %d\n", res);
+	//dbg("RES: %d\n", res);
 	eventInstance->start();
 	eventInstance->release();
 }

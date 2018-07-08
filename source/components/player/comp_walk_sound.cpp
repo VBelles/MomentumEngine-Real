@@ -16,6 +16,7 @@ void TCompWalkSound::registerMsgs() {
 }
 
 void TCompWalkSound::load(const json& j, TEntityParseContext& ctx) {
+	dbg("Loading DDD\n");
 	for (auto& jFeetConfig : j["feet"]) {
 		std::string boneName = jFeetConfig.value("bone", "");
 		assert(boneName != "");
