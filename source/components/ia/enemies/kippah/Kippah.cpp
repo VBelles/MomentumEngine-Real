@@ -104,7 +104,7 @@ void Kippah::initBehaviorTree() {
 	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(this, "medusa_idle_war");
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "medusa_idle");
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
-	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(this, combatCondition);
+	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(this, shortDistanceCombatCondition);
 	OnAttackAction* onRangedAttackAction = new OnAttackAction(this, "medusa_shot", "rangedAttack");
 	RangedAttackAction* rangedAttackAction = new RangedAttackAction(this, "medusa_shot", "rangedAttack", shortDistanceCombatCondition);
 
@@ -159,6 +159,11 @@ void Kippah::initBehaviorTree() {
 	addChild("appear", "onAppearAction", Action, nullptr, onAppearAction);
 	addChild("appear", "appearAction", Action, nullptr, appearAction);
 
+	//return to spawn walking
+	addChild("kippah", "returnToSpawn", Sequence, onReturnToSpawnCondition, nullptr);
+	addChild("returnToSpawn", "onReturnToSpawnAction", Action, nullptr, onReturnToSpawnAction);
+	addChild("returnToSpawn", "returnToSpawnAction", Action, nullptr, returnToSpawnFlyingAction);
+
 	//combat
 	addChild("kippah", "combat", Priority, combatCondition, nullptr);
 	//short distance combat
@@ -181,11 +186,6 @@ void Kippah::initBehaviorTree() {
 	addChild("longDistanceCombat", "longIdleWar", Sequence, nullptr, nullptr);
 	addChild("longIdleWar", "onLongIdleWar", Action, nullptr, onIdleWarAction);
 	addChild("longIdleWar", "longIdleWarAction", Action, nullptr, idleWarActionFlying);
-
-	//return to spawn walking
-	addChild("kippah", "returnToSpawn", Sequence, onReturnToSpawnCondition, nullptr);
-	addChild("returnToSpawn", "onReturnToSpawnAction", Action, nullptr, onReturnToSpawnAction);
-	addChild("returnToSpawn", "returnToSpawnAction", Action, nullptr, returnToSpawnFlyingAction);
 
 	//idle
 	addChild("kippah", "idle", Random, nullptr, nullptr);
