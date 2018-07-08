@@ -4,7 +4,13 @@
 
 class TCompTransform;
 class TCompSkeleton;
+class TCompPlayerModel;
 
+
+struct FootConfig {
+	std::string boneName;
+	std::string eventName;
+};
 struct FootInfo {
 	int boneId = -1;
 	float yThreshold = 0.003f;
@@ -12,15 +18,17 @@ struct FootInfo {
 	bool canEmitSound = false;
 	bool goingUp = false;
 	float yTravel = 0.f;
+	std::string eventName;
 };
 class TCompWalkSound : public TCompBase {
 private:
-	std::vector<std::string> bonesName;
+	std::vector<FootConfig> feetConfig;
 	std::vector<FootInfo> feetInfo;
 	float minDist = 1.f;
 
 	CHandle skeletonHandle;
 	CHandle transformHandle;
+	CHandle playerModelHandle;
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 public:
@@ -29,7 +37,9 @@ public:
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
+	void emitSound(const FootInfo & footInfo);
 	TCompTransform* getTransform();
 	TCompSkeleton* getSkeleton();
+	TCompPlayerModel* getPlayerModel();
 };
 

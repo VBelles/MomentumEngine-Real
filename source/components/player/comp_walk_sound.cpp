@@ -1,6 +1,10 @@
 #include "mcv_platform.h"
 #include "comp_walk_sound.h"
 #include "components/comp_transform.h"
+#include "components/player/comp_player_model.h"
+#include "components/player/states/StateManager.h"
+#include "components/player/states/IActionState.h"
+#include "components/player/comp_power_gauge.h"
 #include "skeleton/comp_skeleton.h"
 #include "skeleton/cal3d2engine.h"
 #include "entity/entity_parser.h"
@@ -12,21 +16,27 @@ void TCompWalkSound::registerMsgs() {
 }
 
 void TCompWalkSound::load(const json& j, TEntityParseContext& ctx) {
-	for (const std::string& boneName : j["bones"]) {
-		bonesName.push_back(boneName);
+	for (auto& jFeetConfig : j["feet"]) {
+		std::string boneName = jFeetConfig.value("bone", "");
+		assert(boneName != "");
+		std::string eventName = jFeetConfig.value("event", "");
+		assert(eventName != "");
+		feetConfig.push_back(FootConfig{ boneName, eventName });
 	}
 }
 
 void TCompWalkSound::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	skeletonHandle = get<TCompSkeleton>();
 	transformHandle = get<TCompTransform>();
+	playerModelHandle = get<TCompPlayerModel>();
 	assert(skeletonHandle.isValid());
-	for (auto& boneName : bonesName) {
-		int boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);
+	for (auto& footConfig : feetConfig) {
+		int boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(footConfig.boneName);
 		auto bone = getSkeleton()->model->getSkeleton()->getBone(boneId);
-
-		VEC3 pos = Cal2DX(bone->getTranslationAbsolute()) - getTransform()->getPosition();
-		feetInfo.push_back(FootInfo{boneId});
+		FootInfo info;
+		info.boneId = boneId;
+		info.eventName = footConfig.eventName;
+		feetInfo.push_back(info);
 	}
 }
 
@@ -41,21 +51,33 @@ void TCompWalkSound::update(float delta) {
 		if (yDist > footInfo.yThreshold) {
 			footInfo.goingUp = true;
 		}
-		else if (yDist <  footInfo.yThreshold) {
+		else if (yDist < footInfo.yThreshold) {
 			if (footInfo.goingUp) {
 				footInfo.canEmitSound = true;
 			}
 			footInfo.goingUp = false;
 		}
-	
+
 		if (footInfo.canEmitSound && pos.y <= 0.2f) {
 			dbg("Emit sound\n");
 			dbg("%f %f %f\n", pos.x, pos.y, pos.z);
 			footInfo.canEmitSound = false;
+			emitSound(footInfo);
+			//EngineSound.emitEvent(footInfo.eventName);
 		}
 
 		footInfo.prevPos = pos;
 
+	}
+}
+
+
+void TCompWalkSound::emitSound(const FootInfo& footInfo) {
+	IActionState* state = getPlayerModel()->getStateManager()->getState();
+	if (((state->state == State::Run && getPlayerModel()->getPowerGauge()->getPowerLevel() != 3) 
+			|| state->state == State::Walk)
+		&& state->getMovementInput().Length() > 0) {
+		EngineSound.emitEvent(footInfo.eventName);
 	}
 }
 
@@ -65,6 +87,10 @@ TCompTransform* TCompWalkSound::getTransform() {
 
 TCompSkeleton* TCompWalkSound::getSkeleton() {
 	return skeletonHandle;
+}
+
+TCompPlayerModel* TCompWalkSound::getPlayerModel() {
+	return playerModelHandle;
 }
 
 
