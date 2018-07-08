@@ -18,8 +18,8 @@
         "skeleton": "data/skeletons/medusa_new/medusa_new.skeleton"
       },
       "givePower": {
-        "maxPowerToGive": 5000.0,
-        "baseMultiplier": 1.2
+        "maxPowerToGive": 10000.0,
+        "baseMultiplier": 3.5
       },
       "kippah": {
         "max_hp": 1,
@@ -30,9 +30,9 @@
         "max_velocity": 20,
         "chase_fov": 180,
         "fov_chase_distance": 30,
-        "small_chase_radius": 2.5,
+        "small_chase_radius": 1.5,
         "attack_fov": 180,
-        "short_combat_distance": 2,
+        "short_combat_distance": 1.5,
         "long_combat_distance": 30,
         "attacks": [
           {
