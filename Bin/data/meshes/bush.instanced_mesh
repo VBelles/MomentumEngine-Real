@@ -1,5 +1,5 @@
 {
-  "instanced_mesh" : "data/meshes/bush.mesh",
-  "instances_type" : "Instance",
-  "num_instances_reserved" : 8
+  "instanced_mesh": "bush.mesh",
+  "instances_type": "Instance",
+  "num_instances_reserved": 8
 }

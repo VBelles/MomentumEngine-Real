@@ -1,0 +1,23 @@
+[
+  {
+    "entity":
+    {
+      "name": "bush",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bush.instanced_mesh",
+          "materials":
+          [
+             "data/materials/bush.material"
+          ]
+        }
+      ]
+    }
+  }
+]

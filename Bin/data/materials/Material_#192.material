@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/petalo_2.dds",
+    "normal": "data/textures/petalo2_normals.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/petalo2_selfilumination.dds",
+    "height": "data/textures/null_height.dds"
+  }
+}

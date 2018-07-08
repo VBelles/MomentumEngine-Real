@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/PARED_ASSETS_RASCADAS.dds",
-    "normal": "data/textures/torre_026_normalmap.dds",
-    "metallic": "data/textures/null_metallic.dds",
+    "albedo": "data/textures/balcones_rocosos_baja_Material balconrocoso2_BaseColor.dds",
+    "normal": "data/textures/balcones_rocosos_baja_Material balconrocoso2_Normal.dds",
+    "metallic": "data/textures/balcones_rocosos_baja_Material balconrocoso1_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/null_height.dds"
+    "height": "data/textures/balcones_rocosos_baja_Material balconrocoso2_Roughness.dds"
   }
 }
