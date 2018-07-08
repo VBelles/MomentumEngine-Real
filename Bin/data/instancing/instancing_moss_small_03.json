@@ -1,0 +1,16 @@
+{
+  "TInstance":
+  [
+    {
+      "mesh": "data/meshes/moss_small_03.instanced_mesh",
+      "data":
+      [
+        {
+          "pos": "-381.424 -0.0117917 -559.443",
+          "scale": 1.0,
+          "rot": "0.0 0.0 0.0 -1.0"
+        }
+      ]
+    }
+  ]
+}

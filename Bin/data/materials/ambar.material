@@ -1,10 +1,13 @@
 {
-  "technique": "glass.tech",
+  "technique": "pbr.tech",
   "shadows": true,
-  "textures": {
-    "albedo": "data/textures/ambar_alpha.dds",
-    "normal": "data/textures/mix/Ground_10_NRM.dds",
+  "textures":
+  {
+    "albedo": "data/textures/paredambar_difuso.dds",
+    "normal": "data/textures/null_normal.dds",
     "metallic": "data/textures/null_metallic.dds",
-    "roughness": "data/textures/null_roughness.dds"
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/null_height.dds"
   }
 }

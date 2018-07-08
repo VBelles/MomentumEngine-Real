@@ -2,6 +2,27 @@
   {
     "entity":
     {
+      "name": "ms3_terrain164",
+      "transform":
+      {
+        "pos": "-347.693 69.0694 -679.379",
+        "rotation": "0.0 0.5 0.0 -0.866025"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_terrain164.mesh",
+          "materials":
+          [
+            "data/materials/Material_#66.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "plataforma_base1_low022",
       "transform":
       {
@@ -2288,720 +2309,6 @@
           "materials":
           [
             "data/materials/Material_Hierba.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_036",
-      "transform":
-      {
-        "pos": "-393.144 52.9871 -653.46",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_036.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_035",
-      "transform":
-      {
-        "pos": "-392.607 53.005 -653.432",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_035.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_034",
-      "transform":
-      {
-        "pos": "-392.845 53.005 -653.434",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_034.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_033",
-      "transform":
-      {
-        "pos": "-392.607 53.005 -653.432",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_033.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_032",
-      "transform":
-      {
-        "pos": "-392.907 53.005 -653.439",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_032.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_031",
-      "transform":
-      {
-        "pos": "-393.144 52.9871 -653.46",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_031.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_030",
-      "transform":
-      {
-        "pos": "-393.144 52.9871 -653.46",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_030.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_029",
-      "transform":
-      {
-        "pos": "-393.076 53.0497 -653.76",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_029.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_028",
-      "transform":
-      {
-        "pos": "-392.919 53.0676 -653.245",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_028.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_027",
-      "transform":
-      {
-        "pos": "-392.999 53.0676 -653.469",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_027.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_026",
-      "transform":
-      {
-        "pos": "-392.919 53.0676 -653.245",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_026.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_025",
-      "transform":
-      {
-        "pos": "-393.015 53.0676 -653.53",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_025.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_024",
-      "transform":
-      {
-        "pos": "-393.076 53.0497 -653.76",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_024.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_023",
-      "transform":
-      {
-        "pos": "-393.076 53.0497 -653.76",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_023.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_022",
-      "transform":
-      {
-        "pos": "-394.087 53.0497 -653.536",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_022.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_021",
-      "transform":
-      {
-        "pos": "-393.929 53.0676 -653.021",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_021.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_020",
-      "transform":
-      {
-        "pos": "-394.009 53.0676 -653.245",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_020.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_019",
-      "transform":
-      {
-        "pos": "-393.929 53.0676 -653.021",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_019.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_018",
-      "transform":
-      {
-        "pos": "-394.025 53.0676 -653.306",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_018.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_017",
-      "transform":
-      {
-        "pos": "-394.087 53.0497 -653.536",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_017.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_016",
-      "transform":
-      {
-        "pos": "-394.087 53.0497 -653.536",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_016.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_015",
-      "transform":
-      {
-        "pos": "-393.713 53.0497 -653.828",
-        "rotation": "0.0 0.382684 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_015.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_014",
-      "transform":
-      {
-        "pos": "-393.319 53.0676 -653.461",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_014.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_013",
-      "transform":
-      {
-        "pos": "-393.5 53.0676 -653.615",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_013.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_012",
-      "transform":
-      {
-        "pos": "-393.319 53.0676 -653.461",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_012.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_011",
-      "transform":
-      {
-        "pos": "-393.544 53.0676 -653.659",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_011.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_010",
-      "transform":
-      {
-        "pos": "-393.713 53.0497 -653.828",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_010.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_009",
-      "transform":
-      {
-        "pos": "-393.713 53.0497 -653.828",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_009.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_008",
-      "transform":
-      {
-        "pos": "-393.274 53.0676 -653.026",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_008.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_007",
-      "transform":
-      {
-        "pos": "-393.455 53.0676 -653.181",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_007.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_006",
-      "transform":
-      {
-        "pos": "-393.274 53.0676 -653.026",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_006.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_005",
-      "transform":
-      {
-        "pos": "-393.499 53.0676 -653.225",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_005.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_004",
-      "transform":
-      {
-        "pos": "-393.668 53.0497 -653.394",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_004.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_003",
-      "transform":
-      {
-        "pos": "-393.668 53.0497 -653.394",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_003.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
           ]
         }
       ]
@@ -5389,7 +4696,7 @@
           "mesh": "data/meshes/ms3_estaca070.mesh",
           "materials":
           [
-            "data/materials/Material_#23.material"
+            "data/materials/estaca_1.material"
           ]
         }
       ]
@@ -5410,7 +4717,7 @@
           "mesh": "data/meshes/ms3_estaca069.mesh",
           "materials":
           [
-            "data/materials/Material_#22.material"
+            "data/materials/estaca_2.material"
           ]
         }
       ]
@@ -5431,7 +4738,7 @@
           "mesh": "data/meshes/ms3_estaca068.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -5452,7 +4759,7 @@
           "mesh": "data/meshes/ms3_estaca067.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -5473,7 +4780,7 @@
           "mesh": "data/meshes/ms3_estaca066.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/estaca_5.material"
           ]
         }
       ]
@@ -5494,7 +4801,7 @@
           "mesh": "data/meshes/ms3_estaca065.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -5515,7 +4822,7 @@
           "mesh": "data/meshes/ms3_estaca064.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -5702,7 +5009,7 @@
           "mesh": "data/meshes/ms3_estaca061.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -5723,7 +5030,7 @@
           "mesh": "data/meshes/ms3_estaca060.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -5744,7 +5051,7 @@
           "mesh": "data/meshes/ms3_estaca059.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -5765,7 +5072,7 @@
           "mesh": "data/meshes/ms3_estaca058.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -5786,7 +5093,7 @@
           "mesh": "data/meshes/ms3_estaca057.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -5849,7 +5156,7 @@
           "mesh": "data/meshes/ms3_estaca054.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -5870,7 +5177,7 @@
           "mesh": "data/meshes/ms3_estaca053.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -5891,7 +5198,7 @@
           "mesh": "data/meshes/ms3_estaca052.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -5912,7 +5219,7 @@
           "mesh": "data/meshes/ms3_estaca051.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -5933,7 +5240,7 @@
           "mesh": "data/meshes/ms3_estaca050.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -9924,573 +9231,6 @@
   {
     "entity":
     {
-      "name": "grass_small_00",
-      "transform":
-      {
-        "pos": "-382.631 -0.00815368 -559.13",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_small_00.mesh",
-          "materials":
-          [
-            "data/materials/Material_#166.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_small_01",
-      "transform":
-      {
-        "pos": "-382.547 -0.00815368 -559.092",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_small_01.mesh",
-          "materials":
-          [
-            "data/materials/Material_#167.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_small_02",
-      "transform":
-      {
-        "pos": "-382.433 -0.00815368 -558.981",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_small_02.mesh",
-          "materials":
-          [
-            "data/materials/Material_#168.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_medium_00",
-      "transform":
-      {
-        "pos": "-381.609 -0.00815361 -557.438",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_medium_00.mesh",
-          "materials":
-          [
-            "data/materials/Material_#169.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_medium_01",
-      "transform":
-      {
-        "pos": "-381.455 -0.00815361 -557.438",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_medium_01.mesh",
-          "materials":
-          [
-            "data/materials/Material_#170.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_medium_02",
-      "transform":
-      {
-        "pos": "-381.3 -0.00815361 -557.438",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_medium_02.mesh",
-          "materials":
-          [
-            "data/materials/Material_#171.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_00",
-      "transform":
-      {
-        "pos": "-380.478 -0.00815357 -557.153",
-        "rotation": "0.0 0.0 -1.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_00.mesh",
-          "materials":
-          [
-            "data/materials/Material_#172.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_01",
-      "transform":
-      {
-        "pos": "-380.804 -0.0081536 -557.153",
-        "rotation": "0.0 0.0 -1.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_01.mesh",
-          "materials":
-          [
-            "data/materials/Material_#173.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grass_large_02",
-      "transform":
-      {
-        "pos": "-393.668 53.0497 -653.394",
-        "rotation": "0.0 0.382684 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grass_large_02.mesh",
-          "materials":
-          [
-            "data/materials/Material_#174.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_medium_02",
-      "transform":
-      {
-        "pos": "-382.131 0.0502973 -559.42",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_medium_02.mesh",
-          "materials":
-          [
-            "data/materials/Material_#176.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_small_06",
-      "transform":
-      {
-        "pos": "-381.754 -0.0081537 -559.448",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_small_06.mesh",
-          "materials":
-          [
-            "data/materials/Material_#177.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_large",
-      "transform":
-      {
-        "pos": "-382.433 -0.0081537 -559.434",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_large.mesh",
-          "materials":
-          [
-            "data/materials/Material_#178.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_small_05",
-      "transform":
-      {
-        "pos": "-381.623 -0.0081537 -559.459",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_small_05.mesh",
-          "materials":
-          [
-            "data/materials/Material_#179.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_small_00",
-      "transform":
-      {
-        "pos": "-381.114 0.0113704 -559.425",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_small_00.mesh",
-          "materials":
-          [
-            "data/materials/Material_#179.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_small_01",
-      "transform":
-      {
-        "pos": "-381.208 0.00991519 -559.429",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_small_01.mesh",
-          "materials":
-          [
-            "data/materials/Material_#180.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_small_02",
-      "transform":
-      {
-        "pos": "-381.311 0.0421724 -559.432",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_small_02.mesh",
-          "materials":
-          [
-            "data/materials/Material_#181.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_medium_01",
-      "transform":
-      {
-        "pos": "-382.04 -0.0081537 -559.445",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_medium_01.mesh",
-          "materials":
-          [
-            "data/materials/Material_#182.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_small_03",
-      "transform":
-      {
-        "pos": "-381.424 -0.0117917 -559.443",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_small_03.mesh",
-          "materials":
-          [
-            "data/materials/Material_#183.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_small_04",
-      "transform":
-      {
-        "pos": "-381.495 0.0477507 -559.452",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_small_04.mesh",
-          "materials":
-          [
-            "data/materials/Material_#184.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_medium_00",
-      "transform":
-      {
-        "pos": "-381.963 0.0627879 -559.433",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_medium_00.mesh",
-          "materials":
-          [
-            "data/materials/Material_#185.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "moss_extra_large",
-      "transform":
-      {
-        "pos": "-382.669 0.00591336 -559.443",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/moss_extra_large.mesh",
-          "materials":
-          [
-            "data/materials/Material_#186.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "leaf_01",
-      "transform":
-      {
-        "pos": "-380.53 0.0421724 -559.407",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/leaf_01.mesh",
-          "materials":
-          [
-            "data/materials/Material_#187.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "leaf_02",
-      "transform":
-      {
-        "pos": "-380.24 -0.0225846 -559.437",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/leaf_02.mesh",
-          "materials":
-          [
-            "data/materials/Material_#188.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "leaf_00",
-      "transform":
-      {
-        "pos": "-380.85 0.0766124 -559.426",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/leaf_00.mesh",
-          "materials":
-          [
-            "data/materials/Material_#189.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "leaf_03",
-      "transform":
-      {
-        "pos": "-379.983 -0.0081537 -559.435",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/leaf_03.mesh",
-          "materials":
-          [
-            "data/materials/Material_#190.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "petal_00",
-      "transform":
-      {
-        "pos": "-379.679 0.0615752 -559.407",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/petal_00.mesh",
-          "materials":
-          [
-            "data/materials/Material_#191.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "petal_01",
-      "transform":
-      {
-        "pos": "-379.502 0.0932261 -559.427",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/petal_01.mesh",
-          "materials":
-          [
-            "data/materials/Material_#192.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms3_muro_vertical_MS005",
       "transform":
       {
@@ -11313,7 +10053,7 @@
           "mesh": "data/meshes/ms3_estaca047.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -11334,7 +10074,7 @@
           "mesh": "data/meshes/ms3_estaca046.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -11355,7 +10095,7 @@
           "mesh": "data/meshes/ms3_estaca045.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -11376,7 +10116,7 @@
           "mesh": "data/meshes/ms3_estaca044.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -11397,7 +10137,7 @@
           "mesh": "data/meshes/ms3_estaca043.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -11460,7 +10200,7 @@
           "mesh": "data/meshes/ms3_estaca040.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -11481,7 +10221,7 @@
           "mesh": "data/meshes/ms3_estaca039.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -11502,7 +10242,7 @@
           "mesh": "data/meshes/ms3_estaca038.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -11523,7 +10263,7 @@
           "mesh": "data/meshes/ms3_estaca037.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -11544,7 +10284,7 @@
           "mesh": "data/meshes/ms3_estaca036.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -11607,7 +10347,7 @@
           "mesh": "data/meshes/ms3_estaca033.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -11628,7 +10368,7 @@
           "mesh": "data/meshes/ms3_estaca032.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -11649,7 +10389,7 @@
           "mesh": "data/meshes/ms3_estaca031.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -11670,7 +10410,7 @@
           "mesh": "data/meshes/ms3_estaca030.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -11691,7 +10431,7 @@
           "mesh": "data/meshes/ms3_estaca029.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -15181,7 +13921,7 @@
           "mesh": "data/meshes/ms3_estaca026.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -15202,7 +13942,7 @@
           "mesh": "data/meshes/ms3_estaca025.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -15223,7 +13963,7 @@
           "mesh": "data/meshes/ms3_estaca024.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -15244,7 +13984,7 @@
           "mesh": "data/meshes/ms3_estaca023.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -15265,7 +14005,7 @@
           "mesh": "data/meshes/ms3_estaca022.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -16767,7 +15507,7 @@
           "mesh": "data/meshes/ms3_estaca007.mesh",
           "materials":
           [
-            "data/materials/Material_#23.material"
+            "data/materials/estaca_1.material"
           ]
         }
       ]
@@ -16788,7 +15528,7 @@
           "mesh": "data/meshes/ms3_estaca006.mesh",
           "materials":
           [
-            "data/materials/Material_#22.material"
+            "data/materials/estaca_2.material"
           ]
         }
       ]
@@ -16809,7 +15549,7 @@
           "mesh": "data/meshes/ms3_estaca005.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -16830,7 +15570,7 @@
           "mesh": "data/meshes/ms3_estaca004.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -16851,7 +15591,7 @@
           "mesh": "data/meshes/ms3_estaca003.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -16872,7 +15612,7 @@
           "mesh": "data/meshes/ms3_estaca002.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -16893,7 +15633,7 @@
           "mesh": "data/meshes/ms3_estaca001.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -17142,7 +15882,7 @@
           "mesh": "data/meshes/ms3_estaca021.mesh",
           "materials":
           [
-            "data/materials/Material_#23.material"
+            "data/materials/estaca_1.material"
           ]
         }
       ]
@@ -17163,7 +15903,7 @@
           "mesh": "data/meshes/ms3_estaca020.mesh",
           "materials":
           [
-            "data/materials/Material_#22.material"
+            "data/materials/estaca_2.material"
           ]
         }
       ]
@@ -17184,7 +15924,7 @@
           "mesh": "data/meshes/ms3_estaca019.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -17205,7 +15945,7 @@
           "mesh": "data/meshes/ms3_estaca018.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -17226,7 +15966,7 @@
           "mesh": "data/meshes/ms3_estaca017.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -17247,7 +15987,7 @@
           "mesh": "data/meshes/ms3_estaca016.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -17268,7 +16008,7 @@
           "mesh": "data/meshes/ms3_estaca015.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -17289,7 +16029,7 @@
           "mesh": "data/meshes/ms3_estaca014.mesh",
           "materials":
           [
-            "data/materials/Material_#23.material"
+            "data/materials/estaca_1.material"
           ]
         }
       ]
@@ -17310,7 +16050,7 @@
           "mesh": "data/meshes/ms3_estaca013.mesh",
           "materials":
           [
-            "data/materials/Material_#22.material"
+            "data/materials/estaca_2.material"
           ]
         }
       ]
@@ -17331,7 +16071,7 @@
           "mesh": "data/meshes/ms3_estaca012.mesh",
           "materials":
           [
-            "data/materials/Material_#21.material"
+            "data/materials/estaca_3.material"
           ]
         }
       ]
@@ -17352,7 +16092,7 @@
           "mesh": "data/meshes/ms3_estaca011.mesh",
           "materials":
           [
-            "data/materials/Material_#20.material"
+            "data/materials/estaca_4.material"
           ]
         }
       ]
@@ -17373,7 +16113,7 @@
           "mesh": "data/meshes/ms3_estaca010.mesh",
           "materials":
           [
-            "data/materials/Material_#19.material"
+            "data/materials/Material_#19mal.material"
           ]
         }
       ]
@@ -17394,7 +16134,7 @@
           "mesh": "data/meshes/ms3_estaca009.mesh",
           "materials":
           [
-            "data/materials/Material_#18.material"
+            "data/materials/estaca_6.material"
           ]
         }
       ]
@@ -17415,7 +16155,7 @@
           "mesh": "data/meshes/ms3_estaca008.mesh",
           "materials":
           [
-            "data/materials/Material_#17.material"
+            "data/materials/estaca_7.material"
           ]
         }
       ]
@@ -19285,6 +18025,27 @@
       [
         {
           "mesh": "data/meshes/ms3_Cylinder005.mesh",
+          "materials":
+          [
+            "data/materials/empty_gray.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Plane006_collider",
+      "transform":
+      {
+        "pos": "-40.2068 76.0321 -1328.15",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_Plane006_collider.mesh",
           "materials":
           [
             "data/materials/empty_gray.material"

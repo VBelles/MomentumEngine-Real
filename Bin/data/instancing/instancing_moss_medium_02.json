@@ -1,0 +1,16 @@
+{
+  "TInstance":
+  [
+    {
+      "mesh": "data/meshes/moss_medium_02.instanced_mesh",
+      "data":
+      [
+        {
+          "pos": "-382.131 0.0502973 -559.42",
+          "scale": 1.0,
+          "rot": "0.0 0.0 0.0 -1.0"
+        }
+      ]
+    }
+  ]
+}

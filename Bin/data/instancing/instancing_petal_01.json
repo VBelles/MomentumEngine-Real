@@ -1,0 +1,16 @@
+{
+  "TInstance":
+  [
+    {
+      "mesh": "data/meshes/petal_01.instanced_mesh",
+      "data":
+      [
+        {
+          "pos": "-379.502 0.0932261 -559.427",
+          "scale": 1.0,
+          "rot": "0.0 0.0 0.0 -1.0"
+        }
+      ]
+    }
+  ]
+}

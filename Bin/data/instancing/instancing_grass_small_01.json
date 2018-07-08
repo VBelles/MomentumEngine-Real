@@ -1,0 +1,16 @@
+{
+  "TInstance":
+  [
+    {
+      "mesh": "data/meshes/grass_small_01.instanced_mesh",
+      "data":
+      [
+        {
+          "pos": "-382.547 -0.00815368 -559.092",
+          "scale": 1.0,
+          "rot": "0.0 0.0 0.0 -1.0"
+        }
+      ]
+    }
+  ]
+}

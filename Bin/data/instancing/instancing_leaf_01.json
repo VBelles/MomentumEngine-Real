@@ -1,0 +1,16 @@
+{
+  "TInstance":
+  [
+    {
+      "mesh": "data/meshes/leaf_01.instanced_mesh",
+      "data":
+      [
+        {
+          "pos": "-380.53 0.0421724 -559.407",
+          "scale": 1.0,
+          "rot": "0.0 0.0 0.0 -1.0"
+        }
+      ]
+    }
+  ]
+}
