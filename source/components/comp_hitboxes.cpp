@@ -152,8 +152,6 @@ void TCompHitboxes::updateHitbox(Hitbox* hitbox, float delta) {
 		* MAT44::CreateFromQuaternion(rotation)
 		* MAT44::CreateTranslation(translation);
 
-	QUAT::CreateFromRotationMatrix(world);
-
 	CTransform& transform = hitbox->transform;
 	transform.setPosition(world.Translation());
 	transform.setRotation(world);
