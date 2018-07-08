@@ -1402,7 +1402,7 @@ struct TSceneExporter (
 
 		fss.begin instancesPath --Create file.
 			fss.beginObj()
-				fss.writeKeyValue "instanced_mesh" (instanceCat + ".mesh")
+				fss.writeKeyValue "instanced_mesh" ( mesh_path + instanceCat + ".mesh")
 				fss.writeComma()
 				fss.writeKeyValue "instances_type" "Instance"
 				fss.writeComma()	
