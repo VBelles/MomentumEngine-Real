@@ -16,7 +16,6 @@ void TCompWalkSound::registerMsgs() {
 }
 
 void TCompWalkSound::load(const json& j, TEntityParseContext& ctx) {
-	dbg("Loading DDD\n");
 	for (auto& jFeetConfig : j["feet"]) {
 		std::string boneName = jFeetConfig.value("bone", "");
 		assert(boneName != "");
@@ -60,11 +59,8 @@ void TCompWalkSound::update(float delta) {
 		}
 
 		if (footInfo.canEmitSound && pos.y <= 0.2f) {
-			dbg("Emit sound\n");
-			dbg("%f %f %f\n", pos.x, pos.y, pos.z);
 			footInfo.canEmitSound = false;
 			emitSound(footInfo);
-			//EngineSound.emitEvent(footInfo.eventName);
 		}
 
 		footInfo.prevPos = pos;
