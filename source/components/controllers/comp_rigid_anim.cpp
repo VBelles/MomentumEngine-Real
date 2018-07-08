@@ -29,11 +29,20 @@ void TCompRigidAnim::debugInMenu() {
 
 void TCompRigidAnim::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	TCompTransform* transform = get<TCompTransform>();
-	controller.setInitialTransform(transform);
+	initialTransform = CTransform(*transform);
 }
 
 void TCompRigidAnim::registerMsgs() {
 	DECL_MSG(TCompRigidAnim, TMsgEntitiesGroupCreated, onGroupCreated);
+}
+
+void TCompRigidAnim::setIsMoving(bool isMoving) {
+	is_moving = isMoving;
+	stopOnNextLoop = !isMoving;
+}
+
+void TCompRigidAnim::setStopOnNextLoop(bool stop) {
+	stopOnNextLoop = stop;
 }
 
 void TCompRigidAnim::update(float dt) {
@@ -46,14 +55,26 @@ void TCompRigidAnim::update(float dt) {
 	bool has_finished = controller.sample(&k, current_time);
 
 	// Transfer the key data to the comp transform
-	TCompTransform* c_trans = get< TCompTransform >();
-	c_trans->setPosition(k.pos);
-	c_trans->setRotation(k.rot);
-	c_trans->setScale(k.scale);
+	MAT44 res = MAT44::CreateFromQuaternion(k.rot)
+		* MAT44::CreateTranslation(k.pos)
+		* MAT44::CreateFromQuaternion(initialTransform.getRotation())
+		* MAT44::CreateTranslation(initialTransform.getPosition());
 
+	TCompTransform* transform = get< TCompTransform >();
+	transform->setScale(k.scale * initialTransform.getScale());
+	transform->setPosition(res.Translation());
+	transform->setRotation(QUAT::CreateFromRotationMatrix(res));
+	
 	if (has_finished) {
-		if (loops)
+		if (loops) {
 			current_time = 0;
+			if (stopOnNextLoop) {
+				is_moving = false;
+			}
+		}
+		else {
+			is_moving = false;
+		}
 		// loop, change direction?, set is_moving = false...
 	}
 

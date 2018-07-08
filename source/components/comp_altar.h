@@ -4,6 +4,7 @@
 
 struct TMsgAllScenesCreated;
 struct TMsgDestroy;
+struct TMsgAttackHit;
 
 class TCompAltar: public TCompBase {
 	DECL_SIBLING_ACCESS();
@@ -25,4 +26,5 @@ public:
 
     void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onDestroy(const TMsgDestroy& msg);
+	void onHit(const TMsgAttackHit & msg);
 };

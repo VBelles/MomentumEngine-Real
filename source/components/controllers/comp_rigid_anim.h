@@ -6,15 +6,21 @@
 class CRigidAnimResource;
 
 struct TCompRigidAnim : public TCompBase {
+private:
 	RigidAnims::CController controller;
 	float                   current_time = 0.f;
 	bool                    loops = true;
 	bool                    is_moving = true;
+	bool					stopOnNextLoop = false;
 	float                   speed_factor = 1.0f;
+	CTransform				initialTransform;
+	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+public:
+	DECL_SIBLING_ACCESS();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	void debugInMenu();
-	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	static void registerMsgs();
-	DECL_SIBLING_ACCESS();
+	void setIsMoving(bool isMoving);
+	void setStopOnNextLoop(bool stop);
 };

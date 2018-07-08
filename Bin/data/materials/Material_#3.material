@@ -3,11 +3,6 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/columna_baja_Material _98_BaseColor.dds",
-    "normal": "data/textures/columna_baja_Material _98_Normal.dds",
-    "metallic": "data/textures/columna_baja_Material _98_Roughness.dds",
-    "roughness": "data/textures/null_roughness.dds",
-    "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/columna_baja_Material _34_Height.dds"
+    "albedo": "data/textures/black.dds"
   }
 }
