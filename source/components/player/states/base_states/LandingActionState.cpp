@@ -44,6 +44,8 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	velocityVector->x = 0.f;
 	velocityVector->z = 0.f;
 	timer.reset();
+	EngineParticles.launchSystem("data/particles/landing.particles", getEntity(), "", VEC3(0, 0.15f, 0));
+	EngineSound.emitEvent("event:/personaja/caida_tierra");
 }
 
 void LandingActionState::onStateExit(IActionState * nextState) {

@@ -161,7 +161,7 @@
 				],
 				"freezeDropTime": 1.5
 			},
-			"collectable_manager":{},
+			"collectable_manager": {},
 			"hitboxes": {
 				"hitboxes": [
 					{
@@ -381,6 +381,18 @@
 						]
 					}
 				]
+			},
+			"walk_sound": {
+				"feet": [
+					{
+						"bone": "Bip001 R Foot",
+						"event": "event:/personaja/pasos/pasos right"
+					},
+					{
+						"bone": "Bip001 L Foot",
+						"event": "event:/personaja/pasos/pasos left"
+					}
+				]
 			}
 		}
 	},
@@ -399,18 +411,18 @@
 			"camera_player": {
 				"target": "The Player",
 				"distance_to_target": 4.5,
-				"idle_distance_to_target" : 3,
-				"zoomInSpeedIdleRun" : 2.8,
-				"zoomOutSpeedIdleRun" : 5.2,
+				"idle_distance_to_target": 3,
+				"zoomInSpeedIdleRun": 2.8,
+				"zoomOutSpeedIdleRun": 5.2,
 				"camera_speed": "2 1",
 				"zoomOutSpeed": 20.0,
 				"zoomInSpeed": 10.0,
 				"centering_camera_speed": "18 9",
 				"max_pitch": 60,
 				"min_pitch": -70,
-				"minPitchOffset" : 4,
-				"maxPitchOffset" : 16,
-				"pitchOffsetThreshold" : 0,
+				"minPitchOffset": 4,
+				"maxPitchOffset": 16,
+				"pitchOffsetThreshold": 0,
 				"yaw": 225,
 				"pitch": -20
 			}
@@ -448,8 +460,7 @@
 				"target": "The Player"
 			}
 		}
-	}
-	,
+	},
 	{
 		"entity": {
 			"name": "slash_vertical",
@@ -461,5 +472,4 @@
 			}
 		}
 	}
-	
 ]

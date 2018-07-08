@@ -278,7 +278,6 @@ namespace Particles {
 
 	MAT44 CSystem::getWorld() {
 		MAT44 world = MAT44::Identity;
-		QUAT rotation = QUAT::Identity;
 		if (targetEntity.isValid()) {
 			CEntity* e = targetEntity;
 
@@ -286,25 +285,22 @@ namespace Particles {
 				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);
 			}
 
-			MAT44 transform;
+			QUAT rotation;
 			VEC3 translation;
 			if (boneId != -1) {
 				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getSkeleton()->getBone(boneId);
 				rotation = Cal2DX(bone->getRotationAbsolute());
-				transform = MAT44::CreateFromQuaternion(rotation);
 				translation = Cal2DX(bone->getTranslationAbsolute());
 			}
 			else {
 				TCompTransform* e_transform = e->get<TCompTransform>();
-				transform = e_transform->asMatrix();
+				rotation = e_transform->getRotation();
 				translation = e_transform->getPosition();
 			}
-			VEC3 desiredDirection = transform.Backward() * offset.z + transform.Right() * offset.x;
-			desiredDirection.y = offset.y;
-			world = MAT44::CreateFromQuaternion(rotation) * MAT44::CreateTranslation(translation + desiredDirection);
-		}
-		else {
-			world = MAT44::CreateTranslation(position);
+			
+			world = MAT44::CreateTranslation(offset)
+				* MAT44::CreateFromQuaternion(rotation)
+				* MAT44::CreateTranslation(translation);
 		}
 		return world;
 	}

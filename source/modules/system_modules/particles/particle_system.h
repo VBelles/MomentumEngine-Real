@@ -69,8 +69,6 @@ namespace Particles {
 
 		MAT44 getWorld();
 
-		VEC3 position = { 0, 0, 0 };
-
 		VEC3 offset;
 		QUAT rotationOffset;
 		std::string boneName;

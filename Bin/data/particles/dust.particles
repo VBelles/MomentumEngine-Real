@@ -1,43 +1,36 @@
 {
   "life" : {
-      "duration" : 0.5,
+      "duration" : 0.7,
       "duration_variation" : 0.25,
       "max_particles" : 60,
       "time_factor" : 1.0
   },
   "emission" : {
-      "type" : "point",
-      "angle" : 10.0,
-      "interval" : 0.1,
-      "count" : 1,
-      "cyclic" : true
+      "type" : "square",
+      "size" : 0.4,
+      "count" : 4,
+      "cyclic" : false
   },
   "movement" : {
-      "velocity" : 0.2,
-      "acceleration" : 0.0,
-      "spin" : 0.0,
-      "wind" : 0.0,
-      "gravity" : -0.0001,
-      "ground" : true
+      "gravity" : -0.01,
+      "ground" : false
   }, 
   "render" : {
       "texture" : "data/textures/particles/glow.dds"
   },
   "size" : {
-    "scale" : 1.5,
+    "scale" : 0.8,
     "scale_variation" : 0.25,
     "sizes" : [
       [0.0, 1.0],
-      [0.50, 0.75],
-      [0.75, 0.65],
-      [1.0, 0.50]
+      [1.0, 2]
     ]
   },
   "color" : {
     "opacity" : 1.0,
     "colors" : [
       [0.0, "0.8 0.8 0.8 1"],
-      [0.5, "0.8 0.8 0.8 0.5"]
+      [1, "0.8 0.8 0.8 0"]
     ] 
   }
 }

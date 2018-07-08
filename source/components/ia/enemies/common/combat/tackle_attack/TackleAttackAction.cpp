@@ -16,17 +16,23 @@ TackleAttackAction::TackleAttackAction(Enemy* enemy, std::string animation, std:
 int TackleAttackAction::execAction(float delta) {
 	enemy->updateGravity(delta);
 	EnemyAttack enemyAttack = enemy->attacks[attack];
-	enemy->deltaMovement += enemy->getTransform()->getFront() * speed * delta;
-	if (enemy->timer.elapsed() >= time) {
+	VEC3 movementIncrement = enemy->getTransform()->getFront() * speed * delta;
+	VEC3 enemyPos = enemy->getTransform()->getPosition();
+	if (enemy->timer.elapsed() >= time
+		|| !(enemy->navMeshQuery && enemy->navMeshQuery->existsConnection(enemyPos, enemyPos + movementIncrement))) {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
 		enemy->currentAttack = "";
 		return Leave;
 	}
-	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {
+	else {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
-	}
-	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
-		enemy->getHitboxes()->enable(enemyAttack.hitboxName);
+		if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {
+			enemy->deltaMovement += movementIncrement;
+
+		}
+		else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
+			enemy->getHitboxes()->enable(enemyAttack.hitboxName);
+		}
 	}
 	return Stay;
 }

@@ -16,6 +16,7 @@
     "skeleton",
     "skel_lookat",
     "bone_tracker",
+    "walk_sound",
     "platform_simple",
     "collectable",
     "breakable",

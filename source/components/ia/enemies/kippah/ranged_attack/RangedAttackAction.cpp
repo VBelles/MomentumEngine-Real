@@ -16,10 +16,9 @@ RangedAttackAction::RangedAttackAction(Kippah* enemy, std::string animation, std
 int RangedAttackAction::execAction(float delta) {
 	EnemyAttack enemyAttack = enemy->attacks[attack];
 
-	if (cancelCondition && cancelCondition->testCondition(delta)) {
-		return Leave;
-	}
-	else if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
+	if ((cancelCondition && cancelCondition->testCondition(delta))
+		|| enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
+		attackLaunched = false;
 		return Leave;
 	}
 	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {
