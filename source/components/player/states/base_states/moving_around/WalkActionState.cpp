@@ -77,12 +77,12 @@ void WalkActionState::update(float delta) {
 void WalkActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
-	dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntity(), "", VEC3(0, 0.3, 0));
+	//dustParticlesHandle = EngineParticles.launchSystem("data/particles/dust.particles", getEntity(), "", VEC3(0, 0.3, 0));
 }
 
 void WalkActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	EngineParticles.kill(dustParticlesHandle, 0.5f);
+	//EngineParticles.kill(dustParticlesHandle, 0.5f);
 }
 
 void WalkActionState::onSpendCoinsButton() {
