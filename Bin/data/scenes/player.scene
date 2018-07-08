@@ -381,6 +381,11 @@
 						]
 					}
 				]
+			},
+			"walk_sound":{
+				"bones":[
+					"Bip001 R Foot"
+				]
 			}
 		}
 	},

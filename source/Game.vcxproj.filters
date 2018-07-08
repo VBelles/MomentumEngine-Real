@@ -327,6 +327,7 @@
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="modules\game_modules\module_instancing.cpp" />
     <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
+    <ClCompile Include="components\player\comp_walk_sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -686,6 +687,7 @@
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="modules\game_modules\module_instancing.h" />
     <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />
+    <ClInclude Include="components\player\comp_walk_sound.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
