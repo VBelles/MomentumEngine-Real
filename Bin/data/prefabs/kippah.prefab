@@ -19,7 +19,9 @@
       },
       "givePower": {
         "maxPowerToGive": 10000.0,
-        "baseMultiplier": 3.5
+        "baseMultiplier": 3.5,
+        "particles": "data/particles/energy.particles",
+        "particlesOffset": "0 0.2 0"
       },
       "kippah": {
         "max_hp": 1,

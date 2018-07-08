@@ -19,7 +19,9 @@
       },
       "givePower": {
         "maxPowerToGive": 12000.0,
-        "baseMultiplier": 1.0
+        "baseMultiplier": 1.0,
+        "particles": "data/particles/energy.particles",
+        "particlesOffset": "0 0.2 0"
       },
       "respawner": {
         "respawnTime": 5

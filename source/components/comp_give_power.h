@@ -13,6 +13,9 @@ private:
 
 	void onGetPower(const TMsgGetPower& msg);
 
+	std::string particles;
+	VEC3 particlesOffset;
+
 	CTimer resetTimer;
 	float resetTime = 0.f;
 
