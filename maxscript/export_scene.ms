@@ -1176,7 +1176,7 @@ struct TSceneExporter (
 				local prefabName = enemyAirPrefabName -- Flying by default.
 				if stringContainsSubstring obj.name "melee" then
 					prefabName = enemyMeleePrefabName
-				if stringContainsSubstring obj.name "dreidel" then
+				if stringContainsSubstring obj.name "Bola" then
 					prefabName = enemyBolaPrefabName
 
 				exportName obj

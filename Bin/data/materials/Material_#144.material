@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/set_terreno1_Material set1_terreno2_BaseColor.dds",
-    "normal": "data/textures/set_terreno1_Material set1_terreno2_Normal.dds",
-    "metallic": "data/textures/set_terreno1_Material set1_terreno1_Roughness.dds",
+    "albedo": "data/textures/colina_colosal_substnace_Material__6_BaseColor.dds",
+    "normal": "data/textures/colina_colosal_substnace_Material__6_Normal.dds",
+    "metallic": "data/textures/colina_colosal_substnace_Material___Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/set_terreno1_Material set1_terreno2_Height.dds"
+    "height": "data/textures/colina_colosal_substnace_Material__6_Height.dds"
   }
 }

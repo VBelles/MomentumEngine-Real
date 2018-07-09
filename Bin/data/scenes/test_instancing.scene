@@ -40,5 +40,19 @@
         }
       ]
     }
+  },
+  {
+    "entity": {
+      "name": "grass_large_02",
+      "transform": {},
+      "render": [
+        {
+          "mesh": "data/meshes/grass_large_02.instanced_mesh",
+          "materials": [
+            "data/materials/grass_large_02.material"
+          ]
+        }
+      ]
+    }
   }
 ]

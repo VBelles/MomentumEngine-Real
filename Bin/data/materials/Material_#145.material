@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/colina_colosal_substnace_Material__8_BaseColor.dds",
+    "normal": "data/textures/colina_colosal_substnace_Material__8_Normal.dds",
+    "metallic": "data/textures/colina_colosal_substnace_Material___Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/colina_colosal_substnace_Material__8_Height.dds"
+  }
+}

@@ -178,8 +178,8 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 				100));
 			ImGui::SetNextWindowSize(size);
 			ImGui::Begin("victoryWindow", &showVictoryDialog, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
-			ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path to the final boss!\n\n\n");
-			ImGui::TextUnformatted("You can keep exploring and see\n\nif you can collect the other two.\n");
+			ImGui::TextUnformatted("CONGRATULATIONS!\n\nYou collected enough chrysalis\n\nto open the path!\n\n\n");
+			ImGui::TextUnformatted("You can keep exploring and see\n\nif you can collect more.\n");
 			ImGui::End();
 			ImGui::PopStyleColor();
 		}

@@ -1,6 +1,6 @@
 .-~ INSTRUCCIONES ~-.
 
-El objetivo del juego es recoger 5 de las 9 crisálidas (esferas de color ámbar) para abrir el camino hacia el Boss.
+El objetivo del juego es recoger crisálidas para abrir el camino.
 
 Explora y diviértete.
 
@@ -26,6 +26,10 @@ Círculo / B:                Golpe rápido (se puede hacer en carrera)
 Círculo / B (mantenido):    Lanzamiento horizontal
 Stick derecho:              Movimiento cámara
 
+Triángulo / Y + Círculo / B: Combos
+R2 / RT:                     Gastar monedas para obtener poder
+R1 / RB:                     Esquiva.
+
 -TECLADO + RATÓN-
 
 Espacio:                Salto
@@ -42,6 +46,9 @@ LMB:                    Golpe rápido (se puede hacer en carrera)
 LMB (mantenido):        Lanzamiento horizontal
 Ratón:                  Movimiento cámara
 
+R:                      Gastar monedas para obtener poder
+Ctrl:                   Esquiva.
+
 BUGS CONOCIDOS:
 
-1. Al player le puede costar salir de alguna esquina en pendiente.
+1. No hay arte.

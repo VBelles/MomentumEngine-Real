@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/balcones_rocosos_baja_Material balconrocoso1_BaseColor.dds",
+    "normal": "data/textures/balcones_rocosos_baja_Material balconrocoso1_Normal.dds",
+    "metallic": "data/textures/balcones_rocosos_baja_Material balconrocoso1_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/null_height.dds"
+  }
+}

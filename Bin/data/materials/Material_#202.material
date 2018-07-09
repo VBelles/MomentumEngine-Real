@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/rocas_low_roca3_BaseColor.dds",
+    "normal": "data/textures/rocas_low_roca3_Normal.dds",
+    "metallic": "data/textures/rocas_low_roca3_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/rocas_low_roca3_Height.dds"
+  }
+}

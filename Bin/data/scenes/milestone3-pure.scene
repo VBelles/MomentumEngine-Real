@@ -2,52 +2,6 @@
   {
     "entity":
     {
-      "name": "ms3_rotate014",
-      "transform":
-      {
-        "pos": "-205.15 367.907 -1156.74",
-        "rotation": "0.224277 -0.837014 0.129178 -0.4821"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_rotate014.mesh",
-          "materials":
-          [
-            "data/materials/empty_pureON.material"
-          ],
-          "enabled": false
-        },
-        {
-          "mesh": "data/meshes/ms3_rotate014.mesh",
-          "materials":
-          [
-            "data/materials/empty_pure.material"
-          ],
-          "enabled": false
-        }
-      ],
-      "purity": {},
-      "collider":
-      {
-        "mesh_src": "data/meshes/ms3_rotate014.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-           "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 -1.0",
-        "rotation_speed": 0.5
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "ms3_plataforma_rocosa2_low103",
       "transform":
       {
