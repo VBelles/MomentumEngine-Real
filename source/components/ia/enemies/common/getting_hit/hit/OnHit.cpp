@@ -15,6 +15,10 @@ int OnHit::execAction(float delta) {
 	if (enemy->hasSuperArmor()) {
 		enemy->superArmorAmount -= attackInfo.superArmorDamage;
 	}
+	if (enemy->blockTimer.elapsed() > enemy->blockTime) {
+		enemy->isBlocking = false;
+		enemy->blockingBroken = false;
+	}
 	if (enemy->isBlocking) {
 		if (attackInfo.ignoresBlock) {
 			enemy->hp -= attackInfo.damage;
