@@ -25,9 +25,9 @@ int TackleAttackAction::execAction(float delta) {
 		return Leave;
 	}
 	else {
-		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
+		enemy->deltaMovement += movementIncrement;
 		if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {
-			enemy->deltaMovement += movementIncrement;
+			enemy->getHitboxes()->disable(enemyAttack.hitboxName);
 
 		}
 		else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {

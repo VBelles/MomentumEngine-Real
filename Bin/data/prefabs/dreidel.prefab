@@ -62,7 +62,7 @@
           },
           {
             "name": "tackle",
-            "frame_data": "5 40",
+            "frame_data": "5 10000",
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
             "stun": 1.0,
