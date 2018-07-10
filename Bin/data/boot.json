@@ -12,6 +12,8 @@
     "data/scenes/milestone3-pure.scene",
     "data/scenes/milestone3-trimesh.scene",
     "data/scenes/milestone3-enemies.scene",
+
+    "data/scenes/milestone3-triggers.scene",
     
     "data/scenes/test_instancing.scene",
     "data/scenes/slash-test.scene"

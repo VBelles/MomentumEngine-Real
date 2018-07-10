@@ -1,0 +1,29 @@
+[
+  {
+    "entity":
+    {
+      "outOfBounds": {},
+      "name": "ms2_OutOfBounds",
+      "transform":
+      {
+        "pos": "0.0 -76.1544 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "box",
+        "halfExtent": "2500 30 2500",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "characters"
+        ]
+      }
+    }
+  }
+]
