@@ -2,8 +2,8 @@
   {
     "entity":
     {
-      "name": "ms3_enemyBall040",
-      "prefab": "data/prefabs/kippah.prefab",
+      "name": "ms3_Melee040",
+      "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
         "pos": "-208.528 70.0342 -732.496",
@@ -86,8 +86,8 @@
   {
     "entity":
     {
-      "name": "ms3_enemyBall039",
-      "prefab": "data/prefabs/kippah.prefab",
+      "name": "ms3_Melee039",
+      "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
         "pos": "-173.918 149.467 -942.642",
@@ -110,8 +110,8 @@
   {
     "entity":
     {
-      "name": "ms3_enemyBall038",
-      "prefab": "data/prefabs/kippah.prefab",
+      "name": "ms3_Melee038",
+      "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
         "pos": "-626.14 156.252 -881.374",
@@ -218,1043 +218,11 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir003",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-196.854 79.299 -736.939",
-        "lookat": "-1.0 79.299 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir004",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-183.732 77.5751 -742.139",
-        "lookat": "-1.0 77.5751 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir005",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-197.667 82.8842 -749.711",
-        "lookat": "-1.0 82.8842 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir006",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-166.694 91.7012 -739.817",
-        "lookat": "-1.0 91.7012 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir007",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-91.4322 79.1502 -862.83",
-        "lookat": "-1.0 79.1502 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir008",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-94.2363 76.5511 -855.538",
-        "lookat": "-1.0 76.5511 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee002",
+      "name": "ms3_enemyMelee034",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "-91.2908 84.4275 -888.149",
-        "lookat": "-1.0 84.4275 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall002",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-192.538 70.0342 -728.536",
-        "lookat": "-1.0 70.0342 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall011",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-434.608 69.1339 -829.372",
-        "lookat": "-1.0 69.1339 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall012",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-434.608 69.1339 -823.757",
-        "lookat": "-1.0 69.1339 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall013",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-441.856 69.1339 -831.185",
-        "lookat": "-1.0 69.1339 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall014",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-435.583 69.1339 -841.728",
-        "lookat": "-1.0 69.1339 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall015",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-409.679 65.0972 -727.311",
-        "lookat": "-1.0 65.0972 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall016",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-430.444 65.0972 -727.311",
-        "lookat": "-1.0 65.0972 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall017",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-430.444 65.0972 -745.151",
-        "lookat": "-1.0 65.0972 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee004",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-439.351 69.1295 -835.502",
-        "lookat": "-1.0 69.1295 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee005",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-520.548 87.5763 -780.573",
-        "lookat": "-1.0 87.5763 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee006",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-520.548 87.5763 -794.547",
-        "lookat": "-1.0 87.5763 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall018",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-490.776 87.4991 -808.831",
-        "lookat": "-1.0 87.4991 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall019",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-506.55 87.4991 -803.434",
-        "lookat": "-1.0 87.4991 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall020",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-497.577 87.4991 -801.666",
-        "lookat": "-1.0 87.4991 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall021",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-528.619 87.4991 -768.878",
-        "lookat": "-1.0 87.4991 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir009",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-209.536 97.183 -760.515",
-        "lookat": "-1.0 97.183 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir010",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-201.79 97.183 -759.64",
-        "lookat": "-1.0 97.183 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir011",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-216.531 97.183 -761.72",
-        "lookat": "-1.0 97.183 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir012",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-263.821 99.4497 -755.984",
-        "lookat": "-1.0 99.4497 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir013",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-258.32 99.4497 -787.103",
-        "lookat": "-1.0 99.4497 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee007",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-278.517 98.2146 -774.239",
-        "lookat": "-1.0 98.2146 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir014",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-299.056 105.771 -762.003",
-        "lookat": "-1.0 105.771 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir015",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-310.076 104.261 -756.541",
-        "lookat": "-1.0 104.261 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir016",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-320.197 103.082 -751.073",
-        "lookat": "-1.0 103.082 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall022",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-410.121 40.3163 -901.978",
-        "lookat": "-1.0 40.3163 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee008",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-351.418 97.1503 -779.328",
-        "lookat": "-1.0 97.1503 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir017",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-395.663 95.4969 -801.254",
-        "lookat": "-1.0 95.4969 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir018",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-402.102 95.4345 -807.475",
-        "lookat": "-1.0 95.4345 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir019",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-406.691 95.4345 -801.19",
-        "lookat": "-1.0 95.4345 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir020",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-412.107 95.4345 -807.322",
-        "lookat": "-1.0 95.4345 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir021",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-418.276 95.4345 -800.505",
-        "lookat": "-1.0 95.4345 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee009",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-456.752 90.6113 -869.893",
-        "lookat": "-1.0 90.6113 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir022",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-176.989 310.188 -1124.0",
-        "lookat": "-1.0 310.188 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir023",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-192.512 301.288 -1100.08",
-        "lookat": "-1.0 301.288 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir024",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-208.52 292.675 -1078.33",
-        "lookat": "-1.0 292.675 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir025",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-248.976 197.857 -1016.78",
-        "lookat": "-1.0 197.857 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee010",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-451.205 104.004 -735.634",
-        "lookat": "-1.0 104.004 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir026",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-429.776 71.6787 -703.052",
-        "lookat": "-1.0 71.6787 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir028",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-442.757 87.6884 -699.901",
-        "lookat": "-1.0 87.6884 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall023",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-459.703 40.832 -719.287",
-        "lookat": "-1.0 40.832 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee011",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-362.2 52.16 -725.383",
-        "lookat": "-1.0 52.16 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall024",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-348.848 51.1564 -680.137",
-        "lookat": "-1.0 51.1564 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir034",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-108.846 252.13 -1175.35",
-        "lookat": "-1.0 252.13 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir035",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-199.955 148.731 -1106.2",
-        "lookat": "-1.0 148.731 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee012",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-71.8248 169.502 -1116.17",
-        "lookat": "-1.0 169.502 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee013",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-86.2988 169.502 -1091.85",
-        "lookat": "-1.0 169.502 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall025",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-65.7202 168.897 -1100.09",
-        "lookat": "-1.0 168.897 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee014",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-215.588 154.327 -1121.51",
-        "lookat": "-1.0 154.327 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee015",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-179.609 156.711 -1148.26",
-        "lookat": "-1.0 156.711 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir036",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "20.9435 182.9 -1315.12",
-        "lookat": "-1.0 182.9 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir037",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "30.3725 182.9 -1308.72",
-        "lookat": "-1.0 182.9 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir038",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "20.9164 182.9 -1317.89",
-        "lookat": "-1.0 182.9 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee016",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "45.84 151.936 -1197.19",
-        "lookat": "-1.0 151.936 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee017",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "62.3156 151.936 -1157.03",
-        "lookat": "-1.0 151.936 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee018",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "71.7047 151.936 -1180.67",
-        "lookat": "-1.0 151.936 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall026",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "44.3763 151.537 -1177.37",
-        "lookat": "-1.0 151.537 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall027",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "62.0473 151.537 -1202.94",
-        "lookat": "-1.0 151.537 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall028",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "44.0813 151.537 -1146.76",
-        "lookat": "-1.0 151.537 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee019",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-278.498 126.868 -1367.88",
-        "lookat": "-1.0 126.868 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee020",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-206.545 109.087 -1403.94",
-        "lookat": "-1.0 109.087 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee021",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-236.437 109.087 -1412.21",
-        "lookat": "-1.0 109.087 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee022",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-302.255 126.868 -1371.98",
-        "lookat": "-1.0 126.868 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee023",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-291.817 126.868 -1348.99",
-        "lookat": "-1.0 126.868 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall029",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-216.15 109.699 -1426.55",
-        "lookat": "-1.0 109.699 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall030",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-221.782 109.699 -1404.23",
-        "lookat": "-1.0 109.699 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall031",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-310.26 127.112 -1348.41",
-        "lookat": "-1.0 127.112 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee024",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-214.946 168.102 -1377.62",
-        "lookat": "-1.0 168.102 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall032",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-42.3656 234.726 -1276.11",
-        "lookat": "-1.0 234.726 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall033",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "13.4835 234.726 -1298.91",
-        "lookat": "-1.0 234.726 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall034",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-42.6605 234.726 -1245.5",
-        "lookat": "-1.0 234.726 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee025",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-2.7238 235.124 -1293.17",
-        "lookat": "-1.0 235.124 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee027",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "23.1409 235.124 -1276.65",
-        "lookat": "-1.0 235.124 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyAir039",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "43.4424 227.675 -1170.22",
-        "lookat": "-1.0 227.675 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee028",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-591.797 74.9831 -894.689",
-        "lookat": "-1.0 74.9831 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee029",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-621.562 74.9831 -880.777",
-        "lookat": "-1.0 74.9831 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall035",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-590.042 74.857 -882.085",
-        "lookat": "-1.0 74.857 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyBall036",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-598.918 74.857 -905.85",
-        "lookat": "-1.0 74.857 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee030",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-542.696 75.4705 -914.156",
-        "lookat": "-1.0 75.4705 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee031",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-436.396 74.9831 -1006.33",
-        "lookat": "-1.0 74.9831 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_enemyMelee032",
-      "prefab": "data/prefabs/dreidel.prefab",
-      "transform":
-      {
-        "pos": "-473.806 74.9831 -926.393",
+        "pos": "-517.956 74.9831 -936.56",
         "lookat": "-1.0 74.9831 -1.0"
       }
     }
@@ -1274,12 +242,1044 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee034",
+      "name": "ms3_enemyMelee032",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "-517.956 74.9831 -936.56",
+        "pos": "-473.806 74.9831 -926.393",
         "lookat": "-1.0 74.9831 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee031",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-436.396 74.9831 -1006.33",
+        "lookat": "-1.0 74.9831 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee030",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-542.696 75.4705 -914.156",
+        "lookat": "-1.0 75.4705 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee036",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-598.918 74.857 -905.85",
+        "lookat": "-1.0 74.857 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee035",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-590.042 74.857 -882.085",
+        "lookat": "-1.0 74.857 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee029",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-621.562 74.9831 -880.777",
+        "lookat": "-1.0 74.9831 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee028",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-591.797 74.9831 -894.689",
+        "lookat": "-1.0 74.9831 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir039",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "43.4424 227.675 -1170.22",
+        "lookat": "-1.0 227.675 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee027",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "23.1409 235.124 -1276.65",
+        "lookat": "-1.0 235.124 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee025",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-2.7238 235.124 -1293.17",
+        "lookat": "-1.0 235.124 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee034",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-42.6605 234.726 -1245.5",
+        "lookat": "-1.0 234.726 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee033",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "13.4835 234.726 -1298.91",
+        "lookat": "-1.0 234.726 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee032",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-42.3656 234.726 -1276.11",
+        "lookat": "-1.0 234.726 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee024",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-214.946 168.102 -1377.62",
+        "lookat": "-1.0 168.102 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee031",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-310.26 127.112 -1348.41",
+        "lookat": "-1.0 127.112 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee030",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-221.782 109.699 -1404.23",
+        "lookat": "-1.0 109.699 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee029",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-216.15 109.699 -1426.55",
+        "lookat": "-1.0 109.699 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee023",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-291.817 126.868 -1348.99",
+        "lookat": "-1.0 126.868 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee022",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-302.255 126.868 -1371.98",
+        "lookat": "-1.0 126.868 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee021",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-236.437 109.087 -1412.21",
+        "lookat": "-1.0 109.087 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee020",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-206.545 109.087 -1403.94",
+        "lookat": "-1.0 109.087 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee019",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-278.498 126.868 -1367.88",
+        "lookat": "-1.0 126.868 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee028",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "44.0813 151.537 -1146.76",
+        "lookat": "-1.0 151.537 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee027",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "62.0473 151.537 -1202.94",
+        "lookat": "-1.0 151.537 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee026",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "44.3763 151.537 -1177.37",
+        "lookat": "-1.0 151.537 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee018",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "71.7047 151.936 -1180.67",
+        "lookat": "-1.0 151.936 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee017",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "62.3156 151.936 -1157.03",
+        "lookat": "-1.0 151.936 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee016",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "45.84 151.936 -1197.19",
+        "lookat": "-1.0 151.936 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir038",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "20.9164 182.9 -1317.89",
+        "lookat": "-1.0 182.9 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir037",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "30.3725 182.9 -1308.72",
+        "lookat": "-1.0 182.9 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir036",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "20.9435 182.9 -1315.12",
+        "lookat": "-1.0 182.9 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee015",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-179.609 156.711 -1148.26",
+        "lookat": "-1.0 156.711 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee014",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-215.588 154.327 -1121.51",
+        "lookat": "-1.0 154.327 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee025",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-65.7202 168.897 -1100.09",
+        "lookat": "-1.0 168.897 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee013",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-86.2988 169.502 -1091.85",
+        "lookat": "-1.0 169.502 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee012",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-71.8248 169.502 -1116.17",
+        "lookat": "-1.0 169.502 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir035",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-199.955 148.731 -1106.2",
+        "lookat": "-1.0 148.731 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir034",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-108.846 252.13 -1175.35",
+        "lookat": "-1.0 252.13 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee024",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-348.848 51.1564 -680.137",
+        "lookat": "-1.0 51.1564 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee011",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-362.2 52.16 -725.383",
+        "lookat": "-1.0 52.16 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee023",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-459.703 40.832 -719.287",
+        "lookat": "-1.0 40.832 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir028",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-442.757 87.6884 -699.901",
+        "lookat": "-1.0 87.6884 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir026",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-429.776 71.6787 -703.052",
+        "lookat": "-1.0 71.6787 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee010",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-451.205 104.004 -735.634",
+        "lookat": "-1.0 104.004 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir025",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-248.976 197.857 -1016.78",
+        "lookat": "-1.0 197.857 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir024",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-208.52 292.675 -1078.33",
+        "lookat": "-1.0 292.675 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir023",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-192.512 301.288 -1100.08",
+        "lookat": "-1.0 301.288 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir022",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-176.989 310.188 -1124.0",
+        "lookat": "-1.0 310.188 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee009",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-456.752 90.6113 -869.893",
+        "lookat": "-1.0 90.6113 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir021",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-418.276 95.4345 -800.505",
+        "lookat": "-1.0 95.4345 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir020",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-412.107 95.4345 -807.322",
+        "lookat": "-1.0 95.4345 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir019",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-406.691 95.4345 -801.19",
+        "lookat": "-1.0 95.4345 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir018",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-402.102 95.4345 -807.475",
+        "lookat": "-1.0 95.4345 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir017",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-395.663 95.4969 -801.254",
+        "lookat": "-1.0 95.4969 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee008",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-351.418 97.1503 -779.328",
+        "lookat": "-1.0 97.1503 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee022",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-410.121 40.3163 -901.978",
+        "lookat": "-1.0 40.3163 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir016",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-320.197 103.082 -751.073",
+        "lookat": "-1.0 103.082 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir015",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-310.076 104.261 -756.541",
+        "lookat": "-1.0 104.261 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir014",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-299.056 105.771 -762.003",
+        "lookat": "-1.0 105.771 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee007",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-278.517 98.2146 -774.239",
+        "lookat": "-1.0 98.2146 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir013",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-258.32 99.4497 -787.103",
+        "lookat": "-1.0 99.4497 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir012",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-263.821 99.4497 -755.984",
+        "lookat": "-1.0 99.4497 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir011",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-216.531 97.183 -761.72",
+        "lookat": "-1.0 97.183 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir010",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-201.79 97.183 -759.64",
+        "lookat": "-1.0 97.183 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir009",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-209.536 97.183 -760.515",
+        "lookat": "-1.0 97.183 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee021",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-528.619 87.4991 -768.878",
+        "lookat": "-1.0 87.4991 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee020",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-497.577 87.4991 -801.666",
+        "lookat": "-1.0 87.4991 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee019",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-506.55 87.4991 -803.434",
+        "lookat": "-1.0 87.4991 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee018",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-490.776 87.4991 -808.831",
+        "lookat": "-1.0 87.4991 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee006",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-520.548 87.5763 -794.547",
+        "lookat": "-1.0 87.5763 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee005",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-520.548 87.5763 -780.573",
+        "lookat": "-1.0 87.5763 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee004",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-439.351 69.1295 -835.502",
+        "lookat": "-1.0 69.1295 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee017",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-430.444 65.0972 -745.151",
+        "lookat": "-1.0 65.0972 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee016",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-430.444 65.0972 -727.311",
+        "lookat": "-1.0 65.0972 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee015",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-409.679 65.0972 -727.311",
+        "lookat": "-1.0 65.0972 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee014",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-435.583 69.1339 -841.728",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee013",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-441.856 69.1339 -831.185",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee012",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-434.608 69.1339 -823.757",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee011",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-434.608 69.1339 -829.372",
+        "lookat": "-1.0 69.1339 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_Melee002",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-192.538 70.0342 -728.536",
+        "lookat": "-1.0 70.0342 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyMelee002",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-91.2908 84.4275 -888.149",
+        "lookat": "-1.0 84.4275 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir008",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-94.2363 76.5511 -855.538",
+        "lookat": "-1.0 76.5511 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir007",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-91.4322 79.1502 -862.83",
+        "lookat": "-1.0 79.1502 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir006",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-166.694 91.7012 -739.817",
+        "lookat": "-1.0 91.7012 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir005",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-197.667 82.8842 -749.711",
+        "lookat": "-1.0 82.8842 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir004",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-183.732 77.5751 -742.139",
+        "lookat": "-1.0 77.5751 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_enemyAir003",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-196.854 79.299 -736.939",
+        "lookat": "-1.0 79.299 -1.0"
       }
     }
   }
