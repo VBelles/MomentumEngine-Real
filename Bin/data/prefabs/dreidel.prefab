@@ -30,7 +30,7 @@
         "max_hp": 5,
         "max_distance_from_spawn": 20,
         "movement_speed": 3,
-        "rotation_speed": 10,
+        "rotation_speed": 90,
         "gravity": -55,
         "max_velocity": 20,
         "stroll_radius": 2,

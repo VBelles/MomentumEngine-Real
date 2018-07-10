@@ -61,11 +61,21 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 void Enemy::debugInMenu() {
 	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
 	ImGui::Text("Hp: %f\n", hp);
+	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
 	ImGui::Text("Power to give: %f\n", getPower()->getPowerToGive());
 	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
 	ImGui::Text("Is blocking: %s\n", isBlocking ? "true" : "false");
 	ImGui::Text("Super armor: %f, has super armor: %s\n", superArmorAmount, hasSuperArmor() ? "true" : "false");
+	ImGui::Text("Spawn position %f, %f, %f\n", spawnPosition.x, spawnPosition.y, spawnPosition.z);
 	ImGui::Text("Nav mesh: %s\n", navMeshQuery ? navMeshId.c_str() : "None");
+	ImGui::Text("Current path point: %i\n", currentPathPoint);
+	if (ImGui::TreeNode("Smooth path")) {
+		int i = 0;
+		for (VEC3 point : smoothPath) {
+			ImGui::Text("%i: %f, %f, %f\n", i++, point.x, point.y, point.z);
+		}
+		ImGui::TreePop();
+	}
 	ImGui::Text("Player handle is valid: %s\n", playerHandle.isValid() ? "true" : "false");
 	ImGui::Text("Transform handle is valid: %s\n", transformHandle.isValid() ? "true" : "false");
 	ImGui::Text("Collider handle is valid: %s\n", colliderHandle.isValid() ? "true" : "false");
