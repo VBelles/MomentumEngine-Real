@@ -15,14 +15,17 @@ int ReturnToSpawnAction::execAction(float delta) {
 	if (enemy->currentPathPoint >= enemy->smoothPath.size() || (cancelCondition && cancelCondition->testCondition(delta))) {
 		return Leave;
 	}
-	else if (VEC3::DistanceSquared(enemy->smoothPath[enemy->currentPathPoint], enemy->getTransform()->getPosition()) >= movementIncrement * movementIncrement) {
-		enemy->rotateTowards(delta, enemy->smoothPath[enemy->currentPathPoint], enemy->rotationSpeed);
-		VEC3 dir = enemy->smoothPath[enemy->currentPathPoint] - enemy->getTransform()->getPosition();
-		dir.Normalize();
-		enemy->deltaMovement += dir * movementIncrement;
+	VEC3 nextPoint = enemy->smoothPath[enemy->currentPathPoint];
+	VEC3 pos = enemy->getTransform()->getPosition();
+	nextPoint.y = 0;
+	pos.y = 0;
+	enemy->rotateTowards(delta, nextPoint, enemy->rotationSpeed);
+	if (VEC3::DistanceSquared(nextPoint, pos) >= movementIncrement * movementIncrement) {
+		enemy->deltaMovement += enemy->getTransform()->getFront() * movementIncrement;
 		return Stay;
 	}
 	else if (enemy->currentPathPoint < enemy->smoothPath.size()) {
+		enemy->deltaMovement += nextPoint - pos;
 		enemy->currentPathPoint++;
 		return Stay;
 	}
