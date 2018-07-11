@@ -83,6 +83,18 @@ namespace RigidAnims {
 					ImGui::DragFloat("Min Time", &t.min_time, 0.01f, 0.f, 10.f);
 					ImGui::DragFloat("Max Time", &t.max_time, 0.01f, 0.f, 10.f);
 					ImGui::DragFloat("FPS", &t.fps, 0.01f, 0.f, 60.f);
+
+					if (ImGui::TreeNode("keys")) {
+						for (int i = 0; i < t.num_keys; ++i) {
+							TKey k = keys[t.first_key + i];
+							ImGui::Text("pos: (%.3f, %.3f, %.3f) rot: (%.3f, %.3f, %.3f, %.3f) scale: %.2f",
+								k.pos.x, k.pos.y, k.pos.z,
+								k.rot.x, k.rot.y, k.rot.z, k.rot.w,
+								k.scale);
+						}
+						ImGui::TreePop();
+					}
+
 					ImGui::TreePop();
 				}
 				ImGui::PopID();
@@ -144,7 +156,9 @@ namespace RigidAnims {
 		// keys to interpolate
 		else if (ut >= 1.0f) {
 			// Copy my last key
+			assert(track->first_key + track->num_keys - 1 < keys.size());
 			auto& nextKey = keys[track->first_key + track->num_keys - 1];
+
 			out_key->pos = nextKey.pos;
 			out_key->rot = nextKey.rot;
 			out_key->scale = nextKey.scale;
@@ -154,9 +168,14 @@ namespace RigidAnims {
 		float key_float_idx = (track->num_keys - 1) * ut;
 		int key_index = (int)key_float_idx;
 		float amount_of_next_key = key_float_idx - key_index;
+		
+		assert(key_index   < track->num_keys);
+		assert(key_index+1 < track->num_keys);
 
 		key_index += track->first_key;
 
+		assert(key_index < keys.size());
+		assert(key_index+1 < keys.size());
 		auto prev_key = &keys[key_index];
 		auto next_key = &keys[key_index + 1];
 
