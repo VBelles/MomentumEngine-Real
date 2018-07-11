@@ -482,8 +482,8 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
 	// Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
-	float shadow_factor = computeShadowFactor(wPos);
-	
+	float shadow_factor = saturate(0.45 + computeShadowFactor(wPos));
+
 	// From wPos to Light
 	//camera_front.xyz de la luz
 	float3 light_dir_full = -light_front;//-light_front;  //float3( 0, 1, 0 ); //light_pos.xyz - wPos;
