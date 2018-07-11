@@ -1,0 +1,13 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/giratiempo_low_Material__2_BaseColor.dds",
+    "normal": "data/textures/giratiempo_low_Material__2_Normal.dds",
+    "metallic": "data/textures/giratiempo_low_Material__2_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/giratiempo_low_Material__2_Emissive.dds",
+    "height": "data/textures/giratiempo_low_Material__2_Height.dds"
+  }
+}
