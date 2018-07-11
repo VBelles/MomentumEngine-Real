@@ -2,9 +2,10 @@
   "technique": "pbr_skin_post_outline.tech",
   "shadows": true,
   "textures": {
-    "albedo": "data/textures/ella/ella_basecolor_whitemarks.dds",
+    "albedo": "data/textures/ella/basecolor_prota_nivel3.dds",
     "normal": "data/textures/ella/ella_normals.dds",
     "metallic": "data/textures/ella/ella_occlusionroughnessmetallic.dds",
-    "roughness": "data/textures/ella/ella_occlusionroughnessmetallic.dds"
+    "roughness": "data/textures/ella/ella_occlusionroughnessmetallic.dds",
+    "self_illum": "data/textures/ella/emisivo_prota_nivel3.dds"
   }
 }
