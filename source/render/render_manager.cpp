@@ -7,6 +7,7 @@
 #include "render_objects.h"
 #include "components/comp_culling.h"
 #include "components/comp_aabb.h"
+#include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
 #include "shaders/vertex_shader.h"
 
@@ -170,6 +171,22 @@ void CRenderManager::renderCategory(const char* category_name) {
 	if (e_camera)
 		culling = e_camera->get<TCompCulling>();
 	const TCompCulling::TCullingBits* culling_bits = culling ? &culling->bits : nullptr;
+
+
+	//Aunque ordenemos las keys, las distorsions no pueden pintar y escribir en el gbuffer, por lo que no se ven entre ellas
+	/*if (category_id == getID("distorsions")) {
+		TCompCamera* c_cam = e_camera->get<TCompCamera>();
+		VEC3 cam_pos = c_cam->getCamera()->getPosition();
+		std::sort(range.first, range.second, [cam_pos](const CRenderManager::TRenderKey& k1, const CRenderManager::TRenderKey& k2) -> bool {
+			const TCompTransform* c_transform1 = k1.h_transform;
+			const TCompTransform* c_transform2 = k2.h_transform;
+			const VEC3 pos1 = c_transform1->getPosition();
+			const VEC3 pos2 = c_transform2->getPosition();
+			float d1 = (pos1 - cam_pos).LengthSquared();
+			float d2 = (pos2 - cam_pos).LengthSquared();
+			return d2 < d1;
+		});
+	}*/
 
 	//cte_object.activate();
 	//cte_material.activate();
