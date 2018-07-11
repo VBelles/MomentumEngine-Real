@@ -202,8 +202,6 @@ void AirborneActionState::onLanding() {
 	else {
 		stateManager->changeState(HardLanding);
 	}
-	getPlayerModel()->lockFallingAttack = false;
-	getPlayerModel()->lockAirDodge = false;
 }
 
 

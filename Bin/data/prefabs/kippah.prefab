@@ -50,7 +50,6 @@
             "frame_data": "25 80",
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
-            "stun": 1.0,
             "hitbox": "attack"
           }
         ]

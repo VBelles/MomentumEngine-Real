@@ -512,8 +512,8 @@
   },
 
   "pureON": {
-    "vs_file": "data/shaders/pureON.fx",
-    "ps_file": "data/shaders/pureON.fx",
+    "vs_file": "data/shaders/pure_on.fx",
+    "ps_file": "data/shaders/pure_on.fx",
     "vs_entry_point": "VS",
     "ps_entry_point": "PS",
     "vertex_type": "PosNUvUvT",
