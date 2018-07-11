@@ -17,7 +17,7 @@ bool CModuleUniques::start() {
 	//jUniques.push_back(loadJson("data/uniques/chrysalides-uniques.json"));
 	//jUniques.push_back(loadJson("data/uniques/altars-uniques.json"));
 	//jUniques.push_back(loadJson("data/uniques/events-uniques.json"));
-	//jUniques.push_back(loadJson("data/uniques/enemies-uniques.json"));
+	jUniques.push_back(loadJson("data/uniques/unique_enemies.json"));
 
 	//parse
 	for (auto& jUnique : jUniques) {

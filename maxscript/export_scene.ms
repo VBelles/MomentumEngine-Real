@@ -1011,7 +1011,7 @@ struct TSceneExporter (
 	fn exportAltar obj = (
 		fs.writeKey "altar"
 		fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-			fs.writeKeyValue "prefab" (prefabPath + "crisalida.prefab")
+			fs.writeKeyValue "prefab" (prefabPath + "giratiempo_prefab-0.scene")
 			fs.writeComma()
 			fs.writeKey "spawn_positions"
 			exportChildPositions obj
@@ -1045,10 +1045,10 @@ struct TSceneExporter (
 
 		fs.beginObj()
 			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
 				exportName obj
 				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + "altar.prefab")
+				fs.writeKeyValue "prefab" (prefabPath + "giratiempo_prefab-0.scene")
 				fs.writeComma()
 				exportTransform obj
 				exportBreakable()
@@ -1825,6 +1825,8 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 TODO: Mirar si hay algún motivo para seguir poniendo las splines como hijas del
 	  collider de los objetos en lugar del objeto padre. Si no lo hay, mover
 	  todas al parent.
+
+TODO: hacer que los enemigos y monedas sean unique por defecto.
 
 NOTA: Si se actualiza un material que ya existía, hay que copiarlo a mano porque
 	  se evita exportarlo si ya existe. 

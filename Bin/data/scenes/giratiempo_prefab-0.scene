@@ -14,7 +14,7 @@
           "mesh": "data/meshes/ms3_central_ring.mesh",
           "materials":
           [
-            "data/materials/Material_#3.material"
+            "data/materials/giratiempo.material"
           ]
         }
       ],
@@ -57,7 +57,7 @@
           "mesh": "data/meshes/ms3_inner_ring.mesh",
           "materials":
           [
-            "data/materials/Material_#3.material"
+            "data/materials/giratiempo.material"
           ]
         }
       ],
@@ -82,7 +82,7 @@
           "mesh": "data/meshes/ms3_outer_ring.mesh",
           "materials":
           [
-            "data/materials/Material_#3.material"
+            "data/materials/giratiempo.material"
           ]
         }
       ],

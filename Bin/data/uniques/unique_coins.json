@@ -1,32 +1,2798 @@
 {
-    "unique_coins" : [
-        {
-            "id" : "ms2_coin154",
-            "done": false,
-            "position":"0 1 2",
-            "level": "level01"
-        },
-        {
-            "id" : "prueba_coin",
-            "done": false,
-            "position":"-5 8.0 -44",
-            "level": "level02"
-        }
-    ],
-    "unique_enemies":[
-        {
-            "id" : "dreidel",
-            "done": false,
-            "position":"-313 42 -608",
-            "level": "level02",
-            "type": "dreidel"
-        },
-        {
-            "id" : "kippah",
-            "done": false,
-            "position":"-310 48 -608",
-            "level": "level02",
-            "type": "kippah"
-        }
-    ]
+  "unique_coins":
+  [
+    {
+      "id": "ms3_coin561unique",
+      "done": false,
+      "position": "-454.283 117.946 -767.649",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin560unique",
+      "done": false,
+      "position": "-456.983 117.946 -762.976",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin559unique",
+      "done": false,
+      "position": "-456.533 117.946 -767.628",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin558unique",
+      "done": false,
+      "position": "-459.345 117.946 -765.443",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin557unique",
+      "done": false,
+      "position": "-454.518 117.946 -765.3",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin556unique",
+      "done": false,
+      "position": "-442.279 91.5062 -697.994",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin555unique",
+      "done": false,
+      "position": "-443.756 91.5062 -700.367",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin554unique",
+      "done": false,
+      "position": "-488.756 89.767 -829.895",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin553unique",
+      "done": false,
+      "position": "-486.599 89.2518 -833.161",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin552unique",
+      "done": false,
+      "position": "-484.1 89.767 -827.103",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin551unique",
+      "done": false,
+      "position": "-481.943 89.2518 -830.369",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin550unique",
+      "done": false,
+      "position": "-476.566 100.144 -848.752",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin549unique",
+      "done": false,
+      "position": "-479.079 100.144 -848.856",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin548unique",
+      "done": false,
+      "position": "-476.428 100.144 -851.449",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin547unique",
+      "done": false,
+      "position": "-478.942 100.144 -851.552",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin546unique",
+      "done": false,
+      "position": "-477.965 100.144 -850.194",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin545unique",
+      "done": false,
+      "position": "-478.752 100.144 -847.219",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin544unique",
+      "done": false,
+      "position": "-480.86 100.144 -849.925",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin543unique",
+      "done": false,
+      "position": "-479.601 100.144 -852.994",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin542unique",
+      "done": false,
+      "position": "-476.151 100.144 -852.715",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin541unique",
+      "done": false,
+      "position": "-474.517 100.144 -850.333",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin540unique",
+      "done": false,
+      "position": "-475.353 100.144 -847.947",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin539unique",
+      "done": false,
+      "position": "-635.026 211.722 -897.262",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin538unique",
+      "done": false,
+      "position": "-635.026 210.023 -897.262",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin537unique",
+      "done": false,
+      "position": "-636.64 210.732 -896.354",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin536unique",
+      "done": false,
+      "position": "-636.64 209.033 -896.354",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin535unique",
+      "done": false,
+      "position": "-638.023 210.281 -894.979",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin534unique",
+      "done": false,
+      "position": "-638.023 208.582 -894.979",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin533unique",
+      "done": false,
+      "position": "-631.828 121.208 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin532unique",
+      "done": false,
+      "position": "-629.411 121.208 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin531unique",
+      "done": false,
+      "position": "-631.828 118.947 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin530unique",
+      "done": false,
+      "position": "-629.411 118.947 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin529unique",
+      "done": false,
+      "position": "-638.595 170.852 -897.559",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin528unique",
+      "done": false,
+      "position": "-646.189 170.495 -883.123",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin527unique",
+      "done": false,
+      "position": "-631.444 170.912 -867.034",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin526unique",
+      "done": false,
+      "position": "-634.293 170.912 -867.375",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin525unique",
+      "done": false,
+      "position": "-636.974 170.912 -867.676",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin524unique",
+      "done": false,
+      "position": "-643.283 170.648 -872.715",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin523unique",
+      "done": false,
+      "position": "-644.642 170.648 -875.443",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin522unique",
+      "done": false,
+      "position": "-645.84 170.648 -878.162",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin521unique",
+      "done": false,
+      "position": "-647.057 170.648 -881.115",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin520unique",
+      "done": false,
+      "position": "-645.186 170.495 -886.349",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin519unique",
+      "done": false,
+      "position": "-643.475 170.658 -889.319",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin517unique",
+      "done": false,
+      "position": "-642.289 170.852 -893.199",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin516unique",
+      "done": false,
+      "position": "-640.565 170.852 -895.533",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin515unique",
+      "done": false,
+      "position": "-633.929 173.347 -898.119",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin514unique",
+      "done": false,
+      "position": "-630.489 173.487 -897.906",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin513unique",
+      "done": false,
+      "position": "-627.325 173.487 -897.631",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin512unique",
+      "done": false,
+      "position": "-624.183 173.487 -897.276",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin511unique",
+      "done": false,
+      "position": "-621.383 173.487 -896.99",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin510unique",
+      "done": false,
+      "position": "-618.789 173.487 -896.257",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin509unique",
+      "done": false,
+      "position": "-617.311 170.991 -893.6",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin508unique",
+      "done": false,
+      "position": "-615.988 170.991 -890.843",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin507unique",
+      "done": false,
+      "position": "-614.866 170.991 -888.299",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin506unique",
+      "done": false,
+      "position": "-630.387 238.153 -872.145",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin505unique",
+      "done": false,
+      "position": "-633.236 238.153 -872.486",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin504unique",
+      "done": false,
+      "position": "-635.917 238.153 -872.787",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin503unique",
+      "done": false,
+      "position": "-639.362 238.158 -873.931",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin502unique",
+      "done": false,
+      "position": "-640.72 238.158 -876.659",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin501unique",
+      "done": false,
+      "position": "-641.919 238.158 -879.379",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin500unique",
+      "done": false,
+      "position": "-643.136 238.158 -882.331",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin498unique",
+      "done": false,
+      "position": "-641.324 227.138 -884.337",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin497unique",
+      "done": false,
+      "position": "-639.716 227.138 -886.822",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin496unique",
+      "done": false,
+      "position": "-637.868 227.138 -889.437",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin495unique",
+      "done": false,
+      "position": "-636.144 227.138 -891.772",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin492unique",
+      "done": false,
+      "position": "-631.419 245.479 -892.353",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin491unique",
+      "done": false,
+      "position": "-628.277 245.479 -891.998",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin490unique",
+      "done": false,
+      "position": "-625.477 245.479 -891.711",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin485unique",
+      "done": false,
+      "position": "-630.387 236.724 -872.145",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin484unique",
+      "done": false,
+      "position": "-633.236 236.724 -872.486",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin483unique",
+      "done": false,
+      "position": "-635.917 236.724 -872.787",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin482unique",
+      "done": false,
+      "position": "-639.362 236.729 -873.931",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin481unique",
+      "done": false,
+      "position": "-640.72 236.729 -876.659",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin480unique",
+      "done": false,
+      "position": "-641.919 236.729 -879.379",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin479unique",
+      "done": false,
+      "position": "-643.136 236.729 -882.331",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin477unique",
+      "done": false,
+      "position": "-641.324 225.709 -884.337",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin476unique",
+      "done": false,
+      "position": "-639.716 225.709 -886.822",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin475unique",
+      "done": false,
+      "position": "-637.868 225.709 -889.437",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin474unique",
+      "done": false,
+      "position": "-636.144 225.709 -891.772",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin471unique",
+      "done": false,
+      "position": "-631.419 244.05 -892.353",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin470unique",
+      "done": false,
+      "position": "-628.277 244.05 -891.998",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin469unique",
+      "done": false,
+      "position": "-625.477 244.05 -891.711",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin464unique",
+      "done": false,
+      "position": "-646.013 198.352 -884.999",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin463unique",
+      "done": false,
+      "position": "-646.013 196.654 -884.999",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin462unique",
+      "done": false,
+      "position": "-631.828 116.605 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin461unique",
+      "done": false,
+      "position": "-629.411 116.605 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin460unique",
+      "done": false,
+      "position": "-631.828 114.344 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin459unique",
+      "done": false,
+      "position": "-629.411 114.344 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin458unique",
+      "done": false,
+      "position": "-631.828 111.778 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin457unique",
+      "done": false,
+      "position": "-629.411 111.778 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin456unique",
+      "done": false,
+      "position": "-631.828 109.517 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin455unique",
+      "done": false,
+      "position": "-629.411 109.517 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin454unique",
+      "done": false,
+      "position": "-631.828 107.005 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin453unique",
+      "done": false,
+      "position": "-629.411 107.005 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin452unique",
+      "done": false,
+      "position": "-631.828 104.744 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin451unique",
+      "done": false,
+      "position": "-629.411 104.744 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin450unique",
+      "done": false,
+      "position": "-631.828 102.178 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin449unique",
+      "done": false,
+      "position": "-629.411 102.178 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin448unique",
+      "done": false,
+      "position": "-631.828 99.9165 -898.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin447unique",
+      "done": false,
+      "position": "-629.411 99.9165 -898.054",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin446unique",
+      "done": false,
+      "position": "-617.012 116.816 -871.703",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin445unique",
+      "done": false,
+      "position": "-617.012 114.834 -871.703",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin444unique",
+      "done": false,
+      "position": "-622.214 219.692 -894.593",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin443unique",
+      "done": false,
+      "position": "-624.257 219.692 -894.863",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin442unique",
+      "done": false,
+      "position": "-626.446 219.692 -894.869",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin441unique",
+      "done": false,
+      "position": "-622.214 218.126 -894.593",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin440unique",
+      "done": false,
+      "position": "-624.257 218.126 -894.863",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin439unique",
+      "done": false,
+      "position": "-626.446 218.126 -894.869",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin438unique",
+      "done": false,
+      "position": "-622.214 216.106 -894.593",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin437unique",
+      "done": false,
+      "position": "-624.257 216.106 -894.863",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin436unique",
+      "done": false,
+      "position": "-626.446 216.106 -894.869",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin435unique",
+      "done": false,
+      "position": "-622.214 214.228 -894.593",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin434unique",
+      "done": false,
+      "position": "-624.257 214.228 -894.863",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin433unique",
+      "done": false,
+      "position": "-626.446 214.228 -894.869",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin432unique",
+      "done": false,
+      "position": "-622.214 212.47 -894.593",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin431unique",
+      "done": false,
+      "position": "-624.257 212.47 -894.863",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin430unique",
+      "done": false,
+      "position": "-626.446 212.47 -894.869",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin429unique",
+      "done": false,
+      "position": "-622.214 210.771 -894.593",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin428unique",
+      "done": false,
+      "position": "-624.257 210.771 -894.863",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin427unique",
+      "done": false,
+      "position": "-626.446 210.771 -894.869",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin426unique",
+      "done": false,
+      "position": "-615.681 226.43 -882.12",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin425unique",
+      "done": false,
+      "position": "-616.3 226.43 -884.085",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin424unique",
+      "done": false,
+      "position": "-617.22 226.43 -886.071",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin423unique",
+      "done": false,
+      "position": "-615.681 224.864 -882.12",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin422unique",
+      "done": false,
+      "position": "-616.3 224.864 -884.085",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin421unique",
+      "done": false,
+      "position": "-617.22 224.864 -886.071",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin420unique",
+      "done": false,
+      "position": "-615.681 222.844 -882.12",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin419unique",
+      "done": false,
+      "position": "-616.3 222.844 -884.085",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin418unique",
+      "done": false,
+      "position": "-617.22 222.844 -886.071",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin417unique",
+      "done": false,
+      "position": "-615.681 220.965 -882.12",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin416unique",
+      "done": false,
+      "position": "-616.3 220.965 -884.085",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin415unique",
+      "done": false,
+      "position": "-617.22 220.965 -886.071",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin414unique",
+      "done": false,
+      "position": "-615.681 219.207 -882.12",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin413unique",
+      "done": false,
+      "position": "-616.3 219.207 -884.085",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin412unique",
+      "done": false,
+      "position": "-617.22 219.207 -886.071",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin411unique",
+      "done": false,
+      "position": "-615.681 217.508 -882.12",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin410unique",
+      "done": false,
+      "position": "-616.3 217.508 -884.085",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin409unique",
+      "done": false,
+      "position": "-617.22 217.508 -886.071",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin408unique",
+      "done": false,
+      "position": "-616.293 114.286 -892.921",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin407unique",
+      "done": false,
+      "position": "-181.701 88.1625 -744.753",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin406unique",
+      "done": false,
+      "position": "-190.749 85.7156 -747.39",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin405unique",
+      "done": false,
+      "position": "-190.089 79.3544 -739.139",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin404unique",
+      "done": false,
+      "position": "-182.275 76.9074 -736.963",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin403unique",
+      "done": false,
+      "position": "-515.429 107.555 -970.266",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin402unique",
+      "done": false,
+      "position": "-516.216 107.555 -967.291",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin401unique",
+      "done": false,
+      "position": "-518.324 107.555 -969.997",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin400unique",
+      "done": false,
+      "position": "-517.065 107.555 -973.066",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin399unique",
+      "done": false,
+      "position": "-513.615 107.555 -972.787",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin398unique",
+      "done": false,
+      "position": "-511.982 107.555 -970.405",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin397unique",
+      "done": false,
+      "position": "-512.817 107.555 -968.019",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin396unique",
+      "done": false,
+      "position": "-548.309 107.555 -953.762",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin395unique",
+      "done": false,
+      "position": "-549.096 107.555 -950.787",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin394unique",
+      "done": false,
+      "position": "-551.204 107.555 -953.492",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin393unique",
+      "done": false,
+      "position": "-549.945 107.555 -956.562",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin392unique",
+      "done": false,
+      "position": "-546.495 107.555 -956.283",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin391unique",
+      "done": false,
+      "position": "-544.861 107.555 -953.901",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin390unique",
+      "done": false,
+      "position": "-545.697 107.555 -951.515",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin389unique",
+      "done": false,
+      "position": "-576.341 107.555 -936.961",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin388unique",
+      "done": false,
+      "position": "-577.128 107.555 -933.987",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin387unique",
+      "done": false,
+      "position": "-579.236 107.555 -936.692",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin386unique",
+      "done": false,
+      "position": "-577.977 107.555 -939.761",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin385unique",
+      "done": false,
+      "position": "-574.527 107.555 -939.482",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin384unique",
+      "done": false,
+      "position": "-572.893 107.555 -937.1",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin383unique",
+      "done": false,
+      "position": "-573.729 107.555 -934.714",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin382unique",
+      "done": false,
+      "position": "-613.216 107.555 -919.994",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin381unique",
+      "done": false,
+      "position": "-614.003 107.555 -917.02",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin380unique",
+      "done": false,
+      "position": "-616.111 107.555 -919.725",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin379unique",
+      "done": false,
+      "position": "-614.852 107.555 -922.794",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin378unique",
+      "done": false,
+      "position": "-611.402 107.555 -922.516",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin377unique",
+      "done": false,
+      "position": "-609.768 107.555 -920.133",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin376unique",
+      "done": false,
+      "position": "-610.604 107.555 -917.748",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin375unique",
+      "done": false,
+      "position": "-584.564 107.555 -859.089",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin374unique",
+      "done": false,
+      "position": "-585.351 107.555 -856.114",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin373unique",
+      "done": false,
+      "position": "-587.459 107.555 -858.82",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin372unique",
+      "done": false,
+      "position": "-586.2 107.555 -861.889",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin371unique",
+      "done": false,
+      "position": "-582.75 107.555 -861.61",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin370unique",
+      "done": false,
+      "position": "-581.117 107.555 -859.228",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin369unique",
+      "done": false,
+      "position": "-581.953 107.555 -856.842",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin368unique",
+      "done": false,
+      "position": "-549.96 107.555 -870.368",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin367unique",
+      "done": false,
+      "position": "-550.747 107.555 -867.394",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin366unique",
+      "done": false,
+      "position": "-552.856 107.555 -870.099",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin365unique",
+      "done": false,
+      "position": "-551.596 107.555 -873.168",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin364unique",
+      "done": false,
+      "position": "-548.146 107.555 -872.89",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin363unique",
+      "done": false,
+      "position": "-546.513 107.555 -870.508",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin362unique",
+      "done": false,
+      "position": "-547.349 107.555 -868.122",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin361unique",
+      "done": false,
+      "position": "-513.742 107.555 -886.161",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin360unique",
+      "done": false,
+      "position": "-514.529 107.555 -883.186",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin359unique",
+      "done": false,
+      "position": "-516.638 107.555 -885.891",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin358unique",
+      "done": false,
+      "position": "-515.378 107.555 -888.961",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin357unique",
+      "done": false,
+      "position": "-511.928 107.555 -888.682",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin356unique",
+      "done": false,
+      "position": "-510.295 107.555 -886.3",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin355unique",
+      "done": false,
+      "position": "-511.13 107.555 -883.914",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin354unique",
+      "done": false,
+      "position": "-487.502 107.555 -900.937",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin353unique",
+      "done": false,
+      "position": "-488.289 107.555 -897.962",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin352unique",
+      "done": false,
+      "position": "-490.397 107.555 -900.667",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin351unique",
+      "done": false,
+      "position": "-489.138 107.555 -903.737",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin350unique",
+      "done": false,
+      "position": "-485.688 107.555 -903.458",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin349unique",
+      "done": false,
+      "position": "-484.054 107.555 -901.076",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin348unique",
+      "done": false,
+      "position": "-484.89 107.555 -898.69",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin347unique",
+      "done": false,
+      "position": "-175.889 70.4659 -901.771",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin346unique",
+      "done": false,
+      "position": "-173.817 70.4659 -899.967",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin345unique",
+      "done": false,
+      "position": "-172.165 70.4659 -897.772",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin344unique",
+      "done": false,
+      "position": "-171.005 70.4659 -895.281",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin341unique",
+      "done": false,
+      "position": "-170.869 70.4659 -887.159",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin340unique",
+      "done": false,
+      "position": "-171.944 70.4659 -884.63",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin339unique",
+      "done": false,
+      "position": "-173.522 70.4659 -882.381",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin338unique",
+      "done": false,
+      "position": "-175.533 70.4659 -880.508",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin337unique",
+      "done": false,
+      "position": "-177.889 70.4659 -879.095",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin336unique",
+      "done": false,
+      "position": "-180.488 70.4659 -878.202",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin333unique",
+      "done": false,
+      "position": "-188.579 70.4659 -878.916",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin332unique",
+      "done": false,
+      "position": "-190.981 70.4659 -880.249",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin331unique",
+      "done": false,
+      "position": "-193.054 70.4659 -882.053",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin330unique",
+      "done": false,
+      "position": "-194.706 70.4659 -884.249",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin329unique",
+      "done": false,
+      "position": "-195.865 70.4659 -886.74",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin328unique",
+      "done": false,
+      "position": "-196.482 70.4659 -889.418",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin325unique",
+      "done": false,
+      "position": "-194.926 70.4659 -897.39",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin324unique",
+      "done": false,
+      "position": "-193.348 70.4659 -899.64",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin323unique",
+      "done": false,
+      "position": "-191.338 70.4659 -901.512",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin322unique",
+      "done": false,
+      "position": "-188.981 70.4659 -902.926",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin321unique",
+      "done": false,
+      "position": "-186.383 70.4659 -903.819",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin320unique",
+      "done": false,
+      "position": "-183.655 70.4659 -904.152",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin319unique",
+      "done": false,
+      "position": "-180.918 70.4659 -903.91",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin318unique",
+      "done": false,
+      "position": "-178.291 70.4659 -903.105",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin317unique",
+      "done": false,
+      "position": "-180.1 88.6985 -888.395",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin316unique",
+      "done": false,
+      "position": "-184.456 88.6985 -888.459",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin315unique",
+      "done": false,
+      "position": "-188.696 88.6985 -888.249",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin314unique",
+      "done": false,
+      "position": "-202.188 88.6985 -901.282",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin313unique",
+      "done": false,
+      "position": "-200.5 88.6985 -896.758",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin312unique",
+      "done": false,
+      "position": "-197.474 88.6985 -893.109",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin311unique",
+      "done": false,
+      "position": "-194.364 88.6985 -889.425",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin310unique",
+      "done": false,
+      "position": "-485.102 89.767 -829.88",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin305unique",
+      "done": false,
+      "position": "-482.945 89.2518 -833.145",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin182unique",
+      "done": false,
+      "position": "-200.948 151.579 -1385.74",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin181unique",
+      "done": false,
+      "position": "-201.496 149.106 -1384.89",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin180unique",
+      "done": false,
+      "position": "-202.164 146.69 -1384.1",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin179unique",
+      "done": false,
+      "position": "-199.599 152.495 -1388.54",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin178unique",
+      "done": false,
+      "position": "-199.599 155.903 -1388.54",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin177unique",
+      "done": false,
+      "position": "-199.599 154.043 -1388.54",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin176unique",
+      "done": false,
+      "position": "4.36153 192.331 -1181.52",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin175unique",
+      "done": false,
+      "position": "2.77759 192.331 -1180.4",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin174unique",
+      "done": false,
+      "position": "1.17702 192.331 -1179.29",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin173unique",
+      "done": false,
+      "position": "-0.406917 192.331 -1178.18",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin172unique",
+      "done": false,
+      "position": "-1.87311 192.331 -1177.16",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin171unique",
+      "done": false,
+      "position": "-3.45705 192.331 -1176.05",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin170unique",
+      "done": false,
+      "position": "-218.518 129.49 -1374.36",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin169unique",
+      "done": false,
+      "position": "-219.903 127.017 -1373.56",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin168unique",
+      "done": false,
+      "position": "-220.856 124.601 -1372.98",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin167unique",
+      "done": false,
+      "position": "-199.046 152.495 -1385.88",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin166unique",
+      "done": false,
+      "position": "-198.386 152.495 -1387.66",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin165unique",
+      "done": false,
+      "position": "-200.08 152.495 -1387.26",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin164unique",
+      "done": false,
+      "position": "-199.046 155.903 -1385.88",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin163unique",
+      "done": false,
+      "position": "-199.046 154.043 -1385.88",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin162unique",
+      "done": false,
+      "position": "-198.386 155.903 -1387.66",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin161unique",
+      "done": false,
+      "position": "-198.386 154.043 -1387.66",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin160unique",
+      "done": false,
+      "position": "-200.08 155.903 -1387.26",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin159unique",
+      "done": false,
+      "position": "-200.08 154.043 -1387.26",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin158unique",
+      "done": false,
+      "position": "-201.03 151.579 -1386.9",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin157unique",
+      "done": false,
+      "position": "-201.578 149.106 -1386.05",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin156unique",
+      "done": false,
+      "position": "-202.246 146.69 -1385.26",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin155unique",
+      "done": false,
+      "position": "6.49795 192.331 -1178.49",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin154unique",
+      "done": false,
+      "position": "4.91401 192.331 -1177.38",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin153unique",
+      "done": false,
+      "position": "6.45342 192.331 -1180.85",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin152unique",
+      "done": false,
+      "position": "4.86949 192.331 -1179.73",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin151unique",
+      "done": false,
+      "position": "3.31344 192.331 -1176.27",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin150unique",
+      "done": false,
+      "position": "1.7295 192.331 -1175.16",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin149unique",
+      "done": false,
+      "position": "0.263306 192.331 -1174.14",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin148unique",
+      "done": false,
+      "position": "-1.32063 192.331 -1173.03",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin147unique",
+      "done": false,
+      "position": "3.26892 192.331 -1178.62",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin146unique",
+      "done": false,
+      "position": "1.68498 192.331 -1177.51",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin145unique",
+      "done": false,
+      "position": "0.218781 192.331 -1176.49",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin144unique",
+      "done": false,
+      "position": "-1.36516 192.331 -1175.38",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin143unique",
+      "done": false,
+      "position": "-368.457 61.1071 -702.918",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin142unique",
+      "done": false,
+      "position": "-345.254 70.85 -662.109",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin141unique",
+      "done": false,
+      "position": "-336.777 63.4693 -659.212",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin140unique",
+      "done": false,
+      "position": "-332.324 55.5471 -650.51",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin139unique",
+      "done": false,
+      "position": "-349.415 73.5191 -691.436",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin138unique",
+      "done": false,
+      "position": "-348.563 73.5191 -686.669",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin137unique",
+      "done": false,
+      "position": "-347.154 73.5191 -682.288",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin136unique",
+      "done": false,
+      "position": "-346.707 73.5191 -678.711",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin135unique",
+      "done": false,
+      "position": "-345.987 73.5191 -674.795",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin134unique",
+      "done": false,
+      "position": "-345.998 73.5191 -671.238",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin133unique",
+      "done": false,
+      "position": "-292.934 84.8783 -973.061",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin132unique",
+      "done": false,
+      "position": "-292.934 82.637 -973.061",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin131unique",
+      "done": false,
+      "position": "-292.934 80.1726 -973.061",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin130unique",
+      "done": false,
+      "position": "-292.934 77.6996 -973.061",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin129unique",
+      "done": false,
+      "position": "-292.934 75.2841 -973.061",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin128unique",
+      "done": false,
+      "position": "-430.214 40.4865 -892.793",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin127unique",
+      "done": false,
+      "position": "-420.535 70.0219 -832.076",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin126unique",
+      "done": false,
+      "position": "-440.519 70.0219 -871.5",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin125unique",
+      "done": false,
+      "position": "-441.953 70.0219 -852.291",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin124unique",
+      "done": false,
+      "position": "-545.206 92.6978 -764.113",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin123unique",
+      "done": false,
+      "position": "-545.206 101.062 -764.113",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin122unique",
+      "done": false,
+      "position": "-545.206 108.659 -764.113",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin121unique",
+      "done": false,
+      "position": "-545.206 114.682 -764.113",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin120unique",
+      "done": false,
+      "position": "-545.206 119.977 -764.113",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin119unique",
+      "done": false,
+      "position": "-215.869 54.2191 -674.094",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin118unique",
+      "done": false,
+      "position": "-220.035 54.8163 -673.72",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin117unique",
+      "done": false,
+      "position": "-155.783 65.389 -829.507",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin116unique",
+      "done": false,
+      "position": "-190.402 67.6836 -808.267",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin115unique",
+      "done": false,
+      "position": "-73.5843 84.6041 -889.928",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin114unique",
+      "done": false,
+      "position": "-83.2974 85.4471 -879.188",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin113unique",
+      "done": false,
+      "position": "-102.952 75.8072 -837.375",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin112unique",
+      "done": false,
+      "position": "-96.3207 77.1504 -843.625",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin111unique",
+      "done": false,
+      "position": "-138.051 94.1066 -790.0",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin110unique",
+      "done": false,
+      "position": "-139.92 94.1066 -776.701",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin109unique",
+      "done": false,
+      "position": "-148.468 94.1066 -760.528",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin108unique",
+      "done": false,
+      "position": "-168.517 96.2097 -758.105",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin107unique",
+      "done": false,
+      "position": "-194.72 95.2675 -754.264",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin106unique",
+      "done": false,
+      "position": "-194.035 80.8156 -740.061",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin105unique",
+      "done": false,
+      "position": "-181.21 77.2573 -734.645",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin104unique",
+      "done": false,
+      "position": "-177.625 70.0678 -720.801",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin103unique",
+      "done": false,
+      "position": "-183.355 70.0678 -716.583",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin102unique",
+      "done": false,
+      "position": "-189.606 70.0678 -713.134",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin101unique",
+      "done": false,
+      "position": "-218.635 70.0678 -700.033",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin100unique",
+      "done": false,
+      "position": "-384.727 96.8901 -798.985",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin099unique",
+      "done": false,
+      "position": "-375.784 94.9126 -794.972",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin098unique",
+      "done": false,
+      "position": "-367.375 97.7676 -787.149",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin097unique",
+      "done": false,
+      "position": "-405.971 54.7221 -673.806",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin096unique",
+      "done": false,
+      "position": "-380.577 53.0807 -708.7",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin095unique",
+      "done": false,
+      "position": "-385.985 53.6959 -685.568",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin094unique",
+      "done": false,
+      "position": "-421.865 64.7178 -714.562",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin093unique",
+      "done": false,
+      "position": "-415.5 66.5425 -735.818",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin092unique",
+      "done": false,
+      "position": "-394.507 69.4769 -748.968",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin091unique",
+      "done": false,
+      "position": "-450.467 81.2401 -781.702",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin090unique",
+      "done": false,
+      "position": "-437.512 82.0089 -774.905",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin089unique",
+      "done": false,
+      "position": "-443.53 81.3877 -791.159",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin088unique",
+      "done": false,
+      "position": "-432.449 82.4651 -805.423",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin087unique",
+      "done": false,
+      "position": "-424.528 69.5863 -830.38",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin086unique",
+      "done": false,
+      "position": "-420.902 69.5863 -828.754",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin085unique",
+      "done": false,
+      "position": "-394.902 65.531 -720.04",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin084unique",
+      "done": false,
+      "position": "-387.782 65.531 -723.686",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin083unique",
+      "done": false,
+      "position": "-391.226 65.531 -721.966",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin082unique",
+      "done": false,
+      "position": "-441.995 91.5062 -699.904",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin081unique",
+      "done": false,
+      "position": "-444.071 91.5062 -698.613",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin080unique",
+      "done": false,
+      "position": "-459.397 117.48 -767.665",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin079unique",
+      "done": false,
+      "position": "-454.778 117.48 -763.018",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin078unique",
+      "done": false,
+      "position": "-456.778 117.48 -765.365",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin077unique",
+      "done": false,
+      "position": "-459.536 117.48 -763.117",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin076unique",
+      "done": false,
+      "position": "-485.759 123.127 -762.621",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin075unique",
+      "done": false,
+      "position": "-485.348 123.127 -767.471",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin074unique",
+      "done": false,
+      "position": "-487.799 123.127 -765.432",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin073unique",
+      "done": false,
+      "position": "-483.487 123.127 -764.67",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin072unique",
+      "done": false,
+      "position": "-524.638 125.206 -765.882",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin071unique",
+      "done": false,
+      "position": "-526.746 125.206 -768.587",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin070unique",
+      "done": false,
+      "position": "-525.487 125.206 -771.656",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin069unique",
+      "done": false,
+      "position": "-522.037 125.206 -771.377",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin068unique",
+      "done": false,
+      "position": "-520.403 125.206 -768.995",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin067unique",
+      "done": false,
+      "position": "-521.239 125.206 -766.609",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin066unique",
+      "done": false,
+      "position": "-383.105 49.9534 -778.108",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin065unique",
+      "done": false,
+      "position": "-383.105 70.3637 -778.108",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin064unique",
+      "done": false,
+      "position": "-383.105 63.5189 -778.108",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin063unique",
+      "done": false,
+      "position": "-383.105 55.8352 -778.108",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin062unique",
+      "done": false,
+      "position": "-424.551 95.6642 -804.641",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin061unique",
+      "done": false,
+      "position": "-424.551 97.8771 -804.641",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin060unique",
+      "done": false,
+      "position": "-424.551 99.6891 -804.641",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin059unique",
+      "done": false,
+      "position": "-424.551 101.535 -804.641",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin058unique",
+      "done": false,
+      "position": "-427.241 68.792 -892.775",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin057unique",
+      "done": false,
+      "position": "-428.457 68.792 -891.752",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin056unique",
+      "done": false,
+      "position": "-357.543 97.5339 -774.6",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin055unique",
+      "done": false,
+      "position": "-358.795 97.5339 -780.206",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin054unique",
+      "done": false,
+      "position": "-357.892 97.5339 -784.667",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin053unique",
+      "done": false,
+      "position": "-354.824 97.5339 -787.287",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin052unique",
+      "done": false,
+      "position": "-350.67 97.5339 -787.446",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin051unique",
+      "done": false,
+      "position": "-346.123 97.5339 -784.167",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin050unique",
+      "done": false,
+      "position": "-345.815 97.5339 -776.959",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin049unique",
+      "done": false,
+      "position": "-347.668 97.5339 -772.69",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin048unique",
+      "done": false,
+      "position": "-350.978 97.5339 -771.228",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin047unique",
+      "done": false,
+      "position": "-353.945 97.5339 -772.063",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin046unique",
+      "done": false,
+      "position": "-55.5453 73.1042 -920.33",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin045unique",
+      "done": false,
+      "position": "-54.2923 70.7841 -910.92",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin044unique",
+      "done": false,
+      "position": "-55.8194 68.0439 -901.821",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin043unique",
+      "done": false,
+      "position": "-55.8194 65.597 -892.397",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin042unique",
+      "done": false,
+      "position": "-135.674 64.5678 -891.452",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin041unique",
+      "done": false,
+      "position": "-112.057 78.4393 -889.445",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin040unique",
+      "done": false,
+      "position": "-115.94 75.0565 -884.669",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin039unique",
+      "done": false,
+      "position": "-123.107 72.046 -891.735",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin038unique",
+      "done": false,
+      "position": "-128.183 68.0034 -884.401",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin037unique",
+      "done": false,
+      "position": "-308.339 67.7258 -900.303",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin036unique",
+      "done": false,
+      "position": "-311.362 67.2592 -888.189",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin035unique",
+      "done": false,
+      "position": "-316.129 66.6969 -874.701",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin034unique",
+      "done": false,
+      "position": "-315.398 65.8755 -862.356",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin033unique",
+      "done": false,
+      "position": "-310.198 59.6721 -848.287",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin032unique",
+      "done": false,
+      "position": "-299.703 58.2676 -837.359",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin031unique",
+      "done": false,
+      "position": "-285.595 60.8838 -831.179",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin030unique",
+      "done": false,
+      "position": "-267.111 63.9394 -821.603",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin029unique",
+      "done": false,
+      "position": "-264.838 66.126 -810.231",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin028unique",
+      "done": false,
+      "position": "-291.889 66.3201 -785.664",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin027unique",
+      "done": false,
+      "position": "-298.886 64.2838 -776.75",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin026unique",
+      "done": false,
+      "position": "-290.406 65.1517 -765.339",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin025unique",
+      "done": false,
+      "position": "-300.336 64.0512 -754.776",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin024unique",
+      "done": false,
+      "position": "-295.021 63.4401 -744.088",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin023unique",
+      "done": false,
+      "position": "-285.626 61.1162 -728.846",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin022unique",
+      "done": false,
+      "position": "-293.251 58.837 -716.18",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin021unique",
+      "done": false,
+      "position": "-303.912 55.1774 -697.691",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin020unique",
+      "done": false,
+      "position": "-309.38 54.0887 -678.005",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin019unique",
+      "done": false,
+      "position": "-291.824 52.311 -655.548",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin018unique",
+      "done": false,
+      "position": "-313.138 47.1994 -645.563",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin017unique",
+      "done": false,
+      "position": "-299.633 48.2056 -626.383",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique",
+      "done": false,
+      "position": "-313.138 45.2428 -609.922",
+      "level": "level00",
+      "type": "coins"
+    }
+  ]
 }
