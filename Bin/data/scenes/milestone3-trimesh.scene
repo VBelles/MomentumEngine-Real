@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "ms3_aro_baja_collider023",
+      "transform":
+      {
+        "pos": "-322.228 101.439 -991.417",
+        "rotation": "-0.0616284 0.704416 -0.704416 -0.0616284"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_aro_baja_collider023.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_aro_baja_collider022",
       "transform":
       {
@@ -447,7 +464,7 @@
       "name": "ms3_terrain156_collider001",
       "transform":
       {
-        "pos": "-347.693 69.0694 -679.379",
+        "pos": "-347.693 66.4796 -679.379",
         "rotation": "0.0 0.5 0.0 -0.866025"
       },
       "collider":
@@ -2079,7 +2096,7 @@
       "name": "ms3_fireplace_collider",
       "transform":
       {
-        "pos": "-411.45 53.9309 -648.201",
+        "pos": "-411.45 53.1259 -648.201",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":

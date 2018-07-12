@@ -2,6 +2,13 @@
   "unique_enemies":
   [
     {
+      "id": "ms3_enemyMelee033unique001",
+      "done": false,
+      "position": "-305.15 75.0391 -974.14",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
       "id": "ms3_enemyAir055unique",
       "done": false,
       "position": "-173.933 91.4617 -871.425",
@@ -508,7 +515,7 @@
     {
       "id": "ms3_enemyAir028unique",
       "done": false,
-      "position": "-443.035 88.1523 -704.192",
+      "position": "-443.035 86.9309 -704.192",
       "level": "level00",
       "type": "kippah"
     },
@@ -522,7 +529,7 @@
     {
       "id": "ms3_enemyMelee010unique",
       "done": false,
-      "position": "-451.254 104.004 -736.554",
+      "position": "-451.254 100.854 -736.554",
       "level": "level00",
       "type": "dreidel"
     },
@@ -781,21 +788,21 @@
     {
       "id": "ms3_enemyMelee002unique",
       "done": false,
-      "position": "-91.2908 84.4275 -888.149",
+      "position": "-91.2908 74.5047 -888.149",
       "level": "level00",
       "type": "dreidel"
     },
     {
       "id": "ms3_enemyAir008unique",
       "done": false,
-      "position": "-94.2363 76.5511 -855.538",
+      "position": "-93.6251 78.9318 -865.051",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "ms3_enemyAir007unique",
       "done": false,
-      "position": "-91.4322 79.1502 -862.83",
+      "position": "-90.821 81.0163 -872.343",
       "level": "level00",
       "type": "kippah"
     },

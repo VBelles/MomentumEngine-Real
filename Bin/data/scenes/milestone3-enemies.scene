@@ -2,6 +2,18 @@
   {
     "entity":
     {
+      "name": "ms3_enemyMelee033unique001",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-305.15 75.0391 -974.14",
+        "lookat": "-1.0 75.0391 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_enemyAir055unique",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
@@ -870,8 +882,8 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-443.035 88.1523 -704.192",
-        "lookat": "-1.0 88.1523 -1.0"
+        "pos": "-443.035 86.9309 -704.192",
+        "lookat": "-1.0 86.9309 -1.0"
       }
     }
   },
@@ -894,8 +906,8 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "-451.254 104.004 -736.554",
-        "lookat": "-1.0 104.004 -1.0"
+        "pos": "-451.254 100.854 -736.554",
+        "lookat": "-1.0 100.854 -1.0"
       }
     }
   },
@@ -1338,8 +1350,8 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "-91.2908 84.4275 -888.149",
-        "lookat": "-1.0 84.4275 -1.0"
+        "pos": "-91.2908 74.5047 -888.149",
+        "lookat": "-1.0 74.5047 -1.0"
       }
     }
   },
@@ -1350,8 +1362,8 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-94.2363 76.5511 -855.538",
-        "lookat": "-1.0 76.5511 -1.0"
+        "pos": "-93.6251 78.9318 -865.051",
+        "lookat": "-1.0 78.9318 -1.0"
       }
     }
   },
@@ -1362,8 +1374,8 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-91.4322 79.1502 -862.83",
-        "lookat": "-1.0 79.1502 -1.0"
+        "pos": "-90.821 81.0163 -872.343",
+        "lookat": "-1.0 81.0163 -1.0"
       }
     }
   },

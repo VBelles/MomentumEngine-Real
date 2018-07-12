@@ -2,6 +2,55 @@
   "unique_coins":
   [
     {
+      "id": "ms3_coin027unique007",
+      "done": false,
+      "position": "-249.304 95.2338 -770.186",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin027unique006",
+      "done": false,
+      "position": "-242.536 95.2338 -768.029",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin027unique005",
+      "done": false,
+      "position": "-247.078 95.2338 -771.587",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin027unique004",
+      "done": false,
+      "position": "-248.559 95.2338 -767.956",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin027unique003",
+      "done": false,
+      "position": "-244.818 95.2338 -765.968",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin027unique002",
+      "done": false,
+      "position": "-243.496 95.2338 -770.451",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin027unique001",
+      "done": false,
+      "position": "-245.598 95.2338 -768.863",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
       "id": "ms3_coin561unique",
       "done": false,
       "position": "-454.283 117.946 -767.649",
@@ -2608,35 +2657,35 @@
     {
       "id": "ms3_coin042unique",
       "done": false,
-      "position": "-135.674 64.5678 -891.452",
+      "position": "-135.674 62.8067 -891.452",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin041unique",
       "done": false,
-      "position": "-112.057 78.4393 -889.445",
+      "position": "-112.057 73.6925 -889.445",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin040unique",
       "done": false,
-      "position": "-115.94 75.0565 -884.669",
+      "position": "-115.94 71.8602 -884.669",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin039unique",
       "done": false,
-      "position": "-123.107 72.046 -891.735",
+      "position": "-123.107 69.1938 -891.735",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin038unique",
       "done": false,
-      "position": "-128.183 68.0034 -884.401",
+      "position": "-128.183 66.2423 -884.401",
       "level": "level00",
       "type": "coins"
     },
