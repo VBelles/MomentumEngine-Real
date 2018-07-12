@@ -5,7 +5,9 @@
 class GhostJumpWindowActionState : public AirborneActionState {
 private:
 	CTimer timer;
-	float squatTime = frames2sec(6);
+	float regularWindow = frames2sec(6);
+	float specialWindow = frames2sec(12);
+	float jumpTimeWindow = regularWindow;
 	float enteringVelocity = 0.f;
 
 	std::string animation = "free_fall";

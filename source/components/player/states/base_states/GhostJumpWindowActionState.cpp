@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "GhostJumpWindowActionState.h"
 #include "components/player/comp_player_model.h"
+#include "components/player/states/AttackState.h"
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
@@ -11,7 +12,7 @@ GhostJumpWindowActionState::GhostJumpWindowActionState(StateManager* stateManage
 }
 
 void GhostJumpWindowActionState::update(float delta) {
-	if (timer.elapsed() >= squatTime) {
+	if (timer.elapsed() >= jumpTimeWindow) {
 		//Como estamos ya en el aire, hacemos el cambio nosotros mismos
 		if (!stateManager->isChangingBaseState) {
 			stateManager->changeState(AirborneNormal);
@@ -25,6 +26,14 @@ void GhostJumpWindowActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	if (lastState->state == Dodge || dynamic_cast<AttackState*>(lastState)) {
+		jumpTimeWindow = specialWindow;
+		dbg("special window\n");
+	}
+	else {
+		jumpTimeWindow = regularWindow;
+		dbg("regular window\n");
+	}
 }
 
 void GhostJumpWindowActionState::onStateExit(IActionState * nextState) {
