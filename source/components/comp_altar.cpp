@@ -58,12 +58,14 @@ void TCompAltar::onHit(const TMsgAttackHit & msg) {
 			anims->setStopOnNextLoop(true);
 		}
 		EngineScripting.throwEvent(onAltarDestroyed, ((CEntity*)CHandle(this).getOwner())->getName());
-
-		//Activar las crisálidas aquí, para poderlo integrar con 3dmax
-		for (VEC3 spawnPos : spawnPositions) {
-			TEntityParseContext ctx;
-			ctx.root_transform.setPosition(spawnPos);
-			parseScene(prefabToSpawn, ctx);
+		if (!isActivated) {
+			isActivated = true;
+			//Activar las crisálidas aquí, para poderlo integrar con 3dmax
+			for (VEC3 spawnPos : spawnPositions) {
+				TEntityParseContext ctx;
+				ctx.root_transform.setPosition(spawnPos);
+				parseScene(prefabToSpawn, ctx);
+			}
 		}
 	}
 }
