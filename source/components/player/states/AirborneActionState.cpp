@@ -170,24 +170,29 @@ void AirborneActionState::onMove(MoveState& moveState) {
 }
 
 bool AirborneActionState::hugWall(const HitState& hitState) {
-	if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hitState.hit.worldNormal) < 0.8f
-		|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
+	if (getPlayerModel()->lockHuggingWallTimer.elapsed() >= getPlayerModel()->lockHuggingWallTime) {
+		if (velocityVector->y < 0.f && (getPlayerModel()->lastWallNormal.dot(hitState.hit.worldNormal) < 0.8f
+			|| getPlayerModel()->sameNormalReattachTimer.elapsed() >= getPlayerModel()->sameNormalReattachTime)) {
 
-		VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
+			VEC3 hitNormal = toVec3(hitState.hit.worldNormal);
 
-		VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(stateManager->getState()->getMovementInput());
-		if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
-			|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
-			float pitch = asin(-hitNormal.y);
-			if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
-				HuggingWallActionState* actionState = (HuggingWallActionState*)stateManager->getState(HuggingWall);
-				actionState->setHuggingWallNormal(hitNormal);
-				stateManager->changeState(HuggingWall); 
-				getPlayerModel()->lockFallingAttack = false;
-				getPlayerModel()->lockAirDodge = false;
-				return true;
+			VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(stateManager->getState()->getMovementInput());
+			if (worldInput.Dot(-hitNormal) >= getPlayerModel()->attachWallByInputMinDot
+				|| getPlayerTransform()->getFront().Dot(-hitNormal) >= getPlayerModel()->attachWallByFrontMinDot) {
+				float pitch = asin(-hitNormal.y);
+				if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
+					HuggingWallActionState* actionState = (HuggingWallActionState*)stateManager->getState(HuggingWall);
+					actionState->setHuggingWallNormal(hitNormal);
+					stateManager->changeState(HuggingWall); 
+					getPlayerModel()->lockFallingAttack = false;
+					getPlayerModel()->lockAirDodge = false;
+					return true;
+				}
 			}
 		}
+	}
+	else {
+		dbg("can't hug wall yet\n");
 	}
 	return false;
 }

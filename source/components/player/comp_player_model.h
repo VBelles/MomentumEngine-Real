@@ -113,6 +113,8 @@ public:
 	float attachWallByFrontMinDot = 0.7f;
 	CTimer sameNormalReattachTimer;
 	float sameNormalReattachTime = 0.8f;
+	CTimer lockHuggingWallTimer;
+	float lockHuggingWallTime = 0.8f;
 	PxVec3 lastWallNormal = { 0,0,0 };
 
 	CHandle grabTarget;

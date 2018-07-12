@@ -111,6 +111,11 @@ void HuggingWallActionState::onMove(MoveState& moveState) {
 			onLanding();
 		}
 	}
+	else if (moveState.isTouchingTop && velocityVector->y > 0.f) {
+		velocityVector->y = 0.f;
+		//reset timer para hugging wall
+		getPlayerModel()->lockHuggingWallTimer.reset();
+	}
 }
 
 

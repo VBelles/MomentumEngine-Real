@@ -28,11 +28,9 @@ void GhostJumpWindowActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 	if (lastState->state == Dodge || dynamic_cast<AttackState*>(lastState)) {
 		jumpTimeWindow = specialWindow;
-		dbg("special window\n");
 	}
 	else {
 		jumpTimeWindow = regularWindow;
-		dbg("regular window\n");
 	}
 }
 
