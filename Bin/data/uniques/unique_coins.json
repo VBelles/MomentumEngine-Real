@@ -1976,44 +1976,37 @@
       "type": "coins"
     },
     {
-      "id": "ms3_coin139unique",
-      "done": false,
-      "position": "-349.415 73.5191 -691.436",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
       "id": "ms3_coin138unique",
       "done": false,
-      "position": "-348.563 73.5191 -686.669",
+      "position": "-348.563 70.8018 -686.669",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin137unique",
       "done": false,
-      "position": "-347.154 73.5191 -682.288",
+      "position": "-347.154 70.8018 -682.288",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin136unique",
       "done": false,
-      "position": "-346.707 73.5191 -678.711",
+      "position": "-346.707 70.8018 -678.711",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin135unique",
       "done": false,
-      "position": "-345.987 73.5191 -674.795",
+      "position": "-345.987 70.8018 -674.795",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin134unique",
       "done": false,
-      "position": "-345.998 73.5191 -671.238",
+      "position": "-345.998 70.1148 -671.238",
       "level": "level00",
       "type": "coins"
     },
