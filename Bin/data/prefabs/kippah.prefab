@@ -29,7 +29,7 @@
         "movement_speed": 3,
         "rotation_speed": 10,
         "gravity": -50,
-        "max_velocity": 20,
+        "max_velocity": 30,
         "chase_fov": 180,
         "fov_chase_distance": 30,
         "small_chase_radius": 1.5,
