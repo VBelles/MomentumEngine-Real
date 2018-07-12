@@ -151,7 +151,7 @@ void DodgeActionState::onDamage(const TMsgAttackHit & msg) {
 	else {
 		//enviar mensaje a enemigo conforme ha sido esquivado finamente
 		dbg("Can't touch this! Hammer Time!\n");
-		CEntity* attacker = msg.attacker.getOwner();
+		CEntity* attacker = msg.attacker;
 		attacker->sendMsg(TMsgPerfectDodged{});
 	}
 }
