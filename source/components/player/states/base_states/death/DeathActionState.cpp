@@ -47,6 +47,7 @@ void DeathActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState); 
 	getSkeleton()->blendCycle(animationLoop, 0.0f, 0.0f);
 	getSkeleton()->executeAction(animation, 0.1f, 0.0f);
+	getPlayerModel()->setGravity(0);
 	timer.reset();
 	finish = false;
 	EngineScripting.throwEvent(onPlayerKilled, "");
@@ -60,6 +61,7 @@ void DeathActionState::onStateExit(IActionState* nextState) {
 	IActionState::onStateExit(nextState);
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
+	getPlayerModel()->resetGravity();
 	//Engine.getEntities().setManagerUpdate("skeleton", true);
 }
 
