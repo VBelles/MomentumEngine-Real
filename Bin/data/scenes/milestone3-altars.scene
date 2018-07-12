@@ -5,7 +5,7 @@
       "name": "ms3_central_ring",
       "transform":
       {
-        "pos": "-301.006 72.5322 -822.807",
+        "pos": "-301.006 71.8459 -822.807",
         "rotation": "0 0 0 1"
       },
       "render":
@@ -32,7 +32,15 @@
       {
         "src" : "data/anims/giratiempo_prefab.anims"
       },
-      "altar":{},
+      "altar":{
+        "prefab": "data/prefabs/crisalida.prefab",
+        "spawn_positions": [
+          "-459.223 99.9239 -858.993",
+           "-424.524 103.901 -804.345",
+           "-56.0977 69.3688 -765.015",
+           "-370.91 111.747 -974.787"
+        ]
+      },
       "rigid_anims_director":{
         "animated_entities":[
           "ms3_inner_ring",
@@ -48,7 +56,7 @@
       "name": "ms3_inner_ring",
       "transform":
       {
-        "pos": "-301.006 72.5322 -822.807",
+        "pos": "-301.006 71.8459 -822.807",
         "rotation": "0 0 0 1"
       },
       "render":
@@ -73,7 +81,7 @@
       "name": "ms3_outer_ring",
       "transform":
       {
-        "pos": "-301.006 72.5322 -822.807",
+        "pos": "-301.006 71.8459 -822.807",
         "rotation": "0 0 0 1"
       },
       "render":

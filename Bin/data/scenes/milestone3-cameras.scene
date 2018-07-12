@@ -2,11 +2,11 @@
   {
     "entity":
     {
-      "name": "Camera001",
+      "name": "ms3_camera_chrysalis_013",
       "transform":
       {
-        "pos": "-649.52 85.0501 -874.75",
-        "lookat": "-649.52 84.0501 -875.75"
+        "pos": "-370.426 104.49 -1041.36",
+        "lookat": "-371.158 111.448 -975.589"
       },
       "camera":
       {
@@ -25,38 +25,69 @@
   {
     "entity":
     {
-      "name": "Camera001_trig",
+      "name": "ms3_camera_chrysalis_009",
       "transform":
       {
-        "pos": "-649.52 85.0501 -874.75",
-        "lookat": "-649.52 85.0501 -875.75"
+        "pos": "-463.786 93.1073 -832.234",
+        "lookat": "-423.294 99.9777 -809.078"
       },
-      "collider":
+      "camera":
       {
-        "shape": "box",
-        "halfExtent": "30 150 30",
-        "is_trigger": true,
-        "type": "static",
-        "group":
-        [
-           "trigger"
-        ],
-        "mask":
-        [
-           "player"
-        ]
+        "fov": 45.0
       },
-      "suggestCameraTrigger":
+      "fixed_camera":
       {
-        "cameraSuggestion": "Camera001",
-        "suggestYaw": false,
-        "hasOppositeYaw": false,
-        "suggestPitch": true,
-        "forceDistance": true,
-        "distanceToCamera": 10,
-        "changeCenteringCamera": true,
-        "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "5 2"
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_camera_chrysalis_005",
+      "transform":
+      {
+        "pos": "-412.68 110.753 -851.764",
+        "lookat": "-459.323 99.9777 -859.112"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_camera_chrysalis_004",
+      "transform":
+      {
+        "pos": "-33.1755 64.0473 -741.089",
+        "lookat": "-55.6532 71.2373 -763.103"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1,
+        "panningSpeed": 0,
+        "panningRadius": 3
       }
     }
   }

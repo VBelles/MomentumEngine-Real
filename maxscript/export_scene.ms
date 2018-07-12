@@ -1269,7 +1269,7 @@ struct TSceneExporter (
 								respawnRot = (maxRotToMcv child.transform)
 							)
 						)
-						
+
 						fs.writeComma()
 						fs.writeKey "respawn_point"
 						fs.beginObj()
