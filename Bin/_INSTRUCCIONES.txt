@@ -50,5 +50,3 @@ R:                      Gastar monedas para obtener poder
 Ctrl:                   Esquiva.
 
 BUGS CONOCIDOS:
-
-1. No hay arte.
