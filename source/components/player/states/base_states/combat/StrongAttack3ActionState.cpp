@@ -149,7 +149,7 @@ void StrongAttack3ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.7f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 3.0f };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

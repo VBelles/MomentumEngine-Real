@@ -96,7 +96,7 @@ void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 0.4f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.0f };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

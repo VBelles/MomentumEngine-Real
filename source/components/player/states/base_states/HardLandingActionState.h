@@ -14,7 +14,7 @@ private:
 	float springJumpWindowEndTime = frames2sec(30);
 	bool hasTriedSpringJump = false;
 
-	float stunTime = 1.5f;
+	float stunTime = 2.0f;
 	float damage = 0;
 	float fallingAttackDamage = 2.f;
 	float fallingAttackPowerToGet = 4000.f;

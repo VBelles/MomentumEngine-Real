@@ -82,7 +82,7 @@ void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	TMsgAttackHit msgAttackHit = {};
 	msgAttackHit.attacker = playerEntity;
 	msgAttackHit.info = {};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 0.4f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

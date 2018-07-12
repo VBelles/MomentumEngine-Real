@@ -26,14 +26,15 @@ void VerticalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle enti
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-	TMsgAttackHit msgAtackHit = {};
-	msgAtackHit.attacker = playerEntity;
-	msgAtackHit.info = {};
-	msgAtackHit.info.givesPower = true;
-	msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
+	TMsgAttackHit msgAttackHit = {};
+	msgAttackHit.attacker = playerEntity;
+	msgAttackHit.info = {};
+	msgAttackHit.info.givesPower = true;
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
 		suspensionTime,
 		getPlayerModel()->getPowerStats()->jumpVelocityVector
 	};
-	otherEntity->sendMsg(msgAtackHit);
+	otherEntity->sendMsg(msgAttackHit);
 
 }

@@ -55,16 +55,17 @@ void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle en
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-	TMsgAttackHit msgAtackHit = {};
-	msgAtackHit.attacker = playerEntity;
-	msgAtackHit.info = {};
-	msgAtackHit.info.givesPower = true;
+	TMsgAttackHit msgAttackHit = {};
+	msgAttackHit.attacker = playerEntity;
+	msgAttackHit.info = {};
+	msgAttackHit.info.givesPower = true;
 	VEC3 launchVelocity = getPlayerTransform()->getFront() * getPlayerModel()->getPowerStats()->longJumpVelocityVector.z;
 	launchVelocity.y = getPlayerModel()->getPowerStats()->longJumpVelocityVector.y;
-	msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
 		suspensionTime,
 		launchVelocity
 	};
-	otherEntity->sendMsg(msgAtackHit);
+	otherEntity->sendMsg(msgAttackHit);
 
 }

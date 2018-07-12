@@ -132,7 +132,7 @@ void StrongFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entit
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.2f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);
