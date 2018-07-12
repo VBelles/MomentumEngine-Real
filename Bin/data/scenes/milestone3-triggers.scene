@@ -191,7 +191,7 @@
       "name": "respawn002",
       "transform":
       {
-        "pos": "-306.091 8.87961 -579.049",
+        "pos": "-306.091 8.87962 -470.581",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -211,7 +211,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-313.047 41.4124 -603.34",
+        "respawn_position": "-313.047 41.4124 -603.453",
         "respawn_rotation": "0.0 -1.0 0.0 0.0"
       }
     }
