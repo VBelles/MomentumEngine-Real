@@ -9,7 +9,9 @@ protected:
 	VEC3 movingVelocity;
 	CHandle propelTarget;
 
-	float propelDuration = 0.5f;
+	float invulnerableTime = 0.5f;
+
+	float propelDuration = 0.5f;//para el enemigo
 
 	std::string animation = "propel_long";
 

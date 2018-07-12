@@ -63,6 +63,7 @@ void PropelLongActionState::onStateEnter(IActionState * lastState) {
 		timer.reset();
 		getSkeleton()->executeAction(animation, 0.03f, 0.2f);
 		getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
+		getPlayerModel()->makeInvulnerable(invulnerableTime);
 	}
 	else {
 		stateManager->changeState(AirborneNormal);

@@ -15,7 +15,7 @@ private:
 	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onCollect(const TMsgCollect& msg);
 
-	float timeToRespawnCoin = 60.f;
+	float timeToRespawnCoin = 3.f;
 
 public:
 	DECL_SIBLING_ACCESS();
