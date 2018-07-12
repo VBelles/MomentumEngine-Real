@@ -38,6 +38,9 @@ void TCompPowerGauge::update(float delta) {
 	if (power < targetPower) {
 		increasePower(powerIncreaseSpeed * delta);
 		freezeDropTimer.reset();
+		if (power >= targetPower) {
+			targetPower = 0;
+		}
 	}
 	else if (freezeDropTimer.elapsed() > freezeDropTime) {
 		increasePower(-dropSpeed[powerLevel - 1] * delta);
@@ -100,7 +103,6 @@ void TCompPowerGauge::increasePower(float increment) {
 		});
 	}
 	//EngineGUI.getVariables().getVariant("power_progress")->setFloat(getBarPercentage());
-	targetPower = power;
 }
 
 void TCompPowerGauge::setPower(float power) {
@@ -108,7 +110,7 @@ void TCompPowerGauge::setPower(float power) {
 }
 
 void TCompPowerGauge::increasePowerInTime(float power, float time) {
-	targetPower += power;
+	targetPower = clamp(this->power + power + clamp(targetPower - this->power, 0.f, maxPower), 0.f, maxPower);
 	powerIncreaseSpeed = (targetPower - this->power) / time;
 }
 
