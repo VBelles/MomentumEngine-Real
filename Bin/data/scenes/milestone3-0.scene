@@ -2,6 +2,89 @@
   {
     "entity":
     {
+      "name": "ms3_plataforma152",
+      "transform":
+      {
+        "pos": "-297.294 84.6601 -984.446",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plataforma152.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plataforma_collider152.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_aro_baja023",
+      "transform":
+      {
+        "pos": "-322.22 101.353 -991.368",
+        "rotation": "-0.0616284 0.704416 -0.704416 -0.0616284"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_aro_baja023.mesh",
+          "materials":
+          [
+            "data/materials/Material_#87.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_tumba093",
+      "transform":
+      {
+        "pos": "-424.88 65.7989 -707.084",
+        "rotation": "0.0 -0.894268 0.0 0.447531"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_tumba093.mesh",
+          "materials":
+          [
+            "data/materials/Material_#130.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_tumba3_collider053.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_plataforma139",
       "transform":
       {
@@ -5929,7 +6012,7 @@
       "name": "ms3_roca_024",
       "transform":
       {
-        "pos": "-430.069 40.7133 -663.408",
+        "pos": "-430.069 39.9083 -663.408",
         "rotation": "0.0 -1.0 0.0 0.0"
       },
       "render":
@@ -8793,7 +8876,7 @@
       "name": "ms3_terrain164",
       "transform":
       {
-        "pos": "-347.693 69.0694 -679.379",
+        "pos": "-347.693 66.4796 -679.379",
         "rotation": "0.0 0.5 0.0 -0.866025"
       },
       "render":
@@ -8906,7 +8989,7 @@
           "mesh": "data/meshes/plataforma_base1_low020.mesh",
           "materials":
           [
-            "data/materials/Material_#45.material"
+            "data/materials/Material_#197.material"
           ]
         }
       ],
@@ -8937,7 +9020,7 @@
           "mesh": "data/meshes/plataforma_base3_low003.mesh",
           "materials":
           [
-            "data/materials/Material_#47.material"
+            "data/materials/Material_#199.material"
           ]
         }
       ],
@@ -9021,7 +9104,7 @@
       "name": "balcon_rocoso2_baja005",
       "transform":
       {
-        "pos": "-450.831 96.9576 -736.94",
+        "pos": "-450.831 94.4559 -736.94",
         "rotation": "0.0 -0.953717 0.0 0.300706"
       },
       "render":
@@ -9393,7 +9476,7 @@
       "name": "plataforma_base1_low011",
       "transform":
       {
-        "pos": "-136.411 60.7799 -891.299",
+        "pos": "-136.411 59.0188 -891.299",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -9424,7 +9507,7 @@
       "name": "plataforma_base1_low010",
       "transform":
       {
-        "pos": "-128.912 64.2046 -884.281",
+        "pos": "-128.912 62.4435 -884.281",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -9455,7 +9538,7 @@
       "name": "plataforma_base1_low009",
       "transform":
       {
-        "pos": "-123.44 67.6727 -892.111",
+        "pos": "-123.44 64.8205 -892.111",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -9486,7 +9569,7 @@
       "name": "plataforma_base1_low008",
       "transform":
       {
-        "pos": "-116.37 70.5255 -884.704",
+        "pos": "-116.37 67.3292 -884.704",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -9517,7 +9600,7 @@
       "name": "plataforma_base1_low007",
       "transform":
       {
-        "pos": "-111.231 74.9827 -889.292",
+        "pos": "-111.231 70.2359 -889.292",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -9712,7 +9795,7 @@
           "mesh": "data/meshes/plataforma_base3_low001.mesh",
           "materials":
           [
-            "data/materials/Material_#47.material"
+            "data/materials/Material_#199.material"
           ]
         }
       ],
@@ -12446,7 +12529,7 @@
       "name": "ms3_estaca070",
       "transform":
       {
-        "pos": "-273.633 113.671 -619.386",
+        "pos": "-273.633 118.002 -619.386",
         "rotation": "0.0 0.365513 0.0 -0.930806"
       },
       "render":
@@ -12467,7 +12550,7 @@
       "name": "ms3_estaca069",
       "transform":
       {
-        "pos": "-273.516 102.907 -619.318",
+        "pos": "-273.516 107.238 -619.318",
         "rotation": "0.0 0.365513 0.0 -0.930806"
       },
       "render":
@@ -12488,7 +12571,7 @@
       "name": "ms3_estaca068",
       "transform":
       {
-        "pos": "-273.38 92.1434 -619.218",
+        "pos": "-273.38 96.4742 -619.218",
         "rotation": "0.0 0.365513 0.0 -0.930806"
       },
       "render":
@@ -12509,7 +12592,7 @@
       "name": "ms3_estaca067",
       "transform":
       {
-        "pos": "-273.334 81.3794 -619.087",
+        "pos": "-273.334 85.7102 -619.087",
         "rotation": "0.0 0.365513 0.0 -0.930806"
       },
       "render":
@@ -12530,7 +12613,7 @@
       "name": "ms3_estaca066",
       "transform":
       {
-        "pos": "-273.194 70.6154 -619.0",
+        "pos": "-273.194 74.9462 -619.0",
         "rotation": "0.0 0.365513 0.0 -0.930806"
       },
       "render":
@@ -12551,7 +12634,7 @@
       "name": "ms3_estaca065",
       "transform":
       {
-        "pos": "-273.052 59.8515 -618.906",
+        "pos": "-273.052 64.1823 -618.906",
         "rotation": "0.0 0.365513 0.0 -0.930806"
       },
       "render":
@@ -12572,7 +12655,7 @@
       "name": "ms3_estaca064",
       "transform":
       {
-        "pos": "-272.98 49.0875 -618.832",
+        "pos": "-272.98 53.4183 -618.832",
         "rotation": "0.0 0.365513 0.0 -0.930806"
       },
       "render":
@@ -21972,7 +22055,7 @@
       "name": "ms3_fireplace",
       "transform":
       {
-        "pos": "-411.45 53.9309 -648.207",
+        "pos": "-411.45 53.104 -648.207",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
