@@ -86,17 +86,18 @@ void FastAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 
-	TMsgAttackHit msgAtackHit = {};
-	msgAtackHit.attacker = playerEntity;
-	msgAtackHit.info = {};
+	TMsgAttackHit msgAttackHit = {};
+	msgAttackHit.attacker = playerEntity;
+	msgAttackHit.info = {};
 	VEC3 launchVelocity = getPlayerTransform()->getFront() * launchSpeed.x;
 	launchVelocity.y = launchSpeed.y;
-	msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+	msgAttackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
 		suspensionTime,
 		launchVelocity
 	};
-	msgAtackHit.info.givesPower = true;
-	msgAtackHit.info.damage = damage;
-	otherEntity->sendMsg(msgAtackHit);
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 0.4f };
+	msgAttackHit.info.givesPower = true;
+	msgAttackHit.info.damage = damage;
+	otherEntity->sendMsg(msgAttackHit);
 
 }

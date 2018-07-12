@@ -107,11 +107,12 @@ void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	VEC3 propelVelocity = { 0, -maxFallingVelocity, 0 };
-	TMsgAttackHit msgAtackHit = {};
-	msgAtackHit.attacker = playerEntity;
-	msgAtackHit.info = {};
-	msgAtackHit.info.givesPower = true;
-	msgAtackHit.info.damage = damage;
-	msgAtackHit.info.propel = new AttackInfo::Propel{ propelDuration, propelVelocity };
-	otherEntity->sendMsg(msgAtackHit);
+	TMsgAttackHit msgAttackHit = {};
+	msgAttackHit.attacker = playerEntity;
+	msgAttackHit.info = {};
+	msgAttackHit.info.givesPower = true;
+	msgAttackHit.info.damage = damage;
+	msgAttackHit.info.propel = new AttackInfo::Propel{ propelDuration, propelVelocity };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.7f };
+	otherEntity->sendMsg(msgAttackHit);
 }

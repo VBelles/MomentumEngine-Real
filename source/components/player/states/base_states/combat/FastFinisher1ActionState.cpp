@@ -121,6 +121,7 @@ void FastFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 		suspensionTime,
 		launchVelocity
 	};
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.2f };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);
