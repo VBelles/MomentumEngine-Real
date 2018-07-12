@@ -92,10 +92,12 @@ void TCompCollectableManager::onEntityCreated(const TMsgEntityCreated & msg) {
 void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	TCompCollectable* collectable = msg.collectableHandle;
 	CEntity* entity = msg.collectableHandle.getOwner();
+	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 	switch (msg.type) {
 	case Type::CHRYSALIS:
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
+		playerModel->setHp(playerModel->getMaxHp());
 		break;
 	case Type::COIN:
 		collectable->collect();

@@ -163,6 +163,7 @@ public:
 	void makeInvulnerable(float time);
 	void resetHp() { maxHp = PLAYER_MAX_HP; setHp(maxHp); }
 	float getHp() { return hp; }
+	float getMaxHp() { return maxHp; }
 	void setHp(float hp);
 	void setRespawnPosition(VEC3 position, float yaw = 0.f);
 	VEC3 getRespawnPosition() { return respawnPosition; }
