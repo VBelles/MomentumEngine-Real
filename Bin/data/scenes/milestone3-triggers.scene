@@ -2,17 +2,203 @@
   {
     "entity":
     {
-      "outOfBounds": {},
-      "name": "ms2_OutOfBounds",
+      "name": "respawn006",
       "transform":
       {
-        "pos": "0.0 -76.1544 0.0",
+        "pos": "-500.149 -4.23899e-05 -969.768",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn006.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-432.497 78.9296 -997.267",
+        "respawn_rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn005",
+      "transform":
+      {
+        "pos": "-319.333 -4.30492e-05 -984.852",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "shape": "box",
-        "halfExtent": "2500 30 2500",
+        "mesh_src": "data/meshes/respawn005.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-294.238 79.7424 -961.714",
+        "respawn_rotation": "0.0 0.216439 0.0 -0.976296"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn004",
+      "transform":
+      {
+        "pos": "-482.067 -3.22928e-05 -738.774",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn004.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-414.591 65.4941 -713.511",
+        "respawn_rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn003",
+      "transform":
+      {
+        "pos": "-667.79 -3.91893e-05 -896.546",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn003.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-601.551 78.2644 -895.216",
+        "respawn_rotation": "0.0 0.573577 0.0 -0.819152"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn002",
+      "transform":
+      {
+        "pos": "-306.091 8.87961 -579.049",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn002.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-311.261 45.9919 -608.065",
+        "respawn_rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn001",
+      "transform":
+      {
+        "pos": "-63.997 -3.71344e-05 -849.536",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn001.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-135.564 99.0095 -802.312",
+        "respawn_rotation": "0.0 -0.906308 0.0 -0.422618"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "outOfBounds": {},
+      "name": "outOfBounds",
+      "transform":
+      {
+        "pos": "-212.089 18.6654 -930.456",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/outOfBounds.col_mesh",
+        "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
