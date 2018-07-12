@@ -52,13 +52,13 @@ void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOw
 }
 
 void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
-	if (msg.h_other_entity != ownerHandle.getOwner()) {
+	if (msg.h_other_entity != ownerHandle) {
 		TCompCollider* collider = get<TCompCollider>();
 		collider->destroy();
 
 		AttackInfo msgAttackInfo = attackInfo;
 		CEntity *otherEntity = msg.h_other_entity;
-		otherEntity->sendMsg(TMsgAttackHit{ ownerHandle.getOwner(), msgAttackInfo });
+		otherEntity->sendMsg(TMsgAttackHit{ ownerHandle, msgAttackInfo });
 
 		hit = true;
 	}

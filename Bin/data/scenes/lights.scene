@@ -61,15 +61,5 @@
 				"offset" : "0 2 0"
 			}
 		}
-	},
-	{
-		"entity":
-		{
-			"name": "Fire001",
-			"prefab": "data/prefabs/fire.prefab",
-			"transform": {
-				"pos": "-5 8.0 -49"
-			}
-		}
 	}
 ]
