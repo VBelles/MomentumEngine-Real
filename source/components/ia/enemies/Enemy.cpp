@@ -5,6 +5,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
+#include "components/player/comp_player_model.h"
 
 Enemy::~Enemy() {
 }
@@ -129,6 +130,10 @@ CEntity* Enemy::getPlayer() {
 
 TCompTransform* Enemy::getPlayerTransform() {
 	return getPlayer()->get<TCompTransform>();
+}
+
+TCompPlayerModel* Enemy::getPlayerModel() {
+	return getPlayer()->get<TCompPlayerModel>();
 }
 
 TCompTransform* Enemy::getTransform() {

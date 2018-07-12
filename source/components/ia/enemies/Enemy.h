@@ -8,6 +8,7 @@ class TCompCollider;
 class TCompSkeleton;
 class TCompHitboxes;
 class TCompGivePower;
+class TCompPlayerModel;
 
 struct EnemyAttack {
 	AttackInfo attackInfo;
@@ -101,6 +102,7 @@ public:
 
 	CEntity* getPlayer();
 	TCompTransform* getPlayerTransform();
+	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
 	TCompSkeleton* getSkeleton();

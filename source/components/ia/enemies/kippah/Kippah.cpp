@@ -5,6 +5,7 @@
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_give_power.h"
 #include "modules/game_modules/game/module_game.h"
 #include "modules/game_modules/game/enemy_manager.h"
@@ -269,6 +270,7 @@ void Kippah::onOutOfBounds(const TMsgOutOfBounds& msg) {
 void Kippah::onPerfectDodged(const TMsgPerfectDodged & msg) {
 	if (!getCollider()->toDestroy) {
 		dbg("Damn! I've been dodged.\n");
+		getPlayerModel()->setHp(getPlayerModel()->getHp() + 1);
 	}
 }
 
