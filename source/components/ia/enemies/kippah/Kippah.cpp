@@ -53,6 +53,7 @@
 #include "components/ia/enemies/common/combat/medium_distance/MediumDistanceCombatCondition.h"
 #include "components/ia/enemies/common/combat/short_distance/ShortDistanceCombatCondition.h"
 #include "components/ia/enemies/kippah/ranged_attack/RangedAttackAction.h"
+#include "components/ia/enemies/common/combat/AttackCoolDownCondition.h"
 
 DECL_OBJ_MANAGER("kippah", Kippah);
 
@@ -107,6 +108,7 @@ void Kippah::initBehaviorTree() {
 	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(this, shortDistanceCombatCondition);
 	OnAttackAction* onRangedAttackAction = new OnAttackAction(this, "medusa_shot", "rangedAttack");
 	RangedAttackAction* rangedAttackAction = new RangedAttackAction(this, "medusa_shot", "rangedAttack", shortDistanceCombatCondition);
+	AttackCoolDownCondition* attackCoolDownCondition = new AttackCoolDownCondition(this);
 
 	//root
 	createRoot("kippah", Priority, nullptr, nullptr);
@@ -176,6 +178,12 @@ void Kippah::initBehaviorTree() {
 	addChild("shortDistanceCombat", "shortIdleWar", Sequence, nullptr, nullptr);
 	addChild("shortIdleWar", "onShortIdleWar", Action, nullptr, onIdleWarAction);
 	addChild("shortIdleWar", "shortIdleWarAction", Action, nullptr, idleWarActionFlying);
+	//attack cool down
+	addChild("combat", "attackCooldownCombat", Random, attackCoolDownCondition, nullptr);
+	//idle war
+	addChild("attackCooldownCombat", "CDIdleWar", Sequence, nullptr, nullptr);
+	addChild("CDIdleWar", "onCDIdleWar", Action, nullptr, onIdleWarAction);
+	addChild("CDIdleWar", "CDIdleWarAction", Action, nullptr, idleWarActionFlying);
 	//long distance combat
 	addChild("combat", "longDistanceCombat", Random, longDistanceCombatCondition, nullptr);
 	//ranged attack

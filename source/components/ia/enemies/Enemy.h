@@ -57,6 +57,8 @@ public:
 	float longCombatDistanceSqrd = 0.f;
 	float stepBackDistanceSqrd = 0.f;
 
+	float attackCoolDown = 0.f;
+
 	float blockTime = 0.f;
 
 	//<AttackInfo, hitboxName, hitboxStart, hitboxEnd>
@@ -79,6 +81,7 @@ public:
 	CTimer animationTimer;
 	CTimer stunTimer;
 	CTimer blockTimer;
+	CTimer attackTimer;
 
 	//Handles
 	CHandle playerHandle;

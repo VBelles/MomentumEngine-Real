@@ -19,6 +19,7 @@ int RangedAttackAction::execAction(float delta) {
 	if ((cancelCondition && cancelCondition->testCondition(delta))
 		|| enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
 		attackLaunched = false;
+		enemy->attackTimer.reset();
 		return Leave;
 	}
 	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {

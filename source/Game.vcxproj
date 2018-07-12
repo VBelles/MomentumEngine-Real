@@ -128,6 +128,7 @@
     <ClCompile Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\AttackCoolDownCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\attack\AttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\attack\AttackActionFlying.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\attack\OnAttackAction.cpp" />
@@ -460,6 +461,7 @@
     <ClInclude Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\AttackCoolDownCondition.h" />
     <ClInclude Include="components\ia\enemies\common\combat\attack\AttackAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\attack\AttackActionFlying.h" />
     <ClInclude Include="components\ia\enemies\common\combat\attack\OnAttackAction.h" />

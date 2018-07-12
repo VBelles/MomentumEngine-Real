@@ -22,6 +22,7 @@ int TackleAttackAction::execAction(float delta) {
 		|| !(enemy->navMeshQuery && enemy->navMeshQuery->existsConnection(enemyPos, enemyPos + movementIncrement))) {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
 		enemy->currentAttack = "";
+		enemy->attackTimer.reset();
 		return Leave;
 	}
 	else {

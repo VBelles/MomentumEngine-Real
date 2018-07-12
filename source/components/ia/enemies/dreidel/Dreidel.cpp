@@ -70,6 +70,7 @@
 #include "components/ia/enemies/common/combat/block/BlockAction.h"
 #include "components/ia/enemies/common/combat/block/OnBlockAction.h"
 #include "components/ia/enemies/common/combat/block/BlockCondition.h"
+#include "components/ia/enemies/common/combat/AttackCoolDownCondition.h"
 
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
@@ -142,6 +143,7 @@ void Dreidel::initBehaviorTree() {
 	BlockAction* blockAction = new BlockAction(this);
 	OnBlockAction* onBlockAction = new OnBlockAction(this, "enemigo_bola_guardia", "enemigo_bola_guardia_loop");
 	BlockCondition* blockCondition = new BlockCondition(this);
+	AttackCoolDownCondition* attackCoolDownCondition = new AttackCoolDownCondition(this);
 
 	//root
 	createRoot("dreidel", Priority, nullptr, nullptr);
@@ -209,6 +211,12 @@ void Dreidel::initBehaviorTree() {
 
 	//combat
 	addChild("dreidel", "combat", Priority, combatCondition, nullptr);
+	//attack cool down
+	addChild("combat", "attackCooldownCombat", Random, attackCoolDownCondition, nullptr);
+	//idle war
+	addChild("attackCooldownCombat", "CDIdleWar", Sequence, nullptr, nullptr);
+	addChild("CDIdleWar", "onCDIdleWar", Action, nullptr, onIdleWarAction);
+	addChild("CDIdleWar", "CDIdleWarAction", Action, nullptr, idleWarAction);
 	//short distance combat
 	addChild("combat", "shortDistanceCombat", Random, shortDistanceCombatCondition, nullptr);
 	//idle war
