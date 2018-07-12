@@ -191,9 +191,6 @@ bool AirborneActionState::hugWall(const HitState& hitState) {
 			}
 		}
 	}
-	else {
-		dbg("can't hug wall yet\n");
-	}
 	return false;
 }
 

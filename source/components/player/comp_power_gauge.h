@@ -9,7 +9,7 @@ private:
 	float powerPerLevel[NUMBER_OF_POWER_LEVELS];
 	float dropSpeed[NUMBER_OF_POWER_LEVELS];
 	bool isPure = true;
-	float freezeDropTime = 1.f;
+	float freezeDropTime = 1.8f;
 	CTimer freezeDropTimer;
 
 	float targetPower;
