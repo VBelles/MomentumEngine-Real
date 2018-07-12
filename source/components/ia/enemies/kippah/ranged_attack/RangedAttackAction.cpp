@@ -42,7 +42,7 @@ int RangedAttackAction::execAction(float delta) {
 				attackDirection += enemy->attackTargetOffset;
 				attackDirection.Normalize();
 
-				TMsgAssignRangedAttackOwner msg{ CHandle(enemy), attackInfo, attackInitialPos, attackDirection };
+				TMsgAssignRangedAttackOwner msg{ CHandle(enemy).getOwner(), attackInfo, attackInitialPos, attackDirection };
 
 				CEntity *attackEntity = ctx.entities_loaded[0];
 				attackEntity->sendMsg(msg);
