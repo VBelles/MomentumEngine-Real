@@ -123,16 +123,17 @@ void StrongFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entit
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-	TMsgAttackHit msgAtackHit = {};
-	msgAtackHit.attacker = playerEntity;
-	msgAtackHit.info = {};
+	TMsgAttackHit msgAttackHit = {};
+	msgAttackHit.attacker = playerEntity;
+	msgAttackHit.info = {};
 	VEC3 launchVelocity = getPlayerTransform()->getFront() * getPlayerModel()->getPowerStats()->longJumpVelocityVector.z;
 	launchVelocity.y = getPlayerModel()->getPowerStats()->longJumpVelocityVector.y;
-	msgAtackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
+	msgAttackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
 		suspensionTime,
 		launchVelocity
 	};
-	msgAtackHit.info.givesPower = true;
-	msgAtackHit.info.damage = damage;
-	otherEntity->sendMsg(msgAtackHit);
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.2f };
+	msgAttackHit.info.givesPower = true;
+	msgAttackHit.info.damage = damage;
+	otherEntity->sendMsg(msgAttackHit);
 }

@@ -139,17 +139,18 @@ void StrongAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-	TMsgAttackHit msgAtackHit = {};
-	msgAtackHit.attacker = playerEntity;
-	msgAtackHit.info = {};
+	TMsgAttackHit msgAttackHit = {};
+	msgAttackHit.attacker = playerEntity;
+	msgAttackHit.info = {};
 	VEC3 launchVelocity = getPlayerTransform()->getFront() * launchSpeed.x;
 	launchVelocity.y = launchSpeed.y;
-	msgAtackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
+	msgAttackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
 		suspensionTime,
 		launchVelocity
 	};
-	msgAtackHit.info.givesPower = true;
-	msgAtackHit.info.damage = damage;
-	otherEntity->sendMsg(msgAtackHit);
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.2f };
+	msgAttackHit.info.givesPower = true;
+	msgAttackHit.info.damage = damage;
+	otherEntity->sendMsg(msgAttackHit);
 
 }

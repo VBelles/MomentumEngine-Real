@@ -97,12 +97,13 @@ void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entit
 	CHandle playerEntity = CHandle(stateManager->getEntity());
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
-	TMsgAttackHit msgAtackHit = {};
-	msgAtackHit.attacker = playerEntity;
-	msgAtackHit.info = {};
-	msgAtackHit.info.damage = damage;
-	msgAtackHit.info.givesPower = true;
-	msgAtackHit.info.propel = new AttackInfo::Propel{ propelDuration, *velocityVector };
-	otherEntity->sendMsg(msgAtackHit);
+	TMsgAttackHit msgAttackHit = {};
+	msgAttackHit.attacker = playerEntity;
+	msgAttackHit.info = {};
+	msgAttackHit.info.damage = damage;
+	msgAttackHit.info.givesPower = true;
+	msgAttackHit.info.propel = new AttackInfo::Propel{ propelDuration, *velocityVector };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.7f };
+	otherEntity->sendMsg(msgAttackHit);
 
 }
