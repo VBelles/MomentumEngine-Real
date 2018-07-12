@@ -2,6 +2,18 @@
   {
     "entity":
     {
+      "name": "fire001",
+      "transform":
+      {
+        "pos": "-411.6 56.34 -648.18",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "prefab": "data/prefabs/fire.prefab"
+    }
+  },
+  {
+    "entity":
+    {
       "name": "plataforma_base1_low039",
       "transform":
       {

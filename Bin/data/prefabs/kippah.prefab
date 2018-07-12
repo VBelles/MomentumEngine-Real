@@ -36,6 +36,7 @@
         "attack_fov": 180,
         "short_combat_distance": 1.5,
         "long_combat_distance": 30,
+        "attack_cool_down": 0.5,
         "attacks": [
           {
             "name": "spinAttack",

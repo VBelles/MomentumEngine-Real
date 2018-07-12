@@ -16,6 +16,7 @@ int AttackAction::execAction(float delta) {
 	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
 		enemy->currentAttack = "";
+		enemy->attackTimer.reset();
 		return Leave;
 	}
 	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {
