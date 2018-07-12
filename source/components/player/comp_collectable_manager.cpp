@@ -72,7 +72,7 @@ bool TCompCollectableManager::spendCoins(int number) {
 			);
 			EngineUniques.setCoinTaken(uniqueObjectsCollected[Type::COIN][i], false);
 		}
-		uniqueObjectsCollected[Type::COIN].erase(uniqueObjectsCollected[Type::COIN].begin(), uniqueObjectsCollected[Type::COIN].begin() + nUniquesToErase - 1);
+		uniqueObjectsCollected[Type::COIN].erase(uniqueObjectsCollected[Type::COIN].begin(), uniqueObjectsCollected[Type::COIN].begin() + nUniquesToErase);
 	}
 
 	return true;
