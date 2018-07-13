@@ -304,7 +304,7 @@ struct TMaterialExporter (
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 struct TSceneExporter (
-	fs = TJsonFormatter(),
+	fs  = TJsonFormatter(),
 	fss = TJsonFormatter(), --We need another stream for sub-files.
 	attrManager = TAttributeManager(),
 	project_path = "",
@@ -1062,7 +1062,7 @@ struct TSceneExporter (
 	fn exportEntityCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		
-		if isUnique obj then append uniqueCoins obj.name
+		/*if isUnique obj then*/ append uniqueCoins obj.name
 
 		fs.beginObj()
 			fs.writeKey "entity"
@@ -1165,7 +1165,7 @@ struct TSceneExporter (
 	fn exportEntityEnemy obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		
-		if isUnique obj then append uniqueEnemies obj.name
+		/*if isUnique obj then*/ append uniqueEnemies obj.name
 
 		fs.beginObj()
 			fs.writeKey "entity"
@@ -1825,8 +1825,6 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 TODO: Mirar si hay algún motivo para seguir poniendo las splines como hijas del
 	  collider de los objetos en lugar del objeto padre. Si no lo hay, mover
 	  todas al parent.
-
-TODO: hacer que los enemigos y monedas sean unique por defecto.
 
 NOTA: Si se actualiza un material que ya existía, hay que copiarlo a mano porque
 	  se evita exportarlo si ya existe. 
