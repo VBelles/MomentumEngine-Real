@@ -37,6 +37,10 @@ void PitFallingActionState::update(float delta) {
 			finish = true;
 		}
 	}
+	else {
+		deltaMovement = VEC3::Zero;
+		deltaMovement.y = velocityVector->y * delta;
+	}
 }
 
 void PitFallingActionState::onStateEnter(IActionState* lastState) {
