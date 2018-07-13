@@ -22,6 +22,8 @@ private:
 public:
 	DECL_SIBLING_ACCESS();
 
+	int maxHpToGive = 1;
+	int hpGiven = 0;
 	VEC3 attackSpawnOffset = VEC3(0, 3, 0);
 	VEC3 attackTargetOffset = VEC3(0, 0.76f, 0);
 	std::string attackPrefab = "data/prefabs/rangedAttack.prefab";

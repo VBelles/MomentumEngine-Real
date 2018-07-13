@@ -10,7 +10,7 @@ private:
 	float regularRecoveryTime = recoveryTime;
 	float staleRecoveryTime = frames2sec(70);
 	CTimer invencibilityTimer;
-	float invencibilityTime = frames2sec(5);
+	float invencibilityTime = frames2sec(9);
 	float takeActionTime = frames2sec(3);
 	float dodgeSpeed = 22.f;
 	

@@ -348,8 +348,11 @@ void Dreidel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 
 void Dreidel::onPerfectDodged(const TMsgPerfectDodged & msg) {
 	if (!getCollider()->toDestroy) {
-		getPlayerModel()->setHp(getPlayerModel()->getHp() + 1);
 		dbg("Damn! I've been dodged.\n");
+		if (hpGiven < maxHpToGive) {
+			getPlayerModel()->setHp(getPlayerModel()->getHp() + 1);
+			hpGiven++;
+		}
 	}
 }
 

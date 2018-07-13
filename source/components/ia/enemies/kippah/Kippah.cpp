@@ -270,7 +270,10 @@ void Kippah::onOutOfBounds(const TMsgOutOfBounds& msg) {
 void Kippah::onPerfectDodged(const TMsgPerfectDodged & msg) {
 	if (!getCollider()->toDestroy) {
 		dbg("Damn! I've been dodged.\n");
-		getPlayerModel()->setHp(getPlayerModel()->getHp() + 1);
+		if (hpGiven < maxHpToGive) {
+			getPlayerModel()->setHp(getPlayerModel()->getHp() + 1);
+			hpGiven++;
+		}
 	}
 }
 
