@@ -2,6 +2,33 @@
   {
     "entity":
     {
+      "outOfBounds": {},
+      "name": "outOfBoundsTuto001",
+      "transform":
+      {
+        "pos": "-383.872 83.2139 -300.362",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/outOfBoundsTuto001.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "characters"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "respawn_tuto_01",
       "transform":
       {

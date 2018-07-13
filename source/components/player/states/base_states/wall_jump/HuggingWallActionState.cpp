@@ -137,10 +137,8 @@ bool HuggingWallActionState::CheckIfHuggingWall(VEC3 wallDirection) {
 	float yaw, pitch;
 	getYawPitchFromVector(toVec3(wallNormal), &yaw, &pitch);
 	if (pitch > huggingWallMinPitch) {
-		dbg("pitch: %f\n", pitch);
 		return false;
 	}
-
 
 	//if (nearest.actor == hit.actor) {
 	//	//dbg("same actor\n");
