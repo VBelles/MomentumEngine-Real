@@ -1862,8 +1862,6 @@ Las luces			     deben estar en una layer llamada "lights".
 Los triggers		     deben estar en una layer llamada "triggers".
 Los colliders invisibles deben estar en una layer llamada "collisions".
 
-Las monedas únicas tienen que contener "unique" en el nombre.
-
 El objeto low-res del LOD debe ser padre de un dummy que contiene los objetos a los que sustituye cuando está activo.
 
 Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
