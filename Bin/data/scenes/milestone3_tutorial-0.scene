@@ -2,6 +2,130 @@
   {
     "entity":
     {
+      "name": "plat_tutorial_015",
+      "transform":
+      {
+        "pos": "-366.065 99.7882 -355.941",
+        "rotation": "-0.00839855 -0.469504 0.00171664 -0.882889"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plat_tutorial_015.mesh",
+          "materials":
+          [
+            "data/materials/Material_#133.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plat_tutorial_col_015.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plat_tutorial_014",
+      "transform":
+      {
+        "pos": "-367.379 96.9924 -330.704",
+        "rotation": "0.0334678 -0.267034 0.0115171 -0.963037"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plat_tutorial_014.mesh",
+          "materials":
+          [
+            "data/materials/Material_#133.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plat_tutorial_col_014.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plat_tutorial_013",
+      "transform":
+      {
+        "pos": "-373.959 97.0046 -342.801",
+        "rotation": "-0.00753709 0.207849 -0.00408349 -0.978123"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plat_tutorial_013.mesh",
+          "materials":
+          [
+            "data/materials/Material_#133.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plat_tutorial_col_013.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plat_tutorial_009",
+      "transform":
+      {
+        "pos": "-373.333 95.9141 -324.246",
+        "rotation": "-0.0593057 -0.796046 -0.0645203 -0.598858"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plat_tutorial_009.mesh",
+          "materials":
+          [
+            "data/materials/Material_#133.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plat_tutorial_col_009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "plat_tutorial_008",
       "transform":
       {

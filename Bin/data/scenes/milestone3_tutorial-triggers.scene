@@ -2,6 +2,68 @@
   {
     "entity":
     {
+      "name": "respawn_tuto_003",
+      "transform":
+      {
+        "pos": "-373.2 95.5564 -324.616",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn_tuto_003.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-372.992 96.7835 -324.124",
+        "respawn_rotation": "0.0 -0.991445 0.0 0.130526"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "respawn_tuto_002",
+      "transform":
+      {
+        "pos": "-393.234 108.761 -292.103",
+        "rotation": "0.0 0.0436194 0.0 -0.999048"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn_tuto_002.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+           "trigger"
+        ],
+        "mask":
+        [
+           "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-391.861 109.988 -291.08",
+        "respawn_rotation": "0.0 -0.999048 0.0 -0.0436193"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "outOfBounds": {},
       "name": "outOfBoundsTuto001",
       "transform":
@@ -249,7 +311,7 @@
       "name": "respawn002",
       "transform":
       {
-        "pos": "-306.091 8.87961 -579.049",
+        "pos": "-292.999 8.87961 -639.525",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -269,7 +331,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-313.047 41.4124 -603.34",
+        "respawn_position": "-299.955 41.4124 -663.816",
         "respawn_rotation": "0.0 -1.0 0.0 0.0"
       }
     }

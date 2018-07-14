@@ -8,11 +8,12 @@
     "data/scenes/milestone3_tutorial-0.scene",
     "data/scenes/milestone3_tutorial-coins.scene",
     "data/scenes/milestone3_tutorial-triggers.scene",
+    "data/scenes/milestone3_tutorial-pure.scene",
+    "data/scenes/milestone3_tutorial-enemies.scene",
     
     "data/scenes/slash-test.scene"
   ],
   "unused_scenes": [
-    "data/scenes/milestone3_tutorial-pure.scene",
     "data/scenes/milestone3_tutorial-trimesh.scene",
     "data/scenes/milestone3_tutorial-chrysalis.scene",
     "data/scenes/milestone3-0.scene",

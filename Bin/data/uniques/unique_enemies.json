@@ -2,6 +2,13 @@
   "unique_enemies":
   [
     {
+      "id": "ms3_enemyAir022unique001",
+      "done": false,
+      "position": "-370.171 100.726 -349.176",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
       "id": "ms3_enemyMelee033unique001",
       "done": false,
       "position": "-305.15 75.0391 -974.14",
