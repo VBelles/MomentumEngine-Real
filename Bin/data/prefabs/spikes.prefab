@@ -3,29 +3,12 @@
 		"entity": {
 			"name": "spikes",
 			"transform": {},
-			"collider":{
-				"shape": "box",
-				"halfExtent": "1.5 0.5 1.5",
-				"is_trigger" : true,
-				"group": ["trigger"],
-				"mask": ["player"]
-			},
-			"render" : {
-				"mesh": "data/meshes/spikes.mesh",
-				"materials":
-				[
-					"data/materials/spikes.material",
-					"data/materials/spikes.material",
-					"data/materials/spikes.material",
-					"data/materials/spikes.material",
-					"data/materials/spikes.material",
-					"data/materials/spikes.material"
-				]
-			},
-			"spikes" : {
-				"damage" : 4.0
+			"spikes": {
+				"damage": 1.0,
+				"invulnerability_time": 1.5,
+				"hit_again_time": 0.1,
+				"stun_time": 0.5
 			}
-
 		}
 	}
 ]

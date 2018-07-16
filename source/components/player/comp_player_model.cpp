@@ -419,7 +419,7 @@ void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 		//lo que diferencia hard de soft es el stun
 	}
 	else {
-		dbg("hit but invulnerable\n");
+		//dbg("hit but invulnerable\n");
 	}
 }
 

@@ -8,15 +8,40 @@ DECL_OBJ_MANAGER("spikes", TCompSpikes);
 
 void TCompSpikes::registerMsgs() {
 	DECL_MSG(TCompSpikes, TMsgTriggerEnter, onTriggerEnter);
+	DECL_MSG(TCompSpikes, TMsgTriggerExit, onTriggerExit);
+}
+
+void TCompSpikes::update(float delta) {
+	if (timer.elapsed() >= hitAgainTime) {
+		timer.reset();
+		AttackInfo atackInfo;
+		atackInfo.damage = damage;
+		atackInfo.invulnerabilityTime = invulnerabilityTime;
+		atackInfo.stun = new AttackInfo::Stun{ stunTime };
+		for (auto& handle : handles) {
+			CEntity* entity = handle;
+			entity->sendMsg(TMsgAttackHit{ CHandle(this), atackInfo });
+		}
+	}
 }
 
 void TCompSpikes::load(const json& j, TEntityParseContext& ctx) {
 	damage = j.value("damage", 0.f);
+	invulnerabilityTime = j.value("invulnerability_time", 0.f);
+	hitAgainTime = j.value("hit_again_time", 0.f);
+	stunTime = j.value("stun_time", 0.f);
 }
 
 void TCompSpikes::onTriggerEnter(const TMsgTriggerEnter& msg) {
 	CEntity* entity = msg.h_other_entity;
 	AttackInfo atackInfo;
 	atackInfo.damage = damage;
+	atackInfo.invulnerabilityTime = invulnerabilityTime;
+	atackInfo.stun = new AttackInfo::Stun{ stunTime };
 	entity->sendMsg(TMsgAttackHit{ CHandle(this), atackInfo });
+	handles.insert(msg.h_other_entity);
+}
+
+void TCompSpikes::onTriggerExit(const TMsgTriggerExit & msg) {
+	handles.erase(msg.h_other_entity);
 }
