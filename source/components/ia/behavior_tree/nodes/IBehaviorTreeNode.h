@@ -30,4 +30,6 @@ public:
 
 	virtual void recalc(IBehaviorTree *behaviorTree, float delta = 0.f) {}
 	virtual void recalc(IBehaviorTreeNew *behaviorTree, float delta = 0.f) {}
+
+	virtual void debugInMenu();
 };

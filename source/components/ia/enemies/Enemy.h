@@ -93,7 +93,7 @@ public:
 	CHandle powerHandle;
 
 	void load(const json& j, TEntityParseContext & ctx);
-	void debugInMenu();
+	void debugInMenu() override;
 	void updateGravity(float delta);
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 	void move(float delta);

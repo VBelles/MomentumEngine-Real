@@ -61,6 +61,7 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void Enemy::debugInMenu() {
+	IBehaviorTreeNew::debugInMenu();
 	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
 	ImGui::Text("Hp: %f\n", hp);
 	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
