@@ -3,7 +3,7 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/vegetacion/espigas2_2.dds",
-    "normal": "data/textures/vegetacion/espigas2_normals.dds"
+    "albedo": "data/textures/vegetacion/grass_large_02.dds",
+    "normal": "data/textures/vegetacion/grass_large_normals.dds"
   }
 }
