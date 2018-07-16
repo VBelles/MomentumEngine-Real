@@ -18,12 +18,12 @@
 				"mesh": "data/meshes/spikes.mesh",
 				"materials":
 				[
-					"data/materials/spikes.material",
-					"data/materials/spikes.material",
-					"data/materials/spikes.material",
-					"data/materials/spikes.material",
-					"data/materials/spikes.material",
-					"data/materials/spikes.material"
+					"data/materials/ambar.material",
+					"data/materials/ambar.material",
+					"data/materials/ambar.material",
+					"data/materials/ambar.material",
+					"data/materials/ambar.material",
+					"data/materials/ambar.material"
 				]
 			},
 			"spikes" : {
