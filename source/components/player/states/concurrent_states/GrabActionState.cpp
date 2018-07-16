@@ -45,6 +45,7 @@ void GrabActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockTurning = false;
+	getSkeleton()->removeAction(animation, 0.02f);
 }
 
 void GrabActionState::onLanding() {

@@ -72,6 +72,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	FaceWall();
 	if (CheckIfHuggingWall(wallDirection)) {
+		stateManager->changeConcurrentState(Free);
 		getPlayerModel()->lastWallNormal = wallNormal;
 		*velocityVector = VEC3::Zero;
 		isClimbing = true;

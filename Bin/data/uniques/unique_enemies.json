@@ -2,18 +2,18 @@
   "unique_enemies":
   [
     {
-      "id": "ms3_enemyMelee036unique001",
+      "id": "tutorialEnemyAir",
       "done": false,
-      "position": "-357.917 105.349 -375.512",
-      "level": "level00",
-      "type": "dreidel"
-    },
-    {
-      "id": "ms3_enemyAir022unique001",
-      "done": false,
-      "position": "-370.171 100.726 -349.176",
+      "position": "-370.171 100.726 -356.051",
       "level": "level00",
       "type": "kippah"
+    },
+    {
+      "id": "tutorialEnemyMelee",
+      "done": false,
+      "position": "-357.917 105.349 -382.387",
+      "level": "level00",
+      "type": "dreidel"
     },
     {
       "id": "ms3_enemyMelee033unique001",
