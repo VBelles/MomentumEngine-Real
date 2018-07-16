@@ -13,4 +13,6 @@ public:
 	void recalc(IBehaviorTreeNew *behaviorTree, float delta = 0.f) override;
 	void addChild(IBehaviorTreeNode *child) override;
 	void setProbability(std::vector<float> probabilities);
+
+	virtual void debugInMenu();
 };

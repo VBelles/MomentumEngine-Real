@@ -43,3 +43,14 @@ void CBehaviorTreeNodeRandom::recalc(IBehaviorTreeNew *behaviorTree, float delta
 	}
 	children[i]->recalc(behaviorTree, delta);
 }
+
+void CBehaviorTreeNodeRandom::debugInMenu() {
+	if (ImGui::TreeNode(getName().c_str())) {
+		ImGui::Text("Type: Random");
+		for (int i = 0; i < children.size(); i++) {
+			ImGui::Text("Probability: %f", probability[i]);
+			children[i]->debugInMenu();
+		}
+		ImGui::TreePop();
+	}
+}

@@ -141,3 +141,10 @@ void IBehaviorTreeNew::recalc(float delta) {
 		current->recalc(this, delta);
 	}
 }
+
+void IBehaviorTreeNew::debugInMenu() {
+	if (ImGui::TreeNode("Behavior tree")) {
+		root->debugInMenu();
+		ImGui::TreePop();
+	}
+}

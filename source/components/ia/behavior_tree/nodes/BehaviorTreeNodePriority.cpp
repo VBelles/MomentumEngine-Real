@@ -24,3 +24,13 @@ void CBehaviorTreeNodePriority::recalc(IBehaviorTreeNew *behaviorTree, float del
 		}
 	}
 }
+
+void CBehaviorTreeNodePriority::debugInMenu() {
+	if (ImGui::TreeNode(getName().c_str())) {
+		ImGui::Text("Type: Priority");
+		for (auto& node : children) {
+			node->debugInMenu();
+		}
+		ImGui::TreePop();
+	}
+}

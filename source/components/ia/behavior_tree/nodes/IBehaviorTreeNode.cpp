@@ -38,3 +38,12 @@ void IBehaviorTreeNode::addChild(IBehaviorTreeNode *child) {
 	children.push_back(child); // in any case, insert it
 	child->right = nullptr; // as we're adding from the right make sure right points to NULL
 }
+
+void IBehaviorTreeNode::debugInMenu() {
+	if (ImGui::TreeNode(getName().c_str())) {
+		for (auto& node : children) {
+			node->debugInMenu();
+		}
+		ImGui::TreePop();
+	}
+}

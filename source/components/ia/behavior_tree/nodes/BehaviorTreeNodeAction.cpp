@@ -51,3 +51,13 @@ void CBehaviorTreeNodeAction::recalc(IBehaviorTreeNew *behaviorTree, float delta
 		if (candidate->getParent() == nullptr) behaviorTree->setCurrent(nullptr);
 	}
 }
+
+void CBehaviorTreeNodeAction::debugInMenu() {
+	if (ImGui::TreeNode(getName().c_str())) {
+		ImGui::Text("Type: Action");
+		for (auto& node : children) {
+			node->debugInMenu();
+		}
+		ImGui::TreePop();
+	}
+}
