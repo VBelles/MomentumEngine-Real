@@ -2,89 +2,7 @@
   {
     "entity":
     {
-      "name": "plat_tutorial_010",
-      "transform":
-      {
-        "pos": "-394.129 111.198 -307.362",
-        "rotation": "-0.0518871 -0.0522532 -0.004277 -0.997276"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/plat_tutorial_010.mesh",
-          "materials":
-          [
-            "data/materials/Material_#133_pureON.material"
-          ],
-          "enabled": false
-        },
-        {
-          "mesh": "data/meshes/plat_tutorial_010.mesh",
-          "materials":
-          [
-            "data/materials/Material_#133_pure.material"
-          ],
-          "enabled": false
-        }
-      ],
-      "purity": {},
-      "collider":
-      {
-        "mesh_src": "data/meshes/plat_tutorial_010.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-           "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "plat_tutorial_011",
-      "transform":
-      {
-        "pos": "-387.639 112.413 -314.796",
-        "rotation": "0.0789076 0.203573 -0.0445131 -0.974859"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/plat_tutorial_011.mesh",
-          "materials":
-          [
-            "data/materials/Material_#133_pureON.material"
-          ],
-          "enabled": false
-        },
-        {
-          "mesh": "data/meshes/plat_tutorial_011.mesh",
-          "materials":
-          [
-            "data/materials/Material_#133_pure.material"
-          ],
-          "enabled": false
-        }
-      ],
-      "purity": {},
-      "collider":
-      {
-        "mesh_src": "data/meshes/plat_tutorial_011.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-           "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "plat_tutorial_012",
+      "name": "ms3_plat_tutorial_012",
       "transform":
       {
         "pos": "-383.776 107.076 -322.415",
@@ -93,7 +11,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/plat_tutorial_012.mesh",
+          "mesh": "data/meshes/ms3_plat_tutorial_012.mesh",
           "materials":
           [
             "data/materials/Material_#133_pureON.material"
@@ -101,7 +19,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/plat_tutorial_012.mesh",
+          "mesh": "data/meshes/ms3_plat_tutorial_012.mesh",
           "materials":
           [
             "data/materials/Material_#133_pure.material"
@@ -112,7 +30,89 @@
       "purity": {},
       "collider":
       {
-        "mesh_src": "data/meshes/plat_tutorial_012.col_mesh",
+        "mesh_src": "data/meshes/ms3_plat_tutorial_012.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plat_tutorial_011",
+      "transform":
+      {
+        "pos": "-387.639 112.413 -314.796",
+        "rotation": "0.0789076 0.203573 -0.0445131 -0.974859"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plat_tutorial_011.mesh",
+          "materials":
+          [
+            "data/materials/Material_#133_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_plat_tutorial_011.mesh",
+          "materials":
+          [
+            "data/materials/Material_#133_pure.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plat_tutorial_011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+           "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_plat_tutorial_010",
+      "transform":
+      {
+        "pos": "-394.129 111.198 -307.362",
+        "rotation": "-0.0518871 -0.0522532 -0.004277 -0.997276"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_plat_tutorial_010.mesh",
+          "materials":
+          [
+            "data/materials/Material_#133_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/ms3_plat_tutorial_010.mesh",
+          "materials":
+          [
+            "data/materials/Material_#133_pure.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_plat_tutorial_010.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
