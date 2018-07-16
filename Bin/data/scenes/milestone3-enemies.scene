@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "tutorialEnemyAir",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-370.171 100.726 -356.051",
-        "lookat": "-1.0 100.726 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "tutorialEnemyMelee",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
@@ -26,7 +14,19 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee033unique001",
+      "name": "tutorialEnemyAir",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-370.171 100.726 -356.051",
+        "lookat": "-1.0 100.726 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_melee30",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -38,7 +38,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir055unique",
+      "name": "ms3_Air43",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -50,7 +50,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir054unique",
+      "name": "ms3_Air42",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -62,7 +62,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee047unique",
+      "name": "ms3_melee44",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -74,7 +74,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee046unique",
+      "name": "ms3_melee43",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -86,7 +86,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee045unique",
+      "name": "ms3_melee42",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -98,7 +98,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee044unique",
+      "name": "ms3_melee41",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -110,7 +110,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee043unique",
+      "name": "ms3_melee40",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -122,7 +122,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee042unique",
+      "name": "ms3_melee39",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -134,7 +134,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee041unique",
+      "name": "ms3_melee38",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -146,7 +146,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir053unique",
+      "name": "ms3_Air41",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -158,7 +158,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir052unique",
+      "name": "ms3_Air40",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -170,7 +170,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee040unique",
+      "name": "ms3_melee74",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -182,7 +182,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee040unique",
+      "name": "ms3_melee37",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -194,7 +194,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee039unique",
+      "name": "ms3_melee36",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -206,7 +206,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee038unique",
+      "name": "ms3_melee35",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -218,7 +218,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee037unique",
+      "name": "ms3_melee34",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -230,7 +230,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee036unique",
+      "name": "ms3_melee33",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -242,7 +242,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee035unique",
+      "name": "ms3_melee32",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -254,7 +254,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee039unique",
+      "name": "ms3_melee73",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -266,7 +266,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir051unique",
+      "name": "ms3_Air39",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -278,7 +278,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee038unique",
+      "name": "ms3_melee72",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -290,7 +290,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir050unique",
+      "name": "ms3_Air38",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -302,7 +302,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir049unique",
+      "name": "ms3_Air37",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -314,7 +314,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir048unique",
+      "name": "ms3_Air36",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -326,7 +326,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir047unique",
+      "name": "ms3_Air35",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -338,7 +338,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir046unique",
+      "name": "ms3_Air34",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -350,7 +350,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir045unique",
+      "name": "ms3_Air33",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -362,7 +362,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir044unique",
+      "name": "ms3_Air32",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -374,7 +374,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir043unique",
+      "name": "ms3_Air31",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -386,7 +386,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee034unique",
+      "name": "ms3_melee31",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -398,7 +398,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee033unique",
+      "name": "ms3_melee29",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -410,7 +410,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee032unique",
+      "name": "ms3_melee28",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -422,7 +422,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee031unique",
+      "name": "ms3_melee27",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -434,7 +434,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee030unique",
+      "name": "ms3_melee26",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -446,7 +446,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee036unique",
+      "name": "ms3_melee71",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -458,7 +458,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee035unique",
+      "name": "ms3_melee70",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -470,7 +470,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee029unique",
+      "name": "ms3_melee25",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -482,7 +482,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee028unique",
+      "name": "ms3_melee24",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -494,7 +494,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir039unique",
+      "name": "ms3_Air30",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -506,7 +506,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee027unique",
+      "name": "ms3_melee23",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -518,7 +518,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee025unique",
+      "name": "ms3_melee22",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -530,19 +530,19 @@
   {
     "entity":
     {
-      "name": "ms3_Melee034unique",
+      "name": "ms3_melee69",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "-42.6605 234.726 -1245.5",
-        "lookat": "-1.0 234.726 -1.0"
+        "pos": "-42.6605 243.653 -1245.5",
+        "lookat": "-1.0 243.653 -1.0"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms3_Melee033unique",
+      "name": "ms3_melee68",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -554,19 +554,19 @@
   {
     "entity":
     {
-      "name": "ms3_Melee032unique",
+      "name": "ms3_melee67",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "-42.3656 234.726 -1276.11",
-        "lookat": "-1.0 234.726 -1.0"
+        "pos": "-42.3656 238.823 -1276.11",
+        "lookat": "-1.0 238.823 -1.0"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms3_enemyMelee024unique",
+      "name": "ms3_melee21",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -578,7 +578,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee031unique",
+      "name": "ms3_melee66",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -590,7 +590,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee030unique",
+      "name": "ms3_melee65",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -602,7 +602,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee029unique",
+      "name": "ms3_melee64",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -614,7 +614,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee023unique",
+      "name": "ms3_melee20",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -626,7 +626,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee022unique",
+      "name": "ms3_melee19",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -638,7 +638,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee021unique",
+      "name": "ms3_melee18",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -650,7 +650,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee020unique",
+      "name": "ms3_melee17",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -662,7 +662,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee019unique",
+      "name": "ms3_melee16",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -674,19 +674,19 @@
   {
     "entity":
     {
-      "name": "ms3_Melee028unique",
+      "name": "ms3_melee63",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "44.0813 151.537 -1146.76",
-        "lookat": "-1.0 151.537 -1.0"
+        "pos": "44.0813 155.19 -1146.76",
+        "lookat": "-1.0 155.19 -1.0"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms3_Melee027unique",
+      "name": "ms3_melee62",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -698,19 +698,19 @@
   {
     "entity":
     {
-      "name": "ms3_Melee026unique",
+      "name": "ms3_melee61",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "44.3763 151.537 -1177.37",
-        "lookat": "-1.0 151.537 -1.0"
+        "pos": "44.3763 155.19 -1177.37",
+        "lookat": "-1.0 155.19 -1.0"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms3_enemyMelee018unique",
+      "name": "ms3_melee15",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -722,31 +722,31 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee017unique",
+      "name": "ms3_melee14",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "62.3156 151.936 -1157.03",
-        "lookat": "-1.0 151.936 -1.0"
+        "pos": "62.3156 154.991 -1157.03",
+        "lookat": "-1.0 154.991 -1.0"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms3_enemyMelee016unique",
+      "name": "ms3_melee13",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "45.84 151.936 -1197.19",
-        "lookat": "-1.0 151.936 -1.0"
+        "pos": "45.84 154.991 -1197.19",
+        "lookat": "-1.0 154.991 -1.0"
       }
     }
   },
   {
     "entity":
     {
-      "name": "ms3_enemyAir038unique",
+      "name": "ms3_Air29",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -758,7 +758,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir037unique",
+      "name": "ms3_Air28",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -770,7 +770,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir036unique",
+      "name": "ms3_Air27",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -782,11 +782,11 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee015unique",
+      "name": "ms3_melee12",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "-179.609 156.711 -1148.26",
+        "pos": "-192.601 156.711 -1148.1",
         "lookat": "-1.0 156.711 -1.0"
       }
     }
@@ -794,7 +794,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee014unique",
+      "name": "ms3_melee11",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -806,7 +806,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee025unique",
+      "name": "ms3_melee60",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -818,7 +818,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee013unique",
+      "name": "ms3_melee10",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -830,7 +830,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee012unique",
+      "name": "ms3_melee09",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -842,7 +842,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir035unique",
+      "name": "ms3_Air26",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -854,7 +854,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir034unique",
+      "name": "ms3_Air25",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -866,7 +866,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee024unique",
+      "name": "ms3_melee59",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -878,7 +878,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee011unique",
+      "name": "ms3_melee08",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -890,7 +890,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee023unique",
+      "name": "ms3_melee58",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -902,7 +902,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir028unique",
+      "name": "ms3_Air24",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -914,7 +914,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir026unique",
+      "name": "ms3_Air23",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -926,7 +926,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee010unique",
+      "name": "ms3_melee07",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -938,7 +938,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir025unique",
+      "name": "ms3_Air22",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -950,7 +950,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir024unique",
+      "name": "ms3_Air21",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -962,7 +962,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir023unique",
+      "name": "ms3_Air20",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -974,7 +974,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir022unique",
+      "name": "ms3_Air19",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -986,7 +986,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee009unique",
+      "name": "ms3_melee06",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -998,7 +998,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir021unique",
+      "name": "ms3_Air18",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1010,7 +1010,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir020unique",
+      "name": "ms3_Air17",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1022,7 +1022,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir019unique",
+      "name": "ms3_Air16",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1034,7 +1034,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir018unique",
+      "name": "ms3_Air15",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1046,7 +1046,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir017unique",
+      "name": "ms3_Air14",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1058,7 +1058,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee008unique",
+      "name": "ms3_melee05",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1070,7 +1070,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee022unique",
+      "name": "ms3_melee57",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1082,7 +1082,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir016unique",
+      "name": "ms3_Air13",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1094,7 +1094,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir015unique",
+      "name": "ms3_Air12",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1106,7 +1106,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir014unique",
+      "name": "ms3_Air11",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1118,7 +1118,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee007unique",
+      "name": "ms3_melee04",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1130,7 +1130,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir013unique",
+      "name": "ms3_Air10",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1142,7 +1142,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir012unique",
+      "name": "ms3_Air09",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1154,7 +1154,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir011unique",
+      "name": "ms3_Air08",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1166,7 +1166,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir010unique",
+      "name": "ms3_Air07",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1178,7 +1178,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir009unique",
+      "name": "ms3_Air06",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1190,7 +1190,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee021unique",
+      "name": "ms3_melee56",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1202,7 +1202,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee020unique",
+      "name": "ms3_melee55",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1214,7 +1214,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee019unique",
+      "name": "ms3_melee54",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1226,7 +1226,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee018unique",
+      "name": "ms3_melee53",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1238,7 +1238,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee006unique",
+      "name": "ms3_melee03",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1250,7 +1250,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee005unique",
+      "name": "ms3_melee02",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1262,7 +1262,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee004unique",
+      "name": "ms3_melee01",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1274,7 +1274,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee017unique",
+      "name": "ms3_melee52",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1286,7 +1286,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee016unique",
+      "name": "ms3_melee51",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1298,7 +1298,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee015unique",
+      "name": "ms3_melee50",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1310,7 +1310,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee014unique",
+      "name": "ms3_melee49",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1322,7 +1322,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee013unique",
+      "name": "ms3_melee48",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1334,7 +1334,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee012unique",
+      "name": "ms3_melee47",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1346,7 +1346,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee011unique",
+      "name": "ms3_melee46",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1358,7 +1358,7 @@
   {
     "entity":
     {
-      "name": "ms3_Melee002unique",
+      "name": "ms3_melee45",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1370,7 +1370,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee002unique",
+      "name": "ms3_melee00",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -1382,7 +1382,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir008unique",
+      "name": "ms3_Air05",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1394,7 +1394,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir007unique",
+      "name": "ms3_Air04",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1406,7 +1406,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir006unique",
+      "name": "ms3_Air03",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1418,7 +1418,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir005unique",
+      "name": "ms3_Air02",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1430,7 +1430,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir004unique",
+      "name": "ms3_Air01",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
@@ -1442,7 +1442,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir003unique",
+      "name": "ms3_Air00",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
