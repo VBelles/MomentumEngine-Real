@@ -394,7 +394,9 @@ struct TSceneExporter (
 	),
 	
 	fn isUnique obj = (
-		return (stringContainsSubstring obj.name "unique")
+		if attrManager.hasAttribute obj "uniqueData" then 
+			return attrManager.getAttributeValue obj "uniqueData" #unique
+		else return true --Unique by default.
 	),
 	
 	fn endEntity = (
@@ -665,17 +667,17 @@ struct TSceneExporter (
 				local loop = true
 				local wait = 0.0
 				--Get from attribute if it exists.
-				if attrManager.hasAttribute obj.parent "moveData" then (
-					auto 		= attrManager.getAttributeValue obj.parent "moveData" #auto
-					loop 		= attrManager.getAttributeValue obj.parent "moveData" #loop
-					wait 		= attrManager.getAttributeValue obj.parent "moveData" #wait
-					followSpeed = attrManager.getAttributeValue obj.parent "moveData" #spd
+				if attrManager.hasAttribute obj "moveData" then (
+					auto 		= attrManager.getAttributeValue obj "moveData" #auto
+					loop 		= attrManager.getAttributeValue obj "moveData" #loop
+					wait 		= attrManager.getAttributeValue obj "moveData" #wait
+					followSpeed = attrManager.getAttributeValue obj "moveData" #spd
 				)
 
 				fs.writeComma()
 				fs.writeKey type
 				fs.beginObj()
-					exportPlatfRotation obj.parent
+					exportPlatfRotation obj
 					fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
@@ -972,6 +974,7 @@ struct TSceneExporter (
 		if hasChildDummy obj then exportLOD obj
 		
 		local colliderCount = 0
+		local movable = hasChildLine obj
 		if hasChildCollider obj then (
 			for child in obj.children do (
 				if isCollider child then (
@@ -979,7 +982,6 @@ struct TSceneExporter (
 					local isFirst = colliderCount == 1
 					if isFirst then fs.writeComma()
 					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
-					local movable = hasChildLine child
 					local onlyRot = not movable and attrManager.hasAttribute obj "rotateData"
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
@@ -992,7 +994,7 @@ struct TSceneExporter (
 					exportCompCollider objToExport first:isFirst mov:(movable or onlyRot) colliderGroups:groups
 
 					if breakable then exportBreakable()
-					if movable then exportSpline child
+					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
 					if mech then exportMech child
 				)
@@ -1062,7 +1064,7 @@ struct TSceneExporter (
 	fn exportEntityCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		
-		/*if isUnique obj then*/ append uniqueCoins obj.name
+		if isUnique obj then append uniqueCoins obj.name
 
 		fs.beginObj()
 			fs.writeKey "entity"
@@ -1086,7 +1088,7 @@ struct TSceneExporter (
 
 			fs.beginObj()
 				fs.writeKey "entity"
-				fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				fs.beginObj() -- - - - - - - - - - - - - - - - - - - - - - - - -
 					exportName obj
 					fs.writeComma()
 					if objClass == TargetCamera then (
@@ -1115,12 +1117,10 @@ struct TSceneExporter (
 					fs.endObj()
 
 					-- Add child spline if it exists.
-					for i = 1 to obj.children.count do
-						if hasChildLine obj.children[i] then
-							exportSpline obj.children[i] type:"camera_move"
+					if hasChildLine obj then exportSpline obj type:"camera_move"
 
 				--format "Camera % target distance: %\n" obj.name obj.targetDistance
-				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+				endEntity() -- - - - - - - - - - - - - - - - - - - - - - - - - -
 		)
 		else return false
 
@@ -1154,9 +1154,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				exportTransform obj
 				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
+				if hasChildLine obj then exportSpline obj
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
@@ -1165,7 +1163,7 @@ struct TSceneExporter (
 	fn exportEntityEnemy obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		
-		/*if isUnique obj then*/ append uniqueEnemies obj.name
+		if isUnique obj then append uniqueEnemies obj.name
 
 		fs.beginObj()
 			fs.writeKey "entity"
@@ -1188,11 +1186,7 @@ struct TSceneExporter (
 				exportTransform obj lookAtCoord:lookAtPos
 				
 				-- Add child spline if it exists.
-				for child in obj.children do (
-					if hasChildLine child then (
-						exportSpline child type:"patrol_path"
-					)
-				)
+				if hasChildLine obj then exportSpline obj type:"patrol_path"
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
@@ -1239,9 +1233,7 @@ struct TSceneExporter (
 					fs.writeKeyValue "fov" 40 -- TODO: ¿Pick from some light parameter?
 				fs.endObj()
 				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
+				if hasChildLine obj then exportSpline obj
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
@@ -1279,9 +1271,7 @@ struct TSceneExporter (
 						fs.endObj()
 				)
 				-- Add child spline if it exists.
-				if hasChildLine obj then (
-					exportSpline obj
-				)
+				if hasChildLine obj then exportSpline obj
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
@@ -1816,15 +1806,12 @@ struct TSceneExporter (
 )
 
 /*
-TODO: ¿Sacar el fov de las luces de algún parámetro? Ahora siempre le pongo 40.
-TODO: Las splines de attack hitboxes tienen coordenadas de mundo.
-TODO: Modificar editor prefab enemigo bola (ahora mismo es idéntico al melee).
+TODO: Las splines de attack hitboxes tienen coordenadas de mundo (pero ahora no se usa).
 
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
-TODO: Mirar si hay algún motivo para seguir poniendo las splines como hijas del
-	  collider de los objetos en lugar del objeto padre. Si no lo hay, mover
-	  todas al parent.
+
+TODO: Que los enemigos, monedas, altares puedan ser no-únicos.
 
 NOTA: Si se actualiza un material que ya existía, hay que copiarlo a mano porque
 	  se evita exportarlo si ya existe. 

@@ -84,6 +84,9 @@ utility MyMCVExporter "MCV Exporter" (
 		button btn_addMechanism "+ mech" across:2 tooltip:"Adds mechanism attributes to selected objects"
 		button btn_delMechanism "- mech" tooltip:"Deletes mechanism attributes from selected objects"
 
+		button btn_addUnique "+ unique" across:2 tooltip:"Adds unique attributes to selected objects"
+		button btn_delUnique "- unique" tooltip:"Deletes unique attributes from selected objects"
+
 		fn addAttribute defName = (
 			try (
 				gc()
@@ -117,6 +120,9 @@ utility MyMCVExporter "MCV Exporter" (
 
 		on btn_addMechanism pressed do ( addAttribute "mechData" )
 		on btn_delMechanism pressed do ( delAttribute "mechData" )
+
+		on btn_addUnique pressed do ( addAttribute "uniqueData" )
+		on btn_delUnique pressed do ( delAttribute "uniqueData" )
 	) -- end attribute rollout creator
 
 	on MyMCVExporter open do (

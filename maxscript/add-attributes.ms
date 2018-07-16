@@ -77,6 +77,16 @@ global mechsData = attributes mechData (
 	)
 )
 
+-- def #uniqueData
+global uniquesData = attributes uniqueData (
+	parameters main rollout:params (
+		unique type: #boolean ui:isUnique default:false
+	)
+	rollout params "Uniques Data" (
+		checkbox isUnique "Is unique" type: #boolean align:#right
+	)
+)
+
 -- -----------------------------------------------------------
 
 struct TAttributeManager (
@@ -117,6 +127,7 @@ struct TAttributeManager (
 				"mechData":   ( attrDef = mechsData )
 				"moveData":   ( attrDef = movesData )
 				"rotateData": ( attrDef = rotationsData )
+				"uniqueData": ( attrDef = uniquesData )
 				default:     ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
 			)
 			custAttributes.add obj attrDef

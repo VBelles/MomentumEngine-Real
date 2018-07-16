@@ -281,6 +281,8 @@ void CModulePhysics::render() {
 			ImGui::Text("Total actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC));
 			ImGui::Text("Static actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_STATIC));
 			ImGui::Text("Dynamic actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC));
+			ImGui::Text("Character controllers: %d", controllerManager->getNbControllers());
+			ImGui::TreePop();
 		}
 	}
 }
