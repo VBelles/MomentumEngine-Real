@@ -16,5 +16,6 @@ int OnHorizontalLaunchAction::execAction(float delta) {
 	enemy->initialLaunchPos = enemy->getTransform()->getPosition();
 	enemy->isBlocking = false;
 	enemy->blockingBroken = false;
+	//TODO aquí debería poner su gravedad a 0.6 de la normal
 	return Leave;
 }

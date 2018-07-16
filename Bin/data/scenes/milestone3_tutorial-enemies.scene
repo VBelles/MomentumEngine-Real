@@ -2,6 +2,18 @@
   {
     "entity":
     {
+      "name": "ms3_enemyMelee036unique001",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-357.917 105.349 -375.512",
+        "lookat": "-1.0 105.349 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "ms3_enemyAir022unique001",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":

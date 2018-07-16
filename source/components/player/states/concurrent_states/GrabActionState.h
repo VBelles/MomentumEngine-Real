@@ -6,8 +6,8 @@
 class GrabActionState : public AirborneActionState, public AttackState {
 protected:
 	CTimer timer;
-	float hitboxOutTime = frames2sec(2);
-	float hitEndTime = frames2sec(12);
+	float hitboxOutTime = frames2sec(0);
+	float hitEndTime = frames2sec(15);
 	float animationEndTime = frames2sec(15);
 	float lockDuration = 0.8f;
 
