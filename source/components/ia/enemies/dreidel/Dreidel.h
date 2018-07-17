@@ -22,9 +22,6 @@ private:
 public:
 	DECL_SIBLING_ACCESS();
 
-	int maxHpToGive = 2;
-	int hpGiven = 0;
-
 	~Dreidel();
 
 	void load(const json& j, TEntityParseContext& ctx);

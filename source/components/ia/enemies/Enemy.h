@@ -30,6 +30,10 @@ public:
 	float hp = 0.f;
 	float maxHp = 0.f;
 
+	//On perfect dodged
+	int maxHpToGive = 0;
+	int hpGiven = 0;
+
 	//Spawn
 	VEC3 spawnPosition;
 	float maxDistanceFromSpawnSqrd = 0.f;
