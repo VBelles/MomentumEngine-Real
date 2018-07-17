@@ -2,6 +2,19 @@
 -- Some generally useful  functions.
 -----------------------------------------------
 
+fn convertToInstance objs baseObj = (
+	if objs[1] == undefined then objs = #(objs)
+	for o in objs do instanceReplace o baseObj
+)
+
+-- Returns array with all instances of obj (obj itself is not added).
+fn getInstances obj = (
+	local inst
+	InstanceMgr.GetInstances obj &inst
+	for n in inst where (areNodesInstances obj n) and n != obj
+		collect n
+)
+
 -- Converts a very small number to zero.
 fn smallNumToZero num = (
 	if (num <  0.00001 and num > 0) or
