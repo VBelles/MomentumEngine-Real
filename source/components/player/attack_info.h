@@ -45,6 +45,7 @@ struct TMsgAssignRangedAttackOwner {
 	AttackInfo attackInfo;
 	VEC3 initialPos;
 	VEC3 direction;
+	float warmUpTime;
 	DECL_MSG_ID();
 };
 

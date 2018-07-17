@@ -24,10 +24,6 @@ void TCompRangedAttack::load(const json& j, TEntityParseContext& ctx) {
 	speed = initialSpeed;
 	lifetime = j.value("lifetime", lifetime);
 	grabTime = j.value("grab_time", grabTime);
-	warmUpTime = j.value("warm_up_time", warmUpTime);
-	if (warmUpTime) {
-		scaleSpeed = 1.f / warmUpTime;
-	}
 }
 
 void TCompRangedAttack::update(float delta) {
@@ -58,18 +54,21 @@ void TCompRangedAttack::update(float delta) {
 }
 
 void TCompRangedAttack::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-	TCompTransform* transform = get<TCompTransform>();
-	if (scaleSpeed) {
-		transform->setScale(0.f);
-	}
+	
 }
 
 void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg) {
 	ownerHandle = msg.ownerHandle;
 	attackInfo = msg.attackInfo;
-	TCompTransform *transform = get<TCompTransform>();
+	warmUpTime = msg.warmUpTime;
+	TCompTransform* transform = get<TCompTransform>();
 	transform->lookAt(msg.initialPos, msg.initialPos + msg.direction);
+	if (msg.warmUpTime) {
+		scaleSpeed = 1.f / warmUpTime;
+		transform->setScale(0.f);
+	}
 	timer.reset();
+
 }
 
 void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
