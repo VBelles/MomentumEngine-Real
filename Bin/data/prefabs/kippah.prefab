@@ -61,8 +61,8 @@
             "invulnerabilityTime": 0.0,
             "stun": 1.2,
             "propel":{
-              "duration": 1.0,
-              "velocity" : "0 10 0"
+              "duration": 0.05,
+              "velocity" : "0 20 0"
             },
             "hitbox": "launched"
           }

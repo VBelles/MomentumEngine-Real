@@ -372,6 +372,15 @@ void Dreidel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 				TMsgAttackHit attackHit = {};
 				attackHit.attacker = CHandle(this).getOwner();
 				attackHit.info = attacks[currentAttack].attackInfo;
+				//check if attack info is propel, if it is override velocity (radial)
+				if (attackHit.info.propel) {
+					CEntity* otherEntity = msg.h_other_entity;
+					TCompTransform* otherTransform = otherEntity->get<TCompTransform>();
+					VEC3 launchVelocity = otherTransform->getPosition() - getTransform()->getPosition();
+					launchVelocity.Normalize();
+					launchVelocity *= attackHit.info.propel->velocity.Length();
+					attackHit.info.propel->velocity = launchVelocity;
+				}
 				((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
 			}
 		}
