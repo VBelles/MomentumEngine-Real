@@ -1,14 +1,22 @@
 #pragma once
 
-#include "components/ia/enemies/Enemy.h"
 #include "components/comp_base.h"
 #include "entity/common_msgs.h"
 #include "components/player/attack_info.h"
 
 struct TMsgColliderDestroyed;
+class Enemy;
+class TCompTransform;
+class TCompCollider;
+class TCompSkeleton;
+class TCompHitboxes;
+class TCompGivePower;
+class TCompPlayerModel;
 
-class Kippah : public Enemy, public TCompBase {
+class Kippah : public TCompBase {
 private:
+	Enemy* enemy = nullptr;
+
 	void initBehaviorTree();
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -24,9 +32,6 @@ public:
 
 	int maxHpToGive = 1;
 	int hpGiven = 0;
-	VEC3 attackSpawnOffset = VEC3(0, 3, 0);
-	VEC3 attackTargetOffset = VEC3(0, 0.76f, 0);
-	std::string attackPrefab = "data/prefabs/rangedAttack.prefab";
 
 	~Kippah();
 
