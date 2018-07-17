@@ -78,8 +78,8 @@ void Kippah::initBehaviorTree() {
 	OnGrabCondition* onGrabCondition = new OnGrabCondition(this);
 	HitStun* hitStun = new HitStun(this, "medusa_damage");
 	OnHit* onHit = new OnHit(this, "medusa_damage");
-	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this);
-	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "medusa_damage");
+	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this, "launched");
+	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "medusa_damage", "launched");
 	OnHorizontalLaunchCondition* onHorizontalLaunchCondition = new OnHorizontalLaunchCondition(this);
 	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this, "medusa_damage");
 	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(this);
@@ -288,11 +288,13 @@ void Kippah::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 
 void Kippah::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (currentAttack != "") {
-		if (attacks[currentAttack].hitboxName == msg.hitbox) {
-			TMsgAttackHit attackHit = {};
-			attackHit.attacker = CHandle(this).getOwner();
-			attackHit.info = attacks[currentAttack].attackInfo;
-			((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+		if (msg.h_other_entity != CHandle(this).getOwner()) {
+			if (attacks[currentAttack].hitboxName == msg.hitbox) {
+				TMsgAttackHit attackHit = {};
+				attackHit.attacker = CHandle(this).getOwner();
+				attackHit.info = attacks[currentAttack].attackInfo;
+				((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+			}
 		}
 	}
 }

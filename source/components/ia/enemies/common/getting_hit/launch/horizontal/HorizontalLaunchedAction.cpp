@@ -4,8 +4,11 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_hitboxes.h"
 
-HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy) : enemy(enemy) {
+HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy, std::string attack) :
+	enemy(enemy),
+	attack(attack) {
 }
 
 int HorizontalLaunchedAction::execAction(float delta) {
@@ -15,6 +18,8 @@ int HorizontalLaunchedAction::execAction(float delta) {
 		enemy->velocity.x = 0;
 		enemy->velocity.z = 0;
 		enemy->timer.reset();
+		enemy->getHitboxes()->disable(enemy->attacks[attack].hitboxName);
+		enemy->currentAttack = "";
 		return Leave;
 	}
 	else {

@@ -53,6 +53,18 @@
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
             "hitbox": "attack"
+          },
+          {
+            "name": "launched",
+            "frame_data": "0 10000",
+            "damage": 0.0,
+            "invulnerabilityTime": 0.0,
+            "stun": 1.2,
+            "propel":{
+              "duration": 1.0,
+              "velocity" : "0 10 0"
+            },
+            "hitbox": "launched"
           }
         ]
       },
@@ -82,6 +94,18 @@
             "mask": [
               "player"
             ]
+          },
+          {
+            "name": "launched",
+            "shape": "sphere",
+            "radius": 1.2,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "enemy"
+            ],
+            "bone": "Bone015"
           }
         ]
       }

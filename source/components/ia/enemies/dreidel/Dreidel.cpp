@@ -99,8 +99,8 @@ void Dreidel::initBehaviorTree() {
 	OnGrabCondition* onGrabCondition = new OnGrabCondition(this);
 	HitStun* hitStun = new HitStun(this, "enemigo_bola_recibirdanio");
 	OnHit* onHit = new OnHit(this, "enemigo_bola_recibirdanio");
-	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this);
-	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "enemigo_bola_recibirdanio");
+	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this, "launched");
+	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "enemigo_bola_recibirdanio", "launched");
 	OnHorizontalLaunchCondition* onHorizontalLaunchCondition = new OnHorizontalLaunchCondition(this);
 	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this, "enemigo_bola_recibirdanio");
 	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(this);
@@ -367,11 +367,13 @@ void Dreidel::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 
 void Dreidel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (currentAttack != "") {
-		if (attacks[currentAttack].hitboxName == msg.hitbox) {
-			TMsgAttackHit attackHit = {};
-			attackHit.attacker = CHandle(this).getOwner();
-			attackHit.info = attacks[currentAttack].attackInfo;
-			((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+		if (msg.h_other_entity != CHandle(this).getOwner()) {
+			if (attacks[currentAttack].hitboxName == msg.hitbox) {
+				TMsgAttackHit attackHit = {};
+				attackHit.attacker = CHandle(this).getOwner();
+				attackHit.info = attacks[currentAttack].attackInfo;
+				((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+			}
 		}
 	}
 }

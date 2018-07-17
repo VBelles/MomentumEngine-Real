@@ -69,6 +69,18 @@
             "invulnerabilityTime": 1.0,
             "stun": 1.0,
             "hitbox": "tackle"
+          },
+          {
+            "name": "launched",
+            "frame_data": "0 10000",
+            "damage": 0.0,
+            "invulnerabilityTime": 0.0,
+            "stun": 1.2,
+            "propel":{
+              "duration": 1.0,
+              "velocity" : "0 10 0"
+            },
+            "hitbox": "launched"
           }
         ],
         "nav_mesh": "dreidel_nav_mesh"
@@ -121,6 +133,18 @@
             ],
             "mask": [
               "player"
+            ],
+            "bone": "Bone034"
+          },
+          {
+            "name": "launched",
+            "shape": "sphere",
+            "radius": 1.2,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "enemy"
             ],
             "bone": "Bone034"
           }
