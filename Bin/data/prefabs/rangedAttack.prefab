@@ -19,7 +19,8 @@
 			},
 			"ranged_attack": {
 				"speed": 15,
-				"lifetime": 15
+				"lifetime": 15,
+				"warm_up_time": 1.5
 			}
 		}
 	}

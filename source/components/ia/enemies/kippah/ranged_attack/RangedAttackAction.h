@@ -12,6 +12,7 @@ private:
 	std::string animation;
 	std::string attack;
 	bool attackLaunched = false;
+	CHandle rangedAttackHandle;
 public:
 	RangedAttackAction(Kippah* enemy, std::string animation, std::string attack, IBehaviorTreeCondition* cancelCondition = nullptr);
 	int execAction(float delta) override;

@@ -210,6 +210,9 @@ void Kippah::initBehaviorTree() {
 
 void Kippah::load(const json& j, TEntityParseContext& ctx) {
 	Enemy::load(j, ctx);
+	attackSpawnOffset = j.count("attack_spawn_offset") ? loadVEC3(j["attack_spawn_offset"]) : attackSpawnOffset;
+	attackTargetOffset = j.count("attack_target_offset") ? loadVEC3(j["attack_target_offset"]) : attackTargetOffset;
+	attackPrefab = j.value("attack_prefab", attackPrefab);
 }
 
 void Kippah::debugInMenu() {

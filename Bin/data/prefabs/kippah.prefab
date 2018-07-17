@@ -48,12 +48,13 @@
           },          
           {
             "name": "rangedAttack",
-            "frame_data": "25 80",
+            "frame_data": "0 120",
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
             "hitbox": "attack"
           }
-        ]
+        ],
+        "attack_spawn_offset": "0 1.75 0"
       },
       "collider": {
         "shape": "capsule",
