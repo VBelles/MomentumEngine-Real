@@ -122,7 +122,7 @@ void CModuleEntities::render() {
 
 		if (ImGui::TreeNode("All Entities...")) {
 			ImGui::SameLine();
-			static bool flat = false;
+			static bool flat = true;
 			ImGui::Checkbox("Flat", &flat);
 
 			static ImGuiTextFilter Filter;

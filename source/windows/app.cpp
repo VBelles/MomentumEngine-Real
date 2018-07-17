@@ -6,6 +6,7 @@
 #include <windowsx.h>
 
 CApp* CApp::app_instance = nullptr;
+DWORD defaultStickyKeysState;
 
 LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     PAINTSTRUCT ps;
@@ -140,6 +141,16 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
         if (Engine.isStarted())
             EngineInput.setActive(true);
 		app_instance->setWindowFocused(true);
+		
+		STICKYKEYS sk;
+		sk.cbSize = sizeof(sk);
+		//Get user default sticky keys state
+		SystemParametersInfo(SPI_GETSTICKYKEYS, sizeof(sk), &sk, 0);
+		defaultStickyKeysState = sk.dwFlags;
+		//Disable sticky keys
+		sk.cbSize = sizeof(sk);
+		sk.dwFlags = SKF_AVAILABLE;
+		SystemParametersInfo(SPI_SETSTICKYKEYS, sizeof(sk), &sk, 0);
         break;
 
     case WM_KILLFOCUS:
@@ -147,6 +158,11 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
             EngineInput.setActive(false);
         }
 		app_instance->setWindowFocused(false);
+
+		//Set user default sticky keys state
+		sk.cbSize = sizeof(sk);
+		sk.dwFlags = defaultStickyKeysState;
+		SystemParametersInfo(SPI_SETSTICKYKEYS, sizeof(sk), &sk, 0);
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
