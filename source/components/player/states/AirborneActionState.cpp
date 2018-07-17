@@ -211,7 +211,7 @@ void AirborneActionState::onDamage(const TMsgAttackHit& msg) {
 	if (msg.info.stun) {
 		stateManager->changeState(HardKnockbackAir);
 	}
-	else {
+	else if(stateManager->getConcurrentState()->state != GrabHigh && stateManager->getConcurrentState()->state != GrabLong){
 		stateManager->changeConcurrentState(SoftKnockbackAir);
 	}
 	IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
