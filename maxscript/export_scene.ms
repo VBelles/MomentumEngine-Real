@@ -314,6 +314,7 @@ struct TSceneExporter (
 	mesh_path    = base_path + "meshes/",
 	mats_path    = base_path + "materials/",
 	prefabPath   = base_path + "prefabs/",
+	animsPath    = base_path + "anims/",
 	instancePath = base_path + "instancing/",
 	
 	fn exportName obj = (
@@ -560,6 +561,23 @@ struct TSceneExporter (
 				)
 			)
 		fs.endObj()
+	),
+
+	-- --COMP: RENDER-----------------------------------------------------------
+	fn exportRender obj meshName: matNames: = (
+		fs.writeKey "render"
+		fs.beginArray()
+			fs.beginObj()
+				if meshName == unsupplied then format "ERROR: % has empty mesh" obj.name
+				else fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
+				if matNames != unsupplied then (
+					for i = 1 to matNames.count do
+						matNames[i] = mats_path + matNames[i] + ".material"
+					fs.writeComma()
+					exportStringArray "materials" (matNames)
+				)
+			fs.endObj()
+		fs.endArray()
 	),
 
 	-- --RENDER MESH (also exports MATERIAL)------------------------------------
@@ -1013,7 +1031,7 @@ struct TSceneExporter (
 	fn exportAltar obj = (
 		fs.writeKey "altar"
 		fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-			fs.writeKeyValue "prefab" (prefabPath + "giratiempo_prefab-0.scene")
+			fs.writeKeyValue "prefab" (prefabPath + "crisalida.prefab")
 			fs.writeComma()
 			fs.writeKey "spawn_positions"
 			exportChildPositions obj
@@ -1039,24 +1057,50 @@ struct TSceneExporter (
 		return true
 	),
 	
+	fn exportAltarRing obj ringName: main:false = (
+		fs.beginObj()
+		fs.writeKey "entity"
+		fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
+			fs.writeKeyValue "name" (obj.name + ringName)
+			fs.writeComma()
+			exportTransform obj
+			--exportBreakable() --Ahora mismo no funciona con breakable.
+			fs.writeComma()
+			exportRender obj meshName:("ms3_" + ringName) matNames:#("giratiempo")
+			fs.writeComma()
+			fs.writeKey "rigid_anim"
+			fs.beginObj()
+				fs.writeKeyValue "src" (animsPath + "giratiempo_prefab.anims")
+			fs.endObj()
+			if main then (
+				fs.writeComma()
+				exportAltar obj
+				fs.writeComma()
+				exportCompCollider obj colliderGroups:#("scenario", "enemy")
+				fs.writeComma()
+				fs.writeKey "rigid_anims_director"
+				fs.beginObj()
+					exportStringArray "animated_entities" #(obj.name + "_inner_ring",
+															obj.name + "_central_ring",
+															obj.name + "_outer_ring")
+				fs.endObj()
+			)
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+	),
+
 	-- --ENTITY: ALTAR ---------------------------------------------------------
+	-- This obj is the sphere representing the "giratiempo".
 	fn exportEntityAltar obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 		
 		if isUnique obj then append uniqueAltars obj.name
 
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + "giratiempo_prefab-0.scene")
-				fs.writeComma()
-				exportTransform obj
-				exportBreakable()
-				fs.writeComma()
-				exportAltar obj
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+		exportAltarRing obj ringName:"_central_ring" main:true
+		fs.writeComma()
+		exportAltarRing obj ringName:"_inner_ring"
+		fs.writeComma()
+		exportAltarRing obj ringName:"_outer_ring"
+
 		return true
 	),
 	
