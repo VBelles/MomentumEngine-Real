@@ -15,7 +15,7 @@
 				"mask": ["player"]
 			},
 			"render" : {
-				"mesh": "data/meshes/spikes.mesh",
+				"mesh": "data/meshes/UnitBox.mesh",
 				"materials":
 				[
 					"data/materials/ambar.material",
