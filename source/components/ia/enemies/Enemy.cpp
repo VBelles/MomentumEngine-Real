@@ -134,6 +134,10 @@ bool Enemy::hasSuperArmor() {
 	return superArmorAmount > 0 && superArmorTimer.elapsed() < superArmorTime;
 }
 
+CHandle Enemy::getEntityHandle() {
+	return transformHandle.getOwner();
+}
+
 TCompTransform* Enemy::getPlayerTransform() {
 	return playerTransformHandle;
 }

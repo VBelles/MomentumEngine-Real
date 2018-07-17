@@ -109,6 +109,7 @@ public:
 
 	bool hasSuperArmor();
 
+	CHandle getEntityHandle();
 	TCompTransform* getPlayerTransform();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getTransform();
