@@ -1,5 +1,7 @@
 #pragma once
 
+#include "components/ia/behavior_tree/BTActionFactory.h"
+
 class IBehaviorTreeAction {
 public:
 	IBehaviorTreeAction() {}

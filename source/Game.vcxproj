@@ -118,6 +118,8 @@
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BTActionFactory.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BTConditionFactory.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeAction.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeCondition.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNew.cpp" />
@@ -451,6 +453,8 @@
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />
+    <ClInclude Include="components\ia\behavior_tree\BTActionFactory.h" />
+    <ClInclude Include="components\ia\behavior_tree\BTConditionFactory.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeAction.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeCondition.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNew.h" />

@@ -3,6 +3,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
+REGISTER_BTAction("AirborneAction", AirborneAction);
+
 AirborneAction::AirborneAction(Enemy* enemy): enemy(enemy) {
 }
 
