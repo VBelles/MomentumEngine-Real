@@ -22,6 +22,9 @@ int RangedAttackAction::execAction(float delta) {
 		return Leave;
 	}
 	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {
+		return Stay;
+	}
+	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
 		//Launch projectile
 		if (!attackLaunched) {
 			TEntityParseContext ctx;
@@ -41,18 +44,13 @@ int RangedAttackAction::execAction(float delta) {
 				attackDirection += enemyAttack.attackTargetOffset;
 				attackDirection.Normalize();
 
-				TMsgAssignRangedAttackOwner msg{enemy->getEntityHandle(), attackInfo, attackInitialPos, attackDirection };
+				TMsgAssignRangedAttackOwner msg{ enemy->getEntityHandle(), attackInfo, attackInitialPos, attackDirection, frames2sec(enemyAttack.hitboxEnd) };
 
 				CEntity *attackEntity = ctx.entities_loaded[0];
 				attackEntity->sendMsg(msg);
 			}
-
 			attackLaunched = true;
 		}
-		return Stay;
-	}
-	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
-		//TODO spawn projectile
 		return Stay;
 	}
 	else {
