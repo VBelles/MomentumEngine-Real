@@ -335,6 +335,18 @@
     "priority": 60    
   },
 
+  "particles_additive" : { 
+    "vs_file": "data/shaders/particles.fx", 
+    "vs_entry_point": "VS_Particles", 
+    "ps_entry_point": "PS_Particles", 
+    "vertex_type" : "PosClr", 
+    "category" : "particles", 
+    "z" : "test_but_no_write", 
+    "rs_config" : "cull_none", 
+    "blend" : "additive_by_src_alpha",
+    "priority": 60    
+  },
+
   "particles_mesh" : { 
     "vs_file": "data/shaders/particles.fx", 
     "vs_entry_point": "VS_Particles_Mesh", 
@@ -343,6 +355,18 @@
     "category" : "particles",
     "z" : "test_but_no_write", 
     "blend" : "combinative",
+    "rs_config" : "cull_none",
+    "priority": 60    
+  },
+
+  "particles_mesh_additive" : { 
+    "vs_file": "data/shaders/particles.fx", 
+    "vs_entry_point": "VS_Particles_Mesh", 
+    "ps_entry_point": "PS_Particles_Mesh",
+    "vertex_type" : "PosNUvUvT", 
+    "category" : "particles",
+    "z" : "test_but_no_write", 
+    "blend" : "additive_by_src_alpha",
     "rs_config" : "cull_none",
     "priority": 60    
   },
