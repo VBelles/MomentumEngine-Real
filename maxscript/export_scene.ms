@@ -73,7 +73,7 @@ struct TJsonFormatter (
 		format ",\n" to:fs
 	),
 
-		-- --------------------
+	-- --------------------
 	-- "key_str":\n
 	fn writeKey key_str = (
 		indent()
@@ -269,16 +269,16 @@ struct TMaterialExporter (
 		if mat == undefined then (
 			setMaterialIDs obj --set Material IDs to 1.
 			--throw ("Obj " + obj.name + " does NOT have a material")
-			local mat_name = mat_path + "empty"
+			local mat_name = "empty"
 			append exported_materials mat_name
-			exportEmptyMaterial mat_name pure:pure
+			exportEmptyMaterial (mat_path + mat_name) pure:pure
 		)
 
 		if matClass == StandardMaterial then (
 			setMaterialIDs obj --set Material IDs to 1.
-			local mat_name = mat_path + (cleanName mat.name)
+			local mat_name = cleanName mat.name
 			append exported_materials mat_name
-			exportStdMaterial mat mat_name pure:pure
+			exportStdMaterial mat (mat_path + mat_name) pure:pure
 		) else if matClass == MultiMaterial then (
 			local multi_mat = mat
 		setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
@@ -290,9 +290,9 @@ struct TMaterialExporter (
 				if mat_of_mesh == undefined then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string)+ " but the multimat does not have this submat")
 				if classof mat_of_mesh != StandardMaterial then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat in this slot is not a stdMaterial")
 
-				local mat_name = mat_path + mat_of_mesh.name
+				local mat_name = mat_of_mesh.name
 				append exported_materials mat_name
-				exportStdMaterial mat_of_mesh mat_name pure:pure
+				exportStdMaterial mat_of_mesh (mat_path + mat_name) pure:pure
 			)
 		)
 		return exported_materials
@@ -425,14 +425,9 @@ struct TSceneExporter (
 	),
 	
 	-- --STRING ARRAY (generic for tags, groups, masks )------------------------
-	fn exportStringArray arrayName strings = (
+	fn exportStringArray arrayName strings suffix:"" = (
 		fs.writeKey arrayName
-		fs.beginArray()
-			for i = 1 to strings.count do (
-				if i > 1 then fs.writeComma()
-				fs.writeValue strings[i] addIndent:true
-			)
-		fs.endArray()
+		fs.arrayOfStrings strings suffix:suffix
 	),
 
 	fn getCircularMovementOffset platform circleObj = (
@@ -563,8 +558,22 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
+	fn addPureMaterial meshName matNames = (
+		fs.writeComma()
+		fs.writeKeyValue "enabled" false
+		fs.endObj() -- End first pure material object.
+		fs.writeComma()
+		fs.beginObj() -- Begin second pure material object.
+			fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
+			fs.writeComma()
+			fs.writeKey "materials"
+			fs.arrayOfStrings matNames suffix:"_pure.material"
+			fs.writeComma()
+			fs.writeKeyValue "enabled" false
+	),
+
 	-- --COMP: RENDER-----------------------------------------------------------
-	fn exportRender obj meshName: matNames: = (
+	fn exportRender obj meshName: matNames: suffix:".material" pure:false = (
 		fs.writeKey "render"
 		fs.beginArray()
 			fs.beginObj()
@@ -572,10 +581,11 @@ struct TSceneExporter (
 				else fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
 				if matNames != unsupplied then (
 					for i = 1 to matNames.count do
-						matNames[i] = mats_path + matNames[i] + ".material"
+						matNames[i] = mats_path + matNames[i]
 					fs.writeComma()
-					exportStringArray "materials" (matNames)
+					exportStringArray "materials" (matNames) suffix:suffix
 				)
+				if pure then addPureMaterial meshName matNames
 			fs.endObj()
 		fs.endArray()
 	),
@@ -584,52 +594,28 @@ struct TSceneExporter (
 	fn exportRenderMesh obj pure:false = (
 		local mat = obj.material
 		if mat == undefined then (
-			format "Warning: Obj % doesn't have a material, a default will be assigned.\n" obj.name
+			format "Warning: % doesn't have a material, a default will be assigned.\n" obj.name
 		)
 		else if not (isValidName mat.name) then (
 			mat.name = cleanName mat.name
 			format "Warning: material had invalid name, changed spaces to underscores.\n"
 		)
 
-		fs.beginObj()
-			-- -- ·Export Mesh· -- --
-			if not areMapsOk obj then return false
+		if not areMapsOk obj then return false
 
-			local mesh_name = mesh_path + obj.name + ".mesh"
-			fs.writeKeyValue "mesh" mesh_name
-			
-			-- Generate the mesh file.
-			exportMeshObject obj (project_path + mesh_name)
+		-- -- ·Export Mesh· -- --
+		-- Generate the mesh file.
+		exportMeshObject obj (project_path + mesh_path + obj.name + ".mesh")
 
-			fs.writeComma()
+		-- -- ·Export material· -- --
+		local me = TMaterialExporter project_path:project_path base_path:base_path
+		local exported_materials = me.exportMaterial mat mats_path obj
 
-			-- -- ·Export material· -- --
-			--local mat_name = mats_path + mat.name + ".material"
-			--fs.writeKeyValue "material" mat_name
-			local me = TMaterialExporter project_path:project_path base_path:base_path
-			local exported_materials = me.exportMaterial mat mats_path obj
+		local suffix = ".material"
+		if pure then suffix = "_pureON.material"
 
-			fs.writeKey "materials"
-			local suffix = ".material"
-			if pure then suffix = "_pureON.material"
-			fs.arrayOfStrings exported_materials suffix:suffix
-			if pure then (
-					fs.writeComma()
-					fs.writeKeyValue "enabled" false
-				fs.endObj() -- End first pure material object.
-				fs.writeComma()
-				fs.beginObj() -- Begin second pure material object.
-					fs.writeKeyValue "mesh" mesh_name
-					fs.writeComma()
-					fs.writeKey "materials"
-					local matName
-					if mat == undefined then matName = "empty"
-					else matName = cleanName mat.name
-					fs.arrayOfStrings #(mats_path + matName + "_pure.material")
-					fs.writeComma()
-					fs.writeKeyValue "enabled" false
-			)
-		fs.endObj() -- End render object.
+		exportRender obj meshName:obj.name matNames:exported_materials suffix:suffix pure:pure
+
 		return true
 	),
 
@@ -985,10 +971,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
-		fs.writeKey "render"
-		fs.beginArray()
-			exportRenderMesh obj pure:pure
-		fs.endArray()
+		exportRenderMesh obj pure:pure
 		if hasChildDummy obj then exportLOD obj
 		
 		local colliderCount = 0
@@ -1597,10 +1580,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				exportTransform obj
 				fs.writeComma()
-				fs.writeKey "render"
-				fs.beginArray()
-					exportRenderMesh obj
-				fs.endArray()
+				exportRenderMesh obj
 				fs.writeComma()
 				fs.writeKeyEmpty "player_controller"
 				fs.writeKey "player_model"
@@ -1850,19 +1830,12 @@ struct TSceneExporter (
 )
 
 /*
-TODO: Las splines de attack hitboxes tienen coordenadas de mundo (pero ahora no se usa).
-
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
-TODO: Que los enemigos, monedas, altares puedan ser no-únicos.
-
-NOTA: Si se actualiza un material que ya existía, hay que copiarlo a mano porque
-	  se evita exportarlo si ya existe. 
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos
 	  se tienen los knots por si hacen falta.
-NOTA: Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
 */
 
 /*------------------------------------------------------------------------------
@@ -1874,15 +1847,16 @@ Pasos para instalar los scripts:
 2. Seleccionar Proyecto\Bin\maxscript\autoboot\
 3. Darle a Use Path.
 4. Reiniciar Max.
-5. Ir a pestaña Utilities, darle al botón MAXScript, en el desplegable Utilities que aparece abajo seleccionar MCV Exporter.
+5. Ir a pestaña Utilities, darle al botón MAXScript, en el desplegable Utilities
+   que aparece abajo seleccionar MCV Exporter.
 6. Ya se pueden usar los scripts dándole a los botones que han aparecido debajo.
 -------------------------------
 Condiciones de exportación:
 -------------------------------
 Las layers invisibles o vacías no se exportan.
 Lo visible como Editable Mesh.
-Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) o una mesh como hija. Si no es hija
-se exportará en la escena collisions.
+Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) o una mesh
+como hija. Si no es hija se exportará en la escena collisions.
 Las meshes		   	 	 deben estar en una layer llamada "0".
 Los enemigos		     deben estar en una layer llamada "enemies".
 Las crisálidas 		     deben estar en una layer llamada "chrysalis".
@@ -1893,9 +1867,15 @@ Las luces			     deben estar en una layer llamada "lights".
 Los triggers		     deben estar en una layer llamada "triggers".
 Los colliders invisibles deben estar en una layer llamada "collisions".
 
-El objeto low-res del LOD debe ser padre de un dummy que contiene los objetos a los que sustituye cuando está activo.
+El objeto low-res del LOD debe ser padre de un dummy que contiene los objetos
+a los que sustituye cuando está activo.
 
-Se sabe el tipo de cada enemigo por el nombre ("melee" o "ball"), por defecto son voladores. --> En el futuro igual cambia con attributes.
+Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
+
+Si se actualiza un material que ya existía, hay que copiarlo a mano porque
+se evita exportarlo si ya existe.
+
+Se sabe el tipo de enemigo por el nombre ("melee"), por defecto son voladores.
 El proyecto debe tener las siguientes carpetas:
  bin/data/scenes/
  bin/data/meshes/
