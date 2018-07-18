@@ -1,12 +1,11 @@
 #include "mcv_platform.h"
 #include "RangedAttackAction.h"
-#include "components/ia/enemies/kippah/Kippah.h"
+#include "components/ia/enemies/Enemy.h"
 #include "skeleton/comp_skeleton.h"
-#include "components/comp_hitboxes.h"
 #include "components/comp_transform.h"
 #include "entity/entity_parser.h"
 
-RangedAttackAction::RangedAttackAction(Kippah* enemy, std::string animation, std::string attack, IBehaviorTreeCondition* cancelCondition) :
+RangedAttackAction::RangedAttackAction(Enemy* enemy, std::string animation, std::string attack, IBehaviorTreeCondition* cancelCondition) :
 	enemy(enemy),
 	animation(animation),
 	attack(attack),
@@ -23,36 +22,35 @@ int RangedAttackAction::execAction(float delta) {
 		return Leave;
 	}
 	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxEnd)) {
+		return Stay;
+	}
+	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
 		//Launch projectile
 		if (!attackLaunched) {
-			attackLaunched = true;
 			TEntityParseContext ctx;
 
-			VEC3 offset = -enemy->getTransform()->getFront() * enemy->attackSpawnOffset.z
-				+ -enemy->getTransform()->getLeft() * enemy->attackSpawnOffset.x;
-			offset.y = enemy->attackSpawnOffset.y;
+			VEC3 offset = -enemy->getTransform()->getFront() * enemyAttack.attackSpawnOffset.z
+				+ -enemy->getTransform()->getLeft() * enemyAttack.attackSpawnOffset.x;
+			offset.y = enemyAttack.attackSpawnOffset.y;
 			VEC3 attackInitialPos = enemy->getTransform()->getPosition() + offset;
 
 			ctx.root_transform.setPosition(attackInitialPos);
-			if (parseScene(enemy->attackPrefab, ctx)) {
+			if (parseScene(enemyAttack.attackPrefab, ctx)) {
 				assert(!ctx.entities_loaded.empty());
 
 				AttackInfo attackInfo = enemyAttack.attackInfo;
 
 				VEC3 attackDirection = enemy->getPlayerTransform()->getPosition() - attackInitialPos;
-				attackDirection += enemy->attackTargetOffset;
+				attackDirection += enemyAttack.attackTargetOffset;
 				attackDirection.Normalize();
 
-				TMsgAssignRangedAttackOwner msg{ CHandle(enemy).getOwner(), attackInfo, attackInitialPos, attackDirection };
+				TMsgAssignRangedAttackOwner msg{ enemy->getEntityHandle(), attackInfo, attackInitialPos, attackDirection, frames2sec(enemyAttack.hitboxEnd) };
 
 				CEntity *attackEntity = ctx.entities_loaded[0];
 				attackEntity->sendMsg(msg);
 			}
+			attackLaunched = true;
 		}
-		return Stay;
-	}
-	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
-		//TODO spawn projectile
 		return Stay;
 	}
 	else {

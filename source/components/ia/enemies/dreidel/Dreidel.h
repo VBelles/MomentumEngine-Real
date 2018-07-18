@@ -1,14 +1,22 @@
 #pragma once
 
-#include "components/ia/enemies/Enemy.h"
 #include "components/comp_base.h"
 #include "entity/common_msgs.h"
 #include "components/player/attack_info.h"
 
 struct TMsgColliderDestroyed;
+class Enemy;
+class TCompTransform;
+class TCompCollider;
+class TCompSkeleton;
+class TCompHitboxes;
+class TCompGivePower;
+class TCompPlayerModel;
 
-class Dreidel : public Enemy, public TCompBase {
+class Dreidel : public TCompBase {
 private:
+	Enemy* enemy = nullptr;
+
 	void initBehaviorTree();
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);

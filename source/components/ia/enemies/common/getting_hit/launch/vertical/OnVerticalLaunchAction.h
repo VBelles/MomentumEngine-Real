@@ -10,6 +10,6 @@ private:
 	std::string animation;
 	std::string attack;
 public:
-	OnVerticalLaunchAction(Enemy* enemy, std::string animation);
+	OnVerticalLaunchAction(Enemy* enemy, std::string animation, std::string attack);
 	int execAction(float delta) override;
 };

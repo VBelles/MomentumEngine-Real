@@ -9,6 +9,6 @@ private:
 	Enemy* enemy = nullptr;
 	std::string attack;
 public:
-	VerticalLaunchedAction(Enemy* enemy);
+	VerticalLaunchedAction(Enemy* enemy, std::string attack);
 	int execAction(float delta) override;
 };

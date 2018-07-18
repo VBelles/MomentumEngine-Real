@@ -6,7 +6,9 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 
-VerticalLaunchedAction::VerticalLaunchedAction(Enemy* enemy) : enemy(enemy) {
+VerticalLaunchedAction::VerticalLaunchedAction(Enemy* enemy, std::string attack) : 
+	enemy(enemy),
+	attack(attack) {
 }
 
 int VerticalLaunchedAction::execAction(float delta) {

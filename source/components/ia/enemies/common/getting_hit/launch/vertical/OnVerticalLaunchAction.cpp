@@ -5,9 +5,10 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 
-OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy, std::string animation) :
+OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy, std::string animation, std::string attack) :
 	enemy(enemy),
-	animation(animation) {
+	animation(animation),
+	attack(attack) {
 }
 
 int OnVerticalLaunchAction::execAction(float delta) {
