@@ -17,7 +17,8 @@
   },
   "render": {
     "mesh": "data/meshes/particle_slash.mesh",
-    "texture": "data/textures/fire_slash.dds"
+    "texture": "data/textures/fire_slash.dds",
+    "type": "mesh"
   },
   "size": {
     "scale": 0.2,

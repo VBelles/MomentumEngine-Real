@@ -38,7 +38,7 @@ class CRenderTechnique : public IResource {
 	std::vector< TSlot > textures;
 
 public:
-	CVertexShader * vs = nullptr;
+	CVertexShader* vs = nullptr;
 	CPixelShader*  ps = nullptr;
 	static const CRenderTechnique* current;
 

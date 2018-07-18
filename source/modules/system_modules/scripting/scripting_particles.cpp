@@ -21,7 +21,8 @@ void ScriptingParticles::bindConstants(SLB::Manager* manager) {
 }
 
 int ScriptingParticles::launchParticleAtPos(const std::string& name, float x, float y, float z) {
-	return EngineParticles.launchSystem(name, CHandle(), "", VEC3(x, y, z));
+	//return EngineParticles.launchSystem(name, CHandle(), "", VEC3(x, y, z));
+	return 0;
 }
 
 int ScriptingParticles::launchParticleAtEntity(const std::string& name, const std::string& entityName) {
@@ -39,7 +40,8 @@ int ScriptingParticles::launchParticleAtBone(const std::string& name, const std:
 int ScriptingParticles::launchParticleAtBoneOffset(const std::string& name, const std::string& entityName, const std::string& bone, float x, float y, float z) {
 	CHandle entityHandle = getEntityByName(entityName);
 	if (entityHandle.isValid()) {
-		return EngineParticles.launchSystem(name, entityHandle, bone, VEC3(x, y, z));
+		//return EngineParticles.launchSystem(name, entityHandle, bone, VEC3(x, y, z));
+		return -1;
 	}
 	else {
 		return -1;
@@ -47,5 +49,5 @@ int ScriptingParticles::launchParticleAtBoneOffset(const std::string& name, cons
 }
 
 void ScriptingParticles::killParticles(int ph, float fade_out) {
-	EngineParticles.kill(ph, fade_out);
+	//EngineParticles.kill(ph, fade_out);
 }

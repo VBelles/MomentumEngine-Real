@@ -21,23 +21,22 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
     _fadeOut = j.value("fade_out", 0.f);
     auto& particlesName = j.value("core", "");
     _core = Resources.get(particlesName)->as<Particles::TCoreSystem>();
-	offset = j.count("offset") ? loadVEC3(j["offset"]) : offset;
-	rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : rotationOffset;
 	target = j.value("target", "");
-	bone = j.value("bone", "");
+	config.offset = j.count("offset") ? loadVEC3(j["offset"]) : config.offset;
+	config.rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : config.rotationOffset;
+	config.bone = j.value("bone", "");
     assert(_core);
 }
 
 void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
     if (_core && !_particles) {
-		CHandle targetEntity;
 		if (!target.empty()) {
-			targetEntity = getEntityByName(target);
+			config.targetEntity = getEntityByName(target);
 		}
 		else {
-			targetEntity = CHandle(this).getOwner();
+			config.targetEntity = CHandle(this).getOwner();
 		}
-        _particles = EngineParticles.launchSystemFromComponent(_core, CHandle(this), targetEntity, bone, offset, rotationOffset);
+        _particles = EngineParticles.launchSystem(_core, CHandle(this).getOwner(), config);
     }
 }
 
@@ -60,14 +59,14 @@ void TCompParticles::forceEmission(int quantity) {
 }
 
 void TCompParticles::setOffset(VEC3 offset) {
-	this->offset = offset;
+	config.offset = offset;
 	if (_particles) {
 		_particles->setOffset(offset);
 	}
 }
 
 void TCompParticles::setRotationOffset(QUAT rotationOffset) {
-	this->rotationOffset = rotationOffset;
+	config.rotationOffset = rotationOffset;
 	if (_particles) {
 		_particles->setRotationOffset(rotationOffset);
 	}

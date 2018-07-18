@@ -1,5 +1,4 @@
-#ifndef INC_COMP_SKELETON_H_
-#define INC_COMP_SKELETON_H_
+#pragma once
 
 #include "components/comp_base.h"
 #include "render/cte_buffer.h"
@@ -8,9 +7,11 @@
 class CalModel;
 
 class TCompSkeleton : public TCompBase {
-	DECL_SIBLING_ACCESS();
+private:
 	bool stopped = false;
 public:
+	DECL_SIBLING_ACCESS();
+
 	CRenderCte<CCteSkinBones> cb_bones;
 	CalModel* model = nullptr;
 	TCompSkeleton();
@@ -33,8 +34,9 @@ public:
 	float getAnimationDuration(int animationId);
 	float getAnimationDuration(std::string animation);
 
+	int getBoneId(std::string bone);
+	CalBone* getBone(int id);
+
 	void stop();
 	void resume();
 };
-
-#endif
