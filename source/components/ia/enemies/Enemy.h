@@ -52,6 +52,7 @@ public:
 	float movementSpeed = 0.f;
 	float rotationSpeed = 0.f;
 	float gravity = 0.f;
+	float gravityMultiplier = 1.f;
 	float maxVerticalVelocity = 0.f;
 	bool grounded = false;
 	bool airborne = false;

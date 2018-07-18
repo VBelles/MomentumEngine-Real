@@ -77,6 +77,8 @@ void Enemy::debugInMenu() {
 	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
 	ImGui::Text("Hp: %f\n", hp);
 	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
+	ImGui::DragFloat("Gravity\n", &gravity, 0.1f, -500.f, 500.f);
+	ImGui::DragFloat("Gravity multiplier\n", &gravityMultiplier, 0.1f, -500.f, 500.f);
 	ImGui::Text("Power to give: %f\n", getPower()->getPowerToGive());
 	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
 	ImGui::Text("Is blocking: %s\n", isBlocking ? "true" : "false");
@@ -102,8 +104,8 @@ void Enemy::debugInMenu() {
 }
 
 void Enemy::updateGravity(float delta) {
-	deltaMovement.y += velocity.y * delta + 0.5f * gravity * delta * delta;
-	velocity.y += gravity * delta;
+	deltaMovement.y += velocity.y * delta + 0.5f * gravity * gravityMultiplier * delta * delta;
+	velocity.y += gravity * gravityMultiplier * delta;
 	velocity.y = clamp(velocity.y, -maxVerticalVelocity, maxVerticalVelocity);
 }
 
@@ -125,6 +127,7 @@ void Enemy::move(float delta) {
 	PxControllerCollisionFlags flags = EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 	grounded = flags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	if (grounded) {
+		gravityMultiplier = 1.f;
 		airborne = false;
 		if (velocity.y < 0.f) {
 			velocity.y = 0;

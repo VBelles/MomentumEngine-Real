@@ -48,6 +48,7 @@ int OnHit::execAction(float delta) {
 			enemy->getPower()->setPowerToGive(0.f);
 		}
 	}
+	enemy->gravityMultiplier = attackInfo.gravityMultiplier;
 	enemy->getHitboxes()->disableAll();
 	enemy->velocity = VEC3::Zero;
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
