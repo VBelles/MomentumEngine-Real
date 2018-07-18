@@ -43,7 +43,7 @@
             "name": "spinAttack",
             "frame_data": "15 40",
             "damage": 1.0,
-            "invulnerabilityTime": 1.0,
+            "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "spinAttack"
           },          
@@ -60,12 +60,12 @@
           },
           {
             "name": "launched",
-            "frame_data": "0 10000",
+            "frame_data": "2 10000",
             "damage": 0.0,
             "invulnerabilityTime": 0.0,
             "stun": 1.2,
             "propel":{
-              "duration": 0.1,
+              "duration": 0.6,
               "velocity" : "0 20 0"
             },
             "hitbox": "launched"

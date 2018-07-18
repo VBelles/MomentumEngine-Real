@@ -87,9 +87,9 @@ void Kippah::initBehaviorTree() {
 	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(enemy, "medusa_damage", "launched");
 	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(enemy);
 	VerticalLaunchedAction* verticalLaunchedAction = new VerticalLaunchedAction(enemy, "launched");
-	OnPropelAction* onPropelAction = new OnPropelAction(enemy);
+	OnPropelAction* onPropelAction = new OnPropelAction(enemy, "launched");
 	OnPropelCondition * onPropelCondition = new OnPropelCondition(enemy);
-	PropelAction* propelAction = new PropelAction(enemy);
+	PropelAction* propelAction = new PropelAction(enemy, "launched");
 	OnStunAction* onStunAction = new OnStunAction(enemy, "", "medusa_stun");
 	OnStunCondition* onStunCondition = new OnStunCondition(enemy);
 	StunAction* stunAction = new StunAction(enemy);
@@ -314,8 +314,13 @@ void Kippah::onHitboxEnter(const TMsgHitboxEnter& msg) {
 					TCompTransform* otherTransform = otherEntity->get<TCompTransform>();
 					VEC3 launchVelocity = otherTransform->getPosition() - enemy->getTransform()->getPosition();
 					launchVelocity.Normalize();
-					launchVelocity *= attackHit.info.propel->velocity.Length();
-					attackHit.info.propel->velocity = launchVelocity;
+					launchVelocity *= enemy->velocity.Length() * 0.3f;
+					if (launchVelocity.Length() < 3.0f) {
+						attackHit.info.propel = nullptr;
+					}
+					else {
+						attackHit.info.propel->velocity = launchVelocity;
+					}
 				}
 				((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
 			}
