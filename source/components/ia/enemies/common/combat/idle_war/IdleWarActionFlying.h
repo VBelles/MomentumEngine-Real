@@ -7,8 +7,10 @@ class Enemy;
 class IdleWarActionFlying : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
-	std::string animation;
+	std::string animation = "";
 public:
+	IdleWarActionFlying() {}
 	IdleWarActionFlying(Enemy* enemy, std::string animation);
 	int execAction(float delta) override;
+	void load(IBehaviorTreeNew* bt, const json& j) override;
 };

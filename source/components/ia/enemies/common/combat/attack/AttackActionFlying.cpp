@@ -4,6 +4,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 
+REGISTER_BTAction("AttackActionFlying", AttackActionFlying);
+
 AttackActionFlying::AttackActionFlying(Enemy* enemy, std::string animation, std::string attack) :
 	enemy(enemy),
 	animation(animation),
@@ -24,4 +26,12 @@ int AttackActionFlying::execAction(float delta) {
 		enemy->getHitboxes()->enable(enemyAttack.hitboxName);
 	}
 	return Stay;
+}
+
+void AttackActionFlying::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+	attack = j.value("attack", attack);
 }

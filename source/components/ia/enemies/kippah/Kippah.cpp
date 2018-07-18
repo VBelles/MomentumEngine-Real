@@ -110,7 +110,7 @@ void Kippah::initBehaviorTree() {
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(enemy);
 	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(enemy, shortDistanceCombatCondition);
 	OnAttackAction* onRangedAttackAction = new OnAttackAction(enemy, "medusa_shot", "rangedAttack");
-	RangedAttackAction* rangedAttackAction = new RangedAttackAction(enemy, "medusa_shot", "rangedAttack", shortDistanceCombatCondition);
+	RangedAttackAction* rangedAttackAction = new RangedAttackAction(enemy, "medusa_shot", "rangedAttack", "shortDistanceCombat");
 	AttackCoolDownCondition* attackCoolDownCondition = new AttackCoolDownCondition(enemy);
 
 	//root

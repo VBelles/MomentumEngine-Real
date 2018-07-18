@@ -11,6 +11,5 @@ public:
 	AirborneAction() {}
 	AirborneAction(Enemy* enemy);
 	int execAction(float delta) override;
-
-	void setEnemy(Enemy* enemy) { this->enemy = enemy; }
+	void load(IBehaviorTreeNew* bt, const json& j) override;
 };

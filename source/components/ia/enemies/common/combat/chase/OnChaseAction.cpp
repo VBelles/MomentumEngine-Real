@@ -4,6 +4,8 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTAction("OnChaseAction", OnChaseAction);
+
 OnChaseAction::OnChaseAction(Enemy* enemy, std::string animation):
 	enemy(enemy),
 	animation(animation){
@@ -14,4 +16,11 @@ int OnChaseAction::execAction(float delta) {
 	enemy->rotateTowards(delta, playerPosition, enemy->rotationSpeed);
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	return Leave;
+}
+
+void OnChaseAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
 }

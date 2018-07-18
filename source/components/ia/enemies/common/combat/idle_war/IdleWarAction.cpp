@@ -4,6 +4,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTAction("IdleWarAction", IdleWarAction);
+
 IdleWarAction::IdleWarAction(Enemy* enemy, std::string animation) :
 	enemy(enemy),
 	animation(animation) {
@@ -17,4 +19,11 @@ int IdleWarAction::execAction(float delta) {
 		return Stay;
 	}
 	return Leave;
+}
+
+void IdleWarAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
 }

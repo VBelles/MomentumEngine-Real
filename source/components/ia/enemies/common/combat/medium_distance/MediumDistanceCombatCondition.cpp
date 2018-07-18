@@ -3,6 +3,8 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTCondition("MediumDistanceCombatCondition", MediumDistanceCombatCondition);
+
 MediumDistanceCombatCondition::MediumDistanceCombatCondition(Enemy* enemy) : enemy(enemy) {
 }
 
@@ -17,4 +19,9 @@ bool MediumDistanceCombatCondition::testCondition(float delta) {
 	else {
 		return distanceSqrd <= enemy->mediumCombatDistanceSqrd;
 	}
+}
+
+void MediumDistanceCombatCondition::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }
