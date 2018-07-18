@@ -1234,7 +1234,7 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-			-- Target Direct light. TODO: add more types.
+			-- Target Direct light.
 			-- http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_E6767B0D_B5BA_4422_A59F_FD5673FE550E_htm
 				exportName obj
 				
@@ -1558,7 +1558,6 @@ struct TSceneExporter (
 						
 						-- Export spline if available.
 						if hasChildLine child then (
-							--TODO: this should be different now that we use platform_simple instead of follow_curve.
 							exportSpline child type:"hitboxPath"
 						)
 					endEntity() -- - - - - - - - - - - - - - - - -
