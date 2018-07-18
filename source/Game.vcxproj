@@ -143,6 +143,7 @@
     <ClCompile Include="components\ia\enemies\common\combat\idle_war\OnIdleWarAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\long_distance\LongDistanceCombatCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\medium_distance\MediumDistanceCombatCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\ranged_attack\RangedAttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\short_distance\ShortDistanceCombatCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\step_back\OnStepBackAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\step_back\StepBackAction.cpp" />
@@ -191,7 +192,6 @@
     <ClCompile Include="components\ia\enemies\dreidel\Dreidel.cpp" />
     <ClCompile Include="components\ia\enemies\Enemy.cpp" />
     <ClCompile Include="components\ia\enemies\kippah\Kippah.cpp" />
-    <ClCompile Include="components\ia\enemies\kippah\ranged_attack\RangedAttackAction.cpp" />
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="modules\game_modules\game\enemy_manager.cpp" />
     <ClCompile Include="modules\game_modules\module_instancing.cpp" />
@@ -476,6 +476,7 @@
     <ClInclude Include="components\ia\enemies\common\combat\idle_war\OnIdleWarAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\long_distance\LongDistanceCombatCondition.h" />
     <ClInclude Include="components\ia\enemies\common\combat\medium_distance\MediumDistanceCombatCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\ranged_attack\RangedAttackAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\short_distance\ShortDistanceCombatCondition.h" />
     <ClInclude Include="components\ia\enemies\common\combat\step_back\OnStepBackAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\step_back\StepBackAction.h" />
@@ -524,7 +525,6 @@
     <ClInclude Include="components\ia\enemies\dreidel\Dreidel.h" />
     <ClInclude Include="components\ia\enemies\Enemy.h" />
     <ClInclude Include="components\ia\enemies\kippah\Kippah.h" />
-    <ClInclude Include="components\ia\enemies\kippah\ranged_attack\RangedAttackAction.h" />
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="modules\game_modules\game\enemy_manager.h" />
     <ClInclude Include="modules\game_modules\module_instancing.h" />

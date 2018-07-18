@@ -52,6 +52,16 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 		int n = sscanf(jAttack.value("frame_data", "").c_str(), "%f %f", &attack.hitboxStart, &attack.hitboxEnd);
 		assert(n == 2);
 
+		if (jAttack.value("type", "") == "ranged") {
+			attack.type = Ranged;
+		}
+		else {
+			attack.type = Melee;
+		}
+		attack.attackSpawnOffset = jAttack.count("attack_spawn_offset") ? loadVEC3(jAttack["attack_spawn_offset"]) : attack.attackSpawnOffset;
+		attack.attackTargetOffset = jAttack.count("attack_target_offset") ? loadVEC3(jAttack["attack_target_offset"]) : attack.attackTargetOffset;
+		attack.attackPrefab = jAttack.value("attack_prefab", attack.attackPrefab);
+
 		attacks[attackName] = attack;
 	}
 
@@ -80,6 +90,8 @@ void Enemy::debugInMenu() {
 		ImGui::TreePop();
 	}
 	ImGui::Text("Player handle is valid: %s\n", playerHandle.isValid() ? "true" : "false");
+	ImGui::Text("Player transform handle is valid: %s\n", playerTransformHandle.isValid() ? "true" : "false");
+	ImGui::Text("Player model handle is valid: %s\n", playerModelHandle.isValid() ? "true" : "false");
 	ImGui::Text("Transform handle is valid: %s\n", transformHandle.isValid() ? "true" : "false");
 	ImGui::Text("Collider handle is valid: %s\n", colliderHandle.isValid() ? "true" : "false");
 	ImGui::Text("Skeleton handle is valid: %s\n", skeletonHandle.isValid() ? "true" : "false");
@@ -122,19 +134,16 @@ bool Enemy::hasSuperArmor() {
 	return superArmorAmount > 0 && superArmorTimer.elapsed() < superArmorTime;
 }
 
-CEntity* Enemy::getPlayer() {
-	if (!playerHandle.isValid()) {
-		playerHandle = getEntityByName(PLAYER_NAME);
-	}
-	return playerHandle;
+CHandle Enemy::getEntityHandle() {
+	return transformHandle.getOwner();
 }
 
 TCompTransform* Enemy::getPlayerTransform() {
-	return getPlayer()->get<TCompTransform>();
+	return playerTransformHandle;
 }
 
 TCompPlayerModel* Enemy::getPlayerModel() {
-	return getPlayer()->get<TCompPlayerModel>();
+	return playerModelHandle;
 }
 
 TCompTransform* Enemy::getTransform() {
@@ -155,4 +164,8 @@ TCompHitboxes* Enemy::getHitboxes() {
 
 TCompGivePower* Enemy::getPower() {
 	return powerHandle;
+}
+
+void Enemy::setCurrent(std::string node) {
+	current = tree[node];
 }

@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "Kippah.h"
 
+#include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 #include "components/comp_collider.h"
 #include "skeleton/comp_skeleton.h"
@@ -53,170 +54,170 @@
 #include "components/ia/enemies/common/combat/long_distance/LongDistanceCombatCondition.h"
 #include "components/ia/enemies/common/combat/medium_distance/MediumDistanceCombatCondition.h"
 #include "components/ia/enemies/common/combat/short_distance/ShortDistanceCombatCondition.h"
-#include "components/ia/enemies/kippah/ranged_attack/RangedAttackAction.h"
+#include "components/ia/enemies/common/combat/ranged_attack/RangedAttackAction.h"
 #include "components/ia/enemies/common/combat/AttackCoolDownCondition.h"
 
 DECL_OBJ_MANAGER("kippah", Kippah);
 
 Kippah::~Kippah() {
+	SAFE_DELETE(enemy);
 }
 
 void Kippah::initBehaviorTree() {
-	clear();
+	enemy->clear();
 
 	FalseCondition* falseCondition = new FalseCondition();
-	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(this);
-	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(this);
-	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(this);
-	DeathAction* deathAction = new DeathAction(this, "medusa_death");
-	DisappearAction* disappearAction = new DisappearAction(this, "medusa_desaparicion");
-	OnDeathAction* onDeathAction = new OnDeathAction(this, "medusa_death");
-	OnDeathCondition* onDeathCondition = new OnDeathCondition(this);
-	OnDisappearAction* onDisappearAction = new OnDisappearAction(this, "medusa_desaparicion");
-	GrabAction* grabAction = new GrabAction(this);
-	OnGrabAction* onGrabAction = new OnGrabAction(this);
-	OnGrabCondition* onGrabCondition = new OnGrabCondition(this);
-	HitStun* hitStun = new HitStun(this, "medusa_damage");
-	OnHit* onHit = new OnHit(this, "medusa_damage");
-	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(this);
-	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(this, "medusa_damage");
-	OnHorizontalLaunchCondition* onHorizontalLaunchCondition = new OnHorizontalLaunchCondition(this);
-	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(this, "medusa_damage");
-	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(this);
-	VerticalLaunchedAction* verticalLaunchedAction = new VerticalLaunchedAction(this);
-	OnPropelAction* onPropelAction = new OnPropelAction(this);
-	OnPropelCondition * onPropelCondition = new OnPropelCondition(this);
-	PropelAction* propelAction = new PropelAction(this);
-	OnStunAction* onStunAction = new OnStunAction(this, "", "medusa_stun");
-	OnStunCondition* onStunCondition = new OnStunCondition(this);
-	StunAction* stunAction = new StunAction(this);
-	OnIdleAction* onIdleAction = new OnIdleAction(this, "medusa_idle");
-	IdleActionFlying* idleActionFlying = new IdleActionFlying(this, "medusa_idle", shortDistanceCombatCondition);
-	OnIdleLoop* onIdleLoop = new OnIdleLoop(this, "medusa_idle");
-	IdleLoopFlying* idleLoopFlying = new IdleLoopFlying(this, "medusa_idle", shortDistanceCombatCondition);
-	OnTeleportAction* onTeleportAction = new OnTeleportAction(this, "medusa_desaparicion");
-	OnTeleportCondition* onTeleportCondition = new OnTeleportCondition(this);
-	TeleportAction* teleportAction = new TeleportAction(this, "medusa_desaparicion");
-	AppearAction* appearAction = new AppearAction(this, "medusa_aparicion");
-	OnAppearAction* onAppearAction = new OnAppearAction(this, "medusa_aparicion");
-	CombatCondition* combatCondition = new CombatCondition(this);
-	AttackActionFlying* spinAttackAction = new AttackActionFlying(this, "medusa_revolverse", "spinAttack");
-	OnAttackAction* onSpinAttackAction = new OnAttackAction(this, "medusa_revolverse", "spinAttack");
-	IdleWarActionFlying* idleWarActionFlying = new IdleWarActionFlying(this, "medusa_idle_war");
-	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(this, "medusa_idle_war");
-	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(this, "medusa_idle");
-	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(this);
-	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(this, shortDistanceCombatCondition);
-	OnAttackAction* onRangedAttackAction = new OnAttackAction(this, "medusa_shot", "rangedAttack");
-	RangedAttackAction* rangedAttackAction = new RangedAttackAction(this, "medusa_shot", "rangedAttack", shortDistanceCombatCondition);
-	AttackCoolDownCondition* attackCoolDownCondition = new AttackCoolDownCondition(this);
+	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(enemy);
+	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(enemy);
+	ShortDistanceCombatCondition* shortDistanceCombatCondition = new ShortDistanceCombatCondition(enemy);
+	DeathAction* deathAction = new DeathAction(enemy, "medusa_death");
+	DisappearAction* disappearAction = new DisappearAction(enemy, "medusa_desaparicion");
+	OnDeathAction* onDeathAction = new OnDeathAction(enemy, "medusa_death");
+	OnDeathCondition* onDeathCondition = new OnDeathCondition(enemy);
+	OnDisappearAction* onDisappearAction = new OnDisappearAction(enemy, "medusa_desaparicion");
+	GrabAction* grabAction = new GrabAction(enemy);
+	OnGrabAction* onGrabAction = new OnGrabAction(enemy);
+	OnGrabCondition* onGrabCondition = new OnGrabCondition(enemy);
+	HitStun* hitStun = new HitStun(enemy, "medusa_damage");
+	OnHit* onHit = new OnHit(enemy, "medusa_damage");
+	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(enemy);
+	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(enemy, "medusa_damage");
+	OnHorizontalLaunchCondition* onHorizontalLaunchCondition = new OnHorizontalLaunchCondition(enemy);
+	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(enemy, "medusa_damage");
+	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(enemy);
+	VerticalLaunchedAction* verticalLaunchedAction = new VerticalLaunchedAction(enemy);
+	OnPropelAction* onPropelAction = new OnPropelAction(enemy);
+	OnPropelCondition * onPropelCondition = new OnPropelCondition(enemy);
+	PropelAction* propelAction = new PropelAction(enemy);
+	OnStunAction* onStunAction = new OnStunAction(enemy, "", "medusa_stun");
+	OnStunCondition* onStunCondition = new OnStunCondition(enemy);
+	StunAction* stunAction = new StunAction(enemy);
+	OnIdleAction* onIdleAction = new OnIdleAction(enemy, "medusa_idle");
+	IdleActionFlying* idleActionFlying = new IdleActionFlying(enemy, "medusa_idle", shortDistanceCombatCondition);
+	OnIdleLoop* onIdleLoop = new OnIdleLoop(enemy, "medusa_idle");
+	IdleLoopFlying* idleLoopFlying = new IdleLoopFlying(enemy, "medusa_idle", shortDistanceCombatCondition);
+	OnTeleportAction* onTeleportAction = new OnTeleportAction(enemy, "medusa_desaparicion");
+	OnTeleportCondition* onTeleportCondition = new OnTeleportCondition(enemy);
+	TeleportAction* teleportAction = new TeleportAction(enemy, "medusa_desaparicion");
+	AppearAction* appearAction = new AppearAction(enemy, "medusa_aparicion");
+	OnAppearAction* onAppearAction = new OnAppearAction(enemy, "medusa_aparicion");
+	CombatCondition* combatCondition = new CombatCondition(enemy);
+	AttackActionFlying* spinAttackAction = new AttackActionFlying(enemy, "medusa_revolverse", "spinAttack");
+	OnAttackAction* onSpinAttackAction = new OnAttackAction(enemy, "medusa_revolverse", "spinAttack");
+	IdleWarActionFlying* idleWarActionFlying = new IdleWarActionFlying(enemy, "medusa_idle_war");
+	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(enemy, "medusa_idle_war");
+	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(enemy, "medusa_idle");
+	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(enemy);
+	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(enemy, shortDistanceCombatCondition);
+	OnAttackAction* onRangedAttackAction = new OnAttackAction(enemy, "medusa_shot", "rangedAttack");
+	RangedAttackAction* rangedAttackAction = new RangedAttackAction(enemy, "medusa_shot", "rangedAttack", shortDistanceCombatCondition);
+	AttackCoolDownCondition* attackCoolDownCondition = new AttackCoolDownCondition(enemy);
 
 	//root
-	createRoot("kippah", Priority, nullptr, nullptr);
+	enemy->createRoot("kippah", Priority, nullptr, nullptr);
 
 	//getting hit
-	addChild("kippah", "hit", Sequence, falseCondition, nullptr);
+	enemy->addChild("kippah", "hit", Sequence, falseCondition, nullptr);
 	//damage calculation
-	addChild("hit", "onHit", Action, nullptr, onHit);
+	enemy->addChild("hit", "onHit", Action, nullptr, onHit);
 	//attack properties
-	addChild("hit", "attackProperties", Priority, nullptr, nullptr);
+	enemy->addChild("hit", "attackProperties", Priority, nullptr, nullptr);
 	//horizontal launch
-	addChild("attackProperties", "horizontalLaunch", Sequence, onHorizontalLaunchCondition, nullptr);
-	addChild("horizontalLaunch", "onHorizontalLaunchAction", Action, nullptr, onHorizontalLaunchAction);
-	addChild("horizontalLaunch", "horizontalLaunchedAction", Action, nullptr, horizontalLaunchedAction);
+	enemy->addChild("attackProperties", "horizontalLaunch", Sequence, onHorizontalLaunchCondition, nullptr);
+	enemy->addChild("horizontalLaunch", "onHorizontalLaunchAction", Action, nullptr, onHorizontalLaunchAction);
+	enemy->addChild("horizontalLaunch", "horizontalLaunchedAction", Action, nullptr, horizontalLaunchedAction);
 	//vertical launch
-	addChild("attackProperties", "verticalLaunch", Sequence, onVerticalLaunchCondition, nullptr);
-	addChild("verticalLaunch", "onVerticalLaunchAction", Action, nullptr, onVerticalLaunchAction);
-	addChild("verticalLaunch", "verticalLaunchedAction", Action, nullptr, verticalLaunchedAction);
+	enemy->addChild("attackProperties", "verticalLaunch", Sequence, onVerticalLaunchCondition, nullptr);
+	enemy->addChild("verticalLaunch", "onVerticalLaunchAction", Action, nullptr, onVerticalLaunchAction);
+	enemy->addChild("verticalLaunch", "verticalLaunchedAction", Action, nullptr, verticalLaunchedAction);
 	//grab
-	addChild("attackProperties", "grab", Sequence, onGrabCondition, nullptr);
-	addChild("grab", "onGrabAction", Action, nullptr, onGrabAction);
-	addChild("grab", "grabAction", Action, nullptr, grabAction);
+	enemy->addChild("attackProperties", "grab", Sequence, onGrabCondition, nullptr);
+	enemy->addChild("grab", "onGrabAction", Action, nullptr, onGrabAction);
+	enemy->addChild("grab", "grabAction", Action, nullptr, grabAction);
 	//propel
-	addChild("attackProperties", "propel", Sequence, onPropelCondition, nullptr);
-	addChild("propel", "onPropelAction", Action, nullptr, onPropelAction);
-	addChild("propel", "propelAction", Action, nullptr, propelAction);
+	enemy->addChild("attackProperties", "propel", Sequence, onPropelCondition, nullptr);
+	enemy->addChild("propel", "onPropelAction", Action, nullptr, onPropelAction);
+	enemy->addChild("propel", "propelAction", Action, nullptr, propelAction);
 	//hit stun
-	addChild("attackProperties", "hitStun", Action, nullptr, hitStun);
+	enemy->addChild("attackProperties", "hitStun", Action, nullptr, hitStun);
 
 	//death
-	addChild("kippah", "death", Sequence, onDeathCondition, nullptr);
-	addChild("death", "onDeathAction", Action, nullptr, onDeathAction);
-	addChild("death", "deathAction", Action, nullptr, deathAction);
+	enemy->addChild("kippah", "death", Sequence, onDeathCondition, nullptr);
+	enemy->addChild("death", "onDeathAction", Action, nullptr, onDeathAction);
+	enemy->addChild("death", "deathAction", Action, nullptr, deathAction);
 	//disappear
-	addChild("death", "disappear", Sequence, nullptr, nullptr);
-	addChild("disappear", "onDisappearAction", Action, nullptr, onDisappearAction);
-	addChild("disappear", "disappearAction", Action, nullptr, disappearAction);
+	enemy->addChild("death", "disappear", Sequence, nullptr, nullptr);
+	enemy->addChild("disappear", "onDisappearAction", Action, nullptr, onDisappearAction);
+	enemy->addChild("disappear", "disappearAction", Action, nullptr, disappearAction);
 
 	//stun
-	addChild("kippah", "stun", Sequence, onStunCondition, nullptr);
-	addChild("stun", "onStunAction", Action, nullptr, onStunAction);
-	addChild("stun", "stunAction", Action, nullptr, stunAction);
+	enemy->addChild("kippah", "stun", Sequence, onStunCondition, nullptr);
+	enemy->addChild("stun", "onStunAction", Action, nullptr, onStunAction);
+	enemy->addChild("stun", "stunAction", Action, nullptr, stunAction);
 
 	//teleport to spawn
-	addChild("kippah", "teleport", Sequence, onTeleportCondition, nullptr);
-	addChild("teleport", "onTeleportAction", Action, nullptr, onTeleportAction);
-	addChild("teleport", "teleportAction", Action, nullptr, teleportAction);
+	enemy->addChild("kippah", "teleport", Sequence, onTeleportCondition, nullptr);
+	enemy->addChild("teleport", "onTeleportAction", Action, nullptr, onTeleportAction);
+	enemy->addChild("teleport", "teleportAction", Action, nullptr, teleportAction);
 	//appear
-	addChild("teleport", "appear", Sequence, nullptr, nullptr);
-	addChild("appear", "onAppearAction", Action, nullptr, onAppearAction);
-	addChild("appear", "appearAction", Action, nullptr, appearAction);
+	enemy->addChild("teleport", "appear", Sequence, nullptr, nullptr);
+	enemy->addChild("appear", "onAppearAction", Action, nullptr, onAppearAction);
+	enemy->addChild("appear", "appearAction", Action, nullptr, appearAction);
 
 	//return to spawn walking
-	addChild("kippah", "returnToSpawn", Sequence, onReturnToSpawnCondition, nullptr);
-	addChild("returnToSpawn", "onReturnToSpawnAction", Action, nullptr, onReturnToSpawnAction);
-	addChild("returnToSpawn", "returnToSpawnAction", Action, nullptr, returnToSpawnFlyingAction);
+	enemy->addChild("kippah", "returnToSpawn", Sequence, onReturnToSpawnCondition, nullptr);
+	enemy->addChild("returnToSpawn", "onReturnToSpawnAction", Action, nullptr, onReturnToSpawnAction);
+	enemy->addChild("returnToSpawn", "returnToSpawnAction", Action, nullptr, returnToSpawnFlyingAction);
 
 	//combat
-	addChild("kippah", "combat", Priority, combatCondition, nullptr);
+	enemy->addChild("kippah", "combat", Priority, combatCondition, nullptr);
 	//short distance combat
-	addChild("combat", "shortDistanceCombat", Sequence, shortDistanceCombatCondition, nullptr);
+	enemy->addChild("combat", "shortDistanceCombat", Sequence, shortDistanceCombatCondition, nullptr);
 	//spin attack
-	addChild("shortDistanceCombat", "shortSpinAttack", Sequence, nullptr, nullptr);
-	addChild("shortSpinAttack", "onShortSpinAttackAction", Action, nullptr, onSpinAttackAction);
-	addChild("shortSpinAttack", "shortSpinAttackAction", Action, nullptr, spinAttackAction);
+	enemy->addChild("shortDistanceCombat", "shortSpinAttack", Sequence, nullptr, nullptr);
+	enemy->addChild("shortSpinAttack", "onShortSpinAttackAction", Action, nullptr, onSpinAttackAction);
+	enemy->addChild("shortSpinAttack", "shortSpinAttackAction", Action, nullptr, spinAttackAction);
 	//idle war
-	addChild("shortDistanceCombat", "shortIdleWar", Sequence, nullptr, nullptr);
-	addChild("shortIdleWar", "onShortIdleWar", Action, nullptr, onIdleWarAction);
-	addChild("shortIdleWar", "shortIdleWarAction", Action, nullptr, idleWarActionFlying);
+	enemy->addChild("shortDistanceCombat", "shortIdleWar", Sequence, nullptr, nullptr);
+	enemy->addChild("shortIdleWar", "onShortIdleWar", Action, nullptr, onIdleWarAction);
+	enemy->addChild("shortIdleWar", "shortIdleWarAction", Action, nullptr, idleWarActionFlying);
 	//attack cool down
-	addChild("combat", "attackCooldownCombat", Random, attackCoolDownCondition, nullptr);
+	enemy->addChild("combat", "attackCooldownCombat", Random, attackCoolDownCondition, nullptr);
 	//idle war
-	addChild("attackCooldownCombat", "CDIdleWar", Sequence, nullptr, nullptr);
-	addChild("CDIdleWar", "onCDIdleWar", Action, nullptr, onIdleWarAction);
-	addChild("CDIdleWar", "CDIdleWarAction", Action, nullptr, idleWarActionFlying);
+	enemy->addChild("attackCooldownCombat", "CDIdleWar", Sequence, nullptr, nullptr);
+	enemy->addChild("CDIdleWar", "onCDIdleWar", Action, nullptr, onIdleWarAction);
+	enemy->addChild("CDIdleWar", "CDIdleWarAction", Action, nullptr, idleWarActionFlying);
 	//long distance combat
-	addChild("combat", "longDistanceCombat", Random, longDistanceCombatCondition, nullptr);
+	enemy->addChild("combat", "longDistanceCombat", Random, longDistanceCombatCondition, nullptr);
 	//ranged attack
-	addChild("longDistanceCombat", "rangedAttack", Sequence, nullptr, nullptr);
-	addChild("rangedAttack", "onRangedAttackAction", Action, nullptr, onRangedAttackAction);
-	addChild("rangedAttack", "rangedAttackAction", Action, nullptr, rangedAttackAction);
+	enemy->addChild("longDistanceCombat", "rangedAttack", Sequence, nullptr, nullptr);
+	enemy->addChild("rangedAttack", "onRangedAttackAction", Action, nullptr, onRangedAttackAction);
+	enemy->addChild("rangedAttack", "rangedAttackAction", Action, nullptr, rangedAttackAction);
 	//idle war
-	addChild("longDistanceCombat", "longIdleWar", Sequence, nullptr, nullptr);
-	addChild("longIdleWar", "onLongIdleWar", Action, nullptr, onIdleWarAction);
-	addChild("longIdleWar", "longIdleWarAction", Action, nullptr, idleWarActionFlying);
+	enemy->addChild("longDistanceCombat", "longIdleWar", Sequence, nullptr, nullptr);
+	enemy->addChild("longIdleWar", "onLongIdleWar", Action, nullptr, onIdleWarAction);
+	enemy->addChild("longIdleWar", "longIdleWarAction", Action, nullptr, idleWarActionFlying);
 
 	//idle
-	addChild("kippah", "idle", Random, nullptr, nullptr);
+	enemy->addChild("kippah", "idle", Random, nullptr, nullptr);
 	//idle action
-	addChild("idle", "idleActionSeq", Sequence, nullptr, nullptr);
-	addChild("idleActionSeq", "onIdleAction", Action, nullptr, onIdleAction);
-	addChild("idleActionSeq", "idleAction", Action, nullptr, idleActionFlying);
+	enemy->addChild("idle", "idleActionSeq", Sequence, nullptr, nullptr);
+	enemy->addChild("idleActionSeq", "onIdleAction", Action, nullptr, onIdleAction);
+	enemy->addChild("idleActionSeq", "idleAction", Action, nullptr, idleActionFlying);
 	//idle loop
-	addChild("idle", "idleLoopSeq", Sequence, nullptr, nullptr);
-	addChild("idleLoopSeq", "onIdleLoop", Action, nullptr, onIdleLoop);
-	addChild("idleLoopSeq", "idleLoop", Action, nullptr, idleLoopFlying);
+	enemy->addChild("idle", "idleLoopSeq", Sequence, nullptr, nullptr);
+	enemy->addChild("idleLoopSeq", "onIdleLoop", Action, nullptr, onIdleLoop);
+	enemy->addChild("idleLoopSeq", "idleLoop", Action, nullptr, idleLoopFlying);
 }
 
 void Kippah::load(const json& j, TEntityParseContext& ctx) {
-	Enemy::load(j, ctx);
-	attackSpawnOffset = j.count("attack_spawn_offset") ? loadVEC3(j["attack_spawn_offset"]) : attackSpawnOffset;
-	attackTargetOffset = j.count("attack_target_offset") ? loadVEC3(j["attack_target_offset"]) : attackTargetOffset;
-	attackPrefab = j.value("attack_prefab", attackPrefab);
+	SAFE_DELETE(enemy);
+	enemy = new Enemy();
+	enemy->load(j, ctx);
 }
 
 void Kippah::debugInMenu() {
-	Enemy::debugInMenu();
+	enemy->debugInMenu();
 }
 
 void Kippah::registerMsgs() {
@@ -230,71 +231,81 @@ void Kippah::registerMsgs() {
 }
 
 void Kippah::update(float delta) {
-	if (!getCollider()->toDestroy) {
-		deltaMovement = VEC3::Zero;
-		recalc(delta);
-		if (getCollider()->isCreated()) move(delta);
+	if (!enemy->getCollider()->toDestroy) {
+		enemy->deltaMovement = VEC3::Zero;
+		enemy->recalc(delta);
+		if (enemy->getCollider()->isCreated()) enemy->move(delta);
 	}
 }
 
 void Kippah::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	initBehaviorTree();
 
-	playerHandle = getEntityByName(PLAYER_NAME);
-	transformHandle = get<TCompTransform>();
-	colliderHandle = get<TCompCollider>();
-	skeletonHandle = get<TCompSkeleton>();
-	hitboxesHandle = get<TCompHitboxes>();
-	powerHandle = get<TCompGivePower>();
+	enemy->playerHandle = getEntityByName(PLAYER_NAME);
+	if (enemy->playerHandle.isValid()) {
+		CEntity* player = enemy->playerHandle;
+		enemy->playerTransformHandle = player->get<TCompTransform>();
+		enemy->playerModelHandle = player->get<TCompPlayerModel>();
+	}
+	enemy->transformHandle = get<TCompTransform>();
+	enemy->colliderHandle = get<TCompCollider>();
+	enemy->skeletonHandle = get<TCompSkeleton>();
+	enemy->hitboxesHandle = get<TCompHitboxes>();
+	enemy->powerHandle = get<TCompGivePower>();
 
-	spawnPosition = getTransform()->getPosition();
+	enemy->spawnPosition = enemy->getTransform()->getPosition();
 
-	current = tree["appear"];
+	enemy->setCurrent("appear");
 }
 
 void Kippah::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
-	playerHandle = getEntityByName(PLAYER_NAME);
-	spawnPosition = getTransform()->getPosition();
+	enemy->playerHandle = getEntityByName(PLAYER_NAME);
+	if (enemy->playerHandle.isValid()) {
+		CEntity* player = enemy->playerHandle;
+		enemy->playerTransformHandle = player->get<TCompTransform>();
+		enemy->playerModelHandle = player->get<TCompPlayerModel>();
+	}
+	enemy->spawnPosition = enemy->getTransform()->getPosition();
 }
 
 void Kippah::onAttackHit(const TMsgAttackHit& msg) {
-	if (!getCollider()->toDestroy) {
-		receivedAttack = msg.info;
-		current = tree["hit"];
+	if (!enemy->getCollider()->toDestroy) {
+		enemy->receivedAttack = msg.info;
+		enemy->setCurrent("hit");
 	}
 }
 
 void Kippah::onOutOfBounds(const TMsgOutOfBounds& msg) {
-	if (!getCollider()->toDestroy) {
-		current = tree["disappear"];
+	if (!enemy->getCollider()->toDestroy) {
+		enemy->setCurrent("disappear");
 	}
 }
 
 void Kippah::onPerfectDodged(const TMsgPerfectDodged & msg) {
-	if (!getCollider()->toDestroy) {
+	if (!enemy->getCollider()->toDestroy) {
 		dbg("Damn! I've been dodged.\n");
 		if (hpGiven < maxHpToGive) {
-			getPlayerModel()->setHp(getPlayerModel()->getHp() + 1);
+			enemy->getPlayerModel()->setHp(enemy->getPlayerModel()->getHp() + 1);
 			hpGiven++;
 		}
 	}
 }
 
 void Kippah::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
-	if (getCollider()->toDestroy) {
+	if (enemy->getCollider()->toDestroy) {
 		CEntity* entity = CHandle(this).getOwner();
 		((CModuleGame*)(EngineModules.getModule("game")))->getEnemyManager()->onDead(entity->getName());
-		getSkeleton()->stop();
+		enemy->getSkeleton()->stop();
 		CHandle(this).getOwner().destroy();
 	}
 }
 
 void Kippah::onHitboxEnter(const TMsgHitboxEnter& msg) {
-	if (currentAttack != "") {
-		if (attacks[currentAttack].hitboxName == msg.hitbox) {
+	if (enemy->currentAttack != "") {
+		if (enemy->attacks[enemy->currentAttack].hitboxName == msg.hitbox) {
 			TMsgAttackHit attackHit = {};
 			attackHit.attacker = CHandle(this).getOwner();
-			attackHit.info = attacks[currentAttack].attackInfo;
+			attackHit.info = enemy->attacks[enemy->currentAttack].attackInfo;
 			((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
 		}
 	}

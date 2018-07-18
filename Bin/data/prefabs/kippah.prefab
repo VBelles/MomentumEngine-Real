@@ -51,10 +51,13 @@
             "frame_data": "0 120",
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
-            "hitbox": "attack"
+            "hitbox": "attack",
+            "type": "ranged",
+            "attack_spawn_offset": "0 1.75 0",
+            "attack_target_offset": "0 0.76 0",
+            "attack_prefab": "data/prefabs/rangedAttack.prefab"
           }
-        ],
-        "attack_spawn_offset": "0 1.75 0"
+        ]
       },
       "collider": {
         "shape": "capsule",
