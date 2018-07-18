@@ -2,18 +2,17 @@
 
 #include "components/ia/behavior_tree/IBehaviorTreeAction.h"
 
-class Kippah;
+class Enemy;
 class IBehaviorTreeCondition;
 
 class RangedAttackAction : public IBehaviorTreeAction {
 private:
-	Kippah* enemy = nullptr;
+	Enemy * enemy = nullptr;
 	IBehaviorTreeCondition* cancelCondition = nullptr;
 	std::string animation;
 	std::string attack;
 	bool attackLaunched = false;
-	CHandle rangedAttackHandle;
 public:
-	RangedAttackAction(Kippah* enemy, std::string animation, std::string attack, IBehaviorTreeCondition* cancelCondition = nullptr);
+	RangedAttackAction(Enemy* enemy, std::string animation, std::string attack, IBehaviorTreeCondition* cancelCondition = nullptr);
 	int execAction(float delta) override;
 };

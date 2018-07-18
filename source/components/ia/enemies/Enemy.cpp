@@ -52,6 +52,16 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 		int n = sscanf(jAttack.value("frame_data", "").c_str(), "%f %f", &attack.hitboxStart, &attack.hitboxEnd);
 		assert(n == 2);
 
+		if (jAttack.value("type", "") == "ranged") {
+			attack.type = Ranged;
+		}
+		else {
+			attack.type = Melee;
+		}
+		attack.attackSpawnOffset = jAttack.count("attack_spawn_offset") ? loadVEC3(jAttack["attack_spawn_offset"]) : attack.attackSpawnOffset;
+		attack.attackTargetOffset = jAttack.count("attack_target_offset") ? loadVEC3(jAttack["attack_target_offset"]) : attack.attackTargetOffset;
+		attack.attackPrefab = jAttack.value("attack_prefab", attack.attackPrefab);
+
 		attacks[attackName] = attack;
 	}
 
@@ -65,6 +75,8 @@ void Enemy::debugInMenu() {
 	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
 	ImGui::Text("Hp: %f\n", hp);
 	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
+	ImGui::DragFloat("Gravity\n", &gravity, 0.1f, -500.f, 500.f);
+	ImGui::DragFloat("Gravity multiplier\n", &gravityMultiplier, 0.1f, -500.f, 500.f);
 	ImGui::Text("Power to give: %f\n", getPower()->getPowerToGive());
 	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
 	ImGui::Text("Is blocking: %s\n", isBlocking ? "true" : "false");
@@ -80,6 +92,8 @@ void Enemy::debugInMenu() {
 		ImGui::TreePop();
 	}
 	ImGui::Text("Player handle is valid: %s\n", playerHandle.isValid() ? "true" : "false");
+	ImGui::Text("Player transform handle is valid: %s\n", playerTransformHandle.isValid() ? "true" : "false");
+	ImGui::Text("Player model handle is valid: %s\n", playerModelHandle.isValid() ? "true" : "false");
 	ImGui::Text("Transform handle is valid: %s\n", transformHandle.isValid() ? "true" : "false");
 	ImGui::Text("Collider handle is valid: %s\n", colliderHandle.isValid() ? "true" : "false");
 	ImGui::Text("Skeleton handle is valid: %s\n", skeletonHandle.isValid() ? "true" : "false");
@@ -88,8 +102,8 @@ void Enemy::debugInMenu() {
 }
 
 void Enemy::updateGravity(float delta) {
-	deltaMovement.y += velocity.y * delta + 0.5f * gravity * delta * delta;
-	velocity.y += gravity * delta;
+	deltaMovement.y += velocity.y * delta + 0.5f * gravity * gravityMultiplier * delta * delta;
+	velocity.y += gravity * gravityMultiplier * delta;
 	velocity.y = clamp(velocity.y, -maxVerticalVelocity, maxVerticalVelocity);
 }
 
@@ -111,6 +125,7 @@ void Enemy::move(float delta) {
 	PxControllerCollisionFlags flags = EnginePhysics.move(getCollider()->controller, toPxVec3(deltaMovement), delta);
 	grounded = flags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	if (grounded) {
+		gravityMultiplier = 1.f;
 		airborne = false;
 		if (velocity.y < 0.f) {
 			velocity.y = 0;
@@ -122,19 +137,16 @@ bool Enemy::hasSuperArmor() {
 	return superArmorAmount > 0 && superArmorTimer.elapsed() < superArmorTime;
 }
 
-CEntity* Enemy::getPlayer() {
-	if (!playerHandle.isValid()) {
-		playerHandle = getEntityByName(PLAYER_NAME);
-	}
-	return playerHandle;
+CHandle Enemy::getEntityHandle() {
+	return transformHandle.getOwner();
 }
 
 TCompTransform* Enemy::getPlayerTransform() {
-	return getPlayer()->get<TCompTransform>();
+	return playerTransformHandle;
 }
 
 TCompPlayerModel* Enemy::getPlayerModel() {
-	return getPlayer()->get<TCompPlayerModel>();
+	return playerModelHandle;
 }
 
 TCompTransform* Enemy::getTransform() {
@@ -155,4 +167,8 @@ TCompHitboxes* Enemy::getHitboxes() {
 
 TCompGivePower* Enemy::getPower() {
 	return powerHandle;
+}
+
+void Enemy::setCurrent(std::string node) {
+	current = tree[node];
 }

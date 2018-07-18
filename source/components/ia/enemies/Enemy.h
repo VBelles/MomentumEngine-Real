@@ -10,11 +10,19 @@ class TCompHitboxes;
 class TCompGivePower;
 class TCompPlayerModel;
 
+enum EnemyAttackType {
+	Melee, Ranged
+};
+
 struct EnemyAttack {
 	AttackInfo attackInfo;
 	std::string hitboxName;
 	float hitboxStart = 0.f;
 	float hitboxEnd = 0.f;
+	EnemyAttackType type = Melee;
+	VEC3 attackSpawnOffset = VEC3::Zero;
+	VEC3 attackTargetOffset = VEC3::Zero;
+	std::string attackPrefab = "";
 };
 
 class Enemy : public IBehaviorTreeNew {
@@ -40,6 +48,7 @@ public:
 	float movementSpeed = 0.f;
 	float rotationSpeed = 0.f;
 	float gravity = 0.f;
+	float gravityMultiplier = 1.f;
 	float maxVerticalVelocity = 0.f;
 	bool grounded = false;
 	bool airborne = false;
@@ -62,7 +71,6 @@ public:
 
 	float blockTime = 0.f;
 
-	//<AttackInfo, hitboxName, hitboxStart, hitboxEnd>
 	std::map<std::string, EnemyAttack> attacks;
 	std::string currentAttack = "";
 
@@ -86,6 +94,8 @@ public:
 
 	//Handles
 	CHandle playerHandle;
+	CHandle playerTransformHandle;
+	CHandle playerModelHandle;
 	CHandle transformHandle;
 	CHandle colliderHandle;
 	CHandle skeletonHandle;
@@ -100,7 +110,7 @@ public:
 
 	bool hasSuperArmor();
 
-	CEntity* getPlayer();
+	CHandle getEntityHandle();
 	TCompTransform* getPlayerTransform();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getTransform();
@@ -109,4 +119,5 @@ public:
 	TCompHitboxes* getHitboxes();
 	TCompGivePower* getPower();
 
+	void setCurrent(std::string node);
 };

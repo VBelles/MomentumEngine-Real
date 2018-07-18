@@ -13,6 +13,10 @@ AttackInfo& AttackInfo::operator=(const AttackInfo& other) {
 	invulnerabilityTime = other.invulnerabilityTime;
 	givesPower = other.givesPower;
 	activatesMechanism = other.activatesMechanism;
+	ignoresBlock = other.ignoresBlock;
+	superArmorDamage = other.superArmorDamage;
+	gravityMultiplier = other.gravityMultiplier;
+
 	SAFE_DELETE(stun);
 	if (other.stun) stun = new Stun(*other.stun);
 	SAFE_DELETE(verticalLauncher);
@@ -47,6 +51,7 @@ void AttackInfo::load(const json& j) {
 	activatesMechanism = j.value("activates_mechanism", false);
 	ignoresBlock = j.value("ignores_block", false);
 	superArmorDamage = j.value("super_armor_damage", 0);
+	gravityMultiplier = j.value("gravity_multiplier", 1.f);
 
 	if (j.count("stun")) {
 		stun = new AttackInfo::Stun{ j.value("stun", 1.0f) };
@@ -58,7 +63,7 @@ void AttackInfo::load(const json& j) {
 	}
 	if (j.count("horizontal_launcher")) {
 		const json& jHorizontalLauncher = j["horizontal_launcher"];
-		verticalLauncher = new AttackInfo::VerticalLauncher{ jHorizontalLauncher.value("suspension_duration", 1.0f),
+		horizontalLauncher = new AttackInfo::HorizontalLauncher{ jHorizontalLauncher.value("suspension_duration", 1.0f),
 			loadVEC3(jHorizontalLauncher["velocity"]) };
 	}
 	if (j.count("grab")) {

@@ -26,6 +26,7 @@ struct AttackInfo {
 	bool activatesMechanism = false;
 	bool ignoresBlock = false;
 	int superArmorDamage = 0;
+	float gravityMultiplier = 1.f;
 
 	Stun* stun = nullptr;
 	VerticalLauncher* verticalLauncher = nullptr;
