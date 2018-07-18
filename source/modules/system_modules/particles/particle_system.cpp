@@ -42,7 +42,7 @@ namespace {
 
 namespace Particles {
 
-	CSystem::CSystem(ParticleHandle handle, const TCoreSystem* core, CHandle entityHandle, LaunchConfig config)
+	CSystem::CSystem(TParticleHandle handle, const TCoreSystem* core, CHandle entityHandle, LaunchConfig config)
 		: _core(core)
 		, _handle(handle)
 		, particleEntityHandle(entityHandle)
@@ -245,7 +245,7 @@ namespace Particles {
 		return VEC3::Up * velocity;
 	}
 
-	ParticleHandle CSystem::getHandle() const {
+	TParticleHandle CSystem::getHandle() const {
 		return _handle;
 	}
 

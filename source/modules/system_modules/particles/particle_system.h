@@ -76,7 +76,7 @@ namespace Particles {
 		LaunchConfig config;
 		int boneId = -1;
 
-		ParticleHandle		_handle;
+		TParticleHandle		_handle;
 		const TCoreSystem*  _core = nullptr;
 		VParticles          _particles;
 		float               _time = 0.f;
@@ -85,11 +85,11 @@ namespace Particles {
 		CHandle             particleEntityHandle; //Handle of the entity
 
 	public:
-		CSystem(ParticleHandle handle, const TCoreSystem* core, CHandle particleHandle, LaunchConfig config);
+		CSystem(TParticleHandle handle, const TCoreSystem* core, CHandle particleHandle, LaunchConfig config);
 		bool update(float delta);
 		void render();
 		void launch();
-		ParticleHandle getHandle() const;
+		TParticleHandle getHandle() const;
 		void fadeOut(float duration);
 		void setOffset(VEC3 offset);
 		void setRotationOffset(QUAT rotationOffset);

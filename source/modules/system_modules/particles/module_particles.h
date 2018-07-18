@@ -9,11 +9,6 @@ namespace Particles {
 	class CSystem;
 	using TParticleHandle = int;
 
-	struct ParticleHandle {
-		std::string key;
-		TParticleHandle handle;
-	};
-
 	struct LaunchConfig {
 		CHandle targetEntity;		//Entity of the transform or bone to follow
 		std::string bone;			//Bone to follow
@@ -24,13 +19,12 @@ namespace Particles {
 
 //Message to notify TCompParticleComponent its system is destroyed
 struct TMsgParticleSystemDestroyed {
-	Particles::ParticleHandle particleHandle;
+	Particles::TParticleHandle particleHandle;
 	DECL_MSG_ID();
 };
 
 class CModuleParticles : public IModule {
 private:
-	//std::vector<Particles::CSystem*> _activeSystems;
 	std::unordered_map<std::string, std::vector<Particles::CSystem*>> _activeSystems;
 	VEC3                             _windVelocity = VEC3::Zero;
 	Particles::TParticleHandle		_lastHandle;
@@ -44,12 +38,12 @@ public:
 	void render() override;
 	void reset();
 
-	Particles::ParticleHandle launchSystem(const std::string& name, Particles::LaunchConfig config);
+	Particles::TParticleHandle launchSystem(const std::string& name, Particles::LaunchConfig config);
 	Particles::CSystem* launchSystem(const Particles::TCoreSystem* cps, CHandle entity, Particles::LaunchConfig config);
 
-	void kill(Particles::ParticleHandle ph, float fade_out = 0.f);
+	void kill(Particles::TParticleHandle ph, float fadeOutTime = 0.f);
 
-	void forceEmission(Particles::ParticleHandle ph, int quantity);
+	void forceEmission(Particles::TParticleHandle ph, int quantity);
 
 	const VEC3& getWindVelocity() const;
 };

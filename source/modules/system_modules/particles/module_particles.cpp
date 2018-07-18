@@ -61,48 +61,49 @@ void CModuleParticles::render() {
 	}
 }
 
-Particles::ParticleHandle CModuleParticles::launchSystem(const std::string& name, Particles::LaunchConfig config) {
+Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, Particles::LaunchConfig config) {
 	auto cps = Resources.get(name)->as<Particles::TCoreSystem>();
 	return launchSystem(cps, CHandle(), config)->getHandle();
 }
 
 Particles::CSystem* CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, CHandle entity, Particles::LaunchConfig config) {
 	assert(cps);
-	Particles::ParticleHandle handle{ cps->render.technique->getName(), ++_lastHandle };
-	auto ps = new Particles::CSystem(handle, cps, entity, config);
+	auto ps = new Particles::CSystem(++_lastHandle, cps, entity, config);
 	ps->launch();
-	_activeSystems[handle.key].push_back(ps);
+	_activeSystems[cps->render.technique->getName()].push_back(ps);
 	return ps;
 }
 
-void CModuleParticles::kill(Particles::ParticleHandle ph, float fadeOutTime) {
-	auto& systems = _activeSystems[ph.key];
-	auto it = std::find_if(systems.begin(),
-		systems.end(),
-		[&ph](const Particles::CSystem* ps) {
-		return ps->getHandle().handle == ph.handle;
-	});
-
-	if (it != systems.end()) {
-		if (fadeOutTime > 0.f) {
-			(*it)->fadeOut(fadeOutTime);
-		}
-		else {
-			if ((*it)->getParticleEntityHandle().isValid()) {
-				static_cast<CEntity*>((*it)->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ (*it)->getHandle() });
+void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
+	for (auto& p : _activeSystems) {
+		auto& systems = p.second;
+		auto it = std::find_if(systems.begin(), systems.end(), [&ph](const Particles::CSystem* ps) {
+			return ps->getHandle() == ph;
+		});
+		if (it != systems.end()) {
+			Particles::CSystem* ps = *it;
+			if (fadeOutTime > 0.f) {
+				ps->fadeOut(fadeOutTime);
 			}
-			delete *it;
-			systems.erase(it);
+			else {
+				if (ps->getParticleEntityHandle().isValid()) { //Send message to entity
+					static_cast<CEntity*>(ps->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ ps->getHandle() });
+				}
+				delete ps;
+				systems.erase(it);
+			}
 		}
 	}
 }
 
-void CModuleParticles::forceEmission(Particles::ParticleHandle ph, int quantity) {
-	auto& systems = _activeSystems[ph.key];
-	for (auto system : systems) {
-		if (system->getHandle().handle == ph.handle) {
-			system->forceEmission(quantity);
-			break;
+void CModuleParticles::forceEmission(Particles::TParticleHandle ph, int quantity) {
+	for (auto& p : _activeSystems) {
+		auto& systems = p.second;
+		for (auto system : systems) {
+			if (system->getHandle() == ph) {
+				system->forceEmission(quantity);
+				break;
+			}
 		}
 	}
 }
