@@ -43,7 +43,7 @@ void FastAttackAirActionState::update(float delta) {
 
 	if (!isUltraSlashOut && phase == AttackPhases::Active) {
 		isUltraSlashOut = true;
-		slash(stateManager->getSlashVertical(), deg2rad(80), deg2rad(-90));
+		slash("data/particles/slash_clockwise.particles", VEC3(0, 1, 0), deg2rad(80), deg2rad(-90));
 	}
 }
 

@@ -7,9 +7,9 @@
   },
   "emission": {
     "type": "point",
-    "interval": 1,
-    "count": 0,
-    "cyclic": true
+    "interval": 0,
+    "count": 1,
+    "cyclic": false
   },
   "movement": {
     "spin": 2000,
