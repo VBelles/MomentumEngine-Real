@@ -98,7 +98,7 @@ void CModuleParticles::kill(Particles::ParticleHandle ph, float fadeOutTime) {
 }
 
 void CModuleParticles::forceEmission(Particles::ParticleHandle ph, int quantity) {
-	auto systems = _activeSystems[ph.key];
+	auto& systems = _activeSystems[ph.key];
 	for (auto system : systems) {
 		if (system->getHandle().handle == ph.handle) {
 			system->forceEmission(quantity);
