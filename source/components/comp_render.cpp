@@ -21,31 +21,32 @@ void TCompRender::onDefineLocalAABB(const TMsgDefineLocalAABB& msg) {
 }
 // --------------------------------------------
 void TCompRender::onSetVisible(const TMsgSetVisible& msg) {
-  
-  // If the flag has not changed, nothing to change
-  if (global_enabled == msg.visible)
-    return;
-  
-  // Now keep the new value
-  global_enabled = msg.visible;
 
-  // This means we were visible, so we only need to remove my self
-  if (!global_enabled) {
-    CRenderManager::get().delRenderKeys(CHandle(this));
-  }
-  else {
-    // We come from being invisible, so just add my render keys
-    refreshMeshesInRenderManager(false);
-  }
+	// If the flag has not changed, nothing to change
+	if (global_enabled == msg.visible)
+		return;
+
+	// Now keep the new value
+	global_enabled = msg.visible;
+
+	// This means we were visible, so we only need to remove my self
+	if (!global_enabled) {
+		CRenderManager::get().delRenderKeys(CHandle(this));
+	}
+	else {
+		// We come from being invisible, so just add my render keys
+		refreshMeshesInRenderManager(false);
+	}
 }
 
 void TCompRender::registerMsgs() {
-  DECL_MSG(TCompRender, TMsgDefineLocalAABB, onDefineLocalAABB);
-  DECL_MSG(TCompRender, TMsgSetVisible, onSetVisible);
+	DECL_MSG(TCompRender, TMsgDefineLocalAABB, onDefineLocalAABB);
+	DECL_MSG(TCompRender, TMsgSetVisible, onSetVisible);
 }
 
 void TCompRender::debugInMenu() {
 	ImGui::ColorEdit4("Color", &color.x);
+	ImGui::DragFloat("Self illum ratio", &selfIllumRatio, 0.01f, 0.f, 10.f);
 
 	bool changed = false;
 	for (auto& mwm : meshes) {
@@ -139,22 +140,6 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 	refreshMeshesInRenderManager();
 }
 
-// Esta función está caduca, la mantengo para que funcionen cosas viejas.
-/*void TCompRender::setMesh(std::string meshName, std::string materialName) {
-	meshes.clear(); // !!! Asumo mesh única.
-	mesh = Resources.get(meshName)->as<CRenderMesh>();
-	if (materialName == "") {
-		material = Resources.get("data/materials/white.material")->as<CMaterial>();
-	}
-	else {
-		material = Resources.get(materialName)->as<CMaterial>();
-	}
-	materials.clear();
-	materials.push_back(material);
-	CMeshWithMaterials meshWithMat{ true, mesh, materials };
-	meshes.push_back(meshWithMat);
-	refreshMeshesInRenderManager();
-}*/
 
 void TCompRender::setAllMaterials(int startingMesh, int endingMesh, std::string materialName) {
 	for (int i = startingMesh; i < endingMesh; ++i) {
@@ -208,13 +193,13 @@ void TCompRender::TurnRed(float time) {
 
 void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
 	CHandle h_me = CHandle(this);
-	if(delete_me_from_keys)
-	  CRenderManager::get().delRenderKeys(h_me);
-  
+	if (delete_me_from_keys)
+		CRenderManager::get().delRenderKeys(h_me);
+
 	// The house and the trees..
 	for (auto& mwm : meshes) {
 		// Do not register disabled meshes
-    if (!mwm.enabled || !global_enabled) continue;
+		if (!mwm.enabled || !global_enabled) continue;
 
 		// All materials of the house...
 		uint32_t idx = 0;

@@ -143,7 +143,7 @@ void PS_GBuffer(
 
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
-	o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	o_albedo = txAlbedo.Sample(samLinear, iTex0) * obj_color;
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
@@ -152,7 +152,7 @@ void PS_GBuffer(
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	o_normal = encodeNormal(N, roughness);
 
-	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
+	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0) * self_illum_ratio;
 
 	// REMOVE ALL THIS
 	// Si el material lo pide, sobreescribir los valores de la textura
