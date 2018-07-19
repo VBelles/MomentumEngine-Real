@@ -29,6 +29,7 @@ public:
 	AABB				aabb;
 	bool				global_enabled = true;
 	float				selfIllumRatio = 1.f;
+	VEC3				selfIllumTint = VEC3(1, 1, 1);
 	// This represents a single object mesh with several materials. Not multiples meshes
 	struct CMeshWithMaterials {
 		bool               enabled = true;

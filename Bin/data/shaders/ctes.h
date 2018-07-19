@@ -131,10 +131,8 @@ CB_DEF(CCteObject, CB_OBJECT)   // Generates the b1
 {
     MAT44 obj_world;
     VEC4  obj_color;
+	VEC3  self_illum_tint;
 	float self_illum_ratio;
-	float object_pad1;
-	float object_pad2;
-	float object_pad3;
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES) {

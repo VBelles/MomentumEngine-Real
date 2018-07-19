@@ -46,6 +46,7 @@ void TCompRender::registerMsgs() {
 
 void TCompRender::debugInMenu() {
 	ImGui::ColorEdit4("Color", &color.x);
+	ImGui::ColorEdit3("Self illum tint", &selfIllumTint.x);
 	ImGui::DragFloat("Self illum ratio", &selfIllumRatio, 0.01f, 0.f, 10.f);
 
 	bool changed = false;

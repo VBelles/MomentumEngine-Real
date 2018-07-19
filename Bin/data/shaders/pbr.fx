@@ -152,7 +152,7 @@ void PS_GBuffer(
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	o_normal = encodeNormal(N, roughness);
 
-	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0) * self_illum_ratio;
+	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0) * float4(self_illum_tint, 1) * self_illum_ratio;
 
 	// REMOVE ALL THIS
 	// Si el material lo pide, sobreescribir los valores de la textura
@@ -234,7 +234,7 @@ void PS_GBufferMix(
 	float4 selfIllumG = txSelfIllum1.Sample(samLinear, iTex0);
 	float4 selfIllumB = txSelfIllum2.Sample(samLinear, iTex0);
 	o_selfIllum = selfIllumR * w1 + selfIllumG * w2 + selfIllumB * w3;
-	o_selfIllum *= self_illum_ratio;
+	o_selfIllum =  o_selfIllum * float4(self_illum_tint, 1) * self_illum_ratio;
 	// Possible plain blending without heights
 	//o_albedo.xyz = lerp( albedoB.xyz, albedoG.xyz, weight_texture_boost.y );
 	//o_albedo.xyz = lerp( o_albedo.xyz, albedoR.xyz, weight_texture_boost.x );
