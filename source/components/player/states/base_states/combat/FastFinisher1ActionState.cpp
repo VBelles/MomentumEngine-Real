@@ -81,7 +81,7 @@ void FastFinisher1ActionState::update(float delta) {
 void FastFinisher1ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Fast Finisher 1\n");
+	//dbg("Fast Finisher 1\n");
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);

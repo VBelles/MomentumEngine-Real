@@ -110,7 +110,7 @@ void StrongAttackActionState::update(float delta) {
 void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Strong 1\n");
+	//dbg("Strong 1\n");
 	phase = AttackPhases::Launch;
 	stateManager->changeConcurrentState(Free);
 	movementTimer.reset(); 

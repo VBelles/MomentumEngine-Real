@@ -83,7 +83,7 @@ void StrongFinisher2ActionState::update(float delta) {
 void StrongFinisher2ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Strong Finisher 2\n");
+	//dbg("Strong Finisher 2\n");
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);

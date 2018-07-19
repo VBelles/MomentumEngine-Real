@@ -144,7 +144,7 @@ int CBehaviorTreeMeleeEnemy::dead(float delta) {
 
 int CBehaviorTreeMeleeEnemy::onGrab(float delta) {
 	PROFILE_FUNCTION("onGrab");
-	dbg("grabbed\n");
+	//dbg("grabbed\n");
 	getSkeleton()->setTimeFactor(0);
 	getCollider()->destroy();
 	timer.reset();

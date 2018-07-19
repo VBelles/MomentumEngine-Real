@@ -42,7 +42,7 @@ void FastAttackActionState::update(float delta) {
 void FastAttackActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Fast attack 1\n");
+	//dbg("Fast attack 1\n");
 	phase = AttackPhases::Launch;
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
