@@ -3,6 +3,8 @@
 #include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/ia/behavior_tree/IBehaviorTreeNew.h"
 
+REGISTER_BTNODE("priority", CBehaviorTreeNodePriority);
+
 CBehaviorTreeNodePriority::CBehaviorTreeNodePriority(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
 }

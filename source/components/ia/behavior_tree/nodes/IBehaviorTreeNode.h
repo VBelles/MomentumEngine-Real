@@ -3,16 +3,12 @@
 #include <string>
 #include <vector>
 
+#include "components/ia/behavior_tree/nodes/BTNodeFactory.h"
+
 class IBehaviorTree;
 class IBehaviorTreeNew;
 
 enum EBehaviorTreeNodeType { Random, Sequence, Priority, Action };
-static std::map<std::string, EBehaviorTreeNodeType> behaviorTreeNodeTypes = {
-	{ "random", Random },
-	{ "sequence", Sequence },
-	{ "priority", Priority },
-	{ "action", Action }
-};
 enum EBehaviorTreeNodeEndAction { Stay, Leave };
 
 class IBehaviorTreeNode {
@@ -38,4 +34,5 @@ public:
 	virtual void recalc(IBehaviorTreeNew *behaviorTree, float delta = 0.f) {}
 
 	virtual void debugInMenu();
+	virtual void load(const json& j) {}
 };

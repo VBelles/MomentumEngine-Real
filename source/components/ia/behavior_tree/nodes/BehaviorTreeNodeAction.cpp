@@ -4,6 +4,8 @@
 #include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/ia/behavior_tree/IBehaviorTreeNew.h"
 
+REGISTER_BTNODE("action", CBehaviorTreeNodeAction);
+
 CBehaviorTreeNodeAction::CBehaviorTreeNodeAction(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
 }

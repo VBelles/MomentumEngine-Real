@@ -15,4 +15,5 @@ public:
 	void setProbability(std::vector<float> probabilities);
 
 	virtual void debugInMenu();
+	void load(const json& j) override;
 };

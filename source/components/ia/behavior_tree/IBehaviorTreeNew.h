@@ -16,11 +16,12 @@ protected:
 	std::unordered_map<std::string, IBehaviorTreeAction*> actions;
 	std::set<IBehaviorTreeAction*> allActions;
 
-	IBehaviorTreeNode *root;
-	IBehaviorTreeNode *current;
+	IBehaviorTreeNode* root;
+	IBehaviorTreeNode* current;
 
-	IBehaviorTreeNode *createNode(std::string name, EBehaviorTreeNodeType type);
-	IBehaviorTreeNode *findNode(std::string name);
+	IBehaviorTreeNode* createNode(std::string name, EBehaviorTreeNodeType type);
+	IBehaviorTreeNode* createNode(std::string name, std::string type);
+	IBehaviorTreeNode* findNode(std::string name);
 
 	bool falseCondition(float delta = 0.f);
 	bool trueCondition(float delta = 0.f);
@@ -36,7 +37,9 @@ public:
 	void clear();
 
 	IBehaviorTreeNode* createRoot(std::string rootName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
+	IBehaviorTreeNode* createRoot(std::string rootName, std::string type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
 	IBehaviorTreeNode* addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
+	IBehaviorTreeNode* addChild(std::string parentName, std::string childName, std::string type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
 
 	void setCurrent(IBehaviorTreeNode *newCurrent);
 

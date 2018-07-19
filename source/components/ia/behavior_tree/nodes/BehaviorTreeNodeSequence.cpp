@@ -3,6 +3,8 @@
 #include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/ia/behavior_tree/IBehaviorTreeNew.h"
 
+REGISTER_BTNODE("sequence", CBehaviorTreeNodeSequence);
+
 CBehaviorTreeNodeSequence::CBehaviorTreeNodeSequence(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
 }

@@ -50,6 +50,19 @@ IBehaviorTreeNode* IBehaviorTreeNew::createNode(std::string name, EBehaviorTreeN
 	}
 }
 
+IBehaviorTreeNode* IBehaviorTreeNew::createNode(std::string name, std::string type) {
+	if (findNode(name)) {
+		dbg("Error: node %s already exists\n", name.c_str());
+		return nullptr;
+	}
+	else {
+		IBehaviorTreeNode *behaviorTreeNode = BTNodeFactory::get().create(type, name);
+
+		tree[name] = behaviorTreeNode;
+		return behaviorTreeNode;
+	}
+}
+
 IBehaviorTreeNode* IBehaviorTreeNew::findNode(std::string name) {
 	PROFILE_FUNCTION("findNode");
 	auto it = tree.find(name);
@@ -77,8 +90,31 @@ IBehaviorTreeNode* IBehaviorTreeNew::createRoot(std::string rootName, EBehaviorT
 	return rootNode;
 }
 
+IBehaviorTreeNode* IBehaviorTreeNew::createRoot(std::string rootName, std::string type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action) {
+	IBehaviorTreeNode *rootNode = createNode(rootName, type);
+	rootNode->setParent(nullptr);
+	root = rootNode;
+	if (condition != nullptr) addCondition(rootName, condition);
+	if (action != nullptr) addAction(rootName, action);
+
+	current = nullptr;
+	return rootNode;
+}
+
 IBehaviorTreeNode* IBehaviorTreeNew::addChild(
 	std::string parentName, std::string childName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action
+) {
+	IBehaviorTreeNode *parent = findNode(parentName);
+	IBehaviorTreeNode *child = createNode(childName, type);
+	parent->addChild(child);
+	child->setParent(parent);
+	if (condition != nullptr) addCondition(childName, condition);
+	if (action != nullptr) addAction(childName, action);
+	return child;
+}
+
+IBehaviorTreeNode* IBehaviorTreeNew::addChild(
+	std::string parentName, std::string childName, std::string type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action
 ) {
 	IBehaviorTreeNode *parent = findNode(parentName);
 	IBehaviorTreeNode *child = createNode(childName, type);
@@ -170,44 +206,56 @@ IBehaviorTreeAction* IBehaviorTreeNew::loadAction(const json& j) {
 }
 
 void IBehaviorTreeNew::loadNode(std::string parent, const json& j) {
-	//TODO node factory
 	std::string nodeName = j.value("name", "");
 	std::string nodeType = j.value("type", "");
-	assert(behaviorTreeNodeTypes.find(nodeType) != behaviorTreeNodeTypes.end());
+
 	IBehaviorTreeCondition* nodeCondition = nullptr;
 	if (j.count("condition")) {
 		nodeCondition = loadCondition(j["condition"]);
 	}
+
 	IBehaviorTreeAction* nodeAction = nullptr;
 	if (j.count("action")) {
 		nodeAction = loadAction(j["action"]);
 	}
-	addChild(parent, nodeName, behaviorTreeNodeTypes[nodeType], nodeCondition, nodeAction);
+
+	IBehaviorTreeNode* node = addChild(parent, nodeName, nodeType, nodeCondition, nodeAction);
+	assert(node);
+
 	if (j.count("children")) {
 		for (auto& jNode : j["children"]) {
 			loadNode(nodeName, jNode);
 		}
 	}
+
+	node->load(j);
 }
 
 void IBehaviorTreeNew::load(const json& j) {
 	assert(j.count("root"));
+
 	const json& jRoot = j["root"];
 	std::string rootName = jRoot.value("name", "");
 	std::string rootType = jRoot.value("type", "");
-	assert(behaviorTreeNodeTypes.find(rootType) != behaviorTreeNodeTypes.end());
+
 	IBehaviorTreeCondition* rootCondition = nullptr;
 	if (jRoot.count("condition")) {
 		rootCondition = loadCondition(jRoot["condition"]);
 	}
+
 	IBehaviorTreeAction* rootAction = nullptr;
 	if (jRoot.count("action")) {
 		rootAction = loadAction(jRoot["action"]);
 	}
-	createRoot(rootName, behaviorTreeNodeTypes[rootType], rootCondition, rootAction);
+
+	IBehaviorTreeNode* node = createRoot(rootName, rootType, rootCondition, rootAction);
+	assert(node);
+
 	if (jRoot.count("children")) {
 		for (auto& jNode : jRoot["children"]) {
 			loadNode(rootName, jNode);
 		}
 	}
+
+	node->load(j);
 }

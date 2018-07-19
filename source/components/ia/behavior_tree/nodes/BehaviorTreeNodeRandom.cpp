@@ -3,6 +3,8 @@
 #include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/ia/behavior_tree/IBehaviorTreeNew.h"
 
+REGISTER_BTNODE("random", CBehaviorTreeNodeRandom);
+
 CBehaviorTreeNodeRandom::CBehaviorTreeNodeRandom(std::string name)
 	: IBehaviorTreeNode::IBehaviorTreeNode(name) {
 }
@@ -52,5 +54,17 @@ void CBehaviorTreeNodeRandom::debugInMenu() {
 			children[i]->debugInMenu();
 		}
 		ImGui::TreePop();
+	}
+}
+
+void CBehaviorTreeNodeRandom::load(const json& j) {
+	if (j.count("probabilities")) {
+		if (j["probabilities"].size() == children.size()) {
+			probability.clear();
+			for (auto& jProb : j["probabilities"]) {
+				float prob = jProb;
+				probability.push_back(prob);
+			}
+		}
 	}
 }
