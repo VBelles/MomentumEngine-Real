@@ -34,7 +34,7 @@ namespace Particles {
 			bool ground = false;			// limit by ground
 		};
 		struct TRender {
-			enum EType { Billboard, Mesh};
+			enum EType { Billboard, HorizontalBillboard, Mesh };
 
 			EType type = Billboard;							// particle type
 			const CTexture* texture = nullptr;				// particle texture

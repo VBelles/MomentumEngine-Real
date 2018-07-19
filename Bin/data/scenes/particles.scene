@@ -25,11 +25,10 @@
 		"entity": {
 			"name": "particles_animated_fire",
 			"transform": {
-				"pos": "-25 2 -54"
+				"pos": "-315 42.5 -608"
 			},
 			"particles": {
-				"core": "data/particles/animated_fire.particles",
-				"offset": "0 5 0"
+				"core": "data/particles/animated_fire.particles"
 			}
 		}
 	},

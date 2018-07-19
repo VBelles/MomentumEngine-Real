@@ -15,7 +15,8 @@
       "frame_size" : "0.2 0.2",
       "initial_frame" : 0,
       "num_frames" : 23,
-      "frame_speed" : 10
+      "frame_speed" : 10,
+      "type" : "horizontal_billboard"
   },
   "size" : {
     "scale" : 1.0,

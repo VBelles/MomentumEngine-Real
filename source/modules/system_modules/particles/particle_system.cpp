@@ -126,6 +126,7 @@ namespace Particles {
 		assert(camera);
 		const VEC3 cameraPos = camera->getCamera()->getPosition();
 		const VEC3 cameraUp = camera->getCamera()->getUp();
+		const VEC3 cameraForward = camera->getCamera()->getFront();
 
 		const int frameCols = static_cast<int>(1.f / _core->render.frameSize.x);
 
@@ -135,6 +136,12 @@ namespace Particles {
 		for (auto& p : _particles) {
 			if (_core->render.type == TCoreSystem::TRender::Billboard) {
 				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
+				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
+				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
+				cb_object.obj_world = rt * sc * bb;
+			}
+			else if (_core->render.type == TCoreSystem::TRender::HorizontalBillboard) {
+				MAT44 bb = MAT44::CreateConstrainedBillboard(p.position, cameraPos, VEC3(0, 1, 0), &cameraForward);
 				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
 				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
 				cb_object.obj_world = rt * sc * bb;
