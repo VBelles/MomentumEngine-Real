@@ -3,10 +3,12 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_hitboxes.h"
 
-OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy, std::string animation) :
+OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy, std::string animation, std::string attack) :
 	enemy(enemy),
-	animation(animation) {
+	animation(animation),
+	attack(attack) {
 }
 
 int OnVerticalLaunchAction::execAction(float delta) {
@@ -14,6 +16,8 @@ int OnVerticalLaunchAction::execAction(float delta) {
 	enemy->stunDuration = enemy->receivedAttack.verticalLauncher->suspensionDuration;
 	enemy->velocity = enemy->receivedAttack.verticalLauncher->velocity;
 	enemy->initialLaunchPos = enemy->getTransform()->getPosition();
+	enemy->currentAttack = attack;
+	enemy->getHitboxes()->enable(enemy->attacks[attack].hitboxName);
 	enemy->isBlocking = false;
 	enemy->blockingBroken = false;
 	return Leave;

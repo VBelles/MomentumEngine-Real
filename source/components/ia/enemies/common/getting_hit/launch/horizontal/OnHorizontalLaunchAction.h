@@ -8,7 +8,8 @@ class OnHorizontalLaunchAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation;
+	std::string attack;
 public:
-	OnHorizontalLaunchAction(Enemy* enemy, std::string animation);
+	OnHorizontalLaunchAction(Enemy* enemy, std::string animation, std::string attack);
 	int execAction(float delta) override;
 };

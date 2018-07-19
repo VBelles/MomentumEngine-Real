@@ -84,6 +84,7 @@ void Dreidel::initBehaviorTree() {
 	enemy->clear();
 
 	FalseCondition* falseCondition = new FalseCondition();
+
 	AirborneAction* airborneAction = new AirborneAction(enemy);
 	LongDistanceCombatCondition* longDistanceCombatCondition = new LongDistanceCombatCondition(enemy);
 	MediumDistanceCombatCondition* mediumDistanceCombatCondition = new MediumDistanceCombatCondition(enemy);
@@ -101,15 +102,15 @@ void Dreidel::initBehaviorTree() {
 	OnGrabCondition* onGrabCondition = new OnGrabCondition(enemy);
 	HitStun* hitStun = new HitStun(enemy, "enemigo_bola_recibirdanio");
 	OnHit* onHit = new OnHit(enemy, "enemigo_bola_recibirdanio");
-	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(enemy);
-	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(enemy, "enemigo_bola_recibirdanio");
+	HorizontalLaunchedAction* horizontalLaunchedAction = new HorizontalLaunchedAction(enemy, "launched");
+	OnHorizontalLaunchAction* onHorizontalLaunchAction = new OnHorizontalLaunchAction(enemy, "enemigo_bola_recibirdanio", "launched");
 	OnHorizontalLaunchCondition* onHorizontalLaunchCondition = new OnHorizontalLaunchCondition(enemy);
-	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(enemy, "enemigo_bola_recibirdanio");
+	OnVerticalLaunchAction* onVerticalLaunchAction = new OnVerticalLaunchAction(enemy, "enemigo_bola_recibirdanio", "launched");
 	OnVerticalLaunchCondition* onVerticalLaunchCondition = new OnVerticalLaunchCondition(enemy);
-	VerticalLaunchedAction* verticalLaunchedAction = new VerticalLaunchedAction(enemy);
-	OnPropelAction* onPropelAction = new OnPropelAction(enemy);
+	VerticalLaunchedAction* verticalLaunchedAction = new VerticalLaunchedAction(enemy, "launched");
+	OnPropelAction* onPropelAction = new OnPropelAction(enemy, "launched");
 	OnPropelCondition * onPropelCondition = new OnPropelCondition(enemy);
-	PropelAction* propelAction = new PropelAction(enemy);
+	PropelAction* propelAction = new PropelAction(enemy, "launched");
 	OnStunAction* onStunAction = new OnStunAction(enemy, "enemigo_bola_stun", "enemigo_bola_stun_loop");
 	OnStunCondition* onStunCondition = new OnStunCondition(enemy);
 	StunAction* stunAction = new StunAction(enemy);
@@ -364,9 +365,9 @@ void Dreidel::onOutOfBounds(const TMsgOutOfBounds& msg) {
 void Dreidel::onPerfectDodged(const TMsgPerfectDodged & msg) {
 	if (!enemy->getCollider()->toDestroy) {
 		dbg("Damn! I've been dodged.\n");
-		if (hpGiven < maxHpToGive) {
+		if (enemy->hpGiven < enemy->maxHpToGive) {
 			enemy->getPlayerModel()->setHp(enemy->getPlayerModel()->getHp() + 1);
-			hpGiven++;
+			enemy->hpGiven++;
 		}
 	}
 }
@@ -382,11 +383,27 @@ void Dreidel::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 
 void Dreidel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (enemy->currentAttack != "") {
-		if (enemy->attacks[enemy->currentAttack].hitboxName == msg.hitbox) {
-			TMsgAttackHit attackHit = {};
-			attackHit.attacker = CHandle(this).getOwner();
-			attackHit.info = enemy->attacks[enemy->currentAttack].attackInfo;
-			((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+		if (msg.h_other_entity != CHandle(this).getOwner()) {
+			if (enemy->attacks[enemy->currentAttack].hitboxName == msg.hitbox) {
+				TMsgAttackHit attackHit = {};
+				attackHit.attacker = CHandle(this).getOwner();
+				attackHit.info = enemy->attacks[enemy->currentAttack].attackInfo;
+				//check if attack info is propel, if it is override velocity (radial)
+				if (attackHit.info.propel) {
+					CEntity* otherEntity = msg.h_other_entity;
+					TCompTransform* otherTransform = otherEntity->get<TCompTransform>();
+					VEC3 launchVelocity = otherTransform->getPosition() - enemy->getTransform()->getPosition();
+					launchVelocity.Normalize();
+					launchVelocity *= enemy->velocity.Length() * 0.3f;
+					if (launchVelocity.Length() < 3.0f) {
+						attackHit.info.propel = nullptr;
+					}
+					else {
+						attackHit.info.propel->velocity = launchVelocity;
+					}
+				}
+				((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+			}
 		}
 	}
 }

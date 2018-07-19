@@ -71,6 +71,6 @@ void AttackInfo::load(const json& j) {
 	}
 	if (j.count("propel")) {
 		const json& jPropel = j["propel"];
-		propel = new AttackInfo::Propel{jPropel.value("duration", 0.f), loadVEC3(j["propel"])};
+		propel = new AttackInfo::Propel{jPropel.value("duration", 0.f), loadVEC3(jPropel["velocity"])};
 	}
 }
