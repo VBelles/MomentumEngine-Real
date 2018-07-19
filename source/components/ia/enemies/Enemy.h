@@ -102,7 +102,7 @@ public:
 	CHandle hitboxesHandle;
 	CHandle powerHandle;
 
-	void load(const json& j, TEntityParseContext & ctx);
+	void load(const json& j) override;
 	void debugInMenu() override;
 	void updateGravity(float delta);
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);

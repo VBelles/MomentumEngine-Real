@@ -148,3 +148,66 @@ void IBehaviorTreeNew::debugInMenu() {
 		ImGui::TreePop();
 	}
 }
+
+IBehaviorTreeCondition* IBehaviorTreeNew::loadCondition(const json& j) {
+	assert(j.count("type"));
+	std::string conditionType = j.value("type", "");
+	IBehaviorTreeCondition* condition = BTConditionFactory::get().create(conditionType);
+	if (condition) {
+		condition->load(this, j);
+	}
+	return condition;
+}
+
+IBehaviorTreeAction* IBehaviorTreeNew::loadAction(const json& j) {
+	assert(j.count("type"));
+	std::string actionType = j.value("type", "");
+	IBehaviorTreeAction* action = BTActionFactory::get().create(actionType);
+	if (action) {
+		action->load(this, j);
+	}
+	return action;
+}
+
+void IBehaviorTreeNew::loadNode(std::string parent, const json& j) {
+	//TODO node factory
+	std::string nodeName = j.value("name", "");
+	std::string nodeType = j.value("type", "");
+	assert(behaviorTreeNodeTypes.find(nodeType) != behaviorTreeNodeTypes.end());
+	IBehaviorTreeCondition* nodeCondition = nullptr;
+	if (j.count("condition")) {
+		nodeCondition = loadCondition(j["condition"]);
+	}
+	IBehaviorTreeAction* nodeAction = nullptr;
+	if (j.count("action")) {
+		nodeAction = loadAction(j["action"]);
+	}
+	addChild(parent, nodeName, behaviorTreeNodeTypes[nodeType], nodeCondition, nodeAction);
+	if (j.count("children")) {
+		for (auto& jNode : j["children"]) {
+			loadNode(nodeName, jNode);
+		}
+	}
+}
+
+void IBehaviorTreeNew::load(const json& j) {
+	assert(j.count("root"));
+	const json& jRoot = j["root"];
+	std::string rootName = jRoot.value("name", "");
+	std::string rootType = jRoot.value("type", "");
+	assert(behaviorTreeNodeTypes.find(rootType) != behaviorTreeNodeTypes.end());
+	IBehaviorTreeCondition* rootCondition = nullptr;
+	if (jRoot.count("condition")) {
+		rootCondition = loadCondition(jRoot["condition"]);
+	}
+	IBehaviorTreeAction* rootAction = nullptr;
+	if (jRoot.count("action")) {
+		rootAction = loadAction(jRoot["action"]);
+	}
+	createRoot(rootName, behaviorTreeNodeTypes[rootType], rootCondition, rootAction);
+	if (jRoot.count("children")) {
+		for (auto& jNode : jRoot["children"]) {
+			loadNode(rootName, jNode);
+		}
+	}
+}

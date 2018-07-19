@@ -293,7 +293,7 @@ void Dreidel::initBehaviorTree() {
 void Dreidel::load(const json& j, TEntityParseContext& ctx) {
 	SAFE_DELETE(enemy);
 	enemy = new Enemy();
-	enemy->load(j, ctx);
+	enemy->load(j);
 }
 
 void Dreidel::debugInMenu() {

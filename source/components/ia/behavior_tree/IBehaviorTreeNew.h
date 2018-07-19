@@ -25,14 +25,18 @@ protected:
 	bool falseCondition(float delta = 0.f);
 	bool trueCondition(float delta = 0.f);
 
+	IBehaviorTreeCondition* loadCondition(const json& j);
+	IBehaviorTreeAction* loadAction(const json& j);
+	void loadNode(std::string parent, const json& j);
+
 public:
 	IBehaviorTreeNew();
 	virtual ~IBehaviorTreeNew();
 
 	void clear();
 
-	IBehaviorTreeNode *createRoot(std::string rootName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
-	IBehaviorTreeNode *addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
+	IBehaviorTreeNode* createRoot(std::string rootName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
+	IBehaviorTreeNode* addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
 
 	void setCurrent(IBehaviorTreeNode *newCurrent);
 
@@ -45,4 +49,5 @@ public:
 	virtual void recalc(float delta = 0.f);
 
 	virtual void debugInMenu();
+	virtual void load(const json& j);
 };

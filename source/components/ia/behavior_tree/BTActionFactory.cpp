@@ -29,8 +29,9 @@ IBehaviorTreeAction* BTActionFactory::create(std::string name) {
 
 	// find name in the registry and call factory method.
 	auto it = factoryFunctionRegistry.find(name);
-	if (it != factoryFunctionRegistry.end())
+	if (it != factoryFunctionRegistry.end()) {
 		instance = it->second();
+	}
 
 	return instance;
 }

@@ -7,6 +7,12 @@ class IBehaviorTree;
 class IBehaviorTreeNew;
 
 enum EBehaviorTreeNodeType { Random, Sequence, Priority, Action };
+static std::map<std::string, EBehaviorTreeNodeType> behaviorTreeNodeTypes = {
+	{ "random", Random },
+	{ "sequence", Sequence },
+	{ "priority", Priority },
+	{ "action", Action }
+};
 enum EBehaviorTreeNodeEndAction { Stay, Leave };
 
 class IBehaviorTreeNode {

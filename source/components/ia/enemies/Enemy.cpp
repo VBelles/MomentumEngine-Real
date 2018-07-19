@@ -10,7 +10,12 @@
 Enemy::~Enemy() {
 }
 
-void Enemy::load(const json& j, TEntityParseContext& ctx) {
+void Enemy::load(const json& j) {
+	if (j.count("behavior_tree")) {
+		std::string behaviorTreeFile = j.value("behavior_tree", "");
+		IBehaviorTreeNew::load(loadJson(behaviorTreeFile));
+	}
+
 	//Base
 	maxHp = j.value("max_hp", maxHp);
 	hp = maxHp;
@@ -170,5 +175,10 @@ TCompGivePower* Enemy::getPower() {
 }
 
 void Enemy::setCurrent(std::string node) {
-	current = tree[node];
+	IBehaviorTreeNode* newCurrent = nullptr;
+	auto it = tree.find(node);
+	if (it != tree.end()) {
+		newCurrent = it->second;
+	}
+	current = newCurrent;
 }

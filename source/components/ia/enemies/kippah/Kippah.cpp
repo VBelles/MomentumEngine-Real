@@ -213,7 +213,7 @@ void Kippah::initBehaviorTree() {
 void Kippah::load(const json& j, TEntityParseContext& ctx) {
 	SAFE_DELETE(enemy);
 	enemy = new Enemy();
-	enemy->load(j, ctx);
+	enemy->load(j);
 }
 
 void Kippah::debugInMenu() {

@@ -1,0 +1,63 @@
+{
+  "root": {
+    "name": "kippah",
+    "type": "priority",
+    "children": [
+      {
+        "name": "hit",
+        "type": "sequence",
+        "condition": {
+          "type": "FalseCondition"
+        },
+        "children": [
+          {
+            "name": "onHit",
+            "type": "action",
+            "action": {
+              "type": "OnHit",
+              "animation": "medusa_damage"
+            }
+          },
+          {
+            "name": "attackProperties",
+            "type": "priority",
+            "children": [
+              {
+                "name": "horizontalLaunch",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnHorizontalLaunchCondition"
+                },
+                "children": [
+                  {
+                    "name": "onHorizontalLaunchAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnHorizontalLaunchAction",
+                      "animation": "medusa_damage"
+                    }
+                  },
+                  {
+                    "name": "horizontalLaunchedAction",
+                    "type": "action",
+                    "action": {
+                      "type": "HorizontalLaunchedAction"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "hitStun",
+                "type": "action",
+                "action": {
+                  "type": "HitStun",
+                  "animation": "medusa_damage"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
