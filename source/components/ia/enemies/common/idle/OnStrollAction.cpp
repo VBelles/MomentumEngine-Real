@@ -4,6 +4,8 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTACTION("OnStrollAction", OnStrollAction);
+
 OnStrollAction::OnStrollAction(Enemy* enemy, std::string animation) :
 	enemy(enemy),
 	animation(animation) {
@@ -33,4 +35,11 @@ int OnStrollAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 
 	return Leave;
+}
+
+void OnStrollAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
 }

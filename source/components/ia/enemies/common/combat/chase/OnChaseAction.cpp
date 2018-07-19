@@ -4,7 +4,7 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
-REGISTER_BTAction("OnChaseAction", OnChaseAction);
+REGISTER_BTACTION("OnChaseAction", OnChaseAction);
 
 OnChaseAction::OnChaseAction(Enemy* enemy, std::string animation):
 	enemy(enemy),

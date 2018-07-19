@@ -4,7 +4,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 
-REGISTER_BTAction("AttackAction", AttackAction);
+REGISTER_BTACTION("AttackAction", AttackAction);
 
 AttackAction::AttackAction(Enemy* enemy, std::string animation, std::string attack) :
 	enemy(enemy),

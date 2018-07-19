@@ -3,7 +3,7 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
-REGISTER_BTAction("ChaseAction", ChaseAction);
+REGISTER_BTACTION("ChaseAction", ChaseAction);
 
 ChaseAction::ChaseAction(Enemy* enemy) :
 	enemy(enemy) {

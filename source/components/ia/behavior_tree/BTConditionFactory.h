@@ -30,5 +30,5 @@ public:
 	}
 };
 
-#define REGISTER_BTCondition(NAME, TYPE) \
+#define REGISTER_BTCONDITION(NAME, TYPE) \
 	static BTConditionRegisterer bTConditionRegisterer(NAME, [](void)->IBehaviorTreeCondition* { return new TYPE();});

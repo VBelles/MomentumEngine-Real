@@ -2,7 +2,7 @@
 #include "OnAirborneCondition.h"
 #include "components/ia/enemies/Enemy.h"
 
-REGISTER_BTCondition("OnAirborneCondition", OnAirborneCondition);
+REGISTER_BTCONDITION("OnAirborneCondition", OnAirborneCondition);
 
 OnAirborneCondition::OnAirborneCondition(Enemy* enemy) : enemy(enemy) {
 }

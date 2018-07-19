@@ -4,6 +4,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTACTION("StepBackAction", StepBackAction);
+
 StepBackAction::StepBackAction(Enemy* enemy, std::string animation, float speed) :
 	enemy(enemy),
 	animation(animation),
@@ -28,4 +30,12 @@ int StepBackAction::execAction(float delta) {
 		return Stay;
 	}
 	return Leave;
+}
+
+void StepBackAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+	speed = j.value("speed", speed);
 }

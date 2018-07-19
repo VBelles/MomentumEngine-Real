@@ -5,7 +5,7 @@
 #include "components/comp_transform.h"
 #include "entity/entity_parser.h"
 
-REGISTER_BTAction("RangedAttackAction", RangedAttackAction);
+REGISTER_BTACTION("RangedAttackAction", RangedAttackAction);
 
 RangedAttackAction::RangedAttackAction(Enemy* enemy, std::string animation, std::string attack, std::string cancelCondition) :
 	enemy(enemy),
@@ -17,7 +17,7 @@ RangedAttackAction::RangedAttackAction(Enemy* enemy, std::string animation, std:
 int RangedAttackAction::execAction(float delta) {
 	EnemyAttack enemyAttack = enemy->attacks[attack];
 
-	if ((!cancelCondition.empty() && enemy->testCondition(cancelCondition))
+	if ((!cancelCondition.empty() && enemy->testCondition(cancelCondition, delta))
 		|| enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
 		attackLaunched = false;
 		enemy->attackTimer.reset();

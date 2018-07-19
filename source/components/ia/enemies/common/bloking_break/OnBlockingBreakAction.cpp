@@ -4,7 +4,7 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_give_power.h"
 
-REGISTER_BTAction("OnBlockingBreakAction", OnBlockingBreakAction);
+REGISTER_BTACTION("OnBlockingBreakAction", OnBlockingBreakAction);
 
 OnBlockingBreakAction::OnBlockingBreakAction(Enemy* enemy, std::string animation): 
 	enemy(enemy),

@@ -3,7 +3,9 @@
 #include "components/ia/enemies/Enemy.h"
 #include "skeleton/comp_skeleton.h"
 
-IdleLoopFlying::IdleLoopFlying(Enemy* enemy, std::string animation, IBehaviorTreeCondition* cancelCondition) :
+REGISTER_BTACTION("IdleLoopFlying", IdleLoopFlying);
+
+IdleLoopFlying::IdleLoopFlying(Enemy* enemy, std::string animation, std::string cancelCondition) :
 	enemy(enemy),
 	animation(animation),
 	cancelCondition(cancelCondition) {
@@ -11,10 +13,18 @@ IdleLoopFlying::IdleLoopFlying(Enemy* enemy, std::string animation, IBehaviorTre
 
 int IdleLoopFlying::execAction(float delta) {
 	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)
-		|| (cancelCondition && cancelCondition->testCondition(delta))) {
+		|| (!cancelCondition.empty() && enemy->testCondition(cancelCondition, delta))) {
 		return Leave;
 	}
 	else {
 		return Stay;
 	}
+}
+
+void IdleLoopFlying::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+	cancelCondition = j.value("cancel_condition", cancelCondition);
 }

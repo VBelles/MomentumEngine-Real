@@ -3,6 +3,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
+REGISTER_BTACTION("OnStunAction", OnStunAction);
+
 OnStunAction::OnStunAction(Enemy* enemy, std::string animationStart, std::string animationLoop) :
 	enemy(enemy),
 	animationStart(animationStart),
@@ -13,4 +15,12 @@ int OnStunAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
 	return Leave;
+}
+
+void OnStunAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animationStart = j.value("animation_start", animationStart);
+	animationLoop = j.value("animation_loop", animationLoop);
 }

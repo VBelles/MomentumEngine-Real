@@ -3,7 +3,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
-REGISTER_BTAction("OnAirborneAction", OnAirborneAction);
+REGISTER_BTACTION("OnAirborneAction", OnAirborneAction);
 
 OnAirborneAction::OnAirborneAction(Enemy* enemy, std::string animation) :
 	enemy(enemy),

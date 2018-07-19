@@ -93,9 +93,9 @@ void Kippah::initBehaviorTree() {
 	OnStunCondition* onStunCondition = new OnStunCondition(enemy);
 	StunAction* stunAction = new StunAction(enemy);
 	OnIdleAction* onIdleAction = new OnIdleAction(enemy, "medusa_idle");
-	IdleActionFlying* idleActionFlying = new IdleActionFlying(enemy, "medusa_idle", shortDistanceCombatCondition);
+	IdleActionFlying* idleActionFlying = new IdleActionFlying(enemy, "medusa_idle", "shortDistanceCombat");
 	OnIdleLoop* onIdleLoop = new OnIdleLoop(enemy, "medusa_idle");
-	IdleLoopFlying* idleLoopFlying = new IdleLoopFlying(enemy, "medusa_idle", shortDistanceCombatCondition);
+	IdleLoopFlying* idleLoopFlying = new IdleLoopFlying(enemy, "medusa_idle", "shortDistanceCombat");
 	OnTeleportAction* onTeleportAction = new OnTeleportAction(enemy, "medusa_desaparicion");
 	OnTeleportCondition* onTeleportCondition = new OnTeleportCondition(enemy);
 	TeleportAction* teleportAction = new TeleportAction(enemy, "medusa_desaparicion");
@@ -108,7 +108,7 @@ void Kippah::initBehaviorTree() {
 	OnIdleWarAction* onIdleWarAction = new OnIdleWarAction(enemy, "medusa_idle_war");
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(enemy, "medusa_idle");
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(enemy);
-	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(enemy, shortDistanceCombatCondition);
+	ReturnToSpawnFlyingAction* returnToSpawnFlyingAction = new ReturnToSpawnFlyingAction(enemy, "shortDistanceCombat");
 	OnAttackAction* onRangedAttackAction = new OnAttackAction(enemy, "medusa_shot", "rangedAttack");
 	RangedAttackAction* rangedAttackAction = new RangedAttackAction(enemy, "medusa_shot", "rangedAttack", "shortDistanceCombat");
 	AttackCoolDownCondition* attackCoolDownCondition = new AttackCoolDownCondition(enemy);

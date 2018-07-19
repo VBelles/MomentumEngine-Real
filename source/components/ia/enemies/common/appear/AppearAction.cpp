@@ -3,7 +3,7 @@
 #include "components/ia/enemies/Enemy.h"
 #include "skeleton/comp_skeleton.h"
 
-REGISTER_BTAction("AppearAction", AppearAction);
+REGISTER_BTACTION("AppearAction", AppearAction);
 
 AppearAction::AppearAction(Enemy* enemy, std::string animation) :
 	enemy(enemy),

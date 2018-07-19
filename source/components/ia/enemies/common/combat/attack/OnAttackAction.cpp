@@ -4,7 +4,7 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
-REGISTER_BTAction("OnAttackAction", OnAttackAction);
+REGISTER_BTACTION("OnAttackAction", OnAttackAction);
 
 OnAttackAction::OnAttackAction(Enemy* enemy, std::string animation, std::string attack):
 	enemy(enemy),

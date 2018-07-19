@@ -3,7 +3,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
-REGISTER_BTAction("BlockingBreakAction", BlockingBreakAction);
+REGISTER_BTACTION("BlockingBreakAction", BlockingBreakAction);
 
 BlockingBreakAction::BlockingBreakAction(Enemy* enemy, std::string animation) :
 	enemy(enemy),

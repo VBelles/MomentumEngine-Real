@@ -2,7 +2,7 @@
 #include "OnBlockingBreakCondition.h"
 #include "components/ia/enemies/Enemy.h"
 
-REGISTER_BTCondition("OnBlockingBreakCondition", OnBlockingBreakCondition);
+REGISTER_BTCONDITION("OnBlockingBreakCondition", OnBlockingBreakCondition);
 
 OnBlockingBreakCondition::OnBlockingBreakCondition(Enemy* enemy) : enemy(enemy) {
 }

@@ -5,6 +5,8 @@
 #include "components/comp_hitboxes.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTACTION("TackleAttackAction", TackleAttackAction);
+
 TackleAttackAction::TackleAttackAction(Enemy* enemy, std::string animation, std::string attack, float speed, float time) :
 	enemy(enemy),
 	animation(animation),
@@ -36,4 +38,14 @@ int TackleAttackAction::execAction(float delta) {
 		}
 	}
 	return Stay;
+}
+
+void TackleAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+	attack = j.value("attack", attack);
+	speed = j.value("speed", speed);
+	time = j.value("time", time);
 }

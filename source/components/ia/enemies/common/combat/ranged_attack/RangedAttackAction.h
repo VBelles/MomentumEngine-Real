@@ -3,7 +3,6 @@
 #include "components/ia/behavior_tree/IBehaviorTreeAction.h"
 
 class Enemy;
-class IBehaviorTreeCondition;
 
 class RangedAttackAction : public IBehaviorTreeAction {
 private:

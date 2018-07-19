@@ -3,6 +3,8 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTCONDITION("CombatCondition", CombatCondition);
+
 CombatCondition::CombatCondition(Enemy* enemy) : enemy(enemy) {
 }
 
@@ -11,4 +13,9 @@ bool CombatCondition::testCondition(float delta) {
 	float distanceSqrd = VEC3::DistanceSquared(enemy->getTransform()->getPosition(), playerPosition);
 	return distanceSqrd <= enemy->smallChaseRadiusSqrd ||
 			distanceSqrd <= enemy->fovChaseDistanceSqrd && enemy->getTransform()->isInFov(playerPosition, enemy->chaseFov);
+}
+
+void CombatCondition::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }

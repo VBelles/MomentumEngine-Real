@@ -2,7 +2,7 @@
 #include "AirborneCondition.h"
 #include "components/ia/enemies/Enemy.h"
 
-REGISTER_BTCondition("AirborneCondition", AirborneCondition);
+REGISTER_BTCONDITION("AirborneCondition", AirborneCondition);
 
 AirborneCondition::AirborneCondition(Enemy* enemy) : enemy(enemy) {
 }

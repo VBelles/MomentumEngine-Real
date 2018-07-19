@@ -2,7 +2,7 @@
 #include "AirborneAction.h"
 #include "components/ia/enemies/Enemy.h"
 
-REGISTER_BTAction("AirborneAction", AirborneAction);
+REGISTER_BTACTION("AirborneAction", AirborneAction);
 
 AirborneAction::AirborneAction(Enemy* enemy): enemy(enemy) {
 }

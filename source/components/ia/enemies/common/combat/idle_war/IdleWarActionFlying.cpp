@@ -4,7 +4,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_transform.h"
 
-REGISTER_BTAction("IdleWarActionFlying", IdleWarActionFlying);
+REGISTER_BTACTION("IdleWarActionFlying", IdleWarActionFlying);
 
 IdleWarActionFlying::IdleWarActionFlying(Enemy* enemy, std::string animation) :
 	enemy(enemy),

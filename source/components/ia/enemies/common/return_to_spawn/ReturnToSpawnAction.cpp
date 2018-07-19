@@ -2,9 +2,10 @@
 #include "ReturnToSpawnAction.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
-#include "components/ia/behavior_tree/IBehaviorTreeCondition.h"
 
-ReturnToSpawnAction::ReturnToSpawnAction(Enemy* enemy, IBehaviorTreeCondition* cancelCondition) :
+REGISTER_BTACTION("ReturnToSpawnAction", ReturnToSpawnAction);
+
+ReturnToSpawnAction::ReturnToSpawnAction(Enemy* enemy, std::string cancelCondition) :
 	enemy(enemy),
 	cancelCondition(cancelCondition) {
 }
@@ -12,7 +13,8 @@ ReturnToSpawnAction::ReturnToSpawnAction(Enemy* enemy, IBehaviorTreeCondition* c
 int ReturnToSpawnAction::execAction(float delta) {
 	enemy->updateGravity(delta);
 	float movementIncrement = enemy->movementSpeed * delta;
-	if (enemy->currentPathPoint >= enemy->smoothPath.size() || (cancelCondition && cancelCondition->testCondition(delta))) {
+	if (enemy->currentPathPoint >= enemy->smoothPath.size()
+		|| !cancelCondition.empty() && enemy->testCondition(cancelCondition, delta)) {
 		return Leave;
 	}
 	VEC3 nextPoint = enemy->smoothPath[enemy->currentPathPoint];
@@ -29,4 +31,11 @@ int ReturnToSpawnAction::execAction(float delta) {
 		enemy->currentPathPoint++;
 		return Stay;
 	}
+}
+
+void ReturnToSpawnAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	cancelCondition = j.value("cancel_condition", cancelCondition);
 }

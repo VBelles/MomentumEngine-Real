@@ -4,6 +4,8 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTACTION("OnStepBackAction", OnStepBackAction);
+
 OnStepBackAction::OnStepBackAction(Enemy* enemy, std::string animation):
 	enemy(enemy),
 	animation(animation){
@@ -15,4 +17,11 @@ int OnStepBackAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
 	return Leave;
+}
+
+void OnStepBackAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
 }

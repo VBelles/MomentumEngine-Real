@@ -3,7 +3,7 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_give_power.h"
 
-REGISTER_BTAction("BlockAction", BlockAction);
+REGISTER_BTACTION("BlockAction", BlockAction);
 
 BlockAction::BlockAction(Enemy* enemy) :
 	enemy(enemy) {

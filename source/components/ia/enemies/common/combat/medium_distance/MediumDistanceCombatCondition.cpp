@@ -3,7 +3,7 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
-REGISTER_BTCondition("MediumDistanceCombatCondition", MediumDistanceCombatCondition);
+REGISTER_BTCONDITION("MediumDistanceCombatCondition", MediumDistanceCombatCondition);
 
 MediumDistanceCombatCondition::MediumDistanceCombatCondition(Enemy* enemy) : enemy(enemy) {
 }

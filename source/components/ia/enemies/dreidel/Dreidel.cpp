@@ -137,9 +137,9 @@ void Dreidel::initBehaviorTree() {
 	StepBackAction* stepBackAction = new StepBackAction(enemy, "enemigo_bola_run", enemy->movementSpeed);
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(enemy, "enemigo_bola_run");
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(enemy);
-	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(enemy, combatCondition);
+	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(enemy, "combat");
 	OnStrollAction* onStrollAction = new OnStrollAction(enemy, "enemigo_bola_run");
-	StrollAction* strollAction = new StrollAction(enemy, combatCondition);
+	StrollAction* strollAction = new StrollAction(enemy, "combat");
 	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(enemy, "enemigo_bola_recibirdanio");
 	OnBlockingBreakAction* onBlockingBreakAction = new OnBlockingBreakAction(enemy, "enemigo_bola_recibirdanio");
 	OnBlockingBreakCondition* onBlockingBreakCondition = new OnBlockingBreakCondition(enemy);

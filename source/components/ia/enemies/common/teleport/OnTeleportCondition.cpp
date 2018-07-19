@@ -3,6 +3,8 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTCONDITION("OnTeleportCondition", OnTeleportCondition);
+
 OnTeleportCondition::OnTeleportCondition(Enemy* enemy) : enemy(enemy) {
 }
 
@@ -14,4 +16,9 @@ bool OnTeleportCondition::testCondition(float delta) {
 	else {
 		return VEC3::DistanceSquared(enemy->spawnPosition, enemy->getTransform()->getPosition()) > enemy->maxDistanceFromSpawnSqrd;
 	}
+}
+
+void OnTeleportCondition::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }

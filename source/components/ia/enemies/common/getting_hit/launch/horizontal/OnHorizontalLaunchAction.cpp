@@ -4,6 +4,8 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
+REGISTER_BTACTION("OnHorizontalLaunchAction", OnHorizontalLaunchAction);
+
 OnHorizontalLaunchAction::OnHorizontalLaunchAction(Enemy* enemy, std::string animation) :
 	enemy(enemy),
 	animation(animation) {
@@ -17,4 +19,11 @@ int OnHorizontalLaunchAction::execAction(float delta) {
 	enemy->isBlocking = false;
 	enemy->blockingBroken = false;
 	return Leave;
+}
+
+void OnHorizontalLaunchAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
 }

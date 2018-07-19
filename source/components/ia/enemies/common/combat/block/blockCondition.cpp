@@ -2,7 +2,7 @@
 #include "BlockCondition.h"
 #include "components/ia/enemies/Enemy.h"
 
-REGISTER_BTCondition("BlockCondition", BlockCondition);
+REGISTER_BTCONDITION("BlockCondition", BlockCondition);
 
 BlockCondition::BlockCondition(Enemy* enemy) : enemy(enemy) {
 }

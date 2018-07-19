@@ -30,5 +30,5 @@ public:
 	}
 };
 
-#define REGISTER_BTAction(NAME, TYPE) \
+#define REGISTER_BTACTION(NAME, TYPE) \
 	static BTActionRegisterer bTActionRegisterer(NAME, [](void)->IBehaviorTreeAction* { return new TYPE();});
