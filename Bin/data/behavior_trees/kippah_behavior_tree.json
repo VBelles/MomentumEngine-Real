@@ -47,11 +47,128 @@
                 ]
               },
               {
+                "name": "verticalLaunch",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnVerticalLaunchCondition"
+                },
+                "children": [
+                  {
+                    "name": "onVerticalLaunchAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnVerticalLaunchAction",
+                      "animation": "medusa_damage"
+                    }
+                  },
+                  {
+                    "name": "verticalLaunchedAction",
+                    "type": "action",
+                    "action": {
+                      "type": "VerticalLaunchedAction"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "grab",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnGrabCondition"
+                },
+                "children": [
+                  {
+                    "name": "onGrabAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnGrabAction"
+                    }
+                  },
+                  {
+                    "name": "grabAction",
+                    "type": "action",
+                    "action": {
+                      "type": "GrabAction"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "propel",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnPropelCondition"
+                },
+                "children": [
+                  {
+                    "name": "onPropelAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnPropelAction"
+                    }
+                  },
+                  {
+                    "name": "propelAction",
+                    "type": "action",
+                    "action": {
+                      "type": "PropelAction"
+                    }
+                  }
+                ]
+              },
+              {
                 "name": "hitStun",
                 "type": "action",
                 "action": {
                   "type": "HitStun",
                   "animation": "medusa_damage"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "death",
+        "type": "sequence",
+        "condition": {
+          "type": "OnDeathCondition"
+        },
+        "children": [
+          {
+            "name": "onDeathAction",
+            "type": "action",
+            "action": {
+              "type": "OnDeathAction",
+              "animation": "medusa_death"
+            }
+          },
+          {
+            "name": "deathAction",
+            "type": "action",
+            "action": {
+              "type": "DeathAction",
+              "animation": "medusa_death"
+            }
+          },
+          {
+            "name": "disappear",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onDisappearAction",
+                "type": "action",
+                "action": {
+                  "type": "OnDisappearAction",
+                  "animation": "medusa_desaparicion"
+                }
+              },
+              {
+                "name": "disappearAction",
+                "type": "action",
+                "action": {
+                  "type": "DisappearAction",
+                  "animation": "medusa_desaparicion"
                 }
               }
             ]
