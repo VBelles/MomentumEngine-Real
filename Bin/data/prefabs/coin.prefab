@@ -16,10 +16,13 @@
 			"collectable": {
 				"type": "coin",
 				"rotation_axis": "1 0.5 0.9",
-				"rotation_speed": 3.5,
-				"has_self_illum_variation" : true,
-				"self_illum_variation_half_amplitude" : 0.15,
-				"self_illum_variation_time_factor" : 3.3
+				"rotation_speed": 3.5
+			},
+			"self_illum_variation":{
+				"enabled" : true,
+				"half_amplitude" : 0.15,
+				"time_factor" : 3.3,
+				"max_ratio" : 1.0
 			},
 			"collider" : {
 				"shape": "sphere",
