@@ -41,6 +41,10 @@ void DeathActionState::update(float delta) {
 			finish = true;
 		}
 	}
+	if (timer.elapsed() >= startSelfIllumDecreaseTime) {
+		TCompRender* render = getPlayerModel()->get<TCompRender>();
+		render->selfIllumRatio = clamp(render->selfIllumRatio - selfIllumDecreaseSpeed * delta, selfIllumMinimumRatio, 1.f);
+	}
 }
 
 void DeathActionState::onStateEnter(IActionState* lastState) {
@@ -62,6 +66,8 @@ void DeathActionState::onStateExit(IActionState* nextState) {
 	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 	EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
 	getPlayerModel()->resetGravity();
+	TCompRender* render = getPlayerModel()->get<TCompRender>();
+	render->selfIllumRatio = 1.f;
 	//Engine.getEntities().setManagerUpdate("skeleton", true);
 }
 

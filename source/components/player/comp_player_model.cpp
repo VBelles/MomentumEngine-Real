@@ -319,10 +319,10 @@ void TCompPlayerModel::enableOutline() {
 	render->refreshMeshesInRenderManager();
 }
 
-void TCompPlayerModel::damage(float damage) {//tendría que llegar también si es hard o no
+void TCompPlayerModel::damage(float damage) {
 	setHp(hp - damage);
-	TCompRender* render = get<TCompRender>();
-	render->TurnRed(0.5f);
+	/*TCompRender* render = get<TCompRender>();
+	render->TurnRed(0.5f);*/
 }
 
 void TCompPlayerModel::makeInvulnerable(float time) {

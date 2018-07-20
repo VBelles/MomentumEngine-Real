@@ -25,9 +25,11 @@ private:
 public:
 	~TCompRender();
 
-	VEC4               color = VEC4(1, 1, 1, 1);
-	AABB               aabb;
-	bool               global_enabled = true;
+	VEC4				color = VEC4(1, 1, 1, 1);
+	AABB				aabb;
+	bool				global_enabled = true;
+	float				selfIllumRatio = 1.f;
+	VEC3				selfIllumTint = VEC3(1, 1, 1);
 	// This represents a single object mesh with several materials. Not multiples meshes
 	struct CMeshWithMaterials {
 		bool               enabled = true;
@@ -41,8 +43,6 @@ public:
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 
-	//void setMesh(std::string meshName, std::string materialName = "");
-
 	void setAllMaterials(int startingMesh, int endingMesh, std::string materialName);
 	std::vector<std::string> getMaterials(int mesh);
 	void setMeshEnabled(int mesh, bool enabled);
@@ -55,7 +55,4 @@ public:
 
 	void enable();
 	void disable();
-
-
-
 };

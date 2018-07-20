@@ -23,8 +23,13 @@ public:
 	};
 	
 private:
+	CTimer timer;
 	bool collected = false;
 	Type type;
+
+	bool hasSelfIllumVariation = false;
+	float selfIllumVariationHalfAmplitude = 0.15f;
+	float selfIllumVariationTimeFactor = 3.3f;
 
 	float rotationSpeed;
 	VEC3 rotationAxis;
