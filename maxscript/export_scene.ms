@@ -172,7 +172,7 @@ struct TMaterialExporter (
 			json_filename = strippedPath + mapBaseName + ".dds"
 		) else (
 			if not doesFileExist ofull_path then (
-				format "We should copy from % to %\n" mapFilename ofull_path
+				format "Copying from % to %\n" mapFilename ofull_path
 				copyFile mapFilename ofull_path
 			)
 		)
