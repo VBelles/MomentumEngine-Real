@@ -5,9 +5,14 @@
 
 REGISTER_BTACTION("OnDisappearAction", OnDisappearAction);
 
-OnDisappearAction::OnDisappearAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+OnDisappearAction::OnDisappearAction() {
+	type = "OnDisappearAction";
+}
+
+OnDisappearAction::OnDisappearAction(Enemy* enemy, std::string animation) :
+	OnDisappearAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnDisappearAction::execAction(float delta) {

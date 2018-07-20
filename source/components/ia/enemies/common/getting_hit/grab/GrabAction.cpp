@@ -6,7 +6,13 @@
 
 REGISTER_BTACTION("GrabAction", GrabAction);
 
-GrabAction::GrabAction(Enemy* enemy): enemy(enemy) {
+GrabAction::GrabAction() {
+	type = "GrabAction";
+}
+
+GrabAction::GrabAction(Enemy* enemy) :
+	GrabAction() {
+	this->enemy = enemy;
 }
 
 int GrabAction::execAction(float delta) {

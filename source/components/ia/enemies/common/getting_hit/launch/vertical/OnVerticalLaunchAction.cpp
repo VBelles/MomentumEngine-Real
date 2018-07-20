@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("OnVerticalLaunchAction", OnVerticalLaunchAction);
 
+OnVerticalLaunchAction::OnVerticalLaunchAction() {
+	type = "OnVerticalLaunchAction";
+}
+
 OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	OnVerticalLaunchAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnVerticalLaunchAction::execAction(float delta) {

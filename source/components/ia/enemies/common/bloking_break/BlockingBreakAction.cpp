@@ -5,9 +5,13 @@
 
 REGISTER_BTACTION("BlockingBreakAction", BlockingBreakAction);
 
-BlockingBreakAction::BlockingBreakAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+BlockingBreakAction::BlockingBreakAction() {
+	type = "BlockingBreakAction";
+}
+
+BlockingBreakAction::BlockingBreakAction(Enemy* enemy, std::string animation) : BlockingBreakAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int BlockingBreakAction::execAction(float delta) {

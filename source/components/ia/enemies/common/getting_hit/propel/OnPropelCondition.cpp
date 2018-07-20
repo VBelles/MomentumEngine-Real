@@ -4,7 +4,13 @@
 
 REGISTER_BTCONDITION("OnPropelCondition", OnPropelCondition);
 
-OnPropelCondition::OnPropelCondition(Enemy* enemy) : enemy(enemy) {
+OnPropelCondition::OnPropelCondition() {
+	type = "OnPropelCondition";
+}
+
+OnPropelCondition::OnPropelCondition(Enemy* enemy) :
+	OnPropelCondition() {
+	this->enemy = enemy;
 }
 
 bool OnPropelCondition::testCondition(float delta) {

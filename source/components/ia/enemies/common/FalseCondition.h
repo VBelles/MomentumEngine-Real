@@ -4,6 +4,6 @@
 
 class FalseCondition: public IBehaviorTreeCondition {
 public:
-	FalseCondition() {}
+	FalseCondition();
 	bool testCondition(float delta) override;
 };

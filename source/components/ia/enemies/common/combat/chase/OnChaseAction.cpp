@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("OnChaseAction", OnChaseAction);
 
-OnChaseAction::OnChaseAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+OnChaseAction::OnChaseAction() {
+	type = "OnChaseAction";
+}
+
+OnChaseAction::OnChaseAction(Enemy* enemy, std::string animation) :
+	OnChaseAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnChaseAction::execAction(float delta) {

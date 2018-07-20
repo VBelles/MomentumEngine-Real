@@ -6,10 +6,15 @@
 
 REGISTER_BTACTION("StepBackAction", StepBackAction);
 
+StepBackAction::StepBackAction() {
+	type = "StepBackAction";
+}
+
 StepBackAction::StepBackAction(Enemy* enemy, std::string animation, float speed) :
-	enemy(enemy),
-	animation(animation),
-	speed(speed) {
+	StepBackAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->speed = speed;
 }
 
 int StepBackAction::execAction(float delta) {

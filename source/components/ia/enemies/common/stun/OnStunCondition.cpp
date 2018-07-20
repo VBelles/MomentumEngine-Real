@@ -4,7 +4,13 @@
 
 REGISTER_BTCONDITION("OnStunCondition", OnStunCondition);
 
-OnStunCondition::OnStunCondition(Enemy* enemy) : enemy(enemy) {
+OnStunCondition::OnStunCondition() {
+	type = "OnStunCondition";
+}
+
+OnStunCondition::OnStunCondition(Enemy* enemy) :
+	OnStunCondition() {
+	this->enemy = enemy;
 }
 
 bool OnStunCondition::testCondition(float delta) {

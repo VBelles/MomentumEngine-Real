@@ -29,6 +29,8 @@ class Enemy : public IBehaviorTreeNew {
 public:
 	virtual ~Enemy();
 
+	std::string behaviorTreeFile = "";
+
 	std::string navMeshId;
 	CNavMeshQuery* navMeshQuery = nullptr;
 	std::vector<VEC3> smoothPath;

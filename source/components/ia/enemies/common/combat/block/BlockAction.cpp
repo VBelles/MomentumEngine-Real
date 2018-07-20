@@ -5,8 +5,12 @@
 
 REGISTER_BTACTION("BlockAction", BlockAction);
 
-BlockAction::BlockAction(Enemy* enemy) :
-	enemy(enemy) {
+BlockAction::BlockAction() {
+	type = "BlockAction";
+}
+
+BlockAction::BlockAction(Enemy* enemy) : BlockAction() {
+	this->enemy = enemy;
 }
 
 int BlockAction::execAction(float delta) {

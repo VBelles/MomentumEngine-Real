@@ -5,9 +5,14 @@
 
 REGISTER_BTACTION("DeathAction", DeathAction);
 
+DeathAction::DeathAction() {
+	type = "DeathAction";
+}
+
 DeathAction::DeathAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	DeathAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int DeathAction::execAction(float delta) {

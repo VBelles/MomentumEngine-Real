@@ -7,9 +7,14 @@
 
 REGISTER_BTACTION("OnHit", OnHit);
 
+OnHit::OnHit() {
+	type = "OnHit";
+}
+
 OnHit::OnHit(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	OnHit() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnHit::execAction(float delta) {

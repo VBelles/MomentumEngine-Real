@@ -5,9 +5,13 @@
 
 REGISTER_BTACTION("OnAirborneAction", OnAirborneAction);
 
-OnAirborneAction::OnAirborneAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+OnAirborneAction::OnAirborneAction() {
+	type = "OnAirborneAction";
+}
+
+OnAirborneAction::OnAirborneAction(Enemy* enemy, std::string animation) : OnAirborneAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnAirborneAction::execAction(float delta) {

@@ -5,9 +5,13 @@
 
 REGISTER_BTACTION("AppearAction", AppearAction);
 
-AppearAction::AppearAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+AppearAction::AppearAction() {
+	type = "AppearAction";
+}
+
+AppearAction::AppearAction(Enemy* enemy, std::string animation) : AppearAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int AppearAction::execAction(float delta) {

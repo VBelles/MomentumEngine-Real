@@ -5,9 +5,14 @@
 
 REGISTER_BTACTION("StrollAction", StrollAction);
 
+StrollAction::StrollAction() {
+	type = "StrollAction";
+}
+
 StrollAction::StrollAction(Enemy* enemy, std::string cancelCondition) :
-	enemy(enemy),
-	cancelCondition(cancelCondition) {
+	StrollAction() {
+	this->enemy = enemy;
+	this->cancelCondition = cancelCondition;
 }
 
 int StrollAction::execAction(float delta) {

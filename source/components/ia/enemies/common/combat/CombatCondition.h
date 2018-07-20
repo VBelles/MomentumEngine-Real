@@ -8,7 +8,7 @@ class CombatCondition : public IBehaviorTreeCondition {
 private:
 	Enemy* enemy = nullptr;
 public:
-	CombatCondition() {}
+	CombatCondition();
 	CombatCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

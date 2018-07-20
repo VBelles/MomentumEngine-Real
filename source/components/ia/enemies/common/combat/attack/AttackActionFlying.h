@@ -10,7 +10,7 @@ private:
 	std::string animation = "";
 	std::string attack = "";
 public:
-	AttackActionFlying() {}
+	AttackActionFlying();
 	AttackActionFlying(Enemy* enemy, std::string animation, std::string attack);
 	int execAction(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

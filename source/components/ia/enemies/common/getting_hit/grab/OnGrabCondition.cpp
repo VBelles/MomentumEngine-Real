@@ -4,7 +4,13 @@
 
 REGISTER_BTCONDITION("OnGrabCondition", OnGrabCondition);
 
-OnGrabCondition::OnGrabCondition(Enemy* enemy) : enemy(enemy) {
+OnGrabCondition::OnGrabCondition() {
+	type = "OnGrabCondition";
+}
+
+OnGrabCondition::OnGrabCondition(Enemy* enemy) :
+	OnGrabCondition() {
+	this->enemy = enemy;
 }
 
 bool OnGrabCondition::testCondition(float delta) {

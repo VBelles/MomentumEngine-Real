@@ -6,10 +6,15 @@
 
 REGISTER_BTACTION("OnTackleAttackAction", OnTackleAttackAction);
 
-OnTackleAttackAction::OnTackleAttackAction(Enemy* enemy, std::string animation, std::string attack):
-	enemy(enemy),
-	animation(animation),
-	attack(attack) {
+OnTackleAttackAction::OnTackleAttackAction() {
+	type = "OnTackleAttackAction";
+}
+
+OnTackleAttackAction::OnTackleAttackAction(Enemy* enemy, std::string animation, std::string attack) :
+	OnTackleAttackAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
 }
 
 int OnTackleAttackAction::execAction(float delta) {

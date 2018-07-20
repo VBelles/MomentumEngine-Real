@@ -8,7 +8,7 @@ class OnDeathCondition : public IBehaviorTreeCondition {
 private:
 	Enemy* enemy = nullptr;
 public:
-	OnDeathCondition() {}
+	OnDeathCondition();
 	OnDeathCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

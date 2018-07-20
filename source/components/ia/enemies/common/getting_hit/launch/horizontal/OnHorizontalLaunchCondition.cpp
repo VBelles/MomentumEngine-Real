@@ -4,8 +4,15 @@
 
 REGISTER_BTCONDITION("OnHorizontalLaunchCondition", OnHorizontalLaunchCondition);
 
-OnHorizontalLaunchCondition::OnHorizontalLaunchCondition(Enemy* enemy) : enemy(enemy) {
+OnHorizontalLaunchCondition::OnHorizontalLaunchCondition() {
+	type = "OnHorizontalLaunchCondition";
 }
+
+OnHorizontalLaunchCondition::OnHorizontalLaunchCondition(Enemy* enemy) :
+	OnHorizontalLaunchCondition() {
+	this->enemy = enemy;
+}
+
 
 bool OnHorizontalLaunchCondition::testCondition(float delta) {
 	return enemy->receivedAttack.horizontalLauncher 

@@ -5,10 +5,15 @@
 
 REGISTER_BTACTION("IdleLoopFlying", IdleLoopFlying);
 
+IdleLoopFlying::IdleLoopFlying() {
+	type = "IdleLoopFlying";
+}
+
 IdleLoopFlying::IdleLoopFlying(Enemy* enemy, std::string animation, std::string cancelCondition) :
-	enemy(enemy),
-	animation(animation),
-	cancelCondition(cancelCondition) {
+	IdleLoopFlying() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->cancelCondition = cancelCondition;
 }
 
 int IdleLoopFlying::execAction(float delta) {

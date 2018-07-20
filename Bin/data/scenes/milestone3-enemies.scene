@@ -6,8 +6,7 @@
       "prefab": "data/prefabs/kippahTestBTLoader.prefab",
       "transform":
       {
-        "pos": "-327.282 43.313 -614.817",
-        "lookat": "-1.0 105.349 -1.0"
+        "pos": "-327 44 -614"
       }
     }
   },

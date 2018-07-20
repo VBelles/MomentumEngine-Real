@@ -5,7 +5,13 @@
 
 REGISTER_BTCONDITION("OnDeathCondition", OnDeathCondition);
 
-OnDeathCondition::OnDeathCondition(Enemy* enemy) : enemy(enemy) {
+OnDeathCondition::OnDeathCondition() {
+	type = "OnDeathCondition";
+}
+
+OnDeathCondition::OnDeathCondition(Enemy* enemy) :
+	OnDeathCondition() {
+	this->enemy = enemy;
 }
 
 bool OnDeathCondition::testCondition(float delta) {

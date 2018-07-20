@@ -4,7 +4,13 @@
 
 REGISTER_BTCONDITION("OnVerticalLaunchCondition", OnVerticalLaunchCondition);
 
-OnVerticalLaunchCondition::OnVerticalLaunchCondition(Enemy* enemy) : enemy(enemy) {
+OnVerticalLaunchCondition::OnVerticalLaunchCondition() {
+	type = "OnVerticalLaunchCondition";
+}
+
+OnVerticalLaunchCondition::OnVerticalLaunchCondition(Enemy* enemy) :
+	OnVerticalLaunchCondition() {
+	this->enemy = enemy;
 }
 
 bool OnVerticalLaunchCondition::testCondition(float delta) {

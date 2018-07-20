@@ -5,7 +5,13 @@
 
 REGISTER_BTCONDITION("CombatCondition", CombatCondition);
 
-CombatCondition::CombatCondition(Enemy* enemy) : enemy(enemy) {
+CombatCondition::CombatCondition() {
+	type = "CombatCondition";
+}
+
+CombatCondition::CombatCondition(Enemy* enemy) :
+	CombatCondition() {
+	this->enemy = enemy;
 }
 
 bool CombatCondition::testCondition(float delta) {

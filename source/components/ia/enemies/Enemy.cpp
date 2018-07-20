@@ -12,7 +12,7 @@ Enemy::~Enemy() {
 
 void Enemy::load(const json& j) {
 	if (j.count("behavior_tree")) {
-		std::string behaviorTreeFile = j.value("behavior_tree", "");
+		behaviorTreeFile = j.value("behavior_tree", "");
 		IBehaviorTreeNew::load(loadJson(behaviorTreeFile));
 	}
 
@@ -76,6 +76,7 @@ void Enemy::load(const json& j) {
 }
 
 void Enemy::debugInMenu() {
+	ImGui::Text("Behavior tree file: %s\n", !behaviorTreeFile.empty() ? behaviorTreeFile.c_str() : "None");
 	IBehaviorTreeNew::debugInMenu();
 	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
 	ImGui::Text("Hp: %f\n", hp);

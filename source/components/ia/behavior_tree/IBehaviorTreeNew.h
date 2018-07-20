@@ -11,8 +11,10 @@
 class IBehaviorTreeNew {
 protected:
 	std::unordered_map<std::string, IBehaviorTreeNode *> tree;
+
 	std::unordered_map<std::string, IBehaviorTreeCondition*> conditions;
 	std::set<IBehaviorTreeCondition*> allConditions;
+
 	std::unordered_map<std::string, IBehaviorTreeAction*> actions;
 	std::set<IBehaviorTreeAction*> allActions;
 
@@ -45,9 +47,11 @@ public:
 
 	void addCondition(std::string conditionName, IBehaviorTreeCondition* condition);
 	bool testCondition(std::string conditionName, float delta = 0.f);
+	IBehaviorTreeCondition* getCondition(std::string conditionName);
 
 	void addAction(std::string actionName, IBehaviorTreeAction* action);
 	int execAction(std::string actionName, float delta = 0.f);
+	IBehaviorTreeAction* getAction(std::string actionName);
 
 	virtual void recalc(float delta = 0.f);
 

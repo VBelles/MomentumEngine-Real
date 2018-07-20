@@ -7,11 +7,16 @@
 
 REGISTER_BTACTION("RangedAttackAction", RangedAttackAction);
 
+RangedAttackAction::RangedAttackAction() {
+	type = "RangedAttackAction";
+}
+
 RangedAttackAction::RangedAttackAction(Enemy* enemy, std::string animation, std::string attack, std::string cancelCondition) :
-	enemy(enemy),
-	animation(animation),
-	attack(attack),
-	cancelCondition(cancelCondition) {
+	RangedAttackAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
+	this->cancelCondition = cancelCondition;
 }
 
 int RangedAttackAction::execAction(float delta) {

@@ -6,10 +6,14 @@
 
 REGISTER_BTACTION("AttackActionFlying", AttackActionFlying);
 
-AttackActionFlying::AttackActionFlying(Enemy* enemy, std::string animation, std::string attack) :
-	enemy(enemy),
-	animation(animation),
-	attack(attack) {
+AttackActionFlying::AttackActionFlying() {
+	type = "AttackActionFlying";
+}
+
+AttackActionFlying::AttackActionFlying(Enemy* enemy, std::string animation, std::string attack) : AttackActionFlying() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
 }
 
 int AttackActionFlying::execAction(float delta) {

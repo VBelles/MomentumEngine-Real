@@ -8,7 +8,7 @@ class OnTeleportCondition : public IBehaviorTreeCondition {
 private:
 	Enemy* enemy = nullptr;
 public:
-	OnTeleportCondition() {}
+	OnTeleportCondition();
 	OnTeleportCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

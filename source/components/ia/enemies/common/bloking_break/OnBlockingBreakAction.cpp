@@ -6,9 +6,13 @@
 
 REGISTER_BTACTION("OnBlockingBreakAction", OnBlockingBreakAction);
 
-OnBlockingBreakAction::OnBlockingBreakAction(Enemy* enemy, std::string animation): 
-	enemy(enemy),
-	animation(animation){
+OnBlockingBreakAction::OnBlockingBreakAction() {
+	type = "OnBlockingBreakAction";
+}
+
+OnBlockingBreakAction::OnBlockingBreakAction(Enemy* enemy, std::string animation) : OnBlockingBreakAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnBlockingBreakAction::execAction(float delta) {

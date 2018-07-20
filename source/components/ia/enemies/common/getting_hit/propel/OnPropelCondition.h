@@ -8,7 +8,7 @@ class OnPropelCondition : public IBehaviorTreeCondition {
 private:
 	Enemy* enemy = nullptr;
 public:
-	OnPropelCondition() {}
+	OnPropelCondition();
 	OnPropelCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

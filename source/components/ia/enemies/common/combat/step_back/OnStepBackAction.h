@@ -9,7 +9,7 @@ private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
 public:
-	OnStepBackAction() {}
+	OnStepBackAction();
 	OnStepBackAction(Enemy* enemy, std::string animation);
 	int execAction(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

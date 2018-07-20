@@ -8,7 +8,7 @@ class OnHorizontalLaunchCondition : public IBehaviorTreeCondition {
 private:
 	Enemy* enemy = nullptr;
 public:
-	OnHorizontalLaunchCondition() {}
+	OnHorizontalLaunchCondition();
 	OnHorizontalLaunchCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

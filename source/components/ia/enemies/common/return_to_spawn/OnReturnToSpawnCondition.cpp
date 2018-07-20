@@ -5,7 +5,13 @@
 
 REGISTER_BTCONDITION("OnReturnToSpawnCondition", OnReturnToSpawnCondition);
 
-OnReturnToSpawnCondition::OnReturnToSpawnCondition(Enemy* enemy) : enemy(enemy) {
+OnReturnToSpawnCondition::OnReturnToSpawnCondition() {
+	type = "OnReturnToSpawnCondition";
+}
+
+OnReturnToSpawnCondition::OnReturnToSpawnCondition(Enemy* enemy) :
+	OnReturnToSpawnCondition() {
+	this->enemy = enemy;
 }
 
 bool OnReturnToSpawnCondition::testCondition(float delta) {

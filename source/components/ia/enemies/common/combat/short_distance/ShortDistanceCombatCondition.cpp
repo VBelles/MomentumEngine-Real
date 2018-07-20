@@ -5,7 +5,13 @@
 
 REGISTER_BTCONDITION("ShortDistanceCombatCondition", ShortDistanceCombatCondition);
 
-ShortDistanceCombatCondition::ShortDistanceCombatCondition(Enemy* enemy) : enemy(enemy) {
+ShortDistanceCombatCondition::ShortDistanceCombatCondition() {
+	type = "ShortDistanceCombatCondition";
+}
+
+ShortDistanceCombatCondition::ShortDistanceCombatCondition(Enemy* enemy) :
+	ShortDistanceCombatCondition() {
+	this->enemy = enemy;
 }
 
 bool ShortDistanceCombatCondition::testCondition(float delta) {

@@ -30,8 +30,31 @@ void CBehaviorTreeNodePriority::recalc(IBehaviorTreeNew *behaviorTree, float del
 void CBehaviorTreeNodePriority::debugInMenu() {
 	if (ImGui::TreeNode(getName().c_str())) {
 		ImGui::Text("Type: Priority");
-		for (auto& node : children) {
-			node->debugInMenu();
+		if (children.size() > 0 && ImGui::TreeNode("Children")) {
+			for (auto& node : children) {
+				node->debugInMenu();
+			}
+			ImGui::TreePop();
+		}
+		ImGui::TreePop();
+	}
+}
+
+void CBehaviorTreeNodePriority::debugInMenu(IBehaviorTreeNew* behaviorTree) {
+	if (ImGui::TreeNode(getName().c_str())) {
+		ImGui::Text("Type: Priority");
+
+		IBehaviorTreeCondition* condition = behaviorTree->getCondition(getName());
+		ImGui::Text("Condition: %s\n", condition ? condition->getType().c_str() : "None");
+
+		IBehaviorTreeAction* action = behaviorTree->getAction(getName());
+		ImGui::Text("Action: %s\n", action ? action->getType().c_str() : "None");
+
+		if (children.size() > 0 && ImGui::TreeNode("Children")) {
+			for (auto& node : children) {
+				node->debugInMenu(behaviorTree);
+			}
+			ImGui::TreePop();
 		}
 		ImGui::TreePop();
 	}

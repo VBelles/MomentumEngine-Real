@@ -5,7 +5,13 @@
 
 REGISTER_BTACTION("OnGrabAction", OnGrabAction);
 
-OnGrabAction::OnGrabAction(Enemy* enemy): enemy(enemy) {
+OnGrabAction::OnGrabAction() {
+	type = "OnGrabAction";
+}
+
+OnGrabAction::OnGrabAction(Enemy* enemy) :
+	OnGrabAction() {
+	this->enemy = enemy;
 }
 
 int OnGrabAction::execAction(float delta) {

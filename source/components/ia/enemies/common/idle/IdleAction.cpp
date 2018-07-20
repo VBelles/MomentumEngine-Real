@@ -5,10 +5,15 @@
 
 REGISTER_BTACTION("IdleAction", IdleAction);
 
+IdleAction::IdleAction() {
+	type = "IdleAction";
+}
+
 IdleAction::IdleAction(Enemy* enemy, std::string animation, std::string cancelCondition) :
-	enemy(enemy),
-	animation(animation),
-	cancelCondition(cancelCondition) {
+	IdleAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->cancelCondition = cancelCondition;
 }
 
 int IdleAction::execAction(float delta) {

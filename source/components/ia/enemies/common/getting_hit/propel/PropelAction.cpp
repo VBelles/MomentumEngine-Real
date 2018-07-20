@@ -4,8 +4,15 @@
 
 REGISTER_BTACTION("PropelAction", PropelAction);
 
-PropelAction::PropelAction(Enemy* enemy): enemy(enemy) {
+PropelAction::PropelAction() {
+	type = "PropelAction";
 }
+
+PropelAction::PropelAction(Enemy* enemy) :
+	PropelAction() {
+	this->enemy = enemy;
+}
+
 
 int PropelAction::execAction(float delta) {
 	if (enemy->timer.elapsed() < enemy->propelDuration) {

@@ -6,10 +6,15 @@
 
 REGISTER_BTACTION("OnBlockAction", OnBlockAction);
 
+OnBlockAction::OnBlockAction() {
+	type = "OnBlockAction";
+}
+
 OnBlockAction::OnBlockAction(Enemy* enemy, std::string animationStart, std::string animationLoop) :
-	enemy(enemy),
-	animationStart(animationStart),
-	animationLoop(animationLoop) {
+	OnBlockAction() {
+	this->enemy = enemy;
+	this->animationStart = animationStart;
+	this->animationLoop = animationLoop;
 }
 
 int OnBlockAction::execAction(float delta) {

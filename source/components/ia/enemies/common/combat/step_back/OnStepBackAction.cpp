@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("OnStepBackAction", OnStepBackAction);
 
-OnStepBackAction::OnStepBackAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+OnStepBackAction::OnStepBackAction() {
+	type = "OnStepBackAction";
+}
+
+OnStepBackAction::OnStepBackAction(Enemy* enemy, std::string animation) :
+	OnStepBackAction() {
+	this->enemy;
+	this->animation = animation;
 }
 
 int OnStepBackAction::execAction(float delta) {

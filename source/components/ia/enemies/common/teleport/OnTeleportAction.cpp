@@ -5,9 +5,14 @@
 
 REGISTER_BTACTION("OnTeleportAction", OnTeleportAction);
 
-OnTeleportAction::OnTeleportAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+OnTeleportAction::OnTeleportAction() {
+	type = "OnTeleportAction";
+}
+
+OnTeleportAction::OnTeleportAction(Enemy* enemy, std::string animation) :
+	OnTeleportAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnTeleportAction::execAction(float delta) {

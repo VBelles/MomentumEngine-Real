@@ -5,7 +5,13 @@
 
 REGISTER_BTCONDITION("LongDistanceCombatCondition", LongDistanceCombatCondition);
 
-LongDistanceCombatCondition::LongDistanceCombatCondition(Enemy* enemy) : enemy(enemy) {
+LongDistanceCombatCondition::LongDistanceCombatCondition() {
+	type = "LongDistanceCombatCondition";
+}
+
+LongDistanceCombatCondition::LongDistanceCombatCondition(Enemy* enemy) :
+	LongDistanceCombatCondition() {
+	this->enemy = enemy;
 }
 
 bool LongDistanceCombatCondition::testCondition(float delta) {

@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("OnStrollAction", OnStrollAction);
 
+OnStrollAction::OnStrollAction() {
+	type = "OnStrollAction";
+}
+
 OnStrollAction::OnStrollAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	OnStrollAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnStrollAction::execAction(float delta) {

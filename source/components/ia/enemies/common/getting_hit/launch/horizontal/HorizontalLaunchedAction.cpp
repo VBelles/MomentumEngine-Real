@@ -5,7 +5,13 @@
 
 REGISTER_BTACTION("HorizontalLaunchedAction", HorizontalLaunchedAction);
 
-HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy) : enemy(enemy) {
+HorizontalLaunchedAction::HorizontalLaunchedAction() {
+	type = "HorizontalLaunchedAction";
+}
+
+HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy) :
+	HorizontalLaunchedAction() {
+	this->enemy = enemy;
 }
 
 int HorizontalLaunchedAction::execAction(float delta) {

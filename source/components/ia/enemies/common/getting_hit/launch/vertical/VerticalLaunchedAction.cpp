@@ -4,7 +4,13 @@
 
 REGISTER_BTACTION("VerticalLaunchedAction", VerticalLaunchedAction);
 
-VerticalLaunchedAction::VerticalLaunchedAction(Enemy* enemy) : enemy(enemy) {
+VerticalLaunchedAction::VerticalLaunchedAction() {
+	type = "VerticalLaunchedAction";
+}
+
+VerticalLaunchedAction::VerticalLaunchedAction(Enemy* enemy) :
+	VerticalLaunchedAction() {
+	this->enemy = enemy;
 }
 
 int VerticalLaunchedAction::execAction(float delta) {

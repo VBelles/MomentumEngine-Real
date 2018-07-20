@@ -147,6 +147,17 @@ bool IBehaviorTreeNew::testCondition(std::string conditionName, float delta) {
 	return it->second->testCondition(delta);
 }
 
+IBehaviorTreeCondition* IBehaviorTreeNew::getCondition(std::string conditionName) {
+	IBehaviorTreeCondition* condition = nullptr;
+
+	auto it = conditions.find(conditionName);
+	if (it != conditions.end()) {
+		condition = it->second;
+	}
+
+	return condition;
+}
+
 void IBehaviorTreeNew::addAction(std::string actionName, IBehaviorTreeAction* action) {
 	auto res = actions.emplace(actionName, action);
 	allActions.insert(action);
@@ -168,6 +179,17 @@ int IBehaviorTreeNew::execAction(std::string actionName, float delta) {
 	return it->second->execAction(delta);
 }
 
+IBehaviorTreeAction* IBehaviorTreeNew::getAction(std::string actionName) {
+	IBehaviorTreeAction* action = nullptr;
+
+	auto it = actions.find(actionName);
+	if (it != actions.end()) {
+		action = it->second;
+	}
+
+	return action;
+}
+
 void IBehaviorTreeNew::recalc(float delta) {
 	PROFILE_FUNCTION("Recalc");
 	if (current == nullptr) {
@@ -180,7 +202,7 @@ void IBehaviorTreeNew::recalc(float delta) {
 
 void IBehaviorTreeNew::debugInMenu() {
 	if (ImGui::TreeNode("Behavior tree")) {
-		root->debugInMenu();
+		root->debugInMenu(this);
 		ImGui::TreePop();
 	}
 }

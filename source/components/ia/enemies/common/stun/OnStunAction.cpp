@@ -5,10 +5,15 @@
 
 REGISTER_BTACTION("OnStunAction", OnStunAction);
 
+OnStunAction::OnStunAction() {
+	type = "OnStunAction";
+}
+
 OnStunAction::OnStunAction(Enemy* enemy, std::string animationStart, std::string animationLoop) :
-	enemy(enemy),
-	animationStart(animationStart),
-	animationLoop(animationLoop) {
+	OnStunAction() {
+	this->enemy = enemy;
+	this->animationStart = animationStart;
+	this->animationLoop = animationLoop;
 }
 
 int OnStunAction::execAction(float delta) {

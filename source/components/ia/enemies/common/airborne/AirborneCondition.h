@@ -8,7 +8,7 @@ class AirborneCondition : public IBehaviorTreeCondition {
 private:
 	Enemy* enemy = nullptr;
 public:
-	AirborneCondition() {}
+	AirborneCondition();
 	AirborneCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

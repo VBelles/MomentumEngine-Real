@@ -12,7 +12,7 @@ private:
 	std::string attack = "";
 	bool attackLaunched = false;
 public:
-	RangedAttackAction() {}
+	RangedAttackAction();
 	RangedAttackAction(Enemy* enemy, std::string animation, std::string attack, std::string cancelCondition = "");
 	int execAction(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

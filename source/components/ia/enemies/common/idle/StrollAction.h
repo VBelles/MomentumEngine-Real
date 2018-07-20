@@ -9,7 +9,7 @@ private:
 	Enemy* enemy = nullptr;
 	std::string cancelCondition = "";
 public:
-	StrollAction() {}
+	StrollAction();
 	StrollAction(Enemy* enemy, std::string cancelCondition = "");
 	int execAction(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

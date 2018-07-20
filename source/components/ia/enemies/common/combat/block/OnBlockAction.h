@@ -10,7 +10,7 @@ private:
 	std::string animationStart = "";
 	std::string animationLoop = "";
 public:
-	OnBlockAction() {}
+	OnBlockAction();
 	OnBlockAction(Enemy* enemy, std::string animationStart, std::string animationLoop);
 	int execAction(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

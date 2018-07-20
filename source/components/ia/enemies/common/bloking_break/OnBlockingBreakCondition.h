@@ -8,7 +8,7 @@ class OnBlockingBreakCondition : public IBehaviorTreeCondition {
 private:
 	Enemy* enemy = nullptr;
 public:
-	OnBlockingBreakCondition() {}
+	OnBlockingBreakCondition();
 	OnBlockingBreakCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

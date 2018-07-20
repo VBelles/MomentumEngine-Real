@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("DisappearAction", DisappearAction);
 
+DisappearAction::DisappearAction() {
+	type = "DisappearAction";
+}
+
 DisappearAction::DisappearAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	DisappearAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int DisappearAction::execAction(float delta) {

@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("TeleportAction", TeleportAction);
 
+TeleportAction::TeleportAction() {
+	type = "TeleportAction";
+}
+
 TeleportAction::TeleportAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	TeleportAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int TeleportAction::execAction(float delta) {

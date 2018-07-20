@@ -4,8 +4,13 @@
 
 REGISTER_BTACTION("StunAction", StunAction);
 
+StunAction::StunAction() {
+	type = "StunAction";
+}
+
 StunAction::StunAction(Enemy* enemy) :
-	enemy(enemy) {
+	StunAction() {
+	this->enemy = enemy;
 }
 
 int StunAction::execAction(float delta) {

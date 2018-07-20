@@ -6,10 +6,14 @@
 
 REGISTER_BTACTION("OnAttackAction", OnAttackAction);
 
-OnAttackAction::OnAttackAction(Enemy* enemy, std::string animation, std::string attack):
-	enemy(enemy),
-	animation(animation),
-	attack(attack) {
+OnAttackAction::OnAttackAction() {
+	type = "OnAttackAction";
+}
+
+OnAttackAction::OnAttackAction(Enemy* enemy, std::string animation, std::string attack) : OnAttackAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
 }
 
 int OnAttackAction::execAction(float delta) {

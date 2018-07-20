@@ -4,7 +4,12 @@
 
 REGISTER_BTCONDITION("BlockCondition", BlockCondition);
 
-BlockCondition::BlockCondition(Enemy* enemy) : enemy(enemy) {
+BlockCondition::BlockCondition() {
+	type = "BlockCondition";
+}
+
+BlockCondition::BlockCondition(Enemy* enemy) : BlockCondition() {
+	this->enemy = enemy;
 }
 
 bool BlockCondition::testCondition(float delta) {

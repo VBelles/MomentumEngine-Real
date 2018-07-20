@@ -10,7 +10,7 @@ private:
 	std::string animation = "";
 	std::string cancelCondition = "";
 public:
-	IdleLoopFlying() {}
+	IdleLoopFlying();
 	IdleLoopFlying(Enemy* enemy, std::string animation, std::string cancelCondition = "");
 	int execAction(float delta) override;
 	void load(IBehaviorTreeNew* bt, const json& j) override;

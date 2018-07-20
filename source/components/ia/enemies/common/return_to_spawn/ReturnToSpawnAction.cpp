@@ -5,9 +5,14 @@
 
 REGISTER_BTACTION("ReturnToSpawnAction", ReturnToSpawnAction);
 
+ReturnToSpawnAction::ReturnToSpawnAction() {
+	type = "ReturnToSpawnAction";
+}
+
 ReturnToSpawnAction::ReturnToSpawnAction(Enemy* enemy, std::string cancelCondition) :
-	enemy(enemy),
-	cancelCondition(cancelCondition) {
+	ReturnToSpawnAction() {
+	this->enemy = enemy;
+	this->cancelCondition = cancelCondition;
 }
 
 int ReturnToSpawnAction::execAction(float delta) {

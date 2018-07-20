@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("OnReturnToSpawnAction", OnReturnToSpawnAction);
 
+OnReturnToSpawnAction::OnReturnToSpawnAction() {
+	type = "OnReturnToSpawnAction";
+}
+
 OnReturnToSpawnAction::OnReturnToSpawnAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	OnReturnToSpawnAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnReturnToSpawnAction::execAction(float delta) {

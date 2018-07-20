@@ -5,9 +5,14 @@
 
 REGISTER_BTACTION("OnIdleAction", OnIdleAction);
 
-OnIdleAction::OnIdleAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+OnIdleAction::OnIdleAction() {
+	type = "OnIdleAction";
+}
+
+OnIdleAction::OnIdleAction(Enemy* enemy, std::string animation) :
+	OnIdleAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnIdleAction::execAction(float delta) {

@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("OnHorizontalLaunchAction", OnHorizontalLaunchAction);
 
+OnHorizontalLaunchAction::OnHorizontalLaunchAction() {
+	type = "OnHorizontalLaunchAction";
+}
+
 OnHorizontalLaunchAction::OnHorizontalLaunchAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	OnHorizontalLaunchAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnHorizontalLaunchAction::execAction(float delta) {

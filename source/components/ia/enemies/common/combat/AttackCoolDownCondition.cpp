@@ -5,8 +5,15 @@
 
 REGISTER_BTCONDITION("AttackCoolDownCondition", AttackCoolDownCondition);
 
-AttackCoolDownCondition::AttackCoolDownCondition(Enemy* enemy) : enemy(enemy) {
+AttackCoolDownCondition::AttackCoolDownCondition() {
+	type = "AttackCoolDownCondition";
 }
+
+AttackCoolDownCondition::AttackCoolDownCondition(Enemy* enemy) :
+	AttackCoolDownCondition() {
+	this->enemy = enemy;
+}
+
 
 bool AttackCoolDownCondition::testCondition(float delta) {
 	return enemy->attackTimer.elapsed() < enemy->attackCoolDown;

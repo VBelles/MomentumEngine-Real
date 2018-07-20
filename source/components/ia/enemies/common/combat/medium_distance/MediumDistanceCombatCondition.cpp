@@ -5,7 +5,13 @@
 
 REGISTER_BTCONDITION("MediumDistanceCombatCondition", MediumDistanceCombatCondition);
 
-MediumDistanceCombatCondition::MediumDistanceCombatCondition(Enemy* enemy) : enemy(enemy) {
+MediumDistanceCombatCondition::MediumDistanceCombatCondition() {
+	type = "MediumDistanceCombatCondition";
+}
+
+MediumDistanceCombatCondition::MediumDistanceCombatCondition(Enemy* enemy) :
+	MediumDistanceCombatCondition() {
+	this->enemy = enemy;
 }
 
 bool MediumDistanceCombatCondition::testCondition(float delta) {

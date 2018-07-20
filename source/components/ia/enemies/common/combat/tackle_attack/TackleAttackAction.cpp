@@ -7,12 +7,17 @@
 
 REGISTER_BTACTION("TackleAttackAction", TackleAttackAction);
 
+TackleAttackAction::TackleAttackAction() {
+	type = "TackleAttackAction";
+}
+
 TackleAttackAction::TackleAttackAction(Enemy* enemy, std::string animation, std::string attack, float speed, float time) :
-	enemy(enemy),
-	animation(animation),
-	attack(attack),
-	speed(speed),
-	time(time) {
+	TackleAttackAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
+	this->speed = speed;
+	this->time = time;
 }
 
 int TackleAttackAction::execAction(float delta) {

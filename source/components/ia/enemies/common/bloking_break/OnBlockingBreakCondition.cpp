@@ -4,7 +4,12 @@
 
 REGISTER_BTCONDITION("OnBlockingBreakCondition", OnBlockingBreakCondition);
 
-OnBlockingBreakCondition::OnBlockingBreakCondition(Enemy* enemy) : enemy(enemy) {
+OnBlockingBreakCondition::OnBlockingBreakCondition() {
+	type = "OnBlockingBreakCondition";
+}
+
+OnBlockingBreakCondition::OnBlockingBreakCondition(Enemy* enemy) : OnBlockingBreakCondition() {
+	this->enemy = enemy;
 }
 
 bool OnBlockingBreakCondition::testCondition(float delta) {

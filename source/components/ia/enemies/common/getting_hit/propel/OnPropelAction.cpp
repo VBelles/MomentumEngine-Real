@@ -5,7 +5,13 @@
 
 REGISTER_BTACTION("OnPropelAction", OnPropelAction);
 
-OnPropelAction::OnPropelAction(Enemy* enemy): enemy(enemy) {
+OnPropelAction::OnPropelAction() {
+	type = "OnPropelAction";
+}
+
+OnPropelAction::OnPropelAction(Enemy* enemy) :
+	OnPropelAction() {
+	this->enemy = enemy;
 }
 
 int OnPropelAction::execAction(float delta) {

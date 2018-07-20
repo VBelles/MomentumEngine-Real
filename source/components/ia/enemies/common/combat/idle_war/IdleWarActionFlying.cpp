@@ -6,9 +6,14 @@
 
 REGISTER_BTACTION("IdleWarActionFlying", IdleWarActionFlying);
 
+IdleWarActionFlying::IdleWarActionFlying() {
+	type = "IdleWarActionFlying";
+}
+
 IdleWarActionFlying::IdleWarActionFlying(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	IdleWarActionFlying() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int IdleWarActionFlying::execAction(float delta) {

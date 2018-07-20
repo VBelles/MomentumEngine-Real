@@ -5,8 +5,12 @@
 
 REGISTER_BTACTION("ChaseAction", ChaseAction);
 
-ChaseAction::ChaseAction(Enemy* enemy) :
-	enemy(enemy) {
+ChaseAction::ChaseAction() {
+	type = "ChaseAction";
+}
+
+ChaseAction::ChaseAction(Enemy* enemy) : ChaseAction() {
+	this->enemy = enemy;
 }
 
 int ChaseAction::execAction(float delta) {

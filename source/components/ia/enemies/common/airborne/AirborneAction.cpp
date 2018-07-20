@@ -4,7 +4,12 @@
 
 REGISTER_BTACTION("AirborneAction", AirborneAction);
 
-AirborneAction::AirborneAction(Enemy* enemy): enemy(enemy) {
+AirborneAction::AirborneAction() {
+	type = "AirborneAction";
+}
+
+AirborneAction::AirborneAction(Enemy* enemy): AirborneAction() {
+	this->enemy = enemy;
 }
 
 int AirborneAction::execAction(float delta) {

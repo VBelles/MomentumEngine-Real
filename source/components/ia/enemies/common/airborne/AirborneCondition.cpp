@@ -4,7 +4,12 @@
 
 REGISTER_BTCONDITION("AirborneCondition", AirborneCondition);
 
-AirborneCondition::AirborneCondition(Enemy* enemy) : enemy(enemy) {
+AirborneCondition::AirborneCondition() {
+	type = "AirborneCondition";
+}
+
+AirborneCondition::AirborneCondition(Enemy* enemy) : AirborneCondition() {
+	this->enemy = enemy;
 }
 
 bool AirborneCondition::testCondition(float delta) {

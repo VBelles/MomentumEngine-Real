@@ -5,9 +5,13 @@
 
 REGISTER_BTACTION("OnAppearAction", OnAppearAction);
 
-OnAppearAction::OnAppearAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+OnAppearAction::OnAppearAction() {
+	type = "OnAppearAction";
+}
+
+OnAppearAction::OnAppearAction(Enemy* enemy, std::string animation) : OnAppearAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnAppearAction::execAction(float delta) {

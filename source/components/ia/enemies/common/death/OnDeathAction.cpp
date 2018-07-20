@@ -5,9 +5,14 @@
 
 REGISTER_BTACTION("OnDeathAction", OnDeathAction);
 
-OnDeathAction::OnDeathAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+OnDeathAction::OnDeathAction() {
+	type = "OnDeathAction";
+}
+
+OnDeathAction::OnDeathAction(Enemy* enemy, std::string animation) :
+	OnDeathAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnDeathAction::execAction(float delta) {

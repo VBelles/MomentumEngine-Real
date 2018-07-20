@@ -5,9 +5,14 @@
 
 REGISTER_BTACTION("HitStun", HitStun);
 
+HitStun::HitStun() {
+	type = "HitStun";
+}
+
 HitStun::HitStun(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	HitStun() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int HitStun::execAction(float delta) {

@@ -5,7 +5,13 @@
 
 REGISTER_BTCONDITION("OnTeleportCondition", OnTeleportCondition);
 
-OnTeleportCondition::OnTeleportCondition(Enemy* enemy) : enemy(enemy) {
+OnTeleportCondition::OnTeleportCondition() {
+	type = "OnTeleportCondition";
+}
+
+OnTeleportCondition::OnTeleportCondition(Enemy* enemy) :
+	OnTeleportCondition() {
+	this->enemy = enemy;
 }
 
 bool OnTeleportCondition::testCondition(float delta) {
