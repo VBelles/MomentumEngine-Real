@@ -100,7 +100,7 @@
     "vs_entry_point": "VS",
     "vertex_type": "PosNUvUvT",
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_1024.dds"
+      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds"
     },
     "category": "textured",
     "priority": 80
