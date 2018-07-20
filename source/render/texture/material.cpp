@@ -120,7 +120,6 @@ void CMaterial::activateTextures(int slot0) const {
 	Render.ctx->PSSetShaderResources(slot0, max_textures, (ID3D11ShaderResourceView**)srvs);
 }
 
-
 void CMaterial::debugInMenu() {
 	((CRenderTechnique*)tech)->debugInMenu();
 	ImGui::Checkbox("Cast Shadows", &cast_shadows);

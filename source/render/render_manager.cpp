@@ -225,6 +225,8 @@ void CRenderManager::renderCategory(const char* category_name) {
 		cb_object.obj_world = c_transform->asMatrix();
 		const TCompRender* c_render = it->h_render_owner;
 		cb_object.obj_color = c_render->color;
+		cb_object.self_illum_tint = c_render->selfIllumTint;
+		cb_object.self_illum_ratio = c_render->selfIllumRatio;
 		cb_object.updateGPU();
 
 		// Do we have to change the material wrt the prev draw call?

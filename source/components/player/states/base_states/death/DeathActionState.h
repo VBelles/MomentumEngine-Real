@@ -9,6 +9,10 @@ private:
 	float respawnTime = 2.2f;
 	bool finish = false;
 	int frameCounter = 0;
+	float selfIllumDecreaseSpeed = 1.6f;
+	float selfIllumMinimumRatio = 0.2f;
+	float startSelfIllumDecreaseTime = 0.5f;
+
 	std::string animation = "death";
 	std::string animationLoop = "death_loop";
 	std::string animationIdle = "idle";
