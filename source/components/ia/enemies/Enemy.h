@@ -31,6 +31,10 @@ public:
 
 	std::string behaviorTreeFile = "";
 
+	bool onHit = false;
+	bool onOutOfBounds = false;
+	bool onSpawn = false;
+
 	std::string navMeshId;
 	CNavMeshQuery* navMeshQuery = nullptr;
 	std::vector<VEC3> smoothPath;
@@ -121,5 +125,6 @@ public:
 	TCompHitboxes* getHitboxes();
 	TCompGivePower* getPower();
 
+	void resetCurrent();
 	void setCurrent(std::string node);
 };

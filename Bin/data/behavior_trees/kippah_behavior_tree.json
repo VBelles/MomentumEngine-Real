@@ -4,10 +4,72 @@
     "type": "priority",
     "children": [
       {
+        "name": "spawn",
+        "type": "sequence",
+        "condition": {
+          "type": "OnSpawnCondition"
+        },
+        "children": [
+          {
+            "name": "appearSpawn",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onAppearActionSpawn",
+                "type": "action",
+                "action": {
+                  "type": "OnAppearAction",
+                  "animation": "medusa_aparicion"
+                }
+              },
+              {
+                "name": "appearActionSpawn",
+                "type": "action",
+                "action": {
+                  "type": "AppearAction",
+                  "animation": "medusa_aparicion"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "outOfBounds",
+        "type": "sequence",
+        "condition": {
+          "type": "OnOutOfBoundsCondition"
+        },
+        "children": [
+          {
+            "name": "disappearOutOfBounds",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onDisappearActionOutOfBounds",
+                "type": "action",
+                "action": {
+                  "type": "OnDisappearAction",
+                  "animation": "medusa_desaparicion"
+                }
+              },
+              {
+                "name": "disappearActionOutOfBounds",
+                "type": "action",
+                "action": {
+                  "type": "DisappearAction",
+                  "animation": "medusa_desaparicion"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "name": "hit",
         "type": "sequence",
         "condition": {
-          "type": "FalseCondition"
+          "type": "OnHitCondition"
         },
         "children": [
           {

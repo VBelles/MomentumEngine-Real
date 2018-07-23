@@ -35,10 +35,26 @@ void CBehaviorTreeNodeSequence::debugInMenu(IBehaviorTreeNew* behaviorTree) {
 		ImGui::Text("Type: Sequence");
 
 		IBehaviorTreeCondition* condition = behaviorTree->getCondition(getName());
-		ImGui::Text("Condition: %s\n", condition ? condition->getType().c_str() : "None");
+		if (condition) {
+			if (ImGui::TreeNode(("Condition: " + condition->getType()).c_str())) {
+				condition->debugInMenu();
+				ImGui::TreePop();
+			}
+		}
+		else {
+			ImGui::Text("Condition: None\n");
+		}
 
 		IBehaviorTreeAction* action = behaviorTree->getAction(getName());
-		ImGui::Text("Action: %s\n", action ? action->getType().c_str() : "None");
+		if (action) {
+			if (ImGui::TreeNode(("Action: " + action->getType()).c_str())) {
+				action->debugInMenu();
+				ImGui::TreePop();
+			}
+		}
+		else {
+			ImGui::Text("Action: None\n");
+		}
 
 		if (children.size() > 0 && ImGui::TreeNode("Children")) {
 			for (auto& node : children) {

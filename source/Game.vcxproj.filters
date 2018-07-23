@@ -333,6 +333,9 @@
     <ClCompile Include="components\ia\behavior_tree\BTActionFactory.cpp" />
     <ClCompile Include="components\ia\enemies\EnemyBehaviorTree.cpp" />
     <ClCompile Include="components\ia\behavior_tree\nodes\BTNodeFactory.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\hit\OnHitCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\spawn\OnSpawnCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\out_of_bounds\OnOutOfBoundsCondition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -698,6 +701,9 @@
     <ClInclude Include="components\ia\behavior_tree\BTActionFactory.h" />
     <ClInclude Include="components\ia\enemies\EnemyBehaviorTree.h" />
     <ClInclude Include="components\ia\behavior_tree\nodes\BTNodeFactory.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\hit\OnHitCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\spawn\OnSpawnCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\out_of_bounds\OnOutOfBoundsCondition.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

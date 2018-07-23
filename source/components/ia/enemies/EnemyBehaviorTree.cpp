@@ -60,7 +60,8 @@ void EnemyBehaviorTree::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
 	enemy->spawnPosition = enemy->getTransform()->getPosition();
 
-	enemy->setCurrent("appear");
+	enemy->onSpawn = true;
+	enemy->resetCurrent();
 }
 
 void EnemyBehaviorTree::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
@@ -76,13 +77,15 @@ void EnemyBehaviorTree::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 void EnemyBehaviorTree::onAttackHit(const TMsgAttackHit& msg) {
 	if (!enemy->getCollider()->toDestroy) {
 		enemy->receivedAttack = msg.info;
-		enemy->setCurrent("hit");
+		enemy->onHit = true;
+		enemy->resetCurrent();
 	}
 }
 
 void EnemyBehaviorTree::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	if (!enemy->getCollider()->toDestroy) {
-		enemy->setCurrent("disappear");
+		enemy->onOutOfBounds = true;
+		enemy->resetCurrent();
 	}
 }
 
