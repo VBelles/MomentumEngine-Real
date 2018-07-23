@@ -41,6 +41,10 @@ const CResourceClass* getResourceClassOf<CMaterial>() {
 // ----------------------------------------------------------
 CMaterial::CMaterial()
 	: cb_material("Material") {
+	for (int i = 0; i < max_textures; ++i) {
+		textures[i] = nullptr;
+		srvs[i] = nullptr;
+	}
 }
 
 bool CMaterial::create(const json& j) {
