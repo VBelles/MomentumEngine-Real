@@ -4,8 +4,8 @@
 		{
 			"name": "LightDir00",
 			"transform": {
-				"pos": "-326 600 -1099",
-				"lookat": "-321 76 -1095"
+				"pos": "-22 551 -468.4",
+				"lookat": "-17 76 -464.4"
 			},
 			"light_dir": {
 				"intensity": 5,
@@ -23,7 +23,7 @@
 				"shadows_fmt" : "R32_TYPELESS"
 			},
 			"sun":{
-				"rotation_center" : "-219 146 -950",
+				"rotation_center" : "85 97 -319.4",
 				"rotation_speed" : 0.0,
 				"distance" : 500,
 				"initial_pitch" : -30,

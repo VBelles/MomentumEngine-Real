@@ -1,7 +1,7 @@
 [
     {
         "name": "Tutorial",
-        "pos": "-376 110 -249"
+        "pos": "-72.1 60.7 381.6"
     },
     {
         "name": "Origin",
@@ -9,22 +9,18 @@
     },
     {
         "name": "Inicio cementerio",
-        "pos": "-314 42 -608"
+        "pos": "-7 -7 21"
     },
     {
         "name": "Derecha cementerio",
-        "pos": "-132 93 -806"
+        "pos": "172 44 -175.4"
     },
     {
         "name": "Primer altar",
-        "pos": "-299 71 -822"
-    },
-    {
-        "name": "Montaña más alta",
-        "pos": "-134.5 372 -1168"
+        "pos": "5 22 -191.4"
     },
     {
         "name": "Pie faro",
-        "pos": "-629 75 -908"
+        "pos": "-325 26 -277.4"
     }
 ]
