@@ -202,7 +202,6 @@ void Dreidel::initBehaviorTree() {
 	//block
 	enemy->addChild("dreidel", "blockAction", Action, blockCondition, blockAction);
 
-
 	//teleport to spawn
 	enemy->addChild("dreidel", "teleport", Sequence, onTeleportCondition, nullptr);
 	enemy->addChild("teleport", "onTeleportAction", Action, nullptr, onTeleportAction);
