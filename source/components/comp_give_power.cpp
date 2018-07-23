@@ -37,7 +37,7 @@ void TCompGivePower::onGetPower(const TMsgGetPower& msg) {
 	entity->sendMsg(TMsgGainPower{ CHandle(this).getOwner(), powerGiven });
 	resetTimer.reset();
 	if (powerGiven > 0.f) {
-		EngineParticles.launchSystem(particles, CHandle(this).getOwner(), "", particlesOffset);
+		EngineParticles.launchSystem(particles, Particles::LaunchConfig{ CHandle(this).getOwner(), "", particlesOffset });
 	}
 }
 

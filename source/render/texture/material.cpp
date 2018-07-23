@@ -41,6 +41,10 @@ const CResourceClass* getResourceClassOf<CMaterial>() {
 // ----------------------------------------------------------
 CMaterial::CMaterial()
 	: cb_material("Material") {
+	for (int i = 0; i < max_textures; ++i) {
+		textures[i] = nullptr;
+		srvs[i] = nullptr;
+	}
 }
 
 bool CMaterial::create(const json& j) {
@@ -119,7 +123,6 @@ void CMaterial::activate() const {
 void CMaterial::activateTextures(int slot0) const {
 	Render.ctx->PSSetShaderResources(slot0, max_textures, (ID3D11ShaderResourceView**)srvs);
 }
-
 
 void CMaterial::debugInMenu() {
 	((CRenderTechnique*)tech)->debugInMenu();

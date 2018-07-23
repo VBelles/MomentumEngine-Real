@@ -5,6 +5,7 @@
 #include "resources/resource.h"
 
 namespace Particles {
+
 	struct TCoreSystem : public IResource {
 		struct TLife {
 			float duration = 1.f;            // expected particle life time
@@ -33,21 +34,25 @@ namespace Particles {
 			bool ground = false;			// limit by ground
 		};
 		struct TRender {
-			const CTexture* texture = nullptr; // particle texture
-			const CRenderMesh* mesh = nullptr; // mesh for mesh particles
-			VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
-			int numFrames = 1;                 // number of animation frames
-			int initialFrame = 0;              // initial frame
-			float frameSpeed = 0.f;            // frame change speed
+			enum EType { Billboard, HorizontalBillboard, Mesh };
+
+			EType type = Billboard;							// particle type
+			const CTexture* texture = nullptr;				// particle texture
+			const CRenderMesh* mesh = nullptr;				// mesh for mesh particles
+			const CRenderTechnique* technique = nullptr;	// technique for particle rendering
+			VEC2 frameSize = VEC2(1, 1);					// size of frame in the texture (in UV coords)
+			int numFrames = 1;								// number of animation frames
+			int initialFrame = 0;							// initial frame
+			float frameSpeed = 0.f;							// frame change speed
 		};
 		struct TSize {
-			TTrack<float> sizes;            // track of sizes along the particle lifetime
-			float scale = 1.f;              // scale factor
-			float scale_variation = 0.f;    // variation of scale at generation
+			TTrack<float> sizes;			// track of sizes along the particle lifetime
+			float scale = 1.f;				// scale factor
+			float scale_variation = 0.f;	// variation of scale at generation
 		};
 		struct TColor {
-			TTrack<VEC4> colors;            // track of colors along the particle lifetime
-			float opacity = 1.f;            // opacity factor
+			TTrack<VEC4> colors;	// track of colors along the particle lifetime
+			float opacity = 1.f;	// opacity factor
 		};
 
 		TLife         life;
@@ -58,7 +63,6 @@ namespace Particles {
 		TColor        color;
 	};
 
-	using TParticlesHandle = int;
 	using VParticles = std::vector<TParticle>;
 
 	class CSystem {
@@ -69,28 +73,23 @@ namespace Particles {
 
 		MAT44 getWorld();
 
-		VEC3 offset;
-		QUAT rotationOffset;
-		std::string boneName;
+		LaunchConfig config;
 		int boneId = -1;
 
-		TParticlesHandle    _handle;
+		TParticleHandle		_handle;
 		const TCoreSystem*  _core = nullptr;
 		VParticles          _particles;
 		float               _time = 0.f;
 		float               _fadeDuration = 0.f;
 		float               _fadeTime = 0.f;
-		CHandle             particleEntityHandle;
-		CHandle             targetEntity;
-
-		static TParticlesHandle _lastHandle;
+		CHandle             particleEntityHandle; //Handle of the entity
 
 	public:
-		CSystem(const TCoreSystem* core, CHandle particleEntityHandle, CHandle targetEntity, std::string bone, VEC3 offset, QUAT rotationOffset);
+		CSystem(TParticleHandle handle, const TCoreSystem* core, CHandle particleHandle, LaunchConfig config);
 		bool update(float delta);
 		void render();
 		void launch();
-		TParticlesHandle getHandle() const;
+		TParticleHandle getHandle() const;
 		void fadeOut(float duration);
 		void setOffset(VEC3 offset);
 		void setRotationOffset(QUAT rotationOffset);

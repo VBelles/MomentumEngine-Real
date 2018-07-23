@@ -3,6 +3,7 @@
 #include "components/comp_transform.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_hitboxes.h"
 
 REGISTER_BTACTION("OnHorizontalLaunchAction", OnHorizontalLaunchAction);
 
@@ -10,10 +11,11 @@ OnHorizontalLaunchAction::OnHorizontalLaunchAction() {
 	type = "OnHorizontalLaunchAction";
 }
 
-OnHorizontalLaunchAction::OnHorizontalLaunchAction(Enemy* enemy, std::string animation) :
+OnHorizontalLaunchAction::OnHorizontalLaunchAction(Enemy* enemy, std::string animation, std::string attack) :
 	OnHorizontalLaunchAction() {
 	this->enemy = enemy;
 	this->animation = animation;
+	this->attack = attack;
 }
 
 int OnHorizontalLaunchAction::execAction(float delta) {
@@ -21,6 +23,8 @@ int OnHorizontalLaunchAction::execAction(float delta) {
 	enemy->stunDuration = enemy->receivedAttack.horizontalLauncher->suspensionDuration;
 	enemy->velocity = enemy->receivedAttack.horizontalLauncher->velocity;
 	enemy->initialLaunchPos = enemy->getTransform()->getPosition();
+	enemy->currentAttack = attack;
+	enemy->getHitboxes()->enable(enemy->attacks[attack].hitboxName);
 	enemy->isBlocking = false;
 	enemy->blockingBroken = false;
 	return Leave;
@@ -31,4 +35,5 @@ void OnHorizontalLaunchAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	attack = j.value("attack", attack);
 }

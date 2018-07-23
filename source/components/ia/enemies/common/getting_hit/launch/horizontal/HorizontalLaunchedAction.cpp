@@ -2,6 +2,7 @@
 #include "HorizontalLaunchedAction.h"
 #include "components/comp_transform.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_hitboxes.h"
 
 REGISTER_BTACTION("HorizontalLaunchedAction", HorizontalLaunchedAction);
 
@@ -9,9 +10,10 @@ HorizontalLaunchedAction::HorizontalLaunchedAction() {
 	type = "HorizontalLaunchedAction";
 }
 
-HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy) :
+HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy, std::string attack) :
 	HorizontalLaunchedAction() {
 	this->enemy = enemy;
+	this->attack = attack;
 }
 
 int HorizontalLaunchedAction::execAction(float delta) {
@@ -21,6 +23,8 @@ int HorizontalLaunchedAction::execAction(float delta) {
 		enemy->velocity.x = 0;
 		enemy->velocity.z = 0;
 		enemy->timer.reset();
+		enemy->getHitboxes()->disable(enemy->attacks[attack].hitboxName);
+		enemy->currentAttack = "";
 		return Leave;
 	}
 	else {
@@ -31,4 +35,6 @@ int HorizontalLaunchedAction::execAction(float delta) {
 void HorizontalLaunchedAction::load(IBehaviorTreeNew* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
+
+	attack = j.value("attack", "");
 }

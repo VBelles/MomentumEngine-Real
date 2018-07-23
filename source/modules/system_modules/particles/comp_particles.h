@@ -9,10 +9,9 @@ private:
 	Particles::CSystem* _particles = nullptr;
 	bool _launched = false;
 	float _fadeOut = 0.f;
-	VEC3 offset = VEC3::Zero;
-	QUAT rotationOffset = QUAT::Identity;
 	std::string target;
-	std::string bone;
+
+	Particles::LaunchConfig config;
 
 	//Message callbacks
 	void onAllScenesCreated(const TMsgAllScenesCreated&);

@@ -85,21 +85,23 @@ void StrongAttack3ActionState::update(float delta) {
 	if (!isUltraSlash1Out && movementTimer.elapsed() > frames2sec(18)) {
 		isUltraSlash1Out = true;
 		slash(stateManager->getSlashStrong3(), 0);
+		slash("data/particles/slash_strong_3.particles", VEC3(0, 1.3f, 0));
+
 	}
 	if (!isUltraSlash2Out && movementTimer.elapsed() > frames2sec(25)) {
 		isUltraSlash2Out = true;
-		slash(stateManager->getSlashStrong3(), 0);
+		slash("data/particles/slash_strong_3.particles", VEC3(0, 1.3f, 0));
 	}
 	if (!isUltraSlash3Out && movementTimer.elapsed() > frames2sec(32)) {
 		isUltraSlash3Out = true;
-		slash(stateManager->getSlashStrong3(), 0);
+		slash("data/particles/slash_strong_3.particles", VEC3(0, 1.3f, 0));
 	}
 }
 
 void StrongAttack3ActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Strong 3\n");
+	//dbg("Strong 3\n");
 	getSkeleton()->executeAction(animation, 0.0f, 0.2f);
 	*velocityVector = VEC3::Zero;
 	stateManager->changeConcurrentState(Free);

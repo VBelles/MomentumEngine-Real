@@ -6,7 +6,6 @@ class RunActionState : public GroundedActionState {
 private:
 	std::string animations[3] = { "run1", "run2", "run3" };
 	std::string animation = "run1";
-	int dustParticlesHandle = 0;
 
 	bool hasSlash = false;
 	CTimer movementTimer;

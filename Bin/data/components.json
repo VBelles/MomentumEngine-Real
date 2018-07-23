@@ -49,6 +49,7 @@
     "render",
     "lod",
     "spikes",
+    "self_illum_variation",
     "particles",
     "light_flicker",
     "slash",

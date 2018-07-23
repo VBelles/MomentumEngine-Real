@@ -4,26 +4,31 @@
 #include "entity/msgs.h"
 
 
-
-
-
 namespace Particles {
 	struct TCoreSystem;
 	class CSystem;
 	using TParticleHandle = int;
+
+	struct LaunchConfig {
+		CHandle targetEntity;		//Entity of the transform or bone to follow
+		std::string bone;			//Bone to follow
+		VEC3 offset = VEC3::Zero;
+		QUAT rotationOffset = QUAT::Identity;
+	};
 }
 
 //Message to notify TCompParticleComponent its system is destroyed
 struct TMsgParticleSystemDestroyed {
-	Particles::TParticleHandle particleHandle = 0;
+	Particles::TParticleHandle particleHandle;
 	DECL_MSG_ID();
 };
 
 class CModuleParticles : public IModule {
 private:
-	std::vector<Particles::CSystem*> _activeSystems;
+	std::unordered_map<std::string, std::vector<Particles::CSystem*>> _activeSystems;
 	VEC3                             _windVelocity = VEC3::Zero;
-	Particles::TParticleHandle       _lastHandle;
+	Particles::TParticleHandle		_lastHandle;
+
 
 public:
 	CModuleParticles(const std::string& name);
@@ -33,11 +38,10 @@ public:
 	void render() override;
 	void reset();
 
-	Particles::TParticleHandle launchSystem(const std::string& name, CHandle targetEntity, const std::string& bone = "", VEC3 offset = VEC3::Zero, QUAT initialRotation = QUAT::Identity);
-	Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle targetEntity, const std::string& bone = "", VEC3 offset = VEC3::Zero, QUAT initialRotation = QUAT::Identity);
-	Particles::CSystem* launchSystemFromComponent(const Particles::TCoreSystem * cps, CHandle particleComponent, CHandle targetEntity, const std::string & bone, VEC3 offset, QUAT rotationOffset);
+	Particles::TParticleHandle launchSystem(const std::string& name, Particles::LaunchConfig config);
+	Particles::CSystem* launchSystem(const Particles::TCoreSystem* cps, CHandle entity, Particles::LaunchConfig config);
 
-	void kill(Particles::TParticleHandle ph, float fade_out = 0.f);
+	void kill(Particles::TParticleHandle ph, float fadeOutTime = 0.f);
 
 	void forceEmission(Particles::TParticleHandle ph, int quantity);
 

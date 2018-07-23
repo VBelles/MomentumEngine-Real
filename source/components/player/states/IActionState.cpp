@@ -153,6 +153,22 @@ void IActionState::slash(TCompParticles* slash, float yaw, float pitch, float ro
 	slash->forceEmission(1);
 }
 
+void IActionState::slash(std::string slash, VEC3 offset, float yaw, float pitch, float roll) {
+	float y = 0, p = 0;
+	getYawPitchFromVector(getPlayerTransform()->getFront(), &y, &p);
+	Particles::LaunchConfig config;
+	config.targetEntity = getEntity();
+	config.rotationOffset =
+		QUAT::CreateFromAxisAngle(VEC3(1, 0, 0), pitch + deg2rad(90)) *
+		QUAT::CreateFromAxisAngle(VEC3(0, 1, 0), yaw) *
+		QUAT::CreateFromAxisAngle(VEC3(0, 0, 1), roll) *
+		// QUAT::CreateFromYawPitchRoll(deg2rad(yaw), deg2rad(pitch), deg2rad(roll)) *
+		QUAT::CreateFromYawPitchRoll(y, p, 0);
+	config.offset = offset;
+	EngineParticles.launchSystem(slash, config);
+
+}
+
 
 //Component getters
 CEntity* IActionState::getEntity() {

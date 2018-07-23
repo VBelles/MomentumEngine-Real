@@ -283,6 +283,14 @@ float TCompSkeleton::getAnimationDuration(std::string animation) {
 	return getAnimationDuration(animationId);
 }
 
+int TCompSkeleton::getBoneId(std::string bone) {
+	return model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(bone);
+}
+
+CalBone* TCompSkeleton::getBone(int id) {
+	return model->getSkeleton()->getBone(id);
+}
+
 void TCompSkeleton::stop() {
 	stopped = true;
 }

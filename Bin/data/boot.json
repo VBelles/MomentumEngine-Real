@@ -3,7 +3,7 @@
     "data/scenes/game_camera.scene",
     "data/scenes/player.scene",
     "data/scenes/lights.scene",
-    
+  
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-altars.scene",
     "data/scenes/milestone3-breakables.scene",
@@ -17,8 +17,7 @@
     "data/scenes/milestone3-enemies.scene",
     "data/scenes/milestone3-triggers.scene",
     "data/scenes/milestone3-instancing.scene",
-    
-    
+    "data/scenes/prueba_bolos-enemies.scene",
     "data/scenes/test_spikes.scene",
     "data/scenes/slash-test.scene"
   ],
@@ -30,29 +29,12 @@
     "data/scenes/milestone3_tutorial-enemies.scene",
     "data/scenes/milestone3_tutorial-trimesh.scene",
     "data/scenes/milestone3_tutorial-chrysalis.scene",
-    
+    "data/scenes/particles.scene",        
     "data/scenes/test_instancing.scene",
     "data/scenes/breakable-0.scene",
-    "data/scenes/milestone2-0.scene",
-    "data/scenes/milestone2-altar.scene",
-    "data/scenes/milestone2-breakables.scene",
-    "data/scenes/milestone2-chrysalis.scene",
-    "data/scenes/milestone2-collisions.scene",
-    "data/scenes/milestone2-coins.scene",
-    "data/scenes/milestone2-movables.scene",
-    "data/scenes/milestone2-pure.scene",
-    "data/scenes/milestone2-rotate.scene",
-    "data/scenes/milestone2-mechanisms.scene",
-    "data/scenes/milestone2-triggers.scene",
-    "data/scenes/milestone2-trimesh.scene",
-    "data/scenes/milestone2_camaras_definitivas.scene",
     "data/scenes/test_combat.scene",
     "data/scenes/rigid_anim2.scene",
-    "data/scenes/milestone2-enemies.scene",
-    "data/scenes/particles.scene",
     "data/scenes/testExporter-0.scene",
-    "data/scenes/milestone2-spikes.scene",
-    "data/scenes/milestone2-cameras.scene",
     "data/scenes/test_cameras.scene",
     "data/scenes/scene_basic.scene",
     "data/scenes/skeleton_demo2.scene",
@@ -60,7 +42,6 @@
     "data/scenes/water_plane.scene",
     "data/scenes/level_pbr.scene",
     "data/scenes/level1.scene",
-    "data/scenes/multimaterial.scene",
-    "dummy"
+    "data/scenes/multimaterial.scene"
   ]
 }

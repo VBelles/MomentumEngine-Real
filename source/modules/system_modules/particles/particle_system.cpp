@@ -41,17 +41,12 @@ namespace {
 }
 
 namespace Particles {
-	TParticleHandle CSystem::_lastHandle = 0;
 
-	CSystem::CSystem(const TCoreSystem* core, CHandle particleEntityHandle, CHandle targetEntity, std::string bone, VEC3 offset, QUAT rotationOffset)
+	CSystem::CSystem(TParticleHandle handle, const TCoreSystem* core, CHandle entityHandle, LaunchConfig config)
 		: _core(core)
-		, _handle(++_lastHandle)
-		, particleEntityHandle(particleEntityHandle)
-		, targetEntity(targetEntity)
-		, boneName(bone)
-		, boneId(-1)
-		, offset(offset)
-		, rotationOffset(rotationOffset) {
+		, _handle(handle)
+		, particleEntityHandle(entityHandle)
+		, config(config) {
 		assert(_core);
 	}
 
@@ -123,23 +118,15 @@ namespace Particles {
 	}
 
 	void CSystem::render() {
-		const CRenderTechnique* technique;
-		const CRenderMesh* particleMesh;
-		bool isBillboardParticle = !_core->render.mesh;
-		if (isBillboardParticle) {
-			technique = Resources.get("particles.tech")->as<CRenderTechnique>();
-			particleMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
-		}
-		else {
-			technique = Resources.get("particles_mesh.tech")->as<CRenderTechnique>();
-			particleMesh = _core->render.mesh;
-		}
+		const CRenderTechnique* technique = _core->render.technique;
+		const CRenderMesh* particleMesh = _core->render.mesh;
 		CEntity* eCurrentCamera = EngineCameras.getCurrentBlendedCamera();
 		assert(technique && particleMesh && eCurrentCamera);
 		TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 		assert(camera);
 		const VEC3 cameraPos = camera->getCamera()->getPosition();
 		const VEC3 cameraUp = camera->getCamera()->getUp();
+		const VEC3 cameraForward = camera->getCamera()->getFront();
 
 		const int frameCols = static_cast<int>(1.f / _core->render.frameSize.x);
 
@@ -147,8 +134,14 @@ namespace Particles {
 		_core->render.texture->activate(TS_ALBEDO);
 
 		for (auto& p : _particles) {
-			if (isBillboardParticle) {
+			if (_core->render.type == TCoreSystem::TRender::Billboard) {
 				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
+				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
+				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
+				cb_object.obj_world = rt * sc * bb;
+			}
+			else if (_core->render.type == TCoreSystem::TRender::HorizontalBillboard) {
+				MAT44 bb = MAT44::CreateConstrainedBillboard(p.position, cameraPos, VEC3(0, 1, 0), &cameraForward);
 				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
 				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
 				cb_object.obj_world = rt * sc * bb;
@@ -156,7 +149,7 @@ namespace Particles {
 			else {
 				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
-					* MAT44::CreateFromQuaternion(rotationOffset)
+					* MAT44::CreateFromQuaternion(config.rotationOffset)
 					* MAT44::CreateTranslation(p.position);
 			}
 
@@ -269,26 +262,26 @@ namespace Particles {
 	}
 
 	void CSystem::setOffset(VEC3 offset) {
-		this->offset = offset;
+		this->config.offset = offset;
 	}
 
 	void CSystem::setRotationOffset(QUAT rotationOffset) {
-		this->rotationOffset = rotationOffset;
+		this->config.rotationOffset = rotationOffset;
 	}
 
 	MAT44 CSystem::getWorld() {
 		MAT44 world = MAT44::Identity;
-		if (targetEntity.isValid()) {
-			CEntity* e = targetEntity;
+		if (config.targetEntity.isValid()) {
+			CEntity* e = config.targetEntity;
 
-			if (boneName != "" && boneId == -1) {
-				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(boneName);
+			if (config.bone != "" && boneId == -1) {
+				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->getBoneId(config.bone);
 			}
 
 			QUAT rotation;
 			VEC3 translation;
 			if (boneId != -1) {
-				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->model->getSkeleton()->getBone(boneId);
+				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->getBone(boneId);
 				rotation = Cal2DX(bone->getRotationAbsolute());
 				translation = Cal2DX(bone->getTranslationAbsolute());
 			}
@@ -297,8 +290,8 @@ namespace Particles {
 				rotation = e_transform->getRotation();
 				translation = e_transform->getPosition();
 			}
-			
-			world = MAT44::CreateTranslation(offset)
+
+			world = MAT44::CreateTranslation(config.offset)
 				* MAT44::CreateFromQuaternion(rotation)
 				* MAT44::CreateTranslation(translation);
 		}

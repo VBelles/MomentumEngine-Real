@@ -26,6 +26,8 @@ void Enemy::load(const json& j) {
 	maxHp = j.value("max_hp", maxHp);
 	hp = maxHp;
 
+	maxHpToGive = j.value("max_hp_on_perfect_dodged", 0);
+
 	maxDistanceFromSpawnSqrd = pow(j.value("max_distance_from_spawn", sqrt(maxDistanceFromSpawnSqrd)), 2);
 
 	//Speed

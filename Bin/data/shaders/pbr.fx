@@ -143,7 +143,7 @@ void PS_GBuffer(
 
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
-	o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	o_albedo = txAlbedo.Sample(samLinear, iTex0) * obj_color;
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
@@ -152,7 +152,7 @@ void PS_GBuffer(
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	o_normal = encodeNormal(N, roughness);
 
-	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0);
+	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0) * float4(self_illum_tint, 1) * self_illum_ratio;
 
 	// REMOVE ALL THIS
 	// Si el material lo pide, sobreescribir los valores de la textura
@@ -205,7 +205,7 @@ void PS_GBufferMix(
 
 	// Use the weight to 'blend' the albedo colors
 	float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
-	o_albedo.xyz = albedo.xyz;
+	o_albedo.xyz = albedo.xyz * obj_color;
 
 	// Mix the normal
 	float3 normalR = txNormal.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
@@ -234,7 +234,7 @@ void PS_GBufferMix(
 	float4 selfIllumG = txSelfIllum1.Sample(samLinear, iTex0);
 	float4 selfIllumB = txSelfIllum2.Sample(samLinear, iTex0);
 	o_selfIllum = selfIllumR * w1 + selfIllumG * w2 + selfIllumB * w3;
-
+	o_selfIllum =  o_selfIllum * float4(self_illum_tint, 1) * self_illum_ratio;
 	// Possible plain blending without heights
 	//o_albedo.xyz = lerp( albedoB.xyz, albedoG.xyz, weight_texture_boost.y );
 	//o_albedo.xyz = lerp( o_albedo.xyz, albedoR.xyz, weight_texture_boost.x );

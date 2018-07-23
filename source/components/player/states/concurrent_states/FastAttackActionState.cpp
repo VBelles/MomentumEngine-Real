@@ -30,7 +30,7 @@ void FastAttackActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
-		slash(stateManager->getSlashCounterClockwise(), 0);
+		slash("data/particles/slash_counter_clockwise.particles", VEC3(0, 1, 0));
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
@@ -42,7 +42,7 @@ void FastAttackActionState::update(float delta) {
 void FastAttackActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
-	dbg("Fast attack 1\n");
+	//dbg("Fast attack 1\n");
 	phase = AttackPhases::Launch;
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
