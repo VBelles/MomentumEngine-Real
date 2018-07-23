@@ -1063,9 +1063,10 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKey "rigid_anims_director"
 				fs.beginObj()
-					exportStringArray "animated_entities" #(obj.name + "inner_ring",
-															obj.name + "central_ring",
-															obj.name + "outer_ring")
+					--These names have to match .anims encoded names.
+					exportStringArray "animated_entities" #("ms3_inner_ring",
+															"ms3_central_ring",
+															"ms3_outer_ring")
 				fs.endObj()
 			)
 		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
