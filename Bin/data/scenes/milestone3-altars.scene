@@ -5,8 +5,8 @@
       "name": "ms3_central_ring",
       "transform":
       {
-        "pos": "-301.006 71.8459 -822.807",
-        "rotation": "0 0 0 1"
+        "pos": "3.54803 22.9026 -192.457",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
@@ -18,31 +18,36 @@
           ]
         }
       ],
-      "collider":{
+      "rigid_anim":
+      {
+        "src": "data/anims/giratiempo_prefab.anims"
+      },
+      "altar":
+      {
+        "prefab": "data/prefabs/crisalida.prefab",
+        "spawn_positions":
+        [
+           "-154.669 50.9805 -228.644",
+           "-119.97 54.9574 -173.995",
+           "248.456 20.4255 -134.666",
+           "-66.3562 62.8037 -344.437"
+        ]
+      },
+      "collider":
+      {
         "shape": "sphere",
-        "radius": 0.5,
+        "radius": 1.0,
         "type": "static",
         "group":
         [
-           "scenario",
-           "enemy"
+          "scenario",
+          "enemy"
         ]
       },
-      "rigid_anim" : 
+      "rigid_anims_director":
       {
-        "src" : "data/anims/giratiempo_prefab.anims"
-      },
-      "altar":{
-        "prefab": "data/prefabs/crisalida.prefab",
-        "spawn_positions": [
-          "-459.223 99.9239 -858.993",
-           "-424.524 103.901 -804.345",
-           "-56.0977 69.3688 -765.015",
-           "-370.91 111.747 -974.787"
-        ]
-      },
-      "rigid_anims_director":{
-        "animated_entities":[
+        "animated_entities":
+        [
           "ms3_inner_ring",
           "ms3_central_ring",
           "ms3_outer_ring"
@@ -56,8 +61,8 @@
       "name": "ms3_inner_ring",
       "transform":
       {
-        "pos": "-301.006 71.8459 -822.807",
-        "rotation": "0 0 0 1"
+        "pos": "3.54803 22.9026 -192.457",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
@@ -69,9 +74,9 @@
           ]
         }
       ],
-      "rigid_anim" : 
+      "rigid_anim":
       {
-        "src" : "data/anims/giratiempo_prefab.anims"
+        "src": "data/anims/giratiempo_prefab.anims"
       }
     }
   },
@@ -81,8 +86,8 @@
       "name": "ms3_outer_ring",
       "transform":
       {
-        "pos": "-301.006 71.8459 -822.807",
-        "rotation": "0 0 0 1"
+        "pos": "3.54803 22.9026 -192.457",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
@@ -94,9 +99,9 @@
           ]
         }
       ],
-      "rigid_anim" : 
+      "rigid_anim":
       {
-        "src" : "data/anims/giratiempo_prefab.anims"
+        "src": "data/anims/giratiempo_prefab.anims"
       }
     }
   }

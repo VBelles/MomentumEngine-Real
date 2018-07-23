@@ -6,7 +6,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-174.14 306.135 -1246.07",
+        "pos": "130.414 257.192 -615.722",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
@@ -18,7 +18,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-213.469 184.201 -1382.0",
+        "pos": "91.0845 135.257 -751.648",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
@@ -30,7 +30,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-34.3869 164.632 -1299.44",
+        "pos": "270.167 115.689 -669.094",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
@@ -42,7 +42,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-329.13 113.701 -1044.9",
+        "pos": "-24.5756 64.7578 -414.551",
         "rotation": "0.0 -0.130526 0.0 -0.991445"
       }
     }
@@ -54,7 +54,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-546.526 125.02 -759.172",
+        "pos": "-241.972 76.0771 -128.822",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
@@ -66,7 +66,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-265.414 148.512 -961.097",
+        "pos": "39.1395 99.5686 -330.747",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
@@ -78,7 +78,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-287.111 107.04 -768.614",
+        "pos": "17.4425 58.0968 -138.265",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
@@ -90,7 +90,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-477.499 43.024 -746.262",
+        "pos": "-172.945 -5.91937 -115.912",
         "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
@@ -102,7 +102,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-11.7005 61.2812 -903.812",
+        "pos": "292.853 12.3379 -273.463",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }

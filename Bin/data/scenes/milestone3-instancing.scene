@@ -5,7 +5,7 @@
       "name": "petal_01",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -26,7 +26,7 @@
       "name": "grass_small_01",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -47,7 +47,7 @@
       "name": "grass_small_00",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -68,7 +68,7 @@
       "name": "grass_small_02",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -89,7 +89,7 @@
       "name": "grass_medium_00",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -110,7 +110,7 @@
       "name": "grass_medium_01",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -131,7 +131,7 @@
       "name": "grass_medium_02",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -152,7 +152,7 @@
       "name": "grass_large_00",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -173,7 +173,7 @@
       "name": "grass_large_02",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -194,7 +194,7 @@
       "name": "moss_small_00",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -215,7 +215,7 @@
       "name": "moss_small_01",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -236,7 +236,7 @@
       "name": "moss_small_02",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -257,7 +257,7 @@
       "name": "moss_small_03",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -278,7 +278,7 @@
       "name": "moss_small_04",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -299,7 +299,7 @@
       "name": "moss_small_05",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -320,7 +320,7 @@
       "name": "moss_small_06",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -341,7 +341,7 @@
       "name": "moss_medium_00",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -362,7 +362,7 @@
       "name": "moss_medium_01",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -383,7 +383,7 @@
       "name": "moss_medium_02",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -404,7 +404,7 @@
       "name": "moss_large",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -425,7 +425,7 @@
       "name": "moss_extra_large",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -446,7 +446,7 @@
       "name": "leaf_00",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -467,7 +467,7 @@
       "name": "leaf_01",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -488,7 +488,7 @@
       "name": "leaf_02",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -509,7 +509,7 @@
       "name": "leaf_03",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -530,7 +530,7 @@
       "name": "bush",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -551,7 +551,7 @@
       "name": "petal_00",
       "transform":
       {
-        "pos": "0.0 0.0 0.0",
+        "pos": "304.554 -48.9433 630.35",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":

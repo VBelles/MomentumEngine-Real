@@ -6,7 +6,7 @@
       "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
-        "pos": "-350.152 98.6532 -766.732",
+        "pos": "-45.5979 49.7098 -136.383",
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       },
       "mechanism":
@@ -31,7 +31,7 @@
       "name": "ms3_mech001_MS006",
       "transform":
       {
-        "pos": "-378.797 84.578 -746.273",
+        "pos": "-74.243 35.6347 -115.924",
         "rotation": "-0.11689 0.363825 -0.0655213 -0.921778"
       },
       "render":
@@ -51,7 +51,7 @@
         "type": "static",
         "group":
         [
-           "scenario"
+          "scenario"
         ]
       },
       "mechanism_system":
@@ -70,7 +70,7 @@
       "name": "ms3_mech001_MS007",
       "transform":
       {
-        "pos": "-374.57 86.6059 -752.747",
+        "pos": "-70.0164 37.6625 -122.397",
         "rotation": "-0.11689 0.363825 -0.0655213 -0.921778"
       },
       "render":
@@ -90,7 +90,7 @@
         "type": "static",
         "group":
         [
-           "scenario"
+          "scenario"
         ]
       },
       "mechanism_system":
@@ -109,7 +109,7 @@
       "name": "ms3_mech001_MS008",
       "transform":
       {
-        "pos": "-368.686 88.6846 -757.37",
+        "pos": "-64.1317 39.7413 -127.02",
         "rotation": "-0.11689 0.363825 -0.0655213 -0.921778"
       },
       "render":
@@ -129,7 +129,7 @@
         "type": "static",
         "group":
         [
-           "scenario"
+          "scenario"
         ]
       },
       "mechanism_system":
@@ -148,7 +148,7 @@
       "name": "ms3_mech001_MS005",
       "transform":
       {
-        "pos": "-384.443 82.5528 -741.145",
+        "pos": "-79.8889 33.6095 -110.796",
         "rotation": "-0.11689 0.363825 -0.0655213 -0.921778"
       },
       "render":
@@ -168,7 +168,7 @@
         "type": "static",
         "group":
         [
-           "scenario"
+          "scenario"
         ]
       },
       "mechanism_system":
@@ -187,7 +187,7 @@
       "name": "ms3_mech001_MS009",
       "transform":
       {
-        "pos": "-363.887 90.7165 -763.044",
+        "pos": "-59.3335 41.7731 -132.694",
         "rotation": "-0.11689 0.363825 -0.0655213 -0.921778"
       },
       "render":
@@ -207,7 +207,7 @@
         "type": "static",
         "group":
         [
-           "scenario"
+          "scenario"
         ]
       },
       "mechanism_system":

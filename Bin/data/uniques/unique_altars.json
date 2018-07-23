@@ -1,0 +1,12 @@
+{
+  "unique_altars":
+  [
+    {
+      "id": "altar001",
+      "done": false,
+      "position": "3.54803 22.9026 -192.457",
+      "level": "level00",
+      "type": "altars"
+    }
+  ]
+}

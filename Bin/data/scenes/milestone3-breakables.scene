@@ -5,7 +5,7 @@
       "name": "ms3_breakable001mesh",
       "transform":
       {
-        "pos": "-110.754 250.728 -1186.36",
+        "pos": "193.8 201.784 -556.013",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -25,8 +25,8 @@
         "type": "static",
         "group":
         [
-           "scenario",
-           "enemy"
+          "scenario",
+          "enemy"
         ]
       },
       "breakable":

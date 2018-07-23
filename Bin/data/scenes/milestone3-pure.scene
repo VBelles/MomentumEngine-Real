@@ -2,16 +2,16 @@
   {
     "entity":
     {
-      "name": "ms3_plat_tutorial_012",
+      "name": "plat_tutorial_012",
       "transform":
       {
-        "pos": "-383.776 107.076 -322.415",
+        "pos": "-79.2222 58.1323 307.935",
         "rotation": "0.0674028 -0.0122509 -0.0605367 -0.995812"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plat_tutorial_012.mesh",
+          "mesh": "data/meshes/plat_tutorial_012.mesh",
           "materials":
           [
             "data/materials/Material_#133_pureON.material"
@@ -19,7 +19,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/ms3_plat_tutorial_012.mesh",
+          "mesh": "data/meshes/plat_tutorial_012.mesh",
           "materials":
           [
             "data/materials/Material_#133_pure.material"
@@ -30,7 +30,7 @@
       "purity": {},
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plat_tutorial_012.col_mesh",
+        "mesh_src": "data/meshes/plat_tutorial_012.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -43,16 +43,16 @@
   {
     "entity":
     {
-      "name": "ms3_plat_tutorial_011",
+      "name": "plat_tutorial_011",
       "transform":
       {
-        "pos": "-387.639 112.413 -314.796",
+        "pos": "-83.0848 63.4701 315.553",
         "rotation": "0.0789076 0.203573 -0.0445131 -0.974859"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plat_tutorial_011.mesh",
+          "mesh": "data/meshes/plat_tutorial_011.mesh",
           "materials":
           [
             "data/materials/Material_#133_pureON.material"
@@ -60,7 +60,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/ms3_plat_tutorial_011.mesh",
+          "mesh": "data/meshes/plat_tutorial_011.mesh",
           "materials":
           [
             "data/materials/Material_#133_pure.material"
@@ -71,7 +71,7 @@
       "purity": {},
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plat_tutorial_011.col_mesh",
+        "mesh_src": "data/meshes/plat_tutorial_011.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -84,16 +84,16 @@
   {
     "entity":
     {
-      "name": "ms3_plat_tutorial_010",
+      "name": "plat_tutorial_010",
       "transform":
       {
-        "pos": "-394.129 111.198 -307.362",
+        "pos": "-89.5755 62.2543 322.988",
         "rotation": "-0.0518871 -0.0522532 -0.004277 -0.997276"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plat_tutorial_010.mesh",
+          "mesh": "data/meshes/plat_tutorial_010.mesh",
           "materials":
           [
             "data/materials/Material_#133_pureON.material"
@@ -101,7 +101,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/ms3_plat_tutorial_010.mesh",
+          "mesh": "data/meshes/plat_tutorial_010.mesh",
           "materials":
           [
             "data/materials/Material_#133_pure.material"
@@ -112,7 +112,7 @@
       "purity": {},
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plat_tutorial_010.col_mesh",
+        "mesh_src": "data/meshes/plat_tutorial_010.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -128,7 +128,7 @@
       "name": "ms3_plataforma148",
       "transform":
       {
-        "pos": "-429.206 74.0812 -710.658",
+        "pos": "-124.652 25.1378 -80.3088",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -169,7 +169,7 @@
       "name": "ms3_plataforma147",
       "transform":
       {
-        "pos": "-429.206 74.0812 -710.658",
+        "pos": "-124.652 25.1378 -80.3088",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -210,7 +210,7 @@
       "name": "ms3_plataforma146",
       "transform":
       {
-        "pos": "-442.916 88.9964 -699.124",
+        "pos": "-138.362 40.0531 -68.7747",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -251,7 +251,7 @@
       "name": "ms3_plataforma145",
       "transform":
       {
-        "pos": "-442.916 88.9964 -699.124",
+        "pos": "-138.362 40.0531 -68.7747",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -292,7 +292,7 @@
       "name": "ms3_plataforma138",
       "transform":
       {
-        "pos": "-237.621 58.3848 -723.76",
+        "pos": "66.9326 9.44148 -93.4105",
         "rotation": "0.0 0.5373 0.0 -0.843391"
       },
       "render":
@@ -333,7 +333,7 @@
       "name": "ms3_plataforma137",
       "transform":
       {
-        "pos": "-238.784 61.6298 -729.72",
+        "pos": "65.7704 12.6865 -99.3701",
         "rotation": "0.0 0.5373 0.0 -0.843391"
       },
       "render":
@@ -374,7 +374,7 @@
       "name": "ms3_plataforma136",
       "transform":
       {
-        "pos": "-239.126 64.7846 -736.142",
+        "pos": "65.4281 15.8413 -105.793",
         "rotation": "0.0 0.5373 0.0 -0.843391"
       },
       "render":
@@ -415,7 +415,7 @@
       "name": "ms3_plataforma019",
       "transform":
       {
-        "pos": "-345.287 67.6495 -661.911",
+        "pos": "-40.7332 18.7061 -31.5609",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -456,7 +456,7 @@
       "name": "ms3_plataforma018",
       "transform":
       {
-        "pos": "-337.582 64.3101 -665.239",
+        "pos": "-33.0285 15.3668 -34.8892",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -497,7 +497,7 @@
       "name": "ms3_plataforma017",
       "transform":
       {
-        "pos": "-336.904 60.9722 -659.366",
+        "pos": "-32.3503 12.0289 -29.0166",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -538,7 +538,7 @@
       "name": "ms3_plataforma016",
       "transform":
       {
-        "pos": "-326.354 51.0142 -649.131",
+        "pos": "-21.8001 2.07088 -18.7813",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -579,7 +579,7 @@
       "name": "ms3_plataforma015",
       "transform":
       {
-        "pos": "-332.246 54.3748 -650.596",
+        "pos": "-27.6925 5.43147 -20.2466",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -620,7 +620,7 @@
       "name": "ms3_plataforma014",
       "transform":
       {
-        "pos": "-338.734 57.3838 -653.176",
+        "pos": "-34.18 8.44051 -22.8264",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -661,7 +661,7 @@
       "name": "ms3_plataforma080",
       "transform":
       {
-        "pos": "-443.402 98.1187 -727.338",
+        "pos": "-138.848 49.1754 -96.988",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -702,7 +702,7 @@
       "name": "ms3_plataforma079",
       "transform":
       {
-        "pos": "-433.628 77.336 -707.993",
+        "pos": "-129.074 28.3927 -77.6436",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -743,7 +743,7 @@
       "name": "ms3_plataforma078",
       "transform":
       {
-        "pos": "-438.242 80.2705 -710.632",
+        "pos": "-133.688 31.3272 -80.2826",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -784,7 +784,7 @@
       "name": "ms3_plataforma077",
       "transform":
       {
-        "pos": "-443.006 83.1207 -708.248",
+        "pos": "-138.452 34.1774 -77.8981",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -825,7 +825,7 @@
       "name": "ms3_plataforma076",
       "transform":
       {
-        "pos": "-448.089 91.8133 -700.952",
+        "pos": "-143.535 42.8699 -70.6023",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -866,7 +866,7 @@
       "name": "ms3_plataforma008",
       "transform":
       {
-        "pos": "-504.78 120.233 -769.235",
+        "pos": "-200.226 71.29 -138.885",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -907,7 +907,7 @@
       "name": "ms3_plataforma007",
       "transform":
       {
-        "pos": "-511.767 122.829 -771.456",
+        "pos": "-207.213 73.8857 -141.106",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -948,7 +948,7 @@
       "name": "ms3_plataforma_rocosa2_low247",
       "transform":
       {
-        "pos": "-131.809 150.5 -1073.24",
+        "pos": "172.745 101.557 -442.887",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -989,7 +989,7 @@
       "name": "ms3_plataforma_rocosa2_low181",
       "transform":
       {
-        "pos": "-215.412 138.534 -1375.82",
+        "pos": "89.1415 89.5907 -745.47",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1030,7 +1030,7 @@
       "name": "ms3_plataforma_rocosa2_low142",
       "transform":
       {
-        "pos": "-143.536 113.191 -1100.24",
+        "pos": "161.018 64.2477 -469.891",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1071,7 +1071,7 @@
       "name": "ms3_plataforma_rocosa2_low119",
       "transform":
       {
-        "pos": "-156.485 132.93 -1128.01",
+        "pos": "148.068 83.9867 -497.663",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1112,7 +1112,7 @@
       "name": "ms3_plataforma_rocosa2_low117",
       "transform":
       {
-        "pos": "-152.618 130.148 -1120.6",
+        "pos": "151.936 81.2048 -490.254",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1153,7 +1153,7 @@
       "name": "ms3_plataforma_rocosa2_low115",
       "transform":
       {
-        "pos": "-150.976 124.446 -1113.78",
+        "pos": "153.578 75.503 -483.428",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1194,7 +1194,7 @@
       "name": "ms3_plataforma_rocosa2_low103",
       "transform":
       {
-        "pos": "-144.848 108.937 -1092.83",
+        "pos": "159.706 59.9939 -462.478",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1235,7 +1235,7 @@
       "name": "ms3_plataforma013",
       "transform":
       {
-        "pos": "-443.402 98.1187 -727.338",
+        "pos": "-138.848 49.1754 -96.988",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1276,7 +1276,7 @@
       "name": "ms3_plataforma012",
       "transform":
       {
-        "pos": "-433.628 77.336 -707.993",
+        "pos": "-129.074 28.3927 -77.6436",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1317,7 +1317,7 @@
       "name": "ms3_plataforma011",
       "transform":
       {
-        "pos": "-438.242 80.2705 -710.632",
+        "pos": "-133.688 31.3272 -80.2826",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1358,7 +1358,7 @@
       "name": "ms3_plataforma010",
       "transform":
       {
-        "pos": "-443.006 83.1207 -708.248",
+        "pos": "-138.452 34.1774 -77.8981",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1399,7 +1399,7 @@
       "name": "ms3_plataforma009",
       "transform":
       {
-        "pos": "-448.089 91.8133 -700.952",
+        "pos": "-143.535 42.8699 -70.6023",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
