@@ -2,17 +2,6 @@
   {
     "entity":
     {
-      "name": "btLoaderTest",
-      "prefab": "data/prefabs/kippahTestBTLoader.prefab",
-      "transform":
-      {
-        "pos": "-327 44 -614"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "tutorialEnemyMelee",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":

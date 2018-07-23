@@ -12,7 +12,7 @@ OnStepBackAction::OnStepBackAction() {
 
 OnStepBackAction::OnStepBackAction(Enemy* enemy, std::string animation) :
 	OnStepBackAction() {
-	this->enemy;
+	this->enemy = enemy;
 	this->animation = animation;
 }
 
