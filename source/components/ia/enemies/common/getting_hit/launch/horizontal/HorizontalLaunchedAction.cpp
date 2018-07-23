@@ -36,5 +36,9 @@ void HorizontalLaunchedAction::load(IBehaviorTreeNew* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 
-	attack = j.value("attack", "");
+	attack = j.value("attack", attack);
+}
+
+void HorizontalLaunchedAction::debugInMenu() {
+	ImGui::Text("Attack: %s\n", attack.c_str());
 }

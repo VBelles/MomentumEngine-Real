@@ -8,7 +8,8 @@ OnBlockingBreakCondition::OnBlockingBreakCondition() {
 	type = "OnBlockingBreakCondition";
 }
 
-OnBlockingBreakCondition::OnBlockingBreakCondition(Enemy* enemy) : OnBlockingBreakCondition() {
+OnBlockingBreakCondition::OnBlockingBreakCondition(Enemy* enemy) :
+	OnBlockingBreakCondition() {
 	this->enemy = enemy;
 }
 

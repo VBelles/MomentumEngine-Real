@@ -10,7 +10,8 @@ OnBlockingBreakAction::OnBlockingBreakAction() {
 	type = "OnBlockingBreakAction";
 }
 
-OnBlockingBreakAction::OnBlockingBreakAction(Enemy* enemy, std::string animation) : OnBlockingBreakAction() {
+OnBlockingBreakAction::OnBlockingBreakAction(Enemy* enemy, std::string animation) :
+	OnBlockingBreakAction() {
 	this->enemy = enemy;
 	this->animation = animation;
 }
@@ -29,4 +30,8 @@ void OnBlockingBreakAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+}
+
+void OnBlockingBreakAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

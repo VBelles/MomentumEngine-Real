@@ -34,3 +34,7 @@ void OnPropelAction::load(IBehaviorTreeNew* bt, const json& j) {
 
 	attack = j.value("attack", attack);
 }
+
+void OnPropelAction::debugInMenu() {
+	ImGui::Text("Attack: %s\n", attack.c_str());
+}

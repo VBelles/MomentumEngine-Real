@@ -10,7 +10,8 @@ OnAttackAction::OnAttackAction() {
 	type = "OnAttackAction";
 }
 
-OnAttackAction::OnAttackAction(Enemy* enemy, std::string animation, std::string attack) : OnAttackAction() {
+OnAttackAction::OnAttackAction(Enemy* enemy, std::string animation, std::string attack) :
+	OnAttackAction() {
 	this->enemy = enemy;
 	this->animation = animation;
 	this->attack = attack;
@@ -31,4 +32,9 @@ void OnAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 	attack = j.value("attack", attack);
+}
+
+void OnAttackAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
 }

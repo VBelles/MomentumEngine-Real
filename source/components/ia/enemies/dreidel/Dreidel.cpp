@@ -395,7 +395,7 @@ void Dreidel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 					launchVelocity.Normalize();
 					launchVelocity *= enemy->velocity.Length() * 0.3f;
 					if (launchVelocity.Length() < 3.0f) {
-						attackHit.info.propel = nullptr;
+						SAFE_DELETE(attackHit.info.propel);
 					}
 					else {
 						attackHit.info.propel->velocity = launchVelocity;

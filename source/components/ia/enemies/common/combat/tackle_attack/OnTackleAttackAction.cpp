@@ -33,3 +33,8 @@ void OnTackleAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
 	animation = j.value("animation", animation);
 	attack = j.value("attack", attack);
 }
+
+void OnTackleAttackAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
+}

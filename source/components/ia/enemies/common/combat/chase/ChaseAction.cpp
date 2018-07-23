@@ -9,7 +9,8 @@ ChaseAction::ChaseAction() {
 	type = "ChaseAction";
 }
 
-ChaseAction::ChaseAction(Enemy* enemy) : ChaseAction() {
+ChaseAction::ChaseAction(Enemy* enemy) :
+	ChaseAction() {
 	this->enemy = enemy;
 }
 

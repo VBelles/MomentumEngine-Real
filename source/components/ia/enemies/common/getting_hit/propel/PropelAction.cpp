@@ -20,11 +20,11 @@ int PropelAction::execAction(float delta) {
 	if (enemy->timer.elapsed() < enemy->propelDuration) {
 		enemy->deltaMovement += enemy->velocity * delta;
 		enemy->updateGravity(delta);
-		enemy->getHitboxes()->disable(enemy->attacks[attack].hitboxName);
-		enemy->currentAttack = "";
 		return Stay;
 	}
 	else {
+		enemy->getHitboxes()->disable(enemy->attacks[attack].hitboxName);
+		enemy->currentAttack = "";
 		return Leave;
 	}
 }
@@ -34,4 +34,8 @@ void PropelAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	attack = j.value("attack", attack);
+}
+
+void PropelAction::debugInMenu() {
+	ImGui::Text("Attack: %s\n", attack.c_str());
 }

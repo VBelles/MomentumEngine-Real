@@ -285,7 +285,7 @@ void Kippah::onOutOfBounds(const TMsgOutOfBounds& msg) {
 void Kippah::onPerfectDodged(const TMsgPerfectDodged & msg) {
 	if (!enemy->getCollider()->toDestroy) {
 		dbg("Damn! I've been dodged.\n");
-		if (enemy->hpGiven <enemy->maxHpToGive) {
+		if (enemy->hpGiven < enemy->maxHpToGive) {
 			enemy->getPlayerModel()->setHp(enemy->getPlayerModel()->getHp() + 1);
 			enemy->hpGiven++;
 		}
@@ -316,7 +316,7 @@ void Kippah::onHitboxEnter(const TMsgHitboxEnter& msg) {
 					launchVelocity.Normalize();
 					launchVelocity *= enemy->velocity.Length() * 0.3f;
 					if (launchVelocity.Length() < 3.0f) {
-						attackHit.info.propel = nullptr;
+						SAFE_DELETE(attackHit.info.propel);
 					}
 					else {
 						attackHit.info.propel->velocity = launchVelocity;

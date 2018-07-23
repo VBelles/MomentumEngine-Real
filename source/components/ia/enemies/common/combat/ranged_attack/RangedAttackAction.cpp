@@ -76,3 +76,9 @@ void RangedAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
 	attack = j.value("attack", attack);
 	cancelCondition = j.value("cancel_condition", cancelCondition);
 }
+
+void RangedAttackAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
+	ImGui::Text("Cancel condition: %s\n", cancelCondition.c_str());
+}

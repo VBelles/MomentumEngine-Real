@@ -92,9 +92,9 @@ void EnemyBehaviorTree::onOutOfBounds(const TMsgOutOfBounds& msg) {
 void EnemyBehaviorTree::onPerfectDodged(const TMsgPerfectDodged & msg) {
 	if (!enemy->getCollider()->toDestroy) {
 		dbg("Damn! I've been dodged.\n");
-		if (hpGiven < maxHpToGive) {
+		if (enemy->hpGiven < enemy->maxHpToGive) {
 			enemy->getPlayerModel()->setHp(enemy->getPlayerModel()->getHp() + 1);
-			hpGiven++;
+			enemy->hpGiven++;
 		}
 	}
 }
@@ -110,11 +110,27 @@ void EnemyBehaviorTree::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 
 void EnemyBehaviorTree::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (enemy->currentAttack != "") {
-		if (enemy->attacks[enemy->currentAttack].hitboxName == msg.hitbox) {
-			TMsgAttackHit attackHit = {};
-			attackHit.attacker = CHandle(this).getOwner();
-			attackHit.info = enemy->attacks[enemy->currentAttack].attackInfo;
-			((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+		if (msg.h_other_entity != CHandle(this).getOwner()) {
+			if (enemy->attacks[enemy->currentAttack].hitboxName == msg.hitbox) {
+				TMsgAttackHit attackHit = {};
+				attackHit.attacker = CHandle(this).getOwner();
+				attackHit.info = enemy->attacks[enemy->currentAttack].attackInfo;
+				//check if attack info is propel, if it is override velocity (radial)
+				if (attackHit.info.propel) {
+					CEntity* otherEntity = msg.h_other_entity;
+					TCompTransform* otherTransform = otherEntity->get<TCompTransform>();
+					VEC3 launchVelocity = otherTransform->getPosition() - enemy->getTransform()->getPosition();
+					launchVelocity.Normalize();
+					launchVelocity *= enemy->velocity.Length() * 0.3f;
+					if (launchVelocity.Length() < 3.0f) {
+						SAFE_DELETE(attackHit.info.propel);
+					}
+					else {
+						attackHit.info.propel->velocity = launchVelocity;
+					}
+				}
+				((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+			}
 		}
 	}
 }

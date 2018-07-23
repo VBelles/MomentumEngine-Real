@@ -44,3 +44,8 @@ void StepBackAction::load(IBehaviorTreeNew* bt, const json& j) {
 	animation = j.value("animation", animation);
 	speed = j.value("speed", speed);
 }
+
+void StepBackAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::DragFloat("Speed", &speed, 0.1f, 0.0f, 500.0f);
+}

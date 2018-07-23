@@ -8,7 +8,8 @@ BlockCondition::BlockCondition() {
 	type = "BlockCondition";
 }
 
-BlockCondition::BlockCondition(Enemy* enemy) : BlockCondition() {
+BlockCondition::BlockCondition(Enemy* enemy) :
+	BlockCondition() {
 	this->enemy = enemy;
 }
 

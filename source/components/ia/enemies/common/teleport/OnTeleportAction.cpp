@@ -27,3 +27,7 @@ void OnTeleportAction::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 }
+
+void OnTeleportAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+}

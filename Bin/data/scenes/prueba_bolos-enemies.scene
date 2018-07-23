@@ -90,8 +90,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-146.504 94.6034 -791.925",
-        "lookat": "-1.0 94.6034 -1.0"
+        "pos": "-146.504 94.6034 -791.925"
       }
     }
   },
@@ -102,32 +101,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-146.198 98.2718 -791.772",
-        "lookat": "-1.0 98.2718 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Air045",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-146.274 98.2718 -793.253",
-        "lookat": "-1.0 98.2718 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_Air044",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-147.588 98.2718 -792.202",
-        "lookat": "-1.0 98.2718 -1.0"
+        "pos": "-146.504 98.6034 -791.925"
       }
     }
   }

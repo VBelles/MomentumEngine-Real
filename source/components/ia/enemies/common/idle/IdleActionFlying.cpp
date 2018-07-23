@@ -33,3 +33,8 @@ void IdleActionFlying::load(IBehaviorTreeNew* bt, const json& j) {
 	animation = j.value("animation", animation);
 	cancelCondition = j.value("cancel_condition", cancelCondition);
 }
+
+void IdleActionFlying::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Cancel condition: %s\n", cancelCondition.c_str());
+}

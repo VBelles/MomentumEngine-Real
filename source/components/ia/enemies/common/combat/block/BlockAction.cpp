@@ -9,7 +9,8 @@ BlockAction::BlockAction() {
 	type = "BlockAction";
 }
 
-BlockAction::BlockAction(Enemy* enemy) : BlockAction() {
+BlockAction::BlockAction(Enemy* enemy) :
+	BlockAction() {
 	this->enemy = enemy;
 }
 

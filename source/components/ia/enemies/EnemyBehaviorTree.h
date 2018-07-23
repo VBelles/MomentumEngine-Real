@@ -28,9 +28,6 @@ private:
 public:
 	DECL_SIBLING_ACCESS();
 
-	int maxHpToGive = 2;
-	int hpGiven = 0;
-
 	~EnemyBehaviorTree();
 
 	void load(const json& j, TEntityParseContext& ctx);

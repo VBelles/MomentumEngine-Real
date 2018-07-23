@@ -54,3 +54,10 @@ void TackleAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
 	speed = j.value("speed", speed);
 	time = j.value("time", time);
 }
+
+void TackleAttackAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
+	ImGui::DragFloat("Speed", &speed, 0.1f, 0.0f, 500.0f);
+	ImGui::DragFloat("Time", &time, 0.1f, 0.0f, 500.0f);
+}

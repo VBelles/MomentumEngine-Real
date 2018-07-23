@@ -29,3 +29,8 @@ void OnStunAction::load(IBehaviorTreeNew* bt, const json& j) {
 	animationStart = j.value("animation_start", animationStart);
 	animationLoop = j.value("animation_loop", animationLoop);
 }
+
+void OnStunAction::debugInMenu() {
+	ImGui::Text("Animation start: %s\n", animationStart.c_str());
+	ImGui::Text("Animation loop: %s\n", animationLoop.c_str());
+}

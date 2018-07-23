@@ -9,7 +9,8 @@ OnAirborneAction::OnAirborneAction() {
 	type = "OnAirborneAction";
 }
 
-OnAirborneAction::OnAirborneAction(Enemy* enemy, std::string animation) : OnAirborneAction() {
+OnAirborneAction::OnAirborneAction(Enemy* enemy, std::string animation) :
+	OnAirborneAction() {
 	this->enemy = enemy;
 	this->animation = animation;
 }
@@ -26,4 +27,8 @@ void OnAirborneAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+}
+
+void OnAirborneAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

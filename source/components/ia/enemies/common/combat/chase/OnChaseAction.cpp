@@ -29,3 +29,7 @@ void OnChaseAction::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 }
+
+void OnChaseAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+}

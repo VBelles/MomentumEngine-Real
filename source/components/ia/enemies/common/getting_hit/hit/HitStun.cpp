@@ -28,3 +28,7 @@ void HitStun::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 }
+
+void HitStun::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+}

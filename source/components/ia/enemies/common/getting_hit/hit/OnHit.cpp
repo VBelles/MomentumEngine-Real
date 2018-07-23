@@ -69,3 +69,7 @@ void OnHit::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 }
+
+void OnHit::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+}

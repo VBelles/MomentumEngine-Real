@@ -44,3 +44,7 @@ void StrollAction::load(IBehaviorTreeNew* bt, const json& j) {
 
 	cancelCondition = j.value("cancel_condition", cancelCondition);
 }
+
+void StrollAction::debugInMenu() {
+	ImGui::Text("Cancel condition: %s\n", cancelCondition.c_str());
+}

@@ -29,3 +29,7 @@ void OnDeathAction::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 }
+
+void OnDeathAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+}

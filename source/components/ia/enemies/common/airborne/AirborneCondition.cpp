@@ -8,7 +8,8 @@ AirborneCondition::AirborneCondition() {
 	type = "AirborneCondition";
 }
 
-AirborneCondition::AirborneCondition(Enemy* enemy) : AirborneCondition() {
+AirborneCondition::AirborneCondition(Enemy* enemy) :
+	AirborneCondition() {
 	this->enemy = enemy;
 }
 

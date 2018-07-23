@@ -8,7 +8,8 @@ AirborneAction::AirborneAction() {
 	type = "AirborneAction";
 }
 
-AirborneAction::AirborneAction(Enemy* enemy): AirborneAction() {
+AirborneAction::AirborneAction(Enemy* enemy) :
+	AirborneAction() {
 	this->enemy = enemy;
 }
 

@@ -9,7 +9,8 @@ OnAppearAction::OnAppearAction() {
 	type = "OnAppearAction";
 }
 
-OnAppearAction::OnAppearAction(Enemy* enemy, std::string animation) : OnAppearAction() {
+OnAppearAction::OnAppearAction(Enemy* enemy, std::string animation) :
+	OnAppearAction() {
 	this->enemy = enemy;
 	this->animation = animation;
 }
@@ -25,4 +26,8 @@ void OnAppearAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+}
+
+void OnAppearAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

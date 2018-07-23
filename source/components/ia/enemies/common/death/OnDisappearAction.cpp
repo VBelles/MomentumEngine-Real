@@ -27,3 +27,7 @@ void OnDisappearAction::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 }
+
+void OnDisappearAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+}

@@ -37,3 +37,7 @@ void OnReturnToSpawnAction::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 }
+
+void OnReturnToSpawnAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+}

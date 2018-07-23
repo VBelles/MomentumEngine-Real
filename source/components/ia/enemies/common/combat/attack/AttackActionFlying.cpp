@@ -10,7 +10,8 @@ AttackActionFlying::AttackActionFlying() {
 	type = "AttackActionFlying";
 }
 
-AttackActionFlying::AttackActionFlying(Enemy* enemy, std::string animation, std::string attack) : AttackActionFlying() {
+AttackActionFlying::AttackActionFlying(Enemy* enemy, std::string animation, std::string attack) :
+	AttackActionFlying() {
 	this->enemy = enemy;
 	this->animation = animation;
 	this->attack = attack;
@@ -38,4 +39,9 @@ void AttackActionFlying::load(IBehaviorTreeNew* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 	attack = j.value("attack", attack);
+}
+
+void AttackActionFlying::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
 }
