@@ -6,8 +6,10 @@ class Enemy;
 
 class LongDistanceCombatCondition : public IBehaviorTreeCondition {
 private:
-	Enemy * enemy;
+	Enemy* enemy = nullptr;
 public:
+	LongDistanceCombatCondition();
 	LongDistanceCombatCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
+	void load(IBehaviorTreeNew* bt, const json& j) override;
 };

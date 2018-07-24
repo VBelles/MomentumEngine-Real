@@ -4,9 +4,16 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTACTION("IdleWarAction", IdleWarAction);
+
+IdleWarAction::IdleWarAction() {
+	type = "IdleWarAction";
+}
+
 IdleWarAction::IdleWarAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	IdleWarAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int IdleWarAction::execAction(float delta) {
@@ -17,4 +24,15 @@ int IdleWarAction::execAction(float delta) {
 		return Stay;
 	}
 	return Leave;
+}
+
+void IdleWarAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+}
+
+void IdleWarAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

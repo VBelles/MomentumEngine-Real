@@ -11,6 +11,7 @@
   ],
   "update": [
     "fwd_msg",
+    "enemy_bt",
     "dreidel",
     "kippah",
     "skeleton",

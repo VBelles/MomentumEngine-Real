@@ -2,9 +2,22 @@
 #include "OnStunCondition.h"
 #include "components/ia/enemies/Enemy.h"
 
-OnStunCondition::OnStunCondition(Enemy* enemy) : enemy(enemy) {
+REGISTER_BTCONDITION("OnStunCondition", OnStunCondition);
+
+OnStunCondition::OnStunCondition() {
+	type = "OnStunCondition";
+}
+
+OnStunCondition::OnStunCondition(Enemy* enemy) :
+	OnStunCondition() {
+	this->enemy = enemy;
 }
 
 bool OnStunCondition::testCondition(float delta) {
 	return enemy->stunTimer.elapsed() < enemy->stunDuration;
+}
+
+void OnStunCondition::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }

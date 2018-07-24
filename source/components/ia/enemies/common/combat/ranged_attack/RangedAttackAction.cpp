@@ -5,17 +5,24 @@
 #include "components/comp_transform.h"
 #include "entity/entity_parser.h"
 
-RangedAttackAction::RangedAttackAction(Enemy* enemy, std::string animation, std::string attack, IBehaviorTreeCondition* cancelCondition) :
-	enemy(enemy),
-	animation(animation),
-	attack(attack),
-	cancelCondition(cancelCondition) {
+REGISTER_BTACTION("RangedAttackAction", RangedAttackAction);
+
+RangedAttackAction::RangedAttackAction() {
+	type = "RangedAttackAction";
+}
+
+RangedAttackAction::RangedAttackAction(Enemy* enemy, std::string animation, std::string attack, std::string cancelCondition) :
+	RangedAttackAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
+	this->cancelCondition = cancelCondition;
 }
 
 int RangedAttackAction::execAction(float delta) {
 	EnemyAttack enemyAttack = enemy->attacks[attack];
 
-	if ((cancelCondition && cancelCondition->testCondition(delta))
+	if ((!cancelCondition.empty() && enemy->testCondition(cancelCondition, delta))
 		|| enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
 		attackLaunched = false;
 		enemy->attackTimer.reset();
@@ -57,4 +64,21 @@ int RangedAttackAction::execAction(float delta) {
 		attackLaunched = false;
 		return Stay;
 	}
+}
+
+void RangedAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+	
+	attackLaunched = false;
+
+	animation = j.value("animation", animation);
+	attack = j.value("attack", attack);
+	cancelCondition = j.value("cancel_condition", cancelCondition);
+}
+
+void RangedAttackAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
+	ImGui::Text("Cancel condition: %s\n", cancelCondition.c_str());
 }

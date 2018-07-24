@@ -4,10 +4,17 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTACTION("StepBackAction", StepBackAction);
+
+StepBackAction::StepBackAction() {
+	type = "StepBackAction";
+}
+
 StepBackAction::StepBackAction(Enemy* enemy, std::string animation, float speed) :
-	enemy(enemy),
-	animation(animation),
-	speed(speed) {
+	StepBackAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->speed = speed;
 }
 
 int StepBackAction::execAction(float delta) {
@@ -28,4 +35,17 @@ int StepBackAction::execAction(float delta) {
 		return Stay;
 	}
 	return Leave;
+}
+
+void StepBackAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+	speed = j.value("speed", speed);
+}
+
+void StepBackAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::DragFloat("Speed", &speed, 0.1f, 0.0f, 500.0f);
 }

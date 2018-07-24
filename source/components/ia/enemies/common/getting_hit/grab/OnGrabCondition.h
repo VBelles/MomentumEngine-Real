@@ -6,8 +6,10 @@ class Enemy;
 
 class OnGrabCondition : public IBehaviorTreeCondition {
 private:
-	Enemy * enemy;
+	Enemy* enemy = nullptr;
 public:
+	OnGrabCondition();
 	OnGrabCondition(Enemy* enemy);
 	bool testCondition(float delta) override;
+	void load(IBehaviorTreeNew* bt, const json& j) override;
 };

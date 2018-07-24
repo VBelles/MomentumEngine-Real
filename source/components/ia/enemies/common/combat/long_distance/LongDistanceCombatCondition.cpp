@@ -3,7 +3,15 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
-LongDistanceCombatCondition::LongDistanceCombatCondition(Enemy* enemy) : enemy(enemy) {
+REGISTER_BTCONDITION("LongDistanceCombatCondition", LongDistanceCombatCondition);
+
+LongDistanceCombatCondition::LongDistanceCombatCondition() {
+	type = "LongDistanceCombatCondition";
+}
+
+LongDistanceCombatCondition::LongDistanceCombatCondition(Enemy* enemy) :
+	LongDistanceCombatCondition() {
+	this->enemy = enemy;
 }
 
 bool LongDistanceCombatCondition::testCondition(float delta) {
@@ -17,4 +25,9 @@ bool LongDistanceCombatCondition::testCondition(float delta) {
 	else {
 		return distanceSqrd <= enemy->longCombatDistanceSqrd;
 	}
+}
+
+void LongDistanceCombatCondition::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }

@@ -3,13 +3,31 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
-OnDisappearAction::OnDisappearAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+REGISTER_BTACTION("OnDisappearAction", OnDisappearAction);
+
+OnDisappearAction::OnDisappearAction() {
+	type = "OnDisappearAction";
+}
+
+OnDisappearAction::OnDisappearAction(Enemy* enemy, std::string animation) :
+	OnDisappearAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnDisappearAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
 	return Leave;
+}
+
+void OnDisappearAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+}
+
+void OnDisappearAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

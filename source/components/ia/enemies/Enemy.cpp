@@ -10,16 +10,28 @@
 Enemy::~Enemy() {
 }
 
-void Enemy::load(const json& j, TEntityParseContext& ctx) {
+void Enemy::load(const json& j) {
+	if (j.count("behavior_tree")) {
+		behaviorTreeFile = j.value("behavior_tree", "");
+		IBehaviorTreeNew::load(loadJson(behaviorTreeFile));
+	}
+
+	onHit = false;
+	onOutOfBounds = false;
+	onSpawn = false;
+	isBlocking = false;
+	blockingBroken = false;
+
 	//Base
 	maxHp = j.value("max_hp", maxHp);
 	hp = maxHp;
 
-	maxHpToGive = j.value("max_hp_on_perfect_dodged", 0);
+	maxHpToGive = j.value("max_hp_on_perfect_dodged", maxHpToGive);
 
 	maxDistanceFromSpawnSqrd = pow(j.value("max_distance_from_spawn", sqrt(maxDistanceFromSpawnSqrd)), 2);
 
 	//Speed
+	velocity = VEC3::Zero;
 	movementSpeed = j.value("movement_speed", movementSpeed);
 	rotationSpeed = j.value("rotation_speed", rotationSpeed);
 	gravity = j.value("gravity", gravity);
@@ -73,8 +85,12 @@ void Enemy::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void Enemy::debugInMenu() {
+	ImGui::Text("Behavior tree file: %s\n", !behaviorTreeFile.empty() ? behaviorTreeFile.c_str() : "None");
 	IBehaviorTreeNew::debugInMenu();
 	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
+	ImGui::Text("onHit: %s\n", onHit ? "true" : "false");
+	ImGui::Text("onOutOfBounds: %s\n", onOutOfBounds ? "true" : "false");
+	ImGui::Text("onSpawn: %s\n", onSpawn ? "true" : "false");
 	ImGui::Text("Hp: %f\n", hp);
 	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
 	ImGui::DragFloat("Gravity\n", &gravity, 0.1f, -500.f, 500.f);
@@ -171,6 +187,16 @@ TCompGivePower* Enemy::getPower() {
 	return powerHandle;
 }
 
+void Enemy::resetCurrent() {
+	current = nullptr;
+}
+
+
 void Enemy::setCurrent(std::string node) {
-	current = tree[node];
+	IBehaviorTreeNode* newCurrent = nullptr;
+	auto it = tree.find(node);
+	if (it != tree.end()) {
+		newCurrent = it->second;
+	}
+	current = newCurrent;
 }

@@ -29,6 +29,12 @@ class Enemy : public IBehaviorTreeNew {
 public:
 	virtual ~Enemy();
 
+	std::string behaviorTreeFile = "";
+
+	bool onHit = false;
+	bool onOutOfBounds = false;
+	bool onSpawn = false;
+
 	std::string navMeshId;
 	CNavMeshQuery* navMeshQuery = nullptr;
 	std::vector<VEC3> smoothPath;
@@ -106,7 +112,7 @@ public:
 	CHandle hitboxesHandle;
 	CHandle powerHandle;
 
-	void load(const json& j, TEntityParseContext & ctx);
+	void load(const json& j) override;
 	void debugInMenu() override;
 	void updateGravity(float delta);
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
@@ -123,5 +129,6 @@ public:
 	TCompHitboxes* getHitboxes();
 	TCompGivePower* getPower();
 
+	void resetCurrent();
 	void setCurrent(std::string node);
 };

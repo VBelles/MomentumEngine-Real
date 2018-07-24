@@ -2,9 +2,22 @@
 #include "BlockCondition.h"
 #include "components/ia/enemies/Enemy.h"
 
-BlockCondition::BlockCondition(Enemy* enemy) : enemy(enemy) {
+REGISTER_BTCONDITION("BlockCondition", BlockCondition);
+
+BlockCondition::BlockCondition() {
+	type = "BlockCondition";
+}
+
+BlockCondition::BlockCondition(Enemy* enemy) :
+	BlockCondition() {
+	this->enemy = enemy;
 }
 
 bool BlockCondition::testCondition(float delta) {
 	return enemy->isBlocking;
+}
+
+void BlockCondition::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }

@@ -3,15 +3,16 @@
 #include "components/ia/behavior_tree/IBehaviorTreeAction.h"
 
 class Enemy;
-class IBehaviorTreeCondition;
 
 class IdleAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
-	std::string animation;
-	IBehaviorTreeCondition* cancelCondition = nullptr;
-
+	std::string animation = "";
+	std::string cancelCondition = "";
 public:
-	IdleAction(Enemy* enemy, std::string animation, IBehaviorTreeCondition* cancelCondition = nullptr);
+	IdleAction();
+	IdleAction(Enemy* enemy, std::string animation, std::string cancelCondition = "");
 	int execAction(float delta) override;
+	void load(IBehaviorTreeNew* bt, const json& j) override;
+	void debugInMenu() override;
 };

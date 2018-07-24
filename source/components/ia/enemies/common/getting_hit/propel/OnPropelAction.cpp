@@ -4,9 +4,16 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 
-OnPropelAction::OnPropelAction(Enemy* enemy, std::string attack): 
-	enemy(enemy), 
-	attack(attack) {
+REGISTER_BTACTION("OnPropelAction", OnPropelAction);
+
+OnPropelAction::OnPropelAction() {
+	type = "OnPropelAction";
+}
+
+OnPropelAction::OnPropelAction(Enemy* enemy, std::string attack) :
+	OnPropelAction() {
+	this->enemy = enemy;
+	this->attack = attack;
 }
 
 int OnPropelAction::execAction(float delta) {
@@ -19,4 +26,15 @@ int OnPropelAction::execAction(float delta) {
 	enemy->isBlocking = false;
 	enemy->blockingBroken = false;
 	return Leave;
+}
+
+void OnPropelAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	attack = j.value("attack", attack);
+}
+
+void OnPropelAction::debugInMenu() {
+	ImGui::Text("Attack: %s\n", attack.c_str());
 }

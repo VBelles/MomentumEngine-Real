@@ -138,9 +138,9 @@ void Dreidel::initBehaviorTree() {
 	StepBackAction* stepBackAction = new StepBackAction(enemy, "enemigo_bola_run", enemy->movementSpeed);
 	OnReturnToSpawnAction* onReturnToSpawnAction = new OnReturnToSpawnAction(enemy, "enemigo_bola_run");
 	OnReturnToSpawnCondition* onReturnToSpawnCondition = new OnReturnToSpawnCondition(enemy);
-	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(enemy, combatCondition);
+	ReturnToSpawnAction* returnToSpawnAction = new ReturnToSpawnAction(enemy, "combat");
 	OnStrollAction* onStrollAction = new OnStrollAction(enemy, "enemigo_bola_run");
-	StrollAction* strollAction = new StrollAction(enemy, combatCondition);
+	StrollAction* strollAction = new StrollAction(enemy, "combat");
 	BlockingBreakAction* blockingBreakAction = new BlockingBreakAction(enemy, "enemigo_bola_recibirdanio");
 	OnBlockingBreakAction* onBlockingBreakAction = new OnBlockingBreakAction(enemy, "enemigo_bola_recibirdanio");
 	OnBlockingBreakCondition* onBlockingBreakCondition = new OnBlockingBreakCondition(enemy);
@@ -202,7 +202,6 @@ void Dreidel::initBehaviorTree() {
 
 	//block
 	enemy->addChild("dreidel", "blockAction", Action, blockCondition, blockAction);
-
 
 	//teleport to spawn
 	enemy->addChild("dreidel", "teleport", Sequence, onTeleportCondition, nullptr);
@@ -294,7 +293,7 @@ void Dreidel::initBehaviorTree() {
 void Dreidel::load(const json& j, TEntityParseContext& ctx) {
 	SAFE_DELETE(enemy);
 	enemy = new Enemy();
-	enemy->load(j, ctx);
+	enemy->load(j);
 }
 
 void Dreidel::debugInMenu() {
@@ -396,7 +395,7 @@ void Dreidel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 					launchVelocity.Normalize();
 					launchVelocity *= enemy->velocity.Length() * 0.3f;
 					if (launchVelocity.Length() < 3.0f) {
-						attackHit.info.propel = nullptr;
+						SAFE_DELETE(attackHit.info.propel);
 					}
 					else {
 						attackHit.info.propel->velocity = launchVelocity;

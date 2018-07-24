@@ -5,12 +5,19 @@
 #include "components/comp_hitboxes.h"
 #include "components/comp_transform.h"
 
+REGISTER_BTACTION("TackleAttackAction", TackleAttackAction);
+
+TackleAttackAction::TackleAttackAction() {
+	type = "TackleAttackAction";
+}
+
 TackleAttackAction::TackleAttackAction(Enemy* enemy, std::string animation, std::string attack, float speed, float time) :
-	enemy(enemy),
-	animation(animation),
-	attack(attack),
-	speed(speed),
-	time(time) {
+	TackleAttackAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
+	this->speed = speed;
+	this->time = time;
 }
 
 int TackleAttackAction::execAction(float delta) {
@@ -36,4 +43,21 @@ int TackleAttackAction::execAction(float delta) {
 		}
 	}
 	return Stay;
+}
+
+void TackleAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+	attack = j.value("attack", attack);
+	speed = j.value("speed", speed);
+	time = j.value("time", time);
+}
+
+void TackleAttackAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
+	ImGui::DragFloat("Speed", &speed, 0.1f, 0.0f, 500.0f);
+	ImGui::DragFloat("Time", &time, 0.1f, 0.0f, 500.0f);
 }

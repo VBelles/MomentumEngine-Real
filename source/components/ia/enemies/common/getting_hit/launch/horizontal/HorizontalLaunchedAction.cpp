@@ -1,14 +1,19 @@
 #include "mcv_platform.h"
 #include "HorizontalLaunchedAction.h"
-#include "components/comp_collider.h"
 #include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 
+REGISTER_BTACTION("HorizontalLaunchedAction", HorizontalLaunchedAction);
+
+HorizontalLaunchedAction::HorizontalLaunchedAction() {
+	type = "HorizontalLaunchedAction";
+}
+
 HorizontalLaunchedAction::HorizontalLaunchedAction(Enemy* enemy, std::string attack) :
-	enemy(enemy),
-	attack(attack) {
+	HorizontalLaunchedAction() {
+	this->enemy = enemy;
+	this->attack = attack;
 }
 
 int HorizontalLaunchedAction::execAction(float delta) {
@@ -25,4 +30,15 @@ int HorizontalLaunchedAction::execAction(float delta) {
 	else {
 		return Stay;
 	}
+}
+
+void HorizontalLaunchedAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	attack = j.value("attack", attack);
+}
+
+void HorizontalLaunchedAction::debugInMenu() {
+	ImGui::Text("Attack: %s\n", attack.c_str());
 }

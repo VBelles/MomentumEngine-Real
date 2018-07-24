@@ -3,7 +3,15 @@
 #include "components/comp_collider.h"
 #include "components/ia/enemies/Enemy.h"
 
-OnGrabAction::OnGrabAction(Enemy* enemy): enemy(enemy) {
+REGISTER_BTACTION("OnGrabAction", OnGrabAction);
+
+OnGrabAction::OnGrabAction() {
+	type = "OnGrabAction";
+}
+
+OnGrabAction::OnGrabAction(Enemy* enemy) :
+	OnGrabAction() {
+	this->enemy = enemy;
 }
 
 int OnGrabAction::execAction(float delta) {
@@ -13,4 +21,9 @@ int OnGrabAction::execAction(float delta) {
 	enemy->isBlocking = false;
 	enemy->blockingBroken = false;
 	return Leave;
+}
+
+void OnGrabAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }

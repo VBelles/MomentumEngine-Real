@@ -3,9 +3,16 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
+REGISTER_BTACTION("DeathAction", DeathAction);
+
+DeathAction::DeathAction() {
+	type = "DeathAction";
+}
+
 DeathAction::DeathAction(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	DeathAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int DeathAction::execAction(float delta) {
@@ -13,4 +20,15 @@ int DeathAction::execAction(float delta) {
 		return Stay;
 	}
 	return Leave;
+}
+
+void DeathAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+}
+
+void DeathAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

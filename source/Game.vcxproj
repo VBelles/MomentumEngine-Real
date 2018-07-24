@@ -119,9 +119,12 @@
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_self_illum_variation.cpp" />
     <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BTActionFactory.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BTConditionFactory.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeAction.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeCondition.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNew.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\nodes\BTNodeFactory.cpp" />
     <ClCompile Include="components\ia\enemies\common\airborne\AirborneAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\airborne\OnAirborneAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\appear\AppearAction.cpp" />
@@ -163,6 +166,7 @@
     <ClCompile Include="components\ia\enemies\common\airborne\AirborneCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\airborne\OnAirborneCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\FalseCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\hit\OnHitCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\HorizontalLaunchedAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchCondition.cpp" />
@@ -180,10 +184,12 @@
     <ClCompile Include="components\ia\enemies\common\idle\OnIdleLoop.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnStrollAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\StrollAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\out_of_bounds\OnOutOfBoundsCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnFlyingAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\spawn\OnSpawnCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\StunAction.cpp" />
@@ -192,6 +198,7 @@
     <ClCompile Include="components\ia\enemies\common\teleport\TeleportAction.cpp" />
     <ClCompile Include="components\ia\enemies\dreidel\Dreidel.cpp" />
     <ClCompile Include="components\ia\enemies\Enemy.cpp" />
+    <ClCompile Include="components\ia\enemies\EnemyBehaviorTree.cpp" />
     <ClCompile Include="components\ia\enemies\kippah\Kippah.cpp" />
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="modules\game_modules\game\enemy_manager.cpp" />
@@ -453,9 +460,12 @@
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_self_illum_variation.h" />
     <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />
+    <ClInclude Include="components\ia\behavior_tree\BTActionFactory.h" />
+    <ClInclude Include="components\ia\behavior_tree\BTConditionFactory.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeAction.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeCondition.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNew.h" />
+    <ClInclude Include="components\ia\behavior_tree\nodes\BTNodeFactory.h" />
     <ClInclude Include="components\ia\enemies\common\airborne\AirborneAction.h" />
     <ClInclude Include="components\ia\enemies\common\airborne\OnAirborneAction.h" />
     <ClInclude Include="components\ia\enemies\common\appear\AppearAction.h" />
@@ -497,6 +507,7 @@
     <ClInclude Include="components\ia\enemies\common\airborne\AirborneCondition.h" />
     <ClInclude Include="components\ia\enemies\common\airborne\OnAirborneCondition.h" />
     <ClInclude Include="components\ia\enemies\common\FalseCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\hit\OnHitCondition.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\HorizontalLaunchedAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchCondition.h" />
@@ -514,10 +525,12 @@
     <ClInclude Include="components\ia\enemies\common\idle\OnIdleLoop.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnStrollAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\StrollAction.h" />
+    <ClInclude Include="components\ia\enemies\common\out_of_bounds\OnOutOfBoundsCondition.h" />
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnAction.h" />
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\OnReturnToSpawnCondition.h" />
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnAction.h" />
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnFlyingAction.h" />
+    <ClInclude Include="components\ia\enemies\common\spawn\OnSpawnCondition.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
     <ClInclude Include="components\ia\enemies\common\stun\StunAction.h" />
@@ -526,6 +539,7 @@
     <ClInclude Include="components\ia\enemies\common\teleport\TeleportAction.h" />
     <ClInclude Include="components\ia\enemies\dreidel\Dreidel.h" />
     <ClInclude Include="components\ia\enemies\Enemy.h" />
+    <ClInclude Include="components\ia\enemies\EnemyBehaviorTree.h" />
     <ClInclude Include="components\ia\enemies\kippah\Kippah.h" />
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="modules\game_modules\game\enemy_manager.h" />

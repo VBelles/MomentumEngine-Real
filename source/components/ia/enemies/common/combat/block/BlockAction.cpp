@@ -3,8 +3,15 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_give_power.h"
 
+REGISTER_BTACTION("BlockAction", BlockAction);
+
+BlockAction::BlockAction() {
+	type = "BlockAction";
+}
+
 BlockAction::BlockAction(Enemy* enemy) :
-	enemy(enemy) {
+	BlockAction() {
+	this->enemy = enemy;
 }
 
 int BlockAction::execAction(float delta) {
@@ -14,4 +21,9 @@ int BlockAction::execAction(float delta) {
 	enemy->isBlocking = false;
 	enemy->getPower()->setStateMultiplier(1.f);
 	return Leave;
+}
+
+void BlockAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }

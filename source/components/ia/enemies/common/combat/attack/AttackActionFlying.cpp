@@ -4,10 +4,17 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 
+REGISTER_BTACTION("AttackActionFlying", AttackActionFlying);
+
+AttackActionFlying::AttackActionFlying() {
+	type = "AttackActionFlying";
+}
+
 AttackActionFlying::AttackActionFlying(Enemy* enemy, std::string animation, std::string attack) :
-	enemy(enemy),
-	animation(animation),
-	attack(attack) {
+	AttackActionFlying() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
 }
 
 int AttackActionFlying::execAction(float delta) {
@@ -24,4 +31,17 @@ int AttackActionFlying::execAction(float delta) {
 		enemy->getHitboxes()->enable(enemyAttack.hitboxName);
 	}
 	return Stay;
+}
+
+void AttackActionFlying::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+	attack = j.value("attack", attack);
+}
+
+void AttackActionFlying::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
 }

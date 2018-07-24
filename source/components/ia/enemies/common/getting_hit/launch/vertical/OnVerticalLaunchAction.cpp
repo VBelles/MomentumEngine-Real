@@ -5,10 +5,17 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 
+REGISTER_BTACTION("OnVerticalLaunchAction", OnVerticalLaunchAction);
+
+OnVerticalLaunchAction::OnVerticalLaunchAction() {
+	type = "OnVerticalLaunchAction";
+}
+
 OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy, std::string animation, std::string attack) :
-	enemy(enemy),
-	animation(animation),
-	attack(attack) {
+	OnVerticalLaunchAction() {
+	this->enemy = enemy;
+	this->animation = animation;
+	this->attack = attack;
 }
 
 int OnVerticalLaunchAction::execAction(float delta) {
@@ -21,4 +28,17 @@ int OnVerticalLaunchAction::execAction(float delta) {
 	enemy->isBlocking = false;
 	enemy->blockingBroken = false;
 	return Leave;
+}
+
+void OnVerticalLaunchAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+	attack = j.value("attack", attack);
+}
+
+void OnVerticalLaunchAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::Text("Attack: %s\n", attack.c_str());
 }

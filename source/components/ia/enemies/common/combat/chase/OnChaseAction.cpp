@@ -4,9 +4,16 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
-OnChaseAction::OnChaseAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+REGISTER_BTACTION("OnChaseAction", OnChaseAction);
+
+OnChaseAction::OnChaseAction() {
+	type = "OnChaseAction";
+}
+
+OnChaseAction::OnChaseAction(Enemy* enemy, std::string animation) :
+	OnChaseAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnChaseAction::execAction(float delta) {
@@ -14,4 +21,15 @@ int OnChaseAction::execAction(float delta) {
 	enemy->rotateTowards(delta, playerPosition, enemy->rotationSpeed);
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	return Leave;
+}
+
+void OnChaseAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+}
+
+void OnChaseAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

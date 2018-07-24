@@ -4,9 +4,16 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
 
-OnIdleWarAction::OnIdleWarAction(Enemy* enemy, std::string animation):
-	enemy(enemy),
-	animation(animation){
+REGISTER_BTACTION("OnIdleWarAction", OnIdleWarAction);
+
+OnIdleWarAction::OnIdleWarAction() {
+	type = "OnIdleWarAction";
+}
+
+OnIdleWarAction::OnIdleWarAction(Enemy* enemy, std::string animation) :
+	OnIdleWarAction() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnIdleWarAction::execAction(float delta) {
@@ -15,4 +22,15 @@ int OnIdleWarAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
 	return Leave;
+}
+
+void OnIdleWarAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+}
+
+void OnIdleWarAction::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

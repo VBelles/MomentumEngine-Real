@@ -4,10 +4,17 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_give_power.h"
 
+REGISTER_BTACTION("OnBlockAction", OnBlockAction);
+
+OnBlockAction::OnBlockAction() {
+	type = "OnBlockAction";
+}
+
 OnBlockAction::OnBlockAction(Enemy* enemy, std::string animationStart, std::string animationLoop) :
-	enemy(enemy),
-	animationStart(animationStart),
-	animationLoop(animationLoop) {
+	OnBlockAction() {
+	this->enemy = enemy;
+	this->animationStart = animationStart;
+	this->animationLoop = animationLoop;
 }
 
 int OnBlockAction::execAction(float delta) {
@@ -17,4 +24,17 @@ int OnBlockAction::execAction(float delta) {
 	enemy->blockTimer.reset();
 	enemy->isBlocking = true;
 	return Leave;
+}
+
+void OnBlockAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animationStart = j.value("animation_start", animationStart);
+	animationLoop = j.value("animation_loop", animationLoop);
+}
+
+void OnBlockAction::debugInMenu() {
+	ImGui::Text("Animation start: %s\n", animationStart.c_str());
+	ImGui::Text("Animation loop: %s\n", animationLoop.c_str());
 }

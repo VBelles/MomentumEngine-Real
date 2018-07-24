@@ -329,6 +329,13 @@
     <ClCompile Include="components\player\comp_walk_sound.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\AttackCoolDownCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\ranged_attack\RangedAttackAction.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BTConditionFactory.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\BTActionFactory.cpp" />
+    <ClCompile Include="components\ia\enemies\EnemyBehaviorTree.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\nodes\BTNodeFactory.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\hit\OnHitCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\spawn\OnSpawnCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\out_of_bounds\OnOutOfBoundsCondition.cpp" />
     <ClCompile Include="components\comp_self_illum_variation.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -691,6 +698,13 @@
     <ClInclude Include="components\player\comp_walk_sound.h" />
     <ClInclude Include="components\ia\enemies\common\combat\AttackCoolDownCondition.h" />
     <ClInclude Include="components\ia\enemies\common\combat\ranged_attack\RangedAttackAction.h" />
+    <ClInclude Include="components\ia\behavior_tree\BTConditionFactory.h" />
+    <ClInclude Include="components\ia\behavior_tree\BTActionFactory.h" />
+    <ClInclude Include="components\ia\enemies\EnemyBehaviorTree.h" />
+    <ClInclude Include="components\ia\behavior_tree\nodes\BTNodeFactory.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\hit\OnHitCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\spawn\OnSpawnCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\out_of_bounds\OnOutOfBoundsCondition.h" />
     <ClInclude Include="components\comp_self_illum_variation.h" />
   </ItemGroup>
   <ItemGroup>

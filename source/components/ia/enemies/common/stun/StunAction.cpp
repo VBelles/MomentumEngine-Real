@@ -2,8 +2,15 @@
 #include "StunAction.h"
 #include "components/ia/enemies/Enemy.h"
 
+REGISTER_BTACTION("StunAction", StunAction);
+
+StunAction::StunAction() {
+	type = "StunAction";
+}
+
 StunAction::StunAction(Enemy* enemy) :
-	enemy(enemy) {
+	StunAction() {
+	this->enemy = enemy;
 }
 
 int StunAction::execAction(float delta) {
@@ -11,4 +18,9 @@ int StunAction::execAction(float delta) {
 		return Stay;
 	}
 	return Leave;
+}
+
+void StunAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }

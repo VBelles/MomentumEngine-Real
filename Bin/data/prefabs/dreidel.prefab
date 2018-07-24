@@ -23,7 +23,8 @@
         "particles": "data/particles/energy.particles",
         "particlesOffset": "0 0.2 0"
       },
-      "dreidel": {
+      "enemy_bt": {
+        "behavior_tree": "data/behavior_trees/dreidel_behavior_tree.json",
         "max_hp": 5,
         "max_distance_from_spawn": 20,
         "max_hp_on_perfect_dodged": 2,

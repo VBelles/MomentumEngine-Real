@@ -41,8 +41,45 @@ void IBehaviorTreeNode::addChild(IBehaviorTreeNode *child) {
 
 void IBehaviorTreeNode::debugInMenu() {
 	if (ImGui::TreeNode(getName().c_str())) {
-		for (auto& node : children) {
-			node->debugInMenu();
+		if (children.size() > 0 && ImGui::TreeNode("Children")) {
+			for (auto& node : children) {
+				node->debugInMenu();
+			}
+			ImGui::TreePop();
+		}
+		ImGui::TreePop();
+	}
+}
+
+void IBehaviorTreeNode::debugInMenu(IBehaviorTreeNew* behaviorTree) {
+	if (ImGui::TreeNode(getName().c_str())) {
+		IBehaviorTreeCondition* condition = behaviorTree->getCondition(getName());
+		if (condition) {
+			if (ImGui::TreeNode(("Condition: " + condition->getType()).c_str())) {
+				condition->debugInMenu();
+				ImGui::TreePop();
+			}
+		}
+		else {
+			ImGui::Text("Condition: None\n");
+		}
+
+		IBehaviorTreeAction* action = behaviorTree->getAction(getName());
+		if (action) {
+			if (ImGui::TreeNode(("Action: " + action->getType()).c_str())) {
+				action->debugInMenu();
+				ImGui::TreePop();
+			}
+		}
+		else {
+			ImGui::Text("Action: None\n");
+		}
+
+		if (children.size() > 0 && ImGui::TreeNode("Children")) {
+			for (auto& node : children) {
+				node->debugInMenu(behaviorTree);
+			}
+			ImGui::TreePop();
 		}
 		ImGui::TreePop();
 	}

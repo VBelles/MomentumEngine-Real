@@ -5,9 +5,16 @@
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
 
+REGISTER_BTACTION("OnHit", OnHit);
+
+OnHit::OnHit() {
+	type = "OnHit";
+}
+
 OnHit::OnHit(Enemy* enemy, std::string animation) :
-	enemy(enemy),
-	animation(animation) {
+	OnHit() {
+	this->enemy = enemy;
+	this->animation = animation;
 }
 
 int OnHit::execAction(float delta) {
@@ -54,4 +61,15 @@ int OnHit::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
 	return Leave;
+}
+
+void OnHit::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
+
+	animation = j.value("animation", animation);
+}
+
+void OnHit::debugInMenu() {
+	ImGui::Text("Animation: %s\n", animation.c_str());
 }

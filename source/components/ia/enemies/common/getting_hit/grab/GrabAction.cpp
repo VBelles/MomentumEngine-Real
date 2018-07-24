@@ -4,7 +4,15 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
-GrabAction::GrabAction(Enemy* enemy): enemy(enemy) {
+REGISTER_BTACTION("GrabAction", GrabAction);
+
+GrabAction::GrabAction() {
+	type = "GrabAction";
+}
+
+GrabAction::GrabAction(Enemy* enemy) :
+	GrabAction() {
+	this->enemy = enemy;
 }
 
 int GrabAction::execAction(float delta) {
@@ -13,4 +21,9 @@ int GrabAction::execAction(float delta) {
 		return Leave;
 	}
 	return Stay;
+}
+
+void GrabAction::load(IBehaviorTreeNew* bt, const json& j) {
+	enemy = dynamic_cast<Enemy*>(bt);
+	assert(enemy);
 }
