@@ -1,0 +1,606 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 24.07.2018 16:57:48
+
+newmtl empty_gray
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl Plataforma
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl wire_213154229
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.8353 0.6039 0.8980
+	Kd 0.8353 0.6039 0.8980
+	Ks 0.3500 0.3500 0.3500
+
+newmtl Material__99
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Plataforma\DDS\plataforma_nueva_baja_DefaultMaterial_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Plataforma\DDS\plataforma_nueva_baja_DefaultMaterial_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Plataforma\DDS\plataforma_nueva_baja_DefaultMaterial_Metallic.dds
+	map_Ke Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Plataforma\DDS\plataforma_nueva_baja_DefaultMaterial_Emissive.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Plataforma\DDS\plataforma_nueva_baja_DefaultMaterial_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Plataforma\DDS\plataforma_nueva_baja_DefaultMaterial_Normal.dds
+
+newmtl Material__102
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\PARED_ASSETS_MANCHAS GRANDES.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\PARED_ASSETS_MANCHAS GRANDES.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Baldosas\DDS\baldosa2_normalmap.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Baldosas\DDS\baldosa2_normalmap.dds
+
+newmtl Material__106
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\PARED_ASSETS_MANCHAS.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\PARED_ASSETS_MANCHAS.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Baldosas\DDS\baldosa6_normalmap.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Baldosas\DDS\baldosa6_normalmap.dds
+
+newmtl wire_028089177
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.1098 0.3490 0.6941
+	Kd 0.1098 0.3490 0.6941
+	Ks 0.3500 0.3500 0.3500
+
+newmtl wire_148177027
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5804 0.6941 0.1059
+	Kd 0.5804 0.6941 0.1059
+	Ks 0.3500 0.3500 0.3500
+
+newmtl wire_196088225
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.7686 0.3451 0.8824
+	Kd 0.7686 0.3451 0.8824
+	Ks 0.3500 0.3500 0.3500
+
+newmtl wire_006134006
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.0235 0.5255 0.0235
+	Kd 0.0235 0.5255 0.0235
+	Ks 0.3500 0.3500 0.3500
+
+newmtl Material__119
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\12\terrenos_LOWPOLY_substance_Material__12_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\12\terrenos_LOWPOLY_substance_Material__12_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\2\terrenos_LOWPOLY_substance_Material__2_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\12\terrenos_LOWPOLY_substance_Material__12_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\12\terrenos_LOWPOLY_substance_Material__12_Normal.dds
+
+newmtl Material__8
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl wire_088199225
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.3451 0.7804 0.8824
+	Kd 0.3451 0.7804 0.8824
+	Ks 0.3500 0.3500 0.3500
+
+newmtl Material__87
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Aros\DDS\aro_baja_DefaultMaterial_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Aros\DDS\aro_baja_DefaultMaterial_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Arcos\Arco1\DDS\arcos_baja_Material arco1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Aros\DDS\aro_baja_DefaultMaterial_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Aros\DDS\aro_baja_DefaultMaterial_Normal.dds
+
+newmtl Material__150
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_Normal.dds
+
+newmtl Material__151
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 2\DDS\set_terreno2_Material set2_terreno2_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 2\DDS\set_terreno2_Material set2_terreno2_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 2\DDS\set_terreno2_Material set2_terreno2_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 2\DDS\set_terreno2_Material set2_terreno2_Normal.dds
+
+newmtl Material__152
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 3\DDS\set_terreno2_Material set2_terreno3_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 3\DDS\set_terreno2_Material set2_terreno3_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 3\DDS\set_terreno2_Material set2_terreno3_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 3\DDS\set_terreno2_Material set2_terreno3_Normal.dds
+
+newmtl Material__154
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 5\DDS\set_terreno2_Material set2_terreno5_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 5\DDS\set_terreno2_Material set2_terreno5_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 5\DDS\set_terreno2_Material set2_terreno5_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 5\DDS\set_terreno2_Material set2_terreno5_Normal.dds
+
+newmtl Material__153
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 4\DDS\set_terreno2_Material set2_terreno4_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 4\DDS\set_terreno2_Material set2_terreno4_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 1\DDS\set_terreno2_Material set2_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 4\DDS\set_terreno2_Material set2_terreno4_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_03\Terreno 4\DDS\set_terreno2_Material set2_terreno4_Normal.dds
+
+newmtl Material__162
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo2\DDS modulo2\set_terreno3_Material set3_terreno2_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo2\DDS modulo2\set_terreno3_Material set3_terreno2_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo1\DDS modulo1\set_terreno3_Material set3_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo2\DDS modulo2\set_terreno3_Material set3_terreno2_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo2\DDS modulo2\set_terreno3_Material set3_terreno2_Normal.dds
+
+newmtl Material__163
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo3\DDS modulo3\set_terreno3_Material set3_terreno3_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo3\DDS modulo3\set_terreno3_Material set3_terreno3_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo1\DDS modulo1\set_terreno3_Material set3_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo3\DDS modulo3\set_terreno3_Material set3_terreno3_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo3\DDS modulo3\set_terreno3_Material set3_terreno3_Normal.dds
+
+newmtl Material__165
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo5\DDS modulo5\set_terreno3_Material set3_terreno5_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo5\DDS modulo5\set_terreno3_Material set3_terreno5_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo1\DDS modulo1\set_terreno3_Material set3_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo5\DDS modulo5\set_terreno3_Material set3_terreno5_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo5\DDS modulo5\set_terreno3_Material set3_terreno5_Normal.dds
+
+newmtl Material__164
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo4\DDS modulo4\set_terreno3_Material set3_terreno4_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo4\DDS modulo4\set_terreno3_Material set3_terreno4_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo1\DDS modulo1\set_terreno3_Material set3_terreno1_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo4\DDS modulo4\set_terreno3_Material set3_terreno4_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Montana Colosal\Montana_04\modulo4\DDS modulo4\set_terreno3_Material set3_terreno4_Normal.dds
+
+newmtl wire_224086086
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.8784 0.3373 0.3373
+	Kd 0.8784 0.3373 0.3373
+	Ks 0.3500 0.3500 0.3500
+
+newmtl Material__120
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\8\terrenos_LOWPOLY_substance_Material__8_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\8\terrenos_LOWPOLY_substance_Material__8_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\2\terrenos_LOWPOLY_substance_Material__2_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\8\terrenos_LOWPOLY_substance_Material__8_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\8\terrenos_LOWPOLY_substance_Material__8_Normal.dds
+
+newmtl Material__118
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\11\terrenos_LOWPOLY_substance_Material__11_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\11\terrenos_LOWPOLY_substance_Material__11_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\2\terrenos_LOWPOLY_substance_Material__2_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\11\terrenos_LOWPOLY_substance_Material__11_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\11\terrenos_LOWPOLY_substance_Material__11_Normal.dds
+
+newmtl Material__125
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\15\terrenos_LOWPOLY_substance_Material__15_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\15\terrenos_LOWPOLY_substance_Material__15_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\2\terrenos_LOWPOLY_substance_Material__2_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\15\terrenos_LOWPOLY_substance_Material__15_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\15\terrenos_LOWPOLY_substance_Material__15_Normal.dds
+
+newmtl Material__117
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\10\terrenos_LOWPOLY_substance_Material__10_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\10\terrenos_LOWPOLY_substance_Material__10_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\2\terrenos_LOWPOLY_substance_Material__2_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\10\terrenos_LOWPOLY_substance_Material__10_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\10\terrenos_LOWPOLY_substance_Material__10_Normal.dds
+
+newmtl Material__121
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\14\terrenos_LOWPOLY_substance_Material__14_BaseColor.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\14\terrenos_LOWPOLY_substance_Material__14_BaseColor.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\2\terrenos_LOWPOLY_substance_Material__2_Metallic.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\14\terrenos_LOWPOLY_substance_Material__14_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 18 terrain\14\terrenos_LOWPOLY_substance_Material__14_Normal.dds
+
+newmtl Material__69
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Seis\DDS\9_set_terrain_substance_Material _159_AlbedoTransparency.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Seis\DDS\9_set_terrain_substance_Material _159_AlbedoTransparency.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Uno\DDS\9_set_terrain_substance_Material _154_MetallicSmoothness.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Seis\DDS\9_set_terrain_substance_Material _159_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Seis\DDS\9_set_terrain_substance_Material _159_Normal.dds
+
+newmtl Material__66
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Tres\DDS\9_set_terrain_substance_Material _156_AlbedoTransparency.dds
+	map_Kd Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Tres\DDS\9_set_terrain_substance_Material _156_AlbedoTransparency.dds
+	map_Ks Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Uno\DDS\9_set_terrain_substance_Material _154_MetallicSmoothness.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Tres\DDS\9_set_terrain_substance_Material _156_Normal.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Set 9 Terrain\Tres\DDS\9_set_terrain_substance_Material _156_Normal.dds
+
+newmtl Material__31
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS.dds
+	map_Kd Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_001_normalmap.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_001_normalmap.dds
+
+newmtl Material__32
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS GRANDES.dds
+	map_Kd Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS GRANDES.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_002_normalmap.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_002_normalmap.dds
+
+newmtl Material__54
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS.dds
+	map_Kd Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_003_normalmap.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_003_normalmap.dds
+
+newmtl Material__55
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_RASCADAS.dds
+	map_Kd Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_RASCADAS.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_004_normalmap.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_004_normalmap.dds
+
+newmtl Material__56
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS GRANDES.dds
+	map_Kd Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS GRANDES.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_005_normalmap.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_005_normalmap.dds
+
+newmtl Material__47
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS GRANDES.dds
+	map_Kd Q:\Alumne\Momentum\cosas\TEXTURA\PALETAS\PARED_ASSETS_MANCHAS GRANDES.dds
+	map_bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_006_normalmap.dds
+	bump Q:\Alumne\Momentum\Prefabs\Texturas Momentum\Torre\DDS\torre_006_normalmap.dds
+
+newmtl Altar
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl Material_Suelo
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+
+newmtl wire_087225143
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.3412 0.8824 0.5608
+	Kd 0.3412 0.8824 0.5608
+	Ks 0.3500 0.3500 0.3500
+
+newmtl Material_Hierba
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
