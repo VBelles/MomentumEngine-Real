@@ -328,5 +328,5 @@ function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
 )
 
 -- This path has to include file name.
---exportMeshObject $ "C:/dev/MomentumEngine-Real/Bin/data/meshes/grass_large_02.mesh"
+--exportMeshObject $ "D:/dev/MomentumEngine-Real/Bin/data/meshes/tumba_v3.mesh"
 --exportMeshObject $ "C:/CPPprojects/MomentumEngine-Real/Bin/data/meshes/w24_meleeEnemy.mesh"

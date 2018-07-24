@@ -2,8 +2,8 @@
     "technique": "vegetation.tech",
     "textures":
     {
-      "albedo": "data/textures/vegetacion/brizna.dds",
-      "normal": "data/textures/vegetacion/brizna_normals.dds",
+      "albedo": "data/textures/vegetacion/grass_large_00.dds",
+      "normal": "data/textures/vegetacion/grass_large_normals.dds",
       "metallic": "data/textures/black.dds",
       "roughness": "data/textures/black.dds"
     }

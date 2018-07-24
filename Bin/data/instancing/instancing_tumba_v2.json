@@ -1,0 +1,16 @@
+{
+  "TInstance":
+  [
+    {
+      "mesh": "data/meshes/tumba_v2.instanced_mesh",
+      "data":
+      [
+        {
+          "pos": "3 0 0",
+          "scale": 1.0,
+          "rot": "0.0 0.0 0.0 -1.0"
+        }
+      ]
+    }
+  ]
+}
