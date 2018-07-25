@@ -146,10 +146,15 @@ void PS_GBuffer(
 	o_albedo = txAlbedo.Sample(samLinear, iTex0) * obj_color;
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 
-	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
+	float3x3 TBN = computeTBN(iNormal, iTangent);
+	float3 N = computeNormalMap(iTex0, TBN);
+	float3 detail_normal = computeDetailNormalMap(iTex1, TBN);
 
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
+	
+	//UDN blending
+	N = float3(N.xy + detail_normal.xy, N.z);
 	o_normal = encodeNormal(N, roughness);
 
 	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0) * float4(self_illum_tint, 1) * self_illum_ratio;

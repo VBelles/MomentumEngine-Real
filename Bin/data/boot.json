@@ -21,6 +21,7 @@
     "data/scenes/slash-test.scene"
   ],
   "unused_scenes": [
+    "data/scenes/prueba_detail_normals-0.scene",
     "data/scenes/milestone3_tutorial-0.scene",
     "data/scenes/milestone3_tutorial-coins.scene",
     "data/scenes/milestone3_tutorial-triggers.scene",
