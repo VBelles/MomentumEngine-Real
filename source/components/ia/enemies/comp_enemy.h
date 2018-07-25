@@ -13,7 +13,7 @@ class TCompHitboxes;
 class TCompGivePower;
 class TCompPlayerModel;
 
-class EnemyBehaviorTree : public TCompBase {
+class TCompEnemy : public TCompBase {
 private:
 	Enemy* enemy = nullptr;
 
@@ -28,7 +28,7 @@ private:
 public:
 	DECL_SIBLING_ACCESS();
 
-	~EnemyBehaviorTree();
+	~TCompEnemy();
 
 	void load(const json& j, TEntityParseContext& ctx);
 	void debugInMenu();

@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "EnemyBehaviorTree.h"
+#include "comp_enemy.h"
 
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
@@ -11,33 +11,33 @@
 #include "modules/game_modules/game/module_game.h"
 #include "modules/game_modules/game/enemy_manager.h"
 
-DECL_OBJ_MANAGER("enemy_bt", EnemyBehaviorTree);
+DECL_OBJ_MANAGER("enemy", TCompEnemy);
 
-EnemyBehaviorTree::~EnemyBehaviorTree() {
+TCompEnemy::~TCompEnemy() {
 	SAFE_DELETE(enemy);
 }
 
-void EnemyBehaviorTree::load(const json& j, TEntityParseContext& ctx) {
+void TCompEnemy::load(const json& j, TEntityParseContext& ctx) {
 	SAFE_DELETE(enemy);
 	enemy = new Enemy();
 	enemy->load(j);
 }
 
-void EnemyBehaviorTree::debugInMenu() {
+void TCompEnemy::debugInMenu() {
 	enemy->debugInMenu();
 }
 
-void EnemyBehaviorTree::registerMsgs() {
-	DECL_MSG(EnemyBehaviorTree, TMsgEntitiesGroupCreated, onGroupCreated);
-	DECL_MSG(EnemyBehaviorTree, TMsgAllScenesCreated, onAllScenesCreated);
-	DECL_MSG(EnemyBehaviorTree, TMsgAttackHit, onAttackHit);
-	DECL_MSG(EnemyBehaviorTree, TMsgOutOfBounds, onOutOfBounds);
-	DECL_MSG(EnemyBehaviorTree, TMsgPerfectDodged, onPerfectDodged);
-	DECL_MSG(EnemyBehaviorTree, TMsgColliderDestroyed, onColliderDestroyed);
-	DECL_MSG(EnemyBehaviorTree, TMsgHitboxEnter, onHitboxEnter);
+void TCompEnemy::registerMsgs() {
+	DECL_MSG(TCompEnemy, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompEnemy, TMsgAllScenesCreated, onAllScenesCreated);
+	DECL_MSG(TCompEnemy, TMsgAttackHit, onAttackHit);
+	DECL_MSG(TCompEnemy, TMsgOutOfBounds, onOutOfBounds);
+	DECL_MSG(TCompEnemy, TMsgPerfectDodged, onPerfectDodged);
+	DECL_MSG(TCompEnemy, TMsgColliderDestroyed, onColliderDestroyed);
+	DECL_MSG(TCompEnemy, TMsgHitboxEnter, onHitboxEnter);
 }
 
-void EnemyBehaviorTree::update(float delta) {
+void TCompEnemy::update(float delta) {
 	if (!enemy->getCollider()->toDestroy) {
 		enemy->deltaMovement = VEC3::Zero;
 		enemy->recalc(delta);
@@ -45,7 +45,7 @@ void EnemyBehaviorTree::update(float delta) {
 	}
 }
 
-void EnemyBehaviorTree::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void TCompEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	enemy->playerHandle = getEntityByName(PLAYER_NAME);
 	if (enemy->playerHandle.isValid()) {
 		CEntity* player = enemy->playerHandle;
@@ -64,7 +64,7 @@ void EnemyBehaviorTree::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	enemy->resetCurrent();
 }
 
-void EnemyBehaviorTree::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
+void TCompEnemy::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	enemy->playerHandle = getEntityByName(PLAYER_NAME);
 	if (enemy->playerHandle.isValid()) {
 		CEntity* player = enemy->playerHandle;
@@ -74,7 +74,7 @@ void EnemyBehaviorTree::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	enemy->spawnPosition = enemy->getTransform()->getPosition();
 }
 
-void EnemyBehaviorTree::onAttackHit(const TMsgAttackHit& msg) {
+void TCompEnemy::onAttackHit(const TMsgAttackHit& msg) {
 	if (!enemy->getCollider()->toDestroy) {
 		enemy->receivedAttack = msg.info;
 		enemy->onHit = true;
@@ -82,14 +82,14 @@ void EnemyBehaviorTree::onAttackHit(const TMsgAttackHit& msg) {
 	}
 }
 
-void EnemyBehaviorTree::onOutOfBounds(const TMsgOutOfBounds& msg) {
+void TCompEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
 	if (!enemy->getCollider()->toDestroy) {
 		enemy->onOutOfBounds = true;
 		enemy->resetCurrent();
 	}
 }
 
-void EnemyBehaviorTree::onPerfectDodged(const TMsgPerfectDodged & msg) {
+void TCompEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
 	if (!enemy->getCollider()->toDestroy) {
 		dbg("Damn! I've been dodged.\n");
 		if (enemy->hpGiven < enemy->maxHpToGive) {
@@ -99,7 +99,7 @@ void EnemyBehaviorTree::onPerfectDodged(const TMsgPerfectDodged & msg) {
 	}
 }
 
-void EnemyBehaviorTree::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
+void TCompEnemy::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	if (enemy->getCollider()->toDestroy) {
 		CEntity* entity = CHandle(this).getOwner();
 		((CModuleGame*)(EngineModules.getModule("game")))->getEnemyManager()->onDead(entity->getName());
@@ -108,7 +108,7 @@ void EnemyBehaviorTree::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	}
 }
 
-void EnemyBehaviorTree::onHitboxEnter(const TMsgHitboxEnter& msg) {
+void TCompEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
 	if (enemy->currentAttack != "") {
 		if (msg.h_other_entity != CHandle(this).getOwner()) {
 			if (enemy->attacks[enemy->currentAttack].hitboxName == msg.hitbox) {
