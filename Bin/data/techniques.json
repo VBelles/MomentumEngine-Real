@@ -329,7 +329,7 @@
     "ps_entry_point": "PS_Particles", 
     "vertex_type" : "PosClr", 
     "category" : "particles", 
-    "z" : "test_but_no_write", 
+    "z" : "disable_all", 
     "rs_config" : "cull_none", 
     "blend" : "combinative",
     "priority": 60    
