@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "ms3_roca_090",
+      "transform":
+      {
+        "pos": "-112.295 -7.85268 -14.0371",
+        "rotation": "-0.0706388 -0.9213 0.326215 -0.199499"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_roca_090.mesh",
+          "materials":
+          [
+            "data/materials/Material_#200.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_roca_090_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "extension_tierra_new01",
       "transform":
       {
@@ -5531,7 +5562,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider069.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_203_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5562,7 +5593,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider068.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_202_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5593,7 +5624,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider067.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_201_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5624,7 +5655,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider035.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_200_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5655,7 +5686,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider066.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_199_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5686,7 +5717,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider034.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_198_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5717,7 +5748,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider033.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_197_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5745,7 +5776,17 @@
             "data/materials/Material_#200.material"
           ]
         }
-      ]
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_roca_196_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
     }
   },
   {
@@ -5769,7 +5810,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider065.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_195_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5800,7 +5841,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider032.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_194_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5831,7 +5872,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider038.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_193_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5862,7 +5903,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider010.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_192_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5893,7 +5934,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider031.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_191_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5921,7 +5962,17 @@
             "data/materials/Material_#200.material"
           ]
         }
-      ]
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_roca_190_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
     }
   },
   {
@@ -5945,7 +5996,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider064.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_189_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -5976,7 +6027,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider030.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_188_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6007,7 +6058,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider037.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_187_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6038,7 +6089,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider063.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_186_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6069,7 +6120,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider029.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_185_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6100,7 +6151,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider036.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_184_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6131,7 +6182,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_009_collider008.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_183_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6162,7 +6213,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider024.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_182_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6193,7 +6244,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider009.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_181_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6224,7 +6275,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider062.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_180_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6255,7 +6306,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider061.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_179_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6286,7 +6337,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider028.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_178_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6317,7 +6368,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider035.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_177_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6348,7 +6399,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider060.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_176_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6379,7 +6430,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider059.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_175_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6410,7 +6461,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider027.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_174_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6441,7 +6492,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider034.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_173_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6472,7 +6523,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider058.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_172_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6503,7 +6554,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider033.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_171_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6534,7 +6585,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider057.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_170_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6565,7 +6616,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider056.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_169_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6596,7 +6647,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider055.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_168_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6627,7 +6678,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider026.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_167_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6658,7 +6709,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider032.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_166_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6689,7 +6740,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider054.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_165_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6720,7 +6771,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider025.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_164_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6751,7 +6802,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider031.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_163_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6782,7 +6833,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider008.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_162_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6813,7 +6864,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider053.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_161_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6844,7 +6895,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider024.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_160_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6875,7 +6926,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider030.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_159_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6906,7 +6957,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider052.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_158_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6937,7 +6988,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider029.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_157_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6968,7 +7019,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider051.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_156_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -6999,7 +7050,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider050.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_155_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7030,7 +7081,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider049.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_154_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7061,7 +7112,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider023.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_153_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7092,7 +7143,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider028.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_152_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7123,7 +7174,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider048.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_151_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7154,7 +7205,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider022.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_150_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7185,7 +7236,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider027.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_149_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7216,7 +7267,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider007.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_148_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7247,7 +7298,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider047.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_147_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7278,7 +7329,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider021.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_146_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7309,7 +7360,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider026.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_145_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7340,7 +7391,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider025.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_144_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7371,7 +7422,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider046.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_143_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7402,7 +7453,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider023.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_142_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7433,7 +7484,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider024.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_141_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7464,7 +7515,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider020.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_140_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7495,7 +7546,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider045.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_138_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7526,7 +7577,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider019.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_137_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7557,7 +7608,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider023.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_136_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7588,7 +7639,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider044.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_135_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7619,7 +7670,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider018.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_134_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7650,7 +7701,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider022.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_133_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7681,7 +7732,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_009_collider007.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_132_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7712,7 +7763,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider022.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_131_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7743,7 +7794,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider006.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_130_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7774,7 +7825,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider043.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_129_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7805,7 +7856,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider021.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_128_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7836,7 +7887,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider042.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_127_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7867,7 +7918,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider020.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_126_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7898,7 +7949,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider041.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_125_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7929,7 +7980,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider019.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_124_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7960,7 +8011,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider040.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_123_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -7991,7 +8042,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider018.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_122_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8022,7 +8073,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider039.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_121_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8053,7 +8104,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider038.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_120_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8084,7 +8135,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider037.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_119_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8115,7 +8166,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider036.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_118_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8146,7 +8197,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider035.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_117_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8177,7 +8228,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider017.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_116_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8208,7 +8259,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider034.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_115_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8239,7 +8290,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider016.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_114_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8270,7 +8321,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider021.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_113_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8301,7 +8352,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider020.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_112_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8332,7 +8383,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider033.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_111_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8363,7 +8414,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider032.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_110_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8394,7 +8445,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider015.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_109_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8425,7 +8476,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider014.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_108_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8456,7 +8507,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider019.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_107_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8487,7 +8538,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider031.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_106_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8518,7 +8569,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider030.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_105_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8549,7 +8600,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider013.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_104_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8580,7 +8631,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider018.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_103_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8611,7 +8662,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider029.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_102_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8642,7 +8693,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider028.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_101_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8673,7 +8724,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider027.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_100_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8704,7 +8755,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider026.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_099_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8735,7 +8786,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider025.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_098_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8766,7 +8817,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider012.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_097_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8797,7 +8848,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider017.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_096_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8828,7 +8879,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider024.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_095_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8859,7 +8910,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider011.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_094_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8890,7 +8941,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider023.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_093_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8921,7 +8972,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider010.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_092_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8952,7 +9003,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider017.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_091_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -8960,27 +9011,6 @@
           "scenario"
         ]
       }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "ms3_roca_090",
-      "transform":
-      {
-        "pos": "-112.295 -7.85268 -14.0371",
-        "rotation": "-0.0706388 -0.9213 0.326215 -0.199499"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ms3_roca_090.mesh",
-          "materials":
-          [
-            "data/materials/Material_#200.material"
-          ]
-        }
-      ]
     }
   },
   {
@@ -9004,7 +9034,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider016.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_089_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9035,7 +9065,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider015.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_088_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9066,7 +9096,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider009.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_087_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9097,7 +9127,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider014.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_086_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9128,7 +9158,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider022.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_085_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9159,7 +9189,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider016.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_084_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9190,7 +9220,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider021.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_083_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9221,7 +9251,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider015.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_082_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9252,7 +9282,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider020.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_081_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9283,7 +9313,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider008.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_080_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9314,7 +9344,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider019.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_079_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9345,7 +9375,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider014.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_078_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9376,7 +9406,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider013.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_077_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9407,7 +9437,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider018.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_076_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9438,7 +9468,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider013.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_075_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9469,7 +9499,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider012.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_074_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9500,7 +9530,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_009_collider006.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_073_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9531,7 +9561,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider007.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_072_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9562,7 +9592,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider005.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_071_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9593,7 +9623,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider017.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_070_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9624,7 +9654,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider012.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_069_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9655,7 +9685,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider011.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_068_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9686,7 +9716,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider016.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_067_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9717,7 +9747,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider011.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_066_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9748,7 +9778,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider010.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_065_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9779,7 +9809,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_009_collider005.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_064_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9810,7 +9840,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider006.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_063_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9841,7 +9871,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider015.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_062_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9869,7 +9899,17 @@
             "data/materials/Material_#200.material"
           ]
         }
-      ]
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_roca_061_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
     }
   },
   {
@@ -9893,7 +9933,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider014.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_060_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9924,7 +9964,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider010.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_059_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9955,7 +9995,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider013.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_058_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -9986,7 +10026,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider009.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_057_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10017,7 +10057,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider012.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_056_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10048,7 +10088,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider005.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_055_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10079,7 +10119,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider011.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_054_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10110,7 +10150,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider004.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_053_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10141,7 +10181,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_009_collider004.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_052_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10172,7 +10212,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider009.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_051_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10203,7 +10243,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider010.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_050_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10234,7 +10274,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider009.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_049_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10265,7 +10305,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider008.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_048_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10296,7 +10336,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider008.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_047_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10327,7 +10367,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider008.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_046_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10358,7 +10398,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider007.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_045_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10389,7 +10429,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider007.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_044_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10420,7 +10460,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider007.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_043_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10451,7 +10491,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider004.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_042_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10482,7 +10522,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider006.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_041_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10513,7 +10553,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider006.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_040_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10544,7 +10584,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider006.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_039_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10575,7 +10615,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider005.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_038_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10606,7 +10646,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider005.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_037_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10637,7 +10677,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider005.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_036_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10668,7 +10708,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_009_collider003.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_035_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10699,7 +10739,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider003.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_034_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10730,7 +10770,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider003.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_033_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10761,7 +10801,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider004.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_032_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10792,7 +10832,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider004.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_031_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10823,7 +10863,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider004.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_030_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10854,7 +10894,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider003.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_029_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10885,7 +10925,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider003.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_028_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10916,7 +10956,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider003.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_027_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10947,7 +10987,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_009_collider002.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_026_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -10978,7 +11018,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider002.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_025_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11009,7 +11049,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider002.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_024_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11040,7 +11080,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider002.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_023_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11071,7 +11111,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider002.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_022_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11102,7 +11142,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider002.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_021_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11133,7 +11173,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_014_collider001.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_020_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11164,7 +11204,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_012_collider001.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_019_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11195,7 +11235,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_010_collider001.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_018_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11226,7 +11266,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_009_collider001.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_017_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11257,7 +11297,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_006_collider001.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_016_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -11288,7 +11328,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_roca_003_collider001.col_mesh",
+        "mesh_src": "data/meshes/ms3_roca_015_col.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
