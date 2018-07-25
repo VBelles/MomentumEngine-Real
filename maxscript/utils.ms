@@ -2,6 +2,17 @@
 -- Some generally useful functions.
 --------------------------------------------------------------------------------
 
+--Detach all elements of an Editable Poly object. ----- WIP! -------
+fn detach_elems obj base_name = (
+	if convertToPoly obj != undefined do (
+		while polyOp.getNumFaces obj != 0 do (
+			local f_list = polyOp.getElementsUsingFace obj #{1}
+			local elem = polyOp.detachFaces obj f_list asNode:true name:(uniqueName base_name)
+		)
+		delete obj
+	)
+)
+
 fn convertToInstance objs baseObj = (
 	if objs[1] == undefined then objs = #(objs)
 	for o in objs do instanceReplace o baseObj

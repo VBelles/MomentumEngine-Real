@@ -5,6 +5,8 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
+escapeEnable = true --Allow abort script execution holding ESC.
+
 global uniqueCoins   = #()
 global uniqueEnemies = #()
 global uniqueAltars  = #()
