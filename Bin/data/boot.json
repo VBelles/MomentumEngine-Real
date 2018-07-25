@@ -10,6 +10,7 @@
     "data/scenes/milestone3-cameras.scene",
     "data/scenes/milestone3-chrysalis.scene",
     "data/scenes/milestone3-coins.scene",
+    "data/scenes/milestone3-collisions.scene",
     "data/scenes/milestone3-mechanisms.scene",
     "data/scenes/milestone3-movables.scene",
     "data/scenes/milestone3-pure.scene",

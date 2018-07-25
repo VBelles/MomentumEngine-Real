@@ -1,6 +1,6 @@
------------------------------------------------
--- Some generally useful  functions.
------------------------------------------------
+--------------------------------------------------------------------------------
+-- Some generally useful functions.
+--------------------------------------------------------------------------------
 
 fn convertToInstance objs baseObj = (
 	if objs[1] == undefined then objs = #(objs)
@@ -85,7 +85,7 @@ fn get3pointAngle p1 p2 p3 = (
 	return getVecAngle v1 v2
 )
 
-------- MATERIALS AND NAMES ------------------------------------------------------
+------- MATERIALS AND NAMES ----------------------------------------------------
 
 -- Sets to <id> the material ID of all faces of an object.
 fn setMaterialIDs obj id:1 = (
