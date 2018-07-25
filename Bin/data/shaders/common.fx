@@ -9,6 +9,7 @@ Texture2D    txMetallic       	SLOT(TS_METALLIC);
 Texture2D    txRoughness      	SLOT(TS_ROUGHNESS);
 Texture2D    txSelfIllum      	SLOT( TS_SELF_ILLUM );
 Texture2D    txHeight      		SLOT( TS_HEIGHT );
+Texture2D    txDetailNormal     SLOT( TS_DETAIL_NORMAL );
 
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
@@ -167,12 +168,30 @@ float3x3 computeTBN(float3 inputN, float4 inputT) {
 	return float3x3(T, B, N);
 }
 
-float3 computeNormalMap(float3 inputN, float4 inputT, float2 inUV) {
+float3 computeNormalMap(float2 inUV, float3x3 TBN) {
 
-	float3x3 TBN = computeTBN(inputN, inputT);
+	//float3x3 TBN = computeTBN(inputN, inputT);
 
 	// Normal map comes in the range 0..1. Recover it in the range -1..1
 	float3 normal_color = txNormal.Sample(samLinear, inUV).xyz * 2.0 - 1.0;
+	float3 wN = mul(normal_color, TBN);
+	wN = normalize(wN);
+
+	// Uncomment to disable normal map
+	//wN = N;
+
+	return wN;
+}
+
+float3 computeDetailNormalMap(float2 inUV, float3x3 TBN) {
+
+	float3 normal_color = txDetailNormal.Sample(samLinear, inUV).xyz * 2.0 - 1.0;
+	if(normal_color.x == 0 && normal_color.y == 0 && normal_color.z == 0){
+		return normal_color;
+	}
+
+	//float3x3 TBN = computeTBN(inputN, inputT);
+	// Normal map comes in the range 0..1. Recover it in the range -1..1
 	float3 wN = mul(normal_color, TBN);
 	wN = normalize(wN);
 

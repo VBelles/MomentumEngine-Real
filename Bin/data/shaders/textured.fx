@@ -70,7 +70,7 @@ float4 PS(VS_OUTPUT input) : SV_Target
 
   //input.UV *= 4;
 
-  float3 wN = computeNormalMap( input.N, input.T, input.UV );
+  float3 wN = computeNormalMap(input.UV, computeTBN(input.N, input.T));
 
   float shadow_factor = computeShadowFactor( input.wPos );
 

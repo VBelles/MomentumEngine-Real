@@ -1,0 +1,23 @@
+[
+  {
+    "entity":
+    {
+      "name": "prueba_detail_normals",
+      "transform":
+      {
+        "pos": "0.0 1.63218 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/prueba_detail_normals.mesh",
+          "materials":
+          [
+            "data/materials/DetailNormalMaterial.material"
+          ]
+        }
+      ]
+    }
+  }
+]

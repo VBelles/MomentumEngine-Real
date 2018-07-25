@@ -10,6 +10,7 @@
     "data/scenes/milestone3-cameras.scene",
     "data/scenes/milestone3-chrysalis.scene",
     "data/scenes/milestone3-coins.scene",
+    "data/scenes/milestone3-collisions.scene",
     "data/scenes/milestone3-mechanisms.scene",
     "data/scenes/milestone3-movables.scene",
     "data/scenes/milestone3-pure.scene",
@@ -21,6 +22,7 @@
     "data/scenes/slash-test.scene"
   ],
   "unused_scenes": [
+    "data/scenes/prueba_detail_normals-0.scene",
     "data/scenes/milestone3_tutorial-0.scene",
     "data/scenes/milestone3_tutorial-coins.scene",
     "data/scenes/milestone3_tutorial-triggers.scene",
@@ -28,8 +30,8 @@
     "data/scenes/milestone3_tutorial-enemies.scene",
     "data/scenes/milestone3_tutorial-trimesh.scene",
     "data/scenes/milestone3_tutorial-chrysalis.scene",
-    "data/scenes/particles.scene",        
     "data/scenes/test_instancing.scene",
+    "data/scenes/particles.scene",        
     "data/scenes/breakable-0.scene",
     "data/scenes/test_combat.scene",
     "data/scenes/rigid_anim2.scene",
