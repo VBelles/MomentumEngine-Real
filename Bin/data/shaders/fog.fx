@@ -31,5 +31,9 @@ float4 PS(
 	ratio = saturate(1 - ratio);
 	ratio = ratio > fogMaxRatio ? fogMaxRatio : ratio;
 
-	return float4(lerp(color, fogColor, ratio));
+  	float3 eye = wPos - camera_pos;
+  	float4 env_color = txEnvironmentMap.SampleBias(samLinear, eye, 5 ) * global_ambient_adjustment;
+  	//float4 env_color = txEnvironmentMap.Sample(samLinear, eye) * global_ambient_adjustment;
+	//return env_color;
+	return float4(lerp(color, env_color * fogColor, ratio));
 }

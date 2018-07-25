@@ -38,7 +38,10 @@ float4 PS(
 {
   int3 ss_load_coords = uint3(iPosition.xy, 0);
   float4 oAlbedo = txGBufferAlbedos.Load(ss_load_coords);
-
+  float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+	if (zlinear == 1.0) {
+		return oAlbedo;
+	}
   float4 N_rt = txGBufferNormals.Load(ss_load_coords);
   float4 oNormal = float4(decodeNormal( N_rt.xyz ), 1);
 
