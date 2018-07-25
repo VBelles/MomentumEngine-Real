@@ -62,7 +62,7 @@ float4 PS(
 	// Add 3 octaves to break pattern repetition
 	float2 noiseF = noise0.xy + noise1.xy * 0.5 + noise2.xy * .25;
 
-	float3 normal = computeNormalMap(iNormal, iTangent, iTex0);
+	float3 normal = computeNormalMap(iTex0, computeTBN(iNormal, iTangent));
 	float3 noise = normal * 0.01f;
 
 	float4 albedo = txAlbedo.Sample(samClampLinear, iTex0);

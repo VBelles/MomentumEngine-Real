@@ -53,7 +53,7 @@ float4 PS(
 , float3 iWorldPos : TEXCOORD2
 )  : SV_Target0
 {
-	float3 normal = computeNormalMap(iNormal, iTangent, iTex0);
+	float3 normal = computeNormalMap(iTex0, computeTBN(iNormal, iTangent));
 	float3 noise = normal * 0.01f;
 
 	float4 albedo = txAlbedo.Sample(samClampLinear, iTex0);

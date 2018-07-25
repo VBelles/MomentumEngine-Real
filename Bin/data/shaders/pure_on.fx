@@ -68,7 +68,7 @@ void PS(
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 
-	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
+	float3 N = computeNormalMap(iTex0, computeTBN(iNormal, iTangent));
 
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
