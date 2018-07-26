@@ -5,6 +5,8 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
+escapeEnable = true --Allow abort script execution holding ESC.
+
 global uniqueCoins   = #()
 global uniqueEnemies = #()
 global uniqueAltars  = #()
@@ -204,7 +206,11 @@ struct TMaterialExporter (
 					exportMap mat.selfIllumMap "self_illum" "null_self_illum"
 					fs.writeComma()
 					exportMap mat.displacementMap "height" "null_height"
-					--More: ambientMap, specularMap, opacityMap, filterMap, reflectionMap, refractionMap.
+					fs.writeComma()
+					--refractionMap as detail_normal because we don't use it.
+					exportMap mat.refractionMap "detail_normal" "null_detail_normal"
+
+					--More: ambientMap, specularMap, opacityMap, filterMap, reflectionMap.
 				)
 			) else ( -- Empty material.
 				fs.writeKeyValue "albedo" "data/textures/null_albedo.dds"
@@ -218,6 +224,8 @@ struct TMaterialExporter (
 				fs.writeKeyValue "self_illum" "data/textures/null_self_illum.dds"
 				fs.writeComma()
 				fs.writeKeyValue "height" "data/textures/null_height.dds"
+				fs.writeComma()
+				fs.writeKeyValue "detail_normal" "data/textures/null_detail_normal.dds"
 			)
 			fs.endObj()
 		fs.endObj()
