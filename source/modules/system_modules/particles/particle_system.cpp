@@ -135,9 +135,10 @@ namespace Particles {
 
 		for (auto& p : _particles) {
 			if (_core->render.type == TCoreSystem::TRender::Billboard) {
-				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
-				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
 				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
+				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
+				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
+
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else if (_core->render.type == TCoreSystem::TRender::HorizontalBillboard) {
