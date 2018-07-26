@@ -2,8 +2,18 @@
 -- Some generally useful functions.
 --------------------------------------------------------------------------------
 
+-- Returns an array of an editablePoly's elements positions.
+-- Elements should be planes, gets the center position of the face.
+fn getPolyElementsPos obj = (
+	local elemPos = #()
+	for i = 1 to (polyop.getNumFaces obj) do (
+		append elemPos polyop.getFaceCenter obj i
+	)
+	return elemPos
+)
+
 --Detach all elements of an Editable Poly object. ----- WIP! -------
-fn detach_elems obj base_name = (
+fn detachElements obj base_name = (
 	if convertToPoly obj != undefined do (
 		while polyOp.getNumFaces obj != 0 do (
 			local f_list = polyOp.getElementsUsingFace obj #{1}
