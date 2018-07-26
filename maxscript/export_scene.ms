@@ -124,7 +124,7 @@ struct TJsonFormatter (
 		format ("{ \"entity\": { \"name\": \"" + prefix + "Dummy\" } },\n") to:fs
 	),
 	
-	fn arrayOfStrings arr suffix:""= (
+	fn arrayOfStrings arr suffix:"" = (
 		beginArray()
 		for idx = 1 to arr.count do (
 			if idx != 1 then writeComma()
@@ -231,10 +231,10 @@ struct TMaterialExporter (
 		fs.endObj()
 	),
 
-	-- Exports a single std material to a json format
+	-- Exports a single std material to a json format.
 	fn exportStdMaterial mat mat_name pure:false = (
 		if not pure then (
-			--format "Exporting material % % %\n" mat_name mat (classof mat as string)
+			--format "Exporting material % % %\n" mat_name mat (classOf mat as string)
 			fs.begin (project_path + mat_name + ".material")
 				exportMaterialContent mat:mat
 			fs.end()
@@ -249,8 +249,53 @@ struct TMaterialExporter (
 			fs.end()
 		)
 	),
-	
-	-- Exports an empty solid material to a json format
+
+	fn exportMix mat: mats tech:"pbr_mix" = (
+		fs.beginObj()
+			fs.writeKeyValue "technique" (tech + ".tech")
+			fs.writeComma()
+			fs.writeKeyValue "type" "mix"
+			fs.writeComma()
+			fs.writeKeyValue "shadows" true
+			fs.writeComma()
+			fs.writeKeyEmpty "textures"
+			fs.writeComma()
+			fs.writeKey "mats"
+			local matsNames = #()
+			for m in mats do append m.name matsNames
+			fs.arrayOfStrings matsNames
+			fs.writeComma()
+			fs.writeKeyValue "mix_blend_weights" mat.mask.bitmap
+		fs.endObj()
+	),
+
+	-- Gets all materials connected to map1 and map2, including multimaterials.
+	fn getRecursiveMats mat = (
+		local mats = #()
+
+		if classOf mat.map1 != MultiMaterial then append mats mat.map1
+		else for m in mat.map1 do append mats m
+
+		if classOf mat.map2 != MultiMaterial then append mats mat.map2
+		else for m in mat.map2 do append mats m
+
+		return mats
+	),
+
+	fn exportBlendMat mat = (
+		local mats = getRecursiveMats mat
+		for m in mats do (
+			fs.begin (project_path + m.name + ".material")
+				exportMaterialContent mat:m
+			fs.end()
+		)
+
+		fs.begin (project_path + mat.mask.name + ".material")
+			exportMix mat:mat mats
+		fs.end()
+	),
+
+	-- Exports an empty solid material to a json format.
 	fn exportEmptyMaterial mat_name pure:false = (
 		local suffix = ""
 		if pure then suffix = "_pure"
@@ -266,12 +311,10 @@ struct TMaterialExporter (
 		)
 	),
 	
-	-- Will return an array of all the materials names used by obj and exported by us
+	-- Will return an array of all the materials names used by obj and exported by us.
 	fn exportMaterial mat mat_path obj = (
 		local exported_materials = #()
 		local matClass = classOf mat
-		--format "material class: %\n" matClass as string --DEBUG
-		
 		local pure = obj.layer.name == "pure"
 
 		if mat == undefined then (
@@ -295,13 +338,23 @@ struct TMaterialExporter (
 				if materials_of_mesh[ mat_idx ] == undefined then continue
 				local mat_of_mesh = multi_mat[ mat_idx ]
 
-				if mat_of_mesh == undefined then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string)+ " but the multimat does not have this submat")
-				if classof mat_of_mesh != StandardMaterial then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat in this slot is not a stdMaterial")
+				if mat_of_mesh == undefined then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat does not have this submat")
+				if classOf mat_of_mesh != StandardMaterial then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat in this slot is not a stdMaterial")
 
 				local mat_name = mat_of_mesh.name
 				append exported_materials mat_name
 				exportStdMaterial mat_of_mesh (mat_path + mat_name) pure:pure
 			)
+		) else if matClass == Blend then (
+			if mat.map1 != undefined and
+			   mat.map2 != undefined and
+			   mat.mask != undefined then (
+				local mat_name = cleanName mat.name
+				append exported_materials mat_name
+
+				exportBlendMat mat
+			) else format "WARNING: Material % has incorrect inputs.\n" mat.name
+
 		)
 		return exported_materials
 	)
