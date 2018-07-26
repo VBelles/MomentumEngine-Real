@@ -4,6 +4,7 @@
 struct VS_FULL_OUTPUT { 
   float4 Pos   : SV_POSITION; 
   float2 UV    : TEXCOORD0; 
+  float3 worldPos : TEXCOORD1;
 }; 
  
 // ---------------------------------------- 
@@ -12,11 +13,12 @@ VS_FULL_OUTPUT VS_Particles(
   float4 iColor : COLOR0 
   ) 
 { 
-  VS_FULL_OUTPUT output = (VS_FULL_OUTPUT)0; 
-  float4 pos = iPos -float4(0.5, 0.5, 0, 0);
-  float4 world_pos = mul(pos, obj_world); 
-  output.Pos = mul(world_pos, camera_view_proj); 
+  VS_FULL_OUTPUT output = (VS_FULL_OUTPUT)0;
   output.UV  = iPos.xy;
+  iPos -= float4(0.5, 0.5, 0, 0);
+  float4 world_pos = mul(iPos, obj_world);
+  output.Pos = mul(world_pos, camera_view_proj);
+  output.worldPos = world_pos;
   return output; 
 } 
  
@@ -25,9 +27,27 @@ float4 PS_Particles(
   VS_FULL_OUTPUT input 
   ) : SV_Target 
 { 
-  float2 finalUV = lerp(particle_minUV, particle_maxUV, input.UV); 
-  float4 oDiffuse = txAlbedo.Sample(samLinear, finalUV); 
-  float4 finalColor = float4(oDiffuse.rgb * particle_color.rgb, oDiffuse.a * particle_color.a); 
+  
+  float2 finalUV = lerp(particle_minUV, particle_maxUV, input.UV);
+
+  int3 ss_load_coords = uint3(input.Pos.xy, 0);
+  float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+
+  float3 camera2wpos = input.worldPos - camera_pos;
+  float particleDepth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+
+  float alpha = 1;
+  
+  if(particleDepth >= zlinear){ //La particula esta detras
+    float depthDiff = particleDepth - zlinear;
+    float fadeDistance = 0.5;
+    float maxDepthDiff = fadeDistance / camera_zfar;
+    alpha = lerp(0, 1, 1 - abs(clamp(depthDiff, 0, maxDepthDiff)) / maxDepthDiff);
+  }
+
+  float4 oDiffuse = txAlbedo.Sample(samLinear, finalUV);
+  float4 finalColor = oDiffuse * particle_color;
+  finalColor.a *= alpha;
   return finalColor; 
 }
 
