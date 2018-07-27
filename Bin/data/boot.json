@@ -4,6 +4,13 @@
     "data/scenes/player.scene",
     "data/scenes/lights.scene",
   
+    "data/scenes/m_terrenos-0.scene",
+    "data/scenes/m_terrenos01-0.scene",
+    "data/scenes/m_terrenos-trimesh.scene",
+    "data/scenes/test_spikes.scene",
+    "data/scenes/slash-test.scene"
+  ],
+  "unused_scenes": [
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-altars.scene",
     "data/scenes/milestone3-breakables.scene",
@@ -18,10 +25,6 @@
     "data/scenes/milestone3-enemies.scene",
     "data/scenes/milestone3-triggers.scene",
     "data/scenes/milestone3-instancing.scene",
-    "data/scenes/test_spikes.scene",
-    "data/scenes/slash-test.scene"
-  ],
-  "unused_scenes": [
     "data/scenes/prueba_detail_normals-0.scene",
     "data/scenes/milestone3_tutorial-0.scene",
     "data/scenes/milestone3_tutorial-coins.scene",

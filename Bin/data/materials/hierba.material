@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/main_terrain/t_hierba_basecolor.dds",
+    "normal": "data/textures/main_terrain/t_camino_Normal.dds",
+    "metallic": "data/textures/black.dds",
+    "roughness": "data/textures/white.dds",
+    "self_illum" : "data/textures/black.dds",
+    "height" : "data/textures/black.dds",
+    "detail_normal" : "data/textures/black.dds"
+  }
+}

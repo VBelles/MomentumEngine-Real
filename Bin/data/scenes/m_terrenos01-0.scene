@@ -1,0 +1,23 @@
+[
+  {
+    "entity":
+    {
+      "name": "m_roca_12",
+      "transform":
+      {
+        "pos": "259.075 43.938 -711.203",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/m_roca_12.mesh",
+          "materials":
+          [
+            "data/materials/Material roca12.material"
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "technique": "pbr_mix.tech",
+  "type": "mix",
+  "shadows": true,
+  "textures":
+  { },
+  "mats":[
+    "data/materials/tierra.material",
+    "data/materials/hierba.material",
+    "data/materials/camino.material"
+  ],
+  "mix_blend_weights" : "data/textures/main_terrain/masks/t_terrain_04_pbrmask.dds"
+}

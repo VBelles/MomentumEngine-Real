@@ -198,9 +198,9 @@ void PS_GBufferMix(
 	// Use the alpha of the albedo as heights + texture blending extra weights + material ctes extra weights (imgui)
 	//Not_Juan: Como tenemos el height map a parte, lo usamos en vez de albedo.a
 	float w1, w2, w3;
-	computeBlendWeights(heightR + mix_boost_r + weight_texture_boost.r
-					, 	heightG + mix_boost_g + weight_texture_boost.g
-					, 	heightB + mix_boost_b + weight_texture_boost.b
+	computeBlendWeights(mix_boost_r + weight_texture_boost.r
+					, 	mix_boost_g + weight_texture_boost.g
+					, 	mix_boost_b + weight_texture_boost.b
 					, 	w1, w2, w3);
 
 	float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
