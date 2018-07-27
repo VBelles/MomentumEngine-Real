@@ -215,6 +215,7 @@ function findIndexOrRegister ht vtxs new_vtx = (
 )
 
 function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
+	undo off ( --Should make this function faster.
 	-- Convert the given object to triangular mesh
 	format "exportMeshObject filename: %\n" outfilename
 	local obj = given_obj
@@ -325,6 +326,7 @@ function exportMeshObject given_obj outfilename vtxType:"PosNUvUvT" = (
 	
 	-- If we created a copy of the mesh, it's time to remove it
 	if obj != given_obj then delete obj
+	)--End undo off
 )
 
 -- This path has to include file name.
