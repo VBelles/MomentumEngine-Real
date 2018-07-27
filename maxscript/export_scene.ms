@@ -250,7 +250,7 @@ struct TMaterialExporter (
 		)
 	),
 
-	fn exportMix mat: mats tech:"pbr_mix" = (
+	fn exportMix mats matPath mat: tech:"pbr_mix" = (
 		fs.beginObj()
 			fs.writeKeyValue "technique" (tech + ".tech")
 			fs.writeComma()
@@ -259,13 +259,13 @@ struct TMaterialExporter (
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
 			fs.writeKeyEmpty "textures"
-			fs.writeComma()
 			fs.writeKey "mats"
 			local matsNames = #()
-			for m in mats do append m.name matsNames
+			for m in mats do append matsNames (matPath + m.name + ".material")
 			fs.arrayOfStrings matsNames
 			fs.writeComma()
-			fs.writeKeyValue "mix_blend_weights" mat.mask.bitmap
+			local blendFile = stripPathFromPath mat.mask.bitmap.filename project_path
+			fs.writeKeyValue "mix_blend_weights" blendFile
 		fs.endObj()
 	),
 
@@ -273,25 +273,27 @@ struct TMaterialExporter (
 	fn getRecursiveMats mat = (
 		local mats = #()
 
-		if classOf mat.map1 != MultiMaterial then append mats mat.map1
-		else for m in mat.map1 do append mats m
-
-		if classOf mat.map2 != MultiMaterial then append mats mat.map2
-		else for m in mat.map2 do append mats m
-
+		if mat.map1 != undefined then (
+			if classOf mat.map1 != MultiMaterial then append mats mat.map1
+			else for m in mat.map1 do append mats m
+		)
+		if mat.map2 != undefined then (
+			if classOf mat.map2 != MultiMaterial then append mats mat.map2
+			else for m in mat.map2 do append mats m
+		)
 		return mats
 	),
 
-	fn exportBlendMat mat = (
+	fn exportBlendMat mat matPath = (
 		local mats = getRecursiveMats mat
 		for m in mats do (
-			fs.begin (project_path + m.name + ".material")
+			fs.begin (project_path + matPath + m.name + ".material")
 				exportMaterialContent mat:m
 			fs.end()
 		)
 
-		fs.begin (project_path + mat.mask.name + ".material")
-			exportMix mat:mat mats
+		fs.begin (project_path + matPath + mat.name + ".material")
+			exportMix mats matPath mat:mat
 		fs.end()
 	),
 
@@ -346,13 +348,12 @@ struct TMaterialExporter (
 				exportStdMaterial mat_of_mesh (mat_path + mat_name) pure:pure
 			)
 		) else if matClass == Blend then (
-			if mat.map1 != undefined and
-			   mat.map2 != undefined and
+			if (mat.map1 != undefined or
+			   mat.map2 != undefined) and
 			   mat.mask != undefined then (
 				local mat_name = cleanName mat.name
 				append exported_materials mat_name
-
-				exportBlendMat mat
+				exportBlendMat mat mat_path
 			) else format "WARNING: Material % has incorrect inputs.\n" mat.name
 
 		)
