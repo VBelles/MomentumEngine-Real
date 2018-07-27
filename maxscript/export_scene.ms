@@ -1028,7 +1028,7 @@ struct TSceneExporter (
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
 		local mech		= obj.layer.name == "mechanisms"
-				
+		
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
@@ -1818,6 +1818,7 @@ struct TSceneExporter (
 	),
 
 	fn exportAll = (
+		undo off (
 		deselect objects --Deselect all objects so export is faster.
 
 		-- Loop over all layers.
@@ -1888,6 +1889,7 @@ struct TSceneExporter (
 		-- All layers and objects processed, begin export of stored unique objects.
 		exportUniques()
 		showBrokenMaps()
+		)--End undo off.
 	)
 )
 
@@ -1952,4 +1954,9 @@ exporter = TSceneExporter project_path:exportPath
 --mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"
 --mexporter.exportStdMaterial $.mat "pep" 
 
+start = timeStamp()
+
 exporter.exportAll()
+
+end = timeStamp()
+format "Export took % seconds\n" ((end - start) / 1000.0)
