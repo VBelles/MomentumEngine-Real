@@ -337,6 +337,7 @@
     <ClCompile Include="components\ia\enemies\common\out_of_bounds\OnOutOfBoundsCondition.cpp" />
     <ClCompile Include="components\comp_self_illum_variation.cpp" />
     <ClCompile Include="components\ia\enemies\comp_enemy.cpp" />
+    <ClCompile Include="components\ia\enemies\common\combat\AddAttackerCondition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -706,6 +707,7 @@
     <ClInclude Include="components\ia\enemies\common\out_of_bounds\OnOutOfBoundsCondition.h" />
     <ClInclude Include="components\comp_self_illum_variation.h" />
     <ClInclude Include="components\ia\enemies\comp_enemy.h" />
+    <ClInclude Include="components\ia\enemies\common\combat\AddAttackerCondition.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

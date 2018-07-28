@@ -76,6 +76,7 @@
 			"player_model": {
 				"gravity": -55,
 				"walkingSpeed": 3.0,
+				"attack_slots": 3.0,
 				"ssj1": {
 					"rotation_speed": 11.0,
 					"maxSpeed": 7.0,

@@ -43,6 +43,15 @@ void TCompPlayerModel::debugInMenu() {
 	ImGui::DragFloat("WalkingSpeed", &walkingSpeed, 0.1f, 0.1f, 7.f);
 	ImGui::DragFloat("MaxVelocityUpwards", &maxVelocityUpwards, 0.1f, 10.f, 60.f);
 	ImGui::DragFloat("InvulnerableTime", &invulnerableTime, 0.1f, 0.1f, 3.f);
+
+	ImGui::DragFloat("Max attack slots", &maxAttackSlots, 0.1f, 0.0f, 50.0f);
+	ImGui::Text("Taken attack slots: %f", attackSlotsTaken);
+	if (ImGui::TreeNode("Attackers")) {
+		for (auto& string : attackers) {
+			ImGui::Text("%s\n", string);
+		}
+		ImGui::TreePop();
+	}
 }
 
 void TCompPlayerModel::debugInMenu(PowerStats* powerStats, std::string name) {
@@ -81,6 +90,10 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	powerStats[0] = loadPowerStats(j["ssj1"]);
 	powerStats[1] = loadPowerStats(j["ssj2"]);
 	powerStats[2] = loadPowerStats(j["ssj3"]);
+
+	maxAttackSlots = j.value("attack_slots", maxAttackSlots);
+	attackSlotsTaken = 0.f;
+	attackers.clear();
 
 	resetHp();
 }
@@ -470,4 +483,21 @@ TCompPlayerModel::~TCompPlayerModel() {
 		SAFE_DELETE(powerStats[i]);
 	}
 	SAFE_DELETE(stateManager);
+}
+
+bool TCompPlayerModel::addAttacker(std::string attacker, float slots) {
+	if (attackSlotsTaken + slots <= maxAttackSlots) {
+		if (attackers.insert(attacker).second) {
+			attackSlotsTaken += slots;
+			return true;
+		}
+	}
+	return false;
+}
+
+void TCompPlayerModel::removeAttacker(std::string attacker, float slots) {
+	if (attackers.find(attacker) != attackers.end()) {
+		attackSlotsTaken = clamp(attackSlotsTaken - slots, 0.f, maxAttackSlots);
+		attackers.erase(attacker);
+	}
 }
