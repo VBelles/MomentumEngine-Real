@@ -4,6 +4,8 @@
     "data/scenes/player.scene",
     "data/scenes/lights.scene",
   
+    "data/scenes/__testAO-0.scene",
+
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-altars.scene",
     "data/scenes/milestone3-breakables.scene",

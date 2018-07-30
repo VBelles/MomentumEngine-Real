@@ -1,0 +1,96 @@
+[
+  {
+    "entity":
+    {
+      "name": "__testAOsuelo",
+      "transform":
+      {
+        "pos": "-36.0364 -7.05857 40.921",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/__testAOsuelo.mesh",
+          "materials":
+          [
+            "data/materials/Material_Hierba.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/__testAOsuelo_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "__testAOBox",
+      "transform":
+      {
+        "pos": "-42.4992 -7.24709 40.4788",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/__testAOBox.mesh",
+          "materials":
+          [
+            "data/materials/material_default_architecture.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "__testAOTeapot",
+      "transform":
+      {
+        "pos": "-31.5129 -7.21279 46.2122",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/__testAOTeapot.mesh",
+          "materials":
+          [
+            "data/materials/material_default_architecture.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "__testAOSphere",
+      "transform":
+      {
+        "pos": "-27.763 -2.10828 39.549",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/__testAOSphere.mesh",
+          "materials":
+          [
+            "data/materials/material_default_architecture.material"
+          ]
+        }
+      ]
+    }
+  }
+]
