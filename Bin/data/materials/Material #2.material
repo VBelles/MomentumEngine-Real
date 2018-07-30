@@ -1,9 +1,0 @@
-{
-  "technique": "pbr.tech",
-  "shadows": true,
-  "textures":
-  {
-    "albedo": "data/textures/c52eeaaa78c6b028fdc2f948de4c82d8.dds",
-    "normal": "data/textures/null_normal.dds"
-  }
-}

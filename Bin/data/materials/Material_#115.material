@@ -8,6 +8,7 @@
     "metallic": "data/textures/terrenos_LOWPOLY_substance_Material__7_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/terrenos_LOWPOLY_substance_Material__2_Height.dds"
+    "height": "data/textures/terrenos_LOWPOLY_substance_Material__2_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

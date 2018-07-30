@@ -8,6 +8,7 @@
     "metallic": "data/textures/colina_colosal_substnace_Material___Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/null_height.dds"
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

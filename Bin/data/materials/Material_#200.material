@@ -8,6 +8,7 @@
     "metallic": "data/textures/rocas_low_roca14_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/rocas_low_roca3_Height.dds"
+    "height": "data/textures/rocas_low_roca3_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

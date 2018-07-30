@@ -8,6 +8,7 @@
     "metallic": "data/textures/null_metallic.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/9_set_terrain_substance_Material _159_Height.dds"
+    "height": "data/textures/9_set_terrain_substance_Material _159_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

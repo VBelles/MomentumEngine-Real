@@ -2,6 +2,132 @@
   {
     "entity":
     {
+      "name": "column_in_04",
+      "transform":
+      {
+        "pos": "304.554 -48.9433 630.35",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/column_in_04.instanced_mesh",
+          "materials":
+          [
+             "data/materials/column_in_04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_03",
+      "transform":
+      {
+        "pos": "304.554 -48.9433 630.35",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/column_in_03.instanced_mesh",
+          "materials":
+          [
+             "data/materials/column_in_03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_02",
+      "transform":
+      {
+        "pos": "304.554 -48.9433 630.35",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/column_in_02.instanced_mesh",
+          "materials":
+          [
+             "data/materials/column_in_02.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_01",
+      "transform":
+      {
+        "pos": "304.554 -48.9433 630.35",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/column_in_01.instanced_mesh",
+          "materials":
+          [
+             "data/materials/column_in_01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_bottom",
+      "transform":
+      {
+        "pos": "304.554 -48.9433 630.35",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/column_bottom.instanced_mesh",
+          "materials":
+          [
+             "data/materials/column_bottom.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_top",
+      "transform":
+      {
+        "pos": "304.554 -48.9433 630.35",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/column_top.instanced_mesh",
+          "materials":
+          [
+             "data/materials/column_top.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "tumba_v3",
       "transform":
       {
