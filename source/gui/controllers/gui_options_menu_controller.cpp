@@ -1,74 +1,92 @@
 #include "mcv_platform.h"
 #include "gui_options_menu_controller.h"
 #include "gui/widgets/gui_option.h"
+#include "gui/widgets/gui_button.h"
 
 namespace GUI {
 	void COptionsMenuController::update(float delta) {
-		if (EngineInput["menu_left"].getsPressed()) {
-			_options[0]->setCurrentOption(0);
-			dbg("menu left\n");
+		auto& mouse = EngineInput[Input::PLAYER_1].mouse();
+		if (mouse.position_delta.Length() > 0) {
+			_options[_currentOption]->_previous->setCurrentState(CButton::EState::ST_Idle);
+			_options[_currentOption]->_next->setCurrentState(CButton::EState::ST_Idle);
+			int i = 0;
+			while (i < _options.size()) {
+				COption* option = _options[i];
+				if (option->overlaps(mouse.position)) {
+					if (i != _currentOption) {
+						setCurrentOption(i);
+					}
+					if (option->_previous->overlaps(mouse.position)) {
+						option->_previous->setCurrentState(CButton::EState::ST_Selected);
+					}
+					else if (option->_next->overlaps(mouse.position)) {
+						option->_next->setCurrentState(CButton::EState::ST_Selected);
+					}
+					break;
+				}
+				i++;
+			}
+			if (i == _options.size()) {
+				setCurrentOption(_currentOption);
+			}
 		}
-		if (EngineInput["menu_right"].getsPressed()) {
-			_options[0]->setCurrentOption(1);
-			dbg("menu right\n");
+		else {
+			VEC2 leftAnalogInput = VEC2(
+				EngineInput[Input::EPadButton::PAD_LANALOG_X].value,
+				EngineInput[Input::EPadButton::PAD_LANALOG_Y].value);
+
+			if (stickInputTimer.elapsed() > stickInputCooldown && leftAnalogInput.Length() > PAD_DEAD_ZONE) {
+				stickInputTimer.reset();
+				if (leftAnalogInput.y < -0.5) {
+					setCurrentOption(_currentOption + 1);
+				}
+				else if (leftAnalogInput.y > 0.5) {
+					setCurrentOption(_currentOption - 1);
+				}
+				else if (leftAnalogInput.x < -0.5) {
+					_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() - 1);
+				}
+				else if (leftAnalogInput.x > 0.5) {
+					_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() + 1);
+				}
+			}
+			else {
+				if (EngineInput["menu_down"].getsPressed()) {
+					setCurrentOption(_currentOption + 1);
+				}
+				else if (EngineInput["menu_up"].getsPressed()) {
+					setCurrentOption(_currentOption - 1);
+				}
+				else if (EngineInput["menu_left"].getsPressed()) {
+					_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() - 1);
+				}
+				else if (EngineInput["menu_right"].getsPressed()) {
+					_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() + 1);
+				}
+			}
 		}
-		//auto& mouse = EngineInput[Input::PLAYER_1].mouse();
-		//if (mouse.position_delta.Length() > 0) {
-		//	int i = 0;
-		//	while (i < _options.size()) {
-		//		TOption option = _options[i];
-		//		if (option.button->overlaps(mouse.position)) {
-		//			if (i != _currentOption) {
-		//				setCurrentOption(i);
-		//			}
-		//			break;
-		//		}
-		//		i++;
-		//	}
-		//	if (i == _options.size()) {
-		//		setCurrentOption(_currentOption);
-		//	}
-		//}
-		//else {
-		//	VEC2 leftAnalogInput = VEC2(
-		//		EngineInput[Input::EPadButton::PAD_LANALOG_X].value,
-		//		EngineInput[Input::EPadButton::PAD_LANALOG_Y].value);
 
-		//	if (stickInputTimer.elapsed() > stickInputCooldown && leftAnalogInput.Length() > PAD_DEAD_ZONE) {
-		//		stickInputTimer.reset();
-		//		if (leftAnalogInput.y < -0.5) {
-		//			setCurrentOption(_currentOption + 1);
-		//		}
-		//		if (leftAnalogInput.y > 0.5) {
-		//			setCurrentOption(_currentOption - 1);
-		//		}
-		//	}
-		//	else {
-		//		if (EngineInput["menu_down"].getsPressed()) {
-		//			setCurrentOption(_currentOption + 1);
-		//		}
-		//		if (EngineInput["menu_up"].getsPressed()) {
-		//			setCurrentOption(_currentOption - 1);
-		//		}
-		//	}
-		//}
+		if (_currentOption >= 0 && EngineInput["mouse_accept"].getsPressed()
+			&& _options[_currentOption]->overlaps(mouse.position)) {
+			if (_options[_currentOption]->_previous->overlaps(mouse.position)) {
+				_options[_currentOption]->_previous->setCurrentState(CButton::EState::ST_Pressed);
+			}
+			else if (_options[_currentOption]->_next->overlaps(mouse.position)) {
+				_options[_currentOption]->_next->setCurrentState(CButton::EState::ST_Pressed);
+			}
+		}
+		else if (_currentOption >= 0 && EngineInput["mouse_accept"].getsReleased()
+			&& _options[_currentOption]->overlaps(mouse.position)) {
+			if (_options[_currentOption]->_previous->overlaps(mouse.position)) {
+				_options[_currentOption]->_previous->setCurrentState(CButton::EState::ST_Selected);
+				_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() - 1);
 
-		//if (_currentOption >= 0 && EngineInput["menu_accept"].getsPressed()) {
-		//	_options[_currentOption].button->setCurrentState(CButton::EState::ST_Pressed);
-		//}
-		//else if (_currentOption >= 0 && EngineInput["mouse_accept"].getsPressed()
-		//	&& _options[_currentOption].button->overlaps(mouse.position)) {
-		//	_options[_currentOption].button->setCurrentState(CButton::EState::ST_Pressed);
-		//}
-		//if (_currentOption >= 0 && EngineInput["menu_accept"].getsReleased()) {
-		//	_options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
-		//	_options[_currentOption].callback();
-		//}
-		//else if (_currentOption >= 0 && EngineInput["mouse_accept"].getsReleased()
-		//	&& _options[_currentOption].button->overlaps(mouse.position)) {
-		//	_options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
-		//	_options[_currentOption].callback();
-		//}
+			}
+			else if (_options[_currentOption]->_next->overlaps(mouse.position)) {
+				_options[_currentOption]->_next->setCurrentState(CButton::EState::ST_Selected);
+				_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() + 1);
+			}
+		}
 	}
 
 	void COptionsMenuController::registerOption(const std::string& name, GUICallback cb) {
@@ -80,14 +98,13 @@ namespace GUI {
 	}
 
 	void COptionsMenuController::setCurrentOption(int newOption) {
-		//for (auto& option : _options) {
-		//	option.button->setCurrentState(CButton::EState::ST_Idle);
-		//}
+		for (auto& option : _options) {
+			option->setCurrentState(COption::EState::ST_Idle);
+		}
 
-		////_currentOption = clamp(newOption, 0, static_cast<int>(_options.size()) - 1);
-		//int nOptions = static_cast<int>(_options.size());
-		//_currentOption = (newOption + nOptions) % nOptions;
+		int nOptions = static_cast<int>(_options.size());
+		_currentOption = (newOption + nOptions) % nOptions;
 
-		//_options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
+		_options[_currentOption]->setCurrentState(COption::EState::ST_Selected);
 	}
 }

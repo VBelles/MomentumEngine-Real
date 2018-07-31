@@ -65,11 +65,9 @@ void COption::setCurrentState(EState newState) {
 }
 
 void COption::setCurrentOption(int newOption) {
-	if (newOption >= 0 && newOption < _options.size()) {
-		_currentOption = newOption;
-		_text->getTextParams()->_text = _options[_currentOption];
-		dbg("%s\n", _text->getTextParams()->_text.c_str());
-	}
+	int nOptions = static_cast<int>(_options.size());
+	_currentOption = (newOption + nOptions) % nOptions;
+	_text->getTextParams()->_text = _options[_currentOption];
 }
 
 void COption::computeAbsolute() {
@@ -77,4 +75,8 @@ void COption::computeAbsolute() {
 	_previous->computeAbsolute();
 	_text->computeAbsolute();
 	_next->computeAbsolute();
+}
+
+int COption::getCurrentOption() {
+	return _currentOption;
 }

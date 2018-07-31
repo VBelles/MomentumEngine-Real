@@ -22,8 +22,8 @@ bool CModuleOptionsMenu::start() {
 
 	controller = new GUI::COptionsMenuController();
 	controller->registerOption("invert_y_axis", cB);
-	//controller->registerOption("exit_game", exitCB);
-	//controller->setCurrentOption(0);
+	controller->registerOption("invert_x_axis", cB);
+	controller->setCurrentOption(0);
 	Engine.getGUI().registerController(controller);
 
 	Engine.setInputType(InputType::Menu);
