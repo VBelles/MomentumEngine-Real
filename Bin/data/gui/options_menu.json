@@ -77,7 +77,8 @@
 							"text" : "OP"
 						},
 						"options": [
-							"OPTION1", "OPTION2", "OPTION3"
+							["NO", false],
+							["YES", true]
 						]
 					},
 					{
@@ -140,7 +141,204 @@
 							"text" : "OP"
 						},
 						"options": [
-							"OPTION1", "OPTION2", "OPTION3"
+							["NO", false],
+							["YES", true]
+						]
+					},
+					{
+						"name" : "fullscreen",
+						"type" : "option",
+						"position" : "0 120",
+						"size" : "1900 50",
+						"texture" : "data/textures/gui/menu_boton.dds",
+						"font_size" : 32.0,
+						"text" : "FULL SCREEN",
+						"halign" : "center",
+						"valign" : "center",
+						"color" : "0.5 0.5 0.5 1",
+						"selected" : {
+							"position" : "30 0",
+							"font_size" : 36.0,
+							"color" : "1 1 1 1"
+						},
+						"pressed" : {
+							"position" : "30 0",
+							"font_size" : 36.0,
+							"font_color" : "0.8 0.8 1 1"
+						},
+						"previous_button": {
+							"name" : "start_game",
+							"type" : "button",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "0.2 0.2 0.2 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.5 0.5 0.5 1"
+							}
+						},
+						"next_button": {
+							"name" : "start_game",
+							"type" : "button",
+							"size" : "50 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "0.2 0.2 0.2 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.5 0.5 0.5 1"
+							}
+						},
+						"option_text": {
+							"size" : "300 50",
+							"position" : "0.125 0",
+							"font_size" : 32.0,
+							"text" : "OP"
+						},
+						"options": [
+							["NO", false],
+							["YES", true]
+						]
+					},
+					{
+						"name" : "resolution",
+						"type" : "option",
+						"position" : "0 180",
+						"size" : "1900 50",
+						"texture" : "data/textures/gui/menu_boton.dds",
+						"font_size" : 32.0,
+						"text" : "RESOLUTION",
+						"halign" : "center",
+						"valign" : "center",
+						"color" : "0.5 0.5 0.5 1",
+						"selected" : {
+							"position" : "30 0",
+							"font_size" : 36.0,
+							"color" : "1 1 1 1"
+						},
+						"pressed" : {
+							"position" : "30 0",
+							"font_size" : 36.0,
+							"font_color" : "0.8 0.8 1 1"
+						},
+						"previous_button": {
+							"name" : "start_game",
+							"type" : "button",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "0.2 0.2 0.2 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.5 0.5 0.5 1"
+							}
+						},
+						"next_button": {
+							"name" : "start_game",
+							"type" : "button",
+							"size" : "50 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "0.2 0.2 0.2 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.5 0.5 0.5 1"
+							}
+						},
+						"option_text": {
+							"size" : "300 50",
+							"position" : "0.125 0",
+							"font_size" : 32.0,
+							"text" : "OP"
+						},
+						"options": [
+							["1280X720", "1280 720"],
+							["1920X1080", "1920 1080"],
+							["2560X1440", "2560 1440"],
+							["3840X2160", "3840 2160"],
+							["5120X2880", "5120 2880"],
+							["7680X4320", "7680 4320"]
+						]
+					},
+					{
+						"name" : "vsync",
+						"type" : "option",
+						"position" : "0 240",
+						"size" : "1900 50",
+						"texture" : "data/textures/gui/menu_boton.dds",
+						"font_size" : 32.0,
+						"text" : "VSYNC",
+						"halign" : "center",
+						"valign" : "center",
+						"color" : "0.5 0.5 0.5 1",
+						"selected" : {
+							"position" : "30 0",
+							"font_size" : 36.0,
+							"color" : "1 1 1 1"
+						},
+						"pressed" : {
+							"position" : "30 0",
+							"font_size" : 36.0,
+							"font_color" : "0.8 0.8 1 1"
+						},
+						"previous_button": {
+							"name" : "start_game",
+							"type" : "button",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "0.2 0.2 0.2 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.5 0.5 0.5 1"
+							}
+						},
+						"next_button": {
+							"name" : "start_game",
+							"type" : "button",
+							"size" : "50 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "0.2 0.2 0.2 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.5 0.5 0.5 1"
+							}
+						},
+						"option_text": {
+							"size" : "300 50",
+							"position" : "0.125 0",
+							"font_size" : 32.0,
+							"text" : "OP"
+						},
+						"options": [
+							["NO", false],
+							["YES", true]
 						]
 					}
 				]

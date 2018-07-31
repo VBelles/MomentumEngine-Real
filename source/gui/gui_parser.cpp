@@ -192,9 +192,10 @@ CWidget* CParser::parseOption(const json& data) {
 	wdgt->_text->getParams()->_position.x = wdgt->_next->getParams()->_position.x - wdgt->_text->getParams()->_size.x;
 	wdgt->_previous->getParams()->_position.x = wdgt->_text->getParams()->_position.x - wdgt->_previous->getParams()->_size.x;
 
-	for (auto& jOptionText : data["options"]) {
-		std::string option = jOptionText;
-		wdgt->_options.push_back(option);
+	for (auto& jOption : data["options"]) {
+		std::string text = jOption[0];
+
+		wdgt->_options.push_back(std::make_pair(text, jOption[1]));
 	}
 
 	wdgt->setCurrentOption(data.value("default_option", 0));

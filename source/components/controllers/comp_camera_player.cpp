@@ -136,13 +136,13 @@ void TCompCameraPlayer::updateInput() {
 			EngineInput[Input::EPadButton::PAD_RANALOG_Y].value
 		);
 		if (padInput.Length() > PAD_DEAD_ZONE) {
-			input.x -= padInput.x * cameraSpeed.x;
-			input.y += padInput.y * cameraSpeed.y;
+			input.x -= padInput.x * cameraSpeed.x * Engine.globalConfig.cameraAxis.x;
+			input.y += padInput.y * cameraSpeed.y * Engine.globalConfig.cameraAxis.y;
 		}
 		else if (!CApp::get().isDebug()) {
 			auto& mouse = EngineInput[Input::PLAYER_1].mouse();
-			input.x -= mouse.position_delta.x * cameraSpeed.x;
-			input.y -= mouse.position_delta.y * cameraSpeed.y;
+			input.x -= mouse.position_delta.x * cameraSpeed.x * Engine.globalConfig.cameraAxis.x;
+			input.y -= mouse.position_delta.y * cameraSpeed.y * Engine.globalConfig.cameraAxis.y;
 		}
 	}
 }

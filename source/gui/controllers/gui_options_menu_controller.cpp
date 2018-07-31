@@ -86,13 +86,20 @@ namespace GUI {
 				_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() + 1);
 			}
 		}
+
+		if (EngineInput["menu_back"].getsReleased()) {
+			EngineModules.changeGameState("main_menu");
+		}
 	}
 
-	void COptionsMenuController::registerOption(const std::string& name, GUICallback cb) {
+	void COptionsMenuController::registerOption(const std::string& name, const json& value) {
 		CWidget* wdgt = Engine.getGUI().getWidget(name, true);
 		COption* op = dynamic_cast<COption*>(wdgt);
 		if (op) {
 			_options.push_back(op);
+		}
+		if (!value.empty()) {
+			op->setCurrentValue(value);
 		}
 	}
 
@@ -105,5 +112,15 @@ namespace GUI {
 		_currentOption = (newOption + nOptions) % nOptions;
 
 		_options[_currentOption]->setCurrentState(COption::EState::ST_Selected);
+	}
+
+	json COptionsMenuController::getOptionValue(const std::string& name) {
+		CWidget* wdgt = Engine.getGUI().getWidget(name, true);
+		COption* op = dynamic_cast<COption*>(wdgt);
+		json ret = json();
+		if (op) {
+			ret = op->getCurrentOptionValue();
+		}
+		return ret;
 	}
 }

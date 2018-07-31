@@ -17,11 +17,13 @@ namespace GUI {
 		TTextParams* getTextParams() override;
 		void setCurrentState(EState newState);
 		void setCurrentOption(int newOption);
+		void setCurrentValue(json newValue);
 		void computeAbsolute() override;
 
 		int getCurrentOption();
-		CButton* getPreviousButton() { return _previous; }
-		CButton* getNextButton() { return _next; }
+		json getCurrentOptionValue();
+		CButton* getPreviousButton();
+		CButton* getNextButton();
 
 	private:
 		TOptionParams _states[NUM_STATES];
@@ -32,7 +34,7 @@ namespace GUI {
 		CText* _text = nullptr;
 
 		int _currentOption;
-		std::vector<std::string> _options;
+		std::vector<std::pair<std::string, json>> _options;
 
 		friend class CParser;
 	};

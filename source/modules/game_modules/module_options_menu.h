@@ -6,6 +6,8 @@ class CModuleOptionsMenu : public IModule {
 private:
 	GUI::COptionsMenuController* controller;
 	std::string menuFile = "data/gui/options_menu.json";
+	std::string optionsFile = "data/configuration.json";
+	json jOptions;
 public:
 	CModuleOptionsMenu(const std::string& name) : IModule(name) {}
 	bool start() override;

@@ -67,7 +67,15 @@ void COption::setCurrentState(EState newState) {
 void COption::setCurrentOption(int newOption) {
 	int nOptions = static_cast<int>(_options.size());
 	_currentOption = (newOption + nOptions) % nOptions;
-	_text->getTextParams()->_text = _options[_currentOption];
+	_text->getTextParams()->_text = _options[_currentOption].first;
+}
+
+void COption::setCurrentValue(json newValue) {
+	int i = 0;
+	while (i < _options.size() && _options[i].second != newValue) {
+		i++;
+	}
+	setCurrentOption(i);
 }
 
 void COption::computeAbsolute() {
@@ -79,4 +87,16 @@ void COption::computeAbsolute() {
 
 int COption::getCurrentOption() {
 	return _currentOption;
+}
+
+json COption::getCurrentOptionValue() {
+	return _options[_currentOption].second;
+}
+
+CButton* COption::getPreviousButton() {
+	return _previous;
+}
+
+CButton* COption::getNextButton() {
+	return _next;
 }
