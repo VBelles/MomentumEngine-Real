@@ -39,6 +39,7 @@
         "short_combat_distance": 1.5,
         "long_combat_distance": 30,
         "attack_cool_down": 0.5,
+        "attack_slots": 1.0,
         "attacks": [
           {
             "name": "spinAttack",

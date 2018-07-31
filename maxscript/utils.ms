@@ -12,14 +12,46 @@ fn getPolyElementsPos obj = (
 	return elemPos
 )
 
---Detach all elements of an Editable Poly object. ----- WIP! -------
-fn detachElements obj base_name = (
-	if convertToPoly obj != undefined do (
-		while polyOp.getNumFaces obj != 0 do (
-			local f_list = polyOp.getElementsUsingFace obj #{1}
-			local elem = polyOp.detachFaces obj f_list asNode:true name:(uniqueName base_name)
+struct TUtils (
+	fn clusterAttach objArr = (
+		--http://forums.cgsociety.org/showthread.php?f=98&t=922140
+		j = 1
+		count = objArr.count
+
+		undo off (
+		while objArr.count > 1 do (
+			if classOf objArr[j] != Editable_Poly then convertToPoly objArr[j]
+
+			polyop.attach objArr[j] objArr[j + 1]
+			deleteItem objArr (j + 1)
+
+			j += 1
+
+			if (j + 1) > objArr.count then j = 1
 		)
-		delete obj
+		)
+		return objArr[1]
+	),
+
+	fn attachSel = (
+		clusterAttach (selection as array)
+	),
+
+	--Detach all elements of an object.
+	fn detachElements obj baseName = (
+		if convertToPoly obj != undefined do (
+			while polyOp.getNumFaces obj != 0 do (
+				local f_list = polyOp.getElementsUsingFace obj #{1}
+				local elem = polyOp.detachFaces obj f_list asNode:true name:(uniqueName baseName)
+			)
+			delete obj
+		)
+	),
+
+	fn detachElementsFromSel = (
+		for o in selection do (
+			detachElements o o.name
+		)
 	)
 )
 

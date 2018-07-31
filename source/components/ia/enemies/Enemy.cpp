@@ -52,6 +52,8 @@ void Enemy::load(const json& j) {
 	stepBackDistanceSqrd = pow(j.value("step_back_distance", sqrt(stepBackDistanceSqrd)), 2);
 	attackCoolDown = j.value("attack_cool_down", attackCoolDown);
 	blockTime = j.value("block_time", blockTime);
+	attackSlots = j.value("attack_slots", attackSlots);
+	attackTarget = "";
 
 	for (auto& jAttack : j["attacks"]) {
 		EnemyAttack attack;
@@ -92,6 +94,8 @@ void Enemy::debugInMenu() {
 	ImGui::Text("onOutOfBounds: %s\n", onOutOfBounds ? "true" : "false");
 	ImGui::Text("onSpawn: %s\n", onSpawn ? "true" : "false");
 	ImGui::Text("Hp: %f\n", hp);
+	ImGui::DragFloat("Attack slots\n", &attackSlots, 0.1f, 0.f, 50.f);
+	ImGui::Text("Attack target: %s\n", attackTarget.c_str());
 	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
 	ImGui::DragFloat("Gravity\n", &gravity, 0.1f, -500.f, 500.f);
 	ImGui::DragFloat("Gravity multiplier\n", &gravityMultiplier, 0.1f, -500.f, 500.f);

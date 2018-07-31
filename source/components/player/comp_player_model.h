@@ -59,6 +59,10 @@ private:
 	float maxHp = 0.f;
 	float hp = 0.f;
 
+	float maxAttackSlots = 4.f;
+	float attackSlotsTaken = 0.f;
+	std::set<std::string> attackers;
+
 	bool isInvulnerable = false;
 	CTimer invulnerableTimer;
 	float invulnerableTime = 1.f;
@@ -172,4 +176,7 @@ public:
 	void enableOutline();
 
 	StateManager* getStateManager() { return stateManager; }
+
+	bool addAttacker(std::string attacker, float slots);
+	void removeAttacker(std::string attacker, float slots);
 };

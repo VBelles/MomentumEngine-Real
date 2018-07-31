@@ -2,6 +2,7 @@
 #include "OnIdleAction.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/player/comp_player_model.h"
 
 REGISTER_BTACTION("OnIdleAction", OnIdleAction);
 
@@ -16,6 +17,12 @@ OnIdleAction::OnIdleAction(Enemy* enemy, std::string animation) :
 }
 
 int OnIdleAction::execAction(float delta) {
+	if (!enemy->attackTarget.empty()) {
+		CEntity* entity = enemy->getEntityHandle();
+		enemy->getPlayerModel()->removeAttacker(entity->getName(), enemy->attackSlots);
+		enemy->attackTarget = "";
+	}
+
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
 	return Leave;

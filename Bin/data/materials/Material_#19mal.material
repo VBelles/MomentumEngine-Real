@@ -8,6 +8,7 @@
     "metallic": "data/textures/estaca_baja_Material _178_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/estaca_baja_Material _178_Emissive.dds",
-    "height": "data/textures/estaca_baja_Material _203_Height.dds"
+    "height": "data/textures/estaca_baja_Material _203_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

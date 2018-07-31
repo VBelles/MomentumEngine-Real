@@ -11,6 +11,7 @@
     "data/scenes/slash-test.scene"
   ],
   "unused_scenes": [
+    "data/scenes/__testAO-0.scene",
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-altars.scene",
     "data/scenes/milestone3-breakables.scene",

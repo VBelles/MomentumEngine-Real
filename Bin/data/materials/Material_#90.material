@@ -8,6 +8,7 @@
     "metallic": "data/textures/plaza_baja_Material atril_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/plaza_baja_Material atril_Emissive.dds",
-    "height": "data/textures/plaza_baja_Material plaza1_Height.dds"
+    "height": "data/textures/plaza_baja_Material plaza1_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

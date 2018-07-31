@@ -19,6 +19,7 @@ class TCompRenderAO : public TCompBase {
   float                   amount = 1.f;
   float                   radius = 6.f;
   float                   zrange_discard = 0.02f;
+  float                   zrange_discard_units = 0.02f;
   float                   amount_spreading = 0.85f;
   int                     xres = 0;
   int                     yres = 0;

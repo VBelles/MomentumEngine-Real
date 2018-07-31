@@ -3,6 +3,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_transform.h"
+#include "components/player/comp_player_model.h"
 
 REGISTER_BTACTION("OnReturnToSpawnAction", OnReturnToSpawnAction);
 
@@ -25,6 +26,12 @@ int OnReturnToSpawnAction::execAction(float delta) {
 	}
 	else {
 		enemy->smoothPath.push_back(enemy->spawnPosition);
+	}
+
+	if (!enemy->attackTarget.empty()) {
+		CEntity* entity = enemy->getEntityHandle();
+		enemy->getPlayerModel()->removeAttacker(entity->getName(), enemy->attackSlots);
+		enemy->attackTarget = "";
 	}
 
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);

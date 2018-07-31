@@ -8,6 +8,7 @@
     "metallic": "data/textures/escalera_piezas_baja_Material baranda02_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/escalera_piezas_baja_Material baranda01_Height.dds"
+    "height": "data/textures/escalera_piezas_baja_Material baranda01_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

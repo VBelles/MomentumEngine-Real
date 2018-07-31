@@ -178,6 +178,7 @@ void CModuleRender::render() {
 				"Metallic\0"
 				"World Pos\0"
 				"Depth Linear\0"
+				"Ambient Occlusion\0"
 				"\0";
 			ImGui::Combo("Output", &cb_globals.global_render_output, render_output_str);
 

@@ -9,7 +9,7 @@ utility MyMCVExporter "MCV Exporter" (
 		button btn_skeleton "Export Skeleton & Meshes"
 		button btn_skel_anims "Export Animation" tooltip:"Uses max animation range and frame rate to specify the range to export"
 		button btn_rigid_anims "Export Rigid Animation"
-		
+
 		on btn_scene pressed do (
 			try (
 				gc()
@@ -71,6 +71,34 @@ utility MyMCVExporter "MCV Exporter" (
 		)
 	) -- end exporter rollout creator
 	
+	rollout utils "Momentum Utils" (
+		button btn_attach_elems "Attach elements" tooltip:"Attaches all selected objects."
+		button btn_detach_elems "Detach elements" tooltip:"Detaches all elements of selected object."
+
+		fn attachElems = (
+			try (
+				gc()
+				local utilsManager = TUtils()
+				utilsManager.attachSel()	
+			) catch (
+				MessageBox ("Error attaching:\n" + getCurrentException())
+			)
+		)
+
+		fn detachElems = (
+			try (
+				gc()
+				local utilsManager = TUtils()
+				utilsManager.detachElementsFromSel()	
+			) catch (
+				MessageBox ("Error detaching:\n" + getCurrentException())
+			)
+		)
+		
+		on btn_attach_elems pressed do ( attachElems() )
+		on btn_detach_elems pressed do ( detachElems() )
+	) -- end utils rollout
+
 	rollout attribute "Momentum Attributes" (
 		button btn_addAttrEnemy "+ enemy" across:2 tooltip:"Adds enemy attributes to selected objects"
 		button btn_delAttrEnemy "- enemy" tooltip:"Deletes enemy attributes from selected objects"
@@ -94,7 +122,7 @@ utility MyMCVExporter "MCV Exporter" (
 				attributeManager.addAttributeToSel(defName)	
 				--MessageBox "Attributes added."
 			) catch (
-				MessageBox ("Error Exporting:\n" + getCurrentException())
+				MessageBox ("Error adding attribute:\n" + getCurrentException())
 			)
 		)
 		
@@ -105,7 +133,7 @@ utility MyMCVExporter "MCV Exporter" (
 				attributeManager.delAttributeFromSel(defName)	
 				--MessageBox "Attributes deleted."
 			) catch (
-				MessageBox ("Error Exporting:\n" + getCurrentException())
+				MessageBox ("Error deleting attribute:\n" + getCurrentException())
 			)
 		)
 		
@@ -127,10 +155,12 @@ utility MyMCVExporter "MCV Exporter" (
 
 	on MyMCVExporter open do (
 		addRollout exporter
+		addRollout utils
 		addRollout attribute
 	) 
 	on MyMCVExporter close do (
 		removeRollout exporter
+		removeRollout utils
 		removeRollout attribute
 	) 
 ) -- end utility MyMCVExporter 
