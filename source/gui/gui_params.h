@@ -41,5 +41,11 @@ namespace GUI {
 		TTextParams _textParams;
 	};
 
+	struct TOptionParams {
+		TParams _params;
+		TImageParams _imageParams;
+		TTextParams _textParams;
+	};
+
 	using GUICallback = std::function<void()>;
 }
