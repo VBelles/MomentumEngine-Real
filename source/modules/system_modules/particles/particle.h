@@ -6,9 +6,10 @@ namespace Particles {
     struct TParticle {
         VEC4 color;
         VEC3 position;
-        VEC3 velocity;
+		VEC3 velocity;
+		VEC3 positionDelta;
 		float rotation = 0.f;
-		QUAT rotationQuat;
+		QUAT rotationQuat = QUAT::Identity;
         float size = 1.f;
         float lifetime = 0.f;
         float max_lifetime = 0.f;

@@ -81,6 +81,7 @@ namespace Particles {
 				dir.Normalize();
 				p.velocity += dir * _core->movement.acceleration * delta;
 				p.velocity += kGravity * _core->movement.gravity * delta;
+				VEC3 tempPosition = p.position;
 				p.position += p.velocity * delta;
 				p.position += kWindVelocity * _core->movement.wind * delta;
 				if (!_core->render.mesh) { //Billboard particle
@@ -93,6 +94,7 @@ namespace Particles {
 				if (_core->movement.ground) {
 					p.position.y = std::max(0.f, p.position.y);
 				}
+				p.positionDelta = p.position - tempPosition;
 
 				float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
 				p.color = _core->color.colors.get(life_ratio) * fadeRatio;
@@ -148,17 +150,22 @@ namespace Particles {
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else if (_core->render.type == TCoreSystem::TRender::StretchedBillboard) {
-				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
-				MAT44 stretchedScale = MAT44::CreateScale(p.velocity * _core->render.stretchRatio);
-				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
-				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
-				cb_object.obj_world = rt * sc * stretchedScale * bb;
+				VEC3 scale = p.positionDelta * _core->render.stretchRatio * p.size * p.scale;
+				VEC3 dir = p.velocity;
+				dir.Normalize();
+				float yaw = 0.f, pitch = 0.f;
+				getYawPitchFromVector(dir, &yaw, &pitch);
+				cb_object.obj_world =
+					MAT44::CreateScale(VEC3(0.2, 2, 0.2))							// Stretched Scale 
+					* MAT44::CreateFromYawPitchRoll(0.f, 0.f, pitch)			// Rotation
+					* MAT44::CreateScale(p.size * p.scale)							// Scale
+					* MAT44::CreateBillboard(p.position, cameraPos, cameraUp);		// Billboard
 			}
-			else {
-				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
-					* MAT44::CreateFromQuaternion(p.rotationQuat)
-					* MAT44::CreateFromQuaternion(config.rotationOffset)
-					* MAT44::CreateTranslation(p.position);
+			else { // Mesh
+				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)	// Scale
+					* MAT44::CreateFromQuaternion(p.rotationQuat)			// Rotation
+					* MAT44::CreateFromQuaternion(config.rotationOffset)	// Rotation offset
+					* MAT44::CreateTranslation(p.position);					// Position
 			}
 
 			int row = p.frame / frameCols;
