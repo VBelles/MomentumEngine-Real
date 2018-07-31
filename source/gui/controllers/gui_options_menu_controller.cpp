@@ -7,8 +7,8 @@ namespace GUI {
 	void COptionsMenuController::update(float delta) {
 		auto& mouse = EngineInput[Input::PLAYER_1].mouse();
 		if (mouse.position_delta.Length() > 0) {
-			_options[_currentOption]->_previous->setCurrentState(CButton::EState::ST_Idle);
-			_options[_currentOption]->_next->setCurrentState(CButton::EState::ST_Idle);
+			_options[_currentOption]->getPreviousButton()->setCurrentState(CButton::EState::ST_Idle);
+			_options[_currentOption]->getNextButton()->setCurrentState(CButton::EState::ST_Idle);
 			int i = 0;
 			while (i < _options.size()) {
 				COption* option = _options[i];
@@ -16,11 +16,11 @@ namespace GUI {
 					if (i != _currentOption) {
 						setCurrentOption(i);
 					}
-					if (option->_previous->overlaps(mouse.position)) {
-						option->_previous->setCurrentState(CButton::EState::ST_Selected);
+					if (option->getPreviousButton()->overlaps(mouse.position)) {
+						option->getPreviousButton()->setCurrentState(CButton::EState::ST_Selected);
 					}
-					else if (option->_next->overlaps(mouse.position)) {
-						option->_next->setCurrentState(CButton::EState::ST_Selected);
+					else if (option->getNextButton()->overlaps(mouse.position)) {
+						option->getNextButton()->setCurrentState(CButton::EState::ST_Selected);
 					}
 					break;
 				}
@@ -68,22 +68,21 @@ namespace GUI {
 
 		if (_currentOption >= 0 && EngineInput["mouse_accept"].getsPressed()
 			&& _options[_currentOption]->overlaps(mouse.position)) {
-			if (_options[_currentOption]->_previous->overlaps(mouse.position)) {
-				_options[_currentOption]->_previous->setCurrentState(CButton::EState::ST_Pressed);
+			if (_options[_currentOption]->getPreviousButton()->overlaps(mouse.position)) {
+				_options[_currentOption]->getPreviousButton()->setCurrentState(CButton::EState::ST_Pressed);
 			}
-			else if (_options[_currentOption]->_next->overlaps(mouse.position)) {
-				_options[_currentOption]->_next->setCurrentState(CButton::EState::ST_Pressed);
+			else if (_options[_currentOption]->getNextButton()->overlaps(mouse.position)) {
+				_options[_currentOption]->getNextButton()->setCurrentState(CButton::EState::ST_Pressed);
 			}
 		}
 		else if (_currentOption >= 0 && EngineInput["mouse_accept"].getsReleased()
 			&& _options[_currentOption]->overlaps(mouse.position)) {
-			if (_options[_currentOption]->_previous->overlaps(mouse.position)) {
-				_options[_currentOption]->_previous->setCurrentState(CButton::EState::ST_Selected);
+			if (_options[_currentOption]->getPreviousButton()->overlaps(mouse.position)) {
+				_options[_currentOption]->getPreviousButton()->setCurrentState(CButton::EState::ST_Selected);
 				_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() - 1);
-
 			}
-			else if (_options[_currentOption]->_next->overlaps(mouse.position)) {
-				_options[_currentOption]->_next->setCurrentState(CButton::EState::ST_Selected);
+			else if (_options[_currentOption]->getNextButton()->overlaps(mouse.position)) {
+				_options[_currentOption]->getNextButton()->setCurrentState(CButton::EState::ST_Selected);
 				_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() + 1);
 			}
 		}

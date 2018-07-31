@@ -20,13 +20,15 @@ namespace GUI {
 		void computeAbsolute() override;
 
 		int getCurrentOption();
+		CButton* getPreviousButton() { return _previous; }
+		CButton* getNextButton() { return _next; }
 
-		CButton* _previous = nullptr;
-		CButton* _next = nullptr;
 	private:
 		TOptionParams _states[NUM_STATES];
 		EState _currentState = ST_Idle;
 
+		CButton* _previous = nullptr;
+		CButton* _next = nullptr;
 		CText* _text = nullptr;
 
 		int _currentOption;
