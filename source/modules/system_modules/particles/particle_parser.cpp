@@ -62,9 +62,11 @@ namespace Particles {
 		cps->render.frameSpeed = render.value("frame_speed", cps->render.frameSpeed);
 		cps->render.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
 		cps->render.mesh = Resources.get(render.value("mesh", "unit_quad_xy.mesh"))->as<CRenderMesh>();
+		cps->render.stretchRatio = render.value("stretch_ratio", cps->render.stretchRatio);
 		const std::string renderType = render.value("type", "billboard");
 		if (renderType == "mesh")						cps->render.type = TCoreSystem::TRender::Mesh;
 		else if (renderType == "horizontal_billboard")	cps->render.type = TCoreSystem::TRender::HorizontalBillboard;
+		else if (renderType == "stretched_billboard")	cps->render.type = TCoreSystem::TRender::StretchedBillboard;
 		else											cps->render.type = TCoreSystem::TRender::Billboard;
 		std::string defaulRenderTechnique = cps->render.type == TCoreSystem::TRender::Mesh ? "particles_mesh.tech" : "particles.tech";
 		cps->render.technique = Resources.get(render.value("technique", defaulRenderTechnique))->as<CRenderTechnique>();

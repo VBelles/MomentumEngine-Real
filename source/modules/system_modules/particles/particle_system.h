@@ -34,7 +34,7 @@ namespace Particles {
 			bool ground = false;			// limit by ground
 		};
 		struct TRender {
-			enum EType { Billboard, HorizontalBillboard, Mesh };
+			enum EType { Billboard, HorizontalBillboard, StretchedBillboard, Mesh };
 
 			EType type = Billboard;							// particle type
 			const CTexture* texture = nullptr;				// particle texture
@@ -44,6 +44,7 @@ namespace Particles {
 			int numFrames = 1;								// number of animation frames
 			int initialFrame = 0;							// initial frame
 			float frameSpeed = 0.f;							// frame change speed
+			float stretchRatio = 1.f;						// stretch ratio depending on the particle speed (StretchedBillboard)
 		};
 		struct TSize {
 			TTrack<float> sizes;			// track of sizes along the particle lifetime

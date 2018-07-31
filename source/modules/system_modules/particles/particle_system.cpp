@@ -147,6 +147,13 @@ namespace Particles {
 				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
 				cb_object.obj_world = rt * sc * bb;
 			}
+			else if (_core->render.type == TCoreSystem::TRender::StretchedBillboard) {
+				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
+				MAT44 stretchedScale = MAT44::CreateScale(p.velocity * _core->render.stretchRatio);
+				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
+				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
+				cb_object.obj_world = rt * sc * stretchedScale * bb;
+			}
 			else {
 				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
