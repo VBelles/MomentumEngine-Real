@@ -99,9 +99,6 @@
     "vs_file": "data/shaders/textured.fx",
     "vs_entry_point": "VS",
     "vertex_type": "PosNUvUvT",
-    "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds"
-    },
     "category": "textured",
     "priority": 80
   },
@@ -134,7 +131,6 @@
     "category": "gbuffer",
     "priority": 100,
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -148,7 +144,6 @@
     "priority": 100,
     "uses_skin": true,
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -162,7 +157,6 @@
     "z": "default_clear_stencil",
     "priority": 170,
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -177,7 +171,6 @@
     "z": "default_clear_stencil",
     "priority": 170,
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -320,10 +313,7 @@
     "vs_file": "data/shaders/fog.fx",
     "vertex_type": "PosClr",
     "category" : "fx",
-    "z": "default",
-    "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds"
-    }
+    "z": "default"
   },
 
   "particles" : { 
@@ -379,7 +369,6 @@
     "vertex_type": "Pos_x_InstancedPos",
     "category": "gbuffer",
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -389,7 +378,6 @@
     "category": "gbuffer",
     "rs_config": "cull_none",
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -439,7 +427,6 @@
     "vertex_type": "PosNUvUvT",
     "category": "gbuffer",
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     },
     "priority": 160,
@@ -465,7 +452,6 @@
     "uses_skin": true,
     "shadows_material" : "data/materials/shadows_skin_player.material",
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     },
     "priority": 160,
@@ -504,7 +490,6 @@
     "priority": 300,
     "blend": "additive",
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -518,7 +503,6 @@
     "category": "distorsions",
     "priority": 400,
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds"
     }
   },
@@ -532,7 +516,6 @@
     "category": "distorsions",
     "priority": 390,
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds",
       "noise": "data/textures/noise_cloud3.dds"
     }
@@ -547,7 +530,6 @@
     "category": "gbuffer",
     "priority": 100,
     "textures": {
-      "environment": "data/textures/cubemaps/momentum/OutputCube_256.dds",
       "irradiance": "data/textures/cubemaps/irradiance.dds",
       "noise": "data/textures/noise_cloud3.dds"
     }

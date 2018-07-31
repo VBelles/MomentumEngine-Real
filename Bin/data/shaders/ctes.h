@@ -35,6 +35,7 @@
 #define TS_LIGHT_PROJECTOR     8
 #define TS_LIGHT_SHADOW_MAP    9 
 #define TS_ENVIRONMENT_MAP     10
+#define TS_ENVIRONMENT_MAP_1     33
 #define TS_IRRADIANCE_MAP      11
 #define TS_NOISE_MAP           12
 
@@ -165,7 +166,7 @@ CB_DEF(CCteGlobals, CB_GLOBALS) {
     float global_gamma_correction_enabled;
     float global_tone_mapping_mode;
     int   global_render_output;
-    float global_dummy;
+    float global_skybox_ratio;
 
     float global_shared_fx_amount;
     float global_shared_fx_val1;
