@@ -216,7 +216,7 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
                             0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN),
                             NULL, NULL, hInstance, NULL);
     }
-
+	
     if (!hWnd) return false;
 
     ShowWindow(hWnd, nCmdShow);

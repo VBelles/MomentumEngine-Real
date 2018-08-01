@@ -18,13 +18,13 @@
 				"position" : "10 10",
 				"children" : [
 					{
-						"name" : "invert_y_axis",
+						"name" : "invert_x_axis",
 						"type" : "option",
 						"position" : "0 0",
 						"size" : "1900 50",
 						"texture" : "data/textures/gui/menu_boton.dds",
 						"font_size" : 32.0,
-						"text" : "INVERT Y AXIS",
+						"text" : "INVERT X AXIS",
 						"halign" : "center",
 						"valign" : "center",
 						"color" : "0.5 0.5 0.5 1",
@@ -82,13 +82,13 @@
 						]
 					},
 					{
-						"name" : "invert_x_axis",
+						"name" : "invert_y_axis",
 						"type" : "option",
 						"position" : "0 60",
 						"size" : "1900 50",
 						"texture" : "data/textures/gui/menu_boton.dds",
 						"font_size" : 32.0,
-						"text" : "INVERT X AXIS",
+						"text" : "INVERT Y AXIS",
 						"halign" : "center",
 						"valign" : "center",
 						"color" : "0.5 0.5 0.5 1",

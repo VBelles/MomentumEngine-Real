@@ -16,8 +16,8 @@ bool CModuleOptionsMenu::start() {
 	Engine.getGUI().activateWidget("options_menu");
 
 	controller = new GUI::COptionsMenuController();
-	controller->registerOption("invert_y_axis", jOptions["camera"]["invert_y_axis"]);
 	controller->registerOption("invert_x_axis", jOptions["camera"]["invert_x_axis"]);
+	controller->registerOption("invert_y_axis", jOptions["camera"]["invert_y_axis"]);
 	controller->registerOption("fullscreen", jOptions["screen"]["fullscreen"]);
 	controller->registerOption("resolution", jOptions["screen"]["resolution"]);
 	controller->registerOption("vsync", jOptions["screen"]["vsync"]);
@@ -30,8 +30,8 @@ bool CModuleOptionsMenu::start() {
 }
 
 bool CModuleOptionsMenu::stop() {
-	jOptions["camera"]["invert_y_axis"] = controller->getOptionValue("invert_y_axis");
 	jOptions["camera"]["invert_x_axis"] = controller->getOptionValue("invert_x_axis");
+	jOptions["camera"]["invert_y_axis"] = controller->getOptionValue("invert_y_axis");
 	jOptions["screen"]["fullscreen"] = controller->getOptionValue("fullscreen");
 	jOptions["screen"]["resolution"] = controller->getOptionValue("resolution");
 	jOptions["screen"]["vsync"] = controller->getOptionValue("vsync");
@@ -41,6 +41,9 @@ bool CModuleOptionsMenu::stop() {
 	myfile.open(optionsFile);
 	myfile << string;
 	myfile.close();
+
+	CApp::get().readConfig();
+	EngineRender.resizeWindow();
 
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);

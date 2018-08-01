@@ -1,7 +1,7 @@
 {
 	"camera": {
-		"invert_x_axis": true,
-		"invert_y_axis": true
+		"invert_x_axis": false,
+		"invert_y_axis": false
 	},
 	"screen": {
 		"fullscreen": false,
