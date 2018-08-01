@@ -1822,9 +1822,9 @@ struct TSceneExporter (
 		if brokenMaps.count > 0 then format "------EXPORT FAILED!!!!------"
 	),
 
-	fn exportSelectedCollider = (
-		local scenePath = project_path + scenes_path + "_testCollider.scene"
-		format "Exporting collider to %\n" scenePath
+	fn exportSelectedColliders = (
+		local scenePath = project_path + scenes_path + "_testColliders.scene"
+		format "Exporting colliders to %\n" scenePath
 		local nValidObjs = 0
 		fs.begin scenePath -- Create scene file.
 			fs.beginArray()
@@ -1977,8 +1977,8 @@ exporter = TSceneExporter project_path:exportPath
 
 start = timeStamp()
 
---exporter.exportSelectedCollider()
+--exporter.exportSelectedColliders()
 exporter.exportAll()
 
 end = timeStamp()
-format "Export took % seconds\n" ((end - start) / 1000.0)
+format "Export took % seconds.\n" ((end - start) / 1000.0)
