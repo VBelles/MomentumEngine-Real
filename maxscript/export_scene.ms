@@ -143,6 +143,33 @@ struct TMaterialExporter (
 	base_path,              -- Assigned in the ctor. "data/"
 	texturesPath,			-- Assigned in the ctor. "data/textures/"
 
+	fn getListBadDDS mat = (
+		local badMaps = ""
+		if mat != undefined and classOf mat == StandardMaterial then (
+			for map in mat.maps do (
+				if map != undefined then (
+					if isKindOf map normal_bump then (
+						mapFilename = map.normal_map.filename
+					) else mapFilename = map.filename
+					
+					mapFileType = getFilenameType mapFilename
+					if mapFileType != ".DDS" and
+					   mapFileType != ".dds" then (
+					   	append badMaps ("-Mat: \"" + mat.name + "\" | Map: \"" + map.name + "\" \n File: " + getFilenameFile mapFilename + "\n")
+					)
+				)
+			)
+		)
+		return badMaps
+	),
+
+	-- Check all objects in the file for non-DDS maps. This is very fast.
+	fn listBadDDSofScene = (
+		local badMaps = ""
+		for o in $* do append badMaps (getListBadDDS o.material)
+		if badMaps != "" then messageBox ("Maps without DDS files:\n" + badMaps) title:"Error"
+	),
+
 	--Map = dds file.
 	fn exportMap map alias default_value = (
 		if map == undefined then (
