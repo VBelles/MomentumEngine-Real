@@ -1,0 +1,21 @@
+[
+	{
+		"entity":
+		{
+			"name": "Sky",
+			"sky":{
+				"lerp_time" : 10,
+				"skyboxes" :[
+					{
+						"texture" : "data/textures/cubemaps/momentum/OutputCube_256.dds",
+						"time" : 20
+					},
+					{
+						"texture" : "data/textures/cubemaps/momentum/_OldCube_256.dds",
+						"time" : 20
+					}
+				]
+			}
+		}
+	}
+]

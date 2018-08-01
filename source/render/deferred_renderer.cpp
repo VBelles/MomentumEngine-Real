@@ -220,8 +220,6 @@ void CDeferredRenderer::renderAO(CHandle h_camera) const {
 
 void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camera) {
 	assert(rt_destination);
-	Resources.get("data/textures/cubemaps/momentum/OutputCube_256.dds")->as<CTexture>()->activate(TS_ENVIRONMENT_MAP);
-	Resources.get("data/textures/cubemaps/momentum/_OldCube_256.dds")->as<CTexture>()->activate(TS_ENVIRONMENT_MAP_1);
 
 	renderGBuffer();
 	renderGBufferDecals();

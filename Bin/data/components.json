@@ -24,6 +24,7 @@
     "mechanism",
     "mechanism_system",
     "door",
+    "sky",
     "behaviorTree_melee_enemy",
     "behaviorTree_ball_enemy",
     "behaviorTree_flying_ranged_enemy",
