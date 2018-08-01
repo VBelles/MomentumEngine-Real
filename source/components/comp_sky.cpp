@@ -12,11 +12,16 @@ void TCompSky::debugInMenu() {
 	if (fixed) {
 		setSkybox(DAY, 5.f);
 	}
+	bool sequential = false;
+	ImGui::Checkbox("Sequential sky", &sequential);
+	if (sequential) {
+		setToSequential();
+	}
 }
 
 void TCompSky::load(const json& j, TEntityParseContext& ctx) {
 	for (auto& skyBox : j["skyboxes"]) {
-		std::string texture = skyBox.value("texture","");
+		std::string texture = skyBox.value("texture", "");
 		float time = skyBox.value("time", 100);
 		dbg("texture: \n", texture.c_str());
 		skyboxes.push_back(Skybox{ Resources.get(texture)->as<CTexture>(), time });
@@ -44,30 +49,37 @@ void TCompSky::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 
 void TCompSky::update(float dt) {
 	switch (currentMode) {
-		case SEQUENTIAL:
-			if (changeTimer.elapsed() >= skyboxes[skyboxIndex].duration) {
-				changeTimer.reset();
-				lerpTimer.reset();
-				//slot 0 -> textura actual, slot 1 -> textura siguiente
-				skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
-				skyboxIndex = (skyboxIndex + 1) % numSkyboxes;
-				skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
-				cb_globals.global_skybox_ratio = 0.f;
-			}
-			break;
-		case FIXED:
-			if (waitingToEnter && cb_globals.global_skybox_ratio == 1.f) {
+	case SEQUENTIAL:
+		if (waitingToEnter) {
+			if (cb_globals.global_skybox_ratio == 1.f) {
 				waitingToEnter = false;
-				lerpTimer.reset();
-				cb_globals.global_skybox_ratio == 0.f;
-				currentLerpTime = nextLerpTime;
-				skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
-				skyboxIndex = nextSkybox;
-				skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
+				changeTimer.reset();
 			}
-			break;
-		case RANDOM:
-			break;
+		}
+		else if (changeTimer.elapsed() >= skyboxes[skyboxIndex].duration) {
+			changeTimer.reset();
+			lerpTimer.reset();
+			currentLerpTime = fixedLerpTime;
+			//slot 0 -> textura actual, slot 1 -> textura siguiente
+			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
+			skyboxIndex = (skyboxIndex + 1) % numSkyboxes;
+			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
+			cb_globals.global_skybox_ratio = 0.f;
+		}
+		break;
+	case FIXED:
+		if (waitingToEnter && cb_globals.global_skybox_ratio == 1.f) {
+			waitingToEnter = false;
+			lerpTimer.reset();
+			cb_globals.global_skybox_ratio == 0.f;
+			currentLerpTime = nextLerpTime;
+			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
+			skyboxIndex = nextSkybox;
+			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
+		}
+		break;
+	case RANDOM:
+		break;
 	}
 	if (lerpTimer.elapsed() <= currentLerpTime) {
 		cb_globals.global_skybox_ratio = lerpTimer.elapsed() / currentLerpTime;
@@ -81,5 +93,10 @@ void TCompSky::setSkybox(SkyboxType type, float lerpTime) {
 	currentMode = FIXED;
 	nextSkybox = type;
 	nextLerpTime = lerpTime;
+	waitingToEnter = true;
+}
+
+void TCompSky::setToSequential() {
+	currentMode = SEQUENTIAL;
 	waitingToEnter = true;
 }

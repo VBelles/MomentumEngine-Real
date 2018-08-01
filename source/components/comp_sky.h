@@ -43,5 +43,6 @@ public:
 	void update(float dt);
 	void debugInMenu();
 
-	void setSkybox(SkyboxType type,float lerpTime);
+	void setSkybox(SkyboxType type, float lerpTime);
+	void setToSequential();
 };
