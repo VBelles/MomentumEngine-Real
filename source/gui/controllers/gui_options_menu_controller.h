@@ -3,20 +3,17 @@
 #include "gui/gui_controller.h"
 
 namespace GUI {
-	class CButton;
+	class COption;
 
-	class CMainMenuController : public CController {
+	class COptionsMenuController : public CController {
 	public:
 		virtual void update(float delta) override;
-		void registerOption(const std::string& name, GUICallback cb);
+		void registerOption(const std::string& name, const json& value = json());
 		void setCurrentOption(int newOption);
+		json getOptionValue(const std::string& name);
 
 	private:
-		struct TOption {
-			CButton* button;
-			GUICallback callback;
-		};
-		std::vector<TOption> _options;
+		std::vector<COption*> _options;
 		int _currentOption = 0;
 		float stickInputCooldown = 7.f / 60;
 		CTimer stickInputTimer;

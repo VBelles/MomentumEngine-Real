@@ -200,6 +200,25 @@ void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
 	_backgroundColor.w = a;
 }
 
+bool CModuleRender::resizeWindow() {
+	if (!Render.resize(_xres, _yres)) return false;
+
+	// --------------------------------------------
+	// ImGui
+	auto& app = CApp::get();
+	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
+		return false;
+
+	// Main render target before rendering in the backbuffer
+	rt_main = new CRenderToTexture;
+	if (!rt_main->createRT("rt_main.dds", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN, true))
+		return false;
+
+	if (!deferred.create(Render.width, Render.height))
+		return false;
+
+	return true;
+}
 
 // -------------------------------------------------
 void CModuleRender::activateMainCamera() {

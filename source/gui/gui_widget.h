@@ -16,13 +16,14 @@ namespace GUI {
 		VWidgets getChildren(bool recursive = false);
 		CWidget* getChild(const std::string& name, bool recursive = false) const;
 		const std::string& getName() const;
+		TParams* getParams() { return &_params; }
 		virtual TImageParams* getImageParams() { return nullptr; }
 		virtual TTextParams* getTextParams() { return nullptr; }
 
 		void addEffect(CEffect* fx);
 
 		void computeLocal();
-		void computeAbsolute();
+		virtual void computeAbsolute();
 
 		void updateAll(float delta);
 		void renderAll();

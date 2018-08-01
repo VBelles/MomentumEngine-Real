@@ -90,6 +90,16 @@
 		"buttons" : ["s", "down", "pad_down"]
 	},
 	{
+		"name" : "menu_left",
+		"all" : false,
+		"buttons" : ["a", "left", "pad_left"]
+	},
+	{
+		"name" : "menu_right",
+		"all" : false,
+		"buttons" : ["d", "right", "pad_right"]
+	},
+	{
 		"name" : "menu_accept",
 		"all" : false,
 		"buttons" : ["return", "space", "pad_a"]

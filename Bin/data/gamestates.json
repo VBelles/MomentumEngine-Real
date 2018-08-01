@@ -17,6 +17,10 @@
 		{
 			"name" : "game_state",
 			"modules" : [ "physics", "instancing","cameras", "game", "pause", "test_instancing" ]
+		},
+		{
+			"name" : "options_menu",
+			"modules" : [ "options_menu" ]
 		}
 	]
 }
