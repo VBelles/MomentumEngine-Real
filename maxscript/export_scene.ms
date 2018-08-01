@@ -1822,6 +1822,22 @@ struct TSceneExporter (
 		if brokenMaps.count > 0 then format "------EXPORT FAILED!!!!------"
 	),
 
+	fn exportSelectedCollider = (
+		local scenePath = project_path + scenes_path + "_testCollider.scene"
+		format "Exporting collider to %\n" scenePath
+		local nValidObjs = 0
+		fs.begin scenePath -- Create scene file.
+			fs.beginArray()
+				for obj in selection do (
+					if classOf obj == Editable_poly then convertToMesh obj
+					exportEntityCollision obj nValidObjs
+					nValidObjs = nValidObjs + 1
+				)
+			fs.endArray()
+		fs.end()
+		format "Export finished.\n"
+	),
+
 	fn exportAll = (
 		undo off (
 		deselect objects --Deselect all objects so export is faster.
@@ -1961,6 +1977,7 @@ exporter = TSceneExporter project_path:exportPath
 
 start = timeStamp()
 
+--exporter.exportSelectedCollider()
 exporter.exportAll()
 
 end = timeStamp()
