@@ -2,12 +2,16 @@
 #include "comp_sky.h"
 #include "entity/entity.h"
 #include "entity/entity_parser.h"
-#include "components/comp_transform.h"
 #include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("sky", TCompSky);
 
 void TCompSky::debugInMenu() {
+	bool fixed = false;
+	ImGui::Checkbox("Fix sky", &fixed);
+	if (fixed) {
+		setSkybox(DAY, 5.f);
+	}
 }
 
 void TCompSky::load(const json& j, TEntityParseContext& ctx) {
@@ -39,14 +43,31 @@ void TCompSky::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 
 
 void TCompSky::update(float dt) {
-	if (changeTimer.elapsed() >= skyboxes[skyboxIndex].duration) {
-		changeTimer.reset();
-		lerpTimer.reset();
-		//slot 0 -> textura actual, slot 1 -> textura siguiente
-		skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
-		skyboxIndex = (skyboxIndex + 1) % numSkyboxes;
-		skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
-		cb_globals.global_skybox_ratio = 0.f;
+	switch (currentMode) {
+		case SEQUENTIAL:
+			if (changeTimer.elapsed() >= skyboxes[skyboxIndex].duration) {
+				changeTimer.reset();
+				lerpTimer.reset();
+				//slot 0 -> textura actual, slot 1 -> textura siguiente
+				skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
+				skyboxIndex = (skyboxIndex + 1) % numSkyboxes;
+				skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
+				cb_globals.global_skybox_ratio = 0.f;
+			}
+			break;
+		case FIXED:
+			if (waitingToEnter && cb_globals.global_skybox_ratio == 1.f) {
+				waitingToEnter = false;
+				lerpTimer.reset();
+				cb_globals.global_skybox_ratio == 0.f;
+				currentLerpTime = nextLerpTime;
+				skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
+				skyboxIndex = nextSkybox;
+				skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
+			}
+			break;
+		case RANDOM:
+			break;
 	}
 	if (lerpTimer.elapsed() <= currentLerpTime) {
 		cb_globals.global_skybox_ratio = lerpTimer.elapsed() / currentLerpTime;
@@ -54,4 +75,11 @@ void TCompSky::update(float dt) {
 	else {
 		cb_globals.global_skybox_ratio = 1.f;
 	}
+}
+
+void TCompSky::setSkybox(SkyboxType type, float lerpTime) {
+	currentMode = FIXED;
+	nextSkybox = type;
+	nextLerpTime = lerpTime;
+	waitingToEnter = true;
 }
