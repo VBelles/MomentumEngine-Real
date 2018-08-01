@@ -211,8 +211,8 @@ bool CRender::resize(int new_width, int new_height) {
 	if (FAILED(hr)) return false;
 	setDXName(depth_shader_resource_view, "BackBuffer-Stencil");
 	
-	SetWindowPos(CApp::get().getWnd(), 0, 0, 0, width, height, 0);
 	swapChain->SetFullscreenState(Engine.globalConfig.fullscreen, NULL);
+	if (!Engine.globalConfig.fullscreen) SetWindowPos(CApp::get().getWnd(), 0, 0, 0, width, height, 0);
 
 	return true;
 }
