@@ -14,25 +14,24 @@
       "cyclic" : true
   },
   "movement" : {
-      "velocity" : 5.0,
+      "velocity" : 10.0,
       "acceleration" : 0.0,
       "spin" : 0.0,
       "wind" : 0.0,
-      "gravity" : -0.25,
+      "gravity" : 0,
       "ground" : false
   },
   "render" : {
       "texture" : "data/textures/particles/glow.dds",
-      "type": "stretched_billboard",
-      "stretch_ratio": 100
+      "mesh" : "data/meshes/teapot.mesh",
+      "type": "mesh",
+      "stretch_ratio": 0.9
   },
   "size" : {
-    "scale" : 0.6,
+    "scale" : 0.1,
     "scale_variation" : 0.0,
     "sizes" : [
-      [0.0, 1.0],
-      [0.8, 1.0],
-      [1.0, 0.0]
+      [0.0, 1.0]
     ]
   },
   "color" : {

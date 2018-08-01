@@ -151,21 +151,40 @@ namespace Particles {
 			}
 			else if (_core->render.type == TCoreSystem::TRender::StretchedBillboard) {
 				VEC3 scale = p.positionDelta * _core->render.stretchRatio * p.size * p.scale;
+
+
 				VEC3 dir = p.velocity;
 				dir.Normalize();
 				float yaw = 0.f, pitch = 0.f;
 				getYawPitchFromVector(dir, &yaw, &pitch);
+			
+
+				float scaleRatio = abs(dir.Dot(cameraForward));
+
 				cb_object.obj_world =
-					MAT44::CreateScale(VEC3(0.2, 2, 0.2))							// Stretched Scale 
-					* MAT44::CreateFromYawPitchRoll(0.f, 0.f, pitch)			// Rotation
-					* MAT44::CreateScale(p.size * p.scale)							// Scale
-					* MAT44::CreateBillboard(p.position, cameraPos, cameraUp);		// Billboard
+					MAT44::CreateScale(0.2, 0.2 + 2 , 0.2)
+					* MAT44::CreateFromYawPitchRoll(0, 0, pitch)
+					* MAT44::CreateTranslation(p.position);
 			}
 			else { // Mesh
-				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)	// Scale
+				/*cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)	// Scale
 					* MAT44::CreateFromQuaternion(p.rotationQuat)			// Rotation
 					* MAT44::CreateFromQuaternion(config.rotationOffset)	// Rotation offset
 					* MAT44::CreateTranslation(p.position);					// Position
+		*/
+				VEC3 dir = p.velocity;
+				dir.Normalize();
+				float yaw = 0.f, pitch = 0.f;
+				getYawPitchFromVector(dir, &yaw, &pitch);
+
+				cb_object.obj_world =
+					MAT44::CreateScale(p.size * p.scale)	// Scale
+					* MAT44::CreateScale(1, 1 + p.velocity.Length() * _core->render.stretchRatio, 1)
+					* MAT44::CreateFromYawPitchRoll(yaw, pitch, 0)
+					* MAT44::CreateFromQuaternion(p.rotationQuat)			// Rotation
+					* MAT44::CreateFromQuaternion(config.rotationOffset)	// Rotation offset
+					* MAT44::CreateTranslation(p.position);
+			
 			}
 
 			int row = p.frame / frameCols;
@@ -173,7 +192,7 @@ namespace Particles {
 			VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
 			VEC2 maxUV = minUV + _core->render.frameSize;
 
-			cb_object.obj_color = VEC4(1, 1, 1, 1);
+			cb_object.obj_color = VEC4(p.velocity.x, p.velocity.y, p.velocity.z, 1.f);
 			cb_object.updateGPU();
 
 			cb_particles.particle_minUV = minUV;
