@@ -230,9 +230,9 @@ struct TMaterialExporter (
 						exportMap mat.bumpMap.normal_map "normal" "null_normal"
 					else exportMap mat.bumpMap "normal" "null_normal"
 					fs.writeComma()
-					exportMap mat.glossinessMap "metallic" "null_metallic"
+					exportMap mat.specularLevelMap "metallic" "null_metallic"
 					fs.writeComma()
-					exportMap mat.specularLevelMap "roughness" "null_roughness"
+					exportMap mat.glossinessMap "roughness" "null_roughness"
 					fs.writeComma()
 					exportMap mat.selfIllumMap "self_illum" "null_self_illum"
 					fs.writeComma()
