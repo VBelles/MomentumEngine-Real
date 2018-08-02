@@ -6,6 +6,7 @@ utility MyMCVExporter "MCV Exporter" (
 	rollout exporter "Momentum Exporter" (
 		button btn_scene "Export Scene"
 		button btn_mesh "Export Mesh" tooltip:"Exports the current selection mesh to file"
+		button btn_col "Export Collider" tooltip:"Exports current selection colliders to file and generates a scene."
 		button btn_skeleton "Export Skeleton & Meshes"
 		button btn_skel_anims "Export Animation" tooltip:"Uses max animation range and frame rate to specify the range to export"
 		button btn_rigid_anims "Export Rigid Animation"
@@ -31,6 +32,19 @@ utility MyMCVExporter "MCV Exporter" (
 				MessageBox "Single mesh exported OK"
 			) catch (
 				MessageBox ("Error Exporting Single Mesh:\n" + getCurrentException())
+			)
+		)
+
+		-- Exports current selection colliders to file and generates a scene.
+		on btn_col pressed do (
+			try (
+				gc()
+				global exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_ui.ms" "Bin\\")
+				local exporter = TSceneExporter project_path:exportPath
+				exporter.exportSelectedColliders()
+				MessageBox "Selected colliders exported OK"
+			) catch (
+				MessageBox ("Error Exporting colliders:\n" + getCurrentException())
 			)
 		)
 

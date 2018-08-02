@@ -18,7 +18,7 @@ namespace GUI {
 		};
 		std::vector<TOption> _options;
 		int _currentOption = 0;
-		float stickInputCooldown = 5.f / 60;
+		float stickInputCooldown = 7.f / 60;
 		CTimer stickInputTimer;
 	};
 }

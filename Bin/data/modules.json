@@ -16,7 +16,8 @@
     "slash",
     "test_instancing",
     "scripting",
-    "sound"
+    "sound",
+    "options_menu"
   ],
   "render": [
     "render",

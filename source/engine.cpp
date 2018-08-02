@@ -7,6 +7,7 @@
 #include "modules/game_modules/module_pause.h"
 #include "modules/game_modules/module_instancing.h"
 #include "modules/test/module_test_instancing.h"
+#include "modules/game_modules/module_options_menu.h"
 
 CEngine& CEngine::get() {
 	static CEngine engine;
@@ -37,6 +38,7 @@ bool CEngine::start() {
 	static CModulePause module_pause("pause");
 	static CModuleInstancing module_instancing("instancing");
 	static CModuleTestInstancing module_test_instancing("test_instancing");
+	static CModuleOptionsMenu module_options_menu("options_menu");
 
 	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_render);
@@ -59,6 +61,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_pause);
 	_modules.registerGameModule(&module_instancing);
 	_modules.registerGameModule(&module_test_instancing);
+	_modules.registerGameModule(&module_options_menu);
 
 	_modules.loadModules("data/modules.json");
 	_modules.loadGamestates("data/gamestates.json");

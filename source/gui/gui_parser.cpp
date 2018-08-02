@@ -6,6 +6,7 @@
 #include "gui/widgets/gui_button.h"
 #include "gui/effects/gui_animate_uv.h"
 #include "utils/template_engine.h"
+#include "gui/widgets/gui_option.h"
 
 namespace {
 	json mergeJson(const json& j1, const std::string& key) {
@@ -48,6 +49,7 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent) {
 	else if (type == "text")    wdgt = parseText(data);
 	else if (type == "bar")     wdgt = parseBar(data);
 	else if (type == "button")  wdgt = parseButton(data);
+	else if (type == "option")  wdgt = parseOption(data);
 	else                        wdgt = parseWidget(data);
 
 	wdgt->_name = name;
@@ -155,6 +157,52 @@ CWidget* CParser::parseBar(const json& data) {
 	return wdgt;
 }
 
+CWidget* CParser::parseOption(const json& data) {
+	COption* wdgt = new COption();
+
+	parseParams(wdgt->_params, data);
+	parseParams(wdgt->_states[CButton::EState::ST_Idle]._params, data);
+	parseImageParams(wdgt->_states[CButton::EState::ST_Idle]._imageParams, data);
+	parseTextParams(wdgt->_states[CButton::EState::ST_Idle]._textParams, data);
+
+	json jSelected = mergeJson(data, "selected");
+	parseParams(wdgt->_states[CButton::EState::ST_Selected]._params, jSelected);
+	parseImageParams(wdgt->_states[CButton::EState::ST_Selected]._imageParams, jSelected);
+	parseTextParams(wdgt->_states[CButton::EState::ST_Selected]._textParams, jSelected);
+
+	json jPrevious = data["previous_button"];
+	wdgt->_previous = (CButton*)parseButton(jPrevious);
+	wdgt->_previous->_parent = wdgt;
+	wdgt->_previous->getTextParams()->_hAlign = TTextParams::EAlignment::Center;
+	wdgt->_previous->getTextParams()->_vAlign = TTextParams::EAlignment::Center;
+
+	json jNext = data["next_button"];
+	wdgt->_next = (CButton*)parseButton(jNext);
+	wdgt->_next->_parent = wdgt;
+	wdgt->_next->getTextParams()->_hAlign = TTextParams::EAlignment::Center;
+	wdgt->_next->getTextParams()->_vAlign = TTextParams::EAlignment::Center;
+
+	json jOptionText = data["option_text"];
+	wdgt->_text = (CText*)parseText(jOptionText);
+	wdgt->_text->_parent = wdgt;
+	wdgt->_text->getTextParams()->_hAlign = TTextParams::EAlignment::Center;
+	wdgt->_text->getTextParams()->_vAlign = TTextParams::EAlignment::Center;
+
+	wdgt->_next->getParams()->_position.x = wdgt->_params._size.x - wdgt->_next->getParams()->_size.x;
+	wdgt->_text->getParams()->_position.x = wdgt->_next->getParams()->_position.x - wdgt->_text->getParams()->_size.x;
+	wdgt->_previous->getParams()->_position.x = wdgt->_text->getParams()->_position.x - wdgt->_previous->getParams()->_size.x;
+
+	for (auto& jOption : data["options"]) {
+		std::string text = jOption[0];
+
+		wdgt->_options.push_back(std::make_pair(text, jOption[1]));
+	}
+
+	wdgt->setCurrentOption(data.value("default_option", 0));
+
+	return wdgt;
+}
+
 void CParser::parseParams(TParams& params, const json& data) {
 	params._visible = data.value("visible", true);
 	params._position = loadVEC2(data.value("position", "0 0"));
@@ -174,8 +222,13 @@ void CParser::parseImageParams(TImageParams& params, const json& data) {
 void CParser::parseTextParams(TTextParams& params, const json& data) {
 	params._color = loadVEC4(data.value("font_color", "1 1 1 1"));
 	params._size = data.value("font_size", 1.f);
-	params._text = data.value("text", "");
-	VTemplate::compileTemplate(params._text, &params._templateText);
+	if (data.count("template_text")) {
+		params._text = data.value("template_text", "");
+		VTemplate::compileTemplate(params._text, &params._templateText);
+	}
+	else {
+		params._text = data.value("text", "");
+	}
 	const std::string& hAlign = data.value("halign", "");
 	if (hAlign == "center")      params._hAlign = TTextParams::Center;
 	else if (hAlign == "right")  params._hAlign = TTextParams::Right;

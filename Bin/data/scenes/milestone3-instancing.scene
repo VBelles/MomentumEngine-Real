@@ -2,6 +2,27 @@
   {
     "entity":
     {
+      "name": "fireplace",
+      "transform":
+      {
+        "pos": "304.554 -48.9433 630.35",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/fireplace.instanced_mesh",
+          "materials":
+          [
+             "data/materials/fireplace.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "column_in_04",
       "transform":
       {

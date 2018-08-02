@@ -7,12 +7,15 @@ bool CModuleMainMenu::start() {
 	app.setResetMouse(false);
 	
 	GUI::CParser parser;
-	parser.parseFile("data/gui/main_menu.json");
+	parser.parseFile(menuFile);
 
 	Engine.getGUI().activateWidget("main_menu");
 
 	auto startGameCB = []() {
 		EngineModules.changeGameState("game_state");
+	};
+	auto optionsMenuCB = []() {
+		EngineModules.changeGameState("options_menu");
 	};
 	auto exitCB = []() {
 		CApp::get().stopMainLoop = true;
@@ -20,6 +23,7 @@ bool CModuleMainMenu::start() {
 
 	controller = new GUI::CMainMenuController();
 	controller->registerOption("start_game", startGameCB);
+	controller->registerOption("options_menu", optionsMenuCB);
 	controller->registerOption("exit_game", exitCB);
 	controller->setCurrentOption(0);
 	Engine.getGUI().registerController(controller);

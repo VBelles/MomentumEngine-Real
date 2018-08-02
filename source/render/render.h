@@ -19,6 +19,7 @@ public:
     bool createDevice(int new_width, int new_height, bool vsync);
     void destroyDevice();
     void startRenderInBackbuffer();
+	bool resize(int new_width, int new_height);
 };
 
 extern CRender Render;

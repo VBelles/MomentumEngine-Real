@@ -141,12 +141,39 @@ struct TMaterialExporter (
 	fs = TJsonFormatter(),
 	project_path,           -- Assigned in the ctor. "D:\Dev\MomentumEngine-Real\Bin\"
 	base_path,              -- Assigned in the ctor. "data/"
+	texturesPath,			-- Assigned in the ctor. "data/textures/"
 
-	--TODO: Avoid exporting material if it already exists.
+	fn getListBadDDS mat = (
+		local badMaps = ""
+		if mat != undefined and classOf mat == StandardMaterial then (
+			for map in mat.maps do (
+				if map != undefined then (
+					if isKindOf map normal_bump then (
+						mapFilename = map.normal_map.filename
+					) else mapFilename = map.filename
+					
+					mapFileType = getFilenameType mapFilename
+					if mapFileType != ".DDS" and
+					   mapFileType != ".dds" then (
+					   	append badMaps ("-Mat: \"" + mat.name + "\" | Map: \"" + map.name + "\" \n File: " + getFilenameFile mapFilename + "\n")
+					)
+				)
+			)
+		)
+		return badMaps
+	),
+
+	-- Check all objects in the file for non-DDS maps. This is very fast.
+	fn listBadDDSofScene = (
+		local badMaps = ""
+		for o in $* do append badMaps (getListBadDDS o.material)
+		if badMaps != "" then messageBox ("Maps without DDS files:\n" + badMaps) title:"Error"
+	),
+
 	--Map = dds file.
 	fn exportMap map alias default_value = (
 		if map == undefined then (
-			local json_filename = base_path + "textures/" + default_value + ".dds"
+			local json_filename = texturesPath + default_value + ".dds"
 			fs.writeKeyValue alias json_filename
 			return false
 		)
@@ -154,28 +181,32 @@ struct TMaterialExporter (
 		-- "C:\engine\bin\data\textures\bricks.dds" but also "C:\download\bricks.dds"
 		local mapFilename = map.filename
 		local mapFileType = getFilenameType mapFilename
-		--format "mapFileType: %\n" mapFileType --DEBUG
-		if mapFileType != ".DDS" and mapFileType != ".dds" then throw ("Map filename " + mapFilename + " is NOT a DDS file.") 
+		if mapFileType != ".DDS" and
+		   mapFileType != ".dds" then throw ("Map " + mapFilename + " is NOT a DDS file.") 
 
 		-- bricks
 		local mapBaseName = getFilenameFile mapFilename
 		-- "C:\engine\bin\data\textures\"
 		local mapBasePath = getFilenamePath mapFilename
-		-- "data\textures\bricks.dds"
-		local json_filename = base_path + "textures/" + mapBaseName + ".dds"
+		-- "data/textures/bricks.dds"
+		local json_filename = texturesPath + mapBaseName + ".dds"
 
-		-- "C:\engine\bin\data\textures\bricks.dds"
+		-- "C:/engine/bin/data/textures/bricks.dds"
 		local ofull_path = project_path + json_filename
-		
-		--TODO: This ignores updates in textures.
+
+		--TODO: Check if texture is identical, could be a new version.
 		if isPathInsidePath mapBasePath (project_path + base_path) then (
-			--Map is already inside project directory, no need to copy, just point to the right sub-folder.
+			--Map is already inside project directory, no need to copy,
+			--just point to the right sub-folder.
 			local strippedPath = stripPathFromPath mapBasePath project_path
 			json_filename = strippedPath + mapBaseName + ".dds"
+			if not doesFileExist (cleanPath (mapBasePath + mapBaseName + ".dds")) then
+				format "WARNING: % not found.\n" (mapBasePath + mapBaseName + ".dds")
 		) else (
-			if not doesFileExist ofull_path then (
-				format "Copying from % to %\n" mapFilename ofull_path
-				copyFile mapFilename ofull_path
+			if not doesFileExist ofull_path then ( --Doesn't exist inside project.
+				if (copyFile mapFilename ofull_path) then
+					format "Copying from % to %\n" mapFilename ofull_path
+				else format "WARNING: couldn't copy %, do it manually.\n" mapFilename
 			)
 		)
 		fs.writeKeyValue alias json_filename
@@ -213,19 +244,19 @@ struct TMaterialExporter (
 					--More: ambientMap, specularMap, opacityMap, filterMap, reflectionMap.
 				)
 			) else ( -- Empty material.
-				fs.writeKeyValue "albedo" "data/textures/null_albedo.dds"
+				fs.writeKeyValue "albedo" (texturesPath + "null_albedo.dds")
 				fs.writeComma()
-				fs.writeKeyValue "normal" "data/textures/null_normal.dds"
+				fs.writeKeyValue "normal" (texturesPath + "null_normal.dds")
 				fs.writeComma()
-				fs.writeKeyValue "metallic" "data/textures/null_metallic.dds"
+				fs.writeKeyValue "metallic" (texturesPath + "null_metallic.dds")
 				fs.writeComma()
-				fs.writeKeyValue "roughness" "data/textures/null_roughness.dds"
+				fs.writeKeyValue "roughness" (texturesPath + "null_roughness.dds")
 				fs.writeComma()
-				fs.writeKeyValue "self_illum" "data/textures/null_self_illum.dds"
+				fs.writeKeyValue "self_illum" (texturesPath + "null_self_illum.dds")
 				fs.writeComma()
-				fs.writeKeyValue "height" "data/textures/null_height.dds"
+				fs.writeKeyValue "height" (texturesPath + "null_height.dds")
 				fs.writeComma()
-				fs.writeKeyValue "detail_normal" "data/textures/null_detail_normal.dds"
+				fs.writeKeyValue "detail_normal" (texturesPath + "null_detail_normal.dds")
 			)
 			fs.endObj()
 		fs.endObj()
@@ -264,8 +295,7 @@ struct TMaterialExporter (
 			for m in mats do append matsNames (matPath + m.name + ".material")
 			fs.arrayOfStrings matsNames
 			fs.writeComma()
-			local blendFile = stripPathFromPath mat.mask.bitmap.filename project_path
-			fs.writeKeyValue "mix_blend_weights" blendFile
+			exportMap mat.mask "mix_blend_weights" "null_blend"
 		fs.endObj()
 	),
 
@@ -340,8 +370,8 @@ struct TMaterialExporter (
 				if materials_of_mesh[ mat_idx ] == undefined then continue
 				local mat_of_mesh = multi_mat[ mat_idx ]
 
-				if mat_of_mesh == undefined then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat does not have this submat")
-				if classOf mat_of_mesh != StandardMaterial then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat in this slot is not a stdMaterial")
+				if mat_of_mesh == undefined then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat does not have this submat.")
+				if classOf mat_of_mesh != StandardMaterial then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat in this slot is not a stdMaterial.")
 
 				local mat_name = mat_of_mesh.name
 				append exported_materials mat_name
@@ -366,15 +396,17 @@ struct TMaterialExporter (
 -- -----------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------
 struct TSceneExporter (
-	fs  = TJsonFormatter(),
-	fss = TJsonFormatter(), --We need another stream for sub-files.
+	fs  		= TJsonFormatter(),
+	fss 		= TJsonFormatter(), --We need another stream for sub-files.
 	attrManager = TAttributeManager(),
+
 	project_path = "",
 	base_path    = "data/",
 	scenes_path  = base_path + "scenes/",
 	uniques_path = base_path + "uniques/",
 	mesh_path    = base_path + "meshes/",
 	mats_path    = base_path + "materials/",
+	tex_path     = base_path + "textures/",
 	prefabPath   = base_path + "prefabs/",
 	animsPath    = base_path + "anims/",
 	instancePath = base_path + "instancing/",
@@ -670,7 +702,7 @@ struct TSceneExporter (
 		exportMeshObject obj (project_path + mesh_path + obj.name + ".mesh")
 
 		-- -- ·Export material· -- --
-		local me = TMaterialExporter project_path:project_path base_path:base_path
+		local me = TMaterialExporter project_path:project_path base_path:base_path texturesPath:tex_path
 		local exported_materials = me.exportMaterial mat mats_path obj
 
 		local suffix = ".material"
@@ -1817,6 +1849,22 @@ struct TSceneExporter (
 		if brokenMaps.count > 0 then format "------EXPORT FAILED!!!!------"
 	),
 
+	fn exportSelectedColliders = (
+		local scenePath = project_path + scenes_path + "_testColliders.scene"
+		format "Exporting colliders to %\n" scenePath
+		local nValidObjs = 0
+		fs.begin scenePath -- Create scene file.
+			fs.beginArray()
+				for obj in selection do (
+					if classOf obj == Editable_poly then convertToMesh obj
+					exportEntityCollision obj nValidObjs
+					nValidObjs = nValidObjs + 1
+				)
+			fs.endArray()
+		fs.end()
+		format "Export finished.\n"
+	),
+
 	fn exportAll = (
 		undo off (
 		deselect objects --Deselect all objects so export is faster.
@@ -1956,7 +2004,8 @@ exporter = TSceneExporter project_path:exportPath
 
 start = timeStamp()
 
+--exporter.exportSelectedColliders()
 exporter.exportAll()
 
 end = timeStamp()
-format "Export took % seconds\n" ((end - start) / 1000.0)
+format "Export took % seconds.\n" ((end - start) / 1000.0)

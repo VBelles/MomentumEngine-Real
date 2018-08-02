@@ -1,0 +1,7 @@
+{
+    "screen": {
+        "fullscreen": false,
+        "resolution": "1280 720",
+        "vsync": false
+    }
+}
