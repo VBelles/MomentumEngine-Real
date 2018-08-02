@@ -8,11 +8,11 @@
 				"skyboxes" :[
 					{
 						"texture" : "data/textures/cubemaps/momentum/OutputCube_256.dds",
-						"time" : 20
+						"time" : 480
 					},
 					{
 						"texture" : "data/textures/cubemaps/momentum/_OldCube_256.dds",
-						"time" : 20
+						"time" : 60
 					}
 				]
 			}

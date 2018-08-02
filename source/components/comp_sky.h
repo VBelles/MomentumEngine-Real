@@ -45,4 +45,5 @@ public:
 
 	void setSkybox(SkyboxType type, float lerpTime);
 	void setToSequential();
+	void setToRandom();
 };
