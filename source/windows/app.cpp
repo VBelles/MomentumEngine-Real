@@ -5,6 +5,13 @@
 #include "profiling/profiling.h"
 #include <windowsx.h>
 
+#ifndef HID_USAGE_PAGE_GENERIC
+#define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
+#endif
+#ifndef HID_USAGE_GENERIC_MOUSE
+#define HID_USAGE_GENERIC_MOUSE        ((USHORT) 0x02)
+#endif
+
 CApp* CApp::app_instance = nullptr;
 DWORD defaultStickyKeysState;
 
@@ -221,13 +228,6 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 
     ShowWindow(hWnd, nCmdShow);
 
-#ifndef HID_USAGE_PAGE_GENERIC
-#define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
-#endif
-#ifndef HID_USAGE_GENERIC_MOUSE
-#define HID_USAGE_GENERIC_MOUSE        ((USHORT) 0x02)
-#endif
-
     RAWINPUTDEVICE Rid[1];
     Rid[0].usUsagePage = HID_USAGE_PAGE_GENERIC;
     Rid[0].usUsage = HID_USAGE_GENERIC_MOUSE;
@@ -235,7 +235,6 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
     Rid[0].hwndTarget = hWnd;
     RegisterRawInputDevices(Rid, 1, sizeof(Rid[0]));
 
-	//setResetMouse(false);
 	showCursor = true;
 
     return true;
