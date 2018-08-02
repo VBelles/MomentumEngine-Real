@@ -128,5 +128,10 @@
 		"name" : "free_camera",
 		"all" : false,
 		"buttons" : ["f3"]
+	},
+	{
+		"name" : "map",
+		"all" : false,
+		"buttons" : ["m"]
 	}
 ]

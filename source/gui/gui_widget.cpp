@@ -24,6 +24,11 @@ void CWidget::removeChild(CWidget* wdgt) {
 	}
 }
 
+void CWidget::setParent(CWidget* wdgt) {
+	_parent = wdgt;
+}
+
+
 VWidgets CWidget::getChildren(bool recursive) {
 	VWidgets children = _children;
 

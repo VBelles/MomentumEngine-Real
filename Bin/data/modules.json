@@ -17,7 +17,8 @@
     "test_instancing",
     "scripting",
     "sound",
-    "options_menu"
+    "options_menu",
+    "map_menu"
   ],
   "render": [
     "render",

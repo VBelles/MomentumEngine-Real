@@ -1,0 +1,76 @@
+[
+	{
+		"name": "map_menu",
+		"type": "widget",
+		"size": "1920 1080",
+		"children": [
+			{
+				"name": "map",
+				"position": "1000 200",
+				"type": "image",
+				"size": "600 600",
+				"texture": "data/textures/gui/menu_background.dds",
+				"minUV": "0 0",
+				"maxUV": "1 1"
+			},
+			{
+				"name": "test_buttons",
+				"type": "widget",
+				"position": "0 0",
+				"children": [
+					{
+						"name": "tp1",
+						"type": "map_marker",
+						"position": "0 0 0",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "tp1_button",
+							"type" : "button",
+							"position" : "0 0",
+							"size" : "300 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "TP1",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "tp1_marker",
+							"type" : "button",
+							"position" : "300 300",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+]

@@ -7,6 +7,7 @@
 #include "gui/effects/gui_animate_uv.h"
 #include "utils/template_engine.h"
 #include "gui/widgets/gui_option.h"
+#include "gui/widgets/gui_map_marker.h"
 
 namespace {
 	json mergeJson(const json& j1, const std::string& key) {
@@ -50,6 +51,7 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent) {
 	else if (type == "bar")     wdgt = parseBar(data);
 	else if (type == "button")  wdgt = parseButton(data);
 	else if (type == "option")  wdgt = parseOption(data);
+	else if (type == "map_marker")  wdgt = parseMapMarker(data);
 	else                        wdgt = parseWidget(data);
 
 	wdgt->_name = name;
@@ -199,6 +201,26 @@ CWidget* CParser::parseOption(const json& data) {
 	}
 
 	wdgt->setCurrentOption(data.value("default_option", 0));
+
+	return wdgt;
+}
+
+CWidget* CParser::parseMapMarker(const json& data) {
+	CMapMarker* wdgt = new CMapMarker();
+
+	if (data.count("position")) {
+		wdgt->pos = loadVEC3(data["position"]);
+	}
+	wdgt->mapWidget = data.value("map", wdgt->mapWidget);
+	wdgt->alternText = data.value("altern_text", wdgt->alternText);
+	wdgt->_visible = data.value("visible", wdgt->_visible);
+
+	json jButton = data["button"];
+	wdgt->_button = (CButton*)parseButton(jButton);
+	wdgt->_button->_parent = wdgt;
+
+	json jMarker = data["marker"];
+	wdgt->_marker = (CButton*)parseButton(jMarker);
 
 	return wdgt;
 }
