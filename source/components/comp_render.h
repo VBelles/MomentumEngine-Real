@@ -21,6 +21,7 @@ private:
 	float timeToNormal;
 	bool isColorChanged = false;
 	VEC4 originalColor;
+	bool enabled = true;
 
 public:
 	~TCompRender();
@@ -48,7 +49,6 @@ public:
 	void setMeshEnabled(int mesh, bool enabled);
 	void setAllMaterials(std::vector<std::string> materialNames);
 
-	void update(float delta);
 	void TurnRed(float time);
 
 	static void registerMsgs();

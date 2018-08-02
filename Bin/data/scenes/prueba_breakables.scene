@@ -1,0 +1,146 @@
+[
+  {
+    "entity":
+    {
+      "name": "breakable",
+      "transform":
+      {
+        "pos": "0 5 0",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/ms3_central_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ]
+        }
+      ],
+      "collider":{
+        "shape": "sphere",
+        "radius": 1.0,
+        "type": "static",
+        "group":
+        [
+          "scenario",
+          "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "broken_parts":
+        [
+           "broken_part_01",
+           "broken_part_02",
+           "broken_part_03",
+           "broken_part_04"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "broken_part_01",
+      "transform":
+      {
+        "pos": "1 5 1",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_central_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ],
+          "enabled" : false
+        }
+      ],
+      "rigid_anim":
+      {
+        "src": "data/anims/giratiempo_prefab.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "broken_part_02",
+      "transform":
+      {
+        "pos": "1 5 -1",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_central_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ],
+          "enabled" : false
+        }
+      ],
+      "rigid_anim":
+      {
+        "src": "data/anims/giratiempo_prefab.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "broken_part_03",
+      "transform":
+      {
+        "pos": "-1 5 1",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_central_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ],
+          "enabled" : false
+        }
+      ],
+      "rigid_anim":
+      {
+        "src": "data/anims/giratiempo_prefab.anims"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "broken_part_04",
+      "transform":
+      {
+        "pos": "-1 5 -1",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_central_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ],
+          "enabled" : false
+        }
+      ],
+      "rigid_anim":
+      {
+        "src": "data/anims/giratiempo_prefab.anims"
+      }
+    }
+  }
+]
