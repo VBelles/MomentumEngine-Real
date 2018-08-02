@@ -1,6 +1,5 @@
---fileIn "export_scene.ms"
---fileIn "export_skeletons.ms"
---fileIn "export_rigid_anims.ms"
+--This UI was to use the Momentum utils in the Utilities panel.
+--Floating window is preferred, see ui_floating.ms.
 
 utility MyMCVExporter "MCV Exporter" (
 	rollout exporter "Momentum Exporter" (
