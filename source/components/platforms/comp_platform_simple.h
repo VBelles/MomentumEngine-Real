@@ -16,6 +16,10 @@ private:
 	bool moveBackwards = false;
 	bool isClosed = false;
 
+	//Rolling platform
+	float rollSpeed = 0.f;
+	float rollWaitDuration = 0.f;
+
 	CTimer travelWaitTimer;
 	float travelWaitTime = 0.f;
 

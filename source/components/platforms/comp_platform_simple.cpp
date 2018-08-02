@@ -37,7 +37,7 @@ void TCompPlatformSimple::registerMsgs() {
 }
 
 void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
-	//Movement
+	// Movement
 	speed = j.value("speed", 0.f);
 	curve.load(j);
 	automove = j.value("automove", false);
@@ -50,11 +50,19 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	}
 	travelWaitTime = j.value("travel_wait_time", 0.f);
 
-	//Rotation
+	// Rotation
 	rotationSpeed = j.value("rotation_speed", 0.f);
 	if (j.count("rotation_axis")) {
 		rotationAxisLocal = loadVEC3(j["rotation_axis"]);
 	}
+	// Roll
+	if (j.count("roll")) {
+		auto& jRoll = j["roll"];
+		rollSpeed = jRoll.value("speed", rollSpeed);
+		rollWaitDuration = jRoll.value("wait_duration", rollWaitDuration);
+	}
+
+
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
@@ -79,7 +87,7 @@ void TCompPlatformSimple::update(float delta) {
 		}
 	}
 
-	//Position
+	// Position
 	if (automove) {
 		// Actualizar ratio
 		int sign = moveBackwards ? -1 : 1;
@@ -109,13 +117,13 @@ void TCompPlatformSimple::update(float delta) {
 		transform->setPosition(position);
 	}
 
-	//Rotation
+	// Rotation
 	if (rotationSpeed > 0) {
 		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
 		transform->setRotation(transform->getRotation() * quat);
 	}
 
-	//Update collider
+	// Update collider
 	getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
 }
 
