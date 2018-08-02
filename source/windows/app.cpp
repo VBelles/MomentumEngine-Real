@@ -317,7 +317,7 @@ void CApp::setWindowFocused(bool windowFocused) {
 }
 
 bool CApp::shoulResetMouse() {
-	return resetMouse && windowFocused;
+	return resetMouse && isWindowFocused();
 }
 
 void CApp::setResetMouse(bool resetMouse) {
