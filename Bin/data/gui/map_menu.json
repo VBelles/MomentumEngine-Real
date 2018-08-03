@@ -276,7 +276,7 @@
 					{
 						"name": "Pie_faro",
 						"type": "map_marker",
-						"position": "Pie faro",
+						"position": "-325 26 -277.4",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
