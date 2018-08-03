@@ -13,7 +13,7 @@ ButtonText: "Momentum"
 global floater
 try closeRolloutFloater floater catch()
 
-floater = newRolloutFloater "Momentum utils" 218 430 --Width and height.
+floater = newRolloutFloater "Momentum utils" 218 455 --Width and height. +25 height per button.
 exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\ui_floating.ms" "Bin\\")
 
 rollout exporter "Momentum Exporter" (
@@ -101,8 +101,9 @@ rollout exporter "Momentum Exporter" (
 ) -- end exporter rollout creator
 
 rollout utils "Momentum Utils" (
-	button btn_attach_elems "Attach elements" tooltip:"Attaches all selected objects."
-	button btn_detach_elems "Detach elements" tooltip:"Detaches all elements of selected object."
+	button btn_attach_elems "Attach elements" tooltip:"Attaches all selected objects"
+	button btn_detach_elems "Detach elements" tooltip:"Detaches all elements of selected object"
+	button btn_check_dds "Check DDS" tooltip:"Checks if any texture is not DDS"
 
 	fn attachElems = (
 		try (
@@ -123,9 +124,20 @@ rollout utils "Momentum Utils" (
 			MessageBox ("Error detaching:\n" + getCurrentException())
 		)
 	)
+
+	fn checkDDS = (
+		try (
+			gc()
+			local me = TMaterialExporter()
+			me.listBadDDSofScene()	
+		) catch (
+			MessageBox ("Error checking dds:\n" + getCurrentException())
+		)
+	)
 	
 	on btn_attach_elems pressed do ( attachElems() )
 	on btn_detach_elems pressed do ( detachElems() )
+	on btn_check_dds pressed do ( checkDDS() )
 ) -- end utils rollout
 
 rollout attribute "Momentum Attributes" (
