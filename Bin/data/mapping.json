@@ -42,7 +42,7 @@
 	{
 		"name" : "gain_power",
 		"all" : false,
-		"buttons" : ["pad_options", "f"]
+		"buttons" : ["pad_l3", "f"]
 	},
 	{
 		"name" : "spend_coins",
@@ -128,5 +128,10 @@
 		"name" : "free_camera",
 		"all" : false,
 		"buttons" : ["f3"]
+	},
+	{
+		"name" : "map",
+		"all" : false,
+		"buttons" : ["m", "pad_options"]
 	}
 ]

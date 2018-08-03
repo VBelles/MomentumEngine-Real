@@ -35,4 +35,5 @@ public:
     static void unlockPlayerCameraInput();
 	static void disablePlayerOutline();
 	static void enablePlayerOutline();
+	static bool isPlayerGrounded();
 };

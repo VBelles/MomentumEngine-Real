@@ -1,0 +1,331 @@
+[
+	{
+		"name": "map_menu",
+		"type": "widget",
+		"size": "1920 1080",
+		"children": [
+			{
+				"name": "map",
+				"position": "1000 200",
+				"type": "image",
+				"size": "600 600",
+				"texture": "data/textures/gui/menu_background.dds",
+				"minUV": "0 0",
+				"maxUV": "1 1"
+			},
+			{
+				"name": "test_buttons",
+				"type": "widget",
+				"position": "100 200",
+				"children": [
+					{
+						"name": "Tutorial",
+						"type": "map_marker",
+						"position": "-72.1 60.7 381.6",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "Tutorial_button",
+							"type" : "button",
+							"position" : "0 0",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "TUTORIAL",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "Tutorial_marker",
+							"type" : "button",
+							"position" : "10 10",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "Origin",
+						"type": "map_marker",
+						"position": "0 0 0",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "Origin_button",
+							"type" : "button",
+							"position" : "0 60",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "ORIGIN",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "Origin_marker",
+							"type" : "button",
+							"position" : "60 60",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "Inicio_cementerio",
+						"type": "map_marker",
+						"position": "-7 -7 21",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "Inicio_cementerio_button",
+							"type" : "button",
+							"position" : "0 120",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "INICIO CEMENTERIO",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "Inicio_cementerio_marker",
+							"type" : "button",
+							"position" : "120 120",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "Derecha_cementerio",
+						"type": "map_marker",
+						"position": "172 44 -175.4",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "Derecha_cementerio_button",
+							"type" : "button",
+							"position" : "0 180",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "DERECHA CEMENTERIO",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "Derecha_cementerio_marker",
+							"type" : "button",
+							"position" : "0 120",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "Primer_altar",
+						"type": "map_marker",
+						"position": "5 22 -191.4",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "Primer_altar_button",
+							"type" : "button",
+							"position" : "0 240",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "PRIMER ALTAR",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "Primer_altar_marker",
+							"type" : "button",
+							"position" : "120 0",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "Pie_faro",
+						"type": "map_marker",
+						"position": "-325 26 -277.4",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "Pie_faro_button",
+							"type" : "button",
+							"position" : "0 300",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "PIE FARO",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "Pie_faro_marker",
+							"type" : "button",
+							"position" : "400 20",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"position" : "30 0",
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+]
