@@ -10,7 +10,7 @@ namespace GUI {
 		virtual void update(float delta) override;
 		void registerOption(const std::string& name, GUICallback cb);
 		void setCurrentOption(int newOption);
-
+		std::string pauseModule = "pause";
 	private:
 		struct TOption {
 			CButton* button;

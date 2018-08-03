@@ -3,6 +3,7 @@
 #include "gui/widgets/gui_map_marker.h"
 #include "gui/widgets/gui_button.h"
 #include "modules/system_modules/scripting/scripting_player.h"
+#include "modules/game_modules/module_map_menu.h"
 
 namespace GUI {
 	void CMapMenuController::update(float delta) {
@@ -36,12 +37,6 @@ namespace GUI {
 				else if (leftAnalogInput.y > 0.5) {
 					setCurrentOption(_currentOption - 1);
 				}
-				//else if (leftAnalogInput.x < -0.5) {
-				//	_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() - 1);
-				//}
-				//else if (leftAnalogInput.x > 0.5) {
-				//	_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() + 1);
-				//}
 			}
 			else {
 				if (EngineInput["menu_down"].getsPressed()) {
@@ -50,27 +45,37 @@ namespace GUI {
 				else if (EngineInput["menu_up"].getsPressed()) {
 					setCurrentOption(_currentOption - 1);
 				}
-				//else if (EngineInput["menu_left"].getsPressed()) {
-				//	_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() - 1);
-				//}
-				//else if (EngineInput["menu_right"].getsPressed()) {
-				//	_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() + 1);
-				//}
 			}
 		}
 
-		if (_currentOption >= 0 && EngineInput["mouse_accept"].getsPressed()
+
+		if (_currentOption >= 0 && EngineInput["menu_accept"].getsPressed()
+			|| _currentOption >= 0 && EngineInput["mouse_accept"].getsPressed()
 			&& _options[_currentOption]->overlaps(mouse.position)) {
 			_options[_currentOption]->setCurrentState(CButton::EState::ST_Pressed);
 		}
-		else if (_currentOption >= 0 && EngineInput["mouse_accept"].getsReleased()
+		else if (_currentOption >= 0 && EngineInput["menu_accept"].getsReleased()
+			|| _currentOption >= 0 && EngineInput["mouse_accept"].getsReleased()
 			&& _options[_currentOption]->overlaps(mouse.position)) {
-			VEC3 pos = _options[_currentOption]->getPos();
-			ScriptingPlayer::teleportPlayer(pos.x, pos.y, pos.z);
+			if (_options[_currentOption]->isVisible()) {
+				VEC3 pos = _options[_currentOption]->getPos();
+				ScriptingPlayer::teleportPlayer(pos.x, pos.y, pos.z);
+
+				CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
+				if (module->isActive()) {
+					module->onMapButtonPressed();
+				}
+			}
+			else {
+				//TODO
+			}
 		}
 
 		if (EngineInput["menu_back"].getsReleased()) {
-			EngineModules.changeGameState("main_menu");
+			CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
+			if (module->isActive()) {
+				module->onMapButtonPressed();
+			}
 		}
 	}
 

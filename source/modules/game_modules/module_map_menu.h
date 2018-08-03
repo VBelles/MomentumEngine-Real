@@ -6,7 +6,6 @@ class CModuleMapMenu : public IModule {
 private:
 	GUI::CMapMenuController* controller;
 	std::string menuFile = "data/gui/map_menu.json";
-	void onMapButtonPressed();
 	bool pause = false;
 public:
 	CModuleMapMenu(const std::string& name) : IModule(name) {}
@@ -14,4 +13,5 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 	void render() override;
+	void onMapButtonPressed();
 };

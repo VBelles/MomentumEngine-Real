@@ -12,7 +12,7 @@ CMapMarker::~CMapMarker() {
 
 void CMapMarker::render() {
 	// render button
-	if (_visible) {
+	if (!_visible) {
 		std::string text = _button->getTextParams()->_text;
 		auto templates = _button->getTextParams()->_templateText.texts;
 
@@ -39,13 +39,18 @@ void CMapMarker::setCurrentState(CButton::EState newState) {
 
 void CMapMarker::computeAbsolute() {
 	CWidget::computeAbsolute();
-	_marker->setParent(EngineGUI.getWidget(mapWidget));
+	_button->setParent(_parent);
+	_marker->setParent(EngineGUI.getWidget(mapWidget, true));
 	_button->computeAbsolute();
 	_marker->computeAbsolute();
 }
 
 bool CMapMarker::overlaps(VEC2 pos) {
 	return _button->overlaps(pos) || (_visible && _marker->overlaps(pos));
+}
+
+bool CMapMarker::isVisible() {
+	return _visible;
 }
 
 void CMapMarker::setVisible(bool visible) {

@@ -25,6 +25,8 @@ namespace {
 using namespace GUI;
 
 void CParser::parseFile(const std::string& filename) {
+	std::vector<CWidget*> widgets;
+
 	std::ifstream file_json(filename);
 	json json_data;
 	file_json >> json_data;
@@ -37,6 +39,12 @@ void CParser::parseFile(const std::string& filename) {
 
 		// register the widget within the manager
 		Engine.getGUI().registerWidget(wdgt);
+
+		widgets.push_back(wdgt);
+	}
+
+	for (auto& widget : widgets) {
+		widget->computeAbsolute();
 	}
 }
 

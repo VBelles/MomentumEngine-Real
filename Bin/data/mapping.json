@@ -42,7 +42,7 @@
 	{
 		"name" : "gain_power",
 		"all" : false,
-		"buttons" : ["pad_options", "f"]
+		"buttons" : ["pad_l3", "f"]
 	},
 	{
 		"name" : "spend_coins",
@@ -132,6 +132,6 @@
 	{
 		"name" : "map",
 		"all" : false,
-		"buttons" : ["m"]
+		"buttons" : ["m", "pad_options"]
 	}
 ]

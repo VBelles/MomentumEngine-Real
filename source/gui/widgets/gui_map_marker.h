@@ -13,6 +13,7 @@ namespace GUI {
 		void setCurrentState(CButton::EState newState);
 		void computeAbsolute() override;
 		bool overlaps(VEC2 pos) override;
+		bool isVisible();
 		void setVisible(bool visible);
 
 		CButton* getButton();

@@ -11,7 +11,12 @@ bool CModuleMapMenu::start() {
 	parser.parseFile(menuFile);
 
 	controller = new GUI::CMapMenuController();
-	controller->registerOption("tp1");
+	controller->registerOption("Tutorial");
+	controller->registerOption("Origin");
+	controller->registerOption("Inicio_cementerio");
+	controller->registerOption("Derecha_cementerio");
+	controller->registerOption("Primer_altar");
+	controller->registerOption("Pie_faro");
 
 	Engine.setInputType(InputType::Menu);
 

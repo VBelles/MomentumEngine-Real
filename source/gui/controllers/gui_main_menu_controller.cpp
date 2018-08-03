@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "gui_main_menu_controller.h"
 #include "gui/widgets/gui_button.h"
+#include "modules/game_modules/module_pause.h"
 
 namespace GUI {
 	void CMainMenuController::update(float delta) {
@@ -60,6 +61,13 @@ namespace GUI {
 			&& _options[_currentOption].button->overlaps(mouse.position)) {
 			_options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
 			_options[_currentOption].callback();
+		}
+
+		if (EngineInput["menu_back"].getsReleased()) {
+			CModulePause* module = (CModulePause*)EngineModules.getModule(pauseModule);
+			if (module->isActive()) {
+				module->onPausePressed();
+			}
 		}
 	}
 

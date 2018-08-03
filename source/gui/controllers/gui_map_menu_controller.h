@@ -10,7 +10,7 @@ namespace GUI {
 		virtual void update(float delta) override;
 		void registerOption(const std::string& name);
 		void setCurrentOption(int newOption);
-
+		std::string mapModule = "map_menu";
 	private:
 		std::vector<CMapMarker*> _options;
 		int _currentOption = 0;
