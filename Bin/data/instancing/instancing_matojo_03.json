@@ -1,0 +1,16 @@
+{
+  "TInstance":
+  [
+    {
+      "mesh": "data/meshes/matojo_03.instanced_mesh",
+      "data":
+      [
+        {
+          "pos": "-5.96396 -2.8752 -4.01321",
+          "scale": 1.0,
+          "rot": "0.0 -0.707107 0.0 -0.707107"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "instanced_mesh": "data/meshes/florgrande_05.mesh",
+  "instances_type": "Instance",
+  "num_instances_reserved": 8
+}

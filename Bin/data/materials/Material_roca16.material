@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/roca16_BaseColor.dds",
+    "normal": "data/textures/roca16_Normal.dds",
+    "metallic": "data/textures/roca16_Roughness.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/roca_shared_Height.dds",
+    "detail_normal": "data/textures/t_grietasmicro_normal.dds"
+  }
+}

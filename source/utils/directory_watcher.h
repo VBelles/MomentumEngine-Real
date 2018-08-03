@@ -9,7 +9,7 @@
 class CDirectoyWatcher {
 	HANDLE    hDirectory;
 	HWND      hWnd;					// To should we notify
-	char      folder_name[ MAX_PATH ];
+	char      folder_name[MAX_PATH];
 
 public:
 
@@ -21,13 +21,12 @@ public:
 
 		if (!hDirectory) {
 			hDirectory = CreateFile(folder_name,
-				FILE_LIST_DIRECTORY | GENERIC_READ,
-				FILE_SHARE_READ | FILE_SHARE_WRITE,
-				0,
-				OPEN_EXISTING,
-				FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED,
-				0
-				);
+									FILE_LIST_DIRECTORY | GENERIC_READ,
+									FILE_SHARE_READ | FILE_SHARE_WRITE,
+									0,
+									OPEN_EXISTING,
+									FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED,
+									0);
 		}
 
 		std::thread* th = new std::thread([this] {
@@ -44,51 +43,44 @@ public:
 
 				// This call is blocking...
 				BOOL rc = ReadDirectoryChangesW(hDirectory,
-					&fni,
-					sizeof(fni),
-					TRUE,           // Watch subtrees also
-					FILE_NOTIFY_CHANGE_LAST_WRITE | FILE_NOTIFY_CHANGE_FILE_NAME,
-					&b,
-					nullptr,
-					0);
+												&fni,
+												sizeof(fni),
+												TRUE,           // Watch subtrees also
+												FILE_NOTIFY_CHANGE_LAST_WRITE | FILE_NOTIFY_CHANGE_FILE_NAME,
+												&b,
+												nullptr,
+												0);
 
 				if (fni.i.Action != 0) {
 					char name[MAX_PATH];
 					size_t n = wcstombs(name, fni.i.FileName, MAX_PATH);
-					
+
 					// Allocate memory because we are using POST msg and 
 					// we don't known when will be used.
 					char* full_name = new char[MAX_PATH];
 					sprintf(full_name, "%s/%s", folder_name, name);
-					
-          // Replace '\' by '/'
-          char* p = full_name;
-          while (*p) {
-            if (*p == '\\')
-              *p = '/';
-            else
-              *p = tolower(*p);
-            ++p;
-          }
 
-          struct _stat buf;
-          if (_stat(full_name, &buf) == 0) {
-            if (buf.st_size != 0) {
+					// Replace '\' by '/'
+					char* p = full_name;
+					while (*p) {
+						if (*p == '\\') *p = '/';
+						else *p = tolower(*p);
+						++p;
+					}
 
-              ::Sleep(500);
+					struct _stat buf;
+					if (_stat(full_name, &buf) == 0) {
+						if (buf.st_size != 0) {
+							::Sleep(500);
 
-              ::PostMessage(hWnd, WM_FILE_CHANGED, fni.i.Action, LPARAM(full_name));
-            }
-          }
-
-          fni.i.Action = 0;
-        }
+							::PostMessage(hWnd, WM_FILE_CHANGED, fni.i.Action, LPARAM(full_name));
+						}
+					}
+					fni.i.Action = 0;
+				}
 			}
-
 		});
-
 	}
 };
 
 #endif
-

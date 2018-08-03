@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/t_camino_BaseColor.dds",
+    "normal": "data/textures/t_camino_Normal.dds",
+    "metallic": "data/textures/t_camino_Roughness.dds",
+    "roughness": "data/textures/t_camino_Metallic.dds",
+    "self_illum": "data/textures/t_camino_Emissive.dds",
+    "height": "data/textures/t_camino_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
