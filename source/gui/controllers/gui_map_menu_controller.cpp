@@ -57,7 +57,8 @@ namespace GUI {
 		else if (_currentOption >= 0 && EngineInput["menu_accept"].getsReleased()
 			|| _currentOption >= 0 && EngineInput["mouse_accept"].getsReleased()
 			&& _options[_currentOption]->overlaps(mouse.position)) {
-			if (_options[_currentOption]->isVisible()) {
+			if (_options[_currentOption]->isVisible()
+				&& ScriptingPlayer::isPlayerGrounded()) {
 				VEC3 pos = _options[_currentOption]->getPos();
 				ScriptingPlayer::teleportPlayer(pos.x, pos.y, pos.z);
 
@@ -69,13 +70,7 @@ namespace GUI {
 			else {
 				//TODO
 			}
-		}
-
-		if (EngineInput["menu_back"].getsReleased()) {
-			CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
-			if (module->isActive()) {
-				module->onMapButtonPressed();
-			}
+			_options[_currentOption]->setCurrentState(CButton::EState::ST_Selected);
 		}
 	}
 

@@ -30,7 +30,8 @@ bool CModuleMapMenu::stop() {
 }
 
 void CModuleMapMenu::update(float delta) {
-	if (EngineInput["map"].getsPressed()) {
+	if (EngineInput["map"].getsPressed()
+		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onMapButtonPressed();
 	}
 }

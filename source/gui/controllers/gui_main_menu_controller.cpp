@@ -62,13 +62,6 @@ namespace GUI {
 			_options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
 			_options[_currentOption].callback();
 		}
-
-		if (EngineInput["menu_back"].getsReleased()) {
-			CModulePause* module = (CModulePause*)EngineModules.getModule(pauseModule);
-			if (module->isActive()) {
-				module->onPausePressed();
-			}
-		}
 	}
 
 	void CMainMenuController::registerOption(const std::string& name, GUICallback cb) {

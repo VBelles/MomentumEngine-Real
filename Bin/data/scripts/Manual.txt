@@ -28,9 +28,10 @@ Funciones:
 	bool takePlayerControl()
 	bool givePlayerControl()
 	void lockPlayerCameraInput()
-    	void unlockPlayerCameraInput()
+	void unlockPlayerCameraInput()
 	void disablePlayerOutline()
 	void enablePlayerOutline()
+	bool isPlayerGrounded()
 
 	string spawnEntityAt(PREFAB, float x, float y, float z)
 	string spawnEntity(PREFAB)
