@@ -6,6 +6,7 @@
 #include "components/comp_collectable.h"
 #include "components/comp_collider.h"
 #include "components/comp_render.h"
+#include "components/controllers/comp_rigid_anims_director.h"
 #include "components/player/attack_info.h"
 
 
@@ -63,6 +64,10 @@ void TCompBreakable::onDie() {
 	for (CEntity* brokenPart : brokenParts) {
 		TCompRender* render = brokenPart->get<TCompRender>();
 		render->enable();
+	}
+	TCompRigidAnimsDirector* director = get<TCompRigidAnimsDirector>();
+	if (director) {
+		director->setIsMoving(true);
 	}
 	((CEntity*)(CHandle(this).getOwner()))->sendMsg(TMsgDestroy{});
 	getCollider()->destroy();

@@ -19,6 +19,7 @@ public:
 	DECL_SIBLING_ACCESS();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
+	void updateAnimation();
 	void debugInMenu();
 	static void registerMsgs();
 	void setIsMoving(bool isMoving);

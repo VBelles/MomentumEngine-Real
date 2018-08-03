@@ -213,11 +213,24 @@ void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
 }
 
 void TCompRender::enable() {
+	for (auto& mesh : meshes) {
+		mesh.enabled = true;
+	}
+	for (auto& mesh : meshes) {
+		if (mesh.enabled) {
+			dbg("mesh enabled\n");
+		}
+		else {
+			dbg("mesh disabled\n");
+		}
+	}
 	refreshMeshesInRenderManager();
-
 }
 
 void TCompRender::disable() {
+	for (auto& mesh : meshes) {
+		mesh.enabled = false;
+	}
 	CHandle h_me = CHandle(this);
 	CRenderManager::get().delRenderKeys(h_me);
 }
