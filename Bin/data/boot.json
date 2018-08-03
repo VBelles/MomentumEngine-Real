@@ -5,7 +5,7 @@
     "data/scenes/lights.scene",
   
     "data/scenes/__testAO-0.scene",
-
+    
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-breakables.scene",
     "data/scenes/milestone3-cameras.scene",
@@ -26,6 +26,8 @@
   ],
   "unused_scenes": [
     "data/scenes/prueba_breakables.scene",
+    "data/scenes/terrenos_pbr_prefab-0.scene",
+    "data/scenes/terreno_olan_andrea-0.scene",
     "data/scenes/prueba_detail_normals-0.scene",
     "data/scenes/milestone3_tutorial-0.scene",
     "data/scenes/milestone3_tutorial-coins.scene",
