@@ -19,17 +19,21 @@ void TCompRigidAnim::load(const json& j, TEntityParseContext& ctx) {
 	current_time = 0;
 	speed_factor = j.value("speed_factor", 1.0f);
 	loops = j.value("loops", true);
+	is_moving = j.value("is_moving", is_moving);
+	killOnFinishAnimation = j.value("kill_on_finish", killOnFinishAnimation);
 }
 
 void TCompRigidAnim::debugInMenu() {
 	ImGui::DragFloat("Time", &current_time, 0.01f, 0.f, 10.0f);
 	ImGui::DragFloat("Speed Factor", &speed_factor, 0.01f, 0.f, 5.0f);
 	ImGui::Checkbox("Loops", &loops);
+	ImGui::Checkbox("Moving", &is_moving);
 }
 
 void TCompRigidAnim::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	TCompTransform* transform = get<TCompTransform>();
 	initialTransform = CTransform(*transform);
+	updateAnimation();
 }
 
 void TCompRigidAnim::registerMsgs() {
@@ -50,6 +54,13 @@ void TCompRigidAnim::update(float dt) {
 	if (!is_moving)
 		return;
 
+	updateAnimation();
+
+	// Advance the time
+	current_time += dt * speed_factor;
+}
+
+void TCompRigidAnim::updateAnimation() {
 	// Sample the animation in the current time
 	RigidAnims::TKey k;
 	bool has_finished = controller.sample(&k, current_time);
@@ -64,20 +75,23 @@ void TCompRigidAnim::update(float dt) {
 	transform->setScale(k.scale * initialTransform.getScale());
 	transform->setPosition(res.Translation());
 	transform->setRotation(QUAT::CreateFromRotationMatrix(res));
-	
+
 	if (has_finished) {
 		if (loops) {
 			current_time = 0;
 			if (stopOnNextLoop) {
 				is_moving = false;
+				if (killOnFinishAnimation) {
+					CHandle(this).getOwner().destroy();
+				}
 			}
 		}
 		else {
 			is_moving = false;
+			if (killOnFinishAnimation) {
+				CHandle(this).getOwner().destroy();
+			}
 		}
 		// loop, change direction?, set is_moving = false...
 	}
-
-	// Advance the time
-	current_time += dt * speed_factor;
 }

@@ -178,13 +178,6 @@ void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
 	refreshMeshesInRenderManager();
 }
 
-void TCompRender::update(float delta) {
-	if (isColorChanged && timer.elapsed() >= timeToNormal) {
-		color = originalColor;
-		isColorChanged = false;
-	}
-}
-
 void TCompRender::TurnRed(float time) {
 	timer.reset();
 	timeToNormal = time;
@@ -220,10 +213,16 @@ void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
 }
 
 void TCompRender::enable() {
+	for (auto& mesh : meshes) {
+		mesh.enabled = true;
+	}
 	refreshMeshesInRenderManager();
 }
 
 void TCompRender::disable() {
+	for (auto& mesh : meshes) {
+		mesh.enabled = false;
+	}
 	CHandle h_me = CHandle(this);
 	CRenderManager::get().delRenderKeys(h_me);
 }

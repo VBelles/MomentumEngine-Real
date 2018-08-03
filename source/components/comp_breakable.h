@@ -14,6 +14,9 @@ private:
 	std::string prefabToSpawn;
 	float hp = 0.f;
 	float lootOffset = 1.f;
+	std::vector<std::string> brokenPartsNames;
+
+	std::vector<CHandle> brokenParts;
 
 	CHandle colliderHandle;
 	CHandle transformHandle;

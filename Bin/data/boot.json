@@ -7,7 +7,6 @@
     "data/scenes/__testAO-0.scene",
     
     "data/scenes/milestone3-0.scene",
-    "data/scenes/milestone3-altars.scene",
     "data/scenes/milestone3-breakables.scene",
     "data/scenes/milestone3-cameras.scene",
     "data/scenes/milestone3-chrysalis.scene",
@@ -20,11 +19,13 @@
     "data/scenes/milestone3-enemies.scene",
     "data/scenes/milestone3-triggers.scene",
     "data/scenes/milestone3-instancing.scene",
+    "data/scenes/milestone3-altars.scene",
     "data/scenes/test_spikes.scene",
     "data/scenes/sky.scene",
     "data/scenes/slash-test.scene"
   ],
   "unused_scenes": [
+    "data/scenes/prueba_breakables.scene",
     "data/scenes/terrenos_pbr_prefab-0.scene",
     "data/scenes/terreno_olan_andrea-0.scene",
     "data/scenes/prueba_detail_normals-0.scene",
