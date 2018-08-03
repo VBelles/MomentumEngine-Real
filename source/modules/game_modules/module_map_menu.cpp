@@ -4,8 +4,7 @@
 #include "modules/system_modules/scripting/scripting_player.h"
 
 bool CModuleMapMenu::start() {
-	CApp& app = CApp::get();
-	app.setResetMouse(false);
+	pause = false;
 
 	GUI::CParser parser;
 	parser.parseFile(menuFile);
