@@ -230,9 +230,9 @@ struct TMaterialExporter (
 						exportMap mat.bumpMap.normal_map "normal" "null_normal"
 					else exportMap mat.bumpMap "normal" "null_normal"
 					fs.writeComma()
-					exportMap mat.glossinessMap "metallic" "null_metallic"
+					exportMap mat.specularLevelMap "metallic" "null_metallic"
 					fs.writeComma()
-					exportMap mat.specularLevelMap "roughness" "null_roughness"
+					exportMap mat.glossinessMap "roughness" "null_roughness"
 					fs.writeComma()
 					exportMap mat.selfIllumMap "self_illum" "null_self_illum"
 					fs.writeComma()
@@ -1996,16 +1996,11 @@ El proyecto debe tener las siguientes carpetas:
 --------------------------------------------------------------------------------*/
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
-global exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
-exporter = TSceneExporter project_path:exportPath
+--exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
+--exporter = TSceneExporter project_path:exportPath
 
 --mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"
 --mexporter.exportStdMaterial $.mat "pep" 
 
-start = timeStamp()
-
 --exporter.exportSelectedColliders()
-exporter.exportAll()
-
-end = timeStamp()
-format "Export took % seconds.\n" ((end - start) / 1000.0)
+--exporter.exportAll()
