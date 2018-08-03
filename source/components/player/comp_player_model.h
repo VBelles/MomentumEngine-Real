@@ -177,6 +177,8 @@ public:
 
 	StateManager* getStateManager() { return stateManager; }
 
+	bool isGrounded();
+
 	bool addAttacker(std::string attacker, float slots);
 	void removeAttacker(std::string attacker, float slots);
 };
