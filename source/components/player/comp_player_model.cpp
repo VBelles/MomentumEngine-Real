@@ -485,6 +485,10 @@ TCompPlayerModel::~TCompPlayerModel() {
 	SAFE_DELETE(stateManager);
 }
 
+bool TCompPlayerModel::isGrounded() {
+	return dynamic_cast<GroundedActionState*>(getStateManager()->getState());
+}
+
 bool TCompPlayerModel::addAttacker(std::string attacker, float slots) {
 	if (attackSlotsTaken + slots <= maxAttackSlots) {
 		if (attackers.insert(attacker).second) {
