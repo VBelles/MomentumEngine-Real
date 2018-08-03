@@ -6,8 +6,11 @@ fileIn "export_skeletons.ms"
 
 macroscript Momentum
 category: "Momentum"
+internalCategory: "Momentum"
 tooltip: "Open the Momentum utility window"
+ButtonText: "Momentum"
 (
+global floater
 try closeRolloutFloater floater catch()
 
 floater = newRolloutFloater "Momentum utils" 218 430 --Width and height.
