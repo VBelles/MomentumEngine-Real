@@ -12,6 +12,7 @@ private:
 	bool                    loops = true;
 	bool                    is_moving = true;
 	bool					stopOnNextLoop = false;
+	bool					killOnFinishAnimation = false;
 	float                   speed_factor = 1.0f;
 	CTransform				initialTransform;
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);

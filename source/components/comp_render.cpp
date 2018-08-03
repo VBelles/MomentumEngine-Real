@@ -216,14 +216,6 @@ void TCompRender::enable() {
 	for (auto& mesh : meshes) {
 		mesh.enabled = true;
 	}
-	for (auto& mesh : meshes) {
-		if (mesh.enabled) {
-			dbg("mesh enabled\n");
-		}
-		else {
-			dbg("mesh disabled\n");
-		}
-	}
 	refreshMeshesInRenderManager();
 }
 

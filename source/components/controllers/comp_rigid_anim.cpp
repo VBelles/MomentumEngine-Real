@@ -20,6 +20,7 @@ void TCompRigidAnim::load(const json& j, TEntityParseContext& ctx) {
 	speed_factor = j.value("speed_factor", 1.0f);
 	loops = j.value("loops", true);
 	is_moving = j.value("is_moving", is_moving);
+	killOnFinishAnimation = j.value("kill_on_finish", killOnFinishAnimation);
 }
 
 void TCompRigidAnim::debugInMenu() {
@@ -80,10 +81,16 @@ void TCompRigidAnim::updateAnimation() {
 			current_time = 0;
 			if (stopOnNextLoop) {
 				is_moving = false;
+				if (killOnFinishAnimation) {
+					CHandle(this).getOwner().destroy();
+				}
 			}
 		}
 		else {
 			is_moving = false;
+			if (killOnFinishAnimation) {
+				CHandle(this).getOwner().destroy();
+			}
 		}
 		// loop, change direction?, set is_moving = false...
 	}
