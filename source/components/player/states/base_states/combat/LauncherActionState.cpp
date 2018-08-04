@@ -38,6 +38,7 @@ void LauncherActionState::onStateEnter(IActionState * lastState) {
 void LauncherActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
+	*velocityVector = VEC3::Zero;
 	getSkeleton()->removeAction(animation, 0.2f);
 }
 

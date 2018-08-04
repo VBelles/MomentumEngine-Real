@@ -14,7 +14,7 @@ HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stat
 	LauncherActionState(stateManager, HorizontalLauncher, "horizontal_launcher", "horizontal_launcher") {
 	hitboxOutTime = frames2sec(22);
 	hitEndTime = frames2sec(12);
-	animationEndTime = frames2sec(26);
+	animationEndTime = frames2sec(18);
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(40);
 	walkableTime = frames2sec(44);
