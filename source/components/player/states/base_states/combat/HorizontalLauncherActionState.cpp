@@ -27,7 +27,7 @@ void HorizontalLauncherActionState::update(float delta) {
 	float maxSpeed = 10.f;
 	float deceleration = 8.f;
 
-	if (movementTimer.elapsed() >= frames2sec(20) && movementTimer.elapsed() < frames2sec(28)) {
+	if (movementTimer.elapsed() >= frames2sec(20) && movementTimer.elapsed() < frames2sec(23)) {
 		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
 		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
 			getPlayerTransform()->getFront(), acceleration,
