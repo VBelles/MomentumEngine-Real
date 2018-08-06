@@ -16,8 +16,6 @@ void TCompActivateListener::debugInMenu() {
 }
 
 void TCompActivateListener::registerMsgs() {
-	DECL_MSG(TCompActivateListener, TMsgAllScenesCreated, onAllScenesCreated);
-	DECL_MSG(TCompActivateListener, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemActivated, onActivate);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemDeactivated, onDeactivate);
 }
@@ -27,12 +25,6 @@ void TCompActivateListener::load(const json& j, TEntityParseContext& ctx) {
 	colliderEnabledOnActive = j.value("collider_enabled_on_active", colliderEnabledOnActive);
 	platformEnabledOnActive = j.value("platform_enabled_on_active", platformEnabledOnActive);
 	animationEnabledOnActive = j.value("animation_enabled_on_active", animationEnabledOnActive);
-}
-
-void TCompActivateListener::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
-}
-
-void TCompActivateListener::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompActivateListener::onActivate(const TMsgMechanismSystemActivated & msg) {

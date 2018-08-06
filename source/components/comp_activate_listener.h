@@ -2,8 +2,6 @@
 
 #include "comp_base.h"
 
-struct TMsgAllScenesCreated;
-struct TMsgEntitiesGroupCreated;
 struct TMsgMechanismSystemActivated;
 struct TMsgMechanismSystemDeactivated;
 
@@ -19,8 +17,6 @@ public:
     static void registerMsgs();
     void load(const json& j, TEntityParseContext& ctx);
 
-	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
-	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onActivate(const TMsgMechanismSystemActivated& msg);
 	void onDeactivate(const TMsgMechanismSystemDeactivated& msg);
 };
