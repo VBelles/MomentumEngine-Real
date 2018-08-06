@@ -47,6 +47,8 @@ void TCompMechanismSystem::onDeactivate(const TMsgMechanismDeactivated & msg) {
 	numberOfMechanismsActivated--;
 	if (numberOfMechanismsActivated == (numberOfMechanisms - 1)) {
 		EngineScripting.throwEvent(onMechanismSystemDeactivated, ((CEntity*)CHandle(this).getOwner())->getName());
+		CEntity* entity = CHandle(this).getOwner();
+		entity->sendMsg(TMsgMechanismSystemDeactivated{});
 	}
 	else if (numberOfMechanismsActivated < 0) {
 		numberOfMechanismsActivated = 0;

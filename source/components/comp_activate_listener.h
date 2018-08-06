@@ -5,6 +5,7 @@
 struct TMsgAllScenesCreated;
 struct TMsgEntitiesGroupCreated;
 struct TMsgMechanismSystemActivated;
+struct TMsgMechanismSystemDeactivated;
 
 class TCompActivateListener : public TCompBase {
 	DECL_SIBLING_ACCESS();
@@ -21,4 +22,5 @@ public:
 	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onActivate(const TMsgMechanismSystemActivated& msg);
+	void onDeactivate(const TMsgMechanismSystemDeactivated& msg);
 };

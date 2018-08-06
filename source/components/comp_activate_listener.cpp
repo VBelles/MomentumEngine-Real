@@ -19,6 +19,7 @@ void TCompActivateListener::registerMsgs() {
 	DECL_MSG(TCompActivateListener, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(TCompActivateListener, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemActivated, onActivate);
+	DECL_MSG(TCompActivateListener, TMsgMechanismSystemDeactivated, onDeactivate);
 }
 
 void TCompActivateListener::load(const json& j, TEntityParseContext& ctx) {
@@ -35,7 +36,6 @@ void TCompActivateListener::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 }
 
 void TCompActivateListener::onActivate(const TMsgMechanismSystemActivated & msg) {
-	dbg("activate listener\n");
 	TCompRender* render = get<TCompRender>();
 	if (render) {
 		if (renderEnabledOnActive) {
@@ -79,6 +79,54 @@ void TCompActivateListener::onActivate(const TMsgMechanismSystemActivated & msg)
 		}
 		else {
 			director->setIsMoving(false);
+		}
+	}
+}
+
+void TCompActivateListener::onDeactivate(const TMsgMechanismSystemDeactivated & msg) {
+	TCompRender* render = get<TCompRender>();
+	if (render) {
+		if (renderEnabledOnActive) {
+			render->disable();
+		}
+		else {
+			render->enable();
+		}
+	}
+	TCompCollider* collider = get<TCompCollider>();
+	if (collider) {
+		if (colliderEnabledOnActive) {
+			collider->destroy();
+		}
+		else {
+			collider->create();
+		}
+	}
+	TCompPlatformSimple* platform = get<TCompPlatformSimple>();
+	if (platform) {
+		if (platformEnabledOnActive) {
+			platform->setEnabled(false);
+		}
+		else {
+			platform->setEnabled(true);
+		}
+	}
+	TCompRigidAnim* anim = get<TCompRigidAnim>();
+	if (anim) {
+		if (animationEnabledOnActive) {
+			anim->setIsMoving(false);
+		}
+		else {
+			anim->setIsMoving(true);
+		}
+	}
+	TCompRigidAnimsDirector* director = get<TCompRigidAnimsDirector>();
+	if (director) {
+		if (animationEnabledOnActive) {
+			director->setIsMoving(false);
+		}
+		else {
+			director->setIsMoving(true);
 		}
 	}
 }
