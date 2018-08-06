@@ -471,7 +471,13 @@ struct TSceneExporter (
 		(stricmp obj.name "lod") == 0 then return true
 		else return false
 	),
-	
+
+	fn isDummyBreak obj = (
+		if classOf obj == Dummy and
+		(stricmp obj.name "break") == 0 then return true
+		else return false
+	),
+
 	-- Returns true if has dummy child and the dummy also has children.
 	fn hasChildDummy obj = (
 		if obj.children == undefined then return false
@@ -804,11 +810,21 @@ struct TSceneExporter (
 	),
 	
 	-- --COMP: BREAKABLE--------------------------------------------------------
-	fn exportBreakable hp:1 = (
+	fn exportBreakable obj = (
 		fs.writeComma()
 		fs.writeKey "breakable"
 		fs.beginObj()
-			fs.writeKeyValue "hp" hp
+			local childNames = #()
+			for child in obj.children do (
+				childNames = for grandchild in child.children collect grandchild.name
+			)
+			exportStringArray "broken_parts" childNames
+		fs.endObj()
+		fs.writeComma()
+
+		fs.writeKey "rigid_anims_director"
+		fs.beginObj()
+			exportStringArray "animated_entities" childNames
 		fs.endObj()
 	),
 	
@@ -907,14 +923,12 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKeyValue "threshold" 0.08
 			
-			for child in obj.children do (
-				if isDummyLOD child then (
-					local childNames = getChildrenNames child
-					if childNames != undefined and
-					   childNames.count > 0 then (
-						fs.writeComma()
-						exportStringArray "children" childNames
-					)
+			for child in obj.children where isDummyLOD child do (
+				local childNames = getChildrenNames child
+				if childNames != undefined and
+				   childNames.count > 0 then (
+					fs.writeComma()
+					exportStringArray "children" childNames
 				)
 			)
 		fs.endObj()
@@ -1060,18 +1074,18 @@ struct TSceneExporter (
 	
 	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)---------
 	fn exportEditableMesh obj = (
-		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classof obj) as string) --DEBUG
+		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classOf obj) as string) --DEBUG
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
 		local mech		= obj.layer.name == "mechanisms"
-		
+
 		exportName obj
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
 		exportRenderMesh obj pure:pure
-		if hasChildDummy obj then exportLOD obj
-		
+		if hasChildDummy obj and not breakable then exportLOD obj
+
 		local colliderCount = 0
 		local movable = hasChildLine obj
 		if hasChildCollider obj then (
@@ -1080,7 +1094,7 @@ struct TSceneExporter (
 					colliderCount += 1
 					local isFirst = colliderCount == 1
 					if isFirst then fs.writeComma()
-					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
+					--format "Exporting child collider obj % of class %\n" child.name ((classOf child) as string) --DEBUG
 					local onlyRot = not movable and attrManager.hasAttribute obj "rotateData"
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
@@ -1092,16 +1106,26 @@ struct TSceneExporter (
 					)
 					exportCompCollider objToExport first:isFirst mov:(movable or onlyRot) colliderGroups:groups
 
-					if breakable then exportBreakable()
+					--if breakable then exportBreakable obj
 					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
 					if mech then exportMech child
 				)
+				--TODO: Do this even if the object doesn't have child collider.
 				else if isDummyLOD child then (
+					format "% is dummy lod" child.name
 					for i = 1 to child.children.count do (
 						startNewEntity()
 						exportEditableMesh child.children[i]
 						exportEmptyAABBs()
+					)
+				)
+				else if isDummyBreak child then (
+					exportBreakable child
+					for i = 1 to child.children.count do (
+						startNewEntity()
+						exportEditableMesh child.children[i]
+						--TODO: Add rigid_anim with kill_on_finish to each child.
 					)
 				)
 			)
@@ -1145,9 +1169,8 @@ struct TSceneExporter (
 			fs.writeKeyValue "name" (obj.name + ringName)
 			fs.writeComma()
 			exportTransform obj
-			--exportBreakable() --Ahora mismo no funciona con breakable.
 			fs.writeComma()
-			exportRender obj meshName:("ms3_" + ringName) matNames:#("giratiempo")
+			exportRender obj meshName:("ms3" + ringName) matNames:#("giratiempo")
 			fs.writeComma()
 			fs.writeKey "rigid_anim"
 			fs.beginObj()
@@ -1905,6 +1928,7 @@ struct TSceneExporter (
 						if classOf obj == Editable_poly then convertToMesh obj
 						case layerName of (
 							"altars":       ( wasValid = exportEntityAltar     obj nValidObjs )
+							"breakables":	( wasValid = exportEntityDefault   obj nValidObjs )
 							"cameras":      ( wasValid = exportEntityCamera    obj nValidObjs )
 							"chrysalis":    ( wasValid = exportEntityChrysalis obj nValidObjs )
 							"coins": 	    ( wasValid = exportEntityCoin      obj nValidObjs )
@@ -1912,17 +1936,16 @@ struct TSceneExporter (
 							"enemies":      ( wasValid = exportEntityEnemy	   obj nValidObjs )
 							"instancing":   ( wasValid = exportEntityInstance  obj nValidObjs )
 							"lights":       ( wasValid = exportEntityLight	   obj nValidObjs )
+							"mechanisms":	( wasValid = exportEntityMechSys   obj nValidObjs )
 							"movables":     ( wasValid = exportEntityDefault   obj nValidObjs )
 							"player":       ( wasValid = exportEntityPlayer	   obj nValidObjs )
 							"prefabBall":   ( wasValid = exportEnemyPrefab	   obj nValidObjs )
 							"prefabFlying": ( wasValid = exportEnemyPrefab 	   obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab	   obj nValidObjs )
-							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
-							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
-							"mechanisms":	( wasValid = exportEntityMechSys   obj nValidObjs )
 							"pure":		    ( wasValid = exportEntityDefault   obj nValidObjs )
 							"spikes":	    ( wasValid = exportEntitySpikes	   obj nValidObjs )
-							"breakables":	( wasValid = exportEntityDefault   obj nValidObjs )
+							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
+							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
 							"0":		    ( wasValid = exportEntityDefault   obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
@@ -1954,57 +1977,12 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-/*------------------------------------------------------------------------------
--- Notas de uso:
---------------------------------------------------------------------------------
-Pasos para instalar los scripts:
-------------------------------------------
-1. Customize > Configure System Paths... > Additional Startup Scripts > Modify...
-2. Seleccionar Proyecto\Bin\maxscript\autoboot\
-3. Darle a Use Path.
-4. Reiniciar Max.
-5. Ir a pestaña Utilities, darle al botón MAXScript, en el desplegable Utilities
-   que aparece abajo seleccionar MCV Exporter.
-6. Ya se pueden usar los scripts dándole a los botones que han aparecido debajo.
--------------------------------
-Condiciones de exportación:
--------------------------------
-Las layers invisibles o vacías no se exportan.
-Lo visible como Editable Mesh.
-Lo visible sólido debe tener una forma básica (Box, Sphere o Plane) o una mesh
-como hija. Si no es hija se exportará en la escena collisions.
-Las meshes		   	 	 deben estar en una layer llamada "0".
-Los enemigos		     deben estar en una layer llamada "enemies".
-Las crisálidas 		     deben estar en una layer llamada "chrysalis".
-Las plataformas móviles  deben estar en una layer llamada "movables" (excepto si son puras, en ese caso van en pure).
-Las cámaras		    	 deben estar en una layer llamada "cameras".
-Las puras			     deben estar en una layer llamada "pure".
-Las luces			     deben estar en una layer llamada "lights".
-Los triggers		     deben estar en una layer llamada "triggers".
-Los colliders invisibles deben estar en una layer llamada "collisions".
-
-El objeto low-res del LOD debe ser padre de un dummy que contiene los objetos
-a los que sustituye cuando está activo.
-
-Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
-
-Si se actualiza un material que ya existía, hay que copiarlo a mano porque
-se evita exportarlo si ya existe.
-
-Se sabe el tipo de enemigo por el nombre ("melee"), por defecto son voladores.
-El proyecto debe tener las siguientes carpetas:
- bin/data/scenes/
- bin/data/meshes/
- bin/data/materials/
- maxscript/  --> Aquí tienen que estar estos scripts.
---------------------------------------------------------------------------------*/
-
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
---exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
---exporter = TSceneExporter project_path:exportPath
+exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
+exporter = TSceneExporter project_path:exportPath
 
 --mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"
 --mexporter.exportStdMaterial $.mat "pep" 
 
 --exporter.exportSelectedColliders()
---exporter.exportAll()
+exporter.exportAll()
