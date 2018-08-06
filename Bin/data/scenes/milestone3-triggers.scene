@@ -5,17 +5,32 @@
       "transform": {
         "pos": "-72.1 60.7 381.6"
       },
-      "render" : {
-				"mesh": "data/meshes/UnitBox.mesh",
-				"materials": [
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material"
-        ]
-			},
+      "render": [
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": true,
+          "materials": [
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material"
+          ]
+        },
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": false,
+          "materials": [
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material"
+          ]
+        }
+      ],
       "collider": {
         "shape": "box",
         "is_trigger": true,
@@ -37,17 +52,32 @@
       "transform": {
         "pos": "0 0 0"
       },
-      "render" : {
-				"mesh": "data/meshes/UnitBox.mesh",
-				"materials": [
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material"
-        ]
-			},
+      "render": [
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": true,
+          "materials": [
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material"
+          ]
+        },
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": false,
+          "materials": [
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material"
+          ]
+        }
+      ],
       "collider": {
         "shape": "box",
         "is_trigger": true,
@@ -69,17 +99,32 @@
       "transform": {
         "pos": "-7 -7 21"
       },
-      "render" : {
-				"mesh": "data/meshes/UnitBox.mesh",
-				"materials": [
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material"
-        ]
-			},
+      "render": [
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": true,
+          "materials": [
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material"
+          ]
+        },
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": false,
+          "materials": [
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material"
+          ]
+        }
+      ],
       "collider": {
         "shape": "box",
         "is_trigger": true,
@@ -101,17 +146,32 @@
       "transform": {
         "pos": "172 44 -175.4"
       },
-      "render" : {
-				"mesh": "data/meshes/UnitBox.mesh",
-				"materials": [
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material"
-        ]
-			},
+      "render": [
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": true,
+          "materials": [
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material"
+          ]
+        },
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": false,
+          "materials": [
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material"
+          ]
+        }
+      ],
       "collider": {
         "shape": "box",
         "is_trigger": true,
@@ -133,17 +193,32 @@
       "transform": {
         "pos": "5 22 -191.4"
       },
-      "render" : {
-				"mesh": "data/meshes/UnitBox.mesh",
-				"materials": [
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material"
-        ]
-			},
+      "render": [
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": true,
+          "materials": [
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material"
+          ]
+        },
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": false,
+          "materials": [
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material"
+          ]
+        }
+      ],
       "collider": {
         "shape": "box",
         "is_trigger": true,
@@ -165,17 +240,32 @@
       "transform": {
         "pos": "-325 26 -277.4"
       },
-      "render" : {
-				"mesh": "data/meshes/UnitBox.mesh",
-				"materials": [
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material",
-          "data/materials/giratiempo.material"
-        ]
-			},
+      "render": [
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": true,
+          "materials": [
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material",
+            "data/materials/ambar.material"
+          ]
+        },
+        {
+          "mesh": "data/meshes/UnitBox.mesh",
+          "enabled": false,
+          "materials": [
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material",
+            "data/materials/giratiempo.material"
+          ]
+        }
+      ],
       "collider": {
         "shape": "box",
         "is_trigger": true,

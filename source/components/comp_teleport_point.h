@@ -7,7 +7,7 @@ struct TMsgTriggerEnter;
 
 class TCompTeleportPoint : public TCompBase {
 private:
-
+	void setActive();
 public:
 	DECL_SIBLING_ACCESS();
 	static void registerMsgs();

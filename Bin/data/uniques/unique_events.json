@@ -3,7 +3,7 @@
   [
     {
       "id": "Tutorial",
-      "done": false,
+      "done": true,
       "position": "-72.1 60.7 381.6",
       "level": "level00",
       "type": "teleport_point"
