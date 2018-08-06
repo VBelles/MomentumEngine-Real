@@ -8,6 +8,7 @@
 #include "utils/template_engine.h"
 #include "gui/widgets/gui_option.h"
 #include "gui/widgets/gui_map_marker.h"
+#include "modules/system_modules/module_uniques.h"
 
 namespace {
 	json mergeJson(const json& j1, const std::string& key) {
@@ -59,7 +60,7 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent) {
 	else if (type == "bar")     wdgt = parseBar(data);
 	else if (type == "button")  wdgt = parseButton(data);
 	else if (type == "option")  wdgt = parseOption(data);
-	else if (type == "map_marker")  wdgt = parseMapMarker(data);
+	else if (type == "map_marker")  wdgt = parseMapMarker(data, name);
 	else                        wdgt = parseWidget(data);
 
 	wdgt->_name = name;
@@ -213,7 +214,7 @@ CWidget* CParser::parseOption(const json& data) {
 	return wdgt;
 }
 
-CWidget* CParser::parseMapMarker(const json& data) {
+CWidget* CParser::parseMapMarker(const json& data, const std::string& name) {
 	CMapMarker* wdgt = new CMapMarker();
 
 	if (data.count("position")) {
@@ -221,7 +222,13 @@ CWidget* CParser::parseMapMarker(const json& data) {
 	}
 	wdgt->mapWidget = data.value("map", wdgt->mapWidget);
 	wdgt->alternText = data.value("altern_text", wdgt->alternText);
-	wdgt->_visible = data.value("visible", wdgt->_visible);
+	UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
+	if (uniqueEvent) {
+		wdgt->_visible = uniqueEvent->done;
+	}
+	else {
+		wdgt->_visible = data.value("visible", wdgt->_visible);
+	}
 
 	json jButton = data["button"];
 	wdgt->_button = (CButton*)parseButton(jButton);

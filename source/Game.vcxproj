@@ -119,6 +119,7 @@
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_self_illum_variation.cpp" />
     <ClCompile Include="components\comp_sky.cpp" />
+    <ClCompile Include="components\comp_teleport_point.cpp" />
     <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BTActionFactory.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BTConditionFactory.cpp" />
@@ -468,6 +469,7 @@
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_self_illum_variation.h" />
     <ClInclude Include="components\comp_sky.h" />
+    <ClInclude Include="components\comp_teleport_point.h" />
     <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />
     <ClInclude Include="components\ia\behavior_tree\BTActionFactory.h" />
     <ClInclude Include="components\ia\behavior_tree\BTConditionFactory.h" />

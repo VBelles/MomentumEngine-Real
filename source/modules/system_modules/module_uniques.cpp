@@ -16,7 +16,7 @@ bool CModuleUniques::start() {
 	//jUniques.push_back(loadJson("data/uniques/coins-uniques.json"));//no hace falta que estén en archivos separados
 	//jUniques.push_back(loadJson("data/uniques/chrysalides-uniques.json"));
 	//jUniques.push_back(loadJson("data/uniques/altars-uniques.json"));
-	//jUniques.push_back(loadJson("data/uniques/events-uniques.json"));
+	jUniques.push_back(loadJson("data/uniques/unique_events.json"));
 	jUniques.push_back(loadJson("data/uniques/unique_enemies.json"));
 
 	//parse

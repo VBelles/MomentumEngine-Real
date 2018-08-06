@@ -1,0 +1,47 @@
+{
+  "unique_events":
+  [
+    {
+      "id": "Tutorial",
+      "done": false,
+      "position": "-72.1 60.7 381.6",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "Origin",
+      "done": false,
+      "position": "0 0 0",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "Inicio_cementerio",
+      "done": false,
+      "position": "-7 -7 21",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "Derecha_cementerio",
+      "done": false,
+      "position": "172 44 -175.4",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "Primer_altar",
+      "done": false,
+      "position": "5 22 -191.4",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "Pie_faro",
+      "done": false,
+      "position": "-325 26 -277.4",
+      "level": "level00",
+      "type": "teleport_point"
+    }
+  ]
+}

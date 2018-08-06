@@ -1,456 +1,560 @@
 [
   {
-    "entity":
-    {
+    "entity": {
+      "name": "Tutorial",
+      "transform": {
+        "pos": "-72.1 60.7 381.6"
+      },
+      "render" : {
+				"mesh": "data/meshes/UnitBox.mesh",
+				"materials": [
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material"
+        ]
+			},
+      "collider": {
+        "shape": "box",
+        "is_trigger": true,
+        "type": "static",
+        "halfExtent": "0.5 0.5 0.5",
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "teleport_point": {}
+    }
+  },
+  {
+    "entity": {
+      "name": "Origin",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : {
+				"mesh": "data/meshes/UnitBox.mesh",
+				"materials": [
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material"
+        ]
+			},
+      "collider": {
+        "shape": "box",
+        "is_trigger": true,
+        "type": "static",
+        "halfExtent": "0.5 0.5 0.5",
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "teleport_point": {}
+    }
+  },
+  {
+    "entity": {
+      "name": "Inicio_cementerio",
+      "transform": {
+        "pos": "-7 -7 21"
+      },
+      "render" : {
+				"mesh": "data/meshes/UnitBox.mesh",
+				"materials": [
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material"
+        ]
+			},
+      "collider": {
+        "shape": "box",
+        "is_trigger": true,
+        "type": "static",
+        "halfExtent": "0.5 0.5 0.5",
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "teleport_point": {}
+    }
+  },
+  {
+    "entity": {
+      "name": "Derecha_cementerio",
+      "transform": {
+        "pos": "172 44 -175.4"
+      },
+      "render" : {
+				"mesh": "data/meshes/UnitBox.mesh",
+				"materials": [
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material"
+        ]
+			},
+      "collider": {
+        "shape": "box",
+        "is_trigger": true,
+        "type": "static",
+        "halfExtent": "0.5 0.5 0.5",
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "teleport_point": {}
+    }
+  },
+  {
+    "entity": {
+      "name": "Primer_altar",
+      "transform": {
+        "pos": "5 22 -191.4"
+      },
+      "render" : {
+				"mesh": "data/meshes/UnitBox.mesh",
+				"materials": [
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material"
+        ]
+			},
+      "collider": {
+        "shape": "box",
+        "is_trigger": true,
+        "type": "static",
+        "halfExtent": "0.5 0.5 0.5",
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "teleport_point": {}
+    }
+  },
+  {
+    "entity": {
+      "name": "Pie_faro",
+      "transform": {
+        "pos": "-325 26 -277.4"
+      },
+      "render" : {
+				"mesh": "data/meshes/UnitBox.mesh",
+				"materials": [
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material",
+          "data/materials/giratiempo.material"
+        ]
+			},
+      "collider": {
+        "shape": "box",
+        "is_trigger": true,
+        "type": "static",
+        "halfExtent": "0.5 0.5 0.5",
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "teleport_point": {}
+    }
+  },
+  {
+    "entity": {
       "name": "respawn_tuto_005",
-      "transform":
-      {
+      "transform": {
         "pos": "-38.8525 55.108 242.841",
         "rotation": "0.0 -0.737277 0.0 -0.67559"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn_tuto_005.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-38.3318 56.3351 246.369",
         "respawn_rotation": "0.0 0.67559 0.0 -0.737277"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn_tuto_004",
-      "transform":
-      {
+      "transform": {
         "pos": "-61.4404 51.2084 267.773",
         "rotation": "0.0 0.300706 0.0 -0.953717"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn_tuto_004.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-62.5033 57.9086 261.608",
         "respawn_rotation": "0.0 -0.953717 0.0 -0.300706"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn_tuto_003",
-      "transform":
-      {
+      "transform": {
         "pos": "-68.6464 46.6131 298.859",
         "rotation": "0.0 -0.130526 0.0 -0.991445"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn_tuto_003.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-68.438 47.8402 299.351",
         "respawn_rotation": "0.0 -0.991445 0.0 0.130526"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn_tuto_002",
-      "transform":
-      {
+      "transform": {
         "pos": "-88.6796 59.8176 331.371",
         "rotation": "0.0 0.0436194 0.0 -0.999048"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn_tuto_002.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-87.3067 61.0446 332.394",
         "respawn_rotation": "0.0 -0.999048 0.0 -0.0436193"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "outOfBounds": {},
       "name": "outOfBoundsTuto001",
-      "transform":
-      {
+      "transform": {
         "pos": "-79.3185 34.2705 323.113",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/outOfBoundsTuto001.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "characters"
         ]
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn_tuto_01",
-      "transform":
-      {
+      "transform": {
         "pos": "-71.8264 59.7637 380.73",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn_tuto_01.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-72.127 60.9908 381.651",
         "respawn_rotation": "0.0 -1.0 0.0 0.0"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn002",
-      "transform":
-      {
+      "transform": {
         "pos": "11.5551 -40.0637 -9.17535",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn002.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-8.54161 -7.1987 26.4393",
         "respawn_rotation": "0.0 -1.0 0.0 0.0"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "outOfBounds": {},
       "name": "outOfBounds",
-      "transform":
-      {
+      "transform": {
         "pos": "92.4647 -30.278 -300.107",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/outOfBounds.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "characters"
         ]
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn008",
-      "transform":
-      {
+      "transform": {
         "pos": "240.557 -48.9434 -304.908",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn008.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "153.227 12.2123 -260.264",
         "respawn_rotation": "0.0 -0.707107 0.0 -0.707107"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn007",
-      "transform":
-      {
+      "transform": {
         "pos": "111.433 -48.9434 -304.208",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn007.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "126.091 36.4557 -243.999",
         "respawn_rotation": "0.0 -0.953717 0.0 0.300706"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn006",
-      "transform":
-      {
+      "transform": {
         "pos": "-195.595 -48.9434 -339.419",
         "rotation": "0.0 -0.130526 0.0 -0.991445"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn006.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-127.499 26.3705 -368.367",
         "respawn_rotation": "0.0 0.382683 0.0 -0.92388"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn005",
-      "transform":
-      {
+      "transform": {
         "pos": "-14.7792 -48.9434 -354.502",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn005.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "11.163 24.8895 -330.453",
         "respawn_rotation": "0.0 0.216439 0.0 -0.976296"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn004",
-      "transform":
-      {
+      "transform": {
         "pos": "-177.513 -48.9434 -108.425",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn004.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-110.15 15.1071 -82.5849",
         "respawn_rotation": "0.0 0.843391 0.0 -0.5373"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn003",
-      "transform":
-      {
+      "transform": {
         "pos": "-363.236 -48.9434 -266.196",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn003.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "-296.846 26.3705 -264.969",
         "respawn_rotation": "0.0 0.537299 0.0 -0.843392"
       }
     }
   },
   {
-    "entity":
-    {
+    "entity": {
       "name": "respawn001",
-      "transform":
-      {
+      "transform": {
         "pos": "240.557 -48.9434 -148.456",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "collider":
-      {
+      "collider": {
         "mesh_src": "data/meshes/respawn001.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
-        "group":
-        [
+        "group": [
           "trigger"
         ],
-        "mask":
-        [
+        "mask": [
           "player"
         ]
       },
-      "respawn_point":
-      {
+      "respawn_point": {
         "respawn_position": "169.399 45.1949 -173.457",
         "respawn_rotation": "0.0 -0.906308 0.0 -0.422618"
       }
