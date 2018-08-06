@@ -311,6 +311,12 @@ void TCompPlayerModel::setHp(float hp) {
 	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
 }
 
+void TCompPlayerModel::setMaxHp(float hp) {
+	if (hp > 0) {
+		maxHp = hp;
+	}
+}
+
 void TCompPlayerModel::setRespawnPosition(VEC3 position, float yaw) {
 	respawnPosition = position;
 	respawnYaw = yaw;

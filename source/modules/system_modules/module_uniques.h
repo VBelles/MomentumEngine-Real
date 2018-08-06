@@ -24,11 +24,13 @@ private:
 		CHRYSALIS,
 		ALTAR,
 		EVENT,
-		ENEMY
+		ENEMY,
+		LIFEPIECE
 	};
 
 	//maps
 	std::map<std::string, UniqueElement> coins;
+	std::map<std::string, UniqueElement> lifePieces;
 	std::map<std::string, UniqueElement> chrysalides;
 	std::map<std::string, UniqueElement> altars;
 	std::map<std::string, UniqueElement> events;
@@ -45,12 +47,14 @@ public:
 	void update(float delta) override;
 
 	UniqueElement* getUniqueCoin(std::string id);
+	UniqueElement* getUniqueLifePiece(std::string id);
 	UniqueElement* getUniqueChrysalis(std::string id);
 	UniqueElement* getUniqueAltar(std::string id);
 	UniqueElement* getUniqueEvent(std::string id);
 	UniqueEnemy* getUniqueEnemy(std::string id);
 
 	bool setCoinTaken(std::string id, bool isTaken);
+	bool setLifePieceTaken(std::string id, bool isTaken);
 	bool setChrysalisTaken(std::string id, bool isTaken);
 	bool setAltarBroken(std::string id, bool isBroken);
 	bool setEventTriggered(std::string id, bool isTriggered);

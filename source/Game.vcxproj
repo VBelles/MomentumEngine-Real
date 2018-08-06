@@ -95,6 +95,7 @@
     <ClCompile Include="camera\camera_gui.cpp" />
     <ClCompile Include="camera\camera_orthographic.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
+    <ClCompile Include="components\comp_activate_listener.cpp" />
     <ClCompile Include="components\comp_altar.cpp" />
     <ClCompile Include="components\comp_appear.cpp" />
     <ClCompile Include="components\comp_breakable.cpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_self_illum_variation.cpp" />
     <ClCompile Include="components\comp_sky.cpp" />
+    <ClCompile Include="components\comp_teleport_point.cpp" />
     <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BTActionFactory.cpp" />
     <ClCompile Include="components\ia\behavior_tree\BTConditionFactory.cpp" />
@@ -443,6 +445,7 @@
     <ClInclude Include="camera\camera_gui.h" />
     <ClInclude Include="camera\camera_orthographic.h" />
     <ClInclude Include="components\comp_aabb.h" />
+    <ClInclude Include="components\comp_activate_listener.h" />
     <ClInclude Include="components\comp_altar.h" />
     <ClInclude Include="components\comp_appear.h" />
     <ClInclude Include="components\comp_base.h" />
@@ -468,6 +471,7 @@
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_self_illum_variation.h" />
     <ClInclude Include="components\comp_sky.h" />
+    <ClInclude Include="components\comp_teleport_point.h" />
     <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />
     <ClInclude Include="components\ia\behavior_tree\BTActionFactory.h" />
     <ClInclude Include="components\ia\behavior_tree\BTConditionFactory.h" />

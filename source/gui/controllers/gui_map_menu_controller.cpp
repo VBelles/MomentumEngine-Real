@@ -59,7 +59,14 @@ namespace GUI {
 			&& _options[_currentOption]->overlaps(mouse.position)) {
 			if (_options[_currentOption]->isVisible()
 				&& ScriptingPlayer::isPlayerGrounded()) {
-				VEC3 pos = _options[_currentOption]->getPos();
+				VEC3 pos;
+				UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(_options[_currentOption]->getName());
+				if (uniqueEvent) {
+					pos = uniqueEvent->position;
+				}
+				else {
+					pos = _options[_currentOption]->getPos();
+				}
 				ScriptingPlayer::teleportPlayer(pos.x, pos.y, pos.z);
 
 				CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);

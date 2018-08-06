@@ -16,7 +16,7 @@ bool CModuleUniques::start() {
 	//jUniques.push_back(loadJson("data/uniques/coins-uniques.json"));//no hace falta que estén en archivos separados
 	//jUniques.push_back(loadJson("data/uniques/chrysalides-uniques.json"));
 	//jUniques.push_back(loadJson("data/uniques/altars-uniques.json"));
-	//jUniques.push_back(loadJson("data/uniques/events-uniques.json"));
+	jUniques.push_back(loadJson("data/uniques/unique_events.json"));
 	jUniques.push_back(loadJson("data/uniques/unique_enemies.json"));
 
 	//parse
@@ -134,6 +134,13 @@ UniqueElement* CModuleUniques::getUniqueCoin(std::string id) {
 	return nullptr;
 }
 
+UniqueElement * CModuleUniques::getUniqueLifePiece(std::string id) {
+	if (lifePieces.find(id) != lifePieces.end()) {
+		return &lifePieces[id];
+	}
+	return nullptr;
+}
+
 UniqueElement* CModuleUniques::getUniqueChrysalis(std::string id) {
 	if (chrysalides.find(id) != chrysalides.end()) {
 		return &chrysalides[id];
@@ -169,6 +176,17 @@ bool CModuleUniques::setCoinTaken(std::string id, bool isTaken) {
 	}
 	else {
 		dbg("No encuentro este unique coin!!\n");
+		return false;
+	}
+}
+
+bool CModuleUniques::setLifePieceTaken(std::string id, bool isTaken) {
+	if (lifePieces.find(id) != lifePieces.end()) {
+		lifePieces[id].done = isTaken;
+		return true;
+	}
+	else {
+		dbg("No encuentro esta unique life piece!!\n");
 		return false;
 	}
 }

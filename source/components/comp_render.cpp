@@ -165,6 +165,7 @@ std::vector<std::string> TCompRender::getMaterials(int mesh) {
 void TCompRender::setMeshEnabled(int mesh, bool enabled) {
 	CMeshWithMaterials& meshWithMaterial = meshes[mesh];
 	meshWithMaterial.enabled = enabled;
+	refreshMeshesInRenderManager();
 }
 
 void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
