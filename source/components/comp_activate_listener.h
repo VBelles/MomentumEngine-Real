@@ -6,8 +6,13 @@ struct TMsgAllScenesCreated;
 struct TMsgEntitiesGroupCreated;
 struct TMsgMechanismSystemActivated;
 
-class TCompAppear: public TCompBase {
+class TCompActivateListener : public TCompBase {
 	DECL_SIBLING_ACCESS();
+	//json
+	bool renderEnabledOnActive = true;
+	bool colliderEnabledOnActive = true;
+	bool platformEnabledOnActive = true;
+	bool animationEnabledOnActive = true;
 public:
     void debugInMenu();
     static void registerMsgs();

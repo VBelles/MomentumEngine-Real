@@ -15,6 +15,7 @@ private:
 	bool automove = false;
 	bool moveBackwards = false;
 	bool isClosed = false;
+	bool enabled = true;
 
 	CTimer travelWaitTimer;
 	float travelWaitTime = 0.f;
@@ -34,6 +35,8 @@ public:
 	void update(float delta);
 
 	void onCreated(const TMsgEntityCreated& msg);
+
+	void setEnabled(bool enabled);
 
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();

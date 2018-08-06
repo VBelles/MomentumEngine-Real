@@ -345,6 +345,7 @@
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\widgets\gui_map_marker.cpp" />
     <ClCompile Include="modules\game_modules\module_map_menu.cpp" />
+    <ClCompile Include="components\comp_activate_listener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -722,6 +723,7 @@
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\widgets\gui_map_marker.h" />
     <ClInclude Include="modules\game_modules\module_map_menu.h" />
+    <ClInclude Include="components\comp_activate_listener.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

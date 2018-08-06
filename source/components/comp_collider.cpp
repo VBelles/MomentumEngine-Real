@@ -16,6 +16,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.height = j.value("height", 0.f);
 	config.step = j.value("step", 0.5f);
 	config.slope = j.value("slope", 45.0f);
+	enabled = j.value("enabled", enabled);
 
 	if (j.count("halfExtent")) {
 		config.halfExtent = loadVEC3(j["halfExtent"]);
@@ -87,7 +88,9 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
-	create();
+	if (enabled) {
+		create();
+	}
 }
 
 void TCompCollider::create() {

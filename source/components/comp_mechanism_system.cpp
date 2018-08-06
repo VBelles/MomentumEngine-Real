@@ -38,6 +38,8 @@ void TCompMechanismSystem::onActivate(const TMsgMechanismActivated & msg) {
 	else if (numberOfMechanismsActivated == numberOfMechanisms) {
 		dbg("number of mechanisms %i \n", numberOfMechanisms);
 		EngineScripting.throwEvent(onMechanismSystemActivated, ((CEntity*)CHandle(this).getOwner())->getName());
+		CEntity* entity = CHandle(this).getOwner();
+		entity->sendMsg(TMsgMechanismSystemActivated{});
 	}
 }
 
