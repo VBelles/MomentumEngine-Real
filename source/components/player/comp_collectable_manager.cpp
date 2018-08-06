@@ -34,6 +34,9 @@ void TCompCollectableManager::addUniqueCollectable(Type type, std::string id) {
 		case Type::COIN:
 			isUnique = EngineUniques.setCoinTaken(id, true);
 			break;
+		case Type::LIFEPIECE:
+			isUnique = EngineUniques.setLifePieceTaken(id, true);
+			break;
 		}
 		if (isUnique) {
 			uniqueObjectsCollected[type].push_back(id);
@@ -51,6 +54,10 @@ int TCompCollectableManager::getNumberOfChrysalis() {
 
 int TCompCollectableManager::getNumberOfCoins() {
 	return objectsCollected[Type::COIN];
+}
+
+int TCompCollectableManager::getNumberOfLifePieces() {
+	return objectsCollected[Type::LIFEPIECE];
 }
 
 bool TCompCollectableManager::spendCoins(int number) {
@@ -81,8 +88,10 @@ bool TCompCollectableManager::spendCoins(int number) {
 void TCompCollectableManager::clear() {
 	objectsCollected[Type::CHRYSALIS] = 0;
 	objectsCollected[Type::COIN] = 0;
+	objectsCollected[Type::LIFEPIECE] = 0;
 	uniqueObjectsCollected[Type::CHRYSALIS].clear();
 	uniqueObjectsCollected[Type::COIN].clear();
+	uniqueObjectsCollected[Type::LIFEPIECE].clear();
 }
 
 void TCompCollectableManager::onEntityCreated(const TMsgEntityCreated & msg) {
@@ -102,6 +111,14 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	case Type::COIN:
 		collectable->collect();
 		addUniqueCollectable(Type::COIN, entity->getName());
+		break;
+	case Type::LIFEPIECE:
+		collectable->collect();
+		addUniqueCollectable(Type::LIFEPIECE, entity->getName());
+		if (getNumberOfLifePieces() % lifePiecesPerHeart == 0) {
+			playerModel->setMaxHp(playerModel->getMaxHp() + 1);
+			playerModel->setHp(playerModel->getMaxHp());
+		}
 		break;
 	default:
 		dbg("Collected unknown object %d\n", msg.type);

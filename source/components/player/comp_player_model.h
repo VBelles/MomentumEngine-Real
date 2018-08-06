@@ -169,6 +169,7 @@ public:
 	float getHp() { return hp; }
 	float getMaxHp() { return maxHp; }
 	void setHp(float hp);
+	void setMaxHp(float hp);
 	void setRespawnPosition(VEC3 position, float yaw = 0.f);
 	VEC3 getRespawnPosition() { return respawnPosition; }
 	float getRespawnYaw() { return respawnYaw; }
