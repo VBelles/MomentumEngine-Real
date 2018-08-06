@@ -31,9 +31,9 @@ ButtonText: "Momentum"
 				local exporter = TSceneExporter project_path:exportPath
 				exporter.exportAll()
 				local end = timeStamp()
-				MessageBox ("All exported OK. Took " + ((end - start) / 1000.0) as string + " seconds.")
+				MessageBox ("All exported OK. Took " + ((end - start) / 1000.0) as string + " seconds.") title:"All fine" beep:false
 			) catch (
-				MessageBox ("Error Exporting:\n" + getCurrentException())
+				MessageBox ("Error Exporting:\n" + getCurrentException()) title:"Error"
 			)
 		)
 
@@ -45,9 +45,9 @@ ButtonText: "Momentum"
 					ofilename = exportPath + "data/meshes/" + o.name + ".mesh"
 					exportMeshObject o ofilename
 				)
-				MessageBox "Meshes exported OK"
+				MessageBox "Meshes exported OK" title:"All fine" beep:false
 			) catch (
-				MessageBox ("Error Exporting Meshes:\n" + getCurrentException())
+				MessageBox ("Error Exporting Meshes:\n" + getCurrentException()) title:"Error"
 			)
 		)
 
@@ -57,9 +57,9 @@ ButtonText: "Momentum"
 				gc()
 				local exporter = TSceneExporter project_path:exportPath
 				exporter.exportSelectedColliders()
-				MessageBox "Selected colliders exported OK"
+				MessageBox "Selected colliders exported OK" title:"All fine" beep:false
 			) catch (
-				MessageBox ("Error Exporting colliders:\n" + getCurrentException())
+				MessageBox ("Error Exporting colliders:\n" + getCurrentException()) title:"Error"
 			)
 		)
 
@@ -70,9 +70,9 @@ ButtonText: "Momentum"
 				local skelName = getFilenameFile maxFileName
 				local se = TSkeletonsExporter project_path:exportPath skel_name:skelName
 				se.exportSkelAndMeshes()
-				MessageBox "Skeleton And Meshes exported OK"
+				MessageBox "Skeleton And Meshes exported OK" title:"All fine" beep:false
 			) catch (
-				MessageBox ("Error Exporting Skeleton:\n" + getCurrentException())
+				MessageBox ("Error Exporting Skeleton:\n" + getCurrentException()) title:"Error"
 			)
 		)
 
@@ -83,9 +83,9 @@ ButtonText: "Momentum"
 				local skelName = getFilenameFile maxFileName
 				local se = TSkeletonsExporter project_path:exportPath skel_name:skelName
 				se.exportAnim()
-				MessageBox ("Skeleton Animation exported OK with name " + skelName)
+				MessageBox ("Skeleton Animation exported OK with name " + skelName) title:"All fine" beep:false
 			) catch (
-				MessageBox ("Error Exporting Skeleton Animation:\n" + getCurrentException())
+				MessageBox ("Error Exporting Skeleton Animation:\n" + getCurrentException()) title:"Error"
 			)
 		)
 
@@ -95,9 +95,9 @@ ButtonText: "Momentum"
 				gc()
 				local rae = TRigidAnimExporter project_path:exportPath
 				rae.exportAll ($* as array)
-				MessageBox "Rigid Animation exported OK"
+				MessageBox "Rigid Animation exported OK" title:"All fine" beep:false
 			) catch (
-				MessageBox ("Error Exporting Rigid Animation:\n" + getCurrentException())
+				MessageBox ("Error Exporting Rigid Animation:\n" + getCurrentException()) title:"Error"
 			)
 		)
 	) -- end exporter rollout creator
@@ -113,7 +113,7 @@ ButtonText: "Momentum"
 				local utilsManager = TUtils()
 				utilsManager.attachSel()	
 			) catch (
-				MessageBox ("Error attaching:\n" + getCurrentException())
+				MessageBox ("Error attaching:\n" + getCurrentException()) title:"Error"
 			)
 		)
 
@@ -123,7 +123,7 @@ ButtonText: "Momentum"
 				local utilsManager = TUtils()
 				utilsManager.detachElementsFromSel()	
 			) catch (
-				MessageBox ("Error detaching:\n" + getCurrentException())
+				MessageBox ("Error detaching:\n" + getCurrentException()) title:"Error"
 			)
 		)
 
@@ -133,13 +133,13 @@ ButtonText: "Momentum"
 				local me = TMaterialExporter()
 				me.listBadDDSofScene()	
 			) catch (
-				MessageBox ("Error checking dds:\n" + getCurrentException())
+				MessageBox ("Error checking dds:\n" + getCurrentException()) title:"Error"
 			)
 		)
 		
 		on btn_attach_elems pressed do ( attachElems() )
 		on btn_detach_elems pressed do ( detachElems() )
-		on btn_check_dds pressed do ( checkDDS() )
+		on btn_check_dds pressed    do ( checkDDS() )
 	) -- end utils rollout
 
 	rollout attribute "Momentum Attributes" (
@@ -163,9 +163,8 @@ ButtonText: "Momentum"
 				gc()
 				local attributeManager = TAttributeManager()
 				attributeManager.addAttributeToSel(defName)	
-				--MessageBox "Attributes added."
 			) catch (
-				MessageBox ("Error adding attribute:\n" + getCurrentException())
+				MessageBox ("Error adding attribute:\n" + getCurrentException()) title:"Error"
 			)
 		)
 		
@@ -174,9 +173,8 @@ ButtonText: "Momentum"
 				gc()
 				local attributeManager = TAttributeManager()
 				attributeManager.delAttributeFromSel(defName)	
-				--MessageBox "Attributes deleted."
 			) catch (
-				MessageBox ("Error deleting attribute:\n" + getCurrentException())
+				MessageBox ("Error deleting attribute:\n" + getCurrentException()) title:"Error"
 			)
 		)
 		
