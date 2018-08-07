@@ -677,7 +677,7 @@ struct TSceneExporter (
 	),
 
 	-- --COMP: RENDER-----------------------------------------------------------
-	fn exportRender obj meshName: matNames: suffix:".material" pure:false = (
+	fn exportRender obj meshName: matNames: suffix:".material" pure:false enable:true = (
 		fs.writeKey "render"
 		fs.beginArray()
 			fs.beginObj()
@@ -690,12 +690,17 @@ struct TSceneExporter (
 					exportStringArray "materials" (matNames) suffix:suffix
 				)
 				if pure then addPureMaterial meshName matNames
+				if not enable then (
+					fs.writeComma()
+					fs.writeKeyValue "enabled" false
+				)
+				
 			fs.endObj()
 		fs.endArray()
 	),
 
 	-- --RENDER MESH (also exports MATERIAL)------------------------------------
-	fn exportRenderMesh obj pure:false = (
+	fn exportRenderMesh obj pure:false renderEnabled:true = (
 		local mat = obj.material
 		if mat == undefined then (
 			format "Warning: % doesn't have a material, a default will be assigned.\n" obj.name
@@ -718,7 +723,8 @@ struct TSceneExporter (
 		local suffix = ".material"
 		if pure then suffix = "_pureON.material"
 
-		exportRender obj meshName:obj.name matNames:exported_materials suffix:suffix pure:pure
+		exportRender obj meshName:obj.name matNames:exported_materials \
+			suffix:suffix pure:pure enable:renderEnabled
 
 		return true
 	),
@@ -740,7 +746,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "rotation_speed" rotSpeed
 	),
-	
+
 	fn exportPlatfRotationOnly obj = (
 		fs.writeComma()
 		fs.writeKey "platform_simple"
@@ -748,7 +754,7 @@ struct TSceneExporter (
 			exportPlatfRotation obj
 		fs.endObj()
 	),
-	
+
 	-- --SPLINE-----------------------------------------------------------------
 	fn exportSpline obj type:"platform_simple" = (
 		-- Executed only if we already know it has a child line.
@@ -808,16 +814,14 @@ struct TSceneExporter (
 			)
 		)
 	),
-	
+
 	-- --COMP: BREAKABLE--------------------------------------------------------
 	fn exportBreakable obj = (
 		fs.writeComma()
 		fs.writeKey "breakable"
 		fs.beginObj()
 			local childNames = #()
-			for child in obj.children do (
-				childNames = for grandchild in child.children collect grandchild.name
-			)
+			childNames = for child in obj.children collect child.name
 			exportStringArray "broken_parts" childNames
 		fs.endObj()
 		fs.writeComma()
@@ -827,7 +831,7 @@ struct TSceneExporter (
 			exportStringArray "animated_entities" childNames
 		fs.endObj()
 	),
-	
+
 	-- --COMP: MECHANISM SYSTEM-------------------------------------------------
 	-- What is affected when activating a mechanism.
 	fn exportMech obj = (
@@ -848,7 +852,7 @@ struct TSceneExporter (
 			fs.endObj()
 		)
 	),
-
+	
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider---------------------
 	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
 		if obj.layer.name == "trimesh" then meshShape = "tri_mesh"
@@ -868,13 +872,13 @@ struct TSceneExporter (
 		)
 		return true
 	),
-	
+
 	fn exportSphere obj = (
 		fs.writeKeyValue "shape" "sphere"
 		fs.writeComma()
 		fs.writeKeyValue "radius" obj.radius
 	),
-	
+
 	fn exportBox obj = (
 		--format "exportBox obj.name: %\n" obj.name --DEBUG
 		local boxCopy = copy obj
@@ -886,14 +890,14 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "halfExtent" [abs obj.width / 2, abs obj.height / 2, abs obj.length / 2]*/
 	),
-	
+
 	fn exportPlane obj = (
 		fs.writeKeyValue "shape" "plane"
 		fs.writeComma()
 		-- Last value should be Y position.
 		fs.writeKeyValue "planeDesc" "0 1 0 0"
 	),
-	
+
 	fn exportCapsule obj = (
 		fs.writeKeyValue "shape" "capsule"
 		fs.writeComma()
@@ -908,14 +912,14 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "slope" 45
 	),
-	
+
 	fn exportEmptyAABBs = (
 		fs.writeComma()
 		fs.writeKeyValue "local_aabb" undefined
 		fs.writeComma()
 		fs.writeKeyValue "abs_aabb" undefined
 	),
-	
+
 	fn exportLOD obj = (
 		exportEmptyAABBs()
 		fs.writeComma()
@@ -933,14 +937,14 @@ struct TSceneExporter (
 			)
 		fs.endObj()
 	),
-	
+
 	fn exportHierarchy parentName = (
 		fs.writeKey "hierarchy"
 		fs.beginObj()
 			fs.writeKeyValue "parent" parentName
 		fs.endObj()
 	),
-	
+
 	fn exportSeparateColliderEntity obj = (
 		startNewEntity()
 		exportName obj
@@ -950,18 +954,20 @@ struct TSceneExporter (
 		exportHierarchy obj.parent.name
 		fs.writeComma()
 	),
-	
+
 	-- --COMP: COLLIDER---------------------------------------------------------
-	fn exportCompCollider obj first:true meshMode:false colliderGroups: masks: trig:false dyn:false mov:false = (
+	fn exportCompCollider obj first:true meshMode:false colliderGroups: masks: \
+		trig:false dyn:false mov:false = (
 		local objClass = classOf obj
 		local layerName = obj.layer.name
-		-- If the object has more than one child collider we need to add them in separate entities.
+		--If object has more than 1 child collider, add them in separate entities.
 		if not first then exportSeparateColliderEntity obj
 		
 		fs.writeKey "collider"
 		fs.beginObj()
 			--format "exportCompCollider of obj: %\n" obj.name --DEBUG
-			if meshMode then exportColliderMeshContents obj meshShape:"convex_mesh" mov:mov forceMesh:true
+			if meshMode then exportColliderMeshContents obj meshShape:"convex_mesh" \
+				mov:mov forceMesh:true
 			else (
 				if      objClass == Sphere		  then exportSphere obj
 				else if objClass == Box			  then exportBox obj
@@ -991,7 +997,7 @@ struct TSceneExporter (
 			)
 		fs.endObj() -- End collider component.
 	),
-	
+
 	-- --COLLIDER (name, transform and collider)--------------------------------
 	fn exportEntityCollider obj meshMode: colliderGroups: masks: trig:false dyn:false = (
 		exportName obj
@@ -1001,7 +1007,7 @@ struct TSceneExporter (
 		
 		exportCompCollider obj colliderGroups:colliderGroups masks:masks trig:trig dyn:dyn
 	),
-	
+
 	-- --COMP: Give power --
 	fn exportGivePower maxPow: multi: = (
 		fs.writeKey "givePower"
@@ -1013,7 +1019,7 @@ struct TSceneExporter (
 			if multi != unsupplied then fs.writeKeyValue "baseMultiplier" multi
 		fs.endObj()
 	),
-	
+
 	-- --COMP: Behavior tree --
 	fn exportBehaviorTree enemyType = (
 		if enemyType == "melee" then (
@@ -1044,7 +1050,7 @@ struct TSceneExporter (
 			fs.writeKeyValue "modifyPlayerCameraRotation" true
 		fs.endObj()
 	),
-	
+
 	-- --COMP: SUGGEST CAMERA TRIGGER ------------------------------------------
 	fn exportSuggestCameraTrigger obj = (
 		exportEntityCollider obj colliderGroups:#("trigger") masks:#("player") trig:true
@@ -1071,9 +1077,31 @@ struct TSceneExporter (
 			fs.writeKeyValue "centeringCameraSpeed" "18 9"
 		fs.endObj()
 	),
-	
+
+	-- --COMP: RIGID ANIM ------------------------------------------------------
+	fn exportRigidAnim obj mov:false loop:false kill:false = (
+		fs.writeKey "rigid_anim"
+		fs.beginObj()
+			fs.writeKeyValue "src" (animsPath + obj.name + ".anims")
+
+			--Get from attribute if it exists.
+			if attrManager.hasAttribute obj "animData" then (
+				mov	 = attrManager.getAttributeValue obj "animData" #mov
+				loop = attrManager.getAttributeValue obj "animData" #loop
+				kill = attrManager.getAttributeValue obj "animData" #kill
+			)
+
+			fs.writeComma()
+			fs.writeKeyValue "is_moving" mov
+			fs.writeComma()
+			fs.writeKeyValue "loops" loop
+			fs.writeComma()
+			fs.writeKeyValue "kill_on_finish" kill
+		fs.endObj()
+	),
+
 	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)---------
-	fn exportEditableMesh obj = (
+	fn exportEditableMesh obj renderEnabled:true = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classOf obj) as string) --DEBUG
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
@@ -1083,18 +1111,17 @@ struct TSceneExporter (
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
-		exportRenderMesh obj pure:pure
+		exportRenderMesh obj pure:pure renderEnabled:renderEnabled
 		if hasChildDummy obj and not breakable then exportLOD obj
 
 		local colliderCount = 0
 		local movable = hasChildLine obj
-		if hasChildCollider obj then (
+		if hasChildCollider obj then ( --We need the collider first.
 			for child in obj.children do (
 				if isCollider child then (
 					colliderCount += 1
 					local isFirst = colliderCount == 1
 					if isFirst then fs.writeComma()
-					--format "Exporting child collider obj % of class %\n" child.name ((classOf child) as string) --DEBUG
 					local onlyRot = not movable and attrManager.hasAttribute obj "rotateData"
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
@@ -1104,29 +1131,32 @@ struct TSceneExporter (
 						fs.writeKeyEmpty "purity"
 						objToExport = obj
 					)
-					exportCompCollider objToExport first:isFirst mov:(movable or onlyRot) colliderGroups:groups
+					exportCompCollider objToExport first:isFirst \
+						mov:(movable or onlyRot) colliderGroups:groups
 
 					--if breakable then exportBreakable obj
 					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
 					if mech then exportMech child
 				)
-				--TODO: Do this even if the object doesn't have child collider.
-				else if isDummyLOD child then (
-					format "% is dummy lod" child.name
-					for i = 1 to child.children.count do (
-						startNewEntity()
-						exportEditableMesh child.children[i]
-						exportEmptyAABBs()
-					)
+			)
+		)
+
+		for child in obj.children do ( --Loop again, shouldn't have a lot of children.
+			if isDummyLOD child then (
+				for i = 1 to child.children.count do (
+					startNewEntity()
+					exportEditableMesh child.children[i]
+					exportEmptyAABBs()
 				)
-				else if isDummyBreak child then (
-					exportBreakable child
-					for i = 1 to child.children.count do (
-						startNewEntity()
-						exportEditableMesh child.children[i]
-						--TODO: Add rigid_anim with kill_on_finish to each child.
-					)
+			)
+			else if isDummyBreak child then (
+				exportBreakable child
+				for i = 1 to child.children.count do (
+					startNewEntity()
+					exportEditableMesh child.children[i] renderEnabled:false
+					fs.writeComma()
+					exportRigidAnim obj kill:true
 				)
 			)
 		)
@@ -1142,7 +1172,7 @@ struct TSceneExporter (
 			exportChildPositions obj
 		fs.endObj() -- - - - - - - - - - - - - - - - - - - -
 	),
-	
+
 	-- -------------------------------------------------------------------------
 	-- -- · ENTITIES · ---------------------------------------------------------
 	-- -------------------------------------------------------------------------
@@ -1153,7 +1183,7 @@ struct TSceneExporter (
 		if not isCollider obj and
 		   not objClass == Editable_mesh then return false
 		if nValidObjs > 0 then fs.writeComma()
-		
+
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1161,7 +1191,7 @@ struct TSceneExporter (
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
-	
+
 	fn exportAltarRing obj ringName: main:false = (
 		fs.beginObj()
 		fs.writeKey "entity"
@@ -1208,7 +1238,7 @@ struct TSceneExporter (
 
 		return true
 	),
-	
+
 	-- --ENTITY: COIN-----------------------------------------------------------
 	fn exportEntityCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
@@ -1893,7 +1923,7 @@ struct TSceneExporter (
 	),
 
 	fn exportAll = (
-		undo off (
+		undo off ( --Disable undo so export is faster.
 		deselect objects --Deselect all objects so export is faster.
 
 		-- Loop over all layers.
@@ -1917,7 +1947,7 @@ struct TSceneExporter (
 				local nValidObjs = 0
 				local wasValid = false
 				
-				fs.begin scenePath -- Create scene file.
+				fs.begin scenePath --Create scene file.
 				fs.beginArray()
 				for obj in layerObjs do (
 					obj.name = cleanName obj.name
@@ -1960,7 +1990,7 @@ struct TSceneExporter (
 
 			) else format "WARNING: Layer % [%] NOT exported.\n" layerName scenePath
 		format "-------------------------------------------------------------\n"
-		)
+		)--End for.
 		-- All layers and objects processed, begin export of stored unique objects.
 		exportUniques()
 		showBrokenMaps()

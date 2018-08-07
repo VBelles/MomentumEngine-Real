@@ -87,6 +87,20 @@ global uniquesData = attributes uniqueData (
 	)
 )
 
+-- def #animData
+global animsData = attributes animData (
+	parameters main rollout:params (
+		mov  type: #boolean ui:moves 	 default:false
+		loop type: #boolean ui:loops 	 default:false
+		kill type: #boolean ui:killAfter default:true
+	)
+	rollout params "Rigid anims Data" (
+		checkbox moves "Is moving" 			type: #boolean align:#right
+		checkbox loops "Loops"     			type: #boolean align:#right
+		checkbox killAfter "Kill on finish"	type: #boolean align:#right
+	)
+)
+
 -- -----------------------------------------------------------
 
 struct TAttributeManager (
@@ -128,6 +142,7 @@ struct TAttributeManager (
 				"moveData":   ( attrDef = movesData )
 				"rotateData": ( attrDef = rotationsData )
 				"uniqueData": ( attrDef = uniquesData )
+				"animData":   ( attrDef = animsData )
 				default:     ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
 			)
 			custAttributes.add obj attrDef
