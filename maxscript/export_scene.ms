@@ -146,17 +146,16 @@ struct TMaterialExporter (
 	fn getListBadDDS mat = (
 		local badMaps = ""
 		if mat != undefined and classOf mat == StandardMaterial then (
-			for map in mat.maps do (
-				if map != undefined then (
-					if isKindOf map normal_bump then (
-						mapFilename = map.normal_map.filename
-					) else mapFilename = map.filename
-					--It would be better not to include duplicates.
-					mapFileType = getFilenameType mapFilename
-					if mapFileType != ".DDS" and
-					   mapFileType != ".dds" then (
-					   	append badMaps ("-Mat: \"" + mat.name + "\" | Map: \"" + map.name + "\" \n File: " + getFilenameFile mapFilename + "\n")
-					)
+			for map in mat.maps where map != undefined do (
+				if isKindOf map normal_bump then (
+					mapFilename = map.normal_map.filename
+				) else mapFilename = map.filename
+				--It would be better not to include duplicates.
+				mapFileType = getFilenameType mapFilename
+				if mapFileType != ".DDS" and
+				   mapFileType != ".dds" then (
+				   	append badMaps ("-Mat: \"" + mat.name + "\" | Map: \"" + \
+				   		map.name + "\" \n File: " + getFilenameFile mapFilename + "\n")
 				)
 			)
 		)
@@ -432,17 +431,15 @@ struct TSceneExporter (
 	
 	fn hasChildLine obj = (
 		if obj.children == undefined then return false
-		for child in obj.children do (
-			if isLine child then return true
-		)
+		for child in obj.children where isLine child do return true
+
 		return false
 	),
 	
 	fn isMovable obj = (
 		if obj.children == undefined then return false
-		for child in obj.children do (
-			if hasChildLine child then return true
-		)
+		for child in obj.children where hasChildLine child do return true
+
 		return false
 	),
 	
@@ -460,9 +457,8 @@ struct TSceneExporter (
 	
 	fn hasChildCollider obj = (
 		if obj.children == undefined then return false
-		for child in obj.children do (
-			if isCollider child then return true
-		)
+		for child in obj.children where isCollider child do return true
+
 		return false
 	),
 	
@@ -481,10 +477,8 @@ struct TSceneExporter (
 	-- Returns true if has dummy child and the dummy also has children.
 	fn hasChildDummy obj = (
 		if obj.children == undefined then return false
-		for child in obj.children do (
-			if classOf child == Dummy and
-			   child.children.count > 0 then return true
-		)
+		for child in obj.children where classOf child == Dummy and
+			   child.children.count > 0 do return true
 		return false
 	),
 	
@@ -515,7 +509,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.beginObj() -- - - - - start new json object - - - - - -
 			fs.writeKey "entity"
-			fs.beginObj() -- - - start new entity  - - - - - - -
+			fs.beginObj() -- - - start new entity  - - - - - - - -
 	),
 	
 	-- --CHILD POSITIONS  ------------------------------------------------------
@@ -717,7 +711,8 @@ struct TSceneExporter (
 		exportMeshObject obj (project_path + mesh_path + obj.name + ".mesh")
 
 		-- -- ·Export material· -- --
-		local me = TMaterialExporter project_path:project_path base_path:base_path texturesPath:tex_path
+		local me = TMaterialExporter project_path:project_path \
+			base_path:base_path texturesPath:tex_path
 		local exported_materials = me.exportMaterial mat mats_path obj
 
 		local suffix = ".material"
@@ -736,8 +731,8 @@ struct TSceneExporter (
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
 			local xRot = attrManager.getAttributeValue obj "rotateData" #x
-			local yRot = attrManager.getAttributeValue obj "rotateData" #z -- !!! inverted.
-			local zRot = attrManager.getAttributeValue obj "rotateData" #y -- !!! inverted.
+			local yRot = attrManager.getAttributeValue obj "rotateData" #z --!!! inverted.
+			local zRot = attrManager.getAttributeValue obj "rotateData" #y --!!! inverted.
 
 			rotAxis = Point3 xRot yRot zRot
 			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
@@ -852,7 +847,7 @@ struct TSceneExporter (
 			fs.endObj()
 		)
 	),
-	
+
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider---------------------
 	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
 		if obj.layer.name == "trimesh" then meshShape = "tri_mesh"
@@ -1134,7 +1129,6 @@ struct TSceneExporter (
 					exportCompCollider objToExport first:isFirst \
 						mov:(movable or onlyRot) colliderGroups:groups
 
-					--if breakable then exportBreakable obj
 					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
 					if mech then exportMech child
@@ -1186,8 +1180,10 @@ struct TSceneExporter (
 
 		fs.beginObj()
 			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportEntityCollider obj meshMode:(not (isCollider obj and objClass != Editable_mesh)) dyn:(hasChildLine obj)
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
+				exportEntityCollider obj \
+					meshMode:(not (isCollider obj and objClass != Editable_mesh)) \
+					dyn:(hasChildLine obj)
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
@@ -1247,7 +1243,7 @@ struct TSceneExporter (
 
 		fs.beginObj()
 			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
 				exportName obj
 				fs.writeComma()
 				exportTransform obj noRot:true
@@ -1426,19 +1422,19 @@ struct TSceneExporter (
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
 				if stringContainsSubstring obj.name "Bounds" then (
 					fs.writeKeyEmpty "outOfBounds"
-					exportEntityCollider obj trig:true colliderGroups:#("trigger") masks:#("characters")
+					exportEntityCollider obj trig:true \
+						colliderGroups:#("trigger") masks:#("characters")
 				)
-				else exportEntityCollider obj trig:true colliderGroups:#("trigger") masks:#("player")
+				else exportEntityCollider obj trig:true \
+					colliderGroups:#("trigger") masks:#("player")
 
 				if stringContainsSubstring obj.name "respawn" and 
 				   obj.children != undefined then (
 						local respawnPos = "0 0 0"
 						local respawnRot = "0 0 0 0"
-						for child in obj.children do (
-							if classOf child == Dummy then (
-								respawnPos = (maxPosToMcv child.position)
-								respawnRot = (maxRotToMcv child.transform)
-							)
+						for child in obj.children where classOf child == Dummy do (
+							respawnPos = (maxPosToMcv child.position)
+							respawnRot = (maxRotToMcv child.transform)
 						)
 
 						fs.writeComma()
@@ -1461,7 +1457,7 @@ struct TSceneExporter (
 
 		fs.beginObj()
 			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
 				exportName obj
 				fs.writeComma()
 				fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
@@ -1473,6 +1469,8 @@ struct TSceneExporter (
 
 	-- --ENTITY: DEFAULT (exports editable mesh)--------------------------------
 	fn exportEntityDefault obj nValidObjs = (
+		--We could copy obj and turn it into Editable_mesh, but would lose children.
+		--TODO: Copy also children and avoid the problem?
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
 			return false
@@ -1481,7 +1479,7 @@ struct TSceneExporter (
 		
 		fs.beginObj()
 			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - -
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
 				exportEditableMesh obj
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
@@ -1620,6 +1618,7 @@ struct TSceneExporter (
 	-- -------------------------------------------------------------------------
 	
 	-- --ENEMY PREFAB ----------------------------------------------------------
+	-- /!\ Outdated, do not use.
 	fn exportEnemyPrefab obj nValidObjs = (
 		if classOf obj != Capsule and classOf obj != Sphere then return false
 		if obj.parent != undefined then return false
@@ -1683,6 +1682,7 @@ struct TSceneExporter (
 	),
 	
 	-- --ENTITY: PLAYER HITBOXES------------------------------------------------
+	-- /!\ Outdated, do not use.
 	fn exportChildHitboxes obj capsuleHeight = (
 		for child in obj.children do (
 			if isCollider child and
@@ -1718,6 +1718,7 @@ struct TSceneExporter (
 	),
 	
 	-- --ENTITY: PLAYER --------------------------------------------------------
+	-- /!\ Outdated, do not use.
 	fn exportEntityPlayer obj nValidObjs = (
 		if classOf obj != Editable_mesh then (
 			format "WARNING: Object % is NOT an Editable mesh, not exported.\n" obj.name
@@ -2010,9 +2011,9 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
 exporter = TSceneExporter project_path:exportPath
+exporter.exportAll()
+--exporter.exportSelectedColliders()
 
 --mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"
 --mexporter.exportStdMaterial $.mat "pep" 
 
---exporter.exportSelectedColliders()
-exporter.exportAll()
