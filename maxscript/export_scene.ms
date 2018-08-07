@@ -83,9 +83,10 @@ struct TJsonFormatter (
 	),
 	
 	-- "key_str": {},\n
-	fn writeKeyEmpty key_str = (
+	fn writeKeyEmpty key_str comma:true= (
 		indent()
-		format "\"%\": {},\n" key_str to:fs
+		format "\"%\": {}" key_str to:fs
+		if comma then format ",\n" to:fs
 	),
 	
 	-- --------------------
@@ -659,9 +660,9 @@ struct TSceneExporter (
 	fn addPureMaterial meshName matNames = (
 		fs.writeComma()
 		fs.writeKeyValue "enabled" false
-		fs.endObj() -- End first pure material object.
+		fs.endObj() --End first pure material object.
 		fs.writeComma()
-		fs.beginObj() -- Begin second pure material object.
+		fs.beginObj() --Begin second pure material object.
 			fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
 			fs.writeComma()
 			fs.writeKey "materials"
@@ -675,20 +676,19 @@ struct TSceneExporter (
 		fs.writeKey "render"
 		fs.beginArray()
 			fs.beginObj()
-				if meshName == unsupplied then format "ERROR: % has empty mesh" obj.name
+				if meshName == unsupplied then format "ERROR: % has empty mesh.\n" obj.name
 				else fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
 				if matNames != unsupplied then (
 					for i = 1 to matNames.count do
 						matNames[i] = mats_path + matNames[i]
 					fs.writeComma()
-					exportStringArray "materials" (matNames) suffix:suffix
+					exportStringArray "materials" matNames suffix:suffix
 				)
 				if pure then addPureMaterial meshName matNames
 				if not enable then (
 					fs.writeComma()
 					fs.writeKeyValue "enabled" false
 				)
-				
 			fs.endObj()
 		fs.endArray()
 	),
@@ -1135,8 +1135,8 @@ struct TSceneExporter (
 				)
 			)
 		)
-
-		for child in obj.children do ( --Loop again, shouldn't have a lot of children.
+		--Loop again, shouldn't have a lot of children.
+		for child in obj.children do (
 			if isDummyLOD child then (
 				for i = 1 to child.children.count do (
 					startNewEntity()
@@ -1429,21 +1429,26 @@ struct TSceneExporter (
 					colliderGroups:#("trigger") masks:#("player")
 
 				if stringContainsSubstring obj.name "respawn" and 
-				   obj.children != undefined then (
-						local respawnPos = "0 0 0"
-						local respawnRot = "0 0 0 0"
-						for child in obj.children where classOf child == Dummy do (
-							respawnPos = (maxPosToMcv child.position)
-							respawnRot = (maxRotToMcv child.transform)
-						)
+				  obj.children != undefined then (
+					local respawnPos = "0 0 0"
+					local respawnRot = "0 0 0 0"
+					for child in obj.children where classOf child == Dummy do (
+						respawnPos = (maxPosToMcv child.position)
+						respawnRot = (maxRotToMcv child.transform)
+					)
 
+					fs.writeComma()
+					fs.writeKey "respawn_point"
+					fs.beginObj()
+						fs.writeKeyValue "respawn_position" respawnPos
 						fs.writeComma()
-						fs.writeKey "respawn_point"
-						fs.beginObj()
-							fs.writeKeyValue "respawn_position" respawnPos
-							fs.writeComma()
-							fs.writeKeyValue "respawn_rotation" respawnRot
-						fs.endObj()
+						fs.writeKeyValue "respawn_rotation" respawnRot
+					fs.endObj()
+				)
+				if stringContainsSubstring obj.name "teleport" and 
+				   obj.children != undefined then (
+						fs.writeComma()
+						fs.writeKeyEmpty "teleport_point" comma:false
 				)
 				-- Add child spline if it exists.
 				if hasChildLine obj then exportSpline obj
