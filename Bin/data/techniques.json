@@ -129,10 +129,7 @@
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvUvT",
     "category": "gbuffer",
-    "priority": 100,
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    }
+    "priority": 100
   },
   "pbr_skin": {
     "vs_file": "data/shaders/pbr.fx",
@@ -142,10 +139,7 @@
     "vertex_type": "PosNUvUvTSkin",
     "category": "gbuffer",
     "priority": 100,
-    "uses_skin": true,
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    }
+    "uses_skin": true
   },
   "pbr_clear_stencil": {
     "vs_file": "data/shaders/pbr.fx",
@@ -155,10 +149,7 @@
     "vertex_type": "PosNUvUvT",
     "category": "gbuffer",
     "z": "default_clear_stencil",
-    "priority": 170,
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    }
+    "priority": 170
   },
   "pbr_skin_clear_stencil": {
     "vs_file": "data/shaders/pbr.fx",
@@ -169,10 +160,7 @@
     "category": "gbuffer",
     "uses_skin": true,
     "z": "default_clear_stencil",
-    "priority": 170,
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    }
+    "priority": 170
   },
 
   "pbr_ambient": {
@@ -367,19 +355,13 @@
   "grass": {
     "vs_file": "data/shaders/grass.fx",
     "vertex_type": "Pos_x_InstancedPos",
-    "category": "gbuffer",
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    }
+    "category": "gbuffer"
   },
   "vegetation": {
     "vs_file": "data/shaders/vegetation.fx",
     "vertex_type": "PosNUvUvT_x_Instance",
     "category": "gbuffer",
-    "rs_config": "cull_none",
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    }
+    "rs_config": "cull_none"
   },
   "shadows_grass_instanced": {
     "vs_file": "data/shaders/grass.fx",
@@ -426,9 +408,6 @@
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvUvT",
     "category": "gbuffer",
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    },
     "priority": 160,
     "comment": "This needs to go after the pbr_outline"
   },
@@ -451,9 +430,6 @@
     "category": "gbuffer",
     "uses_skin": true,
     "shadows_material" : "data/materials/shadows_skin_player.material",
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    },
     "priority": 160,
     "comment": "This needs to go after the pbr_outline"
   },
@@ -488,10 +464,7 @@
     "vertex_type": "PosNUvUvT",
     "category": "distorsions",
     "priority": 300,
-    "blend": "additive",
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    }
+    "blend": "additive"
   },
 
   "glass": {
@@ -501,10 +474,7 @@
     "ps_entry_point": "PS",
     "vertex_type": "PosNUvUvT",
     "category": "distorsions",
-    "priority": 400,
-    "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds"
-    }
+    "priority": 400
   },
 
   "pure": {
@@ -516,7 +486,6 @@
     "category": "distorsions",
     "priority": 390,
     "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds",
       "noise": "data/textures/noise_cloud3.dds"
     }
   },
@@ -530,7 +499,6 @@
     "category": "gbuffer",
     "priority": 100,
     "textures": {
-      "irradiance": "data/textures/cubemaps/irradiance.dds",
       "noise": "data/textures/noise_cloud3.dds"
     }
   },

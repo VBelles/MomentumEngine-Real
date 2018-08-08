@@ -35,8 +35,8 @@
 #define TS_LIGHT_PROJECTOR     8
 #define TS_LIGHT_SHADOW_MAP    9 
 #define TS_ENVIRONMENT_MAP     10
-#define TS_ENVIRONMENT_MAP_1     33
-#define TS_IRRADIANCE_MAP      11
+#define TS_ENVIRONMENT_MAP_1     11
+//#define TS_IRRADIANCE_MAP      11
 #define TS_NOISE_MAP           12
 
 #define TS_DEFERRED_ALBEDOS				13

@@ -49,7 +49,7 @@ void TCompSky::load(const json& j, TEntityParseContext& ctx) {
 
 	numSkyboxes = skyboxes.size();
 	if (numSkyboxes == 0) {
-		skyboxes.push_back(Skybox{ Resources.get("data/textures/blue.dds")->as<CTexture>(), 20.f });
+		skyboxes.push_back(Skybox{ Resources.get("data/textures/cubemaps/momentum/OutputCube_256.dds")->as<CTexture>(), 20.f });
 	}
 }
 
