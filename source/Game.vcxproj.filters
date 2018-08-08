@@ -347,6 +347,7 @@
     <ClCompile Include="modules\game_modules\module_map_menu.cpp" />
     <ClCompile Include="components\comp_activate_listener.cpp" />
     <ClCompile Include="components\comp_teleport_point.cpp" />
+    <ClCompile Include="components\comp_power_source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -726,6 +727,7 @@
     <ClInclude Include="modules\game_modules\module_map_menu.h" />
     <ClInclude Include="components\comp_activate_listener.h" />
     <ClInclude Include="components\comp_teleport_point.h" />
+    <ClInclude Include="components\comp_power_source.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

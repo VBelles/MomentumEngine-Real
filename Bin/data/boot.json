@@ -10,11 +10,11 @@
     "data/scenes/terreno_prefab_plantas23-0.scene",
     "data/scenes/terreno_prefab_plantas23-trimesh.scene",
     
-    "data/scenes/test_spikes.scene",
     "data/scenes/sky.scene",
     "data/scenes/slash-test.scene"
   ],
   "unused_scenes": [
+    "data/scenes/test_spikes.scene",
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-breakables.scene",
     "data/scenes/milestone3-cameras.scene",
