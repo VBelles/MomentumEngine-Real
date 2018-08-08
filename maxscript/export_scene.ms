@@ -12,7 +12,7 @@ global uniqueEnemies 	= #()
 global uniqueAltars  	= #()
 global uniqueTeleports  = #()
 
-global brokenMaps    = #()
+global brokenMaps    	= #()
 
 --------------------------------------------------------------------------------
 struct TJsonFormatter (
@@ -848,16 +848,21 @@ struct TSceneExporter (
 			fs.writeKeyValue "number_of_mechanisms" 1
 		fs.endObj()
 
+		local rend = true
+		local coll = true
 		--Get from attribute if it exists.
-		if attrManager.hasAttribute obj.parent.parent "mechData" then (
-			local appear = attrManager.getAttributeValue obj.parent.parent "mechData" #appear
-
-			fs.writeComma()
-			fs.writeKey "door"
-			fs.beginObj()
-				fs.writeKeyValue "startsClosed" (not appear) --false means it starts invisible.
-			fs.endObj()
+		if attrManager.hasAttribute obj "mechData" then (
+			local rend = attrManager.getAttributeValue obj "mechData" #rend
+			local coll = attrManager.getAttributeValue obj "mechData" #coll
 		)
+		fs.writeComma()
+		fs.writeKey "activate_listener"
+		fs.beginObj()
+			fs.writeKeyValue "render_enabled_on_active" rend
+			fs.writeComma()
+			fs.writeKeyValue "collider_enabled_on_active" coll
+		fs.endObj()
+		
 	),
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider---------------------
@@ -963,7 +968,7 @@ struct TSceneExporter (
 
 	-- --COMP: COLLIDER---------------------------------------------------------
 	fn exportCompCollider obj first:true meshMode:false colliderGroups: masks: \
-		trig:false dyn:false mov:false = (
+		mech:false trig:false dyn:false mov:false = (
 		local objClass = classOf obj
 		local layerName = obj.layer.name
 		--If object has more than 1 child collider, add them in separate entities.
@@ -1000,6 +1005,19 @@ struct TSceneExporter (
 			if masks != unsupplied then (
 				fs.writeComma()
 				exportStringArray "mask" masks
+			)
+
+			if mech then (
+				local coll = true
+				--Get from attribute if it exists.
+				if attrManager.hasAttribute obj "mechData" then (
+					format (obj.name + " has mechData.\n")
+					coll = attrManager.getAttributeValue obj "mechData" #coll
+				)
+				format (coll as string + " = coll.\n")
+				--TODO: Acabar de comprobar esto. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				fs.writeComma()
+				fs.writeKeyValue "enabled" (not coll)
 			)
 		fs.endObj() -- End collider component.
 	),
@@ -1117,6 +1135,14 @@ struct TSceneExporter (
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
+
+		--Get from attribute if it exists and is mechanism.
+		if attrManager.hasAttribute obj "mechData" then (
+			renderEnabled = not (attrManager.getAttributeValue obj "mechData" #rend)
+		) else if mech then (
+			renderEnabled = false --default.
+		)
+
 		exportRenderMesh obj pure:pure renderEnabled:renderEnabled
 		if hasChildDummy obj and hasGrandchild obj and not breakable then exportLOD obj
 
@@ -1138,7 +1164,7 @@ struct TSceneExporter (
 						objToExport = obj
 					)
 					exportCompCollider objToExport first:isFirst \
-						mov:(movable or onlyRot) colliderGroups:groups
+						mech:mech mov:(movable or onlyRot) colliderGroups:groups
 
 					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
@@ -1534,10 +1560,10 @@ struct TSceneExporter (
 				local resettable = true
 
 				--Get from attribute if it exists.
-				if attrManager.hasAttribute obj "mechData" then (
-					deacTime	= attrManager.getAttributeValue obj "mechData" #deacT
-					reacTime 	= attrManager.getAttributeValue obj "mechData" #reacT
-					resettable  = attrManager.getAttributeValue obj "mechData" #reset
+				if attrManager.hasAttribute obj "mechTrigData" then (
+					deacTime	= attrManager.getAttributeValue obj "mechTrigData" #deacT
+					reacTime 	= attrManager.getAttributeValue obj "mechTrigData" #reacT
+					resettable  = attrManager.getAttributeValue obj "mechTrigData" #reset
 				)
 		
 				fs.writeKey "mechanism"

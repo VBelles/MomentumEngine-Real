@@ -61,19 +61,29 @@ global movesData = attributes moveData (
 	)
 )
 
--- def #mechData
-global mechsData = attributes mechData (
+-- def #mechTrigData
+global mechsTrigData = attributes mechTrigData (
 	parameters main rollout:params (
 		deacT  type: #float   ui:deacTime 	  default:5.0 
 		reacT  type: #float   ui:reacTime 	  default:3.0
 		reset  type: #boolean ui:isResettable default:true
-		appear type: #boolean ui:appears 	  default:true
 	)
-	rollout params "Mechanisms Data" (
+	rollout params "Mech trigger Data" (
 		spinner  deacTime "Deactivation time" type: #float   range:[0, 1000.0, 5.0] --min, max, initial value
 		spinner  reacTime "Reactivation time" type: #float   range:[0, 1000.0, 3.0]
 		checkbox isResettable "Is resettable" type: #boolean align:#right
-		checkbox appears "Appears" 			  type: #boolean align:#right --TODO: use dropdownlist instead to offer more options.
+	)
+)
+
+-- def #mechData
+global mechsData = attributes mechData (
+	parameters main rollout:params (
+		rend type: #boolean ui:render   default:true
+		coll type: #boolean ui:collider default:true
+	)
+	rollout params "Mech Data" (
+		checkbox render "Render enabled on active" 		type: #boolean align:#right
+		checkbox collider "Collider enabled on active" 	type: #boolean align:#right
 	)
 )
 
@@ -137,13 +147,14 @@ struct TAttributeManager (
 	fn addAttribute obj defName = (
 		if not hasAttribute obj defName then (
 			case defName of (
-				"enemyData":  ( attrDef = enemiesData )
-				"mechData":   ( attrDef = mechsData )
-				"moveData":   ( attrDef = movesData )
-				"rotateData": ( attrDef = rotationsData )
-				"uniqueData": ( attrDef = uniquesData )
-				"animData":   ( attrDef = animsData )
-				default:     ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
+				"enemyData":    ( attrDef = enemiesData	  )
+				"mechTrigData": ( attrDef = mechsTrigData )
+				"mechData":     ( attrDef = mechsData	  )
+				"moveData":     ( attrDef = movesData	  )
+				"rotateData":   ( attrDef = rotationsData )
+				"uniqueData":   ( attrDef = uniquesData   )
+				"animData":     ( attrDef = animsData     )
+				default: ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
 			)
 			custAttributes.add obj attrDef
 		) else format "Attribute % not added, already exists.\n" defName -- DEBUG

@@ -13,7 +13,7 @@ ButtonText: "Momentum"
 	global floater
 	try closeRolloutFloater floater catch()
 
-	floater = newRolloutFloater "Momentum utils" 218 482 --Width and height. +25 height per button.
+	floater = newRolloutFloater "Momentum utils" 218 507 --Width and height. +25 height per button.
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\ui_floating.ms" "Bin\\")
 
 	rollout exporter "Momentum Exporter" (
@@ -152,6 +152,9 @@ ButtonText: "Momentum"
 		button btn_addMovement "+ move" across:2 tooltip:"Adds movement attributes to selected objects"
 		button btn_delMovement "- move" tooltip:"Deletes movement attributes from selected objects"
 		
+		button btn_addMechTrig "+ mech trig" across:2 tooltip:"Adds mech trigger attributes to selected objects"
+		button btn_delMechTrig "- mech trig" tooltip:"Deletes mech trigger attributes from selected objects"
+
 		button btn_addMechanism "+ mech" across:2 tooltip:"Adds mechanism attributes to selected objects"
 		button btn_delMechanism "- mech" tooltip:"Deletes mechanism attributes from selected objects"
 
@@ -189,6 +192,9 @@ ButtonText: "Momentum"
 		
 		on btn_addMovement pressed do ( addAttribute "moveData" )
 		on btn_delMovement pressed do ( delAttribute "moveData" )
+
+		on btn_addMechTrig pressed do ( addAttribute "mechTrigData" )
+		on btn_delMechTrig pressed do ( delAttribute "mechTrigData" )
 
 		on btn_addMechanism pressed do ( addAttribute "mechData" )
 		on btn_delMechanism pressed do ( delAttribute "mechData" )
