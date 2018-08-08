@@ -91,9 +91,9 @@ public:
 		// Si no es mi tipo, no eres valido
 		if (h.getType() != getType()) {
 			fatal("You have request to convert a handle of type %s to "
-				  "a class of type %s"
-				  , CHandleManager::getByType(h.getType())->getName()
-				  , getName()
+				"a class of type %s"
+				, CHandleManager::getByType(h.getType())->getName()
+				, getName()
 			);
 			return nullptr;
 		}
@@ -113,13 +113,11 @@ public:
 		if (!num_objs_used) return;
 
 		if (multithreaded /*&& is_multithreaded_enabled*/) {
-			int nDefThreads = tbb::task_scheduler_init::default_num_threads();
-			size_t step = num_objs_used / nDefThreads;
-			if (step == 0 && num_objs_used > 0) {
-				step = 1;
-			}
-			tbb::parallel_for(size_t(0), size_t(num_objs_used), step, [&, dt](size_t i) {
-				objs[i].update(dt); }
+			tbb::parallel_for(
+				tbb::blocked_range<size_t>(0, num_objs_used),
+				[&, dt](const tbb::blocked_range<size_t>& r) {
+					for (size_t i = r.begin(); i < r.end(); ++i) objs[i].update(dt);
+				}
 			);
 		}
 		else {
