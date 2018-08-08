@@ -527,7 +527,7 @@ float4 PS_dir_lights_player(in float4 iPosition : SV_Position) : SV_Target
 
 	// From wPos to Light
 	//camera_front.xyz de la luz
-	float3 light_dir_full = -light_front;//-light_front;  //float3( 0, 1, 0 ); //light_pos.xyz - wPos;
+	float3 light_dir_full = float3( 0, 1, 0 );// -light_front;//-light_front;  //float3( 0, 1, 0 ); //light_pos.xyz - wPos;
 	float  distance_to_light = length(light_dir_full);
 	float3 light_dir = light_dir_full / distance_to_light;
 
@@ -539,7 +539,7 @@ float4 PS_dir_lights_player(in float4 iPosition : SV_Position) : SV_Target
 
 	if (shadow_factor < 1) {
 		if (NdL < 0.2) {
-			return float4(0, 0, 0, 0.3);
+			return float4(0, 0, 0, lerp(0.3, 0.8, NdL / 0.2));
 		}
 		else {
 			return float4(0, 0, 0, 0.8);
