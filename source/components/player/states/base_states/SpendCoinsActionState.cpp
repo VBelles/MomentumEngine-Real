@@ -18,7 +18,7 @@ void SpendCoinsActionState::update(float delta) {
 	if (spendTimer.elapsed() >= cycleTime) {
 		if (getPowerGauge()->getPower() < getPowerGauge()->getMaxPower() && getCollectableManager()->spendCoins(coinsEachCycle)) {
 			spendTimer.reset();
-			getPowerGauge()->increasePowerInTime(powerPerCoin * coinsEachCycle, powerCycleTime);
+			getPowerGauge()->increasePowerInTime(powerPerCoin * coinsEachCycle, timeToIncreasePower);
 		}
 		else {
 			stateManager->changeState(Idle);//esperar que acabe la animación
