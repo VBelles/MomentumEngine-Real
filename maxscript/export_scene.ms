@@ -1246,22 +1246,18 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --ENTITY: COIN-----------------------------------------------------------
-	fn exportEntityCoin obj nValidObjs = (
-		if nValidObjs > 0 then fs.writeComma()
-		
-		if isUnique obj then append uniqueCoins obj.name
-
+	fn exportPrefabEntity obj prefab noRot:false = (
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
 				exportName obj
 				fs.writeComma()
-				exportTransform obj noRot:true
+				fs.writeKeyValue "prefab" (prefabPath + prefab + ".prefab")
 				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + "coin.prefab")
+				exportTransform obj noRot:noRot
+				-- Add child spline if it exists.
+				if hasChildLine obj then exportSpline obj
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
-		return true
 	),
 
 	-- --ENTITY: CAMERA (also exports child line)-------------------------------
@@ -1330,18 +1326,29 @@ struct TSceneExporter (
 	-- --ENTITY: CHRYSALIS (also exports child line)----------------------------
 	fn exportEntityChrysalis obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
+
+		exportPrefabEntity obj "crisalida"
 		
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + "crisalida.prefab")
-				fs.writeComma()
-				exportTransform obj
-				-- Add child spline if it exists.
-				if hasChildLine obj then exportSpline obj
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+		return true
+	),
+
+	-- --ENTITY: COIN (also exports child line)---------------------------------
+	fn exportEntityCoin obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		
+		if isUnique obj then append uniqueCoins obj.name
+
+		exportPrefabEntity obj "coin" noRot:true
+
+		return true
+	),
+
+	-- --ENTITY: LIFE PIECE (also exports child line)---------------------------
+	fn exportEntityLifePiece obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+
+		exportPrefabEntity obj "lifePiece"
+		
 		return true
 	),
 
@@ -1991,6 +1998,7 @@ struct TSceneExporter (
 							"collisions":   ( wasValid = exportEntityCollision obj nValidObjs )
 							"enemies":      ( wasValid = exportEntityEnemy	   obj nValidObjs )
 							"instancing":   ( wasValid = exportEntityInstance  obj nValidObjs )
+							"life_pieces":  ( wasValid = exportEntityLifePiece obj nValidObjs )
 							"lights":       ( wasValid = exportEntityLight	   obj nValidObjs )
 							"mechanisms":	( wasValid = exportEntityMechSys   obj nValidObjs )
 							"movables":     ( wasValid = exportEntityDefault   obj nValidObjs )
