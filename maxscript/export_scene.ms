@@ -7,9 +7,10 @@ fileIn "utils.ms"
 
 escapeEnable = true --Allow abort script execution holding ESC.
 
-global uniqueCoins   = #()
-global uniqueEnemies = #()
-global uniqueAltars  = #()
+global uniqueCoins   	= #()
+global uniqueEnemies 	= #()
+global uniqueAltars  	= #()
+global uniqueTeleports  = #()
 
 global brokenMaps    = #()
 
@@ -275,12 +276,12 @@ struct TMaterialExporter (
 			fs.end()
 		) else ( --Is pure.
 			-- Generate normal material but with pureON.tech.
-			fs.begin (project_path + mat_name + "_pureON.material")
-				exportMaterialContent mat:mat tech:"pureON"
+			fs.begin (project_path + mat_name + "_" + pureOnSuffix + ".material")
+				exportMaterialContent mat:mat tech:pureOnSuffix
 			fs.end()
 		    -- Generate identical material but with pure.tech.
-			fs.begin (project_path + mat_name + "_pure.material")
-				exportMaterialContent mat:mat tech:"pure"
+			fs.begin (project_path + mat_name + "_" + pureSuffix + ".material")
+				exportMaterialContent mat:mat tech:pureSuffix
 			fs.end()
 		)
 	),
@@ -334,15 +335,15 @@ struct TMaterialExporter (
 	-- Exports an empty solid material to a json format.
 	fn exportEmptyMaterial mat_name pure:false = (
 		local suffix = ""
-		if pure then suffix = "_pure"
+		if pure then suffix = "_" + pureSuffix
 		fs.begin (project_path + mat_name + suffix + ".material")
-			if pure then exportMaterialContent tech:"pure"
+			if pure then exportMaterialContent tech:pureSuffix
 			else exportMaterialContent()
 		fs.end()
 		if pure then (
-			suffix = "_pureON"
+			suffix = "_" + pureOnSuffix
 			fs.begin (project_path + mat_name + suffix + ".material")
-				exportMaterialContent tech:"pureON"
+				exportMaterialContent tech:pureOnSuffix
 			fs.end()
 		)
 	),
@@ -414,6 +415,11 @@ struct TSceneExporter (
 	prefabPath   = base_path + "prefabs/",
 	animsPath    = base_path + "anims/",
 	instancePath = base_path + "instancing/",
+
+	pureSuffix 		= "pure",
+	pureOnSuffix 	= "pureON",
+	teleportMat 	= "ambar",
+	teleportAltMat	= "giratiempo",
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -475,11 +481,16 @@ struct TSceneExporter (
 		else return false
 	),
 
+	fn hasGrandchild obj = (
+		if obj.children == undefined then return false
+		for child in obj.children where child.children.count > 0 do return true
+		return false
+	),
+
 	-- Returns true if has dummy child and the dummy also has children.
 	fn hasChildDummy obj = (
 		if obj.children == undefined then return false
-		for child in obj.children where classOf child == Dummy and
-			   child.children.count > 0 do return true
+		for child in obj.children where classOf child == Dummy do return true
 		return false
 	),
 	
@@ -657,7 +668,8 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	fn addPureMaterial meshName matNames = (
+	-- Adds alternative mesh and material, for example for pure objects.
+	fn addAlterMaterial meshName matNames suffix:"" = (
 		fs.writeComma()
 		fs.writeKeyValue "enabled" false
 		fs.endObj() --End first pure material object.
@@ -666,13 +678,12 @@ struct TSceneExporter (
 			fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
 			fs.writeComma()
 			fs.writeKey "materials"
-			fs.arrayOfStrings matNames suffix:"_pure.material"
-			fs.writeComma()
-			fs.writeKeyValue "enabled" false
+			fs.arrayOfStrings matNames suffix:(suffix + ".material")
 	),
 
 	-- --COMP: RENDER-----------------------------------------------------------
-	fn exportRender obj meshName: matNames: suffix:".material" pure:false enable:true = (
+	fn exportRender obj meshName: matNames: suffix:".material" enable: \
+		pure:false teleport:false = (
 		fs.writeKey "render"
 		fs.beginArray()
 			fs.beginObj()
@@ -684,10 +695,11 @@ struct TSceneExporter (
 					fs.writeComma()
 					exportStringArray "materials" matNames suffix:suffix
 				)
-				if pure then addPureMaterial meshName matNames
-				if not enable then (
+				if pure then addAlterMaterial meshName matNames ("_" + pureSuffix)
+				if teleport then addAlterMaterial meshName #(mats_path + teleportAltMat)
+				if enable != unsupplied then (
 					fs.writeComma()
-					fs.writeKeyValue "enabled" false
+					fs.writeKeyValue "enabled" enable
 				)
 			fs.endObj()
 		fs.endArray()
@@ -716,7 +728,7 @@ struct TSceneExporter (
 		local exported_materials = me.exportMaterial mat mats_path obj
 
 		local suffix = ".material"
-		if pure then suffix = "_pureON.material"
+		if pure then suffix = "_" + pureOnSuffix + ".material"
 
 		exportRender obj meshName:obj.name matNames:exported_materials \
 			suffix:suffix pure:pure enable:renderEnabled
@@ -875,7 +887,6 @@ struct TSceneExporter (
 	),
 
 	fn exportBox obj = (
-		--format "exportBox obj.name: %\n" obj.name --DEBUG
 		local boxCopy = copy obj
 		convertToMesh boxCopy
 		boxCopy.name = obj.name
@@ -1107,7 +1118,7 @@ struct TSceneExporter (
 		exportTransform obj
 		fs.writeComma()
 		exportRenderMesh obj pure:pure renderEnabled:renderEnabled
-		if hasChildDummy obj and not breakable then exportLOD obj
+		if hasChildDummy obj and hasGrandchild obj and not breakable then exportLOD obj
 
 		local colliderCount = 0
 		local movable = hasChildLine obj
@@ -1412,11 +1423,11 @@ struct TSceneExporter (
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
-	
+
 	-- --ENTITY: TRIGGERS (also exports child line)-----------------------------
 	fn exportEntityTrigger obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
-		
+
 		fs.beginObj()
 			fs.writeKey "entity"
 			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
@@ -1445,17 +1456,23 @@ struct TSceneExporter (
 						fs.writeKeyValue "respawn_rotation" respawnRot
 					fs.endObj()
 				)
-				if stringContainsSubstring obj.name "teleport" and 
-				   obj.children != undefined then (
-						fs.writeComma()
-						fs.writeKeyEmpty "teleport_point" comma:false
+				--Is teleport point if it has dummy child named "teleport".
+				if hasChildDummy obj and
+				   stringContainsSubstring obj.children[1].name "teleport" then (
+					if isUnique obj then append uniqueTeleports obj.name
+
+					fs.writeComma()
+					exportRender obj meshName:"UnitBox" matNames:#(teleportMat) \
+						suffix:".material" enable:true teleport:true
+					fs.writeComma()
+					fs.writeKeyEmpty "teleport_point" comma:false
 				)
 				-- Add child spline if it exists.
 				if hasChildLine obj then exportSpline obj
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
-	
+
 	-- --ENTITY: SPIKES---------------------------------------------------------
 	fn exportEntitySpikes obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
@@ -1850,13 +1867,14 @@ struct TSceneExporter (
 		local type = "none"
 
 		case obj.layer.name of (
-			"altars":  type = "altars"
-			"coins":   type = "coins"
+			"altars":   type = "altars"
+			"coins":    type = "coins"
 			"enemies": (
 				if (stringContainsSubstring obj.name "melee") then type = "dreidel" --peonza
 				else type = "kippah" --medusa
 			)
-			default:   type = "none"
+			"triggers": type = "teleport_point"
+			default:    type = "none"
 		)
 
 		fs.beginObj()
@@ -1880,6 +1898,7 @@ struct TSceneExporter (
 			"altars":  uniquesArray = uniqueAltars
 			"coins":   uniquesArray = uniqueCoins
 			"enemies": uniquesArray = uniqueEnemies
+			"events":  uniquesArray = uniqueTeleports
 			default:   return false --Unknown unique, export nothing.
 		)
 		fs.begin uniquesPath --Create file.
@@ -1900,9 +1919,10 @@ struct TSceneExporter (
 
 	--Globals uniqueCoins, uniqueAltars & uniqueEnemies contain the object names.
 	fn exportUniques = (
-		if uniqueAltars.count  > 0 then exportUniqueFile uniqueCategory:"altars"
-		if uniqueCoins.count   > 0 then exportUniqueFile uniqueCategory:"coins"
-		if uniqueEnemies.count > 0 then exportUniqueFile uniqueCategory:"enemies"
+		if uniqueAltars.count    > 0 then exportUniqueFile uniqueCategory:"altars"
+		if uniqueCoins.count     > 0 then exportUniqueFile uniqueCategory:"coins"
+		if uniqueEnemies.count   > 0 then exportUniqueFile uniqueCategory:"enemies"
+		if uniqueTeleports.count > 0 then exportUniqueFile uniqueCategory:"events"
 	),
 
 	fn showBrokenMaps = (

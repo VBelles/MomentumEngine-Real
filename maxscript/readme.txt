@@ -18,7 +18,7 @@ Carpeta del juego/
 Pasos para instalar los scripts:
 ------------------------------------------
 01. Customize > Configure System Paths... > Additional Startup Scripts > Modify...
-02. Seleccionar Proyecto\Bin\maxscript\autoboot\
+02. Seleccionar ~Proyecto~\maxscript\autoboot\
 03. Darle a Use Path.
 04. Reiniciar Max.
 05. Hacer clic derecho en la barra de herramientas de Max > Customize...
