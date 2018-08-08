@@ -5,8 +5,8 @@
   {
     "albedo": "data/textures/rockpavement2_BaseColor.dds",
     "normal": "data/textures/rockpavement2_Normal.dds",
-    "metallic": "data/textures/rockpavement2_Roughness.dds",
-    "roughness": "data/textures/rockpavement2_Metallic.dds",
+    "metallic": "data/textures/rockpavement2_Metallic.dds",
+    "roughness": "data/textures/rockpavement2_Roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
     "height": "data/textures/rockpavement2_Height.dds",
     "detail_normal": "data/textures/null_detail_normal.dds"

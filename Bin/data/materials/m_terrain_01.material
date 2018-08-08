@@ -9,5 +9,5 @@
     "data/materials/Material #18.material",
     "data/materials/Material #19.material"
   ],
-  "mix_blend_weights": "data/textures/m_terrain_01_mask.dds"
+  "mix_blend_weights": "data/textures/m_terrain_01_blurred_mask.dds"
 }
