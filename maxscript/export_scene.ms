@@ -14,6 +14,8 @@ global uniqueTeleports  = #()
 
 global brokenMaps    	= #()
 
+global luaMechSys		= #()
+
 --------------------------------------------------------------------------------
 struct TJsonFormatter (
 	ofilename,			-- Name of output file
@@ -126,6 +128,10 @@ struct TJsonFormatter (
 		format ("{ \"entity\": { \"name\": \"" + prefix + "Dummy\" } },\n") to:fs
 	),
 	
+	fn writeText text = (
+		format "%\n" text to:fs
+	),
+
 	fn arrayOfStrings arr suffix:"" = (
 		beginArray()
 		for idx = 1 to arr.count do (
@@ -415,6 +421,7 @@ struct TSceneExporter (
 	prefabPath   = base_path + "prefabs/",
 	animsPath    = base_path + "anims/",
 	instancePath = base_path + "instancing/",
+	luaPath 	 = base_path + "scripts/",
 
 	pureSuffix 		= "pure",
 	pureOnSuffix 	= "pureON",
@@ -842,6 +849,8 @@ struct TSceneExporter (
 	-- --COMP: MECHANISM SYSTEM-------------------------------------------------
 	-- What is affected when activating a mechanism.
 	fn exportMech obj = (
+		append luaMechSys obj.name
+
 		fs.writeKey "mechanism_system"
 		fs.beginObj()
 			fs.writeKeyValue "number_of_mechanisms" 1
@@ -1955,6 +1964,29 @@ struct TSceneExporter (
 		if uniqueTeleports.count > 0 then exportUniqueFile uniqueCategory:"events"
 	),
 
+	fn exportLuaFile = (
+		local luaFilePath = project_path + luaPath + "mechSys.lua"
+		
+		fs.begin luaFilePath --Create file.
+			for m in luaMechSys do (
+				--local obj = getNodeByName m
+				--if obj != undefined then (
+				fs.writeText ("function onMechanismSystemActivated_" + m + "()")
+					fs.writeText ("  closeDoor(\"" + m + "\", 0)")
+				fs.writeText "end"
+				fs.writeText ("function onMechanismSystemDeactivated_" + m + "()")
+					fs.writeText ("  openDoor(\"" + m + "\", 0)")
+				fs.writeText "end\n"
+				--)
+			)
+		fs.end()
+	),
+
+	--Generates lua file containing starting points for MechanismSystem functions.
+	fn exportLuaMechs = (
+		if luaMechSys.count > 0 then exportLuaFile()
+	),
+
 	fn showBrokenMaps = (
 		for objName in brokenMaps do (
 			format "ERROR: Map support error in object %, should unwrap_reset.\n" objName
@@ -2048,8 +2080,9 @@ struct TSceneExporter (
 			) else format "WARNING: Layer % [%] NOT exported.\n" layerName scenePath
 		format "-------------------------------------------------------------\n"
 		)--End for.
-		-- All layers and objects processed, begin export of stored unique objects.
+		-- All layers and objects processed, begin export of stored objects.
 		exportUniques()
+		exportLuaMechs()
 		showBrokenMaps()
 		)--End undo off.
 	)
@@ -2065,11 +2098,10 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 */
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
-exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
-exporter = TSceneExporter project_path:exportPath
-exporter.exportAll()
+--exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
+--exporter = TSceneExporter project_path:exportPath
+--exporter.exportAll()
 --exporter.exportSelectedColliders()
 
 --mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"
 --mexporter.exportStdMaterial $.mat "pep" 
-
