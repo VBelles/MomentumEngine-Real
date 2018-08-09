@@ -1430,11 +1430,11 @@ struct TSceneExporter (
 	-- --ENTITY: LIGHT (also exports child line)--------------------------------
 	fn exportEntityLight obj nValidObjs = (
 		local objClass = classOf obj
-		if objClass != TargetDirectionallight and
-		   objClass != Directionallight	  	  and
-		   objClass != freeSpot			  	  and
+		if objClass != TargetDirectionalLight and
+		   objClass != DirectionalLight	  	  and
+		   objClass != FreeSpot			  	  and
 		   objClass != Omnilight			  and
-		   objClass != targetSpot			then (
+		   objClass != TargetSpot			then (
 			if objClass != Targetobject then format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
 			return false
 		)
@@ -1442,15 +1442,16 @@ struct TSceneExporter (
 		
 		fs.beginObj()
 			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
 			-- Target Direct light.
 			-- http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_E6767B0D_B5BA_4422_A59F_FD5673FE550E_htm
 				exportName obj
 				
-				if objClass == TargetDirectionallight or
-					 objClass == targetSpot then (
+				if objClass == TargetDirectionalLight or
+					 objClass == TargetSpot then (
 					fs.writeComma()
-					exportTransform obj lookAtCoord:obj.Target[3].pos --[3] is the Transform.
+					--[3] is the Transform.
+					exportTransform obj lookAtCoord:obj.Target[3].pos
 				)
 				fs.writeComma()
 				fs.writeKey "light_dir"
@@ -1466,7 +1467,13 @@ struct TSceneExporter (
 					-- obj.nearAttenEnd for z_near
 					fs.writeKeyValue "z_far" obj.farAttenEnd
 					fs.writeComma()
-					fs.writeKeyValue "fov" 40 -- TODO: ¿Pick from some light parameter?
+
+					local fov = 40
+					--Get from attribute if it exists.
+					if attrManager.hasAttribute obj "lightData" then (
+						fov	= attrManager.getAttributeValue obj "lightData" #fov
+					)
+					fs.writeKeyValue "fov" fov
 				fs.endObj()
 				-- Add child spline if it exists.
 				if hasChildLine obj then exportSpline obj
@@ -2108,10 +2115,13 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
+debugMode = false
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
---exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
---exporter = TSceneExporter project_path:exportPath
---exporter.exportAll()
+if debugMode then (
+	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
+	exporter = TSceneExporter project_path:exportPath
+	exporter.exportAll()
+)
 --exporter.exportSelectedColliders()
 
 --mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"

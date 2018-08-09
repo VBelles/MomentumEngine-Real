@@ -111,6 +111,16 @@ global animsData = attributes animData (
 	)
 )
 
+-- def #lightData
+global lightsData = attributes lightData (
+	parameters main rollout:params (
+		fov type: #float ui:lfov default:40.0
+	)
+	rollout params "Lights Data" (
+		spinner lfov "FoV" type: #float range:[0, 1000.0, 40.0] --min, max, initial value
+	)
+)
+
 -- -----------------------------------------------------------
 
 struct TAttributeManager (
@@ -147,13 +157,14 @@ struct TAttributeManager (
 	fn addAttribute obj defName = (
 		if not hasAttribute obj defName then (
 			case defName of (
+				"animData":     ( attrDef = animsData     )
 				"enemyData":    ( attrDef = enemiesData	  )
-				"mechTrigData": ( attrDef = mechsTrigData )
+				"lightData":    ( attrDef = lightsData    )
 				"mechData":     ( attrDef = mechsData	  )
+				"mechTrigData": ( attrDef = mechsTrigData )
 				"moveData":     ( attrDef = movesData	  )
 				"rotateData":   ( attrDef = rotationsData )
 				"uniqueData":   ( attrDef = uniquesData   )
-				"animData":     ( attrDef = animsData     )
 				default: ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
 			)
 			custAttributes.add obj attrDef

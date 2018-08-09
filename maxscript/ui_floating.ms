@@ -13,7 +13,13 @@ ButtonText: "Momentum"
 	global floater
 	try closeRolloutFloater floater catch()
 
-	floater = newRolloutFloater "Momentum utils" 218 507 --Width and height. +25 height per button.
+	local width  = 218
+	local baseHeight = 83
+	local heightPerButton = 25
+	local numberOfButtons = 18
+	local height = baseHeight + heightPerButton * numberOfButtons
+
+	floater = newRolloutFloater "Momentum utils" width height
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\ui_floating.ms" "Bin\\")
 
 	rollout exporter "Momentum Exporter" (
@@ -164,6 +170,9 @@ ButtonText: "Momentum"
 		button btn_addAnim "+ anim" across:2 tooltip:"Adds anim attributes to selected objects"
 		button btn_delAnim "- anim" tooltip:"Deletes anim attributes from selected objects"
 
+		button btn_addLight "+ light" across:2 tooltip:"Adds light attributes to selected objects"
+		button btn_delLight "- light" tooltip:"Deletes light attributes from selected objects"
+
 		fn addAttribute defName = (
 			try (
 				gc()
@@ -204,6 +213,9 @@ ButtonText: "Momentum"
 
 		on btn_addAnim pressed do ( addAttribute "animData" )
 		on btn_delAnim pressed do ( delAttribute "animData" )
+
+		on btn_addLight pressed do ( addAttribute "lightData" )
+		on btn_delLight pressed do ( delAttribute "lightData" )
 	) -- end attribute rollout creator
 
 	addRollout exporter floater
