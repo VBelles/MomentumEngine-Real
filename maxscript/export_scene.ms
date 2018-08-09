@@ -181,6 +181,14 @@ struct TMaterialExporter (
 		)
 	),
 
+	--Overwrites target file if it already exists.
+	fn tryToCopyFile sourcePath targetPath = (
+		if doesFileExist targetPath then deleteFile targetPath
+		if (copyFile sourcePath targetPath) then --Try to copy file.
+			format "Copying from % to %\n" sourcePath targetPath
+		else format "WARNING: couldn't copy %, do it manually.\n" sourcePath
+	),
+
 	--Map = dds file.
 	fn exportMap map alias default_value = (
 		if map == undefined then (
@@ -196,28 +204,31 @@ struct TMaterialExporter (
 		   mapFileType != ".dds" then throw ("Map " + mapFilename + " is NOT a DDS file.") 
 
 		-- bricks
-		local mapBaseName = getFilenameFile mapFilename
+		local mapName = getFilenameFile mapFilename
 		-- "C:\engine\bin\data\textures\"
-		local mapBasePath = getFilenamePath mapFilename
+		local mapMaxPath = getFilenamePath mapFilename
 		-- "data/textures/bricks.dds"
-		local json_filename = texturesPath + mapBaseName + ".dds"
+		local json_filename = texturesPath + mapName + ".dds"
 
 		-- "C:/engine/bin/data/textures/bricks.dds"
 		local ofull_path = project_path + json_filename
 
-		--TODO: Check if texture is identical, could be a new version.
-		if isPathInsidePath mapBasePath (project_path + base_path) then (
+		if isPathInsidePath mapMaxPath (project_path + base_path) then (
 			--Map is already inside project directory, no need to copy,
 			--just point to the right sub-folder.
-			local strippedPath = stripPathFromPath mapBasePath project_path
-			json_filename = strippedPath + mapBaseName + ".dds"
-			if not doesFileExist (cleanPath (mapBasePath + mapBaseName + ".dds")) then
-				format "WARNING: % not found.\n" (mapBasePath + mapBaseName + ".dds")
-		) else (
+			local strippedPath = stripPathFromPath mapMaxPath project_path
+			json_filename = strippedPath + mapName + ".dds"
+			if not doesFileExist (cleanPath (mapMaxPath + mapName + ".dds")) then
+				format "WARNING: % not found.\n" (mapMaxPath + mapName + ".dds")
+		) else ( --Map path is outside the project.
 			if not doesFileExist ofull_path then ( --Doesn't exist inside project.
-				if (copyFile mapFilename ofull_path) then
-					format "Copying from % to %\n" mapFilename ofull_path
-				else format "WARNING: couldn't copy %, do it manually.\n" mapFilename
+				tryToCopyFile mapFilename ofull_path
+			) else ( --Already exists inside project.
+				--Check if it's the same map, could be a new version.
+				if not (areFilesIdentical mapFilename ofull_path) and
+				   (getNewerFile mapFilename ofull_path == mapFilename) then (
+						tryToCopyFile mapFilename ofull_path --Copy new one.
+					) --Else the file in the project is more recent, do nothing.
 			)
 		)
 		fs.writeKeyValue alias json_filename

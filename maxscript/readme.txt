@@ -61,6 +61,3 @@ El objeto low-res del LOD debe ser padre de un dummy que contiene los objetos
 a los que sustituye cuando está activo.
 
 Si un mesh tiene box hija, ambas tienen que tener el pivot en el mismo sitio.
-
-Si se actualiza un material que ya existía, hay que copiarlo a mano porque
-se evita exportarlo si ya existe.
