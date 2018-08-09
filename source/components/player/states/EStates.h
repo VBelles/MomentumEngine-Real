@@ -52,6 +52,10 @@ typedef enum { STATES } State;
 static const char *strStates[] = { STATES };
 #undef etype
 
+#define etype(x) { #x, x }
+static const std::map<std::string, State> statesMap = { STATES };
+#undef etype
+
 #define CONCURRENT_STATES \
 	etype(UndefinedConcurrentState), \
 	etype(Free), \
@@ -70,9 +74,15 @@ typedef enum { CONCURRENT_STATES } ConcurrentState;
 #define etype(x) #x
 static const char *strConcurrentStates[] = { CONCURRENT_STATES };
 
+#define etype(x) { #x, x }
+static const std::map<std::string, ConcurrentState> concurrentStatesMap = { CONCURRENT_STATES };
+#undef etype
 
 namespace States {
 	const char* toString(State state);
 	const char* toString(ConcurrentState state);
+
+	State getState(std::string state);
+	ConcurrentState getConcurrentState(std::string state);
 }
 
