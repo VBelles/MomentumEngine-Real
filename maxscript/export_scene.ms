@@ -842,7 +842,6 @@ struct TSceneExporter (
 	-- --COMP: MECHANISM SYSTEM-------------------------------------------------
 	-- What is affected when activating a mechanism.
 	fn exportMech obj = (
-		fs.writeComma()
 		fs.writeKey "mechanism_system"
 		fs.beginObj()
 			fs.writeKeyValue "number_of_mechanisms" 1
@@ -862,7 +861,7 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKeyValue "collider_enabled_on_active" coll
 		fs.endObj()
-		
+		fs.writeComma()
 	),
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider---------------------
@@ -1010,12 +1009,10 @@ struct TSceneExporter (
 			if mech then (
 				local coll = true
 				--Get from attribute if it exists.
-				if attrManager.hasAttribute obj "mechData" then (
-					format (obj.name + " has mechData.\n")
-					coll = attrManager.getAttributeValue obj "mechData" #coll
+				if obj.parent != undefined and
+				   attrManager.hasAttribute obj.parent "mechData" then (
+					coll = attrManager.getAttributeValue obj.parent "mechData" #coll
 				)
-				format (coll as string + " = coll.\n")
-				--TODO: Acabar de comprobar esto. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				fs.writeComma()
 				fs.writeKeyValue "enabled" (not coll)
 			)
@@ -1142,6 +1139,7 @@ struct TSceneExporter (
 		) else if mech then (
 			renderEnabled = false --default.
 		)
+		if mech then exportMech obj
 
 		exportRenderMesh obj pure:pure renderEnabled:renderEnabled
 		if hasChildDummy obj and hasGrandchild obj and not breakable then exportLOD obj
@@ -1168,7 +1166,6 @@ struct TSceneExporter (
 
 					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
-					if mech then exportMech child
 				)
 			)
 		)
