@@ -47,6 +47,9 @@ private:
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
 
+	std::set<State> lockedStates;
+	std::set<ConcurrentState> lockedConcurrentStates;
+
 	IActionState* baseState;
 	IActionState* concurrentState;
 	IActionState* nextBaseState;
@@ -113,4 +116,8 @@ public:
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;
 
+	void lockState(std::string stateToLock);
+	void unlockState(std::string stateToUnlock);
+	void lockConcurrentState(std::string stateToLock);
+	void unlockConcurrentState(std::string stateToUnlock);
 };
