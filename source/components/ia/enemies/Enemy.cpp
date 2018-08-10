@@ -103,7 +103,7 @@ void Enemy::debugInMenu() {
 	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
 	ImGui::Text("Is blocking: %s\n", isBlocking ? "true" : "false");
 	ImGui::Text("Super armor: %f, has super armor: %s\n", superArmorAmount, hasSuperArmor() ? "true" : "false");
-	ImGui::Text("Spawn position %f, %f, %f\n", spawnPosition.x, spawnPosition.y, spawnPosition.z);
+	ImGui::DragFloat3("Spawn position", &spawnPosition.x, 0.1f, -10000.0f, 10000.0f);
 	ImGui::Text("Nav mesh: %s\n", navMeshQuery ? navMeshId.c_str() : "None");
 	ImGui::Text("Current path point: %i\n", currentPathPoint);
 	if (ImGui::TreeNode("Smooth path")) {
