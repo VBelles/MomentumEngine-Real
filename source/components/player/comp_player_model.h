@@ -48,6 +48,8 @@ private:
 	VEC3 velocityVector;
 	float baseGravity = 0.f;
 	float currentGravity = 0.f;
+	std::vector<std::string> initialLockedStates;
+	std::vector<std::string> initialLockedConcurrentStates;
 
 	MoveState moveState;
 
@@ -182,4 +184,7 @@ public:
 
 	bool addAttacker(std::string attacker, float slots);
 	void removeAttacker(std::string attacker, float slots);
+	void lockState(std::string state);
+	void lockConcurrentState(std::string state);
+	void unlockState(std::string state);
 };

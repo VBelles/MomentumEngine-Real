@@ -87,6 +87,25 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 			dbg("material: %s\n", name_material.c_str());
 		}
 	}
+
+	if (j.count("locked_states")) {
+		auto& j_locked_states = j["locked_states"];
+		for (size_t i = 0; i < j_locked_states.size(); ++i) {
+			std::string name_state = j_locked_states[i];
+			initialLockedStates.push_back(name_state);
+			dbg("locked states: %s\n", name_state.c_str());
+		}
+	}
+
+	if (j.count("locked_concurrent_states")) {
+		auto& j_locked_states = j["locked_concurrent_states"];
+		for (size_t i = 0; i < j_locked_states.size(); ++i) {
+			std::string name_state = j_locked_states[i];
+			initialLockedConcurrentStates.push_back(name_state);
+			dbg("locked concurrent states: %s\n", name_state.c_str());
+		}
+	}
+
 	powerStats[0] = loadPowerStats(j["ssj1"]);
 	powerStats[1] = loadPowerStats(j["ssj2"]);
 	powerStats[2] = loadPowerStats(j["ssj3"]);
@@ -208,7 +227,12 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	currentPowerStats = powerStats[0];
 
 	stateManager = new StateManager(CHandle(this).getOwner());
-
+	for (auto& lockedState : initialLockedStates) {
+		stateManager->lockState(lockedState);
+	}
+	for (auto& lockedState : initialLockedConcurrentStates) {
+		stateManager->lockConcurrentState(lockedState);
+	}
 }
 
 void TCompPlayerModel::update(float delta) {
@@ -510,4 +534,16 @@ void TCompPlayerModel::removeAttacker(std::string attacker, float slots) {
 		attackSlotsTaken = clamp(attackSlotsTaken - slots, 0.f, maxAttackSlots);
 		attackers.erase(attacker);
 	}
+}
+
+void TCompPlayerModel::lockState(std::string state) {
+	getStateManager()->lockState(state);
+}
+
+void TCompPlayerModel::lockConcurrentState(std::string state) {
+	getStateManager()->lockConcurrentState(state);
+}
+
+void TCompPlayerModel::unlockState(std::string state) {
+	getStateManager()->unlockState(state);
 }
