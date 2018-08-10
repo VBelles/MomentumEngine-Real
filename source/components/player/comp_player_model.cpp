@@ -362,6 +362,10 @@ void TCompPlayerModel::enableOutline() {
 	render->refreshMeshesInRenderManager();
 }
 
+void TCompPlayerModel::stopPlayerVelocity() {
+	velocityVector = VEC3::Zero;
+}
+
 void TCompPlayerModel::damage(float damage) {
 	setHp(hp - damage);
 	/*TCompRender* render = get<TCompRender>();
@@ -546,4 +550,12 @@ void TCompPlayerModel::lockConcurrentState(std::string state) {
 
 void TCompPlayerModel::unlockState(std::string state) {
 	getStateManager()->unlockState(state);
+}
+
+void TCompPlayerModel::changeState(std::string state) {
+	getStateManager()->changeState(state);
+}
+
+void TCompPlayerModel::changeConcurrentState(std::string state) {
+	getStateManager()->changeConcurrentState(state);
 }

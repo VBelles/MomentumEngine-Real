@@ -75,7 +75,9 @@ public:
 
 	void updateStates(float delta);
 	void changeState(State newState);
+	void changeState(std::string newState);
 	void changeConcurrentState(ConcurrentState newState);
+	void changeConcurrentState(std::string newState);
 	void performStateChange();
 
 	IActionState* getState();
