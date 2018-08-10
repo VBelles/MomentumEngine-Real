@@ -1152,6 +1152,24 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
+	-- --COMP: POWER UP --------------------------------------------------------
+	fn exportPowerUpIfSelected obj = (
+		local powUp = "-NONE-"
+		--Get from attribute if it exists.
+		if attrManager.hasAttribute obj "collData" then (
+			--powUp = attrManager.getAttributeValue obj "collData" #pwrUp
+			--TODO: Make this work. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			format ("powUp: " + powUp + "\n") --DEBUG
+			if powUp != "-NONE-" then (
+				fs.writeComma()
+				fs.writeKey "power_up"
+				fs.beginObj()
+					fs.writeKeyValue "state_to_unlock" powUp
+				fs.endObj()
+			)
+		)
+	),
+
 	-- --EDITABLE MESH (includes pure, break, mov, rot & mech children)---------
 	fn exportEditableMesh obj renderEnabled:true = (
 		--format "Exporting EditableMesh obj % of class %\n" obj.name ((classOf obj) as string) --DEBUG
@@ -1197,6 +1215,7 @@ struct TSceneExporter (
 
 					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
+					exportPowerUpIfSelected obj
 				)
 			)
 		)

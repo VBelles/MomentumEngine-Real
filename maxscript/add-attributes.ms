@@ -125,13 +125,66 @@ global lightsData = attributes lightData (
 global colsData = attributes collData (
 	parameters main rollout:params (
 		collType type: #boolean ui:cType default:true
+		pwrUp    type: #string  ui:powerUp
 	)
 	rollout params "Collider Data" (
 		checkbox cType "Tri mesh" type: #boolean align:#right
+		dropdownlist powerUp "Power-up" items:#("-NONE-", \
+												"AirborneLong", \
+												"AirborneNormal", \
+												"AirborneWallJump", \
+												"AirDodge", \
+												"Death", \
+												"Dodge", \
+												"FallingAttack", \
+												"FastAttack", \
+												"FastAttack2", \
+												"FastAttackAir", \
+												"FastFinisher1", \
+												"FastFinisher2", \
+												"GhostJumpSquat", \
+												"GhostJumpSquatLong", \
+												"GhostJumpWindow", \
+												"GrabHigh", \
+												"GrabLong", \
+												"HardKnockbackAir", \
+												"HardKnockbackGround", \
+												"HardLanding", \
+												"HorizontalLauncher", \
+												"HuggingWall", \
+												"HuggingWallLongJumpSquat", \
+												"Idle", \
+												"IdleTurnAround", \
+												"JumpSquat", \
+												"JumpSquatLong", \
+												"JumpSquatSpring", \
+												"PitFalling", \
+												"PropelHigh", \
+												"PropelLong", \
+												"ReleasePowerAir", \
+												"ReleasePowerGround", \
+												"Run", \
+												"Slide", \
+												"SoftKnockbackAir", \
+												"SoftKnockbackGround", \
+												"SoftLanding", \
+												"SpendCoins", \
+												"SpringJump", \
+												"StrongAttack", \
+												"StrongAttack2", \
+												"StrongAttack3", \
+												"StrongFinisher1", \
+												"StrongFinisher2", \
+												"TurnAround", \
+												"VerticalLauncher", \
+												"Walk", \
+												"WallJumpPlummet", \
+												"WallJumpSquat", \
+												"WallJumpSquatPlummet")
 	)
 )
 
--- -----------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 struct TAttributeManager (
 	fn hasAttribute obj defName = (
