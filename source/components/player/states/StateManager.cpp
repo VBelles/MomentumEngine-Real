@@ -337,14 +337,22 @@ void StateManager::lockState(std::string stateToLock) {
 	}
 }
 
+//Unlocks state or concurrent state
 void StateManager::unlockState(std::string stateToUnlock) {
 	State state = States::getState(stateToUnlock);
 	if (state != UndefinedState) {
 		lockedStates.erase(state);
-		dbg("unlocking state %s exists\n", stateToUnlock.c_str());
+		dbg("unlocking state %s\n", stateToUnlock.c_str());
 	}
 	else {
-		dbg("can't unlock state %s, it does not exist\n", stateToUnlock.c_str());
+		ConcurrentState concurrentState = States::getConcurrentState(stateToUnlock);
+		if (concurrentState != UndefinedConcurrentState) {
+			lockedConcurrentStates.erase(concurrentState);
+			dbg("unlocking concurrent state %s\n", stateToUnlock.c_str());
+		}
+		else {
+			dbg("can't unlock state %s, it does not exist\n", stateToUnlock.c_str());
+		}
 	}
 }
 
@@ -356,17 +364,6 @@ void StateManager::lockConcurrentState(std::string stateToLock) {
 	}
 	else {
 		dbg("can't lock concurrent state %s, it does not exist\n", stateToLock.c_str());
-	}
-}
-
-void StateManager::unlockConcurrentState(std::string stateToUnlock) {
-	ConcurrentState state = States::getConcurrentState(stateToUnlock);
-	if (state != UndefinedConcurrentState) {
-		lockedConcurrentStates.erase(state);
-		dbg("unlocking concurrent state %s\n", stateToUnlock.c_str());
-	}
-	else {
-		dbg("can't unlock concurrent state %s, it does not exist\n", stateToUnlock.c_str());
 	}
 }
 

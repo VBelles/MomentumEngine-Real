@@ -535,3 +535,15 @@ void TCompPlayerModel::removeAttacker(std::string attacker, float slots) {
 		attackers.erase(attacker);
 	}
 }
+
+void TCompPlayerModel::lockState(std::string state) {
+	getStateManager()->lockState(state);
+}
+
+void TCompPlayerModel::lockConcurrentState(std::string state) {
+	getStateManager()->lockConcurrentState(state);
+}
+
+void TCompPlayerModel::unlockState(std::string state) {
+	getStateManager()->unlockState(state);
+}

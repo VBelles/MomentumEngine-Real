@@ -53,11 +53,27 @@ bool CModuleUniques::start() {
 				}
 			}
 		}
+		if (jUnique.count("unique_life_pieces")) {
+			auto& jLifePieces = jUnique["unique_life_pieces"];
+			if (jLifePieces.is_array()) {
+				for (size_t i = 0; i < jLifePieces.size(); ++i) {
+					parseChunk(jLifePieces[i], ElementType::LIFEPIECE);
+				}
+			}
+		}
 		if (jUnique.count("unique_enemies")) {
 			json jEvents = jUnique["unique_enemies"];
 			if (jEvents.is_array()) {
 				for (size_t i = 0; i < jEvents.size(); ++i) {
 					parseChunk(jEvents[i], ElementType::ENEMY);
+				}
+			}
+		}
+		if (jUnique.count("unique_power_up")) {
+			json jPowerUps = jUnique["unique_power_up"];
+			if (jPowerUps.is_array()) {
+				for (size_t i = 0; i < jPowerUps.size(); ++i) {
+					parseChunk(jPowerUps[i], ElementType::POWERUP);
 				}
 			}
 		}
@@ -71,6 +87,9 @@ void CModuleUniques::parseChunk(const json & j, ElementType type) {
 	std::string id = j.value("id", "");
 	if (type == ENEMY) {
 		parseEnemy(j, id);
+	}
+	else if (type == POWERUP) {
+		parsePowerUp(j, id);
 	}
 	else {
 		UniqueElement element;
@@ -113,13 +132,24 @@ void CModuleUniques::parseEnemy(const json & j, std::string id) {
 	enemies.emplace(id, element);
 }
 
+void CModuleUniques::parsePowerUp(const json & j, std::string id) {
+	UniquePowerUp element;
+	element.done = j.value("done", false);
+	element.position = loadVEC3(j["position"]);
+	element.level = j.value("level", "");
+	element.stateToUnlock = j.value("state", "");
+	powerUps.emplace(id, element);
+}
+
 bool CModuleUniques::stop() {
 	//clear maps
 	coins.clear();
 	chrysalides.clear();
 	altars.clear();
 	events.clear();
+	lifePieces.clear();
 	enemies.clear();
+	powerUps.clear();
 	return true;
 }
 
@@ -165,6 +195,13 @@ UniqueElement* CModuleUniques::getUniqueEvent(std::string id) {
 UniqueEnemy * CModuleUniques::getUniqueEnemy(std::string id) {
 	if (enemies.find(id) != enemies.end()) {
 		return &enemies[id];
+	}
+	return nullptr;
+}
+
+UniquePowerUp * CModuleUniques::getUniquePowerUp(std::string id) {
+	if (powerUps.find(id) != powerUps.end()) {
+		return &powerUps[id];
 	}
 	return nullptr;
 }
@@ -231,6 +268,17 @@ bool CModuleUniques::setEnemyDead(std::string id, bool isDead) {
 	}
 	else {
 		dbg("No encuentro este unique enemy!!\n");
+		return false;
+	}
+}
+
+bool CModuleUniques::setPowerUpTaken(std::string id, bool isTaken) {
+	if (powerUps.find(id) != powerUps.end()) {
+		powerUps[id].done = isTaken;
+		return true;
+	}
+	else {
+		dbg("No encuentro este unique power-up!!\n");
 		return false;
 	}
 }

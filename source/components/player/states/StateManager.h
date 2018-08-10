@@ -119,5 +119,4 @@ public:
 	void lockState(std::string stateToLock);
 	void unlockState(std::string stateToUnlock);
 	void lockConcurrentState(std::string stateToLock);
-	void unlockConcurrentState(std::string stateToUnlock);
 };

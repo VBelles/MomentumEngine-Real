@@ -17,6 +17,13 @@ struct UniqueEnemy {
 	EnemyType type;
 };
 
+struct UniquePowerUp {
+	bool done;
+	VEC3 position;
+	std::string level;
+	std::string stateToUnlock;
+};
+
 class CModuleUniques : public IModule {
 private:
 	enum ElementType {
@@ -25,7 +32,8 @@ private:
 		ALTAR,
 		EVENT,
 		ENEMY,
-		LIFEPIECE
+		LIFEPIECE,
+		POWERUP
 	};
 
 	//maps
@@ -35,10 +43,12 @@ private:
 	std::map<std::string, UniqueElement> altars;
 	std::map<std::string, UniqueElement> events;
 	std::map<std::string, UniqueEnemy> enemies;
+	std::map<std::string, UniquePowerUp> powerUps;
 
 	void parseChunk(const json& j, ElementType type);
 
 	void parseEnemy(const json & j, std::string id);
+	void parsePowerUp(const json & j, std::string id);
 
 public:
 	CModuleUniques(const std::string& aname) : IModule(aname) {}
@@ -52,6 +62,7 @@ public:
 	UniqueElement* getUniqueAltar(std::string id);
 	UniqueElement* getUniqueEvent(std::string id);
 	UniqueEnemy* getUniqueEnemy(std::string id);
+	UniquePowerUp* getUniquePowerUp(std::string id);
 
 	bool setCoinTaken(std::string id, bool isTaken);
 	bool setLifePieceTaken(std::string id, bool isTaken);
@@ -59,4 +70,5 @@ public:
 	bool setAltarBroken(std::string id, bool isBroken);
 	bool setEventTriggered(std::string id, bool isTriggered);
 	bool setEnemyDead(std::string id, bool isDead);
+	bool setPowerUpTaken(std::string id, bool isTaken);
 };

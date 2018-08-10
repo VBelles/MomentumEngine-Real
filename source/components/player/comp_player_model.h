@@ -184,4 +184,7 @@ public:
 
 	bool addAttacker(std::string attacker, float slots);
 	void removeAttacker(std::string attacker, float slots);
+	void lockState(std::string state);
+	void lockConcurrentState(std::string state);
+	void unlockState(std::string state);
 };
