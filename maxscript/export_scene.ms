@@ -11,6 +11,7 @@ global uniqueCoins   	= #()
 global uniqueEnemies 	= #()
 global uniqueAltars  	= #()
 global uniqueTeleports  = #()
+global uniqueLifePieces = #()
 
 global brokenMaps    	= #()
 
@@ -1390,6 +1391,8 @@ struct TSceneExporter (
 	fn exportEntityLifePiece obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 
+		if isUnique obj then append uniqueLifePieces obj.name
+
 		exportPrefabEntity obj "lifePiece"
 		
 		return true
@@ -1910,8 +1913,9 @@ struct TSceneExporter (
 				if (stringContainsSubstring obj.name "melee") then type = "dreidel" --peonza
 				else type = "kippah" --medusa
 			)
-			"triggers": type = "teleport_point"
-			default:    type = "none"
+			"triggers":    type = "teleport_point"
+			"life_pieces": type = "life_piece"
+			default:       type = "none"
 		)
 
 		fs.beginObj()
@@ -1927,20 +1931,21 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	fn exportUniqueFile uniqueCategory:"" = (
-		local uniquesPath = project_path + uniques_path + "unique_" + uniqueCategory + ".json"
+	fn exportUniqueFile uniqueType:"" = (
+		local uniquesPath = project_path + uniques_path + "unique_" + uniqueType + ".json"
 
 		local uniquesArray = #()
-		case uniqueCategory of (
-			"altars":  uniquesArray = uniqueAltars
-			"coins":   uniquesArray = uniqueCoins
-			"enemies": uniquesArray = uniqueEnemies
-			"events":  uniquesArray = uniqueTeleports
+		case uniqueType of (
+			"altars":  		uniquesArray = uniqueAltars
+			"coins":   		uniquesArray = uniqueCoins
+			"enemies": 		uniquesArray = uniqueEnemies
+			"events":  		uniquesArray = uniqueTeleports
+			"life_pieces":  uniquesArray = uniqueLifePieces
 			default:   return false --Unknown unique, export nothing.
 		)
 		fs.begin uniquesPath --Create file.
 			fs.beginObj()
-				fs.writeKey ("unique_" + uniqueCategory)
+				fs.writeKey ("unique_" + uniqueType)
 				fs.beginArray()
 				for i = 1 to uniquesArray.count do (
 					local obj = getNodeByName uniquesArray[i]
@@ -1956,10 +1961,11 @@ struct TSceneExporter (
 
 	--Globals uniqueCoins, uniqueAltars & uniqueEnemies contain the object names.
 	fn exportUniques = (
-		if uniqueAltars.count    > 0 then exportUniqueFile uniqueCategory:"altars"
-		if uniqueCoins.count     > 0 then exportUniqueFile uniqueCategory:"coins"
-		if uniqueEnemies.count   > 0 then exportUniqueFile uniqueCategory:"enemies"
-		if uniqueTeleports.count > 0 then exportUniqueFile uniqueCategory:"events"
+		if uniqueAltars.count     > 0 then exportUniqueFile uniqueType:"altars"
+		if uniqueCoins.count      > 0 then exportUniqueFile uniqueType:"coins"
+		if uniqueEnemies.count    > 0 then exportUniqueFile uniqueType:"enemies"
+		if uniqueTeleports.count  > 0 then exportUniqueFile uniqueType:"events"
+		if uniqueLifePieces.count > 0 then exportUniqueFile uniqueType:"life_pieces"
 	),
 
 	fn exportLuaFile = (
@@ -2095,7 +2101,7 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-debugMode = false
+debugMode = true
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
