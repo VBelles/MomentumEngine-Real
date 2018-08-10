@@ -121,6 +121,16 @@ global lightsData = attributes lightData (
 	)
 )
 
+-- def #collData
+global colsData = attributes collData (
+	parameters main rollout:params (
+		collType type: #boolean ui:cType default:true
+	)
+	rollout params "Collider Data" (
+		checkbox cType "Tri mesh" type: #boolean align:#right
+	)
+)
+
 -- -----------------------------------------------------------
 
 struct TAttributeManager (
@@ -158,6 +168,7 @@ struct TAttributeManager (
 		if not hasAttribute obj defName then (
 			case defName of (
 				"animData":     ( attrDef = animsData     )
+				"collData":     ( attrDef = colsData      )
 				"enemyData":    ( attrDef = enemiesData	  )
 				"lightData":    ( attrDef = lightsData    )
 				"mechData":     ( attrDef = mechsData	  )

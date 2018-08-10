@@ -886,7 +886,13 @@ struct TSceneExporter (
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider---------------------
 	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
-		if obj.layer.name == "trimesh" then meshShape = "tri_mesh"
+		local forcedTri = false
+		--Get from attribute if it exists.
+		if attrManager.hasAttribute obj "collData" then (
+			forcedTri = attrManager.getAttributeValue obj "collData" #collType
+		)
+
+		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh then mesh_name = mesh_path + "plataformaPuraSI_tri.col_mesh"
 
@@ -2115,7 +2121,7 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-debugMode = false
+debugMode = true
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
