@@ -1,0 +1,32 @@
+[
+	{
+		"entity": {
+			"name": "Prisma_mario_sunshine",
+			"transform": {
+				"pos": "0.0 0.0 0.0",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/_prisma_mario_sunshine.mesh",
+					"materials": [
+						"data/materials/Material_#131.material"
+					],
+					"enabled": true
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/_prisma_mario_sunshine_collider.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			},
+			"platform_simple": {
+				"rotation_axis": "0.0 0.0 -1.0",
+				"rotation_speed": 0.3
+			}
+		}
+	}
+]
