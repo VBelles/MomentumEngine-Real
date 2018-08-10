@@ -41,7 +41,7 @@ Las layers invisibles o vacías no se exportan.
 Lo visible como Editable Mesh.
 
 Nombres de Layers:
-·"0" --> Aquí van las meshes visibles. Si tienen mesh hija, será collider convex mesh.
+·"0" --> Aquí van las meshes visibles. Si tienen mesh hija, será collider convex mesh (excepto si se añade atributo collider).
 ·"altars"
 ·"breakables"
 ·"cameras"
@@ -49,7 +49,8 @@ Nombres de Layers:
 ·"coins"
 ·"collisions"
 ·"enemies" --> Por defecto son voladores, ponerle "melee" en el nombre si no.
-·"instancing"
+·"instancing" --> Dummies con el nombre del objeto a instanciar. Cada hijo del dummy será una instancia.
+·"life_pieces"
 ·"lights"
 ·"mechanisms"
 ·"movables" --> Si también es pure, tiene que ir en "pure".

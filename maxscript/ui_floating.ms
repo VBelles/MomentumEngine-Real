@@ -14,9 +14,9 @@ ButtonText: "Momentum"
 	try closeRolloutFloater floater catch()
 
 	local width  = 218
-	local baseHeight = 83
-	local heightPerButton = 25
-	local numberOfButtons = 18
+	local baseHeight = 66
+	local heightPerButton = 26
+	local numberOfButtons = 19
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	floater = newRolloutFloater "Momentum utils" width height
@@ -173,6 +173,9 @@ ButtonText: "Momentum"
 		button btn_addLight "+ light" across:2 tooltip:"Adds light attributes to selected objects"
 		button btn_delLight "- light" tooltip:"Deletes light attributes from selected objects"
 
+		button btn_addColl "+ collider" across:2 tooltip:"Adds collider attributes to selected objects"
+		button btn_delColl "- collider" tooltip:"Deletes collider attributes from selected objects"
+
 		fn addAttribute defName = (
 			try (
 				gc()
@@ -216,6 +219,9 @@ ButtonText: "Momentum"
 
 		on btn_addLight pressed do ( addAttribute "lightData" )
 		on btn_delLight pressed do ( delAttribute "lightData" )
+
+		on btn_addColl pressed do ( addAttribute "collData" )
+		on btn_delColl pressed do ( delAttribute "collData" )
 	) -- end attribute rollout creator
 
 	addRollout exporter floater

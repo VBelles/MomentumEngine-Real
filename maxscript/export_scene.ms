@@ -11,6 +11,7 @@ global uniqueCoins   	= #()
 global uniqueEnemies 	= #()
 global uniqueAltars  	= #()
 global uniqueTeleports  = #()
+global uniqueLifePieces = #()
 
 global brokenMaps    	= #()
 
@@ -18,9 +19,9 @@ global luaMechSys		= #()
 
 --------------------------------------------------------------------------------
 struct TJsonFormatter (
-	ofilename,			-- Name of output file
-	fs, 				-- File stream
-	depth_level = 0,	-- To format json tabs
+	ofilename,			-- Name of output file.
+	fs, 				-- File stream.
+	depth_level = 0,	-- To format json tabs.
 
 	-- --------------------
 	fn begin new_ofilename = (
@@ -528,6 +529,12 @@ struct TSceneExporter (
 		else return true --Unique by default.
 	),
 	
+	fn beginEntity = (
+		fs.beginObj() -- - - - - start new json object - - - - - -
+			fs.writeKey "entity"
+			fs.beginObj() -- - - start new entity  - - - - - - - -
+	),
+
 	fn endEntity = (
 			fs.endObj() -- - - - - - - end previous entity - - -
 		fs.endObj() -- - - - end previous json object - - - - - -
@@ -537,9 +544,7 @@ struct TSceneExporter (
 	fn startNewEntity = (
 		endEntity()
 		fs.writeComma()
-		fs.beginObj() -- - - - - start new json object - - - - - -
-			fs.writeKey "entity"
-			fs.beginObj() -- - - start new entity  - - - - - - - -
+		beginEntity()
 	),
 	
 	-- --CHILD POSITIONS  ------------------------------------------------------
@@ -886,7 +891,13 @@ struct TSceneExporter (
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider---------------------
 	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
-		if obj.layer.name == "trimesh" then meshShape = "tri_mesh"
+		local forcedTri = false
+		--Get from attribute if it exists.
+		if attrManager.hasAttribute obj "collData" then (
+			forcedTri = attrManager.getAttributeValue obj "collData" #collType
+		)
+
+		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh then mesh_name = mesh_path + "plataformaPuraSI_tri.col_mesh"
 
@@ -1232,20 +1243,16 @@ struct TSceneExporter (
 		   not objClass == Editable_mesh then return false
 		if nValidObjs > 0 then fs.writeComma()
 
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
-				exportEntityCollider obj \
-					meshMode:(not (isCollider obj and objClass != Editable_mesh)) \
-					dyn:(hasChildLine obj)
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			exportEntityCollider obj \
+				meshMode:(not (isCollider obj and objClass != Editable_mesh)) \
+				dyn:(hasChildLine obj)
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
 	fn exportAltarRing obj ringName: main:false = (
-		fs.beginObj()
-		fs.writeKey "entity"
-		fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
 			fs.writeKeyValue "name" (obj.name + ringName)
 			fs.writeComma()
 			exportTransform obj
@@ -1290,17 +1297,15 @@ struct TSceneExporter (
 	),
 
 	fn exportPrefabEntity obj prefab noRot:false = (
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + prefab + ".prefab")
-				fs.writeComma()
-				exportTransform obj noRot:noRot
-				-- Add child spline if it exists.
-				if hasChildLine obj then exportSpline obj
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			exportName obj
+			fs.writeComma()
+			fs.writeKeyValue "prefab" (prefabPath + prefab + ".prefab")
+			fs.writeComma()
+			exportTransform obj noRot:noRot
+			-- Add child spline if it exists.
+			if hasChildLine obj then exportSpline obj
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 	),
 
 	-- --ENTITY: CAMERA (also exports child line)-------------------------------
@@ -1311,41 +1316,39 @@ struct TSceneExporter (
 		   objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
 
-			fs.beginObj()
-				fs.writeKey "entity"
-				fs.beginObj() -- - - - - - - - - - - - - - - - - - - - - - - - -
-					exportName obj
+			beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+				exportName obj
+				fs.writeComma()
+				if objClass == TargetCamera then (
+					--Target[3] is the Transform.
+					exportTransform obj lookAtCoord:(maxPosToMcv obj.Target[3].pos)
+				) else exportTransform obj
+
+				fs.writeComma()
+				fs.writeKey "camera"
+				fs.beginObj()
+					fs.writeKeyValue "fov" obj.fov
+				fs.endObj()
+
+				fs.writeComma()
+				fs.writeKey "fixed_camera"
+				fs.beginObj()
+					fs.writeKeyValue "returnToPlayerCameraWithInput" false
 					fs.writeComma()
-					if objClass == TargetCamera then (
-						--Target[3] is the Transform.
-						exportTransform obj lookAtCoord:(maxPosToMcv obj.Target[3].pos)
-					) else exportTransform obj
-
+					fs.writeKeyValue "modifyPlayerCameraRotation" true
 					fs.writeComma()
-					fs.writeKey "camera"
-					fs.beginObj()
-						fs.writeKeyValue "fov" obj.fov
-					fs.endObj()
-
+					fs.writeKeyValue "timeToMixOut" 1
 					fs.writeComma()
-					fs.writeKey "fixed_camera"
-					fs.beginObj()
-						fs.writeKeyValue "returnToPlayerCameraWithInput" false
-						fs.writeComma()
-						fs.writeKeyValue "modifyPlayerCameraRotation" true
-						fs.writeComma()
-						fs.writeKeyValue "timeToMixOut" 1
-						fs.writeComma()
-						fs.writeKeyValue "panningSpeed" 0
-						fs.writeComma()
-						fs.writeKeyValue "panningRadius" 3
-					fs.endObj()
+					fs.writeKeyValue "panningSpeed" 0
+					fs.writeComma()
+					fs.writeKeyValue "panningRadius" 3
+				fs.endObj()
 
-					-- Add child spline if it exists.
-					if hasChildLine obj then exportSpline obj type:"camera_move"
+				-- Add child spline if it exists.
+				if hasChildLine obj then exportSpline obj type:"camera_move"
 
-				--format "Camera % target distance: %\n" obj.name obj.targetDistance
-				endEntity() -- - - - - - - - - - - - - - - - - - - - - - - - - -
+			--format "Camera % target distance: %\n" obj.name obj.targetDistance
+			endEntity() -- - - - - - - - - - - - - - - - - - - - - - - - - -
 		)
 		else return false
 
@@ -1353,13 +1356,11 @@ struct TSceneExporter (
 			local child = obj.children[1]
 			if isCollider child then (
 				fs.writeComma()
-				fs.beginObj()
-					fs.writeKey "entity"
-					fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-						-- Add trigger.
-						if objClass == FreeCamera then exportCameraTrigger child
-						else exportSuggestCameraTrigger child
-					endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+				beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+					-- Add trigger.
+					if objClass == FreeCamera then exportCameraTrigger child
+					else exportSuggestCameraTrigger child
+				endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 				return true
 			)
 		)
@@ -1390,6 +1391,8 @@ struct TSceneExporter (
 	fn exportEntityLifePiece obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 
+		if isUnique obj then append uniqueLifePieces obj.name
+
 		exportPrefabEntity obj "lifePiece"
 		
 		return true
@@ -1401,29 +1404,27 @@ struct TSceneExporter (
 		
 		if isUnique obj then append uniqueEnemies obj.name
 
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				local enemyAirPrefabName   = "kippah"  --flying
-				local enemyMeleePrefabName = "dreidel" --melee
-				local enemyBolaPrefabName  = "dreidel" --ball
-				local prefabName = enemyAirPrefabName -- Flying by default.
-				if stringContainsSubstring obj.name "melee" then
-					prefabName = enemyMeleePrefabName
-				if stringContainsSubstring obj.name "Bola" then
-					prefabName = enemyBolaPrefabName
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			local enemyAirPrefabName   = "kippah"  --flying
+			local enemyMeleePrefabName = "dreidel" --melee
+			local enemyBolaPrefabName  = "dreidel" --ball
+			local prefabName = enemyAirPrefabName -- Flying by default.
+			if stringContainsSubstring obj.name "melee" then
+				prefabName = enemyMeleePrefabName
+			if stringContainsSubstring obj.name "Bola" then
+				prefabName = enemyBolaPrefabName
 
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + prefabName + ".prefab")
-				fs.writeComma()
-				local objPos = maxPosToMcv obj.position
-				local lookAtPos = [-1, objPos.y, -1]
-				exportTransform obj lookAtCoord:lookAtPos
-				
-				-- Add child spline if it exists.
-				if hasChildLine obj then exportSpline obj type:"patrol_path"
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+			exportName obj
+			fs.writeComma()
+			fs.writeKeyValue "prefab" (prefabPath + prefabName + ".prefab")
+			fs.writeComma()
+			local objPos = maxPosToMcv obj.position
+			local lookAtPos = [-1, objPos.y, -1]
+			exportTransform obj lookAtCoord:lookAtPos
+			
+			-- Add child spline if it exists.
+			if hasChildLine obj then exportSpline obj type:"patrol_path"
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1440,44 +1441,42 @@ struct TSceneExporter (
 		)
 		if nValidObjs > 0 then fs.writeComma()
 		
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
-			-- Target Direct light.
-			-- http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_E6767B0D_B5BA_4422_A59F_FD5673FE550E_htm
-				exportName obj
-				
-				if objClass == TargetDirectionalLight or
-					 objClass == TargetSpot then (
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+		-- Target Direct light.
+		-- http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_E6767B0D_B5BA_4422_A59F_FD5673FE550E_htm
+			exportName obj
+			
+			if objClass == TargetDirectionalLight or
+				 objClass == TargetSpot then (
+				fs.writeComma()
+				--[3] is the Transform.
+				exportTransform obj lookAtCoord:obj.Target[3].pos
+			)
+			fs.writeComma()
+			fs.writeKey "light_dir"
+			fs.beginObj()
+				fs.writeKeyValue "intensity" obj.multiplier
+				fs.writeComma()
+				fs.writeKeyValue "color" (obj.color as point3)
+				if obj.projector then (
 					fs.writeComma()
-					--[3] is the Transform.
-					exportTransform obj lookAtCoord:obj.Target[3].pos
+					fs.writeKeyValue "projector" obj.projectorMap
 				)
 				fs.writeComma()
-				fs.writeKey "light_dir"
-				fs.beginObj()
-					fs.writeKeyValue "intensity" obj.multiplier
-					fs.writeComma()
-					fs.writeKeyValue "color" (obj.color as point3)
-					if obj.projector then (
-						fs.writeComma()
-						fs.writeKeyValue "projector" obj.projectorMap
-					)
-					fs.writeComma()
-					-- obj.nearAttenEnd for z_near
-					fs.writeKeyValue "z_far" obj.farAttenEnd
-					fs.writeComma()
+				-- obj.nearAttenEnd for z_near
+				fs.writeKeyValue "z_far" obj.farAttenEnd
+				fs.writeComma()
 
-					local fov = 40
-					--Get from attribute if it exists.
-					if attrManager.hasAttribute obj "lightData" then (
-						fov	= attrManager.getAttributeValue obj "lightData" #fov
-					)
-					fs.writeKeyValue "fov" fov
-				fs.endObj()
-				-- Add child spline if it exists.
-				if hasChildLine obj then exportSpline obj
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+				local fov = 40
+				--Get from attribute if it exists.
+				if attrManager.hasAttribute obj "lightData" then (
+					fov	= attrManager.getAttributeValue obj "lightData" #fov
+				)
+				fs.writeKeyValue "fov" fov
+			fs.endObj()
+			-- Add child spline if it exists.
+			if hasChildLine obj then exportSpline obj
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1485,48 +1484,46 @@ struct TSceneExporter (
 	fn exportEntityTrigger obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				if stringContainsSubstring obj.name "Bounds" then (
-					fs.writeKeyEmpty "outOfBounds"
-					exportEntityCollider obj trig:true \
-						colliderGroups:#("trigger") masks:#("characters")
-				)
-				else exportEntityCollider obj trig:true \
-					colliderGroups:#("trigger") masks:#("player")
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			if stringContainsSubstring obj.name "Bounds" then (
+				fs.writeKeyEmpty "outOfBounds"
+				exportEntityCollider obj trig:true \
+					colliderGroups:#("trigger") masks:#("characters")
+			)
+			else exportEntityCollider obj trig:true \
+				colliderGroups:#("trigger") masks:#("player")
 
-				if stringContainsSubstring obj.name "respawn" and 
-				  obj.children != undefined then (
-					local respawnPos = "0 0 0"
-					local respawnRot = "0 0 0 0"
-					for child in obj.children where classOf child == Dummy do (
-						respawnPos = (maxPosToMcv child.position)
-						respawnRot = (maxRotToMcv child.transform)
-					)
-
-					fs.writeComma()
-					fs.writeKey "respawn_point"
-					fs.beginObj()
-						fs.writeKeyValue "respawn_position" respawnPos
-						fs.writeComma()
-						fs.writeKeyValue "respawn_rotation" respawnRot
-					fs.endObj()
+			if stringContainsSubstring obj.name "respawn" and 
+			  obj.children != undefined then (
+				local respawnPos = "0 0 0"
+				local respawnRot = "0 0 0 0"
+				for child in obj.children where classOf child == Dummy do (
+					respawnPos = (maxPosToMcv child.position)
+					respawnRot = (maxRotToMcv child.transform)
 				)
-				--Is teleport point if it has dummy child named "teleport".
-				if hasChildDummy obj and
-				   stringContainsSubstring obj.children[1].name "teleport" then (
-					if isUnique obj then append uniqueTeleports obj.name
 
+				fs.writeComma()
+				fs.writeKey "respawn_point"
+				fs.beginObj()
+					fs.writeKeyValue "respawn_position" respawnPos
 					fs.writeComma()
-					exportRender obj meshName:"UnitBox" matNames:#(teleportMat) \
-						suffix:".material" enable:true teleport:true
-					fs.writeComma()
-					fs.writeKeyEmpty "teleport_point" comma:false
-				)
-				-- Add child spline if it exists.
-				if hasChildLine obj then exportSpline obj
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+					fs.writeKeyValue "respawn_rotation" respawnRot
+				fs.endObj()
+			)
+			--Is teleport point if it has dummy child named "teleport".
+			if hasChildDummy obj and
+			   stringContainsSubstring obj.children[1].name "teleport" then (
+				if isUnique obj then append uniqueTeleports obj.name
+
+				fs.writeComma()
+				exportRender obj meshName:"UnitBox" matNames:#(teleportMat) \
+					suffix:".material" enable:true teleport:true
+				fs.writeComma()
+				fs.writeKeyEmpty "teleport_point" comma:false
+			)
+			-- Add child spline if it exists.
+			if hasChildLine obj then exportSpline obj
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1534,15 +1531,13 @@ struct TSceneExporter (
 	fn exportEntitySpikes obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
-				fs.writeComma()
-				exportTransform obj
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			exportName obj
+			fs.writeComma()
+			fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
+			fs.writeComma()
+			exportTransform obj
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1556,11 +1551,9 @@ struct TSceneExporter (
 		)
 		if nValidObjs > 0 then fs.writeComma()
 		
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - - - -
-				exportEditableMesh obj
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			exportEditableMesh obj
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
 
@@ -1569,44 +1562,42 @@ struct TSceneExporter (
 	fn exportEntityMechSys obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 	
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				fs.writeKeyValue "prefab" (prefabPath + "mech.prefab")
-				fs.writeComma()
-				exportTransform obj
-				fs.writeComma()
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			exportName obj
+			fs.writeComma()
+			fs.writeKeyValue "prefab" (prefabPath + "mech.prefab")
+			fs.writeComma()
+			exportTransform obj
+			fs.writeComma()
 
-				local deacTime = 5
-				local reacTime = 3
-				local resettable = true
+			local deacTime = 5
+			local reacTime = 3
+			local resettable = true
 
-				--Get from attribute if it exists.
-				if attrManager.hasAttribute obj "mechTrigData" then (
-					deacTime	= attrManager.getAttributeValue obj "mechTrigData" #deacT
-					reacTime 	= attrManager.getAttributeValue obj "mechTrigData" #reacT
-					resettable  = attrManager.getAttributeValue obj "mechTrigData" #reset
-				)
-		
-				fs.writeKey "mechanism"
-				fs.beginObj()
-					fs.writeKeyValue "deactivationTime" deacTime
-					fs.writeComma()
-					fs.writeKeyValue "reactivationTime" reacTime
-					fs.writeComma()
-					fs.writeKeyValue "isResettable" resettable
-					fs.writeComma()
-					fs.writeKey "systems"
-					fs.beginArray()
-						for i = 1 to obj.children.count do (
-							if i > 1 then fs.writeComma()
-							fs.writeValue obj.children[i].name addIndent:true
-						)
-					fs.endArray()
-				fs.endObj()
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+			--Get from attribute if it exists.
+			if attrManager.hasAttribute obj "mechTrigData" then (
+				deacTime	= attrManager.getAttributeValue obj "mechTrigData" #deacT
+				reacTime 	= attrManager.getAttributeValue obj "mechTrigData" #reacT
+				resettable  = attrManager.getAttributeValue obj "mechTrigData" #reset
+			)
+	
+			fs.writeKey "mechanism"
+			fs.beginObj()
+				fs.writeKeyValue "deactivationTime" deacTime
+				fs.writeComma()
+				fs.writeKeyValue "reactivationTime" reacTime
+				fs.writeComma()
+				fs.writeKeyValue "isResettable" resettable
+				fs.writeComma()
+				fs.writeKey "systems"
+				fs.beginArray()
+					for i = 1 to obj.children.count do (
+						if i > 1 then fs.writeComma()
+						fs.writeValue obj.children[i].name addIndent:true
+					)
+				fs.endArray()
+			fs.endObj()
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 
 		for child in obj.children do (
 			exportEntityDefault child (nValidObjs + 1)
@@ -1651,7 +1642,7 @@ struct TSceneExporter (
 				fss.writeKeyValue "instanced_mesh" ( mesh_path + instanceCat + ".mesh")
 				fss.writeComma()
 				fss.writeKeyValue "instances_type" "Instance"
-				fss.writeComma()	
+				fss.writeComma()
 				fss.writeKeyValue "num_instances_reserved" 8
 			fss.endObj()
 		fss.end()
@@ -1665,25 +1656,23 @@ struct TSceneExporter (
 
 		local instanceCategory = obj.name
 
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - -
-				exportName obj
-				fs.writeComma()
-				exportTransform obj
-				fs.writeComma()
-				fs.writeKey "render"
-				fs.beginArray()
-					fs.beginObj()
-						fs.writeKeyValue "mesh" (mesh_path + instanceCategory + ".instanced_mesh")
-						fs.writeComma()
-						fs.writeKey "materials"
-							fs.beginArray()
-								 fs.writeValue (mats_path + instanceCategory + ".material") addIndent:true
-							fs.endArray()
-					fs.endObj()
-				fs.endArray()
-			endEntity() -- - - - - - - - - - - - - - - - - - -
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			exportName obj
+			fs.writeComma()
+			exportTransform obj
+			fs.writeComma()
+			fs.writeKey "render"
+			fs.beginArray()
+				fs.beginObj()
+					fs.writeKeyValue "mesh" (mesh_path + instanceCategory + ".instanced_mesh")
+					fs.writeComma()
+					fs.writeKey "materials"
+						fs.beginArray()
+							 fs.writeValue (mats_path + instanceCategory + ".material") addIndent:true
+						fs.endArray()
+				fs.endObj()
+			fs.endArray()
+		endEntity() -- - - - - - - - - - - - - - - - - - - - -
 		--fs.endObj() is made outside this function.
 
 		exportInstancedMeshFile instanceCat:instanceCategory --.instanced_mesh
@@ -1715,45 +1704,43 @@ struct TSceneExporter (
 			meshPath = mesh_path + "crisalida.mesh"
 		)
 		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				fs.writeKeyEmpty "transform"
-		
-				fs.writeKey "render"
-				fs.beginArray()
-					fs.beginObj()
-						fs.writeKeyValue "mesh" meshPath
-						fs.writeComma()
-						fs.writeKey "materials"
-						fs.beginArray()
-							fs.writeValue "data/materials/piedras1.material" addIndent:true
-						fs.endArray()
-						fs.writeComma()
-						fs.writeKeyValue "color" "0.45 0.28 0.8 1.0"
-					fs.endObj()
-				fs.endArray() -- End render
-				fs.writeComma()
-		
-				exportStringArray "tags" #("enemy")
-				fs.writeComma()
-				
-				fs.writeKey "respawner"
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			fs.writeKeyEmpty "transform"
+	
+			fs.writeKey "render"
+			fs.beginArray()
 				fs.beginObj()
-					fs.writeKeyValue "respawnTime" 10
+					fs.writeKeyValue "mesh" meshPath
+					fs.writeComma()
+					fs.writeKey "materials"
+					fs.beginArray()
+						fs.writeValue "data/materials/piedras1.material" addIndent:true
+					fs.endArray()
+					fs.writeComma()
+					fs.writeKeyValue "color" "0.45 0.28 0.8 1.0"
 				fs.endObj()
-				fs.writeComma()
-				
-				exportShadow()
-				fs.writeComma()
-				
-				exportGivePower maxPow:50000 multi:1
-				fs.writeComma()
-				
-				exportBehaviorTree enemyType
-				
-				exportCompCollider obj colliderGroups:#("enemy") masks:#("all")
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+			fs.endArray() -- End render
+			fs.writeComma()
+	
+			exportStringArray "tags" #("enemy")
+			fs.writeComma()
+			
+			fs.writeKey "respawner"
+			fs.beginObj()
+				fs.writeKeyValue "respawnTime" 10
+			fs.endObj()
+			fs.writeComma()
+			
+			exportShadow()
+			fs.writeComma()
+			
+			exportGivePower maxPow:50000 multi:1
+			fs.writeComma()
+			
+			exportBehaviorTree enemyType
+			
+			exportCompCollider obj colliderGroups:#("enemy") masks:#("all")
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		
 		exportChildHitboxes obj obj.height
 		
@@ -1767,31 +1754,29 @@ struct TSceneExporter (
 			if isCollider child and
 			   classOf child != Capsule then (
 				fs.writeComma()
-				fs.beginObj()
-					fs.writeKey "entity"
-					fs.beginObj() -- - - - - - - - - - - - - - - - - - -
+				beginEntity() -- - - - - - - - - - - - - - - - - - - - -
 					--format "Exporting child collider obj % of class %\n" child.name ((classof child) as string) --DEBUG
-						exportEntityCollider child colliderGroups:#("Hitbox") trig:true dyn:true
-						fs.writeComma()
-						exportHierarchy obj.name
-						fs.writeComma()
-						fs.writeKey "hitbox"
-						fs.beginObj()
-							-- PhysX takes center of Capsule as pivot, so we have to correct it for the offset.
-							local correctedObjTransf = obj.transform
-							correctedObjTransf.pos.z += capsuleHeight / 2
-							local posInParentSpace = child.transform.pos * inverse correctedObjTransf
-							-- Change xyz order.
-							posInParentSpace = [posInParentSpace.y, posInParentSpace.z, posInParentSpace.x]
-							posInParentSpace = roundSmallPosToZeros posInParentSpace
-							fs.writeKeyValue "offset" posInParentSpace
-						fs.endObj()
-						
-						-- Export spline if available.
-						if hasChildLine child then (
-							exportSpline child type:"hitboxPath"
-						)
-					endEntity() -- - - - - - - - - - - - - - - - -
+					exportEntityCollider child colliderGroups:#("Hitbox") trig:true dyn:true
+					fs.writeComma()
+					exportHierarchy obj.name
+					fs.writeComma()
+					fs.writeKey "hitbox"
+					fs.beginObj()
+						-- PhysX takes center of Capsule as pivot, so we have to correct it for the offset.
+						local correctedObjTransf = obj.transform
+						correctedObjTransf.pos.z += capsuleHeight / 2
+						local posInParentSpace = child.transform.pos * inverse correctedObjTransf
+						-- Change xyz order.
+						posInParentSpace = [posInParentSpace.y, posInParentSpace.z, posInParentSpace.x]
+						posInParentSpace = roundSmallPosToZeros posInParentSpace
+						fs.writeKeyValue "offset" posInParentSpace
+					fs.endObj()
+					
+					-- Export spline if available.
+					if hasChildLine child then (
+						exportSpline child type:"hitboxPath"
+					)
+				endEntity() -- - - - - - - - - - - - - - - - -
 			)
 		)
 	),
@@ -1804,113 +1789,111 @@ struct TSceneExporter (
 			return false
 		)
 		if nValidObjs > 0 then fs.writeComma()
-		fs.beginObj()
-			fs.writeKey "entity"
-			fs.beginObj() -- - - - - - - - - - - - - - - - - - -
-				exportName obj
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			exportName obj
+			fs.writeComma()
+			exportTransform obj
+			fs.writeComma()
+			exportRenderMesh obj
+			fs.writeComma()
+			fs.writeKeyEmpty "player_controller"
+			fs.writeKey "player_model"
+			fs.beginObj()
+				fs.writeKeyValue "gravity" -55
 				fs.writeComma()
-				exportTransform obj
+				fs.writeKeyValue "walkingSpeed" 3
 				fs.writeComma()
-				exportRenderMesh obj
-				fs.writeComma()
-				fs.writeKeyEmpty "player_controller"
-				fs.writeKey "player_model"
+				fs.writeKey "ssj1"
 				fs.beginObj()
-					fs.writeKeyValue "gravity" -55
+					fs.writeKeyValue "rotation_speed" 11.0
 					fs.writeComma()
-					fs.writeKeyValue "walkingSpeed" 3
+					fs.writeKeyValue "maxSpeed" 7.0
 					fs.writeComma()
-					fs.writeKey "ssj1"
-					fs.beginObj()
-						fs.writeKeyValue "rotation_speed" 11.0
-						fs.writeComma()
-						fs.writeKeyValue "maxSpeed" 7.0
-						fs.writeComma()
-						fs.writeKeyValue "shortHopVelocity" 16.0
-						fs.writeComma()
-						fs.writeKeyValue "jumpVelocity" "0 20 0"
-						fs.writeComma()
-						fs.writeKeyValue "longJumpVelocity" "0 11 12"
-						fs.writeComma()
-						fs.writeKeyValue "maxVelocityVertical"  30.0
-						fs.writeComma()
-						fs.writeKeyValue "acceleration" 30.0
-						fs.writeComma()
-						fs.writeKeyValue "deceleration" 7.0
-						fs.writeComma()
-						fs.writeKeyValue "airAcceleration" 30.0
-						fs.writeComma()
-						fs.writeKeyValue "falling_multiplier" 1.05
-						fs.writeComma()
-						fs.writeKeyValue "long_gravity_multiplier" 0.60
-					fs.endObj()
+					fs.writeKeyValue "shortHopVelocity" 16.0
 					fs.writeComma()
-					fs.writeKey "ssj2"
-					fs.beginObj()
-						fs.writeKeyValue "rotation_speed" 14.0
-						fs.writeComma()
-						fs.writeKeyValue "maxSpeed" 11.0
-						fs.writeComma()
-						fs.writeKeyValue "shortHopVelocity" 18.0
-						fs.writeComma()
-						fs.writeKeyValue "jumpVelocity" "0 25 0"
-						fs.writeComma()
-						fs.writeKeyValue "longJumpVelocity" "0 12 17"
-						fs.writeComma()
-						fs.writeKeyValue "maxVelocityVertical" 30.0
-						fs.writeComma()
-						fs.writeKeyValue "acceleration" 32.0
-						fs.writeComma()
-						fs.writeKeyValue "deceleration" 8.0
-						fs.writeComma()
-						fs.writeKeyValue "airAcceleration" 35.0
-						fs.writeComma()
-						fs.writeKeyValue "falling_multiplier" 1.05
-						fs.writeComma()
-						fs.writeKeyValue "long_gravity_multiplier" 0.60
-					fs.endObj()
+					fs.writeKeyValue "jumpVelocity" "0 20 0"
 					fs.writeComma()
-					fs.writeKey "ssj3"
-					fs.beginObj()
-						fs.writeKeyValue "rotation_speed" 17.0
-						fs.writeComma()
-						fs.writeKeyValue "maxSpeed" 14.0
-						fs.writeComma()
-						fs.writeKeyValue "shortHopVelocity" 20.0
-						fs.writeComma()
-						fs.writeKeyValue "jumpVelocity" "0 30 0"
-						fs.writeComma()
-						fs.writeKeyValue "longJumpVelocity" "0 13 22.5"
-						fs.writeComma()
-						fs.writeKeyValue "maxVelocityVertical" 30.0
-						fs.writeComma()
-						fs.writeKeyValue "acceleration" 35.0
-						fs.writeComma()
-						fs.writeKeyValue "deceleration" 9.0
-						fs.writeComma()
-						fs.writeKeyValue "airAcceleration" 40.0
-						fs.writeComma()
-						fs.writeKeyValue "falling_multiplier" 1.05
-						fs.writeComma()
-						fs.writeKeyValue "long_gravity_multiplier" 0.60
-					fs.endObj()
+					fs.writeKeyValue "longJumpVelocity" "0 11 12"
 					fs.writeComma()
-					fs.writeKeyEmpty "power_gauge"
-				fs.endObj() -- End player_model
+					fs.writeKeyValue "maxVelocityVertical"  30.0
+					fs.writeComma()
+					fs.writeKeyValue "acceleration" 30.0
+					fs.writeComma()
+					fs.writeKeyValue "deceleration" 7.0
+					fs.writeComma()
+					fs.writeKeyValue "airAcceleration" 30.0
+					fs.writeComma()
+					fs.writeKeyValue "falling_multiplier" 1.05
+					fs.writeComma()
+					fs.writeKeyValue "long_gravity_multiplier" 0.60
+				fs.endObj()
 				fs.writeComma()
-				local capsuleHeight = 0
-				for child in obj.children do (
-					if isCollider child and
-						-- Pick the capsule. Shouldn't have more than one.
-						classOf child == Capsule then (
-							exportCompCollider child colliderGroups:#("Player") masks:#("all")
-							capsuleHeight = child.height
-					)
+				fs.writeKey "ssj2"
+				fs.beginObj()
+					fs.writeKeyValue "rotation_speed" 14.0
+					fs.writeComma()
+					fs.writeKeyValue "maxSpeed" 11.0
+					fs.writeComma()
+					fs.writeKeyValue "shortHopVelocity" 18.0
+					fs.writeComma()
+					fs.writeKeyValue "jumpVelocity" "0 25 0"
+					fs.writeComma()
+					fs.writeKeyValue "longJumpVelocity" "0 12 17"
+					fs.writeComma()
+					fs.writeKeyValue "maxVelocityVertical" 30.0
+					fs.writeComma()
+					fs.writeKeyValue "acceleration" 32.0
+					fs.writeComma()
+					fs.writeKeyValue "deceleration" 8.0
+					fs.writeComma()
+					fs.writeKeyValue "airAcceleration" 35.0
+					fs.writeComma()
+					fs.writeKeyValue "falling_multiplier" 1.05
+					fs.writeComma()
+					fs.writeKeyValue "long_gravity_multiplier" 0.60
+				fs.endObj()
+				fs.writeComma()
+				fs.writeKey "ssj3"
+				fs.beginObj()
+					fs.writeKeyValue "rotation_speed" 17.0
+					fs.writeComma()
+					fs.writeKeyValue "maxSpeed" 14.0
+					fs.writeComma()
+					fs.writeKeyValue "shortHopVelocity" 20.0
+					fs.writeComma()
+					fs.writeKeyValue "jumpVelocity" "0 30 0"
+					fs.writeComma()
+					fs.writeKeyValue "longJumpVelocity" "0 13 22.5"
+					fs.writeComma()
+					fs.writeKeyValue "maxVelocityVertical" 30.0
+					fs.writeComma()
+					fs.writeKeyValue "acceleration" 35.0
+					fs.writeComma()
+					fs.writeKeyValue "deceleration" 9.0
+					fs.writeComma()
+					fs.writeKeyValue "airAcceleration" 40.0
+					fs.writeComma()
+					fs.writeKeyValue "falling_multiplier" 1.05
+					fs.writeComma()
+					fs.writeKeyValue "long_gravity_multiplier" 0.60
+				fs.endObj()
+				fs.writeComma()
+				fs.writeKeyEmpty "power_gauge"
+			fs.endObj() -- End player_model
+			fs.writeComma()
+			local capsuleHeight = 0
+			for child in obj.children do (
+				if isCollider child and
+					-- Pick the capsule. Shouldn't have more than one.
+					classOf child == Capsule then (
+						exportCompCollider child colliderGroups:#("Player") masks:#("all")
+						capsuleHeight = child.height
 				)
-				fs.writeComma()
-				fs.writeKeyEmpty "render_ui"
-				exportShadow()
-			endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+			)
+			fs.writeComma()
+			fs.writeKeyEmpty "render_ui"
+			exportShadow()
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		
 		exportChildHitboxes obj capsuleHeight
 
@@ -1930,8 +1913,9 @@ struct TSceneExporter (
 				if (stringContainsSubstring obj.name "melee") then type = "dreidel" --peonza
 				else type = "kippah" --medusa
 			)
-			"triggers": type = "teleport_point"
-			default:    type = "none"
+			"triggers":    type = "teleport_point"
+			"life_pieces": type = "life_piece"
+			default:       type = "none"
 		)
 
 		fs.beginObj()
@@ -1947,20 +1931,21 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 
-	fn exportUniqueFile uniqueCategory:"" = (
-		local uniquesPath = project_path + uniques_path + "unique_" + uniqueCategory + ".json"
+	fn exportUniqueFile uniqueType:"" = (
+		local uniquesPath = project_path + uniques_path + "unique_" + uniqueType + ".json"
 
 		local uniquesArray = #()
-		case uniqueCategory of (
-			"altars":  uniquesArray = uniqueAltars
-			"coins":   uniquesArray = uniqueCoins
-			"enemies": uniquesArray = uniqueEnemies
-			"events":  uniquesArray = uniqueTeleports
+		case uniqueType of (
+			"altars":  		uniquesArray = uniqueAltars
+			"coins":   		uniquesArray = uniqueCoins
+			"enemies": 		uniquesArray = uniqueEnemies
+			"events":  		uniquesArray = uniqueTeleports
+			"life_pieces":  uniquesArray = uniqueLifePieces
 			default:   return false --Unknown unique, export nothing.
 		)
 		fs.begin uniquesPath --Create file.
 			fs.beginObj()
-				fs.writeKey ("unique_" + uniqueCategory)
+				fs.writeKey ("unique_" + uniqueType)
 				fs.beginArray()
 				for i = 1 to uniquesArray.count do (
 					local obj = getNodeByName uniquesArray[i]
@@ -1976,10 +1961,11 @@ struct TSceneExporter (
 
 	--Globals uniqueCoins, uniqueAltars & uniqueEnemies contain the object names.
 	fn exportUniques = (
-		if uniqueAltars.count    > 0 then exportUniqueFile uniqueCategory:"altars"
-		if uniqueCoins.count     > 0 then exportUniqueFile uniqueCategory:"coins"
-		if uniqueEnemies.count   > 0 then exportUniqueFile uniqueCategory:"enemies"
-		if uniqueTeleports.count > 0 then exportUniqueFile uniqueCategory:"events"
+		if uniqueAltars.count     > 0 then exportUniqueFile uniqueType:"altars"
+		if uniqueCoins.count      > 0 then exportUniqueFile uniqueType:"coins"
+		if uniqueEnemies.count    > 0 then exportUniqueFile uniqueType:"enemies"
+		if uniqueTeleports.count  > 0 then exportUniqueFile uniqueType:"events"
+		if uniqueLifePieces.count > 0 then exportUniqueFile uniqueType:"life_pieces"
 	),
 
 	fn exportLuaFile = (
@@ -2115,7 +2101,7 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-debugMode = false
+debugMode = true
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
