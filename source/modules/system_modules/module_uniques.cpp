@@ -11,13 +11,12 @@
 
 bool CModuleUniques::start() {
 	//de momento json, pero debería estar encriptado (haha... lo dudo)
+	//no es necesario que cada tipo esté separado en un archivo diferente
+	auto files = WindowsUtils::getAllFiles("data/uniques/", "*.json");
 	std::vector<json> jUniques;
-	jUniques.push_back(loadJson("data/uniques/unique_coins.json"));
-	//jUniques.push_back(loadJson("data/uniques/coins-uniques.json"));//no hace falta que estén en archivos separados
-	//jUniques.push_back(loadJson("data/uniques/chrysalides-uniques.json"));
-	//jUniques.push_back(loadJson("data/uniques/altars-uniques.json"));
-	jUniques.push_back(loadJson("data/uniques/unique_events.json"));
-	jUniques.push_back(loadJson("data/uniques/unique_enemies.json"));
+	for (auto& file : files) {
+		jUniques.push_back(loadJson(file));
+	}
 
 	//parse
 	for (auto& jUnique : jUniques) {
