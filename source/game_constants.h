@@ -18,6 +18,7 @@ static const std::string PREFAB_CHRYSALIS = "data/prefabs/crisalida.prefab";
 static const std::string PREFAB_COIN = "data/prefabs/coin.prefab";
 static const std::string PREFAB_DREIDEL = "data/prefabs/dreidel.prefab";
 static const std::string PREFAB_KIPPAH = "data/prefabs/kippah.prefab";
+static const std::string PREFAB_KIPPAH_DUMMY = "data/prefabs/kippah_dummy.prefab";
 static const std::string PREFAB_MURO = "data/prefabs/muro.prefab";
 static const std::string PREFAB_PLATAFORMA_HEX = "data/prefabs/plataforma_hex.prefab";
 static const std::string PREFAB_PLATAFORMA_RECT = "data/prefabs/plataforma_rect.prefab";
