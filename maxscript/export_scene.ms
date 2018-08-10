@@ -18,9 +18,9 @@ global luaMechSys		= #()
 
 --------------------------------------------------------------------------------
 struct TJsonFormatter (
-	ofilename,			-- Name of output file
-	fs, 				-- File stream
-	depth_level = 0,	-- To format json tabs
+	ofilename,			-- Name of output file.
+	fs, 				-- File stream.
+	depth_level = 0,	-- To format json tabs.
 
 	-- --------------------
 	fn begin new_ofilename = (
@@ -1639,7 +1639,7 @@ struct TSceneExporter (
 				fss.writeKeyValue "instanced_mesh" ( mesh_path + instanceCat + ".mesh")
 				fss.writeComma()
 				fss.writeKeyValue "instances_type" "Instance"
-				fss.writeComma()	
+				fss.writeComma()
 				fss.writeKeyValue "num_instances_reserved" 8
 			fss.endObj()
 		fss.end()
@@ -1669,7 +1669,7 @@ struct TSceneExporter (
 						fs.endArray()
 				fs.endObj()
 			fs.endArray()
-		endEntity() -- - - - - - - - - - - - - - - - - - -
+		endEntity() -- - - - - - - - - - - - - - - - - - - - -
 		--fs.endObj() is made outside this function.
 
 		exportInstancedMeshFile instanceCat:instanceCategory --.instanced_mesh
@@ -2095,7 +2095,7 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-debugMode = true
+debugMode = false
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
