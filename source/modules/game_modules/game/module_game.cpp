@@ -93,6 +93,7 @@ bool CModuleGame::start() {
 		VEC4 rot = jPoint.count("rot") ? loadVEC4(jPoint["rot"]) : VEC4::Zero;
 		pointsOfInterest.push_back(PointOfInterest{ name, CTransform(pos, rot) });
 	}
+
 	return true;
 }
 

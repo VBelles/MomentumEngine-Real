@@ -21,6 +21,7 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("stopPlayerVelocity", SLB::FuncCall::create(ScriptingPlayer::stopPlayerVelocity));
 	manager->set("changePlayerState", SLB::FuncCall::create(ScriptingPlayer::changePlayerState));
 	manager->set("changePlayerConcurrentState", SLB::FuncCall::create(ScriptingPlayer::changePlayerConcurrentState));
+	manager->set("walkTo", SLB::FuncCall::create(ScriptingPlayer::walkTo));
 	manager->set("lockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::lockPlayerCameraInput));
 	manager->set("unlockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::unlockPlayerCameraInput));
 	manager->set("disablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::disablePlayerOutline));
@@ -93,6 +94,11 @@ void ScriptingPlayer::changePlayerState(std::string state) {
 
 void ScriptingPlayer::changePlayerConcurrentState(std::string state) {
 	getPlayerModel()->changeConcurrentState(state);
+}
+
+void ScriptingPlayer::walkTo(float x, float z, float speed) {
+	VEC3 targetPosition = VEC3(x, 0, z);
+	getPlayerModel()->walkTo(targetPosition, speed);
 }
 
 TCompPlayerModel* ScriptingPlayer::getPlayerModel() {

@@ -17,8 +17,6 @@ bool CModuleMapMenu::start() {
 	controller->registerOption("Primer_altar");
 	controller->registerOption("Pie_faro");
 
-	Engine.setInputType(InputType::Menu);
-
 	return true;
 }
 

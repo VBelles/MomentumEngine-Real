@@ -178,6 +178,7 @@ public:
 	void disableOutline();
 	void enableOutline();
 	void stopPlayerVelocity();
+	void walkTo(VEC3 targetPosition, float speed);
 
 	StateManager* getStateManager() { return stateManager; }
 

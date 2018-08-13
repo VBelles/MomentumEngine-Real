@@ -366,6 +366,14 @@ void TCompPlayerModel::stopPlayerVelocity() {
 	velocityVector = VEC3::Zero;
 }
 
+void TCompPlayerModel::walkTo(VEC3 targetPosition, float speed) {
+	VEC3 position = getTransform()->getPosition();
+	position.y = 0;
+	VEC3 velocity = targetPosition - position;
+	velocity.Normalize();
+	velocityVector = velocity * speed;
+}
+
 void TCompPlayerModel::damage(float damage) {
 	setHp(hp - damage);
 	/*TCompRender* render = get<TCompRender>();
