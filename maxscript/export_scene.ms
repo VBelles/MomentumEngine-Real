@@ -152,29 +152,32 @@ struct TMaterialExporter (
 	base_path,              -- Assigned in the ctor. "data/"
 	texturesPath,			-- Assigned in the ctor. "data/textures/"
 
-	fn getListBadDDS mat = (
-		local badMaps = ""
-		if mat != undefined and classOf mat == StandardMaterial then (
-			for map in mat.maps where map != undefined do (
-				if isKindOf map normal_bump then (
-					mapFilename = map.normal_map.filename
-				) else mapFilename = map.filename
-				--It would be better not to include duplicates.
-				mapFileType = getFilenameType mapFilename
-				if mapFileType != ".DDS" and
-				   mapFileType != ".dds" then (
-				   	append badMaps ("-Mat: \"" + mat.name + "\" | Map: \"" + \
-				   		map.name + "\" \n File: " + getFilenameFile mapFilename + "\n")
+	fn getListBadDDS mat &bm = (
+		if mat != undefined then (
+			if classOf mat == StandardMaterial then (
+				for map in mat.maps where map != undefined do (
+					if isKindOf map normal_bump then (
+						mapFilename = map.normal_map.filename
+					) else mapFilename = map.filename
+					--It would be better not to include duplicates.
+					mapFileType = getFilenameType mapFilename
+					if mapFileType != ".DDS" and
+					   mapFileType != ".dds" then (
+					   	append bm ("-Mat: \"" + mat.name + "\" | Map: \"" + \
+					   		map.name + "\" \n File: " + getFilenameFile mapFilename + "\n")
+					)
 				)
 			)
+			else if classOf mat == MultiMaterial then (
+				for m in mat.MaterialList where m != undefined do getListBadDDS m &bm
+			)
 		)
-		return badMaps
 	),
 
 	-- Check all objects in the file for non-DDS maps. This is very fast.
 	fn listBadDDSofScene = (
 		local badMaps = ""
-		for o in $* do append badMaps (getListBadDDS o.material)
+		for o in $* do getListBadDDS o.material &badMaps
 		if badMaps == "" then messageBox ("All maps are DDS.\n") title:"All fine" beep:false
 		else (
 			messageBox ("Maps without DDS files:\n" + badMaps) title:"Error"
@@ -2119,7 +2122,7 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-debugMode = true
+debugMode = false
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
