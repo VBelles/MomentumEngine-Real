@@ -1157,9 +1157,8 @@ struct TSceneExporter (
 		local powUp = "-NONE-"
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "collData" then (
-			--powUp = attrManager.getAttributeValue obj "collData" #pwrUp
-			--TODO: Make this work. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			format ("powUp: " + powUp + "\n") --DEBUG
+			powUp = attrManager.getAttributeValue obj "collData" #pwrUp
+
 			if powUp != "-NONE-" then (
 				fs.writeComma()
 				fs.writeKey "power_up"
