@@ -39,5 +39,6 @@ public:
 	static void stopPlayerVelocity();
 	static void changePlayerState(std::string state);
 	static void changePlayerConcurrentState(std::string state);
-	static void walkTo(float x, float z, float speed);
+	static void walkTo(float x, float z);
+	static void rotatePlayerTowards(float x, float z, float speed);
 };

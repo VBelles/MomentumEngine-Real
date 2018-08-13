@@ -237,6 +237,11 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 
 void TCompPlayerModel::update(float delta) {
 	PROFILE_FUNCTION("update");
+
+	if (isPlayerRotating) {
+		isPlayerRotating = !stateManager->getState()->rotatePlayerTowards(delta, rotatingTargetPos, rotationSpeed);
+	}
+
 	if (isInvulnerable && invulnerableTimer.elapsed() >= invulnerableTime) {
 		isInvulnerable = false;
 	}
@@ -366,12 +371,18 @@ void TCompPlayerModel::stopPlayerVelocity() {
 	velocityVector = VEC3::Zero;
 }
 
-void TCompPlayerModel::walkTo(VEC3 targetPosition, float speed) {
+void TCompPlayerModel::rotatePlayerTowards(VEC3 targetPos, float rotationSpeed) {
+	isPlayerRotating = true;
+	rotatingTargetPos = targetPos;
+	this->rotationSpeed = rotationSpeed;
+}
+
+void TCompPlayerModel::walkTo(VEC3 targetPosition) {
 	VEC3 position = getTransform()->getPosition();
 	position.y = 0;
-	VEC3 velocity = targetPosition - position;
-	velocity.Normalize();
-	velocityVector = velocity * speed;
+	VEC3 direction = targetPosition - position;
+	direction.Normalize();
+	//velocityVector = velocity * speed;
 }
 
 void TCompPlayerModel::damage(float damage) {

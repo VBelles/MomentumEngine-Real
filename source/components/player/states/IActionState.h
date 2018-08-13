@@ -46,8 +46,6 @@ protected:
 	TCompCameraPlayer* getCameraPlayer();
 	TCompSlash* getSlash(SlashType type);
 
-	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
-	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
 	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
 	float calculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
@@ -71,6 +69,9 @@ protected:
 	void slash(std::string slash, VEC3 offset = VEC3::Zero, float yaw = 0, float pitch = 0, float roll = 0);
 
 public:
+
+	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
+	bool rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
 	StateManager* stateManager;
 

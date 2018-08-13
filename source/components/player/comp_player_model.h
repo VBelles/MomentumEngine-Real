@@ -95,6 +95,11 @@ private:
 
 	void applyGravity(float delta);
 
+	//para poder rotar desde lua
+	bool isPlayerRotating = false;
+	VEC3 rotatingTargetPos;
+	float rotationSpeed;
+
 public:
 	DECL_SIBLING_ACCESS();
 	~TCompPlayerModel();
@@ -178,7 +183,8 @@ public:
 	void disableOutline();
 	void enableOutline();
 	void stopPlayerVelocity();
-	void walkTo(VEC3 targetPosition, float speed);
+	void rotatePlayerTowards(VEC3 targetPos, float rotationSpeed);
+	void walkTo(VEC3 targetPosition);
 
 	StateManager* getStateManager() { return stateManager; }
 
