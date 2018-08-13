@@ -85,8 +85,6 @@ bool CModuleGame::start() {
 	Engine.setInputType(InputType::Game);
 
 	EngineScripting.throwEvent(onGameStart, "");
-	EngineScripting.throwEvent(onLevelStart, "1");
-
 
 	json jPoints = loadJson("data/debug/points_of_interest.json");
 	for (auto& jPoint : jPoints) {
