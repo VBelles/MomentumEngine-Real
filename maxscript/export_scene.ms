@@ -152,24 +152,27 @@ struct TMaterialExporter (
 	base_path,              -- Assigned in the ctor. "data/"
 	texturesPath,			-- Assigned in the ctor. "data/textures/"
 
-	fn getListBadDDS mat &bm = (
+	fn getListBadDDS mat &badm &badmn = (
 		if mat != undefined then (
 			if classOf mat == StandardMaterial then (
 				for map in mat.maps where map != undefined do (
 					if isKindOf map normal_bump then (
 						mapFilename = map.normal_map.filename
 					) else mapFilename = map.filename
-					--It would be better not to include duplicates.
+
 					mapFileType = getFilenameType mapFilename
 					if mapFileType != ".DDS" and
 					   mapFileType != ".dds" then (
-					   	append bm ("-Mat: \"" + mat.name + "\" | Map: \"" + \
+					   	--Avoid duplicates.
+					   	if (appendIfUnique badmn mapFilename) then (
+					   		append badm ("-Mat: \"" + mat.name + "\" | Map: \"" + \
 					   		map.name + "\" \n File: " + getFilenameFile mapFilename + "\n")
+					   	)
 					)
 				)
 			)
 			else if classOf mat == MultiMaterial then (
-				for m in mat.MaterialList where m != undefined do getListBadDDS m &bm
+				for m in mat.MaterialList where m != undefined do getListBadDDS m &badm &badmn
 			)
 		)
 	),
@@ -177,7 +180,8 @@ struct TMaterialExporter (
 	-- Check all objects in the file for non-DDS maps. This is very fast.
 	fn listBadDDSofScene = (
 		local badMaps = ""
-		for o in $* do getListBadDDS o.material &badMaps
+		local badMapNames = #()
+		for o in $* do getListBadDDS o.material &badMaps &badMapNames
 		if badMaps == "" then messageBox ("All maps are DDS.\n") title:"All fine" beep:false
 		else (
 			messageBox ("Maps without DDS files:\n" + badMaps) title:"Error"
