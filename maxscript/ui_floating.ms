@@ -20,7 +20,10 @@ ButtonText: "Momentum"
 	local numberOfButtons = 1
 	local height = baseHeight + heightPerButton * numberOfButtons
 
-	floater = newRolloutFloater "Momentum utils" width height
+	local left = sysInfo.desktopSize[1] * 0.8 --80% of screen width.
+	local top =	 sysInfo.desktopSize[2] * 0.1 --10% of screen height.
+
+	floater = newRolloutFloater "Momentum utils" width height left top
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\ui_floating.ms" "Bin\\")
 
 	rollout exporter "Momentum Exporter" (
