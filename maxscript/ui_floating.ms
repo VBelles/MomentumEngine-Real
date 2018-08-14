@@ -14,9 +14,10 @@ ButtonText: "Momentum"
 	try closeRolloutFloater floater catch()
 
 	local width  = 218
+
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 20
+	local numberOfButtons = 1
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	floater = newRolloutFloater "Momentum utils" width height
@@ -112,6 +113,15 @@ ButtonText: "Momentum"
 				MessageBox ("Error Exporting Rigid Animation:\n" + getCurrentException()) title:"Error"
 			)
 		)
+
+		-- Resize window if rollout collapses.
+		on exporter rolledUp state do (
+			local exporterButtons = 6
+			if state then height += heightPerButton * exporterButtons
+			else height -= heightPerButton * exporterButtons
+
+			floater.size = [width, height]
+		)
 	) -- end exporter rollout creator
 
 	rollout utils "Momentum Utils" (
@@ -192,6 +202,15 @@ ButtonText: "Momentum"
 		on btn_create_col 	pressed do ( createColliders() )
 		on btn_sel_children pressed do ( selectChildren() )
 		on btn_sel_parents  pressed do ( selectParents() )
+
+		-- Resize window if rollout collapses.
+		on utils rolledUp state do (
+			local utilsButtons = 4
+			if state then height += heightPerButton * utilsButtons
+			else height -= heightPerButton * utilsButtons
+
+			floater.size = [width, height]
+		)
 	) -- end utils rollout
 
 	rollout attribute "Momentum Attributes" (
@@ -268,6 +287,15 @@ ButtonText: "Momentum"
 
 		on btn_addColl pressed do ( addAttribute "collData" )
 		on btn_delColl pressed do ( delAttribute "collData" )
+
+		-- Resize window if rollout collapses.
+		on attribute rolledUp state do (
+			local attrButtons = 9
+			if state then height += heightPerButton * attrButtons
+			else height -= heightPerButton * attrButtons
+
+			floater.size = [width, height]
+		)
 	) -- end attribute rollout creator
 
 	addRollout exporter floater
