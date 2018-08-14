@@ -48,6 +48,8 @@ private:
 	VEC3 velocityVector;
 	float baseGravity = 0.f;
 	float currentGravity = 0.f;
+	std::vector<std::string> initialLockedStates;
+	std::vector<std::string> initialLockedConcurrentStates;
 
 	MoveState moveState;
 
@@ -92,6 +94,11 @@ private:
 	PowerStats* loadPowerStats(const json& j);
 
 	void applyGravity(float delta);
+
+	//para poder rotar desde lua
+	bool isPlayerRotating = false;
+	VEC3 rotatingTargetPos;
+	float rotationSpeed;
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -169,14 +176,26 @@ public:
 	float getHp() { return hp; }
 	float getMaxHp() { return maxHp; }
 	void setHp(float hp);
+	void setMaxHp(float hp);
 	void setRespawnPosition(VEC3 position, float yaw = 0.f);
 	VEC3 getRespawnPosition() { return respawnPosition; }
 	float getRespawnYaw() { return respawnYaw; }
 	void disableOutline();
 	void enableOutline();
+	void stopPlayerVelocity();
+	void rotatePlayerTowards(VEC3 targetPos, float rotationSpeed);
+	void walkTo(VEC3 targetPosition);
 
 	StateManager* getStateManager() { return stateManager; }
 
+	bool isGrounded();
+
 	bool addAttacker(std::string attacker, float slots);
 	void removeAttacker(std::string attacker, float slots);
+
+	void lockState(std::string state);
+	void lockConcurrentState(std::string state);
+	void unlockState(std::string state);
+	void changeState(std::string state);
+	void changeConcurrentState(std::string state);
 };

@@ -8,6 +8,21 @@
     "transform" : 90
   },
   "multithread": [
+    "fwd_msg",
+    "mechanism",
+    "mechanism_system",
+    "rigid_anim",
+    "culling",
+    "particles",
+    "givePower",
+    "skeleton",
+    "skel_lookat",
+    "collectable",
+    "respawner",
+    "local_aabb",
+    "lod",
+    "self_illum_variation",
+    "slash"
   ],
   "update": [
     "fwd_msg",
@@ -37,6 +52,7 @@
     "hitboxes",
     "follow_transform",
     "power_gauge",
+    "power_source",
     "local_aabb",
     "camera_player",
     "fixed_camera",
@@ -47,7 +63,6 @@
     "sun",
     "culling",
     "light_dir",
-    "render",
     "lod",
     "spikes",
     "self_illum_variation",

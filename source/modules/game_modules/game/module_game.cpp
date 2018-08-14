@@ -85,8 +85,6 @@ bool CModuleGame::start() {
 	Engine.setInputType(InputType::Game);
 
 	EngineScripting.throwEvent(onGameStart, "");
-	EngineScripting.throwEvent(onLevelStart, "1");
-
 
 	json jPoints = loadJson("data/debug/points_of_interest.json");
 	for (auto& jPoint : jPoints) {
@@ -95,6 +93,7 @@ bool CModuleGame::start() {
 		VEC4 rot = jPoint.count("rot") ? loadVEC4(jPoint["rot"]) : VEC4::Zero;
 		pointsOfInterest.push_back(PointOfInterest{ name, CTransform(pos, rot) });
 	}
+
 	return true;
 }
 

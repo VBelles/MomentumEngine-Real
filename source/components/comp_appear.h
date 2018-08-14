@@ -8,8 +8,6 @@ struct TMsgMechanismSystemActivated;
 
 class TCompAppear: public TCompBase {
 	DECL_SIBLING_ACCESS();
-	CTimer cutreTimer;
-	float cutreTime = 3.5f;
 public:
     void debugInMenu();
     static void registerMsgs();

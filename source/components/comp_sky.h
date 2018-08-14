@@ -10,7 +10,7 @@ private:
 	};
 
 	enum SkyboxType {//poner dependiendo del número de skyboxes que haya en json
-		DAY, NIGHT
+		REGULAR, INVERTED, PINK, RED, TURQUESA
 	};
 
 	struct Skybox {
@@ -22,7 +22,7 @@ private:
 	std::vector<Skybox> skyboxes;
 	float fixedLerpTime = 0.f;
 
-	Mode currentMode = SEQUENTIAL;
+	Mode currentMode = FIXED;
 	float currentLerpTime = 0.f;
 	int skyboxIndex = 0;
 	int numSkyboxes;

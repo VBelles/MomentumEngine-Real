@@ -1,0 +1,361 @@
+{
+  "root": {
+    "name": "kippah",
+    "type": "priority",
+    "children": [
+      {
+        "name": "spawn",
+        "type": "sequence",
+        "condition": {
+          "type": "OnSpawnCondition"
+        },
+        "children": [
+          {
+            "name": "onAppearActionSpawn",
+            "type": "action",
+            "action": {
+              "type": "OnAppearAction",
+              "animation": "medusa_aparicion"
+            }
+          },
+          {
+            "name": "appearActionSpawn",
+            "type": "action",
+            "action": {
+              "type": "AppearAction",
+              "animation": "medusa_aparicion"
+            }
+          }
+        ]
+      },
+      {
+        "name": "outOfBounds",
+        "type": "sequence",
+        "condition": {
+          "type": "OnOutOfBoundsCondition"
+        },
+        "children": [
+          {
+            "name": "onDisappearActionOutOfBounds",
+            "type": "action",
+            "action": {
+              "type": "OnDisappearAction",
+              "animation": "medusa_desaparicion"
+            }
+          },
+          {
+            "name": "disappearActionOutOfBounds",
+            "type": "action",
+            "action": {
+              "type": "DisappearAction",
+              "animation": "medusa_desaparicion"
+            }
+          }
+        ]
+      },
+      {
+        "name": "hit",
+        "type": "sequence",
+        "condition": {
+          "type": "OnHitCondition"
+        },
+        "children": [
+          {
+            "name": "onHit",
+            "type": "action",
+            "action": {
+              "type": "OnHit",
+              "animation": "medusa_damage"
+            }
+          },
+          {
+            "name": "attackProperties",
+            "type": "priority",
+            "children": [
+              {
+                "name": "horizontalLaunch",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnHorizontalLaunchCondition"
+                },
+                "children": [
+                  {
+                    "name": "onHorizontalLaunchAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnHorizontalLaunchAction",
+                      "animation": "medusa_damage",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "horizontalLaunchedAction",
+                    "type": "action",
+                    "action": {
+                      "type": "HorizontalLaunchedAction",
+                      "attack": "launched"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "verticalLaunch",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnVerticalLaunchCondition"
+                },
+                "children": [
+                  {
+                    "name": "onVerticalLaunchAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnVerticalLaunchAction",
+                      "animation": "medusa_damage",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "verticalLaunchedAction",
+                    "type": "action",
+                    "action": {
+                      "type": "VerticalLaunchedAction",
+                      "attack": "launched"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "grab",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnGrabCondition"
+                },
+                "children": [
+                  {
+                    "name": "onGrabAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnGrabAction"
+                    }
+                  },
+                  {
+                    "name": "grabAction",
+                    "type": "action",
+                    "action": {
+                      "type": "GrabAction"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "propel",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnPropelCondition"
+                },
+                "children": [
+                  {
+                    "name": "onPropelAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnPropelAction",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "propelAction",
+                    "type": "action",
+                    "action": {
+                      "type": "PropelAction",
+                      "attack": "launched"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "hitStun",
+                "type": "action",
+                "action": {
+                  "type": "HitStun",
+                  "animation": "medusa_damage"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "death",
+        "type": "sequence",
+        "condition": {
+          "type": "OnDeathCondition"
+        },
+        "children": [
+          {
+            "name": "onDeathAction",
+            "type": "action",
+            "action": {
+              "type": "OnDeathAction",
+              "animation": "medusa_death"
+            }
+          },
+          {
+            "name": "deathAction",
+            "type": "action",
+            "action": {
+              "type": "DeathAction",
+              "animation": "medusa_death"
+            }
+          },
+          {
+            "name": "disappear",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onDisappearAction",
+                "type": "action",
+                "action": {
+                  "type": "OnDisappearAction",
+                  "animation": "medusa_desaparicion"
+                }
+              },
+              {
+                "name": "disappearAction",
+                "type": "action",
+                "action": {
+                  "type": "DisappearAction",
+                  "animation": "medusa_desaparicion"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "stun",
+        "type": "sequence",
+        "condition": {
+          "type": "OnStunCondition"
+        },
+        "children": [
+          {
+            "name": "onStunAction",
+            "type": "action",
+            "action": {
+              "type": "OnStunAction",
+              "animation_start": "",
+              "animation_loop": "medusa_stun"
+            }
+          },
+          {
+            "name": "stunAction",
+            "type": "action",
+            "action": {
+              "type": "StunAction"
+            }
+          }
+        ]
+      },
+      {
+        "name": "teleport",
+        "type": "sequence",
+        "condition": {
+          "type": "OnTeleportCondition"
+        },
+        "children": [
+          {
+            "name": "onTeleportAction",
+            "type": "action",
+            "action": {
+              "type": "OnTeleportAction",
+              "animation": "medusa_desaparicion"
+            }
+          },
+          {
+            "name": "teleportAction",
+            "type": "action",
+            "action": {
+              "type": "TeleportAction",
+              "animation": "medusa_desaparicion"
+            }
+          },
+          {
+            "name": "appear",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onAppearAction",
+                "type": "action",
+                "action": {
+                  "type": "OnAppearAction",
+                  "animation": "medusa_aparicion"
+                }
+              },
+              {
+                "name": "appearAction",
+                "type": "action",
+                "action": {
+                  "type": "AppearAction",
+                  "animation": "medusa_aparicion"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "returnToSpawn",
+        "type": "sequence",
+        "condition": {
+          "type": "OnReturnToSpawnCondition"
+        },
+        "children": [
+          {
+            "name": "onReturnToSpawnAction",
+            "type": "action",
+            "action": {
+              "type": "OnReturnToSpawnAction",
+              "animation": "medusa_idle"
+            }
+          },
+          {
+            "name": "returnToSpawnAction",
+            "type": "action",
+            "action": {
+              "type": "ReturnToSpawnFlyingAction"
+            }
+          }
+        ]
+      },
+      {
+        "name": "idle",
+        "type": "random",
+        "children": [
+          {
+            "name": "idleLoopSeq",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onIdleLoop",
+                "type": "action",
+                "action": {
+                  "type": "OnIdleLoop",
+                  "animation": "medusa_idle"
+                }
+              },
+              {
+                "name": "idleLoop",
+                "type": "action",
+                "action": {
+                  "type": "IdleLoopFlying",
+                  "animation": "medusa_idle",
+                  "cancel_condition": "shortDistanceCombat"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

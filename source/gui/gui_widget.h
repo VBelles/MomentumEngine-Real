@@ -13,6 +13,7 @@ namespace GUI {
 
 		void addChild(CWidget* wdgt);
 		void removeChild(CWidget* wdgt);
+		void setParent(CWidget* wdgt);
 		VWidgets getChildren(bool recursive = false);
 		CWidget* getChild(const std::string& name, bool recursive = false) const;
 		const std::string& getName() const;
@@ -31,7 +32,7 @@ namespace GUI {
 		virtual void update(float delta);
 		virtual void render();
 
-		bool overlaps(VEC2 pos);
+		virtual bool overlaps(VEC2 pos);
 
 	protected:
 		std::string _name;

@@ -7,11 +7,24 @@
 DECL_OBJ_MANAGER("sky", TCompSky);
 
 void TCompSky::debugInMenu() {
-	bool fixed = false;
-	ImGui::Checkbox("Fix sky", &fixed);
-	if (fixed) {
-		setSkybox(DAY, 5.f);
+	//bool fixed = false;
+	//ImGui::Checkbox("Fix sky", &fixed);
+	//if (fixed) {
+	//	setSkybox(REGULAR, 5.f);
+	//}
+	int skyboxToChange = skyboxIndex;
+	static const char* skyboxToChange_str =
+		"REGULAR\0"
+		"INVERTED\0"
+		"PINK\0"
+		"RED\0"
+		"TURQUESA\0"
+		"\0";
+	ImGui::Combo("Skybox", &skyboxToChange, skyboxToChange_str);
+	if (skyboxToChange != skyboxIndex) {
+		setSkybox(static_cast<SkyboxType>(skyboxToChange), 5.f);
 	}
+
 	bool sequential = false;
 	ImGui::Checkbox("Sequential sky", &sequential);
 	if (sequential) {
@@ -36,7 +49,7 @@ void TCompSky::load(const json& j, TEntityParseContext& ctx) {
 
 	numSkyboxes = skyboxes.size();
 	if (numSkyboxes == 0) {
-		skyboxes.push_back(Skybox{ Resources.get("data/textures/blue.dds")->as<CTexture>(), 20.f });
+		skyboxes.push_back(Skybox{ Resources.get("data/textures/cubemaps/momentum/OutputCube_256.dds")->as<CTexture>(), 20.f });
 	}
 }
 

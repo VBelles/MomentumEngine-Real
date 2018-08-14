@@ -184,13 +184,43 @@ void StateManager::updateStates(float delta) {
 }
 
 void StateManager::changeState(State newState) {
-	nextBaseState = states[newState];
-	isChangingBaseState = true;
+	if (!lockedStates.count(newState)) {
+		nextBaseState = states[newState];
+		isChangingBaseState = true;
+	}
+	else {
+		dbg("this state is locked\n");
+	}
+}
+
+void StateManager::changeState(std::string newStateName) {
+	State newState = States::getState(newStateName);
+	if (newState != UndefinedState) {
+		changeState(newState);
+	}
+	else {
+		dbg("%s: invalid state name\n");
+	}
 }
 
 void StateManager::changeConcurrentState(ConcurrentState newState) {
-	nextConcurrentState = concurrentStates[newState];
-	isChangingConcurrentState = true;
+	if (!lockedConcurrentStates.count(newState)) {
+		nextConcurrentState = concurrentStates[newState];
+		isChangingConcurrentState = true;
+	}
+	else {
+		dbg("this concurrent state is locked\n");
+	}
+}
+
+void StateManager::changeConcurrentState(std::string newStateName) {
+	ConcurrentState newState = States::getConcurrentState(newStateName);
+	if (newState != UndefinedConcurrentState) {
+		changeConcurrentState(newState);
+	}
+	else {
+		dbg("%s: invalid concurrent state name\n");
+	}
 }
 
 void StateManager::performStateChange() {
@@ -277,25 +307,25 @@ TCompCollectableManager * StateManager::getCollectableManager() {
 
 TCompSlash * StateManager::getSlash(SlashType type) {
 	switch (type) {
-		case SlashType::LEFT_HAND:
-			return slashLeftHandHandle;
-		case SlashType::RIGHT_HAND:
-			return slashRightHandHandle;
-		case SlashType::LEFT_FOOT:
-			return slashLeftFootHandle;
-		case SlashType::RIGHT_FOOT:
-			return slashRightFootHandle;
-		case SlashType::LEFT_TENTACLE:
-			return slashLeftTentacleHandle;
-		case SlashType::RIGHT_TENTACLE:
-			return slashRightTentacleHandle;
-		case SlashType::LEFT_TENTACLE_SHORT:
-			return slashLeftTentacleShortHandle;
-		case SlashType::RIGHT_TENTACLE_SHORT:
-			return slashRightTentacleShortHandle;
-		default:
-			dbg("No se reconoce el tipo de slash\n");
-			return slashRightHandHandle;
+	case SlashType::LEFT_HAND:
+		return slashLeftHandHandle;
+	case SlashType::RIGHT_HAND:
+		return slashRightHandHandle;
+	case SlashType::LEFT_FOOT:
+		return slashLeftFootHandle;
+	case SlashType::RIGHT_FOOT:
+		return slashRightFootHandle;
+	case SlashType::LEFT_TENTACLE:
+		return slashLeftTentacleHandle;
+	case SlashType::RIGHT_TENTACLE:
+		return slashRightTentacleHandle;
+	case SlashType::LEFT_TENTACLE_SHORT:
+		return slashLeftTentacleShortHandle;
+	case SlashType::RIGHT_TENTACLE_SHORT:
+		return slashRightTentacleShortHandle;
+	default:
+		dbg("No se reconoce el tipo de slash\n");
+		return slashRightHandHandle;
 	}
 }
 
@@ -313,6 +343,47 @@ TCompParticles* StateManager::getSlashStrong3() {
 
 TCompParticles * StateManager::getSlashVertical() {
 	return slashVertical;
+}
+
+void StateManager::lockState(std::string stateToLock) {
+	State state = States::getState(stateToLock);
+	if (state != UndefinedState) {
+		lockedStates.insert(state);
+		dbg("locking state %s\n", stateToLock.c_str());
+	}
+	else {
+		dbg("can't lock state %s, it does not exist\n", stateToLock.c_str());
+	}
+}
+
+//Unlocks state or concurrent state
+void StateManager::unlockState(std::string stateToUnlock) {
+	State state = States::getState(stateToUnlock);
+	if (state != UndefinedState) {
+		lockedStates.erase(state);
+		dbg("unlocking state %s\n", stateToUnlock.c_str());
+	}
+	else {
+		ConcurrentState concurrentState = States::getConcurrentState(stateToUnlock);
+		if (concurrentState != UndefinedConcurrentState) {
+			lockedConcurrentStates.erase(concurrentState);
+			dbg("unlocking concurrent state %s\n", stateToUnlock.c_str());
+		}
+		else {
+			dbg("can't unlock state %s, it does not exist\n", stateToUnlock.c_str());
+		}
+	}
+}
+
+void StateManager::lockConcurrentState(std::string stateToLock) {
+	ConcurrentState state = States::getConcurrentState(stateToLock);
+	if (state != UndefinedConcurrentState) {
+		lockedConcurrentStates.insert(state);
+		dbg("locking concurrent state %s\n", stateToLock.c_str());
+	}
+	else {
+		dbg("can't lock concurrent state %s, it does not exist\n", stateToLock.c_str());
+	}
 }
 
 

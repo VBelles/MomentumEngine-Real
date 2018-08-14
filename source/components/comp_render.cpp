@@ -165,6 +165,7 @@ std::vector<std::string> TCompRender::getMaterials(int mesh) {
 void TCompRender::setMeshEnabled(int mesh, bool enabled) {
 	CMeshWithMaterials& meshWithMaterial = meshes[mesh];
 	meshWithMaterial.enabled = enabled;
+	refreshMeshesInRenderManager();
 }
 
 void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
@@ -176,13 +177,6 @@ void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
 		}
 	}
 	refreshMeshesInRenderManager();
-}
-
-void TCompRender::update(float delta) {
-	if (isColorChanged && timer.elapsed() >= timeToNormal) {
-		color = originalColor;
-		isColorChanged = false;
-	}
 }
 
 void TCompRender::TurnRed(float time) {
@@ -220,10 +214,16 @@ void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
 }
 
 void TCompRender::enable() {
+	for (auto& mesh : meshes) {
+		mesh.enabled = true;
+	}
 	refreshMeshesInRenderManager();
 }
 
 void TCompRender::disable() {
+	for (auto& mesh : meshes) {
+		mesh.enabled = false;
+	}
 	CHandle h_me = CHandle(this);
 	CRenderManager::get().delRenderKeys(h_me);
 }

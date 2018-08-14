@@ -10,7 +10,7 @@ private:
 	int coinsEachCycle = 1;
 	float cycleTime = 7 / 60.f;
 	float powerPerCoin = 2500.f;
-	float powerCycleTime = cycleTime;
+	float timeToIncreasePower = cycleTime;
 	
 public:
 	SpendCoinsActionState(StateManager* stateManager);

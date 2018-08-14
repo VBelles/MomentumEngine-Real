@@ -87,6 +87,25 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 			dbg("material: %s\n", name_material.c_str());
 		}
 	}
+
+	if (j.count("locked_states")) {
+		auto& j_locked_states = j["locked_states"];
+		for (size_t i = 0; i < j_locked_states.size(); ++i) {
+			std::string name_state = j_locked_states[i];
+			initialLockedStates.push_back(name_state);
+			dbg("locked states: %s\n", name_state.c_str());
+		}
+	}
+
+	if (j.count("locked_concurrent_states")) {
+		auto& j_locked_states = j["locked_concurrent_states"];
+		for (size_t i = 0; i < j_locked_states.size(); ++i) {
+			std::string name_state = j_locked_states[i];
+			initialLockedConcurrentStates.push_back(name_state);
+			dbg("locked concurrent states: %s\n", name_state.c_str());
+		}
+	}
+
 	powerStats[0] = loadPowerStats(j["ssj1"]);
 	powerStats[1] = loadPowerStats(j["ssj2"]);
 	powerStats[2] = loadPowerStats(j["ssj3"]);
@@ -208,11 +227,21 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	currentPowerStats = powerStats[0];
 
 	stateManager = new StateManager(CHandle(this).getOwner());
-
+	for (auto& lockedState : initialLockedStates) {
+		stateManager->lockState(lockedState);
+	}
+	for (auto& lockedState : initialLockedConcurrentStates) {
+		stateManager->lockConcurrentState(lockedState);
+	}
 }
 
 void TCompPlayerModel::update(float delta) {
 	PROFILE_FUNCTION("update");
+
+	if (isPlayerRotating) {
+		isPlayerRotating = !stateManager->getState()->rotatePlayerTowards(delta, rotatingTargetPos, rotationSpeed);
+	}
+
 	if (isInvulnerable && invulnerableTimer.elapsed() >= invulnerableTime) {
 		isInvulnerable = false;
 	}
@@ -311,6 +340,12 @@ void TCompPlayerModel::setHp(float hp) {
 	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
 }
 
+void TCompPlayerModel::setMaxHp(float hp) {
+	if (hp > 0) {
+		maxHp = hp;
+	}
+}
+
 void TCompPlayerModel::setRespawnPosition(VEC3 position, float yaw) {
 	respawnPosition = position;
 	respawnYaw = yaw;
@@ -330,6 +365,25 @@ void TCompPlayerModel::enableOutline() {
 		render->meshes[i].enabled = true;
 	}
 	render->refreshMeshesInRenderManager();
+}
+
+void TCompPlayerModel::stopPlayerVelocity() {
+	velocityVector = VEC3::Zero;
+}
+
+void TCompPlayerModel::rotatePlayerTowards(VEC3 targetPos, float rotationSpeed) {
+	isPlayerRotating = true;
+	rotatingTargetPos = targetPos;
+	this->rotationSpeed = rotationSpeed;
+}
+
+void TCompPlayerModel::walkTo(VEC3 targetPosition) {
+	VEC3 position = getTransform()->getPosition();
+	position.y = 0;
+	VEC3 direction = targetPosition - position;
+	direction.Normalize();
+	velocityVector = direction * walkingSpeed;
+	stateManager->getState(Walk)->autoWalk = true;
 }
 
 void TCompPlayerModel::damage(float damage) {
@@ -485,6 +539,10 @@ TCompPlayerModel::~TCompPlayerModel() {
 	SAFE_DELETE(stateManager);
 }
 
+bool TCompPlayerModel::isGrounded() {
+	return dynamic_cast<GroundedActionState*>(getStateManager()->getState());
+}
+
 bool TCompPlayerModel::addAttacker(std::string attacker, float slots) {
 	if (attackSlotsTaken + slots <= maxAttackSlots) {
 		if (attackers.insert(attacker).second) {
@@ -500,4 +558,24 @@ void TCompPlayerModel::removeAttacker(std::string attacker, float slots) {
 		attackSlotsTaken = clamp(attackSlotsTaken - slots, 0.f, maxAttackSlots);
 		attackers.erase(attacker);
 	}
+}
+
+void TCompPlayerModel::lockState(std::string state) {
+	getStateManager()->lockState(state);
+}
+
+void TCompPlayerModel::lockConcurrentState(std::string state) {
+	getStateManager()->lockConcurrentState(state);
+}
+
+void TCompPlayerModel::unlockState(std::string state) {
+	getStateManager()->unlockState(state);
+}
+
+void TCompPlayerModel::changeState(std::string state) {
+	getStateManager()->changeState(state);
+}
+
+void TCompPlayerModel::changeConcurrentState(std::string state) {
+	getStateManager()->changeConcurrentState(state);
 }

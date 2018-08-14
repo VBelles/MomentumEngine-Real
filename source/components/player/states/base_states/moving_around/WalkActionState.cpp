@@ -20,7 +20,7 @@ void WalkActionState::update(float delta) {
 	PowerStats* currentPowerStats = getPlayerModel()->getPowerStats();
 	float desiredVelocity = currentPowerStats->maxHorizontalSpeed;
 	bool wantToWalk = false;
-	if (movementInput.Length() < PAD_RUN_THRESHOLD) {
+	if (movementInput.Length() < PAD_RUN_THRESHOLD || autoWalk) {
 		desiredVelocity = getPlayerModel()->walkingSpeed;
 		wantToWalk = true;
 	}
@@ -34,7 +34,7 @@ void WalkActionState::update(float delta) {
 	}
 
 	//Si hay input se traslada toda la velocidad antigua a la nueva dirección de front y se le añade lo acelerado
-	if (hasInput) {
+	if (hasInput || autoWalk) {
 		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
 			getPlayerTransform()->getFront(), currentPowerStats->acceleration,
 			desiredVelocity);
@@ -83,6 +83,7 @@ void WalkActionState::onStateEnter(IActionState * lastState) {
 void WalkActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	//EngineParticles.kill(dustParticlesHandle, 0.5f);
+	autoWalk = false;
 }
 
 void WalkActionState::onSpendCoinsButton() {

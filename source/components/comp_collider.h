@@ -40,6 +40,7 @@ struct ColliderConfig {
 
 class TCompCollider : public TCompBase {
 private:
+	bool enabled = true;
 	bool created = false;
 	void setCreated(bool value) { created = value; }
 public:

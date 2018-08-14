@@ -15,6 +15,7 @@ private:
 	bool automove = false;
 	bool moveBackwards = false;
 	bool isClosed = false;
+	bool enabled = true;
 
 	//Rolling platform
 	CTimer rollTimer;
@@ -45,6 +46,7 @@ public:
 	void onCreated(const TMsgEntityCreated& msg);
 
 	void turnAround();
+	void setEnabled(bool enabled);
 
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();

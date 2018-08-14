@@ -11,13 +11,12 @@
 
 bool CModuleUniques::start() {
 	//de momento json, pero debería estar encriptado (haha... lo dudo)
+	//no es necesario que cada tipo esté separado en un archivo diferente
+	auto files = WindowsUtils::getAllFiles("data/uniques/", "*.json");
 	std::vector<json> jUniques;
-	jUniques.push_back(loadJson("data/uniques/unique_coins.json"));
-	//jUniques.push_back(loadJson("data/uniques/coins-uniques.json"));//no hace falta que estén en archivos separados
-	//jUniques.push_back(loadJson("data/uniques/chrysalides-uniques.json"));
-	//jUniques.push_back(loadJson("data/uniques/altars-uniques.json"));
-	//jUniques.push_back(loadJson("data/uniques/events-uniques.json"));
-	jUniques.push_back(loadJson("data/uniques/unique_enemies.json"));
+	for (auto& file : files) {
+		jUniques.push_back(loadJson(file));
+	}
 
 	//parse
 	for (auto& jUnique : jUniques) {
@@ -53,11 +52,27 @@ bool CModuleUniques::start() {
 				}
 			}
 		}
+		if (jUnique.count("unique_life_pieces")) {
+			auto& jLifePieces = jUnique["unique_life_pieces"];
+			if (jLifePieces.is_array()) {
+				for (size_t i = 0; i < jLifePieces.size(); ++i) {
+					parseChunk(jLifePieces[i], ElementType::LIFEPIECE);
+				}
+			}
+		}
 		if (jUnique.count("unique_enemies")) {
 			json jEvents = jUnique["unique_enemies"];
 			if (jEvents.is_array()) {
 				for (size_t i = 0; i < jEvents.size(); ++i) {
 					parseChunk(jEvents[i], ElementType::ENEMY);
+				}
+			}
+		}
+		if (jUnique.count("unique_power_up")) {
+			json jPowerUps = jUnique["unique_power_up"];
+			if (jPowerUps.is_array()) {
+				for (size_t i = 0; i < jPowerUps.size(); ++i) {
+					parseChunk(jPowerUps[i], ElementType::POWERUP);
 				}
 			}
 		}
@@ -71,6 +86,9 @@ void CModuleUniques::parseChunk(const json & j, ElementType type) {
 	std::string id = j.value("id", "");
 	if (type == ENEMY) {
 		parseEnemy(j, id);
+	}
+	else if (type == POWERUP) {
+		parsePowerUp(j, id);
 	}
 	else {
 		UniqueElement element;
@@ -113,13 +131,24 @@ void CModuleUniques::parseEnemy(const json & j, std::string id) {
 	enemies.emplace(id, element);
 }
 
+void CModuleUniques::parsePowerUp(const json & j, std::string id) {
+	UniquePowerUp element;
+	element.done = j.value("done", false);
+	element.position = loadVEC3(j["position"]);
+	element.level = j.value("level", "");
+	element.stateToUnlock = j.value("state", "");
+	powerUps.emplace(id, element);
+}
+
 bool CModuleUniques::stop() {
 	//clear maps
 	coins.clear();
 	chrysalides.clear();
 	altars.clear();
 	events.clear();
+	lifePieces.clear();
 	enemies.clear();
+	powerUps.clear();
 	return true;
 }
 
@@ -130,6 +159,13 @@ void CModuleUniques::update(float delta) {
 UniqueElement* CModuleUniques::getUniqueCoin(std::string id) {
 	if (coins.find(id) != coins.end()) {
 		return &coins[id];
+	}
+	return nullptr;
+}
+
+UniqueElement * CModuleUniques::getUniqueLifePiece(std::string id) {
+	if (lifePieces.find(id) != lifePieces.end()) {
+		return &lifePieces[id];
 	}
 	return nullptr;
 }
@@ -162,6 +198,13 @@ UniqueEnemy * CModuleUniques::getUniqueEnemy(std::string id) {
 	return nullptr;
 }
 
+UniquePowerUp * CModuleUniques::getUniquePowerUp(std::string id) {
+	if (powerUps.find(id) != powerUps.end()) {
+		return &powerUps[id];
+	}
+	return nullptr;
+}
+
 bool CModuleUniques::setCoinTaken(std::string id, bool isTaken) {
 	if (coins.find(id) != coins.end()) {
 		coins[id].done = isTaken;
@@ -169,6 +212,17 @@ bool CModuleUniques::setCoinTaken(std::string id, bool isTaken) {
 	}
 	else {
 		dbg("No encuentro este unique coin!!\n");
+		return false;
+	}
+}
+
+bool CModuleUniques::setLifePieceTaken(std::string id, bool isTaken) {
+	if (lifePieces.find(id) != lifePieces.end()) {
+		lifePieces[id].done = isTaken;
+		return true;
+	}
+	else {
+		dbg("No encuentro esta unique life piece!!\n");
 		return false;
 	}
 }
@@ -213,6 +267,17 @@ bool CModuleUniques::setEnemyDead(std::string id, bool isDead) {
 	}
 	else {
 		dbg("No encuentro este unique enemy!!\n");
+		return false;
+	}
+}
+
+bool CModuleUniques::setPowerUpTaken(std::string id, bool isTaken) {
+	if (powerUps.find(id) != powerUps.end()) {
+		powerUps[id].done = isTaken;
+		return true;
+	}
+	else {
+		dbg("No encuentro este unique power-up!!\n");
 		return false;
 	}
 }

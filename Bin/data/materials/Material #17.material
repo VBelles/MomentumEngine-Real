@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/rockpavement_BaseColor.dds",
+    "normal": "data/textures/rockpavement_Normal.dds",
+    "metallic": "data/textures/rockpavement_Roughness.dds",
+    "roughness": "data/textures/rockpavement_Metallic.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/rockpavement_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
