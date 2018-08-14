@@ -244,6 +244,9 @@ ButtonText: "Momentum"
 		button btn_addColl "+ collider" across:2 tooltip:"Adds collider attributes to selected objects"
 		button btn_delColl "- collider" tooltip:"Deletes collider attributes from selected objects"
 
+		button btn_set_trimesh "Set trimesh" across:2 tooltip:"Sets trimesh attribute of selected objects"
+		button btn_unset_trimesh "Unset trimesh" tooltip:"Unsets trimesh attribute of selected objects"
+
 		fn addAttribute defName = (
 			try (
 				gc()
@@ -263,7 +266,20 @@ ButtonText: "Momentum"
 				MessageBox ("Error deleting attribute:\n" + getCurrentException()) title:"Error"
 			)
 		)
+
+		fn setAttribute defName attribute value = (
+			try (
+				gc()
+				local attributeManager = TAttributeManager()
+				attributeManager.setAttributeInSel defName #collType value
+			) catch (
+				MessageBox ("Error setting attribute:\n" + getCurrentException()) title:"Error"
+			)
+		)
 		
+		on btn_set_trimesh pressed   do ( setAttribute "collData" #collType true )
+		on btn_unset_trimesh pressed do ( setAttribute "collData" #collType false )
+
 		on btn_addAttrEnemy pressed do ( addAttribute "enemyData" )
 		on btn_delAttrEnemy pressed do ( delAttribute "enemyData" )
 		
@@ -293,7 +309,7 @@ ButtonText: "Momentum"
 
 		-- Resize window if rollout collapses.
 		on attribute rolledUp state do (
-			local attrButtons = 9
+			local attrButtons = 10
 			if state then height += heightPerButton * attrButtons
 			else height -= heightPerButton * attrButtons
 

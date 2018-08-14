@@ -224,6 +224,16 @@ struct TAttributeManager (
 		return undefined
 	),
 	
+	fn setAttributeValue obj defName attribute newValue = (
+		local idxFound = findAttribute obj defName
+		if idxFound != undefined then (
+			local objDefs = custAttributes.getDefs obj
+			a = custAttributes.get obj idxFound
+
+			a[attribute].value = newValue
+		)
+	),
+
 	-- Adds attribute of type defName to object.
 	fn addAttribute obj defName = (
 		if not hasAttribute obj defName then (
@@ -260,6 +270,12 @@ struct TAttributeManager (
 	fn delAttributeFromSel defName = (
 		for obj in selection do (
 			delAttribute obj defName
+		)
+	),
+
+	fn setAttributeInSel defName attribute newValue = (
+		for obj in selection do (
+			setAttributeValue obj defName attribute newValue
 		)
 	)
 )
