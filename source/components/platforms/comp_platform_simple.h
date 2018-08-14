@@ -19,7 +19,7 @@ private:
 
 	//Rolling platform
 	CTimer rollTimer;
-	float rollSpeed = 5.f;
+	float rollSpeed = 8.f;
 	float rollWaitDuration = 2.f;
 	float targetRoll = 0.f;
 	bool doRoll = false;
@@ -42,6 +42,8 @@ public:
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
+
+	float angleInBounds(float angle, float lowerBound, float upperBound);
 
 	void onCreated(const TMsgEntityCreated& msg);
 

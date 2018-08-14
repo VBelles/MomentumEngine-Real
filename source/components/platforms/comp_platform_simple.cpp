@@ -30,6 +30,10 @@ void TCompPlatformSimple::debugInMenu() {
 							 transform->getUp()    * rotationAxisLocal.y +
 							 transform->getFront() * rotationAxisLocal.z;
 	}
+
+	ImGui::DragFloat("rollSpeed", &rollSpeed, 0.01f, -20.f, 20.f);
+	ImGui::DragFloat("rollWaitDuration", &rollWaitDuration, 0.01f, 0.f, 20.f);
+
 }
 
 void TCompPlatformSimple::registerMsgs() {
@@ -80,7 +84,7 @@ void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 		float yaw, pitch;
 		transform->getYawPitchRoll(&yaw, &pitch, &targetRoll);
 		int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
-		targetRoll = targetRoll + sign * M_PI;
+		targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
 	}
 
 	rollTimer.reset();
@@ -153,7 +157,7 @@ void TCompPlatformSimple::update(float delta) {
 						//ha llegado a targetRoll
 						int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
 						roll = targetRoll;
-						targetRoll = targetRoll + sign * M_PI;
+						targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
 						doRoll = false;
 					}
 					transform->setYawPitchRoll(yaw, pitch, roll);
@@ -165,7 +169,7 @@ void TCompPlatformSimple::update(float delta) {
 					//ha llegado a targetRoll
 					int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
 					roll = targetRoll;
-					targetRoll = targetRoll + sign * M_PI;
+					targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
 					rollTimer.reset();
 				}
 				transform->setYawPitchRoll(yaw, pitch, roll);
@@ -174,6 +178,17 @@ void TCompPlatformSimple::update(float delta) {
 		//Update collider
 		getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
 	}
+}
+
+float TCompPlatformSimple::angleInBounds(float angle, float lowerBound, float upperBound) {
+	float range = upperBound - lowerBound;
+	if (angle > upperBound) {
+		angle -= range;
+	}
+	else if (angle < lowerBound) {
+		angle += range;
+	}
+	return angle;
 }
 
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }
