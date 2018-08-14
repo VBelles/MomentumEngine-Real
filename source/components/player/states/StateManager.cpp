@@ -193,6 +193,16 @@ void StateManager::changeState(State newState) {
 	}
 }
 
+void StateManager::changeState(std::string newStateName) {
+	State newState = States::getState(newStateName);
+	if (newState != UndefinedState) {
+		changeState(newState);
+	}
+	else {
+		dbg("%s: invalid state name\n");
+	}
+}
+
 void StateManager::changeConcurrentState(ConcurrentState newState) {
 	if (!lockedConcurrentStates.count(newState)) {
 		nextConcurrentState = concurrentStates[newState];
@@ -201,7 +211,16 @@ void StateManager::changeConcurrentState(ConcurrentState newState) {
 	else {
 		dbg("this concurrent state is locked\n");
 	}
-	
+}
+
+void StateManager::changeConcurrentState(std::string newStateName) {
+	ConcurrentState newState = States::getConcurrentState(newStateName);
+	if (newState != UndefinedConcurrentState) {
+		changeConcurrentState(newState);
+	}
+	else {
+		dbg("%s: invalid concurrent state name\n");
+	}
 }
 
 void StateManager::performStateChange() {

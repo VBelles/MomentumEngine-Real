@@ -237,6 +237,11 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 
 void TCompPlayerModel::update(float delta) {
 	PROFILE_FUNCTION("update");
+
+	if (isPlayerRotating) {
+		isPlayerRotating = !stateManager->getState()->rotatePlayerTowards(delta, rotatingTargetPos, rotationSpeed);
+	}
+
 	if (isInvulnerable && invulnerableTimer.elapsed() >= invulnerableTime) {
 		isInvulnerable = false;
 	}
@@ -360,6 +365,25 @@ void TCompPlayerModel::enableOutline() {
 		render->meshes[i].enabled = true;
 	}
 	render->refreshMeshesInRenderManager();
+}
+
+void TCompPlayerModel::stopPlayerVelocity() {
+	velocityVector = VEC3::Zero;
+}
+
+void TCompPlayerModel::rotatePlayerTowards(VEC3 targetPos, float rotationSpeed) {
+	isPlayerRotating = true;
+	rotatingTargetPos = targetPos;
+	this->rotationSpeed = rotationSpeed;
+}
+
+void TCompPlayerModel::walkTo(VEC3 targetPosition) {
+	VEC3 position = getTransform()->getPosition();
+	position.y = 0;
+	VEC3 direction = targetPosition - position;
+	direction.Normalize();
+	velocityVector = direction * walkingSpeed;
+	stateManager->getState(Walk)->autoWalk = true;
 }
 
 void TCompPlayerModel::damage(float damage) {
@@ -546,4 +570,12 @@ void TCompPlayerModel::lockConcurrentState(std::string state) {
 
 void TCompPlayerModel::unlockState(std::string state) {
 	getStateManager()->unlockState(state);
+}
+
+void TCompPlayerModel::changeState(std::string state) {
+	getStateManager()->changeState(state);
+}
+
+void TCompPlayerModel::changeConcurrentState(std::string state) {
+	getStateManager()->changeConcurrentState(state);
 }

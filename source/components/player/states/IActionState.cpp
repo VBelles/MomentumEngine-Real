@@ -57,18 +57,20 @@ void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }
 
-void IActionState::rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
+bool IActionState::rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 	float rotationIncrement = rotationSpeed * delta;
 	float deltaYaw = getPlayerTransform()->getDeltaYawToAimTo(targetPos);
 	float y, p, r;
 	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-	if (abs(deltaYaw) >= rotationIncrement) {
+	if (abs(deltaYaw) > rotationIncrement) {
 		y = (deltaYaw > 0) ? (y + rotationIncrement) : (y - rotationIncrement);
 	}
 	else {
 		y += deltaYaw;
+		return true;
 	}
 	getPlayerTransform()->setYawPitchRoll(y, p, r);
+	return false;
 }
 
 float IActionState::calculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
