@@ -17,8 +17,13 @@ private:
 	bool isClosed = false;
 
 	//Rolling platform
-	float rollSpeed = 0.f;
-	float rollWaitDuration = 0.f;
+	CTimer rollTimer;
+	float rollSpeed = 5.f;
+	float rollWaitDuration = 2.f;
+	float targetRoll = 0.f;
+	bool doRoll = false;
+
+	bool hasDirector = false;
 
 	CTimer travelWaitTimer;
 	float travelWaitTime = 0.f;
@@ -38,6 +43,8 @@ public:
 	void update(float delta);
 
 	void onCreated(const TMsgEntityCreated& msg);
+
+	void turnAround();
 
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();

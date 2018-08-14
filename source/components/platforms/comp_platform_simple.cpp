@@ -19,7 +19,7 @@ void TCompPlatformSimple::debugInMenu() {
 	ImGui::Checkbox("moveBackwards", &moveBackwards);
 	bool isLooping = curve.isLooping();
 	ImGui::Checkbox("loop", &isLooping);
-	curve.setLoop(isLooping); 
+	curve.setLoop(isLooping);
 	ImGui::DragFloat("travelWaitTime", &travelWaitTime, 0.01f, 0.f, 20.f);
 
 
@@ -61,20 +61,31 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 		rollSpeed = jRoll.value("speed", rollSpeed);
 		rollWaitDuration = jRoll.value("wait_duration", rollWaitDuration);
 	}
-
-
+	hasDirector = j.value("has_director", hasDirector);
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 	TCompTransform* transform = get<TCompTransform>();
 	//combinar up/left/front para encontrar la rotationAxisGlobal
 	rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
-						 transform->getUp()    * rotationAxisLocal.y +
-						 transform->getFront() * rotationAxisLocal.z;
+		transform->getUp()    * rotationAxisLocal.y +
+		transform->getFront() * rotationAxisLocal.z;
 	transformHandle = CHandle(transform);
 	assert(transformHandle.isValid());
 	colliderHandle = get<TCompCollider>();
 	assert(colliderHandle.isValid());
+	if (rollSpeed != 0) {
+		float yaw, pitch;
+		transform->getYawPitchRoll(&yaw, &pitch, &targetRoll);
+		int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
+		targetRoll = targetRoll + sign * M_PI;
+	}
+
+	rollTimer.reset();
+}
+
+void TCompPlatformSimple::turnAround() {
+	doRoll = true;
 }
 
 void TCompPlatformSimple::update(float delta) {
@@ -93,7 +104,7 @@ void TCompPlatformSimple::update(float delta) {
 		int sign = moveBackwards ? -1 : 1;
 		ratio += speed * delta * sign;
 		if (ratio >= 1.f || ratio <= 0.f) { // Reaches the end of the spline. 
-			if (curve.isLooping()){
+			if (curve.isLooping()) {
 				if (isClosed) {
 					ratio = ratio - floor(ratio);
 				}
@@ -121,6 +132,35 @@ void TCompPlatformSimple::update(float delta) {
 	if (rotationSpeed > 0) {
 		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
 		transform->setRotation(transform->getRotation() * quat);
+	}
+
+	if (rollSpeed != 0) {
+		float yaw, pitch, roll;
+		transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		if (hasDirector) {
+			if (doRoll) {
+				roll = roll + rollSpeed * delta;
+				if ((rollSpeed > 0 && roll >= targetRoll) || (rollSpeed < 0 && roll <= targetRoll)) {
+					//ha llegado a targetRoll
+					int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
+					roll = targetRoll;
+					targetRoll = targetRoll + sign * M_PI;
+					doRoll = false;
+				}
+				transform->setYawPitchRoll(yaw, pitch, roll);
+			}
+		}
+		else if (rollTimer.elapsed() >= rollWaitDuration) {
+			roll = roll + rollSpeed * delta;
+			if ((rollSpeed > 0 && roll >= targetRoll) || (rollSpeed < 0 && roll <= targetRoll)) {
+				//ha llegado a targetRoll
+				int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
+				roll = targetRoll;
+				targetRoll = targetRoll + sign * M_PI;
+				rollTimer.reset();
+			}
+			transform->setYawPitchRoll(yaw, pitch, roll);
+		}
 	}
 
 	// Update collider
