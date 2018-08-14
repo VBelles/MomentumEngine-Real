@@ -382,7 +382,8 @@ void TCompPlayerModel::walkTo(VEC3 targetPosition) {
 	position.y = 0;
 	VEC3 direction = targetPosition - position;
 	direction.Normalize();
-	//velocityVector = velocity * speed;
+	velocityVector = direction * walkingSpeed;
+	stateManager->getState(Walk)->autoWalk = true;
 }
 
 void TCompPlayerModel::damage(float damage) {
