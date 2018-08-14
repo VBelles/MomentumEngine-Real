@@ -33,6 +33,7 @@ ButtonText: "Momentum"
 		on btn_scene pressed do (
 			try (
 				gc()
+				clearListener()
 				local start = timeStamp()
 				local exporter = TSceneExporter project_path:exportPath
 				exporter.exportAll()
@@ -47,6 +48,7 @@ ButtonText: "Momentum"
 		on btn_mesh pressed do (
 			try (
 				gc()
+				clearListener()
 				for o in selection do (
 					ofilename = exportPath + "data/meshes/" + o.name + ".mesh"
 					exportMeshObject o ofilename
@@ -61,6 +63,7 @@ ButtonText: "Momentum"
 		on btn_col pressed do (
 			try (
 				gc()
+				clearListener()
 				local exporter = TSceneExporter project_path:exportPath
 				exporter.exportSelectedColliders()
 				MessageBox "Selected colliders exported OK" title:"All fine" beep:false
@@ -73,6 +76,7 @@ ButtonText: "Momentum"
 		on btn_skeleton pressed do (
 			try (
 				gc()
+				clearListener()
 				local skelName = getFilenameFile maxFileName
 				local se = TSkeletonsExporter project_path:exportPath skel_name:skelName
 				se.exportSkelAndMeshes()
@@ -86,6 +90,7 @@ ButtonText: "Momentum"
 		on btn_skel_anims pressed do (
 			try (
 				gc()
+				clearListener()
 				local skelName = getFilenameFile maxFileName
 				local se = TSkeletonsExporter project_path:exportPath skel_name:skelName
 				se.exportAnim()
@@ -99,6 +104,7 @@ ButtonText: "Momentum"
 		on btn_rigid_anims pressed do (
 			try (
 				gc()
+				clearListener()
 				local rae = TRigidAnimExporter project_path:exportPath
 				rae.exportAll ($* as array)
 				MessageBox "Rigid Animation exported OK" title:"All fine" beep:false
@@ -136,6 +142,7 @@ ButtonText: "Momentum"
 		fn checkDDS = (
 			try (
 				gc()
+				clearListener()
 				local me = TMaterialExporter()
 				me.listBadDDSofScene()	
 			) catch (

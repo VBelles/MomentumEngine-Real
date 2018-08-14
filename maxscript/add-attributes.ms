@@ -125,13 +125,69 @@ global lightsData = attributes lightData (
 global colsData = attributes collData (
 	parameters main rollout:params (
 		collType type: #boolean ui:cType default:true
+		pwrUp    type: #string default:"-NONE-"
 	)
 	rollout params "Collider Data" (
 		checkbox cType "Tri mesh" type: #boolean align:#right
+		dropdownlist powerUp "Power-up" items:#("-NONE-", \
+												"AirborneLong", \
+												"AirborneNormal", \
+												"AirborneWallJump", \
+												"AirDodge", \
+												"Death", \
+												"Dodge", \
+												"FallingAttack", \
+												"FastAttack", \
+												"FastAttack2", \
+												"FastAttackAir", \
+												"FastFinisher1", \
+												"FastFinisher2", \
+												"GhostJumpSquat", \
+												"GhostJumpSquatLong", \
+												"GhostJumpWindow", \
+												"GrabHigh", \
+												"GrabLong", \
+												"HardKnockbackAir", \
+												"HardKnockbackGround", \
+												"HardLanding", \
+												"HorizontalLauncher", \
+												"HuggingWall", \
+												"HuggingWallLongJumpSquat", \
+												"Idle", \
+												"IdleTurnAround", \
+												"JumpSquat", \
+												"JumpSquatLong", \
+												"JumpSquatSpring", \
+												"PitFalling", \
+												"PropelHigh", \
+												"PropelLong", \
+												"ReleasePowerAir", \
+												"ReleasePowerGround", \
+												"Run", \
+												"Slide", \
+												"SoftKnockbackAir", \
+												"SoftKnockbackGround", \
+												"SoftLanding", \
+												"SpendCoins", \
+												"SpringJump", \
+												"StrongAttack", \
+												"StrongAttack2", \
+												"StrongAttack3", \
+												"StrongFinisher1", \
+												"StrongFinisher2", \
+												"TurnAround", \
+												"VerticalLauncher", \
+												"Walk", \
+												"WallJumpPlummet", \
+												"WallJumpSquat", \
+												"WallJumpSquatPlummet")
+	
+		on powerUp selected i do pwrUp = powerUp.items[i]
+		on params open do powerUp.selection = findItem powerUp.items pwrUp
 	)
 )
 
--- -----------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 struct TAttributeManager (
 	fn hasAttribute obj defName = (
@@ -158,6 +214,11 @@ struct TAttributeManager (
 		if idxFound != undefined then (
 			local objDefs = custAttributes.getDefs obj
 			a = custAttributes.get obj idxFound
+
+			--a[#pwrUp] returns undefined, I guess because it's a dropdownlist?
+			--so pick this manually.
+			if attribute == #pwrUp then return obj.collData.pwrUp
+
 			return a[attribute].value
 		)
 		return undefined
