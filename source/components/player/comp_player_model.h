@@ -130,6 +130,9 @@ public:
 
 	CHandle grabTarget;
 
+	CTimer disabledClimbingTimer;
+	bool canClimb = true;
+
 	//Parent methods
 	static void registerMsgs();
 	void debugInMenu();
@@ -185,6 +188,7 @@ public:
 	void stopPlayerVelocity();
 	void rotatePlayerTowards(VEC3 targetPos, float rotationSpeed);
 	void walkTo(VEC3 targetPosition);
+	void disableClimbing();
 
 	StateManager* getStateManager() { return stateManager; }
 

@@ -72,6 +72,7 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 	TCompTransform* transform = get<TCompTransform>();
+
 	//combinar up/left/front para encontrar la rotationAxisGlobal
 	rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
 		transform->getUp()    * rotationAxisLocal.y +
@@ -150,20 +151,10 @@ void TCompPlatformSimple::update(float delta) {
 		if (rollSpeed != 0) {
 			float yaw, pitch, roll;
 			transform->getYawPitchRoll(&yaw, &pitch, &roll);
-			if (hasDirector) {
-				if (doRoll) {
-					roll = roll + rollSpeed * delta;
-					if ((rollSpeed > 0 && roll >= targetRoll) || (rollSpeed < 0 && roll <= targetRoll)) {
-						//ha llegado a targetRoll
-						int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
-						roll = targetRoll;
-						targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
-						doRoll = false;
-					}
-					transform->setYawPitchRoll(yaw, pitch, roll);
-				}
+			if (!hasDirector && rollTimer.elapsed() >= rollWaitDuration) {
+				doRoll = true;
 			}
-			else if (rollTimer.elapsed() >= rollWaitDuration) {
+			if (doRoll) {
 				roll = roll + rollSpeed * delta;
 				if ((rollSpeed > 0 && roll >= targetRoll) || (rollSpeed < 0 && roll <= targetRoll)) {
 					//ha llegado a targetRoll
@@ -171,9 +162,11 @@ void TCompPlatformSimple::update(float delta) {
 					roll = targetRoll;
 					targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
 					rollTimer.reset();
+					doRoll = false;
 				}
 				transform->setYawPitchRoll(yaw, pitch, roll);
 			}
+
 		}
 		//Update collider
 		getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
@@ -190,6 +183,11 @@ float TCompPlatformSimple::angleInBounds(float angle, float lowerBound, float up
 	}
 	return angle;
 }
+
+bool TCompPlatformSimple::isRolling() {
+	return doRoll;
+}
+
 
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }
 TCompCollider* TCompPlatformSimple::getCollider() { return colliderHandle; }

@@ -50,6 +50,8 @@ public:
 	void turnAround();
 	void setEnabled(bool enabled);
 
+	bool isRolling();
+
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
 	PxRigidDynamic* getRigidDynamic();
