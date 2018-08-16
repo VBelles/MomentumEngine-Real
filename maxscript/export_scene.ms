@@ -1221,7 +1221,7 @@ struct TSceneExporter (
 
 					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
-					exportPowerUpIfSelected obj
+					exportPowerUpIfSelected child
 				)
 			)
 		)
