@@ -238,6 +238,13 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 void TCompPlayerModel::update(float delta) {
 	PROFILE_FUNCTION("update");
 
+	if (!canClimb && disabledClimbingTimer.elapsed() >= 0.05f) {
+		canClimb = true;
+		TCompCollider* collider = getCollider();
+		collider->controller->setSlopeLimit(cosf(deg2rad(collider->config.slope)));
+		collider->controller->setStepOffset(collider->config.step);
+	}
+
 	if (isPlayerRotating) {
 		isPlayerRotating = !stateManager->getState()->rotatePlayerTowards(delta, rotatingTargetPos, rotationSpeed);
 	}
@@ -384,6 +391,13 @@ void TCompPlayerModel::walkTo(VEC3 targetPosition) {
 	direction.Normalize();
 	velocityVector = direction * walkingSpeed;
 	stateManager->getState(Walk)->autoWalk = true;
+}
+
+void TCompPlayerModel::disableClimbing() {
+	getCollider()->controller->setSlopeLimit(cosf(deg2rad(10)));
+	getCollider()->controller->setStepOffset(0.f);
+	canClimb = false;
+	disabledClimbingTimer.reset();
 }
 
 void TCompPlayerModel::damage(float damage) {
