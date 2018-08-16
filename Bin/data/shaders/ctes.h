@@ -172,6 +172,9 @@ CB_DEF(CCteGlobals, CB_GLOBALS) {
     float global_shared_fx_val1;
     float global_shared_fx_val2;
     float global_shared_fx_val3;
+
+	VEC3 player_position;
+	float globals_pad_dummy;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL) {
