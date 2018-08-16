@@ -14,12 +14,16 @@ ButtonText: "Momentum"
 	try closeRolloutFloater floater catch()
 
 	local width  = 218
+
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 19
+	local numberOfButtons = 1
 	local height = baseHeight + heightPerButton * numberOfButtons
 
-	floater = newRolloutFloater "Momentum utils" width height
+	local left = sysInfo.desktopSize[1] * 0.8 --80% of screen width.
+	local top =	 sysInfo.desktopSize[2] * 0.1 --10% of screen height.
+
+	floater = newRolloutFloater "Momentum utils" width height left top
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\ui_floating.ms" "Bin\\")
 
 	rollout exporter "Momentum Exporter" (
@@ -112,12 +116,24 @@ ButtonText: "Momentum"
 				MessageBox ("Error Exporting Rigid Animation:\n" + getCurrentException()) title:"Error"
 			)
 		)
+
+		-- Resize window if rollout collapses.
+		on exporter rolledUp state do (
+			local exporterButtons = 6
+			if state then height += heightPerButton * exporterButtons
+			else height -= heightPerButton * exporterButtons
+
+			floater.size = [width, height]
+		)
 	) -- end exporter rollout creator
 
 	rollout utils "Momentum Utils" (
-		button btn_attach_elems "Attach elements" tooltip:"Attaches all selected objects"
+		button btn_attach_elems "Attach sel" across:2 tooltip:"Attaches all selected objects"
 		button btn_detach_elems "Detach elements" tooltip:"Detaches all elements of selected object"
 		button btn_check_dds "Check DDS" tooltip:"Checks if any texture is not DDS"
+		button btn_create_col "Create colliders" tooltip:"Creates child colliders of selected objects"
+		button btn_sel_children "Select children" across:2 tooltip:"Selects children of selected objects"
+		button btn_sel_parents "Select parents" tooltip:"Selects parents of selected objects"
 
 		fn attachElems = (
 			try (
@@ -149,10 +165,55 @@ ButtonText: "Momentum"
 				MessageBox ("Error checking dds:\n" + getCurrentException()) title:"Error"
 			)
 		)
+
+		fn createColliders = (
+			try (
+				gc()
+				clearListener()
+				local utilsManager = TUtils()
+				utilsManager.createChildColliders()
+			) catch (
+				MessageBox ("Error creating colliders:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		fn selectChildren = (
+			try (
+				gc()
+				clearListener()
+				local utilsManager = TUtils()
+				utilsManager.selectChildren()
+			) catch (
+				MessageBox ("Error selecting children:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		fn selectParents = (
+			try (
+				gc()
+				clearListener()
+				local utilsManager = TUtils()
+				utilsManager.selectParents()
+			) catch (
+				MessageBox ("Error selecting parents:\n" + getCurrentException()) title:"Error"
+			)
+		)
 		
 		on btn_attach_elems pressed do ( attachElems() )
 		on btn_detach_elems pressed do ( detachElems() )
-		on btn_check_dds pressed    do ( checkDDS() )
+		on btn_check_dds 	pressed do ( checkDDS() )
+		on btn_create_col 	pressed do ( createColliders() )
+		on btn_sel_children pressed do ( selectChildren() )
+		on btn_sel_parents  pressed do ( selectParents() )
+
+		-- Resize window if rollout collapses.
+		on utils rolledUp state do (
+			local utilsButtons = 4
+			if state then height += heightPerButton * utilsButtons
+			else height -= heightPerButton * utilsButtons
+
+			floater.size = [width, height]
+		)
 	) -- end utils rollout
 
 	rollout attribute "Momentum Attributes" (
@@ -183,6 +244,9 @@ ButtonText: "Momentum"
 		button btn_addColl "+ collider" across:2 tooltip:"Adds collider attributes to selected objects"
 		button btn_delColl "- collider" tooltip:"Deletes collider attributes from selected objects"
 
+		button btn_set_trimesh "Set trimesh" across:2 tooltip:"Sets trimesh attribute of selected objects"
+		button btn_unset_trimesh "Unset trimesh" tooltip:"Unsets trimesh attribute of selected objects"
+
 		fn addAttribute defName = (
 			try (
 				gc()
@@ -202,7 +266,20 @@ ButtonText: "Momentum"
 				MessageBox ("Error deleting attribute:\n" + getCurrentException()) title:"Error"
 			)
 		)
+
+		fn setAttribute defName attribute value = (
+			try (
+				gc()
+				local attributeManager = TAttributeManager()
+				attributeManager.setAttributeInSel defName #collType value
+			) catch (
+				MessageBox ("Error setting attribute:\n" + getCurrentException()) title:"Error"
+			)
+		)
 		
+		on btn_set_trimesh pressed   do ( setAttribute "collData" #collType true )
+		on btn_unset_trimesh pressed do ( setAttribute "collData" #collType false )
+
 		on btn_addAttrEnemy pressed do ( addAttribute "enemyData" )
 		on btn_delAttrEnemy pressed do ( delAttribute "enemyData" )
 		
@@ -229,6 +306,15 @@ ButtonText: "Momentum"
 
 		on btn_addColl pressed do ( addAttribute "collData" )
 		on btn_delColl pressed do ( delAttribute "collData" )
+
+		-- Resize window if rollout collapses.
+		on attribute rolledUp state do (
+			local attrButtons = 10
+			if state then height += heightPerButton * attrButtons
+			else height -= heightPerButton * attrButtons
+
+			floater.size = [width, height]
+		)
 	) -- end attribute rollout creator
 
 	addRollout exporter floater
