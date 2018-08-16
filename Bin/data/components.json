@@ -33,6 +33,7 @@
     "skel_lookat",
     "bone_tracker",
     "walk_sound",
+    "platforms_director",
     "platform_simple",
     "collectable",
     "breakable",

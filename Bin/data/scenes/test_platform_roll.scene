@@ -1,0 +1,196 @@
+[
+	{
+		"entity": {
+			"name": "platform1",
+			"transform": {
+				"pos": "5 2 8",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/ms3_plataforma151.mesh",
+					"materials": [
+						"data/materials/Material_#99.material"
+					]
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/ms3_plataforma_collider151.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			},
+			"platform_simple": {
+				"roll": {
+					"speed" : 5,
+					"waitDuration" : 2
+				}
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform2",
+			"transform": {
+				"pos": "5 2 16",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/ms3_plataforma151.mesh",
+					"materials": [
+						"data/materials/Material_#99.material"
+					]
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/ms3_plataforma_collider151.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			},
+			"platform_simple": {
+				"roll": {}
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform3",
+			"transform": {
+				"pos": "5 2 24",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/ms3_plataforma151.mesh",
+					"materials": [
+						"data/materials/Material_#99.material"
+					]
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/ms3_plataforma_collider151.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			},
+			"platform_simple": {
+				"roll": {}
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform4",
+			"transform": {
+				"pos": "5 2 32",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/ms3_plataforma151.mesh",
+					"materials": [
+						"data/materials/Material_#99.material"
+					]
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/ms3_plataforma_collider151.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			},
+			"platform_simple": {
+				"roll": {}
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform5",
+			"transform": {
+				"pos": "5 2 40",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/ms3_plataforma151.mesh",
+					"materials": [
+						"data/materials/Material_#99.material"
+					]
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/ms3_plataforma_collider151.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			},
+			"platform_simple": {
+				"roll": {}
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform6",
+			"transform": {
+				"pos": "5 2 48",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/ms3_plataforma151.mesh",
+					"materials": [
+						"data/materials/Material_#99.material"
+					]
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/ms3_plataforma_collider151.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			},
+			"platform_simple": {
+				"roll": {}
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform_director",
+			"platforms_director":
+			{
+				"platforms" : [
+					[
+						"platform1",
+						"platform4"
+					],
+					[
+						"platform2",
+						"platform5"
+					],
+					[
+						"platform3",
+						"platform6"
+					]
+				],
+				"wait_time" : 1.2
+			}
+		}
+	}
+]

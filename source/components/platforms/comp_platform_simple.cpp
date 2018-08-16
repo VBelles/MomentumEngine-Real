@@ -19,7 +19,7 @@ void TCompPlatformSimple::debugInMenu() {
 	ImGui::Checkbox("moveBackwards", &moveBackwards);
 	bool isLooping = curve.isLooping();
 	ImGui::Checkbox("loop", &isLooping);
-	curve.setLoop(isLooping); 
+	curve.setLoop(isLooping);
 	ImGui::DragFloat("travelWaitTime", &travelWaitTime, 0.01f, 0.f, 20.f);
 
 
@@ -30,6 +30,10 @@ void TCompPlatformSimple::debugInMenu() {
 							 transform->getUp()    * rotationAxisLocal.y +
 							 transform->getFront() * rotationAxisLocal.z;
 	}
+
+	ImGui::DragFloat("rollSpeed", &rollSpeed, 0.01f, -20.f, 20.f);
+	ImGui::DragFloat("rollWaitDuration", &rollWaitDuration, 0.01f, 0.f, 20.f);
+
 }
 
 void TCompPlatformSimple::registerMsgs() {
@@ -37,7 +41,7 @@ void TCompPlatformSimple::registerMsgs() {
 }
 
 void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
-	//Movement
+	// Movement
 	speed = j.value("speed", 0.f);
 	curve.load(j);
 	automove = j.value("automove", false);
@@ -50,10 +54,16 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	}
 	travelWaitTime = j.value("travel_wait_time", 0.f);
 
-	//Rotation
+	// Rotation
 	rotationSpeed = j.value("rotation_speed", 0.f);
 	if (j.count("rotation_axis")) {
 		rotationAxisLocal = loadVEC3(j["rotation_axis"]);
+	}
+	// Roll
+	if (j.count("roll")) {
+		auto& jRoll = j["roll"];
+		rollSpeed = jRoll.value("speed", rollSpeed);
+		rollWaitDuration = jRoll.value("wait_duration", rollWaitDuration);
 	}
 
 	enabled = j.value("enabled", enabled);
@@ -61,14 +71,27 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 	TCompTransform* transform = get<TCompTransform>();
+
 	//combinar up/left/front para encontrar la rotationAxisGlobal
 	rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
-						 transform->getUp()    * rotationAxisLocal.y +
-						 transform->getFront() * rotationAxisLocal.z;
+		transform->getUp()    * rotationAxisLocal.y +
+		transform->getFront() * rotationAxisLocal.z;
 	transformHandle = CHandle(transform);
 	assert(transformHandle.isValid());
 	colliderHandle = get<TCompCollider>();
 	assert(colliderHandle.isValid());
+	if (rollSpeed != 0) {
+		float yaw, pitch;
+		transform->getYawPitchRoll(&yaw, &pitch, &targetRoll);
+		int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
+		targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
+	}
+
+	rollTimer.reset();
+}
+
+void TCompPlatformSimple::turnAround() {
+	doRoll = true;
 }
 
 void TCompPlatformSimple::setEnabled(bool enabled) {
@@ -124,10 +147,46 @@ void TCompPlatformSimple::update(float delta) {
 			transform->setRotation(transform->getRotation() * quat);
 		}
 
+		if (rollSpeed != 0) {
+			float yaw, pitch, roll;
+			transform->getYawPitchRoll(&yaw, &pitch, &roll);
+			if (!hasDirector && rollTimer.elapsed() >= rollWaitDuration) {
+				doRoll = true;
+			}
+			if (doRoll) {
+				roll = roll + rollSpeed * delta;
+				if ((rollSpeed > 0 && roll >= targetRoll) || (rollSpeed < 0 && roll <= targetRoll)) {
+					//ha llegado a targetRoll
+					int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
+					roll = targetRoll;
+					targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
+					rollTimer.reset();
+					doRoll = false;
+				}
+				transform->setYawPitchRoll(yaw, pitch, roll);
+			}
+
+		}
 		//Update collider
 		getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
 	}
 }
+
+float TCompPlatformSimple::angleInBounds(float angle, float lowerBound, float upperBound) {
+	float range = upperBound - lowerBound;
+	if (angle > upperBound) {
+		angle -= range;
+	}
+	else if (angle < lowerBound) {
+		angle += range;
+	}
+	return angle;
+}
+
+bool TCompPlatformSimple::isRolling() {
+	return doRoll;
+}
+
 
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }
 TCompCollider* TCompPlatformSimple::getCollider() { return colliderHandle; }
