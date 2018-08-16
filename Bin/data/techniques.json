@@ -352,13 +352,20 @@
     "priority": 60    
   },
 
+  "instanced": {
+    "vs_file": "data/shaders/instanced.fx",
+    "vertex_type": "PosNUvUvT_x_Instance",
+    "category": "gbuffer",
+    "rs_config": "cull_none"
+  },
   "grass": {
     "vs_file": "data/shaders/grass.fx",
     "vertex_type": "Pos_x_InstancedPos",
     "category": "gbuffer"
   },
   "vegetation": {
-    "vs_file": "data/shaders/vegetation.fx",
+    "vs_file": "data/shaders/instanced.fx",
+    "vs_entry_point": "VS_Vegetation",
     "vertex_type": "PosNUvUvT_x_Instance",
     "category": "gbuffer",
     "rs_config": "cull_none"
