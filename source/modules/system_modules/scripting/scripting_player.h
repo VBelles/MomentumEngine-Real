@@ -36,4 +36,9 @@ public:
 	static void disablePlayerOutline();
 	static void enablePlayerOutline();
 	static bool isPlayerGrounded();
+	static void stopPlayerVelocity();
+	static void changePlayerState(std::string state);
+	static void changePlayerConcurrentState(std::string state);
+	static void walkTo(float x, float z);
+	static void rotatePlayerTowards(float x, float z, float speed);
 };

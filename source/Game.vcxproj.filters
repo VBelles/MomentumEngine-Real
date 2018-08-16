@@ -349,6 +349,7 @@
     <ClCompile Include="components\comp_teleport_point.cpp" />
     <ClCompile Include="components\comp_power_source.cpp" />
     <ClCompile Include="components\comp_power_up.cpp" />
+    <ClCompile Include="components\platforms\comp_platforms_director.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -730,6 +731,7 @@
     <ClInclude Include="components\comp_teleport_point.h" />
     <ClInclude Include="components\comp_power_source.h" />
     <ClInclude Include="components\comp_power_up.h" />
+    <ClInclude Include="components\platforms\comp_platforms_director.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

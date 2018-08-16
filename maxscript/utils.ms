@@ -52,6 +52,25 @@ struct TUtils (
 		for o in selection do (
 			detachElements o o.name
 		)
+	),
+
+	fn selectChildren = (
+		select (for o in selection where o.children.count > 0 collect o.children[1])
+	),
+
+	fn selectParents = (
+		select (for o in selection where o.parent != undefined collect o.parent)
+	),
+
+	fn createChildColliders = (
+		objsToSelect = #()
+		for obj in selection do (
+			objCopy = copy obj
+			objCopy.name = obj.name + "_col"
+			objCopy.parent = obj
+			append objsToSelect objCopy
+		)
+		select objsToSelect --Select children so it's easy to add attributes.
 	)
 )
 

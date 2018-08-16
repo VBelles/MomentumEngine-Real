@@ -125,7 +125,7 @@ global lightsData = attributes lightData (
 global colsData = attributes collData (
 	parameters main rollout:params (
 		collType type: #boolean ui:cType default:true
-		pwrUp    type: #string  ui:powerUp
+		pwrUp    type: #string default:"-NONE-"
 	)
 	rollout params "Collider Data" (
 		checkbox cType "Tri mesh" type: #boolean align:#right
@@ -181,6 +181,9 @@ global colsData = attributes collData (
 												"WallJumpPlummet", \
 												"WallJumpSquat", \
 												"WallJumpSquatPlummet")
+	
+		on powerUp selected i do pwrUp = powerUp.items[i]
+		on params open do powerUp.selection = findItem powerUp.items pwrUp
 	)
 )
 
@@ -211,11 +214,26 @@ struct TAttributeManager (
 		if idxFound != undefined then (
 			local objDefs = custAttributes.getDefs obj
 			a = custAttributes.get obj idxFound
+
+			--a[#pwrUp] returns undefined, I guess because it's a dropdownlist?
+			--so pick this manually.
+			if attribute == #pwrUp then return obj.collData.pwrUp
+
 			return a[attribute].value
 		)
 		return undefined
 	),
 	
+	fn setAttributeValue obj defName attribute newValue = (
+		local idxFound = findAttribute obj defName
+		if idxFound != undefined then (
+			local objDefs = custAttributes.getDefs obj
+			a = custAttributes.get obj idxFound
+
+			a[attribute].value = newValue
+		)
+	),
+
 	-- Adds attribute of type defName to object.
 	fn addAttribute obj defName = (
 		if not hasAttribute obj defName then (
@@ -252,6 +270,12 @@ struct TAttributeManager (
 	fn delAttributeFromSel defName = (
 		for obj in selection do (
 			delAttribute obj defName
+		)
+	),
+
+	fn setAttributeInSel defName attribute newValue = (
+		for obj in selection do (
+			setAttributeValue obj defName attribute newValue
 		)
 	)
 )

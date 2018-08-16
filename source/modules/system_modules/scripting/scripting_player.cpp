@@ -18,6 +18,11 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("teleportPlayer", SLB::FuncCall::create(ScriptingPlayer::teleportPlayer));
 	manager->set("movePlayer", SLB::FuncCall::create(ScriptingPlayer::movePlayer));
 	manager->set("setPower", SLB::FuncCall::create(ScriptingPlayer::setPower));
+	manager->set("stopPlayerVelocity", SLB::FuncCall::create(ScriptingPlayer::stopPlayerVelocity));
+	manager->set("changePlayerState", SLB::FuncCall::create(ScriptingPlayer::changePlayerState));
+	manager->set("changePlayerConcurrentState", SLB::FuncCall::create(ScriptingPlayer::changePlayerConcurrentState));
+	manager->set("walkTo", SLB::FuncCall::create(ScriptingPlayer::walkTo));
+	manager->set("rotatePlayerTowards", SLB::FuncCall::create(ScriptingPlayer::rotatePlayerTowards));
 	manager->set("lockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::lockPlayerCameraInput));
 	manager->set("unlockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::unlockPlayerCameraInput));
 	manager->set("disablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::disablePlayerOutline));
@@ -78,6 +83,28 @@ void ScriptingPlayer::movePlayer(float dX, float dY, float dZ) {
 
 void ScriptingPlayer::setPower(float power) {
 	getPowerGauge()->setPower(power);
+}
+
+void ScriptingPlayer::stopPlayerVelocity() {
+	getPlayerModel()->stopPlayerVelocity();
+}
+
+void ScriptingPlayer::changePlayerState(std::string state) {
+	getPlayerModel()->changeState(state);
+}
+
+void ScriptingPlayer::changePlayerConcurrentState(std::string state) {
+	getPlayerModel()->changeConcurrentState(state);
+}
+
+void ScriptingPlayer::walkTo(float x, float z) {
+	VEC3 targetPosition = VEC3(x, 0, z);
+	getPlayerModel()->walkTo(targetPosition);
+}
+
+void ScriptingPlayer::rotatePlayerTowards(float x, float z, float speed) {
+	VEC3 targetPosition = VEC3(x, 0, z);
+	getPlayerModel()->rotatePlayerTowards(targetPosition, speed);
 }
 
 TCompPlayerModel* ScriptingPlayer::getPlayerModel() {

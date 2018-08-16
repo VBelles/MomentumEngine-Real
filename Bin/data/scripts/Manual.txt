@@ -32,6 +32,11 @@ Funciones:
 	void disablePlayerOutline()
 	void enablePlayerOutline()
 	bool isPlayerGrounded()
+	void stopPlayerVelocity()
+	void changePlayerState(std::string state)
+	void changePlayerConcurrentState(std::string state)
+	void rotatePlayerTowards(float x, float z, float speed)
+	void walkTo(float x, float z)
 
 	string spawnEntityAt(PREFAB, float x, float y, float z)
 	string spawnEntity(PREFAB)

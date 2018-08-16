@@ -1,7 +1,6 @@
 [
 	{
-		"entity":
-		{
+		"entity": {
 			"name": "LightDir00",
 			"transform": {
 				"pos": "-22 551 -468.4",
@@ -9,32 +8,31 @@
 			},
 			"light_dir": {
 				"intensity": 10,
-				"color" :  "1 0.87 0.67 1",
-				"projector" : "data/textures/white.dds",
-				"isOrthographic" : true,
-				"orthographicWidth" : 750,
-				"orthographicHeight" : 1125,
-        		"z_near" : 5,
-				"z_far" : 1200,
+				"color": "1 0.87 0.67 1",
+				"projector": "data/textures/white.dds",
+				"isOrthographic": true,
+				"orthographicWidth": 750,
+				"orthographicHeight": 1125,
+				"z_near": 5,
+				"z_far": 1200,
 				"fov": 50,
-				"casts_shadows" : true,
-				"shadows_step" : 0.1,
-				"shadows_resolution" : 8192,
-				"shadows_fmt" : "R32_TYPELESS"
+				"casts_shadows": true,
+				"shadows_step": 0.1,
+				"shadows_resolution": 8192,
+				"shadows_fmt": "R32_TYPELESS"
 			},
-			"sun":{
-				"rotation_center" : "85 97 -319.4",
-				"rotation_speed" : 0.0,
-				"distance" : 500,
-				"initial_pitch" : -30,
-				"initial_yaw" : -150,
-				"initial_roll" : 60
+			"sun": {
+				"rotation_center": "85 97 -319.4",
+				"rotation_speed": 0.0,
+				"distance": 500,
+				"initial_pitch": -30,
+				"initial_yaw": -150,
+				"initial_roll": 60
 			}
 		}
 	},
 	{
-		"entity":
-		{
+		"entity": {
 			"name": "LightDir01",
 			"transform": {
 				"pos": "0 150 0",
@@ -42,23 +40,23 @@
 			},
 			"light_dir": {
 				"intensity": 0,
-				"color" :  "1 1 1 1",
-				"projector" : "data/textures/white.dds",
-				"isOrthographic" : true,
-				"orthographicWidth" : 3,
-				"orthographicHeight" : 3,
-        		"z_near" : 0.1,
-				"z_far" : 700,
+				"color": "1 1 1 1",
+				"projector": "data/textures/white.dds",
+				"isOrthographic": true,
+				"orthographicWidth": 3,
+				"orthographicHeight": 3,
+				"z_near": 0.1,
+				"z_far": 700,
 				"fov": 90,
-				"casts_shadows" : true,
-				"shadows_step" : 0.12,
-				"shadows_resolution" : 512,
-				"shadows_fmt" : "R32_TYPELESS",
-				"shadows_category" : "shadows_player"
+				"casts_shadows": true,
+				"shadows_step": 0.12,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS",
+				"shadows_category": "shadows_player"
 			},
-			"follow_transform" : {
-				"entityName" : "The Player",
-				"offset" : "0 2 0"
+			"follow_transform": {
+				"entityName": "The Player",
+				"offset": "0 2 0"
 			}
 		}
 	}
