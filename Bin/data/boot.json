@@ -11,7 +11,8 @@
     "data/scenes/terreno_prefab_plantas23-trimesh.scene",
     
     "data/scenes/sky.scene",
-    "data/scenes/slash-test.scene"
+    "data/scenes/slash-test.scene",
+    "data/scenes/test_instancing.scene"
   ],
   "unused_scenes": [
     "data/scenes/test_spikes.scene",

@@ -10,7 +10,6 @@ bool CModuleInstancing::start() {
 		auto& jInstances = loadJson(file);
 		loadInstances(jInstances["TInstance"]);
 	}
-
 	return true;
 }
 

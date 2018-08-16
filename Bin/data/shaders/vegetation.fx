@@ -28,10 +28,14 @@ void VS(
   float unit_rand_val = ( 1 + sin( iInstancedID ) ) * 0.5f;
 
   float windSpeed =  1;
-  float range =  0.25;
+  float range =  0.1;
 
   // Movimiento del viento
-  iPos.x += sin(windSpeed * unit_rand_val * global_world_time ) * range * iPos.y;
+  //iPos.x += sin(windSpeed * unit_rand_val * global_world_time ) * range * iPos.y;
+  if(iPos.y > 0){
+    iPos.x += sin(windSpeed * unit_rand_val * global_world_time ) * range * iPos.y;
+  }
+  
   float4 world_pos = mul(iPos, instance_world);
   
 
