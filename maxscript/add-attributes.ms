@@ -39,17 +39,19 @@ global rotationsData = attributes rotateData (
 
 		rolSpeed type: #float   ui:rolSpeed default:5
 		wait 	 type: #float   ui:waitDur 	default:2
+		grup	 type: #integer ui:grup 	default:0
 	)
 	rollout params "Rotation Data" (
-		label lab1 "Rotation"
+		label lab1 "Rotation:"
 		spinner xRot "x axis" type: #integer range:[-1, 1, 0] --min, max, initial value
 		spinner yRot "y axis" type: #integer range:[-1, 1, 0]
 		spinner zRot "z axis" type: #integer range:[-1, 1, 1]
 		spinner rotSpeed "Rotation speed" type: #float
 
-		label lab2 "Roll"
-		spinner rolSpeed "Roll speed" 	 type: #float
-		spinner waitDur "Wait duration"  type: #float
+		label lab2 "Roll:"
+		spinner rolSpeed "Roll speed" 	  type: #float
+		spinner waitDur  "Wait duration"  type: #float
+		spinner grup     "Platform group" type: #integer range:[0, 1000, 0]
 	)
 )
 

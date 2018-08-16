@@ -17,6 +17,8 @@ global brokenMaps    	= #()
 
 global luaMechSys		= #()
 
+global platfDirector	= #(#())
+
 --------------------------------------------------------------------------------
 struct TJsonFormatter (
 	ofilename,			-- Name of output file.
@@ -773,6 +775,7 @@ struct TSceneExporter (
 
 		local rolSpeed = 0
 		local wait 	   = 0
+		local grup 	   = 0
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
 			local xRot = attrManager.getAttributeValue obj "rotateData" #x
@@ -784,6 +787,7 @@ struct TSceneExporter (
 
 			rolSpeed = attrManager.getAttributeValue obj "rotateData" #rolSpeed
 			wait 	 = attrManager.getAttributeValue obj "rotateData" #wait
+			grup 	 = attrManager.getAttributeValue obj "rotateData" #grup
 		)
 		--Export only if it has rotation speed.
 		if rotSpeed > 0 then (
@@ -801,6 +805,12 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKeyValue "waitDuration" wait
 			fs.endObj()
+
+			if grup > 0 then (
+				if platfDirector[grup] != undefined then (
+					append platfDirector[grup] obj.name
+				) else insertItem #(obj.name) platfDirector grup
+			)
 		)
 		return rotSpeed > 0 or rolSpeed > 0
 	),
@@ -2036,6 +2046,37 @@ struct TSceneExporter (
 		if luaMechSys.count > 0 then exportLuaFile()
 	),
 
+	fn exportPlatfDirector = (
+		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
+		
+		fs.begin plDirFilePath --Create file.
+			beginEntity()
+			fs.writeKeyValue "name" "platform_director"
+			fs.writeComma()
+			fs.writeKey "platforms_director"
+			fs.beginObj()
+				fs.writeKey "platforms"
+				fs.beginArray()
+				local validPlGroups = 0
+				for i = 1 to platfDirector.count do (
+					if platfDirector[i] != undefined then (
+						if validPlGroups >= 1 then fs.writeComma()
+						fs.beginArray()
+						for j = 1 to platfDirector[i].count do (
+							if j != 1 then fs.writeComma()
+							fs.writeName platfDirector[i][j]
+						)
+						fs.endArray()
+
+						validPlGroups += 1
+					)
+				)
+				fs.endArray()
+			fs.endObj()
+			endEntity()
+		fs.end()
+	),
+
 	fn showBrokenMaps = (
 		for objName in brokenMaps do (
 			format "ERROR: Map support error in object %, should unwrap_reset.\n" objName
@@ -2132,6 +2173,7 @@ struct TSceneExporter (
 		-- All layers and objects processed, begin export of stored objects.
 		exportUniques()
 		exportLuaMechs()
+		exportPlatfDirector()
 		showBrokenMaps()
 		)--End undo off.
 	)
