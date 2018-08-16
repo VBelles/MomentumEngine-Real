@@ -36,6 +36,12 @@
       "transform": {
         "pos": "30 43 -50",
         "rotation": "0 0 0 1"
+      },
+      "platform_simple": {
+        "roll": {
+          "speed": 5,
+          "waitDuration": 2
+        }
       }
     }
   },
@@ -46,6 +52,12 @@
       "transform": {
         "pos": "30 43 -35",
         "rotation": "0 0 0 1"
+      },
+      "platform_simple": {
+        "roll": {
+          "speed": 5,
+          "waitDuration": 2
+        }
       }
     }
   },
@@ -54,8 +66,14 @@
       "name": "Plataformeo_hex005",
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
-        "pos": "36 43 -42.5",
-        "rotation": "0 0.258819 0 0.965926"
+        "pos": "30 43 -20",
+        "rotation": "0 0 0 1"
+      },
+      "platform_simple": {
+        "roll": {
+          "speed": 5,
+          "waitDuration": 2
+        }
       }
     }
   },
@@ -64,8 +82,14 @@
       "name": "Plataformeo_hex006",
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
-        "pos": "30 43 -20",
-        "rotation": "0 0 0 1"
+        "pos": "36 43 -42.5",
+        "rotation": "0 0.258819 0 0.965926"
+      },
+      "platform_simple": {
+        "roll": {
+          "speed": 5,
+          "waitDuration": 2
+        }
       }
     }
   },
@@ -74,8 +98,14 @@
       "name": "Plataformeo_hex007",
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
-        "pos": "36.5 43 -12.5",
+        "pos": "36.5 43 -27.5",
         "rotation": "0 0.258819 0 0.965926"
+      },
+      "platform_simple": {
+        "roll": {
+          "speed": 5,
+          "waitDuration": 2
+        }
       }
     }
   },
@@ -84,8 +114,14 @@
       "name": "Plataformeo_hex008",
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
-        "pos": "36.5 43 -27.5",
+        "pos": "36.5 43 -12.5",
         "rotation": "0 0.258819 0 0.965926"
+      },
+      "platform_simple": {
+        "roll": {
+          "speed": 5,
+          "waitDuration": 2
+        }
       }
     }
   },
@@ -390,6 +426,26 @@
       "activate_listener": {
         "render_enabled_on_active": true,
         "collider_enabled_on_active": true
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "plataformeo_roll_director000",
+      "platforms_director": {
+        "platforms": [
+          [
+            "Plataformeo_hex003",
+            "Plataformeo_hex004",
+            "Plataformeo_hex005"
+          ],
+          [
+            "Plataformeo_hex006",
+            "Plataformeo_hex007",
+            "Plataformeo_hex008"
+          ]
+        ],
+        "wait_time": 1.2
       }
     }
   }

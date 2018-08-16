@@ -24,8 +24,8 @@
 			},
 			"platform_simple": {
 				"roll": {
-					"speed" : 5,
-					"waitDuration" : 2
+					"speed": 5,
+					"waitDuration": 2
 				}
 			}
 		}
@@ -173,9 +173,8 @@
 	{
 		"entity": {
 			"name": "platform_director",
-			"platforms_director":
-			{
-				"platforms" : [
+			"platforms_director": {
+				"platforms": [
 					[
 						"platform1",
 						"platform4"
@@ -189,7 +188,7 @@
 						"platform6"
 					]
 				],
-				"wait_time" : 1.2
+				"wait_time": 1.2
 			}
 		}
 	}
