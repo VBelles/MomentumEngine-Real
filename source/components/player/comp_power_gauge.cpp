@@ -6,9 +6,20 @@
 #include "components/comp_tags.h"
 #include "components/comp_collider.h"
 #include "components/comp_purity.h"
+#include <algorithm>
 
 DECL_OBJ_MANAGER("power_gauge", TCompPowerGauge);
 
+
+void TCompPowerGauge::debugInMenu() {
+	ImGui::DragFloat("Power", &power, 1000, 0, maxPower);
+	ImGui::DragFloat("Max Power", &maxPower, 1000, 1000, 100000);
+	ImGui::DragFloat("Freeze Drop Time", &freezeDropTime, 0.01, 0, 5);
+	ImGui::DragFloat("Target Power", &targetPower, 1, 0, maxPower);
+	ImGui::DragFloat("Power Increase Speed", &powerIncreaseSpeed, 1, 0, maxPower);
+	ImGui::DragFloat("Min Increase Per Frame", &minIncreasePerFrame, 1, 0, maxPower);
+	ImGui::Text("Time since last reset: %f", freezeDropTimer.elapsed());
+}
 
 void TCompPowerGauge::registerMsgs() {
 }
@@ -36,7 +47,7 @@ void TCompPowerGauge::load(const json & j, TEntityParseContext & ctx) {
 
 void TCompPowerGauge::update(float delta) {
 	if (power < targetPower) {
-		increasePower(powerIncreaseSpeed * delta);
+		increasePower(std::max(powerIncreaseSpeed * delta, minIncreasePerFrame));
 		freezeDropTimer.reset();
 		if (power >= targetPower) {
 			targetPower = 0;
@@ -111,7 +122,14 @@ void TCompPowerGauge::setPower(float power) {
 
 void TCompPowerGauge::increasePowerInTime(float power, float time) {
 	targetPower = clamp(this->power + power + clamp(targetPower - this->power, 0.f, maxPower), 0.f, maxPower);
-	powerIncreaseSpeed = (targetPower - this->power) / time;
+	if (time <= 0) {
+		increasePower(targetPower - this->power);
+		freezeDropTimer.reset();
+		targetPower = 0;
+	}
+	else {
+		powerIncreaseSpeed = (targetPower - this->power) / time;
+	}
 }
 
 int TCompPowerGauge::getPowerLevel() { return powerLevel; }

@@ -72,8 +72,8 @@ float4 PS(
   // Change the curve of the influence,.
   amount = pow(amount, 0.5);
 
-  float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, iNormal, 6).xyz;
-  float3 irradiance_texture = txIrradianceMap.Sample(samLinear, iNormal).xyz;
+  float3 irradiance_mipmaps = getEnvironment(iNormal, 6);
+  float3 irradiance_texture = getIrradiance(iNormal);
   float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
   float g_ReflectionIntensity = 1.0;

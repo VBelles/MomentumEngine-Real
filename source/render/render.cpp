@@ -58,7 +58,7 @@ bool CRender::createDevice(int new_width, int new_height, bool new_vsync) {
 	pBackBuffer->Release();
 	if (FAILED(hr)) return false;
 
-	dbg("Render.Device created at %dx%d\n", width, height);
+	dbg("Device created at %dx%d\n", width, height);
 
 	// Crear un ZBuffer de la resolucion de mi backbuffer
 	D3D11_TEXTURE2D_DESC desc;
@@ -75,7 +75,7 @@ bool CRender::createDevice(int new_width, int new_height, bool new_vsync) {
 	desc.CPUAccessFlags = 0;
 	desc.MiscFlags = 0;
 
-	hr = Render.device->CreateTexture2D(&desc, NULL, &depthTexture);
+	hr = device->CreateTexture2D(&desc, NULL, &depthTexture);
 	if (FAILED(hr))
 		return false;
 
@@ -84,7 +84,7 @@ bool CRender::createDevice(int new_width, int new_height, bool new_vsync) {
 	ZeroMemory(&descDSV, sizeof(descDSV));
 	descDSV.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	hr = Render.device->CreateDepthStencilView(depthTexture, &descDSV, &depthStencilView);
+	hr = device->CreateDepthStencilView(depthTexture, &descDSV, &depthStencilView);
 	if (FAILED(hr)) return false;
 
 	// -----------------------------------------
@@ -94,7 +94,7 @@ bool CRender::createDevice(int new_width, int new_height, bool new_vsync) {
 	srv_desc.Format = DXGI_FORMAT_X24_TYPELESS_G8_UINT;
 	srv_desc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srv_desc.Texture2D.MipLevels = desc.MipLevels;
-	hr = Render.device->CreateShaderResourceView(depthTexture, &srv_desc, &depth_shader_resource_view);
+	hr = device->CreateShaderResourceView(depthTexture, &srv_desc, &depth_shader_resource_view);
 	if (FAILED(hr)) return false;
 	setDXName(depth_shader_resource_view, "BackBuffer-Stencil");
 
@@ -141,4 +141,78 @@ void CRender::startRenderInBackbuffer() {
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
 	ctx->RSSetViewports(1, &vp);
+}
+
+
+bool CRender::resize(int new_width, int new_height) {
+	width = new_width;
+	height = new_height;
+
+	renderTargetView->Release();
+	depthTexture->Release();
+	depthStencilView->Release();
+	depth_shader_resource_view->Release();
+
+	UINT createDeviceFlags = 0;
+#ifdef _DEBUG
+	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
+
+	HRESULT hr;
+	hr = swapChain->ResizeBuffers(0, width, height, DXGI_FORMAT_UNKNOWN, createDeviceFlags);
+	if (FAILED(hr)) return false;
+
+	// Create a render target view
+	ID3D11Texture2D* pBackBuffer = NULL;
+	hr = swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+	if (FAILED(hr)) return false;
+
+	hr = device->CreateRenderTargetView(pBackBuffer, NULL, &renderTargetView);
+	pBackBuffer->Release();
+	if (FAILED(hr)) return false;
+
+	dbg("Device created at %dx%d\n", width, height);
+
+	// Crear un ZBuffer de la resolucion de mi backbuffer
+	D3D11_TEXTURE2D_DESC desc;
+	ZeroMemory(&desc, sizeof(desc));
+	desc.Width = width;
+	desc.Height = height;
+	desc.MipLevels = 1;
+	desc.ArraySize = 1;
+	desc.Format = DXGI_FORMAT_R24G8_TYPELESS; // was DXGI_FORMAT_D24_UNORM_S8_UINT;
+	desc.SampleDesc.Count = 1;
+	desc.SampleDesc.Quality = 0;
+	desc.Usage = D3D11_USAGE_DEFAULT;
+	desc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
+	desc.CPUAccessFlags = 0;
+	desc.MiscFlags = 0;
+
+	hr = device->CreateTexture2D(&desc, NULL, &depthTexture);
+	if (FAILED(hr))
+		return false;
+
+	// Create the depth stencil view
+	D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
+	ZeroMemory(&descDSV, sizeof(descDSV));
+	descDSV.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	hr = device->CreateDepthStencilView(depthTexture, &descDSV, &depthStencilView);
+	if (FAILED(hr)) return false;
+
+	// -----------------------------------------
+	// Create a resource view so we can use the data in a shader
+	D3D11_SHADER_RESOURCE_VIEW_DESC srv_desc;
+	ZeroMemory(&srv_desc, sizeof(srv_desc));
+	srv_desc.Format = DXGI_FORMAT_X24_TYPELESS_G8_UINT;
+	srv_desc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+	srv_desc.Texture2D.MipLevels = desc.MipLevels;
+	hr = device->CreateShaderResourceView(depthTexture, &srv_desc, &depth_shader_resource_view);
+	if (FAILED(hr)) return false;
+	setDXName(depth_shader_resource_view, "BackBuffer-Stencil");
+	
+	swapChain->SetFullscreenState(Engine.globalConfig.fullscreen, NULL);
+	if (!Engine.globalConfig.fullscreen) SetWindowPos(CApp::get().getWnd(), 0, 0, 0, width, height, 0);
+
+	return true;
 }

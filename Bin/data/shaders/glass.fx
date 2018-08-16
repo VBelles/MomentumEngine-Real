@@ -71,8 +71,8 @@ float4 PS(
 		background_color = txGBufferAlbedos.Sample(samClampLinear, pos_camera_unit_space);
 	}
 
-	float4 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, normal, 6);
-	float4 irradiance_texture = txIrradianceMap.Sample(samLinear, normal);
+	float4 irradiance_mipmaps = float4(getEnvironment(normal, 6), 1);
+	float4 irradiance_texture = float4(getIrradiance(normal), 1);
 	float4 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
 	float4 final_color = lerp(irradiance, background_color, 0.75f);

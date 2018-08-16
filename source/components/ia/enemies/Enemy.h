@@ -81,6 +81,9 @@ public:
 
 	float blockTime = 0.f;
 
+	float attackSlots = 1.f;
+	std::string attackTarget = "";
+
 	std::map<std::string, EnemyAttack> attacks;
 	std::string currentAttack = "";
 

@@ -12,6 +12,7 @@ private:
 	bool                    loops = true;
 	bool                    is_moving = true;
 	bool					stopOnNextLoop = false;
+	bool					killOnFinishAnimation = false;
 	float                   speed_factor = 1.0f;
 	CTransform				initialTransform;
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -19,6 +20,7 @@ public:
 	DECL_SIBLING_ACCESS();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
+	void updateAnimation();
 	void debugInMenu();
 	static void registerMsgs();
 	void setIsMoving(bool isMoving);

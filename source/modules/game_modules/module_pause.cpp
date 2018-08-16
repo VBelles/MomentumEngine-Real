@@ -10,7 +10,7 @@ bool CModulePause::start() {
 	parser.parseFile("data/gui/test_pause_menu.json");
 
 	auto resumeGameCB = [&] {
-		onPausePressed(); 
+		onPausePressed();
 	};
 	auto mainMenuCB = [&]() {
 		EngineScripting.setActive(true);
@@ -43,7 +43,8 @@ bool CModulePause::stop() {
 }
 
 void CModulePause::update(float delta) {
-	if (EngineInput["pause"].getsPressed()) {
+	if (EngineInput["pause"].getsPressed()
+		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onPausePressed();
 	}
 }
@@ -73,7 +74,7 @@ void CModulePause::onPausePressed() {
 	}
 
 	CApp::get().setResetMouse(!pause);
-	
+
 }
 
 void CModulePause::render() {}

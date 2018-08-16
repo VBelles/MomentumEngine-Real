@@ -5,6 +5,8 @@
 #include "components/comp_transform.h"
 #include "components/comp_collectable.h"
 #include "components/comp_collider.h"
+#include "components/comp_render.h"
+#include "components/controllers/comp_rigid_anims_director.h"
 #include "components/player/attack_info.h"
 
 
@@ -23,6 +25,14 @@ void TCompBreakable::load(const json& j, TEntityParseContext& ctx) {
 	hp = j.value("hp", 1.f);
 	prefabToSpawn = j.value("prefab", "");
 	lootOffset = j.value("lootOffset", 1.0f);
+
+	if (j.count("broken_parts")) {
+		auto& entities = j["broken_parts"];
+		assert(entities.is_array());
+		for (std::string entity : entities) {
+			brokenPartsNames.push_back(entity);
+		}
+	}
 }
 
 void TCompBreakable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -30,6 +40,13 @@ void TCompBreakable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	assert(colliderHandle.isValid());
 	transformHandle = get<TCompTransform>();
 	assert(transformHandle.isValid());
+
+	for (std::string name : brokenPartsNames) {
+		CHandle entity = getEntityByName(name);
+		if (entity.isValid()) {
+			brokenParts.push_back(entity);
+		}
+	}
 }
 
 void TCompBreakable::onHit(const TMsgAttackHit & msg) {
@@ -43,9 +60,17 @@ void TCompBreakable::onHit(const TMsgAttackHit & msg) {
 }
 
 void TCompBreakable::onDie() {
+	//activate broken parts
+	for (CEntity* brokenPart : brokenParts) {
+		TCompRender* render = brokenPart->get<TCompRender>();
+		render->enable();
+	}
+	TCompRigidAnimsDirector* director = get<TCompRigidAnimsDirector>();
+	if (director) {
+		director->setIsMoving(true);
+	}
 	((CEntity*)(CHandle(this).getOwner()))->sendMsg(TMsgDestroy{});
 	getCollider()->destroy();
-	//send message to entity
 }
 
 void TCompBreakable::dropLoot() {

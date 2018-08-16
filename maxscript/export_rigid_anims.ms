@@ -166,7 +166,7 @@ struct TRigidAnimExporter (
 	)
 )
 
-global exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_rigid_anims.ms" "Bin\\")
-exporter = TRigidAnimExporter project_path:exportPath
+--exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_rigid_anims.ms" "Bin\\")
+--exporter = TRigidAnimExporter project_path:exportPath
 
-exporter.exportAll ($* as array)
+--exporter.exportAll ($* as array)

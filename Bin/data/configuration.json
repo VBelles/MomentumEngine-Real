@@ -1,7 +1,11 @@
 {
-    "screen": {
-        "fullscreen": false,
-        "resolution": "1280 720",
-        "vsync": false
-    }
+	"camera": {
+		"invert_x_axis": false,
+		"invert_y_axis": false
+	},
+	"screen": {
+		"fullscreen": false,
+		"resolution": "1280 720",
+		"vsync": false
+	}
 }

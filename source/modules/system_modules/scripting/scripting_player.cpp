@@ -6,6 +6,7 @@
 #include "components/player/comp_player_controller.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/controllers/comp_camera_player.h"
+#include "components/player/states/StateManager.h"
 #include <SLB/SLB.hpp>
 
 void ScriptingPlayer::bind(SLB::Manager* manager) {
@@ -16,11 +17,17 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("givePlayerControl", SLB::FuncCall::create(ScriptingPlayer::givePlayerControl));
 	manager->set("teleportPlayer", SLB::FuncCall::create(ScriptingPlayer::teleportPlayer));
 	manager->set("movePlayer", SLB::FuncCall::create(ScriptingPlayer::movePlayer));
-    manager->set("setPower", SLB::FuncCall::create(ScriptingPlayer::setPower));
-    manager->set("lockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::lockPlayerCameraInput));
+	manager->set("setPower", SLB::FuncCall::create(ScriptingPlayer::setPower));
+	manager->set("stopPlayerVelocity", SLB::FuncCall::create(ScriptingPlayer::stopPlayerVelocity));
+	manager->set("changePlayerState", SLB::FuncCall::create(ScriptingPlayer::changePlayerState));
+	manager->set("changePlayerConcurrentState", SLB::FuncCall::create(ScriptingPlayer::changePlayerConcurrentState));
+	manager->set("walkTo", SLB::FuncCall::create(ScriptingPlayer::walkTo));
+	manager->set("rotatePlayerTowards", SLB::FuncCall::create(ScriptingPlayer::rotatePlayerTowards));
+	manager->set("lockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::lockPlayerCameraInput));
 	manager->set("unlockPlayerCameraInput", SLB::FuncCall::create(ScriptingPlayer::unlockPlayerCameraInput));
 	manager->set("disablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::disablePlayerOutline));
 	manager->set("enablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::enablePlayerOutline));
+	manager->set("isPlayerGrounded", SLB::FuncCall::create(ScriptingPlayer::isPlayerGrounded));
 }
 
 float ScriptingPlayer::getPlayerHp() {
@@ -50,11 +57,11 @@ bool ScriptingPlayer::givePlayerControl() {
 }
 
 void ScriptingPlayer::lockPlayerCameraInput() {
-    getPlayerCamera()->lockCameraInput(true);
+	getPlayerCamera()->lockCameraInput(true);
 }
 
 void ScriptingPlayer::unlockPlayerCameraInput() {
-    getPlayerCamera()->lockCameraInput(false);
+	getPlayerCamera()->lockCameraInput(false);
 }
 
 void ScriptingPlayer::disablePlayerOutline() {
@@ -69,13 +76,35 @@ void ScriptingPlayer::teleportPlayer(float x, float y, float z) {
 	getCollider()->controller->setFootPosition(physx::PxExtendedVec3(x, y, z));
 }
 
-void ScriptingPlayer::movePlayer(float dX, float dY, float dZ){
+void ScriptingPlayer::movePlayer(float dX, float dY, float dZ) {
 	physx::PxExtendedVec3 position = getCollider()->controller->getFootPosition();
 	getCollider()->controller->setFootPosition(position + physx::PxExtendedVec3(dX, dY, dZ));
 }
 
 void ScriptingPlayer::setPower(float power) {
 	getPowerGauge()->setPower(power);
+}
+
+void ScriptingPlayer::stopPlayerVelocity() {
+	getPlayerModel()->stopPlayerVelocity();
+}
+
+void ScriptingPlayer::changePlayerState(std::string state) {
+	getPlayerModel()->changeState(state);
+}
+
+void ScriptingPlayer::changePlayerConcurrentState(std::string state) {
+	getPlayerModel()->changeConcurrentState(state);
+}
+
+void ScriptingPlayer::walkTo(float x, float z) {
+	VEC3 targetPosition = VEC3(x, 0, z);
+	getPlayerModel()->walkTo(targetPosition);
+}
+
+void ScriptingPlayer::rotatePlayerTowards(float x, float z, float speed) {
+	VEC3 targetPosition = VEC3(x, 0, z);
+	getPlayerModel()->rotatePlayerTowards(targetPosition, speed);
 }
 
 TCompPlayerModel* ScriptingPlayer::getPlayerModel() {
@@ -103,7 +132,11 @@ TCompPowerGauge* ScriptingPlayer::getPowerGauge() {
 	return playerEntity->get<TCompPowerGauge>();
 }
 
-TCompCameraPlayer * ScriptingPlayer::getPlayerCamera() {
-    CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-    return playerCameraEntity->get<TCompCameraPlayer>();
+TCompCameraPlayer* ScriptingPlayer::getPlayerCamera() {
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	return playerCameraEntity->get<TCompCameraPlayer>();
+}
+
+bool ScriptingPlayer::isPlayerGrounded() {
+	return getPlayerModel()->isGrounded();
 }

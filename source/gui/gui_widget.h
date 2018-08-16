@@ -13,16 +13,18 @@ namespace GUI {
 
 		void addChild(CWidget* wdgt);
 		void removeChild(CWidget* wdgt);
+		void setParent(CWidget* wdgt);
 		VWidgets getChildren(bool recursive = false);
 		CWidget* getChild(const std::string& name, bool recursive = false) const;
 		const std::string& getName() const;
+		TParams* getParams() { return &_params; }
 		virtual TImageParams* getImageParams() { return nullptr; }
 		virtual TTextParams* getTextParams() { return nullptr; }
 
 		void addEffect(CEffect* fx);
 
 		void computeLocal();
-		void computeAbsolute();
+		virtual void computeAbsolute();
 
 		void updateAll(float delta);
 		void renderAll();
@@ -30,7 +32,7 @@ namespace GUI {
 		virtual void update(float delta);
 		virtual void render();
 
-		bool overlaps(VEC2 pos);
+		virtual bool overlaps(VEC2 pos);
 
 	protected:
 		std::string _name;

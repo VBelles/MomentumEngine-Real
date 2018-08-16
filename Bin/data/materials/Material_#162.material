@@ -8,6 +8,7 @@
     "metallic": "data/textures/set_terreno3_Material set3_terreno1_Roughness.dds",
     "roughness": "data/textures/null_roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/set_terreno3_Material set3_terreno2_Height.dds"
+    "height": "data/textures/set_terreno3_Material set3_terreno2_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

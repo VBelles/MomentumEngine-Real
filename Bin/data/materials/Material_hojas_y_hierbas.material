@@ -1,0 +1,9 @@
+{
+  "technique": "vegetation.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/hojas_azules.dds",
+    "normal": "data/textures/hojas_normal.dds"
+  }
+}

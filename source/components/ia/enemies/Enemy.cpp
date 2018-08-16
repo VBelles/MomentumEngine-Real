@@ -52,6 +52,8 @@ void Enemy::load(const json& j) {
 	stepBackDistanceSqrd = pow(j.value("step_back_distance", sqrt(stepBackDistanceSqrd)), 2);
 	attackCoolDown = j.value("attack_cool_down", attackCoolDown);
 	blockTime = j.value("block_time", blockTime);
+	attackSlots = j.value("attack_slots", attackSlots);
+	attackTarget = "";
 
 	for (auto& jAttack : j["attacks"]) {
 		EnemyAttack attack;
@@ -92,6 +94,8 @@ void Enemy::debugInMenu() {
 	ImGui::Text("onOutOfBounds: %s\n", onOutOfBounds ? "true" : "false");
 	ImGui::Text("onSpawn: %s\n", onSpawn ? "true" : "false");
 	ImGui::Text("Hp: %f\n", hp);
+	ImGui::DragFloat("Attack slots\n", &attackSlots, 0.1f, 0.f, 50.f);
+	ImGui::Text("Attack target: %s\n", attackTarget.c_str());
 	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
 	ImGui::DragFloat("Gravity\n", &gravity, 0.1f, -500.f, 500.f);
 	ImGui::DragFloat("Gravity multiplier\n", &gravityMultiplier, 0.1f, -500.f, 500.f);
@@ -99,7 +103,7 @@ void Enemy::debugInMenu() {
 	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
 	ImGui::Text("Is blocking: %s\n", isBlocking ? "true" : "false");
 	ImGui::Text("Super armor: %f, has super armor: %s\n", superArmorAmount, hasSuperArmor() ? "true" : "false");
-	ImGui::Text("Spawn position %f, %f, %f\n", spawnPosition.x, spawnPosition.y, spawnPosition.z);
+	ImGui::DragFloat3("Spawn position", &spawnPosition.x, 0.1f, -10000.0f, 10000.0f);
 	ImGui::Text("Nav mesh: %s\n", navMeshQuery ? navMeshId.c_str() : "None");
 	ImGui::Text("Current path point: %i\n", currentPathPoint);
 	if (ImGui::TreeNode("Smooth path")) {

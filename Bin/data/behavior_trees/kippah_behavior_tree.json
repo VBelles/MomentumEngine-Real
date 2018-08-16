@@ -391,74 +391,111 @@
             ]
           },
           {
-            "name": "attackCooldownCombat",
-            "type": "random",
+            "name": "combating",
+            "type": "priority",
             "condition": {
-              "type": "AttackCoolDownCondition"
+              "type": "AddAttackerCondition"
             },
             "children": [
               {
-                "name": "CDIdleWar",
-                "type": "sequence",
+                "name": "attackCooldownCombat",
+                "type": "random",
+                "condition": {
+                  "type": "AttackCoolDownCondition"
+                },
                 "children": [
                   {
-                    "name": "onCDIdleWar",
-                    "type": "action",
-                    "action": {
-                      "type": "OnIdleWarAction",
-                      "animation": "medusa_idle_war"
-                    }
+                    "name": "CDIdleWar",
+                    "type": "sequence",
+                    "children": [
+                      {
+                        "name": "onCDIdleWar",
+                        "type": "action",
+                        "action": {
+                          "type": "OnIdleWarAction",
+                          "animation": "medusa_idle_war"
+                        }
+                      },
+                      {
+                        "name": "CDIdleWarAction",
+                        "type": "action",
+                        "action": {
+                          "type": "IdleWarActionFlying",
+                          "animation": "medusa_idle_war"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "longDistanceCombat",
+                "type": "random",
+                "condition": {
+                  "type": "LongDistanceCombatCondition"
+                },
+                "children": [
+                  {
+                    "name": "rangedAttack",
+                    "type": "sequence",
+                    "children": [
+                      {
+                        "name": "onRangedAttackAction",
+                        "type": "action",
+                        "action": {
+                          "type": "OnAttackAction",
+                          "animation": "medusa_shot",
+                          "attack": "rangedAttack"
+                        }
+                      },
+                      {
+                        "name": "rangedAttackAction",
+                        "type": "action",
+                        "action": {
+                          "type": "RangedAttackAction",
+                          "animation": "medusa_shot",
+                          "attack": "rangedAttack",
+                          "cancel_condition": "shortDistanceCombat"
+                        }
+                      }
+                    ]
                   },
                   {
-                    "name": "CDIdleWarAction",
-                    "type": "action",
-                    "action": {
-                      "type": "IdleWarActionFlying",
-                      "animation": "medusa_idle_war"
-                    }
+                    "name": "longIdleWar",
+                    "type": "sequence",
+                    "children": [
+                      {
+                        "name": "onLongIdleWar",
+                        "type": "action",
+                        "action": {
+                          "type": "OnIdleWarAction",
+                          "animation": "medusa_idle_war"
+                        }
+                      },
+                      {
+                        "name": "longIdleWarAction",
+                        "type": "action",
+                        "action": {
+                          "type": "IdleWarActionFlying",
+                          "animation": "medusa_idle_war"
+                        }
+                      }
+                    ]
                   }
                 ]
               }
             ]
           },
           {
-            "name": "longDistanceCombat",
+            "name": "animating",
             "type": "random",
-            "condition": {
-              "type": "LongDistanceCombatCondition"
-            },
             "children": [
               {
-                "name": "rangedAttack",
+                "name": "animatingIdleWar",
                 "type": "sequence",
                 "children": [
                   {
-                    "name": "onRangedAttackAction",
-                    "type": "action",
-                    "action": {
-                      "type": "OnAttackAction",
-                      "animation": "medusa_shot",
-                      "attack": "rangedAttack"
-                    }
-                  },
-                  {
-                    "name": "rangedAttackAction",
-                    "type": "action",
-                    "action": {
-                      "type": "RangedAttackAction",
-                      "animation": "medusa_shot",
-                      "attack": "rangedAttack",
-                      "cancel_condition": "shortDistanceCombat"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "longIdleWar",
-                "type": "sequence",
-                "children": [
-                  {
-                    "name": "onLongIdleWar",
+                    "name": "onAnimatingIdleWar",
                     "type": "action",
                     "action": {
                       "type": "OnIdleWarAction",
@@ -466,7 +503,7 @@
                     }
                   },
                   {
-                    "name": "longIdleWarAction",
+                    "name": "animatingIdleWarAction",
                     "type": "action",
                     "action": {
                       "type": "IdleWarActionFlying",

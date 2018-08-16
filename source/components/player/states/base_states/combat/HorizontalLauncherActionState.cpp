@@ -14,7 +14,7 @@ HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stat
 	LauncherActionState(stateManager, HorizontalLauncher, "horizontal_launcher", "horizontal_launcher") {
 	hitboxOutTime = frames2sec(22);
 	hitEndTime = frames2sec(12);
-	animationEndTime = frames2sec(26);
+	animationEndTime = frames2sec(18);
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(40);
 	walkableTime = frames2sec(44);
@@ -27,7 +27,7 @@ void HorizontalLauncherActionState::update(float delta) {
 	float maxSpeed = 10.f;
 	float deceleration = 8.f;
 
-	if (movementTimer.elapsed() >= frames2sec(20) && movementTimer.elapsed() < frames2sec(28)) {
+	if (movementTimer.elapsed() >= frames2sec(20) && movementTimer.elapsed() < frames2sec(23)) {
 		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
 		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
 			getPlayerTransform()->getFront(), acceleration,

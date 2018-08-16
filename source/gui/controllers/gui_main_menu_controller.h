@@ -10,7 +10,7 @@ namespace GUI {
 		virtual void update(float delta) override;
 		void registerOption(const std::string& name, GUICallback cb);
 		void setCurrentOption(int newOption);
-
+		std::string pauseModule = "pause";
 	private:
 		struct TOption {
 			CButton* button;
@@ -18,7 +18,7 @@ namespace GUI {
 		};
 		std::vector<TOption> _options;
 		int _currentOption = 0;
-		float stickInputCooldown = 5.f / 60;
+		float stickInputCooldown = 7.f / 60;
 		CTimer stickInputTimer;
 	};
 }

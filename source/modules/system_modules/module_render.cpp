@@ -168,6 +168,7 @@ void CModuleRender::render() {
 			ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+			ImGui::DragFloat("Skybox Ratio", &cb_globals.global_skybox_ratio, 0.01f, 0.0f, 1.f);
 
 			// Must be in the same order as the RO_* ctes
 			static const char* render_output_str =
@@ -178,6 +179,7 @@ void CModuleRender::render() {
 				"Metallic\0"
 				"World Pos\0"
 				"Depth Linear\0"
+				"Ambient Occlusion\0"
 				"\0";
 			ImGui::Combo("Output", &cb_globals.global_render_output, render_output_str);
 
@@ -199,6 +201,25 @@ void CModuleRender::setBackgroundColor(float r, float g, float b, float a) {
 	_backgroundColor.w = a;
 }
 
+bool CModuleRender::resizeWindow() {
+	if (!Render.resize(_xres, _yres)) return false;
+
+	// --------------------------------------------
+	// ImGui
+	auto& app = CApp::get();
+	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
+		return false;
+
+	// Main render target before rendering in the backbuffer
+	rt_main = new CRenderToTexture;
+	if (!rt_main->createRT("rt_main.dds", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN, true))
+		return false;
+
+	if (!deferred.create(Render.width, Render.height))
+		return false;
+
+	return true;
+}
 
 // -------------------------------------------------
 void CModuleRender::activateMainCamera() {

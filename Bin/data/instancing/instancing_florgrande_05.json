@@ -1,0 +1,16 @@
+{
+  "TInstance":
+  [
+    {
+      "mesh": "data/meshes/florgrande_05.instanced_mesh",
+      "data":
+      [
+        {
+          "pos": "-5.84177 -2.6163 2.43059",
+          "scale": 1.0,
+          "rot": "0.0 -0.707107 0.0 -0.707107"
+        }
+      ]
+    }
+  ]
+}

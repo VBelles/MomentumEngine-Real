@@ -15,7 +15,8 @@ private:
 	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onCollect(const TMsgCollect& msg);
 
-	float timeToRespawnCoin = 3.f;
+	float timeToRespawnCoin = 30.f;
+	int lifePiecesPerHeart = 2;
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -28,6 +29,7 @@ public:
 	void addCollectable(TCompCollectable::Type type, int amount);
 	int getNumberOfChrysalis();
 	int getNumberOfCoins();
+	int getNumberOfLifePieces();
 	bool spendCoins(int number);
 
 	void clear();

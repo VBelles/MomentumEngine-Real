@@ -47,6 +47,9 @@ private:
 	std::unordered_map<State, IActionState*> states;
 	std::unordered_map<ConcurrentState, IActionState*> concurrentStates;
 
+	std::set<State> lockedStates;
+	std::set<ConcurrentState> lockedConcurrentStates;
+
 	IActionState* baseState;
 	IActionState* concurrentState;
 	IActionState* nextBaseState;
@@ -72,7 +75,9 @@ public:
 
 	void updateStates(float delta);
 	void changeState(State newState);
+	void changeState(std::string newStateName);
 	void changeConcurrentState(ConcurrentState newState);
+	void changeConcurrentState(std::string newStateName);
 	void performStateChange();
 
 	IActionState* getState();
@@ -113,4 +118,7 @@ public:
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;
 
+	void lockState(std::string stateToLock);
+	void unlockState(std::string stateToUnlock);
+	void lockConcurrentState(std::string stateToLock);
 };

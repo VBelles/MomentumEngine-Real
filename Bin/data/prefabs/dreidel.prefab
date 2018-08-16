@@ -43,6 +43,7 @@
         "step_back_distance": 0.3,
         "attack_cool_down": 0.5,
         "block_time": 1.5,
+        "attack_slots": 1.0,
         "attacks": [
           {
             "name": "spin_attack",

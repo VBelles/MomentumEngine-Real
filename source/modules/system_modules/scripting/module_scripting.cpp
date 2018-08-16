@@ -169,7 +169,7 @@ void CModuleScripting::throwEvent(LuaCall event, std::string params) {
 		size_t delimiterPos = params.find(",");
 		std::string firstParam = params.substr(0, delimiterPos);
 		std::string otherParams = "";
-		if (delimiterPos >= 0) {
+		if (delimiterPos != std::string::npos) {
 			otherParams = ",\"" + params.substr(delimiterPos + 1) + "\"";
 		}
 		call = "__startCoroutine(\"" + getNextCoroutineId() + "\"," + luaCalls[event] + "_" + firstParam + otherParams + ")";

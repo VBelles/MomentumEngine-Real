@@ -13,13 +13,14 @@ class TCompCollectable : public TCompBase {
 
 public:
 	enum Type {
-		UNDEFINED, CHRYSALIS, COIN
+		UNDEFINED, CHRYSALIS, COIN, LIFEPIECE
 	};
 
 	std::map<std::string, Type> typeByName = {
 		{ "undefined", UNDEFINED },
 	    { "chrysalis", CHRYSALIS },
-	    { "coin", COIN }
+	    { "coin", COIN },
+		{ "life_piece", LIFEPIECE}
 	};
 	
 private:

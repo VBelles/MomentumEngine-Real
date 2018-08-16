@@ -5,9 +5,10 @@
   {
     "albedo": "data/textures/mariosunshine_baja_Material pasarela_BaseColor.dds",
     "normal": "data/textures/mariosunshine_baja_Material pasarela_Normal.dds",
-    "metallic": "data/textures/mariosunshine_baja_Material mariosunshine_Roughness.dds",
-    "roughness": "data/textures/null_roughness.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/mariosunshine_baja_Material mariosunshine_Roughness.dds",
     "self_illum": "data/textures/mariosunshine_baja_Material pasarela_Emissive.dds",
-    "height": "data/textures/mariosunshine_baja_Material mariosunshine_Height.dds"
+    "height": "data/textures/mariosunshine_baja_Material mariosunshine_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

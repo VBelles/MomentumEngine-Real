@@ -55,6 +55,8 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("rotation_axis")) {
 		rotationAxisLocal = loadVEC3(j["rotation_axis"]);
 	}
+
+	enabled = j.value("enabled", enabled);
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
@@ -69,54 +71,62 @@ void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 	assert(colliderHandle.isValid());
 }
 
+void TCompPlatformSimple::setEnabled(bool enabled) {
+	this->enabled = enabled;
+}
+
 void TCompPlatformSimple::update(float delta) {
-	TCompTransform* transform = getTransform();
-	VEC3 position = transform->getPosition();
+	if (enabled) {
 
-	if (!automove && curve.isLooping()) {
-		if (travelWaitTimer.elapsed() >= travelWaitTime) {
-			automove = true;
+
+		TCompTransform* transform = getTransform();
+		VEC3 position = transform->getPosition();
+
+		if (!automove && curve.isLooping()) {
+			if (travelWaitTimer.elapsed() >= travelWaitTime) {
+				automove = true;
+			}
 		}
-	}
 
-	//Position
-	if (automove) {
-		// Actualizar ratio
-		int sign = moveBackwards ? -1 : 1;
-		ratio += speed * delta * sign;
-		if (ratio >= 1.f || ratio <= 0.f) { // Reaches the end of the spline. 
-			if (curve.isLooping()){
-				if (isClosed) {
-					ratio = ratio - floor(ratio);
+		//Position
+		if (automove) {
+			// Actualizar ratio
+			int sign = moveBackwards ? -1 : 1;
+			ratio += speed * delta * sign;
+			if (ratio >= 1.f || ratio <= 0.f) { // Reaches the end of the spline. 
+				if (curve.isLooping()) {
+					if (isClosed) {
+						ratio = ratio - floor(ratio);
+					}
+					else {
+						moveBackwards = !moveBackwards;
+						ratio = clamp(ratio, 0.f, 1.f);
+						automove = false;
+						travelWaitTimer.reset();
+					}
 				}
 				else {
+					automove = false;
 					moveBackwards = !moveBackwards;
 					ratio = clamp(ratio, 0.f, 1.f);
-					automove = false;
-					travelWaitTimer.reset();
 				}
 			}
-			else {
-				automove = false;
-				moveBackwards = !moveBackwards;
-				ratio = clamp(ratio, 0.f, 1.f);
-			}
+
+			// Evaluar curva con dicho ratio
+			position = curve.evaluate(ratio, position);
+			//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
+			transform->setPosition(position);
 		}
 
-		// Evaluar curva con dicho ratio
-		position = curve.evaluate(ratio, position);
-		//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
-		transform->setPosition(position);
-	}
+		//Rotation
+		if (rotationSpeed > 0) {
+			QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
+			transform->setRotation(transform->getRotation() * quat);
+		}
 
-	//Rotation
-	if (rotationSpeed > 0) {
-		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
-		transform->setRotation(transform->getRotation() * quat);
+		//Update collider
+		getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
 	}
-
-	//Update collider
-	getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
 }
 
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }

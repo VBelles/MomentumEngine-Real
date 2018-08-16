@@ -19,6 +19,13 @@ enum InputType {
 	None, Menu, Game, Console
 };
 
+struct GlobalConfig {
+	VEC2 cameraAxis;
+	VEC2 resolution;
+	bool fullscreen;
+	bool vSync;
+};
+
 class CEngine {
 public:
 	CEngine();
@@ -50,6 +57,8 @@ public:
 	InputType getInputType();
 	InputType getPreviousInputType();
 	void setInputType(InputType newType);
+
+	GlobalConfig globalConfig;
 
 private:
 	CModuleManager      _modules;
