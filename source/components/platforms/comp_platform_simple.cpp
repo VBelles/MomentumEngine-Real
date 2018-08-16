@@ -65,7 +65,6 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 		rollSpeed = jRoll.value("speed", rollSpeed);
 		rollWaitDuration = jRoll.value("wait_duration", rollWaitDuration);
 	}
-	hasDirector = j.value("has_director", hasDirector);
 
 	enabled = j.value("enabled", enabled);
 }

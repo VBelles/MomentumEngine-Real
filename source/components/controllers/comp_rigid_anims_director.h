@@ -3,7 +3,7 @@
 #include "geometry/transform.h"
 #include "geometry/rigid_anim.h"
 
-struct TCompRigidAnimsDirector : public TCompBase {
+class TCompRigidAnimsDirector : public TCompBase {
 private:
 	std::vector<std::string> animatedEntitiesNames;
 	std::vector<CHandle> animatedEntities;

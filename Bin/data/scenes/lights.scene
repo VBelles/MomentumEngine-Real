@@ -59,33 +59,5 @@
 				"offset": "0 2 0"
 			}
 		}
-	},
-	{
-		"entity": {
-			"name": "ms3_plataforma151",
-			"transform": {
-				"pos": "5 2 5",
-				"rotation": "0.0 0.0 0.0 -1.0"
-			},
-			"render": [
-				{
-					"mesh": "data/meshes/ms3_plataforma151.mesh",
-					"materials": [
-						"data/materials/Material_#99.material"
-					]
-				}
-			],
-			"collider": {
-				"mesh_src": "data/meshes/ms3_plataforma_collider151.col_mesh",
-				"shape": "convex_mesh",
-				"type": "kinematic",
-				"group": [
-					"scenario"
-				]
-			},
-			"platform_simple": {
-				"roll": {}
-			}
-		}
 	}
 ]

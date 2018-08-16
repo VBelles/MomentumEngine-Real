@@ -19,12 +19,11 @@ private:
 
 	//Rolling platform
 	CTimer rollTimer;
-	float rollSpeed = 8.f;
+	float rollSpeed = 5.f;
 	float rollWaitDuration = 2.f;
 	float targetRoll = 0.f;
 	bool doRoll = false;
 
-	bool hasDirector = false;
 
 	CTimer travelWaitTimer;
 	float travelWaitTime = 0.f;
@@ -38,6 +37,10 @@ private:
 
 public:
 	DECL_SIBLING_ACCESS();
+
+	bool hasDirector = false;
+
+
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
