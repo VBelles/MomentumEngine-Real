@@ -1,0 +1,115 @@
+[
+  {
+    "entity": {
+      "name": "Plataformeo01_hex000",
+      "prefab": "data/prefabs/plataforma_hex.prefab",
+      "transform": {
+        "pos": "-132.255 13.904 -18.519",
+        "rotation": "0 0 0 1"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_hex001",
+      "prefab": "data/prefabs/plataforma_hex.prefab",
+      "transform": {
+        "pos": "-127.843 12.360 -13.221",
+        "rotation": "0 0 0 1"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_roca000",
+      "prefab": "data/prefabs/plataforma_roca.prefab",
+      "transform": {
+        "pos": "27 6 0",
+        "rotation": "0 0 0 1"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_rect000",
+      "prefab": "data/prefabs/plataforma_rect.prefab",
+      "transform": {
+        "pos": "34 19 4.75",
+        "rotation": "0 0 0.707107 0.707107"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_muro000",
+      "prefab": "data/prefabs/muro.prefab",
+      "transform": {
+        "pos": "22.5 2 5",
+        "rotation": "0 0.707107 0 0.707107"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_kippah000",
+      "prefab": "data/prefabs/kippah_dummy.prefab",
+      "transform": {
+        "pos": "17 5 0"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "plataformeo01_coin000",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform": {
+        "pos": "13.5 4.5 0"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "plataformeo01_chrysalis000",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform": {
+        "pos": "26 60 -4"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "plataformeo01_mech000",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform": {
+        "pos": "-6 65 -4",
+        "rotation": "0 0 0.707107 0.707107"
+      },
+      "mechanism": {
+        "isResettable": false,
+        "systems": [
+          "plataformeo01_hex_mechsys_000"
+        ]
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "plataformeo01_hex_mechsys_000",
+      "prefab": "data/prefabs/plataforma_hex.prefab",
+      "transform": {
+        "pos": "-17 65 -4",
+        "rotation": "0 0.258819 0 0.965926"
+      },
+      "render": {
+        "enabled": false
+      },
+      "mechanism_system": {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener": {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      }
+    }
+  }
+]
