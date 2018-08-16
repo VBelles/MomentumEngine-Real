@@ -770,6 +770,9 @@ struct TSceneExporter (
 	fn exportPlatfRotation obj = (
 		local rotAxis = Point3 0 0 1
 		local rotSpeed = 0
+
+		local rolSpeed = 0
+		local wait 	   = 0
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
 			local xRot = attrManager.getAttributeValue obj "rotateData" #x
@@ -778,10 +781,28 @@ struct TSceneExporter (
 
 			rotAxis = Point3 xRot yRot zRot
 			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
+
+			rolSpeed = attrManager.getAttributeValue obj "rotateData" #rolSpeed
+			wait 	 = attrManager.getAttributeValue obj "rotateData" #wait
 		)
-		fs.writeKeyValue "rotation_axis" rotAxis
-		fs.writeComma()
-		fs.writeKeyValue "rotation_speed" rotSpeed
+		--Export only if it has rotation speed.
+		if rotSpeed > 0 then (
+			fs.writeKeyValue "rotation_axis" rotAxis
+			fs.writeComma()
+			fs.writeKeyValue "rotation_speed" rotSpeed
+			if rolSpeed > 0 then fs.writeComma()
+		)
+
+		--Export only if it has roll speed.
+		if rolSpeed > 0 then (
+			fs.writeKey "roll"
+			fs.beginObj()
+				fs.writeKeyValue "speed" rolSpeed
+				fs.writeComma()
+				fs.writeKeyValue "waitDuration" wait
+			fs.endObj()
+		)
+		return rotSpeed > 0 or rolSpeed > 0
 	),
 
 	fn exportPlatfRotationOnly obj = (
@@ -828,8 +849,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKey type
 				fs.beginObj()
-					exportPlatfRotation obj
-					fs.writeComma()
+					if exportPlatfRotation obj then fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
 					fs.writeKeyValue "automove" auto
@@ -2126,7 +2146,7 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-debugMode = false
+debugMode = true
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
