@@ -116,6 +116,42 @@
   },
   {
     "entity": {
+      "name": "Plataformeo01_dreidel000",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform": {
+        "pos": "-187.838 37.978 -23.526"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_dreidel001",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform": {
+        "pos": "-188.020 38.515 -35.824"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_dreidel002",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform": {
+        "pos": "-184.361 36.923 -14.601"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_dreidel003",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform": {
+        "pos": "-216.150 34.055 -25.846"
+      }
+    }
+  },
+  {
+    "entity": {
       "name": "plataformeo01_coin000",
       "prefab": "data/prefabs/coin.prefab",
       "transform": {
