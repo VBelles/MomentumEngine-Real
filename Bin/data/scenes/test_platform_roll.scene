@@ -24,8 +24,8 @@
 			},
 			"platform_simple": {
 				"roll": {
-					"speed" : 5,
-					"waitDuration" : 2
+					"speed": 5,
+					"waitDuration": 2
 				}
 			}
 		}
@@ -173,9 +173,8 @@
 	{
 		"entity": {
 			"name": "platform_director",
-			"platforms_director":
-			{
-				"platforms" : [
+			"platforms_director": {
+				"platforms": [
 					[
 						"platform1",
 						"platform4"
@@ -189,7 +188,35 @@
 						"platform6"
 					]
 				],
-				"wait_time" : 1.2
+				"wait_time": 1.2
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "platform_rotating",
+			"transform": {
+				"pos": "-5 5 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/ms3_mariosunshine_MS006.mesh",
+					"materials": [
+						"data/materials/Material_#131.material"
+					]
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/ms3_mariosunshine_MS_collider006.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			},
+			"platform_simple": {
+				"rotation_axis": "0.0 0.0 1.0",
+				"rotation_speed": 0.3
 			}
 		}
 	}

@@ -62,7 +62,7 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	// Roll
 	if (j.count("roll")) {
 		auto& jRoll = j["roll"];
-		rollSpeed = jRoll.value("speed", rollSpeed);
+		rollSpeed = jRoll.value("speed", 5.f);
 		rollWaitDuration = jRoll.value("wait_duration", rollWaitDuration);
 	}
 

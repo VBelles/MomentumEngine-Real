@@ -32,6 +32,8 @@ struct MoveState {
 	std::vector<HitState> botHits;
 	std::vector<HitState> sideHits;
 	std::vector<HitState> allHits;
+
+	PxShape* standingShape = nullptr;
 };
 
 class TCompPlayerModel : public TCompBase {
@@ -132,6 +134,7 @@ public:
 
 	CTimer disabledClimbingTimer;
 	bool canClimb = true;
+	CTimer platformChangeSlopeTimer;
 
 	//Parent methods
 	static void registerMsgs();
@@ -189,6 +192,7 @@ public:
 	void rotatePlayerTowards(VEC3 targetPos, float rotationSpeed);
 	void walkTo(VEC3 targetPosition);
 	void disableClimbing();
+	void onPlatform();
 
 	StateManager* getStateManager() { return stateManager; }
 

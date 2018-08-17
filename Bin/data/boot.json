@@ -12,7 +12,8 @@
     
     "data/scenes/sky.scene",
     "data/scenes/slash-test.scene",
-    "data/scenes/test_instancing.scene"
+    "data/scenes/test_instancing.scene",
+    "data/scenes/test_platform_roll.scene"
   ],
   "unused_scenes": [
     "data/scenes/test_spikes.scene",
