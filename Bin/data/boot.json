@@ -9,7 +9,7 @@
     
     "data/scenes/terreno_prefab_plantas23-0.scene",
     "data/scenes/terreno_prefab_plantas23-trimesh.scene",
-    
+    "data/scenes/particles.scene",            
     "data/scenes/sky.scene",
     "data/scenes/slash-test.scene",
     "data/scenes/plataformeo.scene",
@@ -44,7 +44,6 @@
     "data/scenes/milestone3_tutorial-trimesh.scene",
     "data/scenes/milestone3_tutorial-chrysalis.scene",
     "data/scenes/test_instancing.scene",
-    "data/scenes/particles.scene",        
     "data/scenes/breakable-0.scene",
     "data/scenes/test_combat.scene",
     "data/scenes/rigid_anim2.scene",
