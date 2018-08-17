@@ -83,6 +83,7 @@ bool CTransform::debugInMenu() {
     const float max_pitch = 89.95f;
     changed |= ImGui::DragFloat("Pitch", &pitch, 0.1f, -max_pitch, max_pitch);
     changed |= ImGui::DragFloat("Roll", &roll, 0.1f, -180.f, 180.f);
+	ImGui::Text("Quat: %f, %f, %f, %f\n", getRotation().x, getRotation().y, getRotation().z, getRotation().w);
     yaw = deg2rad(yaw);
     pitch = deg2rad(pitch);
     roll = deg2rad(roll);
