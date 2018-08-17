@@ -175,6 +175,9 @@ CB_DEF(CCteGlobals, CB_GLOBALS) {
 
 	VEC3 player_position;
 	float globals_pad_dummy;
+
+	VEC3 player_speed;
+	float player_speed_length;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL) {
