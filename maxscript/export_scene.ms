@@ -17,6 +17,8 @@ global brokenMaps    	= #()
 
 global luaMechSys		= #()
 
+global platfDirector	= #(#())
+
 --------------------------------------------------------------------------------
 struct TJsonFormatter (
 	ofilename,			-- Name of output file.
@@ -770,6 +772,10 @@ struct TSceneExporter (
 	fn exportPlatfRotation obj = (
 		local rotAxis = Point3 0 0 1
 		local rotSpeed = 0
+
+		local rolSpeed = 0
+		local wait 	   = 0
+		local grup 	   = 0
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
 			local xRot = attrManager.getAttributeValue obj "rotateData" #x
@@ -778,10 +784,35 @@ struct TSceneExporter (
 
 			rotAxis = Point3 xRot yRot zRot
 			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
+
+			rolSpeed = attrManager.getAttributeValue obj "rotateData" #rolSpeed
+			wait 	 = attrManager.getAttributeValue obj "rotateData" #wait
+			grup 	 = attrManager.getAttributeValue obj "rotateData" #grup
 		)
-		fs.writeKeyValue "rotation_axis" rotAxis
-		fs.writeComma()
-		fs.writeKeyValue "rotation_speed" rotSpeed
+		--Export only if it has rotation speed.
+		if rotSpeed > 0 then (
+			fs.writeKeyValue "rotation_axis" rotAxis
+			fs.writeComma()
+			fs.writeKeyValue "rotation_speed" rotSpeed
+			if rolSpeed > 0 then fs.writeComma()
+		)
+
+		--Export only if it has roll speed.
+		if rolSpeed > 0 then (
+			fs.writeKey "roll"
+			fs.beginObj()
+				fs.writeKeyValue "speed" rolSpeed
+				fs.writeComma()
+				fs.writeKeyValue "waitDuration" wait
+			fs.endObj()
+
+			if grup > 0 then (
+				if platfDirector[grup] != undefined then (
+					append platfDirector[grup] obj.name
+				) else insertItem #(obj.name) platfDirector grup
+			)
+		)
+		return rotSpeed > 0 or rolSpeed > 0
 	),
 
 	fn exportPlatfRotationOnly obj = (
@@ -828,8 +859,7 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKey type
 				fs.beginObj()
-					exportPlatfRotation obj
-					fs.writeComma()
+					if exportPlatfRotation obj then fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
 					fs.writeComma()
 					fs.writeKeyValue "automove" auto
@@ -2016,6 +2046,37 @@ struct TSceneExporter (
 		if luaMechSys.count > 0 then exportLuaFile()
 	),
 
+	fn exportPlatfDirector = (
+		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
+		
+		fs.begin plDirFilePath --Create file.
+			beginEntity()
+			fs.writeKeyValue "name" "platform_director"
+			fs.writeComma()
+			fs.writeKey "platforms_director"
+			fs.beginObj()
+				fs.writeKey "platforms"
+				fs.beginArray()
+				local validPlGroups = 0
+				for i = 1 to platfDirector.count do (
+					if platfDirector[i] != undefined then (
+						if validPlGroups >= 1 then fs.writeComma()
+						fs.beginArray()
+						for j = 1 to platfDirector[i].count do (
+							if j != 1 then fs.writeComma()
+							fs.writeName platfDirector[i][j]
+						)
+						fs.endArray()
+
+						validPlGroups += 1
+					)
+				)
+				fs.endArray()
+			fs.endObj()
+			endEntity()
+		fs.end()
+	),
+
 	fn showBrokenMaps = (
 		for objName in brokenMaps do (
 			format "ERROR: Map support error in object %, should unwrap_reset.\n" objName
@@ -2112,6 +2173,7 @@ struct TSceneExporter (
 		-- All layers and objects processed, begin export of stored objects.
 		exportUniques()
 		exportLuaMechs()
+		exportPlatfDirector()
 		showBrokenMaps()
 		)--End undo off.
 	)
@@ -2126,7 +2188,7 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-debugMode = false
+debugMode = true
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
