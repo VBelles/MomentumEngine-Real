@@ -21,10 +21,66 @@
   },
   {
     "entity": {
+      "name": "Plataformeo01_hex002",
+      "prefab": "data/prefabs/plataforma_hex.prefab",
+      "transform": {
+        "pos": "-152.665 23.920 -36.856",
+        "rotation": "0 0.258819 0 0.965926"
+      },
+			"platform_simple": {
+				"roll": {}
+			}
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_hex003",
+      "prefab": "data/prefabs/plataforma_hex.prefab",
+      "transform": {
+        "pos": "-149.332 25.947 -31.332",
+        "rotation": "0 0.258819 0 0.965926"
+      },
+			"platform_simple": {
+				"roll": {}
+			}
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_hex004",
+      "prefab": "data/prefabs/plataforma_hex.prefab",
+      "transform": {
+        "pos": "-152.107 31.824 -22.754",
+        "rotation": "-0.500558 -0.000002 0.865703 -0.000001"
+      },
+			"platform_simple": {
+				"roll": {}
+			}
+    }
+  },
+  {
+		"entity": {
+			"name": "platform_director",
+			"platforms_director": {
+				"platforms": [
+					[
+						"Plataformeo01_hex002",
+						"Plataformeo01_hex004"
+					],
+					[
+						"Plataformeo01_hex003"
+					]
+				],
+				"wait_time": 1.2
+			}
+		}
+	},
+  {
+    "entity": {
       "name": "Plataformeo01_roca000",
       "prefab": "data/prefabs/plataforma_roca.prefab",
       "transform": {
-        "pos": "27 6 0",
+        "pos": "-222.265 37 -28.431",
         "rotation": "0 0 0 1"
       }
     }
@@ -54,7 +110,7 @@
       "name": "Plataformeo01_kippah000",
       "prefab": "data/prefabs/kippah_dummy.prefab",
       "transform": {
-        "pos": "17 5 0"
+        "pos": "-148.212 29.074 -25.221"
       }
     }
   },
