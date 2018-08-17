@@ -127,6 +127,46 @@
   },
   {
     "entity": {
+      "name": "Plataformeo_hex009",
+      "prefab": "data/prefabs/plataforma_hex_pure.prefab",
+      "transform": {
+        "pos": "-21 67 2.5",
+        "rotation": "0 0.258819 0 0.965926"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex010",
+      "prefab": "data/prefabs/plataforma_hex_pure.prefab",
+      "transform": {
+        "pos": "-30 74 2.5",
+        "rotation": "0 0.258819 0 0.965926"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex011",
+      "prefab": "data/prefabs/plataforma_hex_pure.prefab",
+      "transform": {
+        "pos": "-40 74 -15",
+        "rotation": "0 0.258819 0 0.965926"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex012",
+      "prefab": "data/prefabs/plataforma_hex.prefab",
+      "transform": {
+        "pos": "-49 82 0",
+        "rotation": "0 0.258819 0 0.965926"
+      }
+    }
+  },
+  {
+    "entity": {
       "name": "Plataformeo_roca000",
       "prefab": "data/prefabs/plataforma_roca.prefab",
       "transform": {
@@ -162,6 +202,16 @@
       "transform": {
         "pos": "30 43 -60",
         "rotation": "0 0 0 1"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_rect002",
+      "prefab": "data/prefabs/plataforma_rect.prefab",
+      "transform": {
+        "pos": "-52 82 5.25",
+        "rotation": "0 0.258819 0 0.965926"
       }
     }
   },
@@ -314,6 +364,42 @@
   },
   {
     "entity": {
+      "name": "Plataformeo_kippah013",
+      "prefab": "data/prefabs/kippah_dummy.prefab",
+      "transform": {
+        "pos": "-25 70 2.5"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_kippah014",
+      "prefab": "data/prefabs/kippah_dummy.prefab",
+      "transform": {
+        "pos": "-35 74 -7"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_kippah015",
+      "prefab": "data/prefabs/kippah_dummy.prefab",
+      "transform": {
+        "pos": "-45 74 -7"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_kippah016",
+      "prefab": "data/prefabs/kippah_dummy.prefab",
+      "transform": {
+        "pos": "-47 78.5 -3.5"
+      }
+    }
+  },
+  {
+    "entity": {
       "name": "plataformeo_coin000",
       "prefab": "data/prefabs/coin.prefab",
       "transform": {
@@ -390,6 +476,15 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform": {
         "pos": "30 44 -60"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "plataformeo_chrysalis002",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform": {
+        "pos": "-52.5 83 6"
       }
     }
   },
