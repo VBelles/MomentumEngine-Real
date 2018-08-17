@@ -39,9 +39,45 @@
       },
       "platform_simple": {
         "roll": {
-          "speed": 5,
+          "speed": 7,
           "waitDuration": 2
         }
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex003_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo_hex003",
+        "pos": "0 0.25 0"
+      },
+      "transform": {
+        "pos": "30 43 -50"
+      },
+      "collider": {
+        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/_plataforma_hex.mesh",
+        "materials": [
+          "data/materials/ambar.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.7
       }
     }
   },
@@ -55,9 +91,45 @@
       },
       "platform_simple": {
         "roll": {
-          "speed": 5,
+          "speed": 7,
           "waitDuration": 2
         }
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex004_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo_hex004",
+        "pos": "0 0.25 0"
+      },
+      "transform": {
+        "pos": "30 43 -35"
+      },
+      "collider": {
+        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/_plataforma_hex.mesh",
+        "materials": [
+          "data/materials/ambar.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.7
       }
     }
   },
@@ -71,9 +143,45 @@
       },
       "platform_simple": {
         "roll": {
-          "speed": 5,
+          "speed": 7,
           "waitDuration": 2
         }
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex005_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo_hex005",
+        "pos": "0 0.25 0"
+      },
+      "transform": {
+        "pos": "30 43 -20"
+      },
+      "collider": {
+        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/_plataforma_hex.mesh",
+        "materials": [
+          "data/materials/ambar.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.5
       }
     }
   },
@@ -87,9 +195,45 @@
       },
       "platform_simple": {
         "roll": {
-          "speed": 5,
+          "speed": 7,
           "waitDuration": 2
         }
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex006_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo_hex006",
+        "pos": "0 -0.25 0"
+      },
+      "transform": {
+        "pos": "36 43 -42.5"
+      },
+      "collider": {
+        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/_plataforma_hex.mesh",
+        "materials": [
+          "data/materials/ambar.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.5
       }
     }
   },
@@ -103,9 +247,45 @@
       },
       "platform_simple": {
         "roll": {
-          "speed": 5,
+          "speed": 7,
           "waitDuration": 2
         }
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex007_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo_hex007",
+        "pos": "0 -0.25 0"
+      },
+      "transform": {
+        "pos": "36.5 43 -27.5"
+      },
+      "collider": {
+        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/_plataforma_hex.mesh",
+        "materials": [
+          "data/materials/ambar.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.5
       }
     }
   },
@@ -119,9 +299,45 @@
       },
       "platform_simple": {
         "roll": {
-          "speed": 5,
+          "speed": 7,
           "waitDuration": 2
         }
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex008_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo_hex008",
+        "pos": "0 -0.25 0"
+      },
+      "transform": {
+        "pos": "36.5 43 -12.5"
+      },
+      "collider": {
+        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/_plataforma_hex.mesh",
+        "materials": [
+          "data/materials/ambar.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.7
       }
     }
   },
@@ -528,19 +744,40 @@
     "entity": {
       "name": "plataformeo_roll_director000",
       "platforms_director": {
-        "platforms": [
-          [
-            "Plataformeo_hex003",
-            "Plataformeo_hex004",
-            "Plataformeo_hex005"
-          ],
-          [
-            "Plataformeo_hex006",
-            "Plataformeo_hex007",
-            "Plataformeo_hex008"
-          ]
-        ],
-        "wait_time": 1.2
+        "slots": [
+          {
+            "wait_time": 0.7,
+            "platforms": [
+              "Plataformeo_hex003",
+              "Plataformeo_hex004",
+              "Plataformeo_hex005"
+            ]
+          },
+          {
+            "wait_time": 1.2,
+            "platforms": [
+              "Plataformeo_hex006",
+              "Plataformeo_hex007",
+              "Plataformeo_hex008"
+            ]
+          },
+          {
+            "wait_time": 0.7,
+            "platforms": [
+              "Plataformeo_hex006",
+              "Plataformeo_hex007",
+              "Plataformeo_hex008"
+            ]
+          },
+          {
+            "wait_time": 1.2,
+            "platforms": [
+              "Plataformeo_hex003",
+              "Plataformeo_hex004",
+              "Plataformeo_hex005"
+            ]
+          }
+        ]
       }
     }
   }

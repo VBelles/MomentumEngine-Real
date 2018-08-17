@@ -5,6 +5,7 @@
 class TCompPlatformsDirector : public TCompBase {
 private:
 	std::vector<std::vector<std::string>> platformEntitiesNames;
+	std::vector<float> waitTimes;
 	std::vector<std::vector<CHandle>> platformHandles;
 
 	CTimer timer;
