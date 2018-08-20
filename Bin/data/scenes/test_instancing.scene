@@ -15,35 +15,7 @@
   },
   {
     "entity": {
-      "name": "Instanced shit",
-      "transform": {},
-      "render": [
-        {
-          "mesh": "data/meshes/GeoShit.instanced_mesh",
-          "materials": [
-            "data/materials/_test_vegetation.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity": {
-      "name": "grass_small_00",
-      "transform": {},
-      "render": [
-        {
-          "mesh": "data/meshes/grass_small_00.instanced_mesh",
-          "materials": [
-            "data/materials/_test_vegetation.material"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "entity": {
-      "name": "grass_large_02",
+      "name": "test_grass_large_02",
       "transform": {},
       "render": [
         {

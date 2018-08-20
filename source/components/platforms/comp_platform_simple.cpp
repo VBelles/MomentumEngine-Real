@@ -62,7 +62,7 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	// Roll
 	if (j.count("roll")) {
 		auto& jRoll = j["roll"];
-		rollSpeed = jRoll.value("speed", rollSpeed);
+		rollSpeed = jRoll.value("speed", 5.f);
 		rollWaitDuration = jRoll.value("wait_duration", rollWaitDuration);
 	}
 
@@ -154,16 +154,25 @@ void TCompPlatformSimple::update(float delta) {
 				doRoll = true;
 			}
 			if (doRoll) {
+				float targetRollOutOfBounds = targetRoll;
+				if (rollSpeed > 0 && roll >= targetRoll) {
+					targetRollOutOfBounds += M_PI * 2;
+				}
+				else if (rollSpeed < 0 && roll <= targetRoll) {
+					targetRollOutOfBounds -= M_PI * 2;
+				}
 				roll = roll + rollSpeed * delta;
-				if ((rollSpeed > 0 && roll >= targetRoll) || (rollSpeed < 0 && roll <= targetRoll)) {
+				transform->setYawPitchRoll(yaw, pitch, roll);
+
+				if ((rollSpeed > 0 && roll >= targetRollOutOfBounds) || (rollSpeed < 0 && roll <= targetRollOutOfBounds)) {
 					//ha llegado a targetRoll
 					int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
 					roll = targetRoll;
 					targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
 					rollTimer.reset();
 					doRoll = false;
+					transform->setYawPitchRoll(yaw, pitch, roll);
 				}
-				transform->setYawPitchRoll(yaw, pitch, roll);
 			}
 
 		}

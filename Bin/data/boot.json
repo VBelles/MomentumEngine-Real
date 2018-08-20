@@ -3,18 +3,18 @@
     "data/scenes/game_camera.scene",
     "data/scenes/player.scene",
     "data/scenes/lights.scene",
-  
     "data/scenes/__testAO-0.scene",
-    
-    
     "data/scenes/terreno_prefab_plantas23-0.scene",
     "data/scenes/terreno_prefab_plantas23-trimesh.scene",
-    
     "data/scenes/sky.scene",
     "data/scenes/slash-test.scene",
-    "data/scenes/plataformeo.scene"
+    "data/scenes/plataformeo.scene",
+    "data/scenes/plataformeo01.scene",
+    "data/scenes/test_instancing.scene",
+    "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
+    "data/scenes/test_particles.scene",            
     "data/scenes/test_spikes.scene",
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-breakables.scene",
@@ -42,7 +42,6 @@
     "data/scenes/milestone3_tutorial-trimesh.scene",
     "data/scenes/milestone3_tutorial-chrysalis.scene",
     "data/scenes/test_instancing.scene",
-    "data/scenes/particles.scene",        
     "data/scenes/breakable-0.scene",
     "data/scenes/test_combat.scene",
     "data/scenes/rigid_anim2.scene",

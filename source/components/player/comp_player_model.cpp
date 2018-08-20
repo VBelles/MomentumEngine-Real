@@ -269,6 +269,11 @@ void TCompPlayerModel::update(float delta) {
 	updateMovement(delta, deltaMovement);
 
 	stateManager->performStateChange();
+
+	VEC3 position = PhysxUtils::toVec3(getController()->getFootPosition());
+	cb_globals.player_speed = position - cb_globals.player_position;
+	cb_globals.player_speed_length = cb_globals.player_speed.Length();
+	cb_globals.player_position = position;
 }
 
 void TCompPlayerModel::applyGravity(float delta) {

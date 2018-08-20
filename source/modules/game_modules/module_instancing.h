@@ -27,6 +27,7 @@ private:
 		VEC3  pos;
 	};
 
+	void loadInstances(const json & jInstances);
 public:
 	CModuleInstancing(const std::string& name)
 		: IModule(name) {
