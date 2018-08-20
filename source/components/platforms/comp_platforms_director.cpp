@@ -8,16 +8,15 @@
 DECL_OBJ_MANAGER("platforms_director", TCompPlatformsDirector);
 
 void TCompPlatformsDirector::load(const json& j, TEntityParseContext& ctx) {
-
-	for (auto& jPlatforms : j["platforms"]) {
+	for (auto& jSlot : j["slots"]) {
 		std::vector<std::string> v;
-		for (std::string platformName : jPlatforms) {
+		for (std::string platformName : jSlot["platforms"]) {
 			v.push_back(platformName);
 		}
 		platformEntitiesNames.push_back(v);
+		float waitTime = jSlot.value("wait_time", timeBetweenSlots);
+		waitTimes.push_back(waitTime);
 	}
-	timeBetweenSlots = j.value("wait_time", timeBetweenSlots);
-
 }
 
 void TCompPlatformsDirector::debugInMenu() {
@@ -46,7 +45,7 @@ void TCompPlatformsDirector::onGroupCreated(const TMsgEntitiesGroupCreated & msg
 
 void TCompPlatformsDirector::update(float delta) {
 	if (timer.elapsed() >= nextSlotTime) {
-		nextSlotTime = timer.elapsed() + timeBetweenSlots;
+		nextSlotTime = timer.elapsed() + waitTimes[currentSlot];
 
 		for (TCompPlatformSimple* platform : platformHandles[currentSlot]) {
 			platform->turnAround();
