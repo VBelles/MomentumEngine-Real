@@ -44,10 +44,12 @@ namespace Particles {
 		else                              cps->emission.type = TCoreSystem::TEmission::Point;
 		cps->emission.size = emission.value("size", cps->emission.size);
 		cps->emission.angle = deg2rad(emission.value("angle", rad2deg(cps->emission.angle)));
+		cps->emission.randomDirection = emission.value("random_direction", cps->emission.randomDirection);
+
 		// movement
 		const json& movement = data["movement"];
 		cps->movement.velocity = movement.value("velocity", cps->movement.velocity);
-		cps->movement.velocity_variation = movement.value("velocity_variation", cps->movement.velocity_variation);
+		cps->movement.velocityVariation = movement.value("velocity_variation", cps->movement.velocityVariation);
 		cps->movement.acceleration = movement.value("acceleration", cps->movement.acceleration);
 		cps->movement.initialRotation = deg2rad(movement.value("initial_rotation", rad2deg(cps->movement.initialRotation)));
 		cps->movement.spin = deg2rad(movement.value("spin", rad2deg(cps->movement.spin)));

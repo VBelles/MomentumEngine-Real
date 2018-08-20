@@ -16,16 +16,17 @@ namespace Particles {
 		struct TEmission {
 			enum EType { Point = 0, Line, Square, Box, Sphere };
 
-			EType type = Point;       // type of emissor
-			float interval = 0.f;     // generation interval
-			int count = 1;            // number of particles each generation
-			bool cyclic = false;      // system re-emits after the interval time
-			float size = 0.f;         // emissor size
-			float angle = 0.f;        // emission angle
+			EType type = Point;				// type of emissor
+			float interval = 0.f;			// generation interval
+			int count = 1;					// number of particles each generation
+			bool cyclic = false;			// system re-emits after the interval time
+			float size = 0.f;				// emissor size
+			float angle = 0.f;				// emission angle
+			bool randomDirection = false;	// emission ignores angle and sets a random direction for each particle
 		};
 		struct TMovement {
 			float velocity = 0.f;			// initial speed
-			float velocity_variation = 0.f; // speed variation
+			float velocityVariation = 0.f;	// speed variation
 			float acceleration = 0.f;		// acceleration
 			float initialRotation = 0;
 			float spin = 0.f;				// rotation speed (radians)

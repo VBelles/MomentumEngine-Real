@@ -240,8 +240,13 @@ namespace Particles {
 
 	VEC3 CSystem::generateVelocity() const {
 		const float& angle = _core->emission.angle;
-		const float velocity = _core->movement.velocity  + random(-_core->movement.velocity_variation, _core->movement.velocity_variation);
+		const float velocity = _core->movement.velocity + random(-_core->movement.velocityVariation, _core->movement.velocityVariation);
 
+		if (_core->emission.randomDirection) {
+			VEC3 dir = VEC3(random(-1, 1), random(-1, 1), random(-1, 1));
+			dir.Normalize();
+			return dir * velocity;
+		}
 		if (angle != 0.f) {
 			float radius = tan(angle);
 			float x = sqrtf(radius) * cosf(angle) * random(-1, 1);
