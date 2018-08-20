@@ -244,6 +244,10 @@ void TCompPlayerModel::update(float delta) {
 		collider->controller->setSlopeLimit(cosf(deg2rad(collider->config.slope)));
 		collider->controller->setStepOffset(collider->config.step);
 	}
+	if (platformChangeSlopeTimer.elapsed() > 0.5f) {
+		TCompCollider* collider = getCollider();
+		collider->controller->setSlopeLimit(cosf(deg2rad(collider->config.slope)));
+	}
 
 	if (isPlayerRotating) {
 		isPlayerRotating = !stateManager->getState()->rotatePlayerTowards(delta, rotatingTargetPos, rotationSpeed);
@@ -300,6 +304,9 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
 	moveState.isTouchingTop = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_UP);
 	moveState.isTouchingSide = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_SIDES);
+	PxControllerState state;
+	getController()->getState(state);
+	moveState.standingShape = state.touchedShape;
 	stateManager->getState()->onMove(moveState);
 }
 
@@ -403,6 +410,12 @@ void TCompPlayerModel::disableClimbing() {
 	getCollider()->controller->setStepOffset(0.f);
 	canClimb = false;
 	disabledClimbingTimer.reset();
+}
+
+void TCompPlayerModel::onPlatform() {
+	getCollider()->controller->setSlopeLimit(cosf(deg2rad(45)));
+	platformChangeSlopeTimer.reset();
+	//dbg("On platform\n");
 }
 
 void TCompPlayerModel::damage(float damage) {

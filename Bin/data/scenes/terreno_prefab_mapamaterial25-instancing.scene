@@ -1,0 +1,65 @@
+[
+  {
+    "entity":
+    {
+      "name": "grass_small",
+      "transform":
+      {
+        "pos": "63.9624 3.21115 7.73469",
+        "rotation": "-0.121972 0.0029348 0.0367514 -0.991849"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/grass_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/grass_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "grass_medium",
+      "transform":
+      {
+        "pos": "63.9564 4.21439 3.72827",
+        "rotation": "-0.121972 0.0029348 0.0367514 -0.991849"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/grass_medium.instanced_mesh",
+          "materials":
+          [
+             "data/materials/grass_medium.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "grass_large",
+      "transform":
+      {
+        "pos": "64.4986 5.18535 -0.31263",
+        "rotation": "-0.121972 0.0029348 0.0367514 -0.991849"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/grass_large.instanced_mesh",
+          "materials":
+          [
+             "data/materials/grass_large.material"
+          ]
+        }
+      ]
+    }
+  }
+]

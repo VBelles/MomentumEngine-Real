@@ -32,6 +32,9 @@ protected:
 	VEC3* accelerationVector;
 	VEC3* velocityVector;
 
+	float platformSlopeLimit = cosf(deg2rad(45.f));
+	float rollingSlopeLimit = cosf(deg2rad(10.f));
+
 	CEntity* getEntity();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getPlayerTransform();
@@ -63,6 +66,10 @@ protected:
 	void clampHorizontalVelocity(float maxHorizontalSpeed);
 
 	bool isWalkable(MoveState& moveState);
+
+	void updateSlopeAndStep(MoveState & moveState);
+
+	bool isStandingOnPlatform(MoveState & moveState);
 
 	void slash(TCompParticles* slash, float yaw = 0, float pitch = 0, float roll = 0);
 

@@ -5,7 +5,7 @@
 class JumpSquatLongActionState : public GroundedActionState {
 private:
 	CTimer timer;
-	float squatTime = frames2sec(8);
+	float squatTime = frames2sec(14);
 
 	std::string animation = "long_jump_squat";
 

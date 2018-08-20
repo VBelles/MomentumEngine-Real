@@ -27,9 +27,9 @@
         "pos": "-152.665 23.920 -36.856",
         "rotation": "0 0.258819 0 0.965926"
       },
-			"platform_simple": {
-				"roll": {}
-			}
+      "platform_simple": {
+        "roll": {}
+      }
     }
   },
   {
@@ -40,9 +40,9 @@
         "pos": "-149.332 25.947 -31.332",
         "rotation": "0 0.258819 0 0.965926"
       },
-			"platform_simple": {
-				"roll": {}
-			}
+      "platform_simple": {
+        "roll": {}
+      }
     }
   },
   {
@@ -53,28 +53,33 @@
         "pos": "-152.107 31.824 -22.754",
         "rotation": "-0.500558 -0.000002 0.865703 -0.000001"
       },
-			"platform_simple": {
-				"roll": {}
-			}
+      "platform_simple": {
+        "roll": {}
+      }
     }
   },
   {
-		"entity": {
-			"name": "platform_director",
-			"platforms_director": {
-				"platforms": [
-					[
-						"Plataformeo01_hex002",
-						"Plataformeo01_hex004"
-					],
-					[
-						"Plataformeo01_hex003"
-					]
-				],
-				"wait_time": 1.2
-			}
-		}
-	},
+    "entity": {
+      "name": "platform_director",
+      "platforms_director": {
+        "slots": [
+          {
+            "wait_time": 1.2,
+            "platforms": [
+              "Plataformeo01_hex002",
+              "Plataformeo01_hex004"
+            ]
+          },
+          {
+            "wait_time": 1.2,
+            "platforms": [
+              "Plataformeo01_hex003"
+            ]
+          }
+        ]
+      }
+    }
+  },
   {
     "entity": {
       "name": "Plataformeo01_roca000",

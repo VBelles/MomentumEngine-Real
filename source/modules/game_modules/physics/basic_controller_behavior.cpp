@@ -18,17 +18,7 @@ PxControllerBehaviorFlags BasicControllerBehavior::getBehaviorFlags(const PxShap
 		if (playerModel->getStateManager()->getState()->state == Slide) {
 			return PxControllerBehaviorFlag::eCCT_SLIDE;
 		}
-		CHandle platformHandle = collidedEntity->get<TCompPlatformSimple>();
-		if (platformHandle.isValid()) { // Collides against a TCompPlatformSimple
-			TCompPlatformSimple* platform = platformHandle;
-			if (platform->isRolling()) {
-				playerModel->disableClimbing();
-				return PxControllerBehaviorFlag::eCCT_SLIDE;
-			}
-		}
-
 	}
-
 
 	return PxControllerBehaviorFlag::eCCT_CAN_RIDE_ON_OBJECT;
 }
