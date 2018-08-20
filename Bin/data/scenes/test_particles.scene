@@ -42,16 +42,5 @@
 				"core": "data/particles/sparks.particles"
 			}
 		}
-	},
-	{
-		"entity": {
-			"name": "particles_ambiental_dust",
-			"particles": {
-				"target": "The Player",
-				"core": "data/particles/ambiental_dust.particles",
-				"offset": "0 12.5 0"
-			}
-		}
 	}
-	
 ]
