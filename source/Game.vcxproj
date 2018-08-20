@@ -437,6 +437,7 @@
     <ClCompile Include="utils\physx_utils.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\template_engine.cpp" />
+    <ClCompile Include="utils\timer_frames.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="windows\windowsUtils.cpp" />
@@ -815,6 +816,8 @@
     <ClInclude Include="utils\murmur3\murmur3.h" />
     <ClInclude Include="utils\template_engine.h" />
     <ClInclude Include="utils\timer.h" />
+    <ClInclude Include="utils\timer2.h" />
+    <ClInclude Include="utils\timer_frames.h" />
     <ClInclude Include="utils\track.h" />
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="utils\variant.h" />

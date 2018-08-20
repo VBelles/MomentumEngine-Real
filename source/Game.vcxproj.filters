@@ -350,6 +350,7 @@
     <ClCompile Include="components\comp_power_source.cpp" />
     <ClCompile Include="components\comp_power_up.cpp" />
     <ClCompile Include="components\platforms\comp_platforms_director.cpp" />
+    <ClCompile Include="utils\timer_frames.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -732,6 +733,8 @@
     <ClInclude Include="components\comp_power_source.h" />
     <ClInclude Include="components\comp_power_up.h" />
     <ClInclude Include="components\platforms\comp_platforms_director.h" />
+    <ClInclude Include="utils\timer_frames.h" />
+    <ClInclude Include="utils\timer2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
