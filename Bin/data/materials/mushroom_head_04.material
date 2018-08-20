@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/mushroom_head_04_BaseColor.dds",
+    "normal": "data/textures/mushroom_head_04_Normal.dds",
+    "metallic": "data/textures/mushroom_head_04_Metallic.dds",
+    "roughness": "data/textures/mushroom_head_04_Roughness.dds",
+    "self_illum": "data/textures/mushrooms_substance_mushroom_head_04_Emissive.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
