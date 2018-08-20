@@ -47,6 +47,7 @@ namespace Particles {
 		// movement
 		const json& movement = data["movement"];
 		cps->movement.velocity = movement.value("velocity", cps->movement.velocity);
+		cps->movement.velocity_variation = movement.value("velocity_variation", cps->movement.velocity_variation);
 		cps->movement.acceleration = movement.value("acceleration", cps->movement.acceleration);
 		cps->movement.initialRotation = deg2rad(movement.value("initial_rotation", rad2deg(cps->movement.initialRotation)));
 		cps->movement.spin = deg2rad(movement.value("spin", rad2deg(cps->movement.spin)));

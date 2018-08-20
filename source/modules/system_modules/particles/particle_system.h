@@ -25,6 +25,7 @@ namespace Particles {
 		};
 		struct TMovement {
 			float velocity = 0.f;			// initial speed
+			float velocity_variation = 0.f; // speed variation
 			float acceleration = 0.f;		// acceleration
 			float initialRotation = 0;
 			float spin = 0.f;				// rotation speed (radians)
