@@ -15,6 +15,7 @@ bool CModulePause::start() {
 	auto mainMenuCB = [&]() {
 		EngineScripting.setActive(true);
 		Engine.getEntities().setActive(true);
+		CTimerFrames::get().setPaused(false);
 		CGameState* currentGamestate = EngineModules.getCurrentGameState();
 		for (auto& module : *currentGamestate) {
 			if (module != this) {
@@ -66,6 +67,7 @@ void CModulePause::onPausePressed() {
 
 	EngineScripting.setActive(!pause);
 	Engine.getEntities().setActive(!pause);
+	CTimerFrames::get().setPaused(pause);
 	CGameState* currentGamestate = EngineModules.getCurrentGameState();
 	for (auto& module : *currentGamestate) {
 		if (module != this) {

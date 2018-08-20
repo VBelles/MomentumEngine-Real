@@ -8,7 +8,7 @@ private:
 	std::vector<float> waitTimes;
 	std::vector<std::vector<CHandle>> platformHandles;
 
-	CTimer timer;
+	CTimer2 timer;
 	int currentSlot = 0;
 	float timeBetweenSlots = 2.f;
 	float nextSlotTime = 0;

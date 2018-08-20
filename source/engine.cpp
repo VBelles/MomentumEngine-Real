@@ -9,6 +9,7 @@
 #include "modules/test/module_test_instancing.h"
 #include "modules/game_modules/module_options_menu.h"
 #include "modules/game_modules/module_map_menu.h"
+#include "utils/timer_frames.h"
 
 CEngine& CEngine::get() {
 	static CEngine engine;
@@ -70,6 +71,9 @@ bool CEngine::start() {
 	_modules.loadGamestates("data/gamestates.json");
 
 	started = _modules.start();
+
+	CTimerFrames::get().reset();
+
 	return started;
 }
 
@@ -82,6 +86,7 @@ bool CEngine::stop() {
 void CEngine::update(float delta) {
 	PROFILE_FUNCTION("CEngine::update");
 	current_unscaled_delta_time = delta;
+	CTimerFrames::get().update(delta);
 	_modules.update(delta);
 }
 
