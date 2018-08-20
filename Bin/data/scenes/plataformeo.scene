@@ -427,7 +427,7 @@
       "prefab": "data/prefabs/plataforma_rect.prefab",
       "transform": {
         "pos": "-52 82 5.25",
-        "rotation": "0 0.258819 0 0.965926"
+        "rotation": "0 -0.258819 0 0.965926"
       }
     }
   },
