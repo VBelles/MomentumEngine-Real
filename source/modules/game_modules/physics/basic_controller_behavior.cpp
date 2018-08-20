@@ -3,20 +3,23 @@
 #include "components/player/comp_player_model.h"
 #include "components/player/states/StateManager.h"
 #include "components/player/states/IActionState.h"
+#include "components/platforms/comp_platform_simple.h"
 
 
 BasicControllerBehavior::BasicControllerBehavior(CHandle entityHandle) : entityHandle(entityHandle) {
 }
 
 PxControllerBehaviorFlags BasicControllerBehavior::getBehaviorFlags(const PxShape& shape, const PxActor& actor) {
+	CEntity* collidedEntity = getEntity(&actor);
 	CEntity* entity = entityHandle;
 	CHandle playerModelHandle = entity->get<TCompPlayerModel>();
-	if (playerModelHandle.isValid()) {
+	if (playerModelHandle.isValid()) { // Is a player
 		TCompPlayerModel* playerModel = playerModelHandle;
 		if (playerModel->getStateManager()->getState()->state == Slide) {
 			return PxControllerBehaviorFlag::eCCT_SLIDE;
 		}
 	}
+
 	return PxControllerBehaviorFlag::eCCT_CAN_RIDE_ON_OBJECT;
 }
 

@@ -20,7 +20,7 @@ public:
 	void blendOutCamera(CHandle camera, float blendTime = 0.f);
 	bool IsCameraAloneInMix(CHandle camera);
 
-    CHandle getCurrentBlendedCamera() { return _mixedCameras.front().camera; }
+	CHandle getCurrentBlendedCamera();
 
 	Interpolator::IInterpolator* getInterpolator(std::string interpolator);
 

@@ -15,6 +15,15 @@ private:
 	bool automove = false;
 	bool moveBackwards = false;
 	bool isClosed = false;
+	bool enabled = true;
+
+	//Rolling platform
+	CTimer rollTimer;
+	float rollSpeed = 0.f;
+	float rollWaitDuration = 2.f;
+	float targetRoll = 0.f;
+	bool doRoll = false;
+
 
 	CTimer travelWaitTimer;
 	float travelWaitTime = 0.f;
@@ -28,12 +37,23 @@ private:
 
 public:
 	DECL_SIBLING_ACCESS();
+
+	bool hasDirector = false;
+
+
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
 
+	float angleInBounds(float angle, float lowerBound, float upperBound);
+
 	void onCreated(const TMsgEntityCreated& msg);
+
+	void turnAround();
+	void setEnabled(bool enabled);
+
+	bool isRolling();
 
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();

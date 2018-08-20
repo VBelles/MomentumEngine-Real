@@ -1,0 +1,132 @@
+[
+  {
+    "entity":
+    {
+      "name": "breakable",
+      "transform":
+      {
+        "pos": "0 5 0",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/ms3_central_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ]
+        }
+      ],
+      "collider":{
+        "shape": "sphere",
+        "radius": 1.0,
+        "type": "static",
+        "group":
+        [
+          "scenario",
+          "enemy"
+        ]
+      },
+      "breakable":
+      {
+        "broken_parts":
+        [
+           "ms3_inner_ring",
+           "ms3_outer_ring",
+           "ms3_central_ring"
+        ]
+      },
+      "rigid_anims_director":{
+        "animated_entities":[
+          "ms3_inner_ring",
+          "ms3_outer_ring",
+          "ms3_central_ring"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_inner_ring",
+      "transform":
+      {
+        "pos": "1 5 1"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_inner_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ],
+          "enabled" : false
+        }
+      ],
+      "rigid_anim":
+      {
+        "src": "data/anims/giratiempo_prefab.anims",
+        "is_moving" : false,
+        "loops" : false,
+        "kill_on_finish" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_outer_ring",
+      "transform":
+      {
+        "pos": "1 5 -1"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_outer_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ],
+          "enabled" : false
+        }
+      ],
+      "rigid_anim":
+      {
+        "src": "data/anims/giratiempo_prefab.anims",
+        "is_moving" : false,
+        "loops" : false,
+        "kill_on_finish" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_central_ring",
+      "transform":
+      {
+        "pos": "-1 5 1"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ms3_central_ring.mesh",
+          "materials":
+          [
+            "data/materials/giratiempo.material"
+          ],
+          "enabled" : false
+        }
+      ],
+      "rigid_anim":
+      {
+        "src": "data/anims/giratiempo_prefab.anims",
+        "is_moving" : false,
+        "loops" : false,
+        "kill_on_finish" : true
+      }
+    }
+  }
+]

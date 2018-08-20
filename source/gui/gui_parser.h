@@ -16,6 +16,8 @@ namespace GUI {
 		CWidget* parseText(const json& data);
 		CWidget* parseButton(const json& data);
 		CWidget* parseBar(const json& data);
+		CWidget* parseOption(const json& data);
+		CWidget* parseMapMarker(const json& data, const std::string& name);
 
 		CEffect* parseEffect(const json& data, CWidget* wdgt);
 		CEffect* parseAnimateUVEffect(const json& data);

@@ -1,0 +1,33 @@
+[
+	{
+		"entity":
+		{
+			"name": "Sky",
+			"sky":{
+				"lerp_time" : 3,
+				"skyboxes" :[
+					{
+						"texture" : "data/textures/cubemaps/momentum/OutputCube_256.dds",
+						"time" : 5
+					},
+					{
+						"texture" : "data/textures/cubemaps/momentum/skybox_inverted.dds",
+						"time" : 5
+					},
+					{
+						"texture" : "data/textures/cubemaps/momentum/skybox_pink.dds",
+						"time" : 5
+					},
+					{
+						"texture" : "data/textures/cubemaps/momentum/skybox_red.dds",
+						"time" : 5
+					},
+					{
+						"texture" : "data/textures/cubemaps/momentum/skybox_turquesa.dds",
+						"time" : 5
+					}
+				]
+			}
+		}
+	}
+]

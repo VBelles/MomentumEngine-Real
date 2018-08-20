@@ -86,41 +86,43 @@ void TCompRender::renderDebug() {
 
 void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
 	CHandle(this).setOwner(ctx.current_entity);
+	std::string name_mesh = j.value("mesh", "");
+	if (!name_mesh.empty()) {
 
-	CMeshWithMaterials mwm;
+		CMeshWithMaterials mwm;
 
-	std::string name_mesh = j.value("mesh", "axis.mesh");
-	mwm.mesh = Resources.get(name_mesh)->as<CRenderMesh>();
+		mwm.mesh = Resources.get(name_mesh)->as<CRenderMesh>();
 
-	if (j.count("materials")) {
-		auto& j_mats = j["materials"];
-		assert(j_mats.is_array());
-		for (size_t i = 0; i < j_mats.size(); ++i) {
-			// Allow to define a null and not render that material idx of the mesh
-			const CMaterial* material = nullptr;
-			if (j_mats[i].is_string()) {
-				std::string name_material = j_mats[i];
-				material = Resources.get(name_material)->as<CMaterial>();
+		if (j.count("materials")) {
+			auto& j_mats = j["materials"];
+			assert(j_mats.is_array());
+			for (size_t i = 0; i < j_mats.size(); ++i) {
+				// Allow to define a null and not render that material idx of the mesh
+				const CMaterial* material = nullptr;
+				if (j_mats[i].is_string()) {
+					std::string name_material = j_mats[i];
+					material = Resources.get(name_material)->as<CMaterial>();
+				}
+				mwm.materials.push_back(material);
 			}
+			//assert(mwm.materials.size() <= mwm.mesh->getSubGroups().size());
+		}
+		else {
+			const CMaterial* material = Resources.get("data/materials/solid.material")->as<CMaterial>();
 			mwm.materials.push_back(material);
 		}
-		//assert(mwm.materials.size() <= mwm.mesh->getSubGroups().size());
+
+		mwm.enabled = j.value("enabled", true);
+
+		// If there is a color in the json, read it
+		if (j.count("color")) color = loadVEC4(j["color"]);
+
+		originalColor = color;
+
+		AABB::CreateMerged(aabb, aabb, mwm.mesh->getAABB());
+
+		meshes.push_back(mwm);
 	}
-	else {
-		const CMaterial* material = Resources.get("data/materials/solid.material")->as<CMaterial>();
-		mwm.materials.push_back(material);
-	}
-
-	mwm.enabled = j.value("enabled", true);
-
-	// If there is a color in the json, read it
-	if (j.count("color")) color = loadVEC4(j["color"]);
-
-	originalColor = color;
-
-	AABB::CreateMerged(aabb, aabb, mwm.mesh->getAABB());
-
-	meshes.push_back(mwm);
 }
 
 void TCompRender::load(const json& j, TEntityParseContext& ctx) {
@@ -136,6 +138,9 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 	else {
 		// We accept not receiving an array of mesh inside the comp_render, for handle files
 		loadMesh(j, ctx);
+		if (!j.value("enabled", true)) {
+			disable();
+		}
 	}
 
 	refreshMeshesInRenderManager();
@@ -165,6 +170,7 @@ std::vector<std::string> TCompRender::getMaterials(int mesh) {
 void TCompRender::setMeshEnabled(int mesh, bool enabled) {
 	CMeshWithMaterials& meshWithMaterial = meshes[mesh];
 	meshWithMaterial.enabled = enabled;
+	refreshMeshesInRenderManager();
 }
 
 void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
@@ -176,13 +182,6 @@ void TCompRender::setAllMaterials(std::vector<std::string> materialNames) {
 		}
 	}
 	refreshMeshesInRenderManager();
-}
-
-void TCompRender::update(float delta) {
-	if (isColorChanged && timer.elapsed() >= timeToNormal) {
-		color = originalColor;
-		isColorChanged = false;
-	}
 }
 
 void TCompRender::TurnRed(float time) {
@@ -220,10 +219,16 @@ void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
 }
 
 void TCompRender::enable() {
+	for (auto& mesh : meshes) {
+		mesh.enabled = true;
+	}
 	refreshMeshesInRenderManager();
 }
 
 void TCompRender::disable() {
+	for (auto& mesh : meshes) {
+		mesh.enabled = false;
+	}
 	CHandle h_me = CHandle(this);
 	CRenderManager::get().delRenderKeys(h_me);
 }

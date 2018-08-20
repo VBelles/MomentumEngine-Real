@@ -12,6 +12,7 @@ private:
 	float freezeDropTime = 1.8f;
 	CTimer freezeDropTimer;
 
+	float minIncreasePerFrame = 1.f;
 	float targetPower;
 	float powerIncreaseSpeed;
 
@@ -20,6 +21,7 @@ private:
 public:
 	DECL_SIBLING_ACCESS();
 
+	void debugInMenu();
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);

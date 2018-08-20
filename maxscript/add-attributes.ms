@@ -36,12 +36,22 @@ global rotationsData = attributes rotateData (
 		y 		 type: #integer ui:yRot 	default:0
 		z 		 type: #integer ui:zRot 	default:1 
 		rotSpeed type: #float   ui:rotSpeed default:0.5
+
+		rolSpeed type: #float   ui:rolSpeed default:5
+		wait 	 type: #float   ui:waitDur 	default:2
+		grup	 type: #integer ui:grup 	default:0
 	)
 	rollout params "Rotation Data" (
+		label lab1 "Rotation:"
 		spinner xRot "x axis" type: #integer range:[-1, 1, 0] --min, max, initial value
 		spinner yRot "y axis" type: #integer range:[-1, 1, 0]
 		spinner zRot "z axis" type: #integer range:[-1, 1, 1]
 		spinner rotSpeed "Rotation speed" type: #float
+
+		label lab2 "Roll:"
+		spinner rolSpeed "Roll speed" 	  type: #float
+		spinner waitDur  "Wait duration"  type: #float
+		spinner grup     "Platform group" type: #integer range:[0, 1000, 0]
 	)
 )
 
@@ -61,19 +71,29 @@ global movesData = attributes moveData (
 	)
 )
 
--- def #mechData
-global mechsData = attributes mechData (
+-- def #mechTrigData
+global mechsTrigData = attributes mechTrigData (
 	parameters main rollout:params (
 		deacT  type: #float   ui:deacTime 	  default:5.0 
 		reacT  type: #float   ui:reacTime 	  default:3.0
 		reset  type: #boolean ui:isResettable default:true
-		appear type: #boolean ui:appears 	  default:true
 	)
-	rollout params "Mechanisms Data" (
+	rollout params "Mech trigger Data" (
 		spinner  deacTime "Deactivation time" type: #float   range:[0, 1000.0, 5.0] --min, max, initial value
 		spinner  reacTime "Reactivation time" type: #float   range:[0, 1000.0, 3.0]
 		checkbox isResettable "Is resettable" type: #boolean align:#right
-		checkbox appears "Appears" 			  type: #boolean align:#right --TODO: use dropdownlist instead to offer more options.
+	)
+)
+
+-- def #mechData
+global mechsData = attributes mechData (
+	parameters main rollout:params (
+		rend type: #boolean ui:render   default:true
+		coll type: #boolean ui:collider default:true
+	)
+	rollout params "Mech Data" (
+		checkbox render "Render enabled on active" 		type: #boolean align:#right
+		checkbox collider "Collider enabled on active" 	type: #boolean align:#right
 	)
 )
 
@@ -87,7 +107,97 @@ global uniquesData = attributes uniqueData (
 	)
 )
 
--- -----------------------------------------------------------
+-- def #animData
+global animsData = attributes animData (
+	parameters main rollout:params (
+		mov  type: #boolean ui:moves 	 default:false
+		loop type: #boolean ui:loops 	 default:false
+		kill type: #boolean ui:killAfter default:true
+	)
+	rollout params "Rigid anims Data" (
+		checkbox moves "Is moving" 			type: #boolean align:#right
+		checkbox loops "Loops"     			type: #boolean align:#right
+		checkbox killAfter "Kill on finish"	type: #boolean align:#right
+	)
+)
+
+-- def #lightData
+global lightsData = attributes lightData (
+	parameters main rollout:params (
+		fov type: #float ui:lfov default:40.0
+	)
+	rollout params "Lights Data" (
+		spinner lfov "FoV" type: #float range:[0, 1000.0, 40.0] --min, max, initial value
+	)
+)
+
+-- def #collData
+global colsData = attributes collData (
+	parameters main rollout:params (
+		collType type: #boolean ui:cType default:true
+		pwrUp    type: #string default:"-NONE-"
+	)
+	rollout params "Collider Data" (
+		checkbox cType "Tri mesh" type: #boolean align:#right
+		dropdownlist powerUp "Power-up" items:#("-NONE-", \
+												"AirborneLong", \
+												"AirborneNormal", \
+												"AirborneWallJump", \
+												"AirDodge", \
+												"Death", \
+												"Dodge", \
+												"FallingAttack", \
+												"FastAttack", \
+												"FastAttack2", \
+												"FastAttackAir", \
+												"FastFinisher1", \
+												"FastFinisher2", \
+												"GhostJumpSquat", \
+												"GhostJumpSquatLong", \
+												"GhostJumpWindow", \
+												"GrabHigh", \
+												"GrabLong", \
+												"HardKnockbackAir", \
+												"HardKnockbackGround", \
+												"HardLanding", \
+												"HorizontalLauncher", \
+												"HuggingWall", \
+												"HuggingWallLongJumpSquat", \
+												"Idle", \
+												"IdleTurnAround", \
+												"JumpSquat", \
+												"JumpSquatLong", \
+												"JumpSquatSpring", \
+												"PitFalling", \
+												"PropelHigh", \
+												"PropelLong", \
+												"ReleasePowerAir", \
+												"ReleasePowerGround", \
+												"Run", \
+												"Slide", \
+												"SoftKnockbackAir", \
+												"SoftKnockbackGround", \
+												"SoftLanding", \
+												"SpendCoins", \
+												"SpringJump", \
+												"StrongAttack", \
+												"StrongAttack2", \
+												"StrongAttack3", \
+												"StrongFinisher1", \
+												"StrongFinisher2", \
+												"TurnAround", \
+												"VerticalLauncher", \
+												"Walk", \
+												"WallJumpPlummet", \
+												"WallJumpSquat", \
+												"WallJumpSquatPlummet")
+	
+		on powerUp selected i do pwrUp = powerUp.items[i]
+		on params open do powerUp.selection = findItem powerUp.items pwrUp
+	)
+)
+
+-- -----------------------------------------------------------------------------
 
 struct TAttributeManager (
 	fn hasAttribute obj defName = (
@@ -114,21 +224,40 @@ struct TAttributeManager (
 		if idxFound != undefined then (
 			local objDefs = custAttributes.getDefs obj
 			a = custAttributes.get obj idxFound
+
+			--a[#pwrUp] returns undefined, I guess because it's a dropdownlist?
+			--so pick this manually.
+			if attribute == #pwrUp then return obj.collData.pwrUp
+
 			return a[attribute].value
 		)
 		return undefined
 	),
 	
+	fn setAttributeValue obj defName attribute newValue = (
+		local idxFound = findAttribute obj defName
+		if idxFound != undefined then (
+			local objDefs = custAttributes.getDefs obj
+			a = custAttributes.get obj idxFound
+
+			a[attribute].value = newValue
+		)
+	),
+
 	-- Adds attribute of type defName to object.
 	fn addAttribute obj defName = (
 		if not hasAttribute obj defName then (
 			case defName of (
-				"enemyData":  ( attrDef = enemiesData )
-				"mechData":   ( attrDef = mechsData )
-				"moveData":   ( attrDef = movesData )
-				"rotateData": ( attrDef = rotationsData )
-				"uniqueData": ( attrDef = uniquesData )
-				default:     ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
+				"animData":     ( attrDef = animsData     )
+				"collData":     ( attrDef = colsData      )
+				"enemyData":    ( attrDef = enemiesData	  )
+				"lightData":    ( attrDef = lightsData    )
+				"mechData":     ( attrDef = mechsData	  )
+				"mechTrigData": ( attrDef = mechsTrigData )
+				"moveData":     ( attrDef = movesData	  )
+				"rotateData":   ( attrDef = rotationsData )
+				"uniqueData":   ( attrDef = uniquesData   )
+				default: ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
 			)
 			custAttributes.add obj attrDef
 		) else format "Attribute % not added, already exists.\n" defName -- DEBUG
@@ -151,6 +280,12 @@ struct TAttributeManager (
 	fn delAttributeFromSel defName = (
 		for obj in selection do (
 			delAttribute obj defName
+		)
+	),
+
+	fn setAttributeInSel defName attribute newValue = (
+		for obj in selection do (
+			setAttributeValue obj defName attribute newValue
 		)
 	)
 )

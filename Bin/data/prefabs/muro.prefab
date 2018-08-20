@@ -1,0 +1,28 @@
+[
+	{
+		"entity": {
+			"name": "Muro",
+			"transform": {
+				"pos": "0.0 0.0 0.0",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/_muro.mesh",
+					"materials": [
+						"data/materials/Material_#132.material"
+					],
+					"enabled": true
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/_muro_collider.col_mesh",
+				"shape": "convex_mesh",
+				"type": "kinematic",
+				"group": [
+					"scenario"
+				]
+			}
+		}
+	}
+]

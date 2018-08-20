@@ -62,7 +62,7 @@ public:
 	bool isDebug() { return debug; }
 
 	void setWindowFocused(bool windowFocused);
-	bool isWindowFocused() { return windowFocused; }
+	bool isWindowFocused() { return windowFocused && IsWindowVisible(hWnd); }
 
 	bool shoulResetMouse();
 	void setResetMouse(bool resetMouse);

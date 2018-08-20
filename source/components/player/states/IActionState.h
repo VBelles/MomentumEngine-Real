@@ -32,6 +32,9 @@ protected:
 	VEC3* accelerationVector;
 	VEC3* velocityVector;
 
+	float platformSlopeLimit = cosf(deg2rad(45.f));
+	float rollingSlopeLimit = cosf(deg2rad(10.f));
+
 	CEntity* getEntity();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getPlayerTransform();
@@ -46,8 +49,6 @@ protected:
 	TCompCameraPlayer* getCameraPlayer();
 	TCompSlash* getSlash(SlashType type);
 
-	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
-	void rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
 	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
 	float calculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
@@ -66,11 +67,18 @@ protected:
 
 	bool isWalkable(MoveState& moveState);
 
+	void updateSlopeAndStep(MoveState & moveState);
+
+	bool isStandingOnPlatform(MoveState & moveState);
+
 	void slash(TCompParticles* slash, float yaw = 0, float pitch = 0, float roll = 0);
 
 	void slash(std::string slash, VEC3 offset = VEC3::Zero, float yaw = 0, float pitch = 0, float roll = 0);
 
 public:
+
+	//Rota hacia targetPos a velocidad rotationSpeed durante el tiempo delta
+	bool rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed);
 
 	StateManager* stateManager;
 
@@ -108,4 +116,6 @@ public:
 
 	VEC3 getDeltaMovement() { return deltaMovement; }
 	VEC2 getMovementInput() { return movementInput; }
+
+	bool autoWalk = false;
 };

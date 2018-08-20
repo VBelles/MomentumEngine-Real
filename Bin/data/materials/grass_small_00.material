@@ -1,12 +1,9 @@
 {
-  "technique": "pbr.tech",
+  "technique": "vegetation.tech",
   "shadows": true,
   "textures":
   {
     "albedo": "data/textures/vegetacion/grass_small_00.dds",
-    "normal": "data/textures/vegetacion/grass_small_normals.dds",
-    "metallic": "data/textures/null_metallic.dds",
-    "roughness": "data/textures/null_roughness.dds"
-    
+    "normal": "data/textures/vegetacion/grass_small_normals.dds"    
   }
 }

@@ -1,7 +1,6 @@
 {
   "update": [
     "input",
-    "pause",
     "physics",
     "entities",
     "main_menu",
@@ -16,7 +15,10 @@
     "slash",
     "test_instancing",
     "scripting",
-    "sound"
+    "sound",
+    "pause",
+    "options_menu",
+    "map_menu"
   ],
   "render": [
     "render",

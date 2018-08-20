@@ -28,9 +28,15 @@ Funciones:
 	bool takePlayerControl()
 	bool givePlayerControl()
 	void lockPlayerCameraInput()
-    	void unlockPlayerCameraInput()
+	void unlockPlayerCameraInput()
 	void disablePlayerOutline()
 	void enablePlayerOutline()
+	bool isPlayerGrounded()
+	void stopPlayerVelocity()
+	void changePlayerState(std::string state)
+	void changePlayerConcurrentState(std::string state)
+	void rotatePlayerTowards(float x, float z, float speed)
+	void walkTo(float x, float z)
 
 	string spawnEntityAt(PREFAB, float x, float y, float z)
 	string spawnEntity(PREFAB)
@@ -67,6 +73,11 @@ Constantes:
 	PREFAB_MEDUSA
 	PREFAB_CHRYSALIS
 	PREFAB_DREIDEL
+	PREFAB_MURO
+	PREFAB_PLATAFORMA_HEX 
+	PREFAB_PLATAFORMA_RECT
+	PREFAB_PLATAFORMA_ROCA
+	PREFAB_PRISMA
 
 	INTERPOLATOR_LINEAR
 	INTERPOLATOR_QUAD_IN

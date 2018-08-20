@@ -17,6 +17,13 @@ struct UniqueEnemy {
 	EnemyType type;
 };
 
+struct UniquePowerUp {
+	bool done;
+	VEC3 position;
+	std::string level;
+	std::string stateToUnlock;
+};
+
 class CModuleUniques : public IModule {
 private:
 	enum ElementType {
@@ -24,19 +31,24 @@ private:
 		CHRYSALIS,
 		ALTAR,
 		EVENT,
-		ENEMY
+		ENEMY,
+		LIFEPIECE,
+		POWERUP
 	};
 
 	//maps
 	std::map<std::string, UniqueElement> coins;
+	std::map<std::string, UniqueElement> lifePieces;
 	std::map<std::string, UniqueElement> chrysalides;
 	std::map<std::string, UniqueElement> altars;
 	std::map<std::string, UniqueElement> events;
 	std::map<std::string, UniqueEnemy> enemies;
+	std::map<std::string, UniquePowerUp> powerUps;
 
 	void parseChunk(const json& j, ElementType type);
 
 	void parseEnemy(const json & j, std::string id);
+	void parsePowerUp(const json & j, std::string id);
 
 public:
 	CModuleUniques(const std::string& aname) : IModule(aname) {}
@@ -45,14 +57,18 @@ public:
 	void update(float delta) override;
 
 	UniqueElement* getUniqueCoin(std::string id);
+	UniqueElement* getUniqueLifePiece(std::string id);
 	UniqueElement* getUniqueChrysalis(std::string id);
 	UniqueElement* getUniqueAltar(std::string id);
 	UniqueElement* getUniqueEvent(std::string id);
 	UniqueEnemy* getUniqueEnemy(std::string id);
+	UniquePowerUp* getUniquePowerUp(std::string id);
 
 	bool setCoinTaken(std::string id, bool isTaken);
+	bool setLifePieceTaken(std::string id, bool isTaken);
 	bool setChrysalisTaken(std::string id, bool isTaken);
 	bool setAltarBroken(std::string id, bool isBroken);
 	bool setEventTriggered(std::string id, bool isTriggered);
 	bool setEnemyDead(std::string id, bool isDead);
+	bool setPowerUpTaken(std::string id, bool isTaken);
 };

@@ -12,12 +12,13 @@ Texture2D    txHeight      		SLOT( TS_HEIGHT );
 Texture2D    txDetailNormal     SLOT( TS_DETAIL_NORMAL );
 
 // from the light and env
-Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
-Texture2D    txLightShadowMap SLOT(TS_LIGHT_SHADOW_MAP);
-TextureCube  txEnvironmentMap SLOT(TS_ENVIRONMENT_MAP);
-TextureCube  txIrradianceMap  SLOT(TS_IRRADIANCE_MAP);
-Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
-Texture3D    txLUT            SLOT(TS_LUT_COLOR_GRADING);
+Texture2D    txLightProjector 	SLOT(TS_LIGHT_PROJECTOR);
+Texture2D    txLightShadowMap 	SLOT(TS_LIGHT_SHADOW_MAP);
+TextureCube  txEnvironmentMap 	SLOT(TS_ENVIRONMENT_MAP);
+TextureCube  txEnvironmentMap1 	SLOT(TS_ENVIRONMENT_MAP_1);
+//TextureCube  txIrradianceMap  	SLOT(TS_IRRADIANCE_MAP);
+Texture2D    txNoiseMap       	SLOT(TS_NOISE_MAP);
+Texture3D    txLUT            	SLOT(TS_LUT_COLOR_GRADING);
 
 // output from deferred
 Texture2D    txGBufferAlbedos     	SLOT(TS_DEFERRED_ALBEDOS);
@@ -270,4 +271,15 @@ void computeBlendWeights( float t1_a
   w1 = b1 / ( b_total );
   w2 = b2 / ( b_total );
   w3 = b3 / ( b_total );
+}
+
+//-------------------------------------------------------------
+float3 getEnvironment(float3 direction, float mipIndex){
+	float3 skybox_color = txEnvironmentMap.SampleLevel(samLinear, direction, mipIndex).xyz;
+	float3 skybox_color1 = txEnvironmentMap1.SampleLevel(samLinear, direction, mipIndex).xyz;
+	return lerp(skybox_color, skybox_color1, global_skybox_ratio);
+}
+
+float3 getIrradiance(float3 direction){
+	return getEnvironment(direction, 10);
 }

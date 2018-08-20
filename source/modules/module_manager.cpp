@@ -57,6 +57,12 @@ void CModuleManager::render() {
             mod->render();
         }
     }
+
+	if (gameStateChanged) {
+		EngineScripting.throwEvent(onLevelStart, getCurrentGameState()->getName());
+		gameStateChanged = false;
+	}
+
     if (CApp::get().isDebug()) {
         renderDebug();
     }
@@ -224,6 +230,7 @@ void CModuleManager::applyRequestedGameState() {
 
         _current_gs = _requested_gs;
         _requested_gs = nullptr;
+		gameStateChanged = true;
     }
 }
 

@@ -46,14 +46,16 @@ float4 PS(
   // We expect all the 3x3 pixels to have the same value 
   int sum_stencils = s_nw + s_nc + s_ne + s_cw + s_cc + s_ce + s_sw + s_sc + s_se;
   uint diff = sum_stencils - s_cc * 9;
+  float alpha = 0.2;
+  float borderAlpha = alpha;
   // If not we are in the border
   if( diff != 0 )
-    return float4( 0, 0, 0, 0.7 * a); 
+    return float4( 0, 0, 0, borderAlpha * a); 
 
   // else, or we are inside ( stencil != 0 ) 
   if( s_cc != 0 ) {
     // Use different stencil values for different colors!
-    return float4( 0, 0, 0, 0.4 * a); 
+    return float4( 0, 0, 0, alpha * a); 
   }
 
   // or we are outside, all zeros.

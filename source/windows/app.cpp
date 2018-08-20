@@ -5,6 +5,13 @@
 #include "profiling/profiling.h"
 #include <windowsx.h>
 
+#ifndef HID_USAGE_PAGE_GENERIC
+#define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
+#endif
+#ifndef HID_USAGE_GENERIC_MOUSE
+#define HID_USAGE_GENERIC_MOUSE        ((USHORT) 0x02)
+#endif
+
 CApp* CApp::app_instance = nullptr;
 DWORD defaultStickyKeysState;
 
@@ -216,17 +223,10 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
                             0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN),
                             NULL, NULL, hInstance, NULL);
     }
-
+	
     if (!hWnd) return false;
 
     ShowWindow(hWnd, nCmdShow);
-
-#ifndef HID_USAGE_PAGE_GENERIC
-#define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
-#endif
-#ifndef HID_USAGE_GENERIC_MOUSE
-#define HID_USAGE_GENERIC_MOUSE        ((USHORT) 0x02)
-#endif
 
     RAWINPUTDEVICE Rid[1];
     Rid[0].usUsagePage = HID_USAGE_PAGE_GENERIC;
@@ -235,7 +235,6 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
     Rid[0].hwndTarget = hWnd;
     RegisterRawInputDevices(Rid, 1, sizeof(Rid[0]));
 
-	//setResetMouse(false);
 	showCursor = true;
 
     return true;
@@ -265,6 +264,7 @@ void CApp::mainLoop() {
 bool CApp::readConfig() {
     json j = loadJson("data/configuration.json");
     json& jScreen = j["screen"];
+	json& jCamera = j["camera"];
 
 	std::string res = jScreen.value("resolution", "auto");
 	if (res == "auto") {
@@ -274,9 +274,11 @@ bool CApp::readConfig() {
 		int n = sscanf(res.c_str(), "%d %d", &resX, &resY);
 		if(n != 2) getDesktopResolution(resX, resY);
 	}
+	Engine.globalConfig.resolution = VEC2(resX, resY);
 	fullscreen = jScreen.value("fullscreen", true);
+	Engine.globalConfig.fullscreen = fullscreen;
 	bool vsync = jScreen.value("vsync", false);
-    
+	Engine.globalConfig.vSync = vsync;
     //16:9 resolutions:
     //1280x720  = 720p HD
     //1920x1080 = 1080p HD
@@ -284,6 +286,9 @@ bool CApp::readConfig() {
     //3840x2160 = 4K UHDTV
     //5120x2880 = Retina 5K
     //7680x4320 = 8K UHDTV
+
+	Engine.globalConfig.cameraAxis.x = jCamera.value("invert_x_axis", false) ? -1.f : 1.f;
+	Engine.globalConfig.cameraAxis.y = jCamera.value("invert_y_axis", false) ? -1.f : 1.f;
 
     time_since_last_render.reset();
 
@@ -311,7 +316,7 @@ void CApp::setWindowFocused(bool windowFocused) {
 }
 
 bool CApp::shoulResetMouse() {
-	return resetMouse && windowFocused;
+	return resetMouse && isWindowFocused();
 }
 
 void CApp::setResetMouse(bool resetMouse) {

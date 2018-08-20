@@ -1,0 +1,30 @@
+[
+	{
+		"entity": {
+			"name": "life_piece",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/chrysalis.mesh",
+					"materials": [
+						"data/materials/lila_coin.material"
+					]
+				}
+			],
+			"collectable": {
+				"type": "life_piece",
+				"rotation_axis": "0 1 0",
+				"rotation_speed": 2.5
+			},
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius" : 0.75,
+				"group": ["all"],
+				"mask": ["player"]
+			}
+		}
+	}
+]

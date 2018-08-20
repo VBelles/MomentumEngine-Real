@@ -4,7 +4,9 @@
 using namespace GUI;
 
 void CText::render() {
-	_textParams._text = _textParams._templateText.toString(variableCallback);
+	if (!_textParams._templateText.texts.empty()) {
+		_textParams._text = _textParams._templateText.toString(variableCallback);
+	}
 	float textWidth = _textParams._text.size() * _textParams._size;
 	float textHeight = _textParams._size;
 	VEC2 offset;

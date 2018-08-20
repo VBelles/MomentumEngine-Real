@@ -52,6 +52,25 @@ struct TUtils (
 		for o in selection do (
 			detachElements o o.name
 		)
+	),
+
+	fn selectChildren = (
+		select (for o in selection where o.children.count > 0 collect o.children[1])
+	),
+
+	fn selectParents = (
+		select (for o in selection where o.parent != undefined collect o.parent)
+	),
+
+	fn createChildColliders = (
+		objsToSelect = #()
+		for obj in selection do (
+			objCopy = copy obj
+			objCopy.name = obj.name + "_col"
+			objCopy.parent = obj
+			append objsToSelect objCopy
+		)
+		select objsToSelect --Select children so it's easy to add attributes.
 	)
 )
 
@@ -175,10 +194,33 @@ fn isPathInsidePath thisPath basePath = (
 	else return stringContainsSubstring (cleanPath thisPath) (cleanPath basePath)
 )
 
--- "c:/ojete/data/" and "c:/ojete/" returns "data/"
+-- "c:/folder/data/" and "c:/folder/" returns "data/"
 fn stripPathFromPath originalPath pathToRemove = (
 	originalPath = cleanPath originalPath
 	local foundAt = findString originalPath (cleanPath pathToRemove)
 	if foundAt == undefined then return originalPath
 	return substring originalPath (foundAt + pathToRemove.count) -1
+)
+
+fn areFilesIdentical pathA pathB = (
+	if pathA == undefined or
+	   pathB == undefined then return false
+	if not (doesFileExist pathA) or
+	   not (doesFileExist pathB) then return false
+
+	return  (getFileModDate pathA == getFileModDate pathB) and
+			(getFileSize pathA == getFileSize pathB) and
+			(getFilenameFile pathA == getFilenameFile pathB) and
+			(getFilenameType pathA == getFilenameType pathB)
+)
+
+fn getNewerFile pathA pathB = (
+	if (pathA == undefined or not (doesFileExist pathA)) and
+	   (pathB != undefined and (doesFileExist pathB)) then return pathB
+
+	if (pathB == undefined or not (doesFileExist pathB)) and
+	   (pathA != undefined and (doesFileExist pathA)) then return pathA
+
+	if getFileModDate pathA >= getFileModDate pathB then return pathA
+	else return pathB
 )

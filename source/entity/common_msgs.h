@@ -39,6 +39,10 @@ struct TMsgMechanismSystemActivated {
 	DECL_MSG_ID();
 };
 
+struct TMsgMechanismSystemDeactivated {
+	DECL_MSG_ID();
+};
+
 struct TMsgPerfectDodged {
 	DECL_MSG_ID();
 };

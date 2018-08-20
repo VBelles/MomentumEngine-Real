@@ -96,7 +96,7 @@ float4 PS(
   // Compute reflected color using the eye direction reflected in the N
   float3 eye = normalize( iWorldPos - camera_pos );
   float3 eye_r = reflect( eye, iNormal );
-  float4 env_color = txEnvironmentMap.SampleLevel( samLinear, eye_r, 3 );
+  float4 env_color = float4(getEnvironment(eye_r, 3 ), 1);
 
   // Apply a small fresnel effect
   float  amount = dot( iNormal, -eye );

@@ -13,6 +13,7 @@
 #include "components/controllers/comp_camera_player.h"
 #include "modules/system_modules/slash/comp_slash.h"
 #include "modules/system_modules/particles/comp_particles.h"
+#include "components/platforms/comp_platform_simple.h"
 
 
 IActionState::IActionState(StateManager* stateManager, State state, ConcurrentState concurrentState) :
@@ -57,18 +58,20 @@ void IActionState::setMovementInput(VEC2 input) {
 	movementInput = input;
 }
 
-void IActionState::rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
+bool IActionState::rotatePlayerTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 	float rotationIncrement = rotationSpeed * delta;
 	float deltaYaw = getPlayerTransform()->getDeltaYawToAimTo(targetPos);
 	float y, p, r;
 	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
-	if (abs(deltaYaw) >= rotationIncrement) {
+	if (abs(deltaYaw) > rotationIncrement) {
 		y = (deltaYaw > 0) ? (y + rotationIncrement) : (y - rotationIncrement);
 	}
 	else {
 		y += deltaYaw;
+		return true;
 	}
 	getPlayerTransform()->setYawPitchRoll(y, p, r);
+	return false;
 }
 
 float IActionState::calculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,
@@ -132,8 +135,48 @@ bool IActionState::isWalkable(MoveState& moveState) {
 	if (moveState.botHits.empty()) {
 		return true;
 	}
+
+	updateSlopeAndStep(moveState);
+	
+	float slopeLimit = getPlayerModel()->getController()->getSlopeLimit();
+
 	for (HitState& hit : moveState.botHits) {
-		if (hit.dotUp >= getPlayerModel()->getController()->getSlopeLimit()) {
+		if (hit.dotUp >= slopeLimit) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void IActionState::updateSlopeAndStep(MoveState& moveState) {
+	TCompCollider* collider = getCollider();
+	if (moveState.standingShape) {
+		CEntity* entity = PhysxUtils::getEntity(moveState.standingShape->getActor());
+		CHandle platformHandle = entity->get<TCompPlatformSimple>();
+		if (platformHandle.isValid()) {
+			TCompPlatformSimple* platform = platformHandle;
+			if (platform->isRolling()) {
+				collider->controller->setSlopeLimit(rollingSlopeLimit);
+				collider->controller->setStepOffset(0);
+				return;
+			}
+			else {
+				collider->controller->setSlopeLimit(platformSlopeLimit);
+				collider->controller->setStepOffset(collider->config.step);
+				return;
+			}
+		}
+	}
+
+	collider->controller->setSlopeLimit(cosf(deg2rad(collider->config.slope)));
+	collider->controller->setStepOffset(collider->config.step);
+}
+
+bool IActionState::isStandingOnPlatform(MoveState& moveState) {
+	if (moveState.standingShape) {
+		CEntity* entity = PhysxUtils::getEntity(moveState.standingShape->getActor());
+		CHandle platformHandle = entity->get<TCompPlatformSimple>();
+		if (platformHandle.isValid()) {
 			return true;
 		}
 	}

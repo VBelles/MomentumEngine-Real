@@ -43,4 +43,6 @@ private:
 	CGameState* _current_gs = nullptr;
 	CGameState* _startup_gs = nullptr;
 	CGameState* _requested_gs = nullptr;
+
+	bool gameStateChanged = false;
 };

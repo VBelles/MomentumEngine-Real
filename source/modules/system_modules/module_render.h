@@ -33,6 +33,7 @@ public:
 
 	void configure(int xres, int yres, bool vsync);
 	void setBackgroundColor(float r, float g, float b, float a);
+	bool resizeWindow();
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 

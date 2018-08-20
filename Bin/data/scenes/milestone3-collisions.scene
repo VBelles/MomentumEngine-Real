@@ -2,6 +2,465 @@
   {
     "entity":
     {
+      "name": "ms3_fireplace_col021",
+      "transform":
+      {
+        "pos": "-106.892 4.1771 -17.8553",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col021.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col020",
+      "transform":
+      {
+        "pos": "38.8465 17.2673 -263.272",
+        "rotation": "0.507602 -0.203023 -0.216778 -0.808783"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col020.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col019",
+      "transform":
+      {
+        "pos": "23.8103 3.8302 -30.7124",
+        "rotation": "0.65257 0.174856 0.190821 -0.712155"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col019.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col018",
+      "transform":
+      {
+        "pos": "37.8589 18.6099 -284.912",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col018.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col017",
+      "transform":
+      {
+        "pos": "37.8265 13.2136 -244.774",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col017.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col016",
+      "transform":
+      {
+        "pos": "25.0538 14.2888 -131.773",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col016.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col015",
+      "transform":
+      {
+        "pos": "25.2004 13.6672 -110.714",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col015.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col014",
+      "transform":
+      {
+        "pos": "25.1745 11.3957 -91.2909",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col014.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col013",
+      "transform":
+      {
+        "pos": "25.1771 9.04026 -70.7578",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col013.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col012",
+      "transform":
+      {
+        "pos": "25.1685 6.53611 -51.8994",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col012.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col011",
+      "transform":
+      {
+        "pos": "25.1947 2.0781 -10.7694",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col010",
+      "transform":
+      {
+        "pos": "-22.2829 16.5465 -284.836",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col009",
+      "transform":
+      {
+        "pos": "-22.2175 17.0794 -265.76",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col008",
+      "transform":
+      {
+        "pos": "-22.2232 16.9262 -244.427",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col007",
+      "transform":
+      {
+        "pos": "-23.7142 9.2838 -110.206",
+        "rotation": "0.659576 -0.159576 -0.146224 -0.719801"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col006",
+      "transform":
+      {
+        "pos": "-24.3903 9.884 -131.655",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col005",
+      "transform":
+      {
+        "pos": "-24.3903 6.69431 -91.3453",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col004",
+      "transform":
+      {
+        "pos": "-24.3983 2.13108 -70.4451",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col003",
+      "transform":
+      {
+        "pos": "-24.2529 2.13108 -51.8002",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col002",
+      "transform":
+      {
+        "pos": "-24.3932 -0.0890135 -31.7824",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_fireplace_col001",
+      "transform":
+      {
+        "pos": "-24.3885 -2.98342 -10.7229",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/ms3_fireplace_col001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_04_col019",
+      "transform":
+      {
+        "pos": "122.317 17.9447 -184.687",
+        "rotation": "0.651066 0.256888 0.283161 -0.655699"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/column_in_04_col019.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_03_col019",
+      "transform":
+      {
+        "pos": "125.21 17.9113 -187.591",
+        "rotation": "0.651066 0.256888 0.283161 -0.655699"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/column_in_03_col019.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_02_col040",
+      "transform":
+      {
+        "pos": "116.379 18.5032 -178.733",
+        "rotation": "0.709948 0.259694 0.28059 -0.591441"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/column_in_02_col040.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_02_col039",
+      "transform":
+      {
+        "pos": "128.152 17.9212 -190.571",
+        "rotation": "0.58723 0.252128 0.283576 -0.714967"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/column_in_02_col039.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_01_col040",
+      "transform":
+      {
+        "pos": "119.316 17.8095 -181.642",
+        "rotation": "0.709948 0.259694 0.28059 -0.591441"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/column_in_01_col040.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "column_in_01_col039",
+      "transform":
+      {
+        "pos": "131.093 18.5478 -193.491",
+        "rotation": "0.58723 0.252128 0.283576 -0.714967"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/column_in_01_col039.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "column_in_04_col018",
       "transform":
       {

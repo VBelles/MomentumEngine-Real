@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/t_tierra_BaseColor.dds",
+    "normal": "data/textures/t_tierra_Normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/t_tierra_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/t_tierra_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

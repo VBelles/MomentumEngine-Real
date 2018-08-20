@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "gui_main_menu_controller.h"
 #include "gui/widgets/gui_button.h"
+#include "modules/game_modules/module_pause.h"
 
 namespace GUI {
 	void CMainMenuController::update(float delta) {

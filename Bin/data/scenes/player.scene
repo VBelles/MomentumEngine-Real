@@ -132,6 +132,10 @@
 					"data/skeletons/ella/ellaSS1_post_outline.material",
 					"data/skeletons/ella/ellaSS2_post_outline.material",
 					"data/skeletons/ella/ellaSS3_post_outline.material"
+				],
+				"locked_states" : [
+				],
+				"locked_concurrent_states" :[
 				]
 			},
 			"collider": {

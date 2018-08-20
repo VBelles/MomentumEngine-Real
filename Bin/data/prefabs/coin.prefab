@@ -28,6 +28,7 @@
 				"shape": "sphere",
 				"is_trigger" : true,
 				"radius" : 0.85,
+				"type": "kinematic",
 				"group": ["scenario"],
 				"mask": ["player"]
 			}

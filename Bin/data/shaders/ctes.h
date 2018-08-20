@@ -35,7 +35,8 @@
 #define TS_LIGHT_PROJECTOR     8
 #define TS_LIGHT_SHADOW_MAP    9 
 #define TS_ENVIRONMENT_MAP     10
-#define TS_IRRADIANCE_MAP      11
+#define TS_ENVIRONMENT_MAP_1     11
+//#define TS_IRRADIANCE_MAP      11
 #define TS_NOISE_MAP           12
 
 #define TS_DEFERRED_ALBEDOS				13
@@ -165,12 +166,18 @@ CB_DEF(CCteGlobals, CB_GLOBALS) {
     float global_gamma_correction_enabled;
     float global_tone_mapping_mode;
     int   global_render_output;
-    float global_dummy;
+    float global_skybox_ratio;
 
     float global_shared_fx_amount;
     float global_shared_fx_val1;
     float global_shared_fx_val2;
     float global_shared_fx_val3;
+
+	VEC3 player_position;
+	float globals_pad_dummy;
+
+	VEC3 player_speed;
+	float player_speed_length;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL) {

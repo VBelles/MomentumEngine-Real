@@ -19,7 +19,7 @@ void TCompPlatformSimple::debugInMenu() {
 	ImGui::Checkbox("moveBackwards", &moveBackwards);
 	bool isLooping = curve.isLooping();
 	ImGui::Checkbox("loop", &isLooping);
-	curve.setLoop(isLooping); 
+	curve.setLoop(isLooping);
 	ImGui::DragFloat("travelWaitTime", &travelWaitTime, 0.01f, 0.f, 20.f);
 
 
@@ -30,6 +30,10 @@ void TCompPlatformSimple::debugInMenu() {
 							 transform->getUp()    * rotationAxisLocal.y +
 							 transform->getFront() * rotationAxisLocal.z;
 	}
+
+	ImGui::DragFloat("rollSpeed", &rollSpeed, 0.01f, -20.f, 20.f);
+	ImGui::DragFloat("rollWaitDuration", &rollWaitDuration, 0.01f, 0.f, 20.f);
+
 }
 
 void TCompPlatformSimple::registerMsgs() {
@@ -37,7 +41,7 @@ void TCompPlatformSimple::registerMsgs() {
 }
 
 void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
-	//Movement
+	// Movement
 	speed = j.value("speed", 0.f);
 	curve.load(j);
 	automove = j.value("automove", false);
@@ -50,74 +54,148 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 	}
 	travelWaitTime = j.value("travel_wait_time", 0.f);
 
-	//Rotation
+	// Rotation
 	rotationSpeed = j.value("rotation_speed", 0.f);
 	if (j.count("rotation_axis")) {
 		rotationAxisLocal = loadVEC3(j["rotation_axis"]);
 	}
+	// Roll
+	if (j.count("roll")) {
+		auto& jRoll = j["roll"];
+		rollSpeed = jRoll.value("speed", 5.f);
+		rollWaitDuration = jRoll.value("wait_duration", rollWaitDuration);
+	}
+
+	enabled = j.value("enabled", enabled);
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 	TCompTransform* transform = get<TCompTransform>();
+
 	//combinar up/left/front para encontrar la rotationAxisGlobal
 	rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
-						 transform->getUp()    * rotationAxisLocal.y +
-						 transform->getFront() * rotationAxisLocal.z;
+		transform->getUp()    * rotationAxisLocal.y +
+		transform->getFront() * rotationAxisLocal.z;
 	transformHandle = CHandle(transform);
 	assert(transformHandle.isValid());
 	colliderHandle = get<TCompCollider>();
 	assert(colliderHandle.isValid());
+	if (rollSpeed != 0) {
+		float yaw, pitch;
+		transform->getYawPitchRoll(&yaw, &pitch, &targetRoll);
+		int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
+		targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
+	}
+
+	rollTimer.reset();
+}
+
+void TCompPlatformSimple::turnAround() {
+	doRoll = true;
+}
+
+void TCompPlatformSimple::setEnabled(bool enabled) {
+	this->enabled = enabled;
 }
 
 void TCompPlatformSimple::update(float delta) {
-	TCompTransform* transform = getTransform();
-	VEC3 position = transform->getPosition();
+	if (enabled) {
 
-	if (!automove && curve.isLooping()) {
-		if (travelWaitTimer.elapsed() >= travelWaitTime) {
-			automove = true;
+
+		TCompTransform* transform = getTransform();
+		VEC3 position = transform->getPosition();
+
+		if (!automove && curve.isLooping()) {
+			if (travelWaitTimer.elapsed() >= travelWaitTime) {
+				automove = true;
+			}
 		}
-	}
 
-	//Position
-	if (automove) {
-		// Actualizar ratio
-		int sign = moveBackwards ? -1 : 1;
-		ratio += speed * delta * sign;
-		if (ratio >= 1.f || ratio <= 0.f) { // Reaches the end of the spline. 
-			if (curve.isLooping()){
-				if (isClosed) {
-					ratio = ratio - floor(ratio);
+		//Position
+		if (automove) {
+			// Actualizar ratio
+			int sign = moveBackwards ? -1 : 1;
+			ratio += speed * delta * sign;
+			if (ratio >= 1.f || ratio <= 0.f) { // Reaches the end of the spline. 
+				if (curve.isLooping()) {
+					if (isClosed) {
+						ratio = ratio - floor(ratio);
+					}
+					else {
+						moveBackwards = !moveBackwards;
+						ratio = clamp(ratio, 0.f, 1.f);
+						automove = false;
+						travelWaitTimer.reset();
+					}
 				}
 				else {
+					automove = false;
 					moveBackwards = !moveBackwards;
 					ratio = clamp(ratio, 0.f, 1.f);
-					automove = false;
-					travelWaitTimer.reset();
 				}
 			}
-			else {
-				automove = false;
-				moveBackwards = !moveBackwards;
-				ratio = clamp(ratio, 0.f, 1.f);
-			}
+
+			// Evaluar curva con dicho ratio
+			position = curve.evaluate(ratio, position);
+			//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
+			transform->setPosition(position);
 		}
 
-		// Evaluar curva con dicho ratio
-		position = curve.evaluate(ratio, position);
-		//dbg("posToGo: x: %f y: %f z: %f\n", posToGo.x, posToGo.y, posToGo.z);
-		transform->setPosition(position);
-	}
+		//Rotation
+		if (rotationSpeed > 0) {
+			QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
+			transform->setRotation(transform->getRotation() * quat);
+		}
 
-	//Rotation
-	if (rotationSpeed > 0) {
-		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
-		transform->setRotation(transform->getRotation() * quat);
-	}
+		if (rollSpeed != 0) {
+			float yaw, pitch, roll;
+			transform->getYawPitchRoll(&yaw, &pitch, &roll);
+			if (!hasDirector && rollTimer.elapsed() >= rollWaitDuration) {
+				doRoll = true;
+			}
+			if (doRoll) {
+				float targetRollOutOfBounds = targetRoll;
+				if (rollSpeed > 0 && roll >= targetRoll) {
+					targetRollOutOfBounds += M_PI * 2;
+				}
+				else if (rollSpeed < 0 && roll <= targetRoll) {
+					targetRollOutOfBounds -= M_PI * 2;
+				}
+				roll = roll + rollSpeed * delta;
+				transform->setYawPitchRoll(yaw, pitch, roll);
 
-	//Update collider
-	getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
+				if ((rollSpeed > 0 && roll >= targetRollOutOfBounds) || (rollSpeed < 0 && roll <= targetRollOutOfBounds)) {
+					//ha llegado a targetRoll
+					int sign = rollSpeed < 0 ? sign = -1 : sign = 1;
+					roll = targetRoll;
+					targetRoll = angleInBounds(targetRoll + sign * M_PI, -M_PI, M_PI);
+					rollTimer.reset();
+					doRoll = false;
+					transform->setYawPitchRoll(yaw, pitch, roll);
+				}
+			}
+
+		}
+		//Update collider
+		getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
+	}
 }
+
+float TCompPlatformSimple::angleInBounds(float angle, float lowerBound, float upperBound) {
+	float range = upperBound - lowerBound;
+	if (angle > upperBound) {
+		angle -= range;
+	}
+	else if (angle < lowerBound) {
+		angle += range;
+	}
+	return angle;
+}
+
+bool TCompPlatformSimple::isRolling() {
+	return doRoll;
+}
+
 
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }
 TCompCollider* TCompPlatformSimple::getCollider() { return colliderHandle; }
