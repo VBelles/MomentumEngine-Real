@@ -1,0 +1,8 @@
+{
+  "technique": "vegetation.tech",
+  "shadows": false,
+  "textures":
+  {
+    "albedo": "data/textures/vegetacion/grass_small.dds"    
+  }
+}

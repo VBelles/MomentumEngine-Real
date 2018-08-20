@@ -10,6 +10,7 @@
     "data/scenes/slash-test.scene",
     "data/scenes/plataformeo.scene",
     "data/scenes/plataformeo01.scene",
+    "data/scenes/terreno_prefab_mapamaterial25-instancing.scene",
     "data/scenes/test_instancing.scene",
     "data/scenes/ambiental_particles.scene"
   ],

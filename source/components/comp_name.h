@@ -4,7 +4,7 @@
 #include <unordered_map>
  
 class TCompName : public TCompBase {
-  static const size_t max_size = 64;
+  static const size_t max_size = 128;
   char name[max_size];
 
 public:
