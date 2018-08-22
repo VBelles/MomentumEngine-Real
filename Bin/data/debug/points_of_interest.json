@@ -1,26 +1,10 @@
 [
     {
-        "name": "Tutorial",
-        "pos": "-72.1 60.7 381.6"
-    },
-    {
         "name": "Origin",
         "pos": "0 0 0"
     },
     {
-        "name": "Inicio cementerio",
-        "pos": "-7 -7 21"
-    },
-    {
-        "name": "Derecha cementerio",
-        "pos": "172 44 -175.4"
-    },
-    {
-        "name": "Primer altar",
-        "pos": "5 22 -191.4"
-    },
-    {
-        "name": "Pie faro",
-        "pos": "-325 26 -277.4"
+        "name": "Delante plataformas pinchos",
+        "pos": "30 42 -3"
     }
 ]

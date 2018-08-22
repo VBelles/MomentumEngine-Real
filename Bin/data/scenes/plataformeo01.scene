@@ -34,6 +34,41 @@
   },
   {
     "entity": {
+      "name": "Plataformeo01_hex002_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo01_hex002",
+        "pos": "0 0.25 0"
+      },
+      "transform": {},
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.5
+      }
+    }
+  },
+  {
+    "entity": {
       "name": "Plataformeo01_hex003",
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
@@ -47,6 +82,41 @@
   },
   {
     "entity": {
+      "name": "Plataformeo01_hex003_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo01_hex003",
+        "pos": "0 0.25 0"
+      },
+      "transform": {},
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.5
+      }
+    }
+  },
+  {
+    "entity": {
       "name": "Plataformeo01_hex004",
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
@@ -55,6 +125,41 @@
       },
       "platform_simple": {
         "roll": {}
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo01_hex004_spikes",
+      "hierarchy": {
+        "parent": "Plataformeo01_hex004",
+        "pos": "0 0.25 0"
+      },
+      "transform": {},
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
+        ]
+      },
+      "spikes": {
+        "damage": 1.0,
+        "invulnerability_time": 1.5,
+        "hit_again_time": 0.1,
+        "stun_time": 0.5
       }
     }
   },
