@@ -5,9 +5,56 @@
 		"size": "1920 1080",
 		"children": [
 			{
+				"name": "power_bar",
+				"type": "widget",
+				"position": "0 20",
+				"children": [
+					{
+						"name": "background",
+						"type": "image",
+						"position": "31 114",
+						"size": "213 213",
+						"texture": "data/textures/gui/hud/power_empty.dds"
+					},
+					{
+						"name": "foreground_level1",
+						"type": "bar",
+						"position": "31 114",
+						"size": "213 213",
+						"texture": "data/textures/gui/hud/power_level1.dds",
+						"variable": "power_progress_level1",
+						"direction": "vertical"
+					},
+					{
+						"name": "foreground_level2",
+						"type": "bar",
+						"position": "31 114",
+						"size": "213 213",
+						"texture": "data/textures/gui/hud/power_level2.dds",
+						"variable": "power_progress_level2",
+						"direction": "vertical"
+					},
+					{
+						"name": "foreground_level3",
+						"type": "bar",
+						"position": "31 114",
+						"size": "213 213",
+						"texture": "data/textures/gui/hud/power_level3.dds",
+						"variable": "power_progress_level3",
+						"direction": "vertical"
+					},
+					{
+						"name": "foreground",
+						"type": "image",
+						"size": "824 379",
+						"texture": "data/textures/gui/hud/power_foreground.dds"
+					}
+				]
+			},
+			{
 				"name": "hp_bar",
 				"type": "widget",
-				"position": "75 75",
+				"position": "260 200",
 				"children": [
 					{
 						"name": "background",
@@ -26,16 +73,16 @@
 					{
 						"name": "hp_text",
 						"type": "text",
-						"text": "HP: {{hp}}",
-		        		"font_color" : "0.5 0.5 0.5 1",
-		        		"font_size" : 32
+						"template_text": "HP: {{hp}}",
+						"font_color": "0.5 0.5 0.5 1",
+						"font_size": 32
 					}
 				]
 			},
 			{
-				"name": "power_bar",
+				"name": "coin_bar",
 				"type": "widget",
-				"position": "75 125",
+				"position": "260 250",
 				"children": [
 					{
 						"name": "background",
@@ -44,18 +91,20 @@
 						"texture": "data/textures/gui/transparent.dds"
 					},
 					{
-						"name": "foreground",
+						"name": "foreground_level1",
 						"type": "bar",
 						"size": "300 30",
+						"color": "1 0 0 1",
 						"texture": "data/textures/gui/solid.dds",
-						"variable": "power_progress"
+						"variable": "coin_progress"
 					},
 					{
-						"name": "power_text",
+						"name": "coin_text",
+						"position": "310 0",
 						"type": "text",
-						"text": "POWER",
-		        		"font_color" : "0.5 0.5 0.5 1",
-		        		"font_size" : 32
+						"template_text": "{{coin_bars}}",
+						"font_color": "0.5 0.5 0.5 1",
+						"font_size": 32
 					}
 				]
 			}

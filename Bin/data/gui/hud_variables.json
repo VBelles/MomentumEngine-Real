@@ -1,17 +1,37 @@
 [
     {
-        "name" : "hp_progress",
-        "type" : "float",
-        "value" : 0.0
+        "name": "hp_progress",
+        "type": "float",
+        "value": 0.0
     },
     {
-        "name" : "power_progress",
-        "type" : "float",
-        "value" : 0.0
+        "name": "hp",
+        "type": "int",
+        "value": 0
     },
     {
-        "name" : "hp",
-        "type" : "int",
-        "value" : 0
+        "name": "power_progress_level1",
+        "type": "float",
+        "value": 0.0
+    },
+    {
+        "name": "power_progress_level2",
+        "type": "float",
+        "value": 0.0
+    },
+    {
+        "name": "power_progress_level3",
+        "type": "float",
+        "value": 0.0
+    },
+    {
+        "name": "coin_progress",
+        "type": "float",
+        "value": 0.0
+    },
+    {
+        "name": "coin_bars",
+        "type": "int",
+        "value": 0
     }
 ]
