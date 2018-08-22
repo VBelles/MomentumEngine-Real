@@ -8,7 +8,7 @@ struct VS_FULL_OUTPUT {
 }; 
  
 // ---------------------------------------- 
-VS_FULL_OUTPUT VS_Particles( 
+VS_FULL_OUTPUT VS_Stretched_Particles( 
   float4 iPos   : POSITION,     // 0..1, 0..1, 0 en la z 
   float4 iColor : COLOR0 
   ) 

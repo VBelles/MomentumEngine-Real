@@ -63,10 +63,19 @@ namespace Particles {
 		cps->render.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
 		cps->render.mesh = Resources.get(render.value("mesh", "unit_quad_xy.mesh"))->as<CRenderMesh>();
 		const std::string renderType = render.value("type", "billboard");
-		if (renderType == "mesh")						cps->render.type = TCoreSystem::TRender::Mesh;
-		else if (renderType == "horizontal_billboard")	cps->render.type = TCoreSystem::TRender::HorizontalBillboard;
-		else											cps->render.type = TCoreSystem::TRender::Billboard;
-		std::string defaulRenderTechnique = cps->render.type == TCoreSystem::TRender::Mesh ? "particles_mesh.tech" : "particles.tech";
+		std::string defaulRenderTechnique = "particles.tech";
+		if (renderType == "mesh") {
+			cps->render.type = TCoreSystem::TRender::Mesh;
+			defaulRenderTechnique = "particles_mesh.tech";
+		}
+		else if (renderType == "horizontal_billboard") {
+			cps->render.type = TCoreSystem::TRender::HorizontalBillboard;
+			defaulRenderTechnique = "particles_horizontal_billboard.tech";
+		}
+		else if (renderType == "stretched_billboard") {
+			cps->render.type = TCoreSystem::TRender::StretchedBillboard;
+			defaulRenderTechnique = "particles.tech";
+		}
 		cps->render.technique = Resources.get(render.value("technique", defaulRenderTechnique))->as<CRenderTechnique>();
 
 		// color
