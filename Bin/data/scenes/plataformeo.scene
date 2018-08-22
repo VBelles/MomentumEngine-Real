@@ -52,7 +52,9 @@
         "parent": "Plataformeo_hex003",
         "pos": "0 0.25 0"
       },
-      "transform": {},
+      "transform": {
+        "pos": "36.5 43 -12.5"
+      },
       "collider": {
         "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
@@ -103,7 +105,9 @@
         "parent": "Plataformeo_hex004",
         "pos": "0 0.25 0"
       },
-      "transform": {},
+      "transform": {
+        "pos": "30 43 -35"
+      },
       "collider": {
         "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
@@ -154,7 +158,9 @@
         "parent": "Plataformeo_hex005",
         "pos": "0 0.25 0"
       },
-      "transform": {},
+      "transform": {
+        "pos": "30 43 -20"
+      },
       "collider": {
         "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
@@ -207,7 +213,9 @@
         "axis" : "0 0 1",
         "angle" : 180
       },
-      "transform": {},
+      "transform": {
+        "pos": "36 43 -42.5"
+      },
       "collider": {
         "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
@@ -260,7 +268,9 @@
         "axis" : "0 0 1",
         "angle" : 180
       },
-      "transform": {},
+      "transform": {
+        "pos": "36.5 43 -27.5"
+      },
       "collider": {
         "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
@@ -313,7 +323,9 @@
         "axis" : "0 0 1",
         "angle" : 180
       },
-      "transform": {},
+      "transform": {
+        "pos": "36.5 43 -12.5"
+      },
       "collider": {
         "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
