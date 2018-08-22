@@ -36,17 +36,13 @@ VS_FULL_OUTPUT VS_Particles(
   float xParticleMotionBlurAmount = 0.3;
 	quadPos += dot(quadPos, velocity) * velocity * xParticleMotionBlurAmount;
 
-  float4 world_pos = mul(iPos, obj_world);
-  output.worldPos = world_pos;
-
   output.Pos = float4(particle_position, 1);
 	output.Pos = mul(output.Pos, camera_view);
-	output.Pos.xyz += quadPos.xyz;
+	output.Pos.xyz += quadPos;
 	output.Pos = mul(output.Pos, camera_proj);
+  output.worldPos = quadPos + particle_position;
 
   float3 speed = iColor.rgb;
-
-
 
   return output; 
 } 
