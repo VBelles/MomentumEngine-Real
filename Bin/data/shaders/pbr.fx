@@ -153,8 +153,11 @@ void PS_GBuffer(
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	
+	//Whiteout blending
+	//N = normalize(float3(N.xy + detail_normal.xy, N.z * detail_normal.z));
 	//UDN blending
-	N = float3(N.xy + detail_normal.xy, N.z);
+	N = normalize(float3(N.xy + detail_normal.xy, N.z));
+
 	o_normal = encodeNormal(N, roughness);
 
 	o_selfIllum = txSelfIllum.Sample(samLinear, iTex0) * float4(self_illum_tint, 1) * self_illum_ratio;
