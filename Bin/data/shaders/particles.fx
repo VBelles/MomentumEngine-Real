@@ -21,10 +21,9 @@ VS_FULL_OUTPUT VS_Particles(
   float3 quadPos = iPos.xyz;
 
   // Rotate the billboard
-  float rotation = 0;
 	float2x2 rot = float2x2(
-		cos(rotation), -sin(rotation),
-		sin(rotation), cos(rotation)
+		cos(particle_rotation), -sin(particle_rotation),
+		sin(particle_rotation), cos(particle_rotation)
 		);
 	quadPos.xy = mul(quadPos.xy, rot);
 

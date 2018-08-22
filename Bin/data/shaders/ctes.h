@@ -239,7 +239,7 @@ CB_DEF(CCteParticle, CB_PARTICLE) {
 	float particle_scale;
 
 	VEC3 particle_position;
-	float particle_pad1;
+	float particle_rotation;
 
 };
 

@@ -168,6 +168,7 @@ namespace Particles {
 			cb_particles.particle_velocity = p.velocity;
 			cb_particles.particle_scale = p.scale * p.size;
 			cb_particles.particle_position = p.position;
+			cb_particles.particle_rotation = p.rotation;
 			cb_particles.updateGPU();
 
 			particleMesh->activateAndRender();
