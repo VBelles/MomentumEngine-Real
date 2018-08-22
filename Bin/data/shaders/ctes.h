@@ -232,7 +232,15 @@ CB_DEF(CCteFog, CB_FOG) {
 CB_DEF(CCteParticle, CB_PARTICLE) {
     VEC2 particle_minUV;
     VEC2 particle_maxUV;
+
     VEC4 particle_color;
+
+	VEC3 particle_velocity;
+	float particle_scale;
+
+	VEC3 particle_position;
+	float particle_pad1;
+
 };
 
 CB_DEF(CCteSlash, CB_SLASH) {

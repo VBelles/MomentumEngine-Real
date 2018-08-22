@@ -165,6 +165,9 @@ namespace Particles {
 			cb_particles.particle_minUV = minUV;
 			cb_particles.particle_maxUV = maxUV;
 			cb_particles.particle_color = p.color;
+			cb_particles.particle_velocity = p.velocity;
+			cb_particles.particle_scale = p.scale;
+			cb_particles.particle_position = p.position;
 			cb_particles.updateGPU();
 
 			particleMesh->activateAndRender();

@@ -13,12 +13,41 @@ VS_FULL_OUTPUT VS_Particles(
   float4 iColor : COLOR0 
   ) 
 { 
+
   VS_FULL_OUTPUT output = (VS_FULL_OUTPUT)0;
   output.UV  = iPos.xy;
   iPos -= float4(0.5, 0.5, 0, 0);
+
+  float3 quadPos = iPos.xyz;
+
+  // Rotate the billboard
+  float rotation = 0;
+	float2x2 rot = float2x2(
+		cos(rotation), -sin(rotation),
+		sin(rotation), cos(rotation)
+		);
+	quadPos.xy = mul(quadPos.xy, rot);
+
+  // Scale the billboard
+  quadPos *= particle_scale;
+
+  // Scale the billboard along view space motion vector
+  float3 velocity = mul(particle_velocity, (float3x3)camera_view);
+  float xParticleMotionBlurAmount = 0.3;
+	quadPos += dot(quadPos, velocity) * velocity * xParticleMotionBlurAmount;
+
   float4 world_pos = mul(iPos, obj_world);
-  output.Pos = mul(world_pos, camera_view_proj);
   output.worldPos = world_pos;
+
+  output.Pos = float4(particle_position, 1);
+	output.Pos = mul(output.Pos, camera_view);
+	output.Pos.xyz += quadPos.xyz;
+	output.Pos = mul(output.Pos, camera_proj);
+
+  float3 speed = iColor.rgb;
+
+
+
   return output; 
 } 
  
