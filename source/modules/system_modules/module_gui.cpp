@@ -17,7 +17,7 @@ bool CModuleGUI::start() {
 
     _technique = Resources.get("gui.tech")->as<CRenderTechnique>();
     _quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
-    _fontTexture = Resources.get("data/textures/gui/font_sheet_sprites.dds")->as<CTexture>();
+    _fontTexture = Resources.get("data/textures/gui/font_sheet.dds")->as<CTexture>();
 
     return true;
 }
@@ -167,16 +167,17 @@ void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, cons
 void CModuleGUI::renderText(const MAT44& world, const std::string& text, const VEC4& color) {
     assert(_fontTexture);
 
-    int cellsPerRow = 9;
-	float cellSizeX = 1.f / 9.f;
-	float cellSizeY = 1.f / 10.f;
-    char firstCharacter = '!';
+    int numCols = 9;
+	int numRows = 11;
+	float cellSizeX = 1.f / numCols;
+	float cellSizeY = 1.f / numRows;
+    char firstCharacter = ' ';
     for (size_t i = 0; i < text.size(); ++i) {
         char c = text[i];
 
         int cell = c - firstCharacter;
-        int row = cell / cellsPerRow;
-        int col = cell % cellsPerRow;
+        int row = cell / numCols;
+        int col = cell % numCols;
 
         VEC2 minUV = VEC2(col * cellSizeX, row * cellSizeY);
         VEC2 maxUV = minUV + VEC2(cellSizeX, cellSizeY);

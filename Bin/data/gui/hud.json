@@ -20,8 +20,8 @@
 					{
 						"name": "level1",
 						"type": "bar",
-						"position": "31 114",
-						"size": "213 213",
+						"position": "36 119",
+						"size": "203 203",
 						"texture": "data/textures/gui/hud/power_level1.dds",
 						"variable": "power_progress_level1",
 						"direction": "vertical"
@@ -29,8 +29,8 @@
 					{
 						"name": "level2",
 						"type": "bar",
-						"position": "31 114",
-						"size": "213 213",
+						"position": "36 119",
+						"size": "203 203",
 						"texture": "data/textures/gui/hud/power_level2.dds",
 						"variable": "power_progress_level2",
 						"direction": "vertical"
@@ -38,8 +38,8 @@
 					{
 						"name": "level3",
 						"type": "bar",
-						"position": "31 114",
-						"size": "213 213",
+						"position": "36 119",
+						"size": "203 203",
 						"texture": "data/textures/gui/hud/power_level3.dds",
 						"variable": "power_progress_level3",
 						"direction": "vertical"
