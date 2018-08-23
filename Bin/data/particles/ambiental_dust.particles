@@ -19,7 +19,8 @@
       "gravity" : 0.0
   },
   "render" : {
-      "texture" : "data/textures/particles/glow.dds"
+      "texture" : "data/textures/particles/glow.dds",
+      "additive": true
   },
   "size" : {
     "scale" : 0.5,

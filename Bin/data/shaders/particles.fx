@@ -6,6 +6,22 @@ struct VS_FULL_OUTPUT {
   float2 UV    : TEXCOORD0; 
   float3 worldPos : TEXCOORD1;
 }; 
+
+
+// ---------------------------------------- 
+VS_FULL_OUTPUT VS_Particles( 
+  float4 iPos   : POSITION,     // 0..1, 0..1, 0 en la z 
+  float4 iColor : COLOR0 
+  ) 
+{ 
+  VS_FULL_OUTPUT output = (VS_FULL_OUTPUT)0;
+  output.UV  = iPos.xy;
+  iPos -= float4(0.5, 0.5, 0, 0);
+  float4 world_pos = mul(iPos, obj_world);
+  output.Pos = mul(world_pos, camera_view_proj);
+  output.worldPos = world_pos;
+  return output; 
+}
  
 // ---------------------------------------- 
 VS_FULL_OUTPUT VS_Stretched_Particles( 
