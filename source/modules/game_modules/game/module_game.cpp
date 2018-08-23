@@ -20,7 +20,6 @@
 #include "components/controllers/comp_curve.h"
 #include "geometry/curve.h"
 #include "gui/gui_parser.h"
-#include "gui/controllers/hud_controller.h"
 #include "modules/system_modules/scripting/scripting_player.h"
 #include "modules/system_modules/particles/comp_particles.h"
 
@@ -48,12 +47,12 @@ bool CModuleGame::start() {
 	EngineScripting.reset();
 	json jboot = loadJson("data/boot.json");
 
-	//GUI::CParser parser;
-	//parser.parseFile("data/gui/hud.json");
-	//EngineGUI.activateWidget("hud");
+	GUI::CParser parser;
+	parser.parseFile("data/gui/hud.json");
+	EngineGUI.activateWidget("hud");
 
-	//hudController = new GUI::CHudController();
-	//EngineGUI.registerController(hudController);
+	hudController = new GUI::CHudController();
+	EngineGUI.registerController(hudController);
 
 	// Auto load some scenes
 	std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
@@ -98,8 +97,9 @@ bool CModuleGame::start() {
 }
 
 bool CModuleGame::stop() {
-	//EngineGUI.deactivateWidget("hud");
-	//EngineGUI.unregisterController(hudController);
+	EngineGUI.deactivateWidget("hud");
+	EngineGUI.unregisterController(hudController);
+	SAFE_DELETE(hudController);
 	CApp::get().setDebugMode(false);
 	EngineScripting.reset();
 	Engine.getEntities().reset();

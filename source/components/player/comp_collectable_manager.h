@@ -16,6 +16,7 @@ private:
 	void onCollect(const TMsgCollect& msg);
 
 	float timeToRespawnCoin = 30.f;
+	int maxCoins = 48;
 	int lifePiecesPerHeart = 2;
 
 public:

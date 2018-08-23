@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gui/controllers/hud_controller.h"
+
 class Respawner;
 class EnemyManager;
 
@@ -9,7 +11,7 @@ struct PointOfInterest {
 };
 class CModuleGame : public IModule {
 private:
-	//GUI::CHudController* hudController;
+	GUI::CHudController* hudController;
 	std::vector<PointOfInterest> pointsOfInterest;
 	Respawner* respawner;
 	EnemyManager* enemyManager;
