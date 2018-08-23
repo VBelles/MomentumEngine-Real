@@ -49,6 +49,7 @@ namespace Particles {
 		// movement
 		const json& movement = data["movement"];
 		cps->movement.velocity = movement.value("velocity", cps->movement.velocity);
+		cps->movement.velocityVariation = movement.value("velocity_variation", cps->movement.velocityVariation);
 		cps->movement.acceleration = movement.value("acceleration", cps->movement.acceleration);
 		cps->movement.initialRotation = deg2rad(movement.value("initial_rotation", rad2deg(cps->movement.initialRotation)));
 		cps->movement.spin = deg2rad(movement.value("spin", rad2deg(cps->movement.spin)));
@@ -79,6 +80,7 @@ namespace Particles {
 		}
 		else if (renderType == "stretched_billboard") {
 			cps->render.type = TCoreSystem::TRender::StretchedBillboard;
+			cps->render.motionBlurAmount = render.value("motion_blur_amount", 0.1f);
 			defaulRenderTechnique = additive ? "particles_stretched_additive.tech" : "particles_stretched.tech";
 		}
 		else {

@@ -25,6 +25,7 @@ namespace Particles {
 		};
 		struct TMovement {
 			float velocity = 0.f;			// initial speed
+			float velocityVariation = 0.f;	// variation of the initial speed generation
 			float acceleration = 0.f;		// acceleration
 			float initialRotation = 0;
 			float spin = 0.f;				// rotation speed (radians)
@@ -44,6 +45,7 @@ namespace Particles {
 			int numFrames = 1;								// number of animation frames
 			int initialFrame = 0;							// initial frame
 			float frameSpeed = 0.f;							// frame change speed
+			float motionBlurAmount = 0.f;					// amount of blur for stretched particles
 		};
 		struct TSize {
 			TTrack<float> sizes;			// track of sizes along the particle lifetime

@@ -48,8 +48,7 @@ VS_FULL_OUTPUT VS_Stretched_Particles(
 
   // Scale the billboard along view space motion vector
   float3 velocity = mul(particle_velocity, (float3x3)camera_view);
-  float xParticleMotionBlurAmount = 0.3;
-	quadPos += dot(quadPos, velocity) * velocity * xParticleMotionBlurAmount;
+	quadPos += dot(quadPos, velocity) * velocity * particle_motion_blur_amount;
 
   output.Pos = float4(particle_position, 1);
 	output.Pos = mul(output.Pos, camera_view);

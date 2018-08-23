@@ -168,6 +168,8 @@ namespace Particles {
 			cb_particles.particle_scale = p.scale * p.size;
 			cb_particles.particle_position = p.position;
 			cb_particles.particle_rotation = p.rotation;
+			cb_particles.particle_motion_blur_amount = _core->render.motionBlurAmount;
+
 			cb_particles.updateGPU();
 
 			particleMesh->activateAndRender();
@@ -188,7 +190,6 @@ namespace Particles {
 			particle.rotation = _core->movement.initialRotation;
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
-
 			_particles.push_back(particle);
 		}
 	}
@@ -243,7 +244,8 @@ namespace Particles {
 
 	VEC3 CSystem::generateVelocity() const {
 		const float& angle = _core->emission.angle;
-		const float velocity = _core->movement.velocity;
+		const float velocity = random(-_core->movement.velocity, _core->movement.velocity);
+		
 
 		if (angle != 0.f) {
 			float radius = tan(angle);

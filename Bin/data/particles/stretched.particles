@@ -1,26 +1,29 @@
 {
   "life": {
-    "duration": 5.0,
-    "max_particles": 500,
+    "duration": 0.3,
+    "duration_variation": 0.1,
+    "max_particles": 50000,
     "time_factor": 1.0
   },
   "emission": {
-    "type": "point",
-    "angle": 45,
-    "size": 25,
-    "interval": 0.5,
-    "count": 1,
+    "type": "square",
+    "angle": 10,
+    "size": 0.1,
+    "interval": 0.1,
+    "count": 100,
     "cyclic": true
   },
   "movement": {
-    "velocity": 15,
+    "velocity": 30,
+    "velocity_variation": 10,
     "acceleration": 0.0,
-    "spin": 360.0,
+    "spin": 0.0,
     "wind": 0.0,
     "gravity": 0.5
   },
   "render": {
     "type": "stretched_billboard",
+    "motion_blur_amount": 0.05,
     "texture": "data/textures/particles/spark.dds",
     "additive": true
   },
