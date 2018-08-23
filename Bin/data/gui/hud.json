@@ -3,21 +3,22 @@
 		"name": "hud",
 		"type": "widget",
 		"size": "1920 1080",
+		"position": "0 -40",
 		"children": [
 			{
 				"name": "power_bar",
 				"type": "widget",
-				"position": "0 20",
+				"position": "0 0",
 				"children": [
 					{
-						"name": "background",
+						"name": "empty",
 						"type": "image",
 						"position": "31 114",
 						"size": "213 213",
 						"texture": "data/textures/gui/hud/power_empty.dds"
 					},
 					{
-						"name": "foreground_level1",
+						"name": "level1",
 						"type": "bar",
 						"position": "31 114",
 						"size": "213 213",
@@ -26,7 +27,7 @@
 						"direction": "vertical"
 					},
 					{
-						"name": "foreground_level2",
+						"name": "level2",
 						"type": "bar",
 						"position": "31 114",
 						"size": "213 213",
@@ -35,7 +36,7 @@
 						"direction": "vertical"
 					},
 					{
-						"name": "foreground_level3",
+						"name": "level3",
 						"type": "bar",
 						"position": "31 114",
 						"size": "213 213",
@@ -57,13 +58,13 @@
 				"position": "260 200",
 				"children": [
 					{
-						"name": "background",
+						"name": "hp_background",
 						"type": "image",
 						"size": "300 30",
 						"texture": "data/textures/gui/transparent.dds"
 					},
 					{
-						"name": "foreground",
+						"name": "hp_foreground",
 						"type": "bar",
 						"size": "300 30",
 						"texture": "data/textures/gui/solid.dds",
@@ -85,13 +86,21 @@
 				"position": "260 250",
 				"children": [
 					{
-						"name": "background",
+						"name": "coin_empty_background",
 						"type": "image",
 						"size": "300 30",
 						"texture": "data/textures/gui/transparent.dds"
 					},
 					{
-						"name": "foreground_level1",
+						"name": "coin_full_foreground",
+						"type": "bar",
+						"size": "300 30",
+						"color": "0.8 0 0 1",
+						"texture": "data/textures/gui/solid.dds",
+						"variable": "coin_full_foreground"
+					},
+					{
+						"name": "coin_foreground",
 						"type": "bar",
 						"size": "300 30",
 						"color": "1 0 0 1",

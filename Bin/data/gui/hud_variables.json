@@ -33,5 +33,10 @@
         "name": "coin_bars",
         "type": "int",
         "value": 0
+    },
+    {
+        "name": "coin_full_foreground",
+        "type": "float",
+        "value": 0
     }
 ]
