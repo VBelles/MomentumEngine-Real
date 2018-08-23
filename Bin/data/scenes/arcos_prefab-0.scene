@@ -1,0 +1,46 @@
+[
+  {
+    "entity":
+    {
+      "name": "arco_02",
+      "transform":
+      {
+        "pos": "0.0 13.5583 -16.2586",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/arco_02.mesh",
+          "materials":
+          [
+            "data/materials/m_arcos_02.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "arco_01",
+      "transform":
+      {
+        "pos": "0.0 17.055 15.2311",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/arco_01.mesh",
+          "materials":
+          [
+            "data/materials/m_arcos_01.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/aro_00_BaseColor.dds",
+    "normal": "data/textures/aro_00_Normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/aro_00_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/aro_00_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

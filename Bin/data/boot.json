@@ -14,6 +14,11 @@
     "data/scenes/test_instancing.scene",
     "data/scenes/terreno_prefab_roots_mushroms33-0.scene",
     "data/scenes/terreno_prefab_roots_mushroms33-trimesh.scene",
+    "data/scenes/aro_prefab-0.scene",
+    "data/scenes/arcos_prefab-0.scene",
+    "data/scenes/crystal_prefab-0.scene",
+    "data/scenes/mariosunshine_prefab-0.scene",
+    "data/scenes/grass_prefab01-instancing.scene",
     "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [

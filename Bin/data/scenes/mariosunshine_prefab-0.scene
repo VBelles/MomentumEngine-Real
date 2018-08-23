@@ -1,0 +1,34 @@
+[
+  {
+    "entity":
+    {
+      "name": "plataformatriangular_baja",
+      "transform":
+      {
+        "pos": "0.0 5.04015 -8.89089",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataformatriangular_baja.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_plataformatriangular.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataformatriangular_baja_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  }
+]

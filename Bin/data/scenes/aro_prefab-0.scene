@@ -1,0 +1,24 @@
+[
+  {
+    "entity":
+    {
+      "name": "aro_00_2",
+      "transform":
+      {
+        "pos": "0.0 29.8289 -43.512",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/aro_00_2.mesh",
+          "materials":
+          [
+            "data/materials/m_aro_00.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  }
+]

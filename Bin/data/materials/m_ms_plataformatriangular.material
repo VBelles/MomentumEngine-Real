@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/ms_plataformatriangular_BaseColor.dds",
+    "normal": "data/textures/ms_plataformatriangular_Normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/ms_plataformatriangular_Roughness.dds",
+    "self_illum": "data/textures/ms_plataformatriangular_Emissive.dds",
+    "height": "data/textures/ms_plataformatriangular_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
