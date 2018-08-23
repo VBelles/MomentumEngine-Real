@@ -55,7 +55,7 @@ void CDeferredRenderer::renderGBuffer() {
 	rt_albedos->activate(TS_DEFERRED_ALBEDOS);
 	rt_normals->activate(TS_DEFERRED_NORMALS);
 	rt_depth->activate(TS_DEFERRED_LINEAR_DEPTH);
-	rt_depth->activate(TS_DEFERRED_SELF_ILLUM);
+	rt_self_illum->activate(TS_DEFERRED_SELF_ILLUM);
 }
 
 void CDeferredRenderer::renderGBufferDecals() {
