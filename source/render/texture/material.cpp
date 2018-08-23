@@ -56,8 +56,12 @@ bool CMaterial::create(const json& j) {
 
 	cast_shadows = j.value("shadows", true);
 
-	textures[TS_SELF_ILLUM] = Resources.get("data/textures/black.dds")->as<CTexture>();
-	textures[TS_HEIGHT] = Resources.get("data/textures/black.dds")->as<CTexture>();
+	textures[TS_ALBEDO] = Resources.get("data/textures/null_albedo.dds")->as<CTexture>();
+	textures[TS_NORMAL] = Resources.get("data/textures/null_normal.dds")->as<CTexture>();
+	textures[TS_METALLIC] = Resources.get("data/textures/null_metallic.dds")->as<CTexture>();
+	textures[TS_ROUGHNESS] = Resources.get("data/textures/null_roughness.dds")->as<CTexture>();
+	textures[TS_SELF_ILLUM] = Resources.get("data/textures/null_self_illum.dds")->as<CTexture>();
+	textures[TS_HEIGHT] = Resources.get("data/textures/null_height.dds")->as<CTexture>();
 	textures[TS_DETAIL_NORMAL] = Resources.get("data/textures/null_detail_normal.dds")->as<CTexture>();
 
 
