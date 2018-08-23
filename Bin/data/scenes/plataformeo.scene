@@ -53,10 +53,10 @@
         "pos": "0 0.25 0"
       },
       "transform": {
-        "pos": "30 43 -50"
+        "pos": "36.5 43 -12.5"
       },
       "collider": {
-        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -68,9 +68,10 @@
         ]
       },
       "render": {
-        "mesh": "data/meshes/_plataforma_hex.mesh",
-        "materials": [
-          "data/materials/ambar.material"
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
         ]
       },
       "spikes": {
@@ -108,7 +109,7 @@
         "pos": "30 43 -35"
       },
       "collider": {
-        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -120,9 +121,10 @@
         ]
       },
       "render": {
-        "mesh": "data/meshes/_plataforma_hex.mesh",
-        "materials": [
-          "data/materials/ambar.material"
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
         ]
       },
       "spikes": {
@@ -160,7 +162,7 @@
         "pos": "30 43 -20"
       },
       "collider": {
-        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -172,9 +174,10 @@
         ]
       },
       "render": {
-        "mesh": "data/meshes/_plataforma_hex.mesh",
-        "materials": [
-          "data/materials/ambar.material"
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
         ]
       },
       "spikes": {
@@ -206,13 +209,15 @@
       "name": "Plataformeo_hex006_spikes",
       "hierarchy": {
         "parent": "Plataformeo_hex006",
-        "pos": "0 -0.25 0"
+        "pos": "0 -0.25 0",
+        "axis" : "0 0 1",
+        "angle" : 180
       },
       "transform": {
         "pos": "36 43 -42.5"
       },
       "collider": {
-        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -224,9 +229,10 @@
         ]
       },
       "render": {
-        "mesh": "data/meshes/_plataforma_hex.mesh",
-        "materials": [
-          "data/materials/ambar.material"
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
         ]
       },
       "spikes": {
@@ -258,13 +264,15 @@
       "name": "Plataformeo_hex007_spikes",
       "hierarchy": {
         "parent": "Plataformeo_hex007",
-        "pos": "0 -0.25 0"
+        "pos": "0 -0.25 0",
+        "axis" : "0 0 1",
+        "angle" : 180
       },
       "transform": {
         "pos": "36.5 43 -27.5"
       },
       "collider": {
-        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -276,9 +284,10 @@
         ]
       },
       "render": {
-        "mesh": "data/meshes/_plataforma_hex.mesh",
-        "materials": [
-          "data/materials/ambar.material"
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
         ]
       },
       "spikes": {
@@ -310,13 +319,15 @@
       "name": "Plataformeo_hex008_spikes",
       "hierarchy": {
         "parent": "Plataformeo_hex008",
-        "pos": "0 -0.25 0"
+        "pos": "0 -0.25 0",
+        "axis" : "0 0 1",
+        "angle" : 180
       },
       "transform": {
         "pos": "36.5 43 -12.5"
       },
       "collider": {
-        "mesh_src": "data/meshes/_plataforma_hex_collider.col_mesh",
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -328,9 +339,10 @@
         ]
       },
       "render": {
-        "mesh": "data/meshes/_plataforma_hex.mesh",
-        "materials": [
-          "data/materials/ambar.material"
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
         ]
       },
       "spikes": {
