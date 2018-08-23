@@ -14,8 +14,7 @@
     "data/scenes/test_instancing.scene",
     "data/scenes/terreno_prefab_roots_mushroms33-0.scene",
     "data/scenes/terreno_prefab_roots_mushroms33-trimesh.scene",
-    "data/scenes/ambiental_particles.scene",
-    "data/scenes/test_particles.scene"
+    "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
     "data/scenes/test_particles.scene",            
