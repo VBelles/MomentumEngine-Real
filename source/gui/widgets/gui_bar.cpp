@@ -16,8 +16,8 @@ void CBar::render() {
 		maxUV.x *= ratio;
 	}
 	else if (_barParams._direction == TBarParams::EDirection::Vertical) {
-		w = MAT44::CreateScale(1.f, -ratio, 1.f) * sz * _absolute * MAT44::CreateTranslation(0.f, _params._size.y, 0.f);
-		maxUV.y *= ratio;
+		w = MAT44::CreateScale(1.f, ratio, 1.f) * sz * _absolute * MAT44::CreateTranslation(0.f, _params._size.y * (1.f - ratio), 0.f);
+		minUV.y += (maxUV.y - minUV.y) * (1.f - ratio);
 	}
 
 	EngineGUI.renderTexture(w,
