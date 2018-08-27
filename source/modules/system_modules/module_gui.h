@@ -5,6 +5,7 @@
 #include "utils/variant.h"
 #include "gui/gui_controller.h"
 #include "camera/camera_gui.h"
+#include "gui/gui_font.h"
 
 class CCameraOrthographic;
 
@@ -34,6 +35,7 @@ public:
 	void renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color);
 	void renderText(const MAT44& world, const std::string& text, const VEC4& color);
 
+	GUI::CFont font;
 private:
 	CCameraGui _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;
@@ -44,4 +46,5 @@ private:
 	GUI::VWidgets _activeWidgets;
 	MVariants _variables;
 	GUI::VControllers _controllers;
+
 };

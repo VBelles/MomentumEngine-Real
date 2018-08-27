@@ -210,6 +210,7 @@
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
+    <ClCompile Include="gui\gui_font.cpp" />
     <ClCompile Include="gui\widgets\gui_map_marker.cpp" />
     <ClCompile Include="gui\widgets\gui_option.cpp" />
     <ClCompile Include="modules\game_modules\game\enemy_manager.cpp" />
@@ -565,6 +566,7 @@
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />
+    <ClInclude Include="gui\gui_font.h" />
     <ClInclude Include="gui\widgets\gui_map_marker.h" />
     <ClInclude Include="gui\widgets\gui_option.h" />
     <ClInclude Include="modules\game_modules\game\enemy_manager.h" />

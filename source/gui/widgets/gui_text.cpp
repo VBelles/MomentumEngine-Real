@@ -20,7 +20,7 @@ void CText::render() {
 		offset.y = _params._size.y - textHeight;
 
 	MAT44 tr = MAT44::CreateTranslation(offset.x, offset.y, 0.f);
-	MAT44 w = MAT44::CreateScale(_textParams._size) * tr * _absolute;
+	MAT44 w = /*MAT44::CreateScale(_textParams._size) **/ tr * _absolute;
 	EngineGUI.renderText(w, _textParams._text, _textParams._color);
 }
 

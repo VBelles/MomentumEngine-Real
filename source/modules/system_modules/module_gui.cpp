@@ -19,6 +19,8 @@ bool CModuleGUI::start() {
     _quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
     _fontTexture = Resources.get("data/textures/gui/font_sheet.dds")->as<CTexture>();
 
+	font.load("C:/Users/mcv16_alumne/Desktop/1.fnt");
+
     return true;
 }
 
@@ -165,25 +167,26 @@ void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, cons
 }
 
 void CModuleGUI::renderText(const MAT44& world, const std::string& text, const VEC4& color) {
-    assert(_fontTexture);
+	font.renderText(world, text, color);
+ //   assert(_fontTexture);
 
-    int numCols = 9;
-	int numRows = 11;
-	float cellSizeX = 1.f / numCols;
-	float cellSizeY = 1.f / numRows;
-    char firstCharacter = ' ';
-    for (size_t i = 0; i < text.size(); ++i) {
-        char c = text[i];
+ //   int numCols = 9;
+	//int numRows = 11;
+	//float cellSizeX = 1.f / numCols;
+	//float cellSizeY = 1.f / numRows;
+ //   char firstCharacter = ' ';
+ //   for (size_t i = 0; i < text.size(); ++i) {
+ //       char c = text[i];
 
-        int cell = c - firstCharacter;
-        int row = cell / numCols;
-        int col = cell % numCols;
+ //       int cell = c - firstCharacter;
+ //       int row = cell / numCols;
+ //       int col = cell % numCols;
 
-        VEC2 minUV = VEC2(col * cellSizeX, row * cellSizeY);
-        VEC2 maxUV = minUV + VEC2(cellSizeX, cellSizeY);
-        VEC2 gap = (float)i * VEC2(1, 0);
-        MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
+ //       VEC2 minUV = VEC2(col * cellSizeX, row * cellSizeY);
+ //       VEC2 maxUV = minUV + VEC2(cellSizeX, cellSizeY);
+ //       VEC2 gap = (float)i * VEC2(1, 0);
+ //       MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
 
-        renderTexture(w, _fontTexture, minUV, maxUV, color);
-    }
+ //       renderTexture(w, _fontTexture, minUV, maxUV, color);
+ //   }
 }
