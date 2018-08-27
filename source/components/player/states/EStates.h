@@ -44,7 +44,8 @@
 	etype(SpringJump), \
 	etype(Dodge), \
 	etype(AirDodge), \
-	etype(SpendCoins)
+	etype(SpendCoins), \
+	etype(LandingHurt)
 
 #define etype(x) x
 typedef enum { STATES } State;

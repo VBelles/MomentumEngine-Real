@@ -208,6 +208,7 @@
     <ClCompile Include="components\ia\enemies\kippah\Kippah.cpp" />
     <ClCompile Include="components\platforms\comp_platforms_director.cpp" />
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\LandingHurtActionState.cpp" />
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
     <ClCompile Include="gui\widgets\gui_map_marker.cpp" />
@@ -563,6 +564,7 @@
     <ClInclude Include="components\ia\enemies\kippah\Kippah.h" />
     <ClInclude Include="components\platforms\comp_platforms_director.h" />
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
+    <ClInclude Include="components\player\states\base_states\LandingHurtActionState.h" />
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />
     <ClInclude Include="gui\widgets\gui_map_marker.h" />

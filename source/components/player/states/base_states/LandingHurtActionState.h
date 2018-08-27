@@ -1,23 +1,19 @@
 #pragma once
 
-#include "components/player/states/AirborneActionState.h"
+#include "components/player/states/base_states/LandingActionState.h"
 
-class HardKnockbackAirActionState : public AirborneActionState {
-private:
-	CTimer timer;
-	float duration = 0.8f;
-
-	std::string animation = "hard_knockback_air";
-	std::string animationLoop = "hard_knockback_air_falling";
+class LandingHurtActionState : public LandingActionState {
+protected:
+	std::string animation = "landing_hard";
 
 public:
-	HardKnockbackAirActionState(StateManager* stateManager);
+	LandingHurtActionState(StateManager* stateManager);
 
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
-
-	void onMove(MoveState & moveState);
+	
+	void setRemainingTime(float time);
 
 	void onJumpHighButton() override {}
 	void onJumpLongButton() override {}
