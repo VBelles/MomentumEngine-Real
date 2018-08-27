@@ -5,6 +5,8 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
+debugMode = false
+
 escapeEnable = true --Allow abort script execution holding ESC.
 
 global uniqueCoins   	= #()
@@ -2188,7 +2190,6 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
-debugMode = true
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
