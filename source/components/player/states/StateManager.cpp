@@ -187,7 +187,15 @@ void StateManager::updateStates(float delta) {
 
 void StateManager::changeState(State newState) {
 	if (!lockedStates.count(newState)) {
-		nextBaseState = states[newState];
+		if (isChangingBaseState) {
+			if (newState < nextBaseState->state) {
+				nextBaseState = states[newState];
+			}
+		}
+		else {
+			nextBaseState = states[newState];
+		}
+		dbg("next state: %s\n", States::toString(nextBaseState->state));
 		isChangingBaseState = true;
 	}
 	else {

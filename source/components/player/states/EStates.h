@@ -2,6 +2,13 @@
 
 #define STATES \
 	etype(UndefinedState), \
+	etype(Death), \
+	etype(PitFalling), \
+	etype(HardKnockbackGround), \
+	etype(HardKnockbackAir), \
+	etype(LandingHurt), \
+	etype(Slide), \
+	etype(SpendCoins), \
 	etype(Idle), \
 	etype(JumpSquat), \
 	etype(GhostJumpSquat), \
@@ -33,19 +40,12 @@
 	etype(AirborneWallJump), \
 	etype(ReleasePowerGround), \
 	etype(JumpSquatSpring), \
-	etype(IdleTurnAround), \
 	etype(WallJumpSquatPlummet), \
 	etype(WallJumpPlummet), \
-	etype(Death), \
-	etype(PitFalling), \
-	etype(HardKnockbackGround), \
-	etype(HardKnockbackAir), \
-	etype(Slide), \
 	etype(SpringJump), \
 	etype(Dodge), \
 	etype(AirDodge), \
-	etype(SpendCoins), \
-	etype(LandingHurt)
+	etype(IdleTurnAround)
 
 #define etype(x) x
 typedef enum { STATES } State;

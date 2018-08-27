@@ -268,5 +268,47 @@
         "collider_enabled_on_active": true
       }
     }
+  },
+  {
+    "entity": {
+      "name": "plataforma_spikes_prueba",
+      "prefab": "data/prefabs/plataforma_hex.prefab",
+      "transform": {
+        "pos": "5 0 5",
+        "rotation": "0 0.258819 0 0.965926"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "plataforma_spikes_prueba_spikes",
+      "hierarchy": {
+        "parent": "plataforma_spikes_prueba",
+        "pos": "0 0.25 0"
+      },
+      "transform": {
+        "pos": "5 0 5"
+      },
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "render": {
+        "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+        "materials":
+        [
+          "data/materials/m_platform_spikes.material"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
   }
 ]
