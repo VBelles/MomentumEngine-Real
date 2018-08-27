@@ -111,6 +111,9 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	case Type::COIN:
 		collectable->collect();
 		addUniqueCollectable(Type::COIN, entity->getName());
+		if (getNumberOfCoins() > maxCoins) {
+			spendCoins(getNumberOfCoins() - maxCoins);
+		}
 		break;
 	case Type::LIFEPIECE:
 		collectable->collect();

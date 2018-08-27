@@ -25,6 +25,7 @@ namespace Particles {
 		};
 		struct TMovement {
 			float velocity = 0.f;			// initial speed
+			float velocityVariation = 0.f;	// variation of the initial speed generation
 			float acceleration = 0.f;		// acceleration
 			float initialRotation = 0;
 			float spin = 0.f;				// rotation speed (radians)
@@ -34,7 +35,7 @@ namespace Particles {
 			bool ground = false;			// limit by ground
 		};
 		struct TRender {
-			enum EType { Billboard, HorizontalBillboard, Mesh };
+			enum EType { Billboard, HorizontalBillboard, StretchedBillboard, Mesh };
 
 			EType type = Billboard;							// particle type
 			const CTexture* texture = nullptr;				// particle texture
@@ -44,6 +45,7 @@ namespace Particles {
 			int numFrames = 1;								// number of animation frames
 			int initialFrame = 0;							// initial frame
 			float frameSpeed = 0.f;							// frame change speed
+			float motionBlurAmount = 0.f;					// amount of blur for stretched particles
 		};
 		struct TSize {
 			TTrack<float> sizes;			// track of sizes along the particle lifetime

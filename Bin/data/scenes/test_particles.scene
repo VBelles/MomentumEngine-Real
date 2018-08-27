@@ -42,5 +42,17 @@
 				"core": "data/particles/sparks.particles"
 			}
 		}
+	},
+
+	{
+		"entity": {
+			"name": "particles_stretched",
+			"transform": {
+				"pos": "4 -2 5"
+			},
+			"particles": {
+				"core": "data/particles/stretched.particles"
+			}
+		}
 	}
 ]

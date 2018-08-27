@@ -16,7 +16,6 @@ private:
 	float targetPower;
 	float powerIncreaseSpeed;
 
-	float getPowerLevelPercentage();
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -39,4 +38,5 @@ public:
 	float getMaxPower();
 
 	float getBarPercentage();
+	float getPowerLevelPercentage();
 };

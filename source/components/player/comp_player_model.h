@@ -198,6 +198,9 @@ public:
 
 	bool isGrounded();
 
+	int getNumberOfCoins();
+	float getPowerPerCoin();
+
 	bool addAttacker(std::string attacker, float slots);
 	void removeAttacker(std::string attacker, float slots);
 

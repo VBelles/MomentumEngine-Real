@@ -8,25 +8,81 @@
 				"name" : "background",
 				"children" : [
 					{
-						"name" : "background",
+						"name" : "background01",
 						"type" : "image",
 						"size" : "1920 1080",
-						"texture" : "data/textures/gui/menu_background.dds",
-						"minUV" : "0 0",
-						"maxUV" : "1 1"
+						"texture" : "data/textures/gui/menuinicio_background_01.dds",
+						"minUV" : "0.33 0",
+						"maxUV" : "0.66 1",
+						"effects" : [
+							{
+								"type" : "animate_uv",
+								"speed" : "-0.002 0"
+							}
+						]
+					},
+					{
+						"name" : "background02",
+						"type" : "image",
+						"size" : "1920 1080",
+						"texture" : "data/textures/gui/menuinicio_background_02.dds",
+						"minUV" : "0.33 0",
+						"maxUV" : "0.66 1",
+						"effects" : [
+							{
+								"type" : "animate_uv",
+								"speed" : "0.0025 0"
+							}
+						]
+					},
+					{
+						"name" : "background03",
+						"type" : "image",
+						"size" : "1920 1080",
+						"texture" : "data/textures/gui/menuinicio_background_03.dds",
+						"minUV" : "0.33 0",
+						"maxUV" : "0.66 1",
+						"effects" : [
+							{
+								"type" : "animate_uv",
+								"speed" : "0.005 0"
+							}
+						]
+					},
+					{
+						"name" : "background04",
+						"type" : "image",
+						"size" : "1920 1080",
+						"texture" : "data/textures/gui/menuinicio_background_04.dds",
+						"minUV" : "0.33 0",
+						"maxUV" : "0.66 1",
+						"effects" : [
+							{
+								"type" : "animate_uv",
+								"speed" : "0.0075 0"
+							}
+						]
 					},
 					{
 						"name" : "foreground",
 						"type" : "image",
 						"size" : "1920 1080",
-						"texture" : "data/textures/gui/menu_title.dds"
+						"texture" : "data/textures/gui/menuinicio_foreground.dds",
+						"minUV" : "0.25 0",
+						"maxUV" : "0.58 1"
+					},
+					{
+						"name" : "title",
+						"type" : "image",
+						"size" : "1920 1080",
+						"texture" : "data/textures/gui/menuinicio_title.dds"
 					}
 				]
 			},
 			{
 				"name" : "test_buttons",
 				"type" : "widget",
-				"position" : "810 650",
+				"position" : "300 600",
 				"children" : [
 					{
 						"name" : "start_game",

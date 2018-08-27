@@ -31,6 +31,7 @@ namespace Particles {
 		cps->life.durationVariation = life.value("duration_variation", cps->life.durationVariation);
 		cps->life.maxParticles = life.value("max_particles", cps->life.maxParticles);
 		cps->life.timeFactor = life.value("time_factor", cps->life.timeFactor);
+
 		// emission
 		const json& emission = data["emission"];
 		cps->emission.cyclic = emission.value("cyclic", cps->emission.cyclic);
@@ -44,9 +45,11 @@ namespace Particles {
 		else                              cps->emission.type = TCoreSystem::TEmission::Point;
 		cps->emission.size = emission.value("size", cps->emission.size);
 		cps->emission.angle = deg2rad(emission.value("angle", rad2deg(cps->emission.angle)));
+
 		// movement
 		const json& movement = data["movement"];
 		cps->movement.velocity = movement.value("velocity", cps->movement.velocity);
+		cps->movement.velocityVariation = movement.value("velocity_variation", cps->movement.velocityVariation);
 		cps->movement.acceleration = movement.value("acceleration", cps->movement.acceleration);
 		cps->movement.initialRotation = deg2rad(movement.value("initial_rotation", rad2deg(cps->movement.initialRotation)));
 		cps->movement.spin = deg2rad(movement.value("spin", rad2deg(cps->movement.spin)));
@@ -54,6 +57,7 @@ namespace Particles {
 		cps->movement.wind = movement.value("wind", cps->movement.wind);
 		cps->movement.gravity = movement.value("gravity", cps->movement.gravity);
 		cps->movement.ground = movement.value("ground", cps->movement.ground);
+
 		// render
 		const json& render = data["render"];
 		cps->render.initialFrame = render.value("initial_frame", cps->render.initialFrame);
@@ -63,10 +67,26 @@ namespace Particles {
 		cps->render.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
 		cps->render.mesh = Resources.get(render.value("mesh", "unit_quad_xy.mesh"))->as<CRenderMesh>();
 		const std::string renderType = render.value("type", "billboard");
-		if (renderType == "mesh")						cps->render.type = TCoreSystem::TRender::Mesh;
-		else if (renderType == "horizontal_billboard")	cps->render.type = TCoreSystem::TRender::HorizontalBillboard;
-		else											cps->render.type = TCoreSystem::TRender::Billboard;
-		std::string defaulRenderTechnique = cps->render.type == TCoreSystem::TRender::Mesh ? "particles_mesh.tech" : "particles.tech";
+
+		bool additive = render.value("additive", false);
+		std::string defaulRenderTechnique;
+		if (renderType == "mesh") {
+			cps->render.type = TCoreSystem::TRender::Mesh;
+			defaulRenderTechnique = additive ?  "particles_mesh_additive.tech" : "particles_mesh.tech";
+		}
+		else if (renderType == "horizontal_billboard") {
+			cps->render.type = TCoreSystem::TRender::HorizontalBillboard;
+			defaulRenderTechnique = additive ? "particles_additive.tech" : "particles.tech";
+		}
+		else if (renderType == "stretched_billboard") {
+			cps->render.type = TCoreSystem::TRender::StretchedBillboard;
+			cps->render.motionBlurAmount = render.value("motion_blur_amount", 0.1f);
+			defaulRenderTechnique = additive ? "particles_stretched_additive.tech" : "particles_stretched.tech";
+		}
+		else {
+			cps->render.type = TCoreSystem::TRender::Billboard;
+			defaulRenderTechnique = additive ? "particles_additive.tech" : "particles.tech";
+		}
 		cps->render.technique = Resources.get(render.value("technique", defaulRenderTechnique))->as<CRenderTechnique>();
 
 		// color

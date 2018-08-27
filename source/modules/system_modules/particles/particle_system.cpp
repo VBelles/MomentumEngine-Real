@@ -135,10 +135,9 @@ namespace Particles {
 
 		for (auto& p : _particles) {
 			if (_core->render.type == TCoreSystem::TRender::Billboard) {
-				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
+				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, VEC3(0, 1, 0));
 				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
-				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
-
+				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else if (_core->render.type == TCoreSystem::TRender::HorizontalBillboard) {
@@ -147,13 +146,13 @@ namespace Particles {
 				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
 				cb_object.obj_world = rt * sc * bb;
 			}
-			else {
+			else if(_core->render.type == TCoreSystem::TRender::Mesh){
 				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
 					* MAT44::CreateFromQuaternion(config.rotationOffset)
 					* MAT44::CreateTranslation(p.position);
 			}
-
+	
 			int row = p.frame / frameCols;
 			int col = p.frame % frameCols;
 			VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
@@ -165,6 +164,12 @@ namespace Particles {
 			cb_particles.particle_minUV = minUV;
 			cb_particles.particle_maxUV = maxUV;
 			cb_particles.particle_color = p.color;
+			cb_particles.particle_velocity = p.velocity;
+			cb_particles.particle_scale = p.scale * p.size;
+			cb_particles.particle_position = p.position;
+			cb_particles.particle_rotation = p.rotation;
+			cb_particles.particle_motion_blur_amount = _core->render.motionBlurAmount;
+
 			cb_particles.updateGPU();
 
 			particleMesh->activateAndRender();
@@ -185,7 +190,6 @@ namespace Particles {
 			particle.rotation = _core->movement.initialRotation;
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
-
 			_particles.push_back(particle);
 		}
 	}
@@ -240,7 +244,8 @@ namespace Particles {
 
 	VEC3 CSystem::generateVelocity() const {
 		const float& angle = _core->emission.angle;
-		const float velocity = _core->movement.velocity;
+		const float velocity = random(-_core->movement.velocity, _core->movement.velocity);
+		
 
 		if (angle != 0.f) {
 			float radius = tan(angle);
