@@ -8,6 +8,8 @@ class OnHit : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
+	std::string particles = "";
+	VEC3 particlesOffset;
 public:
 	OnHit();
 	OnHit(Enemy* enemy, std::string animation);

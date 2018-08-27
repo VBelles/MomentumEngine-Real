@@ -107,7 +107,7 @@ namespace Particles {
 		}
 
 		// check if a new batch of particles needs to be generated
-		if (_core->emission.cyclic && _core->emission.interval > 0.f) {
+		if (_core->emission.cyclic /*&& _core->emission.interval > 0.f*/) {
 			_time += delta;
 			if (_time > _core->emission.interval) {
 				emit();

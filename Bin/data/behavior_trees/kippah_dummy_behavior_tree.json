@@ -65,7 +65,9 @@
             "type": "action",
             "action": {
               "type": "OnHit",
-              "animation": "medusa_damage"
+              "animation": "medusa_damage",
+              "particles": "data/particles/hit_sparks.particles",
+              "particles_offset": "0 0.2 0"
             }
           },
           {
