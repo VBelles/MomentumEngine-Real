@@ -85,9 +85,12 @@ bool CMaterial::create(const json& j) {
 			textures[ts] = Resources.get(texture_name)->as<CTexture>();
 
 			// To update all textures in a single DX call
-			srvs[ts] = textures[ts]->getShaderResourceView();
+			//srvs[ts] = textures[ts]->getShaderResourceView();
 		}
 	}
+
+	for (int i = 0; i < max_textures; ++i)
+		srvs[i] = textures[i] ? textures[i]->getShaderResourceView() : nullptr;
 
 	if (!cb_material.create(CB_MATERIAL))
 		return false;

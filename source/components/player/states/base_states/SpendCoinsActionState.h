@@ -26,4 +26,6 @@ public:
 	void onReleasePowerButton() override {}
 	void onDodgeButton() override {}
 	void onSpendCoinsButtonReleased() override;
+
+	float getPowerPerCoin() { return powerPerCoin; }
 };

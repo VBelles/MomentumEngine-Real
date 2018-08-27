@@ -14,6 +14,7 @@
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
 #include "components/player/states/StateManager.h"
+#include "components/player/states/base_states/SpendCoinsActionState.h"
 
 DECL_OBJ_MANAGER("player_model", TCompPlayerModel);
 
@@ -171,14 +172,14 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 		//Hp bar
 		std::string hpProgressBarText = "HP: " + std::to_string((int)hp) + "/" + std::to_string((int)maxHp);
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, (ImVec4)ImColor { 34, 177, 76 });
-		ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
+		//ImGui::ProgressBar((float)hp / maxHp, ImVec2(-1, 0), hpProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		//Power bar
 		std::string powerProgressBarText = "Power";
 		ImVec4 color = getPowerGauge()->getPowerLevel() == 1 ? ImColor{ 133, 78, 128 } : getPowerGauge()->getPowerLevel() == 2 ? ImColor{ 24, 174, 186 } : ImColor{ 255, 255, 255 };
 		ImGui::PushStyleColor(ImGuiCol_PlotHistogram, color);
-		ImGui::ProgressBar(getPowerGauge()->getBarPercentage(), ImVec2(-1, 0), powerProgressBarText.c_str());
+		//ImGui::ProgressBar(getPowerGauge()->getBarPercentage(), ImVec2(-1, 0), powerProgressBarText.c_str());
 		ImGui::PopStyleColor();
 
 		ImGui::End();
@@ -418,6 +419,8 @@ void TCompPlayerModel::onPlatform() {
 	//dbg("On platform\n");
 }
 
+
+
 void TCompPlayerModel::damage(float damage) {
 	setHp(hp - damage);
 	/*TCompRender* render = get<TCompRender>();
@@ -573,6 +576,19 @@ TCompPlayerModel::~TCompPlayerModel() {
 
 bool TCompPlayerModel::isGrounded() {
 	return dynamic_cast<GroundedActionState*>(getStateManager()->getState());
+}
+
+int TCompPlayerModel::getNumberOfCoins() {
+	return getCollectableManager()->getNumberOfCoins();
+}
+float TCompPlayerModel::getPowerPerCoin() {
+	State state = States::getState("SpendCoins");
+	if (state != UndefinedState) {
+		return ((SpendCoinsActionState*)getStateManager()->getState(state))->getPowerPerCoin();
+	}
+	else {
+		return -1;
+	}
 }
 
 bool TCompPlayerModel::addAttacker(std::string attacker, float slots) {

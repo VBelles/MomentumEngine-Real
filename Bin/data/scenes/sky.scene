@@ -7,7 +7,7 @@
 				"lerp_time" : 3,
 				"skyboxes" :[
 					{
-						"texture" : "data/textures/cubemaps/momentum/OutputCube_256.dds",
+						"texture" : "data/textures/cubemaps/momentum/OutputCube_256_mips.dds",
 						"time" : 5
 					},
 					{
