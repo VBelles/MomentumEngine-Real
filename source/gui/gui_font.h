@@ -20,6 +20,7 @@ namespace GUI {
 		std::map<int, CharInfo> characters;
 
 		std::string face = "Arial";
+		int size = 0;
 		int bold = 0;
 		int italic = 0;
 		std::string charset = "";
@@ -42,9 +43,12 @@ namespace GUI {
 		const CTexture* fontTexture = nullptr;
 
 	public:
-		int size = 0;
 		void load(std::string fileName);
 		const CTexture* getTexture();
 		void renderText(const MAT44& world, const std::string& text, const VEC4& color);
+
+		int getSize();
+		int getHeight();
+		int getWidth(std::string text);
 	};
 }

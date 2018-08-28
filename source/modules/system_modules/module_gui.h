@@ -33,12 +33,14 @@ public:
 	MVariants& getVariables();
 
 	void renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color);
-	void renderText(const MAT44& world, const std::string& text, const VEC4& color);
+	void renderText(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color, const VEC2& charSize);
 
-	GUI::CFont font;
+	GUI::CFont& getFont(int size);
+
 private:
 	CCameraGui _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;
+	const CRenderTechnique* _technique_font = nullptr;
 	const CRenderMesh* _quadMesh = nullptr;
 	const CTexture* _fontTexture = nullptr;
 
@@ -47,4 +49,6 @@ private:
 	MVariants _variables;
 	GUI::VControllers _controllers;
 
+	std::string fontsFile = "data/gui/fonts.json";
+	std::map<int, GUI::CFont> fonts;
 };

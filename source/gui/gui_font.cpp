@@ -118,17 +118,31 @@ namespace GUI {
 			char c = text[i];
 
 			VEC2 minUV = VEC2(characters[c].x / (float)scaleW, characters[c].y / (float)scaleH);
-			//VEC2 maxUV = minUV + VEC2(characters[c].width / (float)scaleW, characters[c].height / (float)scaleH);
-			VEC2 maxUV = minUV + VEC2(size / (float)scaleW, size / (float)scaleH);
+			VEC2 maxUV = minUV + VEC2(characters[c].width / (float)scaleW, characters[c].height / (float)scaleH);
 			MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
-			gap += VEC2(/*(characters[c].xadvance + characters[c].xoffset) / (float)size*/1, 0);
+			gap += VEC2(characters[c].xadvance / (float)size, 0);
 
-			EngineGUI.renderTexture(w, fontTexture, minUV, maxUV, color);
+			VEC2 charSize = VEC2(characters[c].width / (float)size, characters[c].height / (float)lineHeight);
 
-			//if (c == '\n') {
-			//	gap.x = 0;
-			//	gap.y += lineHeight / scaleH;
-			//}
+			EngineGUI.renderText(w, fontTexture, minUV, maxUV, color, charSize);
 		}
+	}
+
+	int CFont::getSize() {
+		return size;
+	}
+
+	int CFont::getHeight() {
+		return size;
+	}
+
+	int CFont::getWidth(std::string text) {
+		int size = 0;
+
+		for (size_t i = 0; i < text.size(); ++i) {
+			size += characters[text[i]].xadvance;
+		}
+
+		return size;
 	}
 }

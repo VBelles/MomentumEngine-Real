@@ -24,8 +24,11 @@ void COption::render() {
 		optionParams._imageParams._color);
 
 	// render text
-	float textWidth = optionParams._textParams._text.size() * optionParams._textParams._size;
-	float textHeight = optionParams._textParams._size;
+	CFont font = EngineGUI.getFont(optionParams._textParams._size);
+
+	float textWidth = font.getWidth(optionParams._textParams._text);
+	float textHeight = font.getHeight();
+
 	VEC2 textSpace = _params._size;
 	textSpace.x -= _previous->getParams()->_size.x + _next->getParams()->_size.x + _text->getParams()->_size.x;
 	VEC2 offset;
@@ -39,8 +42,8 @@ void COption::render() {
 		offset.y = _params._size.y - textHeight;
 
 	MAT44 tr = MAT44::CreateTranslation(offset.x, offset.y, 0.f);
-	MAT44 w = MAT44::CreateScale(optionParams._textParams._size) * tr * _absolute;
-	EngineGUI.renderText(w, optionParams._textParams._text, optionParams._textParams._color);
+	MAT44 w = MAT44::CreateScale(font.getSize()) * tr * _absolute;
+	font.renderText(w, optionParams._textParams._text, optionParams._textParams._color);
 
 	// render previous button
 	_previous->render();
