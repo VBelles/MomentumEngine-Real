@@ -22,7 +22,7 @@
 	{
 		"name" : "walk",
 		"all" : false,
-		"buttons" : ["q"]
+		"buttons" : ["c"]
 	},
 	{
 		"name" : "jump",

@@ -10,5 +10,13 @@
     {
         "name": "Punto 1",
         "pos": "-155.8 22.5 -43"
+    },
+    {
+        "name": "Punto 2",
+        "pos": "8.5 60 -4.5"
+    },
+    {
+        "name": "Arriba de todo",
+        "pos": "-51.5 82.5 4"
     }
 ]
