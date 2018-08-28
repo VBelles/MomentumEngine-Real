@@ -195,7 +195,7 @@ void StateManager::changeState(State newState) {
 		else {
 			nextBaseState = states[newState];
 		}
-		dbg("next state: %s\n", States::toString(nextBaseState->state));
+		//dbg("next state: %s\n", States::toString(nextBaseState->state));
 		isChangingBaseState = true;
 	}
 	else {
@@ -215,7 +215,15 @@ void StateManager::changeState(std::string newStateName) {
 
 void StateManager::changeConcurrentState(ConcurrentState newState) {
 	if (!lockedConcurrentStates.count(newState)) {
-		nextConcurrentState = concurrentStates[newState];
+		if (isChangingConcurrentState) {
+			if (newState < nextConcurrentState->state) {
+				nextConcurrentState = concurrentStates[newState];
+			}
+		}
+		else {
+			nextConcurrentState = concurrentStates[newState];
+		}
+		//dbg("next concurrent state: %s\n", States::toString(nextConcurrentState->concurrentState));
 		isChangingConcurrentState = true;
 	}
 	else {
@@ -245,7 +253,6 @@ void StateManager::performStateChange() {
 			baseState->lastState = exitingState;
 			baseState->onStateEnter(exitingState);
 		}
-		isChangingBaseState = false;
 	}
 	if (concurrentState != nextConcurrentState) {
 		IActionState* exitingConcurrentState = concurrentState;
@@ -258,8 +265,9 @@ void StateManager::performStateChange() {
 			concurrentState->lastState = exitingConcurrentState;
 			concurrentState->onStateEnter(exitingConcurrentState);
 		}
-		isChangingConcurrentState = false;
 	}
+	isChangingBaseState = false;
+	isChangingConcurrentState = false;
 }
 
 IActionState* StateManager::getState() {
