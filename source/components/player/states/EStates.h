@@ -2,16 +2,38 @@
 
 #define STATES \
 	etype(UndefinedState), \
-	etype(Idle), \
-	etype(JumpSquat), \
+	etype(Death), \
+	etype(PitFalling), \
+	etype(HardKnockbackGround), \
+	etype(HardKnockbackAir), \
+	etype(Slide), \
+	etype(LandingHurt), \
+	etype(PropelHigh), \
+	etype(PropelLong), \
+	etype(SpendCoins), \
 	etype(GhostJumpSquat), \
-	etype(GhostJumpWindow), \
-	etype(Run), \
-	etype(Walk), \
-	etype(AirborneNormal), \
-	etype(JumpSquatLong), \
-	etype(AirborneLong), \
 	etype(GhostJumpSquatLong), \
+	etype(GhostJumpWindow), \
+	etype(SoftLanding), \
+	etype(HardLanding), \
+	etype(Dodge), \
+	etype(AirDodge), \
+	etype(ReleasePowerGround), \
+	etype(JumpSquat), \
+	etype(JumpSquatLong), \
+	etype(JumpSquatSpring), \
+	etype(AirborneNormal), \
+	etype(AirborneLong), \
+	etype(SpringJump), \
+	etype(HuggingWall), \
+	etype(WallJumpSquat), \
+	etype(HuggingWallLongJumpSquat), \
+	etype(AirborneWallJump), \
+	etype(WallJumpSquatPlummet), \
+	etype(WallJumpPlummet), \
+	etype(FallingAttack), \
+	etype(HorizontalLauncher), \
+	etype(VerticalLauncher), \
 	etype(StrongAttack), \
 	etype(StrongAttack2), \
 	etype(StrongAttack3), \
@@ -19,32 +41,11 @@
 	etype(StrongFinisher2), \
 	etype(FastFinisher1), \
 	etype(FastFinisher2), \
-	etype(FallingAttack), \
-	etype(HorizontalLauncher), \
-	etype(VerticalLauncher), \
-	etype(PropelHigh), \
-	etype(PropelLong), \
 	etype(TurnAround), \
-	etype(SoftLanding), \
-	etype(HardLanding), \
-	etype(HuggingWall), \
-	etype(WallJumpSquat), \
-	etype(HuggingWallLongJumpSquat), \
-	etype(AirborneWallJump), \
-	etype(ReleasePowerGround), \
-	etype(JumpSquatSpring), \
+	etype(Run), \
+	etype(Walk), \
 	etype(IdleTurnAround), \
-	etype(WallJumpSquatPlummet), \
-	etype(WallJumpPlummet), \
-	etype(Death), \
-	etype(PitFalling), \
-	etype(HardKnockbackGround), \
-	etype(HardKnockbackAir), \
-	etype(Slide), \
-	etype(SpringJump), \
-	etype(Dodge), \
-	etype(AirDodge), \
-	etype(SpendCoins)
+	etype(Idle)
 
 #define etype(x) x
 typedef enum { STATES } State;
@@ -60,14 +61,14 @@ static const std::map<std::string, State> statesMap = { STATES };
 #define CONCURRENT_STATES \
 	etype(UndefinedConcurrentState), \
 	etype(Free), \
+	etype(ReleasePowerAir), \
+	etype(GrabHigh), \
+	etype(GrabLong), \
 	etype(FastAttack), \
 	etype(FastAttack2), \
 	etype(FastAttackAir), \
-	etype(GrabHigh), \
-	etype(GrabLong), \
-	etype(ReleasePowerAir), \
-	etype(SoftKnockbackAir), \
-	etype(SoftKnockbackGround)
+	etype(SoftKnockbackGround), \
+	etype(SoftKnockbackAir)
 
 #define etype(x) x
 typedef enum { CONCURRENT_STATES } ConcurrentState;

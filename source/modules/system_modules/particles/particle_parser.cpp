@@ -38,13 +38,14 @@ namespace Particles {
 		cps->emission.interval = emission.value("interval", cps->emission.interval);
 		cps->emission.count = emission.value("count", cps->emission.count);
 		const std::string emitterType = emission.value("type", "point");
-		if (emitterType == "line")        cps->emission.type = TCoreSystem::TEmission::Line;
-		else if (emitterType == "square") cps->emission.type = TCoreSystem::TEmission::Square;
-		else if (emitterType == "box")    cps->emission.type = TCoreSystem::TEmission::Box;
-		else if (emitterType == "sphere") cps->emission.type = TCoreSystem::TEmission::Sphere;
-		else                              cps->emission.type = TCoreSystem::TEmission::Point;
+		if (emitterType == "line")			cps->emission.type = TCoreSystem::TEmission::Line;
+		else if (emitterType == "square")	cps->emission.type = TCoreSystem::TEmission::Square;
+		else if (emitterType == "box")		cps->emission.type = TCoreSystem::TEmission::Box;
+		else if (emitterType == "sphere")	cps->emission.type = TCoreSystem::TEmission::Sphere;
+		else								cps->emission.type = TCoreSystem::TEmission::Point;
 		cps->emission.size = emission.value("size", cps->emission.size);
 		cps->emission.angle = deg2rad(emission.value("angle", rad2deg(cps->emission.angle)));
+		cps->emission.radial = emission.value("radial", cps->emission.radial);
 
 		// movement
 		const json& movement = data["movement"];

@@ -51,7 +51,7 @@ int OnHit::execAction(float delta) {
 
 		if (enemy->getPower()->getPowerToGive() > 0) {
 			CEntity *entity = enemy->playerHandle;
-			entity->sendMsg(TMsgGainPower{ CHandle(enemy->getPower()).getOwner(), enemy->getPower()->getPowerToGive() });
+			entity->sendMsg(TMsgGainPower{ enemy->getEntityHandle(), enemy->getPower()->getPowerToGive() });
 			enemy->getPower()->setPowerToGive(0.f);
 		}
 	}
@@ -60,6 +60,10 @@ int OnHit::execAction(float delta) {
 	enemy->velocity = VEC3::Zero;
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
+
+	//Launch hit particles
+	EngineParticles.launchSystem(particles, Particles::LaunchConfig{ enemy->getEntityHandle(), "", particlesOffset });
+
 	return Leave;
 }
 
@@ -68,6 +72,8 @@ void OnHit::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	particles = j.value("particles", particles);
+	particlesOffset = j.count("particles_offset") ? loadVEC3(j.value("particles_offset", "")) : particlesOffset;
 }
 
 void OnHit::debugInMenu() {
