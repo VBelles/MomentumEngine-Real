@@ -129,7 +129,7 @@ fn maxRotToMcv transf = (
 )
 
 fn mcvRotToMax q = (
-	--Should change w sign also.
+	--This doesn't work.
 	local rot = q * rotateXMatrix -90
 	return inverse rot
 )
@@ -178,7 +178,7 @@ fn strRotToRot strRot = (
 	rotation.x = r[1] as float
 	rotation.y = r[2] as float
 	rotation.z = r[3] as float
-	rotation.w = -r[4] as float
+	rotation.w = r[4] as float
 	return mcvRotToMax rotation
 )
 
