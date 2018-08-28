@@ -2,16 +2,16 @@
   "life": {
     "duration": 0.3,
     "duration_variation": 0.1,
-    "max_particles": 10000,
+    "max_particles": 0,
     "time_factor": 1.0
   },
   "emission": {
     "type": "point",
     "angle": 89,
     "size": 0.1,
-    "interval": 0,
+    "interval": 0.16,
     "count": 50,
-    "cyclic": true
+    "cyclic": false
   },
   "movement": {
     "velocity": 10,

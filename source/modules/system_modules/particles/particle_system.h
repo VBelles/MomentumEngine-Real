@@ -22,6 +22,7 @@ namespace Particles {
 			bool cyclic = false;      // system re-emits after the interval time
 			float size = 0.f;         // emissor size
 			float angle = 0.f;        // emission angle
+			bool radial = false;	  // ignores angle and emits from the center
 		};
 		struct TMovement {
 			float velocity = 0.f;			// initial speed
@@ -71,9 +72,11 @@ namespace Particles {
 	private:
 		void emit();
 		VEC3 generatePosition() const;
-		VEC3 generateVelocity() const;
+		VEC3 generateVelocity(const VEC3& position) const;
 
-		MAT44 getWorld();
+		MAT44 world;
+		VEC3 position;
+		MAT44 updateWorld();
 
 		LaunchConfig config;
 		int boneId = -1;

@@ -146,13 +146,13 @@ namespace Particles {
 				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
 				cb_object.obj_world = rt * sc * bb;
 			}
-			else if(_core->render.type == TCoreSystem::TRender::Mesh){
+			else if (_core->render.type == TCoreSystem::TRender::Mesh) {
 				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
 					* MAT44::CreateFromQuaternion(config.rotationOffset)
 					* MAT44::CreateTranslation(p.position);
 			}
-	
+
 			int row = p.frame / frameCols;
 			int col = p.frame % frameCols;
 			VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
@@ -176,13 +176,14 @@ namespace Particles {
 		}
 	}
 
+
 	void CSystem::emit() {
-		MAT44 world = getWorld();
+		world = updateWorld();
 
 		for (int i = 0; i < _core->emission.count && _particles.size() < _core->life.maxParticles; ++i) {
 			TParticle particle;
 			particle.position = VEC3::Transform(generatePosition(), world);
-			particle.velocity = generateVelocity();
+			particle.velocity = generateVelocity(particle.position);
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
@@ -195,11 +196,11 @@ namespace Particles {
 	}
 
 	void CSystem::forceEmission(int quantity) {
-		MAT44 world = getWorld();
+		world = updateWorld();
 		for (int i = 0; i < quantity; ++i) {
 			TParticle particle;
 			particle.position = VEC3::Transform(generatePosition(), world);
-			particle.velocity = generateVelocity();
+			particle.velocity = generateVelocity(particle.position);
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
@@ -242,10 +243,15 @@ namespace Particles {
 		return VEC3::Zero;
 	}
 
-	VEC3 CSystem::generateVelocity() const {
+	VEC3 CSystem::generateVelocity(const VEC3& particlePosition) const {
+		const float velocity = _core->movement.velocity + random(-_core->movement.velocityVariation, _core->movement.velocityVariation);
+
+		if (_core->emission.radial) {
+			VEC3 dir = particlePosition - position;
+			dir.Normalize();
+			return dir * velocity;
+		}
 		const float& angle = _core->emission.angle;
-		const float velocity = random(-_core->movement.velocity, _core->movement.velocity);
-		
 
 		if (angle != 0.f) {
 			float radius = tan(angle);
@@ -275,7 +281,7 @@ namespace Particles {
 		this->config.rotationOffset = rotationOffset;
 	}
 
-	MAT44 CSystem::getWorld() {
+	MAT44 CSystem::updateWorld() {
 		MAT44 world = MAT44::Identity;
 		if (config.targetEntity.isValid()) {
 			CEntity* e = config.targetEntity;
@@ -286,20 +292,20 @@ namespace Particles {
 
 			QUAT rotation;
 			VEC3 translation;
-			if (boneId != -1) {
+			if (boneId != -1) { // Follow bone
 				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->getBone(boneId);
 				rotation = Cal2DX(bone->getRotationAbsolute());
 				translation = Cal2DX(bone->getTranslationAbsolute());
 			}
-			else {
+			else { // Follow transform
 				TCompTransform* e_transform = e->get<TCompTransform>();
 				rotation = e_transform->getRotation();
 				translation = e_transform->getPosition();
 			}
-
-			world = MAT44::CreateTranslation(config.offset)
-				* MAT44::CreateFromQuaternion(rotation)
-				* MAT44::CreateTranslation(translation);
+			position = translation;
+			world =// MAT44::CreateTranslation(config.offset)
+				//* MAT44::CreateFromQuaternion(rotation)
+				MAT44::CreateTranslation(translation);
 		}
 		return world;
 	}
