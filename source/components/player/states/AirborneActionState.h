@@ -29,7 +29,7 @@ protected:
 	float slideWindowTime = frames2sec(5);
 
 	CTimer hardLandingTimer;
-	float hardLandingTime = 3.1f;
+	float hardLandingTime = 2.2f;
 
 public:
 	AirborneActionState(StateManager* stateManager, State state);
