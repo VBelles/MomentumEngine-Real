@@ -158,6 +158,7 @@ void AirborneActionState::onMove(MoveState& moveState) {
 				stateManager->changeState(Slide);
 				getPlayerModel()->lockFallingAttack = false;
 				getPlayerModel()->lockAirDodge = false;
+				*velocityVector = VEC3::Zero;
 			}
 		}
 		else {

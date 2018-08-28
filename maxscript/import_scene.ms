@@ -1,5 +1,7 @@
 clearListener()
 
+fileIn "utils.ms"
+
 -- Finds closing position of a pair of tokens.
 fn findClosing str openPos tokenOpen tokenClose = (
     local closePos = openPos
@@ -14,7 +16,7 @@ fn findClosing str openPos tokenOpen tokenClose = (
     return closePos
 )
 
--- Returns the string between two tokens.
+-- Returns the string between two tokens (tokens not included).
 fn findBetweenTokens str tokenOpen tokenClose = (
 	local idxOpen = findString str tokenOpen
 	if idxOpen == undefined then return ""
@@ -25,12 +27,29 @@ fn findBetweenTokens str tokenOpen tokenClose = (
 	return substring str (idxOpen + 1) (idxClose - idxOpen - 1)
 )
 
+-- Returns array of JSON objects.
+fn getAllJObjects str = (
+	local idx = 1
+	local strLen = str.count
+	local objArr = #()
+	local objStr = str
+	while idx <= strLen and
+		  objStr != "" do (
+		objStr = findBetweenTokens (substring str idx -1) "{" "}"
+		idx += objStr.count + 1
+		if objStr != "" then append objArr objStr
+	)
+	return objArr
+)
+
+-- Finds JSON element value in an array from filterString "\"".
 fn findJValue arr id = (
 	local idx = findItem arr id
 	if idx > 0 then return arr[idx + 2]
 	else return ""
 )
 
+-- Returns string with full file contents.
 fn getFileContents pathToFile = (
 	file = openFile pathToFile
 	local fileData = ""
@@ -45,23 +64,30 @@ fn getFileContents pathToFile = (
 	return fileData
 )
 
-pathToFile = "D:/Dev/MomentumEngine-Real/Bin/data/scenes/test_spikes.scene"
+fn createObject name pos:"0 0 0" rot:"0 0 0 1" = (
+	obj = Sphere()
+	obj.name = name
+	obj.pos = strPosToPos pos
+	obj.rotation = strRotToRot rot
+)
+
+
+pathToFile = "D:/Dev/MomentumEngine-Real/Bin/data/scenes/__testAO-0.scene"
 jData = getFileContents pathToFile
 
-format jData --DEBUG
+--format (jData + "\n") --DEBUG
 
-/*
-json = python.import #json
-decoded = json.loads(json.dumps(jData))
-*/
-
-jEntity = findBetweenTokens jData "{" "}"
-
-jArray = filterString jEntity "\""
+jObjects = getAllJObjects jData
+for jObj in jObjects do (
+	jArray = filterString jObj "\""
+	--format (jObj + "---end\n")
+	local objName = findJValue jArray "name"
+	local objPos  = findJValue jArray "pos"
+	local objRot  = findJValue jArray "rotation"
+	createObject objName pos:objPos rot:objRot
+	format ("name: " 	 + findJValue jArray "name" 	+ "\n")
+	format ("pos: "  	 + findJValue jArray "pos" 		+ "\n")
+	format ("rotation: " + findJValue jArray "rotation" + "\n")
+)
 format "---------------------------\n"
-for i = 1 to jArray.count do format (jArray[i] + "---end\n")
 
-format ("name: " + findJValue jArray "name" + "\n")
-format ("pos: "  + findJValue jArray "pos" + "\n")
-	
-	

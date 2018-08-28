@@ -351,6 +351,7 @@
     <ClCompile Include="components\comp_power_up.cpp" />
     <ClCompile Include="components\platforms\comp_platforms_director.cpp" />
     <ClCompile Include="utils\timer_frames.cpp" />
+    <ClCompile Include="components\player\states\base_states\LandingHurtActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -735,6 +736,7 @@
     <ClInclude Include="components\platforms\comp_platforms_director.h" />
     <ClInclude Include="utils\timer_frames.h" />
     <ClInclude Include="utils\timer2.h" />
+    <ClInclude Include="components\player\states\base_states\LandingHurtActionState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -42,6 +42,7 @@ base_states:
 	"Dodge"
 	"AirDodge"
 	"SpendCoins"
+	"LandingHurt"
 
 
 concurrent_states:

@@ -7,7 +7,7 @@
 				"damage": 1.0,
 				"invulnerability_time": 1.5,
 				"hit_again_time": 0.1,
-				"stun_time": 0.5
+				"stun_time": 0.7
 			}
 		}
 	}
