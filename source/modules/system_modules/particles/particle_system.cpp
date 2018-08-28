@@ -302,10 +302,10 @@ namespace Particles {
 				rotation = e_transform->getRotation();
 				translation = e_transform->getPosition();
 			}
-			position = translation;
-			world =// MAT44::CreateTranslation(config.offset)
-				//* MAT44::CreateFromQuaternion(rotation)
-				MAT44::CreateTranslation(translation);
+			position = translation + config.offset;
+			world = MAT44::CreateTranslation(config.offset)
+				* MAT44::CreateFromQuaternion(rotation)
+				* MAT44::CreateTranslation(translation);
 		}
 		return world;
 	}
