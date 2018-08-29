@@ -18,5 +18,29 @@
     {
         "name": "Arriba de todo",
         "pos": "-51.5 82.5 4"
+    },
+    {
+        "name": "Pie torre",
+        "pos": "150 34 -124"
+    },
+    {
+        "name": "Top torre",
+        "pos": "147 224 -139"
+    },
+    {
+        "name": "Pie estatua",
+        "pos": "-162 37 -19"
+    },
+    {
+        "name": "Cementerio",
+        "pos": "24 16 67"
+    },
+    {
+        "name": "Plaza",
+        "pos": "31 1 -24"
+    },
+    {
+        "name": "Islas",
+        "pos": "187 0 -11"
     }
 ]
