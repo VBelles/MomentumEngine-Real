@@ -7,23 +7,27 @@
 namespace Particles {
 
 	struct TCoreSystem : public IResource {
+
 		struct TLife {
 			float duration = 1.f;            // expected particle life time
 			float durationVariation = 0.f;   // lifetime variation
 			int maxParticles = 1;            // maximum number of alive particles
 			float timeFactor = 1.f;
 		};
+
 		struct TEmission {
 			enum EType { Point = 0, Line, Square, Box, Sphere };
 
-			EType type = Point;       // type of emissor
-			float interval = 0.f;     // generation interval
-			int count = 1;            // number of particles each generation
-			bool cyclic = false;      // system re-emits after the interval time
-			float size = 0.f;         // emissor size
-			float angle = 0.f;        // emission angle
-			bool radial = false;	  // ignores angle and emits from the center
+			EType type = Point;				// type of emissor
+			float interval = 0.f;			// generation interval
+			int count = 1;					// number of particles each generation
+			bool cyclic = false;			// system re-emits after the interval time
+			float size = 0.f;				// emissor size
+			float angle = 0.f;				// emission angle
+			bool radial = false;			// ignores angle and emits from the center
+			bool randomDirection = false;   // direction generated randomly
 		};
+
 		struct TMovement {
 			float velocity = 0.f;			// initial speed
 			float velocityVariation = 0.f;	// variation of the initial speed generation
@@ -35,8 +39,9 @@ namespace Particles {
 			float wind = 0.f;				// wind factor
 			bool ground = false;			// limit by ground
 		};
+
 		struct TRender {
-			enum EType { Billboard, HorizontalBillboard, StretchedBillboard, Mesh };
+			enum EType { Billboard = 0, HorizontalBillboard, StretchedBillboard, Mesh };
 
 			EType type = Billboard;							// particle type
 			const CTexture* texture = nullptr;				// particle texture
@@ -48,6 +53,7 @@ namespace Particles {
 			float frameSpeed = 0.f;							// frame change speed
 			float motionBlurAmount = 0.f;					// amount of blur for stretched particles
 		};
+
 		struct TSize {
 			TTrack<float> sizes;			// track of sizes along the particle lifetime
 			float scale = 1.f;				// scale factor

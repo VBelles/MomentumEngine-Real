@@ -251,8 +251,14 @@ namespace Particles {
 			dir.Normalize();
 			return dir * velocity;
 		}
-		const float& angle = _core->emission.angle;
+		
+		if (_core->emission.randomDirection) {
+			VEC3 dir = VEC3(random(-1, 1), random(-1, 1), random(-1, 1));
+			dir.Normalize();
+			return dir * velocity;
+		}
 
+		const float& angle = _core->emission.angle;
 		if (angle != 0.f) {
 			float radius = tan(angle);
 			float x = sqrtf(radius) * cosf(angle) * random(-1, 1);

@@ -46,6 +46,7 @@ namespace Particles {
 		cps->emission.size = emission.value("size", cps->emission.size);
 		cps->emission.angle = deg2rad(emission.value("angle", rad2deg(cps->emission.angle)));
 		cps->emission.radial = emission.value("radial", cps->emission.radial);
+		cps->emission.randomDirection = emission.value("random_direction", cps->emission.randomDirection);
 
 		// movement
 		const json& movement = data["movement"];
