@@ -10,6 +10,11 @@
         "value": 0
     },
     {
+        "name": "max_hp",
+        "type": "int",
+        "value": 0
+    },
+    {
         "name": "power_progress_level1",
         "type": "float",
         "value": 0.0

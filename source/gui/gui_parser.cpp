@@ -8,6 +8,8 @@
 #include "utils/template_engine.h"
 #include "gui/widgets/gui_option.h"
 #include "gui/widgets/gui_map_marker.h"
+#include "gui/widgets/gui_points_bar.h"
+#include "gui/widgets/gui_point.h"
 #include "modules/system_modules/module_uniques.h"
 
 namespace {
@@ -61,6 +63,8 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent) {
 	else if (type == "button")  wdgt = parseButton(data);
 	else if (type == "option")  wdgt = parseOption(data);
 	else if (type == "map_marker")  wdgt = parseMapMarker(data, name);
+	else if (type == "points_bar")  wdgt = parsePointsBar(data);
+	else if (type == "point")  wdgt = parsePoint(data);
 	else                        wdgt = parseWidget(data);
 
 	wdgt->_name = name;
@@ -236,6 +240,28 @@ CWidget* CParser::parseMapMarker(const json& data, const std::string& name) {
 
 	json jMarker = data["marker"];
 	wdgt->_marker = (CButton*)parseButton(jMarker);
+
+	return wdgt;
+}
+
+CWidget* CParser::parsePointsBar(const json& data) {
+	CPointsBar* wdgt = new CPointsBar();
+
+	parseParams(wdgt->_params, data);
+	wdgt->_variable = data.value("variable", "");
+	wdgt->_variable_max = data.value("variable_max", "");
+
+	return wdgt;
+}
+
+CWidget* CParser::parsePoint(const json& data) {
+	CPoint* wdgt = new CPoint();
+
+	parseParams(wdgt->_params, data);
+	parseImageParams(wdgt->_states[CPoint::EState::ST_Full], data);
+
+	json jEmpty = mergeJson(data, "empty");
+	parseImageParams(wdgt->_states[CPoint::EState::ST_Empty], jEmpty);
 
 	return wdgt;
 }
