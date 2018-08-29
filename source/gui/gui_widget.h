@@ -27,7 +27,7 @@ namespace GUI {
 		virtual void computeAbsolute();
 
 		void updateAll(float delta);
-		void renderAll();
+		virtual void renderAll();
 
 		virtual void update(float delta);
 		virtual void render();

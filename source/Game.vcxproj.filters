@@ -352,6 +352,8 @@
     <ClCompile Include="components\platforms\comp_platforms_director.cpp" />
     <ClCompile Include="utils\timer_frames.cpp" />
     <ClCompile Include="components\player\states\base_states\LandingHurtActionState.cpp" />
+    <ClCompile Include="gui\widgets\gui_points_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -737,6 +739,8 @@
     <ClInclude Include="utils\timer_frames.h" />
     <ClInclude Include="utils\timer2.h" />
     <ClInclude Include="components\player\states\base_states\LandingHurtActionState.h" />
+    <ClInclude Include="gui\widgets\gui_points_bar.h" />
+    <ClInclude Include="gui\widgets\gui_point.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
