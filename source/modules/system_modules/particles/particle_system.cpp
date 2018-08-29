@@ -239,6 +239,12 @@ namespace Particles {
 			dir.Normalize();
 			return dir * random(0, size);
 		}
+		case TCoreSystem::TEmission::Circle:
+		{
+			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
+			dir.Normalize();
+			return dir * random(0, size);
+		}
 		}
 		return VEC3::Zero;
 	}

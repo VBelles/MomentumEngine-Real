@@ -16,7 +16,7 @@ namespace Particles {
 		};
 
 		struct TEmission {
-			enum EType { Point = 0, Line, Square, Box, Sphere };
+			enum EType { Point = 0, Line, Square, Box, Sphere, Circle };
 
 			EType type = Point;				// type of emissor
 			float interval = 0.f;			// generation interval
