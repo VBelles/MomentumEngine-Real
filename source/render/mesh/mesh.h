@@ -34,7 +34,7 @@ public:
     void activateAndRender() const;
     void activateIndexBuffer() const;
 
-    void debugInMenu();
+    void debugInMenu() override;
     void setNameAndClass(const std::string& new_name, const CResourceClass* new_class) override;
 
     const VMeshSubGroups& getSubGroups() const { return subgroups; }

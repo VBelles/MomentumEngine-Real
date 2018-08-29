@@ -25,7 +25,7 @@ public:
 	int  getHeight() const { return yres; }
 
 	// DX stuff for the multimaterial
-	const ID3D11ShaderResourceView* getShaderResourceView() const {
+	const ID3D11ShaderResourceView* getShaderResourceView() const{
 		return shader_resource_view;
 	}
 

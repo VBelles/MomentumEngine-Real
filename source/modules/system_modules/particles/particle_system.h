@@ -16,7 +16,7 @@ namespace Particles {
 		};
 
 		struct TEmission {
-			enum EType { Point = 0, Line, Square, Box, Sphere, Circle, Cylinder};
+			enum EType { Point = 0, Line, Square, Box, Sphere, Circle, Cylinder, End};
 
 			EType type = Point;				// type of emissor
 			float interval = 0.f;			// generation interval
@@ -42,7 +42,7 @@ namespace Particles {
 		};
 
 		struct TRender {
-			enum EType { Billboard = 0, HorizontalBillboard, StretchedBillboard, Mesh };
+			enum EType { Billboard = 0, HorizontalBillboard, StretchedBillboard, Mesh, End };
 
 			EType type = Billboard;							// particle type
 			const CTexture* texture = nullptr;				// particle texture
@@ -71,6 +71,9 @@ namespace Particles {
 		TRender       render;
 		TSize         size;
 		TColor        color;
+
+
+		void debugInMenu() override;
 	};
 
 	using VParticles = std::vector<TParticle>;
