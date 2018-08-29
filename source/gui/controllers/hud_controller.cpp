@@ -18,6 +18,7 @@ namespace GUI {
 		TCompPowerGauge* powerGauge = playermodel->getPowerGauge();
 
 		EngineGUI.getVariables().getVariant("hp")->setInt(playermodel->getHp());
+		EngineGUI.getVariables().getVariant("max_hp")->setInt(playermodel->getMaxHp());
 		EngineGUI.getVariables().getVariant("hp_progress")->setFloat(playermodel->getHp() / playermodel->getMaxHp());
 
 		int coinBars = playermodel->getNumberOfCoins() * playermodel->getPowerPerCoin() / powerGauge->getMaxPower();
