@@ -3,6 +3,7 @@ fileIn "export_scene.ms"
 fileIn "export_mesh.ms"
 fileIn "export_rigid_anims.ms"
 fileIn "export_skeletons.ms"
+fileIn "import_scene.ms"
 
 macroscript Momentum
 category: "Momentum"
@@ -13,11 +14,11 @@ ButtonText: "Momentum"
 	global floater
 	try closeRolloutFloater floater catch()
 
-	local width  = 218
+	local width = 218
 
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 1
+	local numberOfButtons = 3
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	local left = sysInfo.desktopSize[1] * 0.8 --80% of screen width.
@@ -130,10 +131,16 @@ ButtonText: "Momentum"
 	rollout utils "Momentum Utils" (
 		button btn_attach_elems "Attach sel" across:2 tooltip:"Attaches all selected objects"
 		button btn_detach_elems "Detach elements" tooltip:"Detaches all elements of selected object"
+		
 		button btn_check_dds "Check DDS" tooltip:"Checks if any texture is not DDS"
 		button btn_create_col "Create colliders" tooltip:"Creates child colliders of selected objects"
+		
 		button btn_sel_children "Select children" across:2 tooltip:"Selects children of selected objects"
 		button btn_sel_parents "Select parents" tooltip:"Selects parents of selected objects"
+
+		button btn_import_scene "Import scene..." tooltip:"Import scene objects from scene file"
+		button btn_copy_posrot "Copy pos & rot" across:2 tooltip:"Copy name, position and rotation of selected object"
+		button btn_paste_posrot "Paste pos & rot" tooltip:"Paste name, position and rotation on selected object"
 
 		fn attachElems = (
 			try (
@@ -199,12 +206,58 @@ ButtonText: "Momentum"
 			)
 		)
 		
+		fn importScene = (
+			try (
+				gc()
+				clearListener()
+				local filePath = getOpenFileName caption:"select scene" \
+								 filename:(exportPath + "data/scenes/")
+				if filePath != undefined then (
+					local se = TSceneImporter pathToFile:filePath
+					se.importScene()
+				)
+			) catch (
+				MessageBox ("Error importing scene:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		fn copyNamePosRot = (
+			try (
+				gc()
+				clearListener()
+				if selection.count == 1 then (
+					global copiedName = $.name
+					global copiedRot  = $.rotation
+					global copiedPos  = $.pos
+				) else if selection.count > 1 then MessageBox ("Select only one object")
+			) catch (
+				MessageBox ("Error copying:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		fn pasteNamePosRot = (
+			try (
+				gc()
+				clearListener()
+				if selection.count == 1 then (
+					$.name		= copiedName
+					$.rotation	= copiedRot
+					$.pos		= copiedPos
+				)
+			) catch (
+				MessageBox ("Error pasting:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
 		on btn_attach_elems pressed do ( attachElems() )
 		on btn_detach_elems pressed do ( detachElems() )
 		on btn_check_dds 	pressed do ( checkDDS() )
 		on btn_create_col 	pressed do ( createColliders() )
 		on btn_sel_children pressed do ( selectChildren() )
 		on btn_sel_parents  pressed do ( selectParents() )
+		on btn_import_scene pressed do ( importScene() )
+		on btn_copy_posrot  pressed do ( copyNamePosRot() )
+		on btn_paste_posrot pressed do ( pasteNamePosRot() )
 
 		-- Resize window if rollout collapses.
 		on utils rolledUp state do (
