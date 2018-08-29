@@ -159,7 +159,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	dbg("Particle system: %s\n", particleSystems[msg.powerLvl - 1].c_str());
 
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
-	EngineParticles.launchSystem(particleSystems[msg.powerLvl - 1], Particles::LaunchConfig{ CHandle(this).getOwner(), "", VEC3(0, 0.2f, 0) });
+	EngineParticles.launchSystem(particleSystems[msg.powerLvl - 1], Particles::LaunchConfig{ CHandle(this).getOwner(), "", VEC3(0, 0.4f, 0) });
 
 	
 }

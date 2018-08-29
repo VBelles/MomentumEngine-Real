@@ -52,6 +52,7 @@ namespace Particles {
 
 	void CSystem::launch() {
 		_time = 0.f;
+		_globalTime = 0.f;
 		emit();
 	}
 
@@ -106,15 +107,19 @@ namespace Particles {
 			}
 		}
 
+		bool canEmmit = _core->emission.cyclic || _globalTime <= _core->emission.duration;
 		// check if a new batch of particles needs to be generated
-		if (_core->emission.cyclic /*&& _core->emission.interval > 0.f*/) {
+		if (canEmmit) {
 			_time += delta;
 			if (_time > _core->emission.interval) {
 				emit();
 				_time -= _core->emission.interval;
 			}
 		}
-		return fadeRatio > 0.f && (!_particles.empty() || _core->emission.cyclic);
+
+		_globalTime += delta;
+
+		return fadeRatio > 0.f && (!_particles.empty() || canEmmit);
 	}
 
 	void CSystem::render() {
@@ -245,6 +250,14 @@ namespace Particles {
 			dir.Normalize();
 			return dir * random(0, size);
 		}
+		case TCoreSystem::TEmission::Cylinder:
+		{
+			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
+			dir.Normalize();
+			VEC3 pos = dir * random(0, size);
+			pos.y = random(-size, size);
+			return pos;
+		}
 		}
 		return VEC3::Zero;
 	}
@@ -257,7 +270,7 @@ namespace Particles {
 			dir.Normalize();
 			return dir * velocity;
 		}
-		
+
 		if (_core->emission.randomDirection) {
 			VEC3 dir = VEC3(random(-1, 1), random(-1, 1), random(-1, 1));
 			dir.Normalize();
