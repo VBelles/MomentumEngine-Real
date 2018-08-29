@@ -351,6 +351,9 @@
     <ClCompile Include="components\comp_power_up.cpp" />
     <ClCompile Include="components\platforms\comp_platforms_director.cpp" />
     <ClCompile Include="utils\timer_frames.cpp" />
+    <ClCompile Include="components\player\states\base_states\LandingHurtActionState.cpp" />
+    <ClCompile Include="gui\widgets\gui_points_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_point.cpp" />
     <ClCompile Include="gui\gui_font.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -736,6 +739,9 @@
     <ClInclude Include="components\platforms\comp_platforms_director.h" />
     <ClInclude Include="utils\timer_frames.h" />
     <ClInclude Include="utils\timer2.h" />
+    <ClInclude Include="components\player\states\base_states\LandingHurtActionState.h" />
+    <ClInclude Include="gui\widgets\gui_points_bar.h" />
+    <ClInclude Include="gui\widgets\gui_point.h" />
     <ClInclude Include="gui\gui_font.h" />
   </ItemGroup>
   <ItemGroup>

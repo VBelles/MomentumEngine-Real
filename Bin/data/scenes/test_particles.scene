@@ -48,10 +48,21 @@
 		"entity": {
 			"name": "particles_stretched",
 			"transform": {
-				"pos": "4 -2 5"
+				"pos": "-28 1 -54"
 			},
 			"particles": {
 				"core": "data/particles/stretched.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_hit_sparks",
+			"transform": {
+				"pos": "-4 -1 5"
+			},
+			"particles": {
+				"core": "data/particles/hit_sparks.particles"
 			}
 		}
 	}

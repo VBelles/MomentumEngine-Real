@@ -17,6 +17,8 @@ public:
 	void onStateEnter(IActionState* lastState) override;
 	void onStateExit(IActionState* nextState) override;
 
+	void onMove(MoveState & moveState) override;
+
 	void onJumpHighButton() override {}
 	void onJumpLongButton() override {}
 	void onFastAttackButton() override {}

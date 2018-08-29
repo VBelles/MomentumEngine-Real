@@ -128,9 +128,11 @@ fn maxRotToMcv transf = (
 	return roundSmallQuatToZeros (mcvTransform.rotationPart as quat)
 )
 
-/*fn mcvRotToMax q = (
-	return 
-)*/
+fn mcvRotToMax q = (
+	--This doesn't work.
+	local rot = q * rotateXMatrix -90
+	return inverse rot
+)
 
 fn getTransfRelativeToParent child = (
 	if child.parent == undefined then return child.transform
@@ -155,6 +157,29 @@ fn get3pointAngle p1 p2 p3 = (
 	local v1 = p2 - p1
 	local v2 = p3 - p1
 	return getVecAngle v1 v2
+)
+
+-- Transforms string mcv position to max position.
+fn strPosToPos strPos = (
+	local position = Point3 0 0 0
+	local p = filterString strPos " "
+	if p.count < 3 then return position
+	position.x = p[1] as float
+	position.y = p[2] as float
+	position.z = p[3] as float
+	return mcvPosToMax position
+)
+
+-- Transforms string mcv rotation to max rotation.
+fn strRotToRot strRot = (
+	local rotation = Quat 0 0 0 1
+	local r = filterString strRot " "
+	if r.count < 4 then return rotation
+	rotation.x = r[1] as float
+	rotation.y = r[2] as float
+	rotation.z = r[3] as float
+	rotation.w = r[4] as float
+	return mcvRotToMax rotation
 )
 
 ------- MATERIALS AND NAMES ----------------------------------------------------

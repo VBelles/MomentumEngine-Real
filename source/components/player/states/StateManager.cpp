@@ -58,6 +58,7 @@
 #include "components/player/states/base_states/knockback/HardKnockbackAirActionState.h"
 #include "components/player/states/base_states/SlideActionState.h"
 #include "components/player/states/base_states/AirDodgeActionState.h"
+#include "components/player/states/base_states/LandingHurtActionState.h"
 #include "components/player/states/concurrent_states/SoftKnockbackGroundActionState.h"
 #include "components/player/states/concurrent_states/SoftKnockbackAirActionState.h"
 #include "components/player/states/concurrent_states/FreeActionState.h"
@@ -162,6 +163,7 @@ void StateManager::registerStates() {
 	registerState<DodgeActionState>();
 	registerState<AirDodgeActionState>();
 	registerState<SpendCoinsActionState>();
+	registerState<LandingHurtActionState>();
 
 	registerConcurrentState<FreeActionState>();
 	registerConcurrentState<FastAttackActionState>();
@@ -185,7 +187,15 @@ void StateManager::updateStates(float delta) {
 
 void StateManager::changeState(State newState) {
 	if (!lockedStates.count(newState)) {
-		nextBaseState = states[newState];
+		if (isChangingBaseState) {
+			if (newState < nextBaseState->state) {
+				nextBaseState = states[newState];
+			}
+		}
+		else {
+			nextBaseState = states[newState];
+		}
+		//dbg("next state: %s\n", States::toString(nextBaseState->state));
 		isChangingBaseState = true;
 	}
 	else {
@@ -205,7 +215,15 @@ void StateManager::changeState(std::string newStateName) {
 
 void StateManager::changeConcurrentState(ConcurrentState newState) {
 	if (!lockedConcurrentStates.count(newState)) {
-		nextConcurrentState = concurrentStates[newState];
+		if (isChangingConcurrentState) {
+			if (newState < nextConcurrentState->state) {
+				nextConcurrentState = concurrentStates[newState];
+			}
+		}
+		else {
+			nextConcurrentState = concurrentStates[newState];
+		}
+		//dbg("next concurrent state: %s\n", States::toString(nextConcurrentState->concurrentState));
 		isChangingConcurrentState = true;
 	}
 	else {
@@ -235,7 +253,6 @@ void StateManager::performStateChange() {
 			baseState->lastState = exitingState;
 			baseState->onStateEnter(exitingState);
 		}
-		isChangingBaseState = false;
 	}
 	if (concurrentState != nextConcurrentState) {
 		IActionState* exitingConcurrentState = concurrentState;
@@ -248,8 +265,9 @@ void StateManager::performStateChange() {
 			concurrentState->lastState = exitingConcurrentState;
 			concurrentState->onStateEnter(exitingConcurrentState);
 		}
-		isChangingConcurrentState = false;
 	}
+	isChangingBaseState = false;
+	isChangingConcurrentState = false;
 }
 
 IActionState* StateManager::getState() {
