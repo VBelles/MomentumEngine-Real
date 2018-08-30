@@ -1,0 +1,25 @@
+[
+  {
+"entity": {
+      "name": "test_gorila",
+      "transform": {
+        "pos": "-221.85 40 -28.4",
+        "rotation": "0 0.766044 0 0.642788"
+      },
+      "render": [
+        {
+          "mesh": "data/skeletons/gorila/gorila_baja.mesh",
+          "materials": [
+            "data/skeletons/gorila/gorila.material"
+          ]
+        }
+      ],
+      "tags": [
+        "enemy"
+      ],
+      "skeleton": {
+        "skeleton": "data/skeletons/gorila/gorila.skeleton"
+      }
+    }
+  }
+]

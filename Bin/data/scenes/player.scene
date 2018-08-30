@@ -136,6 +136,11 @@
 				"locked_states" : [
 				],
 				"locked_concurrent_states" :[
+				],
+				"particle_systems":[
+					"data/particles/player_power_2.particles",
+					"data/particles/player_power_2.particles",
+					"data/particles/player_power_2.particles"
 				]
 			},
 			"collider": {

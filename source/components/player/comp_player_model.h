@@ -55,6 +55,7 @@ private:
 
 	MoveState moveState;
 
+	std::string particleSystems[NUMBER_OF_POWER_LEVELS];
 	std::string materials[NUMBER_OF_POWER_LEVELS];
 	PowerStats* powerStats[NUMBER_OF_POWER_LEVELS];
 	PowerStats* currentPowerStats = nullptr;

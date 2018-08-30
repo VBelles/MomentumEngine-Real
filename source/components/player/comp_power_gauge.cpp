@@ -99,7 +99,7 @@ void TCompPowerGauge::increasePower(float increment) {
 
 	//Notify player_comp when power level changed
 	if (lastPowerLevel != powerLevel) {
-		CHandle(this).getOwner().sendMsg(TMsgPowerLvlChange{ this, powerLevel });
+		CHandle(this).getOwner().sendMsg(TMsgPowerLvlChange{ this, powerLevel, lastPowerLevel });
 		// Inform 'pure' entities of the change.		
 	}
 

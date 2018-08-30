@@ -42,11 +42,14 @@ namespace Particles {
 		else if (emitterType == "square")	cps->emission.type = TCoreSystem::TEmission::Square;
 		else if (emitterType == "box")		cps->emission.type = TCoreSystem::TEmission::Box;
 		else if (emitterType == "sphere")	cps->emission.type = TCoreSystem::TEmission::Sphere;
+		else if (emitterType == "circle")	cps->emission.type = TCoreSystem::TEmission::Circle;
+		else if (emitterType == "cylinder")	cps->emission.type = TCoreSystem::TEmission::Cylinder;
 		else								cps->emission.type = TCoreSystem::TEmission::Point;
 		cps->emission.size = emission.value("size", cps->emission.size);
 		cps->emission.angle = deg2rad(emission.value("angle", rad2deg(cps->emission.angle)));
 		cps->emission.radial = emission.value("radial", cps->emission.radial);
 		cps->emission.randomDirection = emission.value("random_direction", cps->emission.randomDirection);
+		cps->emission.duration = emission.value("duration", cps->emission.duration);
 
 		// movement
 		const json& movement = data["movement"];

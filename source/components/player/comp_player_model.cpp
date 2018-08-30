@@ -80,6 +80,15 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	walkingSpeed = j.value("walkingSpeed", 5.0f);
 	maxVelocityUpwards = j.value("maxVelocityUpwards", 45.0f);
 
+
+	if (j.count("particle_systems")) {
+		auto& j_particles = j["particle_systems"];
+		for (size_t i = 0; i < j_particles.size(); ++i) {
+			std::string name_core = j_particles[i];
+			particleSystems[i] = name_core;
+		}
+	}
+
 	if (j.count("materials")) {
 		auto& j_mats = j["materials"];
 		for (size_t i = 0; i < j_mats.size(); ++i) {
@@ -139,6 +148,7 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 }
 
 void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
+
 	currentPowerStats = powerStats[msg.powerLvl - 1];
 
 	TCompRender *render = get<TCompRender>();
@@ -147,6 +157,16 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	getStateManager()->getState<RunActionState>(Run)->onLevelChange(msg.powerLvl);
 
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
+
+	if (msg.powerLvl > msg.prevPowerLvl) {
+		Particles::LaunchConfig config{ 
+			CHandle(this).getOwner(),	// Entity
+			"",							// Bone
+			VEC3(0, 0.4f, 0)			// Offset
+		};
+		EngineParticles.launchSystem(particleSystems[msg.powerLvl - 1], config);
+	}
+		
 }
 
 void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {

@@ -16,7 +16,7 @@ namespace Particles {
 		};
 
 		struct TEmission {
-			enum EType { Point = 0, Line, Square, Box, Sphere };
+			enum EType { Point = 0, Line, Square, Box, Sphere, Circle, Cylinder, End};
 
 			EType type = Point;				// type of emissor
 			float interval = 0.f;			// generation interval
@@ -26,6 +26,7 @@ namespace Particles {
 			float angle = 0.f;				// emission angle
 			bool radial = false;			// ignores angle and emits from the center
 			bool randomDirection = false;   // direction generated randomly
+			float duration = 0.f;			// system emitting time
 		};
 
 		struct TMovement {
@@ -41,7 +42,7 @@ namespace Particles {
 		};
 
 		struct TRender {
-			enum EType { Billboard = 0, HorizontalBillboard, StretchedBillboard, Mesh };
+			enum EType { Billboard = 0, HorizontalBillboard, StretchedBillboard, Mesh, End };
 
 			EType type = Billboard;							// particle type
 			const CTexture* texture = nullptr;				// particle texture
@@ -70,6 +71,9 @@ namespace Particles {
 		TRender       render;
 		TSize         size;
 		TColor        color;
+
+
+		void debugInMenu() override;
 	};
 
 	using VParticles = std::vector<TParticle>;
@@ -91,6 +95,7 @@ namespace Particles {
 		const TCoreSystem*  _core = nullptr;
 		VParticles          _particles;
 		float               _time = 0.f;
+		float               _globalTime = 0.f;
 		float               _fadeDuration = 0.f;
 		float               _fadeTime = 0.f;
 		CHandle             particleEntityHandle; //Handle of the entity

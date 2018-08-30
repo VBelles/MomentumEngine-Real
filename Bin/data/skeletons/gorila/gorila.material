@@ -2,9 +2,11 @@
   "technique": "pbr_skin_clear_stencil.tech",
   "shadows": true,
   "textures": {
-    "albedo": "data/textures/gorila/enemigo_definitivo_low_Material _121_BaseColor.dds",
-    "normal": "data/textures/gorila/enemigo_definitivo_low_Material _121_Normal.dds",
-    "metallic": "data/textures/gorila/enemigo_definitivo_low_Material _121_Metallic.dds",
-    "roughness": "data/textures/gorila/enemigo_definitivo_low_Material _121_Roughness.dds"
+    "albedo": "data/textures/kippah/cage_medusa_low_Material_28_BaseColor.dds",
+    "normal": "data/textures/kippah/cage_medusa_low_Material_28_Normal.dds",
+    "metallic": "data/textures/kippah/cage_medusa_low_Material_28_Metallic.dds",
+    "roughness": "data/textures/kippah/cage_medusa_low_Material_28_Roughness.dds",
+    "self_illum": "data/textures/kippah/cage_medusa_low_Material_28_Emissive.dds",
+    "height": "data/textures/kippah/cage_medusa_low_Material_28_Height.dds"
   }
 }

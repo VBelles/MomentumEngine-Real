@@ -96,6 +96,7 @@ struct TMsgGainPower {
 struct TMsgPowerLvlChange {
 	CHandle sender;
 	int powerLvl;
+	int prevPowerLvl;
 	DECL_MSG_ID();
 };
 
