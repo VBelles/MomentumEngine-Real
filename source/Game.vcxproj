@@ -213,6 +213,7 @@
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
     <ClCompile Include="gui\widgets\gui_point.cpp" />
     <ClCompile Include="gui\widgets\gui_points_bar.cpp" />
+    <ClCompile Include="gui\gui_font.cpp" />
     <ClCompile Include="gui\widgets\gui_map_marker.cpp" />
     <ClCompile Include="gui\widgets\gui_option.cpp" />
     <ClCompile Include="modules\game_modules\game\enemy_manager.cpp" />
@@ -571,6 +572,7 @@
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />
     <ClInclude Include="gui\widgets\gui_point.h" />
     <ClInclude Include="gui\widgets\gui_points_bar.h" />
+    <ClInclude Include="gui\gui_font.h" />
     <ClInclude Include="gui\widgets\gui_map_marker.h" />
     <ClInclude Include="gui\widgets\gui_option.h" />
     <ClInclude Include="modules\game_modules\game\enemy_manager.h" />

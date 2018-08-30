@@ -15,21 +15,25 @@ void CButton::render() {
                             btParams._imageParams._color);
 
 	// render text
-	float textWidth = btParams._textParams._text.size() * btParams._textParams._size;
-	float textHeight = btParams._textParams._size;
+	CFont font = EngineGUI.getFont(btParams._textParams._size);
+
+	float textWidth = font.getWidth(btParams._textParams._text);
+	float textHeight = font.getHeight();
+
+	VEC2 textSpace = _params._size;
 	VEC2 offset;
 	if (btParams._textParams._hAlign == TTextParams::Center)
-		offset.x = _params._size.x * 0.5f - textWidth * 0.5f;
+		offset.x = textSpace.x * 0.5f - textWidth * 0.5f;
 	else if (btParams._textParams._hAlign == TTextParams::Right)
-		offset.x = _params._size.x - textWidth;
+		offset.x = textSpace.x - textWidth;
 	if (btParams._textParams._vAlign == TTextParams::Center)
 		offset.y = _params._size.y * 0.5f - textHeight * 0.5f;
 	else if (btParams._textParams._vAlign == TTextParams::Bottom)
 		offset.y = _params._size.y - textHeight;
 
 	MAT44 tr = MAT44::CreateTranslation(offset.x, offset.y, 0.f);
-	MAT44 w = MAT44::CreateScale(btParams._textParams._size) * tr * _absolute;
-    EngineGUI.renderText(w, btParams._textParams._text, btParams._textParams._color);
+	MAT44 w = MAT44::CreateScale(font.getSize()) * tr * _absolute;
+	font.renderText(w, btParams._textParams._text, btParams._textParams._color);
 }
 
 TImageParams* CButton::getImageParams() {

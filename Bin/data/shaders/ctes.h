@@ -218,6 +218,9 @@ CB_DEF(CCteGUI, CB_GUI) {
     VEC2 minUV;
     VEC2 maxUV;
     VEC4 tint_color;
+	VEC2 charSize;
+	float GUIdummy1;
+	float GUIdummy2;
 };
 
 CB_DEF(CCteFog, CB_FOG) {
