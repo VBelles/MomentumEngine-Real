@@ -44,8 +44,7 @@ bool CTexture::create(const std::string& name) {
 	setDXName(shader_resource_view, name.c_str());
 
 	// Update the resolution from the resource
-	// ...
-
+	getDimensions(texture, &xres, &yres);
 	return true;
 }
 
@@ -55,6 +54,7 @@ void CTexture::onFileChanged(const std::string& filename) {
 	destroy();
 	if (!create(filename)) {
 		// reLoad has failed!!
+		dbg("Can't reload texture %s\n", filename.c_str());
 	}
 }
 
@@ -154,4 +154,56 @@ void CTexture::setDXParams(int new_xres, int new_yres, ID3D11Texture2D* new_text
 	shader_resource_view = new_srv;
 	new_texture->AddRef();
 	new_srv->AddRef();
+}
+
+bool CTexture::getDimensions(ID3D11Resource* texture, int* width, int* height) {
+	HRESULT hr;
+	D3D11_RESOURCE_DIMENSION resType = D3D11_RESOURCE_DIMENSION_UNKNOWN;
+	texture->GetType(&resType);
+	switch (resType) {
+	case D3D11_RESOURCE_DIMENSION_TEXTURE1D:
+	{
+		ID3D11Texture1D* tex = nullptr;
+		HRESULT hr = texture->QueryInterface(&tex);
+		if (SUCCEEDED(hr)) {
+			D3D11_TEXTURE1D_DESC desc;
+			tex->GetDesc(&desc);
+			*width = desc.Width;
+			*height = 0;
+			return true;
+		}
+		SAFE_RELEASE(tex);
+		return false;
+	}
+	break;
+	case D3D11_RESOURCE_DIMENSION_TEXTURE2D:
+	{
+		ID3D11Texture2D* tex = nullptr;
+		HRESULT hr = texture->QueryInterface(&tex);
+		if (SUCCEEDED(hr)) {
+			D3D11_TEXTURE2D_DESC desc;
+			tex->GetDesc(&desc);
+			*width = desc.Width;
+			*height = desc.Height;
+			return true;
+		}
+		SAFE_RELEASE(tex);
+		return false;
+	}
+	case D3D11_RESOURCE_DIMENSION_TEXTURE3D:
+	{
+		ID3D11Texture3D* tex = nullptr;
+		HRESULT hr = texture->QueryInterface(&tex);
+		if (SUCCEEDED(hr)) {
+			D3D11_TEXTURE3D_DESC desc;
+			tex->GetDesc(&desc);
+			*width = desc.Width;
+			*height = desc.Height;
+			return true;
+		}
+		SAFE_RELEASE(tex);
+		return false;
+	}
+	}
+	return false;
 }

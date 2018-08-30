@@ -38,6 +38,7 @@ public:
 	bool create(int new_xres, int new_yres, DXGI_FORMAT new_color_format, TCreateOptions create_options = CREATE_STATIC);
 	void setDXParams(int new_xres, int new_yres, ID3D11Texture2D* new_texture, ID3D11ShaderResourceView* new_srv);
 
-
+	static bool getDimensions(ID3D11Resource* texture, int* width, int* height);
+	
 };
 
