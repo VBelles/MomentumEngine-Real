@@ -12,7 +12,9 @@
     "data/scenes/milestone4-instancing.scene",
     "data/scenes/plataformeo.scene",
     "data/scenes/plataformeo01.scene",
-    "data/scenes/ambiental_particles.scene"
+    "data/scenes/ambiental_particles.scene",
+    "data/scenes/test_gorila.scene"
+
   ],
   "unused_scenes": [
     "data/scenes/test_instancing.scene",

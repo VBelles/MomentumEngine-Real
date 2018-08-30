@@ -30,10 +30,17 @@ bool CModuleOptionsMenu::start() {
 }
 
 bool CModuleOptionsMenu::stop() {
+	bool screenChanged = false;
 	jOptions["camera"]["invert_x_axis"] = controller->getOptionValue("invert_x_axis");
 	jOptions["camera"]["invert_y_axis"] = controller->getOptionValue("invert_y_axis");
-	jOptions["screen"]["fullscreen"] = controller->getOptionValue("fullscreen");
-	jOptions["screen"]["resolution"] = controller->getOptionValue("resolution");
+	if (jOptions["screen"]["fullscreen"] != controller->getOptionValue("fullscreen")) {
+		screenChanged = true;
+		jOptions["screen"]["fullscreen"] = controller->getOptionValue("fullscreen");
+	}
+	if (jOptions["screen"]["resolution"] != controller->getOptionValue("resolution")) {
+		screenChanged = true;
+		jOptions["screen"]["resolution"] = controller->getOptionValue("resolution");
+	}
 	jOptions["screen"]["vsync"] = controller->getOptionValue("vsync");
 
 	std::string string = jOptions.dump(1, '\t');
@@ -43,7 +50,9 @@ bool CModuleOptionsMenu::stop() {
 	myfile.close();
 
 	CApp::get().readConfig();
-	EngineRender.resizeWindow();
+	if (screenChanged) {
+		EngineRender.resizeWindow();
+	}
 
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);

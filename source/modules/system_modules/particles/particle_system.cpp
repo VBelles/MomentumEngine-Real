@@ -23,6 +23,83 @@ public:
 	}
 };
 
+void Particles::TCoreSystem::debugInMenu() {
+	{ // Life
+		ImGui::Text("Life");
+		ImGui::DragFloat("Duration", &life.duration, 0.01f);
+		ImGui::DragFloat("Duration variation", &life.duration, 0.01f);
+		ImGui::DragInt("Max particles", &life.maxParticles);
+		ImGui::DragFloat("Time factor", &life.timeFactor, 0.01f);
+	}
+
+	{ // Emission
+		ImGui::Text("Emission");
+		std::string types[] = { "Point", "Line", "Square", "Box", "Sphere", "Circle", "Cylinder" };
+		if (ImGui::BeginCombo("Type", types[emission.type].c_str())) {
+			for (int i = 0; i < TEmission::EType::End; i++) {
+				if (ImGui::Selectable(types[i].c_str(), emission.type == i)) {
+					emission.type = TEmission::EType(i);
+				}
+			}
+			ImGui::EndCombo();
+		}
+		ImGui::DragFloat("Interval", &emission.interval, 0.0001f);
+		ImGui::DragInt("Count", &emission.count);
+		ImGui::Checkbox("Cyclic", &emission.cyclic);
+		ImGui::DragFloat("Size", &emission.size, 0.01f);
+		float deg = rad2deg(emission.angle);
+		if (ImGui::DragFloat("Angle", &deg)) {
+			emission.interval = deg2rad(deg);
+		}
+		ImGui::Checkbox("Radial", &emission.radial);
+		ImGui::Checkbox("Random direction", &emission.randomDirection);
+		ImGui::DragFloat("Duration", &emission.duration, 0.0001f);
+	}
+
+	{ // Movement
+		ImGui::Text("Movement");
+		ImGui::DragFloat("Velocity", &movement.velocity, 0.01f);
+		ImGui::DragFloat("Velocity variation", &movement.velocityVariation, 0.01f);
+		ImGui::DragFloat("Acceleration", &movement.acceleration, 0.01f);
+		float deg = rad2deg(movement.initialRotation);
+		if (ImGui::DragFloat("Initial rotation", &deg)) {
+			movement.initialRotation = deg2rad(deg);
+		}
+		deg = rad2deg(movement.spin);
+		if (ImGui::DragFloat("Spin", &deg)) {
+			movement.spin = deg2rad(deg);
+		}
+		if (render.mesh) ImGui::DragFloat3("Spin axis", &movement.spin_axis.x, 1.f);
+		ImGui::DragFloat("Gravity", &movement.gravity, 0.01f);
+		ImGui::DragFloat("Wind", &movement.wind, 0.01f);
+		ImGui::Checkbox("Ground", &movement.ground);
+	}
+
+	{ // Render
+		ImGui::Text("Render");
+		std::string types[] = { "Billboard", "HorizontalBillboard", "StretchedBillboard", "Mesh" };
+		if (ImGui::BeginCombo("Type", types[render.type].c_str())) {
+			for (int i = 0; i < TRender::EType::End; i++) {
+				if (ImGui::Selectable(types[i].c_str(), render.type == i)) {
+					render.type = TRender::EType(i);
+				}
+			}
+			ImGui::EndCombo();
+		}
+		ImGui::Text("Sprite");
+		const_cast<CTexture*>(render.texture)->debugInMenu();
+		ImGui::Text("Mesh");
+		const_cast<CRenderMesh*>(render.mesh)->debugInMenu();
+		ImGui::DragFloat2("Frame size (UV)", &render.frameSize.x, 0.01f, -1.f, 1.f);
+		ImGui::DragInt("Num frames", &render.numFrames);
+		ImGui::DragInt("Initial frame", &render.initialFrame);
+		ImGui::DragFloat("Frame speed", &render.frameSpeed, 0.01f);
+		if (render.type == TRender::StretchedBillboard) ImGui::DragFloat("Motion blur amount", &render.motionBlurAmount, 0.001f);
+
+	}
+}
+
+
 // A specialization of the template defined at the top of this file
 // If someone class getResourceClassOf<Particles::TCoreParticleSystem>, use this function:
 template<>
@@ -52,6 +129,7 @@ namespace Particles {
 
 	void CSystem::launch() {
 		_time = 0.f;
+		_globalTime = 0.f;
 		emit();
 	}
 
@@ -106,15 +184,19 @@ namespace Particles {
 			}
 		}
 
+		bool canEmmit = _core->emission.cyclic || _globalTime <= _core->emission.duration;
 		// check if a new batch of particles needs to be generated
-		if (_core->emission.cyclic /*&& _core->emission.interval > 0.f*/) {
+		if (canEmmit) {
 			_time += delta;
 			if (_time > _core->emission.interval) {
 				emit();
 				_time -= _core->emission.interval;
 			}
 		}
-		return fadeRatio > 0.f && (!_particles.empty() || _core->emission.cyclic);
+
+		_globalTime += delta;
+
+		return fadeRatio > 0.f && (!_particles.empty() || canEmmit);
 	}
 
 	void CSystem::render() {
@@ -239,6 +321,20 @@ namespace Particles {
 			dir.Normalize();
 			return dir * random(0, size);
 		}
+		case TCoreSystem::TEmission::Circle:
+		{
+			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
+			dir.Normalize();
+			return dir * random(0, size);
+		}
+		case TCoreSystem::TEmission::Cylinder:
+		{
+			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
+			dir.Normalize();
+			VEC3 pos = dir * random(0, size);
+			pos.y = random(-size, size);
+			return pos;
+		}
 		}
 		return VEC3::Zero;
 	}
@@ -251,7 +347,7 @@ namespace Particles {
 			dir.Normalize();
 			return dir * velocity;
 		}
-		
+
 		if (_core->emission.randomDirection) {
 			VEC3 dir = VEC3(random(-1, 1), random(-1, 1), random(-1, 1));
 			dir.Normalize();
@@ -315,5 +411,6 @@ namespace Particles {
 		}
 		return world;
 	}
+
 
 }
