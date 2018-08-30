@@ -39,6 +39,7 @@ namespace Particles {
 			float gravity = 0.f;			// gravity factor
 			float wind = 0.f;				// wind factor
 			bool ground = false;			// limit by ground
+			bool following = false;			// follows its emissor target
 		};
 
 		struct TRender {
@@ -60,6 +61,7 @@ namespace Particles {
 			float scale = 1.f;				// scale factor
 			float scale_variation = 0.f;	// variation of scale at generation
 		};
+
 		struct TColor {
 			TTrack<VEC4> colors;	// track of colors along the particle lifetime
 			float opacity = 1.f;	// opacity factor
@@ -71,7 +73,6 @@ namespace Particles {
 		TRender       render;
 		TSize         size;
 		TColor        color;
-
 
 		void debugInMenu() override;
 	};
@@ -86,7 +87,7 @@ namespace Particles {
 
 		MAT44 world;
 		VEC3 position;
-		MAT44 updateWorld();
+		void updateWorld();
 
 		LaunchConfig config;
 		int boneId = -1;

@@ -130,11 +130,13 @@ namespace Particles {
 	void CSystem::launch() {
 		_time = 0.f;
 		_globalTime = 0.f;
+		updateWorld();
 		emit();
 	}
 
 
 	bool CSystem::update(float delta) {
+		updateWorld();
 		const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
 
 		float fadeRatio = 1.f;
@@ -260,8 +262,6 @@ namespace Particles {
 
 
 	void CSystem::emit() {
-		world = updateWorld();
-
 		for (int i = 0; i < _core->emission.count && _particles.size() < _core->life.maxParticles; ++i) {
 			TParticle particle;
 			particle.position = VEC3::Transform(generatePosition(), world);
@@ -278,7 +278,7 @@ namespace Particles {
 	}
 
 	void CSystem::forceEmission(int quantity) {
-		world = updateWorld();
+		updateWorld();
 		for (int i = 0; i < quantity; ++i) {
 			TParticle particle;
 			particle.position = VEC3::Transform(generatePosition(), world);
@@ -383,8 +383,8 @@ namespace Particles {
 		this->config.rotationOffset = rotationOffset;
 	}
 
-	MAT44 CSystem::updateWorld() {
-		MAT44 world = MAT44::Identity;
+	void CSystem::updateWorld() {
+		world = MAT44::Identity;
 		if (config.targetEntity.isValid()) {
 			CEntity* e = config.targetEntity;
 
@@ -409,7 +409,6 @@ namespace Particles {
 				* MAT44::CreateFromQuaternion(rotation)
 				* MAT44::CreateTranslation(translation);
 		}
-		return world;
 	}
 
 

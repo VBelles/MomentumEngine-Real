@@ -5,6 +5,7 @@
 namespace Particles {
     struct TParticle {
         VEC4 color;
+		VEC3 initialPosition;
         VEC3 position;
         VEC3 velocity;
 		float rotation = 0.f;
