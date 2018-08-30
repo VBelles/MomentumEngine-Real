@@ -148,6 +148,7 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 }
 
 void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
+
 	currentPowerStats = powerStats[msg.powerLvl - 1];
 
 	TCompRender *render = get<TCompRender>();
@@ -155,13 +156,17 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 
 	getStateManager()->getState<RunActionState>(Run)->onLevelChange(msg.powerLvl);
 
-	dbg("Power level: %d\n", msg.powerLvl - 1);
-	dbg("Particle system: %s\n", particleSystems[msg.powerLvl - 1].c_str());
-
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
-	EngineParticles.launchSystem(particleSystems[msg.powerLvl - 1], Particles::LaunchConfig{ CHandle(this).getOwner(), "", VEC3(0, 0.4f, 0) });
 
-	
+	if (msg.powerLvl > msg.prevPowerLvl) {
+		Particles::LaunchConfig config{ 
+			CHandle(this).getOwner(),	// Entity
+			"",							// Bone
+			VEC3(0, 0.4f, 0)			// Offset
+		};
+		EngineParticles.launchSystem(particleSystems[msg.powerLvl - 1], config);
+	}
+		
 }
 
 void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
