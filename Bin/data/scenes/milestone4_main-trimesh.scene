@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "mushroom_head_05_collider011",
+      "transform":
+      {
+        "pos": "212.221 -7.10416 -63.239",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_05_collider011.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "mushroom_head_06_collider009",
       "transform":
       {
@@ -87,23 +104,6 @@
   {
     "entity":
     {
-      "name": "mushroom_head_03_collider015",
-      "transform":
-      {
-        "pos": "212.666 -5.43674 -62.5412",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mushroom_head_03_collider015.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "mushroom_head_00_collider010",
       "transform":
       {
@@ -141,7 +141,7 @@
       "name": "mushroom_head_05_collider008",
       "transform":
       {
-        "pos": "216.147 3.50538 -48.3672",
+        "pos": "216.147 2.70309 -48.3672",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":

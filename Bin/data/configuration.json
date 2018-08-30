@@ -5,7 +5,7 @@
 	},
 	"screen": {
 		"fullscreen": false,
-		"resolution": "auto",
+		"resolution": "1280 720",
 		"vsync": false
 	}
 }

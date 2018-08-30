@@ -2,6 +2,92 @@
   {
     "entity":
     {
+      "name": "plataforma_roca005",
+      "transform":
+      {
+        "pos": "216.549 -28.5987 -29.5891",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_roca005.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataforma_roca_collider005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_roca004",
+      "transform":
+      {
+        "pos": "214.641 -21.3596 -42.0699",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_roca004.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataforma_roca_collider004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_099",
+      "transform":
+      {
+        "pos": "212.181 -7.1216 -63.2309",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushroom_head_099.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_head_05.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "plataforma_roca003",
       "transform":
       {
@@ -199,28 +285,6 @@
           "materials":
           [
             "data/materials/mushroom_body_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_095",
-      "transform":
-      {
-        "pos": "212.731 -5.56536 -62.7493",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_095.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_03.material"
           ],
           "enabled": true
         }
@@ -437,7 +501,7 @@
       "name": "mushroom_head_093",
       "transform":
       {
-        "pos": "216.12 3.49322 -48.3615",
+        "pos": "216.12 2.69094 -48.3615",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
