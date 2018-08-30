@@ -65,7 +65,9 @@
             "type": "action",
             "action": {
               "type": "OnHit",
-              "animation": "enemigo_bola_recibirdanio"
+              "animation": "enemigo_bola_recibirdanio",
+              "particles": "data/particles/hit_sparks.particles",
+              "particles_offset": "0 0.4 0"
             }
           },
           {
