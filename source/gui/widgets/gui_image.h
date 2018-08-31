@@ -10,7 +10,10 @@ namespace GUI {
 		TImageParams* getImageParams() override;
 
 	private:
+		CTimer2 timer;
 		TImageParams _imageParams;
+
+		std::pair<VEC2, VEC2> getUV();
 
 		friend class CParser;
 	};

@@ -13,9 +13,14 @@ namespace GUI {
 
 	struct TImageParams {
 		const CTexture* _texture = nullptr;
+		const CTexture* _mask = nullptr;
 		VEC4 _color;
 		VEC2 _minUV;
 		VEC2 _maxUV;
+		int _initialFrame;
+		VEC2 _frameSize;
+		int _numFrames;
+		float _frameSpeed; //en fps
 	};
 
 	struct TTextParams {
