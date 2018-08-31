@@ -25,10 +25,6 @@
 						"texture": "data/textures/gui/hud/power_level1.dds",
 						"variable": "power_progress_level1",
 						"direction": "vertical",
-						"initial_frame": 0,
-						"frame_size": "0.5 1",
-						"num_frames": 2,
-						"frame_speed": 1,
 						"mask": "data/textures/gui/hud/power_level_mask.dds"
 					},
 					{
@@ -38,7 +34,8 @@
 						"size": "203 203",
 						"texture": "data/textures/gui/hud/power_level2.dds",
 						"variable": "power_progress_level2",
-						"direction": "vertical"
+						"direction": "vertical",
+						"mask": "data/textures/gui/hud/power_level_mask.dds"
 					},
 					{
 						"name": "level3",
@@ -47,7 +44,8 @@
 						"size": "203 203",
 						"texture": "data/textures/gui/hud/power_level3.dds",
 						"variable": "power_progress_level3",
-						"direction": "vertical"
+						"direction": "vertical",
+						"mask": "data/textures/gui/hud/power_level_mask.dds"
 					},
 					{
 						"name": "foreground",

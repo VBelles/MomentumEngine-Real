@@ -26,7 +26,8 @@ float4 PS_GUI(
 {
   float2 finalUV = lerp(minUV, maxUV, input.UV);
   float4 oDiffuse = txAlbedo.Sample(samLinear, finalUV);
-  float4 maskColor = txNormal.Sample(samLinear, input.UV);
+  float2 maskUV = lerp(charSize, dummy_GUI, input.UV);
+  float4 maskColor = txNormal.Sample(samLinear, maskUV);
   float4 oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a) * maskColor; 
   return oColor;
 }

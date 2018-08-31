@@ -11,6 +11,8 @@ void CBar::render() {
 	std::pair<VEC2, VEC2> UVs = getUV();
 	VEC2 minUV = UVs.first;
 	VEC2 maxUV = UVs.second;
+	VEC2 maskMinUV = VEC2::Zero;
+	VEC2 maskMaxUV = VEC2::One;
 
 	if (_barParams._direction == TBarParams::EDirection::Horizontal) {
 		w = MAT44::CreateScale(ratio, 1.f, 1.f) * sz * _absolute;
@@ -18,7 +20,8 @@ void CBar::render() {
 	}
 	else if (_barParams._direction == TBarParams::EDirection::Vertical) {
 		w = MAT44::CreateScale(1.f, ratio, 1.f) * sz * _absolute * MAT44::CreateTranslation(0.f, _params._size.y * (1.f - ratio), 0.f);
-		minUV.y += (maxUV.y - minUV.y) * (1.f - ratio);
+		maxUV.y *= ratio;
+		maskMinUV.y += (maskMaxUV.y - maskMinUV.y) * (1.f - ratio);
 	}
 
 	EngineGUI.renderTexture(w,
@@ -26,7 +29,9 @@ void CBar::render() {
 		minUV,
 		maxUV,
 		_imageParams._color,
-		_imageParams._mask);
+		_imageParams._mask,
+		maskMinUV,
+		maskMaxUV);
 }
 
 TImageParams* CBar::getImageParams() {

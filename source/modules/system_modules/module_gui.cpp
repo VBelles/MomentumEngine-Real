@@ -156,7 +156,8 @@ MVariants& CModuleGUI::getVariables() {
 	return _variables;
 }
 
-void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color, const CTexture* mask) {
+void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV,
+	const VEC4& color, const CTexture* mask, const VEC2& maskMinUV, const VEC2& maskMaxUV) {
 	assert(_technique && _quadMesh);
 
 	cb_object.obj_world = world;
@@ -166,6 +167,8 @@ void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, cons
 	cb_gui.minUV = minUV;
 	cb_gui.maxUV = maxUV;
 	cb_gui.tint_color = color;
+	cb_gui.charSize = maskMinUV;
+	cb_gui.dummy_GUI = maskMaxUV;
 	cb_gui.updateGPU();
 
 	_technique->activate();
