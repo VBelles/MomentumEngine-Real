@@ -19,8 +19,14 @@ void CBar::render() {
 		maxUV.x *= ratio;
 	}
 	else if (_barParams._direction == TBarParams::EDirection::Vertical) {
+		float displayRatio = _params._size.y / _imageParams._texture->getHeight() * _imageParams._frameSize.y;
+		ratio *= (1.f / displayRatio);
+		maxUV.y *= ratio * displayRatio;
+		if (maxUV.y - minUV.y >= displayRatio) {
+			minUV.y = maxUV.y - displayRatio;
+			ratio = 1.f;
+		}
 		w = MAT44::CreateScale(1.f, ratio, 1.f) * sz * _absolute * MAT44::CreateTranslation(0.f, _params._size.y * (1.f - ratio), 0.f);
-		maxUV.y *= ratio;
 		maskMinUV.y += (maskMaxUV.y - maskMinUV.y) * (1.f - ratio);
 	}
 
@@ -44,7 +50,7 @@ std::pair<VEC2, VEC2> CBar::getUV() {
 
 	if (_imageParams._numFrames > 0) {
 		int frame_idx = (int)(timer.elapsed() * _imageParams._frameSpeed);
-		int frame = _imageParams._initialFrame + (frame_idx % _imageParams._numFrames);
+		int frame = (_imageParams._initialFrame + frame_idx) % _imageParams._numFrames;
 
 		const int frameCols = static_cast<int>(1.f / _imageParams._frameSize.x);
 
