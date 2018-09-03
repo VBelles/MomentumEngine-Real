@@ -2,6 +2,278 @@
   {
     "entity":
     {
+      "name": "columna_4_0_col_001",
+      "transform":
+      {
+        "pos": "75.0687 5.96828 -21.7503",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_4_0_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_3_col_001",
+      "transform":
+      {
+        "pos": "48.7631 7.01257 -33.5811",
+        "rotation": "0.707107 0.0 -0.707107 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_3_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_2_col_001",
+      "transform":
+      {
+        "pos": "48.7773 9.9673 -33.5883",
+        "rotation": "-0.965926 0.0 0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_2_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_1_col_001",
+      "transform":
+      {
+        "pos": "48.7782 3.98288 -33.5861",
+        "rotation": "-0.965926 0.0 0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_1_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_0_col_001",
+      "transform":
+      {
+        "pos": "48.7938 12.9799 -33.5653",
+        "rotation": "-0.707107 0.0 -0.707107 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_0_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_capitel_col_001",
+      "transform":
+      {
+        "pos": "48.7457 15.5867 -33.5525",
+        "rotation": "-0.965926 0.0 0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_capitel_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_basa_col_002",
+      "transform":
+      {
+        "pos": "48.74 1.41547 -33.5642",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_basa_col_002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_4_0_col_000",
+      "transform":
+      {
+        "pos": "78.6853 15.5517 -33.5642",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_4_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_4_0_col_000",
+      "transform":
+      {
+        "pos": "244.223 3.30573 41.5836",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_4_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_3_col_000",
+      "transform":
+      {
+        "pos": "32.9506 13.0307 -33.5803",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_3_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_2_col_000",
+      "transform":
+      {
+        "pos": "32.9506 10.0236 -33.5803",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_1_col_000",
+      "transform":
+      {
+        "pos": "32.9506 6.99977 -33.5803",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_1_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_0_col_000",
+      "transform":
+      {
+        "pos": "32.9506 3.99465 -33.5803",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_capitel_col_000",
+      "transform":
+      {
+        "pos": "32.8967 15.5867 -33.5642",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_capitel_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_basa_col_000",
+      "transform":
+      {
+        "pos": "32.8967 1.41547 -33.5642",
+        "rotation": "-0.965926 0.0 -0.258819 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_basa_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_basa_col_001",
+      "transform":
+      {
+        "pos": "32.8856 4.60139 -13.5607",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_basa_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "tapar_estropicio001",
       "transform":
       {
