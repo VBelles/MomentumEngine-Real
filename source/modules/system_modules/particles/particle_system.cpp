@@ -103,12 +103,12 @@ void Particles::TCoreSystem::debugInMenu() {
 }
 
 void Particles::TCoreSystem::onFileChanged(const std::string& filename) {
-	if (filename != getName())
+	if (filename != getName()) {
 		return;
+	}
+	dbg("Hot reloading %s\n", filename.c_str());
 	destroy();
-	TCoreSystem core;
-	Particles::CParser().parseParticlesFile(name, &core);
-	*this = core;
+	Particles::CParser().parseParticlesFile(filename, this);
 }
 
 
