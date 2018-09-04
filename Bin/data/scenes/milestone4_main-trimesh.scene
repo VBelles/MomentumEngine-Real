@@ -2,6 +2,57 @@
   {
     "entity":
     {
+      "name": "tumba_0_col_000",
+      "transform":
+      {
+        "pos": "31.4627 1.88794 -10.2284",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tumba_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_1_col_000",
+      "transform":
+      {
+        "pos": "28.8977 1.56958 -10.2284",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tumba_1_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_2_col_000",
+      "transform":
+      {
+        "pos": "26.2338 1.12073 -10.2284",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tumba_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "fireplace_collider_000",
       "transform":
       {

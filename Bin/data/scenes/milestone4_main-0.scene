@@ -2,6 +2,72 @@
   {
     "entity":
     {
+      "name": "tumba_2_000",
+      "transform":
+      {
+        "pos": "26.2312 3.14468 -10.2235",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_2_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_03.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_0_000",
+      "transform":
+      {
+        "pos": "31.4465 3.91181 -10.2246",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba01.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_1_000",
+      "transform":
+      {
+        "pos": "28.8837 3.5933 -10.2234",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_1_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_02.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "fireplace_000",
       "transform":
       {
