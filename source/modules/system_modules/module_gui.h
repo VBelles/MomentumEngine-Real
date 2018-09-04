@@ -32,7 +32,8 @@ public:
 	CCameraGui& getCamera();
 	MVariants& getVariables();
 
-	void renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color);
+	void renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV,
+		const VEC4& color, const CTexture* mask = nullptr, const VEC2& maskMinUV = VEC2::Zero, const VEC2& maskMaxUV = VEC2::One);
 	void renderText(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color, const VEC2& charSize);
 
 	GUI::CFont& getFont(int size);
@@ -43,6 +44,7 @@ private:
 	const CRenderTechnique* _technique_font = nullptr;
 	const CRenderMesh* _quadMesh = nullptr;
 	const CTexture* _fontTexture = nullptr;
+	const CTexture* _nullMaskTexture = nullptr;
 
 	GUI::VWidgets _registeredWidgets;
 	GUI::VWidgets _activeWidgets;

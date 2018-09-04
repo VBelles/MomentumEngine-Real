@@ -38,7 +38,17 @@ public:
 	bool create(int new_xres, int new_yres, DXGI_FORMAT new_color_format, TCreateOptions create_options = CREATE_STATIC);
 	void setDXParams(int new_xres, int new_yres, ID3D11Texture2D* new_texture, ID3D11ShaderResourceView* new_srv);
 
+	template <typename Texture, typename TextureDesc>
+	static bool getTextureDescription(ID3D11Resource* textureResource, TextureDesc* desc) {
+		Texture* tex = nullptr;
+		HRESULT hr = textureResource->QueryInterface(&tex);
+		bool res = SUCCEEDED(hr);
+		if (res) {
+			tex->GetDesc(desc);
+		}
+		SAFE_RELEASE(tex);
+		return res;
+	}
 	static bool getDimensions(ID3D11Resource* texture, int* width, int* height);
 	
 };
-

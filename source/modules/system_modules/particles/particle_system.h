@@ -74,6 +74,7 @@ namespace Particles {
 
 
 		void debugInMenu() override;
+		void onFileChanged(const std::string& filename) override;
 	};
 
 	using VParticles = std::vector<TParticle>;
