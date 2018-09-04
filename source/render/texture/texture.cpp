@@ -159,52 +159,33 @@ void CTexture::setDXParams(int new_xres, int new_yres, ID3D11Texture2D* new_text
 }
 
 bool CTexture::getDimensions(ID3D11Resource* texture, int* width, int* height) {
-	HRESULT hr;
 	D3D11_RESOURCE_DIMENSION resType = D3D11_RESOURCE_DIMENSION_UNKNOWN;
 	texture->GetType(&resType);
 	switch (resType) {
 	case D3D11_RESOURCE_DIMENSION_TEXTURE1D:
 	{
-		ID3D11Texture1D* tex = nullptr;
-		HRESULT hr = texture->QueryInterface(&tex);
-		if (SUCCEEDED(hr)) {
-			D3D11_TEXTURE1D_DESC desc;
-			tex->GetDesc(&desc);
-			*width = desc.Width;
-			*height = 0;
-			return true;
-		}
-		SAFE_RELEASE(tex);
-		return false;
+		D3D11_TEXTURE1D_DESC desc;
+		bool res = getTextureDescription<ID3D11Texture1D>(texture, &desc);
+		*width = desc.Width;
+		*height = 0;
+		return res;
 	}
 	break;
 	case D3D11_RESOURCE_DIMENSION_TEXTURE2D:
 	{
-		ID3D11Texture2D* tex = nullptr;
-		HRESULT hr = texture->QueryInterface(&tex);
-		if (SUCCEEDED(hr)) {
-			D3D11_TEXTURE2D_DESC desc;
-			tex->GetDesc(&desc);
-			*width = desc.Width;
-			*height = desc.Height;
-			return true;
-		}
-		SAFE_RELEASE(tex);
-		return false;
+		D3D11_TEXTURE2D_DESC desc;
+		bool res = getTextureDescription<ID3D11Texture2D>(texture, &desc);
+		*width = desc.Width;
+		*height = desc.Height;
+		return res;
 	}
 	case D3D11_RESOURCE_DIMENSION_TEXTURE3D:
 	{
-		ID3D11Texture3D* tex = nullptr;
-		HRESULT hr = texture->QueryInterface(&tex);
-		if (SUCCEEDED(hr)) {
-			D3D11_TEXTURE3D_DESC desc;
-			tex->GetDesc(&desc);
-			*width = desc.Width;
-			*height = desc.Height;
-			return true;
-		}
-		SAFE_RELEASE(tex);
-		return false;
+		D3D11_TEXTURE3D_DESC desc;
+		bool res = getTextureDescription<ID3D11Texture3D>(texture, &desc);
+		*width = desc.Width;
+		*height = desc.Height;
+		return res;
 	}
 	}
 	return false;

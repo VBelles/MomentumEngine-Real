@@ -279,7 +279,13 @@ void CParser::parseImageParams(TImageParams& params, const json& data) {
 	params._minUV = loadVEC2(data.value("minUV", "0 0"));
 	params._maxUV = loadVEC2(data.value("maxUV", "1 1"));
 	const std::string textureFile = data.value("texture", "");
-	params._texture = Resources.get(textureFile)->as<CTexture>();
+	if (!textureFile.empty()) params._texture = Resources.get(textureFile)->as<CTexture>();
+	const std::string maskFile = data.value("mask", "");
+	if (!maskFile.empty()) params._mask = Resources.get(maskFile)->as<CTexture>();
+	params._initialFrame = data.value("initial_frame", 1);
+	params._frameSize = loadVEC2(data.value("frame_size", "1 1"));;
+	params._numFrames = data.value("num_frames", 0);
+	params._frameSpeed = data.value("frame_speed", 0);
 }
 
 void CParser::parseTextParams(TTextParams& params, const json& data) {

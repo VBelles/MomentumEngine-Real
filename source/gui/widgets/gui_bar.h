@@ -13,6 +13,9 @@ namespace GUI {
 		TImageParams _imageParams;
 		TBarParams _barParams;
 
+		CTimer2 timer;
+		std::pair<VEC2, VEC2> getUV();
+
 		friend class CParser;
 	};
 }

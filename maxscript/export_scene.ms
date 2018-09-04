@@ -929,7 +929,7 @@ struct TSceneExporter (
 	),
 
 	-- --CONTENTS OF THE collider_mesh or tri_mesh collider---------------------
-	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:false mov:false = (
+	fn exportColliderMeshContents obj meshShape:"convex_mesh" forceMesh:"" mov:false = (
 		local forcedTri = false
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "collData" then (
@@ -938,7 +938,7 @@ struct TSceneExporter (
 
 		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
-		if forceMesh then mesh_name = mesh_path + "plataformaPuraSI_tri.col_mesh"
+		if forceMesh != "" then mesh_name = mesh_path + forceMesh + ".col_mesh"
 
 		local meshType = "static"
 		if mov then meshType = "kinematic"
@@ -946,7 +946,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "shape" meshShape
 
-		if not forceMesh then (
+		if forceMesh == "" then (
 			if not areMapsOk obj then return false
 
 			exportMeshObject obj (project_path + mesh_name) vtxType:"Pos"
@@ -1047,7 +1047,7 @@ struct TSceneExporter (
 		fs.beginObj()
 			--format "exportCompCollider of obj: %\n" obj.name --DEBUG
 			if meshMode then exportColliderMeshContents obj meshShape:"convex_mesh" \
-				mov:mov forceMesh:true
+				mov:mov forceMesh:"plataformaPuraSI_tri"
 			else (
 				if      objClass == Sphere		  then exportSphere obj
 				else if objClass == Box			  then exportBox obj
@@ -1591,9 +1591,56 @@ struct TSceneExporter (
 		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
 			exportName obj
 			fs.writeComma()
-			fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
+			fs.writeKeyValue "prefab" (prefabPath + "plataforma_hex.prefab")
 			fs.writeComma()
 			exportTransform obj
+		endEntity() --End previous entity.
+		fs.writeComma()
+		beginEntity() --Begin new entity.
+			fs.writeKeyValue "name" (obj.name + "_spikes")
+			fs.writeComma()
+			exportTransform obj
+			fs.writeComma()
+
+			fs.writeKey "hierarchy"
+			fs.beginObj()
+				fs.writeKeyValue "parent" obj.name
+				fs.writeComma()
+				fs.writeKeyValue "pos" "0 -0.25 0"
+				fs.writeComma()
+				fs.writeKeyValue "axis" "0 0 1"
+				fs.writeComma()
+				fs.writeKeyValue "angle" 180
+			fs.endObj()
+			fs.writeComma()
+
+			fs.writeKey "render"
+			fs.beginArray()
+				fs.beginObj()
+					local meshName = "spikes_plat_hex_small"
+					fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
+					fs.writeComma()
+					exportStringArray "materials" #(mats_path + meshName) suffix:".material"
+				fs.endObj()
+			fs.endArray()
+			fs.writeComma()
+
+			fs.writeKey "collider"
+			fs.beginObj()
+				exportColliderMeshContents obj meshShape:"convex_mesh" \
+					forceMesh:"spikes_plat_hex_small_col" mov:true
+				fs.writeComma()
+				fs.writeKeyValue "type" "kinematic"
+				fs.writeComma()
+				fs.writeKeyValue "is_trigger" true
+				fs.writeComma()
+				exportStringArray "group" #("trigger")
+				fs.writeComma()
+				exportStringArray "mask" #("player")
+			fs.endObj()
+			fs.writeComma()
+
+			fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
 		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 		return true
 	),
@@ -2190,13 +2237,13 @@ NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  se tienen los knots por si hacen falta.
 */
 
--- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 if debugMode then (
+	--Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_scene.ms" "Bin\\")
 	exporter = TSceneExporter project_path:exportPath
 	exporter.exportAll()
+	--exporter.exportSelectedColliders()
 )
---exporter.exportSelectedColliders()
 
 --mexporter = TMaterialExporter project_path:"pep/" base_path:"path/"
 --mexporter.exportStdMaterial $.mat "pep" 

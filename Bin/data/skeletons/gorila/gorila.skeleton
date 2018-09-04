@@ -1,13 +1,22 @@
 {
 	"name":"gorila",
 	"anims" : [
-		{ "name" : "gorila_idle_root"},
-		{ "name" : "gorila_walking_root"},
-		{ "name" : "gorila_ataque_root"}
+		{ "name" : "gorila_idle"},
+		{ "name" : "gorila_ataquelento"},
+		{ "name" : "gorila_ataquerapido"},
+		{ "name" : "gorila_chase"},
+		{ "name" : "gorila_death"},
+		{ "name" : "gorila_guardia_cooldown"},
+		{ "name" : "gorila_guardia_loop"},
+		{ "name" : "gorila_guardia_warmup"},
+		{ "name" : "gorila_idlewar"},
+		{ "name" : "gorila_knockback"},
+		{ "name" : "gorila_stun"},
+		{ "name" : "gorila_walk"}
 	],
 	"bone_ids_to_debug" : [
 		3
 	],
-	"meshes" : [
+		"meshes" : [
 	]
 }

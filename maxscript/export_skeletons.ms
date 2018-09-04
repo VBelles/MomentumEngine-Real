@@ -8,7 +8,7 @@ struct  TSkeletonsExporter (
 	skel_name,			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
-	bone_geometry = false,
+	bone_geometry = true,
 	
 	fn isBone obj = ( 
 		-- Discard black bones
@@ -20,7 +20,7 @@ struct  TSkeletonsExporter (
 		local obj_bones = #()
 		for obj in $* do (
 			format "% is classof %\n" obj.name (classof obj)
-			if (classof obj == BoneGeometry or classof obj == Point) then bone_geometry = true
+			if (isBone obj and classof obj == Biped_Object) then bone_geometry = false
 			if isBone obj and obj.parent == undefined then (
 				format "% is a root bone\n" obj.name
 				append obj_bones obj
@@ -59,7 +59,7 @@ struct  TSkeletonsExporter (
 	fn findMeshCandidates = (
 		local objs = #()
 		for obj in $* do (
-			if ((classof obj == PolyMeshObject) or (classof obj == Editable_Mesh)) and obj.wireColor != Black then (
+			if ((classof obj == PolyMeshObject) or (classof obj == Editable_Mesh)) and obj.wireColor != Black and not obj.isHidden then (
 				if obj.modifiers[#Skin] != undefined then (
 					format "% is a skinned mesh \n" obj.name
 					append objs obj
@@ -152,7 +152,7 @@ struct  TSkeletonsExporter (
 
 -- Take the project path from this script path. Result should be ~"D:\Dev\MomentumEngine-Real\Bin\"
 --exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\export_skeletons.ms" "")
---se = TSkeletonsExporter project_path:exportPath skel_name:"medusa_new"
+--se = TSkeletonsExporter project_path:exportPath skel_name:"gorila"
 
 --gc()
 --se = TSkeletonsExporter()

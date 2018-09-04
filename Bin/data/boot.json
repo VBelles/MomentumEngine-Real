@@ -6,13 +6,16 @@
     "data/scenes/sky.scene",
     "data/scenes/slash.scene",
     "data/scenes/milestone4-0.scene",
+    "data/scenes/milestone4-instancing.scene",
     "data/scenes/milestone4_main-0.scene",
+    "data/scenes/milestone4_main-chrysalis.scene",
     "data/scenes/milestone4_main-triggers.scene",
     "data/scenes/milestone4_main-trimesh.scene",
-    "data/scenes/milestone4-instancing.scene",
     "data/scenes/plataformeo.scene",
     "data/scenes/plataformeo01.scene",
-    "data/scenes/ambiental_particles.scene"
+    "data/scenes/ambiental_particles.scene",
+    "data/scenes/test_gorila.scene"
+
   ],
   "unused_scenes": [
     "data/scenes/test_instancing.scene",
