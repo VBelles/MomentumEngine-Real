@@ -2,16 +2,16 @@
   {
     "entity":
     {
-      "name": "columna_4_0_001",
+      "name": "columna_piezas_grande_basa_000",
       "transform":
       {
-        "pos": "75.0947 13.0629 -21.745",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
+        "pos": "303.494 -8.39124 11.1118",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/columna_4_0_001.mesh",
+          "mesh": "data/meshes/columna_piezas_grande_basa_000.mesh",
           "materials":
           [
             "data/materials/m_columna_piezas.material"
@@ -24,16 +24,258 @@
   {
     "entity":
     {
-      "name": "columna_piezas_fuste_3_001",
+      "name": "columna_piezas_grande_fuste_0_000",
       "transform":
       {
-        "pos": "48.7934 6.95737 -33.5625",
+        "pos": "303.573 1.0631 11.1276",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_grande_fuste_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_fuste_1_000",
+      "transform":
+      {
+        "pos": "303.488 12.2609 11.1018",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_grande_fuste_1_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_fuste_2_000",
+      "transform":
+      {
+        "pos": "303.528 23.1764 11.1255",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_grande_fuste_2_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_fuste_3_000",
+      "transform":
+      {
+        "pos": "303.49 33.973 11.1104",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_grande_fuste_3_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_capitel_000",
+      "transform":
+      {
+        "pos": "303.496 42.6342 11.1036",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_grande_capitel_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_1_000",
+      "transform":
+      {
+        "pos": "367.682 7.90328 67.3363",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_6_1_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_3_000",
+      "transform":
+      {
+        "pos": "382.844 12.2015 103.059",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_6_3_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_2_000",
+      "transform":
+      {
+        "pos": "354.43 12.2015 103.059",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_6_2_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_0_000",
+      "transform":
+      {
+        "pos": "342.212 12.2442 71.1151",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_6_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_6_1_000",
+      "transform":
+      {
+        "pos": "253.037 11.1203 7.05167",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_6_1_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_6_0_000",
+      "transform":
+      {
+        "pos": "241.946 13.0105 8.69717",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_6_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_6_3_000",
+      "transform":
+      {
+        "pos": "259.639 4.02473 22.6072",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/columna_piezas_fuste_3_001.mesh",
+          "mesh": "data/meshes/columna_6_3_000.mesh",
           "materials":
           [
             "data/materials/m_columna_piezas.material"
@@ -46,104 +288,148 @@
   {
     "entity":
     {
-      "name": "columna_piezas_fuste_2_001",
+      "name": "columna_6_2_000",
       "transform":
       {
-        "pos": "48.78 9.94761 -33.5515",
-        "rotation": "0.0 -0.965926 0.0 -0.258819"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna_piezas_fuste_2_001.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna_piezas_fuste_1_001",
-      "transform":
-      {
-        "pos": "48.7838 3.95911 -33.5531",
-        "rotation": "-0.258819 0.0 -0.965926 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna_piezas_fuste_1_001.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna_piezas_fuste_0_001",
-      "transform":
-      {
-        "pos": "48.7679 12.9788 -33.5804",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna_piezas_fuste_0_001.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna_piezas_capitel_001",
-      "transform":
-      {
-        "pos": "48.7602 15.6049 -33.5742",
-        "rotation": "0.0 -0.965926 0.0 -0.258819"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna_piezas_capitel_001.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna_piezas_basa_002",
-      "transform":
-      {
-        "pos": "48.7652 1.41457 -33.5589",
+        "pos": "247.266 4.02473 22.6072",
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/columna_piezas_basa_002.mesh",
+          "mesh": "data/meshes/columna_6_2_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_3_000",
+      "transform":
+      {
+        "pos": "318.658 12.2015 112.741",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_4_3_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_2_000",
+      "transform":
+      {
+        "pos": "290.244 12.2015 112.741",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_4_2_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_1_000",
+      "transform":
+      {
+        "pos": "303.496 7.90328 77.0188",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_4_1_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_0_000",
+      "transform":
+      {
+        "pos": "278.026 12.2442 80.7976",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_4_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_4_3_000",
+      "transform":
+      {
+        "pos": "261.942 1.41458 55.499",
+        "rotation": "0.0 -0.965926 0.0 0.258819"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_4_3_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_4_2_000",
+      "transform":
+      {
+        "pos": "249.569 1.41458 55.499",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_4_2_000.mesh",
           "materials":
           [
             "data/materials/m_columna_piezas.material"
@@ -159,7 +445,7 @@
       "name": "columna_4_1_000",
       "transform":
       {
-        "pos": "78.7113 8.5101 -33.5589",
+        "pos": "255.34 8.5101 39.9434",
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       },
       "render":
@@ -200,104 +486,16 @@
   {
     "entity":
     {
-      "name": "columna_piezas_basa_001",
+      "name": "columna_piezas_capitel_000",
       "transform":
       {
-        "pos": "32.933 4.59969 -13.5507",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna_piezas_basa_001.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna_piezas_basa_000",
-      "transform":
-      {
-        "pos": "32.9219 1.41457 -33.5589",
+        "pos": "287.777 25.9742 -0.994167",
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/columna_piezas_basa_000.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna_piezas_fuste_0_000",
-      "transform":
-      {
-        "pos": "32.9246 3.99351 -33.5654",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna_piezas_fuste_0_000.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna_piezas_fuste_1_000",
-      "transform":
-      {
-        "pos": "32.9248 6.976 -33.559",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna_piezas_fuste_1_000.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "columna_piezas_fuste_2_000",
-      "transform":
-      {
-        "pos": "32.92 10.0039 -33.5595",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/columna_piezas_fuste_2_000.mesh",
+          "mesh": "data/meshes/columna_piezas_capitel_000.mesh",
           "materials":
           [
             "data/materials/m_columna_piezas.material"
@@ -313,7 +511,7 @@
       "name": "columna_piezas_fuste_3_000",
       "transform":
       {
-        "pos": "32.9193 12.9755 -33.5633",
+        "pos": "287.774 21.405 -0.994967",
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       },
       "render":
@@ -332,16 +530,82 @@
   {
     "entity":
     {
-      "name": "columna_piezas_capitel_000",
+      "name": "columna_piezas_fuste_2_000",
       "transform":
       {
-        "pos": "32.9227 15.6049 -33.5625",
+        "pos": "287.774 16.6843 -0.99121",
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/columna_piezas_capitel_000.mesh",
+          "mesh": "data/meshes/columna_piezas_fuste_2_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_1_000",
+      "transform":
+      {
+        "pos": "287.779 11.5107 -0.990622",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_fuste_1_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_0_000",
+      "transform":
+      {
+        "pos": "287.779 5.91903 -0.997092",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_fuste_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_basa_000",
+      "transform":
+      {
+        "pos": "287.776 1.41457 -0.990606",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_basa_000.mesh",
           "materials":
           [
             "data/materials/m_columna_piezas.material"
