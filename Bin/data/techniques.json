@@ -390,6 +390,7 @@
   "vegetation": {
     "vs_file": "data/shaders/instanced.fx",
     "vs_entry_point": "VS_Vegetation",
+    "ps_entry_point": "PS_Vegetation",
     "vertex_type": "PosNUvUvT_x_Instance",
     "category": "gbuffer",
     "rs_config": "cull_none"

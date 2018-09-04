@@ -127,3 +127,37 @@ void PS(
 
   o_self_illum = txSelfIllum.Sample(samLinear, iTex0);
 }
+
+void PS_Vegetation(
+    in float4 iPos      : SV_POSITION
+  , in float3 iNormal   : NORMAL0
+  , in float4 iTangent  : NORMAL1
+  , in float2 iTex0     : TEXCOORD0
+  , in float2 iTex1     : TEXCOORD1
+  , in float3 iWorldPos : TEXCOORD2
+
+  , out float4 o_albedo : SV_Target0
+  , out float4 o_normal : SV_Target1
+  , out float1 o_depth  : SV_Target2
+  , out float4 o_self_illum : SV_Target3
+)
+{
+  float4 texture_color = txAlbedo.Sample(samClampLinear, iTex0);
+
+  if ( texture_color.a < 0.3 ){
+    discard;
+  }
+
+  o_albedo.xyz = texture_color.xyz;
+  o_albedo.a = 0.0;
+
+  // Save roughness in the alpha coord of the N render target
+  float roughness = 1.0; //txRoughness.Sample(samClampLinear, iTex0).r;
+  o_normal = encodeNormal( iNormal, roughness );
+
+  // Compute the Z in linear space, and normalize it in the range 0...1
+  float3 camera2wpos = iWorldPos - camera_pos;
+  o_depth = dot( camera_front.xyz, camera2wpos ) / camera_zfar;
+
+  o_self_illum = txSelfIllum.Sample(samClampLinear, iTex0);
+}
