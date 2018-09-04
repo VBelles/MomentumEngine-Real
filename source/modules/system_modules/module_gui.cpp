@@ -20,6 +20,7 @@ bool CModuleGUI::start() {
 	_technique_font = Resources.get("gui_font.tech")->as<CRenderTechnique>();
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	_fontTexture = Resources.get("data/textures/gui/font_sheet.dds")->as<CTexture>();
+	_nullMaskTexture = Resources.get("data/textures/white.dds")->as<CTexture>();
 
 	json jFonts = loadJson(fontsFile);
 	for (auto it = jFonts.begin(); it != jFonts.end(); ++it) {
@@ -155,7 +156,8 @@ MVariants& CModuleGUI::getVariables() {
 	return _variables;
 }
 
-void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color) {
+void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV,
+	const VEC4& color, const CTexture* mask, const VEC2& maskMinUV, const VEC2& maskMaxUV) {
 	assert(_technique && _quadMesh);
 
 	cb_object.obj_world = world;
@@ -165,10 +167,18 @@ void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, cons
 	cb_gui.minUV = minUV;
 	cb_gui.maxUV = maxUV;
 	cb_gui.tint_color = color;
+	cb_gui.charSize = maskMinUV;
+	cb_gui.dummy_GUI = maskMaxUV;
 	cb_gui.updateGPU();
 
 	_technique->activate();
 	if (texture) texture->activate(TS_ALBEDO);
+	if (mask) {
+		mask->activate(TS_NORMAL);
+	}
+	else {
+		_nullMaskTexture->activate(TS_NORMAL);
+	}
 
 	_quadMesh->activateAndRender();
 }
