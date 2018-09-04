@@ -75,6 +75,7 @@ typedef enum { CONCURRENT_STATES } ConcurrentState;
 #undef etype
 #define etype(x) #x
 static const char *strConcurrentStates[] = { CONCURRENT_STATES };
+#undef etype
 
 #define etype(x) { #x, x }
 static const std::map<std::string, ConcurrentState> concurrentStatesMap = { CONCURRENT_STATES };
