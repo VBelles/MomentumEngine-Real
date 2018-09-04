@@ -173,8 +173,16 @@ namespace Particles {
 				dir.Normalize();
 				p.velocity += dir * _core->movement.acceleration * delta;
 				p.velocity += kGravity * _core->movement.gravity * delta;
-				p.position += p.velocity * delta;
-				p.position += kWindVelocity * _core->movement.wind * delta;
+				
+				if (_core->movement.following) {
+					p.localPosition += p.velocity * delta;
+					p.localPosition += kWindVelocity * _core->movement.wind * delta;
+					p.position = VEC3::Transform(p.localPosition, world);
+				}
+				else {
+					p.position += p.velocity * delta;
+					p.position += kWindVelocity * _core->movement.wind * delta;
+				}
 				if (!_core->render.mesh) { //Billboard particle
 					p.rotation += _core->movement.spin * delta;
 				}
@@ -230,14 +238,15 @@ namespace Particles {
 		_core->render.texture->activate(TS_ALBEDO);
 
 		for (auto& p : _particles) {
+			VEC3 particlePosition = p.position;
 			if (_core->render.type == TCoreSystem::TRender::Billboard) {
-				MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, VEC3(0, 1, 0));
+				MAT44 bb = MAT44::CreateBillboard(particlePosition, cameraPos, VEC3(0, 1, 0));
 				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
 				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
 				cb_object.obj_world = rt * sc * bb;
 			}
 			else if (_core->render.type == TCoreSystem::TRender::HorizontalBillboard) {
-				MAT44 bb = MAT44::CreateConstrainedBillboard(p.position, cameraPos, VEC3(0, 1, 0), &cameraForward);
+				MAT44 bb = MAT44::CreateConstrainedBillboard(particlePosition, cameraPos, VEC3(0, 1, 0), &cameraForward);
 				MAT44 sc = MAT44::CreateScale(p.size * p.scale);
 				MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
 				cb_object.obj_world = rt * sc * bb;
@@ -246,7 +255,7 @@ namespace Particles {
 				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
 					* MAT44::CreateFromQuaternion(config.rotationOffset)
-					* MAT44::CreateTranslation(p.position);
+					* MAT44::CreateTranslation(particlePosition);
 			}
 
 			int row = p.frame / frameCols;
@@ -262,7 +271,7 @@ namespace Particles {
 			cb_particles.particle_color = p.color;
 			cb_particles.particle_velocity = p.velocity;
 			cb_particles.particle_scale = p.scale * p.size;
-			cb_particles.particle_position = p.position;
+			cb_particles.particle_position = particlePosition;
 			cb_particles.particle_rotation = p.rotation;
 			cb_particles.particle_motion_blur_amount = _core->render.motionBlurAmount;
 
@@ -276,7 +285,8 @@ namespace Particles {
 	void CSystem::emit() {
 		for (int i = 0; i < _core->emission.count && _particles.size() < _core->life.maxParticles; ++i) {
 			TParticle particle;
-			particle.position = VEC3::Transform(generatePosition(), world);
+			particle.localPosition = generatePosition();
+			particle.position = VEC3::Transform(particle.localPosition, world);
 			particle.velocity = generateVelocity(particle.position);
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
@@ -293,7 +303,8 @@ namespace Particles {
 		updateWorld();
 		for (int i = 0; i < quantity; ++i) {
 			TParticle particle;
-			particle.position = VEC3::Transform(generatePosition(), world);
+			particle.localPosition = generatePosition();
+			particle.position = VEC3::Transform(particle.localPosition, world);
 			particle.velocity = generateVelocity(particle.position);
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
