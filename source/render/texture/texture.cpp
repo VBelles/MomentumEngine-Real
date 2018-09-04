@@ -44,7 +44,9 @@ bool CTexture::create(const std::string& name) {
 	setDXName(shader_resource_view, name.c_str());
 
 	// Update the resolution from the resource
-	getDimensions(texture, &xres, &yres);
+	if (!getDimensions(texture, &xres, &yres)) {
+		return false;
+	}
 	return true;
 }
 

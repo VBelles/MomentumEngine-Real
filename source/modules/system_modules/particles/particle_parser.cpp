@@ -60,6 +60,7 @@ namespace Particles {
 		cps->movement.wind = movement.value("wind", cps->movement.wind);
 		cps->movement.gravity = movement.value("gravity", cps->movement.gravity);
 		cps->movement.ground = movement.value("ground", cps->movement.ground);
+		cps->movement.following = movement.value("following", cps->movement.following);
 
 		// render
 		const json& render = data["render"];
@@ -75,7 +76,7 @@ namespace Particles {
 		std::string defaulRenderTechnique;
 		if (renderType == "mesh") {
 			cps->render.type = TCoreSystem::TRender::Mesh;
-			defaulRenderTechnique = additive ?  "particles_mesh_additive.tech" : "particles_mesh.tech";
+			defaulRenderTechnique = additive ? "particles_mesh_additive.tech" : "particles_mesh.tech";
 		}
 		else if (renderType == "horizontal_billboard") {
 			cps->render.type = TCoreSystem::TRender::HorizontalBillboard;
@@ -101,6 +102,7 @@ namespace Particles {
 			cps->color.colors.set(time, value);
 		}
 		cps->color.colors.sort();
+
 		// size
 		const json& size = data["size"];
 		cps->size.scale = size.value("scale", cps->size.scale);
