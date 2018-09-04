@@ -17,10 +17,13 @@ public:
 	IResource* create(const std::string& name) const override {
 		dbg("Creating particles %s\n", name.c_str());
 		Particles::CParser parser;
-		Particles::TCoreSystem* res = parser.parseParticlesFile(name);
+		Particles::TCoreSystem* res = new Particles::TCoreSystem;
+		parser.parseParticlesFile(name, res);
 		assert(res);
 		return res;
 	}
+
+	
 };
 
 void Particles::TCoreSystem::debugInMenu() {
@@ -97,6 +100,15 @@ void Particles::TCoreSystem::debugInMenu() {
 		if (render.type == TRender::StretchedBillboard) ImGui::DragFloat("Motion blur amount", &render.motionBlurAmount, 0.001f);
 
 	}
+}
+
+void Particles::TCoreSystem::onFileChanged(const std::string& filename) {
+	if (filename != getName()) {
+		return;
+	}
+	dbg("Hot reloading %s\n", filename.c_str());
+	destroy();
+	Particles::CParser().parseParticlesFile(filename, this);
 }
 
 

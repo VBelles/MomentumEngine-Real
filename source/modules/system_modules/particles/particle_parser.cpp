@@ -14,17 +14,15 @@ namespace Particles {
 		}
 	}
 
-	TCoreSystem* CParser::parseParticlesFile(const std::string& filename) {
+	void CParser::parseParticlesFile(const std::string& filename, TCoreSystem* cps) {
 		std::ifstream file_json(filename);
 		json json_data;
 		file_json >> json_data;
 
-		return parseParticleSystem(json_data);
+		parseParticleSystem(json_data, cps);
 	}
 
-	TCoreSystem* CParser::parseParticleSystem(const json& data) {
-		TCoreSystem* cps = new TCoreSystem();
-
+	void CParser::parseParticleSystem(const json& data, TCoreSystem* cps) {
 		// life
 		const json& life = data["life"];
 		cps->life.duration = life.value("duration", cps->life.duration);
@@ -114,6 +112,5 @@ namespace Particles {
 		}
 		cps->size.sizes.sort();
 
-		return cps;
 	}
 }
