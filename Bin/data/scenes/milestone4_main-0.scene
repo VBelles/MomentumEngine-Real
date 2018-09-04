@@ -2,6 +2,28 @@
   {
     "entity":
     {
+      "name": "fireplace_000",
+      "transform":
+      {
+        "pos": "21.1672 2.67975 -12.8762",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/fireplace_000.mesh",
+          "materials":
+          [
+            "data/materials/m_fireplace_00.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "columna_piezas_grande_basa_000",
       "transform":
       {

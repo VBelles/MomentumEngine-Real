@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "fireplace_collider_000",
+      "transform":
+      {
+        "pos": "21.1631 2.6275 -12.8726",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/fireplace_collider_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "columna_piezas_grande_basa_col_000",
       "transform":
       {
