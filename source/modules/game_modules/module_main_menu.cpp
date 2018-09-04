@@ -12,9 +12,11 @@ bool CModuleMainMenu::start() {
 	Engine.getGUI().activateWidget("main_menu");
 
 	auto startGameCB = []() {
-		EngineModules.changeGameState("game_state");
+		Engine.getGUI().unregisterWidget("main_menu");
+		EngineModules.changeGameState("game_state", true);
 	};
 	auto optionsMenuCB = []() {
+		Engine.getGUI().unregisterWidget("main_menu", true);
 		EngineModules.changeGameState("options_menu");
 	};
 	auto exitCB = []() {
@@ -36,7 +38,7 @@ bool CModuleMainMenu::start() {
 bool CModuleMainMenu::stop() {
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);
-	Engine.getGUI().unregisterWidget("main_menu", true);
+	Engine.getGUI().unregisterWidget("main_menu");
 	return true;
 }
 

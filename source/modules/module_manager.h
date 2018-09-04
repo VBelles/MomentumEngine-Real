@@ -16,7 +16,7 @@ public:
 	IModule* getModule(const std::string& gsName);
 
 	void registerGameState(CGameState* gs);
-	void changeGameState(const std::string& gsName);
+	void changeGameState(const std::string& gsName, bool loadingScreen = false);
 	CGameState* getGameState(const std::string& gsName);
 	CGameState* getCurrentGameState();
 
@@ -27,6 +27,7 @@ public:
 
 private:
 	void applyRequestedGameState();
+	void applyGameState();
 	void renderDebug();
 
 	bool startModule(IModule* mod);
@@ -44,5 +45,8 @@ private:
 	CGameState* _startup_gs = nullptr;
 	CGameState* _requested_gs = nullptr;
 
-	bool gameStateChanged = false;
+	bool useLoadingScreen = false;
+	volatile bool gameStateChanged = false;
+	std::string loadingScreenFile = "data/gui/loading_screen.json";
+	std::string loadingScreenWdgt = "loading_screen";
 };
