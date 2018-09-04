@@ -2,19 +2,19 @@
   {
     "entity":
     {
-      "name": "tumba_2_000",
+      "name": "columna_4_3_001",
       "transform":
       {
-        "pos": "26.2312 3.14468 -10.2235",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "172.455 33.5314 -206.724",
+        "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/tumba_2_000.mesh",
+          "mesh": "data/meshes/columna_4_3_001.mesh",
           "materials":
           [
-            "data/materials/m_tumba_03.material"
+            "data/materials/m_columna_piezas.material"
           ],
           "enabled": true
         }
@@ -24,19 +24,85 @@
   {
     "entity":
     {
-      "name": "tumba_0_000",
+      "name": "columna_6_1_001",
       "transform":
       {
-        "pos": "31.4465 3.91181 -10.2246",
+        "pos": "181.775 40.9967 -174.979",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_6_1_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_3_001",
+      "transform":
+      {
+        "pos": "177.277 32.4898 -191.477",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/tumba_0_000.mesh",
+          "mesh": "data/meshes/columna_grande_4_3_001.mesh",
           "materials":
           [
-            "data/materials/m_tumba01.material"
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_0_001",
+      "transform":
+      {
+        "pos": "160.485 52.0848 -217.997",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_grande_6_0_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "torre_buenadefinitivaPARAPONER",
+      "transform":
+      {
+        "pos": "150.697 87.9383 -146.313",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/torre_buenadefinitivaPARAPONER.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -68,10 +134,54 @@
   {
     "entity":
     {
+      "name": "tumba_0_000",
+      "transform":
+      {
+        "pos": "31.4465 3.91181 -10.2246",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba01.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_2_000",
+      "transform":
+      {
+        "pos": "26.2312 3.14468 -10.2235",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_2_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_03.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "fireplace_000",
       "transform":
       {
-        "pos": "21.1672 2.67975 -12.8762",
+        "pos": "21.1672 0.822324 -12.8762",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
