@@ -173,8 +173,8 @@ CB_DEF(CCteGlobals, CB_GLOBALS) {
     float global_shared_fx_val2;
     float global_shared_fx_val3;
 
+	float global_shadow_adjustment;
 	VEC3 player_position;
-	float globals_pad_dummy;
 
 	VEC3 player_speed;
 	float player_speed_length;

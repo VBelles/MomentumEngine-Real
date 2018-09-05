@@ -488,7 +488,7 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir, self_illum);
 
 	// Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
-	float shadow_factor = saturate(0.45 + computeShadowFactor(wPos));
+	float shadow_factor = saturate(global_shadow_adjustment + computeShadowFactor(wPos));
 
 	// From wPos to Light
 	//camera_front.xyz de la luz
@@ -567,5 +567,5 @@ float4 PS_skybox(in float4 iPosition : SV_Position) : SV_Target
 {
 	float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
 	float3 skybox_color = getEnvironment(view_dir, 0);
-	return float4(skybox_color, 1) * global_ambient_adjustment;
+	return float4(skybox_color, 1) /** global_ambient_adjustment*/;
 }

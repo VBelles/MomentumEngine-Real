@@ -99,7 +99,8 @@ bool CModuleRender::start() {
 
 
 	cb_globals.global_exposure_adjustment = 1.0f;
-	cb_globals.global_ambient_adjustment = 0.85f;
+	cb_globals.global_ambient_adjustment = 0.5f;
+	cb_globals.global_shadow_adjustment = 0.1f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
@@ -165,6 +166,7 @@ void CModuleRender::render() {
 		if (ImGui::TreeNode("Render Control")) {
 			ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
 			ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
+			ImGui::DragFloat("Shadow Adjustment", &cb_globals.global_shadow_adjustment, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
