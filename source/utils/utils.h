@@ -22,12 +22,9 @@ bool fileExists(const std::string& afilename);
 
 float scale(float A, float A1, float A2, float Min, float Max);
 
-
-//#define safeDelete(x)  if(x) delete x, x = nullptr;
-
 template <typename T>
 inline void safeDelete(T*& t) {
-	if (t != nullptr) {
+	if (t) {
 		delete t;
 		t = nullptr;
 	}
@@ -35,16 +32,9 @@ inline void safeDelete(T*& t) {
 
 constexpr auto fps = 1.f / 60.f;
 
-inline float frames2sec(int frames) {
-	return frames * fps;
-}
+float frames2sec(int frames);
 
-inline float frames2sec(float frames) {
-	return frames * fps;
-}
-
-//const float FPS = 1.f / 60.f;
-//#define frames2sec(frames) (frames) * FPS
+float frames2sec(float frames);
 
 #endif
 

@@ -97,3 +97,11 @@ float scale(float A, float A1, float A2, float Min, float Max) {
 	long double percentage = (A - A1) / (A1 - A2);
 	return (float)( (percentage) * (Min - Max) + Min );
 }
+
+float frames2sec(int frames) {
+	return frames * fps;
+}
+
+float frames2sec(float frames) {
+	return frames * fps;
+}
