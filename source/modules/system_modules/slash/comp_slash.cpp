@@ -14,7 +14,7 @@ void TCompSlash::debugInMenu() {
 TCompSlash::~TCompSlash() {
 	if (mesh) {
 		mesh->destroy();
-		SAFE_DELETE(mesh);
+		safeDelete(mesh);
 	}
 }
 
@@ -176,7 +176,7 @@ void TCompSlash::setEnable(bool enabled) {
 void TCompSlash::clearMesh() {
 	if (mesh) {
 		mesh->destroy();
-		SAFE_DELETE(mesh);
+		safeDelete(mesh);
 	}
 }
 

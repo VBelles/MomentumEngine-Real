@@ -22,7 +22,7 @@ bool CModuleMapMenu::start() {
 
 bool CModuleMapMenu::stop() {
 	Engine.getGUI().unregisterController(controller);
-	SAFE_DELETE(controller);
+	safeDelete(controller);
 	Engine.getGUI().unregisterWidget("map_menu", true);
 	return true;
 }

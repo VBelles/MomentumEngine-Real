@@ -113,10 +113,10 @@ StateManager::StateManager(CHandle entityHandle) :
 
 StateManager::~StateManager() {
 	for (auto& keyValue : states) {
-		SAFE_DELETE(keyValue.second);
+		safeDelete(keyValue.second);
 	}
 	for (auto& keyValue : concurrentStates) {
-		SAFE_DELETE(keyValue.second);
+		safeDelete(keyValue.second);
 	}
 }
 

@@ -14,11 +14,11 @@
 DECL_OBJ_MANAGER("enemy", TCompEnemy);
 
 TCompEnemy::~TCompEnemy() {
-	SAFE_DELETE(enemy);
+	safeDelete(enemy);
 }
 
 void TCompEnemy::load(const json& j, TEntityParseContext& ctx) {
-	SAFE_DELETE(enemy);
+	safeDelete(enemy);
 	enemy = new Enemy();
 	enemy->load(j);
 }
@@ -123,7 +123,7 @@ void TCompEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
 					launchVelocity.Normalize();
 					launchVelocity *= enemy->velocity.Length() * 0.3f;
 					if (launchVelocity.Length() < 3.0f) {
-						SAFE_DELETE(attackHit.info.propel);
+						safeDelete(attackHit.info.propel);
 					}
 					else {
 						attackHit.info.propel->velocity = launchVelocity;

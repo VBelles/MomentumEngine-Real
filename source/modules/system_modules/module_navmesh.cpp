@@ -53,8 +53,8 @@ bool CModuleNavmesh::stop() {
 	for (auto& pair : navMeshes) {
 		if (pair.second.first) {
 			pair.second.first->destroy();
-			SAFE_DELETE(pair.second.first);
-			SAFE_DELETE(pair.second.second);
+			safeDelete(pair.second.first);
+			safeDelete(pair.second.second);
 		}
 	}
 	navMeshes.clear();

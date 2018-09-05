@@ -35,7 +35,7 @@ bool CModuleMainMenu::start() {
 
 bool CModuleMainMenu::stop() {
 	Engine.getGUI().unregisterController(controller);
-	SAFE_DELETE(controller);
+	safeDelete(controller);
 	Engine.getGUI().unregisterWidget("main_menu", true);
 	return true;
 }

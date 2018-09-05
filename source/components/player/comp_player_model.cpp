@@ -589,9 +589,9 @@ TCompCollectableManager* TCompPlayerModel::getCollectableManager() {
 
 TCompPlayerModel::~TCompPlayerModel() {
 	for (int i = 0; i < NUMBER_OF_POWER_LEVELS; i++) {
-		SAFE_DELETE(powerStats[i]);
+		safeDelete(powerStats[i]);
 	}
-	SAFE_DELETE(stateManager);
+	safeDelete(stateManager);
 }
 
 bool TCompPlayerModel::isGrounded() {

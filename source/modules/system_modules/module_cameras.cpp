@@ -67,7 +67,7 @@ bool CModuleCameras::start() {
 bool CModuleCameras::stop() {
 	_mixedCameras.clear();
 	for (auto pair : interpolators) {
-		SAFE_DELETE(pair.second);
+		safeDelete(pair.second);
 	}
 	return true;
 }

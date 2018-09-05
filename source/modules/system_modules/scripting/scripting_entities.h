@@ -7,7 +7,6 @@ namespace SLB {
 
 class ScriptingEntities {
 private:
-	~ScriptingEntities();
 	static ScriptingEntities* instance;
 	std::map<std::string, int> spawnCounters;
 	TCompTransform* getPlayerTransform();
@@ -15,8 +14,9 @@ private:
 	static void bindConstants(SLB::Manager* manager);
 
 public:
+	~ScriptingEntities();
 	static void create() { if (!instance) instance = new ScriptingEntities(); }
-	static void destroy() { SAFE_DELETE(instance) }
+	static void destroy() { safeDelete(instance); }
 	static ScriptingEntities* get() { return instance; }
 	static void bind(SLB::Manager* manager);
 

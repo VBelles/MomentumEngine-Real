@@ -10,13 +10,13 @@ IBehaviorTreeNew::~IBehaviorTreeNew() {
 
 void IBehaviorTreeNew::clear() {
 	for (IBehaviorTreeCondition* condition : allConditions) {
-		SAFE_DELETE(condition);
+		safeDelete(condition);
 	}
 	for (IBehaviorTreeAction* action : allActions) {
-		SAFE_DELETE(action);
+		safeDelete(action);
 	}
 	for (auto& pair : tree) {
-		SAFE_DELETE(pair.second);
+		safeDelete(pair.second);
 	}
 	tree.clear();
 	allConditions.clear();

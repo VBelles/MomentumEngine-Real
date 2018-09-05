@@ -6,9 +6,9 @@
 using namespace GUI;
 
 COption::~COption() {
-	SAFE_DELETE(_previous);
-	SAFE_DELETE(_next);
-	SAFE_DELETE(_text);
+	safeDelete(_previous);
+	safeDelete(_next);
+	safeDelete(_text);
 }
 
 

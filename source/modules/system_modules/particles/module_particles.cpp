@@ -24,7 +24,7 @@ void CModuleParticles::reset() {
 	for (auto& p : _activeSystems) {
 		auto& systems = p.second;
 		for (auto system : systems) {
-			SAFE_DELETE(system);
+			safeDelete(system);
 		}
 		systems.clear();
 	}

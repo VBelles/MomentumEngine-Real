@@ -10,7 +10,7 @@ CTimerFrames::CTimerFrames() {
 }
 
 CTimerFrames::~CTimerFrames() {
-	SAFE_DELETE(instance);
+	safeDelete(instance);
 }
 
 CTimerFrames& CTimerFrames::get() {

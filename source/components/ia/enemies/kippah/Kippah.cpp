@@ -60,7 +60,7 @@
 DECL_OBJ_MANAGER("kippah", Kippah);
 
 Kippah::~Kippah() {
-	SAFE_DELETE(enemy);
+	safeDelete(enemy);
 }
 
 void Kippah::initBehaviorTree() {
@@ -212,7 +212,7 @@ void Kippah::initBehaviorTree() {
 }
 
 void Kippah::load(const json& j, TEntityParseContext& ctx) {
-	SAFE_DELETE(enemy);
+	safeDelete(enemy);
 	enemy = new Enemy();
 	enemy->load(j);
 }
@@ -316,7 +316,7 @@ void Kippah::onHitboxEnter(const TMsgHitboxEnter& msg) {
 					launchVelocity.Normalize();
 					launchVelocity *= enemy->velocity.Length() * 0.3f;
 					if (launchVelocity.Length() < 3.0f) {
-						SAFE_DELETE(attackHit.info.propel);
+						safeDelete(attackHit.info.propel);
 					}
 					else {
 						attackHit.info.propel->velocity = launchVelocity;

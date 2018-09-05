@@ -5,8 +5,8 @@
 using namespace GUI;
 
 CMapMarker::~CMapMarker() {
-	SAFE_DELETE(_button);
-	SAFE_DELETE(_marker);
+	safeDelete(_button);
+	safeDelete(_marker);
 }
 
 
