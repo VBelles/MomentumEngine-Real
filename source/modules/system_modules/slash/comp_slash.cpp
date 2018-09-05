@@ -61,7 +61,14 @@ void TCompSlash::update(float delta) {
 
 void TCompSlash::updatePoints(float delta) {
 	//Update time and remove
-	std::list<TControlPoint>::iterator iter = points.begin();
+	/*if (!points.empty()) {
+		points.erase(std::remove_if(points.begin(), points.end(), [&](TControlPoint& point) {
+			point.time += delta;
+			return point.time >= duration;
+		}), points.end());
+	}*/
+	
+	/*std::list<TControlPoint>::iterator iter = points.begin();
 	while (iter != points.end()) {
 		(*iter).time += delta;
 		if ((*iter).time >= duration) {
@@ -70,8 +77,8 @@ void TCompSlash::updatePoints(float delta) {
 		else {
 			++iter;
 		}
-	}
-	
+	}*/
+
 	if (!emitting) {
 		if (points.empty()) { //Finished emitting, auto disable
 			setEnable(false);
@@ -108,23 +115,24 @@ void TCompSlash::updatePoints(float delta) {
 		transform.setYawPitchRoll(yawPitchRoll.x, yawPitchRoll.y, yawPitchRoll.z);
 	}
 
-	if (points.size() > 0) {
+	/*if (points.size() > 0) {
 		TControlPoint last = points.back();
 		if (VEC3::DistanceSquared(transform.getPosition(), last.transform.getPosition()) >= minVertexDistanceSquared) {
 			points.emplace_back(transform);
 			if (points.size() > maxVertex) {
-				points.pop_front();
+				points.erase(points.begin());
+				//points.pop_front();
 			}
 		}
-	}
-	else {
+	}*/
+	//else {
 		points.emplace_back(transform);
-	}
+	//}
 }
 
 void TCompSlash::updateMesh() {
 	//Generate mesh
-	int verticesSize = static_cast<int>(points.size()) * 2;
+	/*int verticesSize = static_cast<int>(points.size()) * 2;
 	if (headMultiplier) ++verticesSize;
 	if (tailMultiplier) ++verticesSize;
 
@@ -134,20 +142,35 @@ void TCompSlash::updateMesh() {
 	int i = 0;
 	for (const TControlPoint& controlPoint : points) {
 		const CTransform& t = controlPoint.transform;
-		VEC3 pos = t.getPosition();
+		VEC3& pos = t.getPosition();
 		//Tail
 		if (tailMultiplier && i == 0 && tailMultiplier) {
 			VEC3 tailIncrement = -t.getFront() * tailMultiplier;
 			vertices[i++] = TVtxPosNUv(pos + tailIncrement, VEC3(controlPoint.time, 0, 0), VEC2(0, 0.5));
 		}
 		//Body
-		VEC3 increment = t.getLeft() * width * 0.5;
+		VEC3 increment = t.getLeft() * width * 0.5f;
 		vertices[i++] = TVtxPosNUv(pos + increment, VEC3(controlPoint.time, 0, 0), VEC2(0, 1));
 		vertices[i++] = TVtxPosNUv(pos - increment, VEC3(controlPoint.time, 0, 0), VEC2(0, 0));
 		//Head
 		if (headMultiplier && i == vertices.size() - 1) {
 			VEC3 headIncrement = t.getFront() * headMultiplier;
 			vertices[i++] = TVtxPosNUv(pos + headIncrement, VEC3(controlPoint.time, 0, 0), VEC2(0, 0.5));
+		}
+	}*/
+
+
+	int nbPoints = 10;
+
+	std::vector<TVtxPosNUv> vertices;
+	vertices.resize(nbPoints * 2);
+
+	if (points.size() > 4) {
+		for (int i = 0; i < nbPoints; i++) {
+			VEC3 point = evaluateCatmull( i / nbPoints);
+			VEC3 increment = VEC3::UnitX * width * 0.5f;
+			vertices[i++] = TVtxPosNUv(point + increment, VEC3(1, 0, 0), VEC2(0, 1));
+			vertices[i++] = TVtxPosNUv(point - increment, VEC3(1, 0, 0), VEC2(0, 0));
 		}
 	}
 
@@ -178,6 +201,23 @@ void TCompSlash::clearMesh() {
 		mesh->destroy();
 		SAFE_DELETE(mesh);
 	}
+}
+
+VEC3 TCompSlash::evaluateCatmull(float ratio) {
+	ratio = clamp(ratio, 0.f, 0.99999f);
+	int nsegments = static_cast<int>(points.size()) - 3;
+	float ratioPerSegment = 1.f / static_cast<float>(nsegments);
+	int currentSegment = static_cast<int>(ratio / ratioPerSegment);
+	float segmentRatio = fmodf(ratio, ratioPerSegment) / ratioPerSegment;
+
+	int idx = currentSegment + 1;
+
+	VEC3 p1 = points[idx - 1].transform.getPosition();
+	VEC3 p2 = points[idx].transform.getPosition();
+	VEC3 p3 = points[idx + 1].transform.getPosition();
+	VEC3 p4 = points[idx + 2].transform.getPosition();
+
+	return VEC3::CatmullRom(p1, p2, p3, p4, segmentRatio);
 }
 
 TCompTransform* TCompSlash::getTargetTransform() {

@@ -39,11 +39,12 @@ private:
 	CHandle renderHandle;
 	CHandle skeletonHandle;
 
-	std::list<TControlPoint> points;
+	std::vector<TControlPoint> points;
 
 	bool emitting; //For deferred disabling
 
 	void clearMesh();
+	VEC3 evaluateCatmull(float ratio);
 	TCompTransform* getTargetTransform();
 	TCompSkeleton* getSkeleton();
 
