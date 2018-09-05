@@ -346,7 +346,7 @@ void CModulePhysics::releaseColliders() {
 		TCompCollider* collider = handle;
 		if (collider->controller) {
 			PX_RELEASE(collider->controller);
-			SAFE_DELETE(collider->controllerBehavior);
+			safeDelete(collider->controllerBehavior);
 		}
 		else {
 			PX_RELEASE(collider->actor);

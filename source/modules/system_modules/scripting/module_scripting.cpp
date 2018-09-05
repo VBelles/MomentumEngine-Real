@@ -97,9 +97,9 @@ bool CModuleScripting::start() {
 }
 
 bool CModuleScripting::stop() {
-	SAFE_DELETE(manager);
-	SAFE_DELETE(script);
-	SAFE_DELETE(console);
+	safeDelete(manager);
+	safeDelete(script);
+	safeDelete(console);
 	ScriptingEntities::destroy();
 	return true;
 }

@@ -99,13 +99,13 @@ bool CModuleGame::start() {
 bool CModuleGame::stop() {
 	EngineGUI.deactivateWidget("hud");
 	EngineGUI.unregisterController(hudController);
-	SAFE_DELETE(hudController);
+	safeDelete(hudController);
 	CApp::get().setDebugMode(false);
 	EngineScripting.reset();
 	Engine.getEntities().reset();
 	EngineParticles.reset();
-	SAFE_DELETE(respawner);
-	SAFE_DELETE(enemyManager);
+	safeDelete(respawner);
+	safeDelete(enemyManager);
 	return true;
 }
 

@@ -55,7 +55,7 @@ bool CModuleOptionsMenu::stop() {
 	}
 
 	Engine.getGUI().unregisterController(controller);
-	SAFE_DELETE(controller);
+	safeDelete(controller);
 	Engine.getGUI().unregisterWidget("options_menu", true);
 	return true;
 }

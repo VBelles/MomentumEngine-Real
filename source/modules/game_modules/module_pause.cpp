@@ -38,7 +38,7 @@ bool CModulePause::start() {
 
 bool CModulePause::stop() {
 	Engine.getGUI().unregisterController(controller);
-	SAFE_DELETE(controller);
+	safeDelete(controller);
 	Engine.getGUI().unregisterWidget("test_pause_menu", true);
 	return true;
 }

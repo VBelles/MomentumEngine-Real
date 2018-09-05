@@ -77,7 +77,7 @@
 DECL_OBJ_MANAGER("dreidel", Dreidel);
 
 Dreidel::~Dreidel() {
-	SAFE_DELETE(enemy);
+	safeDelete(enemy);
 }
 
 void Dreidel::initBehaviorTree() {
@@ -291,7 +291,7 @@ void Dreidel::initBehaviorTree() {
 }
 
 void Dreidel::load(const json& j, TEntityParseContext& ctx) {
-	SAFE_DELETE(enemy);
+	safeDelete(enemy);
 	enemy = new Enemy();
 	enemy->load(j);
 }
@@ -395,7 +395,7 @@ void Dreidel::onHitboxEnter(const TMsgHitboxEnter& msg) {
 					launchVelocity.Normalize();
 					launchVelocity *= enemy->velocity.Length() * 0.3f;
 					if (launchVelocity.Length() < 3.0f) {
-						SAFE_DELETE(attackHit.info.propel);
+						safeDelete(attackHit.info.propel);
 					}
 					else {
 						attackHit.info.propel->velocity = launchVelocity;

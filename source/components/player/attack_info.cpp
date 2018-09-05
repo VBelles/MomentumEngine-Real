@@ -17,33 +17,33 @@ AttackInfo& AttackInfo::operator=(const AttackInfo& other) {
 	superArmorDamage = other.superArmorDamage;
 	gravityMultiplier = other.gravityMultiplier;
 
-	SAFE_DELETE(stun);
+	safeDelete(stun);
 	if (other.stun) stun = new Stun(*other.stun);
-	SAFE_DELETE(verticalLauncher);
+	safeDelete(verticalLauncher);
 	if (other.verticalLauncher) verticalLauncher = new VerticalLauncher(*other.verticalLauncher);
-	SAFE_DELETE(horizontalLauncher);
+	safeDelete(horizontalLauncher);
 	if (other.horizontalLauncher) horizontalLauncher = new HorizontalLauncher(*other.horizontalLauncher);
-	SAFE_DELETE(grab);
+	safeDelete(grab);
 	if (other.grab) grab = new Grab(*other.grab);
-	SAFE_DELETE(propel);
+	safeDelete(propel);
 	if (other.propel) propel = new Propel(*other.propel);
 	return *this;
 }
 
 AttackInfo::~AttackInfo() {
-	SAFE_DELETE(stun);
-	SAFE_DELETE(verticalLauncher);
-	SAFE_DELETE(horizontalLauncher);
-	SAFE_DELETE(grab);
-	SAFE_DELETE(propel);
+	safeDelete(stun);
+	safeDelete(verticalLauncher);
+	safeDelete(horizontalLauncher);
+	safeDelete(grab);
+	safeDelete(propel);
 }
 
 void AttackInfo::load(const json& j) {
-	SAFE_DELETE(stun);
-	SAFE_DELETE(verticalLauncher);
-	SAFE_DELETE(horizontalLauncher);
-	SAFE_DELETE(grab);
-	SAFE_DELETE(propel);
+	safeDelete(stun);
+	safeDelete(verticalLauncher);
+	safeDelete(horizontalLauncher);
+	safeDelete(grab);
+	safeDelete(propel);
 
 	damage = j.value("damage", 0.0f);
 	invulnerabilityTime = j.value("invulnerability_time", 0.f);

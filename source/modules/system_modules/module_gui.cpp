@@ -36,7 +36,7 @@ bool CModuleGUI::stop() {
 	clearWidgets();
 	_variables.clear();
 	for (auto controller : _controllers) {
-		SAFE_DELETE(controller);
+		safeDelete(controller);
 	}
 	_controllers.clear();
 	return true;
@@ -74,7 +74,7 @@ void CModuleGUI::unregisterWidget(std::string name, bool recursive) {
 
 			it = std::find(_registeredWidgets.begin(), _registeredWidgets.end(), child);
 			if (it != _registeredWidgets.end()) {
-				SAFE_DELETE(*it);
+				safeDelete(*it);
 				_registeredWidgets.erase(it);
 			}
 		}
@@ -87,14 +87,14 @@ void CModuleGUI::unregisterWidget(std::string name, bool recursive) {
 
 	it = std::find(_registeredWidgets.begin(), _registeredWidgets.end(), widget);
 	if (it != _registeredWidgets.end()) {
-		SAFE_DELETE(*it);
+		safeDelete(*it);
 		_registeredWidgets.erase(it);
 	}
 }
 
 void CModuleGUI::clearWidgets() {
 	for (auto widget : _registeredWidgets) {
-		SAFE_DELETE(widget);
+		safeDelete(widget);
 	}
 	_registeredWidgets.clear();
 	_activeWidgets.clear();

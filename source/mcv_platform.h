@@ -60,9 +60,4 @@ using json = nlohmann::json;
 #include "windows/app.h"
 #include "game_constants.h"
 
-#define SAFE_DELETE(x)  if(x) delete x, x = nullptr;
-
-const float FPS = 1.f / 60.f;
-#define frames2sec(frames) (frames) * FPS
-
 #endif

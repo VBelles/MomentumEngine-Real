@@ -7,7 +7,7 @@
 DECL_OBJ_MANAGER("camera", TCompCamera);
 
 TCompCamera::~TCompCamera() {
-	SAFE_DELETE(camera);
+	safeDelete(camera);
 }
 
 void TCompCamera::debugInMenu() {
@@ -31,7 +31,7 @@ void TCompCamera::renderDebug() {
 }
 
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
-	SAFE_DELETE(camera);
+	safeDelete(camera);
 
 	float z_near = j.value("z_near", 1.f);
 	float z_far = j.value("z_far", 1000.f);
