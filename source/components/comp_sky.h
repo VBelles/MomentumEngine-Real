@@ -24,11 +24,11 @@ private:
 
 	Mode currentMode = FIXED;
 	float currentLerpTime = 0.f;
-	int skyboxIndex = 0;
-	int numSkyboxes;
+	size_t skyboxIndex = 0;
+	size_t numSkyboxes;
 
 	bool waitingToEnter = false;
-	int nextSkybox = 0;
+	size_t nextSkybox = 0;
 	float nextLerpTime = 0.f;
 
 	CTimer changeTimer;

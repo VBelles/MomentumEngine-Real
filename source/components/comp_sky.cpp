@@ -12,7 +12,7 @@ void TCompSky::debugInMenu() {
 	//if (fixed) {
 	//	setSkybox(REGULAR, 5.f);
 	//}
-	int skyboxToChange = skyboxIndex;
+	int skyboxToChange = static_cast<int>(skyboxIndex);
 	static const char* skyboxToChange_str =
 		"REGULAR\0"
 		"INVERTED\0"
@@ -40,11 +40,11 @@ void TCompSky::debugInMenu() {
 void TCompSky::load(const json& j, TEntityParseContext& ctx) {
 	for (auto& skyBox : j["skyboxes"]) {
 		std::string texture = skyBox.value("texture", "");
-		float time = skyBox.value("time", 100);
+		float time = skyBox.value("time", 100.f);
 		dbg("texture: \n", texture.c_str());
 		skyboxes.push_back(Skybox{ Resources.get(texture)->as<CTexture>(), time });
 	}
-	fixedLerpTime = j.value("lerp_time", 10);
+	fixedLerpTime = j.value("lerp_time", 10.f);
 	currentLerpTime = fixedLerpTime;
 
 	numSkyboxes = skyboxes.size();
@@ -93,7 +93,7 @@ void TCompSky::update(float dt) {
 		if (waitingToEnter && cb_globals.global_skybox_ratio == 1.f) {
 			waitingToEnter = false;
 			lerpTimer.reset();
-			cb_globals.global_skybox_ratio == 0.f;
+			cb_globals.global_skybox_ratio = 0.f;
 			currentLerpTime = nextLerpTime;
 			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
 			skyboxIndex = nextSkybox;
