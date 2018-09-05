@@ -665,7 +665,7 @@
   {
     "entity":
     {
-      "name": "",
+      "name": "tapar_estropicio_001",
       "transform":
       {
         "pos": "161.449 6.08448 10.3464",
@@ -673,7 +673,7 @@
       },
       "collider":
       {
-        "mesh_src": "data/meshes/.col_mesh",
+        "mesh_src": "data/meshes/tapar_estropicio_001.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
