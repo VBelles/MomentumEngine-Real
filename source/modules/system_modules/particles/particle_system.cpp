@@ -199,8 +199,10 @@ namespace Particles {
 				p.color.z *= _core->color.opacity;
 				p.size = _core->size.sizes.get(life_ratio);
 
-				int frame_idx = (int)(p.lifetime * _core->render.frameSpeed);
-				p.frame = _core->render.initialFrame + (frame_idx % _core->render.numFrames);
+				if (!_core->render.initialRandomFrame) {
+					int frame_idx = (int)(p.lifetime * _core->render.frameSpeed);
+					p.frame = _core->render.initialFrame + (frame_idx % _core->render.numFrames);
+				}
 
 				++it;
 			}
@@ -291,14 +293,8 @@ namespace Particles {
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
-			particle.frame = _core->render.initialFrame == -1 ? random(0, _core->render.numFrames) : _core->render.initialFrame;
-			if (_core->render.initialFrame == -1) {
-
-				dbg("Frame: %d\n", particle.frame);
-			}
-			particle.rotation = _core->movement.initialRotation;
-			//particle.rotation = _core->movement.initialRotation;
-			particle.rotation = random(0.f, M_PI * 2.f);
+			particle.frame = _core->render.initialRandomFrame ? random(0.f, _core->render.numFrames) : _core->render.initialFrame;
+			particle.rotation = _core->movement.initialRandomRotation ? random(0.f, M_PI * 2.f) : _core->movement.initialRotation;
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 			_particles.push_back(particle);
