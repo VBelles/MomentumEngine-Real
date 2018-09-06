@@ -1,0 +1,478 @@
+[
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_2_col_000",
+      "transform":
+      {
+        "pos": "366.655 28.4754 4.76827",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_grande_4_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_basa_col_000",
+      "transform":
+      {
+        "pos": "379.898 -8.38918 -96.8748",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_grande_basa_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_fuste_1_col_000",
+      "transform":
+      {
+        "pos": "380.022 12.3877 -96.9116",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_grande_fuste_1_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_fuste_2_col_000",
+      "transform":
+      {
+        "pos": "379.992 23.1791 -96.929",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_grande_fuste_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_fuste_3_col_000",
+      "transform":
+      {
+        "pos": "380.022 34.0182 -96.9116",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_grande_fuste_3_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_capitel_col_000",
+      "transform":
+      {
+        "pos": "379.898 42.5925 -96.8747",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_grande_capitel_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_1_col_000",
+      "transform":
+      {
+        "pos": "444.084 14.889 -40.6502",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_grande_6_1_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_3_col_000",
+      "transform":
+      {
+        "pos": "459.249 35.4845 -4.92767",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_grande_6_3_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_2_col_000",
+      "transform":
+      {
+        "pos": "430.841 35.4287 -4.91424",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_grande_6_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_6_0_col_000",
+      "transform":
+      {
+        "pos": "418.614 19.2126 -36.8714",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_grande_6_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_6_1_col_000",
+      "transform":
+      {
+        "pos": "329.473 14.1571 -100.928",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_6_1_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_6_0_col_000",
+      "transform":
+      {
+        "pos": "318.382 16.0171 -99.2825",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_6_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_6_3_col_000",
+      "transform":
+      {
+        "pos": "336.077 14.139 -85.3724",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_6_3_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_6_2_col_000",
+      "transform":
+      {
+        "pos": "323.706 14.1568 -85.3666",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_6_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_3_col_000",
+      "transform":
+      {
+        "pos": "395.063 28.4754 4.75484",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_grande_4_3_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_grande_fuste_0_col_000",
+      "transform":
+      {
+        "pos": "379.956 1.11768 -96.9006",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_grande_fuste_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_1_col_000",
+      "transform":
+      {
+        "pos": "379.898 7.88261 -30.9677",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_grande_4_1_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_grande_4_0_col_000",
+      "transform":
+      {
+        "pos": "354.429 12.2235 -27.1889",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_grande_4_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_4_3_col_000",
+      "transform":
+      {
+        "pos": "338.379 8.5011 -52.4807",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_4_3_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_4_2_col_000",
+      "transform":
+      {
+        "pos": "326.009 8.5011 -52.4748",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_4_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_4_1_col_000",
+      "transform":
+      {
+        "pos": "331.776 8.5011 -68.0363",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_4_1_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_4_0_col_000",
+      "transform":
+      {
+        "pos": "320.685 10.3913 -66.3907",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_4_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_0_col_000",
+      "transform":
+      {
+        "pos": "364.267 5.92017 -108.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_0_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_1_col_000",
+      "transform":
+      {
+        "pos": "364.267 11.5345 -108.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_1_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_2_col_000",
+      "transform":
+      {
+        "pos": "364.267 16.704 -108.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_fuste_3_col_000",
+      "transform":
+      {
+        "pos": "364.267 21.4602 -108.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_fuste_3_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_capitel_col_000",
+      "transform":
+      {
+        "pos": "364.213 25.9561 -108.97",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_capitel_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "columna_piezas_basa_col_000",
+      "transform":
+      {
+        "pos": "364.213 1.41547 -108.97",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_basa_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  }
+]

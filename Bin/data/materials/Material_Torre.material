@@ -1,0 +1,13 @@
+{
+  "technique": "pbr_mix.tech",
+  "type": "mix",
+  "shadows": true,
+  "textures": {},
+  "mats":
+  [
+    "data/materials/Civilization_Wall.material",
+    "data/materials/Gaps.material",
+    "data/materials/Emissive.material"
+  ],
+  "mix_blend_weights": "data/textures/tower_mixmask_muchadefinicion.dds"
+}
