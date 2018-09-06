@@ -11,6 +11,15 @@
     "data/scenes/milestone4_dani-chrysalis.scene",
     "data/scenes/milestone4_dani-triggers.scene",
     "data/scenes/milestone4_dani-trimesh.scene",
+
+    "data/scenes/milestone4_nectar-0.scene",
+    "data/scenes/milestone4_nectar-chrysalis.scene",
+    "data/scenes/milestone4_nectar-coins.scene",
+    "data/scenes/milestone4_nectar-collisions.scene",
+    "data/scenes/milestone4_nectar-enemies.scene",
+    "data/scenes/milestone4_nectar-movables.scene",
+    "data/scenes/milestone4_nectar-pure.scene",
+
     "data/scenes/plataformeo.scene",
     "data/scenes/plataformeo01.scene",
     "data/scenes/ambiental_particles.scene",

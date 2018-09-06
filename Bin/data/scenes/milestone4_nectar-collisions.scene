@@ -1,0 +1,53 @@
+[
+  {
+    "entity":
+    {
+      "name": "tapar_agujeros_002",
+      "transform":
+      {
+        "pos": "50.1213 6.0321 -128.526",
+        "rotation": "-0.664463 0.664463 0.219846 -0.262003"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_agujeros_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tapar_agujeros_001",
+      "transform":
+      {
+        "pos": "43.6628 6.61169 -141.302",
+        "rotation": "0.262003 -0.219846 0.664463 -0.664463"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_agujeros_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tapar_agujeros_000",
+      "transform":
+      {
+        "pos": "43.6628 6.61169 -141.302",
+        "rotation": "0.262003 -0.219846 0.664463 -0.664463"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_agujeros_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  }
+]

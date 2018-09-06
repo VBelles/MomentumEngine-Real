@@ -1,0 +1,14 @@
+{
+  "technique": "pureON.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/m_columna_piezas_BaseColor.dds",
+    "normal": "data/textures/m_columna_piezas_Normal.dds",
+    "metallic": "data/textures/m_columna_piezas_Metallic.dds",
+    "roughness": "data/textures/m_columna_piezas_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/m_columna_piezas_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
