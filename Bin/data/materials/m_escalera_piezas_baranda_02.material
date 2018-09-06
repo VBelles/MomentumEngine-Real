@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/escalera_piezas_baranda02_BaseColor.dds",
+    "normal": "data/textures/escalera_piezas_baranda02_Normal.dds",
+    "metallic": "data/textures/escalera_piezas_baranda02_Metallic.dds",
+    "roughness": "data/textures/escalera_piezas_baranda02_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/escalera_piezas_baranda02_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
