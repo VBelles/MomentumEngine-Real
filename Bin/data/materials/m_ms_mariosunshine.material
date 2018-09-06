@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/ms_mariosunchine_BaseColor.dds",
+    "normal": "data/textures/ms_ mariosunshine_Normal.dds",
+    "metallic": "data/textures/ms_mariosunchine_Metallic.dds",
+    "roughness": "data/textures/ms_mariosunchine_Roughness.dds",
+    "self_illum": "data/textures/ms_mariosunchine_Emissive.dds",
+    "height": "data/textures/ms_mariosunchine_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

@@ -14,11 +14,11 @@
     "data/scenes/plataformeo.scene",
     "data/scenes/plataformeo01.scene",
     "data/scenes/ambiental_particles.scene",
+    "data/scenes/prefabs-0.scene",
     "data/scenes/test_gorila.scene"
     
   ],
   "unused_scenes": [
-    "data/scenes/prefabs-0.scene",
     "data/scenes/prefabs-trimesh.scene",
     "data/scenes/test_instancing.scene",
     "data/scenes/test_particles.scene",            

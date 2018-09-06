@@ -2,45 +2,129 @@
   {
     "entity":
     {
-      "name": "torre_mesh001",
+      "name": "fireplace_000",
       "transform":
       {
-        "pos": "-71.1387 61.3685 6.77792",
+        "pos": "-2.03131 11.3249 -41.2037",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/torre_mesh001.mesh",
+          "mesh": "data/meshes/fireplace_000.mesh",
           "materials":
           [
-            "data/materials/Material_Torre.material"
+            "data/materials/m_fireplace_00.material"
           ],
           "enabled": true
         }
-      ]
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/fireplace_collider_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
     }
   },
   {
     "entity":
     {
-      "name": "torre_mesh",
+      "name": "tumba_1_000",
       "transform":
       {
-        "pos": "0.0 40.5501 0.0",
+        "pos": "5.68549 12.4989 -38.5508",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/torre_mesh.mesh",
+          "mesh": "data/meshes/tumba_1_000.mesh",
           "materials":
           [
-            "data/materials/Material_Torre.material"
+            "data/materials/m_tumba_02.material"
           ],
           "enabled": true
         }
-      ]
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/tumba_1_col_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_0_000",
+      "transform":
+      {
+        "pos": "8.2483 12.8174 -38.5521",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba01.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/tumba_0_col_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_2_000",
+      "transform":
+      {
+        "pos": "3.03296 12.0502 -38.5509",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_2_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/tumba_2_col_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
     }
   }
 ]

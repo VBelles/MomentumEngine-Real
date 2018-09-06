@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/ms_pasarela_BaseColor.dds",
+    "normal": "data/textures/ms_pasarela_Normal.dds",
+    "metallic": "data/textures/ms_pasarela_Metallic.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/ms_pasarela_Emissive.dds",
+    "height": "data/textures/ms_pasarela_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
