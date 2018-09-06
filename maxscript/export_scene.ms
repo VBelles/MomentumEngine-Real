@@ -21,6 +21,9 @@ global luaMechSys		= #()
 
 global platfDirector	= #(#())
 
+global pureOnSuffix = "pureON"
+global pureSuffix	= "pure"
+
 --------------------------------------------------------------------------------
 struct TJsonFormatter (
 	ofilename,			-- Name of output file.
@@ -446,8 +449,6 @@ struct TSceneExporter (
 	instancePath = base_path + "instancing/",
 	luaPath 	 = base_path + "scripts/",
 
-	pureSuffix 		= "pure",
-	pureOnSuffix 	= "pureON",
 	teleportMat 	= "ambar",
 	teleportAltMat	= "giratiempo",
 	
@@ -729,7 +730,7 @@ struct TSceneExporter (
 					fs.writeComma()
 					exportStringArray "materials" matNames suffix:suffix
 				)
-				if pure then addAlterMaterial meshName matNames ("_" + pureSuffix)
+				if pure then addAlterMaterial meshName matNames suffix:("_" + pureSuffix)
 				if teleport then addAlterMaterial meshName #(mats_path + teleportAltMat)
 				if enable != unsupplied then (
 					fs.writeComma()
