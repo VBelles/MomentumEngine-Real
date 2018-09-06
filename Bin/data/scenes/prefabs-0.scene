@@ -1,0 +1,46 @@
+[
+  {
+    "entity":
+    {
+      "name": "torre_mesh001",
+      "transform":
+      {
+        "pos": "-71.1387 61.3685 6.77792",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/torre_mesh001.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "torre_mesh",
+      "transform":
+      {
+        "pos": "0.0 40.5501 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/torre_mesh.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  }
+]

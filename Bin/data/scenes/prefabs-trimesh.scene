@@ -1,0 +1,36 @@
+[
+  {
+    "entity":
+    {
+      "name": "torre_mesh_COLLIDER001",
+      "transform":
+      {
+        "pos": "-71.1387 61.3685 6.77792",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/torre_mesh_COLLIDER001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "torre_mesh_COLLIDER",
+      "transform":
+      {
+        "pos": "0.0 40.5501 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/torre_mesh_COLLIDER.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  }
+]
