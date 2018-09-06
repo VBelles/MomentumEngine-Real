@@ -12,6 +12,7 @@ bool CModuleMainMenu::start() {
 	Engine.getGUI().activateWidget("main_menu");
 
 	auto startGameCB = [&]() {
+		app.setResetMouse(true);
 		Engine.getGUI().unregisterController(controller);
 		Engine.getGUI().unregisterWidget("main_menu", true);
 		EngineModules.changeGameState("game_state", true);
