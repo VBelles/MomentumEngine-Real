@@ -1,0 +1,123 @@
+[
+  {
+    "entity":
+    {
+      "name": "ms3_coin431",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "41.0717 20.5691 -176.235"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin430",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "38.5983 19.8806 -186.483"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin429",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "39.026 20.0096 -184.576"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin428",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "39.4709 20.1692 -182.575"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin427",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "40.5048 20.4849 -178.503"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin426",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "39.9843 20.3275 -180.571"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin425",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-28.3587 15.0942 -178.097"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin424",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-30.84 15.0942 -178.079"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin423",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-28.2211 15.0942 -180.672"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin422",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-30.8046 15.0942 -180.651"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "ms3_coin421",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-29.593 15.0942 -179.417"
+      }
+    }
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "columna_piezas_capitel_001",
+      "transform":
+      {
+        "pos": "32.5637 12.2563 -176.504",
+        "rotation": "-0.0858316 -0.167731 -0.0449434 -0.98106"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/columna_piezas_capitel_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/columna_piezas_capitel_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/columna_piezas_capitel_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  }
+]
