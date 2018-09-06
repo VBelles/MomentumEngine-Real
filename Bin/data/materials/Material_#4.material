@@ -3,12 +3,12 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/columna_baja_Material _46_BaseColor.dds",
-    "normal": "data/textures/columna_baja_Material _46_Normal.dds",
-    "metallic": "data/textures/columna_baja_Material _46_Roughness.dds",
-    "roughness": "data/textures/null_roughness.dds",
-    "self_illum": "data/textures/null_self_illum.dds",
-    "height": "data/textures/columna_baja_Material _34_Height.dds",
+    "albedo": "data/textures/m_plaza_plaza2_BaseColor.dds",
+    "normal": "data/textures/m_plaza_plaza2_Normal.dds",
+    "metallic": "data/textures/m_plaza_plaza2_Metallic.dds",
+    "roughness": "data/textures/m_plaza_plaza2_Roughness.dds",
+    "self_illum": "data/textures/m_plaza_plaza2_Emissive.dds",
+    "height": "data/textures/m_plaza_ plaza2_Height.dds",
     "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

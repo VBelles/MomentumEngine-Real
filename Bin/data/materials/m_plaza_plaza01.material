@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/m_plaza_plaza1_BaseColor.dds",
+    "normal": "data/textures/m_plaza_plaza1_Normal.dds",
+    "metallic": "data/textures/m_plaza_plaza1_Metallic.dds",
+    "roughness": "data/textures/m_plaza_plaza1_Roughness.dds",
+    "self_illum": "data/textures/m_plaza_plaza1_Emissive.dds",
+    "height": "data/textures/m_plaza_plaza1_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
