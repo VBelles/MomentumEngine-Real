@@ -11,6 +11,8 @@
 #include "modules/game_modules/module_map_menu.h"
 #include "utils/timer_frames.h"
 
+std::recursive_mutex mtx;
+
 CEngine& CEngine::get() {
 	static CEngine engine;
 	return engine;
