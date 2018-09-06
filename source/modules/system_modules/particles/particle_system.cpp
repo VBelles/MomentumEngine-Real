@@ -322,6 +322,13 @@ namespace Particles {
 		return particleEntityHandle;
 	}
 
+	void CSystem::debugInMenu() {
+		ImGui::Text("Id: %d", _handle);
+		ImGui::Text("Core: %s", _core->getName().c_str());
+		ImGui::Text("Num particles: %d", _particles.size());
+		ImGui::Separator();
+	}
+
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;
 

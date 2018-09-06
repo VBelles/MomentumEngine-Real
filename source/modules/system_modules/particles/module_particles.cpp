@@ -59,6 +59,18 @@ void CModuleParticles::render() {
 			system->render();
 		}
 	}
+
+	if (CApp::get().isDebug()) {
+		if (ImGui::TreeNode("Particle Systems")) {
+			for (auto& p : _activeSystems) {
+				auto& systems = p.second;
+				for (auto& system : systems) {
+					system->debugInMenu();
+				}
+			}
+			ImGui::TreePop();
+		}
+	}
 }
 
 Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, Particles::LaunchConfig config) {

@@ -113,6 +113,8 @@ namespace Particles {
 		void setRotationOffset(QUAT rotationOffset);
 		void forceEmission(int quantity);
 		CHandle getParticleEntityHandle();
+		void debugInMenu();
+
 
 	};
 }

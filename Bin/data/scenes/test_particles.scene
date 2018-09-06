@@ -57,12 +57,12 @@
 	},
 	{
 		"entity": {
-			"name": "particles_hit_sparks",
+			"name": "particles_fire",
 			"transform": {
 				"pos": "-4 -1 5"
 			},
 			"particles": {
-				"core": "data/particles/hit_sparks.particles"
+				"core": "data/particles/fire/fire_add.particles"
 			}
 		}
 	}
