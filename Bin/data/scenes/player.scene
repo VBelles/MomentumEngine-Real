@@ -140,7 +140,7 @@
 				"particle_systems":[
 					"data/particles/player_power_2.particles",
 					"data/particles/player_power_2.particles",
-					"data/particles/player_power_2.particles"
+					"data/particles/player_power_3.particles"
 				]
 			},
 			"collider": {

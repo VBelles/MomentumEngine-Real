@@ -1,13 +1,14 @@
 {
   "life": {
-    "duration": 1.5,
-    "max_particles": 75,
+    "duration": 2.1,
+    "duration_variation": 0.2,
+    "max_particles": 150,
     "time_factor": 1.0
   },
   "emission": {
     "type": "box",
     "size": 25,
-    "interval": 0.01,
+    "interval": 0.005,
     "count": 1,
     "cyclic": true,
     "random_direction": true
@@ -43,18 +44,18 @@
     ]
   },
   "color": {
-    "opacity": 1.0,
+    "opacity": 0.8,
     "colors": [
       [
         0.0,
         "1 1 1 0"
       ],
       [
-        0.3,
+        0.2,
         "1 1 1 1"
       ],
       [
-        0.5,
+        0.8,
         "1 1 1 1"
       ],
       [
