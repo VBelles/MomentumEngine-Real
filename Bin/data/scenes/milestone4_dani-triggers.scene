@@ -1,0 +1,29 @@
+[
+  {
+    "entity":
+    {
+      "outOfBounds": {},
+      "name": "OutOfBounds000",
+      "transform":
+      {
+        "pos": "-3.38283 -30.9065 -15.6216",
+        "rotation": "-1.0 0.0 0.0 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/OutOfBounds000.col_mesh",
+        "shape": "tri_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "characters"
+        ]
+      }
+    }
+  }
+]
