@@ -11,11 +11,13 @@ bool CModuleMainMenu::start() {
 
 	Engine.getGUI().activateWidget("main_menu");
 
-	auto startGameCB = []() {
+	auto startGameCB = [&]() {
+		Engine.getGUI().unregisterController(controller);
 		Engine.getGUI().unregisterWidget("main_menu", true);
 		EngineModules.changeGameState("game_state", true);
 	};
-	auto optionsMenuCB = []() {
+	auto optionsMenuCB = [&]() {
+		Engine.getGUI().unregisterController(controller);
 		Engine.getGUI().unregisterWidget("main_menu", true);
 		EngineModules.changeGameState("options_menu");
 	};

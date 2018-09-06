@@ -22,6 +22,7 @@ bool CModulePause::start() {
 				module->setActive(true);
 			}
 		}
+		Engine.getGUI().unregisterController(controller);
 		Engine.getGUI().unregisterWidget("test_pause_menu", true);
 		EngineModules.changeGameState("main_menu", true);
 	};
