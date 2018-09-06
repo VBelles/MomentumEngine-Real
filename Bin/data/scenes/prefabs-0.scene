@@ -2,82 +2,16 @@
   {
     "entity":
     {
-      "name": "tuerca_sim02",
+      "name": "mechanism_3_000",
       "transform":
       {
-        "pos": "-1.90081 17.6703 -81.3999",
+        "pos": "15.1155 7.21737 -81.1634",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/tuerca_sim02.mesh",
-          "materials":
-          [
-            "data/materials/m_tuerca_sim02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "tuerca_sim01",
-      "transform":
-      {
-        "pos": "-13.9776 17.6703 -81.3999",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/tuerca_sim01.mesh",
-          "materials":
-          [
-            "data/materials/m_tuerca_sim01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "tuerca_sim03",
-      "transform":
-      {
-        "pos": "11.8982 17.6703 -81.3999",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/tuerca_sim03.mesh",
-          "materials":
-          [
-            "data/materials/m_tuerca_sim03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "tuerca_sim04",
-      "transform":
-      {
-        "pos": "25.2751 17.6703 -81.3999",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/tuerca_sim04.mesh",
+          "mesh": "data/meshes/mechanism_3_000.mesh",
           "materials":
           [
             "data/materials/m_tuerca_sim04.material"
@@ -90,19 +24,19 @@
   {
     "entity":
     {
-      "name": "plaza_01",
+      "name": "mechanism_2_000",
       "transform":
       {
-        "pos": "-19.6999 21.3752 -64.1704",
+        "pos": "11.7713 7.21737 -81.1634",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/plaza_01.mesh",
+          "mesh": "data/meshes/mechanism_2_000.mesh",
           "materials":
           [
-            "data/materials/m_plaza_plaza01.material"
+            "data/materials/m_tuerca_sim03.material"
           ],
           "enabled": true
         }
@@ -112,16 +46,82 @@
   {
     "entity":
     {
-      "name": "plaza_02",
+      "name": "mechanism_0_000",
       "transform":
       {
-        "pos": "16.1858 21.3917 -35.1865",
+        "pos": "5.30233 7.21737 -81.1634",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/plaza_02.mesh",
+          "mesh": "data/meshes/mechanism_0_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tuerca_sim01.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mechanism_1_000",
+      "transform":
+      {
+        "pos": "8.32152 7.21737 -81.1634",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mechanism_1_000.mesh",
+          "materials":
+          [
+            "data/materials/m_tuerca_sim02.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plaza_atril_000",
+      "transform":
+      {
+        "pos": "3.32632 2.79346 -49.6995",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plaza_atril_000.mesh",
+          "materials":
+          [
+            "data/materials/m_plaza_atril.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plaza_1_000",
+      "transform":
+      {
+        "pos": "10.568 1.02321 -43.8887",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plaza_1_000.mesh",
           "materials":
           [
             "data/materials/Material_#4.material"
@@ -134,19 +134,19 @@
   {
     "entity":
     {
-      "name": "plaza_atril",
+      "name": "plaza_0_000",
       "transform":
       {
-        "pos": "-1.91839 32.1959 -49.7135",
+        "pos": "-3.78629 1.01658 -55.4823",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/plaza_atril.mesh",
+          "mesh": "data/meshes/plaza_0_000.mesh",
           "materials":
           [
-            "data/materials/m_plaza_atril.material"
+            "data/materials/m_plaza_plaza01.material"
           ],
           "enabled": true
         }

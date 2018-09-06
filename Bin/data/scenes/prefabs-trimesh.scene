@@ -2,15 +2,15 @@
   {
     "entity":
     {
-      "name": "tuerca_sim04_collider",
+      "name": "plaza_0_col_000",
       "transform":
       {
-        "pos": "24.6969 14.0051 -81.0893",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-2.41956 -0.405318 -52.9793",
+        "rotation": "0.0 -0.965926 0.0 -0.258819"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/tuerca_sim04_collider.col_mesh",
+        "mesh_src": "data/meshes/plaza_0_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -19,15 +19,15 @@
   {
     "entity":
     {
-      "name": "tuerca_sim03_collider",
+      "name": "plaza_atril_col_000",
       "transform":
       {
-        "pos": "11.3115 14.0051 -81.0893",
+        "pos": "3.30602 1.90124 -49.6875",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/tuerca_sim03_collider.col_mesh",
+        "mesh_src": "data/meshes/plaza_atril_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -36,15 +36,15 @@
   {
     "entity":
     {
-      "name": "tuerca_sim02_collider",
+      "name": "plaza_1_col_000",
       "transform":
       {
-        "pos": "-2.54371 14.0051 -81.0893",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "9.03608 -0.405317 -46.4764",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/tuerca_sim02_collider.col_mesh",
+        "mesh_src": "data/meshes/plaza_1_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -53,15 +53,15 @@
   {
     "entity":
     {
-      "name": "tuerca_sim01_collider",
+      "name": "mechanism_0_col_000",
       "transform":
       {
-        "pos": "-14.6522 14.0051 -81.0893",
+        "pos": "5.16863 6.27378 -81.0814",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/tuerca_sim01_collider.col_mesh",
+        "mesh_src": "data/meshes/mechanism_0_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -70,15 +70,15 @@
   {
     "entity":
     {
-      "name": "plaza_atril_collider",
+      "name": "mechanism_1_col_000",
       "transform":
       {
-        "pos": "-1.91839 32.1959 -49.7135",
+        "pos": "8.18802 6.27378 -81.0814",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/plaza_atril_collider.col_mesh",
+        "mesh_src": "data/meshes/mechanism_1_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -87,15 +87,15 @@
   {
     "entity":
     {
-      "name": "plaza_02_collider",
+      "name": "mechanism_2_col_000",
       "transform":
       {
-        "pos": "16.1858 21.3917 -35.1865",
+        "pos": "11.6347 6.27378 -81.0814",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/plaza_02_collider.col_mesh",
+        "mesh_src": "data/meshes/mechanism_2_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -104,15 +104,15 @@
   {
     "entity":
     {
-      "name": "plaza_01_collider",
+      "name": "mechanism_3_col_000",
       "transform":
       {
-        "pos": "-19.6999 21.3752 -64.1704",
+        "pos": "14.9828 6.27378 -81.0814",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/plaza_01_collider.col_mesh",
+        "mesh_src": "data/meshes/mechanism_3_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
