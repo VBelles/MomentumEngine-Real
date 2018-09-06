@@ -12,7 +12,7 @@ bool CModuleMainMenu::start() {
 	Engine.getGUI().activateWidget("main_menu");
 
 	auto startGameCB = []() {
-		Engine.getGUI().unregisterWidget("main_menu");
+		Engine.getGUI().unregisterWidget("main_menu", true);
 		EngineModules.changeGameState("game_state", true);
 	};
 	auto optionsMenuCB = []() {
@@ -38,7 +38,7 @@ bool CModuleMainMenu::start() {
 bool CModuleMainMenu::stop() {
 	Engine.getGUI().unregisterController(controller);
 	SAFE_DELETE(controller);
-	Engine.getGUI().unregisterWidget("main_menu");
+	Engine.getGUI().unregisterWidget("main_menu", true);
 	return true;
 }
 

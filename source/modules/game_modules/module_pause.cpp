@@ -22,7 +22,8 @@ bool CModulePause::start() {
 				module->setActive(true);
 			}
 		}
-		EngineModules.changeGameState("main_menu");
+		Engine.getGUI().unregisterWidget("test_pause_menu", true);
+		EngineModules.changeGameState("main_menu", true);
 	};
 	auto exitCB = []() {
 		CApp::get().stopMainLoop = true;
