@@ -2,15 +2,15 @@
   {
     "entity":
     {
-      "name": "escalon_04_collider",
+      "name": "escalera_caracol_XL_col_000",
       "transform":
       {
-        "pos": "13.9883 0.527001 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
+        "pos": "7.04394 5.47204 -77.1945",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/escalon_04_collider.col_mesh",
+        "mesh_src": "data/meshes/escalera_caracol_XL_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -19,15 +19,15 @@
   {
     "entity":
     {
-      "name": "escalon_03_collider",
+      "name": "escalera_caracol_L_col_000",
       "transform":
       {
-        "pos": "13.9883 0.179625 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
+        "pos": "19.8698 1.65855 -47.2388",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/escalon_03_collider.col_mesh",
+        "mesh_src": "data/meshes/escalera_caracol_L_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -36,117 +36,49 @@
   {
     "entity":
     {
-      "name": "escalon_02_collider",
+      "name": "escalera_caracol_XS_col_000",
       "transform":
       {
-        "pos": "13.9883 1.28058 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/escalon_02_collider.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalon_01_collider",
-      "transform":
-      {
-        "pos": "13.9883 3.49124 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/escalon_01_collider.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baranda_04_collider",
-      "transform":
-      {
-        "pos": "13.9883 2.38779 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/baranda_04_collider.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baranda_03_collider",
-      "transform":
-      {
-        "pos": "13.9883 2.38779 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/baranda_03_collider.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baranda_02_collider",
-      "transform":
-      {
-        "pos": "13.9883 2.38779 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/baranda_02_collider.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baranda_01_collider",
-      "transform":
-      {
-        "pos": "13.9883 2.38779 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/baranda_01_collider.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera_caracol_col_000",
-      "transform":
-      {
-        "pos": "0.00226736 2.92289 -78.2066",
+        "pos": "6.95346 0.373778 -11.1631",
         "rotation": "0.0 0.00359497 0.0 -0.999994"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/escalera_caracol_col_000.col_mesh",
+        "mesh_src": "data/meshes/escalera_caracol_XS_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escalera_caracol_M_col_000",
+      "transform":
+      {
+        "pos": "6.9987 1.2817 -37.128",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/escalera_caracol_M_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escalera_caracol_S_col_000",
+      "transform":
+      {
+        "pos": "13.4602 2.3342 -19.1428",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/escalera_caracol_S_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }

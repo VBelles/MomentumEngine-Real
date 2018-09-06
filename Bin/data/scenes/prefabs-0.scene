@@ -2,192 +2,104 @@
   {
     "entity":
     {
-      "name": "escalon_01",
+      "name": "escalera_caracol_XL_000",
       "transform":
       {
-        "pos": "13.9883 3.49124 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalon_01.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_piezas_escalon_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalon_02",
-      "transform":
-      {
-        "pos": "13.9883 1.28058 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalon_02.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_piezas_escalon_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalon_03",
-      "transform":
-      {
-        "pos": "13.9883 0.179625 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalon_03.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_piezas_escalon_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalon_04",
-      "transform":
-      {
-        "pos": "13.9883 0.527001 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/escalon_04.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_piezas_escalon_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baranda_01",
-      "transform":
-      {
-        "pos": "13.9883 2.38779 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/baranda_01.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_piezas_baranda_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baranda_02",
-      "transform":
-      {
-        "pos": "13.9883 2.38779 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/baranda_02.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_piezas_baranda_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baranda_03",
-      "transform":
-      {
-        "pos": "13.9883 2.38779 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/baranda_03.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_piezas_baranda_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "baranda_04",
-      "transform":
-      {
-        "pos": "13.9883 2.38779 -38.6481",
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/baranda_04.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_piezas_baranda_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "escalera_caracol_000",
-      "transform":
-      {
-        "pos": "0.0 2.9623 -78.2035",
+        "pos": "7.03257 5.66907 -77.179",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/escalera_caracol_000.mesh",
+          "mesh": "data/meshes/escalera_caracol_XL_000.mesh",
+          "materials":
+          [
+            "data/materials/m_escalera_caracol.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escalera_caracol_L_000",
+      "transform":
+      {
+        "pos": "19.8607 1.81618 -47.2264",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/escalera_caracol_L_000.mesh",
+          "materials":
+          [
+            "data/materials/m_escalera_caracol.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escalera_caracol_XS_000",
+      "transform":
+      {
+        "pos": "6.95119 0.413186 -11.16",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/escalera_caracol_XS_000.mesh",
+          "materials":
+          [
+            "data/materials/m_escalera_caracol.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escalera_caracol_M_000",
+      "transform":
+      {
+        "pos": "6.99188 1.39992 -37.1187",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/escalera_caracol_M_000.mesh",
+          "materials":
+          [
+            "data/materials/m_escalera_caracol.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "escalera_caracol_S_000",
+      "transform":
+      {
+        "pos": "13.4557 2.41301 -19.1366",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/escalera_caracol_S_000.mesh",
           "materials":
           [
             "data/materials/m_escalera_caracol.material"
