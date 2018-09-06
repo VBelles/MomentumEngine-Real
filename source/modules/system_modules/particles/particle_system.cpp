@@ -30,7 +30,7 @@ void Particles::TCoreSystem::debugInMenu() {
 	{ // Life
 		ImGui::Text("Life");
 		ImGui::DragFloat("Duration", &life.duration, 0.01f);
-		ImGui::DragFloat("Duration variation", &life.duration, 0.01f);
+		ImGui::DragFloat("Duration variation", &life.durationVariation, 0.01f);
 		ImGui::DragInt("Max particles", &life.maxParticles);
 		ImGui::DragFloat("Time factor", &life.timeFactor, 0.01f);
 	}
@@ -291,8 +291,14 @@ namespace Particles {
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
-			particle.frame = _core->render.initialFrame;
+			particle.frame = _core->render.initialFrame == -1 ? random(0, _core->render.numFrames) : _core->render.initialFrame;
+			if (_core->render.initialFrame == -1) {
+
+				dbg("Frame: %d\n", particle.frame);
+			}
 			particle.rotation = _core->movement.initialRotation;
+			//particle.rotation = _core->movement.initialRotation;
+			particle.rotation = random(0.f, M_PI * 2.f);
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 			_particles.push_back(particle);
@@ -349,19 +355,19 @@ namespace Particles {
 		{
 			VEC3 dir(random(-1, 1), random(-1, 1), random(-1, 1));
 			dir.Normalize();
-			return dir * random(0, size);
+			return dir * random(0.f, size);
 		}
 		case TCoreSystem::TEmission::Circle:
 		{
 			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
 			dir.Normalize();
-			return dir * random(0, size);
+			return dir * random(0.f, size);
 		}
 		case TCoreSystem::TEmission::Cylinder:
 		{
 			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
 			dir.Normalize();
-			VEC3 pos = dir * random(0, size);
+			VEC3 pos = dir * random(0.f, size);
 			pos.y = random(-size, size);
 			return pos;
 		}

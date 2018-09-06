@@ -17,7 +17,7 @@
         "velocity": 2,
         "velocity_variation": 0.1,
         "acceleration": 0.0,
-        "spin": 1000.0,
+        "spin": 0,
         "wind": 0.0,
         "gravity": -0.04
     },
@@ -26,7 +26,8 @@
         "additive": true,
         "frame_size": "0.5 0.5",
         "num_frames": 4,
-        "frame_speed": 3
+        "initial_frame": -1,
+        "frame_speed": 0
 
     },
     "size": {
