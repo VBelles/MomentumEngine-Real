@@ -15,6 +15,9 @@
 #include "modules/system_modules/particles/module_particles.h"
 #include "modules/system_modules/slash/module_slash.h"
 
+#include <mutex>
+extern std::recursive_mutex mtx;
+
 enum InputType {
 	None, Menu, Game, Console
 };

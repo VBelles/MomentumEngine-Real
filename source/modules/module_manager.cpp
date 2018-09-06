@@ -256,8 +256,10 @@ void CModuleManager::applyRequestedGameState() {
 			int frameTimeMilis = frameTime * 1000;
 			while (!gameStateChanged) {
 				wdgt->updateAll(frameTime);
+				mtx.lock();
 				wdgt->renderAll();
 				Render.swapChain->Present(0, 0);
+				mtx.unlock();
 				std::this_thread::sleep_for(std::chrono::milliseconds(frameTimeMilis));
 			}
 			t1.join();
