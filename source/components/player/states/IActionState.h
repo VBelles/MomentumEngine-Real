@@ -71,8 +71,6 @@ protected:
 
 	bool isStandingOnPlatform(MoveState & moveState);
 
-	void slash(TCompParticles* slash, float yaw = 0, float pitch = 0, float roll = 0);
-
 	void slash(std::string slash, VEC3 offset = VEC3::Zero, float yaw = 0, float pitch = 0, float roll = 0);
 
 public:

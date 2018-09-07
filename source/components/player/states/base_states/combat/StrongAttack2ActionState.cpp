@@ -79,7 +79,7 @@ void StrongAttack2ActionState::update(float delta) {
 
 	if (!isUltraSlashOut && phase == Active) {
 		isUltraSlashOut = true;
-		slash(stateManager->getSlashVertical(), deg2rad(80), deg2rad(-90));
+		slash("data/particles/slash_clockwise.particles", VEC3(0.f, 1.f, 0.f), deg2rad(80), deg2rad(-90));
 	}
 }
 
