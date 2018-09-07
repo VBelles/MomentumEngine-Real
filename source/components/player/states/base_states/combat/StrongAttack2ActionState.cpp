@@ -67,7 +67,7 @@ void StrongAttack2ActionState::update(float delta) {
 		}
 	}
 
-	if (!isSlashOut && movementTimer.elapsed() > frames2sec(9)) {
+	/*if (!isSlashOut && movementTimer.elapsed() > frames2sec(9)) {
 		isSlashOut = true;
 		getSlash(SlashType::RIGHT_FOOT)->setEnable(true);
 	}
@@ -75,7 +75,7 @@ void StrongAttack2ActionState::update(float delta) {
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(24)) {
 		isSlashOut = false;
 		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
-	}
+	}*/
 
 	if (!isUltraSlashOut && phase == Active) {
 		isUltraSlashOut = true;
@@ -101,7 +101,7 @@ void StrongAttack2ActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
 	isUltraSlashOut = false;
-	getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+	//getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 
 void StrongAttack2ActionState::onStrongAttackButton() {

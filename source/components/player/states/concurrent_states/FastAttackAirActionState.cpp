@@ -31,7 +31,7 @@ void FastAttackAirActionState::update(float delta) {
 		phase = AttackPhases::Active;
 	}
 
-	if (!isSlashOut && movementTimer.elapsed() > frames2sec(10)) {
+	/*if (!isSlashOut && movementTimer.elapsed() > frames2sec(10)) {
 		isSlashOut = true;
 		getSlash(SlashType::RIGHT_FOOT)->setEnable(true);
 	}
@@ -39,7 +39,7 @@ void FastAttackAirActionState::update(float delta) {
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(21)) {
 		isSlashOut = false;
 		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
-	}
+	}*/
 
 	if (!isUltraSlashOut && phase == AttackPhases::Active) {
 		isUltraSlashOut = true;
@@ -69,7 +69,7 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
 	isUltraSlashOut = false;
-	getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+	//getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 
 void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
