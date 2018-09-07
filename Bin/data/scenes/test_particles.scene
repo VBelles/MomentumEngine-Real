@@ -43,7 +43,6 @@
 			}
 		}
 	},
-
 	{
 		"entity": {
 			"name": "particles_stretched",
@@ -57,12 +56,45 @@
 	},
 	{
 		"entity": {
-			"name": "particles_fire",
-			"transform": {
-				"pos": "-4 -1 5"
-			},
+			"name": "particles_fire_add",
 			"particles": {
 				"core": "data/particles/fire/fire_add.particles"
+			},
+			"transform": {
+				"pos": "-4 -1 5"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_fire_alpha",
+			"particles": {
+				"core": "data/particles/fire/fire_alpha.particles"
+			},
+			"transform": {
+				"pos": "-4 -1 5"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_fire_glow",
+			"particles": {
+				"core": "data/particles/fire/fire_glow.particles"
+			},
+			"transform": {
+				"pos": "-4 -1 5"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_fire_sparks",
+			"particles": {
+				"core": "data/particles/fire/fire_sparks.particles"
+			},
+			"transform": {
+				"pos": "-4 -1 5"
 			}
 		}
 	}
