@@ -22,7 +22,9 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("spawnMedusaAt", SLB::FuncCall::create(ScriptingEntities::spawnMedusaAt));
 	manager->set("spawnMedusa", SLB::FuncCall::create(ScriptingEntities::spawnMedusa));
 	manager->set("stopEntities", SLB::FuncCall::create(ScriptingEntities::stopEntities));
+	manager->set("stopEntitiesCutscene", SLB::FuncCall::create(ScriptingEntities::stopEntitiesCutscene));
 	manager->set("resumeEntities", SLB::FuncCall::create(ScriptingEntities::resumeEntities));
+	manager->set("resumeEntitiesCutscene", SLB::FuncCall::create(ScriptingEntities::resumeEntitiesCutscene));
 	manager->set("stopEnemies", SLB::FuncCall::create(ScriptingEntities::stopEnemies));
 	manager->set("resumeEnemies", SLB::FuncCall::create(ScriptingEntities::resumeEnemies));
 }
@@ -100,16 +102,12 @@ TCompTransform* ScriptingEntities::getPlayerTransform() {
 
 void ScriptingEntities::stopEntities() {
 	Engine.getEntities().setManagerUpdate("skeleton", false);
-	Engine.getEntities().setManagerUpdate("behaviorTree_melee_enemy", false);
-	Engine.getEntities().setManagerUpdate("behaviorTree_ball_enemy", false);
-	Engine.getEntities().setManagerUpdate("behaviorTree_flying_ranged_enemy", false);
+	Engine.getEntities().setManagerUpdate("dreidel", false);
+	Engine.getEntities().setManagerUpdate("kippah", false);
 	Engine.getEntities().setManagerUpdate("player_controller", false);
 	Engine.getEntities().setManagerUpdate("ranged_attack", false);
 	Engine.getEntities().setManagerUpdate("power_gauge", false);
-	Engine.getEntities().setManagerUpdate("platform_move", false);
-	Engine.getEntities().setManagerUpdate("platform_rotative", false);
 	Engine.getEntities().setManagerUpdate("follow_curve", false);
-	Engine.getEntities().setManagerUpdate("player_controller", false);
 	Engine.getEntities().setManagerUpdate("player_model", false);
 	Engine.getEntities().setManagerUpdate("platform_simple", false);
 	Engine.getEntities().setManagerUpdate("collectable", false);
@@ -117,18 +115,27 @@ void ScriptingEntities::stopEntities() {
 	EngineParticles.setPaused(true);
 }
 
+void ScriptingEntities::stopEntitiesCutscene() {
+	Engine.getEntities().setManagerUpdate("skeleton", false);
+	Engine.getEntities().setManagerUpdate("dreidel", false);
+	Engine.getEntities().setManagerUpdate("kippah", false);
+	Engine.getEntities().setManagerUpdate("player_controller", false);
+	Engine.getEntities().setManagerUpdate("ranged_attack", false);
+	Engine.getEntities().setManagerUpdate("power_gauge", false);
+	Engine.getEntities().setManagerUpdate("follow_curve", false); 
+	Engine.getEntities().setManagerUpdate("player_model", false);
+	Engine.getEntities().setManagerUpdate("platform_simple", false);
+	Engine.getEntities().setManagerUpdate("platforms_director", false);
+}
+
 void ScriptingEntities::resumeEntities() {
 	Engine.getEntities().setManagerUpdate("skeleton", true);
-	Engine.getEntities().setManagerUpdate("behaviorTree_melee_enemy", true);
-	Engine.getEntities().setManagerUpdate("behaviorTree_ball_enemy", true);
-	Engine.getEntities().setManagerUpdate("behaviorTree_flying_ranged_enemy", true);
+	Engine.getEntities().setManagerUpdate("dreidel", true);
+	Engine.getEntities().setManagerUpdate("kippah", true);
 	Engine.getEntities().setManagerUpdate("player_controller", true);
 	Engine.getEntities().setManagerUpdate("ranged_attack", true);
 	Engine.getEntities().setManagerUpdate("power_gauge", true);
-	Engine.getEntities().setManagerUpdate("platform_move", true);
-	Engine.getEntities().setManagerUpdate("platform_rotative", true);
 	Engine.getEntities().setManagerUpdate("follow_curve", true);
-	Engine.getEntities().setManagerUpdate("player_controller", true);
 	Engine.getEntities().setManagerUpdate("player_model", true);
 	Engine.getEntities().setManagerUpdate("platform_simple", true);
 	Engine.getEntities().setManagerUpdate("collectable", true);
@@ -136,14 +143,25 @@ void ScriptingEntities::resumeEntities() {
 	EngineParticles.setPaused(false);
 }
 
+void ScriptingEntities::resumeEntitiesCutscene() {
+	Engine.getEntities().setManagerUpdate("skeleton", true);
+	Engine.getEntities().setManagerUpdate("dreidel", true);
+	Engine.getEntities().setManagerUpdate("kippah", true);
+	Engine.getEntities().setManagerUpdate("player_controller", true);
+	Engine.getEntities().setManagerUpdate("ranged_attack", true);
+	Engine.getEntities().setManagerUpdate("power_gauge", true);
+	Engine.getEntities().setManagerUpdate("follow_curve", true);
+	Engine.getEntities().setManagerUpdate("player_model", true);
+	Engine.getEntities().setManagerUpdate("platform_simple", true);
+	Engine.getEntities().setManagerUpdate("platforms_director", true);
+}
+
 void ScriptingEntities::stopEnemies() {
-	Engine.getEntities().setManagerUpdate("behaviorTree_melee_enemy", false);
-	Engine.getEntities().setManagerUpdate("behaviorTree_ball_enemy", false);
-	Engine.getEntities().setManagerUpdate("behaviorTree_flying_ranged_enemy", false);
+	Engine.getEntities().setManagerUpdate("dreidel", false);
+	Engine.getEntities().setManagerUpdate("kippah", false);
 }
 
 void ScriptingEntities::resumeEnemies() {
-	Engine.getEntities().setManagerUpdate("behaviorTree_melee_enemy", true);
-	Engine.getEntities().setManagerUpdate("behaviorTree_ball_enemy", true);
-	Engine.getEntities().setManagerUpdate("behaviorTree_flying_ranged_enemy", true);
+	Engine.getEntities().setManagerUpdate("dreidel", true);
+	Engine.getEntities().setManagerUpdate("kippah", true);
 }
