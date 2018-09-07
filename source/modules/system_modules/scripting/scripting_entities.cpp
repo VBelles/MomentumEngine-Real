@@ -109,6 +109,12 @@ void ScriptingEntities::stopEntities() {
 	Engine.getEntities().setManagerUpdate("platform_move", false);
 	Engine.getEntities().setManagerUpdate("platform_rotative", false);
 	Engine.getEntities().setManagerUpdate("follow_curve", false);
+	Engine.getEntities().setManagerUpdate("player_controller", false);
+	Engine.getEntities().setManagerUpdate("player_model", false);
+	Engine.getEntities().setManagerUpdate("platform_simple", false);
+	Engine.getEntities().setManagerUpdate("collectable", false);
+	Engine.getEntities().setManagerUpdate("platforms_director", false);
+	EngineParticles.setPaused(true);
 }
 
 void ScriptingEntities::resumeEntities() {
@@ -122,6 +128,12 @@ void ScriptingEntities::resumeEntities() {
 	Engine.getEntities().setManagerUpdate("platform_move", true);
 	Engine.getEntities().setManagerUpdate("platform_rotative", true);
 	Engine.getEntities().setManagerUpdate("follow_curve", true);
+	Engine.getEntities().setManagerUpdate("player_controller", true);
+	Engine.getEntities().setManagerUpdate("player_model", true);
+	Engine.getEntities().setManagerUpdate("platform_simple", true);
+	Engine.getEntities().setManagerUpdate("collectable", true);
+	Engine.getEntities().setManagerUpdate("platforms_director", true);
+	EngineParticles.setPaused(false);
 }
 
 void ScriptingEntities::stopEnemies() {

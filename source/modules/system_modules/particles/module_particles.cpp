@@ -32,6 +32,7 @@ void CModuleParticles::reset() {
 }
 
 void CModuleParticles::update(float delta) {
+	if (paused) return;
 	for (auto& p : _activeSystems) {
 		auto& systems = p.second;
 		for (auto it = systems.begin(); it != systems.end();) {
@@ -110,4 +111,8 @@ void CModuleParticles::forceEmission(Particles::TParticleHandle ph, int quantity
 
 const VEC3& CModuleParticles::getWindVelocity() const {
 	return _windVelocity;
+}
+
+void CModuleParticles::setPaused(bool paused) {
+	this->paused = paused;
 }
