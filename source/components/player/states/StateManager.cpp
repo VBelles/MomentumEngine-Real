@@ -103,11 +103,6 @@ StateManager::StateManager(CHandle entityHandle) :
 	CEntity* slashRightTentacleShortEntity = getEntityByName("slashRightTentacleShort");
 	slashRightTentacleShortHandle = slashRightTentacleShortEntity->get<TCompSlash>();
 
-	slashClockwiseHandle = static_cast<CEntity*>(getEntityByName("slash_clockwise"))->get<TCompParticles>();
-	slashCounterClockwiseHandle = static_cast<CEntity*>(getEntityByName("slash_counter_clockwise"))->get<TCompParticles>();
-	slashStrong3 = static_cast<CEntity*>(getEntityByName("slash_strong_3"))->get<TCompParticles>();
-	slashVertical = static_cast<CEntity*>(getEntityByName("slash_vertical"))->get<TCompParticles>();
-
 	registerStates();
 }
 
@@ -323,7 +318,7 @@ TCompCollectableManager * StateManager::getCollectableManager() {
 	return collectableManagerHandle;
 }
 
-TCompSlash * StateManager::getSlash(SlashType type) {
+TCompSlash * StateManager::getTrailSlash(SlashType type) {
 	switch (type) {
 	case SlashType::LEFT_HAND:
 		return slashLeftHandHandle;
@@ -347,21 +342,6 @@ TCompSlash * StateManager::getSlash(SlashType type) {
 	}
 }
 
-TCompParticles* StateManager::getSlashClockwise() {
-	return slashClockwiseHandle;
-}
-
-TCompParticles* StateManager::getSlashCounterClockwise() {
-	return slashCounterClockwiseHandle;
-}
-
-TCompParticles* StateManager::getSlashStrong3() {
-	return slashStrong3;
-}
-
-TCompParticles * StateManager::getSlashVertical() {
-	return slashVertical;
-}
 
 void StateManager::lockState(std::string stateToLock) {
 	State state = States::getState(stateToLock);

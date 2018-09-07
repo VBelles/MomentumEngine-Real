@@ -2,9 +2,9 @@
   "boot_scenes": [
     "data/scenes/game_camera.scene",
     "data/scenes/player.scene",
+    "data/scenes/player_trail_slash.scene",
     "data/scenes/lights.scene",
     "data/scenes/sky.scene",
-    "data/scenes/slash.scene",
     "data/scenes/milestone4-0.scene",
     "data/scenes/milestone4-instancing.scene",
     "data/scenes/milestone4_dani-0.scene",

@@ -68,3 +68,8 @@ static const std::string SOUND_COIN = "event:/elementos/monedas";
 static const std::string SOUND_ACTIVATE_MECHANISM = "event:/elementos/activar_mecanismo";
 static const std::string SOUND_AMBIENT_FOREST = "event:/ambientacion/ambiente_bosque";
 static const std::string SOUND_AMBIENT_WIND = "event:/ambientacion/ambiente_viento";
+
+
+auto constexpr SLASH_CLOCKWISE = "data/particles/player/slash_clockwise.particles";
+auto constexpr SLASH_COUNTER_CLOCKWISE = "data/particles/player/slash_counter_clockwise.particles";
+auto constexpr SLASH_STRONG_3 = "data/particles/player/slash_strong_3.particles";

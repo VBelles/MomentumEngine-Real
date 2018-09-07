@@ -72,29 +72,28 @@ void StrongAttack3ActionState::update(float delta) {
 
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(8)) {
 		isSlashOut = true;
-		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
-		getSlash(SlashType::LEFT_TENTACLE_SHORT)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_TENTACLE_SHORT)->setEnable(true);
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(35)) {
 		isSlashOut = false;
-		getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-		getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
+		getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+		getTrailSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 	}
 
 	if (!isUltraSlash1Out && movementTimer.elapsed() > frames2sec(18)) {
 		isUltraSlash1Out = true;
-		//slash(stateManager->getSlashStrong3(), 0);
-		slash("data/particles/slash_strong_3.particles", VEC3(0, 1.3f, 0));
+		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
 
 	}
 	if (!isUltraSlash2Out && movementTimer.elapsed() > frames2sec(25)) {
 		isUltraSlash2Out = true;
-		slash("data/particles/slash_strong_3.particles", VEC3(0, 1.3f, 0));
+		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
 	}
 	if (!isUltraSlash3Out && movementTimer.elapsed() > frames2sec(32)) {
 		isUltraSlash3Out = true;
-		slash("data/particles/slash_strong_3.particles", VEC3(0, 1.3f, 0));
+		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
 	}
 }
 
@@ -120,8 +119,8 @@ void StrongAttack3ActionState::onStateExit(IActionState * nextState) {
 	isUltraSlash1Out = false;
 	isUltraSlash2Out = false;
 	isUltraSlash3Out = false;
-	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-	getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
 }
 
 void StrongAttack3ActionState::setMovementInput(VEC2 input) {

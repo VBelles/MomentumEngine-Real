@@ -247,6 +247,6 @@ TCompCameraPlayer* IActionState::getCameraPlayer() {
 	return stateManager->getCameraPlayer();
 }
 
-TCompSlash * IActionState::getSlash(SlashType type) {
-	return stateManager->getSlash(type);
+TCompSlash * IActionState::getTrailSlash(SlashType type) {
+	return stateManager->getTrailSlash(type);
 }

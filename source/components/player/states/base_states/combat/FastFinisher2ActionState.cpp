@@ -73,20 +73,20 @@ void FastFinisher2ActionState::update(float delta) {
 
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(32)) {
 		isSlashOut = true;
-		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
-		getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
 		isSlashOut = false;
-		getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-		getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+		getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+		getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 	}
 
 	if (!isUltraSlashOut && movementTimer.elapsed() > frames2sec(45)) {
 		isUltraSlashOut = true;
-		slash("data/particles/slash_clockwise.particles", VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(45));
-		slash("data/particles/slash_counter_clockwise.particles", VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(-45));
+		slash(SLASH_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(45));
+		slash(SLASH_COUNTER_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(-45));
 	}
 }
 
@@ -108,8 +108,8 @@ void FastFinisher2ActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
 	isUltraSlashOut = false;
-	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }
 
 void FastFinisher2ActionState::setMovementInput(VEC2 input) {

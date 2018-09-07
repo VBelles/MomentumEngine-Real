@@ -52,7 +52,7 @@ public:
 	CModuleMultithread& getMultithread() { return _module_multithread; }
     CModuleUniques&     getUniques()     { return _module_uniques; }
 	CModuleParticles&   getParticles()	 { return _module_particles; }
-	CModuleSlash&		getSlash()		 { return _module_slash; }
+	CModuleSlash&		getTrailSlash()		 { return _module_slash; }
 
 	float getUnscaledDeltaTime() const { return current_unscaled_delta_time; }
 	bool isStarted() { return started; }
@@ -97,4 +97,4 @@ private:
 #define EngineSound     CEngine::get().getSound()
 #define EngineUniques   CEngine::get().getUniques()
 #define EngineParticles CEngine::get().getParticles()
-#define EngineSlash		CEngine::get().getSlash()
+#define EngineSlash		CEngine::get().getTrailSlash()
