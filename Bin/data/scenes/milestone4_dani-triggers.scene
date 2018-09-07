@@ -12,7 +12,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/OutOfBounds000.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
