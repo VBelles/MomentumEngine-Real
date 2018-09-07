@@ -2,6 +2,110 @@
   {
     "entity":
     {
+      "name": "plataforma_roca009",
+      "transform":
+      {
+        "pos": "245.451 -8.01712 -83.8705",
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_roca009.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataforma_roca_collider009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.0210344,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "246.359 -7.51008 -77.0397",
+           "246.359 -7.51008 -84.1593",
+           "246.359 -7.51008 -84.1593",
+           "253.479 -7.51008 -77.0397",
+           "246.359 -7.51008 -69.9201",
+           "239.24 -7.51008 -77.0397",
+           "239.24 -7.51008 -77.0397"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_roca008",
+      "transform":
+      {
+        "pos": "269.241 -8.01712 -70.4831",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_roca008.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataforma_roca_collider008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.0210344,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "262.41 -7.51008 -69.5751",
+           "269.53 -7.51008 -69.5751",
+           "269.53 -7.51008 -69.5751",
+           "262.41 -7.51008 -76.6947",
+           "255.291 -7.51008 -69.5751",
+           "262.41 -7.51008 -62.4555",
+           "262.41 -7.51008 -62.4555"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "mushroom_head_151",
       "transform":
       {
@@ -1573,10 +1677,30 @@
       {
         "mesh_src": "data/meshes/plataforma_roca_collider007.col_mesh",
         "shape": "convex_mesh",
-        "type": "static",
+        "type": "kinematic",
         "group":
         [
           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.0210343,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "252.282 -7.51008 -55.0154",
+           "245.162 -7.51008 -55.0154",
+           "245.162 -7.51008 -55.0154",
+           "252.282 -7.51008 -47.8959",
+           "259.401 -7.51008 -55.0154",
+           "252.282 -7.51008 -62.135",
+           "252.282 -7.51008 -62.135"
         ]
       }
     }
