@@ -12,7 +12,7 @@
 #include "components/player/states/StateManager.h"
 
 
-ReleasePowerGroundActionState::ReleasePowerGroundActionState(StateManager* stateManager):
+ReleasePowerGroundActionState::ReleasePowerGroundActionState(StateManager* stateManager) :
 	GroundedActionState(stateManager, ReleasePowerGround),
 	AttackState(stateManager) {
 	cancelableTime = frames2sec(6);
@@ -44,17 +44,20 @@ void ReleasePowerGroundActionState::update(float delta) {
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
+		Particles::LaunchConfig config{ getEntity() };
 		switch (getPowerGauge()->getPowerLevel()) {
 		case 1:
 			getPowerGauge()->releasePower();
 			break;
 		case 2:
+			EngineParticles.launchSystem("data/particles/player/release_power.particles", config);
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
 			getHitboxes()->enable(smallHitbox);
 			if (buttonPresses > 1) getPowerGauge()->releasePower();
 			break;
 		case 3:
+			EngineParticles.launchSystem("data/particles/player/release_power.particles", config);
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
 			if (buttonPresses > 1) {
@@ -143,7 +146,7 @@ void ReleasePowerGroundActionState::onHitboxEnter(std::string hitbox, CHandle en
 	msgAtackHit.info = {};
 	msgAtackHit.info.givesPower = false;
 	msgAtackHit.info.damage = damage;
-	msgAtackHit.info.stun = new AttackInfo::Stun{stunDuration};
+	msgAtackHit.info.stun = new AttackInfo::Stun{ stunDuration };
 	msgAtackHit.info.activatesMechanism = true;
 	otherEntity->sendMsg(msgAtackHit);
 }
