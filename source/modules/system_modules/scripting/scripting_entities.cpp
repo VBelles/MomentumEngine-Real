@@ -101,9 +101,8 @@ TCompTransform* ScriptingEntities::getPlayerTransform() {
 }
 
 void ScriptingEntities::stopEntities() {
-	Engine.getEntities().setManagerUpdate("skeleton", false);
-	Engine.getEntities().setManagerUpdate("dreidel", false);
-	Engine.getEntities().setManagerUpdate("kippah", false);
+	Engine.getEntities().setManagerUpdate("skeleton", false); 
+	Engine.getEntities().setManagerUpdate("enemy", false);
 	Engine.getEntities().setManagerUpdate("player_controller", false);
 	Engine.getEntities().setManagerUpdate("ranged_attack", false);
 	Engine.getEntities().setManagerUpdate("power_gauge", false);
@@ -117,8 +116,7 @@ void ScriptingEntities::stopEntities() {
 
 void ScriptingEntities::stopEntitiesCutscene() {
 	Engine.getEntities().setManagerUpdate("skeleton", false);
-	Engine.getEntities().setManagerUpdate("dreidel", false);
-	Engine.getEntities().setManagerUpdate("kippah", false);
+	Engine.getEntities().setManagerUpdate("enemy", false);
 	Engine.getEntities().setManagerUpdate("player_controller", false);
 	Engine.getEntities().setManagerUpdate("ranged_attack", false);
 	Engine.getEntities().setManagerUpdate("power_gauge", false);
@@ -130,8 +128,7 @@ void ScriptingEntities::stopEntitiesCutscene() {
 
 void ScriptingEntities::resumeEntities() {
 	Engine.getEntities().setManagerUpdate("skeleton", true);
-	Engine.getEntities().setManagerUpdate("dreidel", true);
-	Engine.getEntities().setManagerUpdate("kippah", true);
+	Engine.getEntities().setManagerUpdate("enemy", true);
 	Engine.getEntities().setManagerUpdate("player_controller", true);
 	Engine.getEntities().setManagerUpdate("ranged_attack", true);
 	Engine.getEntities().setManagerUpdate("power_gauge", true);
@@ -145,8 +142,7 @@ void ScriptingEntities::resumeEntities() {
 
 void ScriptingEntities::resumeEntitiesCutscene() {
 	Engine.getEntities().setManagerUpdate("skeleton", true);
-	Engine.getEntities().setManagerUpdate("dreidel", true);
-	Engine.getEntities().setManagerUpdate("kippah", true);
+	Engine.getEntities().setManagerUpdate("enemy", true);
 	Engine.getEntities().setManagerUpdate("player_controller", true);
 	Engine.getEntities().setManagerUpdate("ranged_attack", true);
 	Engine.getEntities().setManagerUpdate("power_gauge", true);
@@ -157,11 +153,9 @@ void ScriptingEntities::resumeEntitiesCutscene() {
 }
 
 void ScriptingEntities::stopEnemies() {
-	Engine.getEntities().setManagerUpdate("dreidel", false);
-	Engine.getEntities().setManagerUpdate("kippah", false);
+	Engine.getEntities().setManagerUpdate("enemy", false);
 }
 
 void ScriptingEntities::resumeEnemies() {
-	Engine.getEntities().setManagerUpdate("dreidel", true);
-	Engine.getEntities().setManagerUpdate("kippah", true);
+	Engine.getEntities().setManagerUpdate("enemy", true);
 }
