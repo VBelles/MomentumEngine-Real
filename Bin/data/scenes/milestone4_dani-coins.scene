@@ -1,0 +1,46 @@
+[
+  {
+    "entity":
+    {
+      "name": "dani_coin_003",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "199.443 2.47011 -31.4151"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_002",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "199.115 2.47011 -35.604"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_001",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "203.365 2.47011 -36.0247"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_000",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "203.912 2.47011 -31.5952"
+      }
+    }
+  }
+]

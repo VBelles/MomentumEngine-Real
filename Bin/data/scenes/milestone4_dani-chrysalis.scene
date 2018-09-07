@@ -2,11 +2,11 @@
   {
     "entity":
     {
-      "name": "ms4_chrysalis001",
+      "name": "dani_chrysalis_000",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "159.784 51.4228 -76.2752",
+        "pos": "228.74 1.37662 -55.1083",
         "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
