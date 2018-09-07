@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "ms3_chrysalis002",
+      "name": "nes_chrysalis002",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "ms3_chrysalis001",
+      "name": "nes_chrysalis001",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {

@@ -2,7 +2,130 @@
   {
     "entity":
     {
-      "name": "columna_piezas_capitel_001",
+      "name": "nes_placeholder_plataforma_roca_grande004",
+      "transform":
+      {
+        "pos": "-3.49163 -12.2546 -246.693",
+        "rotation": "0.0 0.422618 0.0 -0.906308"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande004.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande004.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_placeholder_plataforma_roca_grande004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_placeholder_plataforma_roca_grande003",
+      "transform":
+      {
+        "pos": "-25.4767 -12.2546 -237.125",
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande003.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande003.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_placeholder_plataforma_roca_grande003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_placeholder_plataforma_roca_grande002",
+      "transform":
+      {
+        "pos": "-34.9659 -12.2546 -213.265",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande002.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande002.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_placeholder_plataforma_roca_grande002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_columna_piezas_capitel_001",
       "transform":
       {
         "pos": "32.5637 12.2563 -176.504",
@@ -11,7 +134,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/columna_piezas_capitel_001.mesh",
+          "mesh": "data/meshes/nes_columna_piezas_capitel_001.mesh",
           "materials":
           [
             "data/materials/m_columna_piezas_pureON.material"
@@ -19,7 +142,7 @@
           "enabled": false
         },
         {
-          "mesh": "data/meshes/columna_piezas_capitel_001.mesh",
+          "mesh": "data/meshes/nes_columna_piezas_capitel_001.mesh",
           "materials":
           [
             "data/materials/m_columna_piezas_pure.material"
@@ -30,7 +153,7 @@
       "purity": {},
       "collider":
       {
-        "mesh_src": "data/meshes/columna_piezas_capitel_001.col_mesh",
+        "mesh_src": "data/meshes/nes_columna_piezas_capitel_001.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
