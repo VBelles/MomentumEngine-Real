@@ -1621,7 +1621,7 @@ struct TSceneExporter (
 					local meshName = "spikes_plat_hex_small"
 					fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
 					fs.writeComma()
-					exportStringArray "materials" #(mats_path + meshName) suffix:".material"
+					exportStringArray "materials" #(mats_path + "m_platform_spikes") suffix:".material"
 				fs.endObj()
 			fs.endArray()
 			fs.writeComma()
