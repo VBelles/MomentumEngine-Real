@@ -5,14 +5,14 @@
 class CCteBuffer {
 
 protected:
-  ID3D11Buffer*      cb = nullptr;
-  int                slot = -1;
-  bool createData(UINT num_bytes, const char* new_name);
+	ID3D11Buffer * cb = nullptr;
+	int                slot = -1;
+	bool createData(UINT num_bytes, const char* new_name);
 
 public:
 
-  void destroy();
-  void activate() const;
+	void destroy();
+	void activate() const;
 };
 
 // -----------------------------------------
@@ -22,21 +22,23 @@ public:
 // -----------------------------------------
 template< typename TPOD >
 class CRenderCte : public TPOD, public CCteBuffer {
-  const char* name = nullptr;
+	const char* name = nullptr;
 public:
 
-  CRenderCte(const char* new_name) : name( new_name ) {
-  }
+	CRenderCte(const char* new_name) : name(new_name) {
+	}
 
-  bool create(int new_slot) {
-    slot = new_slot;
-    return createData(sizeof(TPOD), name );
-  }
+	bool create(int new_slot) {
+		slot = new_slot;
+		return createData(sizeof(TPOD), name);
+	}
 
-  void updateGPU() {
-    const TPOD* pod = this;
-    Render.ctx->UpdateSubresource(cb, 0, NULL, pod, 0, 0);
-  }
+	void updateGPU() {
+		mtx.lock();
+		const TPOD* pod = this;
+		Render.ctx->UpdateSubresource(cb, 0, NULL, pod, 0, 0);
+		mtx.unlock();
+	}
 };
 
 #endif

@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/escalera_piezas_escalon03_BaseColor.dds",
+    "normal": "data/textures/escalera_piezas_escalon03_Normal.dds",
+    "metallic": "data/textures/escalera_piezas_escalon03_Metallic.dds",
+    "roughness": "data/textures/escalera_piezas_escalon03_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/escalera_piezas_escalon03_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

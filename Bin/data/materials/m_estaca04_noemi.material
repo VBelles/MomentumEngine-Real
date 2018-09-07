@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/estaca_noemi_191_BaseColor.dds",
+    "normal": "data/textures/estaca_noemi_191_Normal.dds",
+    "metallic": "data/textures/estaca_noemi_191_Metallic.dds",
+    "roughness": "data/textures/estaca_noemi_191_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/estaca_noemi_191_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

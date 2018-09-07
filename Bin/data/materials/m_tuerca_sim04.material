@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/tuerca_sim04_BaseColor.dds",
+    "normal": "data/textures/tuerca_sim04_Normal.dds",
+    "metallic": "data/textures/tuerca_sim04_Metallic.dds",
+    "roughness": "data/textures/tuerca_sim04_Roughness.dds",
+    "self_illum": "data/textures/tuerca_sim04_Emissive.dds",
+    "height": "data/textures/tuerca_sim04_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

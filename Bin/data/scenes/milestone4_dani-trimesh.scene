@@ -2,6 +2,40 @@
   {
     "entity":
     {
+      "name": "tapar_estropicio_004",
+      "transform":
+      {
+        "pos": "168.367 21.7903 -90.4372",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_estropicio_004.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tapar_estropicio_003",
+      "transform":
+      {
+        "pos": "166.429 19.8497 -105.867",
+        "rotation": "0.272532 -0.403058 0.127084 -0.864361"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_estropicio_003.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "tapar_estropicio_002",
       "transform":
       {

@@ -1,0 +1,14 @@
+{
+  "technique": "pure.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/piedras_c.dds",
+    "normal": "data/textures/null_normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/null_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

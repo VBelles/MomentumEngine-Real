@@ -1,34 +1,34 @@
 [
     {
-        "name": "Origin",
+        "name": "Origin (0,0,0)",
         "pos": "0 0 0"
     },
     {
-        "name": "Delante plataformas pinchos",
+        "name": "Gameplay Jose: Delante plataformas pinchos",
         "pos": "30 42 -3"
     },
     {
-        "name": "Punto 1",
+        "name": "Gameplay Jose: Punto 1",
         "pos": "-155.8 22.5 -43"
     },
     {
-        "name": "Punto 2",
+        "name": "Gameplay Jose: Punto 2",
         "pos": "8.5 60 -4.5"
     },
     {
-        "name": "Arriba de todo",
+        "name": "Gameplay Jose: Arriba de todo",
         "pos": "-51.5 82.5 4"
     },
     {
-        "name": "Pie torre",
+        "name": "Torre: Pie",
         "pos": "150 34 -124"
     },
     {
-        "name": "Top torre",
+        "name": "Torre: Top",
         "pos": "147 224 -139"
     },
     {
-        "name": "Pie estatua",
+        "name": "Estatua: Pie",
         "pos": "-162 37 -19"
     },
     {
@@ -42,5 +42,13 @@
     {
         "name": "Islas",
         "pos": "187 0 -11"
+    },
+    {
+        "name": "Ruinas centrales",
+        "pos": "-40 16 -10"
+    },
+    {
+        "name": "Ruinas torre",
+        "pos": "56 6 -122"
     }
 ]

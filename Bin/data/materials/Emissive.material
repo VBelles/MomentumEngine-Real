@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/emissive_BaseColor.dds",
+    "normal": "data/textures/emissive_normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/emissive_roughness.dds",
+    "self_illum": "data/textures/emissive_Emissive.dds",
+    "height": "data/textures/emissive_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

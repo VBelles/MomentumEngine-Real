@@ -64,7 +64,7 @@ void CModuleGUI::registerWidget(CWidget* wdgt) {
 void CModuleGUI::unregisterWidget(std::string name, bool recursive) {
 	CWidget* widget = getWidget(name, recursive);
 
-	if (recursive) {
+	if (widget && recursive) {
 		VWidgets children = widget->getChildren(recursive);
 		for (CWidget* child : children) {
 			auto it = std::find(_activeWidgets.begin(), _activeWidgets.end(), child);

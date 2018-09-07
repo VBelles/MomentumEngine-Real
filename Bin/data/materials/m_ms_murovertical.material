@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/ms_murovertical_BaseColor.dds",
+    "normal": "data/textures/ms_murovertical_Normal.dds",
+    "metallic": "data/textures/ms_murovertical_Metallic.dds",
+    "roughness": "data/textures/ms_murovertical_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/ms_murovertical_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
