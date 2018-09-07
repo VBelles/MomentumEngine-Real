@@ -33,17 +33,17 @@ void FastAttackAirActionState::update(float delta) {
 
 	/*if (!isSlashOut && movementTimer.elapsed() > frames2sec(10)) {
 		isSlashOut = true;
-		getSlash(SlashType::RIGHT_FOOT)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_FOOT)->setEnable(true);
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(21)) {
 		isSlashOut = false;
-		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+		getTrailSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 	}*/
 
 	if (!isUltraSlashOut && phase == AttackPhases::Active) {
 		isUltraSlashOut = true;
-		slash("data/particles/slash_clockwise.particles", VEC3(0, 1, 0), deg2rad(80), deg2rad(-90));
+		slash(SLASH_CLOCKWISE, VEC3(0, 1, 0), deg2rad(80), deg2rad(-90));
 	}
 }
 
@@ -69,7 +69,7 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
 	isUltraSlashOut = false;
-	//getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+	//getTrailSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 
 void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {

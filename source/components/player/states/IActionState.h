@@ -47,7 +47,7 @@ protected:
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
 	TCompCameraPlayer* getCameraPlayer();
-	TCompSlash* getSlash(SlashType type);
+	TCompSlash* getTrailSlash(SlashType type);
 
 
 	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection

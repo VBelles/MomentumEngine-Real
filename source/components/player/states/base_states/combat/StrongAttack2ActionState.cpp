@@ -69,17 +69,17 @@ void StrongAttack2ActionState::update(float delta) {
 
 	/*if (!isSlashOut && movementTimer.elapsed() > frames2sec(9)) {
 		isSlashOut = true;
-		getSlash(SlashType::RIGHT_FOOT)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_FOOT)->setEnable(true);
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(24)) {
 		isSlashOut = false;
-		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+		getTrailSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 	}*/
 
 	if (!isUltraSlashOut && phase == Active) {
 		isUltraSlashOut = true;
-		slash("data/particles/slash_clockwise.particles", VEC3(0.f, 1.f, 0.f), deg2rad(80), deg2rad(-90));
+		slash(SLASH_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(80), deg2rad(-90));
 	}
 }
 
@@ -101,7 +101,7 @@ void StrongAttack2ActionState::onStateExit(IActionState * nextState) {
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
 	isUltraSlashOut = false;
-	//getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+	//getTrailSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 
 void StrongAttack2ActionState::onStrongAttackButton() {
