@@ -12,6 +12,16 @@
     "data/scenes/milestone4_dani-triggers.scene",
     "data/scenes/milestone4_dani-trimesh.scene",
 
+    "data/scenes/milestone4_jose02-0.scene",
+    "data/scenes/milestone4_jose02-chrysalis.scene",
+    "data/scenes/milestone4_jose02-coins.scene",
+    "data/scenes/milestone4_jose02-enemies.scene",
+    "data/scenes/milestone4_jose02-mechanisms.scene",
+    "data/scenes/milestone4_jose02-movables.scene",
+    "data/scenes/milestone4_jose02-pure.scene",
+    "data/scenes/milestone4_jose02-spikes.scene",
+    "data/scenes/milestone4_jose02-trimesh.scene",
+
     "data/scenes/milestone4_nectar-0.scene",
     "data/scenes/milestone4_nectar-chrysalis.scene",
     "data/scenes/milestone4_nectar-coins.scene",
@@ -20,13 +30,13 @@
     "data/scenes/milestone4_nectar-movables.scene",
     "data/scenes/milestone4_nectar-pure.scene",
 
-    "data/scenes/plataformeo.scene",
-    "data/scenes/plataformeo01.scene",
     "data/scenes/ambiental_particles.scene",
     "data/scenes/test_gorila.scene"
     
   ],
   "unused_scenes": [
+    "data/scenes/plataformeo.scene",
+    "data/scenes/plataformeo01.scene",
     "data/scenes/prefabs-0.scene",
     "data/scenes/prefabs-trimesh.scene",
     "data/scenes/test_instancing.scene",
