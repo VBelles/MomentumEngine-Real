@@ -34,6 +34,7 @@ struct MoveState {
 	std::vector<HitState> allHits;
 
 	PxShape* standingShape = nullptr;
+	VEC3 deltaMove;
 };
 
 class TCompPlayerModel : public TCompBase {

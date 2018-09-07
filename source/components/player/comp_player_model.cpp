@@ -320,6 +320,7 @@ void TCompPlayerModel::applyGravity(float delta) {
 
 void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	PROFILE_FUNCTION("updateMovement");
+	PxExtendedVec3 pos = getController()->getFootPosition();
 	moveState = MoveState();
 	PxControllerCollisionFlags moveFlags = EnginePhysics.move(getController(), toPxVec3(deltaMovement), delta);
 	moveState.isTouchingBot = moveFlags.isSet(PxControllerCollisionFlag::eCOLLISION_DOWN);
@@ -328,7 +329,10 @@ void TCompPlayerModel::updateMovement(float delta, VEC3 deltaMovement) {
 	PxControllerState state;
 	getController()->getState(state);
 	moveState.standingShape = state.touchedShape;
+	moveState.deltaMove = PhysxUtils::toVec3(getController()->getFootPosition() - pos);
 	stateManager->getState()->onMove(moveState);
+	velocityVector.Normalize();
+	velocityVector *= moveState.deltaMove.Length()/delta;
 }
 
 void TCompPlayerModel::onShapeHit(const TMsgShapeHit& msg) {
