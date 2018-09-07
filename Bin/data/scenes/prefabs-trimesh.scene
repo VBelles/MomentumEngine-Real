@@ -2,49 +2,15 @@
   {
     "entity":
     {
-      "name": "arco_roto_parte_recta_col_000",
+      "name": "aro_00_collider",
       "transform":
       {
-        "pos": "0.551434 18.9659 -63.7775",
+        "pos": "0.0 -6.26768 -33.2368",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/arco_roto_parte_recta_col_000.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "arco_roto_parte_curvada_col_000",
-      "transform":
-      {
-        "pos": "0.0 13.5583 -63.7775",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/arco_roto_parte_curvada_col_000.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "arco_col_000",
-      "transform":
-      {
-        "pos": "0.0 12.5066 -32.2878",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/arco_col_000.col_mesh",
+        "mesh_src": "data/meshes/aro_00_collider.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
