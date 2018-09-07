@@ -30,7 +30,7 @@ void Particles::TCoreSystem::debugInMenu() {
 	{ // Life
 		ImGui::Text("Life");
 		ImGui::DragFloat("Duration", &life.duration, 0.01f);
-		ImGui::DragFloat("Duration variation", &life.duration, 0.01f);
+		ImGui::DragFloat("Duration variation", &life.durationVariation, 0.01f);
 		ImGui::DragInt("Max particles", &life.maxParticles);
 		ImGui::DragFloat("Time factor", &life.timeFactor, 0.01f);
 	}
@@ -199,8 +199,10 @@ namespace Particles {
 				p.color.z *= _core->color.opacity;
 				p.size = _core->size.sizes.get(life_ratio);
 
-				int frame_idx = (int)(p.lifetime * _core->render.frameSpeed);
-				p.frame = _core->render.initialFrame + (frame_idx % _core->render.numFrames);
+				if (!_core->render.initialRandomFrame) {
+					int frame_idx = (int)(p.lifetime * _core->render.frameSpeed);
+					p.frame = _core->render.initialFrame + (frame_idx % _core->render.numFrames);
+				}
 
 				++it;
 			}
@@ -291,8 +293,8 @@ namespace Particles {
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
-			particle.frame = _core->render.initialFrame;
-			particle.rotation = _core->movement.initialRotation;
+			particle.frame = _core->render.initialRandomFrame ? random(0.f, _core->render.numFrames) : _core->render.initialFrame;
+			particle.rotation = _core->movement.initialRandomRotation ? random(0.f, M_PI * 2.f) : _core->movement.initialRotation;
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 			_particles.push_back(particle);
@@ -322,6 +324,13 @@ namespace Particles {
 		return particleEntityHandle;
 	}
 
+	void CSystem::debugInMenu() {
+		ImGui::Text("Id: %d", _handle);
+		ImGui::Text("Core: %s", _core->getName().c_str());
+		ImGui::Text("Num particles: %d", _particles.size());
+		ImGui::Separator();
+	}
+
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;
 
@@ -342,19 +351,19 @@ namespace Particles {
 		{
 			VEC3 dir(random(-1, 1), random(-1, 1), random(-1, 1));
 			dir.Normalize();
-			return dir * random(0, size);
+			return dir * random(0.f, size);
 		}
 		case TCoreSystem::TEmission::Circle:
 		{
 			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
 			dir.Normalize();
-			return dir * random(0, size);
+			return dir * random(0.f, size);
 		}
 		case TCoreSystem::TEmission::Cylinder:
 		{
 			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
 			dir.Normalize();
-			VEC3 pos = dir * random(0, size);
+			VEC3 pos = dir * random(0.f, size);
 			pos.y = random(-size, size);
 			return pos;
 		}

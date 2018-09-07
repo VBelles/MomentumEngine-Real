@@ -84,7 +84,7 @@ void StrongAttack3ActionState::update(float delta) {
 
 	if (!isUltraSlash1Out && movementTimer.elapsed() > frames2sec(18)) {
 		isUltraSlash1Out = true;
-		slash(stateManager->getSlashStrong3(), 0);
+		//slash(stateManager->getSlashStrong3(), 0);
 		slash("data/particles/slash_strong_3.particles", VEC3(0, 1.3f, 0));
 
 	}

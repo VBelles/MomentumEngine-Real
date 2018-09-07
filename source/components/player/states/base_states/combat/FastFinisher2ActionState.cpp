@@ -85,8 +85,8 @@ void FastFinisher2ActionState::update(float delta) {
 
 	if (!isUltraSlashOut && movementTimer.elapsed() > frames2sec(45)) {
 		isUltraSlashOut = true;
-		slash(stateManager->getSlashClockwise(), deg2rad(0), deg2rad(0), deg2rad(45));
-		slash(stateManager->getSlashCounterClockwise(), deg2rad(0), deg2rad(0), deg2rad(-45));
+		slash("data/particles/slash_clockwise.particles", VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(45));
+		slash("data/particles/slash_counter_clockwise.particles", VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(-45));
 	}
 }
 

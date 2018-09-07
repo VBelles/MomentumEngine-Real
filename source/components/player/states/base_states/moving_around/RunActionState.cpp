@@ -101,7 +101,7 @@ void RunActionState::onLevelChange(int powerLevel) {
 		getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	}
 
-	if (powerLevel == 3) {
+	/*if (powerLevel == 3) {
 		hasSlash = true;
 		if (stateManager->getState()->state == Run) {
 			getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
@@ -114,6 +114,6 @@ void RunActionState::onLevelChange(int powerLevel) {
 			getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 			getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 		}
-	}
+	}*/
 
 }
