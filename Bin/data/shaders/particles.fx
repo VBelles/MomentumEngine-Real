@@ -91,25 +91,46 @@ float4 PS_Particles(
 }
 
 void VS_Particles_Mesh(
-	in float4 iPos       : POSITION
-	, in float3 iNormal  : NORMAL0
-	, in float2 iTex0    : TEXCOORD0
-	, in float2 iTex1    : TEXCOORD1
-	, in float4 iTangent : NORMAL1
+	in float4 iPos          : POSITION
+	, in float3 iNormal     : NORMAL0
+	, in float2 iTex0       : TEXCOORD0
+	, in float2 iTex1       : TEXCOORD1
+	, in float4 iTangent    : NORMAL1
 
-	, out float4 oPos    : SV_POSITION
-	, out float2 oTex0   : TEXCOORD0
+	, out float4 oPos       : SV_POSITION
+	, out float2 oTex0      : TEXCOORD0
+	, out float4 oWorldPos  : TEXCOORD1
 ) {
-	float4 world_pos = mul(iPos, obj_world);
-	oPos = mul(world_pos, camera_view_proj);
+	oWorldPos = mul(iPos, obj_world);
+	oPos = mul(oWorldPos, camera_view_proj);
 	oTex0 = iTex0;
 }
 
 float4 PS_Particles_Mesh(
-	float4 Pos     : SV_POSITION
-	, float2 iTex0 : TEXCOORD0
+	float4 Pos        : SV_POSITION
+	, float2 iTex0    : TEXCOORD0
+	, float4 worldPos : TEXCOORD1
+
 ) : SV_Target{
+
+  int3 ss_load_coords = uint3(Pos.xy, 0);
+  float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+
+  float3 camera2wpos = worldPos - camera_pos;
+  float particleDepth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+
+  float alpha = 1;
+  
+  if(particleDepth >= zlinear){ //La particula esta detras
+    float depthDiff = particleDepth - zlinear;
+    float fadeDistance = 0.5;
+    float maxDepthDiff = fadeDistance / camera_zfar;
+    alpha = lerp(0, 1, 1 - abs(clamp(depthDiff, 0, maxDepthDiff)) / maxDepthDiff);
+  }
+
   float4 oDiffuse = txAlbedo.Sample(samLinear, iTex0);
-  float4 finalColor = float4(oDiffuse.rgb * particle_color.rgb, oDiffuse.a * particle_color.a); 
+  float4 finalColor = oDiffuse * particle_color;
+  finalColor.a *= alpha;
   return finalColor; 
+
 }
