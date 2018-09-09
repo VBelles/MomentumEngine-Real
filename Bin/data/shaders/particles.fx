@@ -81,7 +81,11 @@ float4 PS_Particles(
     float depthDiff = particleDepth - zlinear;
     float fadeDistance = 0.5;
     float maxDepthDiff = fadeDistance / camera_zfar;
-    alpha = lerp(0, 1, 1 - abs(clamp(depthDiff, 0, maxDepthDiff)) / maxDepthDiff);
+    if (depthDiff < maxDepthDiff) {
+      alpha = lerp(0, 1, 1 - abs(clamp(depthDiff, 0, maxDepthDiff)) / maxDepthDiff);
+    } else {
+      discard;
+    }
   }
 
   float4 oDiffuse = txAlbedo.Sample(samLinear, finalUV);
@@ -121,11 +125,15 @@ float4 PS_Particles_Mesh(
 
   float alpha = 1;
   
-  if(particleDepth >= zlinear){ //La particula esta detras
+  if (particleDepth >= zlinear) { //La particula esta detras
     float depthDiff = particleDepth - zlinear;
     float fadeDistance = 0.5;
     float maxDepthDiff = fadeDistance / camera_zfar;
-    alpha = lerp(0, 1, 1 - abs(clamp(depthDiff, 0, maxDepthDiff)) / maxDepthDiff);
+    if (depthDiff < maxDepthDiff) {
+      alpha = lerp(0, 1, 1 - abs(clamp(depthDiff, 0, maxDepthDiff)) / maxDepthDiff);
+    } else {
+      discard;
+    }
   }
 
   float4 oDiffuse = txAlbedo.Sample(samLinear, iTex0);
