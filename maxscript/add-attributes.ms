@@ -61,13 +61,13 @@ global movesData = attributes moveData (
 		auto type: #boolean ui:autoMove default:true
 		loop type: #boolean ui:loops    default:true
 		wait type: #float   ui:waitTime default:1.0 
-		spd  type: #float   ui:movSpeed default:0.3
+		spd  type: #float   ui:movSpeed default:0.1
 	)
 	rollout params "Movement Data" (
 		checkbox autoMove "Automove" 	   type: #boolean align:#right
 		checkbox loops 	  "Loops" 		   type: #boolean align:#right
 		spinner  waitTime "Wait time" 	   type: #float   range:[0, 100.0, 1.0] --min, max, initial value
-		spinner  movSpeed "Movement speed" type: #float   range:[0, 100.0, 0.3]
+		spinner  movSpeed "Movement speed" type: #float   range:[-100.0, 100.0, 0.1]
 	)
 )
 
