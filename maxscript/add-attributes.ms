@@ -37,7 +37,7 @@ global rotationsData = attributes rotateData (
 		z 		 type: #integer ui:zRot 	default:1 
 		rotSpeed type: #float   ui:rotSpeed default:0.5
 
-		rolSpeed type: #float   ui:rolSpeed default:5
+		rolSpeed type: #float   ui:rolSpeed default:0
 		wait 	 type: #float   ui:waitDur 	default:2
 		grup	 type: #integer ui:grup 	default:0
 	)

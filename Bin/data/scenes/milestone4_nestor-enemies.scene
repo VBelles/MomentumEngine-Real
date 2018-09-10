@@ -1,0 +1,110 @@
+[
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir032",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "82.9319 25.8063 -124.642",
+        "lookat": "-1.0 25.8063 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee033",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "37.5572 2.46091 -157.622",
+        "lookat": "-1.0 2.46091 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir031",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "5.35392 9.46727 -155.421",
+        "lookat": "-1.0 9.46727 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee032",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "23.8182 52.1893 -237.001",
+        "lookat": "-1.0 52.1893 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee031",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "34.0749 20.4801 -235.207",
+        "lookat": "-1.0 20.4801 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee030",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-18.6279 -8.71036 -166.651",
+        "lookat": "-1.0 -8.71036 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir030",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "86.6198 22.7915 -124.491",
+        "lookat": "-1.0 22.7915 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee029",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "61.6472 6.64035 -123.329",
+        "lookat": "-1.0 6.64035 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir029",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "36.5089 16.4582 -173.015",
+        "lookat": "-1.0 16.4582 -1.0"
+      }
+    }
+  }
+]
