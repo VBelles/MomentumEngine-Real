@@ -1,30 +1,38 @@
 [
   {
-    "entity": {
+    "entity":
+    {
       "name": "Plataformeo_hex008",
-      "transform": {
-        "pos": "36.1667 43.0 -12.5",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      "transform":
+      {
+        "pos": "130.096 57.8909 182.435",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
       },
-      "render": [
+      "render":
+      [
         {
           "mesh": "data/meshes/Plataformeo_hex008.mesh",
-          "materials": [
+          "materials":
+          [
             "data/materials/Material_#99.material"
           ],
           "enabled": true
         }
       ],
-      "collider": {
+      "collider":
+      {
         "mesh_src": "data/meshes/Plataformeo_hex008_collider.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
-        "group": [
+        "group":
+        [
           "scenario"
         ]
       },
-      "platform_simple": {
-        "roll": {
+      "platform_simple":
+      {
+        "roll":
+        {
           "speed": 7.0,
           "waitDuration": 2.0
         }
@@ -32,31 +40,39 @@
     }
   },
   {
-    "entity": {
+    "entity":
+    {
       "name": "Plataformeo_hex007",
-      "transform": {
-        "pos": "36.1667 43.0 -27.5",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      "transform":
+      {
+        "pos": "145.039 57.8909 181.128",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
       },
-      "render": [
+      "render":
+      [
         {
           "mesh": "data/meshes/Plataformeo_hex007.mesh",
-          "materials": [
+          "materials":
+          [
             "data/materials/Material_#99.material"
           ],
           "enabled": true
         }
       ],
-      "collider": {
+      "collider":
+      {
         "mesh_src": "data/meshes/Plataformeo_hex007_collider.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
-        "group": [
+        "group":
+        [
           "scenario"
         ]
       },
-      "platform_simple": {
-        "roll": {
+      "platform_simple":
+      {
+        "roll":
+        {
           "speed": 7.0,
           "waitDuration": 2.0
         }
@@ -64,31 +80,39 @@
     }
   },
   {
-    "entity": {
+    "entity":
+    {
       "name": "Plataformeo_hex006",
-      "transform": {
-        "pos": "36.6667 43.0 -42.5",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      "transform":
+      {
+        "pos": "160.025 57.8909 180.319",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
       },
-      "render": [
+      "render":
+      [
         {
           "mesh": "data/meshes/Plataformeo_hex006.mesh",
-          "materials": [
+          "materials":
+          [
             "data/materials/Material_#99.material"
           ],
           "enabled": true
         }
       ],
-      "collider": {
+      "collider":
+      {
         "mesh_src": "data/meshes/Plataformeo_hex006_collider.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
-        "group": [
+        "group":
+        [
           "scenario"
         ]
       },
-      "platform_simple": {
-        "roll": {
+      "platform_simple":
+      {
+        "roll":
+        {
           "speed": 7.0,
           "waitDuration": 2.0
         }
@@ -96,31 +120,39 @@
     }
   },
   {
-    "entity": {
+    "entity":
+    {
       "name": "Plataformeo_hex005",
-      "transform": {
-        "pos": "30.0368 43.2646 -20.0",
-        "rotation": "0.0 0.0 -1.0 0.0"
+      "transform":
+      {
+        "pos": "137.033 58.1555 175.675",
+        "rotation": "0.67559 0.0 -0.737277 0.0"
       },
-      "render": [
+      "render":
+      [
         {
           "mesh": "data/meshes/Plataformeo_hex005.mesh",
-          "materials": [
+          "materials":
+          [
             "data/materials/Material_#99.material"
           ],
           "enabled": true
         }
       ],
-      "collider": {
+      "collider":
+      {
         "mesh_src": "data/meshes/Plataformeo_hex005_collider.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
-        "group": [
+        "group":
+        [
           "scenario"
         ]
       },
-      "platform_simple": {
-        "roll": {
+      "platform_simple":
+      {
+        "roll":
+        {
           "speed": 7.0,
           "waitDuration": 2.0
         }
@@ -128,31 +160,39 @@
     }
   },
   {
-    "entity": {
+    "entity":
+    {
       "name": "Plataformeo_hex004",
-      "transform": {
-        "pos": "30.0368 43.2646 -35.0",
-        "rotation": "0.0 0.0 -1.0 0.0"
+      "transform":
+      {
+        "pos": "151.976 58.1555 174.368",
+        "rotation": "0.67559 0.0 -0.737277 0.0"
       },
-      "render": [
+      "render":
+      [
         {
           "mesh": "data/meshes/Plataformeo_hex004.mesh",
-          "materials": [
+          "materials":
+          [
             "data/materials/Material_#99.material"
           ],
           "enabled": true
         }
       ],
-      "collider": {
+      "collider":
+      {
         "mesh_src": "data/meshes/Plataformeo_hex004_collider.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
-        "group": [
+        "group":
+        [
           "scenario"
         ]
       },
-      "platform_simple": {
-        "roll": {
+      "platform_simple":
+      {
+        "roll":
+        {
           "speed": 7.0,
           "waitDuration": 2.0
         }
@@ -160,31 +200,39 @@
     }
   },
   {
-    "entity": {
+    "entity":
+    {
       "name": "Plataformeo_hex003",
-      "transform": {
-        "pos": "30.0368 43.2646 -50.0",
-        "rotation": "0.0 0.0 -1.0 0.0"
+      "transform":
+      {
+        "pos": "166.919 58.1555 173.06",
+        "rotation": "0.67559 0.0 -0.737277 0.0"
       },
-      "render": [
+      "render":
+      [
         {
           "mesh": "data/meshes/Plataformeo_hex003.mesh",
-          "materials": [
+          "materials":
+          [
             "data/materials/Material_#99.material"
           ],
           "enabled": true
         }
       ],
-      "collider": {
+      "collider":
+      {
         "mesh_src": "data/meshes/Plataformeo_hex003_collider.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
-        "group": [
+        "group":
+        [
           "scenario"
         ]
       },
-      "platform_simple": {
-        "roll": {
+      "platform_simple":
+      {
+        "roll":
+        {
           "speed": 7.0,
           "waitDuration": 2.0
         }

@@ -6,7 +6,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "30.0 43.0 -4.0"
+        "pos": "121.09 57.8909 177.033"
       }
     }
   },
@@ -17,7 +17,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "35.0 43.0 -4.0"
+        "pos": "121.526 57.8909 182.014"
       }
     }
   },
@@ -28,7 +28,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "40.0 43.0 -4.0"
+        "pos": "121.962 57.8909 186.995"
       }
     }
   },
@@ -39,7 +39,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "22.0 35.0 5.0"
+        "pos": "111.428 49.8909 169.848"
       }
     }
   },
@@ -50,7 +50,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "25.5 30.0 5.0"
+        "pos": "111.733 44.8909 173.334"
       }
     }
   },
@@ -61,7 +61,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "21.0 9.0 0.0"
+        "pos": "116.321 23.8909 168.416"
       }
     }
   },
@@ -72,7 +72,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "13.5 4.5 0.0"
+        "pos": "115.668 19.3909 160.944"
       }
     }
   }
