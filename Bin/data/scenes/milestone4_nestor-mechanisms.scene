@@ -1,0 +1,66 @@
+[
+  {
+    "entity":
+    {
+      "name": "nes_mech001",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "69.8053 9.18995 -115.458",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 15.0,
+        "reactivationTime": 3.0,
+        "isResettable": true,
+        "systems":
+        [
+           "nes_torre_mesh039"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_mesh039",
+      "transform":
+      {
+        "pos": "38.1063 27.2459 -122.956",
+        "rotation": "0.298836 -0.298836 0.640857 -0.640856"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_mesh039.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_mesh_COLLIDER040.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  }
+]
