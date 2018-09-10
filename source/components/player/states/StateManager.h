@@ -109,11 +109,7 @@ public:
 	TCompHitboxes* getHitboxes();
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
-	TCompSlash* getSlash(SlashType type);
-	TCompParticles* getSlashClockwise();
-	TCompParticles* getSlashCounterClockwise();
-	TCompParticles* getSlashStrong3();
-	TCompParticles* getSlashVertical();
+	TCompSlash* getTrailSlash(SlashType type);
 
 	bool isChangingBaseState = false;
 	bool isChangingConcurrentState = false;

@@ -20,7 +20,7 @@ struct TRigidAnimExporter (
 	project_path = "",
 	base_path = "data/",
 	anims_path = base_path + "anims/",
-	
+
 	-- ----------------------------------------------------------
 	fn writeFixedStr fs str max_bytes = (
 		-- Write the vertex type as 32 bytes string with zero paddings
@@ -28,7 +28,7 @@ struct TRigidAnimExporter (
 		WriteString fs str
 		for i = str.count + 1 to ( max_bytes - 1 ) do WriteByte fs 0
 	),
-	
+
 	-- ----------------------------------------------------------
 	fn writeKey fs k = (
 		writeFloat fs k.pos.x
@@ -38,9 +38,9 @@ struct TRigidAnimExporter (
 		writeFloat fs k.rot.x
 		writeFloat fs k.rot.y
 		writeFloat fs k.rot.z
-		writeFloat fs k.rot.w
+		writeFloat fs -k.rot.w
 	),
-		
+
 	-- ----------------------------------------------------------
 	fn expandLimits curr_limits keys = (
 		if keys.count > 0 then (
@@ -51,7 +51,7 @@ struct TRigidAnimExporter (
 		)
 		return curr_limits
 	),
-	
+
 	fn getTracksKeys obj fps = (
 		local keys = #()
 		local limits = [ 100000f,-100000f ]
@@ -59,7 +59,8 @@ struct TRigidAnimExporter (
 		limits = expandLimits limits obj.scale.controller.keys
 		limits = expandLimits limits obj.rotation.controller[1].keys
 		
-		format "Limits of % are %\n" obj.name limits
+		local dt = 1.0 / fps * frameRate
+		format "Limits of % are %. Delta is %\n" obj.name limits dt
 		
 		local mcv_position = maxPosToMcv obj.position
 		
@@ -71,12 +72,14 @@ struct TRigidAnimExporter (
 				local mcv_transform = maxRotToMcv obj.transform
 				
 				k.pos = maxPosToMcv obj.pos 
-				k.rot = inverse mcv_transform
+				k.rot = mcv_transform
 				k.scale = obj.scale.x
 			)
 			append keys k
-			t += 1.0 / fps
+			t += dt
 		)
+		format "Track has % keys\n" keys.count
+
 		struct track_info ( keys, limits )
 		local tinfo = track_info()
 		tinfo.keys = keys
@@ -91,9 +94,10 @@ struct TRigidAnimExporter (
 		t.track_name = obj.name
 		t.keys = track_info.keys
 		local frames_to_second = 1.0 / (float) frameRate
+		format "fps % frameRate %\n" frames_to_second frameRate
 		t.begin_time = (track_info.limits.x as integer ) * frames_to_second
 		t.end_time = (track_info.limits.y as integer) * frames_to_second
-		format "Track % has length %\n" t.track_name t.end_time
+		format "Track % (%) has length %..%s\n" t.track_name track_info.limits t.begin_time t.end_time
 		return t
 	),
 

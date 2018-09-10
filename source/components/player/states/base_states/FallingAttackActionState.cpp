@@ -45,10 +45,10 @@ void FallingAttackActionState::update(float delta) {
 
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(12)) {
 		isSlashOut = true;
-		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
-		getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
-		getSlash(SlashType::LEFT_TENTACLE_SHORT)->setEnable(true);
-		getSlash(SlashType::RIGHT_TENTACLE_SHORT)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_TENTACLE_SHORT)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_TENTACLE_SHORT)->setEnable(true);
 	}
 }
 
@@ -75,10 +75,10 @@ void FallingAttackActionState::onStateExit(IActionState * nextState) {
 	}
 	getPlayerModel()->resetGravity();
 	isSlashOut = false;
-	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
-	getSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
-	getSlash(SlashType::RIGHT_TENTACLE_SHORT)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_TENTACLE_SHORT)->stopEmitting();
+	getTrailSlash(SlashType::RIGHT_TENTACLE_SHORT)->stopEmitting();
 }
 
 void FallingAttackActionState::onDodgeButton() {

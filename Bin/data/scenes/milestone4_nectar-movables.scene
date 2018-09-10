@@ -2,16 +2,16 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma135",
+      "name": "nes_plataforma137",
       "transform":
       {
-        "pos": "-23.0711 2.90689 -179.701",
+        "pos": "42.9433 33.0228 -119.454",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma135.mesh",
+          "mesh": "data/meshes/nes_plataforma137.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -21,7 +21,111 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider135.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider137.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.185538,
+        "travel_wait_time": 0.0,
+        "speed": 0.08,
+        "knots":
+        [
+           "36.2737 32.9846 -119.246",
+           "39.0855 32.9846 -113.216",
+           "39.0855 32.9846 -113.216",
+           "42.3037 32.9846 -122.057",
+           "33.4618 32.9846 -125.276",
+           "30.2436 32.9846 -116.434",
+           "30.2436 32.9846 -116.434"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma136",
+      "transform":
+      {
+        "pos": "29.8862 33.0228 -118.85",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma136.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_collider136.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.690392,
+        "travel_wait_time": 0.0,
+        "speed": 0.08,
+        "knots":
+        [
+           "36.2735 32.9846 -119.246",
+           "39.0853 32.9846 -113.216",
+           "39.0853 32.9846 -113.216",
+           "42.3035 32.9846 -122.058",
+           "33.4616 32.9846 -125.276",
+           "30.2434 32.9846 -116.434",
+           "30.2434 32.9846 -116.434"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma135",
+      "transform":
+      {
+        "pos": "-23.0711 2.90689 -179.701",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma135.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_collider135.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -54,7 +158,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma134",
+      "name": "nes_plataforma134",
       "transform":
       {
         "pos": "-29.9219 2.90689 -185.848",
@@ -63,7 +167,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma134.mesh",
+          "mesh": "data/meshes/nes_plataforma134.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -73,7 +177,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider134.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider134.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -106,7 +210,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma133",
+      "name": "nes_plataforma133",
       "transform":
       {
         "pos": "-36.1282 2.90689 -179.097",
@@ -115,7 +219,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma133.mesh",
+          "mesh": "data/meshes/nes_plataforma133.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -125,7 +229,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider133.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider133.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -158,7 +262,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma132",
+      "name": "nes_plataforma132",
       "transform":
       {
         "pos": "-29.4201 2.90689 -172.917",
@@ -167,7 +271,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma132.mesh",
+          "mesh": "data/meshes/nes_plataforma132.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -177,7 +281,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider132.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider132.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -210,7 +314,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma131",
+      "name": "nes_plataforma131",
       "transform":
       {
         "pos": "-23.0711 10.4095 -179.701",
@@ -219,7 +323,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma131.mesh",
+          "mesh": "data/meshes/nes_plataforma131.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -229,7 +333,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider131.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider131.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -262,7 +366,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma130",
+      "name": "nes_plataforma130",
       "transform":
       {
         "pos": "-29.9219 10.4095 -185.848",
@@ -271,7 +375,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma130.mesh",
+          "mesh": "data/meshes/nes_plataforma130.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -281,7 +385,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider130.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider130.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -314,7 +418,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma129",
+      "name": "nes_plataforma129",
       "transform":
       {
         "pos": "-36.1282 10.4095 -179.097",
@@ -323,7 +427,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma129.mesh",
+          "mesh": "data/meshes/nes_plataforma129.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -333,7 +437,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider129.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider129.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -366,7 +470,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma128",
+      "name": "nes_plataforma128",
       "transform":
       {
         "pos": "-29.4201 10.4095 -172.917",
@@ -375,7 +479,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma128.mesh",
+          "mesh": "data/meshes/nes_plataforma128.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -385,7 +489,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider128.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider128.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -418,7 +522,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma127",
+      "name": "nes_plataforma127",
       "transform":
       {
         "pos": "-4.36221 6.69442 -188.638",
@@ -427,7 +531,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma127.mesh",
+          "mesh": "data/meshes/nes_plataforma127.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -437,7 +541,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider127.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider127.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -470,7 +574,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma126",
+      "name": "nes_plataforma126",
       "transform":
       {
         "pos": "-11.213 6.69442 -194.785",
@@ -479,7 +583,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma126.mesh",
+          "mesh": "data/meshes/nes_plataforma126.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -489,7 +593,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider126.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider126.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -522,7 +626,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma125",
+      "name": "nes_plataforma125",
       "transform":
       {
         "pos": "-17.4193 6.69442 -188.034",
@@ -531,7 +635,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma125.mesh",
+          "mesh": "data/meshes/nes_plataforma125.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -541,7 +645,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider125.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider125.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -574,7 +678,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma124",
+      "name": "nes_plataforma124",
       "transform":
       {
         "pos": "-10.7112 6.69442 -181.854",
@@ -583,7 +687,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma124.mesh",
+          "mesh": "data/meshes/nes_plataforma124.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -593,7 +697,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider124.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider124.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -626,7 +730,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma123",
+      "name": "nes_plataforma123",
       "transform":
       {
         "pos": "-4.36221 -1.03384 -188.638",
@@ -635,7 +739,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma123.mesh",
+          "mesh": "data/meshes/nes_plataforma123.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -645,7 +749,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider123.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider123.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -678,7 +782,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma122",
+      "name": "nes_plataforma122",
       "transform":
       {
         "pos": "-11.213 -1.03384 -194.785",
@@ -687,7 +791,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma122.mesh",
+          "mesh": "data/meshes/nes_plataforma122.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -697,7 +801,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider122.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider122.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -730,7 +834,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma121",
+      "name": "nes_plataforma121",
       "transform":
       {
         "pos": "-17.4193 -1.03384 -188.034",
@@ -739,7 +843,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma121.mesh",
+          "mesh": "data/meshes/nes_plataforma121.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -749,7 +853,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider121.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider121.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -782,7 +886,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma120",
+      "name": "nes_plataforma120",
       "transform":
       {
         "pos": "-10.7112 -1.03384 -181.854",
@@ -791,7 +895,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma120.mesh",
+          "mesh": "data/meshes/nes_plataforma120.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -801,7 +905,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider120.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider120.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -834,7 +938,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma119",
+      "name": "nes_plataforma119",
       "transform":
       {
         "pos": "-23.0711 -4.72872 -179.701",
@@ -843,7 +947,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma119.mesh",
+          "mesh": "data/meshes/nes_plataforma119.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -853,7 +957,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider119.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider119.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -886,7 +990,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma118",
+      "name": "nes_plataforma118",
       "transform":
       {
         "pos": "-29.9219 -4.72872 -185.848",
@@ -895,7 +999,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma118.mesh",
+          "mesh": "data/meshes/nes_plataforma118.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -905,7 +1009,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider118.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider118.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -938,7 +1042,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma117",
+      "name": "nes_plataforma117",
       "transform":
       {
         "pos": "-36.1282 -4.72872 -179.097",
@@ -947,7 +1051,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma117.mesh",
+          "mesh": "data/meshes/nes_plataforma117.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -957,7 +1061,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider117.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider117.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -990,7 +1094,7 @@
   {
     "entity":
     {
-      "name": "ms3_plataforma116",
+      "name": "nes_plataforma116",
       "transform":
       {
         "pos": "-29.4201 -4.72872 -172.917",
@@ -999,7 +1103,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ms3_plataforma116.mesh",
+          "mesh": "data/meshes/nes_plataforma116.mesh",
           "materials":
           [
             "data/materials/Material_#99.material"
@@ -1009,7 +1113,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/ms3_plataforma_collider116.col_mesh",
+        "mesh_src": "data/meshes/nes_plataforma_collider116.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":

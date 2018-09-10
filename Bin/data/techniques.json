@@ -322,7 +322,7 @@
     "ps_entry_point": "PS_Particles", 
     "vertex_type" : "PosClr", 
     "category" : "particles", 
-    "z" : "test_but_no_write", 
+    "z" : "disable_all", 
     "rs_config" : "cull_none", 
     "blend" : "additive_by_src_alpha",
     "priority": 60    
@@ -346,7 +346,7 @@
     "ps_entry_point": "PS_Particles", 
     "vertex_type" : "PosClr", 
     "category" : "particles", 
-    "z" : "test_but_no_write", 
+    "z" : "disable_all", 
     "rs_config" : "cull_none", 
     "blend" : "additive_by_src_alpha",
     "priority": 60    
@@ -358,7 +358,7 @@
     "ps_entry_point": "PS_Particles_Mesh",
     "vertex_type" : "PosNUvUvT", 
     "category" : "particles",
-    "z" : "test_but_no_write", 
+    "z" : "disable_all", 
     "blend" : "combinative",
     "rs_config" : "cull_none",
     "priority": 60    
@@ -370,7 +370,7 @@
     "ps_entry_point": "PS_Particles_Mesh",
     "vertex_type" : "PosNUvUvT", 
     "category" : "particles",
-    "z" : "test_but_no_write", 
+    "z" : "disable_all", 
     "blend" : "additive_by_src_alpha",
     "rs_config" : "cull_none",
     "priority": 60    

@@ -17,7 +17,7 @@ private:
 
 	float timeToRespawnCoin = 30.f;
 	int maxCoins = 48;
-	int lifePiecesPerHeart = 2;
+	int lifePiecesPerHeart = 1;
 
 public:
 	DECL_SIBLING_ACCESS();

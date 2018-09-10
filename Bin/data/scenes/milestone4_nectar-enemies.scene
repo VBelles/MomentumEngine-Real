@@ -2,7 +2,19 @@
   {
     "entity":
     {
-      "name": "ms3_enemyMelee029",
+      "name": "nes_enemyAir030",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "85.1609 22.7915 -124.53",
+        "lookat": "-1.0 22.7915 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee029",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
@@ -14,7 +26,7 @@
   {
     "entity":
     {
-      "name": "ms3_enemyAir029",
+      "name": "nes_enemyAir029",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {

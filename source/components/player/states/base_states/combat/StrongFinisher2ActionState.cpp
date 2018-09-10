@@ -69,14 +69,14 @@ void StrongFinisher2ActionState::update(float delta) {
 
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(28)) {
 		isSlashOut = true;
-		getSlash(SlashType::LEFT_HAND)->setEnable(true);
-		getSlash(SlashType::RIGHT_HAND)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_HAND)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_HAND)->setEnable(true);
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(42)) {
 		isSlashOut = false;
-		getSlash(SlashType::LEFT_HAND)->stopEmitting();
-		getSlash(SlashType::RIGHT_HAND)->stopEmitting();
+		getTrailSlash(SlashType::LEFT_HAND)->stopEmitting();
+		getTrailSlash(SlashType::RIGHT_HAND)->stopEmitting();
 	}
 }
 
@@ -96,8 +96,8 @@ void StrongFinisher2ActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
-	getSlash(SlashType::LEFT_HAND)->stopEmitting();
-	getSlash(SlashType::RIGHT_HAND)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_HAND)->stopEmitting();
+	getTrailSlash(SlashType::RIGHT_HAND)->stopEmitting();
 }
 
 void StrongFinisher2ActionState::setMovementInput(VEC2 input) {

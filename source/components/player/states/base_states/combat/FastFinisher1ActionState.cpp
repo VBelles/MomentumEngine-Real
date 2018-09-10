@@ -69,12 +69,12 @@ void FastFinisher1ActionState::update(float delta) {
 
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24)) {
 		isSlashOut = true;
-		getSlash(SlashType::RIGHT_FOOT)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_FOOT)->setEnable(true);
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
 		isSlashOut = false;
-		getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+		getTrailSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 	}
 }
 
@@ -94,7 +94,7 @@ void FastFinisher1ActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
-	getSlash(SlashType::RIGHT_FOOT)->stopEmitting();
+	getTrailSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 
 void FastFinisher1ActionState::setMovementInput(VEC2 input) {

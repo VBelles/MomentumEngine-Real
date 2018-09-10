@@ -2,6 +2,230 @@
   {
     "entity":
     {
+      "name": "plataforma_roca009",
+      "transform":
+      {
+        "pos": "245.451 -8.01712 -83.8705",
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_roca009.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataforma_roca_collider009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.0210344,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "246.359 -7.51008 -77.0397",
+           "246.359 -7.51008 -84.1593",
+           "246.359 -7.51008 -84.1593",
+           "253.479 -7.51008 -77.0397",
+           "246.359 -7.51008 -69.9201",
+           "239.24 -7.51008 -77.0397",
+           "239.24 -7.51008 -77.0397"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataforma_roca008",
+      "transform":
+      {
+        "pos": "269.241 -8.01712 -70.4831",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_roca008.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataforma_roca_collider008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.0210344,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "262.41 -7.51008 -69.5751",
+           "269.53 -7.51008 -69.5751",
+           "269.53 -7.51008 -69.5751",
+           "262.41 -7.51008 -76.6947",
+           "255.291 -7.51008 -69.5751",
+           "262.41 -7.51008 -62.4555",
+           "262.41 -7.51008 -62.4555"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_151",
+      "transform":
+      {
+        "pos": "116.893 13.091 -95.4825",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushroom_head_151.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_head_06.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_150",
+      "transform":
+      {
+        "pos": "115.499 13.1443 -95.9304",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushroom_head_150.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_head_05.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_131",
+      "transform":
+      {
+        "pos": "116.75 12.3956 -95.5031",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushroom_body_131.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_06.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_130",
+      "transform":
+      {
+        "pos": "116.085 12.421 -95.6977",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushroom_body_130.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_05.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "fireplace_001",
+      "transform":
+      {
+        "pos": "11.3779 1.35455 -15.2073",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/fireplace_001.mesh",
+          "materials":
+          [
+            "data/materials/m_fireplace_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/fireplace_collider_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "mushroom_head_149",
       "transform":
       {
@@ -1453,10 +1677,30 @@
       {
         "mesh_src": "data/meshes/plataforma_roca_collider007.col_mesh",
         "shape": "convex_mesh",
-        "type": "static",
+        "type": "kinematic",
         "group":
         [
           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.0210343,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "252.282 -7.51008 -55.0154",
+           "245.162 -7.51008 -55.0154",
+           "245.162 -7.51008 -55.0154",
+           "252.282 -7.51008 -47.8959",
+           "259.401 -7.51008 -55.0154",
+           "252.282 -7.51008 -62.135",
+           "252.282 -7.51008 -62.135"
         ]
       }
     }
@@ -3622,50 +3866,6 @@
   {
     "entity":
     {
-      "name": "mushroom_head_088",
-      "transform":
-      {
-        "pos": "117.118 12.9449 -95.2424",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_088.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_087",
-      "transform":
-      {
-        "pos": "115.752 13.375 -95.5506",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_087.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "mushroom_body_074",
       "transform":
       {
@@ -3701,50 +3901,6 @@
           "materials":
           [
             "data/materials/mushroom_body_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_072",
-      "transform":
-      {
-        "pos": "116.805 12.3099 -95.2958",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_072.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_071",
-      "transform":
-      {
-        "pos": "116.154 12.5133 -95.4238",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_071.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
         }

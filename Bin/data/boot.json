@@ -2,13 +2,15 @@
   "boot_scenes": [
     "data/scenes/game_camera.scene",
     "data/scenes/player.scene",
+    "data/scenes/player_trail_slash.scene",
     "data/scenes/lights.scene",
     "data/scenes/sky.scene",
-    "data/scenes/slash.scene",
     "data/scenes/milestone4-0.scene",
     "data/scenes/milestone4-instancing.scene",
     "data/scenes/milestone4_dani-0.scene",
     "data/scenes/milestone4_dani-chrysalis.scene",
+    "data/scenes/milestone4_dani-life_pieces.scene",
+    "data/scenes/milestone4_dani-coins.scene",
     "data/scenes/milestone4_dani-triggers.scene",
     "data/scenes/milestone4_dani-trimesh.scene",
 
@@ -29,18 +31,18 @@
     "data/scenes/milestone4_nectar-enemies.scene",
     "data/scenes/milestone4_nectar-movables.scene",
     "data/scenes/milestone4_nectar-pure.scene",
+    "data/scenes/milestone4_nectar-spikes.scene",
 
     "data/scenes/ambiental_particles.scene",
     "data/scenes/test_gorila.scene"
-    
   ],
   "unused_scenes": [
     "data/scenes/plataformeo.scene",
     "data/scenes/plataformeo01.scene",
+    "data/scenes/test_particles.scene",            
     "data/scenes/prefabs-0.scene",
     "data/scenes/prefabs-trimesh.scene",
     "data/scenes/test_instancing.scene",
-    "data/scenes/test_particles.scene",            
     "data/scenes/test_spikes.scene",
     "data/scenes/milestone3-0.scene",
     "data/scenes/milestone3-breakables.scene",

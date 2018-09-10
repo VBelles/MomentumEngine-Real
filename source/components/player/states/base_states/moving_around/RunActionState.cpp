@@ -80,15 +80,15 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 	EngineParticles.launchSystem("data/particles/dust.particles", Particles::LaunchConfig{ getEntity(), "", VEC3(0, 0.15, 0) });
 
 	if (hasSlash) {
-		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
-		getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
 	}
 }
 
 void RunActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }
 
 void RunActionState::onSpendCoinsButton() {
@@ -101,19 +101,19 @@ void RunActionState::onLevelChange(int powerLevel) {
 		getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	}
 
-	if (powerLevel == 3) {
+	/*if (powerLevel == 3) {
 		hasSlash = true;
 		if (stateManager->getState()->state == Run) {
-			getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
-			getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+			getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+			getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
 		}
 	}
 	else {
 		hasSlash = false;
 		if (stateManager->getState()->state == Run) {
-			getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-			getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+			getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+			getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 		}
-	}
+	}*/
 
 }

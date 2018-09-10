@@ -3,7 +3,6 @@
 #include "utils/data_provider.h"
 #include "components/comp_transform.h"
 
-// ----------------------------------------------
 class CRigidAnimResourceClass : public CResourceClass {
 public:
 	CRigidAnimResourceClass() {
@@ -28,9 +27,7 @@ const CResourceClass* getResourceClassOf<RigidAnims::CRigidAnimResource>() {
 }
 
 namespace RigidAnims {
-
 	struct THeader {
-
 		uint32_t magic = 0;
 		uint32_t version = 0;
 		uint32_t num_tracks = 0;
@@ -54,13 +51,11 @@ namespace RigidAnims {
 
 		// Try to load the file
 		CFileDataProvider fdp(name.c_str());
-		if (!fdp.isValid())
-			return false;
+		if (!fdp.isValid()) return false;
 
 		THeader header;
 		fdp.read(header);
-		if (!header.isValid())
-			return false;
+		if (!header.isValid()) return false;
 
 		tracks.resize(header.num_tracks);
 		fdp.readBytes(tracks.data(), tracks.size() * sizeof(TTrackInfo));
@@ -88,13 +83,12 @@ namespace RigidAnims {
 						for (int i = 0; i < t.num_keys; ++i) {
 							TKey k = keys[t.first_key + i];
 							ImGui::Text("pos: (%.3f, %.3f, %.3f) rot: (%.3f, %.3f, %.3f, %.3f) scale: %.2f",
-								k.pos.x, k.pos.y, k.pos.z,
-								k.rot.x, k.rot.y, k.rot.z, k.rot.w,
-								k.scale);
+										k.pos.x, k.pos.y, k.pos.z,
+										k.rot.x, k.rot.y, k.rot.z, k.rot.w,
+										k.scale);
 						}
 						ImGui::TreePop();
 					}
-
 					ImGui::TreePop();
 				}
 				ImGui::PopID();
@@ -110,8 +104,7 @@ namespace RigidAnims {
 	uint32_t CRigidAnimResource::findTrackIndexByName(const std::string& name) const {
 		uint32_t idx = 0;
 		for (auto& t : tracks) {
-			if (t.name == name)
-				return idx;
+			if (t.name == name) return idx;
 			++idx;
 		}
 		return CController::invalid_track_index;
@@ -123,8 +116,7 @@ namespace RigidAnims {
 
 	bool CRigidAnimResource::sample(uint32_t track_index, TKey* out_key, float t) const {
 		// asking for an invalid track, nothing to do.
-		if (track_index >= tracks.size())
-			return true;
+		if (track_index >= tracks.size()) return true;
 
 		auto track = &tracks[track_index];
 
@@ -132,7 +124,6 @@ namespace RigidAnims {
 
 		// If we only have one key, we are not really animated
 		if (track->num_keys > 1) {
-
 			float st = t;
 			// Here enter the animated objects.
 			if (t < track->min_time)
@@ -168,21 +159,20 @@ namespace RigidAnims {
 		float key_float_idx = (track->num_keys - 1) * ut;
 		int key_index = (int)key_float_idx;
 		float amount_of_next_key = key_float_idx - key_index;
-		
-		assert(key_index   < track->num_keys);
-		assert(key_index+1 < track->num_keys);
+
+		assert(key_index < track->num_keys);
+		assert(key_index + 1 < track->num_keys);
 
 		key_index += track->first_key;
 
 		assert(key_index < keys.size());
-		assert(key_index+1 < keys.size());
+		assert(key_index + 1 < keys.size());
 		auto prev_key = &keys[key_index];
 		auto next_key = &keys[key_index + 1];
 
 		out_key->pos = lerp(prev_key->pos, next_key->pos, amount_of_next_key);
-		out_key->rot = lerp(prev_key->rot, next_key->rot, amount_of_next_key);
+		out_key->rot = QUAT::Slerp(prev_key->rot, next_key->rot, amount_of_next_key);
 		out_key->scale = lerp(prev_key->scale, next_key->scale, amount_of_next_key);
 		return false;
 	}
-
 }

@@ -1,0 +1,14 @@
+[
+  {
+    "entity":
+    {
+      "name": "dani_life_piece_000",
+      "prefab": "data/prefabs/lifePiece.prefab",
+      "transform":
+      {
+        "pos": "159.784 51.4228 -76.2752",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]
