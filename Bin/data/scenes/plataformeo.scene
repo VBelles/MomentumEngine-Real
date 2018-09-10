@@ -179,7 +179,7 @@
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
         "pos": "36 43 -42.5",
-        "rotation": "0 0.258819 0 0.965926"
+        "rotation": "-0.258820 0 -0.965926 0"
       },
       "platform_simple": {
         "roll": {
@@ -229,7 +229,7 @@
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
         "pos": "36.5 43 -27.5",
-        "rotation": "0 0.258819 0 0.965926"
+        "rotation": "-0.258820 0 -0.965926 0"
       },
       "platform_simple": {
         "roll": {
@@ -279,7 +279,7 @@
       "prefab": "data/prefabs/plataforma_hex.prefab",
       "transform": {
         "pos": "36.5 43 -12.5",
-        "rotation": "0 0.258819 0 0.965926"
+        "rotation": "-0.258820 0 -0.965926 0"
       },
       "platform_simple": {
         "roll": {

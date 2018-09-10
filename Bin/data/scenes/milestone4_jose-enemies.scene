@@ -1,0 +1,206 @@
+[
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah016",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "113.881 93.3909 100.369",
+        "lookat": "-1.0 93.3909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah015",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "117.542 88.8909 102.057",
+        "lookat": "-1.0 88.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah014",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "118.414 88.8909 112.019",
+        "lookat": "-1.0 88.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah013",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "109.822 84.8909 122.809",
+        "lookat": "-1.0 84.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah012",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "117.43 72.8909 135.193",
+        "lookat": "-1.0 72.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah011",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "159.444 58.8909 173.677",
+        "lookat": "-1.0 58.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah010",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "144.501 58.8909 174.985",
+        "lookat": "-1.0 58.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah009",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "129.558 58.8909 176.292",
+        "lookat": "-1.0 58.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah008",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "123.008 74.8909 198.949",
+        "lookat": "-1.0 74.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah007",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "123.879 71.8909 208.911",
+        "lookat": "-1.0 71.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah006",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "123.967 62.8909 209.907",
+        "lookat": "-1.0 62.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah005",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "123.531 59.8909 204.926",
+        "lookat": "-1.0 59.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah004",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "122.834 56.8909 196.957",
+        "lookat": "-1.0 56.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah003",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "111.11 48.8909 167.366",
+        "lookat": "-1.0 48.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah002",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "111.415 43.8909 170.853",
+        "lookat": "-1.0 43.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah001",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "111.72 37.8909 174.339",
+        "lookat": "-1.0 37.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah000",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "115.973 19.8909 164.431",
+        "lookat": "-1.0 19.8909 -1.0"
+      }
+    }
+  }
+]

@@ -1,0 +1,218 @@
+[
+  {
+    "entity": {
+      "name": "Plataformeo_hex003_spikes",
+      "transform": {
+        "pos": "166.919 58.1555 173.06",
+        "rotation": "0.67559 0.0 -0.737277 0.0"
+      },
+      "hierarchy": {
+        "parent": "Plataformeo_hex003",
+        "pos": "0 -0.25 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials": [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex008_spikes",
+      "transform": {
+        "pos": "130.096 57.8909 182.435",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "hierarchy": {
+        "parent": "Plataformeo_hex008",
+        "pos": "0 -0.25 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials": [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex007_spikes",
+      "transform": {
+        "pos": "145.039 57.8909 181.128",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "hierarchy": {
+        "parent": "Plataformeo_hex007",
+        "pos": "0 -0.25 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials": [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex006_spikes",
+      "transform": {
+        "pos": "160.025 57.8909 180.319",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "hierarchy": {
+        "parent": "Plataformeo_hex006",
+        "pos": "0 -0.25 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials": [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex005_spikes",
+      "transform": {
+        "pos": "137.033 58.1555 175.675",
+        "rotation": "0.67559 0.0 -0.737277 0.0"
+      },
+      "hierarchy": {
+        "parent": "Plataformeo_hex005",
+        "pos": "0 -0.25 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials": [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Plataformeo_hex004_spikes",
+      "transform": {
+        "pos": "151.976 58.1555 174.368",
+        "rotation": "0.67559 0.0 -0.737277 0.0"
+      },
+      "hierarchy": {
+        "parent": "Plataformeo_hex004",
+        "pos": "0 -0.25 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials": [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider": {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group": [
+          "trigger"
+        ],
+        "mask": [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  }
+]
