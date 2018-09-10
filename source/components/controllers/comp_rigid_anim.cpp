@@ -2,6 +2,7 @@
 #include "comp_rigid_anim.h"
 #include "components/comp_transform.h"
 #include "entity/entity_parser.h"
+#include "geometry/rigid_anim.h"
 
 DECL_OBJ_MANAGER("rigid_anim", TCompRigidAnim);
 
@@ -17,8 +18,8 @@ void TCompRigidAnim::load(const json& j, TEntityParseContext& ctx) {
 	controller.track_index = controller.anims->findTrackIndexByName(controller.track_name);
 	assert(controller.track_index != RigidAnims::CController::invalid_track_index);
 	current_time = 0;
-	speed_factor = j.value("speed_factor", 1.0f);
-	loops = j.value("loops", true);
+	speed_factor = j.value("speed_factor", speed_factor);
+	loops = j.value("loops", loops);
 	is_moving = j.value("is_moving", is_moving);
 	killOnFinishAnimation = j.value("kill_on_finish", killOnFinishAnimation);
 }
@@ -28,6 +29,9 @@ void TCompRigidAnim::debugInMenu() {
 	ImGui::DragFloat("Speed Factor", &speed_factor, 0.01f, 0.f, 5.0f);
 	ImGui::Checkbox("Loops", &loops);
 	ImGui::Checkbox("Moving", &is_moving);
+	ImGui::Text("Track %d %s", controller.track_index, controller.track_name.c_str());
+	if (controller.anims)
+		((RigidAnims::CRigidAnimResource*) controller.anims)->debugInMenu();
 }
 
 void TCompRigidAnim::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -50,9 +54,7 @@ void TCompRigidAnim::setStopOnNextLoop(bool stop) {
 }
 
 void TCompRigidAnim::update(float dt) {
-
-	if (!is_moving)
-		return;
+	if (!is_moving) return;
 
 	updateAnimation();
 
@@ -72,6 +74,7 @@ void TCompRigidAnim::updateAnimation() {
 		* MAT44::CreateTranslation(initialTransform.getPosition());
 
 	TCompTransform* transform = get< TCompTransform >();
+	if (!transform) return;
 	transform->setScale(k.scale * initialTransform.getScale());
 	transform->setPosition(res.Translation());
 	transform->setRotation(QUAT::CreateFromRotationMatrix(res));
