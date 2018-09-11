@@ -2,26 +2,26 @@
   {
     "entity":
     {
-      "name": "plataforma_roca_grande_000",
+      "name": "platform_civilization_emissive_001",
       "transform":
       {
-        "pos": "18.1722 1.95336 -3.10901",
+        "pos": "5.2731 0.0982402 -2.78114",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/plataforma_roca_grande_000.mesh",
+          "mesh": "data/meshes/platform_civilization_emissive_001.mesh",
           "materials":
           [
-            "data/materials/platform_terrain_material.material"
+            "data/materials/platform_v1.material"
           ],
           "enabled": true
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/plataforma_roca_grande_col_000.col_mesh",
+        "mesh_src": "data/meshes/platform_civilization_emissive_col_001.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -34,26 +34,90 @@
   {
     "entity":
     {
-      "name": "plataforma_roca_000",
+      "name": "platform_civilization_001",
       "transform":
       {
-        "pos": "-4.44125 4.75378 -7.29224",
+        "pos": "5.2731 0.0982398 -11.1847",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/plataforma_roca_000.mesh",
+          "mesh": "data/meshes/platform_civilization_001.mesh",
           "materials":
           [
-            "data/materials/platform_terrain_material.material"
+            "data/materials/platform_v2.material"
           ],
           "enabled": true
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/plataforma_roca_col_000.col_mesh",
+        "mesh_src": "data/meshes/platform_civilization_col_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "platform_civilization_emissive_000",
+      "transform":
+      {
+        "pos": "15.9515 0.10083 -4.27216",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/platform_civilization_emissive_000.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/platform_civilization_emissive_col_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "platform_civilization_000",
+      "transform":
+      {
+        "pos": "15.9515 0.10083 -9.69381",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/platform_civilization_000.mesh",
+          "materials":
+          [
+            "data/materials/platform_v2.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/platform_civilization_col_000.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
