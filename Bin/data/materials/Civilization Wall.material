@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/civilization_BaseColor.dds",
+    "normal": "data/textures/civilization_Normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/civilization_roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/civilization_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
