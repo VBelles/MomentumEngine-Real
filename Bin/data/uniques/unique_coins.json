@@ -2,492 +2,373 @@
   "unique_coins":
   [
     {
-      "id": "plataformeo_coin006",
+      "id": "dani_coin_052",
       "done": false,
-      "position": "121.09 57.8909 177.033",
+      "position": "282.337 2.02721 -85.13",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin005",
+      "id": "dani_coin_051",
       "done": false,
-      "position": "121.526 57.8909 182.014",
+      "position": "257.383 -4.3711 -62.5288",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin004",
+      "id": "dani_coin_050",
       "done": false,
-      "position": "121.962 57.8909 186.995",
+      "position": "265.608 -0.440991 -93.5224",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin003",
+      "id": "dani_coin_049",
       "done": false,
-      "position": "111.428 49.8909 169.848",
+      "position": "47.5376 7.20184 -7.6595",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin002",
+      "id": "dani_coin_048",
       "done": false,
-      "position": "111.733 44.8909 173.334",
+      "position": "34.3692 3.47881 -12.9794",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin001",
+      "id": "dani_coin_047",
       "done": false,
-      "position": "116.321 23.8909 168.416",
+      "position": "47.6597 4.10216 -22.2252",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin000",
+      "id": "dani_coin_046",
       "done": false,
-      "position": "115.668 19.3909 160.944",
+      "position": "44.8515 8.73721 21.7023",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin006",
+      "id": "dani_coin_045",
       "done": false,
-      "position": "121.09 57.8909 177.033",
+      "position": "34.8478 4.2095 0.44371",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin005",
+      "id": "dani_coin_044",
       "done": false,
-      "position": "121.526 57.8909 182.014",
+      "position": "-28.8506 -3.38767 46.2667",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin004",
+      "id": "dani_coin_043",
       "done": false,
-      "position": "121.962 57.8909 186.995",
+      "position": "-32.6024 -2.07407 50.4665",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin003",
+      "id": "dani_coin_042",
       "done": false,
-      "position": "111.428 49.8909 169.848",
+      "position": "-37.5041 -0.310766 57.7588",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin002",
+      "id": "dani_coin_041",
       "done": false,
-      "position": "111.733 44.8909 173.334",
+      "position": "-4.29013 -4.64426 126.117",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin001",
+      "id": "dani_coin_040",
       "done": false,
-      "position": "116.321 23.8909 168.416",
+      "position": "-16.0142 -4.64426 131.567",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin000",
+      "id": "dani_coin_039",
       "done": false,
-      "position": "115.668 19.3909 160.944",
+      "position": "-13.9025 -4.64426 142.663",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin006",
+      "id": "dani_coin_038",
       "done": false,
-      "position": "121.09 57.8909 177.033",
+      "position": "5.2433 -4.64426 141.484",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin005",
+      "id": "dani_coin_037",
       "done": false,
-      "position": "121.526 57.8909 182.014",
+      "position": "-4.47858 -4.64426 147.726",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin004",
+      "id": "dani_coin_036",
       "done": false,
-      "position": "121.962 57.8909 186.995",
+      "position": "109.756 25.7918 82.3668",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin003",
+      "id": "dani_coin_035",
       "done": false,
-      "position": "111.428 49.8909 169.848",
+      "position": "107.912 23.7996 105.682",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin002",
+      "id": "dani_coin_034",
       "done": false,
-      "position": "111.733 44.8909 173.334",
+      "position": "83.1366 15.0045 133.62",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin001",
+      "id": "dani_coin_033",
       "done": false,
-      "position": "116.321 23.8909 168.416",
+      "position": "93.6325 19.5713 124.222",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin000",
+      "id": "dani_coin_032",
       "done": false,
-      "position": "115.668 19.3909 160.944",
+      "position": "23.7124 15.9081 69.8181",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin006",
+      "id": "dani_coin_031",
       "done": false,
-      "position": "121.09 57.8909 177.033",
+      "position": "29.2975 24.3669 68.7196",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin005",
+      "id": "dani_coin_030",
       "done": false,
-      "position": "121.526 57.8909 182.014",
+      "position": "31.9082 17.3981 62.2399",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin004",
+      "id": "dani_coin_029",
       "done": false,
-      "position": "121.962 57.8909 186.995",
+      "position": "153.185 27.3424 -106.064",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin003",
+      "id": "dani_coin_028",
       "done": false,
-      "position": "111.428 49.8909 169.848",
+      "position": "152.198 29.5768 -100.212",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin002",
+      "id": "dani_coin_027",
       "done": false,
-      "position": "111.733 44.8909 173.334",
+      "position": "162.721 34.2497 -100.358",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin001",
+      "id": "dani_coin_026",
       "done": false,
-      "position": "116.321 23.8909 168.416",
+      "position": "196.507 -8.91037 -56.6106",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin000",
+      "id": "dani_coin_025",
       "done": false,
-      "position": "115.668 19.3909 160.944",
+      "position": "197.35 -11.7005 -68.6323",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin006",
+      "id": "dani_coin_024",
       "done": false,
-      "position": "121.09 57.8909 177.033",
+      "position": "207.3 -14.508 -67.4205",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin005",
+      "id": "dani_coin_023",
       "done": false,
-      "position": "121.526 57.8909 182.014",
+      "position": "212.119 -14.508 -68.3887",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin004",
+      "id": "dani_coin_022",
       "done": false,
-      "position": "121.962 57.8909 186.995",
+      "position": "215.984 -14.5446 -66.4884",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin003",
+      "id": "dani_coin_021",
       "done": false,
-      "position": "111.428 49.8909 169.848",
+      "position": "216.436 5.45983 -43.9033",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin002",
+      "id": "dani_coin_020",
       "done": false,
-      "position": "111.733 44.8909 173.334",
+      "position": "220.97 -19.5077 -31.0545",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin001",
+      "id": "dani_coin_019",
       "done": false,
-      "position": "116.321 23.8909 168.416",
+      "position": "217.91 -19.5077 -32.6349",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin000",
+      "id": "dani_coin_018",
       "done": false,
-      "position": "115.668 19.3909 160.944",
+      "position": "215.618 -19.5077 -30.5167",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin006",
+      "id": "dani_coin_017",
       "done": false,
-      "position": "121.09 57.8909 177.033",
+      "position": "220.908 -19.5077 -27.1743",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin005",
+      "id": "dani_coin_016",
       "done": false,
-      "position": "121.526 57.8909 182.014",
+      "position": "217.578 -19.5077 -25.6553",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin004",
+      "id": "dani_coin_015",
       "done": false,
-      "position": "121.962 57.8909 186.995",
+      "position": "215.26 -19.5077 -27.1162",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin003",
+      "id": "dani_coin_014",
       "done": false,
-      "position": "111.428 49.8909 169.848",
+      "position": "181.362 6.26111 -72.0126",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin002",
+      "id": "dani_coin_013",
       "done": false,
-      "position": "111.733 44.8909 173.334",
+      "position": "215.284 -13.1501 -63.1346",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin001",
+      "id": "dani_coin_012",
       "done": false,
-      "position": "116.321 23.8909 168.416",
+      "position": "216.436 4.13126 -43.9033",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin000",
+      "id": "dani_coin_011",
       "done": false,
-      "position": "115.668 19.3909 160.944",
+      "position": "181.433 7.63431 -76.3235",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin006",
+      "id": "dani_coin_010",
       "done": false,
-      "position": "121.09 57.8909 177.033",
+      "position": "215.224 14.0869 -41.7391",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin005",
+      "id": "dani_coin_009",
       "done": false,
-      "position": "121.526 57.8909 182.014",
+      "position": "133.61 46.4184 -26.3783",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin004",
+      "id": "dani_coin_008",
       "done": false,
-      "position": "121.962 57.8909 186.995",
+      "position": "133.61 44.2919 -26.3783",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin003",
+      "id": "dani_coin_007",
       "done": false,
-      "position": "111.428 49.8909 169.848",
+      "position": "133.61 42.0916 -26.3783",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin002",
+      "id": "dani_coin_006",
       "done": false,
-      "position": "111.733 44.8909 173.334",
+      "position": "179.106 18.9148 -17.0331",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin001",
+      "id": "dani_coin_005",
       "done": false,
-      "position": "116.321 23.8909 168.416",
+      "position": "172.854 17.4857 -34.6021",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin000",
+      "id": "dani_coin_004",
       "done": false,
-      "position": "115.668 19.3909 160.944",
+      "position": "174.506 9.22899 -47.6981",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin006",
+      "id": "dani_coin_003",
       "done": false,
-      "position": "121.09 57.8909 177.033",
+      "position": "200.96 2.47011 -32.9933",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin005",
+      "id": "dani_coin_002",
       "done": false,
-      "position": "121.526 57.8909 182.014",
+      "position": "215.224 12.3986 -41.7391",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin004",
+      "id": "dani_coin_001",
       "done": false,
-      "position": "121.962 57.8909 186.995",
+      "position": "207.442 11.0943 -38.833",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "plataformeo_coin003",
+      "id": "dani_coin_000",
       "done": false,
-      "position": "111.428 49.8909 169.848",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin002",
-      "done": false,
-      "position": "111.733 44.8909 173.334",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin001",
-      "done": false,
-      "position": "116.321 23.8909 168.416",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin000",
-      "done": false,
-      "position": "115.668 19.3909 160.944",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin006",
-      "done": false,
-      "position": "121.09 57.8909 177.033",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin005",
-      "done": false,
-      "position": "121.526 57.8909 182.014",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin004",
-      "done": false,
-      "position": "121.962 57.8909 186.995",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin003",
-      "done": false,
-      "position": "111.428 49.8909 169.848",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin002",
-      "done": false,
-      "position": "111.733 44.8909 173.334",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin001",
-      "done": false,
-      "position": "116.321 23.8909 168.416",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin000",
-      "done": false,
-      "position": "115.668 19.3909 160.944",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin006",
-      "done": false,
-      "position": "121.09 57.8909 177.033",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin005",
-      "done": false,
-      "position": "121.526 57.8909 182.014",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin004",
-      "done": false,
-      "position": "121.962 57.8909 186.995",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin003",
-      "done": false,
-      "position": "111.428 49.8909 169.848",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin002",
-      "done": false,
-      "position": "111.733 44.8909 173.334",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin001",
-      "done": false,
-      "position": "116.321 23.8909 168.416",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "plataformeo_coin000",
-      "done": false,
-      "position": "115.668 19.3909 160.944",
+      "position": "208.651 5.02195 -31.1672",
       "level": "level00",
       "type": "coins"
     }
