@@ -2,6 +2,99 @@
   {
     "entity":
     {
+      "name": "dani_respawn_002",
+      "transform":
+      {
+        "pos": "40.1479 -13.5024 -12.8906",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_002.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "35.5956 2.05542 -1.5029",
+        "respawn_rotation": "0.0 -0.953717 0.0 -0.300706"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_respawn_001",
+      "transform":
+      {
+        "pos": "155.196 0.0 -56.6828",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_001.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "147.164 24.8396 -65.8465",
+        "respawn_rotation": "0.0 -0.573577 0.0 -0.819152"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_respawn_000",
+      "transform":
+      {
+        "pos": "91.9224 2.57642 110.902",
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_000.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "114.452 23.183 109.767",
+        "respawn_rotation": "0.0 -0.67559 0.0 -0.737277"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "outOfBounds": {},
       "name": "OutOfBounds000",
       "transform":

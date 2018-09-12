@@ -17,7 +17,8 @@
     "data/scenes/milestone4_dani-life_pieces.scene",
     "data/scenes/milestone4_dani-triggers.scene",
     "data/scenes/milestone4_dani-trimesh.scene",
-
+    "data/scenes/milestone4_dani-enemies.scene",
+    
     "data/scenes/milestone4_nestor-0.scene",
     "data/scenes/milestone4_nestor-chrysalis.scene",
     "data/scenes/milestone4_nestor-coins.scene",
@@ -29,7 +30,8 @@
     "data/scenes/milestone4_nestor-pure.scene",
     "data/scenes/milestone4_nestor-spikes.scene",
     "data/scenes/milestone4_nestor-triggers.scene",
-
+    "data/scenes/milestone4_nestor-life_pieces.scene",
+    
     "data/scenes/milestone4_jose-0.scene",
     "data/scenes/milestone4_jose-chrysalis.scene",
     "data/scenes/milestone4_jose-coins.scene",
@@ -40,6 +42,8 @@
     "data/scenes/milestone4_jose-spikes.scene",
     "data/scenes/milestone4_jose-trimesh.scene",
     
+    "data/scenes/milestone4_andrea-0.scene",
+
     "data/scenes/ambiental_particles.scene",
     "data/scenes/test_gorila.scene"
   ],

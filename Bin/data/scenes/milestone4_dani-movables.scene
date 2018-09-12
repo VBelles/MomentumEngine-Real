@@ -2,16 +2,16 @@
   {
     "entity":
     {
-      "name": "dani_plataforma_roca_005",
+      "name": "dani_plataforma_roca_008",
       "transform":
       {
-        "pos": "302.785 -4.69889 -58.66",
-        "rotation": "0.0 0.130526 0.0 -0.991445"
+        "pos": "246.182 -7.75978 -52.8081",
+        "rotation": "0.0 -0.939693 0.0 0.34202"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/dani_plataforma_roca_005.mesh",
+          "mesh": "data/meshes/dani_plataforma_roca_008.mesh",
           "materials":
           [
             "data/materials/platform_terrain_material.material"
@@ -21,7 +21,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/dani_plataforma_roca_col_005.col_mesh",
+        "mesh_src": "data/meshes/dani_plataforma_roca_col_008.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -35,70 +35,18 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.517607,
+        "move_offset": 0.0169439,
         "travel_wait_time": 1.0,
         "speed": 0.1,
         "knots":
         [
-           "296.83 -4.47663 -57.9984",
-           "289.71 -4.47663 -57.9984",
-           "289.71 -4.47663 -57.9984",
-           "296.83 -4.47663 -50.8789",
-           "303.949 -4.47663 -57.9984",
-           "296.83 -4.47663 -65.118",
-           "296.83 -4.47663 -65.118"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_plataforma_roca_006",
-      "transform":
-      {
-        "pos": "270.239 -7.75978 -72.3743",
-        "rotation": "0.0 0.130526 0.0 -0.991445"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_plataforma_roca_006.mesh",
-          "materials":
-          [
-            "data/materials/platform_terrain_material.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/dani_plataforma_roca_col_006.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "curve_type": "circular",
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.511718,
-        "travel_wait_time": 1.0,
-        "speed": 0.1,
-        "knots":
-        [
-           "264.169 -7.51008 -71.9267",
-           "257.05 -7.51008 -71.9267",
-           "257.05 -7.51008 -71.9267",
-           "264.169 -7.51008 -64.8071",
-           "271.289 -7.51008 -71.9267",
-           "264.169 -7.51008 -79.0462",
-           "264.169 -7.51008 -79.0462"
+           "252.763 -7.51008 -53.5115",
+           "245.644 -7.51008 -53.5115",
+           "245.644 -7.51008 -53.5115",
+           "252.763 -7.51008 -46.392",
+           "259.883 -7.51008 -53.5115",
+           "252.763 -7.51008 -60.6311",
+           "252.763 -7.51008 -60.6311"
         ]
       }
     }
@@ -158,16 +106,16 @@
   {
     "entity":
     {
-      "name": "dani_plataforma_roca_008",
+      "name": "dani_plataforma_roca_006",
       "transform":
       {
-        "pos": "246.182 -7.75978 -52.8081",
-        "rotation": "0.0 -0.939693 0.0 0.34202"
+        "pos": "270.239 -7.75978 -72.3743",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/dani_plataforma_roca_008.mesh",
+          "mesh": "data/meshes/dani_plataforma_roca_006.mesh",
           "materials":
           [
             "data/materials/platform_terrain_material.material"
@@ -177,7 +125,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/dani_plataforma_roca_col_008.col_mesh",
+        "mesh_src": "data/meshes/dani_plataforma_roca_col_006.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "group":
@@ -191,18 +139,70 @@
         "automove": true,
         "loop": true,
         "closed": true,
-        "move_offset": 0.0169439,
+        "move_offset": 0.511718,
         "travel_wait_time": 1.0,
         "speed": 0.1,
         "knots":
         [
-           "252.763 -7.51008 -53.5115",
-           "245.644 -7.51008 -53.5115",
-           "245.644 -7.51008 -53.5115",
-           "252.763 -7.51008 -46.392",
-           "259.883 -7.51008 -53.5115",
-           "252.763 -7.51008 -60.6311",
-           "252.763 -7.51008 -60.6311"
+           "264.169 -7.51008 -71.9267",
+           "257.05 -7.51008 -71.9267",
+           "257.05 -7.51008 -71.9267",
+           "264.169 -7.51008 -64.8071",
+           "271.289 -7.51008 -71.9267",
+           "264.169 -7.51008 -79.0462",
+           "264.169 -7.51008 -79.0462"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_plataforma_roca_005",
+      "transform":
+      {
+        "pos": "302.785 -4.69889 -58.66",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_plataforma_roca_005.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_plataforma_roca_col_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.517607,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "296.83 -4.47663 -57.9984",
+           "289.71 -4.47663 -57.9984",
+           "289.71 -4.47663 -57.9984",
+           "296.83 -4.47663 -50.8789",
+           "303.949 -4.47663 -57.9984",
+           "296.83 -4.47663 -65.118",
+           "296.83 -4.47663 -65.118"
         ]
       }
     }
