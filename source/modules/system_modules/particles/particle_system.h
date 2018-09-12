@@ -116,6 +116,7 @@ namespace Particles {
 		void forceEmission(int quantity);
 		CHandle getParticleEntityHandle();
 		void debugInMenu();
+		int getNbParticles();
 
 
 	};

@@ -1,0 +1,52 @@
+{
+    "life": {
+        "duration": 0.1,
+        "duration_variation": 0.01,
+        "max_particles": 3000,
+        "time_factor": 1.0
+    },
+    "emission": {
+        "type": "sphere",
+        "size": 0.1,
+        "count": 2,
+        "cyclic": true,
+        "radial": true,
+        "interval": 0.05
+    },
+    "movement": {
+        "velocity": 0,
+        "velocity_variation": 0.0,
+        "acceleration": 0.0,
+        "spin": 0,
+        "wind": 0.0,
+        "gravity": 0,
+        "initial_random_rotation": true,
+        "following": true
+    },
+    "render": {
+        "texture": "data/textures/particles/fire/fire.dds",
+        "additive": true,
+        "frame_size": "0.5 0.5",
+        "num_frames": 4,
+        "initial_random_frame": true,
+        "frame_speed": 0
+    },
+    "size": {
+        "scale": 0.3,
+        "scale_variation": 0.05,
+        "sizes": [
+            [0.0, 0.7],
+            [1.0, 1.5]
+        ]
+    },
+    "color": {
+        "opacity": 1,
+        "colors": [
+            [0.0, "1 1 1 0"],
+            [0.135, "0.38 0.83 1 1"],
+            [0.315,"0.082 0.36 1 1"],
+            [0.85,"0 0.15 1 1"],
+            [1, "0 0.1 1 0"]
+        ]
+    }
+}

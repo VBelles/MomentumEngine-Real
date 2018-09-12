@@ -14,7 +14,8 @@ void TCompParticles::debugInMenu() {
     if (_core) {
         ImGui::Text("Core: %s", _core->getName().c_str());
     }
-    ImGui::LabelText("Particles handle", "%d", _particles->getHandle());
+	ImGui::Text("Particles handle: %d", _particles->getHandle());
+	ImGui::Text("Particles count: %d", _particles->getNbParticles());
 }
 
 void TCompParticles::load(const json& j, TEntityParseContext& ctx) {

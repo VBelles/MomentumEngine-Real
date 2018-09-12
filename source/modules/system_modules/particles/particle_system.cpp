@@ -331,6 +331,10 @@ namespace Particles {
 		ImGui::Separator();
 	}
 
+	int CSystem::getNbParticles() {
+		return _particles.size();
+	}
+
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;
 

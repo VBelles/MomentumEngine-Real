@@ -437,5 +437,16 @@
 				"pitch": -20
 			}
 		}
+	},
+	{
+		"entity":{
+			"name": "attack_follow_particles",
+			"particles": {
+				"core": "data/particles/player/attack.particles",
+				"target": "The Player",
+				"bone": "Bip001 R Hand",
+				"offset": "0 0 0"
+			}
+		}
 	}
 ]
