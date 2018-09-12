@@ -1,28 +1,27 @@
 {
     "life": {
-        "duration": 0.1,
+        "duration": 0.4,
         "duration_variation": 0.01,
-        "max_particles": 20,
+        "max_particles": 100,
         "time_factor": 1.0
     },
     "emission": {
         "type": "sphere",
         "size": 0.1,
-        "count": 5,
+        "count": 100,
         "cyclic": false,
         "radial": true,
-        "interval": 0.05,
-        "duration": 0.4
+        "interval": 0
     },
     "movement": {
-        "velocity": 0,
-        "velocity_variation": 0.0,
+        "velocity": 2,
+        "velocity_variation": 0.05,
         "acceleration": 0.0,
         "spin": 0,
         "wind": 0.0,
         "gravity": 0,
         "initial_random_rotation": true,
-        "following": true
+        "following": false
     },
     "render": {
         "texture": "data/textures/particles/fire/fire.dds",
@@ -33,7 +32,7 @@
         "frame_speed": 0
     },
     "size": {
-        "scale": 0.3,
+        "scale": 1.0,
         "scale_variation": 0.05,
         "sizes": [
             [0.0, 0.7],

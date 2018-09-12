@@ -289,7 +289,7 @@ namespace Particles {
 			TParticle particle;
 			particle.localPosition = generatePosition();
 			particle.position = VEC3::Transform(particle.localPosition, world);
-			particle.velocity = generateVelocity(particle.position);
+			particle.velocity = generateVelocity(particle.localPosition);
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
@@ -307,7 +307,7 @@ namespace Particles {
 			TParticle particle;
 			particle.localPosition = generatePosition();
 			particle.position = VEC3::Transform(particle.localPosition, world);
-			particle.velocity = generateVelocity(particle.position);
+			particle.velocity = generateVelocity(particle.localPosition);
 			particle.color = _core->color.colors.get(0.f);
 			particle.size = _core->size.sizes.get(0.f);
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
@@ -379,7 +379,7 @@ namespace Particles {
 		const float velocity = _core->movement.velocity + random(-_core->movement.velocityVariation, _core->movement.velocityVariation);
 
 		if (_core->emission.radial) {
-			VEC3 dir = particlePosition - position;
+			VEC3 dir = particlePosition;
 			dir.Normalize();
 			return dir * velocity;
 		}

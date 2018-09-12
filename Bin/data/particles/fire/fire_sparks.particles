@@ -1,13 +1,13 @@
 {
     "life": {
-        "duration": 2,
+        "duration": 1.2,
         "duration_variation": 0.1,
         "max_particles": 100,
         "time_factor": 1.0
     },
     "emission": {
         "type": "square",
-        "size": 0.01,
+        "size": 0.2,
         "angle": 3,
         "interval": 0.05,
         "count": 1,
@@ -31,15 +31,16 @@
         "scale_variation": 0,
         "sizes": [
             [0.0, 1],
-            [1.0, 0.2]
+            [1.0, 0.3]
         ]
     },
     "color": {
         "opacity": 1,
         "colors": [
             [0.0," 1 1 1 0"],
-            [0.135," 1 0.83 0.38 0.8"],
-            [0.315," 1 0.36 0.082 1"],
+            [0.135," 1 1 1 0.8"],
+            [0.315," 1 1 0.5 1"],
+            [0.8," 1 1 0 1"],
             [1," 1 0.1 0 0"]
         ]
     }
