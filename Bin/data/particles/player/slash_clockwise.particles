@@ -13,7 +13,8 @@
   },
   "movement": {
     "spin": -1000,
-    "spin_axis": "0 0 1"
+    "spin_axis": "0 0 1",
+    "following": true
   },
   "render": {
     "mesh": "data/meshes/particle_slash_mirror.mesh",
