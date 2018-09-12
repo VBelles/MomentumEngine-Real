@@ -96,14 +96,14 @@ void StrongAttackActionState::update(float delta) {
 
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24)) {
 		isSlashOut = true;
-		getSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
-		getSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
 		isSlashOut = false;
-		getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-		getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+		getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+		getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 	}
 }
 
@@ -125,8 +125,8 @@ void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	AttackState::onStateExit(nextState); 
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
-	getSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
-	getSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
+	getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 }
 
 void StrongAttackActionState::onStrongAttackButton() {

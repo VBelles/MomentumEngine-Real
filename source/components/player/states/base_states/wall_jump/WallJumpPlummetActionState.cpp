@@ -35,8 +35,8 @@ void WallJumpPlummetActionState::update(float delta) {
 
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(2)) {
 		isSlashOut = true;
-		getSlash(SlashType::LEFT_HAND)->setEnable(true);
-		getSlash(SlashType::RIGHT_HAND)->setEnable(true);
+		getTrailSlash(SlashType::LEFT_HAND)->setEnable(true);
+		getTrailSlash(SlashType::RIGHT_HAND)->setEnable(true);
 	}
 }
 
@@ -65,8 +65,8 @@ void WallJumpPlummetActionState::onStateExit(IActionState * nextState) {
 	}
 
 	isSlashOut = false;
-	getSlash(SlashType::LEFT_HAND)->stopEmitting();
-	getSlash(SlashType::RIGHT_HAND)->stopEmitting();
+	getTrailSlash(SlashType::LEFT_HAND)->stopEmitting();
+	getTrailSlash(SlashType::RIGHT_HAND)->stopEmitting();
 }
 
 void WallJumpPlummetActionState::onJumpHighButton() {

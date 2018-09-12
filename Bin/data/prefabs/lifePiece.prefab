@@ -7,9 +7,9 @@
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/chrysalis.mesh",
+					"mesh": "data/meshes/life.mesh",
 					"materials": [
-						"data/materials/lila_coin.material"
+						"data/materials/life_01_material.material"
 					]
 				}
 			],

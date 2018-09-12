@@ -138,9 +138,9 @@
 				"locked_concurrent_states" :[
 				],
 				"particle_systems":[
-					"data/particles/player_power_2.particles",
-					"data/particles/player_power_2.particles",
-					"data/particles/player_power_3.particles"
+					"data/particles/player/player_power_2.particles",
+					"data/particles/player/player_power_2.particles",
+					"data/particles/player/player_power_3.particles"
 				]
 			},
 			"collider": {
@@ -406,7 +406,6 @@
 			}
 		}
 	},
-	
 	{
 		"entity": {
 			"name": "player_camera",
@@ -438,47 +437,5 @@
 				"pitch": -20
 			}
 		}
-	},
-	{
-		"entity": {
-			"name": "slash_clockwise",
-			"particles": {
-				"core": "data/particles/slash_clockwise.particles",
-				"offset": "0 1 0",
-				"target": "The Player"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "slash_counter_clockwise",
-			"particles": {
-				"core": "data/particles/slash_counter_clockwise.particles",
-				"offset": "0 1 0",
-				"target": "The Player"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "slash_strong_3",
-			"particles": {
-				"core": "data/particles/slash_strong_3.particles",
-				"offset": "0 1.3 0",
-				"target": "The Player"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "slash_vertical",
-			"particles": {
-				"core": "data/particles/slash_clockwise.particles",
-				"offset": "0 1 0",
-				"target": "The Player"
-			}
-		}
 	}
-
-	
 ]

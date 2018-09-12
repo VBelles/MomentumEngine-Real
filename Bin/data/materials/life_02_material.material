@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/life_2_BaseColor.dds",
+    "normal": "data/textures/life_2_Normal.dds",
+    "metallic": "data/textures/life_2_Metallic.dds",
+    "roughness": "data/textures/life_2_Roughness.dds",
+    "self_illum": "data/textures/life_2_Emissive.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

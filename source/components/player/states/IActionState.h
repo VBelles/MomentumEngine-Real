@@ -47,7 +47,7 @@ protected:
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
 	TCompCameraPlayer* getCameraPlayer();
-	TCompSlash* getSlash(SlashType type);
+	TCompSlash* getTrailSlash(SlashType type);
 
 
 	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
@@ -70,8 +70,6 @@ protected:
 	void updateSlopeAndStep(MoveState & moveState);
 
 	bool isStandingOnPlatform(MoveState & moveState);
-
-	void slash(TCompParticles* slash, float yaw = 0, float pitch = 0, float roll = 0);
 
 	void slash(std::string slash, VEC3 offset = VEC3::Zero, float yaw = 0, float pitch = 0, float roll = 0);
 

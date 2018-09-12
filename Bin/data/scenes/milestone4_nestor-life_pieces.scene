@@ -1,0 +1,38 @@
+[
+  {
+    "entity":
+    {
+      "name": "nes_life_piece002",
+      "prefab": "data/prefabs/lifePiece.prefab",
+      "transform":
+      {
+        "pos": "-3.58997 17.8129 -293.912",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_life_piece001",
+      "prefab": "data/prefabs/lifePiece.prefab",
+      "transform":
+      {
+        "pos": "84.4454 1.93946 -117.299",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_life_piece000",
+      "prefab": "data/prefabs/lifePiece.prefab",
+      "transform":
+      {
+        "pos": "36.377 47.3654 -119.037",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  }
+]

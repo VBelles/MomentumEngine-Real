@@ -2,6 +2,210 @@
   {
     "entity":
     {
+      "name": "mushroom_head_00_collider020",
+      "transform":
+      {
+        "pos": "323.939 -7.58247 -53.9023",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_00_collider020.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_00_collider016",
+      "transform":
+      {
+        "pos": "323.907 -12.459 -53.8891",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_body_00_collider016.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_columna_piezas_grande_capitel_col_002",
+      "transform":
+      {
+        "pos": "265.941 -4.83996 -93.7917",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_columna_piezas_grande_capitel_col_002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "estaca_emisivo_col_004",
+      "transform":
+      {
+        "pos": "-87.285 -6.77949 -153.382",
+        "rotation": "0.0 0.0334197 0.0 -0.999441"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/estaca_emisivo_col_004.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "estaca_emisivo_col_003",
+      "transform":
+      {
+        "pos": "-116.614 -0.396917 -120.829",
+        "rotation": "0.0 0.0334197 0.0 -0.999441"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/estaca_emisivo_col_003.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "estaca_emisivo_col_002",
+      "transform":
+      {
+        "pos": "-58.4669 -11.0109 137.474",
+        "rotation": "0.0 0.0334197 0.0 -0.999441"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/estaca_emisivo_col_002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "estaca_emisivo_col_001",
+      "transform":
+      {
+        "pos": "-92.3596 -11.0109 128.209",
+        "rotation": "0.0 0.0334197 0.0 -0.999441"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/estaca_emisivo_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_columna_piezas_grande_capitel_col_001",
+      "transform":
+      {
+        "pos": "235.328 -9.5325 -41.5148",
+        "rotation": "0.0 0.0 -0.0436194 -0.999048"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_columna_piezas_grande_capitel_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_06_collider021",
+      "transform":
+      {
+        "pos": "116.89 13.09 -95.4752",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_06_collider021.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_05_collider022",
+      "transform":
+      {
+        "pos": "115.496 13.1456 -95.9268",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_05_collider022.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_06_collider021",
+      "transform":
+      {
+        "pos": "116.751 12.3965 -95.4954",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_body_06_collider021.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_05_collider021",
+      "transform":
+      {
+        "pos": "116.064 12.4411 -95.7019",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_body_05_collider021.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "tapar_estropicio_004",
       "transform":
       {
@@ -2603,23 +2807,6 @@
   {
     "entity":
     {
-      "name": "mushroom_head_06_collider008",
-      "transform":
-      {
-        "pos": "117.115 12.9441 -95.2348",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mushroom_head_06_collider008.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "mushroom_head_04_collider011",
       "transform":
       {
@@ -2646,40 +2833,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/mushroom_head_03_collider014.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_06_collider008",
-      "transform":
-      {
-        "pos": "116.806 12.3098 -95.2881",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mushroom_body_06_collider008.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_05_collider008",
-      "transform":
-      {
-        "pos": "116.139 12.5382 -95.4247",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mushroom_body_05_collider008.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }

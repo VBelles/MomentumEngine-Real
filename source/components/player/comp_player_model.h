@@ -60,7 +60,7 @@ private:
 	PowerStats* powerStats[NUMBER_OF_POWER_LEVELS];
 	PowerStats* currentPowerStats = nullptr;
 
-	const float PLAYER_MAX_HP = 8.f;
+	const float PLAYER_MAX_HP = 5.f;
 	float maxHp = 0.f;
 	float hp = 0.f;
 

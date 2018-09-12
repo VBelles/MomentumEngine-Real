@@ -1,0 +1,125 @@
+[
+  {
+    "entity":
+    {
+      "name": "Plataformeo_hex011",
+      "transform":
+      {
+        "pos": "125.948 88.8909 106.34",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_hex011.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/Plataformeo_hex011.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_hex011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_hex010",
+      "transform":
+      {
+        "pos": "109.386 88.8909 117.828",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_hex010.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/Plataformeo_hex010.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_hex010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_hex009",
+      "transform":
+      {
+        "pos": "110.17 81.8909 126.793",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_hex009.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/Plataformeo_hex009.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_hex009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  }
+]

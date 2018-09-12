@@ -50,5 +50,9 @@
     {
         "name": "Ruinas torre",
         "pos": "56 6 -122"
+    },
+    {
+        "name": "Ruinas torre top columnas",
+        "pos": "18 53 -236"
     }
 ]

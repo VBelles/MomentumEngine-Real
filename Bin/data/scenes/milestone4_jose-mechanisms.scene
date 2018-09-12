@@ -1,0 +1,66 @@
+[
+  {
+    "entity":
+    {
+      "name": "plataformeo_mech000",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "117.953 79.8909 141.17",
+        "rotation": "0.477714 0.477714 -0.521334 -0.521334"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "plataformeo_hex_mechsys_000"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_hex_mechsys_000",
+      "transform":
+      {
+        "pos": "116.994 79.8909 130.212",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataformeo_hex_mechsys_000.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/plataformeo_hex_mechsys_000_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  }
+]

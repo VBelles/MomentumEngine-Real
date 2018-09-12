@@ -30,16 +30,17 @@ namespace Particles {
 		};
 
 		struct TMovement {
-			float velocity = 0.f;			// initial speed
-			float velocityVariation = 0.f;	// variation of the initial speed generation
-			float acceleration = 0.f;		// acceleration
-			float initialRotation = 0;
-			float spin = 0.f;				// rotation speed (radians)
-			VEC3 spin_axis = { 0, 1, 0 };	// spin axis
-			float gravity = 0.f;			// gravity factor
-			float wind = 0.f;				// wind factor
-			bool ground = false;			// limit by ground
-			bool following = false;			// follows its emissor target
+			float velocity = 0.f;				// initial speed
+			float velocityVariation = 0.f;		// variation of the initial speed generation
+			float acceleration = 0.f;			// acceleration
+			float initialRotation = 0;			
+			bool initialRandomRotation = false;
+			float spin = 0.f;					// rotation speed (radians)
+			VEC3 spin_axis = { 0, 1, 0 };		// spin axis
+			float gravity = 0.f;				// gravity factor
+			float wind = 0.f;					// wind factor
+			bool ground = false;				// limit by ground
+			bool following = false;				// follows its emissor target
 		};
 
 		struct TRender {
@@ -52,6 +53,7 @@ namespace Particles {
 			VEC2 frameSize = VEC2(1, 1);					// size of frame in the texture (in UV coords)
 			int numFrames = 1;								// number of animation frames
 			int initialFrame = 0;							// initial frame
+			bool initialRandomFrame = false;				// ignores initialFrame
 			float frameSpeed = 0.f;							// frame change speed
 			float motionBlurAmount = 0.f;					// amount of blur for stretched particles
 		};
@@ -113,6 +115,8 @@ namespace Particles {
 		void setRotationOffset(QUAT rotationOffset);
 		void forceEmission(int quantity);
 		CHandle getParticleEntityHandle();
+		void debugInMenu();
+
 
 	};
 }
