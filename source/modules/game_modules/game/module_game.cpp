@@ -80,6 +80,7 @@ bool CModuleGame::start() {
 	respawner = new Respawner();
 	enemyManager = new EnemyManager();
 	CApp::get().setResetMouse(true);
+	EngineParticles.setPaused(false);
 
 	Engine.setInputType(InputType::Game);
 

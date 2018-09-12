@@ -28,7 +28,7 @@ private:
 	std::unordered_map<std::string, std::vector<Particles::CSystem*>> _activeSystems;
 	VEC3                             _windVelocity = VEC3::Zero;
 	Particles::TParticleHandle		_lastHandle;
-
+	bool paused = false;
 
 public:
 	CModuleParticles(const std::string& name);
@@ -46,4 +46,6 @@ public:
 	void forceEmission(Particles::TParticleHandle ph, int quantity);
 
 	const VEC3& getWindVelocity() const;
+
+	void setPaused(bool paused);
 };
