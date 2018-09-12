@@ -2,6 +2,259 @@
   {
     "entity":
     {
+      "name": "dani_coin_052",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "282.337 2.02721 -85.13"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_051",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "257.383 -4.3711 -62.5288"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_050",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "265.608 -0.440991 -93.5224"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_049",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "47.5376 7.20184 -7.6595"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_048",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "34.3692 3.47881 -12.9794"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_047",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "47.6597 4.10216 -22.2252"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_046",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "44.8515 8.73721 21.7023"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_045",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "34.8478 4.2095 0.44371"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_044",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-28.8506 -3.38767 46.2667"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_043",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-32.6024 -2.07407 50.4665"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_042",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-37.5041 -0.310766 57.7588"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_041",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-4.29013 -4.64426 126.117"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_040",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-16.0142 -4.64426 131.567"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_039",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-13.9025 -4.64426 142.663"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_038",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "5.2433 -4.64426 141.484"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_037",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-4.47858 -4.64426 147.726"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_036",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "109.756 25.7918 82.3668"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_035",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "107.912 23.7996 105.682"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_034",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "83.1366 15.0045 133.62"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_033",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "93.6325 19.5713 124.222"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_032",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "23.7124 15.9081 69.8181"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_031",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "29.2975 24.3669 68.7196"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_coin_030",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "31.9082 17.3981 62.2399"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_coin_029",
       "prefab": "data/prefabs/coin.prefab",
       "transform":
