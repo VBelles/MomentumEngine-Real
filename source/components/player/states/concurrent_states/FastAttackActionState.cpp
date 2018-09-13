@@ -47,7 +47,7 @@ void FastAttackActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockAttack = true;
-	EngineParticles.launchSystem("data/particles/player/attack.particles", { getEntity(), "Bip001 R Hand", {0.12f, 0.f, 0.f} });
+	EngineParticles.launchSystem(PARTICLES_PLAYER_ATTACK, { getEntity(), "Bip001 R Hand", {0.12f, 0.f, 0.f} });
 }
 
 void FastAttackActionState::onStateExit(IActionState * nextState) {

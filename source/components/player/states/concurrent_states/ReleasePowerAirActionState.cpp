@@ -47,14 +47,14 @@ void ReleasePowerAirActionState::update(float delta) {
 			getPowerGauge()->releasePower();
 			break;
 		case 2:
-			EngineParticles.launchSystem(RELEASE_POWER, releasePowerLaunchConfig);
+			EngineParticles.launchSystem(PARTICLES_RELEASE_POWER, releasePowerLaunchConfig);
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
 			getHitboxes()->enable(smallHitbox);
 			if (buttonPresses > 1) getPowerGauge()->releasePower();
 			break;
 		case 3:
-			EngineParticles.launchSystem(RELEASE_POWER, releasePowerLaunchConfig);
+			EngineParticles.launchSystem(PARTICLES_RELEASE_POWER, releasePowerLaunchConfig);
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
 			if (buttonPresses > 1) {

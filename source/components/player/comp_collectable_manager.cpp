@@ -114,7 +114,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		if (getNumberOfCoins() > maxCoins) {
 			spendCoins(getNumberOfCoins() - maxCoins);
 		}
-		EngineParticles.launchSystem("data/particles/coin.particles", { entity });
+		EngineParticles.launchSystem(PARTICLES_COIN, { entity });
 		break;
 	case Type::LIFEPIECE:
 		collectable->collect();

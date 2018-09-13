@@ -46,8 +46,8 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lockFallingAttack = false;
 	getPlayerModel()->lockAirDodge = false;
-	EngineParticles.launchSystem("data/particles/landing.particles", Particles::LaunchConfig{ getEntity()});
-	EngineSound.emitEvent("event:/personaja/caida_tierra");
+	EngineParticles.launchSystem(PARTICLES_LANDING, Particles::LaunchConfig{ getEntity()});
+	EngineSound.emitEvent(SOUND_LANDING);
 }
 
 void LandingActionState::onStateExit(IActionState * nextState) {

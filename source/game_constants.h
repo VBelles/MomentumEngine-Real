@@ -61,18 +61,21 @@ static const std::string INTERPOLATOR_SINE_IN_OUT = "Sine in out";
 static const std::string AUTOLOAD_SCRIPTS_PATH = "data/scripts/autoload/";
 
 // Sound
-static const std::string SOUND_LANDING = "event:/personaja/caida_tierra";
-static const std::string SOUND_STEP_LEFT = "event:/personaja/pasos/pasos left";
-static const std::string SOUND_STEP_RIGHT = "event:/personaja/pasos/pasos right";
-static const std::string SOUND_DODGE = "event:/personaja/dodge";
-static const std::string SOUND_HIT = "event:/personaja/golpes";
-static const std::string SOUND_COIN = "event:/elementos/monedas";
-static const std::string SOUND_ACTIVATE_MECHANISM = "event:/elementos/activar_mecanismo";
-static const std::string SOUND_AMBIENT_FOREST = "event:/ambientacion/ambiente_bosque";
-static const std::string SOUND_AMBIENT_WIND = "event:/ambientacion/ambiente_viento";
+auto constexpr SOUND_LANDING = "event:/personaja/caida_tierra";
+auto constexpr SOUND_STEP_LEFT = "event:/personaja/pasos/pasos left";
+auto constexpr SOUND_STEP_RIGHT = "event:/personaja/pasos/pasos right";
+auto constexpr SOUND_DODGE = "event:/personaja/dodge";
+auto constexpr SOUND_HIT = "event:/personaja/golpes";
+auto constexpr SOUND_COIN = "event:/elementos/monedas";
+auto constexpr SOUND_ACTIVATE_MECHANISM = "event:/elementos/activar_mecanismo";
+auto constexpr SOUND_AMBIENT_FOREST = "event:/ambientacion/ambiente_bosque";
+auto constexpr SOUND_AMBIENT_WIND = "event:/ambientacion/ambiente_viento";
 
 // Particles
 auto constexpr SLASH_CLOCKWISE = "data/particles/player/slash_clockwise.particles";
 auto constexpr SLASH_COUNTER_CLOCKWISE = "data/particles/player/slash_counter_clockwise.particles";
 auto constexpr SLASH_STRONG_3 = "data/particles/player/slash_strong_3.particles";
-auto constexpr RELEASE_POWER = "data/particles/player/release_power.particles";
+auto constexpr PARTICLES_RELEASE_POWER = "data/particles/player/release_power.particles";
+auto constexpr PARTICLES_PLAYER_ATTACK = "data/particles/player/attack.particles";
+auto constexpr PARTICLES_LANDING = "data/particles/player/landing.particles";
+auto constexpr PARTICLES_COIN = "data/particles/coin.particles";
