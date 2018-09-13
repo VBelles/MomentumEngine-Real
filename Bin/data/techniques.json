@@ -488,6 +488,18 @@
     "priority": 40
   },
 
+  "gui_clamp": {
+    "vs_file": "data/shaders/gui.fx",
+    "vs_entry_point": "VS_GUI",
+    "ps_entry_point": "PS_GUI_CLAMP",
+    "vertex_type": "PosClr",
+    "z": "disable_all",
+    "blend": "combinative",
+    "rs_config": "cull_none",
+    "category": "helper",
+    "priority": 40
+  },
+
   "gui_font": {
     "vs_file": "data/shaders/gui.fx",
     "vs_entry_point": "VS_GUI",

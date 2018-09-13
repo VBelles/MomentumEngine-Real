@@ -19,12 +19,11 @@ void CBar::render() {
 		maxUV.x *= ratio;
 	}
 	else if (_barParams._direction == TBarParams::EDirection::Vertical) {
-		float displayRatio = _params._size.y / _imageParams._texture->getHeight() * _imageParams._frameSize.y;
-		//dbg("displayRatio: %f, size.y: %f, size: %f\n", displayRatio, _imageParams._texture->getHeight() * _imageParams._frameSize.y, _params._size.y );
+		float displayRatio = _params._size.y / (_imageParams._texture->getHeight() * _imageParams._frameSize.y);
 		ratio *= (1.f / displayRatio);
-		maxUV.y *= ratio * displayRatio;
-		if (maxUV.y - minUV.y >= displayRatio) {
-			minUV.y = maxUV.y - displayRatio;
+		maxUV.y = minUV.y + (maxUV.y - minUV.y) * ratio * displayRatio;
+		if (maxUV.y - minUV.y >= displayRatio * _imageParams._frameSize.y) {
+			minUV.y = maxUV.y - displayRatio * _imageParams._frameSize.y;
 			ratio = 1.f;
 		}
 		w = MAT44::CreateScale(1.f, ratio, 1.f) * sz * _absolute * MAT44::CreateTranslation(0.f, _params._size.y * (1.f - ratio), 0.f);
@@ -38,7 +37,8 @@ void CBar::render() {
 		_imageParams._color,
 		_imageParams._mask,
 		maskMinUV,
-		maskMaxUV);
+		maskMaxUV,
+		"clamp");
 }
 
 TImageParams* CBar::getImageParams() {
