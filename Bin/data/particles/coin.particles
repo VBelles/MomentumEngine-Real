@@ -1,0 +1,45 @@
+{
+  "life" : {
+      "duration" : 1.5,
+      "duration_variation" : 0.25,
+      "max_particles" : 25,
+      "time_factor" : 1.0
+  },
+  "emission" : {
+      "type" : "sphere",
+      "size" : 2,
+      "count" : 25,
+      "cyclic" : false
+  },
+  "movement" : {
+      "velocity" :0.0,
+      "velocity_variation": 0.0,
+      "acceleration" : 0.0,
+      "spin" : 0.0,
+      "wind" : 0.0,
+      "gravity" : 0.25,
+      "ground" : false,
+      "follow_target": "The Player",
+      "follow_target_offset": "0 0.75 0"
+  },
+  "render" : {
+      "texture" : "data/textures/particles/glow.dds",
+      "additive": true
+  },
+  "size" : {
+    "scale" : 0.15,
+    "scale_variation" : 0.05,
+    "sizes" : [
+      [0.0, 0.0],
+      [0.15, 1.0]
+    ]
+  },
+  "color" : {
+    "opacity" : 1,
+    "colors" : [
+      [0.0, "1 0.5 0 1"],
+      [0.8, "1 0.5 0 1"],
+      [1.0, "1 0.5 0 0"]
+    ] 
+  }
+}
