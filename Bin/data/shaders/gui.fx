@@ -32,6 +32,18 @@ float4 PS_GUI(
   return oColor;
 }
 
+float4 PS_GUI_CLAMP(
+  VS_FULL_OUTPUT input
+  ) : SV_Target
+{
+  float2 finalUV = lerp(minUV, maxUV, input.UV);
+  float4 oDiffuse = txAlbedo.Sample(samClampLinear, finalUV);
+  float2 maskUV = lerp(charSize, dummy_GUI, input.UV);
+  float4 maskColor = txNormal.Sample(samClampLinear, maskUV);
+  float4 oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a) * maskColor;
+  return oColor;
+}
+
 float4 PS_GUI_FONT(
   VS_FULL_OUTPUT input
   ) : SV_Target

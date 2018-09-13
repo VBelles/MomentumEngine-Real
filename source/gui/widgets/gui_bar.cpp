@@ -38,7 +38,8 @@ void CBar::render() {
 		_imageParams._color,
 		_imageParams._mask,
 		maskMinUV,
-		maskMaxUV);
+		maskMaxUV,
+		"clamp");
 }
 
 TImageParams* CBar::getImageParams() {

@@ -17,6 +17,7 @@ bool CModuleGUI::start() {
 	_orthoCamera.setPerspective(-1.f, 1.f, width, height);
 
 	_technique = Resources.get("gui.tech")->as<CRenderTechnique>();
+	_technique_clamp = Resources.get("gui_clamp.tech")->as<CRenderTechnique>();
 	_technique_font = Resources.get("gui_font.tech")->as<CRenderTechnique>();
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	_fontTexture = Resources.get("data/textures/gui/font_sheet.dds")->as<CTexture>();
@@ -157,7 +158,7 @@ MVariants& CModuleGUI::getVariables() {
 }
 
 void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV,
-	const VEC4& color, const CTexture* mask, const VEC2& maskMinUV, const VEC2& maskMaxUV) {
+	const VEC4& color, const CTexture* mask, const VEC2& maskMinUV, const VEC2& maskMaxUV, const std::string& tech) {
 	assert(_technique && _quadMesh);
 
 	cb_object.obj_world = world;
@@ -171,7 +172,13 @@ void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, cons
 	cb_gui.dummy_GUI = maskMaxUV;
 	cb_gui.updateGPU();
 
-	_technique->activate();
+	if (tech == "clamp") {
+		_technique_clamp->activate();
+	}
+	else {
+		_technique->activate();
+	}
+
 	if (texture) texture->activate(TS_ALBEDO);
 	if (mask) {
 		mask->activate(TS_NORMAL);
