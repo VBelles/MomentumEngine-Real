@@ -189,7 +189,13 @@ namespace Particles {
 					dir.Normalize();
 					float distance = VEC3::Distance(targetPos, p.position);
 					VEC3 velocity = dir * (distance / (p.max_lifetime - p.lifetime));
-					p.position += velocity * delta;
+					VEC3 increment = velocity * delta;
+					if (increment.Length() >= distance) {
+						p.position = targetPos;
+					}
+					else {
+						p.position += increment;
+					}
 				}
 				else if (_core->movement.following) { // Follows the emission position
 					p.localPosition += p.velocity * delta;
