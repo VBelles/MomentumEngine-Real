@@ -19,7 +19,7 @@ bool CModuleSound::start() {
 	for (std::string bankFile : j["banks"]) {
 		Studio::Bank* bank = nullptr;
 		res = system->loadBankFile(bankFile.c_str(), FMOD_STUDIO_LOAD_BANK_NORMAL, &bank);
-		
+
 		assert(res == FMOD_OK);
 		banks[bankFile] = bank;
 	}
@@ -41,53 +41,51 @@ void CModuleSound::update(float delta) {
 	system->update();
 }
 
-void CModuleSound::instanceEvent(std::string event) {
-	if (eventInstances.find(event) == eventInstances.end()) {
+void CModuleSound::instanceEvent(std::string sound) {
+	if (eventInstances.find(sound) == eventInstances.end()) {
 		Studio::EventDescription* descriptor = nullptr;
-		res = system->getEvent(event.c_str(), &descriptor);
+		res = system->getEvent(sound.c_str(), &descriptor);
 		Studio::EventInstance* eventInstance = nullptr;
 		res = descriptor->createInstance(&eventInstance);
-		eventInstances[event] = eventInstance;
+		eventInstances[sound] = eventInstance;
 	}
 	else {
-		dbg("Event '%s' already instanced\n", event);
+		dbg("Event '%s' already instanced\n", sound);
 	}
 }
 
-void CModuleSound::releaseEvent(std::string event) {
+void CModuleSound::releaseEvent(std::string sound) {
 	try {
-		eventInstances.at(event)->release();
-		eventInstances.erase(event);
+		eventInstances.at(sound)->release();
+		eventInstances.erase(sound);
 	}
 	catch (const std::out_of_range& e) {
-        UNREFERENCED_PARAMETER(e);
+		UNREFERENCED_PARAMETER(e);
 		dbg("Releasing an uninstanced event\n");
 	}
 }
 
-void CModuleSound::startEvent(std::string event) {
-	try {
-		eventInstances.at(event.c_str())->start();
+void CModuleSound::startEvent(std::string sound) {
+	auto it = eventInstances.find(sound);
+	if (it == eventInstances.end()) {
+		instanceEvent(sound);
+		eventInstances[sound]->start();
 	}
-	catch (const std::out_of_range& e) {
-        UNREFERENCED_PARAMETER(e);
-		dbg("Starting an uninstanced event\n");
-	}
-}
-
-void CModuleSound::stopEvent(std::string event, FMOD_STUDIO_STOP_MODE mode) {
-	try {
-		eventInstances.at(event.c_str())->stop(mode);
-	}
-	catch (const std::out_of_range& e) {
-        UNREFERENCED_PARAMETER(e);
-		dbg("Stoping an uninstanced event\n");
+	else {
+		it->second->start();
 	}
 }
 
-void CModuleSound::emitEvent(std::string event) {
+void CModuleSound::stopEvent(std::string sound, FMOD_STUDIO_STOP_MODE mode) {
+	auto it = eventInstances.find(sound);
+	if (it != eventInstances.end()) {
+		it->second->stop(mode);
+	}
+}
+
+void CModuleSound::emitEvent(std::string sound) {
 	Studio::EventDescription* descriptor = nullptr;
-	res = system->getEvent(event.c_str(), &descriptor);
+	res = system->getEvent(sound.c_str(), &descriptor);
 	Studio::EventInstance* eventInstance = nullptr;
 	res = descriptor->createInstance(&eventInstance);
 	//dbg("RES: %d\n", res);

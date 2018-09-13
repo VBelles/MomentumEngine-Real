@@ -165,6 +165,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 			VEC3(0, 0.4f, 0)			// Offset
 		};
 		EngineParticles.launchSystem(particleSystems[msg.powerLvl - 1], config);
+		EngineSound.emitEvent(msg.powerLvl == 2 ? SOUND_LVL_UP_2 : SOUND_LVL_UP_3);
 	}
 		
 }

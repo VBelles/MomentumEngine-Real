@@ -396,11 +396,11 @@
 				"feet": [
 					{
 						"bone": "Bip001 R Foot",
-						"event": "event:/personaja/pasos/pasos right"
+						"event": "event:/PROTA/correr terreno/run_ground_r"
 					},
 					{
 						"bone": "Bip001 L Foot",
-						"event": "event:/personaja/pasos/pasos left"
+						"event": "event:/PROTA/correr terreno/run_ground_l"
 					}
 				]
 			}
