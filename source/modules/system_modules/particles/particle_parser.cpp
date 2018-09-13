@@ -62,6 +62,7 @@ namespace Particles {
 		cps->movement.gravity = movement.value("gravity", cps->movement.gravity);
 		cps->movement.ground = movement.value("ground", cps->movement.ground);
 		cps->movement.following = movement.value("following", cps->movement.following);
+		cps->movement.followTarget = movement.value("follow_target", cps->movement.followTarget);
 
 		// render
 		const json& render = data["render"];

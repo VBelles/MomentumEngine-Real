@@ -23,7 +23,7 @@ public:
 		return res;
 	}
 
-	
+
 };
 
 void Particles::TCoreSystem::debugInMenu() {
@@ -159,6 +159,16 @@ namespace Particles {
 
 		delta *= _core->life.timeFactor;
 
+		VEC3 targetPos;
+		if (!_core->movement.followTarget.empty() && !followTargetTransform.isValid()) {
+			CEntity* targetEntity = getEntityByName(_core->movement.followTarget);
+			followTargetTransform = targetEntity->get<TCompTransform>();
+		}
+
+		if (followTargetTransform.isValid()) {
+			targetPos = static_cast<TCompTransform*>(followTargetTransform)->getPosition();
+		}
+
 		auto it = _particles.begin();
 		while (it != _particles.end()) {
 			TParticle& p = *it;
@@ -173,8 +183,14 @@ namespace Particles {
 				dir.Normalize();
 				p.velocity += dir * _core->movement.acceleration * delta;
 				p.velocity += kGravity * _core->movement.gravity * delta;
-				
-				if (_core->movement.following) {
+				if (followTargetTransform.isValid()) { // Follows a target
+					VEC3 dir = targetPos - p.position;
+					dir.Normalize();
+					float distance = VEC3::Distance(targetPos, p.position);
+					VEC3 velocity = dir * (distance / (p.max_lifetime - p.lifetime));
+					p.position += velocity * delta;
+				}
+				else if (_core->movement.following) { // Follows the emission position
 					p.localPosition += p.velocity * delta;
 					p.localPosition += kWindVelocity * _core->movement.wind * delta;
 					p.position = VEC3::Transform(p.localPosition, world);

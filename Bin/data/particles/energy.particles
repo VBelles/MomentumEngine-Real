@@ -6,37 +6,38 @@
       "time_factor" : 1.0
   },
   "emission" : {
-      "type" : "square",
-      "angle" : 45,
-      "size" : 0.5,
-      "interval" : 2,
+      "type" : "sphere",
+      "size" : 2,
       "count" : 50,
       "cyclic" : false
   },
   "movement" : {
-      "velocity" : 2.0,
+      "velocity" :0.0,
+      "velocity_variation": 0.0,
       "acceleration" : 0.0,
       "spin" : 0.0,
       "wind" : 0.0,
       "gravity" : 0.25,
-      "ground" : false
+      "ground" : false,
+      "follow_target": "The Player"
   },
   "render" : {
-      "texture" : "data/textures/particles/glow.dds"
+      "texture" : "data/textures/particles/glow.dds",
+      "additive": true
   },
   "size" : {
-    "scale" : 0.2,
-    "scale_variation" : 0.0,
+    "scale" : 0.15,
+    "scale_variation" : 0.05,
     "sizes" : [
-      [0.0, 1.0],
-      [0.8, 1.0],
-      [1.0, 0.0]
+      [0.0, 0.0],
+      [0.15, 1.0]
     ]
   },
   "color" : {
-    "opacity" : 1.0,
+    "opacity" : 1,
     "colors" : [
-      [0.0, "1 1 1 1"]
+      [0.0, "1 0.5 0 1"],
+      [1.0, "1 0.5 0 1"]
     ] 
   }
 }

@@ -41,6 +41,7 @@ namespace Particles {
 			float wind = 0.f;					// wind factor
 			bool ground = false;				// limit by ground
 			bool following = false;				// follows its emissor target
+			std::string followTarget;			// target to follow each particle
 		};
 
 		struct TRender {
@@ -94,6 +95,7 @@ namespace Particles {
 
 		LaunchConfig config;
 		int boneId = -1;
+		CHandle followTargetTransform;
 
 		TParticleHandle		_handle;
 		const TCoreSystem*  _core = nullptr;
