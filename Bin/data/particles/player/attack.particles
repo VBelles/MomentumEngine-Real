@@ -12,7 +12,7 @@
         "cyclic": false,
         "radial": true,
         "interval": 0.05,
-        "duration": 0.4
+        "duration": 0.9
     },
     "movement": {
         "velocity": 0,
