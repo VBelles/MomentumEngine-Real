@@ -28,7 +28,7 @@
     "type": "stretched_billboard",
     "motion_blur_amount": 30,
     "texture": "data/textures/particles/glow.dds",
-    "additive": false
+    "additive": true
   },
   "size": {
     "scale": 0.05,
@@ -41,11 +41,11 @@
     ]
   },
   "color": {
-    "opacity": 0.6,
+    "opacity": 1,
     "colors": [
-      [0.0, "1 0 0 1"],
-      [0.5, "1 0 0 1"],
-      [1, "1 0 0 0"]
+      [0.0, "1 0.5 0 1"],
+      [0.7, "1 0.5 0 1"],
+      [1, "1 0.5 0 0"]
     ]
   }
 }
