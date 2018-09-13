@@ -2,19 +2,19 @@
   {
     "entity":
     {
-      "name": "grass_small",
+      "name": "grass_00",
       "transform":
       {
-        "pos": "63.9624 3.21115 7.73469",
+        "pos": "63.9624 3.02293 7.73469",
         "rotation": "-0.121972 0.00293479 0.0367514 -0.991849"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/grass_small.instanced_mesh",
+          "mesh": "data/meshes/grass_00.instanced_mesh",
           "materials":
           [
-             "data/materials/grass_small.material"
+             "data/materials/grass_00.material"
           ]
         }
       ]
@@ -23,19 +23,19 @@
   {
     "entity":
     {
-      "name": "grass_medium",
+      "name": "grass_01",
       "transform":
       {
-        "pos": "63.9564 4.21439 3.72827",
+        "pos": "63.9564 4.02617 3.72827",
         "rotation": "-0.121972 0.00293479 0.0367514 -0.991849"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/grass_medium.instanced_mesh",
+          "mesh": "data/meshes/grass_01.instanced_mesh",
           "materials":
           [
-             "data/materials/grass_medium.material"
+             "data/materials/grass_01.material"
           ]
         }
       ]
@@ -44,19 +44,19 @@
   {
     "entity":
     {
-      "name": "grass_large",
+      "name": "grass_02",
       "transform":
       {
-        "pos": "64.4986 5.18535 -0.31263",
+        "pos": "64.4986 4.99713 -0.31263",
         "rotation": "-0.121972 0.00293479 0.0367514 -0.991849"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/grass_large.instanced_mesh",
+          "mesh": "data/meshes/grass_02.instanced_mesh",
           "materials":
           [
-             "data/materials/grass_large.material"
+             "data/materials/grass_02.material"
           ]
         }
       ]

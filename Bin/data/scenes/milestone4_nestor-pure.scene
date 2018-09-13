@@ -2,27 +2,27 @@
   {
     "entity":
     {
-      "name": "nes_placeholder_plataforma_roca_grande004",
+      "name": "plataforma_roca_grande_003",
       "transform":
       {
-        "pos": "-3.49163 -12.2546 -246.693",
-        "rotation": "0.0 0.422618 0.0 -0.906308"
+        "pos": "-3.51672 -11.1932 -248.247",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande004.mesh",
+          "mesh": "data/meshes/plataforma_roca_grande_003.mesh",
           "materials":
           [
-            "data/materials/Material_#197_pureON.material"
+            "data/materials/platform_terrain_material_pureON.material"
           ],
           "enabled": false
         },
         {
-          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande004.mesh",
+          "mesh": "data/meshes/plataforma_roca_grande_003.mesh",
           "materials":
           [
-            "data/materials/Material_#197_pure.material"
+            "data/materials/platform_terrain_material_pure.material"
           ],
           "enabled": true
         }
@@ -30,7 +30,7 @@
       "purity": {},
       "collider":
       {
-        "mesh_src": "data/meshes/nes_placeholder_plataforma_roca_grande004.col_mesh",
+        "mesh_src": "data/meshes/plataforma_roca_grande_003.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -43,27 +43,27 @@
   {
     "entity":
     {
-      "name": "nes_placeholder_plataforma_roca_grande003",
+      "name": "plataforma_roca_grande_002",
       "transform":
       {
-        "pos": "-25.4767 -12.2546 -237.125",
-        "rotation": "0.0 -0.608761 0.0 -0.793353"
+        "pos": "-27.7377 -11.1932 -239.338",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande003.mesh",
+          "mesh": "data/meshes/plataforma_roca_grande_002.mesh",
           "materials":
           [
-            "data/materials/Material_#197_pureON.material"
+            "data/materials/platform_terrain_material_pureON.material"
           ],
           "enabled": false
         },
         {
-          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande003.mesh",
+          "mesh": "data/meshes/plataforma_roca_grande_002.mesh",
           "materials":
           [
-            "data/materials/Material_#197_pure.material"
+            "data/materials/platform_terrain_material_pure.material"
           ],
           "enabled": true
         }
@@ -71,7 +71,7 @@
       "purity": {},
       "collider":
       {
-        "mesh_src": "data/meshes/nes_placeholder_plataforma_roca_grande003.col_mesh",
+        "mesh_src": "data/meshes/plataforma_roca_grande_002.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -84,27 +84,27 @@
   {
     "entity":
     {
-      "name": "nes_placeholder_plataforma_roca_grande002",
+      "name": "plataforma_roca_grande_001",
       "transform":
       {
-        "pos": "-34.9659 -12.2546 -213.265",
-        "rotation": "0.0 -0.382683 0.0 -0.92388"
+        "pos": "-36.3134 -11.1932 -213.648",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande002.mesh",
+          "mesh": "data/meshes/plataforma_roca_grande_001.mesh",
           "materials":
           [
-            "data/materials/Material_#197_pureON.material"
+            "data/materials/platform_terrain_material_pureON.material"
           ],
           "enabled": false
         },
         {
-          "mesh": "data/meshes/nes_placeholder_plataforma_roca_grande002.mesh",
+          "mesh": "data/meshes/plataforma_roca_grande_001.mesh",
           "materials":
           [
-            "data/materials/Material_#197_pure.material"
+            "data/materials/platform_terrain_material_pure.material"
           ],
           "enabled": true
         }
@@ -112,7 +112,7 @@
       "purity": {},
       "collider":
       {
-        "mesh_src": "data/meshes/nes_placeholder_plataforma_roca_grande002.col_mesh",
+        "mesh_src": "data/meshes/plataforma_roca_grande_001.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":

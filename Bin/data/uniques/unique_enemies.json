@@ -2,1194 +2,340 @@
   "unique_enemies":
   [
     {
-      "id": "Plataformeo_kippah016",
+      "id": "dani_air_007",
       "done": false,
-      "position": "113.881 93.3909 100.369",
+      "position": "161.124 38.5701 -90.2444",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah015",
+      "id": "dani_melee_007",
       "done": false,
-      "position": "117.542 88.8909 102.057",
+      "position": "133.184 30.5057 -30.3919",
       "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah014",
-      "done": false,
-      "position": "118.414 88.8909 112.019",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah013",
-      "done": false,
-      "position": "109.822 84.8909 122.809",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah012",
-      "done": false,
-      "position": "117.43 72.8909 135.193",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah011",
-      "done": false,
-      "position": "159.444 58.8909 173.677",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah010",
-      "done": false,
-      "position": "144.501 58.8909 174.985",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah009",
-      "done": false,
-      "position": "129.558 58.8909 176.292",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah008",
-      "done": false,
-      "position": "123.008 74.8909 198.949",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah007",
-      "done": false,
-      "position": "123.879 71.8909 208.911",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah006",
-      "done": false,
-      "position": "123.967 62.8909 209.907",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah005",
-      "done": false,
-      "position": "123.531 59.8909 204.926",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah004",
-      "done": false,
-      "position": "122.834 56.8909 196.957",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah003",
-      "done": false,
-      "position": "111.11 48.8909 167.366",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah002",
-      "done": false,
-      "position": "111.415 43.8909 170.853",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah001",
-      "done": false,
-      "position": "111.72 37.8909 174.339",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah000",
-      "done": false,
-      "position": "115.973 19.8909 164.431",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah016",
-      "done": false,
-      "position": "113.881 93.3909 100.369",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah015",
-      "done": false,
-      "position": "117.542 88.8909 102.057",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah014",
-      "done": false,
-      "position": "118.414 88.8909 112.019",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah013",
-      "done": false,
-      "position": "109.822 84.8909 122.809",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah012",
-      "done": false,
-      "position": "117.43 72.8909 135.193",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah011",
-      "done": false,
-      "position": "159.444 58.8909 173.677",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah010",
-      "done": false,
-      "position": "144.501 58.8909 174.985",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah009",
-      "done": false,
-      "position": "129.558 58.8909 176.292",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah008",
-      "done": false,
-      "position": "123.008 74.8909 198.949",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah007",
-      "done": false,
-      "position": "123.879 71.8909 208.911",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah006",
-      "done": false,
-      "position": "123.967 62.8909 209.907",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah005",
-      "done": false,
-      "position": "123.531 59.8909 204.926",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah004",
-      "done": false,
-      "position": "122.834 56.8909 196.957",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah003",
-      "done": false,
-      "position": "111.11 48.8909 167.366",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah002",
-      "done": false,
-      "position": "111.415 43.8909 170.853",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah001",
-      "done": false,
-      "position": "111.72 37.8909 174.339",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah000",
-      "done": false,
-      "position": "115.973 19.8909 164.431",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah016",
-      "done": false,
-      "position": "113.881 93.3909 100.369",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah015",
-      "done": false,
-      "position": "117.542 88.8909 102.057",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah014",
-      "done": false,
-      "position": "118.414 88.8909 112.019",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah013",
-      "done": false,
-      "position": "109.822 84.8909 122.809",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah012",
-      "done": false,
-      "position": "117.43 72.8909 135.193",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah011",
-      "done": false,
-      "position": "159.444 58.8909 173.677",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah010",
-      "done": false,
-      "position": "144.501 58.8909 174.985",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah009",
-      "done": false,
-      "position": "129.558 58.8909 176.292",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah008",
-      "done": false,
-      "position": "123.008 74.8909 198.949",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah007",
-      "done": false,
-      "position": "123.879 71.8909 208.911",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah006",
-      "done": false,
-      "position": "123.967 62.8909 209.907",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah005",
-      "done": false,
-      "position": "123.531 59.8909 204.926",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah004",
-      "done": false,
-      "position": "122.834 56.8909 196.957",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah003",
-      "done": false,
-      "position": "111.11 48.8909 167.366",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah002",
-      "done": false,
-      "position": "111.415 43.8909 170.853",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah001",
-      "done": false,
-      "position": "111.72 37.8909 174.339",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah000",
-      "done": false,
-      "position": "115.973 19.8909 164.431",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah016",
-      "done": false,
-      "position": "113.881 93.3909 100.369",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah015",
-      "done": false,
-      "position": "117.542 88.8909 102.057",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah014",
-      "done": false,
-      "position": "118.414 88.8909 112.019",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah013",
-      "done": false,
-      "position": "109.822 84.8909 122.809",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah012",
-      "done": false,
-      "position": "117.43 72.8909 135.193",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah011",
-      "done": false,
-      "position": "159.444 58.8909 173.677",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah010",
-      "done": false,
-      "position": "144.501 58.8909 174.985",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah009",
-      "done": false,
-      "position": "129.558 58.8909 176.292",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah008",
-      "done": false,
-      "position": "123.008 74.8909 198.949",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah007",
-      "done": false,
-      "position": "123.879 71.8909 208.911",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah006",
-      "done": false,
-      "position": "123.967 62.8909 209.907",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah005",
-      "done": false,
-      "position": "123.531 59.8909 204.926",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah004",
-      "done": false,
-      "position": "122.834 56.8909 196.957",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah003",
-      "done": false,
-      "position": "111.11 48.8909 167.366",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah002",
-      "done": false,
-      "position": "111.415 43.8909 170.853",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah001",
-      "done": false,
-      "position": "111.72 37.8909 174.339",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah000",
-      "done": false,
-      "position": "115.973 19.8909 164.431",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah016",
-      "done": false,
-      "position": "113.881 93.3909 100.369",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah015",
-      "done": false,
-      "position": "117.542 88.8909 102.057",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah014",
-      "done": false,
-      "position": "118.414 88.8909 112.019",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah013",
-      "done": false,
-      "position": "109.822 84.8909 122.809",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah012",
-      "done": false,
-      "position": "117.43 72.8909 135.193",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah011",
-      "done": false,
-      "position": "159.444 58.8909 173.677",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah010",
-      "done": false,
-      "position": "144.501 58.8909 174.985",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah009",
-      "done": false,
-      "position": "129.558 58.8909 176.292",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah008",
-      "done": false,
-      "position": "123.008 74.8909 198.949",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah007",
-      "done": false,
-      "position": "123.879 71.8909 208.911",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah006",
-      "done": false,
-      "position": "123.967 62.8909 209.907",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah005",
-      "done": false,
-      "position": "123.531 59.8909 204.926",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah004",
-      "done": false,
-      "position": "122.834 56.8909 196.957",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah003",
-      "done": false,
-      "position": "111.11 48.8909 167.366",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah002",
-      "done": false,
-      "position": "111.415 43.8909 170.853",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah001",
-      "done": false,
-      "position": "111.72 37.8909 174.339",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah000",
-      "done": false,
-      "position": "115.973 19.8909 164.431",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah016",
-      "done": false,
-      "position": "113.881 93.3909 100.369",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah015",
-      "done": false,
-      "position": "117.542 88.8909 102.057",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah014",
-      "done": false,
-      "position": "118.414 88.8909 112.019",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah013",
-      "done": false,
-      "position": "109.822 84.8909 122.809",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah012",
-      "done": false,
-      "position": "117.43 72.8909 135.193",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah011",
-      "done": false,
-      "position": "159.444 58.8909 173.677",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah010",
-      "done": false,
-      "position": "144.501 58.8909 174.985",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah009",
-      "done": false,
-      "position": "129.558 58.8909 176.292",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah008",
-      "done": false,
-      "position": "123.008 74.8909 198.949",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah007",
-      "done": false,
-      "position": "123.879 71.8909 208.911",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah006",
-      "done": false,
-      "position": "123.967 62.8909 209.907",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah005",
-      "done": false,
-      "position": "123.531 59.8909 204.926",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah004",
-      "done": false,
-      "position": "122.834 56.8909 196.957",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah003",
-      "done": false,
-      "position": "111.11 48.8909 167.366",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah002",
-      "done": false,
-      "position": "111.415 43.8909 170.853",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah001",
-      "done": false,
-      "position": "111.72 37.8909 174.339",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah000",
-      "done": false,
-      "position": "115.973 19.8909 164.431",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah016",
-      "done": false,
-      "position": "113.881 93.3909 100.369",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah015",
-      "done": false,
-      "position": "117.542 88.8909 102.057",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah014",
-      "done": false,
-      "position": "118.414 88.8909 112.019",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah013",
-      "done": false,
-      "position": "109.822 84.8909 122.809",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah012",
-      "done": false,
-      "position": "117.43 72.8909 135.193",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah011",
-      "done": false,
-      "position": "159.444 58.8909 173.677",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah010",
-      "done": false,
-      "position": "144.501 58.8909 174.985",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah009",
-      "done": false,
-      "position": "129.558 58.8909 176.292",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah008",
-      "done": false,
-      "position": "123.008 74.8909 198.949",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah007",
-      "done": false,
-      "position": "123.879 71.8909 208.911",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah006",
-      "done": false,
-      "position": "123.967 62.8909 209.907",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah005",
-      "done": false,
-      "position": "123.531 59.8909 204.926",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah004",
-      "done": false,
-      "position": "122.834 56.8909 196.957",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah003",
-      "done": false,
-      "position": "111.11 48.8909 167.366",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah002",
-      "done": false,
-      "position": "111.415 43.8909 170.853",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah001",
-      "done": false,
-      "position": "111.72 37.8909 174.339",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah000",
-      "done": false,
-      "position": "115.973 19.8909 164.431",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah016",
-      "done": false,
-      "position": "113.881 93.3909 100.369",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah015",
-      "done": false,
-      "position": "117.542 88.8909 102.057",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah014",
-      "done": false,
-      "position": "118.414 88.8909 112.019",
-      "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah013",
+      "id": "dani_melee_006",
       "done": false,
-      "position": "109.822 84.8909 122.809",
+      "position": "145.719 24.3837 -106.388",
       "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah012",
-      "done": false,
-      "position": "117.43 72.8909 135.193",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "Plataformeo_kippah011",
-      "done": false,
-      "position": "159.444 58.8909 173.677",
-      "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah010",
+      "id": "dani_air_006",
       "done": false,
-      "position": "144.501 58.8909 174.985",
+      "position": "5.84519 -3.07274 132.418",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah009",
+      "id": "dani_melee_005",
       "done": false,
-      "position": "129.558 58.8909 176.292",
+      "position": "-8.45032 -9.43646 130.645",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah008",
+      "id": "dani_melee_004",
       "done": false,
-      "position": "123.008 74.8909 198.949",
+      "position": "35.2472 -1.7038 16.1772",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah007",
+      "id": "dani_melee_003",
       "done": false,
-      "position": "123.879 71.8909 208.911",
+      "position": "27.3358 -3.76361 21.5119",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah006",
+      "id": "dani_melee_002",
       "done": false,
-      "position": "123.967 62.8909 209.907",
+      "position": "103.336 17.3995 125.273",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah005",
+      "id": "dani_melee_001",
       "done": false,
-      "position": "123.531 59.8909 204.926",
+      "position": "101.88 21.1734 105.56",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah004",
+      "id": "dani_air_005",
       "done": false,
-      "position": "122.834 56.8909 196.957",
+      "position": "299.132 14.4179 -43.4209",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah003",
+      "id": "dani_air_004",
       "done": false,
-      "position": "111.11 48.8909 167.366",
+      "position": "288.624 4.73884 -36.6583",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah002",
+      "id": "dani_air_003",
       "done": false,
-      "position": "111.415 43.8909 170.853",
+      "position": "280.56 -7.10687 -33.0142",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah001",
+      "id": "dani_air_002",
       "done": false,
-      "position": "111.72 37.8909 174.339",
+      "position": "263.682 -7.10687 -25.28",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah000",
+      "id": "dani_air_001",
       "done": false,
-      "position": "115.973 19.8909 164.431",
+      "position": "258.1 -7.10687 -34.9723",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah016",
+      "id": "dani_air_000",
       "done": false,
-      "position": "113.881 93.3909 100.369",
+      "position": "247.519 -7.10687 -30.0982",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah015",
+      "id": "dani_melee_000",
       "done": false,
-      "position": "117.542 88.8909 102.057",
+      "position": "112.962 24.6998 91.4404",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah014",
+      "id": "dani_air_007",
       "done": false,
-      "position": "118.414 88.8909 112.019",
+      "position": "161.124 38.5701 -90.2444",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah013",
+      "id": "dani_melee_007",
       "done": false,
-      "position": "109.822 84.8909 122.809",
+      "position": "133.184 30.5057 -30.3919",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah012",
+      "id": "dani_melee_006",
       "done": false,
-      "position": "117.43 72.8909 135.193",
+      "position": "145.719 24.3837 -106.388",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah011",
+      "id": "dani_air_006",
       "done": false,
-      "position": "159.444 58.8909 173.677",
+      "position": "5.84519 -3.07274 132.418",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah010",
+      "id": "dani_melee_005",
       "done": false,
-      "position": "144.501 58.8909 174.985",
+      "position": "-8.45032 -9.43646 130.645",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah009",
+      "id": "dani_melee_004",
       "done": false,
-      "position": "129.558 58.8909 176.292",
+      "position": "35.2472 -1.7038 16.1772",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah008",
+      "id": "dani_melee_003",
       "done": false,
-      "position": "123.008 74.8909 198.949",
+      "position": "27.3358 -3.76361 21.5119",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah007",
+      "id": "dani_melee_002",
       "done": false,
-      "position": "123.879 71.8909 208.911",
+      "position": "103.336 17.3995 125.273",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah006",
+      "id": "dani_melee_001",
       "done": false,
-      "position": "123.967 62.8909 209.907",
+      "position": "101.88 21.1734 105.56",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah005",
+      "id": "dani_air_005",
       "done": false,
-      "position": "123.531 59.8909 204.926",
+      "position": "299.132 14.4179 -43.4209",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah004",
+      "id": "dani_air_004",
       "done": false,
-      "position": "122.834 56.8909 196.957",
+      "position": "288.624 4.73884 -36.6583",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah003",
+      "id": "dani_air_003",
       "done": false,
-      "position": "111.11 48.8909 167.366",
+      "position": "280.56 -7.10687 -33.0142",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah002",
+      "id": "dani_air_002",
       "done": false,
-      "position": "111.415 43.8909 170.853",
+      "position": "263.682 -7.10687 -25.28",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah001",
+      "id": "dani_air_001",
       "done": false,
-      "position": "111.72 37.8909 174.339",
+      "position": "258.1 -7.10687 -34.9723",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah000",
+      "id": "dani_air_000",
       "done": false,
-      "position": "115.973 19.8909 164.431",
+      "position": "247.519 -7.10687 -30.0982",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah016",
+      "id": "dani_melee_000",
       "done": false,
-      "position": "113.881 93.3909 100.369",
+      "position": "112.962 24.6998 91.4404",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah015",
+      "id": "dani_air_007",
       "done": false,
-      "position": "117.542 88.8909 102.057",
+      "position": "161.124 38.5701 -90.2444",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah014",
+      "id": "dani_melee_007",
       "done": false,
-      "position": "118.414 88.8909 112.019",
+      "position": "133.184 30.5057 -30.3919",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah013",
+      "id": "dani_melee_006",
       "done": false,
-      "position": "109.822 84.8909 122.809",
+      "position": "145.719 24.3837 -106.388",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah012",
+      "id": "dani_air_006",
       "done": false,
-      "position": "117.43 72.8909 135.193",
+      "position": "5.84519 -3.07274 132.418",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah011",
+      "id": "dani_melee_005",
       "done": false,
-      "position": "159.444 58.8909 173.677",
+      "position": "-8.45032 -9.43646 130.645",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah010",
+      "id": "dani_melee_004",
       "done": false,
-      "position": "144.501 58.8909 174.985",
+      "position": "35.2472 -1.7038 16.1772",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah009",
+      "id": "dani_melee_003",
       "done": false,
-      "position": "129.558 58.8909 176.292",
+      "position": "27.3358 -3.76361 21.5119",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah008",
+      "id": "dani_melee_002",
       "done": false,
-      "position": "123.008 74.8909 198.949",
+      "position": "103.336 17.3995 125.273",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah007",
+      "id": "dani_melee_001",
       "done": false,
-      "position": "123.879 71.8909 208.911",
+      "position": "101.88 21.1734 105.56",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     },
     {
-      "id": "Plataformeo_kippah006",
+      "id": "dani_air_005",
       "done": false,
-      "position": "123.967 62.8909 209.907",
+      "position": "299.132 14.4179 -43.4209",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah005",
+      "id": "dani_air_004",
       "done": false,
-      "position": "123.531 59.8909 204.926",
+      "position": "288.624 4.73884 -36.6583",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah004",
+      "id": "dani_air_003",
       "done": false,
-      "position": "122.834 56.8909 196.957",
+      "position": "280.56 -7.10687 -33.0142",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah003",
+      "id": "dani_air_002",
       "done": false,
-      "position": "111.11 48.8909 167.366",
+      "position": "263.682 -7.10687 -25.28",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah002",
+      "id": "dani_air_001",
       "done": false,
-      "position": "111.415 43.8909 170.853",
+      "position": "258.1 -7.10687 -34.9723",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah001",
+      "id": "dani_air_000",
       "done": false,
-      "position": "111.72 37.8909 174.339",
+      "position": "247.519 -7.10687 -30.0982",
       "level": "level00",
       "type": "kippah"
     },
     {
-      "id": "Plataformeo_kippah000",
+      "id": "dani_melee_000",
       "done": false,
-      "position": "115.973 19.8909 164.431",
+      "position": "112.962 24.6998 91.4404",
       "level": "level00",
-      "type": "kippah"
+      "type": "dreidel"
     }
   ]
 }

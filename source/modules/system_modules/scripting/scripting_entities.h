@@ -30,7 +30,9 @@ public:
 	static std::string spawnMedusa();
 
 	static void stopEntities();
+	static void stopEntitiesCutscene();
 	static void resumeEntities();
+	static void resumeEntitiesCutscene();
 	static void ScriptingEntities::stopEnemies();
 	static void ScriptingEntities::resumeEnemies();
 };

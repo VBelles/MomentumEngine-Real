@@ -20,6 +20,7 @@ void CBar::render() {
 	}
 	else if (_barParams._direction == TBarParams::EDirection::Vertical) {
 		float displayRatio = _params._size.y / _imageParams._texture->getHeight() * _imageParams._frameSize.y;
+		dbg("displayRatio: %f, size.y: %f, size: %f\n", displayRatio, _imageParams._texture->getHeight() * _imageParams._frameSize.y, _params._size.y );
 		ratio *= (1.f / displayRatio);
 		maxUV.y *= ratio * displayRatio;
 		if (maxUV.y - minUV.y >= displayRatio) {

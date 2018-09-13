@@ -1,0 +1,65 @@
+[
+  {
+    "entity":
+    {
+      "name": "tumba_v3",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_v3.instanced_mesh",
+          "materials":
+          [
+             "data/materials/tumba_v3.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_v2",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_v2.instanced_mesh",
+          "materials":
+          [
+             "data/materials/tumba_v2.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tumba_v1",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tumba_v1.instanced_mesh",
+          "materials":
+          [
+             "data/materials/tumba_v1.material"
+          ]
+        }
+      ]
+    }
+  }
+]
