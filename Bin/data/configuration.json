@@ -4,8 +4,8 @@
 		"invert_y_axis": false
 	},
 	"screen": {
-		"fullscreen": false,
-		"resolution": "1280 720",
-		"vsync": false
+		"fullscreen": true,
+		"resolution": "1920 1080",
+		"vsync": true
 	}
 }

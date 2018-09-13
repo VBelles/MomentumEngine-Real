@@ -26,7 +26,7 @@
 						"variable": "power_progress_level1",
 						"direction": "vertical",
 						"initial_frame": 0,
-						"frame_size": "0.14285 1",
+						"frame_size": "1 0.14285",
 						"num_frames": 7,
 						"frame_speed": 12,
 						"mask": "data/textures/gui/hud/power_level_mask.dds"
