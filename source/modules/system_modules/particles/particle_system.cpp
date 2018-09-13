@@ -212,7 +212,7 @@ namespace Particles {
 
 				float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
 				p.color = _core->color.colors.get(life_ratio) * fadeRatio;
-				p.color.z *= _core->color.opacity;
+				p.color.w *= _core->color.opacity;
 				p.size = _core->size.sizes.get(life_ratio);
 
 				if (!_core->render.initialRandomFrame) {
