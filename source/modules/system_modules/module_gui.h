@@ -33,7 +33,8 @@ public:
 	MVariants& getVariables();
 
 	void renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV,
-		const VEC4& color, const CTexture* mask = nullptr, const VEC2& maskMinUV = VEC2::Zero, const VEC2& maskMaxUV = VEC2::One);
+		const VEC4& color, const CTexture* mask = nullptr, const VEC2& maskMinUV = VEC2::Zero, const VEC2& maskMaxUV = VEC2::One,
+		const std::string& tech = "");
 	void renderText(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color, const VEC2& charSize);
 
 	GUI::CFont& getFont(int size);
@@ -41,6 +42,7 @@ public:
 private:
 	CCameraGui _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;
+	const CRenderTechnique* _technique_clamp = nullptr;
 	const CRenderTechnique* _technique_font = nullptr;
 	const CRenderMesh* _quadMesh = nullptr;
 	const CTexture* _fontTexture = nullptr;
