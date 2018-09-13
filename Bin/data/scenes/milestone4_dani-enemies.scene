@@ -90,8 +90,8 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "103.336 17.3995 125.273",
-        "lookat": "-1.0 17.3995 -1.0"
+        "pos": "103.336 17.8046 125.273",
+        "lookat": "-1.0 17.8046 -1.0"
       }
     }
   },
@@ -102,8 +102,8 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "101.88 21.1734 105.56",
-        "lookat": "-1.0 21.1734 -1.0"
+        "pos": "101.88 21.9467 105.56",
+        "lookat": "-1.0 21.9467 -1.0"
       }
     }
   },
@@ -186,8 +186,8 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "112.962 24.6998 91.4404",
-        "lookat": "-1.0 24.6998 -1.0"
+        "pos": "112.962 24.9782 91.4404",
+        "lookat": "-1.0 24.9782 -1.0"
       }
     }
   }
