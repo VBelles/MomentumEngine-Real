@@ -16,6 +16,8 @@ void TCompCameraPlayer::debugInMenu() {
 	ImGui::DragFloat("Zoom in speed", &zoomInSpeed, 0.1f, 0.1f, 20.f);
 	ImGui::DragFloat("Zoom out speed", &zoomOutSpeed, 0.1f, 0.1f, 20.f);
 	ImGui::DragFloat("Mouse Lerp", &mouseLerpCoef, 0.1f, 0.f, 100000.f);
+	ImGui::DragFloat2("Camera Speed", &Engine.globalConfig.cameraSpeed.x, 0.1f, 0.f, 100000.f);
+	ImGui::DragFloat2("Camera Speed Pad", &Engine.globalConfig.cameraSpeedPad.x, 0.1f, 0.f, 100000.f);
 }
 
 // -------------------------------------------------
@@ -29,7 +31,7 @@ void TCompCameraPlayer::load(const json& j, TEntityParseContext& ctx) {
 	currentDistanceToTarget = defaultDistanceToTarget;
 	runDistanceToTarget = defaultDistanceToTarget;
 	idleDistanceToTarget = j.value("idle_distance_to_target", 2.5f);
-	cameraSpeed = loadVEC2(j["camera_speed"]);
+	//cameraSpeed = loadVEC2(j["camera_speed"]);
 	zoomOutSpeed = (j.value("zoomOutSpeed", 20.f));
 	defaultZoomOutSpeed = zoomOutSpeed;
 	zoomInSpeed = (j.value("zoomInSpeed", 10.f));
@@ -136,13 +138,13 @@ void TCompCameraPlayer::updateInput() {
 			EngineInput[Input::EPadButton::PAD_RANALOG_Y].value
 		);
 		if (padInput.Length() > PAD_DEAD_ZONE) {
-			input.x -= padInput.x * cameraSpeed.x * Engine.globalConfig.cameraAxis.x;
-			input.y += padInput.y * cameraSpeed.y * Engine.globalConfig.cameraAxis.y;
+			input.x -= padInput.x * Engine.globalConfig.cameraSpeedPad.x * Engine.globalConfig.cameraAxis.x;
+			input.y += padInput.y * Engine.globalConfig.cameraSpeedPad.y * Engine.globalConfig.cameraAxis.y;
 		}
 		else if (!CApp::get().isDebug()) {
 			auto& mouse = EngineInput[Input::PLAYER_1].mouse();
-			input.x -= mouse.position_delta.x * cameraSpeed.x * Engine.globalConfig.cameraAxis.x;
-			input.y -= mouse.position_delta.y * cameraSpeed.y * Engine.globalConfig.cameraAxis.y;
+			input.x -= mouse.position_delta.x * Engine.globalConfig.cameraSpeed.x * Engine.globalConfig.cameraAxis.x;
+			input.y -= mouse.position_delta.y * Engine.globalConfig.cameraSpeed.y * Engine.globalConfig.cameraAxis.y;
 		}
 	}
 }
