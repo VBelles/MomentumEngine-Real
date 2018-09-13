@@ -42,6 +42,7 @@ namespace Particles {
 			bool ground = false;				// limit by ground
 			bool following = false;				// follows its emissor target
 			std::string followTarget;			// target to follow each particle
+			VEC3 followTargetOffset;			// target to follow offset
 		};
 
 		struct TRender {

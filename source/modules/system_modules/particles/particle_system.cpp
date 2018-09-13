@@ -167,6 +167,7 @@ namespace Particles {
 
 		if (followTargetTransform.isValid()) {
 			targetPos = static_cast<TCompTransform*>(followTargetTransform)->getPosition();
+			targetPos += _core->movement.followTargetOffset;
 		}
 
 		auto it = _particles.begin();

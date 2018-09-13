@@ -63,6 +63,8 @@ namespace Particles {
 		cps->movement.ground = movement.value("ground", cps->movement.ground);
 		cps->movement.following = movement.value("following", cps->movement.following);
 		cps->movement.followTarget = movement.value("follow_target", cps->movement.followTarget);
+		cps->movement.followTargetOffset = movement.count("follow_target_offset") ? loadVEC3(movement["follow_target_offset"]) : cps->movement.followTargetOffset;
+
 
 		// render
 		const json& render = data["render"];
