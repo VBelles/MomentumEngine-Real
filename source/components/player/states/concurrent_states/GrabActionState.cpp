@@ -23,6 +23,7 @@ void GrabActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
+		getPlayerModel()->lockTurning = true;
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
@@ -36,7 +37,7 @@ void GrabActionState::onStateEnter(IActionState * lastState) {
 	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
 	timer.reset();
-	getPlayerModel()->lockTurning = true;
+	
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 

@@ -310,13 +310,13 @@
 						"name": "grab",
 						"shape": "sphere",
 						"radius": 1.5,
+						"offset": "0 0.7 0.3",
 						"group": [
 							"player"
 						],
 						"mask": [
 							"enemy"
-						],
-						"bone": "Bip001 R Hand"
+						]
 					},
 					{
 						"name": "fast_attack_air",
