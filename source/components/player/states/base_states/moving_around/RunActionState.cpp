@@ -27,10 +27,15 @@ void RunActionState::update(float delta) {
 
 	//Buscamos un punto en la direcci�n en la que el jugador querr�a ir y, seg�n si queda a izquierda o derecha, rotamos
 	VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
-	bool isTurnAround = getPlayerModel()->getTransform()->getFront().Dot(desiredDirection) <= backwardsMaxDotProduct;
+	float dotProduct = getPlayerModel()->getTransform()->getFront().Dot(desiredDirection);
+	bool isTurnAround = dotProduct <= backwardsMaxDotProduct;
 	if (hasInput && !isTurnAround) {
+		//de 1 a backwardsMaxDotProduct, lerp de rotationSpeed entre min y currentPowerStats->rotationSpeed
+		float minRotationSpeed = 1.f;
+		dotProduct = scale(dotProduct, backwardsMaxDotProduct, 1, 0, 1);
+		float rotationSpeed = lerp(minRotationSpeed, currentPowerStats->rotationSpeed, 1 - dotProduct);
 		VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
-		rotatePlayerTowards(delta, targetPos, currentPowerStats->rotationSpeed);
+		rotatePlayerTowards(delta, targetPos, rotationSpeed);
 	}
 
 	//Si hay input se traslada toda la velocidad antigua a la nueva direcci�n de front y se le a�ade lo acelerado

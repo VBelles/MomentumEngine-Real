@@ -78,7 +78,7 @@
 				"walkingSpeed": 3.0,
 				"attack_slots": 3.0,
 				"ssj1": {
-					"rotation_speed": 11.0,
+					"rotation_speed": 20.0,
 					"maxSpeed": 7.0,
 					"landingLag": 1.0,
 					"shortHopVelocity": 16.0,
@@ -95,7 +95,7 @@
 					"plummetTime": 0.4
 				},
 				"ssj2": {
-					"rotation_speed": 14.0,
+					"rotation_speed": 20.0,
 					"maxSpeed": 11.0,
 					"landingLag": 5.0,
 					"shortHopVelocity": 18.0,
@@ -112,7 +112,7 @@
 					"plummetTime": 0.5
 				},
 				"ssj3": {
-					"rotation_speed": 17.0,
+					"rotation_speed": 20.0,
 					"maxSpeed": 14.0,
 					"landingLag": 9.0,
 					"shortHopVelocity": 20.0,
