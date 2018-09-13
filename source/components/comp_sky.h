@@ -18,6 +18,17 @@ private:
 		float duration;
 	};
 
+	/*
+	REGULAR		1 0.87 0.67 1
+	INVERTED	0.033 0334 0.353 1
+	PINK		0.912 0.401 0.313 1
+	RED			0.603 0.157 0.08 1
+	TURQUESA	0.638 0.711 0.704 1
+	*/
+
+	std::vector<VEC4> skyboxLightColor;
+	std::vector<float> skyboxLightIntensity;
+
 	//json
 	std::vector<Skybox> skyboxes;
 	float fixedLerpTime = 0.f;

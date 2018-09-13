@@ -15,6 +15,7 @@ void TCompLightDir::debugInMenu() {
 	TCompCamera::debugInMenu();
 	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 100.f);
 	ImGui::ColorEdit3("Color", &color.x);
+	ImGui::DragFloat4("Color float4", &color.x);
 	ImGui::DragFloat("Step Size", &shadows_step, 0.01f, 0.f, 5.f);
 	ImGui::LabelText("Shadows Category", "%s", shadows_category.c_str());
 }
