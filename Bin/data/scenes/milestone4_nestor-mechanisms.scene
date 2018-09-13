@@ -6,8 +6,8 @@
       "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
-        "pos": "69.8053 9.18995 -115.458",
-        "rotation": "0.5 0.5 -0.5 0.5"
+        "pos": "61.6959 7.31922 -106.332",
+        "rotation": "0.246669 0.662687 -0.662687 0.246669"
       },
       "mechanism":
       {
@@ -16,7 +16,12 @@
         "isResettable": true,
         "systems":
         [
-           "nes_torre_mesh039"
+           "nes_columna_piezas_fuste_2_001",
+           "nes_columna_piezas_fuste_3_001",
+           "nes_columna_piezas_fuste_2_003",
+           "nes_columna_piezas_fuste_1_001",
+           "nes_columna_piezas_fuste_1_003",
+           "nes_columna_piezas_fuste_0_001"
         ]
       }
     }
@@ -24,11 +29,11 @@
   {
     "entity":
     {
-      "name": "nes_torre_mesh039",
+      "name": "nes_columna_piezas_fuste_2_001",
       "transform":
       {
-        "pos": "38.1063 27.2459 -122.956",
-        "rotation": "0.298836 -0.298836 0.640856 -0.640857"
+        "pos": "48.0379 16.8744 -109.675",
+        "rotation": "-0.00167287 -0.0021806 -0.608759 -0.79335"
       },
       "mechanism_system":
       {
@@ -42,17 +47,227 @@
       "render":
       [
         {
-          "mesh": "data/meshes/nes_torre_mesh039.mesh",
+          "mesh": "data/meshes/nes_columna_piezas_fuste_2_001.mesh",
           "materials":
           [
-            "data/materials/Material_Torre.material"
+            "data/materials/m_columna_piezas.material"
           ],
           "enabled": false
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/nes_torre_mesh_COLLIDER040.col_mesh",
+        "mesh_src": "data/meshes/nes_columna_piezas_fuste_2_col_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_columna_piezas_fuste_3_001",
+      "transform":
+      {
+        "pos": "45.1055 20.4873 -110.654",
+        "rotation": "0.231416 0.301588 -0.563061 -0.733794"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_fuste_3_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_fuste_3_col_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_columna_piezas_fuste_2_003",
+      "transform":
+      {
+        "pos": "40.8949 26.5626 -116.873",
+        "rotation": "-0.00167287 -0.0021806 -0.608759 -0.79335"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_fuste_2_003.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_fuste_2_col_003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_columna_piezas_fuste_1_001",
+      "transform":
+      {
+        "pos": "51.5051 13.3212 -108.646",
+        "rotation": "0.360005 0.32165 -0.521558 -0.703502"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_fuste_1_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_fuste_1_col_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_columna_piezas_fuste_1_003",
+      "transform":
+      {
+        "pos": "42.3744 23.9542 -113.169",
+        "rotation": "0.360005 0.32165 -0.521558 -0.703502"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_fuste_1_003.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_fuste_1_col_003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_columna_piezas_fuste_0_001",
+      "transform":
+      {
+        "pos": "54.1508 9.28692 -107.921",
+        "rotation": "-0.0974154 0.129558 -0.525106 -0.835457"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_fuste_0_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_fuste_0_col_001.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":

@@ -3,11 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/escultura_difuso.dds",
-    "normal": "data/textures/escultura_normals.dds",
-    "metallic": "data/textures/escultura_metallic.dds",
-    "roughness": "data/textures/escultura_roughness.dds",
-    "self_illum": "data/textures/null_self_illum.dds",
+    "albedo": "data/textures/escultura_BaseColor.dds",
+    "normal": "data/textures/escultura_Normal.dds",
+    "metallic": "data/textures/escultura_Metallic.dds",
+    "roughness": "data/textures/escultura_Roughness.dds",
+    "self_illum": "data/textures/escultura_Emissive.dds",
     "height": "data/textures/null_height.dds",
     "detail_normal": "data/textures/null_detail_normal.dds"
   }
