@@ -24,6 +24,8 @@ enum InputType {
 
 struct GlobalConfig {
 	VEC2 cameraAxis;
+	VEC2 cameraSpeed;
+	VEC2 cameraSpeedPad;
 	VEC2 resolution;
 	bool fullscreen;
 	bool vSync;

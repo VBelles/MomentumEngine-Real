@@ -16,6 +16,8 @@ bool CModuleOptionsMenu::start() {
 	Engine.getGUI().activateWidget("options_menu");
 
 	controller = new GUI::COptionsMenuController();
+	controller->registerOption("camera_speed", jOptions["camera"]["camera_speed"]);
+	controller->registerOption("camera_speed_pad", jOptions["camera"]["camera_speed_pad"]);
 	controller->registerOption("invert_x_axis", jOptions["camera"]["invert_x_axis"]);
 	controller->registerOption("invert_y_axis", jOptions["camera"]["invert_y_axis"]);
 	controller->registerOption("fullscreen", jOptions["screen"]["fullscreen"]);
@@ -42,6 +44,9 @@ bool CModuleOptionsMenu::stop() {
 		jOptions["screen"]["resolution"] = controller->getOptionValue("resolution");
 	}
 	jOptions["screen"]["vsync"] = controller->getOptionValue("vsync");
+	jOptions["camera"]["camera_speed"] = controller->getOptionValue("camera_speed");
+	jOptions["camera"]["camera_speed_pad"] = controller->getOptionValue("camera_speed_pad");
+
 
 	std::string string = jOptions.dump(1, '\t');
 	std::ofstream myfile;

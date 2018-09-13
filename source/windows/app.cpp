@@ -290,6 +290,9 @@ bool CApp::readConfig() {
 	Engine.globalConfig.cameraAxis.x = jCamera.value("invert_x_axis", false) ? -1.f : 1.f;
 	Engine.globalConfig.cameraAxis.y = jCamera.value("invert_y_axis", false) ? -1.f : 1.f;
 
+	Engine.globalConfig.cameraSpeed = VEC2(jCamera.value("camera_speed", 0.5), jCamera.value("camera_speed", 0.5));
+	Engine.globalConfig.cameraSpeedPad = VEC2(jCamera.value("camera_speed_pad", 2.0), jCamera.value("camera_speed_pad", 2.0));
+
     time_since_last_render.reset();
 
     EngineRender.configure(resX, resY, vsync);
