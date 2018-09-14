@@ -2,6 +2,908 @@
   {
     "entity":
     {
+      "name": "nes_mech003",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "158.589 120.548 -152.168",
+        "rotation": "-0.207723 0.675908 -0.675908 -0.207723"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 15.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "nes_platform_civilization_emissive_mini_017",
+           "nes_platform_civilization_emissive_mini_018",
+           "nes_platform_civilization_emissive_mini_019",
+           "nes_platform_civilization_emissive_mini_020",
+           "nes_platform_civilization_emissive_mini_021",
+           "nes_platform_civilization_emissive_mini_022",
+           "nes_platform_civilization_emissive_mini_025"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_017",
+      "transform":
+      {
+        "pos": "151.135 117.78 -150.304",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_017.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_017.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_018",
+      "transform":
+      {
+        "pos": "149.355 117.78 -147.225",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_018.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_018.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_019",
+      "transform":
+      {
+        "pos": "154.711 117.78 -150.348",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_019.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_019.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_020",
+      "transform":
+      {
+        "pos": "152.932 117.78 -147.269",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_020.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_020.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_021",
+      "transform":
+      {
+        "pos": "151.135 117.78 -144.128",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_021.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_021.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_022",
+      "transform":
+      {
+        "pos": "154.712 117.78 -144.172",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_022.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_022.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_025",
+      "transform":
+      {
+        "pos": "156.472 117.78 -147.292",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_025.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_025.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mech002",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "144.719 88.8488 -152.803",
+        "rotation": "0.158061 0.689215 -0.689215 0.158061"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 15.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "nes_platform_civilization_emissive_mini_010",
+           "nes_platform_civilization_emissive_mini_003",
+           "nes_platform_civilization_emissive_mini_004",
+           "nes_platform_civilization_emissive_mini_006",
+           "nes_platform_civilization_emissive_mini_007",
+           "nes_platform_civilization_emissive_mini_009",
+           "nes_platform_civilization_emissive_mini_005",
+           "nes_platform_civilization_emissive_mini_002",
+           "nes_platform_civilization_emissive_mini_011",
+           "nes_platform_civilization_emissive_mini_012",
+           "nes_platform_civilization_emissive_mini_013",
+           "nes_platform_civilization_emissive_mini_014",
+           "nes_platform_civilization_emissive_mini_015"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_010",
+      "transform":
+      {
+        "pos": "149.24 78.1766 -142.624",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_010.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_003",
+      "transform":
+      {
+        "pos": "152.289 78.1766 -151.5",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_003.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_004",
+      "transform":
+      {
+        "pos": "149.208 78.1766 -149.723",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_004.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_006",
+      "transform":
+      {
+        "pos": "152.328 78.1766 -147.973",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_006.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_007",
+      "transform":
+      {
+        "pos": "149.201 78.1766 -146.151",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_007.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_009",
+      "transform":
+      {
+        "pos": "152.321 78.1766 -144.401",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_009.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_005",
+      "transform":
+      {
+        "pos": "155.408 78.1766 -149.75",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_005.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_002",
+      "transform":
+      {
+        "pos": "149.228 78.1766 -153.247",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_002.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_011",
+      "transform":
+      {
+        "pos": "146.13 78.1766 -147.952",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_011.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_012",
+      "transform":
+      {
+        "pos": "155.405 78.1766 -146.223",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_012.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_012.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_013",
+      "transform":
+      {
+        "pos": "155.407 78.1766 -153.295",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_013.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_013.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_014",
+      "transform":
+      {
+        "pos": "158.49 78.1766 -147.975",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_014.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_014.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_015",
+      "transform":
+      {
+        "pos": "155.44 78.1766 -142.635",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_015.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": false
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_015.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_mech001",
       "prefab": "data/prefabs/mech.prefab",
       "transform":

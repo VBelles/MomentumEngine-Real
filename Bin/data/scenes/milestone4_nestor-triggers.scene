@@ -36,7 +36,7 @@
       "name": "nes_respawn004torreTop",
       "transform":
       {
-        "pos": "152.614 110.091 -148.241",
+        "pos": "152.614 105.216 -148.241",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
@@ -56,7 +56,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "144.096 106.056 -152.869",
+        "respawn_position": "141.684 106.156 -148.928",
         "respawn_rotation": "0.0 -0.461749 0.0 -0.887011"
       }
     }

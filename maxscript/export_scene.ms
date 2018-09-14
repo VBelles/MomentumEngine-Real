@@ -2235,6 +2235,7 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 
 TODO: Ignorar slots vacíos de multimaterial al exportar para que no dé error
 	  si se dejan alguno.
+TODO: Poder cambiar atributos en varios objetos a la vez.
 
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos

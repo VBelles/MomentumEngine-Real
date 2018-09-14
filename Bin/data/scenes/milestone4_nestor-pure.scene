@@ -2,6 +2,47 @@
   {
     "entity":
     {
+      "name": "nes_columna_piezas_capitel_004",
+      "transform":
+      {
+        "pos": "160.426 56.1847 -163.401",
+        "rotation": "0.0973991 -0.42274 -0.00180465 -0.901"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_capitel_004.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_columna_piezas_capitel_004.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_capitel_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_plataforma_roca_grande_003",
       "transform":
       {

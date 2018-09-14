@@ -1,9 +1,0 @@
-{
-  "technique": "vegetation.tech",
-  "shadows": true,
-  "textures":
-  {
-    "albedo": "data/textures/vegetacion/leaf_01.dds",
-    "normal": "data/textures/vegetacion/leaf_01_normals.dds"
-  }
-}
