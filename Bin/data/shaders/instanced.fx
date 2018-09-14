@@ -160,4 +160,5 @@ void PS_Vegetation(
   o_depth = dot( camera_front.xyz, camera2wpos ) / camera_zfar;
 
   o_self_illum = txSelfIllum.Sample(samClampLinear, iTex0);
+  o_self_illum *= day_night_cycle_emissive_ratio;
 }

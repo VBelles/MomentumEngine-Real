@@ -34,4 +34,6 @@ public:
 
 	float getIntensity() { return intensity; }
 	void setIntensity(float intensity) { this->intensity = intensity; }
+	VEC4 getColor() { return color; }
+	void setColor(VEC4 color) { this->color = color; }
 };
