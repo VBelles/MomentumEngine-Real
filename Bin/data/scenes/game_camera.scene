@@ -6,7 +6,8 @@
 				"pos": "0 0 0"
 			},
 			"camera": {
-				"fov": 80
+				"fov": 80,
+				"game_camera": true
 			},
 			"render_blur": {
 				"enabled": false

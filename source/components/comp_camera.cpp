@@ -49,12 +49,22 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 		float fov_deg = j.value("fov", deg2rad(60.f));
 		camera->setPerspective(deg2rad(fov_deg), z_near, z_far);
 	}
+
+	gameCamera = j.value("game_camera", gameCamera);
+
 }
 
 void TCompCamera::update(float delta) {
 	TCompTransform* transform = get<TCompTransform>();
 	assert(transform);
-	camera->lookAt(transform->getPosition(), transform->getPosition() + transform->getFront(), transform->getUp());
+	VEC3 position = transform->getPosition();
+	VEC3 front = transform->getFront();
+	VEC3 up = transform->getUp();
+	VEC3 velocity = VEC3::Zero;
+	camera->lookAt(position, position + front, up);
+	if (gameCamera) {
+		EngineSound.updateListenerAttributes(position, velocity, front, up);
+	}
 }
 
 CCamera* TCompCamera::getCamera() {

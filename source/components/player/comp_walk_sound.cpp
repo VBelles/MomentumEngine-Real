@@ -74,7 +74,7 @@ void TCompWalkSound::emitSound(const FootInfo& footInfo) {
 	if (((state->state == State::Run && getPlayerModel()->getPowerGauge()->getPowerLevel() != 3) 
 			|| state->state == State::Walk)
 		&& state->getMovementInput().Length() > 0) {
-		EngineSound.emitEvent(footInfo.eventName);
+		EngineSound.emitEvent(footInfo.eventName.c_str());
 	}
 }
 

@@ -12,18 +12,18 @@ CModuleSound::CModuleSound(const std::string& name) : IModule(name) {
 bool CModuleSound::start() {
 	res = Studio::System::create(&system);
 	assert(res == FMOD_OK);
-	res = system->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL, extraDriverData);
+	res = system->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_3D_RIGHTHANDED, extraDriverData);
+	system->getLowLevelSystem(&lowLevelSystem);
 	assert(res == FMOD_OK);
 
-	json j = loadJson("data/sounds.json");
-	for (std::string bankFile : j["banks"]) {
+	auto j = loadJson("data/sounds.json");
+	for (const std::string& bankFile : j["banks"]) {
 		Studio::Bank* bank = nullptr;
 		res = system->loadBankFile(bankFile.c_str(), FMOD_STUDIO_LOAD_BANK_NORMAL, &bank);
 
 		assert(res == FMOD_OK);
 		banks[bankFile] = bank;
 	}
-	//instanceEvent(TEST_EVENT);
 	return true;
 }
 
@@ -38,57 +38,73 @@ bool CModuleSound::stop() {
 }
 
 void CModuleSound::update(float delta) {
+	lowLevelSystem->set3DListenerAttributes(0, &listenerAttributes.position, &listenerAttributes.velocity, &listenerAttributes.forward, &listenerAttributes.up);
 	system->update();
 }
 
-void CModuleSound::instanceEvent(std::string sound) {
-	if (eventInstances.find(sound) == eventInstances.end()) {
+void CModuleSound::updateListenerAttributes(VEC3& position, VEC3& velocity, VEC3& forward, VEC3& up) {
+	listenerAttributes.position = { position.x, position.y, position.z };
+	listenerAttributes.velocity = { velocity.x, velocity.y, velocity.z };
+	listenerAttributes.forward = { forward.x, forward.y, forward.z };
+	listenerAttributes.up = { up.x, up.y, up.z };
+}
+
+Studio::EventInstance* CModuleSound::instanceEvent(const char* sound) {
+	auto it = eventInstances.find(sound);
+	if (it == eventInstances.end()) {
 		Studio::EventDescription* descriptor = nullptr;
-		res = system->getEvent(sound.c_str(), &descriptor);
+		res = system->getEvent(sound, &descriptor);
 		Studio::EventInstance* eventInstance = nullptr;
 		res = descriptor->createInstance(&eventInstance);
 		eventInstances[sound] = eventInstance;
+		return eventInstance;
 	}
 	else {
-		dbg("Event '%s' already instanced\n", sound);
+		return it->second;
 	}
 }
 
-void CModuleSound::releaseEvent(std::string sound) {
-	try {
-		eventInstances.at(sound)->release();
+void CModuleSound::releaseEvent(const char* sound) {
+	auto it = eventInstances.find(sound);
+	if (it != eventInstances.end()) {
+		it->second->release();
 		eventInstances.erase(sound);
 	}
-	catch (const std::out_of_range& e) {
-		UNREFERENCED_PARAMETER(e);
-		dbg("Releasing an uninstanced event\n");
-	}
 }
 
-void CModuleSound::startEvent(std::string sound) {
+void CModuleSound::startEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
 	auto it = eventInstances.find(sound);
+	Studio::EventInstance* eventInstance = it->second;
 	if (it == eventInstances.end()) {
-		instanceEvent(sound);
-		eventInstances[sound]->start();
+		eventInstance = instanceEvent(sound);
+	}
+	if (eventInstance) {
+		eventInstance->set3DAttributes(attributes);
+		eventInstance->start();
 	}
 	else {
-		it->second->start();
+		dbg("Event instance not found\n");
 	}
 }
 
-void CModuleSound::stopEvent(std::string sound, FMOD_STUDIO_STOP_MODE mode) {
+void CModuleSound::stopEvent(const char* sound, FMOD_STUDIO_STOP_MODE mode) {
 	auto it = eventInstances.find(sound);
 	if (it != eventInstances.end()) {
 		it->second->stop(mode);
 	}
 }
 
-void CModuleSound::emitEvent(std::string sound) {
+void CModuleSound::emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
 	Studio::EventDescription* descriptor = nullptr;
-	res = system->getEvent(sound.c_str(), &descriptor);
+	res = system->getEvent(sound, &descriptor);
 	Studio::EventInstance* eventInstance = nullptr;
 	res = descriptor->createInstance(&eventInstance);
-	//dbg("RES: %d\n", res);
-	eventInstance->start();
-	eventInstance->release();
+	if (eventInstance) {
+		eventInstance->set3DAttributes(attributes);
+		eventInstance->start();
+		eventInstance->release();
+	}
+	else {
+		dbg("Event instance not found\n");
+	}
 }

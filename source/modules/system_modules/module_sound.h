@@ -2,9 +2,13 @@
 
 #include "modules/module.h"
 
-#define TEST_EVENT "event:/onTest"
-
 class CModuleSound : public IModule {
+	struct ListenerAttributes {
+		FMOD_VECTOR position;
+		FMOD_VECTOR velocity;
+		FMOD_VECTOR forward;
+		FMOD_VECTOR up;
+	};
 private:
 	FMOD_RESULT res;
 	void *extraDriverData = nullptr;
@@ -13,20 +17,21 @@ private:
 
 	std::map<std::string, FMOD::Studio::Bank*> banks;
 	std::map<std::string, FMOD::Studio::EventInstance*> eventInstances;
+	ListenerAttributes listenerAttributes;
 
 public:
 	CModuleSound(const std::string& name);
 	bool start() override;
 	bool stop() override;
 	void update(float delta) override;
+	void updateListenerAttributes(VEC3& position, VEC3& speed, VEC3& forwrad, VEC3& up);
+	FMOD::Studio::EventInstance* instanceEvent(const char* event);
+	void releaseEvent(const char* event);
 
-	void instanceEvent(std::string event);
-	void releaseEvent(std::string event);
+	void startEvent(const char* event, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
+	void stopEvent(const char* event, FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_IMMEDIATE);
 
-	void startEvent(std::string event);
-	void stopEvent(std::string event, FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_IMMEDIATE);
-
-	void emitEvent(std::string event);
+	void emitEvent(const char* event, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
 
 };
 
