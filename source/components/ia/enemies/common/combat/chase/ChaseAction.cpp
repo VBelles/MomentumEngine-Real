@@ -19,12 +19,34 @@ int ChaseAction::execAction(float delta) {
 	VEC3 playerPosition = enemy->getPlayerTransform()->getPosition();
 	float movementIncrement = enemy->movementSpeed * delta;
 	enemy->rotateTowards(delta, playerPosition, enemy->rotationSpeed);
+
 	if (VEC3::DistanceSquared(playerPosition, enemy->getTransform()->getPosition()) >= movementIncrement * movementIncrement) {
-		enemy->deltaMovement += enemy->getTransform()->getFront() * movementIncrement;
+		VEC3 deltaMove = movementIncrement * enemy->getTransform()->getFront();
+		if (enemy->navMeshQuery) {
+			VEC3 pos = enemy->getTransform()->getPosition();
+			if (enemy->navMeshQuery->existsConnection(pos, pos + deltaMove)
+				&& !enemy->navMeshQuery->raycast2D(pos, pos + deltaMove)) {
+				enemy->deltaMovement += deltaMove;
+			}
+		}
+		else {
+			enemy->deltaMovement += deltaMove;
+		}
 	}
 	else {
-		enemy->deltaMovement += enemy->getTransform()->getFront() * VEC3::Distance(playerPosition, enemy->getTransform()->getPosition());
+		VEC3 deltaMove = enemy->getTransform()->getFront() * VEC3::Distance(playerPosition, enemy->getTransform()->getPosition());
+		if (enemy->navMeshQuery) {
+			VEC3 pos = enemy->getTransform()->getPosition();
+			if (enemy->navMeshQuery->existsConnection(pos, pos + deltaMove)
+				&& !enemy->navMeshQuery->raycast2D(pos, pos + deltaMove)) {
+				enemy->deltaMovement += deltaMove;
+			}
+		}
+		else {
+			enemy->deltaMovement += deltaMove;
+		}
 	}
+
 	return Leave;
 }
 
