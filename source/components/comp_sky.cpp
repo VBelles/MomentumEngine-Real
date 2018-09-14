@@ -3,6 +3,7 @@
 #include "entity/entity.h"
 #include "entity/entity_parser.h"
 #include "entity/common_msgs.h"
+#include "components/comp_light_dir.h"
 
 DECL_OBJ_MANAGER("sky", TCompSky);
 
@@ -22,7 +23,7 @@ void TCompSky::debugInMenu() {
 		"\0";
 	ImGui::Combo("Skybox", &skyboxToChange, skyboxToChange_str);
 	if (skyboxToChange != skyboxIndex) {
-		setSkybox(static_cast<SkyboxType>(skyboxToChange), 5.f);
+		setSkybox(static_cast<SkyboxType>(skyboxToChange), 10.f);
 	}
 
 	bool sequential = false;
@@ -38,15 +39,17 @@ void TCompSky::debugInMenu() {
 }
 
 void TCompSky::load(const json& j, TEntityParseContext& ctx) {
-	for (auto& skyBox : j["skyboxes"]) {
-		std::string texture = skyBox.value("texture", "");
-		float time = skyBox.value("time", 100.f);
+	for (auto& skybox : j["skyboxes"]) {
+		std::string texture = skybox.value("texture", "");
+		float time = skybox.value("time", 100.f);
+		VEC4 color = loadVEC4(skybox.value("light_color", "1 1 1 1"));
+		float intensity = skybox.value("light_intensity", 10);
 		dbg("texture: \n", texture.c_str());
-		skyboxes.push_back(Skybox{ Resources.get(texture)->as<CTexture>(), time });
+		skyboxes.push_back(Skybox{ Resources.get(texture)->as<CTexture>(), time, color, intensity});
 	}
 	fixedLerpTime = j.value("lerp_time", 10.f);
 	currentLerpTime = fixedLerpTime;
-
+	lightSourceName = j.value("light_source", "");
 	numSkyboxes = skyboxes.size();
 	if (numSkyboxes == 0) {
 		skyboxes.push_back(Skybox{ Resources.get("data/textures/cubemaps/momentum/OutputCube_256.dds")->as<CTexture>(), 20.f });
@@ -65,6 +68,15 @@ void TCompSky::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	cb_globals.global_skybox_ratio = 0.f;
 	changeTimer.reset();
 	lerpTimer.reset();
+	//pillar directional light
+	CHandle lightSourceEntityHandle = getEntityByName(lightSourceName);
+	if (!lightSourceEntityHandle.isValid()) {
+		dbg("-----------------Falta un light source para el skybox\n");
+	}
+	else {
+		CEntity* entity = lightSourceEntityHandle;
+		lightSource = entity->get<TCompLightDir>();
+	}
 }
 
 
@@ -84,6 +96,7 @@ void TCompSky::update(float dt) {
 			currentLerpTime = fixedLerpTime;
 			//slot 0 -> textura actual, slot 1 -> textura siguiente
 			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
+			previousSkyboxIndex = skyboxIndex;
 			skyboxIndex = (skyboxIndex + 1) % numSkyboxes;
 			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
 			cb_globals.global_skybox_ratio = 0.f;
@@ -96,6 +109,7 @@ void TCompSky::update(float dt) {
 			cb_globals.global_skybox_ratio = 0.f;
 			currentLerpTime = nextLerpTime;
 			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP);
+			previousSkyboxIndex = skyboxIndex;
 			skyboxIndex = nextSkybox;
 			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
 		}
@@ -119,6 +133,7 @@ void TCompSky::update(float dt) {
 					possibleIndexes.push_back(i);
 				}
 			}
+			previousSkyboxIndex = skyboxIndex;
 			skyboxIndex = possibleIndexes[std::rand() % (possibleIndexes.size())];
 			skyboxes[skyboxIndex].texture->activate(TS_ENVIRONMENT_MAP_1);
 			cb_globals.global_skybox_ratio = 0.f;
@@ -127,6 +142,10 @@ void TCompSky::update(float dt) {
 	}
 	if (lerpTimer.elapsed() <= currentLerpTime) {
 		cb_globals.global_skybox_ratio = lerpTimer.elapsed() / currentLerpTime;
+		//intensidad de la luz y color de la luz respecto este ratio
+		TCompLightDir* light = lightSource;
+		light->setColor(VEC4::Lerp(skyboxes[previousSkyboxIndex].lightColor, skyboxes[skyboxIndex].lightColor, cb_globals.global_skybox_ratio));
+		light->setIntensity(lerp(skyboxes[previousSkyboxIndex].lightIntensity, skyboxes[skyboxIndex].lightIntensity, cb_globals.global_skybox_ratio));
 	}
 	else {
 		cb_globals.global_skybox_ratio = 1.f;

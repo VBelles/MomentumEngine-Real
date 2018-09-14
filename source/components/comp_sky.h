@@ -16,6 +16,8 @@ private:
 	struct Skybox {
 		const CTexture* texture = nullptr;
 		float duration;
+		VEC4 lightColor;
+		float lightIntensity;
 	};
 
 	/*
@@ -26,16 +28,18 @@ private:
 	TURQUESA	0.638 0.711 0.704 1
 	*/
 
-	std::vector<VEC4> skyboxLightColor;
-	std::vector<float> skyboxLightIntensity;
-
 	//json
 	std::vector<Skybox> skyboxes;
 	float fixedLerpTime = 0.f;
+	std::string lightSourceName;
+
+	CHandle lightSource;
 
 	Mode currentMode = FIXED;
 	float currentLerpTime = 0.f;
+
 	size_t skyboxIndex = 0;
+	size_t previousSkyboxIndex = 0;
 	size_t numSkyboxes;
 
 	bool waitingToEnter = false;
