@@ -62,9 +62,9 @@ void TCompCamera::update(float delta) {
 	VEC3 up = transform->getUp();
 	VEC3 velocity = VEC3::Zero;
 	camera->lookAt(position, position + front, up);
-	if (gameCamera) {
+	//if (gameCamera) {
 		EngineSound.updateListenerAttributes(position, velocity, front, up);
-	}
+	//}
 }
 
 CCamera* TCompCamera::getCamera() {

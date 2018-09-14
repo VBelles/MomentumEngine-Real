@@ -3,12 +3,6 @@
 #include "modules/module.h"
 
 class CModuleSound : public IModule {
-	struct ListenerAttributes {
-		FMOD_VECTOR position;
-		FMOD_VECTOR velocity;
-		FMOD_VECTOR forward;
-		FMOD_VECTOR up;
-	};
 private:
 	FMOD_RESULT res;
 	void *extraDriverData = nullptr;
@@ -17,7 +11,7 @@ private:
 
 	std::map<std::string, FMOD::Studio::Bank*> banks;
 	std::map<std::string, FMOD::Studio::EventInstance*> eventInstances;
-	ListenerAttributes listenerAttributes;
+	FMOD_3D_ATTRIBUTES listenerAttributes;
 
 public:
 	CModuleSound(const std::string& name);
