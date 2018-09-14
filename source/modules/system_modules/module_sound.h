@@ -25,13 +25,15 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 	void updateListenerAttributes(VEC3& position, VEC3& speed, VEC3& forwrad, VEC3& up);
-	FMOD::Studio::EventInstance* instanceEvent(const char* event);
-	void releaseEvent(const char* event);
+	FMOD::Studio::EventInstance* instanceEvent(const char* sound);
+	void releaseEvent(const char* sound);
 
-	void startEvent(const char* event, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
-	void stopEvent(const char* event, FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_IMMEDIATE);
 
-	void emitEvent(const char* event, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
+	void startEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
+	void stopEvent(const char* sound, FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_IMMEDIATE);
+
+	void emitEvent(const char* sound, VEC3 position, VEC3 velocity = VEC3::Zero, VEC3 forward = VEC3::Zero, VEC3 up = VEC3::Zero);
+	void emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
 
 };
 

@@ -3,6 +3,7 @@
 #include "utils/utils.h"
 #include "entity/common_msgs.h"
 #include "comp_player_model.h"
+#include "components/comp_transform.h"
 #include "modules/game_modules/game/respawner.h"
 #include "modules/game_modules/game/module_game.h"
 #include <algorithm>
@@ -107,6 +108,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		playerModel->setHp(playerModel->getMaxHp());
+		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, static_cast<TCompTransform*>(entity->get<TCompTransform>())->getPosition());
 		break;
 	case Type::COIN:
 		collectable->collect();
@@ -115,6 +117,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 			spendCoins(getNumberOfCoins() - maxCoins);
 		}
 		EngineParticles.launchSystem(PARTICLES_COIN, { entity });
+		EngineSound.emitEvent(SOUND_COIN, static_cast<TCompTransform*>(entity->get<TCompTransform>())->getPosition());
 		break;
 	case Type::LIFEPIECE:
 		collectable->collect();

@@ -66,13 +66,12 @@ void StrongFinisher1ActionState::update(float delta) {
 			velocityVector->z = 0.f;
 		}
 	}
-
-	if (!isSlashOut && movementTimer.elapsed() > frames2sec(20)) {
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(20) && movementTimer.elapsed() <= frames2sec(30)) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::LEFT_HAND)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_HAND)->setEnable(true);
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
 	}
-
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(30)) {
 		isSlashOut = false;
 		getTrailSlash(SlashType::LEFT_HAND)->stopEmitting();

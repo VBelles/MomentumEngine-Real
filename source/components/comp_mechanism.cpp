@@ -40,7 +40,7 @@ void TCompMechanism::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 	}
 	reactivationTimer.reset();
 	TCompRender *render = get<TCompRender>();
-	onActivated(isActivated);
+	onActivated(isActivated, false);
 }
 
 void TCompMechanism::update(float dt) {
@@ -81,9 +81,12 @@ void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 	}
 }
 
-void TCompMechanism::onActivated(bool isActive) {
+void TCompMechanism::onActivated(bool isActive, bool sound) {
 	TCompRender *render = get<TCompRender>();
 	render->setMeshEnabled(0, !isActive);
 	render->setMeshEnabled(1, isActive);
 	render->refreshMeshesInRenderManager();
+	if (sound) {
+		EngineSound.emitEvent(isActive ? SOUND_MECHANISM_ON : SOUND_MECHANISM_OFF, static_cast<TCompTransform*>(get<TCompTransform>())->getPosition());
+	}
 }

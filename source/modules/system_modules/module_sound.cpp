@@ -94,6 +94,15 @@ void CModuleSound::stopEvent(const char* sound, FMOD_STUDIO_STOP_MODE mode) {
 	}
 }
 
+void CModuleSound::emitEvent(const char* sound, VEC3 position, VEC3 velocity, VEC3 forward, VEC3 up) {
+	FMOD_3D_ATTRIBUTES attributes;
+	attributes.position = { position.x, position.y, position.z };
+	attributes.velocity = { velocity.x, velocity.y, velocity.z };
+	attributes.forward = { forward.x, forward.y, forward.z };
+	attributes.up = { up.x, up.y, up.z };
+	emitEvent(sound, &attributes);
+}
+
 void CModuleSound::emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
 	Studio::EventDescription* descriptor = nullptr;
 	res = system->getEvent(sound, &descriptor);
