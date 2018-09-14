@@ -40,6 +40,7 @@
     "mechanism",
     "mechanism_system",
     "door",
+    "day_night_cycle",
     "sky",
     "behaviorTree_melee_enemy",
     "behaviorTree_ball_enemy",

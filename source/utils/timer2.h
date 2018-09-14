@@ -58,4 +58,8 @@ public:
 	void setFrameStamp(int value) {
 		frame_stamp = value;
 	}
+
+	void setPaused(bool pause) {
+		CTimerFrames::get().setPaused(pause);
+	}
 };

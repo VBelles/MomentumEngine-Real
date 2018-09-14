@@ -103,6 +103,7 @@
     <ClCompile Include="components\comp_collectable.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\comp_day_night_cycle.cpp" />
     <ClCompile Include="components\comp_door.cpp" />
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
@@ -462,6 +463,7 @@
     <ClInclude Include="components\comp_collectable.h" />
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\comp_day_night_cycle.h" />
     <ClInclude Include="components\comp_door.h" />
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="components\comp_forward_msg.h" />

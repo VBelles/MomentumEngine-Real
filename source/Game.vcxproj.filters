@@ -355,6 +355,7 @@
     <ClCompile Include="gui\widgets\gui_points_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_point.cpp" />
     <ClCompile Include="gui\gui_font.cpp" />
+    <ClCompile Include="components\comp_day_night_cycle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -743,6 +744,7 @@
     <ClInclude Include="gui\widgets\gui_points_bar.h" />
     <ClInclude Include="gui\widgets\gui_point.h" />
     <ClInclude Include="gui\gui_font.h" />
+    <ClInclude Include="components\comp_day_night_cycle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

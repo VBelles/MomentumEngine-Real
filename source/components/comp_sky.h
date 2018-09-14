@@ -2,6 +2,10 @@
 
 struct TMsgAllScenesCreated;
 
+enum SkyboxType {//poner dependiendo del número de skyboxes que haya en json
+	REGULAR, INVERTED, PINK, RED, TURQUESA
+};
+
 class TCompSky : public TCompBase {
 private:
 
@@ -9,9 +13,6 @@ private:
 		SEQUENTIAL, FIXED, RANDOM
 	};
 
-	enum SkyboxType {//poner dependiendo del número de skyboxes que haya en json
-		REGULAR, INVERTED, PINK, RED, TURQUESA
-	};
 
 	struct Skybox {
 		const CTexture* texture = nullptr;
@@ -47,8 +48,8 @@ private:
 	size_t nextSkybox = 0;
 	float nextLerpTime = 0.f;
 
-	CTimer changeTimer;
-	CTimer lerpTimer;
+	CTimer2 changeTimer;
+	CTimer2 lerpTimer;
 
 public:
 	DECL_SIBLING_ACCESS();

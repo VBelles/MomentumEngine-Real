@@ -11,7 +11,7 @@
 						"time" : 10,
 						"light_color" : "1 0.87 0.67 1",
 						"light_intensity" : 12,
-						"emissive_ratio" : 0
+						"emissive_ratio" : 0.3
 					},
 					{
 						"texture" : "data/textures/cubemaps/momentum/skybox_inverted.dds",
@@ -32,17 +32,31 @@
 						"time" : 10,
 						"light_color" : "0.603 0.157 0.08 1",
 						"light_intensity" : 10,
-						"emissive_ratio" : 0
+						"emissive_ratio" : 0.3
 					},
 					{
 						"texture" : "data/textures/cubemaps/momentum/skybox_turquesa.dds",
 						"time" : 10,
 						"light_color" : "0.638 0.711 0.704 1",
 						"light_intensity" : 10,
-						"emissive_ratio" : 0
+						"emissive_ratio" : 0.1
 					}
 				],
 				"light_source" : "LightDir00"
+			}
+		}
+	},
+	{
+		"entity":
+		{
+			"name" : "DayNightCycle",
+			"day_night_cycle" : {
+				"starting_period" : 1,
+				"durations" : [
+					45.0, 120.0, 45.0, 120.0
+				],
+				"lerp_time" : 15,
+				"sky_name" : "Sky"
 			}
 		}
 	}
