@@ -4,6 +4,7 @@
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
+#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnHit", OnHit);
 
@@ -32,6 +33,11 @@ int OnHit::execAction(float delta) {
 			enemy->blockingBroken = true;
 			enemy->getPower()->setStateMultiplier(1.f);
 		}
+		else {
+			if (!onBlockingHitSound.empty()) {
+				EngineSound.emitEvent(onBlockingHitSound.c_str(), enemy->getTransform()->getPosition());
+			}
+		}
 	}
 	else {
 		enemy->hp -= attackInfo.damage;
@@ -39,17 +45,20 @@ int OnHit::execAction(float delta) {
 			enemy->stunDuration = attackInfo.stun->duration;
 		}
 		else {
-			enemy->stunDuration = 0;
+			enemy->stunDuration = 0.f;
 		}
 		enemy->stunTimer.reset();
+		if (!onHitSound.empty()) {
+			EngineSound.emitEvent(onHitSound.c_str(), enemy->getTransform()->getPosition());
+		}
 	}
-	if (enemy->hp <= 0 || enemy->getPower()->getPowerToGive() <= 0) {
-		enemy->hp = 0;
+	if (enemy->hp <= 0.f || enemy->getPower()->getPowerToGive() <= 0) {
+		enemy->hp = 0.f;
 		enemy->isBlocking = false;
 		enemy->blockingBroken = false;
-		enemy->superArmorAmount = 0;
+		enemy->superArmorAmount = 0.f;
 
-		if (enemy->getPower()->getPowerToGive() > 0) {
+		if (enemy->getPower()->getPowerToGive() > 0.f) {
 			CEntity *entity = enemy->playerHandle;
 			entity->sendMsg(TMsgGainPower{ enemy->getEntityHandle(), enemy->getPower()->getPowerToGive() });
 			enemy->getPower()->setPowerToGive(0.f);
@@ -74,6 +83,8 @@ void OnHit::load(IBehaviorTreeNew* bt, const json& j) {
 	animation = j.value("animation", animation);
 	particles = j.value("particles", particles);
 	particlesOffset = j.count("particles_offset") ? loadVEC3(j.value("particles_offset", "")) : particlesOffset;
+	onHitSound = j.value("on_hit_sound", onHitSound);
+	onBlockingHitSound = j.value("on_blocking_hit_sound", onHitSound);
 }
 
 void OnHit::debugInMenu() {
