@@ -24,7 +24,8 @@ int StepBackAction::execAction(float delta) {
 		VEC3 pos = enemy->getTransform()->getPosition();
 
 		if (enemy->navMeshQuery) {
-			if (enemy->navMeshQuery->existsConnection(pos, pos + stepBackMovement)) {
+			if (enemy->navMeshQuery->existsConnection(pos, pos + stepBackMovement)
+				&& !enemy->navMeshQuery->raycast2D(pos, pos + stepBackMovement)) {
 				enemy->deltaMovement += stepBackMovement;
 			}
 		}

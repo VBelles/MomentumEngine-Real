@@ -26,7 +26,8 @@ int TackleAttackAction::execAction(float delta) {
 	VEC3 movementIncrement = enemy->getTransform()->getFront() * speed * delta;
 	VEC3 enemyPos = enemy->getTransform()->getPosition();
 	if (enemy->timer.elapsed() >= time
-		|| !(enemy->navMeshQuery && enemy->navMeshQuery->existsConnection(enemyPos, enemyPos + movementIncrement))) {
+		|| !(enemy->navMeshQuery && enemy->navMeshQuery->existsConnection(enemyPos, enemyPos + movementIncrement)
+				&& !enemy->navMeshQuery->raycast2D(enemyPos, enemyPos + movementIncrement))) {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
 		enemy->currentAttack = "";
 		enemy->attackTimer.reset();

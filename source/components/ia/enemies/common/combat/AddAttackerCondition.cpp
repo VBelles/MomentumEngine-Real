@@ -2,6 +2,7 @@
 #include "AddAttackerCondition.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/player/comp_player_model.h"
+#include "components/comp_transform.h"
 
 REGISTER_BTCONDITION("AddAttackerCondition", AddAttackerCondition);
 
@@ -17,7 +18,19 @@ AddAttackerCondition::AddAttackerCondition(Enemy* enemy) :
 bool AddAttackerCondition::testCondition(float delta) {
 	if (enemy->attackTarget.empty()) {
 		CEntity* entity = enemy->getEntityHandle();
-		if (enemy->getPlayerModel()->addAttacker(entity->getName(), enemy->attackSlots)) {
+		if (enemy->navMeshQuery) {
+			if (enemy->navMeshQuery->existsConnection(enemy->getTransform()->getPosition(), enemy->getPlayerTransform()->getPosition())) {
+				if (enemy->getPlayerModel()->addAttacker(entity->getName(), enemy->attackSlots)) {
+					enemy->attackTarget = PLAYER_NAME;
+					return true;
+				}
+			}
+			else {
+				return false;
+			}
+
+		}
+		else if (enemy->getPlayerModel()->addAttacker(entity->getName(), enemy->attackSlots)) {
 			enemy->attackTarget = PLAYER_NAME;
 			return true;
 		}
