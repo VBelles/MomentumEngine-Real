@@ -18,6 +18,7 @@ private:
 		float duration;
 		VEC4 lightColor;
 		float lightIntensity;
+		float emissiveRatio;
 	};
 
 	/*

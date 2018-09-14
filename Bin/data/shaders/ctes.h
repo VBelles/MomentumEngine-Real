@@ -152,9 +152,9 @@ CB_DEF(CCteLight, CB_LIGHT) {
     float light_radius;                         // Used by point lights
     // Align x4
     MAT44 light_view_proj_offset;
-    //Posible bool para saber si es ortográfica en vez de dummy?
+    
     VEC3 light_front;
-    float dummy;
+    float light_pad1;
 };
 
 CB_DEF(CCteGlobals, CB_GLOBALS) {
@@ -178,6 +178,11 @@ CB_DEF(CCteGlobals, CB_GLOBALS) {
 
 	VEC3 player_speed;
 	float player_speed_length;
+
+	float day_night_cycle_emissive_ratio;
+	float global_pad1;
+	float global_pad2;
+	float global_pad3;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL) {
