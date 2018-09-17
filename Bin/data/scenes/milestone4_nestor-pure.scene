@@ -2,11 +2,175 @@
   {
     "entity":
     {
+      "name": "nes_platform_civilization_emissive_049",
+      "transform":
+      {
+        "pos": "-139.795 49.4382 85.7953",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_049.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_049.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_049.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_048",
+      "transform":
+      {
+        "pos": "-134.98 46.8613 80.3486",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_048.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_048.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_048.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_039",
+      "transform":
+      {
+        "pos": "-70.9971 24.8093 42.437",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_039.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_039.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_039.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_columna_piezas_capitel_006",
+      "transform":
+      {
+        "pos": "-45.5332 14.7043 54.0027",
+        "rotation": "0.0443053 0.336532 -0.122777 -0.932582"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_capitel_006.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_columna_piezas_capitel_006.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_capitel_006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_columna_piezas_capitel_004",
       "transform":
       {
-        "pos": "160.426 56.1847 -163.401",
-        "rotation": "0.0973991 -0.42274 -0.00180465 -0.901"
+        "pos": "160.05 56.0823 -163.305",
+        "rotation": "0.070591 -0.920383 -0.0671324 -0.378688"
       },
       "render":
       [

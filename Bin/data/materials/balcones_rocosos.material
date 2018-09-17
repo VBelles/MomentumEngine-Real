@@ -5,8 +5,8 @@
   {
     "albedo": "data/textures/balcones_rocosos_baja_Material balconrocoso2_BaseColor.dds",
     "normal": "data/textures/balcones_rocosos_baja_Material balconrocoso2_Normal.dds",
-    "metallic": "data/textures/balcones_rocosos_baja_Material balconrocoso2_Roughness.dds",
-    "roughness": "data/textures/null_roughness.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/balcones_rocosos_baja_Material balconrocoso2_Roughness.dds",
     "self_illum": "data/textures/null_self_illum.dds",
     "height": "data/textures/null_height.dds",
     "detail_normal": "data/textures/null_detail_normal.dds"
