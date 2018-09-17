@@ -51,6 +51,10 @@ private:
 	CTimer2 changeTimer;
 	CTimer2 lerpTimer;
 
+	bool enabled = true;
+	float elapsedAtPauseChange;
+	float elapsedAtPauseLerp;
+
 public:
 	DECL_SIBLING_ACCESS();
 	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
@@ -63,4 +67,6 @@ public:
 	void setSkybox(SkyboxType type, float lerpTime);
 	void setToSequential();
 	void setToRandom();
+
+	void setEnabled(bool enabled);
 };

@@ -16,6 +16,7 @@ private:
 	float lerpTime = 10.f;
 
 	bool enabled = true;
+	float elapsedAtPause;
 
 public:
 	DECL_SIBLING_ACCESS();

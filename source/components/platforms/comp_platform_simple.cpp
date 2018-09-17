@@ -34,6 +34,30 @@ void TCompPlatformSimple::debugInMenu() {
 	ImGui::DragFloat("rollSpeed", &rollSpeed, 0.01f, -20.f, 20.f);
 	ImGui::DragFloat("rollWaitDuration", &rollWaitDuration, 0.01f, 0.f, 20.f);
 
+	if (ImGui::Checkbox("Enabled", &enabled)) {
+		if (enabled) {
+			rollTimer.setElapsed(elapsedAtPauseRoll);
+			travelWaitTimer.setElapsed(elapsedAtPauseTravelWait);
+		}
+		else {
+			elapsedAtPauseRoll = rollTimer.elapsed();
+			elapsedAtPauseTravelWait = travelWaitTimer.elapsed();
+		}
+	}
+}
+
+void TCompPlatformSimple::setEnabled(bool enabled) {
+	if (this->enabled != enabled) {
+		this->enabled = enabled;
+		if (enabled) {
+			rollTimer.setElapsed(elapsedAtPauseRoll);
+			travelWaitTimer.setElapsed(elapsedAtPauseTravelWait);
+		}
+		else {
+			elapsedAtPauseRoll = rollTimer.elapsed();
+			elapsedAtPauseTravelWait = travelWaitTimer.elapsed();
+		}
+	}
 }
 
 void TCompPlatformSimple::registerMsgs() {
@@ -92,10 +116,6 @@ void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 
 void TCompPlatformSimple::turnAround() {
 	doRoll = true;
-}
-
-void TCompPlatformSimple::setEnabled(bool enabled) {
-	this->enabled = enabled;
 }
 
 void TCompPlatformSimple::update(float delta) {

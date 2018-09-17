@@ -15,17 +15,20 @@ private:
 	bool automove = false;
 	bool moveBackwards = false;
 	bool isClosed = false;
+
 	bool enabled = true;
+	float elapsedAtPauseRoll;
+	float elapsedAtPauseTravelWait;
 
 	//Rolling platform
-	CTimer rollTimer;
+	CTimer2 rollTimer;
 	float rollSpeed = 0.f;
 	float rollWaitDuration = 2.f;
 	float targetRoll = 0.f;
 	bool doRoll = false;
 
 
-	CTimer travelWaitTimer;
+	CTimer2 travelWaitTimer;
 	float travelWaitTime = 0.f;
 
 	float rotationSpeed;

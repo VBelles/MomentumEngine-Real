@@ -7,6 +7,37 @@
 
 DECL_OBJ_MANAGER("platforms_director", TCompPlatformsDirector);
 
+void TCompPlatformsDirector::debugInMenu() {
+	if (ImGui::Checkbox("Enabled", &enabled)) {
+		int previousSlot = (currentSlot + platformHandles.size() - 1) % platformHandles.size();
+		for (TCompPlatformSimple* platform : platformHandles[previousSlot]) {
+			platform->setEnabled(enabled);
+		}
+		if (enabled) {
+			timer.setElapsed(elapsedAtPause);
+		}
+		else {
+			elapsedAtPause = timer.elapsed();
+		}
+	}
+}
+
+void TCompPlatformsDirector::setEnabled(bool enabled) {
+	if (this->enabled != enabled) {
+		this->enabled = enabled;
+		int previousSlot = (currentSlot + platformHandles.size() - 1) % platformHandles.size();
+		for (TCompPlatformSimple* platform : platformHandles[previousSlot]) {
+			platform->setEnabled(enabled);
+		}
+		if (enabled) {
+			timer.setElapsed(elapsedAtPause);
+		}
+		else {
+			elapsedAtPause = timer.elapsed();
+		}
+	}
+}
+
 void TCompPlatformsDirector::load(const json& j, TEntityParseContext& ctx) {
 	for (auto& jSlot : j["slots"]) {
 		std::vector<std::string> v;
@@ -17,9 +48,6 @@ void TCompPlatformsDirector::load(const json& j, TEntityParseContext& ctx) {
 		float waitTime = jSlot.value("wait_time", timeBetweenSlots);
 		waitTimes.push_back(waitTime);
 	}
-}
-
-void TCompPlatformsDirector::debugInMenu() {
 }
 
 void TCompPlatformsDirector::registerMsgs() {
@@ -44,13 +72,15 @@ void TCompPlatformsDirector::onGroupCreated(const TMsgEntitiesGroupCreated & msg
 }
 
 void TCompPlatformsDirector::update(float delta) {
-	if (timer.elapsed() >= nextSlotTime) {
-		nextSlotTime = timer.elapsed() + waitTimes[currentSlot];
+	if (enabled) {
+		if (timer.elapsed() >= nextSlotTime) {
+			nextSlotTime = timer.elapsed() + waitTimes[currentSlot];
 
-		for (TCompPlatformSimple* platform : platformHandles[currentSlot]) {
-			platform->turnAround();
+			for (TCompPlatformSimple* platform : platformHandles[currentSlot]) {
+				platform->turnAround();
+			}
+
+			currentSlot = (currentSlot + 1) % platformHandles.size();
 		}
-
-		currentSlot = (currentSlot + 1) % platformHandles.size();
 	}
 }

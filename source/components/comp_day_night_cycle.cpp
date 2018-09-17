@@ -9,13 +9,29 @@ DECL_OBJ_MANAGER("day_night_cycle", TCompDayNightCycle);
 
 void TCompDayNightCycle::debugInMenu() {
 	if (ImGui::Checkbox("Enabled", &enabled)) {
-		cycleTimer.setPaused(!enabled);
+		TCompSky* sky = skyHandle;
+		sky->setEnabled(enabled);
+		if (enabled) {
+			cycleTimer.setElapsed(elapsedAtPause);
+		}
+		else {
+			elapsedAtPause = cycleTimer.elapsed();
+		}
 	}
 }
 
 void TCompDayNightCycle::setEnabled(bool enabled) {
-	this->enabled = enabled;
-	cycleTimer.setPaused(!enabled);
+	if (this->enabled != enabled) {
+		this->enabled = enabled;
+		TCompSky* sky = skyHandle;
+		sky->setEnabled(enabled);
+		if (enabled) {
+			cycleTimer.setElapsed(elapsedAtPause);
+		}
+		else {
+			elapsedAtPause = cycleTimer.elapsed();
+		}
+	}
 }
 
 void TCompDayNightCycle::load(const json& j, TEntityParseContext& ctx) {

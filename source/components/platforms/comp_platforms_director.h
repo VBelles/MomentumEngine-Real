@@ -13,6 +13,9 @@ private:
 	float timeBetweenSlots = 2.f;
 	float nextSlotTime = 0;
 
+	bool enabled = true;
+	float elapsedAtPause;
+
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 public:
@@ -21,6 +24,5 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	static void registerMsgs();
 	void update(float delta);
-	void setIsMoving(bool isMoving);
-	void setStopOnNextLoop(bool stop);
+	void setEnabled(bool enabled);
 };
