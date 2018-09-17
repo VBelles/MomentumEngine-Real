@@ -5,6 +5,8 @@
 #include "components/comp_name.h"
 #include "entity/entity_parser.h"
 #include <SLB/SLB.hpp>
+#include "components/platforms/comp_platforms_director.h"
+#include "components/comp_day_night_cycle.h"
 
 ScriptingEntities* ScriptingEntities::instance = nullptr;
 
@@ -101,7 +103,7 @@ TCompTransform* ScriptingEntities::getPlayerTransform() {
 }
 
 void ScriptingEntities::stopEntities() {
-	Engine.getEntities().setManagerUpdate("skeleton", false); 
+	Engine.getEntities().setManagerUpdate("skeleton", false);
 	Engine.getEntities().setManagerUpdate("enemy", false);
 	Engine.getEntities().setManagerUpdate("player_controller", false);
 	Engine.getEntities().setManagerUpdate("ranged_attack", false);
@@ -112,6 +114,12 @@ void ScriptingEntities::stopEntities() {
 	Engine.getEntities().setManagerUpdate("collectable", false);
 	Engine.getEntities().setManagerUpdate("platforms_director", false);
 	EngineParticles.setPaused(true);
+	getObjectManager<TCompPlatformsDirector>()->forEach(
+		[](TCompPlatformsDirector* pd) {pd->setEnabled(false); }
+	);
+	getObjectManager<TCompDayNightCycle>()->forEach(
+		[](TCompDayNightCycle* cycle) {cycle->setEnabled(false); }
+	);
 }
 
 void ScriptingEntities::stopEntitiesCutscene() {
@@ -120,7 +128,7 @@ void ScriptingEntities::stopEntitiesCutscene() {
 	Engine.getEntities().setManagerUpdate("player_controller", false);
 	Engine.getEntities().setManagerUpdate("ranged_attack", false);
 	Engine.getEntities().setManagerUpdate("power_gauge", false);
-	Engine.getEntities().setManagerUpdate("follow_curve", false); 
+	Engine.getEntities().setManagerUpdate("follow_curve", false);
 	Engine.getEntities().setManagerUpdate("player_model", false);
 	Engine.getEntities().setManagerUpdate("platform_simple", false);
 	Engine.getEntities().setManagerUpdate("platforms_director", false);
@@ -138,6 +146,12 @@ void ScriptingEntities::resumeEntities() {
 	Engine.getEntities().setManagerUpdate("collectable", true);
 	Engine.getEntities().setManagerUpdate("platforms_director", true);
 	EngineParticles.setPaused(false);
+	getObjectManager<TCompPlatformsDirector>()->forEach(
+		[](TCompPlatformsDirector* pd) {pd->setEnabled(true); }
+	);
+	getObjectManager<TCompDayNightCycle>()->forEach(
+		[](TCompDayNightCycle* cycle) {cycle->setEnabled(true); }
+	);
 }
 
 void ScriptingEntities::resumeEntitiesCutscene() {
