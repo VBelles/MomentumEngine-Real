@@ -61,12 +61,15 @@ void CModulePause::onPausePressed() {
 		Engine.getGUI().activateWidget("test_pause_menu");
 		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
 		CApp::get().setDebugMode(false);
+		cb_globals.game_paused = 1;
 	}
 	else {
 		Engine.getGUI().deactivateWidget("test_pause_menu");
 		Engine.getGUI().unregisterController(controller);
+		cb_globals.game_paused = 0;
 	}
 
+	EngineRender.setActive(!pause);
 	EngineScripting.setActive(!pause);
 	Engine.getEntities().setActive(!pause);
 	EngineParticles.setPaused(pause);

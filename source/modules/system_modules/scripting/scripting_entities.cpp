@@ -112,6 +112,8 @@ void ScriptingEntities::stopEntities() {
 	Engine.getEntities().setManagerUpdate("collectable", false);
 	Engine.getEntities().setManagerUpdate("platforms_director", false);
 	EngineParticles.setPaused(true);
+	cb_globals.game_paused = 1;
+	EngineRender.setActive(false);
 }
 
 void ScriptingEntities::stopEntitiesCutscene() {
@@ -138,6 +140,8 @@ void ScriptingEntities::resumeEntities() {
 	Engine.getEntities().setManagerUpdate("collectable", true);
 	Engine.getEntities().setManagerUpdate("platforms_director", true);
 	EngineParticles.setPaused(false);
+	cb_globals.game_paused = 0;
+	EngineRender.setActive(true);
 }
 
 void ScriptingEntities::resumeEntitiesCutscene() {
