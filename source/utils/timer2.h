@@ -28,6 +28,10 @@ public:
 		return delta;
 	}
 
+	void setElapsed(float time) {
+		time_stamp = getTimeStamp() - time;
+	}
+
 	int elapsedFrames() {
 		int now = getFrameStamp();
 		int delta = now - frame_stamp;
@@ -57,9 +61,5 @@ public:
 
 	void setFrameStamp(int value) {
 		frame_stamp = value;
-	}
-
-	void setPaused(bool pause) {
-		CTimerFrames::get().setPaused(pause);
 	}
 };

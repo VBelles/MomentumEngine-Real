@@ -30,6 +30,18 @@ public:
 		return 0.f;
 	}
 
+	void setElapsed(float time) {
+		LARGE_INTEGER freq;
+		uint64_t delta_ticks;
+		if (QueryPerformanceFrequency(&freq)) {
+			delta_ticks = time * (float)freq.QuadPart;
+		}
+		else {
+			fatal("QueryPerformanceFrequency returned false!!!\n");
+		}
+		time_stamp = getTimeStamp() - delta_ticks;
+	}
+
 	// Reset counter to current timestamp
 	void reset() {
 		time_stamp = getTimeStamp();
