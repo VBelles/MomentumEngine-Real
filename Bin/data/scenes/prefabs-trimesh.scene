@@ -2,15 +2,15 @@
   {
     "entity":
     {
-      "name": "plataforma_roca_col_001",
+      "name": "trozo_terreno_5_col_000",
       "transform":
       {
-        "pos": "18.1717 1.97533 -3.05356",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-136.382 -24.9915 164.832",
+        "rotation": "0.0 0.766044 0.0 -0.642788"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/plataforma_roca_col_001.col_mesh",
+        "mesh_src": "data/meshes/trozo_terreno_5_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -19,15 +19,15 @@
   {
     "entity":
     {
-      "name": "plataforma_roca_col_000",
+      "name": "trozo_terreno_2_col_000",
       "transform":
       {
-        "pos": "-4.44142 4.76147 -7.27283",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-86.2053 -22.327 170.334",
+        "rotation": "0.0 0.766044 0.0 -0.642788"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/plataforma_roca_col_000.col_mesh",
+        "mesh_src": "data/meshes/trozo_terreno_2_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -36,15 +36,83 @@
   {
     "entity":
     {
-      "name": "plataforma_roca_grande_col_000",
+      "name": "trozo_terreno_3_col_000",
       "transform":
       {
-        "pos": "32.5077 11.0636 -29.9165",
+        "pos": "-26.8458 -27.4767 206.693",
+        "rotation": "0.0 0.766044 0.0 -0.642788"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_3_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_4_col_000",
+      "transform":
+      {
+        "pos": "9.60065 -34.854 279.45",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/plataforma_roca_grande_col_000.col_mesh",
+        "mesh_src": "data/meshes/trozo_terreno_4_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_6_col_000",
+      "transform":
+      {
+        "pos": "-156.17 -46.1794 262.608",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_6_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_7_col_000",
+      "transform":
+      {
+        "pos": "-227.003 -31.534 172.938",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_7_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_1_col_000",
+      "transform":
+      {
+        "pos": "-283.118 -48.0958 256.396",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_1_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }

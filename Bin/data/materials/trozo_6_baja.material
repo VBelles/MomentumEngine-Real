@@ -1,0 +1,13 @@
+{
+  "technique": "pbr_mix.tech",
+  "type": "mix",
+  "shadows": true,
+  "textures": {},
+  "mats":
+  [
+    "data/materials/Material #2.material",
+    "data/materials/Material #18.material",
+    "data/materials/Material #19.material"
+  ],
+  "mix_blend_weights": "data/textures/trozo_06_mask.dds"
+}
