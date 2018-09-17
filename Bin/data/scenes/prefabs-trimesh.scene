@@ -2,66 +2,15 @@
   {
     "entity":
     {
-      "name": "trozo_terreno_5_col_000",
+      "name": "cacho_de_suelo_1_col_000",
       "transform":
       {
-        "pos": "-136.382 -24.9915 164.832",
-        "rotation": "0.0 0.766044 0.0 -0.642788"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/trozo_terreno_5_col_000.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_2_col_000",
-      "transform":
-      {
-        "pos": "-86.2053 -22.327 170.334",
-        "rotation": "0.0 0.766044 0.0 -0.642788"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/trozo_terreno_2_col_000.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_3_col_000",
-      "transform":
-      {
-        "pos": "-26.8458 -27.4767 206.693",
-        "rotation": "0.0 0.766044 0.0 -0.642788"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/trozo_terreno_3_col_000.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_4_col_000",
-      "transform":
-      {
-        "pos": "9.60065 -34.854 279.45",
+        "pos": "2.63466 4.22994 1.25189",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/trozo_terreno_4_col_000.col_mesh",
+        "mesh_src": "data/meshes/cacho_de_suelo_1_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -70,15 +19,15 @@
   {
     "entity":
     {
-      "name": "trozo_terreno_6_col_000",
+      "name": "cacho_de_suelo_3_col_000",
       "transform":
       {
-        "pos": "-156.17 -46.1794 262.608",
+        "pos": "22.7708 7.09933 -27.7315",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/trozo_terreno_6_col_000.col_mesh",
+        "mesh_src": "data/meshes/cacho_de_suelo_3_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -87,32 +36,15 @@
   {
     "entity":
     {
-      "name": "trozo_terreno_7_col_000",
+      "name": "cacho_de_suelo_0_col_000",
       "transform":
       {
-        "pos": "-227.003 -31.534 172.938",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0313892 0.0021623 0.00209704 -0.999503"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/trozo_terreno_7_col_000.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_1_col_000",
-      "transform":
-      {
-        "pos": "-283.118 -48.0958 256.396",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/trozo_terreno_1_col_000.col_mesh",
+        "mesh_src": "data/meshes/cacho_de_suelo_0_col_000.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }

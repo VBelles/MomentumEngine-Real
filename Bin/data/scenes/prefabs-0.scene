@@ -2,19 +2,19 @@
   {
     "entity":
     {
-      "name": "m_roca_11_trozos003",
+      "name": "cacho_de_suelo_1_000",
       "transform":
       {
-        "pos": "-30.125 -54.3997 292.113",
+        "pos": "2.63466 4.22994 1.25189",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_11_trozos003.mesh",
+          "mesh": "data/meshes/cacho_de_suelo_1_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca11.material"
+            "data/materials/Material_#25.material"
           ],
           "enabled": true
         }
@@ -24,19 +24,19 @@
   {
     "entity":
     {
-      "name": "m_roca_07_trozos006",
+      "name": "roca_24_000",
       "transform":
       {
-        "pos": "57.3669 -37.7381 262.181",
+        "pos": "3.03662 -3.10981 1.11859",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_07_trozos006.mesh",
+          "mesh": "data/meshes/roca_24_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca07.material"
+            "data/materials/m_roca16.material"
           ],
           "enabled": true
         }
@@ -46,41 +46,19 @@
   {
     "entity":
     {
-      "name": "m_roca_15_trozos002",
+      "name": "roca_23_000",
       "transform":
       {
-        "pos": "25.5967 -32.8626 305.402",
-        "rotation": "0.465267 0.33594 0.322718 -0.752678"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_15_trozos002.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca15.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_08_trozos002",
-      "transform":
-      {
-        "pos": "45.7374 -35.9047 301.092",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_08_trozos002.mesh",
+          "mesh": "data/meshes/roca_23_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca08.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -90,19 +68,19 @@
   {
     "entity":
     {
-      "name": "m_roca_07_trozos005",
+      "name": "roca_22_000",
       "transform":
       {
-        "pos": "32.7458 -56.2687 281.36",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_07_trozos005.mesh",
+          "mesh": "data/meshes/roca_22_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca07.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -112,19 +90,19 @@
   {
     "entity":
     {
-      "name": "m_roca_09_trozos002",
+      "name": "roca_21_000",
       "transform":
       {
-        "pos": "-242.286 -38.4158 164.091",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_09_trozos002.mesh",
+          "mesh": "data/meshes/roca_21_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca09.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -134,19 +112,19 @@
   {
     "entity":
     {
-      "name": "m_roca_07_trozos004",
+      "name": "roca_20_000",
       "transform":
       {
-        "pos": "-230.712 -46.3833 177.485",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_07_trozos004.mesh",
+          "mesh": "data/meshes/roca_20_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca07.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -156,19 +134,19 @@
   {
     "entity":
     {
-      "name": "m_roca_14_trozos002",
+      "name": "roca_19_000",
       "transform":
       {
-        "pos": "-219.298 -41.0762 190.122",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_14_trozos002.mesh",
+          "mesh": "data/meshes/roca_19_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca14.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -178,63 +156,19 @@
   {
     "entity":
     {
-      "name": "m_roca_07_trozos003",
+      "name": "roca_18_000",
       "transform":
       {
-        "pos": "-290.434 -7.09496 287.71",
-        "rotation": "0.0 -0.504144 0.0 -0.863619"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_07_trozos003.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_13_trozos001",
-      "transform":
-      {
-        "pos": "-292.557 -16.908 290.752",
-        "rotation": "0.68455 0.263239 -0.294009 -0.612908"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_13_trozos001.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca13.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_15_trozos001",
-      "transform":
-      {
-        "pos": "-208.812 -46.4216 175.711",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_15_trozos001.mesh",
+          "mesh": "data/meshes/roca_18_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca15.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -244,19 +178,19 @@
   {
     "entity":
     {
-      "name": "m_roca_07_trozos002",
+      "name": "roca_17_000",
       "transform":
       {
-        "pos": "-211.145 -39.3336 161.8",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_07_trozos002.mesh",
+          "mesh": "data/meshes/roca_17_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca07.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -266,41 +200,19 @@
   {
     "entity":
     {
-      "name": "m_roca_11_trozos002",
+      "name": "roca_16_000",
       "transform":
       {
-        "pos": "-231.339 -38.384 152.012",
-        "rotation": "0.221084 0.0 0.0 -0.975255"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_11_trozos002.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca11.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_16_trozos001",
-      "transform":
-      {
-        "pos": "-92.371 -34.384 281.018",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_16_trozos001.mesh",
+          "mesh": "data/meshes/roca_16_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca16.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -310,19 +222,19 @@
   {
     "entity":
     {
-      "name": "m_roca_09_trozos001",
+      "name": "roca_15_000",
       "transform":
       {
-        "pos": "-154.817 -30.1693 308.609",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_09_trozos001.mesh",
+          "mesh": "data/meshes/roca_15_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca09.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -332,19 +244,19 @@
   {
     "entity":
     {
-      "name": "m_roca_07_trozos001",
+      "name": "roca_14_000",
       "transform":
       {
-        "pos": "-97.3434 -33.524 246.991",
+        "pos": "2.93083 0.0 0.947296",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_07_trozos001.mesh",
+          "mesh": "data/meshes/roca_14_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca07.material"
+            "data/materials/m_roca07.material"
           ],
           "enabled": true
         }
@@ -354,19 +266,19 @@
   {
     "entity":
     {
-      "name": "m_roca_08_trozos001",
+      "name": "roca_43_000",
       "transform":
       {
-        "pos": "-189.477 -35.5561 221.499",
+        "pos": "22.7708 2.38569 -26.4322",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_08_trozos001.mesh",
+          "mesh": "data/meshes/roca_43_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca08.material"
+            "data/materials/m_roca16.material"
           ],
           "enabled": true
         }
@@ -376,41 +288,19 @@
   {
     "entity":
     {
-      "name": "m_roca_11_trozos001",
+      "name": "roca_42_000",
       "transform":
       {
-        "pos": "-165.614 -35.7183 216.12",
-        "rotation": "0.0 0.4104 0.0 -0.911906"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_11_trozos001.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca11.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_7_000",
-      "transform":
-      {
-        "pos": "-227.003 -31.534 172.938",
+        "pos": "22.7708 2.38569 -26.4322",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/trozo_terreno_7_000.mesh",
+          "mesh": "data/meshes/roca_42_000.mesh",
           "materials":
           [
-            "data/materials/trozo_7_baja.material"
+            "data/materials/m_roca16.material"
           ],
           "enabled": true
         }
@@ -420,19 +310,19 @@
   {
     "entity":
     {
-      "name": "trozo_terreno_6_000",
+      "name": "roca_41_000",
       "transform":
       {
-        "pos": "-156.17 -46.1794 262.608",
+        "pos": "22.7708 2.38569 -26.4322",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/trozo_terreno_6_000.mesh",
+          "mesh": "data/meshes/roca_41_000.mesh",
           "materials":
           [
-            "data/materials/trozo_6_baja.material"
+            "data/materials/m_roca16.material"
           ],
           "enabled": true
         }
@@ -442,41 +332,19 @@
   {
     "entity":
     {
-      "name": "trozo_terreno_5_000",
+      "name": "roca_40_000",
       "transform":
       {
-        "pos": "-136.382 -24.9915 164.832",
-        "rotation": "0.0 0.766044 0.0 -0.642788"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/trozo_terreno_5_000.mesh",
-          "materials":
-          [
-            "data/materials/trozo_5_baja.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_4_000",
-      "transform":
-      {
-        "pos": "9.60065 -34.854 279.45",
+        "pos": "22.7708 2.38569 -26.4322",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/trozo_terreno_4_000.mesh",
+          "mesh": "data/meshes/roca_40_000.mesh",
           "materials":
           [
-            "data/materials/trozo_4_baja.material"
+            "data/materials/m_roca16.material"
           ],
           "enabled": true
         }
@@ -486,63 +354,19 @@
   {
     "entity":
     {
-      "name": "trozo_terreno_3_000",
+      "name": "roca_39_000",
       "transform":
       {
-        "pos": "-26.8458 -27.4767 206.693",
-        "rotation": "0.0 0.766044 0.0 -0.642788"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/trozo_terreno_3_000.mesh",
-          "materials":
-          [
-            "data/materials/trozo_3_baja.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_2_000",
-      "transform":
-      {
-        "pos": "-86.2053 -22.327 170.334",
-        "rotation": "0.0 0.766044 0.0 -0.642788"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/trozo_terreno_2_000.mesh",
-          "materials":
-          [
-            "data/materials/trozo_2_baja.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_1_000",
-      "transform":
-      {
-        "pos": "-283.118 -48.0958 256.396",
+        "pos": "22.7708 2.38569 -26.4322",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/trozo_terreno_1_000.mesh",
+          "mesh": "data/meshes/roca_39_000.mesh",
           "materials":
           [
-            "data/materials/trozo_1_baja.material"
+            "data/materials/m_roca16.material"
           ],
           "enabled": true
         }
@@ -552,19 +376,525 @@
   {
     "entity":
     {
-      "name": "m_roca_14_trozos",
+      "name": "roca_38_000",
       "transform":
       {
-        "pos": "-133.011 -45.4817 214.685",
-        "rotation": "-0.0200931 0.221829 0.00457214 -0.974868"
+        "pos": "22.7708 2.38569 -26.4322",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_14_trozos.mesh",
+          "mesh": "data/meshes/roca_38_000.mesh",
           "materials":
           [
-            "data/materials/Material_roca14.material"
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_37_000",
+      "transform":
+      {
+        "pos": "22.7708 2.38569 -26.4322",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_37_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_36_000",
+      "transform":
+      {
+        "pos": "22.7708 2.38569 -26.4322",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_36_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_35_000",
+      "transform":
+      {
+        "pos": "22.7708 2.38569 -26.4322",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_35_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_34_000",
+      "transform":
+      {
+        "pos": "22.7708 2.38569 -26.4322",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_34_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_33_000",
+      "transform":
+      {
+        "pos": "22.7708 2.38569 -26.4322",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_33_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_32_000",
+      "transform":
+      {
+        "pos": "22.7708 2.38569 -26.4322",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_32_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_31_000",
+      "transform":
+      {
+        "pos": "22.7708 2.38569 -26.4322",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_31_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cacho_de_suelo_3_000",
+      "transform":
+      {
+        "pos": "22.7708 7.09933 -27.7315",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cacho_de_suelo_3_000.mesh",
+          "materials":
+          [
+            "data/materials/Material_#25.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_13_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_13_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_10_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_10_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_11_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_11_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_12_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_12_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_08_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_08_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_09_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_09_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_07_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_07_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_06_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_06_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_05_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_05_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_04_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_04_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_03_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_03_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_00_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_00_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_01_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_01_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_02_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_02_000.mesh",
+          "materials":
+          [
+            "data/materials/m_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cacho_de_suelo_0_000",
+      "transform":
+      {
+        "pos": "27.331 3.08716 2.517",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cacho_de_suelo_0_000.mesh",
+          "materials":
+          [
+            "data/materials/Material_#25.material"
           ],
           "enabled": true
         }
