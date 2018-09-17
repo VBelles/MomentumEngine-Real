@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "trozo_terreno_4_col_001",
+      "transform":
+      {
+        "pos": "262.3 -41.613 -55.8208",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_4_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "mushroom_head_05_collider026",
       "transform":
       {

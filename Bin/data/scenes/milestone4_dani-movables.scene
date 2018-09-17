@@ -2,6 +2,60 @@
   {
     "entity":
     {
+      "name": "m_roca_07_trozos009",
+      "transform":
+      {
+        "pos": "-569.654 79.2194 577.616",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/m_roca_07_trozos009.mesh",
+          "materials":
+          [
+            "data/materials/Material_roca07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 1.0 1.0",
+        "rotation_speed": 0.1,
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.368082,
+        "travel_wait_time": 1.0,
+        "speed": -0.0005,
+        "knots":
+        [
+           "2.72607 74.2315 52.9548",
+           "2.726 74.2314 -730.366",
+           "2.726 74.2314 -730.366",
+           "-780.595 74.2315 52.9549",
+           "2.72621 74.2315 836.276",
+           "786.047 74.2315 52.9547",
+           "786.047 74.2315 52.9547"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_plataforma_roca_008",
       "transform":
       {
