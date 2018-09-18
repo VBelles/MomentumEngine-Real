@@ -114,8 +114,8 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "59.4719 35.4193 -56.1523",
-        "lookat": "-1.0 35.4193 -1.0"
+        "pos": "59.4719 35.4081 -56.1523",
+        "lookat": "-1.0 35.4081 -1.0"
       }
     }
   },
@@ -150,7 +150,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "122.69 34.3877 -54.5869",
+        "pos": "122.69 34.3877 -55.3458",
         "lookat": "-1.0 34.3877 -1.0"
       }
     }
@@ -162,7 +162,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "137.568 34.3877 -55.0989",
+        "pos": "137.568 34.3877 -55.8578",
         "lookat": "-1.0 34.3877 -1.0"
       }
     }
@@ -174,7 +174,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "129.788 34.3877 -54.6153",
+        "pos": "129.788 34.3877 -55.3742",
         "lookat": "-1.0 34.3877 -1.0"
       }
     }
