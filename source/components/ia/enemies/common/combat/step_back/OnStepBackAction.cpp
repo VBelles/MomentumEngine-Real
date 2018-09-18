@@ -19,8 +19,9 @@ OnStepBackAction::OnStepBackAction(Enemy* enemy, std::string animation) :
 int OnStepBackAction::execAction(float delta) {
 	VEC3 playerPosition = enemy->getPlayerTransform()->getPosition();
 	enemy->rotateTowards(delta, playerPosition, enemy->rotationSpeed);
-	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
+	enemy->getSkeleton()->blendCycle(animation, 0.0f, 0.0f);
 	enemy->animationTimer.reset();
+	enemy->stepBackDistanceMoved = 0.f;
 	return Leave;
 }
 

@@ -187,6 +187,31 @@
         ]
       },
       {
+        "name": "suspension",
+        "type": "sequence",
+        "condition": {
+          "type": "OnSuspensionCondition"
+        },
+        "children": [
+          {
+            "name": "onSuspensionAction",
+            "type": "action",
+            "action": {
+              "type": "OnSuspensionAction",
+              "animation_start": "enemigo_bola_stun",
+              "animation_loop": "enemigo_bola_stun_loop"
+            }
+          },
+          {
+            "name": "suspensionAction",
+            "type": "action",
+            "action": {
+              "type": "SuspensionAction"
+            }
+          }
+        ]
+      },
+      {
         "name": "stun",
         "type": "sequence",
         "condition": {
@@ -477,7 +502,7 @@
                         "action": {
                           "type": "StepBackAction",
                           "animation": "enemigo_bola_run",
-                          "speed": 3
+                          "speed": 5.0
                         }
                       }
                     ]
@@ -518,30 +543,6 @@
                         "action": {
                           "type": "IdleWarAction",
                           "animation": "enemigo_bola_idle_war"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "name": "mediumSpinAttack",
-                    "type": "sequence",
-                    "children": [
-                      {
-                        "name": "onMediumSpinAttackAction",
-                        "type": "action",
-                        "action": {
-                          "type": "OnAttackAction",
-                          "animation": "enemigo_bola_ataquerapido",
-                          "attack": "spin_attack"
-                        }
-                      },
-                      {
-                        "name": "mediumSpinAttackAction",
-                        "type": "action",
-                        "action": {
-                          "type": "AttackAction",
-                          "animation": "enemigo_bola_ataquerapido",
-                          "attack": "spin_attack"
                         }
                       }
                     ]

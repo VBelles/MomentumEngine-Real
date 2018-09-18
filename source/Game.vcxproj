@@ -177,6 +177,9 @@
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\HorizontalLaunchedAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\SuspensionAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\vertical\VerticalLaunchedAction.cpp" />
@@ -537,6 +540,9 @@
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\HorizontalLaunchedAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\horizontal\OnHorizontalLaunchCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\SuspensionAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\OnVerticalLaunchCondition.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\vertical\VerticalLaunchedAction.h" />

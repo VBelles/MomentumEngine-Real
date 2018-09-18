@@ -49,7 +49,7 @@ void Enemy::load(const json& j) {
 	shortCombatDistanceSqrd = pow(j.value("short_combat_distance", sqrt(shortCombatDistanceSqrd)), 2);
 	mediumCombatDistanceSqrd = pow(j.value("medium_combat_distance", sqrt(mediumCombatDistanceSqrd)), 2);
 	longCombatDistanceSqrd = pow(j.value("long_combat_distance", sqrt(longCombatDistanceSqrd)), 2);
-	stepBackDistanceSqrd = pow(j.value("step_back_distance", sqrt(stepBackDistanceSqrd)), 2);
+	stepBackDistance = j.value("step_back_distance", stepBackDistance);
 	attackCoolDown = j.value("attack_cool_down", attackCoolDown);
 	blockTime = j.value("block_time", blockTime);
 	attackSlots = j.value("attack_slots", attackSlots);

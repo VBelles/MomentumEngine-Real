@@ -19,7 +19,9 @@ StepBackAction::StepBackAction(Enemy* enemy, std::string animation, float speed)
 
 int StepBackAction::execAction(float delta) {
 	enemy->updateGravity(delta);
-	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation)) {
+	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation)
+		&& enemy->stepBackDistanceMoved < enemy->stepBackDistance) {
+		enemy->stepBackDistanceMoved += speed * delta;
 		VEC3 stepBackMovement = -enemy->getTransform()->getFront() * speed * delta;
 		VEC3 pos = enemy->getTransform()->getPosition();
 
@@ -27,6 +29,9 @@ int StepBackAction::execAction(float delta) {
 			if (enemy->navMeshQuery->existsConnection(pos, pos + stepBackMovement)
 				&& !enemy->navMeshQuery->raycast2D(pos, pos + stepBackMovement)) {
 				enemy->deltaMovement += stepBackMovement;
+			}
+			else {
+				return Leave;
 			}
 		}
 		else {

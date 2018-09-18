@@ -75,7 +75,9 @@ public:
 	float shortCombatDistanceSqrd = 0.f;
 	float mediumCombatDistanceSqrd = 0.f;
 	float longCombatDistanceSqrd = 0.f;
-	float stepBackDistanceSqrd = 0.f;
+
+	float stepBackDistanceMoved = 0.f;
+	float stepBackDistance = 0.f;
 
 	float attackCoolDown = 0.f;
 
@@ -89,6 +91,7 @@ public:
 
 	float propelDuration = 0.f;
 	float grabbedDuration = 0.f;
+	float suspensionDuration = 0.f;
 	float stunDuration = 0.f;
 	VEC3 initialLaunchPos;
 

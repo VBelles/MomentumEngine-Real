@@ -20,7 +20,7 @@ OnVerticalLaunchAction::OnVerticalLaunchAction(Enemy* enemy, std::string animati
 
 int OnVerticalLaunchAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
-	enemy->stunDuration = enemy->receivedAttack.verticalLauncher->suspensionDuration;
+	enemy->suspensionDuration = enemy->receivedAttack.verticalLauncher->suspensionDuration;
 	enemy->velocity = enemy->receivedAttack.verticalLauncher->velocity;
 	enemy->initialLaunchPos = enemy->getTransform()->getPosition();
 	enemy->currentAttack = attack;

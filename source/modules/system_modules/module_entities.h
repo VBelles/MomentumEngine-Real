@@ -11,7 +11,6 @@ class CModuleEntities : public IModule {
 	void renderDebugOfComponents();
 
 public:
-	float time_scale_factor = 1.f;
 	CModuleEntities(const std::string& aname) : IModule(aname) {}
 	bool start() override;
 	bool stop() override;

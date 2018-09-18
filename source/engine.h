@@ -29,6 +29,7 @@ struct GlobalConfig {
 	VEC2 resolution;
 	bool fullscreen;
 	bool vSync;
+	float time_scale_factor = 1.f;
 };
 
 class CEngine {
