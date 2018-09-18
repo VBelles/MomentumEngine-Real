@@ -25,11 +25,15 @@ void TCompSoundEmitter::debugInMenu() {
 	if (ImGui::Button("Release")) {
 		release();
 	}
+	ImGui::Text("Type: %s", is3D ? "3D" : "Surround");
+	ImGui::Checkbox("Stop fade out", &stopFadeOut);
 	ImGui::Text("Events: %d", eventInstances.size());
 	int instanceCount = 0;
 	eventDescriptor->getInstanceCount(&instanceCount);
-	ImGui::Text("Real Events: %d", instanceCount);
-	ImGui::Text("Target: %s", target.c_str());
+	ImGui::Text("Resource events instanced: %d", instanceCount);
+	ImGui::Text("Target: %s", transformHandle.isValid() ? target.empty()
+		? "Own transform" : target.c_str()
+		: "No target");
 	ImGui::DragFloat3("Offset", &offset.x);
 }
 
@@ -40,7 +44,6 @@ void TCompSoundEmitter::load(const json& j, TEntityParseContext& ctx) {
 	target = j.value("target", "");
 	offset = j.count("offset") ? loadVEC3(j["offset"]) : offset;
 	playOnStart = j.value("play", playOnStart);
-	FMOD_RESULT res = EngineSound.getSystem()->getEvent(eventResource.c_str(), &eventDescriptor);
 	assert(res == FMOD_OK);
 }
 
@@ -69,13 +72,14 @@ void TCompSoundEmitter::update(float delta) {
 }
 
 void TCompSoundEmitter::onAllScenesCreated(const TMsgAllScenesCreated&) {
-	if (!target.empty()) {
-		targetHandle = getEntityByName(target);
-	}
-	else {
-		targetHandle = CHandle(this).getOwner();
-	}
+	FMOD_RESULT res = EngineSound.getSystem()->getEvent(eventResource.c_str(), &eventDescriptor);
+	eventDescriptor->is3D(&is3D);
+	// Get target transform or its own transform
+	targetHandle = !target.empty() ? getEntityByName(target) : CHandle(this).getOwner();
 	transformHandle = static_cast<CEntity*>(targetHandle)->get<TCompTransform>();
+	if (!is3D && transformHandle.isValid()) {
+		dbg("WARNING: %s is NOT 3d but its transform is valid", eventResource.c_str());
+	}
 	if (playOnStart) {
 		play();
 	}
@@ -90,7 +94,7 @@ void TCompSoundEmitter::play() {
 	if (!multiInstance) {
 		// Clears previous instances
 		for (auto eventInstance : eventInstances) {
-			eventInstance->stop(FMOD_STUDIO_STOP_IMMEDIATE);
+			eventInstance->stop(stopFadeOut ? FMOD_STUDIO_STOP_ALLOWFADEOUT : FMOD_STUDIO_STOP_IMMEDIATE);
 			eventInstance->release();
 		}
 		eventInstances.clear();
@@ -108,7 +112,7 @@ void TCompSoundEmitter::play() {
 
 void TCompSoundEmitter::release() {
 	for (auto eventInstance : eventInstances) {
-		eventInstance->stop(FMOD_STUDIO_STOP_IMMEDIATE);
+		eventInstance->stop(stopFadeOut ? FMOD_STUDIO_STOP_ALLOWFADEOUT : FMOD_STUDIO_STOP_IMMEDIATE);
 		eventInstance->release();
 	}
 	eventInstances.clear();

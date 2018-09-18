@@ -20,9 +20,11 @@ private:
 	CHandle targetHandle;
 	CHandle transformHandle;
 	std::string eventResource;
+	bool stopFadeOut = false;
 
 	bool multiInstance = true;
 	bool releaseOnStop = true;
+	bool is3D = false;
 
 	FMOD::Studio::EventDescription* eventDescriptor = nullptr;
 

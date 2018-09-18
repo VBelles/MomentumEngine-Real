@@ -7,7 +7,16 @@
             },
             "sound_emitter": {
                 "event": "event:/AMBIENTACION/viento",
-                "multi_instance": true
+                "stop_fade_out": true
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "test_sound_hit",
+            "sound_emitter": {
+                "event": "event:/PROTA/golpes/golpe_hit",
+                "target": "The Player"
             }
         }
     }
