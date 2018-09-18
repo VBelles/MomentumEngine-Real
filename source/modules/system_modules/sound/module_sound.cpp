@@ -61,6 +61,7 @@ void CModuleSound::update(float delta) {
 	auto res = system->setListenerAttributes(0, &listenerAttributes);
 	//dbg("system Res: %d\n", res);
 	dbg("%f %f %f\n", listenerAttributes.position.x, listenerAttributes.position.y, listenerAttributes.position.z);
+	
 	system->update();
 }
 
@@ -116,16 +117,16 @@ void CModuleSound::stopEvent(const char* sound, FMOD_STUDIO_STOP_MODE mode) {
 	}
 }
 
-void CModuleSound::emitEvent(const char* sound, VEC3 position, VEC3 velocity, VEC3 forward, VEC3 up) {
+Studio::EventInstance* CModuleSound::emitEvent(const char* sound, VEC3 position, VEC3 velocity, VEC3 forward, VEC3 up) {
 	FMOD_3D_ATTRIBUTES attributes;
 	attributes.position = { position.x, position.y, position.z };
 	attributes.velocity = { velocity.x, velocity.y, velocity.z };
 	attributes.forward = { forward.x, forward.y, forward.z };
 	attributes.up = { up.x, up.y, up.z };
-	emitEvent(sound, &attributes);
+	return emitEvent(sound, &attributes);
 }
 
-void CModuleSound::emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
+Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
 	Studio::EventDescription* descriptor = nullptr;
 	res = system->getEvent(sound, &descriptor);
 	Studio::EventInstance* eventInstance = nullptr;
@@ -138,4 +139,8 @@ void CModuleSound::emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attrib
 	else {
 		dbg("Event instance not found\n");
 	}
+	return eventInstance;
 }
+
+
+
