@@ -231,9 +231,9 @@ namespace Particles {
 			}
 		}
 
-		bool canEmmit = _core->emission.cyclic || _globalTime <= _core->emission.duration;
+		bool canEmit = _core->emission.cyclic || _globalTime <= _core->emission.duration;
 		// check if a new batch of particles needs to be generated
-		if (canEmmit) {
+		if (canEmit) {
 			_time += delta;
 			if (_time > _core->emission.interval) {
 				emit();
@@ -243,7 +243,7 @@ namespace Particles {
 
 		_globalTime += delta;
 
-		return fadeRatio > 0.f && (!_particles.empty() || canEmmit);
+		return fadeRatio > 0.f && (!_particles.empty() || canEmit);
 	}
 
 	void CSystem::render() {

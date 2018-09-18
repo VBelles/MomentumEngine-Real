@@ -52,7 +52,7 @@
     "player_model",
     "hitboxes",
     "follow_transform",
-    "sound_emmiter",
+    "sound_emitter",
     "power_gauge",
     "power_source",
     "local_aabb",

@@ -1,55 +1,74 @@
 #include "mcv_platform.h"
 #include "comp_sound_emmiter.h"
-#include "resources/resources_manager.h"
 #include "components/comp_transform.h"
-#include <fmod_common.h>
 
-DECL_OBJ_MANAGER("sound_emmiter", TCompSoundEmmiter);
+using namespace FMOD;
+
+DECL_OBJ_MANAGER("sound_emitter", TCompSoundEmitter);
 
 
-void TCompSoundEmmiter::registerMsgs() {
-	DECL_MSG(TCompSoundEmmiter, TMsgAllScenesCreated, onAllScenesCreated);
-	DECL_MSG(TCompSoundEmmiter, TMsgEntityDestroyed, onDestroyed);
+void TCompSoundEmitter::registerMsgs() {
+	DECL_MSG(TCompSoundEmitter, TMsgAllScenesCreated, onAllScenesCreated);
+	DECL_MSG(TCompSoundEmitter, TMsgEntityDestroyed, onDestroyed);
 }
 
-void TCompSoundEmmiter::debugInMenu() {
-	if (ImGui::Checkbox("Emmiting", &emmiting)) {
-		if (emmiting) {
-			start();
-		}
-		else {
-			stop();
-		}
+void TCompSoundEmitter::debugInMenu() {
+	if (ImGui::Button("Play")) {
+		play();
 	}
+	if (ImGui::Button("Pause")) {
+		pause();
+	}
+	if (ImGui::Button("Resume")) {
+		resume();
+	}
+	if (ImGui::Button("Release")) {
+		release();
+	}
+	ImGui::Text("Events: %d", eventInstances.size());
+	int instanceCount = 0;
+	eventDescriptor->getInstanceCount(&instanceCount);
+	ImGui::Text("Real Events: %d", instanceCount);
 	ImGui::Text("Target: %s", target.c_str());
 	ImGui::DragFloat3("Offset", &offset.x);
 }
 
-void TCompSoundEmmiter::load(const json& j, TEntityParseContext& ctx) {
+void TCompSoundEmitter::load(const json& j, TEntityParseContext& ctx) {
+	eventResource = j.value("event", eventResource);
+	releaseOnStop = j.value("release_on_stop", releaseOnStop);
+	multiInstance = j.value("multi_instance", multiInstance);
 	target = j.value("target", "");
 	offset = j.count("offset") ? loadVEC3(j["offset"]) : offset;
-	assert(_core);
+	playOnStart = j.value("play", playOnStart);
+	FMOD_RESULT res = EngineSound.getSystem()->getEvent(eventResource.c_str(), &eventDescriptor);
+	assert(res == FMOD_OK);
 }
 
-void TCompSoundEmmiter::update(float delta) {
-	TCompTransform* transform = transformHandle;
-	attributes.position = toFMODVector(transform->getPosition());
-	attributes.velocity = { 0.f, 0.f, 0.f };
-	attributes.up = toFMODVector(transform->getUp());
-	attributes.forward = toFMODVector(transform->getFront());
-
-	for (auto instance : eventInstances) {
-		if (isEmmiting(instance)) {
-			instance->set3DAttributes(&attributes);
+void TCompSoundEmitter::update(float delta) {
+	FMOD_3D_ATTRIBUTES* attributes = nullptr;
+	if (transformHandle.isValid()) {
+		TCompTransform* transform = transformHandle;
+		worldAttributes.position = toFMODVector(transform->getPosition() + offset);
+		worldAttributes.velocity = { 0.f, 0.f, 0.f };
+		worldAttributes.up = toFMODVector(transform->getUp());
+		worldAttributes.forward = toFMODVector(transform->getFront());
+		attributes = &worldAttributes;
+	}
+	// Update each instance's world attributes
+	for (auto it = eventInstances.begin(); it != eventInstances.end();) {
+		if ((*it)->isValid()) {
+			// Update event instance
+			(*it)->set3DAttributes(attributes);
+			++it;
 		}
 		else {
-			instance->release();
+			// Invalid event instance, remove it
+			eventInstances.erase(it);
 		}
 	}
-
 }
 
-void TCompSoundEmmiter::onAllScenesCreated(const TMsgAllScenesCreated&) {
+void TCompSoundEmitter::onAllScenesCreated(const TMsgAllScenesCreated&) {
 	if (!target.empty()) {
 		targetHandle = getEntityByName(target);
 	}
@@ -57,56 +76,57 @@ void TCompSoundEmmiter::onAllScenesCreated(const TMsgAllScenesCreated&) {
 		targetHandle = CHandle(this).getOwner();
 	}
 	transformHandle = static_cast<CEntity*>(targetHandle)->get<TCompTransform>();
+	if (playOnStart) {
+		play();
+	}
 }
 
 
-void TCompSoundEmmiter::onDestroyed(const TMsgEntityDestroyed&) {
-
+void TCompSoundEmitter::onDestroyed(const TMsgEntityDestroyed&) {
+	release();
 }
 
-FMOD_RESULT F_CALLBACK MyCallback(FMOD_STUDIO_EVENT_CALLBACK_TYPE type, FMOD_STUDIO_EVENTINSTANCE *event, void *parameters) {
-	FMOD::Studio::EventInstance *instance = (FMOD::Studio::EventInstance *)event;
-
-	if (type == FMOD_STUDIO_EVENT_CALLBACK_STOPPED) {
-		// Handle event instance stop here
-	}
-	else if (type == FMOD_STUDIO_EVENT_CALLBACK_CREATE_PROGRAMMER_SOUND) {
-		FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES* properties = (FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES *)parameters;
-
-		// Handle programmer sound creation here
-	}
-	else if (type == FMOD_STUDIO_EVENT_CALLBACK_DESTROY_PROGRAMMER_SOUND) {
-		FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES* properties = (FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES *)parameters;
-
-		// Handle programmer sound destruction here
-	}
-
-	return FMOD_OK;
-}
-
-void TCompSoundEmmiter::emmit() {
-	FMOD::Studio::EventInstance* eventInstance = EngineSound.emitEvent(soundResource.c_str());
-	eventInstance->setUserData(new SoundData{ true });
-	eventInstance->setCallback([](FMOD_STUDIO_EVENT_CALLBACK_TYPE type, FMOD_STUDIO_EVENTINSTANCE *eventInstance, void *parameters) -> FMOD_RESULT {
-		FMOD::Studio::EventInstance *instance = (FMOD::Studio::EventInstance *)eventInstance;
-		SoundData* sounData = nullptr;
-		instance->getUserData((void**)&sounData);
-		if (sounData && sounData->releaseOnStop) {
-			delete sounData;
+void TCompSoundEmitter::play() {
+	if (!multiInstance) {
+		// Clears previous instances
+		for (auto eventInstance : eventInstances) {
+			eventInstance->stop(FMOD_STUDIO_STOP_IMMEDIATE);
+			eventInstance->release();
 		}
-		return FMOD_OK;
-	}, FMOD_STUDIO_EVENT_CALLBACK_SOUND_STOPPED);
-	eventInstance->release();
+		eventInstances.clear();
+	}
+	// Create instance
+	Studio::EventInstance* eventInstance = nullptr;
+	eventDescriptor->createInstance(&eventInstance);
+	eventInstance->start();
+	if (releaseOnStop) {
+		// Release on stop
+		eventInstance->release();
+	}
+	eventInstances.push_back(eventInstance);
 }
 
-void TCompSoundEmmiter::start() {
+void TCompSoundEmitter::release() {
+	for (auto eventInstance : eventInstances) {
+		eventInstance->stop(FMOD_STUDIO_STOP_IMMEDIATE);
+		eventInstance->release();
+	}
+	eventInstances.clear();
 }
 
-void TCompSoundEmmiter::stop() {
-
+void TCompSoundEmitter::pause() {
+	for (auto eventInstance : eventInstances) {
+		eventInstance->setPaused(true);
+	}
 }
 
-bool TCompSoundEmmiter::isEmmiting(const FMOD::Studio::EventInstance* eventInstance) const {
+void TCompSoundEmitter::resume() {
+	for (auto eventInstance : eventInstances) {
+		eventInstance->setPaused(false);
+	}
+}
+
+bool TCompSoundEmitter::isEventEmitting(const FMOD::Studio::EventInstance* eventInstance) const {
 	if (!eventInstance || !eventInstance->isValid()) {
 		return false;
 	}
@@ -115,7 +135,7 @@ bool TCompSoundEmmiter::isEmmiting(const FMOD::Studio::EventInstance* eventInsta
 	return playbackState != FMOD_STUDIO_PLAYBACK_STOPPED;
 }
 
-bool TCompSoundEmmiter::isEmmiting() {
+bool TCompSoundEmitter::isEmitting() {
 	return !eventInstances.empty();
 }
 

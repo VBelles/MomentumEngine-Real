@@ -6,15 +6,6 @@
 
 using namespace FMOD;
 
-Studio::EventInstance* testInstance = nullptr;
-
-FMOD_3D_ATTRIBUTES testAttributes = {
-		{0, 0, 0},
-		{},
-		{ 1, 0, 0 },
-		{ 0, 1, 0 }
-};
-
 CModuleSound::CModuleSound(const std::string& name) : IModule(name) {
 }
 
@@ -34,14 +25,6 @@ bool CModuleSound::start() {
 		assert(res == FMOD_OK);
 		banks[bankFile] = bank;
 	}
-	Studio::EventDescription* descriptor = nullptr;
-	res = system->getEvent(SOUND_AMBIENT_WIND, &descriptor);
-	res = descriptor->createInstance(&testInstance);
-	bool is3D = false;
-	descriptor->is3D(&is3D);
-	dbg("SOUND IS 3D: %d\n", is3D);
-	testInstance->set3DAttributes(&testAttributes);
-	testInstance->start();
 	return true;
 }
 
@@ -56,12 +39,7 @@ bool CModuleSound::stop() {
 }
 
 void CModuleSound::update(float delta) {
-	testInstance->set3DAttributes(&testAttributes);
-	//dbg("testInstance Res: %d\n", res);
-	auto res = system->setListenerAttributes(0, &listenerAttributes);
-	//dbg("system Res: %d\n", res);
-	dbg("%f %f %f\n", listenerAttributes.position.x, listenerAttributes.position.y, listenerAttributes.position.z);
-	
+	auto res = system->setListenerAttributes(0, &listenerAttributes);	
 	system->update();
 }
 
@@ -140,6 +118,10 @@ Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const FMOD_3D_
 		dbg("Event instance not found\n");
 	}
 	return eventInstance;
+}
+
+FMOD::Studio::System* CModuleSound::getSystem() {
+	return system;
 }
 
 

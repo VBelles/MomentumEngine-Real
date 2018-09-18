@@ -1,0 +1,14 @@
+[
+    {
+        "entity": {
+            "name": "test_sound",
+            "transform": {
+                "pos": "0 0 0"
+            },
+            "sound_emitter": {
+                "event": "event:/AMBIENTACION/viento",
+                "multi_instance": true
+            }
+        }
+    }
+]

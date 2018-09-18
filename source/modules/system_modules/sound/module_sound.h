@@ -26,8 +26,10 @@ public:
 	void startEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
 	void stopEvent(const char* sound, FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_IMMEDIATE);
 
-	Studio::EventInstance* emitEvent(const char* sound, VEC3 position, VEC3 velocity = VEC3::Zero, VEC3 forward = VEC3::Zero, VEC3 up = VEC3::Zero);
-	Studio::EventInstance* emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
+	FMOD::Studio::EventInstance* emitEvent(const char* sound, VEC3 position, VEC3 velocity = VEC3::Zero, VEC3 forward = VEC3::Zero, VEC3 up = VEC3::Zero);
+	FMOD::Studio::EventInstance* emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
+
+	FMOD::Studio::System* getSystem();
 
 };
 
