@@ -2,6 +2,227 @@
   {
     "entity":
     {
+      "name": "mushroom_head_176",
+      "transform":
+      {
+        "pos": "-89.0764 -0.781301 37.2726",
+        "rotation": "-0.0432462 -0.990501 -0.00569361 0.130402"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_176.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_153",
+      "transform":
+      {
+        "pos": "-89.2217 -2.41737 37.3003",
+        "rotation": "-0.0432462 -0.990501 -0.00569361 0.130402"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_body_153.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_152",
+      "transform":
+      {
+        "pos": "-50.8948 -5.38619 31.0616",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_body_152.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_175",
+      "transform":
+      {
+        "pos": "-52.7209 -3.80838 33.2806",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_175.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_174",
+      "transform":
+      {
+        "pos": "-52.9214 -0.431721 33.6173",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_174.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_173",
+      "transform":
+      {
+        "pos": "-51.6924 -4.73735 30.7469",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_173.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_172",
+      "transform":
+      {
+        "pos": "-50.4078 -4.65766 31.4496",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_172.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_151",
+      "transform":
+      {
+        "pos": "-53.0186 -3.39162 32.8389",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_body_151.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_150",
+      "transform":
+      {
+        "pos": "-51.522 -5.42531 30.7527",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_body_150.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tapar_estropicio_008",
+      "transform":
+      {
+        "pos": "-34.3111 2.99378 13.8912",
+        "rotation": "-0.653282 -0.270598 0.270598 -0.653282"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_estropicio_008.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tapar_estropicio_007",
+      "transform":
+      {
+        "pos": "-161.625 24.7275 11.0328",
+        "rotation": "0.0308436 -0.0308435 0.706434 -0.706434"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_estropicio_007.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tapar_estropicio_006",
+      "transform":
+      {
+        "pos": "-210.838 30.6318 -8.82729",
+        "rotation": "-0.117315 -0.128027 -0.665326 -0.726076"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_estropicio_006.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tapar_estropicio_005",
+      "transform":
+      {
+        "pos": "-144.367 10.9126 -2.02831",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/tapar_estropicio_005.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "trozo_terreno_4_col_001",
       "transform":
       {
