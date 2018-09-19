@@ -13,6 +13,7 @@
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
+#include "components/player/states/base_states/moving_around/IdleActionState.h"
 #include "components/player/states/StateManager.h"
 #include "components/player/states/base_states/SpendCoinsActionState.h"
 
@@ -155,6 +156,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 	render->setAllMaterials(0, (int)render->meshes.size() / 2, materials[msg.powerLvl - 1]);
 
 	getStateManager()->getState<RunActionState>(Run)->onLevelChange(msg.powerLvl);
+	getStateManager()->getState<IdleActionState>(Idle)->onLevelChange(msg.powerLvl);
 
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 
