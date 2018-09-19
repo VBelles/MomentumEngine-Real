@@ -44,7 +44,6 @@ void TCompSoundEmitter::load(const json& j, TEntityParseContext& ctx) {
 	target = j.value("target", "");
 	offset = j.count("offset") ? loadVEC3(j["offset"]) : offset;
 	playOnStart = j.value("play", playOnStart);
-	assert(res == FMOD_OK);
 }
 
 void TCompSoundEmitter::update(float delta) {

@@ -32,7 +32,6 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
 	launchConfig.offset = j.count("offset") ? loadVEC3(j["offset"]) : launchConfig.offset;
 	launchConfig.rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : launchConfig.rotationOffset;
 	launchConfig.bone = j.value("bone", "");
-	assert(_core);
 }
 
 void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
@@ -45,14 +44,14 @@ void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
 	_launched = true;
 }
 
-void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
-	for (auto p : systems) {
+void TCompParticles::onDestroyed(const TMsgEntityDestroyed& msg) {
+	// TODO Seguir investigando este fénomone: cuando se envia el mensaje TMsgEntityDestroyed el componente ya esta destruido
+	/*for (auto p : systems) {
 		EngineParticles.kill(p.second->getHandle(), _fadeOut);
 	}
-	systems.clear();
+	systems.clear();*/
 }
 
 void TCompParticles::onParticleSystemDestroyed(const TMsgParticleSystemDestroyed& msg) {
-	msg.particleHandle;
-	systems.clear();
+	systems.erase(msg.particleHandle);
 }
