@@ -1,0 +1,19 @@
+[
+  {
+    "entity":
+    {
+      "name": "terreno_collider",
+      "transform":
+      {
+        "pos": "-35.7717 6.8999 -20.7216",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/terreno_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  }
+]
