@@ -5,7 +5,7 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
-debugMode = true
+debugMode = false
 
 escapeEnable = true --Allow abort script execution holding ESC.
 
@@ -538,9 +538,12 @@ struct TSceneExporter (
 	),
 	
 	fn isUnique obj = (
-		if attrManager.hasAttribute obj "uniqueData" then 
-			return attrManager.getAttributeValue obj "uniqueData" #unique
-		else return true --Unique by default.
+		local unique = true --Unique by default.
+		if attrManager.hasAttribute obj "uniqueData" then (
+			unique = attrManager.getAttrValue obj "uniqueData" #unique
+			if unique == undefined then unique = true
+		)
+		return unique
 	),
 	
 	fn beginEntity = (
@@ -783,16 +786,23 @@ struct TSceneExporter (
 		local grup 	   = 0
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
-			local xRot = attrManager.getAttributeValue obj "rotateData" #x
-			local yRot = attrManager.getAttributeValue obj "rotateData" #z --!!! inverted.
-			local zRot = attrManager.getAttributeValue obj "rotateData" #y --!!! inverted.
+			local xRot = attrManager.getAttrValue obj "rotateData" #x
+			local yRot = attrManager.getAttrValue obj "rotateData" #z --!!! inverted.
+			local zRot = attrManager.getAttrValue obj "rotateData" #y --!!! inverted.
 
-			rotAxis = Point3 xRot yRot zRot
-			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
+			if xRot == undefined or yRot == undefined or zRot == undefined then
+				rotAxis = Point3 0 0 1
+			else rotAxis = Point3 xRot yRot zRot
 
-			rolSpeed = attrManager.getAttributeValue obj "rotateData" #rolSpeed
-			wait 	 = attrManager.getAttributeValue obj "rotateData" #wait
-			grup 	 = attrManager.getAttributeValue obj "rotateData" #grup
+			rotSpeed = attrManager.getAttrValue obj "rotateData" #rotSpeed
+			if rotSpeed == undefined then rotSpeed = 0.5
+
+			rolSpeed = attrManager.getAttrValue obj "rotateData" #rolSpeed
+			if rolSpeed == undefined then rolSpeed = 0.0
+			wait 	 = attrManager.getAttrValue obj "rotateData" #wait
+			if wait == undefined then wait = 2
+			grup 	 = attrManager.getAttrValue obj "rotateData" #grup
+			if grup == undefined then grup = 0
 		)
 		--Export only if it has rotation speed.
 		if rotSpeed > 0 then (
@@ -844,10 +854,10 @@ struct TSceneExporter (
 				)
 
 				local closed = false
-				local followSpeed = 0.3
 				if childClass == circle then closed = true
 				else closed = isClosed child 1
 
+				local followSpeed = 0.3
 				if closed then followSpeed = 0.04
 
 				local auto = true
@@ -855,10 +865,14 @@ struct TSceneExporter (
 				local wait = 0.0
 				--Get from attribute if it exists.
 				if attrManager.hasAttribute obj "moveData" then (
-					auto 		= attrManager.getAttributeValue obj "moveData" #auto
-					loop 		= attrManager.getAttributeValue obj "moveData" #loop
-					wait 		= attrManager.getAttributeValue obj "moveData" #wait
-					followSpeed = attrManager.getAttributeValue obj "moveData" #spd
+					auto 	= attrManager.getAttrValue obj "moveData" #auto
+					if auto == undefined then auto = true
+					loop 	= attrManager.getAttrValue obj "moveData" #loop
+					if loop == undefined then loop = true
+					wait 	= attrManager.getAttrValue obj "moveData" #wait
+					if wait == undefined then wait = 0.0
+					followSpeed = attrManager.getAttrValue obj "moveData" #spd
+					if followSpeed == undefined then followSpeed = 0.3
 				)
 
 				fs.writeComma()
@@ -918,8 +932,10 @@ struct TSceneExporter (
 		local coll = true
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "mechData" then (
-			local rend = attrManager.getAttributeValue obj "mechData" #rend
-			local coll = attrManager.getAttributeValue obj "mechData" #coll
+			rend = attrManager.getAttrValue obj "mechData" #rend
+			if rend == undefined then rend = true
+			coll = attrManager.getAttrValue obj "mechData" #coll
+			if coll == undefined then coll = true
 		)
 		fs.writeComma()
 		fs.writeKey "activate_listener"
@@ -936,7 +952,8 @@ struct TSceneExporter (
 		local forcedTri = false
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "collData" then (
-			forcedTri = attrManager.getAttributeValue obj "collData" #collType
+			forcedTri = attrManager.getAttrValue obj "collData" #collType
+			if forcedTri == undefined then forcedTri = false
 		)
 
 		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
@@ -1084,7 +1101,8 @@ struct TSceneExporter (
 				--Get from attribute if it exists.
 				if obj.parent != undefined and
 				   attrManager.hasAttribute obj.parent "mechData" then (
-					coll = attrManager.getAttributeValue obj.parent "mechData" #coll
+					coll = attrManager.getAttrValue obj.parent "mechData" #coll
+					if coll == undefined then coll = true
 				)
 				fs.writeComma()
 				fs.writeKeyValue "enabled" (not coll)
@@ -1180,9 +1198,12 @@ struct TSceneExporter (
 
 			--Get from attribute if it exists.
 			if attrManager.hasAttribute obj "animData" then (
-				mov	 = attrManager.getAttributeValue obj "animData" #mov
-				loop = attrManager.getAttributeValue obj "animData" #loop
-				kill = attrManager.getAttributeValue obj "animData" #kill
+				mov	 = attrManager.getAttrValue obj "animData" #mov
+				if mov == undefined then mov = false
+				loop = attrManager.getAttrValue obj "animData" #loop
+				if loop == undefined then loop = false
+				kill = attrManager.getAttrValue obj "animData" #kill
+				if kill == undefined then kill = false
 			)
 
 			fs.writeComma()
@@ -1199,7 +1220,8 @@ struct TSceneExporter (
 		local powUp = "-NONE-"
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "collData" then (
-			powUp = attrManager.getAttributeValue obj "collData" #pwrUp
+			powUp = attrManager.getAttrValue obj "collData" #pwrUp
+			if powUp == undefined then powUp == "-NONE-"
 
 			if powUp != "-NONE-" then (
 				fs.writeComma()
@@ -1226,7 +1248,9 @@ struct TSceneExporter (
 
 		--Get from attribute if it exists and is mechanism.
 		if attrManager.hasAttribute obj "mechData" then (
-			renderEnabled = not (attrManager.getAttributeValue obj "mechData" #rend)
+			local rend = attrManager.getAttrValue obj "mechData" #rend
+			if rend == undefined then rend = true
+			renderEnabled = not rend
 		) else if mech then (
 			renderEnabled = false --default.
 		)
@@ -1254,9 +1278,9 @@ struct TSceneExporter (
 					)
 
 					if attrManager.hasAttribute child "collData" then (
-						format "Collider % has collData.\n" child.name --DEBUG
-						spike = attrManager.getAttributeValue child "collData" #spke
-						format "spike: %.\n" spike
+						spike = attrManager.getAttrValue child "collData" #spke
+						if spike == undefined then spike = false
+
 						if spike then append toAddSpikes child.name
 					)
 
@@ -1539,7 +1563,8 @@ struct TSceneExporter (
 				local fov = 40
 				--Get from attribute if it exists.
 				if attrManager.hasAttribute obj "lightData" then (
-					fov	= attrManager.getAttributeValue obj "lightData" #fov
+					fov	= attrManager.getAttrValue obj "lightData" #fov
+					if fov == undefined then fov = 40
 				)
 				fs.writeKeyValue "fov" fov
 			fs.endObj()
@@ -1723,9 +1748,12 @@ struct TSceneExporter (
 
 			--Get from attribute if it exists.
 			if attrManager.hasAttribute obj "mechTrigData" then (
-				deacTime	= attrManager.getAttributeValue obj "mechTrigData" #deacT
-				reacTime 	= attrManager.getAttributeValue obj "mechTrigData" #reacT
-				resettable  = attrManager.getAttributeValue obj "mechTrigData" #reset
+				deacTime	= attrManager.getAttrValue obj "mechTrigData" #deacT
+				if deacTime == undefined then deacTime = 5
+				reacTime 	= attrManager.getAttrValue obj "mechTrigData" #reacT
+				if reacTime == undefined then reacTime = 3
+				resettable  = attrManager.getAttrValue obj "mechTrigData" #reset
+				if resettable == undefined then resettable = true
 			)
 	
 			fs.writeKey "mechanism"
@@ -2147,24 +2175,37 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKey "platforms_director"
 			fs.beginObj()
-				fs.writeKey "platforms"
+				fs.writeKey "slots"
 				fs.beginArray()
-				local validPlGroups = 0
-				for i = 1 to platfDirector.count do (
-					if platfDirector[i] != undefined then (
-						if validPlGroups >= 1 then fs.writeComma()
-						fs.beginArray()
-						for j = 1 to platfDirector[i].count do (
-							if j != 1 then fs.writeComma()
-							fs.writeName platfDirector[i][j]
-						)
-						fs.endArray()
+					local validPlGroups = 0
+					for i = 1 to platfDirector.count do (
+						if platfDirector[i] != undefined then (
+							if validPlGroups >= 1 then fs.writeComma()
+							fs.beginObj()
+								local obj = getNodeByName platfDirector[i][1]
+								local waitTime = 0
 
-						validPlGroups += 1
+								if attrManager.hasAttribute obj "rotateData" then (
+									waitTime = attrManager.getAttrValue obj "rotateData" #waitT
+									if waitTime == undefined then waitTime = 0
+								)
+
+								fs.writeKeyValue "wait_time" waitTime
+								fs.writeComma()
+								fs.writeKey "platforms"
+								fs.beginArray()
+								for j = 1 to platfDirector[i].count do (
+									if j != 1 then fs.writeComma()
+									fs.writeName platfDirector[i][j]
+								)
+								fs.endArray() --end array platforms.
+							fs.endObj() --end obj slot.
+
+							validPlGroups += 1
+						)
 					)
-				)
-				fs.endArray()
-			fs.endObj()
+				fs.endArray() --end array slots.
+			fs.endObj() --end obj platforms_director.
 			endEntity()
 		fs.end()
 	),

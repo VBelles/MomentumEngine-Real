@@ -37,9 +37,10 @@ global rotationsData = attributes rotateData (
 		z 		 type: #integer ui:zRot 	default:1 
 		rotSpeed type: #float   ui:rotSpeed default:0.5
 
-		rolSpeed type: #float   ui:rolSpeed default:0
+		rolSpeed type: #float   ui:rolSpeed default:0.0
 		wait 	 type: #float   ui:waitDur 	default:2
-		grup	 type: #integer ui:grup 	default:0
+		grup	 type: #integer ui:grup 	default:0.0
+		waitT	 type: #float   ui:waitT 	default:0.0
 	)
 	rollout params "Rotation Data" (
 		label lab1 "Rotation:"
@@ -49,9 +50,10 @@ global rotationsData = attributes rotateData (
 		spinner rotSpeed "Rotation speed" type: #float range:[-100, 100, 0]
 
 		label lab2 "Roll:"
-		spinner rolSpeed "Roll speed" 	  type: #float range:[-100, 100, 0]
-		spinner waitDur  "Wait duration"  type: #float
-		spinner grup     "Platform group" type: #integer range:[0, 1000, 0]
+		spinner rolSpeed "Roll speed" 	   type: #float   range:[-100, 100, 0]
+		spinner waitDur  "Wait duration"   type: #float
+		spinner grup     "Platform group"  type: #integer range:[0, 1000, 0]
+		spinner waitT    "Group wait time" type: #float   range:[0, 1000, 0]
 	)
 )
 
@@ -221,7 +223,7 @@ struct TAttributeManager (
 		return undefined
 	),
 
-	fn getAttributeValue obj defName attribute = (
+	fn getAttrValue obj defName attribute = (
 		local idxFound = findAttribute obj defName
 		if idxFound != undefined then (
 			local objDefs = custAttributes.getDefs obj
@@ -231,12 +233,12 @@ struct TAttributeManager (
 			--so pick this manually.
 			if attribute == #pwrUp then return obj.collData.pwrUp
 
-			return a[attribute].value
+			if a[attribute] != undefined then return a[attribute].value
 		)
 		return undefined
 	),
 	
-	fn setAttributeValue obj defName attribute newValue = (
+	fn setAttrValue obj defName attribute newValue = (
 		local idxFound = findAttribute obj defName
 		if idxFound != undefined then (
 			local objDefs = custAttributes.getDefs obj
@@ -287,7 +289,7 @@ struct TAttributeManager (
 
 	fn setAttributeInSel defName attribute newValue = (
 		for obj in selection do (
-			setAttributeValue obj defName attribute newValue
+			setAttrValue obj defName attribute newValue
 		)
 	)
 )
@@ -296,8 +298,8 @@ struct TAttributeManager (
 --attributeManager = TAttributeManager()
 --attributeManager.addAttributeToSel("enemyData")
 --attributeManager.delAttributeFromSel("enemyData")
---attributeManager.getAttributeValue $ #enemyData #hitPoints
+--attributeManager.getAttrValue $ #enemyData #hitPoints
 ----
 --attributeManager.addAttribute $ "rotateData"
 --attributeManager.delAttributeFromSel("rotateData")
---attributeManager.getAttributeValue $ #rotateData #y
+--attributeManager.getAttrValue $ #rotateData #y
