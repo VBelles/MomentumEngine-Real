@@ -120,7 +120,6 @@ namespace Particles {
 		CHandle getParticleEntityHandle();
 		void debugInMenu();
 		int getNbParticles();
-
-
+		const TCoreSystem* getCore();
 	};
 }

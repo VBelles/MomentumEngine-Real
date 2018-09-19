@@ -358,6 +358,10 @@ namespace Particles {
 		return _particles.size();
 	}
 
+	const TCoreSystem * CSystem::getCore() {
+		return _core;
+	}
+
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;
 
