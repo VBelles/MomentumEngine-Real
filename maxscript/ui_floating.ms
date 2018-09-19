@@ -338,9 +338,23 @@ ButtonText: "Momentum"
 		fn openSetAttrWindow defName = (
 			try (
 				gc()
-				local attributeManager = TAttributeManager()
+				local attrManager = TAttributeManager()
 
 				--TODO: open window here.
+				format "enemiesData[1]:%\n" (classof enemiesData as string)
+
+				--attrManager.findAttribute obj "enemiesData" 
+				--(custAttributes.get $ 2)[#hitPoints].value
+
+				rollout pivotControls "Pivot Controls" (
+					button btnCenter "BUTTON" width:150
+
+					on btnCenter pressed do messagebox "WIP"
+				)
+
+				if theNewFloater != undefined then closeRolloutFloater theNewFloater
+				theNewFloater = newRolloutFloater "Pivot Tool" 180 120
+				addRollout pivotControls theNewFloater
 
 
 				--attributeManager.setAttributeInSel defName #collType value

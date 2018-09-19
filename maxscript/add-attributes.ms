@@ -215,7 +215,7 @@ global camsData = attributes camData (
 		checkbox modPlRo "Modify player cam rot" type: #boolean align:#right
 		spinner tMixO "Time to mix out" type: #float range:[0, 1000.0, 40.0] --min, max, initial value
 		spinner panSpd "Panning speed"  type: #float range:[-1000.0, 1000.0, 40.0]
-		spinner panRad "panning radius" type: #float range:[0, 1000.0, 40.0]
+		spinner panRad "Panning radius" type: #float range:[0, 1000.0, 40.0]
 	)
 )
 

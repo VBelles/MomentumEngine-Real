@@ -2190,6 +2190,8 @@ struct TSceneExporter (
 	),
 
 	fn exportPlatfDirector = (
+		if platfDirector.count == 0 then return false
+
 		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
 		
 		fs.begin plDirFilePath --Create file.
@@ -2203,7 +2205,10 @@ struct TSceneExporter (
 				fs.beginArray()
 					local validPlGroups = 0
 					for i = 1 to platfDirector.count do (
-						if platfDirector[i] != undefined then (
+						if platfDirector[i] != undefined and 
+						   platfDirector[i][1] != undefined then (
+							format "platfDirector.count: %\n" platfDirector.count --DEBUG
+							format "platfDirector[1]: %\n" platfDirector[1] --DEBUG
 							if validPlGroups >= 1 then fs.writeComma()
 							fs.beginObj()
 								local obj = getNodeByName platfDirector[i][1]
@@ -2218,6 +2223,7 @@ struct TSceneExporter (
 								fs.writeComma()
 								fs.writeKey "platforms"
 								fs.beginArray()
+								format "platfDirector[i].count: %\n" platfDirector[i].count --DEBUG
 								for j = 1 to platfDirector[i].count do (
 									if j != 1 then fs.writeComma()
 									fs.writeName platfDirector[i][j]

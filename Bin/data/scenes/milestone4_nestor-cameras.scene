@@ -1,0 +1,25 @@
+[
+  {
+    "entity":
+    {
+      "name": "Camera001",
+      "transform":
+      {
+        "pos": "-3.19706 -1.15544e-05 -264.334",
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": true,
+        "modifyPlayerCameraRotation": false,
+        "timeToMixOut": 1.5,
+        "panningSpeed": 0.2,
+        "panningRadius": 3.2
+      }
+    }
+  }
+]
