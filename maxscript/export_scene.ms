@@ -344,11 +344,11 @@ struct TMaterialExporter (
 
 		if mat.map1 != undefined then (
 			if classOf mat.map1 != MultiMaterial then append mats mat.map1
-			else for m in mat.map1 do append mats m
+			else for m in mat.map1 where m != undefined do append mats m
 		)
 		if mat.map2 != undefined then (
 			if classOf mat.map2 != MultiMaterial then append mats mat.map2
-			else for m in mat.map2 do append mats m
+			else for m in mat.map2 where m != undefined do append mats m
 		)
 		return mats
 	),
@@ -1426,15 +1426,36 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKey "fixed_camera"
 				fs.beginObj()
-					fs.writeKeyValue "returnToPlayerCameraWithInput" false
+
+				local retToPlyr = false
+				local modPlRot  = true
+				local tMixOut  	= 1.0
+				local panSpeed 	= 0.0
+				local panRadius	= 3.0
+				--Get from attribute if it exists.
+				if attrManager.hasAttribute obj "camData" then (
+					retToPlyr = attrManager.getAttrValue obj "camData" #retToPlyr
+					if retToPlyr == undefined then retToPlyr = false
+					modPlRot = attrManager.getAttrValue obj "camData" #modPlRot
+					if modPlRot == undefined then modPlRot = true
+
+					tMixOut = attrManager.getAttrValue obj "camData" #tMixOut
+					if tMixOut == undefined then tMixOut = 1.0
+					panSpeed = attrManager.getAttrValue obj "camData" #panSpeed
+					if panSpeed == undefined then panSpeed = 0.0
+					panRadius = attrManager.getAttrValue obj "camData" #panRadius
+					if panRadius == undefined then panRadius = 3.0
+				)
+
+					fs.writeKeyValue "returnToPlayerCameraWithInput" retToPlyr
 					fs.writeComma()
-					fs.writeKeyValue "modifyPlayerCameraRotation" true
+					fs.writeKeyValue "modifyPlayerCameraRotation" modPlRot
 					fs.writeComma()
-					fs.writeKeyValue "timeToMixOut" 1
+					fs.writeKeyValue "timeToMixOut" tMixOut
 					fs.writeComma()
-					fs.writeKeyValue "panningSpeed" 0
+					fs.writeKeyValue "panningSpeed" panSpeed
 					fs.writeComma()
-					fs.writeKeyValue "panningRadius" 3
+					fs.writeKeyValue "panningRadius" panRadius
 				fs.endObj()
 
 				-- Add child spline if it exists.
@@ -2107,7 +2128,9 @@ struct TSceneExporter (
 	),
 
 	fn exportUniqueFile uniqueType:"" = (
-		local uniquesPath = project_path + uniques_path + "unique_" + uniqueType + ".json"
+		local ofilename = getFilenameFile maxFileName
+		local uniquesPath = project_path + uniques_path + \
+							ofilename + "-unique_" + uniqueType + ".json"
 
 		local uniquesArray = #()
 		case uniqueType of (
@@ -2170,6 +2193,7 @@ struct TSceneExporter (
 		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
 		
 		fs.begin plDirFilePath --Create file.
+		fs.beginArray()
 			beginEntity()
 			fs.writeKeyValue "name" "platform_director"
 			fs.writeComma()
@@ -2207,6 +2231,7 @@ struct TSceneExporter (
 				fs.endArray() --end array slots.
 			fs.endObj() --end obj platforms_director.
 			endEntity()
+		fs.endArray()
 		fs.end()
 	),
 
@@ -2342,11 +2367,8 @@ struct TSceneExporter (
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
-TODO: Ignorar slots vacíos de multimaterial al exportar para que no dé error
-	  si se dejan alguno.
 TODO: Poder cambiar atributos en varios objetos a la vez.
-TODO: Atributos para los parámetros de las cámaras. Que el trigger sea el parent.
-TODO: Separar uniques por nombre de escena.
+TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
 
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos

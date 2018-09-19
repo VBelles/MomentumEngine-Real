@@ -201,6 +201,24 @@ global colsData = attributes collData (
 	)
 )
 
+-- def #camData
+global camsData = attributes camData (
+	parameters main rollout:params (
+		retToPlyr type: #boolean ui:retToPl default:false
+		modPlRot  type: #boolean ui:modPlRo default:true
+		tMixOut   type: #float   ui:tMixO   default:1.0
+		panSpeed  type: #float   ui:panSpd  default:0.0
+		panRadius type: #float   ui:panRad  default:3.0
+	)
+	rollout params "Cameras Data" (
+		checkbox retToPl "Return to player cam"  type: #boolean align:#right
+		checkbox modPlRo "Modify player cam rot" type: #boolean align:#right
+		spinner tMixO "Time to mix out" type: #float range:[0, 1000.0, 40.0] --min, max, initial value
+		spinner panSpd "Panning speed"  type: #float range:[-1000.0, 1000.0, 40.0]
+		spinner panRad "panning radius" type: #float range:[0, 1000.0, 40.0]
+	)
+)
+
 -- -----------------------------------------------------------------------------
 
 struct TAttributeManager (
@@ -253,6 +271,7 @@ struct TAttributeManager (
 		if not hasAttribute obj defName then (
 			case defName of (
 				"animData":     ( attrDef = animsData     )
+				"camData":      ( attrDef = camsData      )
 				"collData":     ( attrDef = colsData      )
 				"enemyData":    ( attrDef = enemiesData	  )
 				"lightData":    ( attrDef = lightsData    )

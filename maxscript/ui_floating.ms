@@ -4,6 +4,7 @@ fileIn "export_mesh.ms"
 fileIn "export_rigid_anims.ms"
 fileIn "export_skeletons.ms"
 fileIn "import_scene.ms"
+--fileIn "add-attributes.ms"
 
 macroscript Momentum
 category: "Momentum"
@@ -18,7 +19,7 @@ ButtonText: "Momentum"
 
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 3
+	local numberOfButtons = 4
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	local left = sysInfo.desktopSize[1] * 0.8 --80% of screen width.
@@ -270,8 +271,9 @@ ButtonText: "Momentum"
 	) -- end utils rollout
 
 	rollout attribute "Momentum Attributes" (
-		button btn_addAttrEnemy "+ enemy" across:2 tooltip:"Adds enemy attributes to selected objects"
+		button btn_addAttrEnemy "+ enemy" across:3 tooltip:"Adds default enemy attributes to selected objects"
 		button btn_delAttrEnemy "- enemy" tooltip:"Deletes enemy attributes from selected objects"
+		button btn_setAttrEnemy "Set..." tooltip:"Sets enemy attributes to selected objects"
 		
 		button btn_addRotation "+ rotation" across:2 tooltip:"Adds rotation attributes to selected objects"
 		button btn_delRotation "- rotation" tooltip:"Deletes rotation attributes from selected objects"
@@ -299,6 +301,9 @@ ButtonText: "Momentum"
 
 		button btn_set_trimesh "Set trimesh" across:2 tooltip:"Sets trimesh attribute of selected objects"
 		button btn_unset_trimesh "Unset trimesh" tooltip:"Unsets trimesh attribute of selected objects"
+
+		button btn_addCam "+ camera" across:2 tooltip:"Adds camera attributes to selected objects"
+		button btn_delCam "- camera" tooltip:"Deletes camera attributes from selected objects"
 
 		fn addAttribute defName = (
 			try (
@@ -329,13 +334,28 @@ ButtonText: "Momentum"
 				MessageBox ("Error setting attribute:\n" + getCurrentException()) title:"Error"
 			)
 		)
+
+		fn openSetAttrWindow defName = (
+			try (
+				gc()
+				local attributeManager = TAttributeManager()
+
+				--TODO: open window here.
+
+
+				--attributeManager.setAttributeInSel defName #collType value
+			) catch (
+				MessageBox ("Error openning attr window:\n" + getCurrentException()) title:"Error"
+			)
+		)
 		
 		on btn_set_trimesh pressed   do ( setAttribute "collData" #collType true )
 		on btn_unset_trimesh pressed do ( setAttribute "collData" #collType false )
 
 		on btn_addAttrEnemy pressed do ( addAttribute "enemyData" )
 		on btn_delAttrEnemy pressed do ( delAttribute "enemyData" )
-		
+		on btn_setAttrEnemy pressed do ( openSetAttrWindow("enemyData") )
+
 		on btn_addRotation pressed do ( addAttribute "rotateData" )
 		on btn_delRotation pressed do ( delAttribute "rotateData" )
 		
@@ -359,6 +379,9 @@ ButtonText: "Momentum"
 
 		on btn_addColl pressed do ( addAttribute "collData" )
 		on btn_delColl pressed do ( delAttribute "collData" )
+
+		on btn_addCam pressed do ( addAttribute "camData" )
+		on btn_delCam pressed do ( delAttribute "camData" )
 
 		-- Resize window if rollout collapses.
 		on attribute rolledUp state do (
