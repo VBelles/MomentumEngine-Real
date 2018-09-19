@@ -42,27 +42,6 @@
       "position": "38.3146 47.5387 -120.248",
       "level": "level00",
       "type": "life_piece"
-    },
-    {
-      "id": "nes_life_piece002",
-      "done": false,
-      "position": "-3.58997 17.8129 -293.912",
-      "level": "level00",
-      "type": "life_piece"
-    },
-    {
-      "id": "nes_life_piece001",
-      "done": false,
-      "position": "163.812 99.5826 -152.985",
-      "level": "level00",
-      "type": "life_piece"
-    },
-    {
-      "id": "nes_life_piece000",
-      "done": false,
-      "position": "38.3146 47.5387 -120.248",
-      "level": "level00",
-      "type": "life_piece"
     }
   ]
 }

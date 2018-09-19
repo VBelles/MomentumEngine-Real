@@ -5,7 +5,7 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
-debugMode = false
+debugMode = true
 
 escapeEnable = true --Allow abort script execution holding ESC.
 
@@ -18,6 +18,8 @@ global uniqueLifePieces = #()
 global brokenMaps    	= #()
 
 global luaMechSys		= #()
+
+global toAddSpikes		= #()
 
 global platfDirector	= #(#())
 
@@ -1215,6 +1217,7 @@ struct TSceneExporter (
 		local pure 		= obj.layer.name == "pure"
 		local breakable = obj.layer.name == "breakables"
 		local mech		= obj.layer.name == "mechanisms"
+		local spike     = false
 
 		exportName obj
 		fs.writeComma()
@@ -1249,8 +1252,16 @@ struct TSceneExporter (
 						fs.writeKeyEmpty "purity"
 						objToExport = obj
 					)
+
+					if attrManager.hasAttribute child "collData" then (
+						format "Collider % has collData.\n" child.name --DEBUG
+						spike = attrManager.getAttributeValue child "collData" #spke
+						format "spike: %.\n" spike
+						if spike then append toAddSpikes child.name
+					)
+
 					exportCompCollider objToExport first:isFirst \
-						mech:mech mov:(movable or onlyRot) colliderGroups:groups
+						mech:mech mov:(movable or onlyRot or spike) colliderGroups:groups
 
 					if movable then exportSpline obj
 					if onlyRot then exportPlatfRotationOnly obj
@@ -1589,14 +1600,45 @@ struct TSceneExporter (
 	fn exportEntitySpikes obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 
-		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
-			exportName obj
-			fs.writeComma()
-			fs.writeKeyValue "prefab" (prefabPath + "plataforma_hex.prefab")
+		beginEntity() --Begin new entity.
+			fs.writeKeyValue "name" (obj.name + "_spikes")
 			fs.writeComma()
 			exportTransform obj
-		endEntity() --End previous entity.
-		fs.writeComma()
+			fs.writeComma()
+
+			fs.writeKey "render"
+			fs.beginArray()
+				fs.beginObj()
+					local meshName = "spikes_plat_hex_small"
+					fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
+					fs.writeComma()
+					exportStringArray "materials" #(mats_path + "m_platform_spikes") suffix:".material"
+				fs.endObj()
+			fs.endArray()
+			fs.writeComma()
+
+			fs.writeKey "collider"
+			fs.beginObj()
+				exportColliderMeshContents obj meshShape:"convex_mesh" \
+					forceMesh:"spikes_plat_hex_small_col" mov:true
+				fs.writeComma()
+				fs.writeKeyValue "type" "kinematic"
+				fs.writeComma()
+				fs.writeKeyValue "is_trigger" true
+				fs.writeComma()
+				exportStringArray "group" #("trigger")
+				fs.writeComma()
+				exportStringArray "mask" #("player")
+			fs.endObj()
+			fs.writeComma()
+
+			fs.writeKeyValue "prefab" (prefabPath + "spikes.prefab")
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+		return true
+	),
+
+	-- --SPIKES MOVE------------------------------------------------------------
+	fn exportSpikesMov obj = (
 		beginEntity() --Begin new entity.
 			fs.writeKeyValue "name" (obj.name + "_spikes")
 			fs.writeComma()
@@ -1605,9 +1647,9 @@ struct TSceneExporter (
 
 			fs.writeKey "hierarchy"
 			fs.beginObj()
-				fs.writeKeyValue "parent" obj.name
+				fs.writeKeyValue "parent" obj.parent.name
 				fs.writeComma()
-				fs.writeKeyValue "pos" "0 -0.25 0"
+				fs.writeKeyValue "pos" "0 0 0"
 				fs.writeComma()
 				fs.writeKeyValue "axis" "0 0 1"
 				fs.writeComma()
@@ -1621,7 +1663,7 @@ struct TSceneExporter (
 					local meshName = "spikes_plat_hex_small"
 					fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
 					fs.writeComma()
-					exportStringArray "materials" #(mats_path + "m_platform_spikes") suffix:".material"
+					exportStringArray "materials" #(mats_path + meshName) suffix:".material"
 				fs.endObj()
 			fs.endArray()
 			fs.writeComma()
@@ -2127,6 +2169,30 @@ struct TSceneExporter (
 		fs.end()
 	),
 
+	fn exportSpikesFile = (
+		local ofilename = getFilenameFile maxFileName
+		local spikesFilePath = project_path + scenes_path + ofilename + "-spikesMove.scene"
+		
+		fs.begin spikesFilePath --Create file.
+			fs.beginArray()
+				undo off (
+				for i = 1 to toAddSpikes.count do (
+					local obj = getNodeByName toAddSpikes[i]
+					if obj != undefined then (
+						if i > 1 then fs.writeComma()
+
+						exportSpikesMov obj
+					)
+				)
+				) --undo off end.
+			fs.endArray()
+		fs.end()
+	),
+
+	fn exportSpikes = (
+		if toAddSpikes.count > 0 then exportSpikesFile()
+	),
+
 	fn showBrokenMaps = (
 		for objName in brokenMaps do (
 			format "ERROR: Map support error in object %, should unwrap_reset.\n" objName
@@ -2203,6 +2269,7 @@ struct TSceneExporter (
 							"prefabMelee":  ( wasValid = exportEnemyPrefab	   obj nValidObjs )
 							"pure":		    ( wasValid = exportEntityDefault   obj nValidObjs )
 							"spikes":	    ( wasValid = exportEntitySpikes	   obj nValidObjs )
+							"spikesMove":   ( wasValid = exportEntityDefault   obj nValidObjs )
 							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
 							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
 							"0":		    ( wasValid = exportEntityDefault   obj nValidObjs )
@@ -2224,6 +2291,7 @@ struct TSceneExporter (
 		exportUniques()
 		exportLuaMechs()
 		exportPlatfDirector()
+		exportSpikes()
 		showBrokenMaps()
 		)--End undo off.
 	)
@@ -2236,6 +2304,8 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 TODO: Ignorar slots vacíos de multimaterial al exportar para que no dé error
 	  si se dejan alguno.
 TODO: Poder cambiar atributos en varios objetos a la vez.
+TODO: Atributos para los parámetros de las cámaras. Que el trigger sea el parent.
+TODO: Separar uniques por nombre de escena.
 
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos

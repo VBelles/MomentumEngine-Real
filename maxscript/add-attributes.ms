@@ -135,10 +135,12 @@ global lightsData = attributes lightData (
 global colsData = attributes collData (
 	parameters main rollout:params (
 		collType type: #boolean ui:cType default:true
+		spke     type: #boolean ui:spike default:false
 		pwrUp    type: #string default:"-NONE-"
 	)
 	rollout params "Collider Data" (
 		checkbox cType "Tri mesh" type: #boolean align:#right
+		checkbox spike "Spikes"   type: #boolean align:#right
 		dropdownlist powerUp "Power-up" items:#("-NONE-", \
 												"AirborneLong", \
 												"AirborneNormal", \
