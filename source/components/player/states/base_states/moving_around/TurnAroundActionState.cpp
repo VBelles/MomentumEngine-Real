@@ -4,7 +4,7 @@
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
 #include "components/player/states/StateManager.h"
-
+#include "skeleton/comp_skeleton.h"
 
 TurnAroundActionState::TurnAroundActionState(StateManager* stateManager)
 	: GroundedActionState::GroundedActionState(stateManager, TurnAround) {
@@ -47,6 +47,7 @@ void TurnAroundActionState::onStateEnter(IActionState * lastState) {
 	float y, p, r;
 	getPlayerTransform()->getYawPitchRoll(&y, &p, &r);
 	rotationSpeed = (exitYaw - y) / turnAroundTime;
+	getSkeleton()->blendCycle(animation, 0.05f, 0.05f);
 }
 
 void TurnAroundActionState::onStateExit(IActionState * nextState) {
