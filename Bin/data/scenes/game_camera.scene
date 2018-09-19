@@ -9,6 +9,7 @@
 				"fov": 80,
 				"game_camera": true
 			},
+			"culling": {},
 			"render_blur": {
 				"enabled": false
 			},
@@ -37,12 +38,12 @@
 				"threshold_min": 0.8,
 				"threshold_max": 1,
 				"self_illum_threshold_min": 0.0,
-				"self_illum_threshold_max":0.5
+				"self_illum_threshold_max": 0.5
 			},
-			"color_grading":{
+			"color_grading": {
 				"enabled": false,
 				"amount": 1,
-				"lut": "data/textures/lut/candlelight.dds"						
+				"lut": "data/textures/lut/candlelight.dds"
 			}
 		}
 	},
