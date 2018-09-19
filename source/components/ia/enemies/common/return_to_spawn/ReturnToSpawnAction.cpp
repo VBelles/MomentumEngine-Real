@@ -29,13 +29,12 @@ int ReturnToSpawnAction::execAction(float delta) {
 	enemy->rotateTowards(delta, nextPoint, enemy->rotationSpeed);
 	if (VEC3::DistanceSquared(nextPoint, pos) >= movementIncrement * movementIncrement) {
 		enemy->deltaMovement += enemy->getTransform()->getFront() * movementIncrement;
-		return Stay;
 	}
 	else if (enemy->currentPathPoint < enemy->smoothPath.size()) {
 		enemy->deltaMovement += nextPoint - pos;
 		enemy->currentPathPoint++;
-		return Stay;
 	}
+	return Stay;
 }
 
 void ReturnToSpawnAction::load(IBehaviorTreeNew* bt, const json& j) {

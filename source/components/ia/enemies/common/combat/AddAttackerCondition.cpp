@@ -25,10 +25,7 @@ bool AddAttackerCondition::testCondition(float delta) {
 					return true;
 				}
 			}
-			else {
-				return false;
-			}
-
+			return false;
 		}
 		else if (enemy->getPlayerModel()->addAttacker(entity->getName(), enemy->attackSlots)) {
 			enemy->attackTarget = PLAYER_NAME;
