@@ -157,6 +157,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 
 	getStateManager()->getState<RunActionState>(Run)->onLevelChange(msg.powerLvl);
 	getStateManager()->getState<IdleActionState>(Idle)->onLevelChange(msg.powerLvl);
+	getStateManager()->getState<IdleActionState>(Walk)->onLevelChange(msg.powerLvl);
 
 	EngineScripting.throwEvent(onPowerLevelChange, std::to_string(msg.powerLvl));
 
