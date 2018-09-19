@@ -14,6 +14,8 @@ private:
 	void rotateToFinalDirection();
 	void setFinalVelocity();
 
+	std::string animation = "turn_around";
+
 public:
 	TurnAroundActionState(StateManager* stateManager);
 	void update(float delta) override;

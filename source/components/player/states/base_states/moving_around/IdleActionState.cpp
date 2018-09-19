@@ -66,3 +66,9 @@ void IdleActionState::onSpendCoinsButton() {
 	stateManager->changeState(SpendCoins);
 }
 
+void IdleActionState::onLevelChange(int powerLevel) {
+	animation = animations[powerLevel - 1];
+	if (stateManager->getState()->state == state) {
+		getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
+	}
+}
