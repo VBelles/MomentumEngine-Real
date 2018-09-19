@@ -44,14 +44,14 @@ void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
 	_launched = true;
 }
 
-void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
-	for (auto p : systems) {
+void TCompParticles::onDestroyed(const TMsgEntityDestroyed& msg) {
+	// TODO Seguir investigando este fénomone: cuando se envia el mensaje TMsgEntityDestroyed el componente ya esta destruido
+	/*for (auto p : systems) {
 		EngineParticles.kill(p.second->getHandle(), _fadeOut);
 	}
-	systems.clear();
+	systems.clear();*/
 }
 
 void TCompParticles::onParticleSystemDestroyed(const TMsgParticleSystemDestroyed& msg) {
-	msg.particleHandle;
-	systems.clear();
+	systems.erase(msg.particleHandle);
 }
