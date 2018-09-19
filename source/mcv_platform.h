@@ -7,6 +7,16 @@
 #define WIN32_LEAN_AND_MEAN         // Reduce the size of things included in windows.h
 #define _USE_MATH_DEFINES           // M_PI M_PI_2
 
+// Request dedicated graphics
+extern "C"
+{
+	__declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;	// Dedicated graphics for NVIDIA
+}
+extern "C"
+{
+	__declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;		// Dedicated graphics for AMD
+}
+
 // C/C++
 #include <cstdio>
 #include <cstdlib>
