@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "module_sound.h"
+#include "components/comp_camera.h"
 
 #pragma comment(lib, "fmod64_vc.lib")
 #pragma comment(lib, "fmodstudio64_vc.lib")
@@ -39,15 +40,30 @@ bool CModuleSound::stop() {
 }
 
 void CModuleSound::update(float delta) {
-	auto res = system->setListenerAttributes(0, &listenerAttributes);	
+	updateListenerAttributes();
+	auto res = system->setListenerAttributes(0, &listenerAttributes);
 	system->update();
 }
 
-void CModuleSound::updateListenerAttributes(VEC3& position, VEC3& velocity, VEC3& forward, VEC3& up) {
-	listenerAttributes.position = { position.x, position.y, position.z };
-	listenerAttributes.velocity = { velocity.x, velocity.y, velocity.z };
-	listenerAttributes.forward = { forward.x, forward.y, forward.z };
-	listenerAttributes.up = { up.x, up.y, up.z };
+void CModuleSound::updateListenerAttributes() {
+	if (!cameraHandle.isValid()) {
+		CHandle cameraEntityHandle = getEntityByName(GAME_CAMERA);
+		if (cameraEntityHandle.isValid()) {
+			CEntity* cameraEntity = cameraEntityHandle;
+			cameraHandle = cameraEntity->get<TCompCamera>();
+		}
+	}
+	if (cameraHandle.isValid()) {
+		CEntity* cameraEntity = getEntityByName(GAME_CAMERA);
+		TCompCamera* camera = cameraEntity->get<TCompCamera>();
+		listenerAttributes.position = toFMODVector(camera->getCamera()->getPosition());
+		listenerAttributes.forward = toFMODVector(camera->getCamera()->getFront());
+		listenerAttributes.up = toFMODVector(camera->getCamera()->getUp());
+		listenerAttributes.velocity = {};
+	}
+	else {
+		listenerAttributes = {};
+	}
 }
 
 Studio::EventInstance* CModuleSound::instanceEvent(const char* sound) {

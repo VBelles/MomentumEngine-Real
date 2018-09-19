@@ -57,10 +57,10 @@ bool CModuleCameras::start() {
 		{INTERPOLATOR_SINE_IN_OUT, new Interpolator::TSineInOutInterpolator() }
 	};
 
-	TEntityParseContext ctx;
-	parseScene("data/scenes/default_camera.scene", ctx);
-	setDefaultCamera(ctx.entities_loaded[0]);
-
+	//TEntityParseContext ctx;
+	//parseScene("data/scenes/default_camera.scene", ctx);
+	//setDefaultCamera(ctx.entities_loaded[0]);
+	setDefaultCamera(getEntityByName(GAME_CAMERA));
 	return true;
 }
 

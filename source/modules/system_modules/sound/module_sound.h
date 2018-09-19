@@ -13,12 +13,15 @@ private:
 	std::map<std::string, FMOD::Studio::EventInstance*> eventInstances;
 	FMOD_3D_ATTRIBUTES listenerAttributes;
 
+	CHandle cameraHandle;
+
+	void updateListenerAttributes();
+
 public:
 	CModuleSound(const std::string& name);
 	bool start() override;
 	bool stop() override;
 	void update(float delta) override;
-	void updateListenerAttributes(VEC3& position, VEC3& speed, VEC3& forwrad, VEC3& up);
 	FMOD::Studio::EventInstance* instanceEvent(const char* sound);
 	void releaseEvent(const char* sound);
 

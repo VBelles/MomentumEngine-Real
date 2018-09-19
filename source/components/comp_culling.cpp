@@ -25,39 +25,28 @@ bool TCompCulling::VPlanes::isVisible(const AABB* aabb) const {
 void TCompCulling::updateFromMatrix(MAT44 view_proj) {
 	// Construir el set de planos usando la view_proj
 	planes.fromViewProjection(view_proj);
-
+	
 	// Start from zero
 	bits.reset();
 
 	// Traverse all aabb's defined in the game
 	// and test them
-  // Use the AbsAABB index to access the bitset
-	TCompCamera* camera = get<TCompCamera>();
-
+	// Use the AbsAABB index to access the bitset
 	auto hm = getObjectManager<TCompAbsAABB>();
-	hm->forEachWithExternalIdx([this, &camera](const TCompAbsAABB* aabb, uint32_t external_idx) {
+	hm->forEachWithExternalIdx([this](const TCompAbsAABB* aabb, uint32_t external_idx) {
 		if (planes.isVisible(aabb)) {
 			bits.set(external_idx);
-			dbg("Visible\n");
-		}
-		else {
-			dbg("Not Visible\n");
-			VEC3 pos = camera->getCamera()->getViewProjection().Translation();
-			VEC3 pos2 = camera->getCamera()->getPosition();
-			dbg("%f %f %f\n", pos.x, pos.y, pos.z);
-			dbg("%f %f %f\n", pos2.x, pos2.y, pos2.z);
 		}
 	});
 }
 
 void TCompCulling::update(float dt) {
-	//PROFILE_FUNCTION("Updating culling");
+	PROFILE_FUNCTION("Updating culling");
 
 	// Conseguimos acceso al comp_camera de un sibling component
 	TCompCamera* c_camera = get<TCompCamera>();
 	assert(c_camera);
 	MAT44 view_proj = c_camera->getCamera()->getViewProjection();
 	//e_owner->sendMsg(TMsgGetCullingViewProj{ &view_proj });
-
-	updateFromMatrix(cb_camera.camera_view_proj);
+	updateFromMatrix(view_proj);
 }
