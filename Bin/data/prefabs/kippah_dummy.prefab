@@ -43,7 +43,7 @@
         "attacks": [
           {
             "name": "spinAttack",
-            "frame_data": "15 40",
+            "frame_data": "15 40 50",
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
@@ -51,7 +51,7 @@
           },          
           {
             "name": "rangedAttack",
-            "frame_data": "0 120",
+            "frame_data": "0 120 140",
             "damage": 1.0,
             "invulnerabilityTime": 1.0,
             "hitbox": "attack",
@@ -62,7 +62,7 @@
           },
           {
             "name": "launched",
-            "frame_data": "2 10000",
+            "frame_data": "2 10000 10000",
             "damage": 0.0,
             "invulnerabilityTime": 0.0,
             "stun": 1.2,

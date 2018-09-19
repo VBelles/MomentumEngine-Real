@@ -37,17 +37,17 @@
         "fov_chase_distance": 15,
         "small_chase_radius": 2,
         "attack_fov": 90,
-        "short_combat_distance": 1.2,
+        "short_combat_distance": 2,
         "medium_combat_distance": 5,
         "long_combat_distance": 10,
         "step_back_distance": 0.6,
-        "attack_cool_down": 0.5,
+        "attack_cool_down": 1.0,
         "block_time": 1.5,
         "attack_slots": 1.0,
         "attacks": [
           {
             "name": "spin_attack",
-            "frame_data": "25 60",
+            "frame_data": "25 60 68",
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
@@ -55,7 +55,7 @@
           },
           {
             "name": "area_attack",
-            "frame_data": "38 46",
+            "frame_data": "38 46 62",
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
@@ -63,7 +63,7 @@
           },
           {
             "name": "tackle",
-            "frame_data": "15 10000",
+            "frame_data": "15 10000 10000",
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
@@ -71,7 +71,7 @@
           },
           {
             "name": "launched",
-            "frame_data": "2 10000",
+            "frame_data": "2 10000 10000",
             "damage": 0.0,
             "invulnerabilityTime": 0.0,
             "stun": 1.2,

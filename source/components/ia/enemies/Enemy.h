@@ -19,6 +19,7 @@ struct EnemyAttack {
 	std::string hitboxName;
 	float hitboxStart = 0.f;
 	float hitboxEnd = 0.f;
+	float attackEnd = 0.f;
 	EnemyAttackType type = Melee;
 	VEC3 attackSpawnOffset = VEC3::Zero;
 	VEC3 attackTargetOffset = VEC3::Zero;
@@ -95,18 +96,18 @@ public:
 	float stunDuration = 0.f;
 	VEC3 initialLaunchPos;
 
-	CTimer superArmorTimer;
+	CTimer2 superArmorTimer;
 	float superArmorTime = 0.f;
 	int superArmorAmount = 0;
 	bool isBlocking = false;
 	bool blockingBroken = false;
 
 	//Timers
-	CTimer timer;
-	CTimer animationTimer;
-	CTimer stunTimer;
-	CTimer blockTimer;
-	CTimer attackTimer;
+	CTimer2 timer;
+	CTimer2 animationTimer;
+	CTimer2 stunTimer;
+	CTimer2 blockTimer;
+	CTimer2 attackTimer;
 
 	//Handles
 	CHandle playerHandle;

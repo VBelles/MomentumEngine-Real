@@ -20,7 +20,8 @@ AttackAction::AttackAction(Enemy* enemy, std::string animation, std::string atta
 int AttackAction::execAction(float delta) {
 	enemy->updateGravity(delta);
 	EnemyAttack enemyAttack = enemy->attacks[attack];
-	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
+	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)
+		|| enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.attackEnd)) {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
 		enemy->currentAttack = "";
 		enemy->attackTimer.reset();

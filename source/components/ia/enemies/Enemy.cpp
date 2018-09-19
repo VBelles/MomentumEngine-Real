@@ -65,8 +65,8 @@ void Enemy::load(const json& j) {
 		attack.hitboxName = jAttack.value("hitbox", "");
 		assert(!attack.hitboxName.empty());
 
-		int n = sscanf(jAttack.value("frame_data", "").c_str(), "%f %f", &attack.hitboxStart, &attack.hitboxEnd);
-		assert(n == 2);
+		int n = sscanf(jAttack.value("frame_data", "").c_str(), "%f %f %f", &attack.hitboxStart, &attack.hitboxEnd, &attack.attackEnd);
+		assert(n == 3);
 
 		if (jAttack.value("type", "") == "ranged") {
 			attack.type = Ranged;
