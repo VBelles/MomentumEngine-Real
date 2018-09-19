@@ -3442,14 +3442,7 @@
         "pos": "11.3779 1.35455 -15.2073",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
-      "local_aabb":{
-        "center": "0 0 0",
-        "half_size": "1 1 1"
-      },
-      "abs_aabb":{
-        "center": "0 0 0",
-        "half_size": "1 1 1"
-      },
+      "abs_aabb": {},
       "render":
       [
         {
