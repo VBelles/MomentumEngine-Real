@@ -10,7 +10,7 @@
 						"texture" : "data/textures/cubemaps/momentum/OutputCube_256_mips.dds",
 						"time" : 10,
 						"light_color" : "1 0.87 0.67 1",
-						"light_intensity" : 12,
+						"light_intensity" : 10,
 						"emissive_ratio" : 0.3
 					},
 					{
