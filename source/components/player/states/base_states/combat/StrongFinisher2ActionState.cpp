@@ -71,7 +71,7 @@ void StrongFinisher2ActionState::update(float delta) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::LEFT_HAND)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_HAND)->setEnable(true);
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, *getPlayerTransform());
 	}
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(42)) {
 		isSlashOut = false;

@@ -66,73 +66,23 @@ void CModuleSound::updateListenerAttributes() {
 	}
 }
 
-Studio::EventInstance* CModuleSound::instanceEvent(const char* sound) {
-	auto it = eventInstances.find(sound);
-	if (it == eventInstances.end()) {
-		Studio::EventDescription* descriptor = nullptr;
-		res = system->getEvent(sound, &descriptor);
-		Studio::EventInstance* eventInstance = nullptr;
-		res = descriptor->createInstance(&eventInstance);
-		eventInstances[sound] = eventInstance;
-		return eventInstance;
-	}
-	else {
-		return it->second;
-	}
-}
-
-void CModuleSound::releaseEvent(const char* sound) {
-	auto it = eventInstances.find(sound);
-	if (it != eventInstances.end()) {
-		it->second->release();
-		eventInstances.erase(sound);
-	}
-}
-
-void CModuleSound::startEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
-	auto it = eventInstances.find(sound);
-	Studio::EventInstance* eventInstance = it->second;
-	if (it == eventInstances.end()) {
-		eventInstance = instanceEvent(sound);
-	}
-	if (eventInstance) {
-		eventInstance->set3DAttributes(attributes);
-		eventInstance->start();
-	}
-	else {
-		dbg("Event instance not found\n");
-	}
-}
-
-void CModuleSound::stopEvent(const char* sound, FMOD_STUDIO_STOP_MODE mode) {
-	auto it = eventInstances.find(sound);
-	if (it != eventInstances.end()) {
-		it->second->stop(mode);
-	}
-}
-
-Studio::EventInstance* CModuleSound::emitEvent(const char* sound, VEC3 position, VEC3 velocity, VEC3 forward, VEC3 up) {
-	FMOD_3D_ATTRIBUTES attributes;
-	attributes.position = { position.x, position.y, position.z };
-	attributes.velocity = { velocity.x, velocity.y, velocity.z };
-	attributes.forward = { forward.x, forward.y, forward.z };
-	attributes.up = { up.x, up.y, up.z };
+Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const CTransform& transform) {
+	FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(transform);
 	return emitEvent(sound, &attributes);
 }
 
 Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
 	Studio::EventDescription* descriptor = nullptr;
-	res = system->getEvent(sound, &descriptor);
 	Studio::EventInstance* eventInstance = nullptr;
+	res = system->getEvent(sound, &descriptor);
+	if (!descriptor) {
+		dbg("Event %s not found\n", sound);
+		return nullptr;
+	}
 	res = descriptor->createInstance(&eventInstance);
-	if (eventInstance) {
-		eventInstance->set3DAttributes(attributes);
-		eventInstance->start();
-		eventInstance->release();
-	}
-	else {
-		dbg("Event instance not found\n");
-	}
+	eventInstance->set3DAttributes(attributes);
+	eventInstance->start();
+	eventInstance->release();
 	return eventInstance;
 }
 

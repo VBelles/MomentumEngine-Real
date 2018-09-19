@@ -22,14 +22,7 @@ public:
 	bool start() override;
 	bool stop() override;
 	void update(float delta) override;
-	FMOD::Studio::EventInstance* instanceEvent(const char* sound);
-	void releaseEvent(const char* sound);
-
-
-	void startEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
-	void stopEvent(const char* sound, FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_IMMEDIATE);
-
-	FMOD::Studio::EventInstance* emitEvent(const char* sound, VEC3 position, VEC3 velocity = VEC3::Zero, VEC3 forward = VEC3::Zero, VEC3 up = VEC3::Zero);
+	FMOD::Studio::EventInstance* emitEvent(const char* sound, const CTransform& transform);
 	FMOD::Studio::EventInstance* emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
 
 	FMOD::Studio::System* getSystem();

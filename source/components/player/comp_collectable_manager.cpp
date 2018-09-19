@@ -103,12 +103,13 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	TCompCollectable* collectable = msg.collectableHandle;
 	CEntity* entity = msg.collectableHandle.getOwner();
 	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
+	TCompTransform* transform = entity->get<TCompTransform>();
 	switch (msg.type) {
 	case Type::CHRYSALIS:
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		playerModel->setHp(playerModel->getMaxHp());
-		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, static_cast<TCompTransform*>(entity->get<TCompTransform>())->getPosition());
+		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, *transform);
 		break;
 	case Type::COIN:
 		collectable->collect();
@@ -117,7 +118,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 			spendCoins(getNumberOfCoins() - maxCoins);
 		}
 		EngineParticles.launchSystem(PARTICLES_COIN, { entity });
-		EngineSound.emitEvent(SOUND_COIN, static_cast<TCompTransform*>(entity->get<TCompTransform>())->getPosition());
+		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, *transform);
 		break;
 	case Type::LIFEPIECE:
 		collectable->collect();

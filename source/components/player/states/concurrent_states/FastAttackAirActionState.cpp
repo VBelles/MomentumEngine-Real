@@ -30,7 +30,7 @@ void FastAttackAirActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, *getPlayerTransform());
 	}
 
 	/*if (!isSlashOut && movementTimer.elapsed() > frames2sec(10)) {
@@ -88,6 +88,6 @@ void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);
-	EngineSound.emitEvent(SOUND_ATTACK_HIT, getPlayerTransform()->getPosition());
+	EngineSound.emitEvent(SOUND_ATTACK_HIT, *getPlayerTransform());
 
 }

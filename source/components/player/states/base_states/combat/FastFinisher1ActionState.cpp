@@ -71,7 +71,7 @@ void FastFinisher1ActionState::update(float delta) {
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24) && movementTimer.elapsed() <= frames2sec(54)) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::RIGHT_FOOT)->setEnable(true);
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, *getPlayerTransform());
 	}
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
 		isSlashOut = false;

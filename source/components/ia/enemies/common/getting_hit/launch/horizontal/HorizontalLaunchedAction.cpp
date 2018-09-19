@@ -25,13 +25,9 @@ int HorizontalLaunchedAction::execAction(float delta) {
 		enemy->timer.reset();
 		enemy->getHitboxes()->disable(enemy->attacks[attack].hitboxName);
 		enemy->currentAttack = "";
-		//EngineSound.stopEvent(soundLauncherLoop.c_str());
-		EngineSound.startEvent(SOUND_AMBIENT, &enemy->soundAttributes);
-		dbg("SOUND\n");
 		return Leave;
 	}
 	else {
-		//EngineSound.startEvent(soundLauncherLoop.c_str(), &enemy->soundAttributes);
 		return Stay;
 	}
 }

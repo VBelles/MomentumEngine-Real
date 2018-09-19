@@ -30,7 +30,7 @@ void GrabActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, *getPlayerTransform());
 	}
 }
 

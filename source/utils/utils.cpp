@@ -95,7 +95,7 @@ uint32_t getID(const char* txt) {
 
 float scale(float A, float A1, float A2, float Min, float Max) {
 	long double percentage = (A - A1) / (A1 - A2);
-	return (float)( (percentage) * (Min - Max) + Min );
+	return (float)((percentage) * (Min - Max) + Min);
 }
 
 float frames2sec(int frames) {
@@ -104,4 +104,20 @@ float frames2sec(int frames) {
 
 float frames2sec(float frames) {
 	return frames * fps;
+}
+
+FMOD_VECTOR toFMODVector(const VEC3 & vec3) {
+	return FMOD_VECTOR{ vec3.x, vec3.y, vec3.z };
+}
+
+FMOD_3D_ATTRIBUTES toFMODAttributes(const CTransform& transform, const VEC3& velocity) {
+	const VEC3& position = transform.getPosition();
+	const VEC3& forward = transform.getFront();
+	const VEC3& up = transform.getUp();
+	return FMOD_3D_ATTRIBUTES{
+		{ position.x, position.y, position.z },	// Position
+		{ velocity.x, velocity.y, velocity.z },	// Velocity
+		{ forward.x, forward.y, forward.z },	// Forward
+		{ up.x, up.y, up.z }					// Up
+	};
 }

@@ -87,6 +87,7 @@ void TCompMechanism::onActivated(bool isActive, bool sound) {
 	render->setMeshEnabled(1, isActive);
 	render->refreshMeshesInRenderManager();
 	if (sound) {
-		EngineSound.emitEvent(isActive ? SOUND_MECHANISM_ON : SOUND_MECHANISM_OFF, static_cast<TCompTransform*>(get<TCompTransform>())->getPosition());
+		TCompTransform* transform = get<TCompTransform>();
+		EngineSound.emitEvent(isActive ? SOUND_MECHANISM_ON : SOUND_MECHANISM_OFF, *transform);
 	}
 }

@@ -15,11 +15,11 @@ void ScriptingSound::bindConstants(SLB::Manager* manager) {
 }
 
 void ScriptingSound::startSoundEvent(std::string event) {
-	EngineSound.startEvent(event.c_str());
+	//EngineSound.startEvent(event.c_str());
 }
 
 void ScriptingSound::stopSoundEvent(std::string event, int mode) {
-	EngineSound.stopEvent(event.c_str(), static_cast<FMOD_STUDIO_STOP_MODE>(mode));
+	//EngineSound.stopEvent(event.c_str(), static_cast<FMOD_STUDIO_STOP_MODE>(mode));
 }
 
 void ScriptingSound::emitSoundEvent(std::string event) {
