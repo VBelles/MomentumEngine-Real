@@ -27,8 +27,6 @@ TEntityParseContext::TEntityParseContext(TEntityParseContext& another_ctx, const
 	recursion_level = another_ctx.recursion_level + 1;
 	entity_starting_the_parse = another_ctx.entity_starting_the_parse;
 	root_transform = another_ctx.root_transform.combineWith(delta_transform);
-	//VEC3 p = root_transform.getPosition(); float y, pitch; root_transform.getYawPitchRoll(&y, &pitch);
-	//dbg("New root transform is Pos:%f %f %f Yaw: %f\n", p.x, p.y, p.z, rad2deg(y));
 }
 
 bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
@@ -68,24 +66,26 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 				assert(!prefab_ctx.entities_loaded.empty());
 
-				// Create a new fresh entity
-				h_e = prefab_ctx.entities_loaded[0];
+				// Combine prefab entity with current entity
+				if (prefab_ctx.entities_loaded.size() == 1) {
+					// Create a new fresh entity
+					h_e = prefab_ctx.entities_loaded[0];
 
-				// Cast to entity object
-				CEntity* e = h_e;
+					// Cast to entity object
+					CEntity* e = h_e;
 
-				// We give an option to 'reload' the prefab by modifying existing components, 
-				// like changing the name, add other components, etc, but we don't want to parse again 
-				// the comp_transform, because it was already parsed as part of the root
-				// As the json is const as it's a resouce, we make a copy of the prefab section and
-				// remove the transform
-				json j_entity_without_transform = j_entity;
-				j_entity_without_transform.erase("transform");
+					// We give an option to 'reload' the prefab by modifying existing components, 
+					// like changing the name, add other components, etc, but we don't want to parse again 
+					// the comp_transform, because it was already parsed as part of the root
+					// As the json is const as it's a resouce, we make a copy of the prefab section and
+					// remove the transform
+					json j_entity_without_transform = j_entity;
+					j_entity_without_transform.erase("transform");
 
-				// Do the parse now outside the 'prefab' context
-				prefab_ctx.parsing_prefab = false;
-				e->load(j_entity_without_transform, prefab_ctx);
-
+					// Do the parse now outside the 'prefab' context
+					prefab_ctx.parsing_prefab = false;
+					e->load(j_entity_without_transform, prefab_ctx);
+				}
 			}
 			else {
 				// Create a new fresh entity

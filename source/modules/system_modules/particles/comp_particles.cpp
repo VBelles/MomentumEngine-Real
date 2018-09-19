@@ -32,7 +32,6 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
 	launchConfig.offset = j.count("offset") ? loadVEC3(j["offset"]) : launchConfig.offset;
 	launchConfig.rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : launchConfig.rotationOffset;
 	launchConfig.bone = j.value("bone", "");
-	assert(_core);
 }
 
 void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
