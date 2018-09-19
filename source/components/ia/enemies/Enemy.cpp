@@ -129,6 +129,14 @@ void Enemy::updateGravity(float delta) {
 	velocity.y = clamp(velocity.y, -maxVerticalVelocity, maxVerticalVelocity);
 }
 
+void Enemy::updateSoundAttributes() {
+	auto transform = getTransform();
+	soundAttributes.position = toFMODVector(transform->getPosition());
+	soundAttributes.velocity = toFMODVector(velocity);
+	soundAttributes.forward = toFMODVector(transform->getFront());
+	soundAttributes.up = toFMODVector(transform->getUp());
+}
+
 void Enemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 	float deltaYaw = getTransform()->getDeltaYawToAimTo(targetPos);
 	float y, p, r;
@@ -153,6 +161,7 @@ void Enemy::move(float delta) {
 			velocity.y = 0;
 		}
 	}
+	updateSoundAttributes();
 }
 
 bool Enemy::hasSuperArmor() {

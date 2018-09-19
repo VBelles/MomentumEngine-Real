@@ -31,6 +31,8 @@ void JumpSquatLongActionState::onStateEnter(IActionState * lastState) {
 	//dbg("Entrando en JumpSquatLong\n");
 	timer.reset();
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	EngineSound.emitEvent(SOUND_JUMP_LONG);
+
 }
 
 void JumpSquatLongActionState::onStateExit(IActionState * nextState) {

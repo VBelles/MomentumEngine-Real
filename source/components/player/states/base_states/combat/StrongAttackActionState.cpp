@@ -5,6 +5,7 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
+#include "components/comp_transform.h"
 #include "entity/common_msgs.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
@@ -94,10 +95,13 @@ void StrongAttackActionState::update(float delta) {
 		}
 	}
 
-	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24)) {
+
+
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24) && movementTimer.elapsed() <= frames2sec(54)) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
@@ -105,6 +109,7 @@ void StrongAttackActionState::update(float delta) {
 		getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 		getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
 	}
+
 }
 
 void StrongAttackActionState::onStateEnter(IActionState * lastState) {
@@ -113,16 +118,16 @@ void StrongAttackActionState::onStateEnter(IActionState * lastState) {
 	//dbg("Strong 1\n");
 	phase = AttackPhases::Launch;
 	stateManager->changeConcurrentState(Free);
-	movementTimer.reset(); 
+	movementTimer.reset();
 	getSkeleton()->blendCycle(animationIdle, 0.4f, 0.4f);
 	fromRun = lastState->state == Run ? true : false;
-	if(!fromRun) *velocityVector = VEC3::Zero;
+	if (!fromRun) *velocityVector = VEC3::Zero;
 	isSlashOut = false;
 }
 
 void StrongAttackActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	AttackState::onStateExit(nextState); 
+	AttackState::onStateExit(nextState);
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
 	getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();

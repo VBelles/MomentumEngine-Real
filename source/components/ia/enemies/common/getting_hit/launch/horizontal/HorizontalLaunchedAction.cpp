@@ -25,9 +25,13 @@ int HorizontalLaunchedAction::execAction(float delta) {
 		enemy->timer.reset();
 		enemy->getHitboxes()->disable(enemy->attacks[attack].hitboxName);
 		enemy->currentAttack = "";
+		//EngineSound.stopEvent(soundLauncherLoop.c_str());
+		EngineSound.startEvent(SOUND_AMBIENT, &enemy->soundAttributes);
+		dbg("SOUND\n");
 		return Leave;
 	}
 	else {
+		//EngineSound.startEvent(soundLauncherLoop.c_str(), &enemy->soundAttributes);
 		return Stay;
 	}
 }
@@ -35,8 +39,8 @@ int HorizontalLaunchedAction::execAction(float delta) {
 void HorizontalLaunchedAction::load(IBehaviorTreeNew* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
-
 	attack = j.value("attack", attack);
+	soundLauncherLoop = j.value("sound_launcher_loop", soundLauncherLoop);
 }
 
 void HorizontalLaunchedAction::debugInMenu() {

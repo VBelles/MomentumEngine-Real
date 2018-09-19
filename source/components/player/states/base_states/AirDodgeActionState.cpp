@@ -52,6 +52,7 @@ void AirDodgeActionState::onStateEnter(IActionState * lastState) {
 
 	//set velocity vector
 	*velocityVector = -getPlayerTransform()->getFront() * dodgeSpeed;
+	EngineSound.emitEvent(SOUND_DODGE);
 }
 
 void AirDodgeActionState::onStateExit(IActionState * nextState) {

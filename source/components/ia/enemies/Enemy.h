@@ -119,9 +119,13 @@ public:
 	CHandle hitboxesHandle;
 	CHandle powerHandle;
 
+	//Sound
+	FMOD_3D_ATTRIBUTES soundAttributes;
+
 	void load(const json& j) override;
 	void debugInMenu() override;
 	void updateGravity(float delta);
+	void updateSoundAttributes();
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 	void move(float delta);
 

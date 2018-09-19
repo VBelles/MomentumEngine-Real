@@ -94,6 +94,7 @@ bool CModuleGame::start() {
 		pointsOfInterest.push_back(PointOfInterest{ name, CTransform(pos, rot) });
 	}
 
+	//EngineSound.startEvent(SOUND_AMBIENT);
 	return true;
 }
 
@@ -107,6 +108,7 @@ bool CModuleGame::stop() {
 	EngineParticles.reset();
 	safeDelete(respawner);
 	safeDelete(enemyManager);
+	//EngineSound.releaseEvent(SOUND_AMBIENT);
 	return true;
 }
 

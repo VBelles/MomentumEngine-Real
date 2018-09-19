@@ -25,28 +25,28 @@ bool TCompCulling::VPlanes::isVisible(const AABB* aabb) const {
 void TCompCulling::updateFromMatrix(MAT44 view_proj) {
 	// Construir el set de planos usando la view_proj
 	planes.fromViewProjection(view_proj);
-
+	
 	// Start from zero
 	bits.reset();
 
 	// Traverse all aabb's defined in the game
 	// and test them
-  // Use the AbsAABB index to access the bitset
+	// Use the AbsAABB index to access the bitset
 	auto hm = getObjectManager<TCompAbsAABB>();
 	hm->forEachWithExternalIdx([this](const TCompAbsAABB* aabb, uint32_t external_idx) {
-		if (planes.isVisible(aabb))
+		if (planes.isVisible(aabb)) {
 			bits.set(external_idx);
+		}
 	});
 }
 
 void TCompCulling::update(float dt) {
-	//PROFILE_FUNCTION("Updating culling");
+	PROFILE_FUNCTION("Updating culling");
 
 	// Conseguimos acceso al comp_camera de un sibling component
 	TCompCamera* c_camera = get<TCompCamera>();
 	assert(c_camera);
 	MAT44 view_proj = c_camera->getCamera()->getViewProjection();
 	//e_owner->sendMsg(TMsgGetCullingViewProj{ &view_proj });
-
 	updateFromMatrix(view_proj);
 }

@@ -29,5 +29,5 @@ public:
     void update(float dt);
 
 	void onHit(const TMsgAttackHit& msg);
-	void onActivated(bool isActive);
+	void onActivated(bool isActive, bool sound = true);
 };

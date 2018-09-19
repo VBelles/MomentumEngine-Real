@@ -36,6 +36,7 @@ void FastAttackActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT);
 	}
 }
 
@@ -101,6 +102,7 @@ void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);
+	EngineSound.emitEvent(SOUND_ATTACK_HIT);
 	//EngineParticles.launchSystem("data/particles/player/attack_hit.particles", { getEntity(), "Bip001 R Hand", {0.4f, 0.f, 0.f} });
 
 }

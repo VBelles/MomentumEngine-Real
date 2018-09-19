@@ -4,14 +4,14 @@
 static const std::string PLAYER_NAME = "The Player";
 static const std::string PLAYER_CAMERA = "player_camera";
 static const std::string GAME_CAMERA = "game_camera";
-static const std::string DEBUG_CAMERA = "debug_camera"; 
+static const std::string DEBUG_CAMERA = "debug_camera";
 
 static const std::string CURVE_INTERPOLATION_CAMERA = "curve_interpolation_camera";
 static const std::string TELEPORT_CAMERA = "teleport_camera";
 static const int NUMBER_OF_POWER_LEVELS = 3;
 static const float PAD_DEAD_ZONE = 0.1f;
 static const float PAD_RUN_THRESHOLD = 0.8f;
-	
+
 static const std::string PREFAB_GOLEM = "data/prefabs/enemy_melee.prefab";
 static const std::string PREFAB_BALL = "data/prefabs/enemy_ball.prefab";
 static const std::string PREFAB_MEDUSA = "data/prefabs/enemy_flying.prefab";
@@ -57,19 +57,36 @@ static const std::string INTERPOLATOR_EXPO_IN_OUT = "Expo in out";
 static const std::string INTERPOLATOR_SINE_IN = "Sine in";
 static const std::string INTERPOLATOR_SINE_OUT = "Sine out";
 static const std::string INTERPOLATOR_SINE_IN_OUT = "Sine in out";
- 			
+
 static const std::string AUTOLOAD_SCRIPTS_PATH = "data/scripts/autoload/";
 
 // Sound
-auto constexpr SOUND_LANDING = "event:/personaja/caida_tierra";
-auto constexpr SOUND_STEP_LEFT = "event:/personaja/pasos/pasos left";
-auto constexpr SOUND_STEP_RIGHT = "event:/personaja/pasos/pasos right";
-auto constexpr SOUND_DODGE = "event:/personaja/dodge";
-auto constexpr SOUND_HIT = "event:/personaja/golpes";
-auto constexpr SOUND_COIN = "event:/elementos/monedas";
-auto constexpr SOUND_ACTIVATE_MECHANISM = "event:/elementos/activar_mecanismo";
-auto constexpr SOUND_AMBIENT_FOREST = "event:/ambientacion/ambiente_bosque";
-auto constexpr SOUND_AMBIENT_WIND = "event:/ambientacion/ambiente_viento";
+auto constexpr SOUND_LANDING = "event:/PROTA/caida";
+auto constexpr SOUND_STEP_LEFT = "event:/PROTA/correr terreno/walk_ground_l";
+auto constexpr SOUND_STEP_RIGHT = "event:/PROTA/correr terreno/walk_ground_l";
+auto constexpr SOUND_JUMP = "event:/PROTA/saltar/salto corto/salto_corto_saltar";
+auto constexpr SOUND_JUMP_FLY = "event:/PROTA/saltar/salto corto/salto_corto_volar";
+auto constexpr SOUND_JUMP_LONG = "event:/PROTA/saltar/salto largo/salto_largo_saltar";
+auto constexpr SOUND_JUMP_LONG_FLY = "event:/PROTA/saltar/salto largo/salto_largo_volar";
+auto constexpr SOUND_DODGE = "event:/PROTA/dodge";
+auto constexpr SOUND_HUGGING_WALL = "event:/PROTA/deslizar_pared";
+auto constexpr SOUND_RELEASE_POWER = "event:/PROTA/liberar_energia";
+auto constexpr SOUND_DIE = "event:/PROTA/muerte";
+auto constexpr SOUND_ATTACK_HIT = "event:/PROTA/golpes/golpe_hit";
+auto constexpr SOUND_ATTACK_MOVEMENT = "event:/PROTA/golpes/golpe_movimiento";
+auto constexpr SOUND_LAUNCHER_HORIZONTAL = "event:/PROTA/launcher/launcher_horizontal_lanzar";
+auto constexpr SOUND_LAUNCHER_VERTICAL = "event:/PROTA/launcher/launcher_vertical_lanzar";
+auto constexpr SOUND_LAUNCHER_LOOP = "event:/PROTA/launcher/launcher_estatica";
+auto constexpr SOUND_LAUNCHER_END = "event:/PROTA/launcher/launcher_final";
+auto constexpr SOUND_COIN = "event:/ELEMENTOS GAMEPLAY/coger_crisalida";
+auto constexpr SOUND_COLLECT_CHRYSALIS = "event:/ELEMENTOS GAMEPLAY/coger_crisalida";
+auto constexpr SOUND_MECHANISM_ON = "event:/ELEMENTOS GAMEPLAY/mecanismo/mecanismo_on";
+auto constexpr SOUND_MECHANISM_OFF = "event:/ELEMENTOS GAMEPLAY/mecanismo/mecanismo_off";
+auto constexpr SOUND_AMBIENT_WIND = "event:/AMBIENTACION/viento";
+auto constexpr SOUND_AMBIENT = "event:/AMBIENTACION/ambientacion";
+auto constexpr SOUND_LVL_UP_1 = "event:/PROTA/cambio de estado/cambio_1";
+auto constexpr SOUND_LVL_UP_2 = "event:/PROTA/cambio de estado/cambio_2";
+auto constexpr SOUND_LVL_UP_3 = "event:/PROTA/cambio de estado/cambio_3";
 
 // Particles
 auto constexpr SLASH_CLOCKWISE = "data/particles/player/slash_clockwise.particles";
