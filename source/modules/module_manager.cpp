@@ -242,7 +242,8 @@ void CModuleManager::applyGameState() {
 void CModuleManager::applyRequestedGameState() {
 	PROFILE_FUNCTION("CModuleManager::applyRequestedGameState");
 	if (_requested_gs) {
-		dbg("_____________________________________changing game state\n");
+		dbg("Changing game state\n");
+		dbg("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n");
 		CTimer timer;
 		if (useLoadingScreen) {
 			gameStateChanged = false;
@@ -268,7 +269,8 @@ void CModuleManager::applyRequestedGameState() {
 		else {
 			applyGameState();
 		}
-		dbg("_____________________________________finished changing game state, elapsed time: %f\n", timer.elapsed());
+		dbg("Finished changing game state, elapsed time: %f\n", timer.elapsed());
+		dbg("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n");
 	}
 }
 

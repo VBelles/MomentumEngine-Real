@@ -5,13 +5,14 @@
 
 class TCompParticles : public TCompBase {
 private:
-	const Particles::TCoreSystem* _core = nullptr;
-	Particles::CSystem* _particles = nullptr;
+	std::vector<const Particles::TCoreSystem*> cores;
 	bool _launched = false;
 	float _fadeOut = 0.f;
 	std::string target;
 
-	Particles::LaunchConfig config;
+	std::map<int, Particles::CSystem*> systems;
+
+	Particles::LaunchConfig launchConfig;
 
 	//Message callbacks
 	void onAllScenesCreated(const TMsgAllScenesCreated&);
@@ -25,7 +26,4 @@ public:
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
-	void forceEmission(int quantity);
-	void setOffset(VEC3 offset);
-	void setRotationOffset(QUAT rotationOffset);
 };

@@ -11,64 +11,47 @@ void TCompParticles::registerMsgs() {
 }
 
 void TCompParticles::debugInMenu() {
-    if (_core) {
-        ImGui::Text("Core: %s", _core->getName().c_str());
-    }
-	ImGui::Text("Particles handle: %d", _particles->getHandle());
-	ImGui::Text("Particles count: %d", _particles->getNbParticles());
+	ImGui::Text("Systems: %d", systems.size());
+	int sIndex = 0;
+	for (auto p : systems) {
+		auto& system = p.second;
+		ImGui::Text("System %d", sIndex);
+		ImGui::Text("Resource: %s", system->getCore()->getName().c_str());
+		ImGui::Text("Particles handle: %d", system->getHandle());
+		ImGui::Text("Particles count: %d", system->getNbParticles());
+		sIndex++;
+	}
 }
 
 void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
-    _fadeOut = j.value("fade_out", 0.f);
-    auto& particlesName = j.value("core", "");
-    _core = Resources.get(particlesName)->as<Particles::TCoreSystem>();
+	_fadeOut = j.value("fade_out", 0.f);
+	for (std::string core : j["core"]) {
+		cores.push_back(Resources.get(core)->as<Particles::TCoreSystem>());
+	}
 	target = j.value("target", "");
-	config.offset = j.count("offset") ? loadVEC3(j["offset"]) : config.offset;
-	config.rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : config.rotationOffset;
-	config.bone = j.value("bone", "");
-    assert(_core);
+	launchConfig.offset = j.count("offset") ? loadVEC3(j["offset"]) : launchConfig.offset;
+	launchConfig.rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : launchConfig.rotationOffset;
+	launchConfig.bone = j.value("bone", "");
 }
 
 void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
-    if (_core && !_particles) {
-		if (!target.empty()) {
-			config.targetEntity = getEntityByName(target);
-		}
-		else {
-			config.targetEntity = CHandle(this).getOwner();
-		}
-        _particles = EngineParticles.launchSystem(_core, CHandle(this).getOwner(), config);
-    }
-}
-
-
-void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
-    if (_particles) {
-        EngineParticles.kill(_particles->getHandle(), _fadeOut);
-    }
-}
-
-void TCompParticles::onParticleSystemDestroyed(const TMsgParticleSystemDestroyed&) {
-	_particles = nullptr;
-	//TODO decidir si hay que destruir el componente
-}
-
-void TCompParticles::forceEmission(int quantity) {
-	if (_particles) {
-		_particles->forceEmission(quantity);
+	launchConfig.targetEntity = target.empty() ? CHandle(this).getOwner() : getEntityByName(target);
+	CHandle entityHandle = CHandle(this).getOwner();
+	for (auto core : cores) {
+		Particles::CSystem* system = EngineParticles.launchSystem(core, entityHandle, launchConfig);
+		systems[system->getHandle()] = system;
 	}
+	_launched = true;
 }
 
-void TCompParticles::setOffset(VEC3 offset) {
-	config.offset = offset;
-	if (_particles) {
-		_particles->setOffset(offset);
+void TCompParticles::onDestroyed(const TMsgEntityDestroyed& msg) {
+	// TODO Seguir investigando este fénomone: cuando se envia el mensaje TMsgEntityDestroyed el componente ya esta destruido
+	/*for (auto p : systems) {
+		EngineParticles.kill(p.second->getHandle(), _fadeOut);
 	}
+	systems.clear();*/
 }
 
-void TCompParticles::setRotationOffset(QUAT rotationOffset) {
-	config.rotationOffset = rotationOffset;
-	if (_particles) {
-		_particles->setRotationOffset(rotationOffset);
-	}
+void TCompParticles::onParticleSystemDestroyed(const TMsgParticleSystemDestroyed& msg) {
+	systems.erase(msg.particleHandle);
 }
