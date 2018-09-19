@@ -45,13 +45,13 @@ void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
 }
 
 void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
+	/*if (systems.empty()) return;
 	for (auto p : systems) {
 		EngineParticles.kill(p.second->getHandle(), _fadeOut);
 	}
-	systems.clear();
+	systems.clear();*/
 }
 
 void TCompParticles::onParticleSystemDestroyed(const TMsgParticleSystemDestroyed& msg) {
-	msg.particleHandle;
-	systems.clear();
+	systems.erase(msg.particleHandle);
 }

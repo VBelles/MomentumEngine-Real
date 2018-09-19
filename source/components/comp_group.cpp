@@ -20,7 +20,7 @@ void TCompGroup::add(CHandle h_new_child) {
     // Problema: Si una entity usa un prefab que contiene más de una entity, ya tendrá group_root_etc como owner.
     //if (h_new_child.getOwner().isValid()) return;
 
-	assert(!h_new_child.getOwner().isValid());
+	//assert(!h_new_child.getOwner().isValid());
 	// Using the handle owner to set his parent my entity
 	h_new_child.setOwner(CHandle(this).getOwner());
 }

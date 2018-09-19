@@ -66,26 +66,26 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 				assert(!prefab_ctx.entities_loaded.empty());
 
-				// Combine prefab entity with current entity
-				if (prefab_ctx.entities_loaded.size() == 1) {
-					// Create a new fresh entity
-					h_e = prefab_ctx.entities_loaded[0];
 
-					// Cast to entity object
-					CEntity* e = h_e;
+				// Create a new fresh entity
+				h_e = prefab_ctx.entities_loaded[0];
 
-					// We give an option to 'reload' the prefab by modifying existing components, 
-					// like changing the name, add other components, etc, but we don't want to parse again 
-					// the comp_transform, because it was already parsed as part of the root
-					// As the json is const as it's a resouce, we make a copy of the prefab section and
-					// remove the transform
-					json j_entity_without_transform = j_entity;
-					j_entity_without_transform.erase("transform");
+				// Cast to entity object
+				CEntity* e = h_e;
 
-					// Do the parse now outside the 'prefab' context
-					prefab_ctx.parsing_prefab = false;
-					e->load(j_entity_without_transform, prefab_ctx);
-				}
+				// We give an option to 'reload' the prefab by modifying existing components, 
+				// like changing the name, add other components, etc, but we don't want to parse again 
+				// the comp_transform, because it was already parsed as part of the root
+				// As the json is const as it's a resouce, we make a copy of the prefab section and
+				// remove the transform
+				json j_entity_without_transform = j_entity;
+				j_entity_without_transform.erase("transform");
+
+				// Do the parse now outside the 'prefab' context
+				prefab_ctx.parsing_prefab = false;
+				e->load(j_entity_without_transform, prefab_ctx);
+
+
 			}
 			else {
 				// Create a new fresh entity
