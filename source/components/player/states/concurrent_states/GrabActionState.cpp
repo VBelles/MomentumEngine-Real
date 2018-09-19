@@ -5,6 +5,7 @@
 #include "components/comp_render.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
+#include "components/comp_transform.h"
 
 
 GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState state) :
@@ -29,6 +30,7 @@ void GrabActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
 	}
 }
 

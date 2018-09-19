@@ -187,6 +187,31 @@
         ]
       },
       {
+        "name": "suspension",
+        "type": "sequence",
+        "condition": {
+          "type": "OnSuspensionCondition"
+        },
+        "children": [
+          {
+            "name": "onSuspensionAction",
+            "type": "action",
+            "action": {
+              "type": "OnSuspensionAction",
+              "animation_start": "",
+              "animation_loop": "medusa_stun"
+            }
+          },
+          {
+            "name": "suspensionAction",
+            "type": "action",
+            "action": {
+              "type": "SuspensionAction"
+            }
+          }
+        ]
+      },
+      {
         "name": "death",
         "type": "sequence",
         "condition": {

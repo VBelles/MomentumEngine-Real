@@ -67,17 +67,19 @@ void StrongFinisher2ActionState::update(float delta) {
 		}
 	}
 
-	if (!isSlashOut && movementTimer.elapsed() > frames2sec(28)) {
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(28) && movementTimer.elapsed() <= frames2sec(42)) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::LEFT_HAND)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_HAND)->setEnable(true);
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
 	}
-
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(42)) {
 		isSlashOut = false;
 		getTrailSlash(SlashType::LEFT_HAND)->stopEmitting();
 		getTrailSlash(SlashType::RIGHT_HAND)->stopEmitting();
 	}
+	
+
 }
 
 void StrongFinisher2ActionState::onStateEnter(IActionState * lastState) {

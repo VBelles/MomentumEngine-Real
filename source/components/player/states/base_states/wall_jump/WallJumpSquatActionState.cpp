@@ -33,6 +33,7 @@ void WallJumpSquatActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animationHugging, 0.1f, 0.1f);
 	timer.reset();
+	EngineSound.emitEvent(SOUND_JUMP);
 }
 
 void WallJumpSquatActionState::onStateExit(IActionState * nextState) {

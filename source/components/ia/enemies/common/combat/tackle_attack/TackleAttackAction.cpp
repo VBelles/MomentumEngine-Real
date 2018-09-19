@@ -27,7 +27,7 @@ int TackleAttackAction::execAction(float delta) {
 	VEC3 enemyPos = enemy->getTransform()->getPosition();
 	if (enemy->timer.elapsed() >= time
 		|| !(enemy->navMeshQuery && enemy->navMeshQuery->existsConnection(enemyPos, enemyPos + movementIncrement)
-				&& !enemy->navMeshQuery->raycast2D(enemyPos, enemyPos + movementIncrement))) {
+			&& !enemy->navMeshQuery->raycast2D(enemyPos, enemyPos + movementIncrement))) {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
 		enemy->currentAttack = "";
 		enemy->attackTimer.reset();
@@ -42,8 +42,8 @@ int TackleAttackAction::execAction(float delta) {
 		else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
 			enemy->getHitboxes()->enable(enemyAttack.hitboxName);
 		}
+		return Stay;
 	}
-	return Stay;
 }
 
 void TackleAttackAction::load(IBehaviorTreeNew* bt, const json& j) {

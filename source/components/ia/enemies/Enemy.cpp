@@ -49,7 +49,7 @@ void Enemy::load(const json& j) {
 	shortCombatDistanceSqrd = pow(j.value("short_combat_distance", sqrt(shortCombatDistanceSqrd)), 2);
 	mediumCombatDistanceSqrd = pow(j.value("medium_combat_distance", sqrt(mediumCombatDistanceSqrd)), 2);
 	longCombatDistanceSqrd = pow(j.value("long_combat_distance", sqrt(longCombatDistanceSqrd)), 2);
-	stepBackDistanceSqrd = pow(j.value("step_back_distance", sqrt(stepBackDistanceSqrd)), 2);
+	stepBackDistance = j.value("step_back_distance", stepBackDistance);
 	attackCoolDown = j.value("attack_cool_down", attackCoolDown);
 	blockTime = j.value("block_time", blockTime);
 	attackSlots = j.value("attack_slots", attackSlots);
@@ -65,8 +65,8 @@ void Enemy::load(const json& j) {
 		attack.hitboxName = jAttack.value("hitbox", "");
 		assert(!attack.hitboxName.empty());
 
-		int n = sscanf(jAttack.value("frame_data", "").c_str(), "%f %f", &attack.hitboxStart, &attack.hitboxEnd);
-		assert(n == 2);
+		int n = sscanf(jAttack.value("frame_data", "").c_str(), "%f %f %f", &attack.hitboxStart, &attack.hitboxEnd, &attack.attackEnd);
+		assert(n == 3);
 
 		if (jAttack.value("type", "") == "ranged") {
 			attack.type = Ranged;
@@ -129,6 +129,14 @@ void Enemy::updateGravity(float delta) {
 	velocity.y = clamp(velocity.y, -maxVerticalVelocity, maxVerticalVelocity);
 }
 
+void Enemy::updateSoundAttributes() {
+	auto transform = getTransform();
+	soundAttributes.position = toFMODVector(transform->getPosition());
+	soundAttributes.velocity = toFMODVector(velocity);
+	soundAttributes.forward = toFMODVector(transform->getFront());
+	soundAttributes.up = toFMODVector(transform->getUp());
+}
+
 void Enemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 	float deltaYaw = getTransform()->getDeltaYawToAimTo(targetPos);
 	float y, p, r;
@@ -153,6 +161,7 @@ void Enemy::move(float delta) {
 			velocity.y = 0;
 		}
 	}
+	updateSoundAttributes();
 }
 
 bool Enemy::hasSuperArmor() {

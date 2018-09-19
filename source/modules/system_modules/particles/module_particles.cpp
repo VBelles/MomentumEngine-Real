@@ -32,13 +32,14 @@ void CModuleParticles::reset() {
 }
 
 void CModuleParticles::update(float delta) {
+	float scaled_time = delta * Engine.globalConfig.time_scale_factor;
 	if (paused) return;
 	for (auto& p : _activeSystems) {
 		auto& systems = p.second;
 		for (auto it = systems.begin(); it != systems.end();) {
 			Particles::CSystem* ps = *it;
 
-			bool active = ps->update(delta);
+			bool active = ps->update(scaled_time);
 			if (!active) {
 				if (ps->getParticleEntityHandle().isValid()) {
 					static_cast<CEntity*>(ps->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ ps->getHandle() });

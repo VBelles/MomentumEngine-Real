@@ -4,6 +4,9 @@
 #include "camera/camera.h"
 
 class TCompCamera : public TCompBase {
+private:
+	bool gameCamera = false;
+
 protected:
 	CCamera* camera = nullptr;
 

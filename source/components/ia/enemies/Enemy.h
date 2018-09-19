@@ -19,6 +19,7 @@ struct EnemyAttack {
 	std::string hitboxName;
 	float hitboxStart = 0.f;
 	float hitboxEnd = 0.f;
+	float attackEnd = 0.f;
 	EnemyAttackType type = Melee;
 	VEC3 attackSpawnOffset = VEC3::Zero;
 	VEC3 attackTargetOffset = VEC3::Zero;
@@ -75,7 +76,9 @@ public:
 	float shortCombatDistanceSqrd = 0.f;
 	float mediumCombatDistanceSqrd = 0.f;
 	float longCombatDistanceSqrd = 0.f;
-	float stepBackDistanceSqrd = 0.f;
+
+	float stepBackDistanceMoved = 0.f;
+	float stepBackDistance = 0.f;
 
 	float attackCoolDown = 0.f;
 
@@ -89,21 +92,22 @@ public:
 
 	float propelDuration = 0.f;
 	float grabbedDuration = 0.f;
+	float suspensionDuration = 0.f;
 	float stunDuration = 0.f;
 	VEC3 initialLaunchPos;
 
-	CTimer superArmorTimer;
+	CTimer2 superArmorTimer;
 	float superArmorTime = 0.f;
 	int superArmorAmount = 0;
 	bool isBlocking = false;
 	bool blockingBroken = false;
 
 	//Timers
-	CTimer timer;
-	CTimer animationTimer;
-	CTimer stunTimer;
-	CTimer blockTimer;
-	CTimer attackTimer;
+	CTimer2 timer;
+	CTimer2 animationTimer;
+	CTimer2 stunTimer;
+	CTimer2 blockTimer;
+	CTimer2 attackTimer;
 
 	//Handles
 	CHandle playerHandle;
@@ -115,9 +119,13 @@ public:
 	CHandle hitboxesHandle;
 	CHandle powerHandle;
 
+	//Sound
+	FMOD_3D_ATTRIBUTES soundAttributes;
+
 	void load(const json& j) override;
 	void debugInMenu() override;
 	void updateGravity(float delta);
+	void updateSoundAttributes();
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 	void move(float delta);
 

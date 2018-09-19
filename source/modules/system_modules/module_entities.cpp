@@ -70,7 +70,7 @@ bool CModuleEntities::start() {
 }
 
 void CModuleEntities::update(float delta) {
-	float scaled_time = delta * time_scale_factor;
+	float scaled_time = delta * Engine.globalConfig.time_scale_factor;
 
 	for (auto om : om_to_update) {
 		if (om_to_update_active[om]) {
@@ -118,7 +118,7 @@ void CModuleEntities::render() {
 	if (CApp::get().isDebug()) {
 		Resources.debugInMenu();
 
-        ImGui::DragFloat("Time Factor", &time_scale_factor, 0.01f, 0.f, 1.0f);
+        ImGui::DragFloat("Time Factor", &Engine.globalConfig.time_scale_factor, 0.01f, 0.f, 1.0f);
 
 		if (ImGui::TreeNode("All Entities...")) {
 			ImGui::SameLine();

@@ -9,7 +9,7 @@
 #include "modules/system_modules/scripting/module_scripting.h"
 #include "modules/system_modules/module_gui.h"
 #include "modules/system_modules/module_navmesh.h"
-#include "modules/system_modules/module_sound.h"
+#include "modules/system_modules/sound/module_sound.h"
 #include "modules/system_modules/module_multithread.h"
 #include "modules/system_modules/module_uniques.h"
 #include "modules/system_modules/particles/module_particles.h"
@@ -29,6 +29,7 @@ struct GlobalConfig {
 	VEC2 resolution;
 	bool fullscreen;
 	bool vSync;
+	float time_scale_factor = 1.f;
 };
 
 class CEngine {

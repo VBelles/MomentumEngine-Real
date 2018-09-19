@@ -19,7 +19,7 @@ OnTackleAttackAction::OnTackleAttackAction(Enemy* enemy, std::string animation, 
 
 int OnTackleAttackAction::execAction(float delta) {
 	VEC3 playerPosition = enemy->getPlayerTransform()->getPosition();
-	enemy->rotateTowards(delta, playerPosition, enemy->rotationSpeed);
+	enemy->rotateTowards(1.f, playerPosition, 360.f);
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	enemy->timer.reset();
 	enemy->currentAttack = attack;

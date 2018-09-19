@@ -78,6 +78,8 @@ void DodgeActionState::onStateEnter(IActionState * lastState) {
 	staleTimerIndex = (staleTimerIndex + 1) % (numberOfDodgesToStale - 1);
 
 	getCameraPlayer()->moveCameraCloser(false);
+
+	EngineSound.emitEvent(SOUND_DODGE);
 }
 
 void DodgeActionState::onStateExit(IActionState * nextState) {

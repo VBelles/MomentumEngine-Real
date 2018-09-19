@@ -52,6 +52,7 @@ void PitFallingActionState::onStateEnter(IActionState* lastState) {
 	copyCam();
 	CEntity* teleportCameraEntity = getEntityByName(TELEPORT_CAMERA);
 	EngineCameras.blendInCamera(teleportCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
+	EngineSound.emitEvent(SOUND_DIE);
 }
 
 void PitFallingActionState::onStateExit(IActionState* nextState) {

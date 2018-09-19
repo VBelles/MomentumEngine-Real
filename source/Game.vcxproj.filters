@@ -225,7 +225,6 @@
     <ClCompile Include="modules\system_modules\module_input.cpp" />
     <ClCompile Include="modules\system_modules\module_multithread.cpp" />
     <ClCompile Include="modules\system_modules\module_render.cpp" />
-    <ClCompile Include="modules\system_modules\module_sound.cpp" />
     <ClCompile Include="modules\system_modules\module_uniques.cpp" />
     <ClCompile Include="modules\game_modules\game\module_game.cpp" />
     <ClCompile Include="modules\game_modules\game\respawner.cpp" />
@@ -356,6 +355,11 @@
     <ClCompile Include="gui\widgets\gui_point.cpp" />
     <ClCompile Include="gui\gui_font.cpp" />
     <ClCompile Include="components\comp_day_night_cycle.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\SuspensionAction.cpp" />
+    <ClCompile Include="modules\system_modules\sound\module_sound.cpp" />
+    <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -611,7 +615,6 @@
     <ClInclude Include="modules\system_modules\module_input.h" />
     <ClInclude Include="modules\system_modules\module_multithread.h" />
     <ClInclude Include="modules\system_modules\module_render.h" />
-    <ClInclude Include="modules\system_modules\module_sound.h" />
     <ClInclude Include="modules\system_modules\module_uniques.h" />
     <ClInclude Include="modules\game_modules\game\module_game.h" />
     <ClInclude Include="modules\game_modules\game\respawner.h" />
@@ -745,6 +748,11 @@
     <ClInclude Include="gui\widgets\gui_point.h" />
     <ClInclude Include="gui\gui_font.h" />
     <ClInclude Include="components\comp_day_night_cycle.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\SuspensionAction.h" />
+    <ClInclude Include="modules\system_modules\sound\module_sound.h" />
+    <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

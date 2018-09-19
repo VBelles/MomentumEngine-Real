@@ -20,7 +20,7 @@ OnHorizontalLaunchAction::OnHorizontalLaunchAction(Enemy* enemy, std::string ani
 
 int OnHorizontalLaunchAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
-	enemy->stunDuration = enemy->receivedAttack.horizontalLauncher->suspensionDuration;
+	enemy->suspensionDuration = enemy->receivedAttack.horizontalLauncher->suspensionDuration;
 	enemy->velocity = enemy->receivedAttack.horizontalLauncher->velocity;
 	enemy->initialLaunchPos = enemy->getTransform()->getPosition();
 	enemy->currentAttack = attack;

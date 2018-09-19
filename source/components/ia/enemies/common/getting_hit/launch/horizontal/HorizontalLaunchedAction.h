@@ -8,6 +8,7 @@ class HorizontalLaunchedAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string attack = "";
+	std::string soundLauncherLoop = "";
 public:
 	HorizontalLaunchedAction();
 	HorizontalLaunchedAction(Enemy* enemy, std::string attack);

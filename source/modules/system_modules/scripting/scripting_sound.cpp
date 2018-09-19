@@ -10,20 +10,18 @@ void ScriptingSound::bind(SLB::Manager* manager) {
 }
 
 void ScriptingSound::bindConstants(SLB::Manager* manager) {
-	manager->set("SOUND_EVENT_TEST", SLB::Value::copy((std::string)TEST_EVENT));
-
 	manager->set("SOUND_STOP_ALLOWFADEOUT", SLB::Value::copy(static_cast<int>(FMOD_STUDIO_STOP_MODE::FMOD_STUDIO_STOP_ALLOWFADEOUT)));
 	manager->set("SOUND_STOP_IMMEDIATE", SLB::Value::copy(static_cast<int>(FMOD_STUDIO_STOP_MODE::FMOD_STUDIO_STOP_IMMEDIATE)));
 }
 
 void ScriptingSound::startSoundEvent(std::string event) {
-	EngineSound.startEvent(event);
+	EngineSound.startEvent(event.c_str());
 }
 
 void ScriptingSound::stopSoundEvent(std::string event, int mode) {
-	EngineSound.stopEvent(event, static_cast<FMOD_STUDIO_STOP_MODE>(mode));
+	EngineSound.stopEvent(event.c_str(), static_cast<FMOD_STUDIO_STOP_MODE>(mode));
 }
 
 void ScriptingSound::emitSoundEvent(std::string event) {
-	EngineSound.emitEvent(event);
+	EngineSound.emitEvent(event.c_str());
 }

@@ -3,6 +3,7 @@
 #include "comp_transform.h"
 #include "render/render_objects.h"
 #include "camera/camera_orthographic.h"
+#include "entity/entity_parser.h"
 
 DECL_OBJ_MANAGER("camera", TCompCamera);
 
@@ -49,12 +50,20 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 		float fov_deg = j.value("fov", deg2rad(60.f));
 		camera->setPerspective(deg2rad(fov_deg), z_near, z_far);
 	}
+
+	gameCamera = j.value("game_camera", gameCamera);
+	dbg("Camera %s is game camera? %s\n", ctx.filename.c_str(), gameCamera ? "yes" : "no");
+
 }
 
 void TCompCamera::update(float delta) {
 	TCompTransform* transform = get<TCompTransform>();
 	assert(transform);
-	camera->lookAt(transform->getPosition(), transform->getPosition() + transform->getFront(), transform->getUp());
+	VEC3 position = transform->getPosition();
+	VEC3 front = transform->getFront();
+	VEC3 up = transform->getUp();
+	VEC3 velocity = VEC3::Zero;
+	camera->lookAt(position, position + front, up);
 }
 
 CCamera* TCompCamera::getCamera() {

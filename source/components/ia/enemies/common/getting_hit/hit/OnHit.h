@@ -9,6 +9,8 @@ private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
 	std::string particles = "";
+	std::string onHitSound;
+	std::string onBlockingHitSound;
 	VEC3 particlesOffset;
 public:
 	OnHit();
