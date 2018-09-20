@@ -934,6 +934,15 @@ struct TSceneExporter (
 		local anim = true
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "mechData" then (
+			change_rend = attrManager.getAttrValue obj "mechData" #change_rend
+			if change_rend == undefined then change_rend = true
+			change_coll = attrManager.getAttrValue obj "mechData" #change_coll
+			if change_coll == undefined then change_coll = true
+			change_plat = attrManager.getAttrValue obj "mechData" #change_plat
+			if change_plat == undefined then change_plat = true
+			change_anim = attrManager.getAttrValue obj "mechData" #change_anim
+			if change_anim == undefined then change_anim = true
+
 			rend = attrManager.getAttrValue obj "mechData" #rend
 			if rend == undefined then rend = true
 			coll = attrManager.getAttrValue obj "mechData" #coll
@@ -946,6 +955,14 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKey "activate_listener"
 		fs.beginObj()
+			fs.writeKeyValue "change_render" change_rend
+			fs.writeComma()
+			fs.writeKeyValue "change_collider" change_coll
+			fs.writeComma()
+			fs.writeKeyValue "change_platform" change_plat
+			fs.writeComma()
+			fs.writeKeyValue "change_animation" change_anim
+			fs.writeComma()
 			fs.writeKeyValue "render_enabled_on_active" rend
 			fs.writeComma()
 			fs.writeKeyValue "collider_enabled_on_active" coll
@@ -1105,18 +1122,6 @@ struct TSceneExporter (
 				fs.writeComma()
 				exportStringArray "mask" masks
 			)
-
-			if mech then (
-				local coll = true
-				--Get from attribute if it exists.
-				if obj.parent != undefined and
-				   attrManager.hasAttribute obj.parent "mechData" then (
-					coll = attrManager.getAttrValue obj.parent "mechData" #coll
-					if coll == undefined then coll = true
-				)
-				fs.writeComma()
-				fs.writeKeyValue "enabled" (not coll)
-			)
 		fs.endObj() -- End collider component.
 	),
 
@@ -1256,14 +1261,6 @@ struct TSceneExporter (
 		exportTransform obj
 		fs.writeComma()
 
-		--Get from attribute if it exists and is mechanism.
-		if attrManager.hasAttribute obj "mechData" then (
-			local rend = attrManager.getAttrValue obj "mechData" #rend
-			if rend == undefined then rend = true
-			renderEnabled = not rend
-		) else if mech then (
-			renderEnabled = false --default.
-		)
 		if mech then exportMech obj
 
 		exportRenderMesh obj pure:pure renderEnabled:renderEnabled

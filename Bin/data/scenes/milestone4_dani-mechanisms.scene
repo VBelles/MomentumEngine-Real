@@ -6,7 +6,7 @@
       "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
-        "pos": "228.072 1.7434 -55.8532",
+        "pos": "297.072 1.7434 -73.8532",
         "rotation": "0.246669 0.662687 -0.662687 0.246669"
       },
       "mechanism":
@@ -36,14 +36,14 @@
       },
       "activate_listener":
       {
+        "change_render": false,
+        "change_collider": false,
+        "change_platform": true,
+        "change_animation": false,
         "render_enabled_on_active": true,
         "collider_enabled_on_active": true,
         "platform_enabled_on_active": true,
-        "animation_enabled_on_active": true,
-        "change_render" : false,
-        "change_collider" : false,
-        "change_platform" : true,
-        "change_animation" : false
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -64,14 +64,12 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": true
+        ]
       },
       "platform_simple":
       {
         "rotation_axis": "0.0 0.0 -1.0",
-        "rotation_speed": 0.5,
-        "enabled" : false
+        "rotation_speed": 0.5
       }
     }
   }

@@ -196,7 +196,10 @@ void TCompPlatformSimple::update(float delta) {
 
 		}
 		//Update collider
-		getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
+		auto collider = getRigidDynamic();
+		if (collider) {
+			collider->setKinematicTarget(toPxTransform(transform));
+		}
 	}
 }
 

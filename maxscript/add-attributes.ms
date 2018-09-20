@@ -90,16 +90,24 @@ global mechsTrigData = attributes mechTrigData (
 -- def #mechData
 global mechsData = attributes mechData (
 	parameters main rollout:params (
-		rend type: #boolean ui:render   	default:true
-		coll type: #boolean ui:collider 	default:true
-		plat type: #boolean ui:platform 	default:true
-		anim type: #boolean ui:animation 	default:true
+		change_rend type: 	#boolean ui:change_render   	default:true
+		change_coll type: 	#boolean ui:change_collider 	default:true
+		change_plat type: 	#boolean ui:change_platform 	default:true
+		change_anim type: 	#boolean ui:change_animation 	default:true
+		rend type: 			#boolean ui:render   			default:true
+		coll type: 			#boolean ui:collider 			default:true
+		plat type: 			#boolean ui:platform 			default:true
+		anim type: 			#boolean ui:animation 			default:true
 	)
 	rollout params "Mech Data" (
-		checkbox render 	"Render enabled on active" 		type: #boolean align:#right
-		checkbox collider 	"Collider enabled on active" 	type: #boolean align:#right
-		checkbox platform 	"Platform enabled on active" 	type: #boolean align:#right
-		checkbox animation 	"Animation enabled on active" 	type: #boolean align:#right
+		checkbox change_render 		"Change render" 				type: #boolean align:#right
+		checkbox change_collider 	"Change collider" 				type: #boolean align:#right
+		checkbox change_platform 	"Change platform" 				type: #boolean align:#right
+		checkbox change_animation 	"Change animation" 				type: #boolean align:#right
+		checkbox render 			"Render enabled on active" 		type: #boolean align:#right
+		checkbox collider 			"Collider enabled on active" 	type: #boolean align:#right
+		checkbox platform 			"Platform enabled on active" 	type: #boolean align:#right
+		checkbox animation 			"Animation enabled on active" 	type: #boolean align:#right
 	)
 )
 
