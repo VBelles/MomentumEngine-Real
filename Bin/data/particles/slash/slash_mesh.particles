@@ -1,14 +1,14 @@
 {
     "life": {
         "duration": 0.12,
-        "max_particles": 50
+        "max_particles": 100
     },
     "emission": {
         "type": "cylinder",
-        "size": 0.2,
-        "half_length": 1,
+        "size": 0.25,
+        "half_length": 0.25,
         "interval": 0.1,
-        "count": 3,
+        "count": 10,
         "cyclic": true,
         "duration": 1
     },
