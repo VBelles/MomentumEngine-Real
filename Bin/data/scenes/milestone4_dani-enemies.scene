@@ -2,6 +2,18 @@
   {
     "entity":
     {
+      "name": "dani_air_008",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "273.933 -3.00244 -103.587",
+        "lookat": "-1.0 -3.00244 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_air_007",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
@@ -114,7 +126,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "297.696 10.7034 -43.4209",
+        "pos": "297.972 10.7034 -42.2378",
         "lookat": "-1.0 10.7034 -1.0"
       }
     }
