@@ -132,6 +132,6 @@ void StrongFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entit
 		suspensionTime,
 		getPlayerModel()->getPowerStats()->jumpVelocityVector
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 3.0f };
 	otherEntity->sendMsg(msgAttackHit);
 }

@@ -10,8 +10,8 @@ private:
 	float powerToGet = 3000.f;
 	float damage = 2.f;
 
-	float suspensionTime = 0.5f;
-	VEC2 launchSpeed = { 10.5f, 10.f };
+	float suspensionTime = 0.0f;
+	VEC2 launchSpeed = { 4.0f, 6.0f };
 
 	bool isSlashOut = false;
 	bool isUltraSlashOut = false;
