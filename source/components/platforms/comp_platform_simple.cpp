@@ -121,7 +121,6 @@ void TCompPlatformSimple::turnAround() {
 void TCompPlatformSimple::update(float delta) {
 	if (enabled) {
 
-
 		TCompTransform* transform = getTransform();
 		VEC3 position = transform->getPosition();
 

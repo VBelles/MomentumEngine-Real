@@ -5,6 +5,9 @@
 
 class TCompRigidAnimsDirector : public TCompBase {
 private:
+
+	bool isMoving = true;
+
 	std::vector<std::string> animatedEntitiesNames;
 	std::vector<CHandle> animatedEntities;
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -14,5 +17,6 @@ public:
 	void debugInMenu();
 	static void registerMsgs();
 	void setIsMoving(bool isMoving);
+	bool getIsMoving() { return isMoving; }
 	void setStopOnNextLoop(bool stop);
 };

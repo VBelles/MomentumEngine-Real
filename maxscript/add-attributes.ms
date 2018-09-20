@@ -90,12 +90,16 @@ global mechsTrigData = attributes mechTrigData (
 -- def #mechData
 global mechsData = attributes mechData (
 	parameters main rollout:params (
-		rend type: #boolean ui:render   default:true
-		coll type: #boolean ui:collider default:true
+		rend type: #boolean ui:render   	default:true
+		coll type: #boolean ui:collider 	default:true
+		plat type: #boolean ui:platform 	default:true
+		anim type: #boolean ui:animation 	default:true
 	)
 	rollout params "Mech Data" (
-		checkbox render "Render enabled on active" 		type: #boolean align:#right
-		checkbox collider "Collider enabled on active" 	type: #boolean align:#right
+		checkbox render 	"Render enabled on active" 		type: #boolean align:#right
+		checkbox collider 	"Collider enabled on active" 	type: #boolean align:#right
+		checkbox platform 	"Platform enabled on active" 	type: #boolean align:#right
+		checkbox animation 	"Animation enabled on active" 	type: #boolean align:#right
 	)
 )
 

@@ -930,12 +930,18 @@ struct TSceneExporter (
 
 		local rend = true
 		local coll = true
+		local plat = true
+		local anim = true
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "mechData" then (
 			rend = attrManager.getAttrValue obj "mechData" #rend
 			if rend == undefined then rend = true
 			coll = attrManager.getAttrValue obj "mechData" #coll
 			if coll == undefined then coll = true
+			plat = attrManager.getAttrValue obj "mechData" #plat
+			if plat == undefined then plat = true
+			anim = attrManager.getAttrValue obj "mechData" #anim
+			if anim == undefined then anim = true
 		)
 		fs.writeComma()
 		fs.writeKey "activate_listener"
@@ -943,6 +949,10 @@ struct TSceneExporter (
 			fs.writeKeyValue "render_enabled_on_active" rend
 			fs.writeComma()
 			fs.writeKeyValue "collider_enabled_on_active" coll
+			fs.writeComma()
+			fs.writeKeyValue "platform_enabled_on_active" plat
+			fs.writeComma()
+			fs.writeKeyValue "animation_enabled_on_active" anim
 		fs.endObj()
 		fs.writeComma()
 	),

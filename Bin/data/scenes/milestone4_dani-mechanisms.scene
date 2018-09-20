@@ -1,0 +1,78 @@
+[
+  {
+    "entity":
+    {
+      "name": "dani_mech001",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "228.072 1.7434 -55.8532",
+        "rotation": "0.246669 0.662687 -0.662687 0.246669"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "dani_mariosunshine_MS002"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_mariosunshine_MS002",
+      "transform":
+      {
+        "pos": "283.188 -8.96571 -110.801",
+        "rotation": "0.0996291 -0.402481 0.204793 -0.886647"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true,
+        "change_render" : false,
+        "change_collider" : false,
+        "change_platform" : true,
+        "change_animation" : false
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_mariosunshine_MS002.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_mariosunshine.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_mariosunshine_collider001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ],
+        "enabled": true
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5,
+        "enabled" : false
+      }
+    }
+  }
+]
