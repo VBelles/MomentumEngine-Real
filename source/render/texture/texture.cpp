@@ -76,7 +76,9 @@ void CTexture::activate(int slot) const {
 	// Starting at slot 0, update just 1 slot with my shader resource view
 	// In the future I could update more than one slot with multiple resource views
 	// in a single call.
+	mtx.lock();
 	Render.ctx->PSSetShaderResources(slot, 1, &shader_resource_view);
+	mtx.unlock();
 }
 
 void CTexture::destroy() {

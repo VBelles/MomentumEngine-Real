@@ -329,7 +329,7 @@ ButtonText: "Momentum"
 			try (
 				gc()
 				local attributeManager = TAttributeManager()
-				attributeManager.setAttributeInSel defName #collType value
+				attributeManager.setAttributeInSel defName attribute value
 			) catch (
 				MessageBox ("Error setting attribute:\n" + getCurrentException()) title:"Error"
 			)
@@ -341,21 +341,85 @@ ButtonText: "Momentum"
 				local attrManager = TAttributeManager()
 
 				--TODO: open window here.
-				format "enemiesData[1]:%\n" (classof enemiesData as string)
+				--format "enemiesData:%\n" (enemiesData as string)
+
+				defClass = custAttributes.getDefClass enemiesData
+				--https://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_A2579383_CAA2_446B_8034_0502DDBBAAD4_htm
+				defPBlock = custAttributes.getPBlockDefs enemiesData
+				--format "defClass: % \ndefPBlock full: %\n" defClass defPBlock
+				--format "defPBlock: %\n" defPBlock[1]
+				local attrs = defPBlock[1]
+				local attrName 	 = undefined
+				local type 		 = undefined
+				local ui 		 = undefined
+				local default	 = undefined
+				for attr = 5 to attrs.count do (
+					attrName   = attrs[attr][1]
+					local attrParams = attrs[attr][2]
+
+					for i = 1 to attrParams.count where (mod i 2 != 0) do (
+						--Execute only in odd values of i.
+						if attrParams[i] == #type 	 then type    = attrParams[i + 1]
+						if attrParams[i] == #ui 	 then ui 	  = attrParams[i + 1][1]
+						if attrParams[i] == #default then default = attrParams[i + 1]
+					)
+					format "attrName: % type: % ui: % default:%\n" attrName type ui default
+				)
 
 				--attrManager.findAttribute obj "enemiesData" 
 				--(custAttributes.get $ 2)[#hitPoints].value
 
-				rollout pivotControls "Pivot Controls" (
-					button btnCenter "BUTTON" width:150
+				/*rollout setAttribs "Set attributes Controls" (
+					spinner HP "Hit Points" type: #integer
+
+					button btnSetAll "Set all"
 
 					on btnCenter pressed do messagebox "WIP"
 				)
 
-				if theNewFloater != undefined then closeRolloutFloater theNewFloater
-				theNewFloater = newRolloutFloater "Pivot Tool" 180 120
-				addRollout pivotControls theNewFloater
+				global setAttrsFloat
+				try closeRolloutFloater setAttrsFloat catch()
+				if setAttrsFloat != undefined then closeRolloutFloater setAttrsFloat
+				setAttrsFloat = newRolloutFloater "Set attributes Tool" 180 120
+				addRollout setAttribs setAttrsFloat
+				*/
 
+				rollout enemyParams "Enemy parameters" (
+					spinner HP "Hit Points" type: #integer align:#right across:2 align:#right
+					button btnSetHP "Set" width:24 align:#left
+					spinner moveSpeed "Move Speed" type: #float across:2 align:#right
+					button btnSetmoveSpeed "Set" width:24 align:#left
+					spinner powerGiven "Power Given" type: #integer across:2 align:#right range:[0, 100000, 3400] --min, max, initial value.
+					button btnSetpowerGiven "Set" width:24 align:#left
+					spinner recallDistance "Recall dist" type: #integer across:2 align:#right
+					button btnSetrecallDistance "Set" width:24 align:#left
+					spinner chaseFov "Chase fov" type: #integer across:2 align:#right
+					button btnSetchaseFov "Set" width:24 align:#left
+					spinner attackFov "Attack fov" type: #integer across:2 align:#right
+					button btnSetattackFov "Set" width:24 align:#left
+					button btnSetAll "SetAll"
+
+					on btnSetHP				pressed do (setAttribute "enemyData" #hp 	 	 HP.value)
+					on btnSetmoveSpeed		pressed do (setAttribute "enemyData" #movSpeed 	 moveSpeed.value)
+					on btnSetpowerGiven		pressed do (setAttribute "enemyData" #pwrGiven	 powerGiven.value)
+					on btnSetrecallDistance	pressed do (setAttribute "enemyData" #recallDist recallDistance.value)
+					on btnSetchaseFov		pressed do (setAttribute "enemyData" #chaseFov	 chaseFov.value)
+					on btnSetattackFov		pressed do (setAttribute "enemyData" #atckFov	 attackFov.value)
+					on btnSetAll			pressed do (
+						setAttribute "enemyData" #hp 	 	 HP.value
+						setAttribute "enemyData" #movSpeed 	 moveSpeed.value
+						setAttribute "enemyData" #pwrGiven	 powerGiven.value
+						setAttribute "enemyData" #recallDist recallDistance.value
+						setAttribute "enemyData" #chaseFov	 chaseFov.value
+						setAttribute "enemyData" #atckFov	 attackFov.value
+					)
+				)
+
+				global setAttrsFloat
+				try closeRolloutFloater setAttrsFloat catch()
+				if setAttrsFloat != undefined then closeRolloutFloater setAttrsFloat
+				setAttrsFloat = newRolloutFloater "Set attributes Tool" 240 270
+				addRollout enemyParams setAttrsFloat
 
 				--attributeManager.setAttributeInSel defName #collType value
 			) catch (
