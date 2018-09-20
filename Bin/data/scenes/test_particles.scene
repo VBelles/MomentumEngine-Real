@@ -1,56 +1,15 @@
 [
 	{
 		"entity": {
-			"name": "particles_wildfire",
-			"transform": {
-				"pos": "-25 0.5 -48"
-			},
+			"name": "test_slash_1",
 			"particles": {
-				"core": "data/particles/wildfire.particles"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "particles_snow",
-			"transform": {
-				"pos": "-25 3 -48"
+				"core": [
+					"data/particles/slash/slash_mesh.particles",
+					"data/particles/slash/slash_mesh_black.particles"
+				]
 			},
-			"particles": {
-				"core": "data/particles/snow.particles"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "particles_animated_fire",
 			"transform": {
-				"pos": "-315 42.5 -608"
-			},
-			"particles": {
-				"core": "data/particles/animated_fire.particles"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "particles_sparks",
-			"transform": {
-				"pos": "-28 1 -54"
-			},
-			"particles": {
-				"core": "data/particles/sparks.particles"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "particles_stretched",
-			"transform": {
-				"pos": "-28 1 -54"
-			},
-			"particles": {
-				"core": "data/particles/stretched.particles"
+				"pos": " 0 1 0"
 			}
 		}
 	}

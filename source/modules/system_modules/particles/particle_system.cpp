@@ -318,6 +318,7 @@ namespace Particles {
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
 			particle.frame = _core->render.initialRandomFrame ? random(0.f, _core->render.numFrames) : _core->render.initialFrame;
 			particle.rotation = _core->movement.initialRandomRotation ? random(0.f, M_PI * 2.f) : _core->movement.initialRotation;
+			particle.rotationQuat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, particle.rotation);
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 			_particles.push_back(particle);
@@ -364,6 +365,7 @@ namespace Particles {
 
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;
+		const float& halfLength = _core->emission.halfLength;
 
 		switch (_core->emission.type) {
 		case TCoreSystem::TEmission::Point:
@@ -395,7 +397,7 @@ namespace Particles {
 			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
 			dir.Normalize();
 			VEC3 pos = dir * random(0.f, size);
-			pos.y = random(-size, size);
+			pos.y = random(-halfLength, halfLength);
 			return pos;
 		}
 		}

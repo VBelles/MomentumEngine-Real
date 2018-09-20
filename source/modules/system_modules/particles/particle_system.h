@@ -23,6 +23,7 @@ namespace Particles {
 			int count = 1;					// number of particles each generation
 			bool cyclic = false;			// system re-emits after the interval time
 			float size = 0.f;				// emissor size
+			float halfLength = 0.f;			// emissor half length
 			float angle = 0.f;				// emission angle
 			bool radial = false;			// ignores angle and emits from the center
 			bool randomDirection = false;   // direction generated randomly
@@ -36,7 +37,7 @@ namespace Particles {
 			float initialRotation = 0;			
 			bool initialRandomRotation = false;
 			float spin = 0.f;					// rotation speed (radians)
-			VEC3 spin_axis = { 0, 1, 0 };		// spin axis
+			VEC3 spin_axis = { 0.f, 1.f, 0.f };	// spin axis
 			float gravity = 0.f;				// gravity factor
 			float wind = 0.f;					// wind factor
 			bool ground = false;				// limit by ground
