@@ -10,13 +10,13 @@ http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_0A1E08F8_A8C5_4
 -- def #enemyData
 global enemiesData = attributes enemyData (
 	parameters main rollout:params (
-		hitPoints 	   type: #integer ui:HP				default:5
-		moveSpeed 	   type: #float   ui:moveSpeed		default:2.5
-		powerGiven	   type: #integer ui:powerGiven 	default:3400 
-		recallDistance type: #integer ui:recallDistance default:28
-		chaseFov	   type: #integer ui:chaseFov		default:60
-		attackFov	   type: #integer ui:attackFov		default:60
-		enemyType	   type: #string
+		hp  	   type: #integer ui:HP				default:5
+		movSpeed   type: #float   ui:moveSpeed		default:2.5
+		pwrGiven   type: #integer ui:powerGiven 	default:3400 
+		recallDist type: #integer ui:recallDistance default:28
+		chaseFov   type: #integer ui:chaseFov		default:60
+		atckFov    type: #integer ui:attackFov		default:60
+		type   	   type: #string
 	)
 	rollout params "Enemy Data" (
 		spinner HP "Hit Points"					 type: #integer
@@ -262,7 +262,7 @@ struct TAttributeManager (
 			local objDefs = custAttributes.getDefs obj
 			a = custAttributes.get obj idxFound
 
-			a[attribute].value = newValue
+			if a[attribute] != undefined then a[attribute].value = newValue
 		)
 	),
 
