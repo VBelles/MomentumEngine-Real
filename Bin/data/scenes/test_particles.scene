@@ -9,7 +9,18 @@
 				]
 			},
 			"transform": {
-				"pos": " 0 1 0"
+				"pos": " 0 10000 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "test_fog",
+			"particles": {
+				"core": "data/particles/fog.particles"
+			},
+			"transform": {
+				"pos": " 0 0 0"
 			}
 		}
 	}

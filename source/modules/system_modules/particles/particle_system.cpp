@@ -378,7 +378,7 @@ namespace Particles {
 			return VEC3(random(-size, size), 0.f, random(-size, size));
 
 		case TCoreSystem::TEmission::Box:
-			return VEC3(random(-size, size), random(-size, size), random(-size, size));
+			return VEC3(random(-size, size), random(-halfLength, halfLength), random(-size, size));
 
 		case TCoreSystem::TEmission::Sphere:
 		{
