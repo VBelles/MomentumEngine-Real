@@ -14,17 +14,29 @@ void VS(
 }
 
 
-static const float radiusX = 0.7;    
-static const float radiusY = 0.2; 
-static const float intensity = 0.6; 
+static const float radiusX = 0.8;    
+static const float radiusY = 0.6; 
+static const float intensity = 0.7;
+
+static const float OuterVig = 1.0;
+static const float InnerVig = 0.5;
 
 float4 PS(
 	in float4 iPosition : SV_Position
 	, in float2 iTex0 : TEXCOORD0
 ) : SV_Target
 {
+    float4 src = txAlbedo.Sample(samClampLinear, iTex0.xy);
+
     float dist = distance(iTex0, float2(0.5, 0.5));    
     float vig = smoothstep(radiusX, radiusY, dist * intensity); 
-    float4 src = txAlbedo.Sample(samClampLinear, iTex0.xy);
+ 
+    // https://www.shadertoy.com/view/Mdsfzl
+		
+	//float dist  = distance(iTex0.xy, float2(0.5, 0.5)) * 1.414213; //Multiplyed by 1.414213 to fit in the range of 0.0 to 1.0 
+	//float vig = clamp((OuterVig - dist) / (OuterVig - InnerVig), 0.0, 1.0); // Generate the Vignette with Clamp which go from outer Viggnet ring to inner vignette ring with smooth steps
+	
     return float4(src.xyz * vig, 1.0);
+ 
+    
 }
