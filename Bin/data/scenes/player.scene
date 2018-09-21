@@ -273,14 +273,14 @@
 					{
 						"name": "fast_finisher2",
 						"shape": "sphere",
-						"radius": 0.8,
+						"radius": 1.2,
 						"group": [
 							"player"
 						],
 						"mask": [
 							"enemy"
 						],
-						"bone": "Bip001 R Hand"
+						"offset": "0 0.75 0.75"
 					},
 					{
 						"name": "horizontal_launcher",

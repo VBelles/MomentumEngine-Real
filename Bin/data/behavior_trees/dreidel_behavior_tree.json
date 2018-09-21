@@ -212,6 +212,27 @@
         ]
       },
       {
+        "name": "onAirborneAction",
+        "type": "action",
+        "condition": {
+          "type": "OnAirborneCondition"
+        },
+        "action": {
+          "type": "OnAirborneAction",
+          "animation": "enemigo_bola_idle"
+        }
+      },
+      {
+        "name": "airborneAction",
+        "type": "action",
+        "condition": {
+          "type": "AirborneCondition"
+        },
+        "action": {
+          "type": "AirborneAction"
+        }
+      },
+      {
         "name": "stun",
         "type": "sequence",
         "condition": {
@@ -235,27 +256,6 @@
             }
           }
         ]
-      },
-      {
-        "name": "onAirborneAction",
-        "type": "action",
-        "condition": {
-          "type": "OnAirborneCondition"
-        },
-        "action": {
-          "type": "OnAirborneAction",
-          "animation": "enemigo_bola_idle"
-        }
-      },
-      {
-        "name": "airborneAction",
-        "type": "action",
-        "condition": {
-          "type": "AirborneCondition"
-        },
-        "action": {
-          "type": "AirborneAction"
-        }
       },
       {
         "name": "death",

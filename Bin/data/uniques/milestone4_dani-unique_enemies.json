@@ -1,0 +1,243 @@
+{
+  "unique_enemies":
+  [
+    {
+      "id": "dani_air_008",
+      "done": false,
+      "position": "273.933 -3.00244 -103.587",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_007",
+      "done": false,
+      "position": "161.124 38.5701 -90.2444",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_melee_007",
+      "done": false,
+      "position": "133.184 30.5057 -30.3919",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_006",
+      "done": false,
+      "position": "145.719 24.3837 -106.388",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_air_006",
+      "done": false,
+      "position": "5.84519 -3.07274 132.418",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_melee_005",
+      "done": false,
+      "position": "-8.45032 -9.43646 130.645",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_004",
+      "done": false,
+      "position": "35.2472 -1.7038 16.1772",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_003",
+      "done": false,
+      "position": "27.3358 -3.76361 21.5119",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_002",
+      "done": false,
+      "position": "103.336 17.8046 125.273",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_001",
+      "done": false,
+      "position": "101.88 21.9467 105.56",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_air_005",
+      "done": false,
+      "position": "297.972 10.7034 -42.2378",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_004",
+      "done": false,
+      "position": "288.624 2.46676 -36.6583",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_003",
+      "done": false,
+      "position": "280.56 -7.10687 -33.0142",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_002",
+      "done": false,
+      "position": "264.517 -7.10687 -23.1162",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_001",
+      "done": false,
+      "position": "258.1 -7.10687 -34.9723",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_000",
+      "done": false,
+      "position": "247.519 -7.10687 -30.0982",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_melee_000",
+      "done": false,
+      "position": "112.962 24.9782 91.4404",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_air_008",
+      "done": false,
+      "position": "273.933 -3.00244 -103.587",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_007",
+      "done": false,
+      "position": "161.124 38.5701 -90.2444",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_melee_007",
+      "done": false,
+      "position": "133.184 30.5057 -30.3919",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_006",
+      "done": false,
+      "position": "145.719 24.3837 -106.388",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_air_006",
+      "done": false,
+      "position": "5.84519 -3.07274 132.418",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_melee_005",
+      "done": false,
+      "position": "-8.45032 -9.43646 130.645",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_004",
+      "done": false,
+      "position": "35.2472 -1.7038 16.1772",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_003",
+      "done": false,
+      "position": "27.3358 -3.76361 21.5119",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_002",
+      "done": false,
+      "position": "103.336 17.8046 125.273",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_melee_001",
+      "done": false,
+      "position": "101.88 21.9467 105.56",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "dani_air_005",
+      "done": false,
+      "position": "297.972 10.7034 -42.2378",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_004",
+      "done": false,
+      "position": "288.624 2.46676 -36.6583",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_003",
+      "done": false,
+      "position": "280.56 -7.10687 -33.0142",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_002",
+      "done": false,
+      "position": "264.517 -7.10687 -23.1162",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_001",
+      "done": false,
+      "position": "258.1 -7.10687 -34.9723",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_air_000",
+      "done": false,
+      "position": "247.519 -7.10687 -30.0982",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "dani_melee_000",
+      "done": false,
+      "position": "112.962 24.9782 91.4404",
+      "level": "level00",
+      "type": "dreidel"
+    }
+  ]
+}

@@ -24,5 +24,6 @@ public:
 	void debugInMenu();
 	static void registerMsgs();
 	void setIsMoving(bool isMoving);
+	bool getIsMoving() { return is_moving; }
 	void setStopOnNextLoop(bool stop);
 };

@@ -1,15 +1,15 @@
-{
-  "entity":
+[
   {
-    "name": "platform_director",
-    "platforms_director":
+    "entity":
     {
-      "platforms":
-      [
+      "name": "platform_director",
+      "platforms_director":
+      {
+        "slots":
         [
 
         ]
-      ]
+      }
     }
   }
-}
+]

@@ -10,13 +10,13 @@ http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_0A1E08F8_A8C5_4
 -- def #enemyData
 global enemiesData = attributes enemyData (
 	parameters main rollout:params (
-		hitPoints 	   type: #integer ui:HP				default:5
-		moveSpeed 	   type: #float   ui:moveSpeed		default:2.5
-		powerGiven	   type: #integer ui:powerGiven 	default:3400 
-		recallDistance type: #integer ui:recallDistance default:28
-		chaseFov	   type: #integer ui:chaseFov		default:60
-		attackFov	   type: #integer ui:attackFov		default:60
-		enemyType	   type: #string
+		hp  	   type: #integer ui:HP				default:5
+		movSpeed   type: #float   ui:moveSpeed		default:2.5
+		pwrGiven   type: #integer ui:powerGiven 	default:3400 
+		recallDist type: #integer ui:recallDistance default:28
+		chaseFov   type: #integer ui:chaseFov		default:60
+		atckFov    type: #integer ui:attackFov		default:60
+		type   	   type: #string
 	)
 	rollout params "Enemy Data" (
 		spinner HP "Hit Points"					 type: #integer
@@ -37,9 +37,10 @@ global rotationsData = attributes rotateData (
 		z 		 type: #integer ui:zRot 	default:1 
 		rotSpeed type: #float   ui:rotSpeed default:0.5
 
-		rolSpeed type: #float   ui:rolSpeed default:0
+		rolSpeed type: #float   ui:rolSpeed default:0.0
 		wait 	 type: #float   ui:waitDur 	default:2
-		grup	 type: #integer ui:grup 	default:0
+		grup	 type: #integer ui:grup 	default:0.0
+		waitT	 type: #float   ui:waitT 	default:0.0
 	)
 	rollout params "Rotation Data" (
 		label lab1 "Rotation:"
@@ -49,9 +50,10 @@ global rotationsData = attributes rotateData (
 		spinner rotSpeed "Rotation speed" type: #float range:[-100, 100, 0]
 
 		label lab2 "Roll:"
-		spinner rolSpeed "Roll speed" 	  type: #float range:[-100, 100, 0]
-		spinner waitDur  "Wait duration"  type: #float
-		spinner grup     "Platform group" type: #integer range:[0, 1000, 0]
+		spinner rolSpeed "Roll speed" 	   type: #float   range:[-100, 100, 0]
+		spinner waitDur  "Wait duration"   type: #float
+		spinner grup     "Platform group"  type: #integer range:[0, 1000, 0]
+		spinner waitT    "Group wait time" type: #float   range:[0, 1000, 0]
 	)
 )
 
@@ -88,12 +90,24 @@ global mechsTrigData = attributes mechTrigData (
 -- def #mechData
 global mechsData = attributes mechData (
 	parameters main rollout:params (
-		rend type: #boolean ui:render   default:true
-		coll type: #boolean ui:collider default:true
+		change_rend type: 	#boolean ui:change_render   	default:true
+		change_coll type: 	#boolean ui:change_collider 	default:true
+		change_plat type: 	#boolean ui:change_platform 	default:true
+		change_anim type: 	#boolean ui:change_animation 	default:true
+		rend type: 			#boolean ui:render   			default:true
+		coll type: 			#boolean ui:collider 			default:true
+		plat type: 			#boolean ui:platform 			default:true
+		anim type: 			#boolean ui:animation 			default:true
 	)
 	rollout params "Mech Data" (
-		checkbox render "Render enabled on active" 		type: #boolean align:#right
-		checkbox collider "Collider enabled on active" 	type: #boolean align:#right
+		checkbox change_render 		"Change render" 				type: #boolean align:#right
+		checkbox change_collider 	"Change collider" 				type: #boolean align:#right
+		checkbox change_platform 	"Change platform" 				type: #boolean align:#right
+		checkbox change_animation 	"Change animation" 				type: #boolean align:#right
+		checkbox render 			"Render enabled on active" 		type: #boolean align:#right
+		checkbox collider 			"Collider enabled on active" 	type: #boolean align:#right
+		checkbox platform 			"Platform enabled on active" 	type: #boolean align:#right
+		checkbox animation 			"Animation enabled on active" 	type: #boolean align:#right
 	)
 )
 
@@ -199,6 +213,24 @@ global colsData = attributes collData (
 	)
 )
 
+-- def #camData
+global camsData = attributes camData (
+	parameters main rollout:params (
+		retToPlyr type: #boolean ui:retToPl default:false
+		modPlRot  type: #boolean ui:modPlRo default:true
+		tMixOut   type: #float   ui:tMixO   default:1.0
+		panSpeed  type: #float   ui:panSpd  default:0.0
+		panRadius type: #float   ui:panRad  default:3.0
+	)
+	rollout params "Cameras Data" (
+		checkbox retToPl "Return to player cam"  type: #boolean align:#right
+		checkbox modPlRo "Modify player cam rot" type: #boolean align:#right
+		spinner tMixO "Time to mix out" type: #float range:[0, 1000.0, 40.0] --min, max, initial value
+		spinner panSpd "Panning speed"  type: #float range:[-1000.0, 1000.0, 40.0]
+		spinner panRad "Panning radius" type: #float range:[0, 1000.0, 40.0]
+	)
+)
+
 -- -----------------------------------------------------------------------------
 
 struct TAttributeManager (
@@ -221,7 +253,7 @@ struct TAttributeManager (
 		return undefined
 	),
 
-	fn getAttributeValue obj defName attribute = (
+	fn getAttrValue obj defName attribute = (
 		local idxFound = findAttribute obj defName
 		if idxFound != undefined then (
 			local objDefs = custAttributes.getDefs obj
@@ -231,18 +263,18 @@ struct TAttributeManager (
 			--so pick this manually.
 			if attribute == #pwrUp then return obj.collData.pwrUp
 
-			return a[attribute].value
+			if a[attribute] != undefined then return a[attribute].value
 		)
 		return undefined
 	),
 	
-	fn setAttributeValue obj defName attribute newValue = (
+	fn setAttrValue obj defName attribute newValue = (
 		local idxFound = findAttribute obj defName
 		if idxFound != undefined then (
 			local objDefs = custAttributes.getDefs obj
 			a = custAttributes.get obj idxFound
 
-			a[attribute].value = newValue
+			if a[attribute] != undefined then a[attribute].value = newValue
 		)
 	),
 
@@ -251,6 +283,7 @@ struct TAttributeManager (
 		if not hasAttribute obj defName then (
 			case defName of (
 				"animData":     ( attrDef = animsData     )
+				"camData":      ( attrDef = camsData      )
 				"collData":     ( attrDef = colsData      )
 				"enemyData":    ( attrDef = enemiesData	  )
 				"lightData":    ( attrDef = lightsData    )
@@ -287,7 +320,7 @@ struct TAttributeManager (
 
 	fn setAttributeInSel defName attribute newValue = (
 		for obj in selection do (
-			setAttributeValue obj defName attribute newValue
+			setAttrValue obj defName attribute newValue
 		)
 	)
 )
@@ -296,8 +329,8 @@ struct TAttributeManager (
 --attributeManager = TAttributeManager()
 --attributeManager.addAttributeToSel("enemyData")
 --attributeManager.delAttributeFromSel("enemyData")
---attributeManager.getAttributeValue $ #enemyData #hitPoints
+--attributeManager.getAttrValue $ #enemyData #hitPoints
 ----
 --attributeManager.addAttribute $ "rotateData"
 --attributeManager.delAttributeFromSel("rotateData")
---attributeManager.getAttributeValue $ #rotateData #y
+--attributeManager.getAttrValue $ #rotateData #y

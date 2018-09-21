@@ -25,4 +25,5 @@ public:
 	static void registerMsgs();
 	void update(float delta);
 	void setEnabled(bool enabled);
+	bool getEnabled() { return enabled; }
 };
