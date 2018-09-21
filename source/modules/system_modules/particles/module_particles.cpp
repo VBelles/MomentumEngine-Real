@@ -10,6 +10,7 @@ CModuleParticles::CModuleParticles(const std::string& name)
 
 bool CModuleParticles::start() {
 	Resources.registerResourceClass(getResourceClassOf<Particles::TCoreSystem>());
+	_windVelocity = VEC3(0.f, 0.f, 20.f);
 	return true;
 }
 
