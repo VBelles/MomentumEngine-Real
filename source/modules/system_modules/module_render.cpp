@@ -22,6 +22,7 @@
 #include "components/postfx/comp_render_outlines.h"
 #include "components/postfx/comp_render_bloom.h"
 #include "components/postfx/comp_render_fog.h"
+#include "components/postfx/comp_render_fxaa.h"
 
 CModuleRender::CModuleRender(const std::string& name)
 	: IModule(name) {
@@ -297,6 +298,11 @@ void CModuleRender::generateFrame() {
 			TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
 			if (c_render_outlines)
 				c_render_outlines->apply();
+
+			// Check if we have a render_fxaa component
+			TCompRenderFxaa* c_render_fxaa = e_cam->get< TCompRenderFxaa >();
+			if (c_render_fxaa)
+				curr_rt = c_render_fxaa->apply(curr_rt);
 		}
 
 		Render.startRenderInBackbuffer();

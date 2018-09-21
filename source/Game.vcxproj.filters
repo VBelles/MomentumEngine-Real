@@ -360,6 +360,7 @@
     <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\SuspensionAction.cpp" />
     <ClCompile Include="modules\system_modules\sound\module_sound.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
+    <ClCompile Include="components\postfx\comp_render_fxaa.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -753,6 +754,7 @@
     <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\SuspensionAction.h" />
     <ClInclude Include="modules\system_modules\sound\module_sound.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
+    <ClInclude Include="components\postfx\comp_render_fxaa.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

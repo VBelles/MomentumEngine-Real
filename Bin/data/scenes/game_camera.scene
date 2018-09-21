@@ -44,6 +44,9 @@
 				"enabled": false,
 				"amount": 1,
 				"lut": "data/textures/lut/candlelight.dds"
+			},
+			"render_fxaa":{
+				"enabled": true
 			}
 		}
 	},
