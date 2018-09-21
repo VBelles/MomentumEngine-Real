@@ -23,6 +23,7 @@
 #include "components/postfx/comp_render_bloom.h"
 #include "components/postfx/comp_render_fog.h"
 #include "components/postfx/comp_render_fxaa.h"
+#include "components/postfx/comp_render_vignette.h"
 
 CModuleRender::CModuleRender(const std::string& name)
 	: IModule(name) {
@@ -303,6 +304,11 @@ void CModuleRender::generateFrame() {
 			TCompRenderFxaa* c_render_fxaa = e_cam->get< TCompRenderFxaa >();
 			if (c_render_fxaa)
 				curr_rt = c_render_fxaa->apply(curr_rt);
+
+			// Check if we have a render_vignette component
+			TCompRenderVignette* c_render_vignette = e_cam->get< TCompRenderVignette >();
+			if (c_render_vignette)
+				curr_rt = c_render_vignette->apply(curr_rt);
 		}
 
 		Render.startRenderInBackbuffer();

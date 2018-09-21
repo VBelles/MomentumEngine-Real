@@ -216,6 +216,7 @@
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\LandingHurtActionState.cpp" />
     <ClCompile Include="components\postfx\comp_render_fxaa.cpp" />
+    <ClCompile Include="components\postfx\comp_render_vignette.cpp" />
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
     <ClCompile Include="gui\widgets\gui_point.cpp" />
@@ -581,6 +582,7 @@
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="components\player\states\base_states\LandingHurtActionState.h" />
     <ClInclude Include="components\postfx\comp_render_fxaa.h" />
+    <ClInclude Include="components\postfx\comp_render_vignette.h" />
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />
     <ClInclude Include="gui\widgets\gui_point.h" />
