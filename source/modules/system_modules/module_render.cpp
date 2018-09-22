@@ -100,13 +100,17 @@ bool CModuleRender::start() {
 	if (!cb_slash.create(CB_SLASH))		   return false;
 
 
-	cb_globals.global_exposure_adjustment = 1.0f;
+	cb_globals.global_exposure_adjustment = 0.33f;
 	cb_globals.global_ambient_adjustment = 0.5f;
 	cb_globals.global_shadow_adjustment = 0.1f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
+	cb_globals.global_hue_adjustment = 1.f;
+	cb_globals.global_saturation_adjustment = 1.f;
+	cb_globals.global_brightness_adjustment = 0.f;
+	cb_globals.global_contrast_adjustment = 0.215f;
 
 	cb_light.activate();
 	cb_object.activate();
@@ -166,12 +170,16 @@ void CModuleRender::render() {
 			PROFILE_SET_NFRAMES(nframes);
 		}
 		if (ImGui::TreeNode("Render Control")) {
-			ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
+			ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.01f, 32.f);
 			ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Shadow Adjustment", &cb_globals.global_shadow_adjustment, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+			ImGui::DragFloat("Hue Adjustment", &cb_globals.global_hue_adjustment, 0.01f, -10.0f, 10.f);
+			ImGui::DragFloat("Saturation Adjustment", &cb_globals.global_saturation_adjustment, 0.01f, -10.0f, 10.f);
+			ImGui::DragFloat("Brightness Adjustment", &cb_globals.global_brightness_adjustment, 0.01f, -10.0f, 10.f);
+			ImGui::DragFloat("Contrast Adjustment", &cb_globals.global_contrast_adjustment, 0.01f, -10.0f, 10.f);
 			ImGui::DragFloat("Skybox Ratio", &cb_globals.global_skybox_ratio, 0.01f, 0.0f, 1.f);
 
 			// Must be in the same order as the RO_* ctes

@@ -179,6 +179,11 @@ CB_DEF(CCteGlobals, CB_GLOBALS) {
 	VEC3 player_speed;
 	float player_speed_length;
 
+	float global_hue_adjustment;
+	float global_saturation_adjustment;
+	float global_brightness_adjustment;
+	float global_contrast_adjustment;
+
 	float day_night_cycle_emissive_ratio;
 	int game_paused; // Usado como bool, int para alinear
 	float global_pad1;
