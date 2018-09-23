@@ -2,6 +2,40 @@
   {
     "entity":
     {
+      "name": "trozo_terreno_3_col_001",
+      "transform":
+      {
+        "pos": "206.52 -3.65753 -231.518",
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_3_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_7_col_001",
+      "transform":
+      {
+        "pos": "84.8955 -10.79 -247.14",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_7_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "mushroom_head_06_collider040",
       "transform":
       {

@@ -2,6 +2,110 @@
   {
     "entity":
     {
+      "name": "dani_columna_piezas_grande_capitel_001",
+      "transform":
+      {
+        "pos": "-233.859 99.6976 -437.122",
+        "rotation": "-0.110786 0.477292 -0.248799 -0.835474"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_columna_piezas_grande_capitel_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.857788,
+        "travel_wait_time": 1.0,
+        "speed": 0.005,
+        "knots":
+        [
+           "-208.1 99.9171 -525.805",
+           "-154.336 99.9171 -449.021",
+           "-154.336 99.9171 -449.021",
+           "-131.316 99.9171 -579.57",
+           "-261.865 99.9171 -602.589",
+           "-284.884 99.9171 -472.04",
+           "-284.884 99.9171 -472.04"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_columna_piezas_grande_fuste_3_001",
+      "transform":
+      {
+        "pos": "-172.599 114.799 -449.642",
+        "rotation": "0.0165209 0.32743 -0.456558 -0.827086"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_columna_piezas_grande_fuste_3_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.959654,
+        "travel_wait_time": 1.0,
+        "speed": 0.005,
+        "knots":
+        [
+           "-201.918 115.38 -528.162",
+           "-153.246 115.38 -458.651",
+           "-153.246 115.38 -458.651",
+           "-132.407 115.38 -576.835",
+           "-250.591 115.38 -597.674",
+           "-271.43 115.38 -479.49",
+           "-271.43 115.38 -479.49"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "m_roca_07_trozos009",
       "transform":
       {

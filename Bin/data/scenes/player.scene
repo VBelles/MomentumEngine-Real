@@ -420,7 +420,7 @@
 			},
 			"camera_player": {
 				"target": "The Player",
-				"distance_to_target": 4.5,
+				"distance_to_target": 5,
 				"idle_distance_to_target": 3,
 				"zoomInSpeedIdleRun": 2.8,
 				"zoomOutSpeedIdleRun": 5.2,
