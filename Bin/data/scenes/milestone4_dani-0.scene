@@ -2,6 +2,544 @@
   {
     "entity":
     {
+      "name": "trozo_terreno_6_001",
+      "transform":
+      {
+        "pos": "120.635 41.307 215.99",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/trozo_terreno_6_001.mesh",
+          "materials":
+          [
+            "data/materials/trozo_6_baja.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "m_roca_16_trozos002",
+      "transform":
+      {
+        "pos": "113.271 46.0252 241.51",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/m_roca_16_trozos002.mesh",
+          "materials":
+          [
+            "data/materials/Material_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "m_roca_14_trozos004",
+      "transform":
+      {
+        "pos": "139.805 41.5861 225.254",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/m_roca_14_trozos004.mesh",
+          "materials":
+          [
+            "data/materials/Material_roca14.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "m_roca_11_trozos007",
+      "transform":
+      {
+        "pos": "139.23 45.4915 212.213",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/m_roca_11_trozos007.mesh",
+          "materials":
+          [
+            "data/materials/Material_roca11.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "m_roca_09_trozos004",
+      "transform":
+      {
+        "pos": "102.235 47.711 216.532",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/m_roca_09_trozos004.mesh",
+          "materials":
+          [
+            "data/materials/Material_roca09.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "m_roca_08_trozos005",
+      "transform":
+      {
+        "pos": "137.079 45.5563 202.668",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/m_roca_08_trozos005.mesh",
+          "materials":
+          [
+            "data/materials/Material_roca08.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "m_roca_07_trozos014",
+      "transform":
+      {
+        "pos": "126.882 46.3691 239.521",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/m_roca_07_trozos014.mesh",
+          "materials":
+          [
+            "data/materials/Material_roca07.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_hex000",
+      "transform":
+      {
+        "pos": "114.491 14.8909 147.496",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_hex000.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_hex000_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_hex001",
+      "transform":
+      {
+        "pos": "115.188 17.8909 155.465",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_hex001.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_hex001_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_hex002",
+      "transform":
+      {
+        "pos": "124.577 69.8909 216.881",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_hex002.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_hex002_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_hex012",
+      "transform":
+      {
+        "pos": "110.22 96.8909 98.682",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_hex012.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_hex012_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_rect000",
+      "transform":
+      {
+        "pos": "112.722 33.8909 181.78",
+        "rotation": "0.477714 0.477714 -0.521334 -0.521334"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_rect000.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_pasarela.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_rect000_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_rect001",
+      "transform":
+      {
+        "pos": "176.877 57.8909 172.152",
+        "rotation": "0.0 0.67559 0.0 -0.737277"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_rect001.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_pasarela.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_rect001_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_rect002",
+      "transform":
+      {
+        "pos": "104.729 96.8909 96.151",
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_rect002.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_pasarela.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_rect002_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_muro000",
+      "transform":
+      {
+        "pos": "111.471 16.8909 170.346",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_muro000.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_muro000_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_muro001",
+      "transform":
+      {
+        "pos": "120.829 54.8909 174.044",
+        "rotation": "0.477714 0.477714 -0.521334 -0.521334"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_muro001.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_muro001_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_muro002",
+      "transform":
+      {
+        "pos": "120.219 72.8909 167.071",
+        "rotation": "0.477714 0.477714 -0.521334 -0.521334"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_muro002.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_muro002_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_roca000",
+      "transform":
+      {
+        "pos": "116.844 20.8909 174.393",
+        "rotation": "0.0 0.67559 0.0 -0.737277"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_roca000.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_roca000_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_roca001",
+      "transform":
+      {
+        "pos": "112.299 20.8909 179.81",
+        "rotation": "0.0 0.67559 0.0 -0.737277"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_roca001.mesh",
+          "materials":
+          [
+            "data/materials/Material_#197.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_roca001_collider.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_columna_piezas_grande_fuste_1_001",
       "transform":
       {

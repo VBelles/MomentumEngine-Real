@@ -429,8 +429,8 @@
       "name": "nes_crystal_low_110",
       "transform":
       {
-        "pos": "-235.209 34.3078 37.1136",
-        "rotation": "-0.779832 0.212756 0.485995 -0.332273"
+        "pos": "-235.307 34.6539 37.1136",
+        "rotation": "-0.808326 0.00367144 0.383437 -0.446736"
       },
       "render":
       [
@@ -451,8 +451,8 @@
       "name": "nes_crystal_low_109",
       "transform":
       {
-        "pos": "-235.004 33.669 35.7126",
-        "rotation": "-0.93053 -0.0294324 0.355894 -0.0811651"
+        "pos": "-234.809 34.2035 35.7126",
+        "rotation": "-0.891205 -0.269268 0.32276 -0.170512"
       },
       "render":
       [
@@ -473,8 +473,8 @@
       "name": "nes_crystal_low_108",
       "transform":
       {
-        "pos": "-236.41 34.7051 35.658",
-        "rotation": "-0.834363 0.364221 0.407289 0.0727841"
+        "pos": "-236.545 34.3975 35.658",
+        "rotation": "-0.9002 0.135861 0.412249 -0.03511"
       },
       "render":
       [
@@ -495,8 +495,8 @@
       "name": "nes_crystal_low_107",
       "transform":
       {
-        "pos": "-234.054 33.7113 36.6033",
-        "rotation": "-0.881636 0.0501677 0.435945 -0.173647"
+        "pos": "-234.008 34.7148 36.6033",
+        "rotation": "-0.864579 -0.179726 0.376148 -0.280561"
       },
       "render":
       [
@@ -517,7 +517,7 @@
       "name": "nes_crystal_low_106",
       "transform":
       {
-        "pos": "-271.154 36.4358 81.7261",
+        "pos": "-271.154 39.3445 81.7261",
         "rotation": "-0.814773 0.0371369 0.553132 -0.169739"
       },
       "render":
@@ -539,7 +539,7 @@
       "name": "nes_crystal_low_105",
       "transform":
       {
-        "pos": "-271.105 36.5335 80.1766",
+        "pos": "-271.105 39.4421 80.1766",
         "rotation": "-0.898222 -0.158102 0.389223 0.129256"
       },
       "render":
@@ -561,7 +561,7 @@
       "name": "nes_crystal_low_104",
       "transform":
       {
-        "pos": "-272.561 37.3162 80.7438",
+        "pos": "-272.561 40.2248 80.7438",
         "rotation": "-0.782368 0.224171 0.533631 0.229971"
       },
       "render":
@@ -583,7 +583,7 @@
       "name": "nes_crystal_low_103",
       "transform":
       {
-        "pos": "-270.048 36.2707 80.8906",
+        "pos": "-270.048 39.1793 80.8906",
         "rotation": "-0.871573 -0.103424 0.47882 0.019893"
       },
       "render":
@@ -781,7 +781,7 @@
       "name": "nes_crystal_low_094",
       "transform":
       {
-        "pos": "-225.32 13.0432 85.9731",
+        "pos": "-225.32 14.0281 85.9731",
         "rotation": "-0.939349 -0.060676 -0.256908 0.218954"
       },
       "render":
@@ -803,7 +803,7 @@
       "name": "nes_crystal_low_093",
       "transform":
       {
-        "pos": "-226.303 13.1423 85.625",
+        "pos": "-226.303 14.1272 85.625",
         "rotation": "-0.951194 0.058356 -0.198938 0.228578"
       },
       "render":
@@ -825,7 +825,7 @@
       "name": "nes_crystal_low_092",
       "transform":
       {
-        "pos": "-226.937 12.2509 86.8844",
+        "pos": "-226.937 13.2358 86.8844",
         "rotation": "-0.970076 0.0936445 -0.223576 0.0140666"
       },
       "render":
@@ -847,7 +847,7 @@
       "name": "nes_crystal_low_091",
       "transform":
       {
-        "pos": "-225.695 12.9854 87.485",
+        "pos": "-225.695 13.9703 87.485",
         "rotation": "-0.912643 -0.120229 -0.347729 -0.178079"
       },
       "render":
@@ -869,7 +869,7 @@
       "name": "nes_crystal_low_090",
       "transform":
       {
-        "pos": "-278.468 36.4358 61.1108",
+        "pos": "-278.468 42.0574 61.1108",
         "rotation": "-0.199227 0.142607 -0.964426 0.0992665"
       },
       "render":
@@ -891,7 +891,7 @@
       "name": "nes_crystal_low_089",
       "transform":
       {
-        "pos": "-279.599 36.5335 62.1715",
+        "pos": "-279.599 42.155 62.1715",
         "rotation": "-0.0158604 -0.0589138 -0.978798 -0.195532"
       },
       "render":
@@ -913,7 +913,7 @@
       "name": "nes_crystal_low_088",
       "transform":
       {
-        "pos": "-278.168 37.3162 62.8001",
+        "pos": "-278.168 42.9377 62.8001",
         "rotation": "-0.193611 -0.298252 -0.927025 0.119101"
       },
       "render":
@@ -935,7 +935,7 @@
       "name": "nes_crystal_low_087",
       "transform":
       {
-        "pos": "-279.842 36.2707 60.9191",
+        "pos": "-279.842 41.8922 60.9191",
         "rotation": "-0.108836 0.0212 -0.988465 -0.103164"
       },
       "render":
@@ -1064,38 +1064,6 @@
   {
     "entity":
     {
-      "name": "nes_crystal_low_080",
-      "transform":
-      {
-        "pos": "-255.328 33.823 65.0654",
-        "rotation": "-0.939693 0.0 -0.34202 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_crystal_low_080.mesh",
-          "materials":
-          [
-            "data/materials/m_crystal_01.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_crystal_low_col_080.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_crystal_low_081",
       "transform":
       {
@@ -1116,6 +1084,38 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_crystal_low_col_081.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_080",
+      "transform":
+      {
+        "pos": "-255.328 33.823 65.0654",
+        "rotation": "-0.939693 0.0 -0.34202 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_080.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_01.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_080.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
