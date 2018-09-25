@@ -84,6 +84,8 @@ void CResourceManager::registerResource(IResource* new_res) {
 }
 
 void CResourceManager::destroyAll() {
+	resourcesLoaded = true;
+	if (loaderThread.joinable()) loaderThread.join();
 	for (auto it : all_resources) {
 		IResource* r = it.second;
 		r->destroy();
@@ -134,10 +136,15 @@ void CResourceManager::loadResources(const std::string& file) {
 	for (auto& jResource : jResources) {
 		std::string res_name = jResource;
 		Resources.get(res_name);
+		if (resourcesLoaded) break;
 	}
 	resourcesLoaded = true;
 }
 
 void CResourceManager::loadResourcesBackground(const std::string& file) {
 	loaderThread = std::thread(&CResourceManager::loadResources, this, file);
+}
+
+bool CResourceManager::finishedLoading() {
+	return resourcesLoaded;
 }

@@ -256,7 +256,7 @@ void CModuleManager::applyRequestedGameState() {
 			wdgt->renderAll();
 
 			if (_requested_gs->needsResources() && Resources.loaderThread.joinable()) {
-				while (!Resources.resourcesLoaded) {
+				while (!Resources.finishedLoading()) {
 					wdgt->updateAll(frameTime);
 					mtx.lock();
 					wdgt->renderAll();
