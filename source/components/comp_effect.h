@@ -25,8 +25,6 @@ class TCompEffect : public TCompBase {
 
 
 private:
-	std::vector<CHandle> soundEffects;
-	std::vector<Particles::TParticleHandle> particleSystems;
 	std::vector<ParticlesEffect> particleSystems;
 	std::vector<SoundEffect> soundSystems;
 	CTimer2 timer;
@@ -36,7 +34,8 @@ public:
 	void debugInMenu();
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
-	Effect loadEffect(const json & j);
+	ParticlesEffect loadParticleEffect(const json & j);
+	SoundEffect loadSoundEffect(const json & j);
 	void onEntityCreated(const TMsgEntityCreated& msg);
 	void update(float delta);
 	void start();

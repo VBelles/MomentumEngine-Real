@@ -43,8 +43,6 @@ public:
 
 	void kill(Particles::TParticleHandle ph, float fadeOutTime = 0.f);
 
-	void forceEmission(Particles::TParticleHandle ph, int quantity);
-
 	const VEC3& getWindVelocity() const;
 
 	void setPaused(bool paused);

@@ -362,6 +362,7 @@
     <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
     <ClCompile Include="components\postfx\comp_render_fxaa.cpp" />
     <ClCompile Include="components\postfx\comp_render_vignette.cpp" />
+    <ClCompile Include="components\comp_effect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -757,6 +758,7 @@
     <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
     <ClInclude Include="components\postfx\comp_render_fxaa.h" />
     <ClInclude Include="components\postfx\comp_render_vignette.h" />
+    <ClInclude Include="components\comp_effect.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

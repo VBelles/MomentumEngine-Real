@@ -117,7 +117,6 @@ namespace Particles {
 		void fadeOut(float duration);
 		void setOffset(VEC3 offset);
 		void setRotationOffset(QUAT rotationOffset);
-		void forceEmission(int quantity);
 		CHandle getParticleEntityHandle();
 		void debugInMenu();
 		int getNbParticles();

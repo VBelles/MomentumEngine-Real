@@ -111,18 +111,6 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 	}
 }
 
-void CModuleParticles::forceEmission(Particles::TParticleHandle ph, int quantity) {
-	for (auto& p : _activeSystems) {
-		auto& systems = p.second;
-		for (auto system : systems) {
-			if (system->getHandle() == ph) {
-				system->forceEmission(quantity);
-				break;
-			}
-		}
-	}
-}
-
 const VEC3& CModuleParticles::getWindVelocity() const {
 	return _windVelocity;
 }
