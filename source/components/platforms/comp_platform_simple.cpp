@@ -121,7 +121,6 @@ void TCompPlatformSimple::turnAround() {
 void TCompPlatformSimple::update(float delta) {
 	if (enabled) {
 
-
 		TCompTransform* transform = getTransform();
 		VEC3 position = transform->getPosition();
 
@@ -197,7 +196,10 @@ void TCompPlatformSimple::update(float delta) {
 
 		}
 		//Update collider
-		getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
+		auto collider = getRigidDynamic();
+		if (collider) {
+			collider->setKinematicTarget(toPxTransform(transform));
+		}
 	}
 }
 

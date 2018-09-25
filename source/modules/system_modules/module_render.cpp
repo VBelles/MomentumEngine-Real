@@ -22,6 +22,8 @@
 #include "components/postfx/comp_render_outlines.h"
 #include "components/postfx/comp_render_bloom.h"
 #include "components/postfx/comp_render_fog.h"
+#include "components/postfx/comp_render_fxaa.h"
+#include "components/postfx/comp_render_vignette.h"
 
 CModuleRender::CModuleRender(const std::string& name)
 	: IModule(name) {
@@ -297,6 +299,16 @@ void CModuleRender::generateFrame() {
 			TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
 			if (c_render_outlines)
 				c_render_outlines->apply();
+
+			// Check if we have a render_fxaa component
+			TCompRenderFxaa* c_render_fxaa = e_cam->get< TCompRenderFxaa >();
+			if (c_render_fxaa)
+				curr_rt = c_render_fxaa->apply(curr_rt);
+
+			// Check if we have a render_vignette component
+			TCompRenderVignette* c_render_vignette = e_cam->get< TCompRenderVignette >();
+			if (c_render_vignette)
+				curr_rt = c_render_vignette->apply(curr_rt);
 		}
 
 		Render.startRenderInBackbuffer();
@@ -333,12 +345,14 @@ void CModuleRender::generateFrame() {
 	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
 		PROFILE_FUNCTION("Render.swapChain");
+		mtx.lock();
 		if (vsync) {
 			Render.swapChain->Present(1, 0);
 		}
 		else {
 			Render.swapChain->Present(0, 0);
 		}
+		mtx.unlock();
 	}
 }
 

@@ -16,6 +16,7 @@
 		},
 		{
 			"name" : "game_state",
+			"needs_resources": true,
 			"modules" : [ "physics", "instancing","cameras", "game", "pause", "test_instancing", "map_menu" ]
 		},
 		{

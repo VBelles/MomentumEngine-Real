@@ -116,13 +116,16 @@ void FastFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	TMsgAttackHit msgAttackHit = {};
 	msgAttackHit.attacker = playerEntity;
 	msgAttackHit.info = {};
-	VEC3 launchVelocity = getPlayerTransform()->getFront() * launchSpeed.x;
-	launchVelocity.y = launchSpeed.y;
+	//VEC3 launchVelocity = getPlayerTransform()->getFront() * launchSpeed.x;
+	//launchVelocity.y = launchSpeed.y;
+	VEC3 launchVelocity = getPlayerTransform()->getFront() * getPlayerModel()->getPowerStats()->longJumpVelocityVector.z;
+	launchVelocity.y = getPlayerModel()->getPowerStats()->longJumpVelocityVector.y;
 	msgAttackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.gravityMultiplier = getPlayerModel()->getPowerStats()->longGravityMultiplier;
+	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.0f };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

@@ -273,14 +273,14 @@
 					{
 						"name": "fast_finisher2",
 						"shape": "sphere",
-						"radius": 0.8,
+						"radius": 1.2,
 						"group": [
 							"player"
 						],
 						"mask": [
 							"enemy"
 						],
-						"bone": "Bip001 R Hand"
+						"offset": "0 0.75 0.75"
 					},
 					{
 						"name": "horizontal_launcher",
@@ -420,7 +420,7 @@
 			},
 			"camera_player": {
 				"target": "The Player",
-				"distance_to_target": 4.5,
+				"distance_to_target": 5,
 				"idle_distance_to_target": 3,
 				"zoomInSpeedIdleRun": 2.8,
 				"zoomOutSpeedIdleRun": 5.2,

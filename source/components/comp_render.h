@@ -55,4 +55,5 @@ public:
 
 	void enable();
 	void disable();
+	bool getEnabled() { return enabled; }
 };

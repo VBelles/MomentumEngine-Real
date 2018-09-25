@@ -304,6 +304,20 @@
     "z": "default"
   },
 
+  "fxaa": {
+    "vs_file": "data/shaders/fxaa.fx",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z": "disable_all"
+  },
+
+  "vignette": {
+    "vs_file": "data/shaders/vignette.fx",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z": "disable_all"
+  },
+
   "particles" : { 
     "vs_file": "data/shaders/particles.fx", 
     "vs_entry_point": "VS_Particles", 

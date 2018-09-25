@@ -1,0 +1,19 @@
+[
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_1_col_001",
+      "transform":
+      {
+        "pos": "-257.86 33.3035 49.55",
+        "rotation": "0.0 -0.21644 0.0 -0.976296"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_1_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  }
+]

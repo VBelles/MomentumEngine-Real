@@ -32,7 +32,7 @@ float4 PS(
 	ratio = ratio > fogMaxRatio ? fogMaxRatio : ratio;
 
   	float3 eye = wPos - camera_pos;
-  	float4 env_color = float4(getEnvironment(eye, 5), 1) * global_ambient_adjustment;
+  	float4 env_color = float4(getEnvironment(eye, 7), 1);
 
 	return float4(lerp(color, env_color * fogColor, ratio));
 }

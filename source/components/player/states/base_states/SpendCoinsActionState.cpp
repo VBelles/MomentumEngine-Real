@@ -30,7 +30,8 @@ void SpendCoinsActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	spendTimer.setTimeStamp(0);//para entrar en el if en el primer frame
 	*velocityVector = VEC3::Zero;
-	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSkeleton()->blendCycle(animationLoop, 0.2f, 0.2f);
+	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	dbg("spend coins\n");
 
 }
