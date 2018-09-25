@@ -1,0 +1,632 @@
+[
+  {
+    "entity":
+    {
+      "name": "planta12_big",
+      "transform":
+      {
+        "pos": "-332.121 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta12_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta12_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta12_medium",
+      "transform":
+      {
+        "pos": "-329.022 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta12_medium.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta12_medium.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta12_small",
+      "transform":
+      {
+        "pos": "-326.362 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta12_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta12_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta11_big",
+      "transform":
+      {
+        "pos": "-324.007 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta11_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta11_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta11_medium",
+      "transform":
+      {
+        "pos": "-321.652 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta11_medium.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta11_medium.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta11_small",
+      "transform":
+      {
+        "pos": "-319.668 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta11_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta11_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta10_big",
+      "transform":
+      {
+        "pos": "-315.937 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta10_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta10_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta10_medium",
+      "transform":
+      {
+        "pos": "-313.375 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta10_medium.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta10_medium.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta10_small",
+      "transform":
+      {
+        "pos": "-310.313 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta10_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta10_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta09_big",
+      "transform":
+      {
+        "pos": "-306.759 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta09_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta09_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta09_medium",
+      "transform":
+      {
+        "pos": "-304.528 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta09_medium.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta09_medium.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta09_small",
+      "transform":
+      {
+        "pos": "-302.586 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta09_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta09_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta08_big",
+      "transform":
+      {
+        "pos": "-299.431 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta08_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta08_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta08_small",
+      "transform":
+      {
+        "pos": "-298.067 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta08_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta08_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta07_big",
+      "transform":
+      {
+        "pos": "-296.415 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta07_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta07_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta07_small",
+      "transform":
+      {
+        "pos": "-294.72 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta07_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta07_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta06_big",
+      "transform":
+      {
+        "pos": "-291.845 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta06_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta06_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta06_medium",
+      "transform":
+      {
+        "pos": "-289.066 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta06_medium.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta06_medium.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta06_small",
+      "transform":
+      {
+        "pos": "-286.959 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta06_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta06_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta05_big",
+      "transform":
+      {
+        "pos": "-284.066 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta05_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta05_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta05_small",
+      "transform":
+      {
+        "pos": "-282.661 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta05_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta05_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta04_big",
+      "transform":
+      {
+        "pos": "-281.298 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta04_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta04_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta04_small",
+      "transform":
+      {
+        "pos": "-279.934 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta04_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta04_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta03_small",
+      "transform":
+      {
+        "pos": "-278.612 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta03_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta03_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta03_small",
+      "transform":
+      {
+        "pos": "-277.124 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta03_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta03_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta02_big",
+      "transform":
+      {
+        "pos": "-275.389 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta02_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta02_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta02_small",
+      "transform":
+      {
+        "pos": "-273.447 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta02_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta02_small.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta01_big",
+      "transform":
+      {
+        "pos": "-271.711 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta01_big.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta01_big.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta01_medium",
+      "transform":
+      {
+        "pos": "-269.687 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta01_medium.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta01_medium.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "planta01_small",
+      "transform":
+      {
+        "pos": "-268.034 0.0 145.986",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/planta01_small.instanced_mesh",
+          "materials":
+          [
+             "data/materials/planta01_small.material"
+          ]
+        }
+      ]
+    }
+  }
+]
