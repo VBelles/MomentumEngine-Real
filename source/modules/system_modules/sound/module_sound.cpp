@@ -41,7 +41,6 @@ bool CModuleSound::stop() {
 
 void CModuleSound::update(float delta) {
 	updateListenerAttributes();
-	auto res = system->setListenerAttributes(0, &listenerAttributes);
 	system->update();
 }
 
@@ -54,8 +53,7 @@ void CModuleSound::updateListenerAttributes() {
 		}
 	}
 	if (cameraHandle.isValid()) {
-		CEntity* cameraEntity = getEntityByName(GAME_CAMERA);
-		TCompCamera* camera = cameraEntity->get<TCompCamera>();
+		TCompCamera* camera = cameraHandle;
 		listenerAttributes.position = toFMODVector(camera->getCamera()->getPosition());
 		listenerAttributes.forward = toFMODVector(camera->getCamera()->getFront());
 		listenerAttributes.up = toFMODVector(camera->getCamera()->getUp());
@@ -64,6 +62,9 @@ void CModuleSound::updateListenerAttributes() {
 	else {
 		listenerAttributes = {};
 	}
+	auto res = system->setListenerAttributes(0, &listenerAttributes);
+
+
 }
 
 Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const CTransform& transform) {

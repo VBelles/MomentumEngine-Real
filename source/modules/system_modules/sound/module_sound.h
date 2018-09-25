@@ -10,12 +10,14 @@ private:
 	FMOD::Studio::System* system = nullptr;
 
 	std::map<std::string, FMOD::Studio::Bank*> banks;
-	std::map<std::string, FMOD::Studio::EventInstance*> eventInstances;
+	
 	FMOD_3D_ATTRIBUTES listenerAttributes;
 
 	CHandle cameraHandle;
 
 	void updateListenerAttributes();
+
+	std::vector<std::pair<FMOD::Studio::EventInstance*, CHandle>> followerEmissors;
 
 public:
 	CModuleSound(const std::string& name);
