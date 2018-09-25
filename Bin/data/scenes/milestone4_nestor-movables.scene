@@ -2,6 +2,28 @@
   {
     "entity":
     {
+      "name": "nes_plataformaSpikes009_col001",
+      "transform":
+      {
+        "pos": "-156.071 -2.31374 82.9738",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataformaSpikes009_col001.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_mariosunshine_MS006",
       "transform":
       {
