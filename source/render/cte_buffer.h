@@ -37,7 +37,7 @@ public:
 		mtx.lock();
 		const TPOD* pod = this;
 		Render.ctx->UpdateSubresource(cb, 0, NULL, pod, 0, 0);
-		mtx.unlock();
+ 		mtx.unlock();
 	}
 };
 

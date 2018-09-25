@@ -130,7 +130,9 @@ void CMaterial::activate() const {
 }
 
 void CMaterial::activateTextures(int slot0) const {
+	mtx.lock();
 	Render.ctx->PSSetShaderResources(slot0, max_textures, (ID3D11ShaderResourceView**)srvs);
+	mtx.unlock();
 }
 
 void CMaterial::debugInMenu() {

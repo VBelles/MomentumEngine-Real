@@ -2382,6 +2382,7 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 
 TODO: Poder cambiar atributos en varios objetos a la vez.
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
+TODO: Exportar en archivo separado una lista con los nombres de meshes, texturas, materiales, conv_mesh.
 
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos

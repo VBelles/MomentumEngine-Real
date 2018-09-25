@@ -106,8 +106,8 @@ global mechsData = attributes mechData (
 		checkbox change_animation 	"Change animation" 				type: #boolean align:#right
 		checkbox render 			"Render enabled on active" 		type: #boolean align:#right
 		checkbox collider 			"Collider enabled on active" 	type: #boolean align:#right
-		checkbox platform 			"Platform enabled on active" 	type: #boolean align:#right
-		checkbox animation 			"Animation enabled on active" 	type: #boolean align:#right
+		checkbox platform 			"Platf enabled on active" 	type: #boolean align:#right
+		checkbox animation 			"Anim enabled on active" 	type: #boolean align:#right
 	)
 )
 

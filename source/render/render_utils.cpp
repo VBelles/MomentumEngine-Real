@@ -436,7 +436,9 @@ struct CSamplers {
     }
 
     void activateTextureSamplers() {
+		mtx.lock();
         Render.ctx->PSSetSamplers(0, SAMPLERS_COUNT, all_samplers);
+		mtx.unlock();
     }
 };
 
@@ -448,28 +450,38 @@ static CBlends      blends;
 
 // Activate just one
 void activateSampler(int slot, eSamplerType sample) {
+	mtx.lock();
     Render.ctx->PSSetSamplers(slot, 1, &samplers.all_samplers[sample]);
+	mtx.unlock();
 }
 
 // Activate all at once
 void activateAllSamplers() {
+	mtx.lock();
     Render.ctx->PSSetSamplers(0, SAMPLERS_COUNT, samplers.all_samplers);
+	mtx.unlock();
 }
 
 void activateZConfig(enum ZConfig cfg) {
     assert(zconfigs.z_cfgs[cfg] != nullptr);
     //aquí podríamos poner el valor de referencia según el ZConfig
+	mtx.lock();
     Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 255);
+	mtx.unlock();
 }
 
 void activateRSConfig(enum RSConfig cfg) {
+	mtx.lock();
     Render.ctx->RSSetState(rasterizers.rasterize_states[cfg]);
+	mtx.unlock();
 }
 
 void activateBlendConfig(enum BlendConfig cfg) {
     float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };    // Not used
     UINT sampleMask = 0xffffffff;
+	mtx.lock();
     Render.ctx->OMSetBlendState(blends.blend_states[cfg], blendFactor, sampleMask);
+	mtx.unlock();
 }
 
 // ---------------------------------------
