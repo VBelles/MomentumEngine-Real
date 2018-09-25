@@ -345,12 +345,14 @@ void CModuleRender::generateFrame() {
 	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
 		PROFILE_FUNCTION("Render.swapChain");
+		mtx.lock();
 		if (vsync) {
 			Render.swapChain->Present(1, 0);
 		}
 		else {
 			Render.swapChain->Present(0, 0);
 		}
+		mtx.unlock();
 	}
 }
 

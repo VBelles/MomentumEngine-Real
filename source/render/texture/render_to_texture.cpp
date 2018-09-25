@@ -78,9 +78,11 @@ bool CRenderToTexture::createRT(
 // Will return prev rt
 CRenderToTexture* CRenderToTexture::activateRT() {
 	CRenderToTexture* prev_rt = current_rt;
+	mtx.lock();
 	Render.ctx->OMSetRenderTargets(1, &render_target_view, depth_stencil_view);
 	activateViewport();
 	current_rt = this;
+	mtx.unlock();
 	return prev_rt;
 }
 
@@ -92,15 +94,22 @@ void CRenderToTexture::activateViewport() {
 	vp.TopLeftY = 0;
 	vp.MinDepth = 0.f;
 	vp.MaxDepth = 1.f;
+	mtx.lock();
 	Render.ctx->RSSetViewports(1, &vp);
+	mtx.unlock();
 }
 
 void CRenderToTexture::clear(VEC4 clear_color) {
 	assert(render_target_view);
+	mtx.lock();
 	Render.ctx->ClearRenderTargetView(render_target_view, &clear_color.x);
+	mtx.unlock();
 }
 
 void CRenderToTexture::clearZ() {
-  if(depth_stencil_view)
-    Render.ctx->ClearDepthStencilView(depth_stencil_view, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	if (depth_stencil_view) {
+		mtx.lock();
+		Render.ctx->ClearDepthStencilView(depth_stencil_view, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+		mtx.unlock();
+	}
 }

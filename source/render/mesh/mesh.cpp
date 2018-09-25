@@ -165,16 +165,19 @@ void CRenderMesh::render() const {
 			, CRenderTechnique::current->vs->getVertexDecl()->name.c_str()
 			, vtx_decl->name.c_str()
 		));
-
+	mtx.lock();
 	if (ib) Render.ctx->DrawIndexed(num_indices, 0, 0);
 	else Render.ctx->Draw(num_vertexs, 0);
+	mtx.unlock();
 }
 
 void CRenderMesh::renderSubMesh(uint32_t subgroup_idx) const {
 	assert(subgroup_idx < subgroups.size());
 	auto& g = subgroups[subgroup_idx];
+	mtx.lock();
 	if (ib) Render.ctx->DrawIndexed(g.num_indices, g.first_idx, 0);
 	else Render.ctx->Draw(g.num_indices, g.first_idx);
+	mtx.unlock();
 }
 
 void CRenderMesh::activateAndRender() const {
