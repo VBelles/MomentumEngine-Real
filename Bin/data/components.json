@@ -13,7 +13,6 @@
     "mechanism_system",
     "rigid_anim",
     "culling",
-    "particles",
     "givePower",
     "skeleton",
     "skel_lookat",

@@ -5,7 +5,7 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
-debugMode = true
+debugMode = false
 
 escapeEnable = true --Allow abort script execution holding ESC.
 
@@ -20,6 +20,8 @@ global brokenMaps    	= #()
 global luaMechSys		= #()
 
 global toAddSpikes		= #()
+
+global resources 		= #()
 
 global platfDirector	= #(#())
 
@@ -138,8 +140,9 @@ struct TJsonFormatter (
 		format ("{ \"entity\": { \"name\": \"" + prefix + "Dummy\" } },\n") to:fs
 	),
 	
-	fn writeText text = (
-		format "%\n" text to:fs
+	fn writeText text newLine:true = (
+		if newLine then format "%\n" text to:fs
+		else format "%" text to:fs
 	),
 
 	fn arrayOfStrings arr suffix:"" = (
@@ -249,6 +252,7 @@ struct TMaterialExporter (
 			)
 		)
 		fs.writeKeyValue alias json_filename
+		appendIfUnique resources json_filename
 	),
 
 	fn exportMaterialContent mat: tech:"pbr" = (
@@ -307,15 +311,18 @@ struct TMaterialExporter (
 			--format "Exporting material % % %\n" mat_name mat (classOf mat as string)
 			fs.begin (project_path + mat_name + ".material")
 				exportMaterialContent mat:mat
+				appendIfUnique resources (mat_name + ".material")
 			fs.end()
 		) else ( --Is pure.
 			-- Generate normal material but with pureON.tech.
 			fs.begin (project_path + mat_name + "_" + pureOnSuffix + ".material")
 				exportMaterialContent mat:mat tech:pureOnSuffix
+				appendIfUnique resources (mat_name + "_" + pureOnSuffix + ".material")
 			fs.end()
 		    -- Generate identical material but with pure.tech.
 			fs.begin (project_path + mat_name + "_" + pureSuffix + ".material")
 				exportMaterialContent mat:mat tech:pureSuffix
+				appendIfUnique resources (mat_name + "_" + pureSuffix + ".material")
 			fs.end()
 		)
 	),
@@ -332,6 +339,7 @@ struct TMaterialExporter (
 			fs.writeKey "mats"
 			local matsNames = #()
 			for m in mats do append matsNames (matPath + m.name + ".material")
+			join resources matsNames
 			fs.arrayOfStrings matsNames
 			fs.writeComma()
 			exportMap mat.mask "mix_blend_weights" "null_blend"
@@ -344,11 +352,11 @@ struct TMaterialExporter (
 
 		if mat.map1 != undefined then (
 			if classOf mat.map1 != MultiMaterial then append mats mat.map1
-			else for m in mat.map1 do append mats m
+			else for m in mat.map1 where m != undefined do append mats m
 		)
 		if mat.map2 != undefined then (
 			if classOf mat.map2 != MultiMaterial then append mats mat.map2
-			else for m in mat.map2 do append mats m
+			else for m in mat.map2 where m != undefined do append mats m
 		)
 		return mats
 	),
@@ -358,11 +366,13 @@ struct TMaterialExporter (
 		for m in mats do (
 			fs.begin (project_path + matPath + m.name + ".material")
 				exportMaterialContent mat:m
+				appendIfUnique resources (matPath + m.name + ".material")
 			fs.end()
 		)
 
 		fs.begin (project_path + matPath + mat.name + ".material")
 			exportMix mats matPath mat:mat
+			appendIfUnique resources (matPath + mat.name + ".material")
 		fs.end()
 	),
 
@@ -380,8 +390,9 @@ struct TMaterialExporter (
 				exportMaterialContent tech:pureOnSuffix
 			fs.end()
 		)
+		appendIfUnique resources mat_name + suffix + ".material"
 	),
-	
+
 	-- Will return an array of all the materials names used by obj and exported by us.
 	fn exportMaterial mat mat_path obj = (
 		local exported_materials = #()
@@ -538,9 +549,12 @@ struct TSceneExporter (
 	),
 	
 	fn isUnique obj = (
-		if attrManager.hasAttribute obj "uniqueData" then 
-			return attrManager.getAttributeValue obj "uniqueData" #unique
-		else return true --Unique by default.
+		local unique = true --Unique by default.
+		if attrManager.hasAttribute obj "uniqueData" then (
+			unique = attrManager.getAttrValue obj "uniqueData" #unique
+			if unique == undefined then unique = true
+		)
+		return unique
 	),
 	
 	fn beginEntity = (
@@ -758,6 +772,7 @@ struct TSceneExporter (
 		-- -- ·Export Mesh· -- --
 		-- Generate the mesh file.
 		exportMeshObject obj (project_path + mesh_path + obj.name + ".mesh")
+		appendIfUnique resources (mesh_path + obj.name + ".mesh")
 
 		-- -- ·Export material· -- --
 		local me = TMaterialExporter project_path:project_path \
@@ -783,16 +798,23 @@ struct TSceneExporter (
 		local grup 	   = 0
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
-			local xRot = attrManager.getAttributeValue obj "rotateData" #x
-			local yRot = attrManager.getAttributeValue obj "rotateData" #z --!!! inverted.
-			local zRot = attrManager.getAttributeValue obj "rotateData" #y --!!! inverted.
+			local xRot = attrManager.getAttrValue obj "rotateData" #x
+			local yRot = attrManager.getAttrValue obj "rotateData" #z --!!! inverted.
+			local zRot = attrManager.getAttrValue obj "rotateData" #y --!!! inverted.
 
-			rotAxis = Point3 xRot yRot zRot
-			rotSpeed = attrManager.getAttributeValue obj "rotateData" #rotSpeed
+			if xRot == undefined or yRot == undefined or zRot == undefined then
+				rotAxis = Point3 0 0 1
+			else rotAxis = Point3 xRot yRot zRot
 
-			rolSpeed = attrManager.getAttributeValue obj "rotateData" #rolSpeed
-			wait 	 = attrManager.getAttributeValue obj "rotateData" #wait
-			grup 	 = attrManager.getAttributeValue obj "rotateData" #grup
+			rotSpeed = attrManager.getAttrValue obj "rotateData" #rotSpeed
+			if rotSpeed == undefined then rotSpeed = 0.5
+
+			rolSpeed = attrManager.getAttrValue obj "rotateData" #rolSpeed
+			if rolSpeed == undefined then rolSpeed = 0.0
+			wait 	 = attrManager.getAttrValue obj "rotateData" #wait
+			if wait == undefined then wait = 2
+			grup 	 = attrManager.getAttrValue obj "rotateData" #grup
+			if grup == undefined then grup = 0
 		)
 		--Export only if it has rotation speed.
 		if rotSpeed > 0 then (
@@ -844,10 +866,10 @@ struct TSceneExporter (
 				)
 
 				local closed = false
-				local followSpeed = 0.3
 				if childClass == circle then closed = true
 				else closed = isClosed child 1
 
+				local followSpeed = 0.3
 				if closed then followSpeed = 0.04
 
 				local auto = true
@@ -855,10 +877,14 @@ struct TSceneExporter (
 				local wait = 0.0
 				--Get from attribute if it exists.
 				if attrManager.hasAttribute obj "moveData" then (
-					auto 		= attrManager.getAttributeValue obj "moveData" #auto
-					loop 		= attrManager.getAttributeValue obj "moveData" #loop
-					wait 		= attrManager.getAttributeValue obj "moveData" #wait
-					followSpeed = attrManager.getAttributeValue obj "moveData" #spd
+					auto 	= attrManager.getAttrValue obj "moveData" #auto
+					if auto == undefined then auto = true
+					loop 	= attrManager.getAttrValue obj "moveData" #loop
+					if loop == undefined then loop = true
+					wait 	= attrManager.getAttrValue obj "moveData" #wait
+					if wait == undefined then wait = 0.0
+					followSpeed = attrManager.getAttrValue obj "moveData" #spd
+					if followSpeed == undefined then followSpeed = 0.3
 				)
 
 				fs.writeComma()
@@ -916,17 +942,46 @@ struct TSceneExporter (
 
 		local rend = true
 		local coll = true
+		local plat = true
+		local anim = true
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "mechData" then (
-			local rend = attrManager.getAttributeValue obj "mechData" #rend
-			local coll = attrManager.getAttributeValue obj "mechData" #coll
+			change_rend = attrManager.getAttrValue obj "mechData" #change_rend
+			if change_rend == undefined then change_rend = true
+			change_coll = attrManager.getAttrValue obj "mechData" #change_coll
+			if change_coll == undefined then change_coll = true
+			change_plat = attrManager.getAttrValue obj "mechData" #change_plat
+			if change_plat == undefined then change_plat = true
+			change_anim = attrManager.getAttrValue obj "mechData" #change_anim
+			if change_anim == undefined then change_anim = true
+
+			rend = attrManager.getAttrValue obj "mechData" #rend
+			if rend == undefined then rend = true
+			coll = attrManager.getAttrValue obj "mechData" #coll
+			if coll == undefined then coll = true
+			plat = attrManager.getAttrValue obj "mechData" #plat
+			if plat == undefined then plat = true
+			anim = attrManager.getAttrValue obj "mechData" #anim
+			if anim == undefined then anim = true
 		)
 		fs.writeComma()
 		fs.writeKey "activate_listener"
 		fs.beginObj()
+			fs.writeKeyValue "change_render" change_rend
+			fs.writeComma()
+			fs.writeKeyValue "change_collider" change_coll
+			fs.writeComma()
+			fs.writeKeyValue "change_platform" change_plat
+			fs.writeComma()
+			fs.writeKeyValue "change_animation" change_anim
+			fs.writeComma()
 			fs.writeKeyValue "render_enabled_on_active" rend
 			fs.writeComma()
 			fs.writeKeyValue "collider_enabled_on_active" coll
+			fs.writeComma()
+			fs.writeKeyValue "platform_enabled_on_active" plat
+			fs.writeComma()
+			fs.writeKeyValue "animation_enabled_on_active" anim
 		fs.endObj()
 		fs.writeComma()
 	),
@@ -936,12 +991,15 @@ struct TSceneExporter (
 		local forcedTri = false
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "collData" then (
-			forcedTri = attrManager.getAttributeValue obj "collData" #collType
+			forcedTri = attrManager.getAttrValue obj "collData" #collType
+			if forcedTri == undefined then forcedTri = false
 		)
 
 		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh != "" then mesh_name = mesh_path + forceMesh + ".col_mesh"
+
+		appendIfUnique resources mesh_name
 
 		local meshType = "static"
 		if mov then meshType = "kinematic"
@@ -1078,17 +1136,6 @@ struct TSceneExporter (
 				fs.writeComma()
 				exportStringArray "mask" masks
 			)
-
-			if mech then (
-				local coll = true
-				--Get from attribute if it exists.
-				if obj.parent != undefined and
-				   attrManager.hasAttribute obj.parent "mechData" then (
-					coll = attrManager.getAttributeValue obj.parent "mechData" #coll
-				)
-				fs.writeComma()
-				fs.writeKeyValue "enabled" (not coll)
-			)
 		fs.endObj() -- End collider component.
 	),
 
@@ -1180,9 +1227,12 @@ struct TSceneExporter (
 
 			--Get from attribute if it exists.
 			if attrManager.hasAttribute obj "animData" then (
-				mov	 = attrManager.getAttributeValue obj "animData" #mov
-				loop = attrManager.getAttributeValue obj "animData" #loop
-				kill = attrManager.getAttributeValue obj "animData" #kill
+				mov	 = attrManager.getAttrValue obj "animData" #mov
+				if mov == undefined then mov = false
+				loop = attrManager.getAttrValue obj "animData" #loop
+				if loop == undefined then loop = false
+				kill = attrManager.getAttrValue obj "animData" #kill
+				if kill == undefined then kill = false
 			)
 
 			fs.writeComma()
@@ -1199,7 +1249,8 @@ struct TSceneExporter (
 		local powUp = "-NONE-"
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "collData" then (
-			powUp = attrManager.getAttributeValue obj "collData" #pwrUp
+			powUp = attrManager.getAttrValue obj "collData" #pwrUp
+			if powUp == undefined then powUp == "-NONE-"
 
 			if powUp != "-NONE-" then (
 				fs.writeComma()
@@ -1224,12 +1275,6 @@ struct TSceneExporter (
 		exportTransform obj
 		fs.writeComma()
 
-		--Get from attribute if it exists and is mechanism.
-		if attrManager.hasAttribute obj "mechData" then (
-			renderEnabled = not (attrManager.getAttributeValue obj "mechData" #rend)
-		) else if mech then (
-			renderEnabled = false --default.
-		)
 		if mech then exportMech obj
 
 		exportRenderMesh obj pure:pure renderEnabled:renderEnabled
@@ -1254,9 +1299,9 @@ struct TSceneExporter (
 					)
 
 					if attrManager.hasAttribute child "collData" then (
-						format "Collider % has collData.\n" child.name --DEBUG
-						spike = attrManager.getAttributeValue child "collData" #spke
-						format "spike: %.\n" spike
+						spike = attrManager.getAttrValue child "collData" #spke
+						if spike == undefined then spike = false
+
 						if spike then append toAddSpikes child.name
 					)
 
@@ -1380,7 +1425,6 @@ struct TSceneExporter (
 	-- --ENTITY: CAMERA (also exports child line)-------------------------------
 	fn exportEntityCamera obj nValidObjs = (
 		local objClass = classOf obj
-		--format "name: %\n" obj.name --DEBUG
 		if objClass == TargetCamera or
 		   objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
@@ -1402,15 +1446,36 @@ struct TSceneExporter (
 				fs.writeComma()
 				fs.writeKey "fixed_camera"
 				fs.beginObj()
-					fs.writeKeyValue "returnToPlayerCameraWithInput" false
+
+				local retToPlyr = false
+				local modPlRot  = true
+				local tMixOut  	= 1.0
+				local panSpeed 	= 0.0
+				local panRadius	= 3.0
+				--Get from attribute if it exists.
+				if attrManager.hasAttribute obj "camData" then (
+					retToPlyr = attrManager.getAttrValue obj "camData" #retToPlyr
+					if retToPlyr == undefined then retToPlyr = false
+					modPlRot = attrManager.getAttrValue obj "camData" #modPlRot
+					if modPlRot == undefined then modPlRot = true
+
+					tMixOut = attrManager.getAttrValue obj "camData" #tMixOut
+					if tMixOut == undefined then tMixOut = 1.0
+					panSpeed = attrManager.getAttrValue obj "camData" #panSpeed
+					if panSpeed == undefined then panSpeed = 0.0
+					panRadius = attrManager.getAttrValue obj "camData" #panRadius
+					if panRadius == undefined then panRadius = 3.0
+				)
+
+					fs.writeKeyValue "returnToPlayerCameraWithInput" retToPlyr
 					fs.writeComma()
-					fs.writeKeyValue "modifyPlayerCameraRotation" true
+					fs.writeKeyValue "modifyPlayerCameraRotation" modPlRot
 					fs.writeComma()
-					fs.writeKeyValue "timeToMixOut" 1
+					fs.writeKeyValue "timeToMixOut" tMixOut
 					fs.writeComma()
-					fs.writeKeyValue "panningSpeed" 0
+					fs.writeKeyValue "panningSpeed" panSpeed
 					fs.writeComma()
-					fs.writeKeyValue "panningRadius" 3
+					fs.writeKeyValue "panningRadius" panRadius
 				fs.endObj()
 
 				-- Add child spline if it exists.
@@ -1539,7 +1604,8 @@ struct TSceneExporter (
 				local fov = 40
 				--Get from attribute if it exists.
 				if attrManager.hasAttribute obj "lightData" then (
-					fov	= attrManager.getAttributeValue obj "lightData" #fov
+					fov	= attrManager.getAttrValue obj "lightData" #fov
+					if fov == undefined then fov = 40
 				)
 				fs.writeKeyValue "fov" fov
 			fs.endObj()
@@ -1723,9 +1789,12 @@ struct TSceneExporter (
 
 			--Get from attribute if it exists.
 			if attrManager.hasAttribute obj "mechTrigData" then (
-				deacTime	= attrManager.getAttributeValue obj "mechTrigData" #deacT
-				reacTime 	= attrManager.getAttributeValue obj "mechTrigData" #reacT
-				resettable  = attrManager.getAttributeValue obj "mechTrigData" #reset
+				deacTime	= attrManager.getAttrValue obj "mechTrigData" #deacT
+				if deacTime == undefined then deacTime = 5
+				reacTime 	= attrManager.getAttrValue obj "mechTrigData" #reacT
+				if reacTime == undefined then reacTime = 3
+				resettable  = attrManager.getAttrValue obj "mechTrigData" #reset
+				if resettable == undefined then resettable = true
 			)
 	
 			fs.writeKey "mechanism"
@@ -1783,6 +1852,7 @@ struct TSceneExporter (
 
 	fn exportInstancedMeshFile instanceCat:"" = (
 		local instancesPath = project_path + mesh_path + instanceCat + ".instanced_mesh"
+		appendIfUnique resources (mesh_path + instanceCat + ".instanced_mesh")
 
 		fss.begin instancesPath --Create file.
 			fss.beginObj()
@@ -1816,6 +1886,7 @@ struct TSceneExporter (
 					fs.writeKey "materials"
 						fs.beginArray()
 							 fs.writeValue (mats_path + instanceCategory + ".material") addIndent:true
+							 appendIfUnique resources (mats_path + instanceCategory + ".material")
 						fs.endArray()
 				fs.endObj()
 			fs.endArray()
@@ -2079,7 +2150,9 @@ struct TSceneExporter (
 	),
 
 	fn exportUniqueFile uniqueType:"" = (
-		local uniquesPath = project_path + uniques_path + "unique_" + uniqueType + ".json"
+		local ofilename = getFilenameFile maxFileName
+		local uniquesPath = project_path + uniques_path + \
+							ofilename + "-unique_" + uniqueType + ".json"
 
 		local uniquesArray = #()
 		case uniqueType of (
@@ -2139,33 +2212,54 @@ struct TSceneExporter (
 	),
 
 	fn exportPlatfDirector = (
+		if platfDirector.count == 0 then return false
+
 		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
 		
 		fs.begin plDirFilePath --Create file.
+		fs.beginArray()
 			beginEntity()
 			fs.writeKeyValue "name" "platform_director"
 			fs.writeComma()
 			fs.writeKey "platforms_director"
 			fs.beginObj()
-				fs.writeKey "platforms"
+				fs.writeKey "slots"
 				fs.beginArray()
-				local validPlGroups = 0
-				for i = 1 to platfDirector.count do (
-					if platfDirector[i] != undefined then (
-						if validPlGroups >= 1 then fs.writeComma()
-						fs.beginArray()
-						for j = 1 to platfDirector[i].count do (
-							if j != 1 then fs.writeComma()
-							fs.writeName platfDirector[i][j]
-						)
-						fs.endArray()
+					local validPlGroups = 0
+					for i = 1 to platfDirector.count do (
+						if platfDirector[i] != undefined and 
+						   platfDirector[i][1] != undefined then (
+							format "platfDirector.count: %\n" platfDirector.count --DEBUG
+							format "platfDirector[1]: %\n" platfDirector[1] --DEBUG
+							if validPlGroups >= 1 then fs.writeComma()
+							fs.beginObj()
+								local obj = getNodeByName platfDirector[i][1]
+								local waitTime = 0
 
-						validPlGroups += 1
+								if attrManager.hasAttribute obj "rotateData" then (
+									waitTime = attrManager.getAttrValue obj "rotateData" #waitT
+									if waitTime == undefined then waitTime = 0
+								)
+
+								fs.writeKeyValue "wait_time" waitTime
+								fs.writeComma()
+								fs.writeKey "platforms"
+								fs.beginArray()
+								format "platfDirector[i].count: %\n" platfDirector[i].count --DEBUG
+								for j = 1 to platfDirector[i].count do (
+									if j != 1 then fs.writeComma()
+									fs.writeName platfDirector[i][j]
+								)
+								fs.endArray() --end array platforms.
+							fs.endObj() --end obj slot.
+
+							validPlGroups += 1
+						)
 					)
-				)
-				fs.endArray()
-			fs.endObj()
+				fs.endArray() --end array slots.
+			fs.endObj() --end obj platforms_director.
 			endEntity()
+		fs.endArray()
 		fs.end()
 	),
 
@@ -2191,6 +2285,26 @@ struct TSceneExporter (
 
 	fn exportSpikes = (
 		if toAddSpikes.count > 0 then exportSpikesFile()
+	),
+
+	fn exportResourcesFile = (
+		local resourcesFilePath = project_path + base_path + "resourcesTEST.json"
+		
+		fs.begin resourcesFilePath --Create file.
+			fs.beginArray()
+				undo off (
+				for i = 1 to resources.count do (
+						if i > 1 then fs.writeComma()
+
+						fs.writeText ("\"" + resources[i] + "\"") newLine:false
+				)
+				) --undo off end.
+			fs.endArray()
+		fs.end()
+	),
+
+	fn exportResources = (
+		if resources.count > 0 then exportResourcesFile()
 	),
 
 	fn showBrokenMaps = (
@@ -2293,6 +2407,7 @@ struct TSceneExporter (
 		exportPlatfDirector()
 		exportSpikes()
 		showBrokenMaps()
+		exportResources()
 		)--End undo off.
 	)
 )
@@ -2301,11 +2416,7 @@ struct TSceneExporter (
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
-TODO: Ignorar slots vacíos de multimaterial al exportar para que no dé error
-	  si se dejan alguno.
-TODO: Poder cambiar atributos en varios objetos a la vez.
-TODO: Atributos para los parámetros de las cámaras. Que el trigger sea el parent.
-TODO: Separar uniques por nombre de escena.
+TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
 
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos

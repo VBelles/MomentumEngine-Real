@@ -27,8 +27,8 @@ void TCompPlatformSimple::debugInMenu() {
 	if (ImGui::DragFloat3("rotationAxis", &rotationAxisLocal.x, 0.5f, -1.f, 1.f)) {
 		TCompTransform* transform = get<TCompTransform>();
 		rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
-							 transform->getUp()    * rotationAxisLocal.y +
-							 transform->getFront() * rotationAxisLocal.z;
+			transform->getUp()    * rotationAxisLocal.y +
+			transform->getFront() * rotationAxisLocal.z;
 	}
 
 	ImGui::DragFloat("rollSpeed", &rollSpeed, 0.01f, -20.f, 20.f);
@@ -80,9 +80,9 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 
 	// Rotation
 	rotationSpeed = j.value("rotation_speed", 0.f);
-	if (j.count("rotation_axis")) {
-		rotationAxisLocal = loadVEC3(j["rotation_axis"]);
-	}
+	rotationAxisLocal = j.count("rotation_axis") ? loadVEC3(j["rotation_axis"]) : VEC3::UnitY;
+	if (rotationAxisLocal == VEC3::Zero) rotationAxisLocal = VEC3::UnitY;
+
 	// Roll
 	if (j.count("roll")) {
 		auto& jRoll = j["roll"];
@@ -120,7 +120,6 @@ void TCompPlatformSimple::turnAround() {
 
 void TCompPlatformSimple::update(float delta) {
 	if (enabled) {
-
 
 		TCompTransform* transform = getTransform();
 		VEC3 position = transform->getPosition();
@@ -197,7 +196,10 @@ void TCompPlatformSimple::update(float delta) {
 
 		}
 		//Update collider
-		getRigidDynamic()->setKinematicTarget(toPxTransform(transform));
+		auto collider = getRigidDynamic();
+		if (collider) {
+			collider->setKinematicTarget(toPxTransform(transform));
+		}
 	}
 }
 

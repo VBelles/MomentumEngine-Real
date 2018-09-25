@@ -1,3 +1,113 @@
 [
-
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes009_col003_spikes",
+      "transform":
+      {
+        "pos": "-170.254 -2.79617 59.1245",
+        "rotation": "-0.0948982 -0.00826322 -0.152392 -0.983719"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/m_platform_spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes009_col002_spikes",
+      "transform":
+      {
+        "pos": "-165.028 -2.97122 65.6042",
+        "rotation": "-0.0952279 -0.00205629 -0.100979 -0.990318"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/m_platform_spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes009_col001_spikes",
+      "transform":
+      {
+        "pos": "-161.773 -2.63699 75.1132",
+        "rotation": "-0.0212418 -0.00127433 0.0598707 -0.997979"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/m_platform_spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  }
 ]

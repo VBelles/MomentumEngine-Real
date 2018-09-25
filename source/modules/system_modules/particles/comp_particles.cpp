@@ -44,9 +44,9 @@ void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
 	_launched = true;
 }
 
-void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
-	/*if (systems.empty()) return;
-	for (auto p : systems) {
+void TCompParticles::onDestroyed(const TMsgEntityDestroyed& msg) {
+	// TODO Seguir investigando este f�nomone: cuando se envia el mensaje TMsgEntityDestroyed el componente ya esta destruido
+	/*for (auto p : systems) {
 		EngineParticles.kill(p.second->getHandle(), _fadeOut);
 	}
 	systems.clear();*/

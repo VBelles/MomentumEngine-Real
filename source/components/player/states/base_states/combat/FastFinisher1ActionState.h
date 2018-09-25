@@ -12,8 +12,8 @@ private:
 	float powerToGet = 3000.f;
 	float damage = 2.f;
 
-	float suspensionTime = 0.4f;
-	VEC2 launchSpeed = { 14.f, 5.f };
+	float suspensionTime = 2.0f;
+	VEC2 launchSpeed = { 30.f, 6.f };
 	bool isSlashOut = false;
 
 	CTimer movementTimer;

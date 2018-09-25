@@ -9,7 +9,7 @@ private:
 
 	float powerToGet = 3000.f;
 	float damage = 3.f;
-	float suspensionTime = 1.5f;
+	float suspensionTime = 2.0f;
 	bool isSlashOut = false;
 
 	CTimer movementTimer;

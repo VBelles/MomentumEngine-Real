@@ -4,7 +4,8 @@
 
 class SpendCoinsActionState : public GroundedActionState {
 private:
-	std::string animation = "idle";
+	std::string animation = "spend_coins";
+	std::string animationLoop = "spend_coins_loop";
 
 	CTimer spendTimer;
 	int coinsEachCycle = 1;

@@ -2,6 +2,83 @@
   {
     "entity":
     {
+      "name": "plataformeo_coin000",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "115.668 19.3909 160.944"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_coin001",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "116.321 23.8909 168.416"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_coin002",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "111.733 44.8909 173.334"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_coin003",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "111.428 49.8909 169.848"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_coin004",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "121.962 57.8909 186.995"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_coin005",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "121.526 57.8909 182.014"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_coin006",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "121.09 57.8909 177.033"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_coin_052",
       "prefab": "data/prefabs/coin.prefab",
       "transform":

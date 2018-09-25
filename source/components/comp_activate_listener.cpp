@@ -5,6 +5,7 @@
 #include "components/comp_render.h"
 #include "components/comp_collider.h"
 #include "components/platforms/comp_platform_simple.h"
+#include "components/platforms/comp_platforms_director.h"
 #include "components/controllers/comp_rigid_anim.h"
 #include "components/controllers/comp_rigid_anims_director.h"
 #include "entity/common_msgs.h"
@@ -16,6 +17,7 @@ void TCompActivateListener::debugInMenu() {
 }
 
 void TCompActivateListener::registerMsgs() {
+	DECL_MSG(TCompActivateListener, TMsgEntityCreated, onEntityCreated);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemActivated, onActivate);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemDeactivated, onDeactivate);
 }
@@ -25,52 +27,125 @@ void TCompActivateListener::load(const json& j, TEntityParseContext& ctx) {
 	colliderEnabledOnActive = j.value("collider_enabled_on_active", colliderEnabledOnActive);
 	platformEnabledOnActive = j.value("platform_enabled_on_active", platformEnabledOnActive);
 	animationEnabledOnActive = j.value("animation_enabled_on_active", animationEnabledOnActive);
+
+	changeRender = j.value("change_render", changeRender);
+	changeCollider = j.value("change_collider", changeCollider);
+	changePlatform = j.value("change_platform", changePlatform);
+	changeAnim = j.value("change_animation", changeAnim);
+}
+
+void TCompActivateListener::onEntityCreated(const TMsgEntityCreated & msg) {
+	if (changeRender) {
+		TCompRender* render = get<TCompRender>();
+		if (render) {
+			if (renderEnabledOnActive) {
+				render->disable();
+			}
+			else {
+				render->enable();
+			}
+		}
+	}
+	if (changeCollider) {
+		TCompCollider* collider = get<TCompCollider>();
+		if (collider) {
+			if (colliderEnabledOnActive) {
+				collider->destroy();
+			}
+			else {
+				collider->create();
+			}
+		}
+	}
+
+	if (changePlatform) {
+		TCompPlatformsDirector* platformsDirector = get<TCompPlatformsDirector>();
+		TCompPlatformSimple* platform = get<TCompPlatformSimple>();
+		if (platformsDirector) {
+			platformsDirector->setEnabled(!platformEnabledOnActive);
+		}
+		else if (platform) {
+			platform->setEnabled(!platformEnabledOnActive);
+		}
+	}
+
+	if (changeAnim) {
+		TCompRigidAnimsDirector* animsDirector = get<TCompRigidAnimsDirector>();
+		TCompRigidAnim* anim = get<TCompRigidAnim>();
+		if(animsDirector){
+			animsDirector->setIsMoving(!animationEnabledOnActive);
+		}
+		else if (anim) {
+			anim->setIsMoving(!animationEnabledOnActive);
+		}
+	}
 }
 
 void TCompActivateListener::onActivate(const TMsgMechanismSystemActivated & msg) {
-	TCompRender* render = get<TCompRender>();
-	if (render) {
-		if (renderEnabledOnActive) {
-			render->enable();
-		}
-		else {
-			render->disable();
-		}
-	}
-	TCompCollider* collider = get<TCompCollider>();
-	if (collider) {
-		if (colliderEnabledOnActive) {
-			collider->create();
-		}
-		else {
-			collider->destroy();
+	if (changeRender) {
+		TCompRender* render = get<TCompRender>();
+		if (render) {
+			if (renderEnabledOnActive) {
+				render->enable();
+			}
+			else {
+				render->disable();
+			}
 		}
 	}
-	TCompPlatformSimple* platform = get<TCompPlatformSimple>();
-	if (platform){
-		if (platformEnabledOnActive) {
-			platform->setEnabled(true);
-		}
-		else {
-			platform->setEnabled(false);
-		}
-	}
-	TCompRigidAnim* anim = get<TCompRigidAnim>();
-	if (anim) {
-		if (animationEnabledOnActive) {
-			anim->setIsMoving(true);
-		}
-		else {
-			anim->setIsMoving(false);
+	if (changeCollider) {
+		TCompCollider* collider = get<TCompCollider>();
+		if (collider) {
+			if (colliderEnabledOnActive) {
+				collider->create();
+			}
+			else {
+				collider->destroy();
+			}
 		}
 	}
-	TCompRigidAnimsDirector* director = get<TCompRigidAnimsDirector>();
-	if (director) {
-		if (animationEnabledOnActive) {
-			director->setIsMoving(true);
+	if (changePlatform) {
+		TCompPlatformsDirector* platformsDirector = get<TCompPlatformsDirector>();
+		if (platformsDirector) {
+			if (platformEnabledOnActive) {
+				platformsDirector->setEnabled(true);
+			}
+			else {
+				platformsDirector->setEnabled(false);
+			}
 		}
 		else {
-			director->setIsMoving(false);
+			TCompPlatformSimple* platform = get<TCompPlatformSimple>();
+			if (platform) {
+				if (platformEnabledOnActive) {
+					platform->setEnabled(true);
+				}
+				else {
+					platform->setEnabled(false);
+				}
+			}
+		}
+	}
+	if (changeAnim) {
+		TCompRigidAnimsDirector* animsDirector = get<TCompRigidAnimsDirector>();
+		if (animsDirector) {
+			if (animationEnabledOnActive) {
+				animsDirector->setIsMoving(true);
+			}
+			else {
+				animsDirector->setIsMoving(false);
+			}
+		}
+		else {
+			TCompRigidAnim* anim = get<TCompRigidAnim>();
+			if (anim) {
+				if (animationEnabledOnActive) {
+					anim->setIsMoving(true);
+				}
+				else {
+					anim->setIsMoving(false);
+				}
+			}
 		}
 	}
 }
@@ -94,31 +169,44 @@ void TCompActivateListener::onDeactivate(const TMsgMechanismSystemDeactivated & 
 			collider->create();
 		}
 	}
-	TCompPlatformSimple* platform = get<TCompPlatformSimple>();
-	if (platform) {
+	TCompPlatformsDirector* platformsDirector = get<TCompPlatformsDirector>();
+	if (platformsDirector) {
 		if (platformEnabledOnActive) {
-			platform->setEnabled(false);
+			platformsDirector->setEnabled(false);
 		}
 		else {
-			platform->setEnabled(true);
+			platformsDirector->setEnabled(true);
 		}
 	}
-	TCompRigidAnim* anim = get<TCompRigidAnim>();
-	if (anim) {
-		if (animationEnabledOnActive) {
-			anim->setIsMoving(false);
-		}
-		else {
-			anim->setIsMoving(true);
+	else {
+		TCompPlatformSimple* platform = get<TCompPlatformSimple>();
+		if (platform) {
+			if (platformEnabledOnActive) {
+				platform->setEnabled(false);
+			}
+			else {
+				platform->setEnabled(true);
+			}
 		}
 	}
-	TCompRigidAnimsDirector* director = get<TCompRigidAnimsDirector>();
-	if (director) {
+	TCompRigidAnimsDirector* animsDirector = get<TCompRigidAnimsDirector>();
+	if (animsDirector) {
 		if (animationEnabledOnActive) {
-			director->setIsMoving(false);
+			animsDirector->setIsMoving(false);
 		}
 		else {
-			director->setIsMoving(true);
+			animsDirector->setIsMoving(true);
+		}
+	}
+	else {
+		TCompRigidAnim* anim = get<TCompRigidAnim>();
+		if (anim) {
+			if (animationEnabledOnActive) {
+				anim->setIsMoving(false);
+			}
+			else {
+				anim->setIsMoving(true);
+			}
 		}
 	}
 }

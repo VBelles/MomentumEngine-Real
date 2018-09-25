@@ -89,38 +89,47 @@ void Enemy::load(const json& j) {
 void Enemy::debugInMenu() {
 	ImGui::Text("Behavior tree file: %s\n", !behaviorTreeFile.empty() ? behaviorTreeFile.c_str() : "None");
 	IBehaviorTreeNew::debugInMenu();
+
 	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
-	ImGui::Text("onHit: %s\n", onHit ? "true" : "false");
-	ImGui::Text("onOutOfBounds: %s\n", onOutOfBounds ? "true" : "false");
-	ImGui::Text("onSpawn: %s\n", onSpawn ? "true" : "false");
 	ImGui::Text("Hp: %f\n", hp);
-	ImGui::DragFloat("Attack slots\n", &attackSlots, 0.1f, 0.f, 50.f);
-	ImGui::Text("Attack target: %s\n", attackTarget.c_str());
-	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
-	ImGui::DragFloat("Gravity\n", &gravity, 0.1f, -500.f, 500.f);
-	ImGui::DragFloat("Gravity multiplier\n", &gravityMultiplier, 0.1f, -500.f, 500.f);
 	ImGui::Text("Power to give: %f\n", getPower()->getPowerToGive());
-	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
-	ImGui::Text("Is blocking: %s\n", isBlocking ? "true" : "false");
-	ImGui::Text("Super armor: %f, has super armor: %s\n", superArmorAmount, hasSuperArmor() ? "true" : "false");
 	ImGui::DragFloat3("Spawn position", &spawnPosition.x, 0.1f, -10000.0f, 10000.0f);
+	ImGui::Text("Collider to destroy: %s\n", getCollider()->toDestroy ? "true" : "false");
+
 	ImGui::Text("Nav mesh: %s\n", navMeshQuery ? navMeshId.c_str() : "None");
-	ImGui::Text("Current path point: %i\n", currentPathPoint);
 	if (ImGui::TreeNode("Smooth path")) {
+		ImGui::Text("Current path point: %i\n", currentPathPoint);
+		ImGui::Text("Path points:\n");
 		int i = 0;
 		for (VEC3 point : smoothPath) {
 			ImGui::Text("%i: %f, %f, %f\n", i++, point.x, point.y, point.z);
 		}
 		ImGui::TreePop();
 	}
-	ImGui::Text("Player handle is valid: %s\n", playerHandle.isValid() ? "true" : "false");
-	ImGui::Text("Player transform handle is valid: %s\n", playerTransformHandle.isValid() ? "true" : "false");
-	ImGui::Text("Player model handle is valid: %s\n", playerModelHandle.isValid() ? "true" : "false");
-	ImGui::Text("Transform handle is valid: %s\n", transformHandle.isValid() ? "true" : "false");
-	ImGui::Text("Collider handle is valid: %s\n", colliderHandle.isValid() ? "true" : "false");
-	ImGui::Text("Skeleton handle is valid: %s\n", skeletonHandle.isValid() ? "true" : "false");
-	ImGui::Text("Hitboxes handle is valid: %s\n", hitboxesHandle.isValid() ? "true" : "false");
-	ImGui::Text("Power handle is valid: %s\n", powerHandle.isValid() ? "true" : "false");
+
+	ImGui::DragFloat("Movement speed\n", &movementSpeed, 0.1f, 0.f, 500.f);
+	ImGui::DragFloat("Gravity\n", &gravity, 0.1f, -500.f, 500.f);
+	ImGui::DragFloat("Gravity multiplier\n", &gravityMultiplier, 0.1f, -500.f, 500.f);
+
+	if (ImGui::TreeNode("Combat info")) {
+		ImGui::DragFloat("Attack slots\n", &attackSlots, 0.1f, 0.f, 50.f);
+		ImGui::Text("Attack target: %s\n", attackTarget.c_str());
+		ImGui::Text("Stun duration: %f, timer elapsed: %f\n", stunDuration, stunTimer.elapsed());
+		ImGui::Text("Super armor: %f, has super armor: %s\n", superArmorAmount, hasSuperArmor() ? "true" : "false");
+		ImGui::TreePop();
+	}
+
+	if (ImGui::TreeNode("Handles")) {
+		ImGui::Text("Player handle is valid: %s\n", playerHandle.isValid() ? "true" : "false");
+		ImGui::Text("Player transform handle is valid: %s\n", playerTransformHandle.isValid() ? "true" : "false");
+		ImGui::Text("Player model handle is valid: %s\n", playerModelHandle.isValid() ? "true" : "false");
+		ImGui::Text("Transform handle is valid: %s\n", transformHandle.isValid() ? "true" : "false");
+		ImGui::Text("Collider handle is valid: %s\n", colliderHandle.isValid() ? "true" : "false");
+		ImGui::Text("Skeleton handle is valid: %s\n", skeletonHandle.isValid() ? "true" : "false");
+		ImGui::Text("Hitboxes handle is valid: %s\n", hitboxesHandle.isValid() ? "true" : "false");
+		ImGui::Text("Power handle is valid: %s\n", powerHandle.isValid() ? "true" : "false");
+		ImGui::TreePop();
+	}
 }
 
 void Enemy::updateGravity(float delta) {
