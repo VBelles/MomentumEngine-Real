@@ -225,9 +225,9 @@ global camsData = attributes camData (
 	rollout params "Cameras Data" (
 		checkbox retToPl "Return to player cam"  type: #boolean align:#right
 		checkbox modPlRo "Modify player cam rot" type: #boolean align:#right
-		spinner tMixO "Time to mix out" type: #float range:[0, 1000.0, 40.0] --min, max, initial value
-		spinner panSpd "Panning speed"  type: #float range:[-1000.0, 1000.0, 40.0]
-		spinner panRad "Panning radius" type: #float range:[0, 1000.0, 40.0]
+		spinner tMixO "Time to mix out" type: #float range:[0, 1000.0, 1.0] --min, max, initial value
+		spinner panSpd "Panning speed"  type: #float range:[-1000.0, 1000.0, 0.0]
+		spinner panRad "Panning radius" type: #float range:[0, 1000.0, 3.0]
 	)
 )
 

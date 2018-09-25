@@ -28,7 +28,7 @@ ButtonText: "Momentum"
 	*/
 	local MAXWinSize = getMAXWindowSize()
 	local left = MAXWinSize[1] * 0.8 --80% of screen width.
-	local top =	 MAXWinSize[2] * 0.1 --10% of screen height.
+	local top  = MAXWinSize[2] * 0.1 --10% of screen height.
 
 	floater = newRolloutFloater "Momentum utils" width height left top
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\ui_floating.ms" "Bin\\")
@@ -624,11 +624,11 @@ ButtonText: "Momentum"
 					button btnSetRetToPl "Set" width:24 align:#left
 					checkbox modPlRo "Mod player rot" type: #boolean across:2 align:#right
 					button btnSetModPlRo "Set" width:24 align:#left
-					spinner tMixO "Time mix out" type: #float across:2 align:#right range:[0, 1000.0, 40.0] --min, max, initial value
+					spinner tMixO "Time mix out" type: #float across:2 align:#right range:[0, 1000.0, 1.0] --min, max, initial value
 					button btnSetTMixO "Set" width:24 align:#left
-					spinner panSpd "Pan speed"  type: #float across:2 align:#right range:[-1000.0, 1000.0, 40.0]
+					spinner panSpd "Pan speed"  type: #float across:2 align:#right range:[-1000.0, 1000.0, 0.0]
 					button btnSetPanSpd "Set" width:24 align:#left
-					spinner panRad "Pan radius" type: #float across:2 align:#right range:[0, 1000.0, 40.0]
+					spinner panRad "Pan radius" type: #float across:2 align:#right range:[0, 1000.0, 3.0]
 					button btnSetPanRad "Set" width:24 align:#left
 
 					button btnSetAll "SetAll"
