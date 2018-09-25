@@ -4,7 +4,7 @@
 
 class WalkActionState : public GroundedActionState {
 private:
-	std::string animations[3] = { "walk", "walk", "idle_SS3" };
+	std::string animations[3] = { "walk", "walk", "walk_SS3" };
 	std::string animation = "walk";
 	int dustParticlesHandle = 0;
 
