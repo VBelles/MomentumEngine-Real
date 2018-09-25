@@ -19,7 +19,7 @@ ButtonText: "Momentum"
 
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 3
+	local numberOfButtons = 4
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	/* To get desktop resolution, valid for multiple screens:
@@ -141,12 +141,15 @@ ButtonText: "Momentum"
 		button btn_check_dds "Check DDS" tooltip:"Checks if any texture is not DDS"
 		button btn_create_col "Create colliders" tooltip:"Creates child colliders of selected objects"
 		
-		button btn_sel_children "Select children" across:2 tooltip:"Selects children of selected objects"
-		button btn_sel_parents "Select parents" tooltip:"Selects parents of selected objects"
+		button btn_sel_parents "Select parents" across:2 tooltip:"Selects parents of selected objects"
+		button btn_sel_children "Select children" tooltip:"Selects children of selected objects"
 
 		button btn_import_scene "Import scene..." tooltip:"Import scene objects from scene file"
 		button btn_copy_posrot "Copy pos & rot" across:2 tooltip:"Copy name, position and rotation of selected object"
 		button btn_paste_posrot "Paste pos & rot" tooltip:"Paste name, position and rotation on selected object"
+		
+		button btn_hideOtherLayers "Hide other layers" across:2 tooltip:"Hide all layers except selected object's layer"
+		button btn_showAllLayers "Show all layers" tooltip:"Shows all layers"
 
 		fn attachElems = (
 			try (
@@ -255,15 +258,52 @@ ButtonText: "Momentum"
 			)
 		)
 
-		on btn_attach_elems pressed do ( attachElems() )
-		on btn_detach_elems pressed do ( detachElems() )
-		on btn_check_dds 	pressed do ( checkDDS() )
-		on btn_create_col 	pressed do ( createColliders() )
-		on btn_sel_children pressed do ( selectChildren() )
-		on btn_sel_parents  pressed do ( selectParents() )
-		on btn_import_scene pressed do ( importScene() )
-		on btn_copy_posrot  pressed do ( copyNamePosRot() )
-		on btn_paste_posrot pressed do ( pasteNamePosRot() )
+		fn hideAllLayersButCurrent = (
+			try (
+				gc()
+				clearListener()
+				--(LayerManager.getLayerFromName $.layer.name).ishidden = false
+
+				local selectionLayer = selection[1].layer
+				if selectionLayer == undefined then selectionLayer = $.layer
+
+				if selectionLayer != undefined then (
+					for i = 0 to LayerManager.count - 1 do (
+						local currentLayer = LayerManager.getLayer i
+						if selectionLayer != currentLayer then
+							currentLayer.isHidden = true
+					)
+				)
+			) catch (
+				MessageBox ("Error hiding layer:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		fn showAllLayers = (
+			try (
+				gc()
+				clearListener()
+
+				for i = 0 to LayerManager.count - 1 do (
+					local currentLayer = LayerManager.getLayer i
+					currentLayer.isHidden = false
+				)
+			) catch (
+				MessageBox ("Error hiding layer:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		on btn_attach_elems 	pressed do ( attachElems() )
+		on btn_detach_elems 	pressed do ( detachElems() )
+		on btn_check_dds 		pressed do ( checkDDS() )
+		on btn_create_col 		pressed do ( createColliders() )
+		on btn_sel_children 	pressed do ( selectChildren() )
+		on btn_sel_parents  	pressed do ( selectParents() )
+		on btn_import_scene 	pressed do ( importScene() )
+		on btn_copy_posrot  	pressed do ( copyNamePosRot() )
+		on btn_paste_posrot 	pressed do ( pasteNamePosRot() )
+		on btn_hideOtherLayers  pressed do ( hideAllLayersButCurrent() )
+		on btn_showAllLayers    pressed do ( showAllLayers() )
 
 		-- Resize window if rollout collapses.
 		on utils rolledUp state do (
