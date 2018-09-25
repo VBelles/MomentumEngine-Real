@@ -2,6 +2,8 @@
 
 #include "resource.h"
 
+extern std::recursive_mutex mtxResources;
+
 class CResourceManager {
 
 	// I'm the owner of all resources, and are stored in the map using the resource.name
@@ -18,14 +20,19 @@ public:
 	void registerResourceClass(const CResourceClass* new_class);
 	const IResource* get(const std::string& res_name);
 
-  void debugInMenu();
-  void destroyAll();
-  void destroyResource(const std::string& name);
+	void debugInMenu();
+	void destroyAll();
+	void destroyResource(const std::string& name);
 
 	// 
 	void registerResource(IResource* res);
 	void onFileChanged(const std::string& filename);
 
+	void loadResources(const std::string& file);
+	void loadResourcesBackground(const std::string& file);
+
+	std::thread loaderThread;
+	volatile bool resourcesLoaded = false;
 };
 
 extern CResourceManager Resources;

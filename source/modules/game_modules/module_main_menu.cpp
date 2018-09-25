@@ -5,7 +5,7 @@
 bool CModuleMainMenu::start() {
 	CApp& app = CApp::get();
 	app.setResetMouse(false);
-	
+
 	GUI::CParser parser;
 	parser.parseFile(menuFile);
 
@@ -34,6 +34,11 @@ bool CModuleMainMenu::start() {
 	Engine.getGUI().registerController(controller);
 
 	Engine.setInputType(InputType::Menu);
+
+	if (firstStart) {
+		Resources.loadResourcesBackground("data/resources.json");
+		firstStart = false;
+	}
 
 	return true;
 }

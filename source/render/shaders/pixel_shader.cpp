@@ -29,5 +29,7 @@ void CPixelShader::destroy() {
 
 void CPixelShader::activate() const {
     assert(ps);
+	mtx.lock();
     Render.ctx->PSSetShader(ps, NULL, 0);
+	mtx.unlock();
 }

@@ -90,6 +90,7 @@ void CRenderMeshInstanced::renderSubMesh(uint32_t sub_group_idx) const {
 
     // Send vertexs from the start of each vertex buffer
     UINT offsets[2] = {0, 0};
+	mtx.lock();
     Render.ctx->IASetVertexBuffers(0, 2, vbs, strides, offsets);
 
     // Set primitive topology
@@ -103,4 +104,5 @@ void CRenderMeshInstanced::renderSubMesh(uint32_t sub_group_idx) const {
     else {
         Render.ctx->DrawInstanced(instanced_mesh->getVertexsCount(), sb.num_indices, 0, 0);
     }
+	mtx.unlock();
 }
