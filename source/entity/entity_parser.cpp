@@ -67,6 +67,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 				assert(!prefab_ctx.entities_loaded.empty());
 
 
+
 				// Create a new fresh entity
 				h_e = prefab_ctx.entities_loaded[0];
 
@@ -82,10 +83,13 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 				j_entity_without_transform.erase("transform");
 
 				// Do the parse now outside the 'prefab' context
-				prefab_ctx.parsing_prefab = false;
+				//prefab_ctx.parsing_prefab = false;
 				e->load(j_entity_without_transform, prefab_ctx);
 
-
+				for (int i = 0; i < prefab_ctx.entities_loaded.size(); ++i) {
+					ctx.entities_loaded.push_back(prefab_ctx.entities_loaded[i]);
+					prefab_ctx.entities_loaded[i].sendMsg(TMsgEntityCreated{});
+				}
 			}
 			else {
 				// Create a new fresh entity
@@ -103,7 +107,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 	}
 
 	// Create a comp_group automatically if there is more than one entity
-	if (ctx.entities_loaded.size() > 1) {
+	if (!ctx.parsing_prefab && ctx.entities_loaded.size() > 1) {
 		//Create new entity for group root
 		CHandle groupRootEntity;
 		groupRootEntity.create<CEntity>();
