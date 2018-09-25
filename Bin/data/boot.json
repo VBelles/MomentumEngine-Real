@@ -20,7 +20,6 @@
     "data/scenes/milestone4_dani-trimesh.scene",
     "data/scenes/milestone4_dani-mechanisms.scene",
     "data/scenes/milestone4_dani-pure.scene",
-    "data/scenes/milestone4_dani-spikes.scene",
     
     "data/scenes/milestone4_nestor-0.scene",
     "data/scenes/milestone4_nestor-chrysalis.scene",
@@ -45,6 +44,7 @@
   "unused_scenes": [
     "data/scenes/prefabs-0.scene",
     "data/scenes/prefabs-trimesh.scene",
+    "data/scenes/milestone4_dani-spikes.scene",
     "data/scenes/milestone4_jose-0.scene",
     "data/scenes/milestone4_jose-chrysalis.scene",
     "data/scenes/milestone4_jose-coins.scene",

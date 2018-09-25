@@ -16,7 +16,7 @@
         "isResettable": false,
         "systems":
         [
-           "plataformeo_hex_mechsys_000"
+           "Plataformeo_hex_mech_000"
         ]
       }
     }
@@ -24,7 +24,7 @@
   {
     "entity":
     {
-      "name": "plataformeo_hex_mechsys_000",
+      "name": "Plataformeo_hex_mech_000",
       "transform":
       {
         "pos": "116.994 79.8909 130.212",
@@ -36,8 +36,8 @@
       },
       "activate_listener":
       {
-        "change_render": true,
-        "change_collider": true,
+        "change_render": false,
+        "change_collider": false,
         "change_platform": true,
         "change_animation": true,
         "render_enabled_on_active": true,
@@ -48,18 +48,18 @@
       "render":
       [
         {
-          "mesh": "data/meshes/plataformeo_hex_mechsys_000.mesh",
+          "mesh": "data/meshes/Plataformeo_hex_mech_000.mesh",
           "materials":
           [
-            "data/materials/Material_#99.material"
+            "data/materials/platform_v1.material"
           ],
           "enabled": true
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/plataformeo_hex_mechsys_000_collider.col_mesh",
-        "shape": "tri_mesh",
+        "mesh_src": "data/meshes/Plataformeo_hex_mech_col_000.col_mesh",
+        "shape": "convex_mesh",
         "type": "static",
         "group":
         [
