@@ -94,16 +94,18 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
-	TCompTransform* transform = get<TCompTransform>();
+	transformHandle = get<TCompTransform>();
+	assert(transformHandle.isValid());
+	colliderHandle = get<TCompCollider>();
+	assert(colliderHandle.isValid());
+
+	TCompTransform* transform = getTransform();
 
 	//combinar up/left/front para encontrar la rotationAxisGlobal
 	rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
 		transform->getUp()    * rotationAxisLocal.y +
 		transform->getFront() * rotationAxisLocal.z;
-	transformHandle = CHandle(transform);
-	assert(transformHandle.isValid());
-	colliderHandle = get<TCompCollider>();
-	assert(colliderHandle.isValid());
+	
 	if (rollSpeed != 0) {
 		float yaw, pitch;
 		transform->getYawPitchRoll(&yaw, &pitch, &targetRoll);
@@ -162,8 +164,8 @@ void TCompPlatformSimple::update(float delta) {
 
 		//Rotation
 		if (rotationSpeed > 0) {
-			//QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
-			//transform->setRotation(transform->getRotation() * quat);
+			QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
+			transform->setRotation(transform->getRotation() * quat);
 		}
 
 		if (rollSpeed != 0) {
