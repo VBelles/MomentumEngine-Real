@@ -106,6 +106,7 @@ bool CRender::createDevice(int new_width, int new_height, bool new_vsync) {
 }
 
 void CRender::destroyDevice() {
+	mtx.lock();
 	if (ctx) ctx->ClearState();
 	SAFE_RELEASE(depth_shader_resource_view);
 	SAFE_RELEASE(depthTexture);
@@ -124,12 +125,14 @@ void CRender::destroyDevice() {
 #endif
 
 	SAFE_RELEASE(device);
+	mtx.unlock();
 }
 
 void CRender::startRenderInBackbuffer() {
 	assert(ctx);
 
-	// Activate also the depthStencil 
+	// Activate also the depthStencil
+	mtx.lock();
 	ctx->OMSetRenderTargets(1, &renderTargetView, depthStencilView);
 
 	// Setup the viewport
@@ -141,6 +144,7 @@ void CRender::startRenderInBackbuffer() {
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
 	ctx->RSSetViewports(1, &vp);
+	mtx.unlock();
 }
 
 
