@@ -1,7 +1,7 @@
 [
 	{
 		"entity": {
-			"name": "coin",
+			"name": "coin_prefab_1",
 			"transform": {
 				"pos": "0 0 0"
 			},
@@ -36,7 +36,7 @@
 	},
 	{
 		"entity": {
-			"name": "coin_prefab",
+			"name": "coin_prefab_2",
 			"transform": {
 				"pos": "0 0 1.5"
 			},

@@ -67,29 +67,50 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 				assert(!prefab_ctx.entities_loaded.empty());
 
 
+				// Fusionar entidades cuando el prefab tiene solo 1 entidad
+				if (prefab_ctx.entities_loaded.size() == 1) {
 
-				// Create a new fresh entity
-				h_e = prefab_ctx.entities_loaded[0];
+					// Create a new fresh entity
+					h_e = prefab_ctx.entities_loaded[0];
 
-				// Cast to entity object
-				CEntity* e = h_e;
+					// Cast to entity object
+					CEntity* e = h_e;
 
-				// We give an option to 'reload' the prefab by modifying existing components, 
-				// like changing the name, add other components, etc, but we don't want to parse again 
-				// the comp_transform, because it was already parsed as part of the root
-				// As the json is const as it's a resouce, we make a copy of the prefab section and
-				// remove the transform
-				json j_entity_without_transform = j_entity;
-				j_entity_without_transform.erase("transform");
+					// We give an option to 'reload' the prefab by modifying existing components, 
+					// like changing the name, add other components, etc, but we don't want to parse again 
+					// the comp_transform, because it was already parsed as part of the root
+					// As the json is const as it's a resouce, we make a copy of the prefab section and
+					// remove the transform
+					json j_entity_without_transform = j_entity;
+					j_entity_without_transform.erase("transform");
 
-				// Do the parse now outside the 'prefab' context
-				//prefab_ctx.parsing_prefab = false;
-				e->load(j_entity_without_transform, prefab_ctx);
-
-				for (int i = 0; i < prefab_ctx.entities_loaded.size(); ++i) {
-					ctx.entities_loaded.push_back(prefab_ctx.entities_loaded[i]);
-					prefab_ctx.entities_loaded[i].sendMsg(TMsgEntityCreated{});
+					// Do the parse now outside the 'prefab' context
+					prefab_ctx.parsing_prefab = false;
+					e->load(j_entity_without_transform, prefab_ctx);
 				}
+				// Cargar las entidades en el mismo grupo y combinar nombres de prefabs con el padre
+				else {
+					// Crear y cargar entidad que invoca el prefab
+					h_e.create<CEntity>();
+					CEntity* entity = h_e;
+					entity->load(j_entity, ctx);
+					TCompName* name = entity->get<TCompName>();
+
+					// Añadir los prefabs al contexto del padre y combinar nombres
+					for (auto prefabEntityHandle : prefab_ctx.entities_loaded) {
+						CEntity* prefabEntity = prefabEntityHandle;
+						TCompName* prefabName = prefabEntity->get<TCompName>();
+						if (name && prefabName) {
+							prefabName->setName((std::string(name->getName()) + "_" + std::string(prefabName->getName())).c_str());
+						}
+						ctx.entities_loaded.push_back(prefabEntityHandle);
+
+						// Enviar mensaje de entidad creada
+						prefabEntity->sendMsg(TMsgEntityCreated{});
+					}
+				}
+
+				
 			}
 			else {
 				// Create a new fresh entity
@@ -107,7 +128,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 	}
 
 	// Create a comp_group automatically if there is more than one entity
-	if (!ctx.parsing_prefab && ctx.entities_loaded.size() > 1) {
+	if (!ctx.parsing_prefab && ctx.entities_loaded.size() >= 1) {
 		//Create new entity for group root
 		CHandle groupRootEntity;
 		groupRootEntity.create<CEntity>();
@@ -129,14 +150,11 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 		for (size_t i = 0; i < ctx.entities_loaded.size(); ++i) {
 			c_group->add(ctx.entities_loaded[i]);
 		}
-	}
 
-	// Notify each entity created that we have finished
-	// processing this file
-	if (!ctx.parsing_prefab) {
 		TMsgEntitiesGroupCreated msg = { ctx };
 		for (auto h : ctx.entities_loaded)
 			h.sendMsg(msg);
 	}
+
 	return true;
 }
