@@ -83,7 +83,7 @@ void CModuleSound::updateFollowingEvents() {
 	}
 }
 
-FMOD::Studio::EventInstance* CModuleSound::emitFollowingEvent(const char* sound, CHandle transformHandle) {
+Studio::EventInstance* CModuleSound::emitFollowingEvent(const char* sound, CHandle transformHandle) {
 	TCompTransform* transform = transformHandle;
 	auto eventInstance = emitEvent(sound, *transform);
 	followingEvents.push_back(FollowingEvent{ eventInstance, transformHandle });
@@ -112,6 +112,12 @@ Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const FMOD_3D_
 
 FMOD::Studio::System* CModuleSound::getSystem() {
 	return system;
+}
+
+void CModuleSound::stopEvent(Studio::EventInstance* instance, bool fadeout) {
+	if (instance && instance->isValid()) {
+		instance->stop(fadeout ? FMOD_STUDIO_STOP_ALLOWFADEOUT : FMOD_STUDIO_STOP_IMMEDIATE);
+	}
 }
 
 void CModuleSound::render() {

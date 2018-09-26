@@ -34,6 +34,7 @@ public:
 	FMOD::Studio::EventInstance* emitEvent(const char* sound, const CTransform& transform);
 	FMOD::Studio::EventInstance* emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
 	FMOD::Studio::System* getSystem();
+	void stopEvent(FMOD::Studio::EventInstance * instance, bool fadeout = false);
 
 
 };
