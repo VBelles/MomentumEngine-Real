@@ -2,25 +2,25 @@
   {
     "entity":
     {
-      "name": "nes_plataformaSpikes009_col003_spikes",
+      "name": "nes_spikes039_spikes",
       "transform":
       {
-        "pos": "-170.254 -2.79617 59.1245",
-        "rotation": "-0.0948982 -0.00826322 -0.152392 -0.983719"
+        "pos": "-182.708 -2.99682 61.5377",
+        "rotation": "0.100182 -0.00919881 0.0114293 -0.994861"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -39,25 +39,25 @@
   {
     "entity":
     {
-      "name": "nes_plataformaSpikes009_col002_spikes",
+      "name": "nes_spikes038_spikes",
       "transform":
       {
-        "pos": "-165.028 -2.97122 65.6042",
-        "rotation": "-0.0952279 -0.00205629 -0.100979 -0.990318"
+        "pos": "-165.308 -1.57812 76.042",
+        "rotation": "-0.0131428 0.00108034 0.0819167 -0.996552"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -76,25 +76,1320 @@
   {
     "entity":
     {
-      "name": "nes_plataformaSpikes009_col001_spikes",
+      "name": "nes_spikes037_spikes",
       "transform":
       {
-        "pos": "-161.773 -2.63699 75.1132",
-        "rotation": "-0.0212418 -0.00127433 0.0598707 -0.997979"
+        "pos": "-200.261 -5.04165 41.4569",
+        "rotation": "-0.0334691 0.0104919 -0.0312086 -0.998897"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes036_spikes",
+      "transform":
+      {
+        "pos": "-204.194 -5.17373 44.1319",
+        "rotation": "-0.0509416 0.0100753 0.0300956 -0.998197"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes035_spikes",
+      "transform":
+      {
+        "pos": "-188.046 -2.79812 37.5655",
+        "rotation": "-0.0914999 0.0138337 -0.108905 -0.989735"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes034_spikes",
+      "transform":
+      {
+        "pos": "-192.365 -4.04067 40.2882",
+        "rotation": "-0.0895861 0.0122908 -0.0714392 -0.993338"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes033_spikes",
+      "transform":
+      {
+        "pos": "-179.662 -1.95181 41.6403",
+        "rotation": "-0.0457081 0.018847 -0.108151 -0.992904"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes032_spikes",
+      "transform":
+      {
+        "pos": "-183.648 -3.08291 44.2951",
+        "rotation": "-0.0457081 0.018847 -0.108151 -0.992904"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes031_spikes",
+      "transform":
+      {
+        "pos": "-183.629 -2.36123 39.889",
+        "rotation": "-0.0914999 0.0138337 -0.108905 -0.989735"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes030_spikes",
+      "transform":
+      {
+        "pos": "-187.778 -3.63833 42.254",
+        "rotation": "-0.0734073 0.0130659 -0.083593 -0.993707"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes029_spikes",
+      "transform":
+      {
+        "pos": "-200.215 -5.28677 46.1241",
+        "rotation": "-0.0206172 0.0100896 -0.0137427 -0.999642"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes028_spikes",
+      "transform":
+      {
+        "pos": "-196.2 -5.03384 43.3524",
+        "rotation": "-0.0334691 0.0104919 -0.0312086 -0.998897"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes027_spikes",
+      "transform":
+      {
+        "pos": "-191.891 -4.58779 44.7618",
+        "rotation": "-0.0734073 0.0130659 -0.083593 -0.993707"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes026_spikes",
+      "transform":
+      {
+        "pos": "-195.859 -5.25112 47.9361",
+        "rotation": "-0.00413028 0.0129385 0.00340513 -0.999902"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes025_spikes",
+      "transform":
+      {
+        "pos": "-193.369 -5.25552 51.8187",
+        "rotation": "-0.00413028 0.0129385 0.00340513 -0.999902"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes024_spikes",
+      "transform":
+      {
+        "pos": "-186.091 -4.39639 57.3051",
+        "rotation": "0.0523474 0.0059718 -0.178169 -0.982588"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes023_spikes",
+      "transform":
+      {
+        "pos": "-189.901 -5.01919 54.3557",
+        "rotation": "-0.0478676 0.000314589 -0.0220389 -0.99861"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes022_spikes",
+      "transform":
+      {
+        "pos": "-189.054 -4.8605 49.3723",
+        "rotation": "-0.0478676 0.000314589 -0.0220389 -0.99861"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes021_spikes",
+      "transform":
+      {
+        "pos": "-184.401 -4.07791 47.6164",
+        "rotation": "-0.0864855 0.00322485 -0.0653352 -0.994103"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes020_spikes",
+      "transform":
+      {
+        "pos": "-185.451 -4.73538 52.2126",
+        "rotation": "-0.0193279 0.00312353 -0.0638168 -0.99777"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes019_spikes",
+      "transform":
+      {
+        "pos": "-182.244 -4.16238 55.5252",
+        "rotation": "0.0662365 0.0040806 -0.0172942 -0.997646"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes018_spikes",
+      "transform":
+      {
+        "pos": "-180.6 -3.61819 50.7574",
+        "rotation": "-0.0872964 -0.00432552 -0.100281 -0.991113"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes017_spikes",
+      "transform":
+      {
+        "pos": "-178.172 -2.60498 64.1975",
+        "rotation": "0.119413 -0.0105964 0.0588916 -0.99104"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes016_spikes",
+      "transform":
+      {
+        "pos": "-173.943 -2.4021 66.4545",
+        "rotation": "0.127633 -0.0382617 0.0642765 -0.988997"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes015_spikes",
+      "transform":
+      {
+        "pos": "-169.518 -2.30298 68.9877",
+        "rotation": "0.123084 -0.0101175 0.0812967 -0.989009"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes014_spikes",
+      "transform":
+      {
+        "pos": "-161.621 -2.53454 69.0708",
+        "rotation": "-0.0724647 -0.00593841 -0.0696929 -0.994915"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes013_spikes",
+      "transform":
+      {
+        "pos": "-165.404 -2.08496 71.7566",
+        "rotation": "0.11535 -0.00948177 0.0813733 -0.989941"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes012_spikes",
+      "transform":
+      {
+        "pos": "-177.358 -3.46853 54.0173",
+        "rotation": "-0.0866449 -0.00533414 -0.0808166 -0.992942"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes011_spikes",
+      "transform":
+      {
+        "pos": "-173.995 -3.13894 61.3975",
+        "rotation": "0.001893 0.0017533 -0.0133264 -0.999908"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes010_spikes",
+      "transform":
+      {
+        "pos": "-173.003 -2.13857 51.7881",
+        "rotation": "-0.0795122 0.000116692 -0.138083 -0.987224"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes009_spikes",
+      "transform":
+      {
+        "pos": "-173.52 -3.02358 56.5803",
+        "rotation": "-0.0795122 0.000116692 -0.138083 -0.987224"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes008_spikes",
+      "transform":
+      {
+        "pos": "-169.464 -1.43752 54.3763",
+        "rotation": "-0.0795122 0.000116692 -0.138083 -0.987224"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes03_spikes",
+      "transform":
+      {
+        "pos": "-176.47 -2.36917 49.2327",
+        "rotation": "-0.0872964 -0.00432552 -0.100281 -0.991113"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes02_spikes",
+      "transform":
+      {
+        "pos": "-169.651 -2.40505 59.1999",
+        "rotation": "-0.0948983 -0.00826323 -0.152392 -0.983719"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes004_spikes",
+      "transform":
+      {
+        "pos": "-165.539 -1.95608 61.5538",
+        "rotation": "-0.11119 -0.0115029 -0.100895 -0.988597"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes005_spikes",
+      "transform":
+      {
+        "pos": "-169.78 -3.13894 63.9411",
+        "rotation": "0.001893 0.0017533 -0.0133264 -0.999908"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes01_spikes",
+      "transform":
+      {
+        "pos": "-165.443 -2.8876 66.4624",
+        "rotation": "-0.0422315 0.00106027 -0.0696416 -0.996677"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_spikes007_spikes",
+      "transform":
+      {
+        "pos": "-161.09 -2.30371 73.8925",
+        "rotation": "0.0115887 -0.000952588 0.0819183 -0.996571"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,

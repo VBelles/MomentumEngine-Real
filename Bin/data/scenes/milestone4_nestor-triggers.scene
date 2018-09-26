@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "nes_respawn005zonaRoja",
+      "transform":
+      {
+        "pos": "-172.241 -11.8814 67.0539",
+        "rotation": "0.0 -0.299306 0.0 -0.954157"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_respawn005zonaRoja.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-122.852 -5.26814 110.968",
+        "respawn_rotation": "0.0 -0.940194 0.0 0.340641"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_respawn004ruinas",
       "transform":
       {

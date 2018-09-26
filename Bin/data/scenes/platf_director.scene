@@ -7,7 +7,35 @@
       {
         "slots":
         [
-
+          {
+            "wait_time": 2.0,
+            "platforms":
+            [
+              "nes_plataformaSpikes017",
+              "nes_plataformaSpikes016",
+              "nes_plataformaSpikes015",
+              "nes_plataformaSpikes014",
+              "nes_plataformaSpikes011",
+              "nes_plataformaSpikes010",
+              "nes_plataformaSpikes008",
+              "nes_plataformaSpikes006",
+              "nes_plataformaSpikes005",
+              "nes_plataformaSpikes004",
+              "nes_plataformaSpikes001"
+            ]
+          },
+          {
+            "wait_time": 0,
+            "platforms":
+            [
+              "nes_plataformaSpikes013",
+              "nes_plataformaSpikes012",
+              "nes_plataformaSpikes009",
+              "nes_plataformaSpikes007",
+              "nes_plataformaSpikes003",
+              "nes_plataformaSpikes000"
+            ]
+          }
         ]
       }
     }

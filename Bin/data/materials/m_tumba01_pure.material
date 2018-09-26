@@ -1,0 +1,14 @@
+{
+  "technique": "pure.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/tumba_01_BaseColor.dds",
+    "normal": "data/textures/tumba_01_Normal.dds",
+    "metallic": "data/textures/tumba_01_Metallic.dds",
+    "roughness": "data/textures/tumba_01_Roughness.dds",
+    "self_illum": "data/textures/tumba_01_Emissive.dds",
+    "height": "data/textures/tumba_01_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
