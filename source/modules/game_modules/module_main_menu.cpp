@@ -35,11 +35,6 @@ bool CModuleMainMenu::start() {
 
 	Engine.setInputType(InputType::Menu);
 
-	if (firstStart) {
-		Resources.loadResourcesBackground("data/resources.json");
-		firstStart = false;
-	}
-
 	return true;
 }
 

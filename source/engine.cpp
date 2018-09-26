@@ -30,7 +30,7 @@ CEngine::CEngine()
 	, _module_navmesh("navmesh")
 	, _module_sound("sound")
 	, _module_uniques("uniques")
-    , _module_particles("particles")
+	, _module_particles("particles")
 	, _module_slash("slash") {
 }
 
@@ -75,6 +75,8 @@ bool CEngine::start() {
 	started = _modules.start();
 
 	CTimerFrames::get().reset();
+
+	Resources.loadResourcesBackground("data/resources.json");
 
 	return started;
 }
