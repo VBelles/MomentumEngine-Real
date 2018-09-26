@@ -86,15 +86,6 @@
     "priority": 70
   },
 
-  "dump_texture": {
-    "vs_file": "data/shaders/screen_quad.fx",
-    "vertex_type": "PosClr",
-    "z": "disable_all",
-    "category": "helper",
-    "priority": 40
-  },
-
-
   "textured": {
     "vs_file": "data/shaders/textured.fx",
     "vs_entry_point": "VS",
