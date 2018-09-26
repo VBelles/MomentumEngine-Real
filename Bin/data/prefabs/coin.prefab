@@ -1,44 +1,9 @@
 [
 	{
 		"entity": {
-			"name": "coin_prefab_1",
+			"name": "coin",
 			"transform": {
 				"pos": "0 0 0"
-			},
-			"render": [
-				{
-					"mesh": "data/meshes/monedas_raras.mesh",
-					"materials": [
-						"data/materials/lila_coin.material"
-					]
-				}
-			],
-			"collectable": {
-				"type": "coin",
-				"rotation_axis": "1 0.5 0.9",
-				"rotation_speed": 3.5
-			},
-			"self_illum_variation":{
-				"enabled" : true,
-				"half_amplitude" : 0.15,
-				"time_factor" : 3.3,
-				"max_ratio" : 1.0
-			},
-			"collider" : {
-				"shape": "sphere",
-				"is_trigger" : true,
-				"radius" : 0.85,
-				"type": "kinematic",
-				"group": ["scenario"],
-				"mask": ["player"]
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "coin_prefab_2",
-			"transform": {
-				"pos": "0 0 1.5"
 			},
 			"render": [
 				{
