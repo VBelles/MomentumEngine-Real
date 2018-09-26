@@ -2,6 +2,114 @@
   {
     "entity":
     {
+      "name": "nes_enemyAir034",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-32.5791 -0.273387 110.201",
+        "lookat": "-1.0 -0.273387 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir033",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "86.1398 35.428 0.856559",
+        "lookat": "-1.0 35.428 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir032",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "56.0098 35.5463 28.981",
+        "lookat": "-1.0 35.5463 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir031",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "52.8985 35.5463 17.1758",
+        "lookat": "-1.0 35.5463 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir030",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "73.9075 37.2516 17.8408",
+        "lookat": "-1.0 37.2516 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir029",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "35.6325 37.2516 28.059",
+        "lookat": "-1.0 37.2516 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir028",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-133.146 1.41387 98.3061",
+        "lookat": "-1.0 1.41387 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee016",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-37.0226 -4.63877 44.928",
+        "lookat": "-1.0 -4.63877 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee015",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-56.4561 -4.62241 102.284",
+        "lookat": "-1.0 -4.62241 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_enemyAir17",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":

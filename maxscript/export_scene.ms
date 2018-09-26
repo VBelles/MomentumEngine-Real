@@ -390,7 +390,7 @@ struct TMaterialExporter (
 				exportMaterialContent tech:pureOnSuffix
 			fs.end()
 		)
-		appendIfUnique resources mat_name + suffix + ".material"
+		appendIfUnique resources (mat_name + suffix + ".material")
 	),
 
 	-- Will return an array of all the materials names used by obj and exported by us.
@@ -1675,10 +1675,10 @@ struct TSceneExporter (
 			fs.writeKey "render"
 			fs.beginArray()
 				fs.beginObj()
-					local meshName = "spikes_plat_hex_small"
+					local meshName = "spikes"
 					fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
 					fs.writeComma()
-					exportStringArray "materials" #(mats_path + "m_platform_spikes") suffix:".material"
+					exportStringArray "materials" #(mats_path + "spikes") suffix:".material"
 				fs.endObj()
 			fs.endArray()
 			fs.writeComma()
@@ -1686,7 +1686,7 @@ struct TSceneExporter (
 			fs.writeKey "collider"
 			fs.beginObj()
 				exportColliderMeshContents obj meshShape:"convex_mesh" \
-					forceMesh:"spikes_plat_hex_small_col" mov:true
+					forceMesh:"spikes_col" mov:true
 				fs.writeComma()
 				fs.writeKeyValue "type" "kinematic"
 				fs.writeComma()

@@ -2,6 +2,18 @@
   {
     "entity":
     {
+      "name": "nes_chrysalis009",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-22.5492 22.0768 143.159",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_chrysalis007",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":

@@ -27,8 +27,8 @@ ButtonText: "Momentum"
 		format "%x%\n" screen.Width screen.Height --DEBUG
 	*/
 	local MAXWinSize = getMAXWindowSize()
-	local left = MAXWinSize[1] * 0.8 --80% of screen width.
-	local top  = MAXWinSize[2] * 0.1 --10% of screen height.
+	local left = MAXWinSize[1] * 0.77 --77% of screen width.
+	local top  = MAXWinSize[2] * 0.08 --08% of screen height.
 
 	floater = newRolloutFloater "Momentum utils" width height left top
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\ui_floating.ms" "Bin\\")
