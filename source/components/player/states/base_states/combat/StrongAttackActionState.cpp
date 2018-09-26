@@ -38,73 +38,73 @@ void StrongAttackActionState::update(float delta) {
 		AttackState::update(delta);
 	}
 
-	//bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
-	//if (phase == AttackPhases::Startup || phase == AttackPhases::Launch) {
-	//	//posicionamiento
+	bool hasInput = movementInput.Length() > PAD_DEAD_ZONE;
+	if (phase == AttackPhases::Startup || phase == AttackPhases::Launch) {
+		//posicionamiento
 
-	//	if (hasInput) {
-	//		VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
-	//		VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
-	//		rotatePlayerTowards(delta, targetPos, 3.f);
-	//	}
-	//}
+		if (hasInput) {
+			VEC3 desiredDirection = getCamera()->getCamera()->TransformToWorld(movementInput);
+			VEC3 targetPos = getPlayerTransform()->getPosition() + desiredDirection;
+			rotatePlayerTowards(delta, targetPos, 3.f);
+		}
+	}
 
-	//float acceleration = 100.f;
-	//float maxSpeed = 10.f;
-	//float deceleration = 12.f;
+	float acceleration = 100.f;
+	float maxSpeed = 10.f;
+	float deceleration = 12.f;
 
-	//if (fromRun) {
-	//	maxSpeed = 40.f;
-	//}
+	if (fromRun) {
+		maxSpeed = 30.f;
+	}
 
-	//if (phase == AttackPhases::Launch && fromRun) {
-	//	deceleration = 1.f;
-	//	VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
-	//	if (deceleration * delta < horizontalVelocity.Length()) {
-	//		deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
-	//			-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
+	if (phase == AttackPhases::Launch && fromRun) {
+		deceleration = 1.f;
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		if (deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+				-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
 
-	//		transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
-	//	}
-	//	else {
-	//		velocityVector->x = 0.f;
-	//		velocityVector->z = 0.f;
-	//	}
-	//}
+			transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
+		}
+		else {
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
+		}
+	}
 
-	//if (movementTimer.elapsed() > frames2sec(30) && movementTimer.elapsed() < frames2sec(45)) {
-	//	//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
-	//	deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
-	//		getPlayerTransform()->getFront(), acceleration,
-	//		maxSpeed);
+	if (movementTimer.elapsed() > frames2sec(30) && movementTimer.elapsed() < frames2sec(38)) {
+		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
+		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+			getPlayerTransform()->getFront(), acceleration,
+			maxSpeed);
 
-	//	transferVelocityToDirectionAndAccelerate(delta, true, getPlayerTransform()->getFront(), acceleration);
-	//	clampHorizontalVelocity(maxSpeed);
-	//}
-	//else {
-	//	VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
-	//	if (deceleration * delta < horizontalVelocity.Length()) {
-	//		deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
-	//			-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
+		transferVelocityToDirectionAndAccelerate(delta, true, getPlayerTransform()->getFront(), acceleration);
+		clampHorizontalVelocity(maxSpeed);
+	}
+	else {
+		VEC2 horizontalVelocity = { velocityVector->x, velocityVector->z };
+		if (deceleration * delta < horizontalVelocity.Length()) {
+			deltaMovement = calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
+				-VEC3(velocityVector->x, 0, velocityVector->z), deceleration, maxSpeed);
 
-	//		transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
-	//	}
-	//	else {
-	//		velocityVector->x = 0.f;
-	//		velocityVector->z = 0.f;
-	//	}
-	//}
+			transferVelocityToDirectionAndAccelerate(delta, false, -VEC3(velocityVector->x, 0, velocityVector->z), deceleration);
+		}
+		else {
+			velocityVector->x = 0.f;
+			velocityVector->z = 0.f;
+		}
+	}
 
 
 
-	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24) && movementTimer.elapsed() <= frames2sec(54)) {
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(30) && movementTimer.elapsed() <= frames2sec(50)) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
 		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
 	}
 
-	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
+	if (isSlashOut && movementTimer.elapsed() > frames2sec(50)) {
 		isSlashOut = false;
 		getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 		getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
