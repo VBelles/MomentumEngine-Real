@@ -68,7 +68,7 @@
               "animation": "enemigo_bola_recibirdanio",
               "particles": "data/particles/hit_sparks.particles",
               "particles_offset": "0 0.4 0",
-              "on_blocking_hit_sound": "event:/PROTA/golpes/golpe_hit",
+              "on_blocking_hit_sound": "",
               "on_hit_sound": "event:/PROTA/golpes/golpe_hit"
             }
           },
@@ -97,7 +97,8 @@
                     "type": "action",
                     "action": {
                       "type": "HorizontalLaunchedAction",
-                      "attack": "launched"
+                      "attack": "launched",
+                      "on_launched_sound": ""
                     }
                   }
                 ]
@@ -123,7 +124,8 @@
                     "type": "action",
                     "action": {
                       "type": "VerticalLaunchedAction",
-                      "attack": "launched"
+                      "attack": "launched",
+                      "on_launched_sound": ""
                     }
                   }
                 ]
@@ -803,7 +805,8 @@
                 "type": "action",
                 "action": {
                   "type": "StrollAction",
-                  "cancel_condition": "combat"
+                  "cancel_condition": "combat",
+                  
                 }
               }
             ]
