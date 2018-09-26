@@ -11,7 +11,7 @@ private:
 	
 	float powerToGet = 3000.f;
 	float damage = 2.f;
-	float stunTime = 2.2f;
+	float stunTime = frames2sec(61);
 	float suspensionTime = 0.3f;
 	VEC2 launchSpeed = { 12.f, 3.f };
 

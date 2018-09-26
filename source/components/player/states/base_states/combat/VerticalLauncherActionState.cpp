@@ -34,7 +34,7 @@ void VerticalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle enti
 	msgAttackHit.attacker = playerEntity;
 	msgAttackHit.info = {};
 	msgAttackHit.info.givesPower = true;
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.gravityMultiplier = getPlayerModel()->getPowerStats()->currentGravityMultiplier;
 	msgAttackHit.info.verticalLauncher = new AttackInfo::VerticalLauncher{
 		suspensionTime,

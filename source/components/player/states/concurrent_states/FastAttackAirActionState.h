@@ -11,6 +11,7 @@ private:
 	float animationEndTime = frames2sec(10);
 
 	float damage = 1.f;
+	float stunTime = 1.5f;
 	AttackPhases phase = AttackPhases::Launch;
 
 	float powerToGet = 1000.f;

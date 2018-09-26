@@ -148,7 +148,7 @@ void ReleasePowerGroundActionState::onHitboxEnter(std::string hitbox, CHandle en
 	msgAtackHit.info = {};
 	msgAtackHit.info.givesPower = false;
 	msgAtackHit.info.damage = damage;
-	msgAtackHit.info.stun = new AttackInfo::Stun{ stunDuration };
+	msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAtackHit.info.activatesMechanism = true;
 	otherEntity->sendMsg(msgAtackHit);
 }

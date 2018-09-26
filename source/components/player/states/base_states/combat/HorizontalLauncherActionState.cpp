@@ -66,7 +66,7 @@ void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle en
 	VEC3 launchVelocity = getPlayerTransform()->getFront() * getPlayerModel()->getPowerStats()->longJumpVelocityVector.z;
 	launchVelocity.y = getPlayerModel()->getPowerStats()->longJumpVelocityVector.y;
 	msgAttackHit.info.gravityMultiplier = getPlayerModel()->getPowerStats()->longGravityMultiplier;
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
 		suspensionTime,
 		launchVelocity

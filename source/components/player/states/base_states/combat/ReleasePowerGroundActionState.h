@@ -14,7 +14,7 @@ private:
 	AttackPhases phase = AttackPhases::Startup;
 
 	float damage = 0.f;
-	float stunDuration = 3.f;
+	float stunTime = 3.f;
 
 	std::string animation = "release_power";
 

@@ -10,6 +10,7 @@ protected:
 	float deceleration = 0.5f;
 
 	float damage = 3;
+	float stunTime = 3.5f;
 	float powerToGet = 4000.f;
 	float propelDuration = 0.5f;
 

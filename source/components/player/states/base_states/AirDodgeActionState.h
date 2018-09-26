@@ -8,7 +8,7 @@ private:
 	float dodgingTime = frames2sec(12);
 	float recoveryTime = frames2sec(30);
 	CTimer invencibilityTimer;
-	float invencibilityTime = frames2sec(5);
+	float invencibilityTime = frames2sec(12);
 	float takeActionTime = frames2sec(3);
 	float dodgeSpeed = 22.f;
 	float deceleration = 5.f;

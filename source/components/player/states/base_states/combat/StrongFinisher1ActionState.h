@@ -9,6 +9,7 @@ private:
 
 	float powerToGet = 3000.f;
 	float damage = 3.f;
+	float stunTime = 2.f;
 	float suspensionTime = 1.5f;
 	bool isSlashOut = false;
 

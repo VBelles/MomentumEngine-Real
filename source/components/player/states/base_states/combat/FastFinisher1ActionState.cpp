@@ -129,7 +129,7 @@ void FastFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 		launchVelocity
 	};
 	msgAttackHit.info.gravityMultiplier = getPlayerModel()->getPowerStats()->longGravityMultiplier;
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.0f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

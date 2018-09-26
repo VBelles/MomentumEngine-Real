@@ -13,6 +13,8 @@
 WallJumpPlummetActionState::WallJumpPlummetActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, WallJumpPlummet),
 	AttackState(stateManager) {
+	invulnerabilityStartTime = frames2sec(0);
+	invulnerabilityEndTime = frames2sec(600);
 }
 
 void WallJumpPlummetActionState::update(float delta) {
@@ -103,7 +105,7 @@ void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entit
 	msgAttackHit.info.damage = damage;
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.propel = new AttackInfo::Propel{ propelDuration, *velocityVector };
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.7f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	otherEntity->sendMsg(msgAttackHit);
 
 }

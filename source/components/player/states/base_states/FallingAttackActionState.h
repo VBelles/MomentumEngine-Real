@@ -12,6 +12,7 @@ private:
 	float upwardsVelocity = 18.f;
 
 	float damage = 2.f;
+	float stunTime = 2.5f;
 	float powerToGet = 4000.f;
 	float propelDuration = 0.5f;
 
