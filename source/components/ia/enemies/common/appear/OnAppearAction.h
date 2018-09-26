@@ -8,6 +8,7 @@ class OnAppearAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
+	std::string sound = "";
 public:
 	OnAppearAction();
 	OnAppearAction(Enemy* enemy, std::string animation);

@@ -3,6 +3,7 @@
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_give_power.h"
+#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnBlockingBreakAction", OnBlockingBreakAction);
 
@@ -22,6 +23,7 @@ int OnBlockingBreakAction::execAction(float delta) {
 	enemy->blockingBroken = false;
 	enemy->isBlocking = false;
 	enemy->getPower()->setStateMultiplier(1.f);
+	EngineSound.emitEvent(sound, enemy->getTransform());
 	return Leave;
 }
 
@@ -30,6 +32,7 @@ void OnBlockingBreakAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	sound = j.value("sound", sound);
 }
 
 void OnBlockingBreakAction::debugInMenu() {

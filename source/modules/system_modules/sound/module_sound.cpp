@@ -83,22 +83,23 @@ void CModuleSound::updateFollowingEvents() {
 	}
 }
 
-Studio::EventInstance* CModuleSound::emitFollowingEvent(const char* sound, CHandle transformHandle) {
+Studio::EventInstance* CModuleSound::emitFollowingEvent(const std::string& sound, CHandle transformHandle) {
 	TCompTransform* transform = transformHandle;
-	auto eventInstance = emitEvent(sound, *transform);
+	auto eventInstance = emitEvent(sound, transform);
 	followingEvents.push_back(FollowingEvent{ eventInstance, transformHandle });
 	return eventInstance;
 }
 
-Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const CTransform& transform) {
-	FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(transform);
+Studio::EventInstance* CModuleSound::emitEvent(const std::string& sound, const CTransform* transform) {
+	FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
 	return emitEvent(sound, &attributes);
 }
 
-Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
+Studio::EventInstance* CModuleSound::emitEvent(const std::string& sound, const FMOD_3D_ATTRIBUTES* attributes) {
+	if (sound.empty()) return nullptr;
 	Studio::EventDescription* descriptor = nullptr;
 	Studio::EventInstance* eventInstance = nullptr;
-	res = system->getEvent(sound, &descriptor);
+	res = system->getEvent(sound.c_str(), &descriptor);
 	if (!descriptor) {
 		dbg("Event %s not found\n", sound);
 		return nullptr;

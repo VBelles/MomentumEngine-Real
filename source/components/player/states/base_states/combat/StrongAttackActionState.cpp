@@ -101,7 +101,7 @@ void StrongAttackActionState::update(float delta) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, *getPlayerTransform());
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
 	}
 
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {

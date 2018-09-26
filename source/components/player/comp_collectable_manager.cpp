@@ -109,7 +109,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		playerModel->setHp(playerModel->getMaxHp());
-		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, *transform);
+		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
 		break;
 	case Type::COIN:
 		collectable->collect();
@@ -118,7 +118,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 			spendCoins(getNumberOfCoins() - maxCoins);
 		}
 		EngineParticles.launchSystem(PARTICLES_COIN, { entity });
-		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, *transform);
+		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
 		break;
 	case Type::LIFEPIECE:
 		collectable->collect();

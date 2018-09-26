@@ -23,7 +23,8 @@
             "type": "action",
             "action": {
               "type": "AppearAction",
-              "animation": "enemigo_bola_aparecer"
+              "animation": "enemigo_bola_aparecer",
+              "sound": ""
             }
           }
         ]
@@ -210,7 +211,9 @@
             "name": "suspensionAction",
             "type": "action",
             "action": {
-              "type": "SuspensionAction"
+              "type": "SuspensionAction",
+              "sound_loop": "",
+              "sound_end": "event:/PROTA/launcher/launcher_final"
             }
           }
         ]
@@ -595,6 +598,7 @@
                           "type": "TackleAttackAction",
                           "animation": "enemigo_bola_placaje_loop",
                           "attack": "tackle",
+                          "sound": "",
                           "speed": 9,
                           "time": 1
                         }
@@ -652,6 +656,7 @@
                           "type": "TackleAttackAction",
                           "animation": "enemigo_bola_placaje_loop",
                           "attack": "tackle",
+                          "sound": "",
                           "speed": 9,
                           "time": 1
                         }
@@ -676,7 +681,8 @@
                     "name": "chaseAction",
                     "type": "action",
                     "action": {
-                      "type": "ChaseAction"
+                      "type": "ChaseAction",
+                      "sound": ""
                     }
                   }
                 ]
@@ -806,7 +812,7 @@
                 "action": {
                   "type": "StrollAction",
                   "cancel_condition": "combat",
-                  
+                  "sound": ""
                 }
               }
             ]

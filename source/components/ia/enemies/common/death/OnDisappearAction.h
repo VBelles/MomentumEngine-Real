@@ -8,6 +8,7 @@ class OnDisappearAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
+	std::string sound = "";
 public:
 	OnDisappearAction();
 	OnDisappearAction(Enemy* enemy, std::string animation);

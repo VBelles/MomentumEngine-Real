@@ -68,5 +68,4 @@ void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle en
 		launchVelocity
 	};
 	otherEntity->sendMsg(msgAttackHit);
-
 }

@@ -87,7 +87,7 @@ void FastFinisher2ActionState::update(float delta) {
 		isUltraSlashOut = true;
 		slash(SLASH_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(45));
 		slash(SLASH_COUNTER_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(-45));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, *getPlayerTransform());
+		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
 	}
 }
 

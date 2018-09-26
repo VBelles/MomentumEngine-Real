@@ -2,6 +2,7 @@
 #include "OnDeathAction.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnDeathAction", OnDeathAction);
 
@@ -20,6 +21,7 @@ int OnDeathAction::execAction(float delta) {
 	enemy->blockingBroken = false;
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
+	EngineSound.emitEvent(sound, enemy->getTransform());
 	return Leave;
 }
 
@@ -28,6 +30,7 @@ void OnDeathAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	sound = j.value("sound", sound);
 }
 
 void OnDeathAction::debugInMenu() {
