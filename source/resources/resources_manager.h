@@ -15,6 +15,7 @@ class CResourceManager {
 	// To make the reload in proper order
 	std::vector< const CResourceClass* > resource_classes_by_file_change_priority;
 
+	volatile bool resourcesLoaded = true;
 public:
 
 	void registerResourceClass(const CResourceClass* new_class);
@@ -32,7 +33,7 @@ public:
 	void loadResourcesBackground(const std::string& file);
 
 	std::thread loaderThread;
-	volatile bool resourcesLoaded = false;
+	bool finishedLoading();
 };
 
 extern CResourceManager Resources;

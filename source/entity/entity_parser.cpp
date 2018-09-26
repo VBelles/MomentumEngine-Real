@@ -27,8 +27,6 @@ TEntityParseContext::TEntityParseContext(TEntityParseContext& another_ctx, const
 	recursion_level = another_ctx.recursion_level + 1;
 	entity_starting_the_parse = another_ctx.entity_starting_the_parse;
 	root_transform = another_ctx.root_transform.combineWith(delta_transform);
-	//VEC3 p = root_transform.getPosition(); float y, pitch; root_transform.getYawPitchRoll(&y, &pitch);
-	//dbg("New root transform is Pos:%f %f %f Yaw: %f\n", p.x, p.y, p.z, rad2deg(y));
 }
 
 bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
@@ -68,24 +66,51 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 				assert(!prefab_ctx.entities_loaded.empty());
 
-				// Create a new fresh entity
-				h_e = prefab_ctx.entities_loaded[0];
 
-				// Cast to entity object
-				CEntity* e = h_e;
+				// Fusionar entidades cuando el prefab tiene solo 1 entidad
+				if (prefab_ctx.entities_loaded.size() == 1) {
 
-				// We give an option to 'reload' the prefab by modifying existing components, 
-				// like changing the name, add other components, etc, but we don't want to parse again 
-				// the comp_transform, because it was already parsed as part of the root
-				// As the json is const as it's a resouce, we make a copy of the prefab section and
-				// remove the transform
-				json j_entity_without_transform = j_entity;
-				j_entity_without_transform.erase("transform");
+					// Create a new fresh entity
+					h_e = prefab_ctx.entities_loaded[0];
 
-				// Do the parse now outside the 'prefab' context
-				prefab_ctx.parsing_prefab = false;
-				e->load(j_entity_without_transform, prefab_ctx);
+					// Cast to entity object
+					CEntity* e = h_e;
 
+					// We give an option to 'reload' the prefab by modifying existing components, 
+					// like changing the name, add other components, etc, but we don't want to parse again 
+					// the comp_transform, because it was already parsed as part of the root
+					// As the json is const as it's a resouce, we make a copy of the prefab section and
+					// remove the transform
+					json j_entity_without_transform = j_entity;
+					j_entity_without_transform.erase("transform");
+
+					// Do the parse now outside the 'prefab' context
+					prefab_ctx.parsing_prefab = false;
+					e->load(j_entity_without_transform, prefab_ctx);
+				}
+				// Cargar las entidades en el mismo grupo y combinar nombres de prefabs con el padre
+				else {
+					// Crear y cargar entidad que invoca el prefab
+					h_e.create<CEntity>();
+					CEntity* entity = h_e;
+					entity->load(j_entity, ctx);
+					TCompName* name = entity->get<TCompName>();
+
+					// Añadir los prefabs al contexto del padre y combinar nombres
+					for (auto prefabEntityHandle : prefab_ctx.entities_loaded) {
+						CEntity* prefabEntity = prefabEntityHandle;
+						TCompName* prefabName = prefabEntity->get<TCompName>();
+						if (name && prefabName) {
+							prefabName->setName((std::string(name->getName()) + "_" + std::string(prefabName->getName())).c_str());
+						}
+						ctx.entities_loaded.push_back(prefabEntityHandle);
+
+						// Enviar mensaje de entidad creada
+						prefabEntity->sendMsg(TMsgEntityCreated{});
+					}
+				}
+
+				
 			}
 			else {
 				// Create a new fresh entity
@@ -103,7 +128,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 	}
 
 	// Create a comp_group automatically if there is more than one entity
-	if (ctx.entities_loaded.size() > 1) {
+	if (!ctx.parsing_prefab && ctx.entities_loaded.size() >= 1) {
 		//Create new entity for group root
 		CHandle groupRootEntity;
 		groupRootEntity.create<CEntity>();
@@ -125,14 +150,11 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 		for (size_t i = 0; i < ctx.entities_loaded.size(); ++i) {
 			c_group->add(ctx.entities_loaded[i]);
 		}
-	}
 
-	// Notify each entity created that we have finished
-	// processing this file
-	if (!ctx.parsing_prefab) {
 		TMsgEntitiesGroupCreated msg = { ctx };
 		for (auto h : ctx.entities_loaded)
 			h.sendMsg(msg);
 	}
+
 	return true;
 }

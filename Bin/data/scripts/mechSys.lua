@@ -1,8 +1,8 @@
-function onMechanismSystemActivated_plataformeo_hex_mechsys_000()
-  closeDoor("plataformeo_hex_mechsys_000", 0)
+function onMechanismSystemActivated_Plataformeo_hex_mech_000()
+  closeDoor("Plataformeo_hex_mech_000", 0)
 end
-function onMechanismSystemDeactivated_plataformeo_hex_mechsys_000()
-  openDoor("plataformeo_hex_mechsys_000", 0)
+function onMechanismSystemDeactivated_Plataformeo_hex_mech_000()
+  openDoor("Plataformeo_hex_mech_000", 0)
 end
 
 function onMechanismSystemActivated_dani_mariosunshine_MS002()
