@@ -23,7 +23,8 @@
             "type": "action",
             "action": {
               "type": "AppearAction",
-              "animation": "enemigo_bola_aparecer"
+              "animation": "enemigo_bola_aparecer",
+              "sound": ""
             }
           }
         ]
@@ -68,7 +69,7 @@
               "animation": "enemigo_bola_recibirdanio",
               "particles": "data/particles/hit_sparks.particles",
               "particles_offset": "0 0.4 0",
-              "on_blocking_hit_sound": "event:/PROTA/golpes/golpe_hit",
+              "on_blocking_hit_sound": "",
               "on_hit_sound": "event:/PROTA/golpes/golpe_hit"
             }
           },
@@ -97,7 +98,8 @@
                     "type": "action",
                     "action": {
                       "type": "HorizontalLaunchedAction",
-                      "attack": "launched"
+                      "attack": "launched",
+                      "on_launched_sound": ""
                     }
                   }
                 ]
@@ -123,7 +125,8 @@
                     "type": "action",
                     "action": {
                       "type": "VerticalLaunchedAction",
-                      "attack": "launched"
+                      "attack": "launched",
+                      "on_launched_sound": ""
                     }
                   }
                 ]
@@ -208,7 +211,9 @@
             "name": "suspensionAction",
             "type": "action",
             "action": {
-              "type": "SuspensionAction"
+              "type": "SuspensionAction",
+              "sound_loop": "",
+              "sound_end": "event:/PROTA/launcher/launcher_final"
             }
           }
         ]
@@ -593,6 +598,7 @@
                           "type": "TackleAttackAction",
                           "animation": "enemigo_bola_placaje_loop",
                           "attack": "tackle",
+                          "sound": "",
                           "speed": 9,
                           "time": 1
                         }
@@ -650,6 +656,7 @@
                           "type": "TackleAttackAction",
                           "animation": "enemigo_bola_placaje_loop",
                           "attack": "tackle",
+                          "sound": "",
                           "speed": 9,
                           "time": 1
                         }
@@ -674,7 +681,8 @@
                     "name": "chaseAction",
                     "type": "action",
                     "action": {
-                      "type": "ChaseAction"
+                      "type": "ChaseAction",
+                      "sound": ""
                     }
                   }
                 ]
@@ -803,7 +811,8 @@
                 "type": "action",
                 "action": {
                   "type": "StrollAction",
-                  "cancel_condition": "combat"
+                  "cancel_condition": "combat",
+                  "sound": ""
                 }
               }
             ]

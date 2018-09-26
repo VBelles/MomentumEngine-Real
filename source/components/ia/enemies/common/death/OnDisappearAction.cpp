@@ -2,6 +2,7 @@
 #include "OnDisappearAction.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnDisappearAction", OnDisappearAction);
 
@@ -18,6 +19,7 @@ OnDisappearAction::OnDisappearAction(Enemy* enemy, std::string animation) :
 int OnDisappearAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
+	EngineSound.emitEvent(sound, enemy->getTransform());
 	return Leave;
 }
 
@@ -26,6 +28,7 @@ void OnDisappearAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	sound = j.value("sound", sound);
 }
 
 void OnDisappearAction::debugInMenu() {

@@ -2,6 +2,7 @@
 #include "OnAppearAction.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnAppearAction", OnAppearAction);
 
@@ -18,6 +19,7 @@ OnAppearAction::OnAppearAction(Enemy* enemy, std::string animation) :
 int OnAppearAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
+	EngineSound.emitEvent(sound, enemy->getTransform());
 	return Leave;
 }
 
@@ -26,6 +28,7 @@ void OnAppearAction::load(IBehaviorTreeNew* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	sound = j.value("sound", sound);
 }
 
 void OnAppearAction::debugInMenu() {

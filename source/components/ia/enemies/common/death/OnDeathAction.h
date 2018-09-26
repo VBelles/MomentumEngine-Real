@@ -8,6 +8,7 @@ class OnDeathAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
+	std::string sound = "";
 public:
 	OnDeathAction();
 	OnDeathAction(Enemy* enemy, std::string animation);

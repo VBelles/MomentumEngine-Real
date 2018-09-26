@@ -30,10 +30,11 @@ public:
 	void update(float delta) override;
 	void render() override;
 
-	FMOD::Studio::EventInstance* emitFollowingEvent(const char* sound, CHandle transformHandle);
-	FMOD::Studio::EventInstance* emitEvent(const char* sound, const CTransform& transform);
-	FMOD::Studio::EventInstance* emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
+	FMOD::Studio::EventInstance* emitFollowingEvent(const std::string& sound, CHandle transformHandle);
+	FMOD::Studio::EventInstance* emitEvent(const std::string& sound, const CTransform* transform);
+	FMOD::Studio::EventInstance* emitEvent(const std::string& sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
 	FMOD::Studio::System* getSystem();
+	void stopEvent(FMOD::Studio::EventInstance * instance, bool fadeout = false);
 
 
 };
