@@ -67,7 +67,9 @@
               "type": "OnHit",
               "animation": "enemigo_bola_recibirdanio",
               "particles": "data/particles/hit_sparks.particles",
-              "particles_offset": "0 0.4 0"
+              "particles_offset": "0 0.4 0",
+              "on_blocking_hit_sound": "event:/PROTA/golpes/golpe_hit",
+              "on_hit_sound": "event:/PROTA/golpes/golpe_hit"
             }
           },
           {

@@ -35,7 +35,7 @@ int OnHit::execAction(float delta) {
 		}
 		else {
 			if (!onBlockingHitSound.empty()) {
-				EngineSound.emitEvent(onBlockingHitSound.c_str(), *enemy->getTransform());
+				EngineSound.emitFollowingEvent(onBlockingHitSound.c_str(), enemy->getTransform());
 			}
 		}
 	}
@@ -49,7 +49,7 @@ int OnHit::execAction(float delta) {
 		}
 		enemy->stunTimer.reset();
 		if (!onHitSound.empty()) {
-			EngineSound.emitEvent(onHitSound.c_str(), *enemy->getTransform());
+			EngineSound.emitFollowingEvent(onHitSound.c_str(), enemy->getTransform());
 		}
 	}
 	if (enemy->hp <= 0.f || enemy->getPower()->getPowerToGive() <= 0) {

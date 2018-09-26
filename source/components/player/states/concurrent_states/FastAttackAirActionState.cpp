@@ -88,6 +88,4 @@ void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);
-	EngineSound.emitEvent(SOUND_ATTACK_HIT, *getPlayerTransform());
-
 }

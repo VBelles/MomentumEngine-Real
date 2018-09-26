@@ -70,14 +70,15 @@ void CModuleSound::updateListenerAttributes() {
 void CModuleSound::updateFollowingEvents() {
 	auto it = followingEvents.begin();
 	while (it != followingEvents.end()) {
-		auto& p = *it;
-		if (!p.first->isValid() || !p.second.isValid()) { // Event has been released or does not follow a transform anymore
+		auto& followingEvent = *it;
+		if (!followingEvent.eventInstance->isValid() || !followingEvent.transformHandle.isValid()) { // Event has been released or does not follow a transform anymore
 			it = followingEvents.erase(it);
 		}
 		else {
-			TCompTransform* transform = p.second;
+			TCompTransform* transform = followingEvent.transformHandle;
 			FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
-			p.first->set3DAttributes(&attributes);
+			followingEvent.eventInstance->set3DAttributes(&attributes);
+			++it;
 		}
 	}
 }
@@ -85,7 +86,8 @@ void CModuleSound::updateFollowingEvents() {
 FMOD::Studio::EventInstance* CModuleSound::emitFollowingEvent(const char* sound, CHandle transformHandle) {
 	TCompTransform* transform = transformHandle;
 	auto eventInstance = emitEvent(sound, *transform);
-	followingEvents.push_back(std::make_pair(eventInstance, transformHandle));
+	followingEvents.push_back(FollowingEvent{ eventInstance, transformHandle });
+	return eventInstance;
 }
 
 Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const CTransform& transform) {
@@ -110,6 +112,63 @@ Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const FMOD_3D_
 
 FMOD::Studio::System* CModuleSound::getSystem() {
 	return system;
+}
+
+void CModuleSound::render() {
+	if (CApp::get().isDebug()) {
+		if (ImGui::TreeNode("Sound")) {
+			int bankCount = 0;
+			system->getBankCount(&bankCount);
+			std::vector<Studio::Bank*> banks;
+			banks.resize(bankCount);
+			system->getBankList(&banks[0], bankCount, &bankCount);
+			ImGui::Text("Banks: %d", bankCount);
+
+			static ImGuiTextFilter Filter;
+			Filter.Draw("Filter");
+
+			ImGui::Text("Following events: %d", followingEvents.size());
+			for (auto& followingEvent : followingEvents) {
+				Studio::EventDescription* eventDescription = nullptr;
+				followingEvent.eventInstance->getDescription(&eventDescription);
+				char path[256];
+				eventDescription->getPath(path, 256, nullptr);
+				if (!Filter.IsActive() || Filter.PassFilter(path)) {
+					int instancesCount = 0;
+					eventDescription->getInstanceCount(&instancesCount);
+					TCompTransform* transform = followingEvent.transformHandle;
+					CEntity* owner = followingEvent.transformHandle.getOwner();
+					ImGui::Text("(%d) %s", instancesCount, path);
+					ImGui::Text("Target: %s", owner->getName());
+					if (ImGui::TreeNode("Transform")) {
+						transform->debugInMenu();
+						ImGui::TreePop();
+					}
+				}
+			}
+
+			for (auto bank : banks) {
+				int eventCount = 0;
+				bank->getEventCount(&eventCount);
+				if (eventCount == 0) continue;
+				std::vector<Studio::EventDescription*> events;
+				events.resize(eventCount);
+				bank->getEventList(&events[0], eventCount, &eventCount);
+				if (eventCount == 0) continue;
+				ImGui::Text("Events: %d", eventCount);
+				for (auto event : events) {
+					char path[256];
+					event->getPath(path, 256, nullptr);
+					if (!Filter.IsActive() || Filter.PassFilter(path)) {
+						int instancesCount = 0;
+						event->getInstanceCount(&instancesCount);
+						ImGui::Text("(%d) %s", instancesCount, path);
+					}
+				}
+				ImGui::TreePop();
+			}
+		}
+	}
 }
 
 

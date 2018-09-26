@@ -4,31 +4,37 @@
 
 class CModuleSound : public IModule {
 private:
+	struct FollowingEvent {
+		FMOD::Studio::EventInstance* eventInstance = nullptr;
+		CHandle transformHandle;
+	};
 	FMOD_RESULT res;
 	void *extraDriverData = nullptr;
 	FMOD::System* lowLevelSystem = nullptr;
 	FMOD::Studio::System* system = nullptr;
 
 	std::map<std::string, FMOD::Studio::Bank*> banks;
-	
-	FMOD_3D_ATTRIBUTES listenerAttributes;
 
+	FMOD_3D_ATTRIBUTES listenerAttributes;
 	CHandle cameraHandle;
 
-	void updateListenerAttributes();
+	std::vector<FollowingEvent> followingEvents;
 
-	std::vector<std::pair<FMOD::Studio::EventInstance*, CHandle>> followingEvents;
+	void updateListenerAttributes();
+	void updateFollowingEvents();
 
 public:
 	CModuleSound(const std::string& name);
 	bool start() override;
 	bool stop() override;
 	void update(float delta) override;
+	void render() override;
+
 	FMOD::Studio::EventInstance* emitFollowingEvent(const char* sound, CHandle transformHandle);
 	FMOD::Studio::EventInstance* emitEvent(const char* sound, const CTransform& transform);
 	FMOD::Studio::EventInstance* emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
-
 	FMOD::Studio::System* getSystem();
+
 
 };
 

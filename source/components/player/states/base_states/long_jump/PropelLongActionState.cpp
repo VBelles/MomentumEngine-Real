@@ -64,7 +64,6 @@ void PropelLongActionState::onStateEnter(IActionState * lastState) {
 		getSkeleton()->executeAction(animation, 0.03f, 0.2f);
 		getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 		getPlayerModel()->makeInvulnerable(invulnerableTime);
-		EngineSound.emitEvent(SOUND_ATTACK_HIT, *getPlayerTransform());
 	}
 	else {
 		stateManager->changeState(AirborneNormal);
