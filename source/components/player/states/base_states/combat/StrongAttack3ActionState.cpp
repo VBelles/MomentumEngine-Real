@@ -21,6 +21,10 @@ StrongAttack3ActionState::StrongAttack3ActionState(StateManager * stateManager) 
 	interruptibleTime = frames2sec(70);
 	walkableTime = frames2sec(70);
 	hitbox = "strong_attack3";
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(18);
+	invulnerabilityStartTime = frames2sec(18);
+	invulnerabilityEndTime = frames2sec(29);
 }
 
 void StrongAttack3ActionState::update(float delta) {

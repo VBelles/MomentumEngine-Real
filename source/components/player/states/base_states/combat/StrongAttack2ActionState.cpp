@@ -21,6 +21,8 @@ StrongAttack2ActionState::StrongAttack2ActionState(StateManager * stateManager) 
 	interruptibleTime = frames2sec(34);
 	walkableTime = frames2sec(65);
 	hitbox = "strong_attack2";
+	invulnerabilityStartTime = frames2sec(10);
+	invulnerabilityEndTime = frames2sec(17);
 }
 
 void StrongAttack2ActionState::update(float delta) {

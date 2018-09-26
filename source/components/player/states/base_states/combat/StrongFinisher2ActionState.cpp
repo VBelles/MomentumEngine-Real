@@ -21,6 +21,10 @@ StrongFinisher2ActionState::StrongFinisher2ActionState(StateManager * stateManag
 	interruptibleTime = frames2sec(50);
 	walkableTime = frames2sec(55);
 	hitbox = "strong_finisher2";
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(31);
+	invulnerabilityStartTime = frames2sec(31);
+	invulnerabilityEndTime = frames2sec(44);
 }
 
 void StrongFinisher2ActionState::update(float delta) {

@@ -21,6 +21,10 @@ FastFinisher1ActionState::FastFinisher1ActionState(StateManager * stateManager) 
 	interruptibleTime = frames2sec(75);
 	walkableTime = frames2sec(75);
 	hitbox = "fast_finisher1";
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(24);
+	invulnerabilityStartTime = frames2sec(24);
+	invulnerabilityEndTime = frames2sec(35);
 }
 
 void FastFinisher1ActionState::update(float delta) {

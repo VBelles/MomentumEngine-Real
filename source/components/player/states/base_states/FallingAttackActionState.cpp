@@ -16,6 +16,8 @@ FallingAttackActionState::FallingAttackActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, FallingAttack),
 	AttackState(stateManager) {
 	cancelableTime = frames2sec(16);
+	superarmorStartTime = frames2sec(0);
+	superarmorEndTime = frames2sec(600);
 }
 
 void FallingAttackActionState::update(float delta) {

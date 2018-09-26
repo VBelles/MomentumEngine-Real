@@ -23,6 +23,10 @@ StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
 	interruptibleTime = frames2sec(57);
 	walkableTime = frames2sec(90);
 	hitbox = "strong_attack";
+	superarmorStartTime = frames2sec(14);//1 frame menos de lo que tarda en salir el ataque más rápido de un dreidel
+	superarmorEndTime = frames2sec(30);
+	invulnerabilityStartTime = frames2sec(30);
+	invulnerabilityEndTime = frames2sec(56);
 }
 
 void StrongAttackActionState::update(float delta) {
@@ -181,7 +185,7 @@ void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) 
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

@@ -16,6 +16,10 @@ VerticalLauncherActionState::VerticalLauncherActionState(StateManager * stateMan
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(30);
 	walkableTime = frames2sec(44);
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(18);
+	invulnerabilityStartTime = frames2sec(18);
+	invulnerabilityEndTime = frames2sec(25);
 }
 
 void VerticalLauncherActionState::update(float delta) {

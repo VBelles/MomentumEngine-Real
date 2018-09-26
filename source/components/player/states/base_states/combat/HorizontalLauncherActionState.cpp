@@ -18,6 +18,10 @@ HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stat
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(40);
 	walkableTime = frames2sec(44);
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(22);
+	invulnerabilityStartTime = frames2sec(22);
+	invulnerabilityEndTime = frames2sec(34);
 }
 
 void HorizontalLauncherActionState::update(float delta) {
