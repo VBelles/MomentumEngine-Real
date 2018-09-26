@@ -21,7 +21,7 @@ int OnTeleportAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnTeleportAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnTeleportAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

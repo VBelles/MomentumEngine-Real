@@ -49,7 +49,7 @@ int OnStrollAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnStrollAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnStrollAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

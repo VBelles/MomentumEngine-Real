@@ -25,7 +25,7 @@ int OnDeathAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnDeathAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnDeathAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

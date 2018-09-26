@@ -30,7 +30,7 @@ int OnHorizontalLaunchAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnHorizontalLaunchAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnHorizontalLaunchAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

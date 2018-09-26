@@ -22,7 +22,7 @@ int OnStunAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnStunAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnStunAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

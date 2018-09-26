@@ -17,7 +17,7 @@ bool OnSuspensionCondition::testCondition(float delta) {
 	return enemy->timer.elapsed() < enemy->suspensionDuration;
 }
 
-void OnSuspensionCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void OnSuspensionCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

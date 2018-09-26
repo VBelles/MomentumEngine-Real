@@ -30,7 +30,7 @@ int OnVerticalLaunchAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnVerticalLaunchAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnVerticalLaunchAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

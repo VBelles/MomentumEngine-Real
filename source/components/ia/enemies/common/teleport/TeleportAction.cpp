@@ -26,7 +26,7 @@ int TeleportAction::execAction(float delta) {
 	}
 }
 
-void TeleportAction::load(IBehaviorTreeNew* bt, const json& j) {
+void TeleportAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

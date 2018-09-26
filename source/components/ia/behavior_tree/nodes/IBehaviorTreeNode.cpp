@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "IBehaviorTreeNode.h"
 #include "components/ia/behavior_tree/IBehaviorTree.h"
-#include "components/ia/behavior_tree/IBehaviorTreeNew.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 
 IBehaviorTreeNode::IBehaviorTreeNode(std::string name) {
 	this->name = name;
@@ -51,7 +51,7 @@ void IBehaviorTreeNode::debugInMenu() {
 	}
 }
 
-void IBehaviorTreeNode::debugInMenu(IBehaviorTreeNew* behaviorTree) {
+void IBehaviorTreeNode::debugInMenu(IBehaviorTree* behaviorTree) {
 	if (ImGui::TreeNode(getName().c_str())) {
 		IBehaviorTreeCondition* condition = behaviorTree->getCondition(getName());
 		if (condition) {

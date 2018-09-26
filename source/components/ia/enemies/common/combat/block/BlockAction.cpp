@@ -23,7 +23,7 @@ int BlockAction::execAction(float delta) {
 	return Leave;
 }
 
-void BlockAction::load(IBehaviorTreeNew* bt, const json& j) {
+void BlockAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

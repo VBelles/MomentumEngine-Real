@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "BehaviorTreeNodeRandom.h"
 #include "components/ia/behavior_tree/IBehaviorTree.h"
-#include "components/ia/behavior_tree/IBehaviorTreeNew.h"
 
 REGISTER_BTNODE("random", CBehaviorTreeNodeRandom);
 
@@ -35,17 +34,6 @@ void CBehaviorTreeNodeRandom::setProbability(std::vector<float> probabilities) {
 	}
 }
 
-void CBehaviorTreeNodeRandom::recalc(IBehaviorTreeNew *behaviorTree, float delta) {
-	float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	int i = 0;
-	float prob = probability[i];
-	while (i < children.size() - 1 && random >= prob) {
-		i++;
-		prob += probability[i];
-	}
-	children[i]->recalc(behaviorTree, delta);
-}
-
 void CBehaviorTreeNodeRandom::debugInMenu() {
 	if (ImGui::TreeNode(getName().c_str())) {
 		ImGui::Text("Type: Random");
@@ -60,7 +48,7 @@ void CBehaviorTreeNodeRandom::debugInMenu() {
 	}
 }
 
-void CBehaviorTreeNodeRandom::debugInMenu(IBehaviorTreeNew* behaviorTree) {
+void CBehaviorTreeNodeRandom::debugInMenu(IBehaviorTree* behaviorTree) {
 	if (ImGui::TreeNode(getName().c_str())) {
 		ImGui::Text("Type: Random");
 

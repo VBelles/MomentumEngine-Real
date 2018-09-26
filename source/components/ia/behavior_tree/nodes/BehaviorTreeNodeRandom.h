@@ -10,11 +10,11 @@ public:
 	CBehaviorTreeNodeRandom(std::string name);
 
 	void recalc(IBehaviorTree *behaviorTree, float delta = 0.f) override;
-	void recalc(IBehaviorTreeNew *behaviorTree, float delta = 0.f) override;
+
 	void addChild(IBehaviorTreeNode *child) override;
 	void setProbability(std::vector<float> probabilities);
 
 	virtual void debugInMenu();
-	virtual void debugInMenu(IBehaviorTreeNew* behaviorTree) override;
+	virtual void debugInMenu(IBehaviorTree* behaviorTree) override;
 	void load(const json& j) override;
 };

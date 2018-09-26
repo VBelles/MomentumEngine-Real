@@ -27,7 +27,7 @@ int SuspensionAction::execAction(float delta) {
 	return Leave;
 }
 
-void SuspensionAction::load(IBehaviorTreeNew* bt, const json& j) {
+void SuspensionAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 	soundLoop = j.value("sound_loop", soundLoop);

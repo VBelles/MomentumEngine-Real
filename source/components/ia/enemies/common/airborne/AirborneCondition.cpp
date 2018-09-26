@@ -17,7 +17,7 @@ bool AirborneCondition::testCondition(float delta) {
 	return enemy->airborne;
 }
 
-void AirborneCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void AirborneCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

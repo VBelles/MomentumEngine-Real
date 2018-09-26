@@ -50,7 +50,7 @@ int ChaseAction::execAction(float delta) {
 	return Leave;
 }
 
-void ChaseAction::load(IBehaviorTreeNew* bt, const json& j) {
+void ChaseAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

@@ -23,7 +23,7 @@ int GrabAction::execAction(float delta) {
 	return Stay;
 }
 
-void GrabAction::load(IBehaviorTreeNew* bt, const json& j) {
+void GrabAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

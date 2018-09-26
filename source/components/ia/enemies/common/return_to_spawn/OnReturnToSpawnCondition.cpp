@@ -18,7 +18,7 @@ bool OnReturnToSpawnCondition::testCondition(float delta) {
 	return VEC3::DistanceSquared(enemy->spawnPosition, enemy->getTransform()->getPosition()) > enemy->strollRadius * enemy->strollRadius;
 }
 
-void OnReturnToSpawnCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void OnReturnToSpawnCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

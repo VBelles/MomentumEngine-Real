@@ -46,7 +46,7 @@ int TackleAttackAction::execAction(float delta) {
 	}
 }
 
-void TackleAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
+void TackleAttackAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

@@ -23,7 +23,7 @@ int OnAppearAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnAppearAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnAppearAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

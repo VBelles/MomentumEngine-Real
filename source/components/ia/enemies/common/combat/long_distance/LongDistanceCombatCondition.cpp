@@ -27,7 +27,7 @@ bool LongDistanceCombatCondition::testCondition(float delta) {
 	}
 }
 
-void LongDistanceCombatCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void LongDistanceCombatCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

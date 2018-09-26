@@ -1,6 +1,6 @@
 #pragma once
 
-#include "components/ia/behavior_tree/IBehaviorTreeNew.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/player/attack_info.h"
 
 class TCompTransform;
@@ -26,7 +26,7 @@ struct EnemyAttack {
 	std::string attackPrefab = "";
 };
 
-class Enemy : public IBehaviorTreeNew {
+class Enemy : public IBehaviorTree {
 public:
 	virtual ~Enemy();
 

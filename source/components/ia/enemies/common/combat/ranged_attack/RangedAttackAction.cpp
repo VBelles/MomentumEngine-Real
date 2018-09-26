@@ -66,7 +66,7 @@ int RangedAttackAction::execAction(float delta) {
 	}
 }
 
-void RangedAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
+void RangedAttackAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 	

@@ -29,7 +29,7 @@ int PropelAction::execAction(float delta) {
 	}
 }
 
-void PropelAction::load(IBehaviorTreeNew* bt, const json& j) {
+void PropelAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

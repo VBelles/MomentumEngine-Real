@@ -17,7 +17,7 @@ bool OnStunCondition::testCondition(float delta) {
 	return enemy->stunTimer.elapsed() < enemy->stunDuration;
 }
 
-void OnStunCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void OnStunCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

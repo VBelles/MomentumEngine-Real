@@ -43,7 +43,7 @@ int StepBackAction::execAction(float delta) {
 	return Leave;
 }
 
-void StepBackAction::load(IBehaviorTreeNew* bt, const json& j) {
+void StepBackAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

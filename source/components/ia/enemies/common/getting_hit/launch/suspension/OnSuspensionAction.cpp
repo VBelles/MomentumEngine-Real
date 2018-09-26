@@ -22,7 +22,7 @@ int OnSuspensionAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnSuspensionAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnSuspensionAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

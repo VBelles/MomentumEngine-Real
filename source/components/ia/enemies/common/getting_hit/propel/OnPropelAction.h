@@ -12,6 +12,6 @@ public:
 	OnPropelAction();
 	OnPropelAction(Enemy* enemy, std::string attack);
 	int execAction(float delta) override;
-	void load(IBehaviorTreeNew* bt, const json& j) override;
+	void load(IBehaviorTree* bt, const json& j) override;
 	void debugInMenu() override;
 };

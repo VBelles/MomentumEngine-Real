@@ -33,7 +33,7 @@ int AttackActionFlying::execAction(float delta) {
 	return Stay;
 }
 
-void AttackActionFlying::load(IBehaviorTreeNew* bt, const json& j) {
+void AttackActionFlying::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

@@ -40,7 +40,7 @@ bool AddAttackerCondition::testCondition(float delta) {
 	}
 }
 
-void AddAttackerCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void AddAttackerCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

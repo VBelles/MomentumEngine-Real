@@ -27,7 +27,7 @@ int OnBlockingBreakAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnBlockingBreakAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnBlockingBreakAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

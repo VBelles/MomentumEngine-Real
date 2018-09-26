@@ -27,7 +27,7 @@ int IdleLoop::execAction(float delta) {
 	}
 }
 
-void IdleLoop::load(IBehaviorTreeNew* bt, const json& j) {
+void IdleLoop::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

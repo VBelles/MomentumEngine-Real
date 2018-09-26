@@ -37,7 +37,7 @@ int StrollAction::execAction(float delta) {
 	return Stay;
 }
 
-void StrollAction::load(IBehaviorTreeNew* bt, const json& j) {
+void StrollAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

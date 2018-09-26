@@ -37,7 +37,7 @@ int ReturnToSpawnAction::execAction(float delta) {
 	return Stay;
 }
 
-void ReturnToSpawnAction::load(IBehaviorTreeNew* bt, const json& j) {
+void ReturnToSpawnAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

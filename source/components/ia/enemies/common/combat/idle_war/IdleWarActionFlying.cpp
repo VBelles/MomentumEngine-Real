@@ -25,7 +25,7 @@ int IdleWarActionFlying::execAction(float delta) {
 	return Leave;
 }
 
-void IdleWarActionFlying::load(IBehaviorTreeNew* bt, const json& j) {
+void IdleWarActionFlying::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

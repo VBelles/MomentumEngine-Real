@@ -19,7 +19,7 @@ bool OnVerticalLaunchCondition::testCondition(float delta) {
 		&& !enemy->hasSuperArmor();
 }
 
-void OnVerticalLaunchCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void OnVerticalLaunchCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

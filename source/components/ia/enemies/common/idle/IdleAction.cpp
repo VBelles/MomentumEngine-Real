@@ -27,7 +27,7 @@ int IdleAction::execAction(float delta) {
 	}
 }
 
-void IdleAction::load(IBehaviorTreeNew* bt, const json& j) {
+void IdleAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 
