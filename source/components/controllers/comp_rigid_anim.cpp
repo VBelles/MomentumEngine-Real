@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_rigid_anim.h"
-#include "components/comp_transform.h"
 #include "entity/entity_parser.h"
 #include "geometry/rigid_anim.h"
 

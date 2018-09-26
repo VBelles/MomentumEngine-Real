@@ -2,7 +2,6 @@
 #include "comp_camera_player.h"
 #include "components/comp_camera.h"
 #include "comp_camera_curve_interpolation.h"
-#include "components/comp_transform.h"
 #include "game_constants.h"
 #include "entity/common_msgs.h"
 #include "geometry/SimpleMath.h"

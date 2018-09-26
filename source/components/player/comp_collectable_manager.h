@@ -1,5 +1,4 @@
 #pragma once
-#include "components/comp_base.h"
 #include "components/comp_collectable.h"
 
 struct TMsgCollect;

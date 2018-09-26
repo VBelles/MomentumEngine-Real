@@ -1,6 +1,5 @@
 #pragma once
 
-#include "comp_base.h"
 
 struct TMsgEntitiesGroupCreated;
 struct TMsgTriggerEnter;

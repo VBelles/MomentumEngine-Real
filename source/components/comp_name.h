@@ -1,6 +1,5 @@
 #pragma once
 
-#include "comp_base.h"
 #include <unordered_map>
  
 class TCompName : public TCompBase {

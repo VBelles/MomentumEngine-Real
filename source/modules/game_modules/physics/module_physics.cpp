@@ -3,9 +3,6 @@
 #include "modules/module.h"
 #include "entity/entity.h"
 #include "render/mesh/collision_mesh.h" 
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
 #include "skeleton/game_core_skeleton.h"
 #include "skeleton/cal3d2engine.h"
 

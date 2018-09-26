@@ -1,7 +1,6 @@
 #ifndef INC_COMPONENT_COLOR_GRADING_H_
 #define INC_COMPONENT_COLOR_GRADING_H_
 
-#include "components/comp_base.h"
 #include "ctes.h"
 
 class CTexture;

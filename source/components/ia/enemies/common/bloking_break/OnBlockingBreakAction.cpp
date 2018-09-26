@@ -1,9 +1,7 @@
 #include "mcv_platform.h"
 #include "OnBlockingBreakAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_give_power.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnBlockingBreakAction", OnBlockingBreakAction);
 

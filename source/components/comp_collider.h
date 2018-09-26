@@ -1,6 +1,5 @@
 #pragma once
 
-#include "comp_base.h"
 #include "entity/msgs.h"
 #include "modules/game_modules/physics/basic_controller_behavior.h"
 

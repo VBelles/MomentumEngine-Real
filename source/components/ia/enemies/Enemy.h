@@ -3,9 +3,6 @@
 #include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/player/attack_info.h"
 
-class TCompTransform;
-class TCompCollider;
-class TCompSkeleton;
 class TCompHitboxes;
 class TCompGivePower;
 class TCompPlayerModel;

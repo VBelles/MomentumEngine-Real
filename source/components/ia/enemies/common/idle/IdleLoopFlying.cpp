@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "IdleLoopFlying.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
 
 REGISTER_BTACTION("IdleLoopFlying", IdleLoopFlying);
 

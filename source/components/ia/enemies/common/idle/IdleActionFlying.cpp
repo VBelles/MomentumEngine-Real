@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "IdleActionFlying.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
 
 REGISTER_BTACTION("IdleActionFlying", IdleActionFlying);
 

@@ -1,12 +1,8 @@
 #include "mcv_platform.h"
 #include "PitFallingActionState.h"
-#include "components/comp_render.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/states/StateManager.h"
-#include "components/comp_transform.h"
 #include "components/controllers/comp_camera_player.h"
 
 PitFallingActionState::PitFallingActionState(StateManager* stateManager) :

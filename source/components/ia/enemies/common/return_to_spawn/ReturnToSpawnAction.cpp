@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "ReturnToSpawnAction.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("ReturnToSpawnAction", ReturnToSpawnAction);
 

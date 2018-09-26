@@ -1,6 +1,5 @@
 #pragma once
 
-class TCompTransform;
 class TCompLightDir;
 struct TMsgAllScenesCreated;
 

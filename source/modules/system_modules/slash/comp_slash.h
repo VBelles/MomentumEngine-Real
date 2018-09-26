@@ -1,10 +1,6 @@
 #pragma once
 
-#include "components/comp_base.h"
 
-class TCompTransform;
-class TCompRender;
-class TCompSkeleton;
 class CRenderMesh;
 
 class TCompSlash : public TCompBase {

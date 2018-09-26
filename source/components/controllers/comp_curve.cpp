@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_curve.h"
-#include "components/comp_transform.h"
 #include "geometry/curve.h"
 
 DECL_OBJ_MANAGER("curve_controller", TCompCurve);

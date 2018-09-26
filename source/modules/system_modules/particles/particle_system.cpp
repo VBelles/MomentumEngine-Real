@@ -3,9 +3,7 @@
 #include "particle_parser.h"
 #include "render/render_objects.h"
 #include "components/comp_camera.h"
-#include "components/comp_transform.h"
 #include <random>
-#include "skeleton/comp_skeleton.h"
 #include "skeleton/cal3d2engine.h"
 
 class CParticleResourceClass : public CResourceClass {

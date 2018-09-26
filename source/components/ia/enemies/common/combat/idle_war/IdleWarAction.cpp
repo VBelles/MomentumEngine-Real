@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "IdleWarAction.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("IdleWarAction", IdleWarAction);
 

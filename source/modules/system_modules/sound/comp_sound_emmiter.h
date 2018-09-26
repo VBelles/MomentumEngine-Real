@@ -1,6 +1,5 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "modules/system_modules/sound/module_sound.h"
 
 class TCompSoundEmitter : public TCompBase {

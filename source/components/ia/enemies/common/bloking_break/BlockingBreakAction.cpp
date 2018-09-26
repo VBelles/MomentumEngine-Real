@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "BlockingBreakAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("BlockingBreakAction", BlockingBreakAction);

@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnAirborneAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnAirborneAction", OnAirborneAction);

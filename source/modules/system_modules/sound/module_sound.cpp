@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "module_sound.h"
 #include "components/comp_camera.h"
-#include "components/comp_transform.h"
 
 #pragma comment(lib, "fmod64_vc.lib")
 #pragma comment(lib, "fmodstudio64_vc.lib")

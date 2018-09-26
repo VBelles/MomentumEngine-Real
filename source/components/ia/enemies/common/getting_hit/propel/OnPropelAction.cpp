@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnPropelAction.h"
-#include "components/comp_collider.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 

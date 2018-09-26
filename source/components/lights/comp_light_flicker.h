@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/comp_base.h"
 
-class TCompTransform;
 struct TMsgEntitiesGroupCreated;
 struct TMsgColliderDestroyed;
 struct TMsgAttackHit;

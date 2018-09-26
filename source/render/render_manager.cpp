@@ -2,13 +2,10 @@
 #include "render_manager.h"
 #include "render/render.h"
 #include "render/texture/material.h"
-#include "components/comp_transform.h"
-#include "components/comp_render.h"
 #include "render_objects.h"
 #include "components/comp_culling.h"
 #include "components/comp_aabb.h"
 #include "components/comp_camera.h"
-#include "skeleton/comp_skeleton.h"
 #include "shaders/vertex_shader.h"
 
 static CRenderManager the_render_manager;

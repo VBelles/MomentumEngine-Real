@@ -1,7 +1,6 @@
 #ifndef INC_COMP_GROUP_H_
 #define INC_COMP_GROUP_H_
 
-#include "comp_base.h"
 
 class CTransform;
 

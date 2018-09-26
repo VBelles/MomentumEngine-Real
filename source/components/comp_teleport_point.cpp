@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_teleport_point.h"
 #include "entity/common_msgs.h"
-#include "components/comp_collider.h"
-#include "components/comp_render.h"
 #include "modules/system_modules/module_uniques.h"
 #include "modules/system_modules/module_gui.h"
 #include "gui/widgets/gui_map_marker.h"

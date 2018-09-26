@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "DisappearAction.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/player/comp_player_model.h"
 

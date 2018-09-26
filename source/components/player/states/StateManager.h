@@ -3,11 +3,6 @@
 #include "components/player/states/EStates.h"
 
 class TCompPlayerModel;
-class TCompTransform;
-class TCompCollider;
-class TCompRender;
-class TCompCamera;
-class TCompSkeleton;
 class TCompHitboxes;
 class TCompRenderBlurRadial;
 class TCompPowerGauge;

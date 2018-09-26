@@ -5,14 +5,9 @@
 
 class StateManager;
 class TCompPlayerModel;
-class TCompCamera;
 class CCamera;
-class TCompCollider;
-class TCompRender;
-class TCompTransform;
 class TCompHitboxes;
 class TCompRenderBlurRadial;
-class TCompSkeleton;
 class TCompPowerGauge;
 class TCompCollectableManager;
 class TCompCameraPlayer;

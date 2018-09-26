@@ -1,11 +1,8 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "geometry/curve.h"
 
 struct TMsgEntityCreated;
-class TCompTransform;
-class TCompCollider;
 
 class TCompPlatformSimple : public TCompBase {
 private:

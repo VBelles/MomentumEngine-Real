@@ -2,7 +2,6 @@
 
 #include "resources/resource.h"
 
-class TCompTransform;
 namespace RigidAnims {
 
 	class CRigidAnimResource;

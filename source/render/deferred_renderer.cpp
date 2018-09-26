@@ -6,7 +6,6 @@
 #include "resources/resources_manager.h"
 #include "components/comp_light_dir.h"
 #include "components/comp_light_point.h"
-#include "components/comp_transform.h"
 #include "components/postfx/comp_render_ao.h"
 #include "ctes.h"
 

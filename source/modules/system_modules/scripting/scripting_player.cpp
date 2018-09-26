@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "scripting_player.h"
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/comp_player_controller.h"
 #include "components/player/comp_power_gauge.h"

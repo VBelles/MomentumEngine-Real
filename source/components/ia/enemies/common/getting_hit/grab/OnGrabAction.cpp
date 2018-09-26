@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnGrabAction.h"
-#include "components/comp_collider.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnGrabAction", OnGrabAction);

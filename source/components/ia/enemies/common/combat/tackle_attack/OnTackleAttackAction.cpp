@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "OnTackleAttackAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnTackleAttackAction", OnTackleAttackAction);
 

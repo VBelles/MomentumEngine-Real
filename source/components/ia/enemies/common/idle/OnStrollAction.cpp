@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "OnStrollAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
 
 REGISTER_BTACTION("OnStrollAction", OnStrollAction);

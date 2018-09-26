@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "OnVerticalLaunchAction.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 

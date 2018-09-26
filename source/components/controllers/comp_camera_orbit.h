@@ -1,6 +1,5 @@
 #pragma once
 
-#include "components/comp_base.h"
 
 class TCompCameraOrbit : public TCompBase
 {

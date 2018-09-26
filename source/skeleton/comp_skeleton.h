@@ -1,6 +1,5 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "render/cte_buffer.h"
 #include "ctes.h"
 

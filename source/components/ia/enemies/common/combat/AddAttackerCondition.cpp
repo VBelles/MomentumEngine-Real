@@ -2,7 +2,6 @@
 #include "AddAttackerCondition.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTCONDITION("AddAttackerCondition", AddAttackerCondition);
 

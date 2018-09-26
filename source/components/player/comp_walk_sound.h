@@ -1,9 +1,6 @@
 #pragma once
 
-#include "components/comp_base.h"
 
-class TCompTransform;
-class TCompSkeleton;
 class TCompPlayerModel;
 
 

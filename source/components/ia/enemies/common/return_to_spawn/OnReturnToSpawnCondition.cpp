@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "OnReturnToSpawnCondition.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTCONDITION("OnReturnToSpawnCondition", OnReturnToSpawnCondition);
 

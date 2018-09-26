@@ -2,9 +2,7 @@
 #include "comp_lod.h"
 #include "entity/entity.h"
 #include "entity/entity_parser.h"
-#include "components/comp_render.h"
 #include "components/comp_aabb.h"
-#include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "render/render_manager.h"
 
