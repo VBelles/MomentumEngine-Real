@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_camera_player.h"
-#include "components/comp_camera.h"
 #include "components/player/comp_player_model.h"
 #include "modules/game_modules/physics/basic_query_filter_callback.h"
 #include "game_constants.h"

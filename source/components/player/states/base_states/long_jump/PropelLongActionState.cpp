@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "PropelLongActionState.h"
-#include "components/comp_camera.h"
 #include "components/player/comp_player_model.h"
 #include "entity/common_msgs.h"
 #include "components/player/states/StateManager.h"

@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_free_camera.h"
-#include "components/comp_camera.h"
 #include "entity/common_msgs.h"
 
 

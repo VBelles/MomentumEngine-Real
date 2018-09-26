@@ -2,7 +2,6 @@
 #include "StrongAttackActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
-#include "components/comp_camera.h"
 #include "entity/common_msgs.h"
 #include "components/player/states/StateManager.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"

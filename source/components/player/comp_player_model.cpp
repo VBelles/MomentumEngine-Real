@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
-#include "components/comp_camera.h"
 #include "components/comp_collectable.h"
 #include "components/comp_respawn_point.h"
 #include "components/controllers/comp_camera_player.h"

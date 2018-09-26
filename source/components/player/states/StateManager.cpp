@@ -4,7 +4,6 @@
 #include "components/player/comp_player_model.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/comp_collectable_manager.h"
-#include "components/comp_camera.h"
 #include "components/comp_hitboxes.h"
 #include "modules/system_modules/slash/comp_slash.h"
 #include "components/postfx/comp_render_blur_radial.h"

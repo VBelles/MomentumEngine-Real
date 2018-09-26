@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "AirborneLongActionState.h"
-#include "components/comp_camera.h"
 #include "components/player/comp_player_model.h"
 
 AirborneLongActionState::AirborneLongActionState(StateManager* stateManager) :

@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "HuggingWallActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_camera.h"
 #include "modules/game_modules/physics/basic_query_filter_callback.h"
 #include "components/player/states/StateManager.h"
 

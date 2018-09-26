@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "IActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_camera.h"
 #include "components/comp_hitboxes.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/player/states/StateManager.h"
