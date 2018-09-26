@@ -45,7 +45,7 @@ void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
 }
 
 void TCompParticles::onDestroyed(const TMsgEntityDestroyed& msg) {
-	// TODO Seguir investigando este fénomone: cuando se envia el mensaje TMsgEntityDestroyed el componente ya esta destruido
+	// TODO Seguir investigando este fï¿½nomone: cuando se envia el mensaje TMsgEntityDestroyed el componente ya esta destruido
 	/*for (auto p : systems) {
 		EngineParticles.kill(p.second->getHandle(), _fadeOut);
 	}

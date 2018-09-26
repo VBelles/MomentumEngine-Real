@@ -162,8 +162,8 @@ void TCompPlatformSimple::update(float delta) {
 
 		//Rotation
 		if (rotationSpeed > 0) {
-			QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
-			transform->setRotation(transform->getRotation() * quat);
+			//QUAT quat = QUAT::CreateFromAxisAngle(rotationAxisGlobal, rotationSpeed * delta);
+			//transform->setRotation(transform->getRotation() * quat);
 		}
 
 		if (rollSpeed != 0) {

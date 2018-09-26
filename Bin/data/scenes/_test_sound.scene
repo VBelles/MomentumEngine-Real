@@ -19,5 +19,11 @@
                 "target": "The Player"
             }
         }
+    },
+    {
+        "entity": {
+            "name": "prefabs",
+            "prefab": "data/prefabs/test.prefab"
+        }
     }
 ]
