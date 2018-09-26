@@ -17,13 +17,14 @@ private:
 
 	void updateListenerAttributes();
 
-	std::vector<std::pair<FMOD::Studio::EventInstance*, CHandle>> followerEmissors;
+	std::vector<std::pair<FMOD::Studio::EventInstance*, CHandle>> followingEvents;
 
 public:
 	CModuleSound(const std::string& name);
 	bool start() override;
 	bool stop() override;
 	void update(float delta) override;
+	FMOD::Studio::EventInstance* emitFollowingEvent(const char* sound, CHandle transformHandle);
 	FMOD::Studio::EventInstance* emitEvent(const char* sound, const CTransform& transform);
 	FMOD::Studio::EventInstance* emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
 

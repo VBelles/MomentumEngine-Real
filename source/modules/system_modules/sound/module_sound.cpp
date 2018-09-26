@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "module_sound.h"
 #include "components/comp_camera.h"
+#include "components/comp_transform.h"
 
 #pragma comment(lib, "fmod64_vc.lib")
 #pragma comment(lib, "fmodstudio64_vc.lib")
@@ -41,6 +42,7 @@ bool CModuleSound::stop() {
 
 void CModuleSound::update(float delta) {
 	updateListenerAttributes();
+	updateFollowingEvents();
 	system->update();
 }
 
@@ -63,8 +65,27 @@ void CModuleSound::updateListenerAttributes() {
 		listenerAttributes = {};
 	}
 	auto res = system->setListenerAttributes(0, &listenerAttributes);
+}
 
+void CModuleSound::updateFollowingEvents() {
+	auto it = followingEvents.begin();
+	while (it != followingEvents.end()) {
+		auto& p = *it;
+		if (!p.first->isValid() || !p.second.isValid()) { // Event has been released or does not follow a transform anymore
+			it = followingEvents.erase(it);
+		}
+		else {
+			TCompTransform* transform = p.second;
+			FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
+			p.first->set3DAttributes(&attributes);
+		}
+	}
+}
 
+FMOD::Studio::EventInstance* CModuleSound::emitFollowingEvent(const char* sound, CHandle transformHandle) {
+	TCompTransform* transform = transformHandle;
+	auto eventInstance = emitEvent(sound, *transform);
+	followingEvents.push_back(std::make_pair(eventInstance, transformHandle));
 }
 
 Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const CTransform& transform) {
