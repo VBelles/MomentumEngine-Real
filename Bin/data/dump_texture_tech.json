@@ -1,0 +1,7 @@
+{
+  "vs_file": "data/shaders/screen_quad.fx",
+  "vertex_type": "PosClr",
+  "z": "disable_all",
+  "category": "helper",
+  "priority": 40
+}
