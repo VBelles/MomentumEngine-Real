@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "JumpSquatSpringActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/states/StateManager.h"
 
 JumpSquatSpringActionState::JumpSquatSpringActionState(StateManager* stateManager) :
 	GroundedActionState(stateManager, JumpSquatSpring) {

@@ -1,9 +1,5 @@
 #include "mcv_platform.h"
 #include "StrongAttackActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "entity/common_msgs.h"
-#include "components/player/states/StateManager.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
@@ -165,7 +161,7 @@ void StrongAttackActionState::onReleasePowerButton() {
 }
 
 void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};

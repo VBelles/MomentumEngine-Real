@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "GhostJumpSquatActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/states/StateManager.h"
 
 
 GhostJumpSquatActionState::GhostJumpSquatActionState(StateManager* stateManager) :

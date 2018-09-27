@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/AirborneActionState.h"
-#include "components/player/states/AttackState.h"
 
 class ReleasePowerAirActionState : public AirborneActionState, public AttackState {
 private:

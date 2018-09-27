@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/GroundedActionState.h"
-#include "components/player/states/AttackState.h"
 
 class FastFinisher1ActionState : public GroundedActionState, public AttackState {
 private:

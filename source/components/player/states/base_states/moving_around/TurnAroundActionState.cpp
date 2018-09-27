@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
-#include "components/player/comp_player_model.h"
 #include "TurnAroundActionState.h"
-#include "components/player/states/StateManager.h"
 
 TurnAroundActionState::TurnAroundActionState(StateManager* stateManager)
 	: GroundedActionState::GroundedActionState(stateManager, TurnAround) {

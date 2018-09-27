@@ -2,13 +2,7 @@
 #include "StateManager.h"
 #include "components/player/states/IActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/player/comp_power_gauge.h"
-#include "components/player/comp_collectable_manager.h"
-#include "components/comp_hitboxes.h"
 #include "modules/system_modules/slash/comp_slash.h"
-#include "components/postfx/comp_render_blur_radial.h"
-#include "components/controllers/comp_camera_player.h"
-#include "modules/system_modules/particles/comp_particles.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/base_states/GhostJumpWindowActionState.h"
@@ -65,21 +59,8 @@
 #include "components/player/states/concurrent_states/ReleasePowerAirActionState.h"
 
 
-StateManager::StateManager(CHandle entityHandle) :
-	entityHandle(entityHandle),
-	playerModelHandle(getEntity()->get<TCompPlayerModel>()),
-	transformHandle(getEntity()->get<TCompTransform>()),
-	colliderHandle(getEntity()->get<TCompCollider>()),
-	renderHandle(getEntity()->get<TCompRender>()),
-	skeletonHandle(getEntity()->get<TCompSkeleton>()),
-	hitboxesHandle(getEntity()->get<TCompHitboxes>()),
-	powerGaugeHandle(getEntity()->get<TCompPowerGauge>()),
-	collectableManagerHandle(getEntity()->get<TCompCollectableManager>()) {
-
-	CEntity* gameCameraEntity = getEntityByName(GAME_CAMERA);
-	gameCameraHandle = gameCameraEntity->get<TCompCamera>();
-	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-	playerCameraHandle = playerCameraEntity->get<TCompCameraPlayer>();
+StateManager::StateManager(CHandle playerModelHandle) :
+	playerModelHandle(playerModelHandle){
 
 	CEntity* slashLeftHandEntity = getEntityByName("slashLeftHand");
 	slashLeftHandHandle = slashLeftHandEntity->get<TCompSlash>();
@@ -279,38 +260,8 @@ bool StateManager::isConcurrentActionFree() {
 }
 
 //Component getters
-CEntity* StateManager::getEntity() {
-	return entityHandle;
-}
 TCompPlayerModel* StateManager::getPlayerModel() {
 	return playerModelHandle;
-}
-TCompTransform* StateManager::getTransform() {
-	return transformHandle;
-}
-TCompCollider* StateManager::getCollider() {
-	return colliderHandle;
-}
-TCompRender* StateManager::getRender() {
-	return renderHandle;
-}
-TCompCamera* StateManager::getCamera() {
-	return gameCameraHandle;
-}
-TCompCameraPlayer* StateManager::getCameraPlayer() {
-	return playerCameraHandle;
-}
-TCompSkeleton* StateManager::getSkeleton() {
-	return skeletonHandle;
-}
-TCompHitboxes* StateManager::getHitboxes() {
-	return hitboxesHandle;
-}
-TCompPowerGauge* StateManager::getPowerGauge() {
-	return powerGaugeHandle;
-}
-TCompCollectableManager * StateManager::getCollectableManager() {
-	return collectableManagerHandle;
 }
 
 TCompSlash * StateManager::getTrailSlash(SlashType type) {

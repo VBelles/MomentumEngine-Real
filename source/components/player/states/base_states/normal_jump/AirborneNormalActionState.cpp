@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "AirborneNormalActionState.h"
-#include "components/player/comp_player_model.h"
 
 AirborneNormalActionState::AirborneNormalActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, AirborneNormal) {

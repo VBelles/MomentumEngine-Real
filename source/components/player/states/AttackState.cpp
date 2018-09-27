@@ -73,5 +73,5 @@ bool AttackState::hasSuperArmor() {
 }
 
 TCompHitboxes * AttackState::getAttackHitboxes() {
-	return _stateManager->getHitboxes();
+	return _stateManager->getPlayerModel()->getHitboxes();
 }

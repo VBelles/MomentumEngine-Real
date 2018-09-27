@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "JumpSquatLongActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/states/StateManager.h"
 
 
 JumpSquatLongActionState::JumpSquatLongActionState(StateManager* stateManager) :
