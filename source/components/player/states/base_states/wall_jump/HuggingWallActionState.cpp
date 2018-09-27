@@ -43,7 +43,7 @@ void HuggingWallActionState::update(float delta) {
 				getPlayerModel()->setGravityMultiplier(slideGravityMultiplier);
 				getPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
 				getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
-				huggingWallSound = EngineSound.emitFollowingEvent(SOUND_HUGGING_WALL, getPlayerTransform());
+				getSound()->play("hugging_wall");
 			}
 		}
 		else {
@@ -85,7 +85,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 void HuggingWallActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	getPlayerModel()->sameNormalReattachTimer.reset();
-	EngineSound.stopEvent(huggingWallSound);
+	getSound()->stop("hugging_wall");
 }
 
 void HuggingWallActionState::onJumpHighButton() {

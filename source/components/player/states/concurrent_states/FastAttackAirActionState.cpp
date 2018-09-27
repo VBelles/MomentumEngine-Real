@@ -23,7 +23,7 @@ void FastAttackAirActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
+		getSound()->play("attack");
 	}
 
 	/*if (!isSlashOut && movementTimer.elapsed() > frames2sec(10)) {

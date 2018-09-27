@@ -32,7 +32,7 @@ void JumpSquatActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
 	getSkeleton()->executeAction(animationSquat, 0.1f, 0.03f);
-	EngineSound.emitEvent(SOUND_JUMP);
+	getSound()->play("jump");
 }
 
 void JumpSquatActionState::onStateExit(IActionState * nextState) {

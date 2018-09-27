@@ -13,7 +13,7 @@ class TCompEnemy : public TCompBase {
 private:
 	Enemy* enemy = nullptr;
 
-	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
 	void onOutOfBounds(const TMsgOutOfBounds& msg);

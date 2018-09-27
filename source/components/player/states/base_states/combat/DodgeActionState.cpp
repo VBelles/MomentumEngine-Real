@@ -73,7 +73,7 @@ void DodgeActionState::onStateEnter(IActionState * lastState) {
 
 	getCameraPlayer()->moveCameraCloser(false);
 
-	EngineSound.emitFollowingEvent(SOUND_DODGE, getPlayerTransform());
+	getSound()->play("dodge");
 }
 
 void DodgeActionState::onStateExit(IActionState * nextState) {

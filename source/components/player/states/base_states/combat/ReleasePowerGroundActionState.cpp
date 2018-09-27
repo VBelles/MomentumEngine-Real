@@ -42,7 +42,7 @@ void ReleasePowerGroundActionState::update(float delta) {
 			break;
 		case 2:
 			EngineParticles.launchSystem(PARTICLES_RELEASE_POWER, releasePowerLaunchConfig);
-			EngineSound.emitEvent(SOUND_RELEASE_POWER);
+			getSound()->play("release_power");
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
 			getHitboxes()->enable(smallHitbox);
@@ -50,7 +50,7 @@ void ReleasePowerGroundActionState::update(float delta) {
 			break;
 		case 3:
 			EngineParticles.launchSystem(PARTICLES_RELEASE_POWER, releasePowerLaunchConfig);
-			EngineSound.emitEvent(SOUND_RELEASE_POWER);
+			getSound()->play("release_power");
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
 			if (buttonPresses > 1) {

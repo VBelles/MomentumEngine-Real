@@ -51,7 +51,7 @@ void DeathActionState::onStateEnter(IActionState* lastState) {
 	copyCam();
 	CEntity* teleportCameraEntity = getEntityByName(TELEPORT_CAMERA);
 	EngineCameras.blendInCamera(teleportCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
-	EngineSound.emitEvent(SOUND_DIE);
+	getSound()->play("death");
 }
 
 void DeathActionState::onStateExit(IActionState* nextState) {

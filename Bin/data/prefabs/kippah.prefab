@@ -48,7 +48,7 @@
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "spinAttack"
-          },          
+          },
           {
             "name": "rangedAttack",
             "frame_data": "0 120 140",
@@ -66,9 +66,9 @@
             "damage": 0.0,
             "invulnerabilityTime": 0.0,
             "stun": 1.2,
-            "propel":{
+            "propel": {
               "duration": 0.6,
-              "velocity" : "0 20 0"
+              "velocity": "0 20 0"
             },
             "hitbox": "launched"
           }
@@ -114,11 +114,28 @@
             "bone": "Bone015"
           }
         ]
+      },
+      "sound": {
+        "events": [
+          {
+            "id": "launcher_loop",
+            "path": "event:/PROTA/launcher/launcher_estatica",
+            "following": true
+          },
+          {
+            "id": "launcher_end",
+            "path": "event:/PROTA/launcher/launcher_final"
+          },
+          {
+            "id": "hit",
+            "path": "event:/PROTA/golpes/golpe_hit"
+          },
+          {
+            "id": "block",
+            "path": "event:/PROTA/golpes/golpe_hit"
+          }
+        ]
       }
-    },
-    "sound": {
-      "events": [
-      ]
     }
   }
 ]

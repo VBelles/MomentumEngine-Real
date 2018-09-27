@@ -17,7 +17,7 @@ OnDisappearAction::OnDisappearAction(Enemy* enemy, std::string animation) :
 int OnDisappearAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
-	EngineSound.emitEvent(sound, enemy->getTransform());
+	enemy->getSound()->play("disappear");
 	return Leave;
 }
 

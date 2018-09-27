@@ -40,12 +40,10 @@
     "data/scenes/milestone4_nestor-spikesMove.scene",
     "data/scenes/milestone4_nestor-triggers.scene",
     "data/scenes/milestone4_nestor-trimesh.scene",
-    
-    
+
     "data/scenes/milestone4_andrea-0.scene",
-    
-    "data/scenes/ambiental_particles.scene",
-    "data/scenes/_test_sound.scene"
+
+    "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
     "data/scenes/prefabs-0.scene",

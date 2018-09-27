@@ -35,8 +35,6 @@ private:
 	CTimer slideTimer;
 	float slideWindowTime = 1.1f;
 
-	FMOD::Studio::EventInstance* huggingWallSound = nullptr;
-
 public:
 	HuggingWallActionState(StateManager* stateManager);
 
