@@ -24,6 +24,7 @@ protected:
 	IBehaviorTreeNode* createNode(std::string name, EBehaviorTreeNodeType type);
 	IBehaviorTreeNode* createNode(std::string name, std::string type);
 	IBehaviorTreeNode* findNode(std::string name);
+	void setCurrent(IBehaviorTreeNode *newCurrent);
 
 	bool falseCondition(float delta = 0.f);
 	bool trueCondition(float delta = 0.f);
@@ -43,7 +44,6 @@ public:
 	IBehaviorTreeNode* addChild(std::string parentName, std::string childName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
 	IBehaviorTreeNode* addChild(std::string parentName, std::string childName, std::string type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action);
 
-	void setCurrent(IBehaviorTreeNode *newCurrent);
 
 	void addCondition(std::string conditionName, IBehaviorTreeCondition* condition);
 	bool testCondition(std::string conditionName, float delta = 0.f);

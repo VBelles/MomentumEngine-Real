@@ -207,15 +207,11 @@ TCompGivePower* Enemy::getPower() {
 }
 
 void Enemy::resetCurrent() {
-	current = nullptr;
-}
-
-
-void Enemy::setCurrent(std::string node) {
-	IBehaviorTreeNode* newCurrent = nullptr;
-	auto it = tree.find(node);
-	if (it != tree.end()) {
-		newCurrent = it->second;
+	if (current) {
+		auto it = actions.find(current->getName());
+		if (it != actions.end()) {
+			it->second->onExit();
+		}
+		current = nullptr;
 	}
-	current = newCurrent;
 }

@@ -138,5 +138,4 @@ public:
 	TCompGivePower* getPower();
 
 	void resetCurrent();
-	void setCurrent(std::string node);
 };
