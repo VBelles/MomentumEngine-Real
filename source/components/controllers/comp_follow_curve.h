@@ -1,8 +1,6 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "entity/common_msgs.h"
-#include "components/comp_transform.h"
 
 class CCurve;
 

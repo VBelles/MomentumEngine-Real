@@ -2,7 +2,6 @@
 #include "module_instancing.h"
 #include "geometry/transform.h"
 #include "entity/entity_parser.h"
-#include "components/comp_transform.h"
 
 bool CModuleInstancing::start() {
 	auto files = WindowsUtils::getAllFiles("data/instancing/", "*.json");

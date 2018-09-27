@@ -1,10 +1,8 @@
 #include "mcv_platform.h"
 #include "OnHit.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnHit", OnHit);
 
@@ -76,7 +74,7 @@ int OnHit::execAction(float delta) {
 	return Leave;
 }
 
-void OnHit::load(IBehaviorTreeNew* bt, const json& j) {
+void OnHit::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

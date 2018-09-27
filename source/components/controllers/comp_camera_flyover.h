@@ -1,6 +1,5 @@
 #pragma once
 
-#include "components/comp_base.h"
 
 class TCompCameraFlyover : public TCompBase
 {

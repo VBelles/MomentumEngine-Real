@@ -2,7 +2,6 @@
 #include "module_test_instancing.h"
 #include "geometry/transform.h"
 #include "entity/entity_parser.h"
-#include "components/comp_transform.h"
 
 float unitRandom() {
 	return (float)rand() / (float)RAND_MAX;

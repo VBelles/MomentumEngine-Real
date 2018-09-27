@@ -5,8 +5,8 @@
 using namespace physx;
 using namespace PhysxUtils;
 
-class TCompCollider;
 struct ColliderConfig;
+class TCompCollider;
 
 #include "basic_filter_shader.h"
 #include "basic_query_filter_callback.h"

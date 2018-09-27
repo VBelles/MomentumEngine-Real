@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "scripting_cameras.h"
-#include "components/comp_transform.h"
 #include <SLB/SLB.hpp>
 
 void ScriptingCameras::bind(SLB::Manager* manager) {

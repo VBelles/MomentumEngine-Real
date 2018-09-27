@@ -2,8 +2,6 @@
 #include "AirborneActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/states/StateManager.h"
 #include "components/player/states/AttackState.h"

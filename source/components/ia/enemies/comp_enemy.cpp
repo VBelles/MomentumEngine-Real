@@ -2,9 +2,6 @@
 #include "comp_enemy.h"
 
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
 #include "components/player/comp_player_model.h"

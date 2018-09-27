@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "OnDisappearAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnDisappearAction", OnDisappearAction);
 
@@ -23,7 +21,7 @@ int OnDisappearAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnDisappearAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnDisappearAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

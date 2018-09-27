@@ -1,4 +1,4 @@
-﻿#include "mcv_platform.h"
+#include "mcv_platform.h"
 #include "module_pause.h"
 #include "gui/gui_parser.h"
 #include "modules/system_modules/scripting/scripting_player.h"

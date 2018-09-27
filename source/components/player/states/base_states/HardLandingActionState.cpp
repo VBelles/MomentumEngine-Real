@@ -2,9 +2,7 @@
 #include "HardLandingActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
 #include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
 
 

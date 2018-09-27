@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "StrollAction.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("StrollAction", StrollAction);
 
@@ -37,7 +36,7 @@ int StrollAction::execAction(float delta) {
 	return Stay;
 }
 
-void StrollAction::load(IBehaviorTreeNew* bt, const json& j) {
+void StrollAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

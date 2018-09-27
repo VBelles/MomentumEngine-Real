@@ -2,10 +2,7 @@
 #include "GrabHighActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
-#include "components/comp_transform.h"
 
 
 GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState state) :

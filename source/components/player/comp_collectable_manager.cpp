@@ -3,7 +3,6 @@
 #include "utils/utils.h"
 #include "entity/common_msgs.h"
 #include "comp_player_model.h"
-#include "components/comp_transform.h"
 #include "modules/game_modules/game/respawner.h"
 #include "modules/game_modules/game/module_game.h"
 #include <algorithm>

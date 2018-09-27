@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "OnIdleWarAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnIdleWarAction", OnIdleWarAction);
 
@@ -24,7 +22,7 @@ int OnIdleWarAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnIdleWarAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnIdleWarAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

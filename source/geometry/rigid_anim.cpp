@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "rigid_anim.h"
 #include "utils/data_provider.h"
-#include "components/comp_transform.h"
 
 class CRigidAnimResourceClass : public CResourceClass {
 public:

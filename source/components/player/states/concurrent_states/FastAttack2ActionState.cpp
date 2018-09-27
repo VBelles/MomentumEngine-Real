@@ -1,12 +1,9 @@
 #include "mcv_platform.h"
 #include "FastAttack2ActionState.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_render.h"
 #include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 #include "components/player/states/StateManager.h"
-#include "components/comp_transform.h"
 
 
 FastAttack2ActionState::FastAttack2ActionState(StateManager* stateManager)

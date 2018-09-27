@@ -2,10 +2,7 @@
 #include "comp_breakable.h"
 #include "entity/entity_parser.h"
 #include "entity/common_msgs.h"
-#include "components/comp_transform.h"
 #include "components/comp_collectable.h"
-#include "components/comp_collider.h"
-#include "components/comp_render.h"
 #include "components/controllers/comp_rigid_anims_director.h"
 #include "components/player/attack_info.h"
 

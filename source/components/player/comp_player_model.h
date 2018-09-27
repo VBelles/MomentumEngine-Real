@@ -1,13 +1,10 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "power_stats.h"
 #include "entity/common_msgs.h"
 #include "components/player/attack_info.h"
 
 class IActionState;
-class TCompCollider;
-class TCompTransform;
 class TCompPowerGauge;
 class TCompCollectableManager;
 class StateManager;

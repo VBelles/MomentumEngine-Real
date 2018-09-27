@@ -13,8 +13,6 @@
 #include "render/shaders/render_technique.h"
 #include "handle/handle.h"
 #include "components/comp_name.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
 #include "entity/entity_parser.h"
 #include "render/render_manager.h"
 #include "components/controllers/comp_curve.h"

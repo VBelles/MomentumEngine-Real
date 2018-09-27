@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "SpendCoinsActionState.h"
 #include "components/player/comp_player_model.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/comp_transform.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/comp_collectable_manager.h"
 #include "components/player/states/StateManager.h"

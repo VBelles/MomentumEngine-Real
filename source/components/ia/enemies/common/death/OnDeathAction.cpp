@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "OnDeathAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnDeathAction", OnDeathAction);
 
@@ -25,7 +23,7 @@ int OnDeathAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnDeathAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnDeathAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "OnAppearAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnAppearAction", OnAppearAction);
 
@@ -23,7 +21,7 @@ int OnAppearAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnAppearAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnAppearAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

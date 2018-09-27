@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "StepBackAction.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("StepBackAction", StepBackAction);
 
@@ -43,7 +41,7 @@ int StepBackAction::execAction(float delta) {
 	return Leave;
 }
 
-void StepBackAction::load(IBehaviorTreeNew* bt, const json& j) {
+void StepBackAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

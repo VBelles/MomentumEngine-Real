@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_render.h"
 #include "comp_transform.h"
-#include "skeleton/comp_skeleton.h"
 #include "render/render_objects.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"

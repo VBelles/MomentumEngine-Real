@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "TeleportAction.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/comp_collider.h"
 
 REGISTER_BTACTION("TeleportAction", TeleportAction);
 
@@ -26,7 +24,7 @@ int TeleportAction::execAction(float delta) {
 	}
 }
 
-void TeleportAction::load(IBehaviorTreeNew* bt, const json& j) {
+void TeleportAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

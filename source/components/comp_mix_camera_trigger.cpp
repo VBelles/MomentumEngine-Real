@@ -2,7 +2,6 @@
 #include "comp_mix_camera_trigger.h"
 #include "comp_transform.h"
 #include "comp_camera.h"
-#include "components/comp_collider.h"
 #include "components/controllers/comp_camera_curve_interpolation.h"
 #include "entity/common_msgs.h"
 

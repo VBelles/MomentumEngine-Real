@@ -1,6 +1,5 @@
 #pragma once
 
-class TCompTransform;
 namespace SLB {
 	class Manager;
 }

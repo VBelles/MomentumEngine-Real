@@ -2,11 +2,8 @@
 #include "VerticalLauncherActionState.h"
 #include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
 #include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/player/states/StateManager.h"
-#include "components/comp_transform.h"
 
 VerticalLauncherActionState::VerticalLauncherActionState(StateManager * stateManager) :
 	LauncherActionState(stateManager, VerticalLauncher, "vertical_launcher", "vertical_launcher") {

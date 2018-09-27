@@ -1,8 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_power_up.h"
-#include "components/comp_transform.h"
-#include "components/comp_render.h"
-#include "components/comp_collider.h"
 #include "components/player/comp_player_model.h"
 #include "entity/common_msgs.h"
 

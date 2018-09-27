@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "RangedAttackAction.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/comp_transform.h"
 #include "entity/entity_parser.h"
 
 REGISTER_BTACTION("RangedAttackAction", RangedAttackAction);
@@ -66,7 +64,7 @@ int RangedAttackAction::execAction(float delta) {
 	}
 }
 
-void RangedAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
+void RangedAttackAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 	

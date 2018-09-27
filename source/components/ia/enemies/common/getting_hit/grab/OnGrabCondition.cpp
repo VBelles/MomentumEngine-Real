@@ -19,7 +19,7 @@ bool OnGrabCondition::testCondition(float delta) {
 		&& !enemy->hasSuperArmor();
 }
 
-void OnGrabCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void OnGrabCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

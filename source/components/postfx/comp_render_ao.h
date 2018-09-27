@@ -1,7 +1,6 @@
 #ifndef INC_COMPONENT_RENDER_AO_H_
 #define INC_COMPONENT_RENDER_AO_H_
 
-#include "components/comp_base.h"
 #include <vector>
 
 class CRenderToTexture;

@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnSuspensionAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnSuspensionAction", OnSuspensionAction);
@@ -22,7 +21,7 @@ int OnSuspensionAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnSuspensionAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnSuspensionAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

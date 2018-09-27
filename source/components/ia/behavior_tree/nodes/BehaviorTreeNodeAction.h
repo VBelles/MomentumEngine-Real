@@ -7,8 +7,7 @@ public:
 	CBehaviorTreeNodeAction(std::string name);
 
 	void recalc(IBehaviorTree *behaviorTree, float delta = 0.f) override;
-	void recalc(IBehaviorTreeNew *behaviorTree, float delta = 0.f) override;
 
 	virtual void debugInMenu() override;
-	virtual void debugInMenu(IBehaviorTreeNew* behaviorTree) override;
+	virtual void debugInMenu(IBehaviorTree* behaviorTree) override;
 };

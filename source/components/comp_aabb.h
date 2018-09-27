@@ -2,7 +2,6 @@
 #define INC_COMPONENT_AABB_H_
 
 #include "geometry/geometry.h"
-#include "components/comp_base.h"
 
 struct TMsgEntityCreated;
 

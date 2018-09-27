@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnIdleAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/player/comp_player_model.h"
 
@@ -28,7 +27,7 @@ int OnIdleAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnIdleAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnIdleAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

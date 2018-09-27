@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_slash.h"
 #include "entity/common_msgs.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
 #include "skeleton/cal3d2engine.h"
 
 DECL_OBJ_MANAGER("slash", TCompSlash);

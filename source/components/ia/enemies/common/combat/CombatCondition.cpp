@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "CombatCondition.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTCONDITION("CombatCondition", CombatCondition);
 
@@ -21,7 +20,7 @@ bool CombatCondition::testCondition(float delta) {
 			distanceSqrd <= enemy->fovChaseDistanceSqrd && enemy->getTransform()->isInFov(playerPosition, enemy->chaseFov);
 }
 
-void CombatCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void CombatCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "module_slash.h"
 #include "modules/system_modules/slash/comp_slash.h"
-#include "components/comp_transform.h"
 
 CModuleSlash::CModuleSlash(const std::string& name)
 	: IModule(name) {

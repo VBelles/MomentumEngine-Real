@@ -1,6 +1,5 @@
 #pragma once
 
-class TCompTransform;
 struct TMsgAllScenesCreated;
 
 struct TCompFollowTransform : public TCompBase {

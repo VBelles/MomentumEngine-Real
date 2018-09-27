@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "GrabAction.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("GrabAction", GrabAction);
@@ -23,7 +21,7 @@ int GrabAction::execAction(float delta) {
 	return Stay;
 }
 
-void GrabAction::load(IBehaviorTreeNew* bt, const json& j) {
+void GrabAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

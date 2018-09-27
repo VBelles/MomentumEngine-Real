@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_altar.h"
-#include "components/comp_transform.h"
 #include "components/player/attack_info.h"
 #include "components/controllers/comp_rigid_anim.h"
 #include "components/controllers/comp_rigid_anims_director.h"

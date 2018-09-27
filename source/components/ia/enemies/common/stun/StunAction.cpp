@@ -20,7 +20,7 @@ int StunAction::execAction(float delta) {
 	return Leave;
 }
 
-void StunAction::load(IBehaviorTreeNew* bt, const json& j) {
+void StunAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

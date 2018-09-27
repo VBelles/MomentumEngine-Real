@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnBlockAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_give_power.h"
 
@@ -26,7 +25,7 @@ int OnBlockAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnBlockAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnBlockAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

@@ -20,7 +20,7 @@ bool OnHorizontalLaunchCondition::testCondition(float delta) {
 		&& !enemy->hasSuperArmor();
 }
 
-void OnHorizontalLaunchCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void OnHorizontalLaunchCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

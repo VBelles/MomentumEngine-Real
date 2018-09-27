@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "scripting_entities.h"
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
 #include "components/comp_name.h"
 #include "entity/entity_parser.h"
 #include <SLB/SLB.hpp>

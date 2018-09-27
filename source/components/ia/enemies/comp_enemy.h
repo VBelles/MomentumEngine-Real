@@ -1,14 +1,10 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "entity/common_msgs.h"
 #include "components/player/attack_info.h"
 
 struct TMsgColliderDestroyed;
 class Enemy;
-class TCompTransform;
-class TCompCollider;
-class TCompSkeleton;
 class TCompHitboxes;
 class TCompGivePower;
 class TCompPlayerModel;

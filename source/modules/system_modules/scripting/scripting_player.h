@@ -1,8 +1,6 @@
 #pragma once
 
 class TCompPlayerModel;
-class TCompTransform;
-class TCompCollider;
 class TCompPowerGauge;
 class TCompPlayerController;
 class TCompCameraPlayer;

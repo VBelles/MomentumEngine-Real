@@ -1,6 +1,5 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "modules/system_modules/particles/particle_system.h"
 
 class TCompParticles : public TCompBase {

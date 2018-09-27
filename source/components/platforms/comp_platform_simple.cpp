@@ -2,8 +2,6 @@
 #include "comp_platform_simple.h"
 #include "render/render_objects.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_collider.h"
-#include "components/comp_transform.h"
 #include "geometry/curve.h"
 
 DECL_OBJ_MANAGER("platform_simple", TCompPlatformSimple);

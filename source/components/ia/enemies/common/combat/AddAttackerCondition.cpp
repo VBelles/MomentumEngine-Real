@@ -2,7 +2,6 @@
 #include "AddAttackerCondition.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTCONDITION("AddAttackerCondition", AddAttackerCondition);
 
@@ -40,7 +39,7 @@ bool AddAttackerCondition::testCondition(float delta) {
 	}
 }
 
-void AddAttackerCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void AddAttackerCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }
