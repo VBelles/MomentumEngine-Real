@@ -148,6 +148,23 @@
             "bone": "Bone034"
           }
         ]
+      },
+      "sound": {
+        "events": [
+          {
+            "id": "launcher_loop",
+            "path": "event:/PROTA/launcher/launcher_estatica",
+            "following": true
+          },
+          {
+            "id": "launcher_end",
+            "path": "event:/PROTA/launcher/launcher_final"
+          },
+          {
+            "id": "hit",
+            "path": "event:/PROTA/golpes/golpe_hit"
+          }
+        ]
       }
     }
   }
