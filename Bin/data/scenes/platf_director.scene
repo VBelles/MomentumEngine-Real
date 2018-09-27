@@ -8,9 +8,14 @@
         "slots":
         [
           {
-            "wait_time": 2.0,
+            "wait_time": 0,
             "platforms":
             [
+              "nes_plataformaSpikes022",
+              "nes_plataformaSpikes021",
+              "nes_plataformaSpikes020",
+              "nes_plataformaSpikes019",
+              "nes_plataformaSpikes018",
               "nes_plataformaSpikes017",
               "nes_plataformaSpikes016",
               "nes_plataformaSpikes015",

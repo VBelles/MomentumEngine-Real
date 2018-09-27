@@ -1,3 +1,17 @@
+function onMechanismSystemActivated_nes_estaca_emisivo_2_004()
+  closeDoor("nes_estaca_emisivo_2_004", 0)
+end
+function onMechanismSystemDeactivated_nes_estaca_emisivo_2_004()
+  openDoor("nes_estaca_emisivo_2_004", 0)
+end
+
+function onMechanismSystemActivated_nes_estaca_emisivo_1_004()
+  closeDoor("nes_estaca_emisivo_1_004", 0)
+end
+function onMechanismSystemDeactivated_nes_estaca_emisivo_1_004()
+  openDoor("nes_estaca_emisivo_1_004", 0)
+end
+
 function onMechanismSystemActivated_nes_pasarela_collider011()
   closeDoor("nes_pasarela_collider011", 0)
 end

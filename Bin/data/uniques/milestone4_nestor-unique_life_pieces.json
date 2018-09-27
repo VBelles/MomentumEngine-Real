@@ -2,6 +2,13 @@
   "unique_life_pieces":
   [
     {
+      "id": "nes_life_piece003",
+      "done": false,
+      "position": "-195.482 3.00563 45.3169",
+      "level": "level00",
+      "type": "life_piece"
+    },
+    {
       "id": "nes_life_piece002",
       "done": false,
       "position": "-3.58997 17.8129 -293.912",
