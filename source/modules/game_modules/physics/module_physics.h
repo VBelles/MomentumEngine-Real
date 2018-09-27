@@ -21,6 +21,7 @@ private:
     PxDefaultAllocator      defaultAllocatorCallback;
     PxDefaultErrorCallback  defaultErrorCallback;
     PxDefaultCpuDispatcher*	dispatcher;
+	PxCudaContextManager*	gCudaContextManager;
 
     PxFoundation*			foundation;
     PxPhysics*				physics;
@@ -35,6 +36,10 @@ private:
     BasicQueryFilterCallback basicQueryFilterCallback;
 
     std::set<CHandle> toRelease;
+
+	float tesellationMaxEdgeLength = 0.4f;
+	bool tesellation = true;
+	bool overlapRecoveryModule = false;
 
     bool createPhysx();
     bool createScene();
@@ -85,7 +90,7 @@ public:
     void releaseCollider(CHandle handle);
 
     PxControllerCollisionFlags move(PxController* controller, PxVec3& deltaMovement, float delta, float minDist = 0.f);
-
+	
     FilterGroup getFilterByName(const std::string& name);
     PxScene* getScene() { return scene; }
     BasicControllerHitCallback* getGameControllerHitCallback() { return &basicControllerHitCallback; }
