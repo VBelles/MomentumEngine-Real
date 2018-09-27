@@ -3,28 +3,223 @@
 		"name": "hud",
 		"type": "widget",
 		"size": "1920 1080",
-		"position": "0 -40",
+		"position": "0 0",
 		"children": [
+			{
+				"name": "life_points",
+				"type": "points_bar",
+				"variable": "hp",
+				"variable_max": "max_hp",
+				"position": "250 55",
+				"children": [
+					{
+						"name": "life_point00",
+						"type": "point",
+						"size": "60 66",
+						"position": "0 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point01",
+						"type": "point",
+						"size": "60 66",
+						"position": "65 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point02",
+						"type": "point",
+						"size": "60 66",
+						"position": "130 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point03",
+						"type": "point",
+						"size": "60 66",
+						"position": "195 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point04",
+						"type": "point",
+						"size": "60 66",
+						"position": "260 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point05",
+						"type": "point",
+						"size": "60 66",
+						"position": "325 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point06",
+						"type": "point",
+						"size": "60 66",
+						"position": "390 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point07",
+						"type": "point",
+						"size": "60 66",
+						"position": "455 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point08",
+						"type": "point",
+						"size": "60 66",
+						"position": "520 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point09",
+						"type": "point",
+						"size": "60 66",
+						"position": "585 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					},
+					{
+						"name": "life_point10",
+						"type": "point",
+						"size": "60 66",
+						"position": "650 0",
+						"texture": "data/textures/gui/hud/life_mask.dds",
+						"empty": {
+							"texture": "data/textures/gui/hud/life_mask_empty.dds"
+						}
+					}
+				]
+			},
+			{
+				"name": "coins",
+				"type": "widget",
+				"children": [
+					{
+						"name": "coin_full",
+						"type": "bar",
+						"size": "24 374",
+						"position": "47.5 250",
+						"texture": "data/textures/gui/hud/coin_bar.dds",
+						"variable": "coin_progress",
+						"direction": "vertical"
+					},
+					{
+						"name": "coin_bars_points",
+						"type": "points_bar",
+						"variable": "coin_bars",
+						"variable_max": "max_coin_bars",
+						"children": [
+							{
+								"name": "coin_point01",
+								"type": "point",
+								"size": "36 36",
+								"position": "11.5 153.5",
+								"texture": "data/textures/gui/hud/coin_1.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_1_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point02",
+								"type": "point",
+								"size": "36 36",
+								"position": "4.5 108.5",
+								"texture": "data/textures/gui/hud/coin_2.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_2_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point03",
+								"type": "point",
+								"size": "36 36",
+								"position": "14 67",
+								"texture": "data/textures/gui/hud/coin_3.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_3_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point04",
+								"type": "point",
+								"size": "36 36",
+								"position": "39 34",
+								"texture": "data/textures/gui/hud/coin_4.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_4_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point05",
+								"type": "point",
+								"size": "36 36",
+								"position": "72.5 13.5",
+								"texture": "data/textures/gui/hud/coin_5.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_5_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point06",
+								"type": "point",
+								"size": "36 36",
+								"position": "111 1",
+								"texture": "data/textures/gui/hud/coin_6.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_6_empty.dds"
+								}
+							}
+						]
+					}
+				]
+			},
 			{
 				"name": "power_bar",
 				"type": "widget",
 				"position": "0 0",
 				"children": [
 					{
-						"name": "empty",
-						"type": "image",
-						"position": "31 114",
-						"size": "213 213",
-						"texture": "data/textures/gui/hud/power_empty.dds"
-					},
-					{
 						"name": "level1",
 						"type": "bar",
-						"position": "36 119",
-						"size": "203 203",
+						"position": "60 60",
+						"size": "144 144",
 						"texture": "data/textures/gui/hud/power_level1.dds",
 						"variable": "power_progress_level1",
-						"direction": "vertical",
+						"direction": "vertical_anim",
 						"initial_frame": 0,
 						"frame_size": "1 0.14285",
 						"num_frames": 7,
@@ -34,11 +229,11 @@
 					{
 						"name": "level2",
 						"type": "bar",
-						"position": "36 119",
-						"size": "203 203",
+						"position": "60 60",
+						"size": "144 144",
 						"texture": "data/textures/gui/hud/power_level2.dds",
 						"variable": "power_progress_level2",
-						"direction": "vertical",
+						"direction": "vertical_anim",
 						"initial_frame": 0,
 						"frame_size": "0.14285 1",
 						"num_frames": 7,
@@ -48,11 +243,11 @@
 					{
 						"name": "level3",
 						"type": "bar",
-						"position": "36 119",
-						"size": "203 203",
+						"position": "60 60",
+						"size": "144 144",
 						"texture": "data/textures/gui/hud/power_level3.dds",
 						"variable": "power_progress_level3",
-						"direction": "vertical",
+						"direction": "vertical_anim",
 						"initial_frame": 0,
 						"frame_size": "0.14285 1",
 						"num_frames": 7,
@@ -62,164 +257,8 @@
 					{
 						"name": "foreground",
 						"type": "image",
-						"size": "824 379",
+						"size": "310 640",
 						"texture": "data/textures/gui/hud/power_foreground.dds"
-					}
-				]
-			},
-			{
-				"name": "life_points",
-				"type": "points_bar",
-				"variable": "hp",
-				"variable_max": "max_hp",
-				"position": "260 160",
-				"children": [
-					{
-						"name": "life_point00",
-						"type": "point",
-						"size": "59 80",
-						"position": "0 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point01",
-						"type": "point",
-						"size": "59 80",
-						"position": "62 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point02",
-						"type": "point",
-						"size": "59 80",
-						"position": "124 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point03",
-						"type": "point",
-						"size": "59 80",
-						"position": "186 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point04",
-						"type": "point",
-						"size": "59 80",
-						"position": "248 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point05",
-						"type": "point",
-						"size": "59 80",
-						"position": "310 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point06",
-						"type": "point",
-						"size": "59 80",
-						"position": "372 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point07",
-						"type": "point",
-						"size": "59 80",
-						"position": "434 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point08",
-						"type": "point",
-						"size": "59 80",
-						"position": "496 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point09",
-						"type": "point",
-						"size": "59 80",
-						"position": "558 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					},
-					{
-						"name": "life_point10",
-						"type": "point",
-						"size": "59 80",
-						"position": "620 0",
-						"texture": "data/textures/gui/hud/life_mask.dds",
-						"empty": {
-							"color": "0.3 0.3 0.3 1"
-						}
-					}
-				]
-			},
-			{
-				"name": "coin_bar",
-				"type": "widget",
-				"position": "260 250",
-				"children": [
-					{
-						"name": "coin_empty_background",
-						"type": "image",
-						"size": "300 30",
-						"texture": "data/textures/gui/transparent.dds"
-					},
-					{
-						"name": "coin_full_foreground",
-						"type": "bar",
-						"size": "300 30",
-						"color": "0.8 0 0 1",
-						"texture": "data/textures/gui/solid.dds",
-						"variable": "coin_full_foreground"
-					},
-					{
-						"name": "coin_foreground",
-						"type": "bar",
-						"size": "300 30",
-						"color": "1 0 0 1",
-						"texture": "data/textures/gui/solid.dds",
-						"variable": "coin_progress"
-					},
-					{
-						"name": "coin_text",
-						"position": "310 0",
-						"type": "text",
-						"template_text": "{{coin_bars}}",
-						"font_color": "0.5 0.5 0.5 1",
-						"font_size": 32
 					}
 				]
 			}

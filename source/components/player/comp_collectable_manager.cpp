@@ -56,6 +56,10 @@ int TCompCollectableManager::getNumberOfCoins() {
 	return objectsCollected[Type::COIN];
 }
 
+int TCompCollectableManager::getMaxCoins() {
+	return maxCoins;
+}
+
 int TCompCollectableManager::getNumberOfLifePieces() {
 	return objectsCollected[Type::LIFEPIECE];
 }
