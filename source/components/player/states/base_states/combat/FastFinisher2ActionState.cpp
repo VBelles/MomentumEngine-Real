@@ -1,9 +1,5 @@
 #include "mcv_platform.h"
 #include "FastFinisher2ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "entity/common_msgs.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -87,7 +83,7 @@ void FastFinisher2ActionState::update(float delta) {
 		isUltraSlashOut = true;
 		slash(SLASH_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(45));
 		slash(SLASH_COUNTER_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(-45));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
+		getSound()->play("attack");
 	}
 }
 
@@ -125,7 +121,7 @@ void FastFinisher2ActionState::onDodgeButton() {
 }
 
 void FastFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};

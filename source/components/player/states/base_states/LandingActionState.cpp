@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "LandingActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/states/StateManager.h"
 
 
 LandingActionState::LandingActionState(StateManager* stateManager, State state):
@@ -42,8 +40,8 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lockFallingAttack = false;
 	getPlayerModel()->lockAirDodge = false;
-	EngineParticles.launchSystem(PARTICLES_LANDING, Particles::LaunchConfig{ getEntity()});
-	EngineSound.emitEvent(SOUND_LANDING);
+	EngineParticles.launchSystem(PARTICLES_LANDING, Particles::LaunchConfig{ getPlayerEntity()});
+	getSound()->play("landing");
 }
 
 void LandingActionState::onStateExit(IActionState * nextState) {

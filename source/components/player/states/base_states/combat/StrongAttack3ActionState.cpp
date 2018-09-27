@@ -1,9 +1,5 @@
 #include "mcv_platform.h"
 #include "StrongAttack3ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "entity/common_msgs.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -85,17 +81,17 @@ void StrongAttack3ActionState::update(float delta) {
 	if (!isUltraSlash1Out && movementTimer.elapsed() > frames2sec(18)) {
 		isUltraSlash1Out = true;
 		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
+		getSound()->play("attack");
 	}
 	if (!isUltraSlash2Out && movementTimer.elapsed() > frames2sec(25)) {
 		isUltraSlash2Out = true;
 		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
+		getSound()->play("attack");
 	}
 	if (!isUltraSlash3Out && movementTimer.elapsed() > frames2sec(32)) {
 		isUltraSlash3Out = true;
 		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
+		getSound()->play("attack");
 	}
 }
 
@@ -137,7 +133,7 @@ void StrongAttack3ActionState::onDodgeButton() {
 }
 
 void StrongAttack3ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity* otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};

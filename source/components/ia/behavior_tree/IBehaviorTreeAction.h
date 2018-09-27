@@ -12,4 +12,5 @@ public:
 	virtual void load(IBehaviorTree* bt, const json& j) {}
 	virtual std::string getType();
 	virtual void debugInMenu() {}
+	virtual void onExit() {}
 };

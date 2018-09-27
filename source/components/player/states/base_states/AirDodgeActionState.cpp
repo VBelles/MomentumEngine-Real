@@ -1,8 +1,5 @@
 #include "mcv_platform.h"
-#include "components/player/comp_player_model.h"
 #include "AirDodgeActionState.h"
-#include "components/controllers/comp_camera_player.h"
-#include "components/player/states/StateManager.h"
 
 
 AirDodgeActionState::AirDodgeActionState(StateManager* stateManager)
@@ -49,7 +46,7 @@ void AirDodgeActionState::onStateEnter(IActionState * lastState) {
 
 	//set velocity vector
 	*velocityVector = -getPlayerTransform()->getFront() * dodgeSpeed;
-	EngineSound.emitEvent(SOUND_DODGE);
+	getSound()->play("dodge");
 }
 
 void AirDodgeActionState::onStateExit(IActionState * nextState) {

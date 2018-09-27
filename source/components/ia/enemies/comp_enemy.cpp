@@ -25,7 +25,7 @@ void TCompEnemy::debugInMenu() {
 }
 
 void TCompEnemy::registerMsgs() {
-	DECL_MSG(TCompEnemy, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompEnemy, TMsgEntityCreated, onEntityCreated);
 	DECL_MSG(TCompEnemy, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(TCompEnemy, TMsgAttackHit, onAttackHit);
 	DECL_MSG(TCompEnemy, TMsgOutOfBounds, onOutOfBounds);
@@ -42,7 +42,7 @@ void TCompEnemy::update(float delta) {
 	}
 }
 
-void TCompEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void TCompEnemy::onEntityCreated(const TMsgEntityCreated& msg) {
 	enemy->playerHandle = getEntityByName(PLAYER_NAME);
 	if (enemy->playerHandle.isValid()) {
 		CEntity* player = enemy->playerHandle;
@@ -54,6 +54,7 @@ void TCompEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	enemy->skeletonHandle = get<TCompSkeleton>();
 	enemy->hitboxesHandle = get<TCompHitboxes>();
 	enemy->powerHandle = get<TCompGivePower>();
+	enemy->soundHandle = get<TCompSound>();
 
 	enemy->spawnPosition = enemy->getTransform()->getPosition();
 

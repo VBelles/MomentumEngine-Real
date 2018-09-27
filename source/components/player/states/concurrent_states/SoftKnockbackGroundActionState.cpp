@@ -1,10 +1,5 @@
 #include "mcv_platform.h"
 #include "SoftKnockbackGroundActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/comp_power_gauge.h"
-#include "entity/common_msgs.h"
-#include "components/player/states/StateManager.h"
-#include "components/player/states/AttackState.h"
 
 
 SoftKnockbackGroundActionState::SoftKnockbackGroundActionState(StateManager* stateManager) :

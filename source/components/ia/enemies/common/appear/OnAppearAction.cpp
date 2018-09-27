@@ -17,16 +17,14 @@ OnAppearAction::OnAppearAction(Enemy* enemy, std::string animation) :
 int OnAppearAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
-	EngineSound.emitEvent(sound, enemy->getTransform());
+	enemy->getSound()->play("appear");
 	return Leave;
 }
 
 void OnAppearAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
-
 	animation = j.value("animation", animation);
-	sound = j.value("sound", sound);
 }
 
 void OnAppearAction::debugInMenu() {

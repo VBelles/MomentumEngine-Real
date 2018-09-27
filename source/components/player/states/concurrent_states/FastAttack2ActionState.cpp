@@ -1,9 +1,5 @@
 #include "mcv_platform.h"
 #include "FastAttack2ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "entity/common_msgs.h"
-#include "components/comp_hitboxes.h"
-#include "components/player/states/StateManager.h"
 
 
 FastAttack2ActionState::FastAttack2ActionState(StateManager* stateManager)
@@ -32,7 +28,7 @@ void FastAttack2ActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
+		getSound()->play("attack");
 	}
 }
 
@@ -44,7 +40,7 @@ void FastAttack2ActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockAttack = true;
-	EngineParticles.launchSystem(PARTICLES_PLAYER_ATTACK, { getEntity(), "Bip001 L Hand", {0.12f, 0.f, 0.f} });
+	EngineParticles.launchSystem(PARTICLES_PLAYER_ATTACK, { getPlayerEntity(), "Bip001 L Hand", {0.12f, 0.f, 0.f} });
 }
 
 void FastAttack2ActionState::onStateExit(IActionState * nextState) {
@@ -80,7 +76,7 @@ void FastAttack2ActionState::onFastAttackButtonReleased() {
 }
 
 void FastAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity* otherEntity = entity;
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

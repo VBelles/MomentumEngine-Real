@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "WallJumpSquatPlummetActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/states/StateManager.h"
 
 WallJumpSquatPlummetActionState::WallJumpSquatPlummetActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, WallJumpSquatPlummet) {
@@ -28,7 +26,7 @@ void WallJumpSquatPlummetActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->maxVerticalSpeed = abs(verticalVelocity);
 	getSkeleton()->blendCycle(animationHugging, 0.1f, 0.1f);
 	timer.reset();
-	EngineSound.emitEvent(SOUND_JUMP_LONG);
+	getSound()->play("jump_long");
 }
 
 void WallJumpSquatPlummetActionState::onStateExit(IActionState * nextState) {

@@ -18,6 +18,7 @@ OnSuspensionAction::OnSuspensionAction(Enemy* enemy, std::string animationStart,
 int OnSuspensionAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
+	enemy->getSound()->play("launch_loop");
 	return Leave;
 }
 

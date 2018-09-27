@@ -1,9 +1,5 @@
 #include "mcv_platform.h"
 #include "FastFinisher1ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "entity/common_msgs.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -71,7 +67,7 @@ void FastFinisher1ActionState::update(float delta) {
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24) && movementTimer.elapsed() <= frames2sec(54)) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::RIGHT_FOOT)->setEnable(true);
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform());
+		getSound()->play("attack");
 	}
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
 		isSlashOut = false;
@@ -110,7 +106,7 @@ void FastFinisher1ActionState::onDodgeButton() {
 }
 
 void FastFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};

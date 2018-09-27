@@ -1,11 +1,8 @@
 #include "mcv_platform.h"
 #include "comp_player_model.h"
 #include "components/comp_render_ui.h"
-#include "components/comp_collectable.h"
 #include "components/comp_respawn_point.h"
 #include "components/controllers/comp_camera_player.h"
-#include "components/player/comp_power_gauge.h"
-#include "components/player/comp_collectable_manager.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
@@ -164,7 +161,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 			VEC3(0, 0.4f, 0)			// Offset
 		};
 		EngineParticles.launchSystem(particleSystems[msg.powerLvl - 1], config);
-		EngineSound.emitEvent(msg.powerLvl == 2 ? SOUND_LVL_UP_2 : SOUND_LVL_UP_3);
+		getSound()->play(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
 	}
 		
 }
@@ -172,10 +169,17 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	TCompRenderUI* renderUI = get<TCompRenderUI>();
 
+	entityHandle = CHandle(this).getOwner();
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
+	soundHandle = get<TCompSound>();
+	skeletonHandle = get<TCompSkeleton>();
+	renderHandle = get<TCompRender>();
 	powerGaugeHandle = get<TCompPowerGauge>();
 	collectableManagerHandle = get<TCompCollectableManager>();
+	cameraRenderHandle = static_cast<CEntity*>(getEntityByName(GAME_CAMERA))->get<TCompCamera>();
+	cameraPlayerHandle = static_cast<CEntity*>(getEntityByName(PLAYER_CAMERA))->get<TCompCameraPlayer>();
+	hitboxesHandle = get<TCompHitboxes>();
 
 	float pitch;
 	respawnPosition = getTransform()->getPosition();
@@ -247,7 +251,7 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 
 	currentPowerStats = powerStats[0];
 
-	stateManager = new StateManager(CHandle(this).getOwner());
+	stateManager = new StateManager(CHandle(this));
 	for (auto& lockedState : initialLockedStates) {
 		stateManager->lockState(lockedState);
 	}
@@ -567,6 +571,10 @@ void TCompPlayerModel::onPurityChange(const TMsgPurityChange& msg) {
 	getController()->invalidateCache(); //De esta forma no se queda sobre/en colliders estaticos al cambiar de pureza
 }
 
+CEntity* TCompPlayerModel::getPlayerEntity() {
+	return entityHandle;
+}
+
 TCompTransform* TCompPlayerModel::getTransform() {
 	return transformHandle;
 }
@@ -579,8 +587,32 @@ PxCapsuleController* TCompPlayerModel::getController() {
 	return static_cast<PxCapsuleController*>(getCollider()->controller);
 }
 
+TCompRender* TCompPlayerModel::getRender() {
+	return renderHandle;
+}
+
+TCompHitboxes* TCompPlayerModel::getHitboxes() {
+	return hitboxesHandle;
+}
+
+TCompCamera* TCompPlayerModel::getCameraRender() {
+	return cameraRenderHandle;
+}
+
+TCompCameraPlayer* TCompPlayerModel::getCameraPlayer() {
+	return cameraPlayerHandle;
+}
+
+TCompSkeleton* TCompPlayerModel::getSkeleton() {
+	return skeletonHandle;
+}
+
 TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
 	return powerGaugeHandle;
+}
+
+TCompSound* TCompPlayerModel::getSound() {
+	return soundHandle;
 }
 
 TCompCollectableManager* TCompPlayerModel::getCollectableManager() {

@@ -19,7 +19,7 @@ int OnDeathAction::execAction(float delta) {
 	enemy->blockingBroken = false;
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
-	EngineSound.emitEvent(sound, enemy->getTransform());
+	enemy->getSound()->play("death");
 	return Leave;
 }
 

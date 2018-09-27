@@ -176,7 +176,12 @@ int IBehaviorTree::execAction(std::string actionName, float delta) {
 		dbg("ERROR: Missing node action for node %s\n", actionName.c_str());
 		return Leave; // error: action does not exist
 	}
-	return it->second->execAction(delta);
+	
+	auto result = it->second->execAction(delta);
+	if (result == Leave) {
+		it->second->onExit();
+	}
+	return result;
 }
 
 IBehaviorTreeAction* IBehaviorTree::getAction(std::string actionName) {

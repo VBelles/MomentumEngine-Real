@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "LandingHurtActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/states/StateManager.h"
 
 
 LandingHurtActionState::LandingHurtActionState(StateManager* stateManager):

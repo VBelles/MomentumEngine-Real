@@ -21,7 +21,7 @@ int OnBlockingBreakAction::execAction(float delta) {
 	enemy->blockingBroken = false;
 	enemy->isBlocking = false;
 	enemy->getPower()->setStateMultiplier(1.f);
-	EngineSound.emitEvent(sound, enemy->getTransform());
+	enemy->getSound()->play("block");
 	return Leave;
 }
 

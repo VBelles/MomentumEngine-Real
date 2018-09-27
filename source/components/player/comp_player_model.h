@@ -3,11 +3,16 @@
 #include "power_stats.h"
 #include "entity/common_msgs.h"
 #include "components/player/attack_info.h"
+#include "components/comp_collectable.h"
+#include "components/comp_hitboxes.h"
+#include "modules/system_modules/sound/comp_sound.h"
+#include "skeleton/comp_skeleton.h"
+#include "components/player/comp_power_gauge.h"
+#include "components/player/comp_collectable_manager.h"
+#include "components/controllers/comp_camera_player.h"
+#include "components/player/states/StateManager.h"
 
 class IActionState;
-class TCompPowerGauge;
-class TCompCollectableManager;
-class StateManager;
 struct TMsgRespawnChanged;
 
 struct HitState {
@@ -35,10 +40,17 @@ struct MoveState {
 
 class TCompPlayerModel : public TCompBase {
 private:
+	CHandle entityHandle;
 	CHandle transformHandle;
 	CHandle colliderHandle;
+	CHandle renderHandle;
+	CHandle skeletonHandle;
+	CHandle soundHandle;
 	CHandle powerGaugeHandle;
 	CHandle collectableManagerHandle;
+	CHandle cameraRenderHandle;
+	CHandle cameraPlayerHandle;
+	CHandle hitboxesHandle;
 
 	VEC3 respawnPosition;
 	float respawnYaw;
@@ -90,6 +102,7 @@ private:
 	void onOutOfBounds(const TMsgOutOfBounds& msg);
 	void onRespawnChanged(const TMsgRespawnChanged& msg);
 	void onPurityChange(const TMsgPurityChange& msg);
+
 
 	PowerStats* loadPowerStats(const json& j);
 
@@ -158,10 +171,17 @@ public:
 	void walkButtonPressed();
 	void gainPowerButtonPressed();
 
+	CEntity* getPlayerEntity();
 	TCompTransform* getTransform();
 	TCompCollider* getCollider();
 	PxCapsuleController* getController();
+	TCompRender* getRender();
+	TCompHitboxes* getHitboxes();
+	TCompCamera* getCameraRender();
+	TCompCameraPlayer* getCameraPlayer();
+	TCompSkeleton* getSkeleton();
 	TCompPowerGauge* getPowerGauge();
+	TCompSound* getSound();
 	TCompCollectableManager* getCollectableManager();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }

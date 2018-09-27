@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/GroundedActionState.h"
-#include "components/player/states/AttackState.h"
 
 class ReleasePowerGroundActionState : public GroundedActionState, public AttackState {
 private:

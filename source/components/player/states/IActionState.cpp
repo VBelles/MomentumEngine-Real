@@ -182,7 +182,7 @@ void IActionState::slash(std::string slash, VEC3 offset, float yaw, float pitch,
 	float y = 0, p = 0;
 	getYawPitchFromVector(getPlayerTransform()->getFront(), &y, &p);
 	Particles::LaunchConfig config;
-	config.targetEntity = getEntity();
+	config.targetEntity = getPlayerEntity();
 	config.rotationOffset =
 		QUAT::CreateFromAxisAngle(VEC3(1, 0, 0), pitch + deg2rad(90)) *
 		QUAT::CreateFromAxisAngle(VEC3(0, 1, 0), yaw) *
@@ -194,32 +194,32 @@ void IActionState::slash(std::string slash, VEC3 offset, float yaw, float pitch,
 }
 
 //Component getters
-CEntity* IActionState::getEntity() {
-	return stateManager->getEntity();
-}
-
 TCompPlayerModel* IActionState::getPlayerModel() {
 	return stateManager->getPlayerModel();
 }
 
+CEntity* IActionState::getPlayerEntity() {
+	return getPlayerModel()->getPlayerEntity();
+}
+
 TCompTransform* IActionState::getPlayerTransform() {
-	return stateManager->getTransform();
+	return getPlayerModel()->getTransform();
 }
 
 TCompCollider* IActionState::getCollider() {
-	return stateManager->getCollider();
+	return getPlayerModel()->getCollider();
 }
 
 TCompRender* IActionState::getRender() {
-	return stateManager->getRender();
+	return getPlayerModel()->getRender();
 }
 
 TCompHitboxes* IActionState::getHitboxes() {
-	return stateManager->getHitboxes();
+	return getPlayerModel()->getHitboxes();
 }
 
 TCompCamera* IActionState::getCamera() {
-	return stateManager->getCamera();
+	return getPlayerModel()->getCameraRender();
 }
 
 TCompRenderBlurRadial* IActionState::getBlurRadial() {
@@ -227,19 +227,23 @@ TCompRenderBlurRadial* IActionState::getBlurRadial() {
 }
 
 TCompSkeleton* IActionState::getSkeleton() {
-	return stateManager->getSkeleton();
+	return getPlayerModel()->getSkeleton();
 }
 
 TCompPowerGauge* IActionState::getPowerGauge() {
-	return stateManager->getPowerGauge();
+	return getPlayerModel()->getPowerGauge();
 }
 
 TCompCollectableManager* IActionState::getCollectableManager() {
-	return stateManager->getCollectableManager();
+	return getPlayerModel()->getCollectableManager();
 }
 
 TCompCameraPlayer* IActionState::getCameraPlayer() {
-	return stateManager->getCameraPlayer();
+	return getPlayerModel()->getCameraPlayer();
+}
+
+TCompSound * IActionState::getSound() {
+	return getPlayerModel()->getSound();
 }
 
 TCompSlash * IActionState::getTrailSlash(SlashType type) {

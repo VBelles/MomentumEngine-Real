@@ -1,7 +1,8 @@
 #pragma once
 
-#include "components/player/states/EStates.h"
 #include "components/player/attack_info.h"
+#include "components/player/comp_player_model.h"
+#include "components/player/states/AttackState.h"
 
 class StateManager;
 class TCompPlayerModel;
@@ -30,7 +31,7 @@ protected:
 	float platformSlopeLimit = cosf(deg2rad(45.f));
 	float rollingSlopeLimit = cosf(deg2rad(10.f));
 
-	CEntity* getEntity();
+	CEntity* getPlayerEntity();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getPlayerTransform();
 	TCompCollider* getCollider();
@@ -42,8 +43,8 @@ protected:
 	TCompPowerGauge* getPowerGauge();
 	TCompCollectableManager* getCollectableManager();
 	TCompCameraPlayer* getCameraPlayer();
+	TCompSound* getSound();
 	TCompSlash* getTrailSlash(SlashType type);
-
 
 	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
 	float calculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,

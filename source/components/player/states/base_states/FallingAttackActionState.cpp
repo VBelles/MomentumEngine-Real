@@ -1,10 +1,6 @@
 #include "mcv_platform.h"
 #include "FallingAttackActionState.h"
 #include "HardLandingActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "entity/common_msgs.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -100,7 +96,7 @@ void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	//getPlayerModel()->lockFallingAttack = true;
 	stateManager->changeState(AirborneNormal);
 
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });

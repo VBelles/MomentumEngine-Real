@@ -1,9 +1,5 @@
 #include "mcv_platform.h"
 #include "FastAttackActionState.h"
-#include "components/player/comp_player_model.h"
-#include "entity/common_msgs.h"
-#include "components/comp_hitboxes.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/particles/comp_particles.h"
 
 
@@ -33,7 +29,7 @@ void FastAttackActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT);
+		getSound()->play("attack");
 	}
 }
 
@@ -45,7 +41,7 @@ void FastAttackActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockAttack = true;
-	EngineParticles.launchSystem(PARTICLES_PLAYER_ATTACK, { getEntity(), "Bip001 R Hand", {0.12f, 0.f, 0.f} });
+	EngineParticles.launchSystem(PARTICLES_PLAYER_ATTACK, { getPlayerEntity(), "Bip001 R Hand", {0.12f, 0.f, 0.f} });
 }
 
 void FastAttackActionState::onStateExit(IActionState * nextState) {
@@ -81,7 +77,7 @@ void FastAttackActionState::onFastAttackButtonReleased() {
 }
 
 void FastAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity* otherEntity = entity;
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
