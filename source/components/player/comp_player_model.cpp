@@ -605,6 +605,11 @@ bool TCompPlayerModel::isGrounded() {
 int TCompPlayerModel::getNumberOfCoins() {
 	return getCollectableManager()->getNumberOfCoins();
 }
+
+int TCompPlayerModel::getMaxNumberOfCoins() {
+	return getCollectableManager()->getMaxCoins();
+}
+
 float TCompPlayerModel::getPowerPerCoin() {
 	State state = States::getState("SpendCoins");
 	if (state != UndefinedState) {

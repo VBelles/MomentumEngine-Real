@@ -24,8 +24,9 @@ namespace GUI {
 		int coinBars = playermodel->getNumberOfCoins() * playermodel->getPowerPerCoin() / powerGauge->getMaxPower();
 		int coinsPerBar = powerGauge->getMaxPower() / playermodel->getPowerPerCoin();
 		float coinProgress = playermodel->getNumberOfCoins() / (float)coinsPerBar - coinBars;
-		EngineGUI.getVariables().getVariant("coin_full_foreground")->setFloat(coinBars);
+		//EngineGUI.getVariables().getVariant("coin_full_foreground")->setFloat(coinBars);
 		EngineGUI.getVariables().getVariant("coin_bars")->setInt(coinBars);
+		EngineGUI.getVariables().getVariant("max_coin_bars")->setInt((int)(playermodel->getMaxNumberOfCoins() / coinsPerBar));
 		EngineGUI.getVariables().getVariant("coin_progress")->setFloat(coinProgress);
 
 		//EngineGUI.getVariables().getVariant("power_progress")->setFloat(powerGauge->getBarPercentage());
