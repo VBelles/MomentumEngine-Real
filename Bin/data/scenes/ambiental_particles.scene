@@ -23,45 +23,5 @@
 				]
 			}
 		}
-	},
-	{
-		"entity" : {
-			"name": "fireplace_prefab_test",
-			"prefab": "data/prefabs/fireplace.prefab",
-			"transform":
-			{
-			  "pos": "0 0 2"
-			}
-		}
-	},
-	{
-		"entity" : {
-			"name": "fireplace_prefab_test_2",
-			"prefab": "data/prefabs/fireplace.prefab",
-			"transform":
-			{
-			  "pos": "6 0 0"
-			}
-		}
-	},
-	{
-		"entity" : {
-			"name": "fireplace_prefab_test_3",
-			"prefab": "data/prefabs/fireplace.prefab",
-			"transform":
-			{
-			  "pos": "0 0 6"
-			}
-		}
-	},
-	{
-		"entity" : {
-			"name": "fireplace_prefab_test_4",
-			"prefab": "data/prefabs/fireplace.prefab",
-			"transform":
-			{
-			  "pos": "2 0 0"
-			}
-		}
 	}
 ]

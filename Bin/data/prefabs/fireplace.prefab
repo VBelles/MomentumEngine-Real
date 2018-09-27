@@ -51,7 +51,7 @@
 			},
 			"light_point": {
 				"intensity": 3,
-				"radius": 8,
+				"radius": 10,
 				"color" :  "0.8125 0.52 0.055 1"
 			},
 		    "light_flicker": {
