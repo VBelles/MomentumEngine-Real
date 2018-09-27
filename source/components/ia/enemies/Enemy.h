@@ -2,6 +2,7 @@
 
 #include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/player/attack_info.h"
+#include "modules/system_modules/sound/comp_sound.h"
 
 class TCompHitboxes;
 class TCompGivePower;
@@ -115,6 +116,7 @@ public:
 	CHandle skeletonHandle;
 	CHandle hitboxesHandle;
 	CHandle powerHandle;
+	CHandle soundHandle;
 
 	//Sound
 	FMOD_3D_ATTRIBUTES soundAttributes;
@@ -122,7 +124,6 @@ public:
 	void load(const json& j) override;
 	void debugInMenu() override;
 	void updateGravity(float delta);
-	void updateSoundAttributes();
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 	void move(float delta);
 
@@ -136,6 +137,7 @@ public:
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
 	TCompGivePower* getPower();
+	TCompSound * getSound();
 
 	void resetCurrent();
 };

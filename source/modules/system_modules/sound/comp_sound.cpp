@@ -12,7 +12,23 @@ void TCompSound::registerMsgs() {
 }
 
 void TCompSound::debugInMenu() {
-	
+	for (auto& p : events) {
+		auto& sound = p.second;
+		ImGui::Text("%s - %s", p.first.c_str(), sound.path.c_str());
+		ImGui::Text("Multi instancing: %s", sound.multiInstancing ? "yes" : "no");
+		ImGui::Text("Following: %s", sound.following ? "yes" : "no");
+		ImGui::Text("Stop fade out: %s", sound.stopFadeOut ? "yes" : "no");
+		ImGui::Text("Instances: %d", sound.eventInstances.size());
+		if (ImGui::Button("Play")) {
+			play(p.first);
+		}
+		if (ImGui::Button("Stop")) {
+			stop(p.first);
+		}
+	}
+	if (ImGui::Button("Stop all")) {
+		stop();
+	}
 }
 
 void TCompSound::load(const json& j, TEntityParseContext& ctx) {

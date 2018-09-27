@@ -163,6 +163,10 @@
           {
             "id": "hit",
             "path": "event:/PROTA/golpes/golpe_hit"
+          },
+          {
+            "id": "block",
+            "path": "event:/PROTA/golpes/golpe_hit"
           }
         ]
       }

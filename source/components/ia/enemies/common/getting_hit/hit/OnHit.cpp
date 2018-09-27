@@ -32,9 +32,7 @@ int OnHit::execAction(float delta) {
 			enemy->getPower()->setStateMultiplier(1.f);
 		}
 		else {
-			if (!onBlockingHitSound.empty()) {
-				EngineSound.emitFollowingEvent(onBlockingHitSound.c_str(), enemy->getTransform());
-			}
+			enemy->getSound()->play("block");
 		}
 	}
 	else {
@@ -46,9 +44,7 @@ int OnHit::execAction(float delta) {
 			enemy->stunDuration = 0.f;
 		}
 		enemy->stunTimer.reset();
-		if (!onHitSound.empty()) {
-			EngineSound.emitFollowingEvent(onHitSound.c_str(), enemy->getTransform());
-		}
+		enemy->getSound()->play("hit");
 	}
 	if (enemy->hp <= 0.f || enemy->getPower()->getPowerToGive() <= 0) {
 		enemy->hp = 0.f;
@@ -81,8 +77,6 @@ void OnHit::load(IBehaviorTree* bt, const json& j) {
 	animation = j.value("animation", animation);
 	particles = j.value("particles", particles);
 	particlesOffset = j.count("particles_offset") ? loadVEC3(j.value("particles_offset", "")) : particlesOffset;
-	onHitSound = j.value("on_hit_sound", onHitSound);
-	onBlockingHitSound = j.value("on_blocking_hit_sound", onHitSound);
 }
 
 void OnHit::debugInMenu() {

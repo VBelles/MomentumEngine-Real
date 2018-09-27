@@ -125,6 +125,7 @@ void Enemy::debugInMenu() {
 		ImGui::Text("Skeleton handle is valid: %s\n", skeletonHandle.isValid() ? "true" : "false");
 		ImGui::Text("Hitboxes handle is valid: %s\n", hitboxesHandle.isValid() ? "true" : "false");
 		ImGui::Text("Power handle is valid: %s\n", powerHandle.isValid() ? "true" : "false");
+		ImGui::Text("Sound handle is valid: %s\n", soundHandle.isValid() ? "true" : "false");
 		ImGui::TreePop();
 	}
 }
@@ -135,13 +136,6 @@ void Enemy::updateGravity(float delta) {
 	velocity.y = clamp(velocity.y, -maxVerticalVelocity, maxVerticalVelocity);
 }
 
-void Enemy::updateSoundAttributes() {
-	auto transform = getTransform();
-	soundAttributes.position = toFMODVector(transform->getPosition());
-	soundAttributes.velocity = toFMODVector(velocity);
-	soundAttributes.forward = toFMODVector(transform->getFront());
-	soundAttributes.up = toFMODVector(transform->getUp());
-}
 
 void Enemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 	float deltaYaw = getTransform()->getDeltaYawToAimTo(targetPos);
@@ -167,7 +161,6 @@ void Enemy::move(float delta) {
 			velocity.y = 0;
 		}
 	}
-	updateSoundAttributes();
 }
 
 bool Enemy::hasSuperArmor() {
@@ -205,6 +198,11 @@ TCompHitboxes* Enemy::getHitboxes() {
 TCompGivePower* Enemy::getPower() {
 	return powerHandle;
 }
+
+TCompSound* Enemy::getSound() {
+	return soundHandle;
+}
+
 
 void Enemy::resetCurrent() {
 	if (current) {

@@ -54,6 +54,7 @@ void TCompEnemy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	enemy->skeletonHandle = get<TCompSkeleton>();
 	enemy->hitboxesHandle = get<TCompHitboxes>();
 	enemy->powerHandle = get<TCompGivePower>();
+	enemy->soundHandle = get<TCompSound>();
 
 	enemy->spawnPosition = enemy->getTransform()->getPosition();
 
