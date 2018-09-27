@@ -6,7 +6,7 @@ class TCompSound : public TCompBase {
 private:
 	struct Sound {
 		std::string path;
-		FMOD::Studio::EventDescription* eventDescriptor = nullptr;
+		FMOD::Studio::EventDescription* eventDescription = nullptr;
 		std::vector<FMOD::Studio::EventInstance*> eventInstances;
 		bool stopFadeOut = false;
 		bool following = false;

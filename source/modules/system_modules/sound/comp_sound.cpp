@@ -48,7 +48,7 @@ void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 void TCompSound::onAllScenesCreated(const TMsgAllScenesCreated&) {
 	for (auto& p : events) {
 		auto& sound = p.second;
-		EngineSound.getSystem()->getEvent(sound.path.c_str(), &sound.eventDescriptor);
+		EngineSound.getSystem()->getEvent(sound.path.c_str(), &sound.eventDescription);
 	}
 }
 
@@ -89,9 +89,7 @@ void TCompSound::play(std::string event) {
 		stop(event);
 	}
 	Studio::EventInstance* eventInstance = nullptr;
-	Studio::EventDescription* eventDescription = nullptr;
-	EngineSound.getSystem()->getEvent(sound.path.c_str(), &eventDescription);
-	eventDescription->createInstance(&eventInstance);
+	sound.eventDescription->createInstance(&eventInstance);
 	
 	TCompTransform* transform = get<TCompTransform>();
 	if (transform) {
