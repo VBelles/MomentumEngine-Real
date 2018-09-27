@@ -70,7 +70,7 @@ void TCompSound::update(float delta) {
 				it = eventInstances.erase(it);
 			}
 			else {
-				if (sound.following) {
+				if (transform && sound.following) {
 					FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
 					eventInstance->set3DAttributes(&attributes);
 				}
@@ -89,7 +89,17 @@ void TCompSound::play(std::string event) {
 		stop(event);
 	}
 	Studio::EventInstance* eventInstance = nullptr;
-	sound.eventDescriptor->createInstance(&eventInstance);
+	Studio::EventDescription* eventDescription = nullptr;
+	EngineSound.getSystem()->getEvent(sound.path.c_str(), &eventDescription);
+	eventDescription->createInstance(&eventInstance);
+	
+	TCompTransform* transform = get<TCompTransform>();
+	if (transform) {
+		FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
+		eventInstance->set3DAttributes(&attributes);
+	}
+	eventInstance->start();
+	eventInstance->release();
 	sound.eventInstances.push_back(eventInstance);
 }
 

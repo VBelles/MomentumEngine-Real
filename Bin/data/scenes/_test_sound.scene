@@ -13,17 +13,16 @@
     },
     {
         "entity": {
-            "name": "test_sound_hit",
-            "sound_emitter": {
-                "event": "event:/PROTA/golpes/golpe_hit",
-                "target": "The Player"
+            "name": "test_sound_new",
+            "sound": {
+                "events":[
+                    {
+                        "id": "hit",
+                        "path": "event:/PROTA/golpes/golpe_hit"
+                    }
+                ]
+
             }
-        }
-    },
-    {
-        "entity": {
-            "name": "prefabs",
-            "prefab": "data/prefabs/test.prefab"
         }
     }
 ]
