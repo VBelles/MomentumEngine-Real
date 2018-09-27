@@ -82,6 +82,8 @@ bool CModulePhysics::createScene() {
 	defaultMaterial = physics->createMaterial(0.5f, 0.5f, 0.6f);
 
 	controllerManager = PxCreateControllerManager(*scene);
+	controllerManager->setTessellation(tesellation, tesellationMaxEdgeLength);
+	controllerManager->setOverlapRecoveryModule(overlapRecoveryModule);
 
 	return true;
 }
@@ -109,7 +111,7 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 	compCollider.actor = actor;
 }
 
-void CModulePhysics::createCCT(TCompCollider& compCollider,const ColliderConfig& config, PxTransform& initialTransform, CHandle entityHandle) {
+void CModulePhysics::createCCT(TCompCollider& compCollider, const ColliderConfig& config, PxTransform& initialTransform, CHandle entityHandle) {
 	PxControllerDesc* cDesc = nullptr;
 
 	if (config.shapeType == PxGeometryType::eBOX) {
@@ -135,7 +137,7 @@ void CModulePhysics::createCCT(TCompCollider& compCollider,const ColliderConfig&
 	cDesc->reportCallback = &basicControllerHitCallback;
 	cDesc->behaviorCallback = compCollider.controllerBehavior;
 	compCollider.controller = controllerManager->createController(*cDesc);
-	
+
 	PX_ASSERT(compCollider.controller);
 
 }
@@ -279,7 +281,16 @@ void CModulePhysics::render() {
 			ImGui::Text("Static actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_STATIC));
 			ImGui::Text("Dynamic actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC));
 			ImGui::Text("Character controllers: %d", controllerManager->getNbControllers());
+			if (ImGui::Checkbox("Tesellation", &tesellation)
+				|| ImGui::DragFloat("Tesellation max edge length", &tesellationMaxEdgeLength, 0.1f, 0.2f, 100.f, "%.2f")) {
+				controllerManager->setTessellation(tesellation, tesellationMaxEdgeLength);
+			}
+			if (ImGui::Checkbox("Overlap Recovery Module", &overlapRecoveryModule)) {
+				controllerManager->setOverlapRecoveryModule(overlapRecoveryModule);
+			}
+
 			ImGui::TreePop();
+
 		}
 	}
 }

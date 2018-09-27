@@ -36,6 +36,10 @@ private:
 
     std::set<CHandle> toRelease;
 
+	float tesellationMaxEdgeLength = 0.4f;
+	bool tesellation = true;
+	bool overlapRecoveryModule = false;
+
     bool createPhysx();
     bool createScene();
 	void createCCT(TCompCollider& compCollider, const ColliderConfig& config, PxTransform& initialTransform, CHandle entityHandle);
@@ -85,7 +89,7 @@ public:
     void releaseCollider(CHandle handle);
 
     PxControllerCollisionFlags move(PxController* controller, PxVec3& deltaMovement, float delta, float minDist = 0.f);
-
+	
     FilterGroup getFilterByName(const std::string& name);
     PxScene* getScene() { return scene; }
     BasicControllerHitCallback* getGameControllerHitCallback() { return &basicControllerHitCallback; }
