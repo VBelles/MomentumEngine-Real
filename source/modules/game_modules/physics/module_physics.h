@@ -21,6 +21,7 @@ private:
     PxDefaultAllocator      defaultAllocatorCallback;
     PxDefaultErrorCallback  defaultErrorCallback;
     PxDefaultCpuDispatcher*	dispatcher;
+	PxCudaContextManager*	gCudaContextManager;
 
     PxFoundation*			foundation;
     PxPhysics*				physics;
