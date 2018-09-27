@@ -38,6 +38,7 @@ bool CModulePhysics::stop() {
 	PX_RELEASE(pvd);
 	PX_RELEASE(cooking);
 	PX_RELEASE(foundation);
+	PX_RELEASE(gCudaContextManager);
 	return true;
 }
 
@@ -64,13 +65,20 @@ bool CModulePhysics::createPhysx() {
 bool CModulePhysics::createScene() {
 	PxSceneDesc sceneDesc(physics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
-	dispatcher = PxDefaultCpuDispatcherCreate(2);
+	dispatcher = PxDefaultCpuDispatcherCreate(std::thread::hardware_concurrency());
 	sceneDesc.cpuDispatcher = dispatcher;
 	sceneDesc.filterShader = BasicFilterShader;
 	sceneDesc.simulationEventCallback = new BasicSimulationEventCallback();
 	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
+	
+	/*PxCudaContextManagerDesc cudaContextManagerDesc;
+	gCudaContextManager = PxCreateCudaContextManager(*foundation, cudaContextManagerDesc);
+	sceneDesc.gpuDispatcher = gCudaContextManager->getGpuDispatcher();
+	sceneDesc.flags |= PxSceneFlag::eENABLE_GPU_DYNAMICS;
+	sceneDesc.broadPhaseType = PxBroadPhaseType::eGPU;*/
+
 	scene = physics->createScene(sceneDesc);
 
 	PxPvdSceneClient* pvdClient = scene->getScenePvdClient();
