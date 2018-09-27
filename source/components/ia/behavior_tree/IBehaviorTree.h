@@ -24,7 +24,6 @@ protected:
 	IBehaviorTreeNode* createNode(std::string name, EBehaviorTreeNodeType type);
 	IBehaviorTreeNode* createNode(std::string name, std::string type);
 	IBehaviorTreeNode* findNode(std::string name);
-	void setCurrent(IBehaviorTreeNode *newCurrent);
 
 	bool falseCondition(float delta = 0.f);
 	bool trueCondition(float delta = 0.f);
@@ -54,6 +53,8 @@ public:
 	IBehaviorTreeAction* getAction(std::string actionName);
 
 	virtual void recalc(float delta = 0.f);
+
+	void setCurrent(IBehaviorTreeNode *newCurrent);
 
 	virtual void debugInMenu();
 	virtual void load(const json& j);
