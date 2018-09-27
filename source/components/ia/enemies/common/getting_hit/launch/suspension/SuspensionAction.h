@@ -7,9 +7,6 @@ class Enemy;
 class SuspensionAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
-	std::string soundLoop;
-	std::string soundEnd;
-	bool soundEmited = false;
 	FMOD::Studio::EventInstance* eventInstance = nullptr;
 public:
 	SuspensionAction();
