@@ -32,3 +32,8 @@ void SuspensionAction::load(IBehaviorTree* bt, const json& j) {
 	soundLoop = j.value("sound_loop", soundLoop);
 	soundEnd = j.value("sound_end", soundEnd);
 }
+
+void SuspensionAction::onExit() {
+	enemy->getSound()->stop("launcher_end");
+	enemy->getSound()->play("launcher_start");
+}
