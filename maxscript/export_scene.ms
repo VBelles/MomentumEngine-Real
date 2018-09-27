@@ -1501,6 +1501,15 @@ struct TSceneExporter (
 		return true
 	),
 
+	-- --ENTITY: FIREPLACE (also exports child line)----------------------------
+	fn exportEntityFireplace obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+
+		exportPrefabEntity obj "fireplace"
+		
+		return true
+	),
+
 	-- --ENTITY: CHRYSALIS (also exports child line)----------------------------
 	fn exportEntityChrysalis obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
@@ -2365,6 +2374,7 @@ struct TSceneExporter (
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classOf obj) as string) obj.name --DEBUG
 						if classOf obj == Editable_poly then convertToMesh obj
 						case layerName of (
+							"0":		    ( wasValid = exportEntityDefault   obj nValidObjs )
 							"altars":       ( wasValid = exportEntityAltar     obj nValidObjs )
 							"breakables":	( wasValid = exportEntityDefault   obj nValidObjs )
 							"cameras":      ( wasValid = exportEntityCamera    obj nValidObjs )
@@ -2372,6 +2382,7 @@ struct TSceneExporter (
 							"coins": 	    ( wasValid = exportEntityCoin      obj nValidObjs )
 							"collisions":   ( wasValid = exportEntityCollision obj nValidObjs )
 							"enemies":      ( wasValid = exportEntityEnemy	   obj nValidObjs )
+							"fireplaces":	( wasValid = exportEntityFireplace obj nValidObjs )
 							"instancing":   ( wasValid = exportEntityInstance  obj nValidObjs )
 							"life_pieces":  ( wasValid = exportEntityLifePiece obj nValidObjs )
 							"lights":       ( wasValid = exportEntityLight	   obj nValidObjs )
@@ -2386,7 +2397,6 @@ struct TSceneExporter (
 							"spikesMove":   ( wasValid = exportEntityDefault   obj nValidObjs )
 							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
 							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
-							"0":		    ( wasValid = exportEntityDefault   obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
 						if wasValid then (
