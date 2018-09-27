@@ -29,6 +29,43 @@ TEntityParseContext::TEntityParseContext(TEntityParseContext& another_ctx, const
 	root_transform = another_ctx.root_transform.combineWith(delta_transform);
 }
 
+void TEntityParseContext::createContextGroup() {
+	
+	CEntity* groupRootEntity = nullptr;
+
+	if (parsing_prefab && parent->current_entity.isValid()) {
+		groupRootEntity = parent->current_entity;
+	}
+	else {
+		CHandle groupRoot;
+		groupRoot.create<CEntity>();
+		groupRootEntity = groupRoot;
+
+		// Add name component
+		TCompName* nameComp = getObjectManager<TCompName>()->createHandle();
+		nameComp->setName(("group_root_" + filename).c_str());
+		groupRootEntity->set(CHandle(nameComp).getType(), nameComp);
+	}
+	assert(groupRootEntity);
+
+	// Create a new instance of the TCompGroup
+	CHandle groupHandle = getObjectManager<TCompGroup>()->createHandle();
+	groupRootEntity->set(groupHandle.getType(), groupHandle);
+
+	
+
+	// Now add the rest of entities
+	TCompGroup* group = groupHandle;
+	for (size_t i = 0; i < entities_loaded.size(); ++i) {
+		group->add(entities_loaded[i]);
+	}
+
+	TMsgEntitiesGroupCreated msg = { *this };
+	for (auto h : entities_loaded) {
+		h.sendMsg(msg);
+	}
+}
+
 bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 	ctx.filename = filename;
 
@@ -94,6 +131,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 					h_e.create<CEntity>();
 					CEntity* entity = h_e;
 					entity->load(j_entity, ctx);
+
 					TCompName* name = entity->get<TCompName>();
 
 					// Añadir los prefabs al contexto del padre y combinar nombres
@@ -103,14 +141,16 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 						if (name && prefabName) {
 							prefabName->setName((std::string(name->getName()) + "_" + std::string(prefabName->getName())).c_str());
 						}
-						ctx.entities_loaded.push_back(prefabEntityHandle);
+						//ctx.entities_loaded.push_back(prefabEntityHandle);
 
 						// Enviar mensaje de entidad creada
 						prefabEntity->sendMsg(TMsgEntityCreated{});
 					}
+
+					prefab_ctx.createContextGroup();
 				}
 
-				
+
 			}
 			else {
 				// Create a new fresh entity
@@ -127,34 +167,13 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 		}
 	}
 
-	// Create a comp_group automatically if there is more than one entity
+	// Create a comp_group automatically
 	if (!ctx.parsing_prefab && ctx.entities_loaded.size() >= 1) {
 		//Create new entity for group root
-		CHandle groupRootEntity;
-		groupRootEntity.create<CEntity>();
-		CEntity* e_root_of_group = groupRootEntity;
-		assert(e_root_of_group);
-
-		// Create a new instance of the TCompGroup
-		CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
-		// Add it to the entity
-		e_root_of_group->set(h_group.getType(), h_group);
-
-		// Add name component
-		TCompName* nameComp = getObjectManager<TCompName>()->createHandle();
-		nameComp->setName(("group_root_" + filename).c_str());
-		e_root_of_group->set(CHandle(nameComp).getType(), nameComp);
-
-		// Now add the rest of entities
-		TCompGroup* c_group = h_group;
-		for (size_t i = 0; i < ctx.entities_loaded.size(); ++i) {
-			c_group->add(ctx.entities_loaded[i]);
-		}
-
-		TMsgEntitiesGroupCreated msg = { ctx };
-		for (auto h : ctx.entities_loaded)
-			h.sendMsg(msg);
+		ctx.createContextGroup();
 	}
 
 	return true;
 }
+
+
