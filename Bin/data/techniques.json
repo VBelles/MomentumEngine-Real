@@ -302,6 +302,13 @@
     "z": "disable_all"
   },
 
+  "hsv": {
+    "vs_file": "data/shaders/hsv.fx",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z": "disable_all"
+  },
+
   "vignette": {
     "vs_file": "data/shaders/vignette.fx",
     "vertex_type": "PosClr",

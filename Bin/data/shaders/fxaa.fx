@@ -57,7 +57,6 @@ float4 PS(
     if(B_Lum < min_Lum || B_Lum > max_Lum){
         res= resultA;
     }
-
-    res = float4(HSVPostprocessing(res.xyz), 1);
+    
     return res;
 }
