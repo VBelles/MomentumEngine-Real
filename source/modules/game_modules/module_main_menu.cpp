@@ -5,7 +5,7 @@
 bool CModuleMainMenu::start() {
 	CApp& app = CApp::get();
 	app.setResetMouse(false);
-	
+
 	GUI::CParser parser;
 	parser.parseFile(menuFile);
 

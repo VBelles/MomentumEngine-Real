@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnAirborneAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnAirborneAction", OnAirborneAction);
@@ -22,7 +21,7 @@ int OnAirborneAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnAirborneAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnAirborneAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

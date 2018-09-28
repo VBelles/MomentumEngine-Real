@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "OnReturnToSpawnAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
 
 REGISTER_BTACTION("OnReturnToSpawnAction", OnReturnToSpawnAction);
@@ -38,7 +36,7 @@ int OnReturnToSpawnAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnReturnToSpawnAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnReturnToSpawnAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

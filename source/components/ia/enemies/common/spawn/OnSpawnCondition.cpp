@@ -23,7 +23,7 @@ bool OnSpawnCondition::testCondition(float delta) {
 	}
 }
 
-void OnSpawnCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void OnSpawnCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

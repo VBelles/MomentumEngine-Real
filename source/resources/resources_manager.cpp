@@ -2,6 +2,7 @@
 #include "resources_manager.h"
 
 CResourceManager Resources;
+std::recursive_mutex mtxResources;
 
 void CResourceManager::registerResourceClass(const CResourceClass* new_class) {
 	// Given obj can't be null
@@ -68,19 +69,23 @@ const IResource* CResourceManager::get(const std::string& res_name) {
 }
 
 void CResourceManager::registerResource(IResource* new_res) {
-    assert(new_res);
-    assert(!new_res->getName().empty());
-    assert(new_res->getClass());
-    // The name must be unique
-    //assert(all_resources.find(new_res->getName()) == all_resources.end()); // Cuidado !!!
+	assert(new_res);
+	assert(!new_res->getName().empty());
+	assert(new_res->getClass());
+	// The name must be unique
+	//assert(all_resources.find(new_res->getName()) == all_resources.end()); // Cuidado !!!
+	mtxResources.lock();
 	auto it = all_resources.find(new_res->getName());
 	if (it != all_resources.end()) {
 		it->second->destroy();
 	}
-    all_resources[new_res->getName()] = new_res;
+	all_resources[new_res->getName()] = new_res;
+	mtxResources.unlock();
 }
 
 void CResourceManager::destroyAll() {
+	resourcesLoaded = true;
+	if (loaderThread.joinable()) loaderThread.join();
 	for (auto it : all_resources) {
 		IResource* r = it.second;
 		r->destroy();
@@ -123,4 +128,23 @@ void CResourceManager::debugInMenu() {
 		}
 		ImGui::TreePop();
 	}
+}
+
+void CResourceManager::loadResources(const std::string& file) {
+	resourcesLoaded = false;
+	json jResources = loadJson(file);
+	for (auto& jResource : jResources) {
+		std::string res_name = jResource;
+		Resources.get(res_name);
+		if (resourcesLoaded) break;
+	}
+	resourcesLoaded = true;
+}
+
+void CResourceManager::loadResourcesBackground(const std::string& file) {
+	loaderThread = std::thread(&CResourceManager::loadResources, this, file);
+}
+
+bool CResourceManager::finishedLoading() {
+	return resourcesLoaded;
 }

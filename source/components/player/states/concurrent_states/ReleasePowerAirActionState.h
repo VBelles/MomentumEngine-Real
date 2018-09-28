@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/AirborneActionState.h"
-#include "components/player/states/AttackState.h"
 
 class ReleasePowerAirActionState : public AirborneActionState, public AttackState {
 private:
@@ -13,7 +12,7 @@ private:
 
 	AttackPhases phase = AttackPhases::Startup;
 
-	float stunDuration = 3.f;
+	float stunTime = 3.f;
 	float damage = 0.f;
 
 	std::string smallHitbox = "release_power_small";

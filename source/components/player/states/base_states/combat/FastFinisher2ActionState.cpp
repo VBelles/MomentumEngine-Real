@@ -1,13 +1,5 @@
 #include "mcv_platform.h"
 #include "FastFinisher2ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -21,6 +13,10 @@ FastFinisher2ActionState::FastFinisher2ActionState(StateManager * stateManager) 
 	interruptibleTime = frames2sec(85);
 	walkableTime = frames2sec(85);
 	hitbox = "fast_finisher2";
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(30);
+	invulnerabilityStartTime = frames2sec(30);
+	invulnerabilityEndTime = frames2sec(43);
 }
 
 void FastFinisher2ActionState::update(float delta) {
@@ -87,7 +83,7 @@ void FastFinisher2ActionState::update(float delta) {
 		isUltraSlashOut = true;
 		slash(SLASH_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(45));
 		slash(SLASH_COUNTER_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(-45));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 }
 
@@ -125,7 +121,7 @@ void FastFinisher2ActionState::onDodgeButton() {
 }
 
 void FastFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};
@@ -137,7 +133,7 @@ void FastFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.0f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

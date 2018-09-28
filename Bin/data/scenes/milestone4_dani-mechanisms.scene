@@ -2,6 +2,75 @@
   {
     "entity":
     {
+      "name": "plataformeo_mech000",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "117.953 79.8909 141.17",
+        "rotation": "0.477714 0.477714 -0.521334 -0.521334"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "Plataformeo_hex_mech_000"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_hex_mech_000",
+      "transform":
+      {
+        "pos": "116.994 79.8909 130.212",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": false,
+        "change_collider": false,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_hex_mech_000.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_hex_mech_col_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_mech001",
       "prefab": "data/prefabs/mech.prefab",
       "transform":

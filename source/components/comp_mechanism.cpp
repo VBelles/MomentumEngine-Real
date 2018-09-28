@@ -1,10 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_mechanism.h"
-#include "components/comp_transform.h"
 #include "entity/common_msgs.h"
-#include "components/comp_collider.h"
 #include "components/player/attack_info.h"
-#include "components/comp_render.h"
 
 DECL_OBJ_MANAGER("mechanism", TCompMechanism);
 
@@ -87,6 +84,7 @@ void TCompMechanism::onActivated(bool isActive, bool sound) {
 	render->setMeshEnabled(1, isActive);
 	render->refreshMeshesInRenderManager();
 	if (sound) {
-		EngineSound.emitEvent(isActive ? SOUND_MECHANISM_ON : SOUND_MECHANISM_OFF, static_cast<TCompTransform*>(get<TCompTransform>())->getPosition());
+		TCompTransform* transform = get<TCompTransform>();
+		EngineSound.emitEvent(isActive ? SOUND_MECHANISM_ON : SOUND_MECHANISM_OFF, transform);
 	}
 }

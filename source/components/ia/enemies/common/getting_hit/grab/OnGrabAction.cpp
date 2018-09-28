@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnGrabAction.h"
-#include "components/comp_collider.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnGrabAction", OnGrabAction);
@@ -23,7 +22,7 @@ int OnGrabAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnGrabAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnGrabAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

@@ -1,10 +1,8 @@
 #include "mcv_platform.h"
 #include "OnHit.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("OnHit", OnHit);
 
@@ -34,9 +32,7 @@ int OnHit::execAction(float delta) {
 			enemy->getPower()->setStateMultiplier(1.f);
 		}
 		else {
-			if (!onBlockingHitSound.empty()) {
-				EngineSound.emitEvent(onBlockingHitSound.c_str(), enemy->getTransform()->getPosition());
-			}
+			enemy->getSound()->play("block");
 		}
 	}
 	else {
@@ -48,9 +44,7 @@ int OnHit::execAction(float delta) {
 			enemy->stunDuration = 0.f;
 		}
 		enemy->stunTimer.reset();
-		if (!onHitSound.empty()) {
-			EngineSound.emitEvent(onHitSound.c_str(), enemy->getTransform()->getPosition());
-		}
+		enemy->getSound()->play("hit");
 	}
 	if (enemy->hp <= 0.f || enemy->getPower()->getPowerToGive() <= 0) {
 		enemy->hp = 0.f;
@@ -76,15 +70,13 @@ int OnHit::execAction(float delta) {
 	return Leave;
 }
 
-void OnHit::load(IBehaviorTreeNew* bt, const json& j) {
+void OnHit::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 
 	animation = j.value("animation", animation);
 	particles = j.value("particles", particles);
 	particlesOffset = j.count("particles_offset") ? loadVEC3(j.value("particles_offset", "")) : particlesOffset;
-	onHitSound = j.value("on_hit_sound", onHitSound);
-	onBlockingHitSound = j.value("on_blocking_hit_sound", onHitSound);
 }
 
 void OnHit::debugInMenu() {

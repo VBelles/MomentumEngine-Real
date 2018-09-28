@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_sound_emmiter.h"
-#include "components/comp_transform.h"
 
 using namespace FMOD;
 

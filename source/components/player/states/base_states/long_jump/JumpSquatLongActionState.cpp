@@ -1,10 +1,5 @@
 #include "mcv_platform.h"
 #include "JumpSquatLongActionState.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/player/comp_player_model.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 
 
 JumpSquatLongActionState::JumpSquatLongActionState(StateManager* stateManager) :
@@ -31,7 +26,7 @@ void JumpSquatLongActionState::onStateEnter(IActionState * lastState) {
 	//dbg("Entrando en JumpSquatLong\n");
 	timer.reset();
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
-	EngineSound.emitEvent(SOUND_JUMP_LONG);
+	getSound()->play("jump_long");
 
 }
 

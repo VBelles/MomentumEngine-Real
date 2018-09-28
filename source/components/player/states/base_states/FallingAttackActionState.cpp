@@ -1,14 +1,6 @@
 #include "mcv_platform.h"
 #include "FallingAttackActionState.h"
 #include "HardLandingActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -16,6 +8,8 @@ FallingAttackActionState::FallingAttackActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, FallingAttack),
 	AttackState(stateManager) {
 	cancelableTime = frames2sec(16);
+	superarmorStartTime = frames2sec(0);
+	superarmorEndTime = frames2sec(600);
 }
 
 void FallingAttackActionState::update(float delta) {
@@ -102,7 +96,7 @@ void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	//getPlayerModel()->lockFallingAttack = true;
 	stateManager->changeState(AirborneNormal);
 
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
@@ -113,6 +107,6 @@ void FallingAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	msgAttackHit.info.propel = new AttackInfo::Propel{ propelDuration, propelVelocity };
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.5f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	otherEntity->sendMsg(msgAttackHit);
 }

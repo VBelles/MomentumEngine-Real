@@ -2,6 +2,226 @@
   {
     "entity":
     {
+      "name": "nes_plataformaSpikes005_col005_spikes",
+      "transform":
+      {
+        "pos": "-214.161 34.1302 39.8495",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_plataformaSpikes022",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes005_col004_spikes",
+      "transform":
+      {
+        "pos": "-220.13 46.7605 54.8665",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_plataformaSpikes021",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes005_col003_spikes",
+      "transform":
+      {
+        "pos": "-216.033 42.7381 48.7956",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_plataformaSpikes020",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes005_col002_spikes",
+      "transform":
+      {
+        "pos": "-209.143 39.4544 52.9233",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_plataformaSpikes019",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes005_col001_spikes",
+      "transform":
+      {
+        "pos": "-209.378 36.5889 45.1222",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_plataformaSpikes018",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_plataformaSpikes017_col_spikes",
       "transform":
       {

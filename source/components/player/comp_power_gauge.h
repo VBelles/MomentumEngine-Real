@@ -1,5 +1,4 @@
 #pragma once
-#include "components/comp_base.h"
 
 class TCompPowerGauge : public TCompBase {
 private:

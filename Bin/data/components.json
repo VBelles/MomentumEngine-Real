@@ -26,8 +26,6 @@
   "update": [
     "fwd_msg",
     "enemy",
-    "dreidel",
-    "kippah",
     "skeleton",
     "skel_lookat",
     "bone_tracker",
@@ -41,9 +39,6 @@
     "door",
     "day_night_cycle",
     "sky",
-    "behaviorTree_melee_enemy",
-    "behaviorTree_ball_enemy",
-    "behaviorTree_flying_ranged_enemy",
     "ranged_attack",
     "respawner",
     "rigid_anim",
@@ -71,7 +66,8 @@
     "particles",
     "light_flicker",
     "slash",
-    "givePower"
+    "givePower",
+    "sound"
   ],
   "render_debug" : [
     "transform",

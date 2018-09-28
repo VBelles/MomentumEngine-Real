@@ -70,4 +70,12 @@ using json = nlohmann::json;
 #include "windows/app.h"
 #include "game_constants.h"
 
+// Components
+#include "components/comp_base.h"
+#include "components/comp_render.h"
+#include "components/comp_collider.h"
+#include "components/comp_transform.h"
+#include "components/comp_camera.h"
+#include "skeleton/comp_skeleton.h"
+
 #endif

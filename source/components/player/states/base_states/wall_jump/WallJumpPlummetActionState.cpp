@@ -1,18 +1,14 @@
 #include "mcv_platform.h"
 #include "WallJumpPlummetActionState.h"
 #include "components/player/states/base_states/HardLandingActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
 WallJumpPlummetActionState::WallJumpPlummetActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, WallJumpPlummet),
 	AttackState(stateManager) {
+	invulnerabilityStartTime = frames2sec(0);
+	invulnerabilityEndTime = frames2sec(600);
 }
 
 void WallJumpPlummetActionState::update(float delta) {
@@ -94,7 +90,7 @@ void WallJumpPlummetActionState::onLanding() {
 }
 
 void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};
@@ -103,7 +99,7 @@ void WallJumpPlummetActionState::onHitboxEnter(std::string hitbox, CHandle entit
 	msgAttackHit.info.damage = damage;
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.propel = new AttackInfo::Propel{ propelDuration, *velocityVector };
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.7f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	otherEntity->sendMsg(msgAttackHit);
 
 }

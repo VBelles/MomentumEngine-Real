@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_respawn_point.h"
-#include "components/comp_collider.h"
-#include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("respawn_point", TCompRespawnPoint);
 

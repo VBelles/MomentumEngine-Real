@@ -7,8 +7,14 @@
     "data/scenes/sky.scene",
     
     "data/scenes/milestone4-0.scene",
-    "data/scenes/milestone4-instancing.scene",
     "data/scenes/milestone4-trimesh.scene",
+    
+    "data/scenes/milestone4_hierbas_00-instancing.scene",
+    "data/scenes/milestone4_hierbas_01-instancing.scene",
+    "data/scenes/milestone4_hierbas_02-instancing.scene",
+    "data/scenes/milestone4_hierbas_03-instancing.scene",
+    "data/scenes/milestone4_hierbas_04-instancing.scene",
+    "data/scenes/milestone4_plantas_00-instancing.scene",
     
     "data/scenes/milestone4_dani-0.scene",
     "data/scenes/milestone4_dani-chrysalis.scene",
@@ -19,6 +25,7 @@
     "data/scenes/milestone4_dani-triggers.scene",
     "data/scenes/milestone4_dani-trimesh.scene",
     "data/scenes/milestone4_dani-mechanisms.scene",
+    "data/scenes/milestone4_dani-pure.scene",
     
     "data/scenes/milestone4_nestor-0.scene",
     "data/scenes/milestone4_nestor-chrysalis.scene",
@@ -32,7 +39,17 @@
     "data/scenes/milestone4_nestor-spikes.scene",
     "data/scenes/milestone4_nestor-spikesMove.scene",
     "data/scenes/milestone4_nestor-triggers.scene",
-    
+    "data/scenes/milestone4_nestor-trimesh.scene",
+
+    "data/scenes/milestone4_andrea-0.scene",
+
+    "data/scenes/ambiental_particles.scene"
+  ],
+  "unused_scenes": [
+    "data/scenes/prefabs-0.scene",
+    "data/scenes/prefabs-trimesh.scene",
+    "data/scenes/milestone4_dani-spikes.scene",
+    "data/scenes/milestone4-instancing.scene",
     "data/scenes/milestone4_jose-0.scene",
     "data/scenes/milestone4_jose-chrysalis.scene",
     "data/scenes/milestone4_jose-coins.scene",
@@ -42,16 +59,7 @@
     "data/scenes/milestone4_jose-pure.scene",
     "data/scenes/milestone4_jose-spikes.scene",
     "data/scenes/milestone4_jose-trimesh.scene",
-    
-    "data/scenes/milestone4_andrea-0.scene",
-
-    "data/scenes/ambiental_particles.scene",
     "data/scenes/test_gorila.scene",
-    "data/scenes/_test_sound.scene"
-  ],
-  "unused_scenes": [
-    "data/scenes/prefabs-0.scene",
-    "data/scenes/prefabs-trimesh.scene",
     "data/scenes/plataformeo.scene",
     "data/scenes/plataformeo01.scene",
     "data/scenes/test_particles.scene",            

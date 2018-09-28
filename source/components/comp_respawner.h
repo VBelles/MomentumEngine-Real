@@ -1,6 +1,5 @@
 #pragma once
 
-#include "comp_base.h"
  
 class TCompRespawner : public TCompBase {
 

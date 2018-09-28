@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "GroundedActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/states/StateManager.h"
-#include "entity/common_msgs.h"
+
 
 GroundedActionState::GroundedActionState(StateManager* stateManager, State state)
 	: IActionState(stateManager, state) {
@@ -74,7 +72,7 @@ void GroundedActionState::onMove(MoveState& moveState) {
 		}
 		velocityVector->y = 0.f;
 	}
-	
+
 }
 
 void GroundedActionState::onLeavingGround() {
@@ -85,11 +83,28 @@ void GroundedActionState::onLeavingGround() {
 
 
 void GroundedActionState::onDamage(const TMsgAttackHit& msg) {
-	if (msg.info.stun) {
-		stateManager->changeState(HardKnockbackGround);
+	bool hasSuperArmor = false;
+	bool hasInvulnerability = false;
+	if (AttackState* attackState = dynamic_cast<AttackState*>(this)) {
+		hasSuperArmor = attackState->hasSuperArmor();
+		hasInvulnerability = attackState->hasInvulnerability();
+	}
+	if (!hasSuperArmor && !hasInvulnerability) {
+		if (msg.info.stun) {
+			stateManager->changeState(HardKnockbackGround);
+		}
+		else {
+			stateManager->changeConcurrentState(SoftKnockbackGround);
+		}
+	}
+	else if (!hasInvulnerability) {
+		//super armor sound
+	}
+
+	if (!hasInvulnerability) {
+		IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
 	}
 	else {
-		stateManager->changeConcurrentState(SoftKnockbackGround);
+		//invulnerability sound
 	}
-	IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
 }

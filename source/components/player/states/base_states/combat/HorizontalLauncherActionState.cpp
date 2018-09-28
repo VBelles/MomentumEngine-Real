@@ -1,13 +1,5 @@
 #include "mcv_platform.h"
 #include "HorizontalLauncherActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
-#include "components/comp_transform.h"
 
 
 HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stateManager) :
@@ -18,6 +10,10 @@ HorizontalLauncherActionState::HorizontalLauncherActionState(StateManager * stat
 	cancelableTime = frames2sec(15);
 	interruptibleTime = frames2sec(40);
 	walkableTime = frames2sec(44);
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(22);
+	invulnerabilityStartTime = frames2sec(22);
+	invulnerabilityEndTime = frames2sec(34);
 }
 
 void HorizontalLauncherActionState::update(float delta) {
@@ -52,7 +48,7 @@ void HorizontalLauncherActionState::update(float delta) {
 }
 
 void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};
@@ -62,11 +58,10 @@ void HorizontalLauncherActionState::onHitboxEnter(std::string hitbox, CHandle en
 	VEC3 launchVelocity = getPlayerTransform()->getFront() * getPlayerModel()->getPowerStats()->longJumpVelocityVector.z;
 	launchVelocity.y = getPlayerModel()->getPowerStats()->longJumpVelocityVector.y;
 	msgAttackHit.info.gravityMultiplier = getPlayerModel()->getPowerStats()->longGravityMultiplier;
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.horizontalLauncher = new AttackInfo::HorizontalLauncher{
 		suspensionTime,
 		launchVelocity
 	};
 	otherEntity->sendMsg(msgAttackHit);
-
 }

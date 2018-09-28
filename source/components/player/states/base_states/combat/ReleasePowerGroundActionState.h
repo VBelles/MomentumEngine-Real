@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/GroundedActionState.h"
-#include "components/player/states/AttackState.h"
 
 class ReleasePowerGroundActionState : public GroundedActionState, public AttackState {
 private:
@@ -14,7 +13,7 @@ private:
 	AttackPhases phase = AttackPhases::Startup;
 
 	float damage = 0.f;
-	float stunDuration = 3.f;
+	float stunTime = 3.f;
 
 	std::string animation = "release_power";
 

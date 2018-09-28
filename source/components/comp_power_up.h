@@ -1,6 +1,5 @@
 #pragma once
 
-#include "comp_base.h"
 #include "entity/msgs.h"
 
 struct TMsgEntitiesGroupCreated;
@@ -8,7 +7,6 @@ struct TMsgAllScenesCreated;
 struct TMsgTriggerEnter;
 struct TMsgColliderDestroyed;
 
-class TCompTransform;
 class TCompPlayerModel;
 
 class TCompPowerUp : public TCompBase {

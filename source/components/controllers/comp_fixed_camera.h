@@ -1,10 +1,8 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "entity/common_msgs.h"
 
 class CEntity;
-class TCompTransform;
 
 struct TMsgEntitiesGroupCreated;
 struct TMsgLockCameraInput;

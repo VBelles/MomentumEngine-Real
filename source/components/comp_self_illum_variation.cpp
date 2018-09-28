@@ -2,7 +2,6 @@
 #include "comp_self_illum_variation.h"
 #include "entity/entity_parser.h"
 #include "entity/common_msgs.h"
-#include "components/comp_render.h"
 
 DECL_OBJ_MANAGER("self_illum_variation", TCompSelfIllumVariation);
 

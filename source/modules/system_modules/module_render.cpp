@@ -67,14 +67,6 @@ bool CModuleRender::start() {
 
 	if (!createRenderUtils()) return false;
 
-	// --------------------------------------------
-	// ImGui
-	auto& app = CApp::get();
-	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
-		return false;
-
-	if (!parseTechniques()) return false;
-
 	// Main render target before rendering in the backbuffer
 	rt_main = new CRenderToTexture;
 	if (!rt_main->createRT("rt_main.dds", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN, true))
@@ -84,6 +76,28 @@ bool CModuleRender::start() {
 		return false;
 
 	setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
+
+	//Render splash screen
+	json j = loadJson("data/dump_texture_tech.json");
+	std::string tech_name = "dump_texture.tech";
+	json& tech_j = j;
+	CRenderTechnique* tech = new CRenderTechnique();
+	if (!tech->create(tech_name, tech_j)) {
+		fatal("Failed to create tech '%s'\n", tech_name.c_str());
+		return false;
+	}
+	Resources.registerResource(tech);
+	Render.startRenderInBackbuffer();
+	renderFullScreenQuad("dump_texture.tech", Resources.get("data/textures/gui/splash_screen.dds")->as<CTexture>());
+	Render.swapChain->Present(0, 0);
+
+	// --------------------------------------------
+	// ImGui
+	auto& app = CApp::get();
+	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
+		return false;
+
+	if (!parseTechniques()) return false;
 
 	// Some camera in case there is no camera in the scene
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
@@ -353,12 +367,14 @@ void CModuleRender::generateFrame() {
 	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
 		PROFILE_FUNCTION("Render.swapChain");
+		mtx.lock();
 		if (vsync) {
 			Render.swapChain->Present(1, 0);
 		}
 		else {
 			Render.swapChain->Present(0, 0);
 		}
+		mtx.unlock();
 	}
 }
 

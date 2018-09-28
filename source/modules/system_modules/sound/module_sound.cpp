@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "module_sound.h"
-#include "components/comp_camera.h"
 
 #pragma comment(lib, "fmod64_vc.lib")
 #pragma comment(lib, "fmodstudio64_vc.lib")
@@ -41,7 +40,7 @@ bool CModuleSound::stop() {
 
 void CModuleSound::update(float delta) {
 	updateListenerAttributes();
-	auto res = system->setListenerAttributes(0, &listenerAttributes);
+	updateFollowingEvents();
 	system->update();
 }
 
@@ -54,8 +53,7 @@ void CModuleSound::updateListenerAttributes() {
 		}
 	}
 	if (cameraHandle.isValid()) {
-		CEntity* cameraEntity = getEntityByName(GAME_CAMERA);
-		TCompCamera* camera = cameraEntity->get<TCompCamera>();
+		TCompCamera* camera = cameraHandle;
 		listenerAttributes.position = toFMODVector(camera->getCamera()->getPosition());
 		listenerAttributes.forward = toFMODVector(camera->getCamera()->getFront());
 		listenerAttributes.up = toFMODVector(camera->getCamera()->getUp());
@@ -64,80 +62,118 @@ void CModuleSound::updateListenerAttributes() {
 	else {
 		listenerAttributes = {};
 	}
+	auto res = system->setListenerAttributes(0, &listenerAttributes);
 }
 
-Studio::EventInstance* CModuleSound::instanceEvent(const char* sound) {
-	auto it = eventInstances.find(sound);
-	if (it == eventInstances.end()) {
-		Studio::EventDescription* descriptor = nullptr;
-		res = system->getEvent(sound, &descriptor);
-		Studio::EventInstance* eventInstance = nullptr;
-		res = descriptor->createInstance(&eventInstance);
-		eventInstances[sound] = eventInstance;
-		return eventInstance;
-	}
-	else {
-		return it->second;
-	}
-}
-
-void CModuleSound::releaseEvent(const char* sound) {
-	auto it = eventInstances.find(sound);
-	if (it != eventInstances.end()) {
-		it->second->release();
-		eventInstances.erase(sound);
+void CModuleSound::updateFollowingEvents() {
+	auto it = followingEvents.begin();
+	while (it != followingEvents.end()) {
+		auto& followingEvent = *it;
+		if (!followingEvent.eventInstance->isValid() || !followingEvent.transformHandle.isValid()) { // Event has been released or does not follow a transform anymore
+			it = followingEvents.erase(it);
+		}
+		else {
+			TCompTransform* transform = followingEvent.transformHandle;
+			FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
+			followingEvent.eventInstance->set3DAttributes(&attributes);
+			++it;
+		}
 	}
 }
 
-void CModuleSound::startEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
-	auto it = eventInstances.find(sound);
-	Studio::EventInstance* eventInstance = it->second;
-	if (it == eventInstances.end()) {
-		eventInstance = instanceEvent(sound);
-	}
-	if (eventInstance) {
-		eventInstance->set3DAttributes(attributes);
-		eventInstance->start();
-	}
-	else {
-		dbg("Event instance not found\n");
-	}
+Studio::EventInstance* CModuleSound::emitFollowingEvent(const std::string& sound, CHandle transformHandle) {
+	TCompTransform* transform = transformHandle;
+	auto eventInstance = emitEvent(sound, transform);
+	followingEvents.push_back(FollowingEvent{ eventInstance, transformHandle });
+	return eventInstance;
 }
 
-void CModuleSound::stopEvent(const char* sound, FMOD_STUDIO_STOP_MODE mode) {
-	auto it = eventInstances.find(sound);
-	if (it != eventInstances.end()) {
-		it->second->stop(mode);
-	}
-}
-
-Studio::EventInstance* CModuleSound::emitEvent(const char* sound, VEC3 position, VEC3 velocity, VEC3 forward, VEC3 up) {
-	FMOD_3D_ATTRIBUTES attributes;
-	attributes.position = { position.x, position.y, position.z };
-	attributes.velocity = { velocity.x, velocity.y, velocity.z };
-	attributes.forward = { forward.x, forward.y, forward.z };
-	attributes.up = { up.x, up.y, up.z };
+Studio::EventInstance* CModuleSound::emitEvent(const std::string& sound, const CTransform* transform) {
+	FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
 	return emitEvent(sound, &attributes);
 }
 
-Studio::EventInstance* CModuleSound::emitEvent(const char* sound, const FMOD_3D_ATTRIBUTES* attributes) {
+Studio::EventInstance* CModuleSound::emitEvent(const std::string& sound, const FMOD_3D_ATTRIBUTES* attributes) {
+	if (sound.empty()) return nullptr;
 	Studio::EventDescription* descriptor = nullptr;
-	res = system->getEvent(sound, &descriptor);
 	Studio::EventInstance* eventInstance = nullptr;
+	res = system->getEvent(sound.c_str(), &descriptor);
+	if (!descriptor) {
+		dbg("Event %s not found\n", sound);
+		return nullptr;
+	}
 	res = descriptor->createInstance(&eventInstance);
-	if (eventInstance) {
-		eventInstance->set3DAttributes(attributes);
-		eventInstance->start();
-		eventInstance->release();
-	}
-	else {
-		dbg("Event instance not found\n");
-	}
+	eventInstance->set3DAttributes(attributes);
+	eventInstance->start();
+	eventInstance->release();
 	return eventInstance;
 }
 
 FMOD::Studio::System* CModuleSound::getSystem() {
 	return system;
+}
+
+void CModuleSound::stopEvent(Studio::EventInstance* instance, bool fadeout) {
+	if (instance && instance->isValid()) {
+		instance->stop(fadeout ? FMOD_STUDIO_STOP_ALLOWFADEOUT : FMOD_STUDIO_STOP_IMMEDIATE);
+	}
+}
+
+void CModuleSound::render() {
+	if (CApp::get().isDebug()) {
+		if (ImGui::TreeNode("Sound")) {
+			int bankCount = 0;
+			system->getBankCount(&bankCount);
+			std::vector<Studio::Bank*> banks;
+			banks.resize(bankCount);
+			system->getBankList(&banks[0], bankCount, &bankCount);
+			ImGui::Text("Banks: %d", bankCount);
+
+			static ImGuiTextFilter Filter;
+			Filter.Draw("Filter");
+
+			ImGui::Text("Following events: %d", followingEvents.size());
+			for (auto& followingEvent : followingEvents) {
+				Studio::EventDescription* eventDescription = nullptr;
+				followingEvent.eventInstance->getDescription(&eventDescription);
+				char path[256];
+				eventDescription->getPath(path, 256, nullptr);
+				if (!Filter.IsActive() || Filter.PassFilter(path)) {
+					int instancesCount = 0;
+					eventDescription->getInstanceCount(&instancesCount);
+					TCompTransform* transform = followingEvent.transformHandle;
+					CEntity* owner = followingEvent.transformHandle.getOwner();
+					ImGui::Text("(%d) %s", instancesCount, path);
+					ImGui::Text("Target: %s", owner->getName());
+					if (ImGui::TreeNode("Transform")) {
+						transform->debugInMenu();
+						ImGui::TreePop();
+					}
+				}
+			}
+
+			for (auto bank : banks) {
+				int eventCount = 0;
+				bank->getEventCount(&eventCount);
+				if (eventCount == 0) continue;
+				std::vector<Studio::EventDescription*> events;
+				events.resize(eventCount);
+				bank->getEventList(&events[0], eventCount, &eventCount);
+				if (eventCount == 0) continue;
+				ImGui::Text("Events: %d", eventCount);
+				for (auto event : events) {
+					char path[256];
+					event->getPath(path, 256, nullptr);
+					if (!Filter.IsActive() || Filter.PassFilter(path)) {
+						int instancesCount = 0;
+						event->getInstanceCount(&instancesCount);
+						ImGui::Text("(%d) %s", instancesCount, path);
+					}
+				}
+				ImGui::TreePop();
+			}
+		}
+	}
 }
 
 

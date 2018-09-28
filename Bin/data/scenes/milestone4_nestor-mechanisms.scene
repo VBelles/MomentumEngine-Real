@@ -2,6 +2,123 @@
   {
     "entity":
     {
+      "name": "nes_mech006",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-119.256 29.401 -69.9779",
+        "rotation": "-0.706191 0.0359788 -0.0359788 -0.706191"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 15.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "nes_estaca_emisivo_2_004",
+           "nes_estaca_emisivo_1_004"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_2_004",
+      "transform":
+      {
+        "pos": "-112.413 27.6209 -74.9275",
+        "rotation": "0.409174 -0.710039 -0.286137 0.496534"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_2_004.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_2_col_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_1_004",
+      "transform":
+      {
+        "pos": "-114.637 20.4612 -86.6949",
+        "rotation": "-0.249648 0.433215 0.432404 -0.750351"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_1_004.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_02.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_1_col_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_mech005",
       "prefab": "data/prefabs/mech.prefab",
       "transform":
@@ -39,8 +156,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -50,7 +173,7 @@
           [
             "data/materials/m_ms_pasarela.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -61,8 +184,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -81,8 +203,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -92,7 +220,7 @@
           [
             "data/materials/m_ms_pasarela.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -103,8 +231,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -123,8 +250,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -134,7 +267,7 @@
           [
             "data/materials/m_ms_pasarela.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -145,8 +278,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -165,8 +297,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -176,7 +314,7 @@
           [
             "data/materials/m_ms_pasarela.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -187,8 +325,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -234,8 +371,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -245,7 +388,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -256,8 +399,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -276,8 +418,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -287,7 +435,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -298,8 +446,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -318,8 +465,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -329,7 +482,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -340,8 +493,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -360,8 +512,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -371,7 +529,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -382,8 +540,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -402,8 +559,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -413,7 +576,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -424,8 +587,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -444,8 +606,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -455,7 +623,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -466,8 +634,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -514,8 +681,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -525,7 +698,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -536,8 +709,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -556,8 +728,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -567,7 +745,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -578,8 +756,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -598,8 +775,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -609,7 +792,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -620,8 +803,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -640,8 +822,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -651,7 +839,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -662,8 +850,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -682,8 +869,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -693,7 +886,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -704,8 +897,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -724,8 +916,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -735,7 +933,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -746,8 +944,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -766,8 +963,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -777,7 +980,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -788,8 +991,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -842,8 +1044,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -853,7 +1061,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -864,8 +1072,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -884,8 +1091,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -895,7 +1108,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -906,8 +1119,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -926,8 +1138,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -937,7 +1155,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -948,8 +1166,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -968,8 +1185,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -979,7 +1202,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -990,8 +1213,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1010,8 +1232,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1021,7 +1249,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1032,8 +1260,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1052,8 +1279,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1063,7 +1296,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1074,8 +1307,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1094,8 +1326,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1105,7 +1343,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1116,8 +1354,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1136,8 +1373,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1147,7 +1390,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1158,8 +1401,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1178,8 +1420,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1189,7 +1437,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1200,8 +1448,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1220,8 +1467,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1231,7 +1484,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1242,8 +1495,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1262,8 +1514,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1273,7 +1531,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1284,8 +1542,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1304,8 +1561,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1315,7 +1578,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1326,8 +1589,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1346,8 +1608,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1357,7 +1625,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1368,8 +1636,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1420,8 +1687,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1431,7 +1704,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1442,8 +1715,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1462,8 +1734,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1473,7 +1751,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1484,8 +1762,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1504,8 +1781,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1515,7 +1798,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1526,8 +1809,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1546,8 +1828,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1557,7 +1845,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1568,8 +1856,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1588,8 +1875,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1599,7 +1892,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1610,8 +1903,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1630,8 +1922,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1641,7 +1939,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1652,8 +1950,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1682,7 +1979,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},
@@ -1723,7 +2020,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},
@@ -1764,7 +2061,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},
@@ -1805,7 +2102,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},
@@ -1846,7 +2143,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},

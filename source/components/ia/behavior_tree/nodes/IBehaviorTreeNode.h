@@ -2,13 +2,10 @@
 
 #include <string>
 #include <vector>
-
 #include "components/ia/behavior_tree/nodes/BTNodeFactory.h"
 
 class IBehaviorTree;
-class IBehaviorTreeNew;
 
-enum EBehaviorTreeNodeType { Random, Sequence, Priority, Action };
 enum EBehaviorTreeNodeEndAction { Stay, Leave };
 
 class IBehaviorTreeNode {
@@ -31,9 +28,8 @@ public:
 	virtual void addChild(IBehaviorTreeNode* child);
 
 	virtual void recalc(IBehaviorTree* behaviorTree, float delta = 0.f) {}
-	virtual void recalc(IBehaviorTreeNew* behaviorTree, float delta = 0.f) {}
 
 	virtual void debugInMenu();
-	virtual void debugInMenu(IBehaviorTreeNew* behaviorTree);
+	virtual void debugInMenu(IBehaviorTree* behaviorTree);
 	virtual void load(const json& j) {}
 };

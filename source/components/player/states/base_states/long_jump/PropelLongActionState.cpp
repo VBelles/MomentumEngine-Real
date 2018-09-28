@@ -1,12 +1,5 @@
 #include "mcv_platform.h"
 #include "PropelLongActionState.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "components/player/comp_player_model.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 
 
 PropelLongActionState::PropelLongActionState(StateManager* stateManager) :
@@ -36,7 +29,7 @@ void PropelLongActionState::update(float delta) {
 
 			stateManager->changeState(AirborneLong);
 			//pasar mensaje a la otra entidad
-			CHandle playerEntity = CHandle(stateManager->getEntity());
+			CHandle playerEntity = getPlayerEntity();
 			CEntity* targetEntity = propelTarget;
 			VEC3 propelVelocity = -getPlayerTransform()->getFront() * currentPowerStats->longJumpVelocityVector.z;
 			TMsgAttackHit msgAtackHit = {};
@@ -64,7 +57,6 @@ void PropelLongActionState::onStateEnter(IActionState * lastState) {
 		getSkeleton()->executeAction(animation, 0.03f, 0.2f);
 		getPlayerModel()->lastWallNormal = PxVec3(0, 0, 0);
 		getPlayerModel()->makeInvulnerable(invulnerableTime);
-		EngineSound.emitEvent(SOUND_ATTACK_HIT, getPlayerTransform()->getPosition());
 	}
 	else {
 		stateManager->changeState(AirborneNormal);

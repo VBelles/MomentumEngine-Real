@@ -1,9 +1,6 @@
 #pragma once
 
-#include "components/comp_base.h"
 
-class TCompCamera;
-class TCompTransform;
 
 class TCompFreeCamera : public TCompBase {
 private:

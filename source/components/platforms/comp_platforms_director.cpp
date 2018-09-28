@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_platforms_director.h"
 #include "comp_platform_simple.h"
-#include "components/comp_transform.h"
 #include "entity/entity_parser.h"
 #include "components/controllers/comp_rigid_anim.h"
 

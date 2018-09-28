@@ -4,6 +4,14 @@
         "pos": "0 0 0"
     },
     {
+        "name": "Player start",
+        "pos": "-77 -9 139"
+    },
+    {
+        "name": "Zona roja: Inicio",
+        "pos": "-132 -6 115"
+    },
+    {
         "name": "Gameplay Jose: Inicio",
         "pos": "115 14 139"
     },

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/GroundedActionState.h"
-#include "components/player/states/AttackState.h"
 
 class LauncherActionState : public GroundedActionState, public AttackState {
 protected:
@@ -9,6 +8,7 @@ protected:
 	float suspensionTime = 1.5f;
 
 	float damage = 0;
+	float stunTime = 2.2f;
 	float powerToGet = 2000.f;
 
 	CTimer movementTimer;

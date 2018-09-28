@@ -1,9 +1,7 @@
 #include "mcv_platform.h"
 #include "TackleAttackAction.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("TackleAttackAction", TackleAttackAction);
 
@@ -46,7 +44,7 @@ int TackleAttackAction::execAction(float delta) {
 	}
 }
 
-void TackleAttackAction::load(IBehaviorTreeNew* bt, const json& j) {
+void TackleAttackAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

@@ -1,11 +1,9 @@
 #pragma once
 
-#include "components/ia/behavior_tree/IBehaviorTreeNew.h"
+#include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/player/attack_info.h"
+#include "modules/system_modules/sound/comp_sound.h"
 
-class TCompTransform;
-class TCompCollider;
-class TCompSkeleton;
 class TCompHitboxes;
 class TCompGivePower;
 class TCompPlayerModel;
@@ -26,7 +24,7 @@ struct EnemyAttack {
 	std::string attackPrefab = "";
 };
 
-class Enemy : public IBehaviorTreeNew {
+class Enemy : public IBehaviorTree {
 public:
 	virtual ~Enemy();
 
@@ -118,6 +116,7 @@ public:
 	CHandle skeletonHandle;
 	CHandle hitboxesHandle;
 	CHandle powerHandle;
+	CHandle soundHandle;
 
 	//Sound
 	FMOD_3D_ATTRIBUTES soundAttributes;
@@ -125,7 +124,6 @@ public:
 	void load(const json& j) override;
 	void debugInMenu() override;
 	void updateGravity(float delta);
-	void updateSoundAttributes();
 	void rotateTowards(float delta, VEC3 targetPos, float rotationSpeed);
 	void move(float delta);
 
@@ -139,7 +137,7 @@ public:
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
 	TCompGivePower* getPower();
+	TCompSound * getSound();
 
 	void resetCurrent();
-	void setCurrent(std::string node);
 };

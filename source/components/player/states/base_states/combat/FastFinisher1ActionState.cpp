@@ -1,13 +1,5 @@
 #include "mcv_platform.h"
 #include "FastFinisher1ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -21,6 +13,10 @@ FastFinisher1ActionState::FastFinisher1ActionState(StateManager * stateManager) 
 	interruptibleTime = frames2sec(75);
 	walkableTime = frames2sec(75);
 	hitbox = "fast_finisher1";
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(24);
+	invulnerabilityStartTime = frames2sec(24);
+	invulnerabilityEndTime = frames2sec(35);
 }
 
 void FastFinisher1ActionState::update(float delta) {
@@ -71,7 +67,7 @@ void FastFinisher1ActionState::update(float delta) {
 	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24) && movementTimer.elapsed() <= frames2sec(54)) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::RIGHT_FOOT)->setEnable(true);
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
 		isSlashOut = false;
@@ -110,7 +106,7 @@ void FastFinisher1ActionState::onDodgeButton() {
 }
 
 void FastFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};
@@ -125,7 +121,7 @@ void FastFinisher1ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 		launchVelocity
 	};
 	msgAttackHit.info.gravityMultiplier = getPlayerModel()->getPowerStats()->longGravityMultiplier;
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.0f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

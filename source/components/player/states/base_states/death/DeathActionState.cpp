@@ -1,13 +1,5 @@
 #include "mcv_platform.h"
 #include "DeathActionState.h"
-#include "components/comp_render.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/comp_power_gauge.h"
-#include "components/player/states/StateManager.h"
-#include "components/comp_transform.h"
-#include "components/controllers/comp_camera_player.h"
 
 DeathActionState::DeathActionState(StateManager* stateManager) :
 	IActionState(stateManager, Death) {
@@ -59,7 +51,7 @@ void DeathActionState::onStateEnter(IActionState* lastState) {
 	copyCam();
 	CEntity* teleportCameraEntity = getEntityByName(TELEPORT_CAMERA);
 	EngineCameras.blendInCamera(teleportCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
-	EngineSound.emitEvent(SOUND_DIE);
+	getSound()->play("death");
 }
 
 void DeathActionState::onStateExit(IActionState* nextState) {

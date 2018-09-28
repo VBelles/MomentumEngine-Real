@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnAppearAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnAppearAction", OnAppearAction);
@@ -18,13 +17,13 @@ OnAppearAction::OnAppearAction(Enemy* enemy, std::string animation) :
 int OnAppearAction::execAction(float delta) {
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
+	enemy->getSound()->play("appear");
 	return Leave;
 }
 
-void OnAppearAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnAppearAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
-
 	animation = j.value("animation", animation);
 }
 

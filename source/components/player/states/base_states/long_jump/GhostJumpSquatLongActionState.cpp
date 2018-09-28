@@ -1,9 +1,5 @@
 #include "mcv_platform.h"
 #include "GhostJumpSquatLongActionState.h"
-#include "components/comp_transform.h"
-#include "components/player/comp_player_model.h"
-#include "components/player/states/StateManager.h"
-#include "skeleton/comp_skeleton.h"
 
 
 GhostJumpSquatLongActionState::GhostJumpSquatLongActionState(StateManager* stateManager) :

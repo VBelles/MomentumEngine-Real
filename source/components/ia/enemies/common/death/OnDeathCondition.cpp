@@ -18,7 +18,7 @@ bool OnDeathCondition::testCondition(float delta) {
 	return enemy->hp <= 0.f || enemy->getPower()->getPowerToGive() <= 0;
 }
 
-void OnDeathCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void OnDeathCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

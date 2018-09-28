@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_render_blur_radial.h"
-#include "components/comp_camera.h"
 #include "resources/resources_manager.h"
 #include "render/blur_step.h"
 #include "render/render_objects.h"

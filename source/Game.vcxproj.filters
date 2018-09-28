@@ -112,14 +112,10 @@
     <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="components\comp_light_point.cpp" />
     <ClCompile Include="components\controllers\comp_follow_curve.cpp" />
-    <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
-    <ClCompile Include="components\ia\enemies\FlyingRangedEnemy.cpp" />
-    <ClCompile Include="components\ia\enemies\MeleeEnemy.cpp" />
     <ClCompile Include="components\comp_suggest_camera_pos_trigger.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
-    <ClCompile Include="components\ia\enemies\BallEnemy.cpp" />
     <ClCompile Include="components\player\power_stats.cpp" />
     <ClCompile Include="components\comp_door.cpp" />
     <ClCompile Include="components\comp_spikes.cpp" />
@@ -251,7 +247,6 @@
     <ClCompile Include="components\ia\behavior_tree\nodes\IBehaviorTreeNode.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeAction.cpp" />
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeCondition.cpp" />
-    <ClCompile Include="components\ia\behavior_tree\IBehaviorTreeNew.cpp" />
     <ClCompile Include="components\ia\enemies\Enemy.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\hit\HitStun.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\hit\OnHit.cpp" />
@@ -283,7 +278,6 @@
     <ClCompile Include="components\ia\enemies\common\stun\OnStunAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\StunAction.cpp" />
-    <ClCompile Include="components\ia\enemies\dreidel\Dreidel.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\IdleAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnIdleAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\OnStrollAction.cpp" />
@@ -315,7 +309,6 @@
     <ClCompile Include="components\ia\enemies\common\combat\block\BlockAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\block\OnBlockAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\block\BlockCondition.cpp" />
-    <ClCompile Include="components\ia\enemies\kippah\Kippah.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\IdleActionFlying.cpp" />
     <ClCompile Include="components\ia\enemies\common\idle\IdleLoopFlying.cpp" />
     <ClCompile Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnFlyingAction.cpp" />
@@ -362,6 +355,8 @@
     <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
     <ClCompile Include="components\postfx\comp_render_fxaa.cpp" />
     <ClCompile Include="components\postfx\comp_render_vignette.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
+    <ClCompile Include="modules\system_modules\sound\comp_sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -503,14 +498,10 @@
     <ClInclude Include="render\deferred_renderer.h" />
     <ClInclude Include="components\comp_light_point.h" />
     <ClInclude Include="components\controllers\comp_follow_curve.h" />
-    <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
-    <ClInclude Include="components\ia\enemies\MeleeEnemy.h" />
-    <ClInclude Include="components\ia\enemies\FlyingRangedEnemy.h" />
     <ClInclude Include="components\comp_suggest_camera_pos_trigger.h" />
     <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
-    <ClInclude Include="components\ia\enemies\BallEnemy.h" />
     <ClInclude Include="components\player\power_stats.h" />
     <ClInclude Include="components\comp_door.h" />
     <ClInclude Include="components\comp_spikes.h" />
@@ -645,7 +636,6 @@
     <ClInclude Include="components\ia\behavior_tree\nodes\IBehaviorTreeNode.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeAction.h" />
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeCondition.h" />
-    <ClInclude Include="components\ia\behavior_tree\IBehaviorTreeNew.h" />
     <ClInclude Include="components\ia\enemies\Enemy.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\hit\HitStun.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\hit\OnHit.h" />
@@ -677,7 +667,6 @@
     <ClInclude Include="components\ia\enemies\common\stun\OnStunAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
     <ClInclude Include="components\ia\enemies\common\stun\StunAction.h" />
-    <ClInclude Include="components\ia\enemies\dreidel\Dreidel.h" />
     <ClInclude Include="components\ia\enemies\common\idle\IdleAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\OnIdleAction.h" />
     <ClInclude Include="components\ia\enemies\common\idle\StrollAction.h" />
@@ -709,7 +698,6 @@
     <ClInclude Include="components\ia\enemies\common\combat\block\OnBlockAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\block\BlockAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\block\BlockCondition.h" />
-    <ClInclude Include="components\ia\enemies\kippah\Kippah.h" />
     <ClInclude Include="components\ia\enemies\common\idle\IdleActionFlying.h" />
     <ClInclude Include="components\ia\enemies\common\idle\IdleLoopFlying.h" />
     <ClInclude Include="components\ia\enemies\common\return_to_spawn\ReturnToSpawnFlyingAction.h" />
@@ -757,6 +745,8 @@
     <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
     <ClInclude Include="components\postfx\comp_render_fxaa.h" />
     <ClInclude Include="components\postfx\comp_render_vignette.h" />
+    <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
+    <ClInclude Include="modules\system_modules\sound\comp_sound.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/GroundedActionState.h"
-#include "components/player/states/AttackState.h"
 
 class StrongAttack2ActionState : public GroundedActionState, public AttackState {
 private:
@@ -9,6 +8,7 @@ private:
 	
 	float powerToGet = 3000.f;
 	float damage = 2.f;
+	float stunTime = frames2sec(64);
 
 	float suspensionTime = 0.0f;
 	VEC2 launchSpeed = { 4.0f, 6.0f };

@@ -2,6 +2,1936 @@
   {
     "entity":
     {
+      "name": "nes_torre_anillo_move_048",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_048.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move_collider_024.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_047",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_047.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move__collider_035.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_046",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_046.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move__collider_034.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_045",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_045.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move__collider_033.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_044",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_044.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move__collider_032.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_043",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_043.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move__collider_031.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_042",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_042.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move__collider_030.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_041",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_041.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move_collider_023.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_040",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_040.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move__collider_029.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_039",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_039.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move_collider_022.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_033",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_033.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move__collider_028.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_torre_anillo_move_025",
+      "transform":
+      {
+        "pos": "85.8866 12.0901 -4.23042",
+        "rotation": "-0.0870728 -0.00380168 -0.0434534 -0.995247"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_torre_anillo_move_025.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_torre_anillo_move_collider_017.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.3
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_077",
+      "transform":
+      {
+        "pos": "-121.595 28.8722 -57.1586",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_077.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_077.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.700269,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-118.587 28.8847 -49.7487",
+           "-124.55 28.8847 -44.7451",
+           "-124.55 28.8847 -44.7451",
+           "-113.583 28.8847 -43.7857",
+           "-112.624 28.8847 -54.7522",
+           "-123.59 28.8847 -55.7117",
+           "-123.59 28.8847 -55.7117"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_076",
+      "transform":
+      {
+        "pos": "-131.003 28.8722 -55.1317",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_076.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_076.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.200736,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-127.997 28.8847 -47.7888",
+           "-122.034 28.8847 -52.7923",
+           "-122.034 28.8847 -52.7923",
+           "-133.0 28.8847 -53.7518",
+           "-133.96 28.8847 -42.7853",
+           "-122.993 28.8847 -41.8258",
+           "-122.993 28.8847 -41.8258"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_075",
+      "transform":
+      {
+        "pos": "-119.101 28.8722 -34.2224",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_075.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_075.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.200578,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-122.135 28.8847 -41.6534",
+           "-128.098 28.8847 -36.6499",
+           "-128.098 28.8847 -36.6499",
+           "-117.131 28.8847 -35.6904",
+           "-116.172 28.8847 -46.6569",
+           "-127.138 28.8847 -47.6164",
+           "-127.138 28.8847 -47.6164"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_074",
+      "transform":
+      {
+        "pos": "-128.459 28.8722 -32.3138",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_074.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_074.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.701913,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-131.545 28.8847 -39.6935",
+           "-125.582 28.8847 -44.697",
+           "-125.582 28.8847 -44.697",
+           "-136.548 28.8847 -45.6565",
+           "-137.508 28.8847 -34.69",
+           "-126.541 28.8847 -33.7305",
+           "-126.541 28.8847 -33.7305"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_073",
+      "transform":
+      {
+        "pos": "-129.321 26.0242 -84.545",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_073.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_073.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.700269,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-126.312 26.0367 -77.1351",
+           "-132.275 26.0367 -72.1316",
+           "-132.275 26.0367 -72.1316",
+           "-121.309 26.0367 -71.1721",
+           "-120.349 26.0367 -82.1386",
+           "-131.316 26.0367 -83.0981",
+           "-131.316 26.0367 -83.0981"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_072",
+      "transform":
+      {
+        "pos": "-138.729 26.0242 -82.5181",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_072.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_072.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.200736,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-135.722 26.0367 -75.1752",
+           "-129.759 26.0367 -80.1787",
+           "-129.759 26.0367 -80.1787",
+           "-140.726 26.0367 -81.1382",
+           "-141.685 26.0367 -70.1717",
+           "-130.719 26.0367 -69.2122",
+           "-130.719 26.0367 -69.2122"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_071",
+      "transform":
+      {
+        "pos": "-126.827 26.0242 -61.6088",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_071.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_071.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.200578,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-129.86 26.0367 -69.0398",
+           "-135.823 26.0367 -64.0363",
+           "-135.823 26.0367 -64.0363",
+           "-124.857 26.0367 -63.0768",
+           "-123.897 26.0367 -74.0433",
+           "-134.864 26.0367 -75.0028",
+           "-134.864 26.0367 -75.0028"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_070",
+      "transform":
+      {
+        "pos": "-136.185 26.0242 -59.7002",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_070.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_070.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.701913,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-139.27 26.0367 -67.0799",
+           "-133.307 26.0367 -72.0835",
+           "-133.307 26.0367 -72.0835",
+           "-144.274 26.0367 -73.0429",
+           "-145.233 26.0367 -62.0764",
+           "-134.267 26.0367 -61.1169",
+           "-134.267 26.0367 -61.1169"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_069",
+      "transform":
+      {
+        "pos": "-93.4273 23.1799 -71.8706",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_069.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_069.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.700269,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-95.8858 23.1924 -64.2605",
+           "-103.67 23.1924 -64.2605",
+           "-103.67 23.1924 -64.2605",
+           "-95.8858 23.1924 -56.4764",
+           "-88.1017 23.1924 -64.2605",
+           "-95.8858 23.1924 -72.0446",
+           "-95.8858 23.1924 -72.0446"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_068",
+      "transform":
+      {
+        "pos": "-101.937 23.1799 -76.3653",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_068.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_068.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.200736,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-104.354 23.1924 -68.8079",
+           "-96.5701 23.1924 -68.8079",
+           "-96.5701 23.1924 -68.8079",
+           "-104.354 23.1924 -76.592",
+           "-112.138 23.1924 -68.8079",
+           "-104.354 23.1924 -61.0238",
+           "-104.354 23.1924 -61.0238"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_067",
+      "transform":
+      {
+        "pos": "-106.26 23.1799 -52.6973",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_067.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_067.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.200578,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-103.807 23.1924 -60.3398",
+           "-111.591 23.1924 -60.3398",
+           "-111.591 23.1924 -60.3398",
+           "-103.807 23.1924 -52.5557",
+           "-96.0232 23.1924 -60.3398",
+           "-103.807 23.1924 -68.1239",
+           "-103.807 23.1924 -68.1239"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_066",
+      "transform":
+      {
+        "pos": "-114.656 23.1799 -57.2508",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_066.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_066.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.701913,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-112.276 23.1924 -64.8872",
+           "-104.492 23.1924 -64.8872",
+           "-104.492 23.1924 -64.8872",
+           "-112.276 23.1924 -72.6713",
+           "-120.06 23.1924 -64.8872",
+           "-112.276 23.1924 -57.1031",
+           "-112.276 23.1924 -57.1031"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_065",
+      "transform":
+      {
+        "pos": "-75.2635 20.3751 -52.211",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_065.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_065.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.700269,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-77.722 20.3876 -44.6009",
+           "-85.5061 20.3876 -44.6009",
+           "-85.5061 20.3876 -44.6009",
+           "-77.722 20.3876 -36.8168",
+           "-69.9379 20.3876 -44.6009",
+           "-77.722 20.3876 -52.385",
+           "-77.722 20.3876 -52.385"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_064",
+      "transform":
+      {
+        "pos": "-83.7734 20.3751 -56.7056",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_064.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_064.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.200736,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-86.1904 20.3876 -49.1483",
+           "-78.4063 20.3876 -49.1483",
+           "-78.4063 20.3876 -49.1483",
+           "-86.1904 20.3876 -56.9324",
+           "-93.9745 20.3876 -49.1483",
+           "-86.1904 20.3876 -41.3642",
+           "-86.1904 20.3876 -41.3642"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_063",
+      "transform":
+      {
+        "pos": "-88.096 20.3751 -33.0376",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_063.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_063.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.200578,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-85.6435 20.3876 -40.6802",
+           "-93.4276 20.3876 -40.6802",
+           "-93.4276 20.3876 -40.6802",
+           "-85.6435 20.3876 -32.8961",
+           "-77.8594 20.3876 -40.6802",
+           "-85.6435 20.3876 -48.4643",
+           "-85.6435 20.3876 -48.4643"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_062",
+      "transform":
+      {
+        "pos": "-96.492 20.3751 -37.5911",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_062.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_062.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.701913,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "-94.1119 20.3876 -45.2276",
+           "-86.3278 20.3876 -45.2275",
+           "-86.3278 20.3876 -45.2275",
+           "-94.1119 20.3876 -53.0117",
+           "-101.896 20.3876 -45.2276",
+           "-94.1119 20.3876 -37.4434",
+           "-94.1119 20.3876 -37.4434"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes022",
+      "transform":
+      {
+        "pos": "-214.161 34.1302 39.8495",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataformaSpikes022.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataformaSpikes005_col005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 0.7,
+          "waitDuration": 2.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes021",
+      "transform":
+      {
+        "pos": "-220.13 46.7605 54.8665",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataformaSpikes021.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataformaSpikes005_col004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 0.7,
+          "waitDuration": 2.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes020",
+      "transform":
+      {
+        "pos": "-216.033 42.7381 48.7956",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataformaSpikes020.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataformaSpikes005_col003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 0.7,
+          "waitDuration": 2.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes019",
+      "transform":
+      {
+        "pos": "-209.143 39.4544 52.9233",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataformaSpikes019.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataformaSpikes005_col002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 0.7,
+          "waitDuration": 2.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes018",
+      "transform":
+      {
+        "pos": "-209.378 36.5889 45.1222",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataformaSpikes018.mesh",
+          "materials":
+          [
+            "data/materials/Material_#99.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataformaSpikes005_col001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 0.7,
+          "waitDuration": 2.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_036",
+      "transform":
+      {
+        "pos": "-205.818 57.5106 37.9332",
+        "rotation": "0.0 0.77981 0.0 -0.626017"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_036.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_036.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-175.789 59.8193 49.1802",
+           "-175.789 59.8193 49.1802",
+           "-206.877 59.8193 37.9443",
+           "-206.877 59.8193 37.9443"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_035",
+      "transform":
+      {
+        "pos": "-178.586 57.5106 58.271",
+        "rotation": "0.0 -0.626017 0.0 -0.77981"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_035.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_035.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "-204.38 59.8193 48.6286",
+           "-204.38 59.8193 48.6286",
+           "-177.527 59.8193 58.26",
+           "-177.527 59.8193 58.26"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_061",
+      "transform":
+      {
+        "pos": "55.056 37.4182 44.4468",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_061.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_061.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.183549,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "47.2466 37.4515 54.1174",
+           "59.5139 37.4515 57.4044",
+           "59.5139 37.4515 57.4044",
+           "50.5336 37.4515 41.8501",
+           "34.9794 37.4515 50.8304",
+           "43.9596 37.4515 66.3846",
+           "43.9596 37.4515 66.3846"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_060",
+      "transform":
+      {
+        "pos": "57.1967 37.4182 62.0369",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_060.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_060.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.934674,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "47.2467 37.4515 54.1174",
+           "59.5139 37.4515 57.4044",
+           "59.5139 37.4515 57.4044",
+           "50.5337 37.4515 41.8501",
+           "34.9794 37.4515 50.8304",
+           "43.9597 37.4515 66.3846",
+           "43.9597 37.4515 66.3846"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_059",
+      "transform":
+      {
+        "pos": "39.4085 37.4182 63.8871",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_059.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_059.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.684056,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "47.2467 37.4515 54.1174",
+           "59.514 37.4515 57.4044",
+           "59.514 37.4515 57.4044",
+           "50.5337 37.4515 41.8501",
+           "34.9794 37.4515 50.8304",
+           "43.9597 37.4515 66.3847",
+           "43.9597 37.4515 66.3847"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_058",
+      "transform":
+      {
+        "pos": "37.5374 37.4182 46.4341",
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_058.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_058.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.435123,
+        "travel_wait_time": 1.0,
+        "speed": 0.05,
+        "knots":
+        [
+           "47.2467 37.4515 54.1174",
+           "59.514 37.4515 57.4044",
+           "59.514 37.4515 57.4044",
+           "50.5337 37.4515 41.8501",
+           "34.9794 37.4515 50.8304",
+           "43.9597 37.4515 66.3846",
+           "43.9597 37.4515 66.3846"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_5_003",
+      "transform":
+      {
+        "pos": "26.2426 31.501 82.5269",
+        "rotation": "0.216985 -0.29349 0.610532 -0.702874"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_5_003.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_06.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_5_col_003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "1.0 0.0 0.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_6_002",
+      "transform":
+      {
+        "pos": "-164.575 28.3294 31.9302",
+        "rotation": "0.220879 -0.297971 0.609134 -0.700986"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_002.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "1.0 0.0 0.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_4_002",
+      "transform":
+      {
+        "pos": "-170.706 18.8841 54.2621",
+        "rotation": "0.485135 -0.696974 0.316202 -0.422951"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_4_002.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_05.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_4_col_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "1.0 0.0 0.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_2_002",
+      "transform":
+      {
+        "pos": "-157.899 11.5215 75.7764",
+        "rotation": "0.60339 -0.706046 0.268475 -0.255618"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_2_002.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_2_col_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "1.0 0.0 0.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_mariosunshine_MS006",
       "transform":
       {
@@ -1881,8 +3811,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -2229,8 +4157,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -2271,8 +4197,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -2313,8 +4237,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -2355,8 +4277,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -2397,8 +4317,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -2439,8 +4357,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5113,8 +7029,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5155,8 +7069,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5197,8 +7109,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5239,8 +7149,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5281,8 +7189,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5323,8 +7229,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5365,8 +7269,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5407,8 +7309,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5449,8 +7349,7 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5
+
       }
     }
   },
@@ -5486,8 +7385,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,
@@ -5528,8 +7425,6 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 0.0",
-        "rotation_speed": 0.5,
         "roll":
         {
           "speed": 7.0,

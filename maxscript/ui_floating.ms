@@ -22,8 +22,13 @@ ButtonText: "Momentum"
 	local numberOfButtons = 4
 	local height = baseHeight + heightPerButton * numberOfButtons
 
-	local left = sysInfo.desktopSize[1] * 0.8 --80% of screen width.
-	local top =	 sysInfo.desktopSize[2] * 0.1 --10% of screen height.
+	/* To get desktop resolution, valid for multiple screens:
+		screen = (dotNetClass "System.Windows.Forms.Screen").PrimaryScreen.Bounds
+		format "%x%\n" screen.Width screen.Height --DEBUG
+	*/
+	local MAXWinSize = getMAXWindowSize()
+	local left = MAXWinSize[1] * 0.77 --77% of screen width.
+	local top  = MAXWinSize[2] * 0.08 --08% of screen height.
 
 	floater = newRolloutFloater "Momentum utils" width height left top
 	exportPath = cleanPath (substituteString (getThisScriptFilename()) "maxscript\\ui_floating.ms" "Bin\\")
@@ -136,12 +141,15 @@ ButtonText: "Momentum"
 		button btn_check_dds "Check DDS" tooltip:"Checks if any texture is not DDS"
 		button btn_create_col "Create colliders" tooltip:"Creates child colliders of selected objects"
 		
-		button btn_sel_children "Select children" across:2 tooltip:"Selects children of selected objects"
-		button btn_sel_parents "Select parents" tooltip:"Selects parents of selected objects"
+		button btn_sel_parents "Select parents" across:2 tooltip:"Selects parents of selected objects"
+		button btn_sel_children "Select children" tooltip:"Selects children of selected objects"
 
 		button btn_import_scene "Import scene..." tooltip:"Import scene objects from scene file"
 		button btn_copy_posrot "Copy pos & rot" across:2 tooltip:"Copy name, position and rotation of selected object"
 		button btn_paste_posrot "Paste pos & rot" tooltip:"Paste name, position and rotation on selected object"
+		
+		button btn_hideOtherLayers "Hide other layers" across:2 tooltip:"Hide all layers except selected object's layer"
+		button btn_showAllLayers "Show all layers" tooltip:"Shows all layers"
 
 		fn attachElems = (
 			try (
@@ -250,15 +258,52 @@ ButtonText: "Momentum"
 			)
 		)
 
-		on btn_attach_elems pressed do ( attachElems() )
-		on btn_detach_elems pressed do ( detachElems() )
-		on btn_check_dds 	pressed do ( checkDDS() )
-		on btn_create_col 	pressed do ( createColliders() )
-		on btn_sel_children pressed do ( selectChildren() )
-		on btn_sel_parents  pressed do ( selectParents() )
-		on btn_import_scene pressed do ( importScene() )
-		on btn_copy_posrot  pressed do ( copyNamePosRot() )
-		on btn_paste_posrot pressed do ( pasteNamePosRot() )
+		fn hideAllLayersButCurrent = (
+			try (
+				gc()
+				clearListener()
+				--(LayerManager.getLayerFromName $.layer.name).ishidden = false
+
+				local selectionLayer = selection[1].layer
+				if selectionLayer == undefined then selectionLayer = $.layer
+
+				if selectionLayer != undefined then (
+					for i = 0 to LayerManager.count - 1 do (
+						local currentLayer = LayerManager.getLayer i
+						if selectionLayer != currentLayer then
+							currentLayer.isHidden = true
+					)
+				)
+			) catch (
+				MessageBox ("Error hiding layer:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		fn showAllLayers = (
+			try (
+				gc()
+				clearListener()
+
+				for i = 0 to LayerManager.count - 1 do (
+					local currentLayer = LayerManager.getLayer i
+					currentLayer.isHidden = false
+				)
+			) catch (
+				MessageBox ("Error hiding layer:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		on btn_attach_elems 	pressed do ( attachElems() )
+		on btn_detach_elems 	pressed do ( detachElems() )
+		on btn_check_dds 		pressed do ( checkDDS() )
+		on btn_create_col 		pressed do ( createColliders() )
+		on btn_sel_children 	pressed do ( selectChildren() )
+		on btn_sel_parents  	pressed do ( selectParents() )
+		on btn_import_scene 	pressed do ( importScene() )
+		on btn_copy_posrot  	pressed do ( copyNamePosRot() )
+		on btn_paste_posrot 	pressed do ( pasteNamePosRot() )
+		on btn_hideOtherLayers  pressed do ( hideAllLayersButCurrent() )
+		on btn_showAllLayers    pressed do ( showAllLayers() )
 
 		-- Resize window if rollout collapses.
 		on utils rolledUp state do (
@@ -275,35 +320,41 @@ ButtonText: "Momentum"
 		button btn_delAttrEnemy "- enemy" tooltip:"Deletes enemy attributes from selected objects"
 		button btn_setAttrEnemy "Set..." tooltip:"Sets enemy attributes to selected objects"
 		
-		button btn_addRotation "+ rotation" across:2 tooltip:"Adds rotation attributes to selected objects"
-		button btn_delRotation "- rotation" tooltip:"Deletes rotation attributes from selected objects"
+		button btn_addRotation "+ rot" across:3 tooltip:"Adds rotation attributes to selected objects"
+		button btn_delRotation "- rot" tooltip:"Deletes rotation attributes from selected objects"
+		button btn_setAttrRot "Set..." tooltip:"Sets rotation attributes to selected objects"
 		
-		button btn_addMovement "+ move" across:2 tooltip:"Adds movement attributes to selected objects"
+		button btn_addMovement "+ move" across:3 tooltip:"Adds movement attributes to selected objects"
 		button btn_delMovement "- move" tooltip:"Deletes movement attributes from selected objects"
+		button btn_setAttrMove "Set..." tooltip:"Sets move attributes to selected objects"
 		
-		button btn_addMechTrig "+ mech trig" across:2 tooltip:"Adds mech trigger attributes to selected objects"
+		button btn_addMechTrig "+ mech trig" across:3 tooltip:"Adds mech trigger attributes to selected objects"
 		button btn_delMechTrig "- mech trig" tooltip:"Deletes mech trigger attributes from selected objects"
+		button btn_setAttrMechTrig "Set..." tooltip:"Sets mechanism trigger attributes to selected objects"
 
-		button btn_addMechanism "+ mech" across:2 tooltip:"Adds mechanism attributes to selected objects"
+		button btn_addMechanism "+ mech" across:3 tooltip:"Adds mechanism attributes to selected objects"
 		button btn_delMechanism "- mech" tooltip:"Deletes mechanism attributes from selected objects"
+		button btn_setAttrMech "Set..." tooltip:"Sets mechanism attributes to selected objects"
 
-		button btn_addUnique "+ unique" across:2 tooltip:"Adds unique attributes to selected objects"
+		button btn_addUnique "+ unique" across:3 tooltip:"Adds unique attributes to selected objects"
 		button btn_delUnique "- unique" tooltip:"Deletes unique attributes from selected objects"
+		button btn_setAttrUnique "Set..." tooltip:"Sets unique attributes to selected objects"
 
-		button btn_addAnim "+ anim" across:2 tooltip:"Adds anim attributes to selected objects"
+		button btn_addAnim "+ anim" across:3 tooltip:"Adds anim attributes to selected objects"
 		button btn_delAnim "- anim" tooltip:"Deletes anim attributes from selected objects"
+		button btn_setAttrAnim "Set..." tooltip:"Sets anim attributes to selected objects"
 
-		button btn_addLight "+ light" across:2 tooltip:"Adds light attributes to selected objects"
+		button btn_addLight "+ light" across:3 tooltip:"Adds light attributes to selected objects"
 		button btn_delLight "- light" tooltip:"Deletes light attributes from selected objects"
+		button btn_setAttrLight "Set..." tooltip:"Sets light attributes to selected objects"
 
-		button btn_addColl "+ collider" across:2 tooltip:"Adds collider attributes to selected objects"
+		button btn_addColl "+ collider" across:3 tooltip:"Adds collider attributes to selected objects"
 		button btn_delColl "- collider" tooltip:"Deletes collider attributes from selected objects"
+		button btn_setAttrColl "Set..." tooltip:"Sets collider attributes to selected objects"
 
-		button btn_set_trimesh "Set trimesh" across:2 tooltip:"Sets trimesh attribute of selected objects"
-		button btn_unset_trimesh "Unset trimesh" tooltip:"Unsets trimesh attribute of selected objects"
-
-		button btn_addCam "+ camera" across:2 tooltip:"Adds camera attributes to selected objects"
+		button btn_addCam "+ camera" across:3 tooltip:"Adds camera attributes to selected objects"
 		button btn_delCam "- camera" tooltip:"Deletes camera attributes from selected objects"
+		button btn_setAttrCam "Set..." tooltip:"Sets camera attributes to selected objects"
 
 		fn addAttribute defName = (
 			try (
@@ -340,50 +391,6 @@ ButtonText: "Momentum"
 				gc()
 				local attrManager = TAttributeManager()
 
-				--TODO: open window here.
-				--format "enemiesData:%\n" (enemiesData as string)
-
-				defClass = custAttributes.getDefClass enemiesData
-				--https://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_A2579383_CAA2_446B_8034_0502DDBBAAD4_htm
-				defPBlock = custAttributes.getPBlockDefs enemiesData
-				--format "defClass: % \ndefPBlock full: %\n" defClass defPBlock
-				--format "defPBlock: %\n" defPBlock[1]
-				local attrs = defPBlock[1]
-				local attrName 	 = undefined
-				local type 		 = undefined
-				local ui 		 = undefined
-				local default	 = undefined
-				for attr = 5 to attrs.count do (
-					attrName   = attrs[attr][1]
-					local attrParams = attrs[attr][2]
-
-					for i = 1 to attrParams.count where (mod i 2 != 0) do (
-						--Execute only in odd values of i.
-						if attrParams[i] == #type 	 then type    = attrParams[i + 1]
-						if attrParams[i] == #ui 	 then ui 	  = attrParams[i + 1][1]
-						if attrParams[i] == #default then default = attrParams[i + 1]
-					)
-					format "attrName: % type: % ui: % default:%\n" attrName type ui default
-				)
-
-				--attrManager.findAttribute obj "enemiesData" 
-				--(custAttributes.get $ 2)[#hitPoints].value
-
-				/*rollout setAttribs "Set attributes Controls" (
-					spinner HP "Hit Points" type: #integer
-
-					button btnSetAll "Set all"
-
-					on btnCenter pressed do messagebox "WIP"
-				)
-
-				global setAttrsFloat
-				try closeRolloutFloater setAttrsFloat catch()
-				if setAttrsFloat != undefined then closeRolloutFloater setAttrsFloat
-				setAttrsFloat = newRolloutFloater "Set attributes Tool" 180 120
-				addRollout setAttribs setAttrsFloat
-				*/
-
 				rollout enemyParams "Enemy parameters" (
 					spinner HP "Hit Points" type: #integer align:#right across:2 align:#right
 					button btnSetHP "Set" width:24 align:#left
@@ -415,51 +422,348 @@ ButtonText: "Momentum"
 					)
 				)
 
+				rollout colParams "Collider parameters" (
+					checkbox cType "Tri mesh" type: #boolean across:2 align:#right
+					button btnSetType "Set" width:24 align:#left
+					checkbox spike "Spikes"   type: #boolean across:2 align:#right
+					button btnSetSpike "Set" width:24 align:#left
+					dropdownlist powerUp "Power-up" across:2 items:#("-NONE-", \
+															"AirborneLong", \
+															"AirborneNormal", \
+															"AirborneWallJump", \
+															"AirDodge", \
+															"Death", \
+															"Dodge", \
+															"FallingAttack", \
+															"FastAttack", \
+															"FastAttack2", \
+															"FastAttackAir", \
+															"FastFinisher1", \
+															"FastFinisher2", \
+															"GhostJumpSquat", \
+															"GhostJumpSquatLong", \
+															"GhostJumpWindow", \
+															"GrabHigh", \
+															"GrabLong", \
+															"HardKnockbackAir", \
+															"HardKnockbackGround", \
+															"HardLanding", \
+															"HorizontalLauncher", \
+															"HuggingWall", \
+															"HuggingWallLongJumpSquat", \
+															"Idle", \
+															"IdleTurnAround", \
+															"JumpSquat", \
+															"JumpSquatLong", \
+															"JumpSquatSpring", \
+															"PitFalling", \
+															"PropelHigh", \
+															"PropelLong", \
+															"ReleasePowerAir", \
+															"ReleasePowerGround", \
+															"Run", \
+															"Slide", \
+															"SoftKnockbackAir", \
+															"SoftKnockbackGround", \
+															"SoftLanding", \
+															"SpendCoins", \
+															"SpringJump", \
+															"StrongAttack", \
+															"StrongAttack2", \
+															"StrongAttack3", \
+															"StrongFinisher1", \
+															"StrongFinisher2", \
+															"TurnAround", \
+															"VerticalLauncher", \
+															"Walk", \
+															"WallJumpPlummet", \
+															"WallJumpSquat", \
+															"WallJumpSquatPlummet")
+					button btnSetPwrUp "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetType	pressed do (setAttribute "collData" #collType cType.state)
+					on btnSetSpike	pressed do (setAttribute "collData" #spke 	  spike.state)
+					on btnSetPwrUp	pressed do (setAttribute "collData" #pwrUp	  powerUp.selection)
+					on btnSetAll	pressed do (
+						setAttribute "collData" #collType cType.state
+						setAttribute "collData" #spke 	  spike.state
+						setAttribute "collData" #pwrUp	  powerUp.selection
+					)
+				)
+
+				rollout rotationParams "Rotation parameters" (
+					label lab1 "Rotation:"
+					spinner xRot "x axis" type: #integer across:2 align:#right range:[-1, 1, 0] --min, max, initial value
+					button btnSetXrot "Set" width:24 align:#left
+					spinner yRot "y axis" type: #integer across:2 align:#right range:[-1, 1, 0]
+					button btnSetYrot "Set" width:24 align:#left
+					spinner zRot "z axis" type: #integer across:2 align:#right range:[-1, 1, 1]
+					button btnSetZrot "Set" width:24 align:#left
+					spinner rotSpeed "Rot speed" type: #float across:2 align:#right range:[-100, 100, 0]
+					button btnSetRotSpd "Set" width:24 align:#left
+
+					label lab2 "Roll:"
+					spinner rolSpeed "Roll speed" 	   type: #float   across:2 align:#right range:[-100, 100, 0]
+					button btnSetRolSpd "Set" width:24 align:#left
+					spinner waitDur  "Wait dur"   type: #float across:2 align:#right
+					button btnSetWdur "Set" width:24 align:#left
+					spinner grup     "Platf group"  type: #integer across:2 align:#right range:[0, 1000, 0]
+					button btnSetGrup "Set" width:24 align:#left
+					spinner waitT    "Group wait t" type: #float   across:2 align:#right range:[0, 1000, 0]
+					button btnSetWaitT "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetXrot	pressed do (setAttribute "rotateData" #x 		xRot.value)
+					on btnSetYrot	pressed do (setAttribute "rotateData" #y 		yRot.value)
+					on btnSetZrot	pressed do (setAttribute "rotateData" #z 		zRot.value)
+					on btnSetRotSpd	pressed do (setAttribute "rotateData" #rotSpeed rotSpeed.value)
+					on btnSetRolSpd	pressed do (setAttribute "rotateData" #rolSpeed rolSpeed.value)
+					on btnSetWdur	pressed do (setAttribute "rotateData" #wait 	waitDur.value)
+					on btnSetGrup	pressed do (setAttribute "rotateData" #grup	 	grup.value)
+					on btnSetWaitT	pressed do (setAttribute "rotateData" #waitT	waitT.value)
+
+					on btnSetAll	pressed do (
+						setAttribute "rotateData" #x 		xRot.value
+						setAttribute "rotateData" #y 		yRot.value
+						setAttribute "rotateData" #z 		zRot.value
+						setAttribute "rotateData" #rotSpeed rotSpeed.value
+						setAttribute "rotateData" #rolSpeed rolSpeed.value
+						setAttribute "rotateData" #wait 	waitDur.value
+						setAttribute "rotateData" #grup	 	grup.value
+						setAttribute "rotateData" #waitT	waitT.value
+					)
+				)
+
+				rollout moveParams "Move parameters" (
+					checkbox autoMove "Automove" 	   type: #boolean across:2 align:#right
+					button btnSetAutoM "Set" width:24 align:#left
+					checkbox loops 	  "Loops" 		   type: #boolean across:2 align:#right
+					button btnSetLoop "Set" width:24 align:#left
+					spinner  waitTime "Wait time" 	   type: #float   across:2 align:#right range:[0, 100.0, 1.0] --min, max, initial value
+					button btnSetWtime "Set" width:24 align:#left
+					spinner  movSpeed "Movement speed" type: #float   across:2 align:#right range:[-100.0, 100.0, 0.1]
+					button btnSetMovSpd "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetAutoM 	pressed do (setAttribute "moveData" #auto autoMove.state)
+					on btnSetLoop 	pressed do (setAttribute "moveData" #loop loops.state)
+					on btnSetWtime 	pressed do (setAttribute "moveData" #wait waitTime.value)
+					on btnSetMovSpd	pressed do (setAttribute "moveData" #spd  movSpeed.value)
+
+					on btnSetAll	pressed do (
+						setAttribute "moveData" #auto autoMove.state
+						setAttribute "moveData" #loop loops.state
+						setAttribute "moveData" #wait waitTime.value
+						setAttribute "moveData" #spd  movSpeed.value
+					)
+				)
+
+				rollout mechTrigParams "Mech trigger parameters" (
+					spinner  deacTime "Deact time" type: #float   across:2 align:#right range:[0, 1000.0, 5.0] --min, max, initial value
+					button btnSetDeacT "Set" width:24 align:#left
+					spinner  reacTime "React time" type: #float   across:2 align:#right range:[0, 1000.0, 3.0]
+					button btnSetReacT "Set" width:24 align:#left
+					checkbox isResettable "Resettable" type: #boolean across:2 align:#right
+					button btnSetReset "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetDeacT pressed do (setAttribute "mechTrigData" #deacT deacTime.value)
+					on btnSetReacT pressed do (setAttribute "mechTrigData" #reacT reacTime.value)
+					on btnSetReset pressed do (setAttribute "mechTrigData" #reset isResettable.state)
+
+					on btnSetAll   pressed do (
+						setAttribute "mechTrigData" #deacT deacTime.value
+						setAttribute "mechTrigData" #reacT reacTime.value
+						setAttribute "mechTrigData" #reset isResettable.state
+					)
+				)
+
+				rollout mechParams "Mech parameters" (
+					checkbox change_render 		"Change rend" type: #boolean across:2 align:#right
+					button btnSetChRender "Set" width:24 align:#left
+					checkbox change_collider 	"Change coll" type: #boolean across:2 align:#right
+					button btnSetChCol "Set" width:24 align:#left
+					checkbox change_platform 	"Change platf" type: #boolean across:2 align:#right
+					button btnSetChPlatf "Set" width:24 align:#left
+					checkbox change_animation 	"Change anim" type: #boolean across:2 align:#right
+					button btnSetChAnim "Set" width:24 align:#left
+					checkbox render 			"Rend enabled" type: #boolean across:2 align:#right
+					button btnSetRender "Set" width:24 align:#left
+					checkbox collider 			"Coll enabled" type: #boolean across:2 align:#right
+					button btnSetCol "Set" width:24 align:#left
+					checkbox platform 			"Platf enabled" type: #boolean across:2 align:#right
+					button btnSetPlatf "Set" width:24 align:#left
+					checkbox animation 			"Anim enabled" type: #boolean across:2 align:#right
+					button btnSetAnim "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetChRender	pressed do (setAttribute "mechData" #change_rend change_render.state)
+					on btnSetChCol		pressed do (setAttribute "mechData" #change_coll change_collider.state)
+					on btnSetChPlatf	pressed do (setAttribute "mechData" #change_plat change_platform.state)
+					on btnSetChAnim		pressed do (setAttribute "mechData" #change_anim change_animation.state)
+					on btnSetRender		pressed do (setAttribute "mechData" #rend render.state)
+					on btnSetCol		pressed do (setAttribute "mechData" #coll collider.state)
+					on btnSetPlatf		pressed do (setAttribute "mechData" #plat platform.state)
+					on btnSetAnim		pressed do (setAttribute "mechData" #anim animation.state)
+
+					on btnSetAll   pressed do (
+						setAttribute "mechData" #change_rend change_render.state
+						setAttribute "mechData" #change_coll change_collider.state
+						setAttribute "mechData" #change_plat change_platform.state
+						setAttribute "mechData" #change_anim change_animation.state
+						setAttribute "mechData" #rend render.state
+						setAttribute "mechData" #coll collider.state
+						setAttribute "mechData" #plat platform.state
+						setAttribute "mechData" #anim animation.state
+					)
+				)
+
+				rollout uniqueParams "Unique parameters" (
+					checkbox isUnique "Is unique" type: #boolean across:2 align:#right
+					button btnSetUnique "Set" width:24 align:#left
+
+					on btnSetUnique pressed do (setAttribute "uniqueData" #unique isUnique.state)
+				)
+
+				rollout animParams "Anim parameters" (
+					checkbox moves "Is moving" type: #boolean across:2 align:#right
+					button btnSetMoves "Set" width:24 align:#left
+					checkbox loops "Loops" type: #boolean across:2 align:#right
+					button btnSetLoops "Set" width:24 align:#left
+					checkbox killAfter "Kill on finish"	type: #boolean across:2 align:#right
+					button btnSetKill "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetMoves	pressed do (setAttribute "animData" #mov  moves.state)
+					on btnSetLoops	pressed do (setAttribute "animData" #loop loops.state)
+					on btnSetKill	pressed do (setAttribute "animData" #kill killAfter.state)
+
+					on btnSetAll   pressed do (
+						setAttribute "animData" #mov  moves.state
+						setAttribute "animData" #loop loops.state
+						setAttribute "animData" #kill killAfter.state
+					)
+				)
+
+				rollout lightParams "Light parameters" (
+					spinner lfov "FoV" type: #float across:2 range:[0, 1000.0, 40.0] --min, max, initial value
+					button btnSetLfov "Set" width:24 align:#left
+
+					on btnSetLfov pressed do (setAttribute "lightData" #fov lfov.value)
+				)
+
+				rollout camParams "Camera parameters" (
+					checkbox retToPl "Return to player"  type: #boolean across:2 align:#right
+					button btnSetRetToPl "Set" width:24 align:#left
+					checkbox modPlRo "Mod player rot" type: #boolean across:2 align:#right
+					button btnSetModPlRo "Set" width:24 align:#left
+					spinner tMixO "Time mix out" type: #float across:2 align:#right range:[0, 1000.0, 1.0] --min, max, initial value
+					button btnSetTMixO "Set" width:24 align:#left
+					spinner panSpd "Pan speed"  type: #float across:2 align:#right range:[-1000.0, 1000.0, 0.0]
+					button btnSetPanSpd "Set" width:24 align:#left
+					spinner panRad "Pan radius" type: #float across:2 align:#right range:[0, 1000.0, 3.0]
+					button btnSetPanRad "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetRetToPl pressed do (setAttribute "camData" #retToPlyr retToPl.state)
+					on btnSetModPlRo pressed do (setAttribute "camData" #modPlRot  modPlRo.state)
+					on btnSetTMixO	 pressed do (setAttribute "camData" #tMixOut   tMixO.value)
+					on btnSetPanSpd	 pressed do (setAttribute "camData" #panSpeed  panSpd.value)
+					on btnSetPanRad	 pressed do (setAttribute "camData" #panRadius panRad.value)
+
+					on btnSetAll     pressed do (
+						setAttribute "camData" #retToPlyr retToPl.state
+						setAttribute "camData" #modPlRot  modPlRo.state
+						setAttribute "camData" #tMixOut   tMixO.value
+						setAttribute "camData" #panSpeed  panSpd.value
+						setAttribute "camData" #panRadius panRad.value
+					)
+				)
+
+				local rollToOpen = undefined
+				local setAttrWinWidth  = 240
+				local setAttrWinHeight = 270
+				case defName of (
+					"animData":     ( rollToOpen = animParams     
+									  setAttrWinHeight = 3 + heightPerButton * 5 )
+					"camData":      ( rollToOpen = camParams      
+									  setAttrWinHeight = 3 + heightPerButton * 7 )
+					"collData":     ( rollToOpen = colParams      
+									  setAttrWinHeight = 3 + heightPerButton * 4 )
+					"enemyData":    ( rollToOpen = enemyParams	  
+									  setAttrWinHeight = 3 + heightPerButton * 8 )
+					"lightData":    ( rollToOpen = lightParams    
+									  setAttrWinHeight = 3 + heightPerButton * 2 )
+					"mechData":     ( rollToOpen = mechParams	  
+									  setAttrWinHeight = 3 + heightPerButton * 10 )
+					"mechTrigData": ( rollToOpen = mechTrigParams 
+									  setAttrWinHeight = 3 + heightPerButton * 5 )
+					"moveData":     ( rollToOpen = moveParams	  
+									  setAttrWinHeight = 3 + heightPerButton * 6 )
+					"rotateData":   ( rollToOpen = rotationParams
+									  setAttrWinHeight = 15 + heightPerButton * 11 )
+					"uniqueData":   ( rollToOpen = uniqueParams   
+									  setAttrWinHeight = 3 + heightPerButton * 2 )
+					default: ( format "ERROR: invalid defName.\n" )
+				)
+
 				global setAttrsFloat
 				try closeRolloutFloater setAttrsFloat catch()
 				if setAttrsFloat != undefined then closeRolloutFloater setAttrsFloat
-				setAttrsFloat = newRolloutFloater "Set attributes Tool" 240 270
-				addRollout enemyParams setAttrsFloat
-
-				--attributeManager.setAttributeInSel defName #collType value
+				setAttrsFloat = newRolloutFloater "Set attributes Tool" setAttrWinWidth setAttrWinHeight
+				addRollout rollToOpen setAttrsFloat
 			) catch (
 				MessageBox ("Error openning attr window:\n" + getCurrentException()) title:"Error"
 			)
 		)
 		
-		on btn_set_trimesh pressed   do ( setAttribute "collData" #collType true )
-		on btn_unset_trimesh pressed do ( setAttribute "collData" #collType false )
-
 		on btn_addAttrEnemy pressed do ( addAttribute "enemyData" )
 		on btn_delAttrEnemy pressed do ( delAttribute "enemyData" )
 		on btn_setAttrEnemy pressed do ( openSetAttrWindow("enemyData") )
 
 		on btn_addRotation pressed do ( addAttribute "rotateData" )
 		on btn_delRotation pressed do ( delAttribute "rotateData" )
+		on btn_setAttrRot pressed do  ( openSetAttrWindow("rotateData") )
 		
 		on btn_addMovement pressed do ( addAttribute "moveData" )
 		on btn_delMovement pressed do ( delAttribute "moveData" )
+		on btn_setAttrMove pressed do ( openSetAttrWindow("moveData") )
 
 		on btn_addMechTrig pressed do ( addAttribute "mechTrigData" )
 		on btn_delMechTrig pressed do ( delAttribute "mechTrigData" )
+		on btn_setAttrMechTrig pressed do ( openSetAttrWindow("mechTrigData") )
 
 		on btn_addMechanism pressed do ( addAttribute "mechData" )
 		on btn_delMechanism pressed do ( delAttribute "mechData" )
+		on btn_setAttrMech pressed do ( openSetAttrWindow("mechData") )
 
 		on btn_addUnique pressed do ( addAttribute "uniqueData" )
 		on btn_delUnique pressed do ( delAttribute "uniqueData" )
+		on btn_setAttrUnique pressed do ( openSetAttrWindow("uniqueData") )
 
 		on btn_addAnim pressed do ( addAttribute "animData" )
 		on btn_delAnim pressed do ( delAttribute "animData" )
+		on btn_setAttrAnim pressed do ( openSetAttrWindow("animData") )
 
 		on btn_addLight pressed do ( addAttribute "lightData" )
 		on btn_delLight pressed do ( delAttribute "lightData" )
+		on btn_setAttrLight pressed do ( openSetAttrWindow("lightData") )
 
 		on btn_addColl pressed do ( addAttribute "collData" )
 		on btn_delColl pressed do ( delAttribute "collData" )
+		on btn_setAttrColl pressed do ( openSetAttrWindow("collData") )
 
 		on btn_addCam pressed do ( addAttribute "camData" )
 		on btn_delCam pressed do ( delAttribute "camData" )
+		on btn_setAttrCam pressed do ( openSetAttrWindow("camData") )
 
 		-- Resize window if rollout collapses.
 		on attribute rolledUp state do (

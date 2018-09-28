@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnSuspensionAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnSuspensionAction", OnSuspensionAction);
@@ -19,10 +18,11 @@ OnSuspensionAction::OnSuspensionAction(Enemy* enemy, std::string animationStart,
 int OnSuspensionAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
+	enemy->getSound()->play("launch_loop");
 	return Leave;
 }
 
-void OnSuspensionAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnSuspensionAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

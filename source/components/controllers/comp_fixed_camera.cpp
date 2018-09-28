@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_fixed_camera.h"
-#include "components/comp_camera.h"
-#include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("fixed_camera", TCompFixedCamera);
 

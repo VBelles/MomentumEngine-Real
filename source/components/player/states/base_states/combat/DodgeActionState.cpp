@@ -1,11 +1,5 @@
 #include "mcv_platform.h"
-#include "components/player/comp_player_model.h"
 #include "DodgeActionState.h"
-#include "components/comp_camera.h"
-#include "components/controllers/comp_camera_player.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 
 
 DodgeActionState::DodgeActionState(StateManager* stateManager)
@@ -79,7 +73,7 @@ void DodgeActionState::onStateEnter(IActionState * lastState) {
 
 	getCameraPlayer()->moveCameraCloser(false);
 
-	EngineSound.emitEvent(SOUND_DODGE);
+	getSound()->play("dodge");
 }
 
 void DodgeActionState::onStateExit(IActionState * nextState) {

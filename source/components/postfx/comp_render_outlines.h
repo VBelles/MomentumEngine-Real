@@ -1,6 +1,5 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "ctes.h"
 
 class CTexture;

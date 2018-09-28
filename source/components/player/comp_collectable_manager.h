@@ -1,5 +1,4 @@
 #pragma once
-#include "components/comp_base.h"
 #include "components/comp_collectable.h"
 
 struct TMsgCollect;
@@ -16,7 +15,7 @@ private:
 	void onCollect(const TMsgCollect& msg);
 
 	float timeToRespawnCoin = 30.f;
-	int maxCoins = 48;
+	int maxCoins = 144;
 	int lifePiecesPerHeart = 1;
 
 public:
@@ -30,6 +29,7 @@ public:
 	void addCollectable(TCompCollectable::Type type, int amount);
 	int getNumberOfChrysalis();
 	int getNumberOfCoins();
+	int getMaxCoins();
 	int getNumberOfLifePieces();
 	bool spendCoins(int number);
 
