@@ -33,6 +33,7 @@ void TCompSound::debugInMenu() {
 
 void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 	assert(j.count("events"));
+	bool is3D = j.value("3D", true);
 	for (auto& jEvent : j["events"]) {
 		Sound sound;
 		std::string id = jEvent.value("id", "");
@@ -41,6 +42,7 @@ void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 		sound.following = jEvent.value("following", sound.following);
 		sound.multiInstancing = jEvent.value("multi_instancing", sound.multiInstancing);
 		sound.stopFadeOut = jEvent.value("stop_fade_out", sound.stopFadeOut);
+		sound.is3D = jEvent.value("3D", is3D);
 		events[id] = sound;
 	}
 }
@@ -49,6 +51,12 @@ void TCompSound::onAllScenesCreated(const TMsgAllScenesCreated&) {
 	for (auto& p : events) {
 		auto& sound = p.second;
 		EngineSound.getSystem()->getEvent(sound.path.c_str(), &sound.eventDescription);
+		bool is3D = false;
+		sound.eventDescription->is3D(&is3D);
+		if (sound.is3D != is3D) {
+			dbg("Warning: %s declared as %s but the component declares it as %s\n",
+				sound.path.c_str(), is3D ? "3D" : "not 3D", sound.is3D ? "3D" : "not 3D");
+		}
 	}
 }
 
@@ -90,9 +98,9 @@ void TCompSound::play(std::string event) {
 	}
 	Studio::EventInstance* eventInstance = nullptr;
 	sound.eventDescription->createInstance(&eventInstance);
-	
+
 	TCompTransform* transform = get<TCompTransform>();
-	if (transform) {
+	if (sound.is3D && transform) {
 		FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
 		eventInstance->set3DAttributes(&attributes);
 	}

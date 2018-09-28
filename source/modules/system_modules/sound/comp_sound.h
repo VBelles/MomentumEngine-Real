@@ -11,6 +11,7 @@ private:
 		bool stopFadeOut = false;
 		bool following = false;
 		bool multiInstancing = true;
+		bool is3D = true;
 	};
 	
 	std::map<std::string, Sound> events;
