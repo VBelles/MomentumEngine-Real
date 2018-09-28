@@ -14,7 +14,6 @@ void TCompActivateListener::debugInMenu() {
 }
 
 void TCompActivateListener::registerMsgs() {
-	DECL_MSG(TCompActivateListener, TMsgEntityCreated, onEntityCreated);
 	DECL_MSG(TCompActivateListener, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemActivated, onActivate);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemDeactivated, onDeactivate);
@@ -30,9 +29,6 @@ void TCompActivateListener::load(const json& j, TEntityParseContext& ctx) {
 	changeCollider = j.value("change_collider", changeCollider);
 	changePlatform = j.value("change_platform", changePlatform);
 	changeAnim = j.value("change_animation", changeAnim);
-}
-
-void TCompActivateListener::onEntityCreated(const TMsgEntityCreated & msg) {
 }
 
 void TCompActivateListener::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
