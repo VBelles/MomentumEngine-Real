@@ -9,9 +9,11 @@ namespace GUI {
 
 		CButton() = default;
 		void render() override;
+		TButtonParams* getButtonParams(EState state);
 		TImageParams* getImageParams() override;
 		TTextParams* getTextParams() override;
 		void setCurrentState(EState newState);
+		void computeLocal() override;
 
 	private:
 		TButtonParams _states[NUM_STATES];
