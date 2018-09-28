@@ -2,13 +2,10 @@
 
 #include <string>
 #include <vector>
-
 #include "components/ia/behavior_tree/nodes/BTNodeFactory.h"
 
 class IBehaviorTree;
-class IBehaviorTree;
 
-enum EBehaviorTreeNodeType { Random, Sequence, Priority, Action };
 enum EBehaviorTreeNodeEndAction { Stay, Leave };
 
 class IBehaviorTreeNode {

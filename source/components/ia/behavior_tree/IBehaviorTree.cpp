@@ -25,31 +25,6 @@ void IBehaviorTree::clear() {
 	actions.clear();
 }
 
-IBehaviorTreeNode* IBehaviorTree::createNode(std::string name, EBehaviorTreeNodeType type) {
-	if (findNode(name)) {
-		dbg("Error: node %s already exists\n", name.c_str());
-		return nullptr;
-	}
-	else {
-		IBehaviorTreeNode *behaviorTreeNode = nullptr;
-		if (type == Random) {
-			behaviorTreeNode = new CBehaviorTreeNodeRandom(name);
-		}
-		else if (type == Sequence) {
-			behaviorTreeNode = new CBehaviorTreeNodeSequence(name);
-		}
-		else if (type == Priority) {
-			behaviorTreeNode = new CBehaviorTreeNodePriority(name);
-		}
-		else if (type == Action) {
-			behaviorTreeNode = new CBehaviorTreeNodeAction(name);
-		}
-
-		tree[name] = behaviorTreeNode;
-		return behaviorTreeNode;
-	}
-}
-
 IBehaviorTreeNode* IBehaviorTree::createNode(std::string name, std::string type) {
 	if (findNode(name)) {
 		dbg("Error: node %s already exists\n", name.c_str());
@@ -72,24 +47,6 @@ IBehaviorTreeNode* IBehaviorTree::findNode(std::string name) {
 	return nullptr;
 }
 
-bool IBehaviorTree::falseCondition(float delta) {
-	return false;
-}
-bool IBehaviorTree::trueCondition(float delta) {
-	return true;
-}
-
-IBehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action) {
-	IBehaviorTreeNode *rootNode = createNode(rootName, type);
-	rootNode->setParent(nullptr);
-	root = rootNode;
-	if (condition != nullptr) addCondition(rootName, condition);
-	if (action != nullptr) addAction(rootName, action);
-
-	current = nullptr;
-	return rootNode;
-}
-
 IBehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, std::string type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action) {
 	IBehaviorTreeNode *rootNode = createNode(rootName, type);
 	rootNode->setParent(nullptr);
@@ -99,18 +56,6 @@ IBehaviorTreeNode* IBehaviorTree::createRoot(std::string rootName, std::string t
 
 	current = nullptr;
 	return rootNode;
-}
-
-IBehaviorTreeNode* IBehaviorTree::addChild(
-	std::string parentName, std::string childName, EBehaviorTreeNodeType type, IBehaviorTreeCondition* condition, IBehaviorTreeAction* action
-) {
-	IBehaviorTreeNode *parent = findNode(parentName);
-	IBehaviorTreeNode *child = createNode(childName, type);
-	parent->addChild(child);
-	child->setParent(parent);
-	if (condition != nullptr) addCondition(childName, condition);
-	if (action != nullptr) addAction(childName, action);
-	return child;
 }
 
 IBehaviorTreeNode* IBehaviorTree::addChild(
