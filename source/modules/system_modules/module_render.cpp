@@ -114,7 +114,7 @@ bool CModuleRender::start() {
 	if (!cb_slash.create(CB_SLASH))		   return false;
 
 
-	cb_globals.global_exposure_adjustment = 0.33f;
+	cb_globals.global_exposure_adjustment = 1.f;
 	cb_globals.global_ambient_adjustment = 0.5f;
 	cb_globals.global_shadow_adjustment = 0.1f;
 	cb_globals.global_world_time = 0.f;
@@ -123,7 +123,7 @@ bool CModuleRender::start() {
 	cb_globals.global_tone_mapping_mode = 1.f;
 	cb_globals.global_hue_adjustment = 1.f;
 	cb_globals.global_saturation_adjustment = 1.f;
-	cb_globals.global_brightness_adjustment = 0.f;
+	cb_globals.global_brightness_adjustment = -0.9f;
 	cb_globals.global_contrast_adjustment = 0.215f;
 
 	cb_light.activate();

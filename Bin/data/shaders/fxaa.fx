@@ -53,7 +53,11 @@ float4 PS(
     float4 resultB = resultA * 0.5 + 0.25 * (txAlbedo.Sample(samClampLinear, iTex0.xy - 0.5 * dir) + txAlbedo.Sample(samClampLinear, iTex0.xy + 0.5 * dir));
     float B_Lum = getLum(resultB.xyz);
 
-    if(B_Lum < min_Lum || B_Lum > max_Lum)
-        return resultA;
-    return resultB;
+    float4 res = resultB;
+    if(B_Lum < min_Lum || B_Lum > max_Lum){
+        res= resultA;
+    }
+
+    res = float4(HSVPostprocessing(res.xyz), 1);
+    return res;
 }
