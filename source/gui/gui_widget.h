@@ -23,7 +23,7 @@ namespace GUI {
 
 		void addEffect(CEffect* fx);
 
-		void computeLocal();
+		virtual void computeLocal();
 		virtual void computeAbsolute();
 
 		void updateAll(float delta);

@@ -36,6 +36,10 @@ void CButton::render() {
 	font.renderText(w, btParams._textParams._text, btParams._textParams._color);
 }
 
+TButtonParams* CButton::getButtonParams(EState state) {
+	return &_states[state];
+}
+
 TImageParams* CButton::getImageParams() {
 	return &_states[_currentState]._imageParams;
 }
@@ -46,4 +50,13 @@ TTextParams* CButton::getTextParams() {
 
 void CButton::setCurrentState(EState newState) {
 	_currentState = newState;
+	computeAbsolute();
+}
+
+void CButton::computeLocal() {
+	TButtonParams& btParams = _states[_currentState];
+	MAT44 tr = MAT44::CreateTranslation(btParams._params._position.x, btParams._params._position.y, 0.f);
+	MAT44 rot = MAT44::CreateFromYawPitchRoll(0.f, 0.f, btParams._params._rotation);
+	MAT44 sc = MAT44::CreateScale(btParams._params._scale.x, btParams._params._scale.y, 1.f);
+	_local = rot * sc * tr;
 }
