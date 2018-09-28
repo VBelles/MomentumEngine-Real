@@ -485,7 +485,7 @@
   {
     "entity":
     {
-      "name": "planta03_small",
+      "name": "planta03_big",
       "transform":
       {
         "pos": "-278.612 0.0 145.986",
@@ -494,10 +494,10 @@
       "render":
       [
         {
-          "mesh": "data/meshes/planta03_small.instanced_mesh",
+          "mesh": "data/meshes/planta03_big.instanced_mesh",
           "materials":
           [
-             "data/materials/planta03_small.material"
+             "data/materials/planta03_big.material"
           ]
         }
       ]
