@@ -206,6 +206,10 @@ CWidget* CParser::parseOption(const json& data) {
 	wdgt->_next->getParams()->_position.x = wdgt->_params._size.x - wdgt->_next->getParams()->_size.x;
 	wdgt->_text->getParams()->_position.x = wdgt->_next->getParams()->_position.x - wdgt->_text->getParams()->_size.x;
 	wdgt->_previous->getParams()->_position.x = wdgt->_text->getParams()->_position.x - wdgt->_previous->getParams()->_size.x;
+	for (int i = 0; i < CButton::EState::NUM_STATES; i++) {
+		wdgt->_next->getButtonParams(static_cast<CButton::EState>(i))->_params._position.x = wdgt->_params._size.x - wdgt->_next->getParams()->_size.x;
+		wdgt->_previous->getButtonParams(static_cast<CButton::EState>(i))->_params._position.x = wdgt->_text->getParams()->_position.x - wdgt->_previous->getParams()->_size.x;
+	}
 
 	for (auto& jOption : data["options"]) {
 		std::string text = jOption[0];

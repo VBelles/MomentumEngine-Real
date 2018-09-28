@@ -16,7 +16,7 @@ private:
 	std::map<std::string, Sound> events;
 
 	//Message callbacks
-	void onAllScenesCreated(const TMsgAllScenesCreated&);
+	void onEntityCreated(const TMsgEntityCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
 
 public:

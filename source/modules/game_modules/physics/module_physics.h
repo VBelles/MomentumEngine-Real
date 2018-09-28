@@ -38,8 +38,8 @@ private:
     std::set<CHandle> toRelease;
 
 	float tesellationMaxEdgeLength = 0.4f;
-	bool tesellation = true;
-	bool overlapRecoveryModule = false;
+	bool tesellation = true ;
+	bool overlapRecoveryModule = true;
 
     bool createPhysx();
     bool createScene();

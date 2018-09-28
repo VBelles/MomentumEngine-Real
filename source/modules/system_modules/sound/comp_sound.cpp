@@ -7,7 +7,7 @@ DECL_OBJ_MANAGER("sound", TCompSound);
 
 
 void TCompSound::registerMsgs() {
-	DECL_MSG(TCompSound, TMsgAllScenesCreated, onAllScenesCreated);
+	DECL_MSG(TCompSound, TMsgEntityCreated, onEntityCreated);
 	DECL_MSG(TCompSound, TMsgEntityDestroyed, onDestroyed);
 }
 
@@ -45,7 +45,7 @@ void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 	}
 }
 
-void TCompSound::onAllScenesCreated(const TMsgAllScenesCreated&) {
+void TCompSound::onEntityCreated(const TMsgEntityCreated&) {
 	for (auto& p : events) {
 		auto& sound = p.second;
 		EngineSound.getSystem()->getEvent(sound.path.c_str(), &sound.eventDescription);
