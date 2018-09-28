@@ -15,6 +15,7 @@ void TCompActivateListener::debugInMenu() {
 
 void TCompActivateListener::registerMsgs() {
 	DECL_MSG(TCompActivateListener, TMsgEntityCreated, onEntityCreated);
+	DECL_MSG(TCompActivateListener, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemActivated, onActivate);
 	DECL_MSG(TCompActivateListener, TMsgMechanismSystemDeactivated, onDeactivate);
 }
@@ -32,6 +33,9 @@ void TCompActivateListener::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompActivateListener::onEntityCreated(const TMsgEntityCreated & msg) {
+}
+
+void TCompActivateListener::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 	if (changeRender) {
 		TCompRender* render = get<TCompRender>();
 		if (render) {
@@ -69,7 +73,7 @@ void TCompActivateListener::onEntityCreated(const TMsgEntityCreated & msg) {
 	if (changeAnim) {
 		TCompRigidAnimsDirector* animsDirector = get<TCompRigidAnimsDirector>();
 		TCompRigidAnim* anim = get<TCompRigidAnim>();
-		if(animsDirector){
+		if (animsDirector) {
 			animsDirector->setIsMoving(!animationEnabledOnActive);
 		}
 		else if (anim) {
