@@ -2,7 +2,38 @@
   {
     "entity":
     {
-      "name": "nes_respawn005zonaRoja",
+      "name": "nes_respawn007trasEstatua",
+      "transform":
+      {
+        "pos": "-228.535 -11.58 -35.8732",
+        "rotation": "0.0 -0.674507 0.0 -0.738268"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_respawn007trasEstatua.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-198.911 38.7908 -44.2298",
+        "respawn_rotation": "0.0 -0.172203 0.0 -0.985062"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_respawn006zonaRoja",
       "transform":
       {
         "pos": "-172.241 -11.8814 67.0539",
@@ -10,7 +41,7 @@
       },
       "collider":
       {
-        "mesh_src": "data/meshes/nes_respawn005zonaRoja.col_mesh",
+        "mesh_src": "data/meshes/nes_respawn006zonaRoja.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
@@ -64,7 +95,7 @@
   {
     "entity":
     {
-      "name": "nes_respawn004torreTop",
+      "name": "nes_respawn005torreTop",
       "transform":
       {
         "pos": "152.614 105.216 -148.241",
@@ -72,7 +103,7 @@
       },
       "collider":
       {
-        "mesh_src": "data/meshes/nes_respawn004torreTop.col_mesh",
+        "mesh_src": "data/meshes/nes_respawn005torreTop.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",

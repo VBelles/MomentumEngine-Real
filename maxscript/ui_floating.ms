@@ -544,7 +544,7 @@ ButtonText: "Momentum"
 					button btnSetLoop "Set" width:24 align:#left
 					spinner  waitTime "Wait time" 	   type: #float   across:2 align:#right range:[0, 100.0, 1.0] --min, max, initial value
 					button btnSetWtime "Set" width:24 align:#left
-					spinner  movSpeed "Movement speed" type: #float   across:2 align:#right range:[-100.0, 100.0, 0.1]
+					spinner  movSpeed "Move speed" type: #float   across:2 align:#right range:[-100.0, 100.0, 0.1]
 					button btnSetMovSpd "Set" width:24 align:#left
 
 					button btnSetAll "SetAll"
