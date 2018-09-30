@@ -1831,7 +1831,8 @@ struct TSceneExporter (
 	),
 
 	fn exportInstancing obj instanceCat:"" = (
-		local instancesPath = project_path + instancePath + "instancing_" + instanceCat + ".json"
+		local maxName = getFilenameFile maxFileName
+		local instancesPath = project_path + instancePath + "instancing_" + instanceCat + "_" + maxName + ".json"
 
 		fss.begin instancesPath --Create file.
 			fss.beginObj()
