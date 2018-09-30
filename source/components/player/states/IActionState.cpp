@@ -42,9 +42,12 @@ void IActionState::onDead() {
 
 void IActionState::onDamage(const TMsgAttackHit& msg) {
 	getPlayerModel()->damage(msg.info.damage);
+	float damageVisionTime = 0;
 	if (msg.info.invulnerabilityTime > 0) {
+		damageVisionTime = msg.info.invulnerabilityTime;
 		getPlayerModel()->makeInvulnerable(msg.info.invulnerabilityTime);
 	}
+	getPlayerModel()->startDamageVision(damageVisionTime);
 	//Lo que venga luego ya lo procesa el estado en concreto
 }
 

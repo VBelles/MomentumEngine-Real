@@ -69,7 +69,7 @@ global movesData = attributes moveData (
 		checkbox autoMove "Automove" 	   type: #boolean align:#right
 		checkbox loops 	  "Loops" 		   type: #boolean align:#right
 		spinner  waitTime "Wait time" 	   type: #float   range:[0, 100.0, 1.0] --min, max, initial value
-		spinner  movSpeed "Movement speed" type: #float   range:[-100.0, 100.0, 0.1]
+		spinner  movSpeed "Move speed" type: #float   range:[-100.0, 100.0, 0.1]
 	)
 )
 

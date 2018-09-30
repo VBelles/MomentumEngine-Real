@@ -47,6 +47,11 @@ void TCompPlayerModel::debugInMenu() {
 		}
 		ImGui::TreePop();
 	}
+
+	ImGui::DragFloat("damageVisionDefaultTime", &damageVisionDefaultTime, 0.1f, 0.1f, 5.f);
+	ImGui::DragFloat("damageVisionPlummetTimePercentage", &damageVisionPlummetTimePercentage, 0.05f, 0.0f, 1.f);
+	ImGui::DragFloat("damageVisionStayTimePercentage", &damageVisionStayTimePercentage, 0.05f, 0.0f, 1.f);
+	ImGui::DragFloat("damageVisionLowestSaturationLevel", &damageVisionLowestSaturationLevel, 0.05f, -1.0f, damageVisionOriginalSaturationLevel);
 }
 
 void TCompPlayerModel::debugInMenu(PowerStats* powerStats, std::string name) {
@@ -249,6 +254,8 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 
 	});
 
+	damageVisionOriginalSaturationLevel = cb_globals.global_saturation_adjustment;
+
 	currentPowerStats = powerStats[0];
 
 	stateManager = new StateManager(CHandle(this));
@@ -298,6 +305,29 @@ void TCompPlayerModel::update(float delta) {
 	updateMovement(delta, deltaMovement);
 
 	stateManager->performStateChange();
+
+	if (damageVisionTimer.elapsed() < damageVisionTime) {
+		float plummetStayTime = damageVisionPlummetTime + damageVisionStayTime;
+
+		if (damageVisionTimer.elapsed() < damageVisionPlummetTime) {
+			cb_globals.global_saturation_adjustment =
+				lerp(damageVisionOriginalSaturationLevel,
+					damageVisionLowestSaturationLevel,
+					damageVisionTimer.elapsed() / damageVisionPlummetTime);
+		}
+		else if(damageVisionTimer.elapsed() < plummetStayTime){
+			cb_globals.global_saturation_adjustment = damageVisionLowestSaturationLevel;
+		}
+		else {
+			cb_globals.global_saturation_adjustment =
+				lerp(damageVisionLowestSaturationLevel,
+					damageVisionOriginalSaturationLevel,
+					(damageVisionTimer.elapsed() - plummetStayTime)/(damageVisionTime - plummetStayTime));
+		}
+	}
+	else {
+		cb_globals.global_saturation_adjustment = damageVisionOriginalSaturationLevel;
+	}
 
 	VEC3 position = PhysxUtils::toVec3(getController()->getFootPosition());
 	cb_globals.player_speed = position - cb_globals.player_position;
@@ -455,6 +485,20 @@ void TCompPlayerModel::makeInvulnerable(float time) {
 	invulnerableTime = time;
 	isInvulnerable = true;
 	invulnerableTimer.reset();
+}
+
+void TCompPlayerModel::startDamageVision(float time) {
+	damageVisionTimer.reset();
+	//if (time > 0) {
+	//	damageVisionTime = time;
+	//}
+	//else {
+	//	damageVisionTime = damageVisionDefaultTime;
+	//}
+	damageVisionTime = damageVisionDefaultTime;
+
+	damageVisionPlummetTime = damageVisionTime * damageVisionPlummetTimePercentage;
+	damageVisionStayTime = damageVisionTime * damageVisionStayTimePercentage;
 }
 
 void TCompPlayerModel::jumpButtonPressed() {
