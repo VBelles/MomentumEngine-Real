@@ -2,11 +2,23 @@
   {
     "entity":
     {
-      "name": "plataformeo_chrysalis000",
+      "name": "dani_chrysalis_001",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "120.742 74.8909 173.048",
+        "pos": "208.282 65.8826 -225.115",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_chrysalis002",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "103.938 97.8909 95.7183",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       }
     }
@@ -26,11 +38,11 @@
   {
     "entity":
     {
-      "name": "plataformeo_chrysalis002",
+      "name": "plataformeo_chrysalis000",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "103.938 97.8909 95.7183",
+        "pos": "120.742 74.8909 173.048",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       }
     }

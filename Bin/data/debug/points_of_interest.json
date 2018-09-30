@@ -94,5 +94,13 @@
     {
         "name": "Centro: Plaza",
         "pos": "31 1 -24"
+    },
+    {
+        "name": "Minibosque setas",
+        "pos": "294 -3.4 -143"
+    },
+    {
+        "name": "Isla detrás torre",
+        "pos": "223 13.1 -214"
     }
 ]
