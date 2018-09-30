@@ -15,11 +15,8 @@ bool CModuleInstancing::start() {
 
 void CModuleInstancing::loadInstances(const json& jInstances) {
 	for (auto& jTInstance : jInstances) {
-		//Load mesh
 		std::string meshName = jTInstance.value("mesh", "");
-		//auto instanceMesh = (CRenderMeshInstanced*)Resources.get(meshName)->as<CRenderMesh>();
 		//Load data
-		//std::vector<TInstance> instancesData;
 		for (auto& jData : jTInstance["data"]) {
 			TInstance instanceData;
 			VEC3 pos = jData.count("pos") ? loadVEC3(jData["pos"]) : VEC3::Zero;
@@ -28,14 +25,15 @@ void CModuleInstancing::loadInstances(const json& jInstances) {
 			instanceData.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
 			instancesDataMap[meshName].push_back(instanceData);
 		}
-		//instanceMesh->setInstancesData(instancesData.data(), instancesData.size(), sizeof(TInstance));
 	}
 }
 
 void CModuleInstancing::setAllInstancesData() {
-	for (std::map<std::string, std::vector<TInstance>>::iterator iter = instancesDataMap.begin(); iter != instancesDataMap.end();) {
-		auto instanceMesh = (CRenderMeshInstanced*)Resources.get((*iter).first)->as<CRenderMesh>();
-		instanceMesh->setInstancesData((*iter).second.data(), (*iter).second.size(), sizeof(TInstance));
+	for (auto& p : instancesDataMap) {
+		auto& instancesData = p.second;
+		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(p.first)->as<CRenderMesh>();
+		assert(instanceMesh);
+		instanceMesh->setInstancesData(instancesData.data(), instancesData.size(), sizeof(TInstance));
 	}
 }
 
