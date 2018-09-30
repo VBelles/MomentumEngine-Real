@@ -81,6 +81,16 @@ private:
 	CTimer invulnerableTimer;
 	float invulnerableTime = 1.f;
 
+	CTimer damageVisionTimer;
+	float damageVisionTime;
+	float damageVisionDefaultTime = 2.f;
+	float damageVisionPlummetTimePercentage = 0.1f;
+	float damageVisionPlummetTime;
+	float damageVisionStayTimePercentage = 0.7f;
+	float damageVisionStayTime;
+	float damageVisionOriginalSaturationLevel;
+	float damageVisionLowestSaturationLevel = 0.35f;
+
 	//TODO Esto aqu� es criminal, milestone 1 ftw 
 	int chrysalisTarget = 5;
 	bool showVictoryDialog = false;
@@ -196,6 +206,7 @@ public:
 
 	void damage(float damage);
 	void makeInvulnerable(float time);
+	void startDamageVision(float time);
 	void resetHp() { maxHp = PLAYER_MAX_HP; setHp(maxHp); }
 	float getHp() { return hp; }
 	float getMaxHp() { return maxHp; }
