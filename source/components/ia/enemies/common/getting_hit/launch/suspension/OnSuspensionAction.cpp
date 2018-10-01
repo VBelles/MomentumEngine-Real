@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "mcv_platform.h"
 #include "OnSuspensionAction.h"
 #include "components/ia/enemies/Enemy.h"
@@ -16,6 +17,7 @@ OnSuspensionAction::OnSuspensionAction(Enemy* enemy, std::string animationStart,
 }
 
 int OnSuspensionAction::execAction(float delta) {
+	enemy->suspensionDuration = std::max(enemy->suspensionDuration, enemy->getSkeleton()->getAnimationDuration(animationStart));
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
 	enemy->getSound()->play("launch_loop");
