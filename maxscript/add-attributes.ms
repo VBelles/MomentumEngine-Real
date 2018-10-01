@@ -41,6 +41,10 @@ global rotationsData = attributes rotateData (
 		wait 	 type: #float   ui:waitDur 	default:2
 		grup	 type: #integer ui:grup 	default:0.0
 		waitT	 type: #float   ui:waitT 	default:0.0
+
+		dir 	 type: #integer ui:plDir 	default:0
+		--https://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_461915FA_31A2_49CE_84AF_2544B782ACA3_htm
+		slot 	 type: #stringTab ui:slt tabSize:1
 	)
 	rollout params "Rotation Data" (
 		label lab1 "Rotation:"
@@ -54,6 +58,30 @@ global rotationsData = attributes rotateData (
 		spinner waitDur  "Wait duration"   type: #float
 		spinner grup     "Platform group"  type: #integer range:[0, 1000, 0]
 		spinner waitT    "Group wait time" type: #float   range:[0, 1000, 0]
+
+		spinner plDir    "Platf director"  type: #integer range:[0, 100, 0]
+		multiListBox slt "Platf dir slot"  items: #("1", "2", "3", "4", "5") selection:#(1)
+	)
+)
+
+-- def #platfDirData
+global platfDirsData = attributes platfDirData (
+	parameters main rollout:params (
+		dirID   type: #integer ui:direcID 	default:1
+		sl1wait type: #float   ui:sl1waitT 	default:0.0
+		sl2wait type: #float   ui:sl2waitT 	default:0.0
+		sl3wait type: #float   ui:sl3waitT 	default:0.0
+		sl4wait type: #float   ui:sl4waitT 	default:0.0
+		sl5wait type: #float   ui:sl5waitT 	default:0.0
+	)
+	rollout params "Platf director Data" (
+		spinner direcID "Director ID" type: #integer range:[1, 100, 1] --min, max, initial value
+		label lab1 "Wait time:"
+		spinner sl1waitT "Slot 1" type: #float range:[0.0, 100.0, 0.0] --min, max, initial value
+		spinner sl2waitT "Slot 2" type: #float range:[0.0, 100.0, 0.0]
+		spinner sl3waitT "Slot 3" type: #float range:[0.0, 100.0, 0.0]
+		spinner sl4waitT "Slot 4" type: #float range:[0.0, 100.0, 0.0]
+		spinner sl5waitT "Slot 5" type: #float range:[0.0, 100.0, 0.0]
 	)
 )
 
@@ -262,6 +290,7 @@ struct TAttributeManager (
 			--a[#pwrUp] returns undefined, I guess because it's a dropdownlist?
 			--so pick this manually.
 			if attribute == #pwrUp then return obj.collData.pwrUp
+			if attribute == #pwrUp then return obj.collData.pwrUp
 
 			if a[attribute] != undefined then return a[attribute].value
 		)
@@ -290,6 +319,7 @@ struct TAttributeManager (
 				"mechData":     ( attrDef = mechsData	  )
 				"mechTrigData": ( attrDef = mechsTrigData )
 				"moveData":     ( attrDef = movesData	  )
+				"platfDirData": ( attrDef = platfDirsData )
 				"rotateData":   ( attrDef = rotationsData )
 				"uniqueData":   ( attrDef = uniquesData   )
 				default: ( format "ERROR: invalid attribute definition for object %.\n" obj.name )

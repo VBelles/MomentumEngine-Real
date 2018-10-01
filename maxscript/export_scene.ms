@@ -23,7 +23,7 @@ global toAddSpikes		= #()
 
 global resources 		= #()
 
-global platfDirector	= #(#())
+global platfDirector	= #(#()) --#(group1, group2, etc.) | group1 = #("name1", "name2", etc.)
 
 global pureOnSuffix = "pureON"
 global pureSuffix	= "pure"
@@ -522,6 +522,12 @@ struct TSceneExporter (
 	fn isDummyBreak obj = (
 		if classOf obj == Dummy and
 		(stricmp obj.name "break") == 0 then return true
+		else return false
+	),
+
+	fn isDummyMove obj = (
+		if classOf obj == Dummy and
+		obj.layer.name == "movables" then return true
 		else return false
 	),
 
@@ -1765,6 +1771,14 @@ struct TSceneExporter (
 
 	-- --ENTITY: DEFAULT (exports editable mesh)--------------------------------
 	fn exportEntityDefault obj nValidObjs = (
+		if isDummyMove obj then (
+			if attrManager.hasAttribute obj "rotateData" then (
+				format "has rotate data\n"
+				local slots = attrManager.getAttrValue obj "rotateData" #slt --DEBUG
+				if slots != undefined then format "%\n" (slots as string) --DEBUG
+			)
+		)
+
 		--We could copy obj and turn it into Editable_mesh, but would lose children.
 		--TODO: Copy also children and avoid the problem?
 		if classOf obj != Editable_mesh then (
@@ -2428,7 +2442,10 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
+TODO: Que haya un platform director por cada grupo de plataformas que lo usen.
 
+NOTA: Si una capa pasa a estar vacía, no se exporta pero no se borra el
+	  archivo anterior, así que se queda basura.
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos
 	  se tienen los knots por si hacen falta.
