@@ -2,6 +2,17 @@
   {
     "entity":
     {
+      "name": "dani_coin_119",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "195.922 22.2005 -232.403"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_coin_118",
       "prefab": "data/prefabs/coin.prefab",
       "transform":

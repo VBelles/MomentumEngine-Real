@@ -2,6 +2,13 @@
   "unique_coins":
   [
     {
+      "id": "dani_coin_119",
+      "done": false,
+      "position": "195.922 22.2005 -232.403",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
       "id": "dani_coin_118",
       "done": false,
       "position": "238.35 -23.0721 -24.3647",

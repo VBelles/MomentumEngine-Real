@@ -2,11 +2,23 @@
   {
     "entity":
     {
+      "name": "dani_air_016",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "196.044 35.5739 -232.676",
+        "lookat": "-1.0 35.5739 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_air_015",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "182.019 27.1191 -171.591",
+        "pos": "182.876 27.1191 -172.216",
         "lookat": "-1.0 27.1191 -1.0"
       }
     }
@@ -114,7 +126,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "272.666 -7.97237 -178.498",
+        "pos": "273.336 -7.97237 -177.782",
         "lookat": "-1.0 -7.97237 -1.0"
       }
     }
@@ -198,7 +210,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "159.444 58.8909 173.677",
+        "pos": "160.567 58.8909 173.608",
         "lookat": "-1.0 58.8909 -1.0"
       }
     }
@@ -210,7 +222,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "144.501 58.8909 174.985",
+        "pos": "145.624 58.8909 174.916",
         "lookat": "-1.0 58.8909 -1.0"
       }
     }
@@ -222,7 +234,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "129.558 58.8909 176.292",
+        "pos": "130.681 58.8909 176.223",
         "lookat": "-1.0 58.8909 -1.0"
       }
     }
