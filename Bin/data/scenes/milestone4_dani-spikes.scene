@@ -2,6 +2,80 @@
   {
     "entity":
     {
+      "name": "dani_spikes_sueltos_005_spikes",
+      "transform":
+      {
+        "pos": "198.441 54.9961 -233.351",
+        "rotation": "0.183013 0.183013 -0.683013 -0.683013"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_spikes_sueltos_004_spikes",
+      "transform":
+      {
+        "pos": "198.441 60.8121 -233.351",
+        "rotation": "0.183013 0.183013 -0.683013 -0.683013"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_spikes_sueltos_003_spikes",
       "transform":
       {

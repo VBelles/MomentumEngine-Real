@@ -2,10 +2,108 @@
   {
     "entity":
     {
+      "name": "dani_columna_piezas_grande_basa_001",
+      "transform":
+      {
+        "pos": "220.971 15.5382 -215.816",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_columna_piezas_grande_basa_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_columna_piezas_grande_fuste_1_001",
+      "transform":
+      {
+        "pos": "219.268 12.3714 -227.936",
+        "rotation": "-0.0149187 -0.938798 0.341695 -0.0409889"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_columna_piezas_grande_fuste_1_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_columna_piezas_grande_fuste_0_001",
+      "transform":
+      {
+        "pos": "221.049 21.2717 -215.801",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_columna_piezas_grande_fuste_0_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_muro_vertical_011",
+      "transform":
+      {
+        "pos": "220.334 78.5512 -218.378",
+        "rotation": "-0.683013 0.183013 -0.183013 -0.683013"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_muro_vertical_011.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_muro_vertical_col_011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_muro_vertical_010",
       "transform":
       {
-        "pos": "191.915 55.8724 -233.62",
+        "pos": "193.711 55.8724 -236.936",
         "rotation": "0.258819 0.0 -0.965926 0.0"
       },
       "render":
@@ -37,7 +135,7 @@
       "name": "dani_muro_vertical_009",
       "transform":
       {
-        "pos": "199.306 55.8741 -238.291",
+        "pos": "201.102 55.8741 -241.606",
         "rotation": "-0.866026 0.0 0.5 0.0"
       },
       "render":
@@ -69,7 +167,7 @@
       "name": "dani_muro_vertical_008",
       "transform":
       {
-        "pos": "198.927 55.8108 -229.572",
+        "pos": "200.724 55.8108 -232.887",
         "rotation": "0.258819 0.0 -0.965926 0.0"
       },
       "render":
@@ -197,7 +295,7 @@
       "name": "dani_muro_vertical_007",
       "transform":
       {
-        "pos": "199.306 22.0007 -238.291",
+        "pos": "201.102 22.0007 -241.606",
         "rotation": "-0.866026 0.0 0.5 0.0"
       },
       "render":
@@ -229,7 +327,7 @@
       "name": "dani_muro_vertical_006",
       "transform":
       {
-        "pos": "191.915 22.0007 -233.62",
+        "pos": "193.711 22.0007 -236.936",
         "rotation": "0.258819 0.0 -0.965926 0.0"
       },
       "render":
@@ -261,7 +359,7 @@
       "name": "dani_muro_vertical_005",
       "transform":
       {
-        "pos": "198.927 22.0007 -229.572",
+        "pos": "200.724 22.0007 -232.887",
         "rotation": "0.258819 0.0 -0.965926 0.0"
       },
       "render":

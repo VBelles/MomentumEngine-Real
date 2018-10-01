@@ -2,12 +2,60 @@
   {
     "entity":
     {
+      "name": "dani_melee_012",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "207.888 13.1514 -214.622",
+        "lookat": "-1.0 13.1514 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_019",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "196.655 57.8215 -233.822",
+        "lookat": "-1.0 57.8215 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_018",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "196.655 45.8621 -233.822",
+        "lookat": "-1.0 45.8621 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_017",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "196.655 35.3988 -233.822",
+        "lookat": "-1.0 35.3988 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_air_016",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "196.044 35.5739 -232.676",
-        "lookat": "-1.0 35.5739 -1.0"
+        "pos": "196.655 23.4936 -233.822",
+        "lookat": "-1.0 23.4936 -1.0"
       }
     }
   },
@@ -66,7 +114,7 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "214.986 12.8354 -220.527",
+        "pos": "198.514 12.8354 -220.575",
         "lookat": "-1.0 12.8354 -1.0"
       }
     }

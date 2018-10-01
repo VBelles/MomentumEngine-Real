@@ -19,6 +19,7 @@ void HardKnockbackAirActionState::update (float delta) {
 void HardKnockbackAirActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	*velocityVector = VEC3::Zero;
+	getPlayerModel()->resetGravity();
 	stateManager->changeConcurrentState(Free);
 	getSkeleton()->blendCycle(animationLoop, 0.2f, 0.2f);
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);

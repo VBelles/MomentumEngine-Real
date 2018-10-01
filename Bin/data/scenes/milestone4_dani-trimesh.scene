@@ -2,6 +2,57 @@
   {
     "entity":
     {
+      "name": "dani_columna_piezas_grande_fuste_1_col_001",
+      "transform":
+      {
+        "pos": "219.193 12.4981 -227.904",
+        "rotation": "-0.0149187 -0.938798 0.341695 -0.0409889"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_columna_piezas_grande_fuste_1_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_columna_piezas_grande_fuste_0_col_001",
+      "transform":
+      {
+        "pos": "220.971 21.3263 -215.854",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_columna_piezas_grande_fuste_0_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_columna_piezas_grande_basa_col_001",
+      "transform":
+      {
+        "pos": "220.913 15.5403 -215.828",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_columna_piezas_grande_basa_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "trozo_terreno_6_col_001",
       "transform":
       {
