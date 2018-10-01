@@ -1,0 +1,17 @@
+[
+	{
+		"name": "dialog_box",
+		"type": "dialog",
+		"size": "1400 284",
+		"position": "260 700",
+		"font_color": "1 1 1 1",
+		"font_size": 16,
+		"text": "sample text",
+		"halign": "left",
+		"valign": "top",
+		"color": "1 1 1 1",
+		"minUV": "0 0",
+		"maxUV": "1 1",
+		"texture": "data/textures/gui/hud/dialog_box.dds"
+	}
+]
