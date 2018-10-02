@@ -12,6 +12,7 @@
 		"color": "1 1 1 1",
 		"minUV": "0 0",
 		"maxUV": "1 1",
-		"texture": "data/textures/gui/hud/dialog_box.dds"
+		"texture": "data/textures/gui/hud/dialog_box.dds",
+		"padding": "10 85 15 15"
 	}
 ]

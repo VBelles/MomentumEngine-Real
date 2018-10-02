@@ -279,6 +279,8 @@ CWidget* CParser::parseDialog(const json& data) {
 	parseImageParams(wdgt->_imageParams, data);
 	parseTextParams(wdgt->_textParams, data);
 
+	wdgt->padding = loadVEC4(data.value("padding", "0 0 0 0"));
+
 	return wdgt;
 }
 

@@ -17,8 +17,7 @@ namespace GUI {
 
 	void CDialogController::showDialog(const std::string& text, const int& fontSize) {
 		CDialog* dialogWidget = (CDialog*)EngineGUI.getWidget(widgetName);
-		dialogWidget->getTextParams()->_text = text;
-		dialogWidget->getTextParams()->_size = fontSize;
+		dialogWidget->setText(text, fontSize);
 		EngineGUI.activateWidget(widgetName);
 	}
 
