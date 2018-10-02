@@ -16,7 +16,7 @@ namespace Particles {
 		};
 
 		struct TEmission {
-			enum EType { Point = 0, Line, Square, Box, Sphere, Circle, Cylinder, End };
+			enum EType { Point, Line, Square, Box, Sphere, Circle, Cylinder };
 
 			EType type = Point;				// type of emissor
 			float interval = 0.f;			// generation interval
@@ -47,7 +47,7 @@ namespace Particles {
 		};
 
 		struct TRender {
-			enum EType { Billboard = 0, HorizontalBillboard, StretchedBillboard, Mesh, End };
+			enum EType { Billboard, HorizontalBillboard, StretchedBillboard, Mesh };
 
 			EType type = Billboard;							// particle type
 			const CTexture* texture = nullptr;				// particle texture

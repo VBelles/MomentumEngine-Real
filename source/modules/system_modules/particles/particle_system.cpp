@@ -36,7 +36,7 @@ void Particles::TCoreSystem::debugInMenu() {
 		ImGui::Text("Emission");
 		std::string types[] = { "Point", "Line", "Square", "Box", "Sphere", "Circle", "Cylinder" };
 		if (ImGui::BeginCombo("Type", types[emission.type].c_str())) {
-			for (int i = 0; i < TEmission::EType::End; i++) {
+			for (int i = 0; i < ARRAYSIZE(types); i++) {
 				if (ImGui::Selectable(types[i].c_str(), emission.type == i)) {
 					emission.type = TEmission::EType(i);
 				}
@@ -79,7 +79,7 @@ void Particles::TCoreSystem::debugInMenu() {
 		ImGui::Text("Render");
 		std::string types[] = { "Billboard", "HorizontalBillboard", "StretchedBillboard", "Mesh" };
 		if (ImGui::BeginCombo("Type", types[render.type].c_str())) {
-			for (int i = 0; i < TRender::EType::End; i++) {
+			for (int i = 0; i < ARRAYSIZE(types); i++) {
 				if (ImGui::Selectable(types[i].c_str(), render.type == i)) {
 					render.type = TRender::EType(i);
 				}
@@ -206,13 +206,16 @@ namespace Particles {
 					p.position += p.velocity * delta;
 					p.position += kWindVelocity * _core->movement.wind * delta;
 				}
-				if (!_core->render.type != TCoreSystem::TRender::Mesh) { //Billboard particle
-					p.rotation += _core->movement.spin * delta;
-				}
-				else { //Mesh particle
+
+				if ( _core->render.type == TCoreSystem::TRender::Mesh) { //Mesh particle
 					QUAT quat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, _core->movement.spin * delta);
 					p.rotationQuat = p.rotationQuat * quat;
+					dbg("rotating\n");
 				}
+				else { //Billboard particle
+					p.rotation += _core->movement.spin * delta;
+				}
+
 				if (_core->movement.ground) {
 					p.position.y = std::max(0.f, p.position.y);
 				}
