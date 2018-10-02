@@ -2,7 +2,6 @@
 #include "module_gui.h"
 #include "render/render_objects.h"
 #include "gui/gui_parser.h"
-#include "gui/controllers/gui_main_menu_controller.h"
 #include <limits>
 
 using namespace GUI;
@@ -29,6 +28,8 @@ bool CModuleGUI::start() {
 		font.load(it.value());
 		fonts[font.getSize()] = font;
 	}
+
+	dialogController = new CDialogController();
 
 	return true;
 }
@@ -209,7 +210,7 @@ void CModuleGUI::renderText(const MAT44& world, const CTexture* texture, const V
 	_quadMesh->activateAndRender();
 }
 
-GUI::CFont& CModuleGUI::getFont(int size) {
+CFont& CModuleGUI::getFont(int size) {
 	assert(fonts.size() >= 1);
 	auto it = fonts.find(size);
 	if (it != fonts.end()) {
@@ -226,4 +227,12 @@ GUI::CFont& CModuleGUI::getFont(int size) {
 
 		return fonts[index];
 	}
+}
+
+void CModuleGUI::showDialog(const std::string& text, const int& fontSize) {
+	dialogController->showDialog(text, fontSize);
+}
+
+void CModuleGUI::hideDialog() {
+	dialogController->hideDialog();
 }

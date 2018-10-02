@@ -50,5 +50,6 @@ namespace GUI {
 		int getSize();
 		int getHeight();
 		int getWidth(std::string text);
+		int getHeight(std::string text);
 	};
 }
