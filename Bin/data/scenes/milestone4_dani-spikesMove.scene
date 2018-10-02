@@ -5,7 +5,7 @@
       "name": "Plataformeo_hex_col_005_spikes",
       "transform":
       {
-        "pos": "166.922 58.1417 173.063",
+        "pos": "168.044 58.1417 172.994",
         "rotation": "0.67559 0.0 -0.737277 0.0"
       },
       "hierarchy":
@@ -49,7 +49,7 @@
       "name": "Plataformeo_hex_col_004_spikes",
       "transform":
       {
-        "pos": "160.026 57.9047 180.315",
+        "pos": "161.149 57.9047 180.246",
         "rotation": "0.0 0.461749 0.0 -0.887011"
       },
       "hierarchy":
@@ -93,7 +93,7 @@
       "name": "Plataformeo_hex_col_003_spikes",
       "transform":
       {
-        "pos": "151.979 58.1417 174.37",
+        "pos": "153.102 58.1417 174.301",
         "rotation": "0.67559 0.0 -0.737277 0.0"
       },
       "hierarchy":
@@ -137,7 +137,7 @@
       "name": "Plataformeo_hex_col_002_spikes",
       "transform":
       {
-        "pos": "145.039 57.9047 181.124",
+        "pos": "146.162 57.9047 181.055",
         "rotation": "0.0 0.461749 0.0 -0.887011"
       },
       "hierarchy":
@@ -181,7 +181,7 @@
       "name": "Plataformeo_hex_col_001_spikes",
       "transform":
       {
-        "pos": "137.036 58.1417 175.677",
+        "pos": "138.159 58.1417 175.608",
         "rotation": "0.67559 0.0 -0.737277 0.0"
       },
       "hierarchy":
@@ -225,7 +225,7 @@
       "name": "Plataformeo_hex_col_000_spikes",
       "transform":
       {
-        "pos": "130.096 57.9047 182.431",
+        "pos": "131.219 57.9047 182.362",
         "rotation": "0.0 0.461749 0.0 -0.887011"
       },
       "hierarchy":
