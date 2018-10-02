@@ -1,0 +1,185 @@
+[
+  {
+    "entity":
+    {
+      "name": "dani_camera_002",
+      "transform":
+      {
+        "pos": "278.618 34.9891 -23.9434",
+        "lookat": "286.927 25.8624 -21.5896"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_camera_trigger_002",
+      "transform":
+      {
+        "pos": "260.25 -8.69379 -29.7534",
+        "rotation": "0.0 -0.608762 0.0 -0.793353"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_camera_trigger_002.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "dani_camera_002",
+        "suggestYaw": false,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 10,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "0 2"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_camera_001",
+      "transform":
+      {
+        "pos": "208.346 92.4187 -247.215",
+        "lookat": "214.969 79.1957 -243.066"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_camera_trigger_001",
+      "transform":
+      {
+        "pos": "216.965 68.5506 -239.746",
+        "rotation": "0.0 -0.5 0.0 -0.866025"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_camera_trigger_001.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "dani_camera_001",
+        "suggestYaw": true,
+        "hasOppositeYaw": true,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 6,
+        "changeCenteringCamera": false,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "2 4"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_camera_000",
+      "transform":
+      {
+        "pos": "190.91 27.2353 -224.088",
+        "lookat": "195.49 22.9055 -231.852"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_camera_trigger_000",
+      "transform":
+      {
+        "pos": "197.906 12.1122 -236.247",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_camera_trigger_000.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "dani_camera_000",
+        "suggestYaw": true,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 10,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "7 4"
+      }
+    }
+  }
+]

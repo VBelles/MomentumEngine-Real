@@ -65,7 +65,7 @@ void VS_Vegetation(
 
   // Movimiento del viento
   //iPos.x += sin(windSpeed * unit_rand_val * global_world_time ) * range * iPos.y;
-  if(iPos.y > 0){
+  if(iPos.y > 0.0){
     float windSpeed =  1.5;
     float range =  0.2;
     iPos.x += sin(windSpeed * unit_rand_val * global_world_time ) * range * iPos.y;
@@ -73,12 +73,12 @@ void VS_Vegetation(
   
   float4 world_pos = mul(iPos, instance_world);
 
-  if(iPos.y > 0 && player_speed_length > 0 && distance(world_pos.xyz, player_position) < 0.6){ // Move when player is near
-    float windSpeed =  10;
+  /*if(iPos.y > 0.0 && distance(world_pos.xyz, player_position) < 0.6){ // Move when player is near
+    float windSpeed = 10.0;
     float range =  1.2;
     iPos.x += sin(windSpeed * unit_rand_val * global_world_time ) * range * iPos.y;
     world_pos = mul(iPos, instance_world);
-  }
+  }*/
   
   oPos = mul(world_pos, camera_view_proj);
   
