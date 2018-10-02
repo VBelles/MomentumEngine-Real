@@ -2,6 +2,162 @@
   {
     "entity":
     {
+      "name": "dani_trozo_terreno_1_001",
+      "transform":
+      {
+        "pos": "479.348 -6.81821 530.741",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_trozo_terreno_1_001.mesh",
+          "materials":
+          [
+            "data/materials/trozo_1_baja.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.837625,
+        "travel_wait_time": 1.0,
+        "speed": 0.004,
+        "knots":
+        [
+           "426.483 10.6157 444.625",
+           "529.631 10.6157 444.625",
+           "529.631 10.6157 444.625",
+           "426.483 10.6157 341.476",
+           "323.334 10.6157 444.625",
+           "426.483 10.6157 547.773",
+           "426.483 10.6157 547.773"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_trozo_terreno_5_000",
+      "transform":
+      {
+        "pos": "476.864 78.728 -400.444",
+        "rotation": "0.0 -0.965926 0.0 0.258819"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_trozo_terreno_5_000.mesh",
+          "materials":
+          [
+            "data/materials/trozo_5_baja.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.856457,
+        "travel_wait_time": 1.0,
+        "speed": 0.005,
+        "knots":
+        [
+           "442.746 86.4765 -443.607",
+           "506.249 86.4765 -443.607",
+           "506.249 86.4765 -443.607",
+           "442.746 86.4765 -507.109",
+           "379.243 86.4765 -443.607",
+           "442.746 86.4765 -380.104",
+           "442.746 86.4765 -380.104"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_trozo_terreno_3_002",
+      "transform":
+      {
+        "pos": "-520.267 31.4112 266.564",
+        "rotation": "0.0 0.608761 0.0 -0.793353"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_trozo_terreno_3_002.mesh",
+          "materials":
+          [
+            "data/materials/trozo_3_baja.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.600492,
+        "travel_wait_time": 1.0,
+        "speed": 0.003,
+        "knots":
+        [
+           "-476.865 35.3049 234.825",
+           "-419.266 35.3049 234.825",
+           "-419.266 35.3049 234.825",
+           "-476.865 35.3049 177.226",
+           "-534.464 35.3049 234.825",
+           "-476.865 35.3049 292.424",
+           "-476.865 35.3049 292.424"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "Plataformeo_hex_005",
       "transform":
       {
