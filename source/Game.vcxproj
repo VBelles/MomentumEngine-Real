@@ -382,6 +382,7 @@
     <ClCompile Include="modules\game_modules\physics\basic_controller_filter_callback.cpp" />
     <ClCompile Include="modules\system_modules\module_entities.cpp" />
     <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
+    <ClCompile Include="modules\system_modules\sound\comp_music.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
     <ClCompile Include="modules\system_modules\sound\module_sound.cpp" />
@@ -759,6 +760,7 @@
     <ClInclude Include="modules\game_modules\game\module_game.h" />
     <ClInclude Include="modules\game_modules\physics\basic_controller_filter_callback.h" />
     <ClInclude Include="modules\system_modules\particles\module_particles.h" />
+    <ClInclude Include="modules\system_modules\sound\comp_music.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
     <ClInclude Include="modules\system_modules\sound\module_sound.h" />
