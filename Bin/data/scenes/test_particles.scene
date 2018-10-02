@@ -9,18 +9,62 @@
 				]
 			},
 			"transform": {
-				"pos": " 0 10000 0"
+				"pos": "0 10000 0"
 			}
 		}
 	},
 	{
 		"entity": {
-			"name": "test_fog",
+			"name": "fog_origin",
 			"particles": {
 				"core": "data/particles/fog.particles"
 			},
 			"transform": {
-				"pos": " 0 0 0"
+				"pos": "0 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "fog_mushrooms",
+			"particles": {
+				"core": "data/particles/fog.particles"
+			},
+			"transform": {
+				"pos": "264 -21 -49"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "fog_origin_2",
+			"particles": {
+				"core": "data/particles/fog.particles"
+			},
+			"transform": {
+				"pos": "21 -3 -48"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "fog_pasillo_1",
+			"particles": {
+				"core": "data/particles/fog.particles"
+			},
+			"transform": {
+				"pos": "67 -7 -173"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "fog_fallen_tower",
+			"particles": {
+				"core": "data/particles/fog.particles"
+			},
+			"transform": {
+				"pos": "3.5 -8 -164"
 			}
 		}
 	}

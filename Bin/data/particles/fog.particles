@@ -24,7 +24,7 @@
   },
   "render" : {
       "texture" : "data/textures/particles/fog.dds",
-      "additive": true
+      "additive": false
   },
   "size": {
     "scale": 5.0,
