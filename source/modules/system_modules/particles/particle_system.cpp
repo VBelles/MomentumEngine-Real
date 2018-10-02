@@ -203,7 +203,7 @@ namespace Particles {
 					p.position += p.velocity * delta;
 					p.position += kWindVelocity * _core->movement.wind * delta;
 				}
-				if (!_core->render.mesh) { //Billboard particle
+				if (!_core->render.type != TCoreSystem::TRender::Mesh) { //Billboard particle
 					p.rotation += _core->movement.spin * delta;
 				}
 				else { //Mesh particle

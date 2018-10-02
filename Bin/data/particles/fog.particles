@@ -17,7 +17,7 @@
     "velocity": 0.0,
     "velocity_variation": 0,
     "acceleration": 0.0,
-    "spin": 30.0,
+    "spin": 10.0,
     "wind": 0.02,
     "gravity": 0,
     "initial_random_rotation": true
