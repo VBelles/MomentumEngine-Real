@@ -5,7 +5,7 @@
       "name": "dani_camera_002",
       "transform":
       {
-        "pos": "272.68 34.9891 -24.1752",
+        "pos": "278.618 34.9891 -23.9434",
         "lookat": "286.927 25.8624 -21.5896"
       },
       "camera":
@@ -53,10 +53,10 @@
         "hasOppositeYaw": false,
         "suggestPitch": true,
         "forceDistance": true,
-        "distanceToCamera": 8,
+        "distanceToCamera": 10,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "0 4"
+        "centeringCameraSpeed": "0 2"
       }
     }
   },
@@ -115,7 +115,7 @@
         "suggestPitch": true,
         "forceDistance": true,
         "distanceToCamera": 6,
-        "changeCenteringCamera": true,
+        "changeCenteringCamera": false,
         "forcePositionOnEnter": true,
         "centeringCameraSpeed": "2 4"
       }
