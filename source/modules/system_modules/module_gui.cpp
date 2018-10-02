@@ -45,6 +45,7 @@ bool CModuleGUI::stop() {
 }
 
 void CModuleGUI::update(float delta) {
+	dialogController->update(delta);
 	for (auto& wdgt : _activeWidgets) {
 		wdgt->updateAll(delta);
 	}

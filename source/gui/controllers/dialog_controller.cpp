@@ -13,7 +13,17 @@ namespace GUI {
 		EngineGUI.unregisterWidget(widgetName);
 	}
 
-	void CDialogController::update(float delta) {}
+	void CDialogController::update(float delta) {
+		if (EngineInput["menu_accept"].getsPressed()) {
+			CDialog* dialogWidget = (CDialog*)EngineGUI.getWidget(widgetName);
+			if (dialogWidget->getCurrentFragment() < dialogWidget->getNumFragments() - 1) {
+				dialogWidget->showNext();
+			}
+			else {
+				hideDialog();
+			}
+		}
+	}
 
 	void CDialogController::showDialog(const std::string& text, const int& fontSize) {
 		CDialog* dialogWidget = (CDialog*)EngineGUI.getWidget(widgetName);
