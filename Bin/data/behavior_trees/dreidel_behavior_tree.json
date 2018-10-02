@@ -565,9 +565,6 @@
                           "type": "OnAttackAction",
                           "animation": "enemigo_bola_ataquelento",
                           "attack": "area_attack",
-                          "particles":[
-                            "data/particles/slash/slash_mesh.particles"
-                          ],
                           "particles_offset": "0 0.4 0"
                         }
                       },
