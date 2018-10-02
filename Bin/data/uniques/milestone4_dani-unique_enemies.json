@@ -116,35 +116,35 @@
     {
       "id": "Plataformeo_kippah016",
       "done": false,
-      "position": "71.0634 93.3909 126.705",
+      "position": "73.1923 73.4533 153.966",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah015",
       "done": false,
-      "position": "74.7244 88.8909 128.393",
+      "position": "76.2688 68.9533 151.361",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah014",
       "done": false,
-      "position": "75.596 88.8909 138.355",
+      "position": "85.6657 68.9533 154.781",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah013",
       "done": false,
-      "position": "67.0037 84.8909 149.145",
+      "position": "91.8134 64.9533 167.129",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah012",
       "done": false,
-      "position": "74.612 72.8909 161.529",
+      "position": "106.253 52.9533 165.467",
       "level": "level00",
       "type": "kippah"
     },
@@ -172,35 +172,35 @@
     {
       "id": "Plataformeo_kippah008",
       "done": false,
-      "position": "99.8327 74.8909 212.377",
+      "position": "135.71 31.4637 -231.905",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah007",
       "done": false,
-      "position": "100.704 71.8909 222.339",
+      "position": "145.558 28.4637 -230.169",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah006",
       "done": false,
-      "position": "100.791 62.8909 223.335",
+      "position": "146.542 19.4637 -229.995",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah005",
       "done": false,
-      "position": "100.356 59.8909 218.354",
+      "position": "141.618 16.4637 -230.863",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah004",
       "done": false,
-      "position": "99.6584 56.8909 210.385",
+      "position": "133.74 13.4637 -232.252",
       "level": "level00",
       "type": "kippah"
     },
@@ -352,6 +352,13 @@
       "type": "dreidel"
     },
     {
+      "id": "dani_air_020",
+      "done": false,
+      "position": "63.061 -2.95882 -206.975",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
       "id": "dani_melee_012",
       "done": false,
       "position": "207.888 13.4368 -214.622",
@@ -466,35 +473,35 @@
     {
       "id": "Plataformeo_kippah016",
       "done": false,
-      "position": "71.0634 93.3909 126.705",
+      "position": "73.1923 73.4533 153.966",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah015",
       "done": false,
-      "position": "74.7244 88.8909 128.393",
+      "position": "76.2688 68.9533 151.361",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah014",
       "done": false,
-      "position": "75.596 88.8909 138.355",
+      "position": "85.6657 68.9533 154.781",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah013",
       "done": false,
-      "position": "67.0037 84.8909 149.145",
+      "position": "91.8134 64.9533 167.129",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah012",
       "done": false,
-      "position": "74.612 72.8909 161.529",
+      "position": "106.253 52.9533 165.467",
       "level": "level00",
       "type": "kippah"
     },
@@ -522,35 +529,35 @@
     {
       "id": "Plataformeo_kippah008",
       "done": false,
-      "position": "99.8327 74.8909 212.377",
+      "position": "135.71 31.4637 -231.905",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah007",
       "done": false,
-      "position": "100.704 71.8909 222.339",
+      "position": "145.558 28.4637 -230.169",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah006",
       "done": false,
-      "position": "100.791 62.8909 223.335",
+      "position": "146.542 19.4637 -229.995",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah005",
       "done": false,
-      "position": "100.356 59.8909 218.354",
+      "position": "141.618 16.4637 -230.863",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "Plataformeo_kippah004",
       "done": false,
-      "position": "99.6584 56.8909 210.385",
+      "position": "133.74 13.4637 -232.252",
       "level": "level00",
       "type": "kippah"
     },
