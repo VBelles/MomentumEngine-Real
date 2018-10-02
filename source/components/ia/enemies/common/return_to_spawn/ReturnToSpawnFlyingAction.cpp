@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "ReturnToSpawnFlyingAction.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTACTION("ReturnToSpawnFlyingAction", ReturnToSpawnFlyingAction);
 
@@ -33,7 +32,7 @@ int ReturnToSpawnFlyingAction::execAction(float delta) {
 	}
 }
 
-void ReturnToSpawnFlyingAction::load(IBehaviorTreeNew* bt, const json& j) {
+void ReturnToSpawnFlyingAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

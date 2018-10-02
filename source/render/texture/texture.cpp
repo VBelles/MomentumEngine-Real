@@ -63,7 +63,9 @@ void CTexture::onFileChanged(const std::string& filename) {
 // Set to the DX driver that we don't want any texture in this slot
 void CTexture::setNullTexture(int slot) {
 	ID3D11ShaderResourceView* null_srv = nullptr;
+	mtx.lock();
 	Render.ctx->PSSetShaderResources(slot, 1, &null_srv);
+	mtx.unlock();
 }
 
 CTexture::~CTexture() {

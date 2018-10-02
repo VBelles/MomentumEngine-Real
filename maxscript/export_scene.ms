@@ -21,6 +21,8 @@ global luaMechSys		= #()
 
 global toAddSpikes		= #()
 
+global resources 		= #()
+
 global platfDirector	= #(#())
 
 global pureOnSuffix = "pureON"
@@ -138,8 +140,9 @@ struct TJsonFormatter (
 		format ("{ \"entity\": { \"name\": \"" + prefix + "Dummy\" } },\n") to:fs
 	),
 	
-	fn writeText text = (
-		format "%\n" text to:fs
+	fn writeText text newLine:true = (
+		if newLine then format "%\n" text to:fs
+		else format "%" text to:fs
 	),
 
 	fn arrayOfStrings arr suffix:"" = (
@@ -249,6 +252,7 @@ struct TMaterialExporter (
 			)
 		)
 		fs.writeKeyValue alias json_filename
+		appendIfUnique resources json_filename
 	),
 
 	fn exportMaterialContent mat: tech:"pbr" = (
@@ -307,15 +311,18 @@ struct TMaterialExporter (
 			--format "Exporting material % % %\n" mat_name mat (classOf mat as string)
 			fs.begin (project_path + mat_name + ".material")
 				exportMaterialContent mat:mat
+				appendIfUnique resources (mat_name + ".material")
 			fs.end()
 		) else ( --Is pure.
 			-- Generate normal material but with pureON.tech.
 			fs.begin (project_path + mat_name + "_" + pureOnSuffix + ".material")
 				exportMaterialContent mat:mat tech:pureOnSuffix
+				appendIfUnique resources (mat_name + "_" + pureOnSuffix + ".material")
 			fs.end()
 		    -- Generate identical material but with pure.tech.
 			fs.begin (project_path + mat_name + "_" + pureSuffix + ".material")
 				exportMaterialContent mat:mat tech:pureSuffix
+				appendIfUnique resources (mat_name + "_" + pureSuffix + ".material")
 			fs.end()
 		)
 	),
@@ -332,6 +339,7 @@ struct TMaterialExporter (
 			fs.writeKey "mats"
 			local matsNames = #()
 			for m in mats do append matsNames (matPath + m.name + ".material")
+			join resources matsNames
 			fs.arrayOfStrings matsNames
 			fs.writeComma()
 			exportMap mat.mask "mix_blend_weights" "null_blend"
@@ -358,11 +366,13 @@ struct TMaterialExporter (
 		for m in mats do (
 			fs.begin (project_path + matPath + m.name + ".material")
 				exportMaterialContent mat:m
+				appendIfUnique resources (matPath + m.name + ".material")
 			fs.end()
 		)
 
 		fs.begin (project_path + matPath + mat.name + ".material")
 			exportMix mats matPath mat:mat
+			appendIfUnique resources (matPath + mat.name + ".material")
 		fs.end()
 	),
 
@@ -380,8 +390,9 @@ struct TMaterialExporter (
 				exportMaterialContent tech:pureOnSuffix
 			fs.end()
 		)
+		appendIfUnique resources (mat_name + suffix + ".material")
 	),
-	
+
 	-- Will return an array of all the materials names used by obj and exported by us.
 	fn exportMaterial mat mat_path obj = (
 		local exported_materials = #()
@@ -761,6 +772,7 @@ struct TSceneExporter (
 		-- -- ·Export Mesh· -- --
 		-- Generate the mesh file.
 		exportMeshObject obj (project_path + mesh_path + obj.name + ".mesh")
+		appendIfUnique resources (mesh_path + obj.name + ".mesh")
 
 		-- -- ·Export material· -- --
 		local me = TMaterialExporter project_path:project_path \
@@ -986,6 +998,8 @@ struct TSceneExporter (
 		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh != "" then mesh_name = mesh_path + forceMesh + ".col_mesh"
+
+		appendIfUnique resources mesh_name
 
 		local meshType = "static"
 		if mov then meshType = "kinematic"
@@ -1411,7 +1425,6 @@ struct TSceneExporter (
 	-- --ENTITY: CAMERA (also exports child line)-------------------------------
 	fn exportEntityCamera obj nValidObjs = (
 		local objClass = classOf obj
-		--format "name: %\n" obj.name --DEBUG
 		if objClass == TargetCamera or
 		   objClass == FreeCamera then (
 			if nValidObjs > 0 then fs.writeComma()
@@ -1485,6 +1498,15 @@ struct TSceneExporter (
 				return true
 			)
 		)
+		return true
+	),
+
+	-- --ENTITY: FIREPLACE (also exports child line)----------------------------
+	fn exportEntityFireplace obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+
+		exportPrefabEntity obj "fireplace"
+		
 		return true
 	),
 
@@ -1662,10 +1684,10 @@ struct TSceneExporter (
 			fs.writeKey "render"
 			fs.beginArray()
 				fs.beginObj()
-					local meshName = "spikes_plat_hex_small"
+					local meshName = "spikes"
 					fs.writeKeyValue "mesh" (mesh_path + meshName + ".mesh")
 					fs.writeComma()
-					exportStringArray "materials" #(mats_path + "m_platform_spikes") suffix:".material"
+					exportStringArray "materials" #(mats_path + "spikes") suffix:".material"
 				fs.endObj()
 			fs.endArray()
 			fs.writeComma()
@@ -1673,7 +1695,7 @@ struct TSceneExporter (
 			fs.writeKey "collider"
 			fs.beginObj()
 				exportColliderMeshContents obj meshShape:"convex_mesh" \
-					forceMesh:"spikes_plat_hex_small_col" mov:true
+					forceMesh:"spikes_col" mov:true
 				fs.writeComma()
 				fs.writeKeyValue "type" "kinematic"
 				fs.writeComma()
@@ -1809,7 +1831,8 @@ struct TSceneExporter (
 	),
 
 	fn exportInstancing obj instanceCat:"" = (
-		local instancesPath = project_path + instancePath + "instancing_" + instanceCat + ".json"
+		local maxName = getFilenameFile maxFileName
+		local instancesPath = project_path + instancePath + "instancing_" + instanceCat + "_" + maxName + ".json"
 
 		fss.begin instancesPath --Create file.
 			fss.beginObj()
@@ -1839,6 +1862,7 @@ struct TSceneExporter (
 
 	fn exportInstancedMeshFile instanceCat:"" = (
 		local instancesPath = project_path + mesh_path + instanceCat + ".instanced_mesh"
+		appendIfUnique resources (mesh_path + instanceCat + ".instanced_mesh")
 
 		fss.begin instancesPath --Create file.
 			fss.beginObj()
@@ -1872,6 +1896,7 @@ struct TSceneExporter (
 					fs.writeKey "materials"
 						fs.beginArray()
 							 fs.writeValue (mats_path + instanceCategory + ".material") addIndent:true
+							 appendIfUnique resources (mats_path + instanceCategory + ".material")
 						fs.endArray()
 				fs.endObj()
 			fs.endArray()
@@ -2272,6 +2297,26 @@ struct TSceneExporter (
 		if toAddSpikes.count > 0 then exportSpikesFile()
 	),
 
+	fn exportResourcesFile = (
+		local resourcesFilePath = project_path + base_path + "resourcesTEST.json"
+		
+		fs.begin resourcesFilePath --Create file.
+			fs.beginArray()
+				undo off (
+				for i = 1 to resources.count do (
+						if i > 1 then fs.writeComma()
+
+						fs.writeText ("\"" + resources[i] + "\"") newLine:false
+				)
+				) --undo off end.
+			fs.endArray()
+		fs.end()
+	),
+
+	fn exportResources = (
+		if resources.count > 0 then exportResourcesFile()
+	),
+
 	fn showBrokenMaps = (
 		for objName in brokenMaps do (
 			format "ERROR: Map support error in object %, should unwrap_reset.\n" objName
@@ -2330,6 +2375,7 @@ struct TSceneExporter (
 						format "Layer: %\t\tClass: %\t\t\tObject name: %\n" layerName ((classOf obj) as string) obj.name --DEBUG
 						if classOf obj == Editable_poly then convertToMesh obj
 						case layerName of (
+							"0":		    ( wasValid = exportEntityDefault   obj nValidObjs )
 							"altars":       ( wasValid = exportEntityAltar     obj nValidObjs )
 							"breakables":	( wasValid = exportEntityDefault   obj nValidObjs )
 							"cameras":      ( wasValid = exportEntityCamera    obj nValidObjs )
@@ -2337,6 +2383,7 @@ struct TSceneExporter (
 							"coins": 	    ( wasValid = exportEntityCoin      obj nValidObjs )
 							"collisions":   ( wasValid = exportEntityCollision obj nValidObjs )
 							"enemies":      ( wasValid = exportEntityEnemy	   obj nValidObjs )
+							"fireplaces":	( wasValid = exportEntityFireplace obj nValidObjs )
 							"instancing":   ( wasValid = exportEntityInstance  obj nValidObjs )
 							"life_pieces":  ( wasValid = exportEntityLifePiece obj nValidObjs )
 							"lights":       ( wasValid = exportEntityLight	   obj nValidObjs )
@@ -2351,7 +2398,6 @@ struct TSceneExporter (
 							"spikesMove":   ( wasValid = exportEntityDefault   obj nValidObjs )
 							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
 							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
-							"0":		    ( wasValid = exportEntityDefault   obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )
 						)
 						if wasValid then (
@@ -2372,6 +2418,7 @@ struct TSceneExporter (
 		exportPlatfDirector()
 		exportSpikes()
 		showBrokenMaps()
+		exportResources()
 		)--End undo off.
 	)
 )
@@ -2380,7 +2427,6 @@ struct TSceneExporter (
 TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
-TODO: Poder cambiar atributos en varios objetos a la vez.
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
 
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información

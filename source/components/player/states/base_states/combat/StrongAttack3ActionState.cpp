@@ -1,13 +1,5 @@
 #include "mcv_platform.h"
 #include "StrongAttack3ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -21,6 +13,10 @@ StrongAttack3ActionState::StrongAttack3ActionState(StateManager * stateManager) 
 	interruptibleTime = frames2sec(70);
 	walkableTime = frames2sec(70);
 	hitbox = "strong_attack3";
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(18);
+	invulnerabilityStartTime = frames2sec(18);
+	invulnerabilityEndTime = frames2sec(29);
 }
 
 void StrongAttack3ActionState::update(float delta) {
@@ -85,17 +81,17 @@ void StrongAttack3ActionState::update(float delta) {
 	if (!isUltraSlash1Out && movementTimer.elapsed() > frames2sec(18)) {
 		isUltraSlash1Out = true;
 		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 	if (!isUltraSlash2Out && movementTimer.elapsed() > frames2sec(25)) {
 		isUltraSlash2Out = true;
 		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 	if (!isUltraSlash3Out && movementTimer.elapsed() > frames2sec(32)) {
 		isUltraSlash3Out = true;
 		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 }
 
@@ -137,7 +133,7 @@ void StrongAttack3ActionState::onDodgeButton() {
 }
 
 void StrongAttack3ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity* otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};
@@ -152,7 +148,7 @@ void StrongAttack3ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 3.0f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

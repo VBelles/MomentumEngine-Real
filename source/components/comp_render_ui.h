@@ -1,6 +1,5 @@
 #pragma once
 
-#include "comp_base.h"
 
 class TCompRenderUI : public TCompBase {
   DECL_SIBLING_ACCESS();

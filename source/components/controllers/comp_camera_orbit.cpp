@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_camera_orbit.h"
-#include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("camera_orbit", TCompCameraOrbit);
 

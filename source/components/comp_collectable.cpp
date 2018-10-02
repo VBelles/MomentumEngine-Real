@@ -1,8 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_collectable.h"
-#include "components/comp_transform.h"
-#include "components/comp_render.h"
-#include "components/comp_collider.h"
 #include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("collectable", TCompCollectable);

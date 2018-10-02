@@ -2,11 +2,83 @@
   {
     "entity":
     {
+      "name": "nes_chrysalis014",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-108.124 71.734 -1.25356",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis013",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "95.013 44.3043 -8.86479",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis012",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-132.776 30.6735 -72.3861",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis011",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-226.064 61.3252 36.7811",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis010",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-167.243 75.472 -82.1206",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis009",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-21.5114 21.6066 144.095",
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_chrysalis007",
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-89.5449 41.1055 -60.4471",
+        "pos": "-78.3002 38.763 -60.0415",
         "rotation": "0.0 -0.21644 0.0 -0.976296"
       }
     }
@@ -18,7 +90,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-151.951 46.0696 -193.66",
+        "pos": "-148.078 42.9645 -190.41",
         "rotation": "0.0 0.67559 0.0 -0.737277"
       }
     }
@@ -90,7 +162,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-11.0985 15.1494 -188.019",
+        "pos": "-11.2709 15.1494 -187.693",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }

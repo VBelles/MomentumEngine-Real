@@ -1,12 +1,6 @@
 #include "mcv_platform.h"
 #include "AirborneActionState.h"
-#include "components/player/comp_player_model.h"
 #include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "components/controllers/comp_camera_player.h"
-#include "components/player/states/StateManager.h"
-
 
 AirborneActionState::AirborneActionState(StateManager* stateManager, State state)
 	: IActionState(stateManager, state) {
@@ -184,7 +178,7 @@ bool AirborneActionState::hugWall(const HitState& hitState) {
 				if (pitch >= getPlayerModel()->huggingWallMinPitch && pitch <= getPlayerModel()->huggingWallMaxPitch) {
 					HuggingWallActionState* actionState = (HuggingWallActionState*)stateManager->getState(HuggingWall);
 					actionState->setHuggingWallNormal(hitNormal);
-					stateManager->changeState(HuggingWall); 
+					stateManager->changeState(HuggingWall);
 					getPlayerModel()->lockFallingAttack = false;
 					getPlayerModel()->lockAirDodge = false;
 					return true;
@@ -209,12 +203,28 @@ void AirborneActionState::onLanding() {
 
 
 void AirborneActionState::onDamage(const TMsgAttackHit& msg) {
-	if (msg.info.stun) {
-		stateManager->changeState(HardKnockbackAir);
+	bool hasSuperArmor = false;
+	bool hasInvulnerability = false;
+	if (AttackState* attackState = dynamic_cast<AttackState*>(this)) {
+		hasSuperArmor = attackState->hasSuperArmor();
+		hasInvulnerability = attackState->hasInvulnerability();
 	}
-	else if(stateManager->getConcurrentState()->state != GrabHigh && stateManager->getConcurrentState()->state != GrabLong){
-		stateManager->changeConcurrentState(SoftKnockbackAir);
+	if (!hasSuperArmor && !hasInvulnerability) {
+		if (msg.info.stun) {
+			stateManager->changeState(HardKnockbackAir);
+		}
+		else if (stateManager->getConcurrentState()->state != GrabHigh && stateManager->getConcurrentState()->state != GrabLong) {
+			stateManager->changeConcurrentState(SoftKnockbackAir);
+		}
 	}
-	IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
+	else if (!hasInvulnerability) {
+		//super armor sound
+	}
 
+	if (!hasInvulnerability) {
+		IActionState::onDamage(msg);//Hacemos esto al final para sobreescribir el estado de muerte
+	}
+	else {
+		//invulnerable sound
+	}
 }

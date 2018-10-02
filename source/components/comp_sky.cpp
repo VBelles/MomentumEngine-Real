@@ -65,8 +65,9 @@ void TCompSky::load(const json& j, TEntityParseContext& ctx) {
 		VEC4 color = loadVEC4(skybox.value("light_color", "1 1 1 1"));
 		float intensity = skybox.value("light_intensity", 10.f);
 		float emissive = skybox.value("emissive_ratio", 0.f);
+		float exposure = skybox.value("exposure", 1.f);
 		dbg("texture: \n", texture.c_str());
-		skyboxes.push_back(Skybox{ Resources.get(texture)->as<CTexture>(), time, color, intensity, emissive });
+		skyboxes.push_back(Skybox{ Resources.get(texture)->as<CTexture>(), time, color, intensity, emissive, exposure });
 	}
 	fixedLerpTime = j.value("lerp_time", 10.f);
 	currentLerpTime = fixedLerpTime;
@@ -175,6 +176,7 @@ void TCompSky::update(float dt) {
 		light->setColor(VEC4::Lerp(skyboxes[previousSkyboxIndex].lightColor, skyboxes[skyboxIndex].lightColor, cb_globals.global_skybox_ratio));
 		light->setIntensity(lerp(skyboxes[previousSkyboxIndex].lightIntensity, skyboxes[skyboxIndex].lightIntensity, cb_globals.global_skybox_ratio));
 		cb_globals.day_night_cycle_emissive_ratio = lerp(skyboxes[previousSkyboxIndex].emissiveRatio, skyboxes[skyboxIndex].emissiveRatio, cb_globals.global_skybox_ratio);
+		cb_globals.global_exposure_adjustment = lerp(skyboxes[previousSkyboxIndex].exposure, skyboxes[skyboxIndex].exposure, cb_globals.global_skybox_ratio);
 	}
 }
 

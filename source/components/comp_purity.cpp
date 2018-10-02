@@ -4,9 +4,6 @@
 #include "entity/common_msgs.h"
 #include "render/render_utils.h"
 #include "render/texture/material.h"
-#include "components/comp_render.h"
-#include "components/comp_collider.h"
-#include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("purity", TCompPurity);
 

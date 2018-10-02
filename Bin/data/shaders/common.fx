@@ -283,3 +283,55 @@ float3 getEnvironment(float3 direction, float mipIndex){
 float3 getIrradiance(float3 direction){
 	return getEnvironment(direction, 10);
 }
+
+
+//--------------------------------------------------------------------------------------
+//
+//--------------------------------------------------------------------------------------
+float3 rgb2hsv(float3 c)
+{
+    float4 K = float4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    float4 p = lerp(float4(c.bg, K.wz), float4(c.gb, K.xy), step(c.b, c.g));
+    float4 q = lerp(float4(p.xyw, c.r), float4(c.r, p.yzx), step(p.x, c.r));
+
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return float3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+}
+
+//--------------------------------------------------------------------------------------
+//
+//--------------------------------------------------------------------------------------
+float3 hsv2rgb(float3 c)
+{
+    float4 K = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    float3 p = abs(frac(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * lerp(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+//--------------------------------------------------------------------------------------
+//
+//--------------------------------------------------------------------------------------
+float remap(float value, float inputMin, float inputMax, float outputMin, float outputMax)
+{
+    return (value - inputMin) * ((outputMax - outputMin) / (inputMax - inputMin)) + outputMin;
+}
+
+//--------------------------------------------------------------------------------------
+//
+//--------------------------------------------------------------------------------------
+float3 HSVPostprocessing(float3 c)
+{
+    float3 hsv = rgb2hsv(float3(c.rgb));
+    
+    float3 newHue = float3(hsv2rgb(float3(hsv.r * global_hue_adjustment, hsv.gb)) /*, c.a*/);
+    float3 newSaturation = float3(hsv2rgb(float3(hsv.r, hsv.g * global_saturation_adjustment, hsv.b)) /*, c.a*/);
+    float3 newBrightness = float3(hsv2rgb(float3(hsv.rg, hsv.b * global_brightness_adjustment)) /*, c.a*/);
+    
+    
+    float3 newHSV = newHue + newSaturation + newBrightness;
+
+    float contrast = remap(global_contrast_adjustment, 0.0, 1.0, 0.2 /*min*/, 4.0 /*max*/);
+    float4 dstColor = float4((newHSV.rgb - (float3) (0.5)) * contrast + (float3)(0.5), 1.0);
+    return clamp(dstColor, 0.0, 1.0);
+}

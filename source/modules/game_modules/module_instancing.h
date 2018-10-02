@@ -27,6 +27,8 @@ private:
 		VEC3  pos;
 	};
 
+	std::map<std::string, std::vector<TInstance>> instancesDataMap;
+
 	void loadInstances(const json & jInstances);
 public:
 	CModuleInstancing(const std::string& name)
@@ -35,4 +37,5 @@ public:
 	bool start() override;
 	void update(float delta) override;
 	void render() override;
+	void setAllInstancesData();
 };

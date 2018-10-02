@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/GroundedActionState.h"
-#include "components/player/states/AttackState.h"
 
 class FastFinisher1ActionState : public GroundedActionState, public AttackState {
 private:
@@ -11,6 +10,7 @@ private:
 
 	float powerToGet = 3000.f;
 	float damage = 2.f;
+	float stunTime = 2.0f;
 
 	float suspensionTime = 2.0f;
 	VEC2 launchSpeed = { 30.f, 6.f };

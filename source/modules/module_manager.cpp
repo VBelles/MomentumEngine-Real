@@ -205,8 +205,9 @@ void CModuleManager::loadGamestates(const std::string& filename) {
 	for (auto& json_gs : json_gametates) {
 		std::string gs_name = json_gs["name"].get<std::string>();
 		auto& json_modules = json_gs["modules"];
+		bool needsResources = json_gs.value("needs_resources", false);
 
-		CGameState* newGs = new CGameState(gs_name);
+		CGameState* newGs = new CGameState(gs_name, needsResources);
 
 		for (auto& json_mod : json_modules) {
 			std::string& str = json_mod.get<std::string>();
@@ -247,14 +248,26 @@ void CModuleManager::applyRequestedGameState() {
 		CTimer timer;
 		if (useLoadingScreen) {
 			gameStateChanged = false;
+			float frameTime = 1.f / 60.f;
+			int frameTimeMilis = frameTime * 1000;
+
 			activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
 			GUI::CWidget* wdgt = EngineGUI.getWidget(loadingScreenWdgt);
 			wdgt->renderAll();
 
-			std::thread t1(&CModuleManager::applyGameState, this);
+			if (_requested_gs->needsResources() && Resources.loaderThread.joinable()) {
+				while (!Resources.finishedLoading()) {
+					wdgt->updateAll(frameTime);
+					mtx.lock();
+					wdgt->renderAll();
+					Render.swapChain->Present(0, 0);
+					mtx.unlock();
+					std::this_thread::sleep_for(std::chrono::milliseconds(frameTimeMilis));
+				}
+				Resources.loaderThread.join();
+			}
 
-			float frameTime = 1.f / 60.f;
-			int frameTimeMilis = frameTime * 1000;
+			std::thread t1(&CModuleManager::applyGameState, this);
 			while (!gameStateChanged) {
 				wdgt->updateAll(frameTime);
 				mtx.lock();
@@ -264,9 +277,11 @@ void CModuleManager::applyRequestedGameState() {
 				std::this_thread::sleep_for(std::chrono::milliseconds(frameTimeMilis));
 			}
 			t1.join();
-
 		}
 		else {
+			if (_requested_gs->needsResources() && Resources.loaderThread.joinable()) {
+				Resources.loaderThread.join();
+			}
 			applyGameState();
 		}
 		dbg("Finished changing game state, elapsed time: %f\n", timer.elapsed());

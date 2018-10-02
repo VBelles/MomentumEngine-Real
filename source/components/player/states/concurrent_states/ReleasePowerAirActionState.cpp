@@ -1,15 +1,6 @@
 #include "mcv_platform.h"
 #include "ReleasePowerAirActionState.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
 #include "components/postfx/comp_render_blur_radial.h"
-#include "components/comp_camera.h"
-#include "components/comp_collider.h"
-#include "components/player/comp_power_gauge.h"
-#include "components/player/comp_player_model.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 
 ReleasePowerAirActionState::ReleasePowerAirActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, ReleasePowerAir),
@@ -40,7 +31,7 @@ void ReleasePowerAirActionState::update(float delta) {
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
-		Particles::LaunchConfig releasePowerLaunchConfig{ getEntity(), "", VEC3(0.f, 0.75f, 0.f) };
+		Particles::LaunchConfig releasePowerLaunchConfig{ getPlayerEntity(), "", VEC3(0.f, 0.75f, 0.f) };
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
 		switch (getPowerGauge()->getPowerLevel()) {
 		case 1:
@@ -48,7 +39,7 @@ void ReleasePowerAirActionState::update(float delta) {
 			break;
 		case 2:
 			EngineParticles.launchSystem(PARTICLES_RELEASE_POWER, releasePowerLaunchConfig);
-			EngineSound.emitEvent(SOUND_RELEASE_POWER);
+			getSound()->play("release_power");
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
 			getHitboxes()->enable(smallHitbox);
@@ -56,7 +47,7 @@ void ReleasePowerAirActionState::update(float delta) {
 			break;
 		case 3:
 			EngineParticles.launchSystem(PARTICLES_RELEASE_POWER, releasePowerLaunchConfig);
-			EngineSound.emitEvent(SOUND_RELEASE_POWER);
+			getSound()->play("release_power");
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
 			if (buttonPresses > 1) {
@@ -132,14 +123,14 @@ void ReleasePowerAirActionState::onLanding() {
 
 
 void ReleasePowerAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	TMsgAttackHit msgAtackHit = {};
 	msgAtackHit.attacker = playerEntity;
 	msgAtackHit.info = {};
 	msgAtackHit.info.givesPower = false;
 	msgAtackHit.info.damage = damage;
-	msgAtackHit.info.stun = new AttackInfo::Stun{ stunDuration };
+	msgAtackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAtackHit.info.activatesMechanism = true;
 	otherEntity->sendMsg(msgAtackHit);
 }

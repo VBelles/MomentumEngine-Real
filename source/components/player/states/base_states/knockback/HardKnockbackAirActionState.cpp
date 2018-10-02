@@ -1,12 +1,5 @@
 #include "mcv_platform.h"
 #include "HardKnockbackAirActionState.h"
-#include "components/comp_render.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/comp_power_gauge.h"
-#include "entity/common_msgs.h"
-#include "components/player/states/StateManager.h"
 #include "components/player/states/base_states/LandingHurtActionState.h"
 
 
@@ -26,6 +19,7 @@ void HardKnockbackAirActionState::update (float delta) {
 void HardKnockbackAirActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
 	*velocityVector = VEC3::Zero;
+	getPlayerModel()->resetGravity();
 	stateManager->changeConcurrentState(Free);
 	getSkeleton()->blendCycle(animationLoop, 0.2f, 0.2f);
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);

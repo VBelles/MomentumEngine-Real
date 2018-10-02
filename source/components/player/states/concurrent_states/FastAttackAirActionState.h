@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/AirborneActionState.h"
-#include "components/player/states/AttackState.h"
 
 class FastAttackAirActionState : public AirborneActionState, public AttackState {
 private:
@@ -11,6 +10,7 @@ private:
 	float animationEndTime = frames2sec(10);
 
 	float damage = 1.f;
+	float stunTime = 1.5f;
 	AttackPhases phase = AttackPhases::Launch;
 
 	float powerToGet = 1000.f;

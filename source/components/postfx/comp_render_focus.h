@@ -2,7 +2,6 @@
 #define INC_COMPONENT_RENDER_FOCUS_H_
 
 #include <vector>
-#include "components/comp_base.h"
 #include "render/render_objects.h"
 #include "ctes.h"
 

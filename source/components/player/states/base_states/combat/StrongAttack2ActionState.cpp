@@ -1,13 +1,5 @@
 #include "mcv_platform.h"
 #include "StrongAttack2ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -21,6 +13,8 @@ StrongAttack2ActionState::StrongAttack2ActionState(StateManager * stateManager) 
 	interruptibleTime = frames2sec(34);
 	walkableTime = frames2sec(65);
 	hitbox = "strong_attack2";
+	invulnerabilityStartTime = frames2sec(10);
+	invulnerabilityEndTime = frames2sec(17);
 }
 
 void StrongAttack2ActionState::update(float delta) {
@@ -80,7 +74,7 @@ void StrongAttack2ActionState::update(float delta) {
 	if (!isUltraSlashOut && phase == Active) {
 		isUltraSlashOut = true;
 		slash(SLASH_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(80), deg2rad(-90));
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 }
 
@@ -137,7 +131,7 @@ void StrongAttack2ActionState::onReleasePowerButton() {
 }
 
 void StrongAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};
@@ -149,7 +143,7 @@ void StrongAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.0f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.gravityMultiplier = 0.5f;
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;

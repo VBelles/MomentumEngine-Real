@@ -1,7 +1,6 @@
 #ifndef INC_COMP_BONE_TRACKER_H_
 #define INC_COMP_BONE_TRACKER_H_
 
-#include "components/comp_base.h"
 #include "entity/entity.h"
 
 class CalModel;

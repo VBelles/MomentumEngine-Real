@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "BlockingBreakAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("BlockingBreakAction", BlockingBreakAction);
@@ -22,7 +21,7 @@ int BlockingBreakAction::execAction(float delta) {
 	return Leave;
 }
 
-void BlockingBreakAction::load(IBehaviorTreeNew* bt, const json& j) {
+void BlockingBreakAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

@@ -28,7 +28,7 @@ int VerticalLaunchedAction::execAction(float delta) {
 	}
 }
 
-void VerticalLaunchedAction::load(IBehaviorTreeNew* bt, const json& j) {
+void VerticalLaunchedAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

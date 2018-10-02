@@ -2,6 +2,1362 @@
   {
     "entity":
     {
+      "name": "nes_mech009",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-89.4165 51.8902 -16.8815",
+        "rotation": "0.00514074 0.707088 -0.707088 0.00514074"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 32.0,
+        "reactivationTime": 3.0,
+        "isResettable": true,
+        "systems":
+        [
+           "nes_platform_civilization_emissive_078",
+           "nes_platform_civilization_emissive_079",
+           "nes_platform_civilization_emissive_080",
+           "nes_platform_civilization_emissive_081",
+           "nes_plataforma_roca_046",
+           "nes_plataforma_roca_050",
+           "nes_plataforma_roca_047",
+           "nes_plataforma_roca_051",
+           "nes_plataforma_roca_048",
+           "nes_plataforma_roca_049"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_078",
+      "transform":
+      {
+        "pos": "-111.069 51.6018 -16.0882",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_078.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_078.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.690746,
+        "travel_wait_time": 1.0,
+        "speed": -0.08,
+        "knots":
+        [
+           "-104.686 51.5777 -16.4975",
+           "-101.874 51.5777 -10.4675",
+           "-101.874 51.5777 -10.4675",
+           "-98.6557 51.5777 -19.3094",
+           "-107.498 51.5777 -22.5276",
+           "-110.716 51.5777 -13.6857",
+           "-110.716 51.5777 -13.6857"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_079",
+      "transform":
+      {
+        "pos": "-104.408 51.6018 -9.81293",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_079.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_079.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.937167,
+        "travel_wait_time": 1.0,
+        "speed": -0.08,
+        "knots":
+        [
+           "-104.686 51.5777 -16.4975",
+           "-101.874 51.5777 -10.4675",
+           "-101.874 51.5777 -10.4675",
+           "-98.6557 51.5777 -19.3094",
+           "-107.498 51.5777 -22.5276",
+           "-110.716 51.5777 -13.6857",
+           "-110.716 51.5777 -13.6857"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_080",
+      "transform":
+      {
+        "pos": "-98.028 51.6018 -16.6499",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_080.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_080.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.184201,
+        "travel_wait_time": 1.0,
+        "speed": -0.08,
+        "knots":
+        [
+           "-104.686 51.5777 -16.4974",
+           "-101.874 51.5777 -10.4674",
+           "-101.874 51.5777 -10.4674",
+           "-98.6556 51.5777 -19.3093",
+           "-107.497 51.5777 -22.5275",
+           "-110.716 51.5777 -13.6856",
+           "-110.716 51.5777 -13.6856"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_081",
+      "transform":
+      {
+        "pos": "-104.833 51.6018 -22.857",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_081.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_081.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "circular",
+        "automove": true,
+        "loop": true,
+        "closed": true,
+        "move_offset": 0.43425,
+        "travel_wait_time": 1.0,
+        "speed": -0.08,
+        "knots":
+        [
+           "-104.686 51.5777 -16.4974",
+           "-101.874 51.5777 -10.4674",
+           "-101.874 51.5777 -10.4674",
+           "-98.6555 51.5777 -19.3093",
+           "-107.497 51.5777 -22.5275",
+           "-110.716 51.5777 -13.6856",
+           "-110.716 51.5777 -13.6856"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_046",
+      "transform":
+      {
+        "pos": "-115.856 64.451 -2.61162",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_046.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_046.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 0.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-117.122 64.2867 -14.7034",
+           "-117.122 64.2867 -14.7034",
+           "-115.357 64.2867 -1.67722",
+           "-115.357 64.2867 -1.67722"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_050",
+      "transform":
+      {
+        "pos": "-118.267 51.5607 -0.541439",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_050.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_050.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 0.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-116.36 51.3965 -12.5488",
+           "-116.36 51.3965 -12.5488",
+           "-118.027 51.3965 0.490183",
+           "-118.027 51.3965 0.490183"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_047",
+      "transform":
+      {
+        "pos": "-135.873 62.0693 -15.5357",
+        "rotation": "0.0 0.608761 0.0 -0.793353"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_047.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_047.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 0.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-123.781 61.9051 -16.8013",
+           "-123.781 61.9051 -16.8013",
+           "-136.807 61.9051 -15.0371",
+           "-136.807 61.9051 -15.0371"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_051",
+      "transform":
+      {
+        "pos": "-107.236 67.639 -1.23622",
+        "rotation": "0.0 -0.691599 0.0 -0.722281"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_051.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_051.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_048",
+      "transform":
+      {
+        "pos": "-143.446 58.3159 -9.0551",
+        "rotation": "0.0 -0.991445 0.0 0.130527"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_048.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_048.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 0.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-142.181 58.1516 3.03671",
+           "-142.181 58.1516 3.03671",
+           "-143.945 58.1516 -9.9895",
+           "-143.945 58.1516 -9.9895"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_049",
+      "transform":
+      {
+        "pos": "-124.947 55.2902 6.04567",
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_049.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_049.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 0.0,
+        "speed": 0.3,
+        "knots":
+        [
+           "-137.039 55.126 7.31127",
+           "-137.039 55.126 7.31127",
+           "-124.013 55.126 5.54704",
+           "-124.013 55.126 5.54704"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mech008",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-220.18 3.50697 -50.9551",
+        "rotation": "-0.666204 -0.237008 0.237008 -0.666204"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 15.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "nes_plataforma_roca_040",
+           "nes_plataforma_roca_041",
+           "nes_plataforma_roca_039",
+           "nes_plataforma_roca_042",
+           "nes_plataforma_roca_043",
+           "nes_plataforma_roca_044"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_040",
+      "transform":
+      {
+        "pos": "-213.727 1.59991 -68.9992",
+        "rotation": "0.0 -0.362549 0.0 -0.931965"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_040.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_040.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_041",
+      "transform":
+      {
+        "pos": "-206.752 5.53558 -74.0312",
+        "rotation": "0.0 -0.722447 0.0 -0.691427"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_041.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_041.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_039",
+      "transform":
+      {
+        "pos": "-219.152 -1.64398 -62.2987",
+        "rotation": "0.0 -0.876669 0.0 0.481093"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_039.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_039.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_042",
+      "transform":
+      {
+        "pos": "-242.23 29.2125 -31.6651",
+        "rotation": "0.0 -0.876669 0.0 0.481093"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_042.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_042.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_043",
+      "transform":
+      {
+        "pos": "-241.877 26.271 -41.5064",
+        "rotation": "0.0 -0.876669 0.0 0.481093"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_043.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_043.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_044",
+      "transform":
+      {
+        "pos": "-235.979 23.4744 -49.7859",
+        "rotation": "0.0 -0.876669 0.0 0.481093"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_044.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_044.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mech007",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "39.8028 39.6554 40.8315",
+        "rotation": "0.384254 0.59359 -0.59359 0.384254"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 15.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "nes_tumba_0_002",
+           "nes_tumba_1_001",
+           "nes_tumba_2_001",
+           "nes_tumba_2_002",
+           "nes_tumba_1_002",
+           "nes_tumba_0_003"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tumba_0_002",
+      "transform":
+      {
+        "pos": "35.5266 29.1469 56.7395",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_tumba_0_002.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba01.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tumba_0_col_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tumba_1_001",
+      "transform":
+      {
+        "pos": "34.8122 26.9607 61.4423",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_tumba_1_001.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_02.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tumba_1_col_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tumba_2_001",
+      "transform":
+      {
+        "pos": "31.528 25.6088 65.3012",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_tumba_2_001.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tumba_2_col_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tumba_2_002",
+      "transform":
+      {
+        "pos": "33.6851 32.1783 52.7333",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_tumba_2_002.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tumba_2_col_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tumba_1_002",
+      "transform":
+      {
+        "pos": "31.7726 34.2991 47.7261",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_tumba_1_002.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_02.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tumba_1_col_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tumba_0_003",
+      "transform":
+      {
+        "pos": "33.1111 34.9709 42.0206",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_tumba_0_003.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba01.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tumba_0_col_003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mech006",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-119.256 29.401 -69.9779",
+        "rotation": "-0.706191 0.0359788 -0.0359788 -0.706191"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 15.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "nes_estaca_emisivo_2_004",
+           "nes_estaca_emisivo_1_004"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_2_004",
+      "transform":
+      {
+        "pos": "-112.413 27.6209 -74.9275",
+        "rotation": "0.409174 -0.710039 -0.286137 0.496534"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_2_004.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_2_col_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_1_004",
+      "transform":
+      {
+        "pos": "-114.637 20.4612 -86.6949",
+        "rotation": "-0.249648 0.433215 0.432404 -0.750351"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_1_004.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_02.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_1_col_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_mech005",
       "prefab": "data/prefabs/mech.prefab",
       "transform":
@@ -39,8 +1395,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -50,7 +1412,7 @@
           [
             "data/materials/m_ms_pasarela.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -61,8 +1423,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -81,8 +1442,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -92,7 +1459,7 @@
           [
             "data/materials/m_ms_pasarela.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -103,8 +1470,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -123,8 +1489,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -134,7 +1506,7 @@
           [
             "data/materials/m_ms_pasarela.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -145,8 +1517,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -165,8 +1536,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -176,7 +1553,7 @@
           [
             "data/materials/m_ms_pasarela.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -187,8 +1564,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -234,8 +1610,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -245,7 +1627,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -256,8 +1638,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -276,8 +1657,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -287,7 +1674,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -298,8 +1685,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -318,8 +1704,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -329,7 +1721,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -340,8 +1732,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -360,8 +1751,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -371,7 +1768,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -382,8 +1779,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -402,8 +1798,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -413,7 +1815,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -424,8 +1826,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -444,8 +1845,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -455,7 +1862,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -466,8 +1873,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -514,8 +1920,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -525,7 +1937,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -536,8 +1948,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -556,8 +1967,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -567,7 +1984,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -578,8 +1995,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -598,8 +2014,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -609,7 +2031,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -620,8 +2042,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -640,8 +2061,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -651,7 +2078,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -662,8 +2089,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -682,8 +2108,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -693,7 +2125,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -704,8 +2136,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -724,8 +2155,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -735,7 +2172,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -746,8 +2183,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -766,8 +2202,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -777,7 +2219,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -788,8 +2230,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -842,8 +2283,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -853,7 +2300,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -864,8 +2311,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -884,8 +2330,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -895,7 +2347,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -906,8 +2358,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -926,8 +2377,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -937,7 +2394,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -948,8 +2405,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -968,8 +2424,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -979,7 +2441,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -990,8 +2452,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1010,8 +2471,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1021,7 +2488,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1032,8 +2499,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1052,8 +2518,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1063,7 +2535,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1074,8 +2546,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1094,8 +2565,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1105,7 +2582,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1116,8 +2593,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1136,8 +2612,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1147,7 +2629,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1158,8 +2640,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1178,8 +2659,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1189,7 +2676,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1200,8 +2687,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1220,8 +2706,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1231,7 +2723,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1242,8 +2734,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1262,8 +2753,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1273,7 +2770,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1284,8 +2781,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1304,8 +2800,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1315,7 +2817,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1326,8 +2828,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1346,8 +2847,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1357,7 +2864,7 @@
           [
             "data/materials/platform_v1.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1368,8 +2875,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1420,8 +2926,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1431,7 +2943,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1442,8 +2954,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1462,8 +2973,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1473,7 +2990,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1484,8 +3001,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1504,8 +3020,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1515,7 +3037,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1526,8 +3048,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1546,8 +3067,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1557,7 +3084,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1568,8 +3095,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1588,8 +3114,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1599,7 +3131,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1610,8 +3142,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1630,8 +3161,14 @@
       },
       "activate_listener":
       {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
         "render_enabled_on_active": true,
-        "collider_enabled_on_active": true
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
       },
       "render":
       [
@@ -1641,7 +3178,7 @@
           [
             "data/materials/m_columna_piezas.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "collider":
@@ -1652,8 +3189,7 @@
         "group":
         [
           "scenario"
-        ],
-        "enabled": false
+        ]
       }
     }
   },
@@ -1682,7 +3218,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},
@@ -1723,7 +3259,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},
@@ -1764,7 +3300,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},
@@ -1805,7 +3341,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},
@@ -1846,7 +3382,7 @@
           [
             "data/materials/m_columna_piezas_pure.material"
           ],
-          "enabled": false
+          "enabled": true
         }
       ],
       "purity": {},

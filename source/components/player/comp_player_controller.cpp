@@ -1,8 +1,6 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_controller.h"
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
 #include "entity/common_msgs.h"
 #include "comp_player_model.h"
 #include "game_constants.h"

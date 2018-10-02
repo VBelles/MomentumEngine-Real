@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "AttackActionFlying.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 
 REGISTER_BTACTION("AttackActionFlying", AttackActionFlying);
@@ -33,7 +32,7 @@ int AttackActionFlying::execAction(float delta) {
 	return Stay;
 }
 
-void AttackActionFlying::load(IBehaviorTreeNew* bt, const json& j) {
+void AttackActionFlying::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

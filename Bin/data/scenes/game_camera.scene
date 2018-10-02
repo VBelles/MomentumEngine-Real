@@ -48,6 +48,9 @@
 			"render_fxaa":{
 				"enabled": true
 			},
+			"render_hsv":{
+				"enabled": true
+			},
 			"render_vignette":{
 				"enabled": true
 			}

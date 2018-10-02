@@ -1,10 +1,9 @@
 #pragma once
 
-#include "comp_base.h"
 
 struct TMsgMechanismSystemActivated;
 struct TMsgMechanismSystemDeactivated;
-struct TMsgEntityCreated;
+struct TMsgAllScenesCreated;
 
 class TCompActivateListener : public TCompBase {
 	DECL_SIBLING_ACCESS();
@@ -24,7 +23,7 @@ public:
     static void registerMsgs();
     void load(const json& j, TEntityParseContext& ctx);
 
-	void onEntityCreated(const TMsgEntityCreated& msg);
+	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onActivate(const TMsgMechanismSystemActivated& msg);
 	void onDeactivate(const TMsgMechanismSystemDeactivated& msg);
 };

@@ -5,7 +5,6 @@
 #include "modules/system_modules/module_entities.h"
 #include "handle/handle.h"
 #include "components/comp_name.h"
-#include "components/comp_transform.h"
 #include "entity/entity_parser.h"
 
 

@@ -57,6 +57,7 @@ float4 PS(
   float3 tmColorReinhard = toneMappingReinhard( hdrColor );
   float3 tmColor = lerp( tmColorReinhard, tmColorUC2, global_tone_mapping_mode );
 
+
   float3 gammaCorrectedColor = gammaCorrect( tmColor );
   gammaCorrectedColor = lerp( tmColor, gammaCorrectedColor.xyz, global_gamma_correction_enabled );
 

@@ -1,7 +1,6 @@
 #ifndef INC_COMPONENT_RENDER_BLUR_RADIAL_H_
 #define INC_COMPONENT_RENDER_BLUR_RADIAL_H_
 
-#include "components/comp_base.h"
 #include <vector>
 
 struct CBlurStep;

@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "Plane535",
+      "transform":
+      {
+        "pos": "-196.31 19.7216 16.99",
+        "rotation": "-0.701057 0.0922959 -0.092296 -0.701057"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plane535.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "terreno_collider",
       "transform":
       {

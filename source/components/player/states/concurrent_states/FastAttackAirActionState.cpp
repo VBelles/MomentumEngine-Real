@@ -1,13 +1,6 @@
 #include "mcv_platform.h"
 #include "FastAttackAirActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
-#include "components/comp_transform.h"
 
 FastAttackAirActionState::FastAttackAirActionState(StateManager* stateManager) :
 	AirborneActionState(stateManager, FastAttackAir),
@@ -30,7 +23,7 @@ void FastAttackAirActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 
 	/*if (!isSlashOut && movementTimer.elapsed() > frames2sec(10)) {
@@ -75,7 +68,7 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 }
 
 void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 
 	CEntity *otherEntity = entity;
 
@@ -84,10 +77,8 @@ void FastAttackAirActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	TMsgAttackHit msgAttackHit = {};
 	msgAttackHit.attacker = playerEntity;
 	msgAttackHit.info = {};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 1.5f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);
-	EngineSound.emitEvent(SOUND_ATTACK_HIT, getPlayerTransform()->getPosition());
-
 }

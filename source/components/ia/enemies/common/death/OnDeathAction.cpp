@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnDeathAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnDeathAction", OnDeathAction);
@@ -20,14 +19,16 @@ int OnDeathAction::execAction(float delta) {
 	enemy->blockingBroken = false;
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
+	enemy->getSound()->play("death");
 	return Leave;
 }
 
-void OnDeathAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnDeathAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	sound = j.value("sound", sound);
 }
 
 void OnDeathAction::debugInMenu() {

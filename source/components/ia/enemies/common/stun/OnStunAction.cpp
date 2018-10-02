@@ -1,6 +1,6 @@
+#include <algorithm>
 #include "mcv_platform.h"
 #include "OnStunAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 
 REGISTER_BTACTION("OnStunAction", OnStunAction);
@@ -17,12 +17,15 @@ OnStunAction::OnStunAction(Enemy* enemy, std::string animationStart, std::string
 }
 
 int OnStunAction::execAction(float delta) {
+	if (!animationStart.empty()) {
+		enemy->stunDuration = std::max(enemy->stunDuration, enemy->getSkeleton()->getAnimationDuration(animationStart));
+	}
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
 	return Leave;
 }
 
-void OnStunAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnStunAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

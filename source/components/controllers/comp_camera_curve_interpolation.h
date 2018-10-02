@@ -1,10 +1,7 @@
 #pragma once
 
-#include "components/comp_base.h"
 
 class CHandle;
-class TCompTransform;
-class TCompCamera;
 
 struct TMsgEntitiesGroupCreated;
 

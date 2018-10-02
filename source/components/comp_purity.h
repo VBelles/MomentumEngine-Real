@@ -1,9 +1,6 @@
 #pragma once
 
-#include "comp_base.h"
 
-class TCompRender;
-class TCompCollider;
 struct TMsgEntityCreated;
 struct TMsgPurityChange;
 

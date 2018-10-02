@@ -23,6 +23,7 @@
 #include "components/postfx/comp_render_bloom.h"
 #include "components/postfx/comp_render_fog.h"
 #include "components/postfx/comp_render_fxaa.h"
+#include "components/postfx/comp_render_hsv.h"
 #include "components/postfx/comp_render_vignette.h"
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -67,14 +68,6 @@ bool CModuleRender::start() {
 
 	if (!createRenderUtils()) return false;
 
-	// --------------------------------------------
-	// ImGui
-	auto& app = CApp::get();
-	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
-		return false;
-
-	if (!parseTechniques()) return false;
-
 	// Main render target before rendering in the backbuffer
 	rt_main = new CRenderToTexture;
 	if (!rt_main->createRT("rt_main.dds", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN, true))
@@ -84,6 +77,28 @@ bool CModuleRender::start() {
 		return false;
 
 	setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
+
+	//Render splash screen
+	json j = loadJson("data/dump_texture_tech.json");
+	std::string tech_name = "dump_texture.tech";
+	json& tech_j = j;
+	CRenderTechnique* tech = new CRenderTechnique();
+	if (!tech->create(tech_name, tech_j)) {
+		fatal("Failed to create tech '%s'\n", tech_name.c_str());
+		return false;
+	}
+	Resources.registerResource(tech);
+	Render.startRenderInBackbuffer();
+	renderFullScreenQuad("dump_texture.tech", Resources.get("data/textures/gui/splash_screen.dds")->as<CTexture>());
+	Render.swapChain->Present(0, 0);
+
+	// --------------------------------------------
+	// ImGui
+	auto& app = CApp::get();
+	if (!ImGui_ImplDX11_Init(app.getWnd(), Render.device, Render.ctx))
+		return false;
+
+	if (!parseTechniques()) return false;
 
 	// Some camera in case there is no camera in the scene
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
@@ -100,13 +115,17 @@ bool CModuleRender::start() {
 	if (!cb_slash.create(CB_SLASH))		   return false;
 
 
-	cb_globals.global_exposure_adjustment = 1.0f;
+	cb_globals.global_exposure_adjustment = 1.f;
 	cb_globals.global_ambient_adjustment = 0.5f;
 	cb_globals.global_shadow_adjustment = 0.1f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
+	cb_globals.global_hue_adjustment = 1.f;
+	cb_globals.global_saturation_adjustment = 1.f;
+	cb_globals.global_brightness_adjustment = -0.9f;
+	cb_globals.global_contrast_adjustment = 0.215f;
 
 	cb_light.activate();
 	cb_object.activate();
@@ -166,12 +185,16 @@ void CModuleRender::render() {
 			PROFILE_SET_NFRAMES(nframes);
 		}
 		if (ImGui::TreeNode("Render Control")) {
-			ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
+			ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.01f, 32.f);
 			ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Shadow Adjustment", &cb_globals.global_shadow_adjustment, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 			ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+			ImGui::DragFloat("Hue Adjustment", &cb_globals.global_hue_adjustment, 0.01f, -10.0f, 10.f);
+			ImGui::DragFloat("Saturation Adjustment", &cb_globals.global_saturation_adjustment, 0.01f, -10.0f, 10.f);
+			ImGui::DragFloat("Brightness Adjustment", &cb_globals.global_brightness_adjustment, 0.01f, -10.0f, 10.f);
+			ImGui::DragFloat("Contrast Adjustment", &cb_globals.global_contrast_adjustment, 0.01f, -10.0f, 10.f);
 			ImGui::DragFloat("Skybox Ratio", &cb_globals.global_skybox_ratio, 0.01f, 0.0f, 1.f);
 
 			// Must be in the same order as the RO_* ctes
@@ -305,6 +328,11 @@ void CModuleRender::generateFrame() {
 			if (c_render_fxaa)
 				curr_rt = c_render_fxaa->apply(curr_rt);
 
+			// Check if we have a render_hsv component
+			TCompRenderHsv* c_render_hsv = e_cam->get< TCompRenderHsv >();
+			if (c_render_hsv)
+				curr_rt = c_render_hsv->apply(curr_rt);
+
 			// Check if we have a render_vignette component
 			TCompRenderVignette* c_render_vignette = e_cam->get< TCompRenderVignette >();
 			if (c_render_vignette)
@@ -345,12 +373,14 @@ void CModuleRender::generateFrame() {
 	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
 		PROFILE_FUNCTION("Render.swapChain");
+		mtx.lock();
 		if (vsync) {
 			Render.swapChain->Present(1, 0);
 		}
 		else {
 			Render.swapChain->Present(0, 0);
 		}
+		mtx.unlock();
 	}
 }
 

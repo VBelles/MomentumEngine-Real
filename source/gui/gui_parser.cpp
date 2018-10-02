@@ -206,6 +206,10 @@ CWidget* CParser::parseOption(const json& data) {
 	wdgt->_next->getParams()->_position.x = wdgt->_params._size.x - wdgt->_next->getParams()->_size.x;
 	wdgt->_text->getParams()->_position.x = wdgt->_next->getParams()->_position.x - wdgt->_text->getParams()->_size.x;
 	wdgt->_previous->getParams()->_position.x = wdgt->_text->getParams()->_position.x - wdgt->_previous->getParams()->_size.x;
+	for (int i = 0; i < CButton::EState::NUM_STATES; i++) {
+		wdgt->_next->getButtonParams(static_cast<CButton::EState>(i))->_params._position.x = wdgt->_params._size.x - wdgt->_next->getParams()->_size.x;
+		wdgt->_previous->getButtonParams(static_cast<CButton::EState>(i))->_params._position.x = wdgt->_text->getParams()->_position.x - wdgt->_previous->getParams()->_size.x;
+	}
 
 	for (auto& jOption : data["options"]) {
 		std::string text = jOption[0];
@@ -311,5 +315,7 @@ void CParser::parseTextParams(TTextParams& params, const json& data) {
 void CParser::parseBarParams(TBarParams& params, const json& data) {
 	params._variable = data.value("variable", "");
 	const std::string direction = data.value("direction", "horizontal");
-	params._direction = direction == "vertical" ? TBarParams::Vertical : TBarParams::Horizontal;
+	if (direction == "vertical") params._direction = TBarParams::Vertical;
+	else if (direction == "vertical_anim") params._direction = TBarParams::VerticalAnim;
+	else params._direction = TBarParams::Horizontal;
 }

@@ -1,13 +1,9 @@
 #pragma once
 
-#include "components/comp_base.h"
 
 
 struct TMsgEntityCreated;
 struct TMsgEntitiesGroupCreated;
-class TCompSkeleton;
-class TCompCollider;
-class TCompTransform;
 
 class TCompHitboxes : public TCompBase {
 public:

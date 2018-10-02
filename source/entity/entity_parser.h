@@ -34,6 +34,7 @@ struct TEntityParseContext {
 	// Find an entity in the list of entities parsed in this file
 	// or search in the parent contexts, or search in the global dict
 	CHandle findEntityByName(const std::string& name) const;
+	void createContextGroup();
 
 	TEntityParseContext() = default;
 	TEntityParseContext(TEntityParseContext& another, const CTransform& delta_transform);

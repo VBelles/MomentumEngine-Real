@@ -1,13 +1,5 @@
 #include "mcv_platform.h"
 #include "StrongFinisher2ActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
 
@@ -21,6 +13,10 @@ StrongFinisher2ActionState::StrongFinisher2ActionState(StateManager * stateManag
 	interruptibleTime = frames2sec(50);
 	walkableTime = frames2sec(55);
 	hitbox = "strong_finisher2";
+	superarmorStartTime = frames2sec(14);
+	superarmorEndTime = frames2sec(31);
+	invulnerabilityStartTime = frames2sec(31);
+	invulnerabilityEndTime = frames2sec(44);
 }
 
 void StrongFinisher2ActionState::update(float delta) {
@@ -71,7 +67,7 @@ void StrongFinisher2ActionState::update(float delta) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::LEFT_HAND)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_HAND)->setEnable(true);
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(42)) {
 		isSlashOut = false;
@@ -122,7 +118,7 @@ void StrongFinisher2ActionState::onDodgeButton() {
 }
 
 void StrongFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};
@@ -134,7 +130,7 @@ void StrongFinisher2ActionState::onHitboxEnter(std::string hitbox, CHandle entit
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 0.0f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

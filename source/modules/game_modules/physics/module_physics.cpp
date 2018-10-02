@@ -3,9 +3,6 @@
 #include "modules/module.h"
 #include "entity/entity.h"
 #include "render/mesh/collision_mesh.h" 
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
 #include "skeleton/game_core_skeleton.h"
 #include "skeleton/cal3d2engine.h"
 
@@ -41,6 +38,7 @@ bool CModulePhysics::stop() {
 	PX_RELEASE(pvd);
 	PX_RELEASE(cooking);
 	PX_RELEASE(foundation);
+	PX_RELEASE(gCudaContextManager);
 	return true;
 }
 
@@ -67,13 +65,20 @@ bool CModulePhysics::createPhysx() {
 bool CModulePhysics::createScene() {
 	PxSceneDesc sceneDesc(physics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
-	dispatcher = PxDefaultCpuDispatcherCreate(2);
+	dispatcher = PxDefaultCpuDispatcherCreate(std::thread::hardware_concurrency());
 	sceneDesc.cpuDispatcher = dispatcher;
 	sceneDesc.filterShader = BasicFilterShader;
 	sceneDesc.simulationEventCallback = new BasicSimulationEventCallback();
 	sceneDesc.flags |= PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS;
 	sceneDesc.flags |= PxSceneFlag::eENABLE_KINEMATIC_PAIRS;
+	
+	/*PxCudaContextManagerDesc cudaContextManagerDesc;
+	gCudaContextManager = PxCreateCudaContextManager(*foundation, cudaContextManagerDesc);
+	sceneDesc.gpuDispatcher = gCudaContextManager->getGpuDispatcher();
+	sceneDesc.flags |= PxSceneFlag::eENABLE_GPU_DYNAMICS;
+	sceneDesc.broadPhaseType = PxBroadPhaseType::eGPU;*/
+
 	scene = physics->createScene(sceneDesc);
 
 	PxPvdSceneClient* pvdClient = scene->getScenePvdClient();
@@ -85,6 +90,8 @@ bool CModulePhysics::createScene() {
 	defaultMaterial = physics->createMaterial(0.5f, 0.5f, 0.6f);
 
 	controllerManager = PxCreateControllerManager(*scene);
+	controllerManager->setTessellation(tesellation, tesellationMaxEdgeLength);
+	controllerManager->setOverlapRecoveryModule(overlapRecoveryModule);
 
 	return true;
 }
@@ -112,7 +119,7 @@ void CModulePhysics::createActor(TCompCollider& compCollider) {
 	compCollider.actor = actor;
 }
 
-void CModulePhysics::createCCT(TCompCollider& compCollider,const ColliderConfig& config, PxTransform& initialTransform, CHandle entityHandle) {
+void CModulePhysics::createCCT(TCompCollider& compCollider, const ColliderConfig& config, PxTransform& initialTransform, CHandle entityHandle) {
 	PxControllerDesc* cDesc = nullptr;
 
 	if (config.shapeType == PxGeometryType::eBOX) {
@@ -138,7 +145,7 @@ void CModulePhysics::createCCT(TCompCollider& compCollider,const ColliderConfig&
 	cDesc->reportCallback = &basicControllerHitCallback;
 	cDesc->behaviorCallback = compCollider.controllerBehavior;
 	compCollider.controller = controllerManager->createController(*cDesc);
-	
+
 	PX_ASSERT(compCollider.controller);
 
 }
@@ -282,7 +289,16 @@ void CModulePhysics::render() {
 			ImGui::Text("Static actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_STATIC));
 			ImGui::Text("Dynamic actors: %d", scene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC));
 			ImGui::Text("Character controllers: %d", controllerManager->getNbControllers());
+			if (ImGui::Checkbox("Tesellation", &tesellation)
+				|| ImGui::DragFloat("Tesellation max edge length", &tesellationMaxEdgeLength, 0.1f, 0.2f, 100.f, "%.2f")) {
+				controllerManager->setTessellation(tesellation, tesellationMaxEdgeLength);
+			}
+			if (ImGui::Checkbox("Overlap Recovery Module", &overlapRecoveryModule)) {
+				controllerManager->setOverlapRecoveryModule(overlapRecoveryModule);
+			}
+
 			ImGui::TreePop();
+
 		}
 	}
 }

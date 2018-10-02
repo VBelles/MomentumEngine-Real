@@ -1,7 +1,6 @@
 #ifndef INC_COMP_TAGS_H_
 #define INC_COMP_TAGS_H_
 
-#include "comp_base.h"
 
 class CTagsManager {
 	std::unordered_map< uint32_t, VHandles > entities_by_tag;

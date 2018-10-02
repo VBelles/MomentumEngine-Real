@@ -110,6 +110,7 @@ void CRenderTechnique::activate() const {
 	// If I'm the current active tech, no need to reactive myself in DX
 	if (current == this) return;
 	assert(vs);
+	mtx.lock();
 	vs->activate();
 
 	// We might not have a valid ps, for example, when rendering the
@@ -132,6 +133,7 @@ void CRenderTechnique::activate() const {
 
 	// Save me as the current active technique
 	current = this;
+	mtx.unlock();
 }
 
 void CRenderTechnique::debugInMenu() {

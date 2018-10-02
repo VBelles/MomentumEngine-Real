@@ -18,7 +18,7 @@ int AirborneAction::execAction(float delta) {
 	return Leave;
 }
 
-void AirborneAction::load(IBehaviorTreeNew* bt, const json& j) {
+void AirborneAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

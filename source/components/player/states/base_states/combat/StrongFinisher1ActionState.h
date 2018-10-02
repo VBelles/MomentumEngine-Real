@@ -1,7 +1,6 @@
 #pragma once
 
 #include "components/player/states/GroundedActionState.h"
-#include "components/player/states/AttackState.h"
 
 class StrongFinisher1ActionState : public GroundedActionState, public AttackState {
 private:
@@ -9,6 +8,7 @@ private:
 
 	float powerToGet = 3000.f;
 	float damage = 3.f;
+	float stunTime = 2.f;
 	float suspensionTime = 1.5f;
 	bool isSlashOut = false;
 

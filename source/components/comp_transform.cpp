@@ -2,7 +2,6 @@
 #include "comp_transform.h"
 #include "entity/entity_parser.h"
 #include "render/render_objects.h"
-#include "components/comp_collider.h"
 
 DECL_OBJ_MANAGER("transform", TCompTransform);
 

@@ -1,10 +1,5 @@
 #include "mcv_platform.h"
 #include "SpringJumpActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 
 
 SpringJumpActionState::SpringJumpActionState(StateManager* stateManager) :
@@ -23,7 +18,7 @@ void SpringJumpActionState::update(float delta) {
 
 void SpringJumpActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
-	getSkeleton()->blendCycle(animationFalling, 0.1f, 0.1f);
+	getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 }
 

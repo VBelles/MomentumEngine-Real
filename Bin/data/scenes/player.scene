@@ -403,6 +403,70 @@
 						"event": "event:/PROTA/correr terreno/run_ground_l"
 					}
 				]
+			},
+			"sound":{
+				"events":[
+					{
+						"id": "attack",
+						"path": "event:/PROTA/golpes/golpe_movimiento"
+					},
+					{
+						"id": "launcher_horizontal",
+						"path": "event:/PROTA/launcher/launcher_horizontal_lanzar"
+					},
+					{
+						"id": "launcher_vertical",
+						"path": "event:/PROTA/launcher/launcher_vertical_lanzar"
+					},
+					{
+						"id": "release_power",
+						"path": "event:/PROTA/liberar_energia"
+					},
+					{
+						"id": "jump",
+						"path": "event:/PROTA/saltar/salto corto/salto_corto_saltar"
+					},
+					{
+						"id": "jump_long",
+						"path": "event:/PROTA/saltar/salto largo/salto_largo_saltar"
+					},
+					{
+						"id": "dodge",
+						"path": "event:/PROTA/dodge"
+					},
+					{
+						"id": "hugging_wall",
+						"path": "event:/PROTA/deslizar_pared"
+					},
+					{
+						"id": "climbing",
+						"path": ""
+					},
+					{
+						"id": "landing",
+						"path": "event:/PROTA/caida"
+					},
+					{
+						"id": "hard_landing",
+						"path": "event:/PROTA/caida"
+					},
+					{
+						"id": "death",
+						"path": "event:/PROTA/muerte"
+					},
+					{
+						"id": "pit_falling",
+						"path": "event:/PROTA/muerte"
+					},
+					{
+						"id": "lvl_up_2",
+						"path": "event:/PROTA/cambio de estado/cambio_2"
+					},
+					{
+						"id": "lvl_up_3",
+						"path": "event:/PROTA/cambio de estado/cambio_3"
+					}
+				]
 			}
 		}
 	},
@@ -420,7 +484,7 @@
 			},
 			"camera_player": {
 				"target": "The Player",
-				"distance_to_target": 4.5,
+				"distance_to_target": 5,
 				"idle_distance_to_target": 3,
 				"zoomInSpeedIdleRun": 2.8,
 				"zoomOutSpeedIdleRun": 5.2,

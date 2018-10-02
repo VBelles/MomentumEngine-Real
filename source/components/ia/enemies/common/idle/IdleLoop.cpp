@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "IdleLoop.h"
 #include "components/ia/enemies/Enemy.h"
-#include "skeleton/comp_skeleton.h"
 
 REGISTER_BTACTION("IdleLoop", IdleLoop);
 
@@ -27,7 +26,7 @@ int IdleLoop::execAction(float delta) {
 	}
 }
 
-void IdleLoop::load(IBehaviorTreeNew* bt, const json& j) {
+void IdleLoop::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

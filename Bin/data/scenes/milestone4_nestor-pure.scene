@@ -2,6 +2,334 @@
   {
     "entity":
     {
+      "name": "nes_tumba_0_001",
+      "transform":
+      {
+        "pos": "-32.6405 -5.70684 121.715",
+        "rotation": "0.0 -0.573576 0.0 -0.819152"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_tumba_0_001.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba01_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_tumba_0_001.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba01_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tumba_0_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_034",
+      "transform":
+      {
+        "pos": "-15.2532 17.66 149.942",
+        "rotation": "0.0 -0.402856 0.0 -0.915263"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_034.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_034.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_034.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_033",
+      "transform":
+      {
+        "pos": "-15.6309 14.6769 140.488",
+        "rotation": "0.0 -0.402856 0.0 -0.915263"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_033.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_033.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_033.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_032",
+      "transform":
+      {
+        "pos": "-24.1161 11.78 144.847",
+        "rotation": "0.0 -0.402856 0.0 -0.915263"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_032.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_032.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_032.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_031",
+      "transform":
+      {
+        "pos": "-27.6931 8.1279 136.736",
+        "rotation": "0.0 -0.402856 0.0 -0.915263"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_031.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_031.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_031.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_030",
+      "transform":
+      {
+        "pos": "-19.0218 4.05393 132.955",
+        "rotation": "0.0 -0.402856 0.0 -0.915263"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_030.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_030.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_030.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_029",
+      "transform":
+      {
+        "pos": "-22.536 -0.46496 124.855",
+        "rotation": "0.0 -0.402856 0.0 -0.915263"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_029.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_029.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_029.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataforma_roca_028",
+      "transform":
+      {
+        "pos": "-31.4664 -3.87475 128.313",
+        "rotation": "0.0 0.518671 0.0 -0.854974"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_028.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_028.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_028.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_emissive_049",
       "transform":
       {

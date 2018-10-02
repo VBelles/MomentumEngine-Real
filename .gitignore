@@ -3,6 +3,8 @@ Bin/*.ilk
 Bin/*.exe
 Bin/*.ipdb
 Bin/*.iobj
+Bin/*.exp
+Bin/*.lib
 Build
 .vs/Game/v15
 source/.vs/

@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_ragdoll.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
 #include "modules/module_manager.h"
 #include "entity/entity.h"
 #include "modules/game_modules/physics/module_physics.h"

@@ -20,6 +20,7 @@ private:
 		VEC4 lightColor;
 		float lightIntensity;
 		float emissiveRatio;
+		float exposure;
 	};
 
 	/*

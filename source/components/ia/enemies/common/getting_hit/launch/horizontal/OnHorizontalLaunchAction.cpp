@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "OnHorizontalLaunchAction.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_hitboxes.h"
 
@@ -30,7 +28,7 @@ int OnHorizontalLaunchAction::execAction(float delta) {
 	return Leave;
 }
 
-void OnHorizontalLaunchAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnHorizontalLaunchAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 

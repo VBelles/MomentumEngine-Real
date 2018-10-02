@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "OnBlockingBreakAction.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/ia/enemies/Enemy.h"
 #include "components/comp_give_power.h"
 
@@ -22,14 +21,16 @@ int OnBlockingBreakAction::execAction(float delta) {
 	enemy->blockingBroken = false;
 	enemy->isBlocking = false;
 	enemy->getPower()->setStateMultiplier(1.f);
+	enemy->getSound()->play("block");
 	return Leave;
 }
 
-void OnBlockingBreakAction::load(IBehaviorTreeNew* bt, const json& j) {
+void OnBlockingBreakAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	sound = j.value("sound", sound);
 }
 
 void OnBlockingBreakAction::debugInMenu() {

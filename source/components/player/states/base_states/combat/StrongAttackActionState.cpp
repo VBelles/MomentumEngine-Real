@@ -1,14 +1,5 @@
 #include "mcv_platform.h"
 #include "StrongAttackActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_hitboxes.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
-#include "components/comp_camera.h"
-#include "components/comp_transform.h"
-#include "entity/common_msgs.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
 #include "modules/system_modules/slash/comp_slash.h"
 
@@ -23,6 +14,10 @@ StrongAttackActionState::StrongAttackActionState(StateManager * stateManager) :
 	interruptibleTime = frames2sec(57);
 	walkableTime = frames2sec(90);
 	hitbox = "strong_attack";
+	superarmorStartTime = frames2sec(14);//1 frame menos de lo que tarda en salir el ataque más rápido de un dreidel
+	superarmorEndTime = frames2sec(30);
+	invulnerabilityStartTime = frames2sec(30);
+	invulnerabilityEndTime = frames2sec(56);
 }
 
 void StrongAttackActionState::update(float delta) {
@@ -54,7 +49,7 @@ void StrongAttackActionState::update(float delta) {
 	float deceleration = 12.f;
 
 	if (fromRun) {
-		maxSpeed = 40.f;
+		maxSpeed = 30.f;
 	}
 
 	if (phase == AttackPhases::Launch && fromRun) {
@@ -72,7 +67,7 @@ void StrongAttackActionState::update(float delta) {
 		}
 	}
 
-	if (movementTimer.elapsed() > frames2sec(30) && movementTimer.elapsed() < frames2sec(45)) {
+	if (movementTimer.elapsed() > frames2sec(30) && movementTimer.elapsed() < frames2sec(38)) {
 		//deltaMovement += getPlayerTransform()->getFront() * maxSpeed * delta;
 		deltaMovement += calculateHorizontalDeltaMovement(delta, VEC3(velocityVector->x, 0, velocityVector->z),
 			getPlayerTransform()->getFront(), acceleration,
@@ -97,14 +92,14 @@ void StrongAttackActionState::update(float delta) {
 
 
 
-	if (!isSlashOut && movementTimer.elapsed() > frames2sec(24) && movementTimer.elapsed() <= frames2sec(54)) {
+	if (!isSlashOut && movementTimer.elapsed() > frames2sec(30) && movementTimer.elapsed() <= frames2sec(50)) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_TENTACLE)->setEnable(true);
-		EngineSound.emitEvent(SOUND_ATTACK_MOVEMENT, getPlayerTransform()->getPosition());
+		getSound()->play("attack");
 	}
 
-	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
+	if (isSlashOut && movementTimer.elapsed() > frames2sec(50)) {
 		isSlashOut = false;
 		getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 		getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
@@ -166,7 +161,7 @@ void StrongAttackActionState::onReleasePowerButton() {
 }
 
 void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
-	CHandle playerEntity = CHandle(stateManager->getEntity());
+	CHandle playerEntity = getPlayerEntity();
 	CEntity *otherEntity = entity;
 	otherEntity->sendMsg(TMsgGetPower{ playerEntity, powerToGet });
 	TMsgAttackHit msgAttackHit = {};
@@ -181,7 +176,7 @@ void StrongAttackActionState::onHitboxEnter(std::string hitbox, CHandle entity) 
 		suspensionTime,
 		launchVelocity
 	};
-	msgAttackHit.info.stun = new AttackInfo::Stun{ 2.2f };
+	msgAttackHit.info.stun = new AttackInfo::Stun{ stunTime };
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);

@@ -1,11 +1,9 @@
 #include "mcv_platform.h"
 #include "comp_walk_sound.h"
-#include "components/comp_transform.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/states/StateManager.h"
 #include "components/player/states/IActionState.h"
 #include "components/player/comp_power_gauge.h"
-#include "skeleton/comp_skeleton.h"
 #include "skeleton/cal3d2engine.h"
 #include "entity/entity_parser.h"
 

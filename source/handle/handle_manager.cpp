@@ -43,8 +43,8 @@ CHandle CHandleManager::createHandle() {
 
 	// Actualizar mi tabla internal para poder referenciar un objeto
 	// de los de verdad asociado a este handle. El nuevo objeto esta
-	// al final de los objetos 'usandose'
 	ed.internal_index = num_objs_used;
+	// al final de los objetos 'usandose'
 
 	// Para recuperar la external info dada una internal_index
 	internal_to_external[ed.internal_index] = external_idx;

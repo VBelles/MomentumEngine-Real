@@ -2,8 +2,6 @@
 #include "comp_platform_simple.h"
 #include "render/render_objects.h"
 #include "components/player/comp_player_model.h"
-#include "components/comp_collider.h"
-#include "components/comp_transform.h"
 #include "geometry/curve.h"
 
 DECL_OBJ_MANAGER("platform_simple", TCompPlatformSimple);
@@ -94,16 +92,18 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
-	TCompTransform* transform = get<TCompTransform>();
+	transformHandle = get<TCompTransform>();
+	assert(transformHandle.isValid());
+	colliderHandle = get<TCompCollider>();
+	assert(colliderHandle.isValid());
+
+	TCompTransform* transform = getTransform();
 
 	//combinar up/left/front para encontrar la rotationAxisGlobal
 	rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
 		transform->getUp()    * rotationAxisLocal.y +
 		transform->getFront() * rotationAxisLocal.z;
-	transformHandle = CHandle(transform);
-	assert(transformHandle.isValid());
-	colliderHandle = get<TCompCollider>();
-	assert(colliderHandle.isValid());
+	
 	if (rollSpeed != 0) {
 		float yaw, pitch;
 		transform->getYawPitchRoll(&yaw, &pitch, &targetRoll);

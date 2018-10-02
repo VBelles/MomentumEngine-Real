@@ -3,7 +3,6 @@
 #include "game_core_skeleton.h"
 #include "resources/resources_manager.h"
 #include "render/render_objects.h"
-#include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("skeleton", TCompSkeleton);
 

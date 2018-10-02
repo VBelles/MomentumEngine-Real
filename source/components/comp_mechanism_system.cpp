@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_mechanism_system.h"
-#include "components/comp_transform.h"
 #include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("mechanism_system", TCompMechanismSystem);

@@ -4,8 +4,6 @@
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
 #include "entity/entity.h"
-#include "components/comp_render.h"
-#include "components/comp_transform.h"
 #include "components/comp_render_ui.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"

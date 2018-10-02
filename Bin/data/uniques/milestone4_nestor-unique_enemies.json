@@ -1,0 +1,1167 @@
+{
+  "unique_enemies":
+  [
+    {
+      "id": "nes_enemyMelee038",
+      "done": false,
+      "position": "-128.932 12.2119 61.6907",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee037",
+      "done": false,
+      "position": "-128.182 12.9132 55.1541",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee036",
+      "done": false,
+      "position": "-51.9108 -5.22276 -150.949",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee035",
+      "done": false,
+      "position": "-65.7153 8.11806 -100.299",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee034",
+      "done": false,
+      "position": "-12.418 2.29457 -81.6987",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee033",
+      "done": false,
+      "position": "-12.3988 -4.58262 -118.946",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee032",
+      "done": false,
+      "position": "-13.1053 33.8612 -54.5401",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee031",
+      "done": false,
+      "position": "-82.874 27.7551 43.6665",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee030",
+      "done": false,
+      "position": "-193.213 38.2337 -25.706",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee029",
+      "done": false,
+      "position": "-99.0985 7.03896 -9.28096",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee028",
+      "done": false,
+      "position": "-145.04 18.5556 -61.2326",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee027",
+      "done": false,
+      "position": "-130.319 6.74038 -3.72224",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir044",
+      "done": false,
+      "position": "-134.003 28.8508 -65.8226",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir043",
+      "done": false,
+      "position": "-123.982 29.8792 -51.6757",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir042",
+      "done": false,
+      "position": "-98.3726 26.5064 -59.7997",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir041",
+      "done": false,
+      "position": "-106.58 24.3941 -44.2207",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir040",
+      "done": false,
+      "position": "-88.8287 21.8308 -45.0453",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee026",
+      "done": false,
+      "position": "-219.676 60.4953 36.2732",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee025",
+      "done": false,
+      "position": "-225.495 60.4953 41.2513",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir039",
+      "done": false,
+      "position": "-156.066 68.0329 -14.8163",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir038",
+      "done": false,
+      "position": "-217.123 54.61 52.2237",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir037",
+      "done": false,
+      "position": "-193.376 62.8652 47.4223",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir036",
+      "done": false,
+      "position": "-200.852 62.8652 45.2159",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir035",
+      "done": false,
+      "position": "-186.696 62.8652 49.8234",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee024",
+      "done": false,
+      "position": "-90.1018 -2.09116 69.5132",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee023",
+      "done": false,
+      "position": "14.1779 -0.533061 -59.9404",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee022",
+      "done": false,
+      "position": "64.466 5.65591 -18.84",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee021",
+      "done": false,
+      "position": "-105.453 7.44497 -90.7611",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee020",
+      "done": false,
+      "position": "-190.475 37.7987 -20.9563",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee019",
+      "done": false,
+      "position": "-98.3479 7.03896 -15.8176",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee018",
+      "done": false,
+      "position": "-152.393 14.5321 27.4307",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee017",
+      "done": false,
+      "position": "-130.33 14.1435 39.7676",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir034",
+      "done": false,
+      "position": "-34.2782 -0.273387 101.587",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir033",
+      "done": false,
+      "position": "86.1398 35.428 0.856559",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir032",
+      "done": false,
+      "position": "56.0098 35.5463 28.981",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir031",
+      "done": false,
+      "position": "52.8985 35.5463 17.1758",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir030",
+      "done": false,
+      "position": "73.9075 37.2516 17.8408",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir029",
+      "done": false,
+      "position": "35.6325 37.2516 28.059",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir028",
+      "done": false,
+      "position": "-136.773 1.41387 99.5031",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee016",
+      "done": false,
+      "position": "-37.0226 -4.63877 44.928",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee015",
+      "done": false,
+      "position": "-56.4561 -4.62241 102.284",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir18",
+      "done": false,
+      "position": "-77.8342 32.6393 -65.5351",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir19",
+      "done": false,
+      "position": "-71.4357 32.6393 -60.4366",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir20",
+      "done": false,
+      "position": "-68.0074 32.6393 -67.4229",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir21",
+      "done": false,
+      "position": "-60.5858 32.7017 -62.4144",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee14",
+      "done": false,
+      "position": "-12.5554 34.3485 -46.4593",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir22",
+      "done": false,
+      "position": "22.4469 40.2872 -26.1006",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir23",
+      "done": false,
+      "position": "31.4648 41.4658 -33.2431",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir24",
+      "done": false,
+      "position": "41.3694 42.9753 -40.5359",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee13",
+      "done": false,
+      "position": "59.4719 35.4081 -56.1523",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir15",
+      "done": false,
+      "position": "77.1277 36.6544 -72.328",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir16",
+      "done": false,
+      "position": "77.1143 36.6544 -40.7271",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir25",
+      "done": false,
+      "position": "122.69 34.3877 -55.3458",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir26",
+      "done": false,
+      "position": "137.568 34.3877 -55.8578",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir27",
+      "done": false,
+      "position": "129.788 34.3877 -55.3742",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir00",
+      "done": false,
+      "position": "-49.8952 13.6185 51.8707",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir01",
+      "done": false,
+      "position": "-46.3646 -2.11627 37.7782",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee12",
+      "done": false,
+      "position": "-88.1782 27.7551 48.8483",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir02",
+      "done": false,
+      "position": "159.345 77.1507 -141.178",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee11",
+      "done": false,
+      "position": "161.908 122.563 -141.089",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir03",
+      "done": false,
+      "position": "166.3 101.649 -148.944",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir04",
+      "done": false,
+      "position": "154.228 94.9233 -154.067",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee10",
+      "done": false,
+      "position": "152.198 82.455 -147.29",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir05",
+      "done": false,
+      "position": "159.867 71.2159 -140.442",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir06",
+      "done": false,
+      "position": "155.416 46.3993 -151.412",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir07",
+      "done": false,
+      "position": "46.8137 44.8133 -122.042",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir08",
+      "done": false,
+      "position": "33.4149 40.6799 -125.6",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir09",
+      "done": false,
+      "position": "37.1025 42.8976 -110.815",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir10",
+      "done": false,
+      "position": "-95.6723 53.5131 -22.0929",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee09",
+      "done": false,
+      "position": "-54.1295 18.6461 -45.6465",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee08",
+      "done": false,
+      "position": "-60.748 16.754 2.99741",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee07",
+      "done": false,
+      "position": "149.45 23.9797 -93.8112",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee06",
+      "done": false,
+      "position": "153.089 34.3059 -126.267",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee05",
+      "done": false,
+      "position": "152.365 33.2885 -144.635",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir11",
+      "done": false,
+      "position": "82.9319 25.8063 -124.642",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee04",
+      "done": false,
+      "position": "37.5572 2.46091 -157.622",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir12",
+      "done": false,
+      "position": "5.35392 9.46727 -155.421",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee03",
+      "done": false,
+      "position": "23.8182 52.1893 -237.001",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee02",
+      "done": false,
+      "position": "34.0749 20.4801 -235.207",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee01",
+      "done": false,
+      "position": "-18.6279 -8.71036 -166.651",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir13",
+      "done": false,
+      "position": "86.6198 22.7915 -124.491",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee00",
+      "done": false,
+      "position": "61.6472 6.64035 -123.329",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir14",
+      "done": false,
+      "position": "36.5089 16.4582 -173.015",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee038",
+      "done": false,
+      "position": "-128.932 12.2119 61.6907",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee037",
+      "done": false,
+      "position": "-128.182 12.9132 55.1541",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee036",
+      "done": false,
+      "position": "-51.9108 -5.22276 -150.949",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee035",
+      "done": false,
+      "position": "-65.7153 8.11806 -100.299",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee034",
+      "done": false,
+      "position": "-12.418 2.29457 -81.6987",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee033",
+      "done": false,
+      "position": "-12.3988 -4.58262 -118.946",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee032",
+      "done": false,
+      "position": "-13.1053 33.8612 -54.5401",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee031",
+      "done": false,
+      "position": "-82.874 27.7551 43.6665",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee030",
+      "done": false,
+      "position": "-193.213 38.2337 -25.706",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee029",
+      "done": false,
+      "position": "-99.0985 7.03896 -9.28096",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee028",
+      "done": false,
+      "position": "-145.04 18.5556 -61.2326",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee027",
+      "done": false,
+      "position": "-130.319 6.74038 -3.72224",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir044",
+      "done": false,
+      "position": "-134.003 28.8508 -65.8226",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir043",
+      "done": false,
+      "position": "-123.982 29.8792 -51.6757",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir042",
+      "done": false,
+      "position": "-98.3726 26.5064 -59.7997",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir041",
+      "done": false,
+      "position": "-106.58 24.3941 -44.2207",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir040",
+      "done": false,
+      "position": "-88.8287 21.8308 -45.0453",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee026",
+      "done": false,
+      "position": "-219.676 60.4953 36.2732",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee025",
+      "done": false,
+      "position": "-225.495 60.4953 41.2513",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir039",
+      "done": false,
+      "position": "-156.066 68.0329 -14.8163",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir038",
+      "done": false,
+      "position": "-217.123 54.61 52.2237",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir037",
+      "done": false,
+      "position": "-193.376 62.8652 47.4223",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir036",
+      "done": false,
+      "position": "-200.852 62.8652 45.2159",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir035",
+      "done": false,
+      "position": "-186.696 62.8652 49.8234",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee024",
+      "done": false,
+      "position": "-90.1018 -2.09116 69.5132",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee023",
+      "done": false,
+      "position": "14.1779 -0.533061 -59.9404",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee022",
+      "done": false,
+      "position": "64.466 5.65591 -18.84",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee021",
+      "done": false,
+      "position": "-105.453 7.44497 -90.7611",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee020",
+      "done": false,
+      "position": "-190.475 37.7987 -20.9563",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee019",
+      "done": false,
+      "position": "-98.3479 7.03896 -15.8176",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee018",
+      "done": false,
+      "position": "-152.393 14.5321 27.4307",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee017",
+      "done": false,
+      "position": "-130.33 14.1435 39.7676",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir034",
+      "done": false,
+      "position": "-34.2782 -0.273387 101.587",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir033",
+      "done": false,
+      "position": "86.1398 35.428 0.856559",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir032",
+      "done": false,
+      "position": "56.0098 35.5463 28.981",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir031",
+      "done": false,
+      "position": "52.8985 35.5463 17.1758",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir030",
+      "done": false,
+      "position": "73.9075 37.2516 17.8408",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir029",
+      "done": false,
+      "position": "35.6325 37.2516 28.059",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir028",
+      "done": false,
+      "position": "-136.773 1.41387 99.5031",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee016",
+      "done": false,
+      "position": "-37.0226 -4.63877 44.928",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee015",
+      "done": false,
+      "position": "-56.4561 -4.62241 102.284",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir18",
+      "done": false,
+      "position": "-77.8342 32.6393 -65.5351",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir19",
+      "done": false,
+      "position": "-71.4357 32.6393 -60.4366",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir20",
+      "done": false,
+      "position": "-68.0074 32.6393 -67.4229",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir21",
+      "done": false,
+      "position": "-60.5858 32.7017 -62.4144",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee14",
+      "done": false,
+      "position": "-12.5554 34.3485 -46.4593",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir22",
+      "done": false,
+      "position": "22.4469 40.2872 -26.1006",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir23",
+      "done": false,
+      "position": "31.4648 41.4658 -33.2431",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir24",
+      "done": false,
+      "position": "41.3694 42.9753 -40.5359",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee13",
+      "done": false,
+      "position": "59.4719 35.4081 -56.1523",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir15",
+      "done": false,
+      "position": "77.1277 36.6544 -72.328",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir16",
+      "done": false,
+      "position": "77.1143 36.6544 -40.7271",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir25",
+      "done": false,
+      "position": "122.69 34.3877 -55.3458",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir26",
+      "done": false,
+      "position": "137.568 34.3877 -55.8578",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir27",
+      "done": false,
+      "position": "129.788 34.3877 -55.3742",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir00",
+      "done": false,
+      "position": "-49.8952 13.6185 51.8707",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir01",
+      "done": false,
+      "position": "-46.3646 -2.11627 37.7782",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee12",
+      "done": false,
+      "position": "-88.1782 27.7551 48.8483",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir02",
+      "done": false,
+      "position": "159.345 77.1507 -141.178",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee11",
+      "done": false,
+      "position": "161.908 122.563 -141.089",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir03",
+      "done": false,
+      "position": "166.3 101.649 -148.944",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir04",
+      "done": false,
+      "position": "154.228 94.9233 -154.067",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee10",
+      "done": false,
+      "position": "152.198 82.455 -147.29",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir05",
+      "done": false,
+      "position": "159.867 71.2159 -140.442",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir06",
+      "done": false,
+      "position": "155.416 46.3993 -151.412",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir07",
+      "done": false,
+      "position": "46.8137 44.8133 -122.042",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir08",
+      "done": false,
+      "position": "33.4149 40.6799 -125.6",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir09",
+      "done": false,
+      "position": "37.1025 42.8976 -110.815",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir10",
+      "done": false,
+      "position": "-95.6723 53.5131 -22.0929",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee09",
+      "done": false,
+      "position": "-54.1295 18.6461 -45.6465",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee08",
+      "done": false,
+      "position": "-60.748 16.754 2.99741",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee07",
+      "done": false,
+      "position": "149.45 23.9797 -93.8112",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee06",
+      "done": false,
+      "position": "153.089 34.3059 -126.267",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee05",
+      "done": false,
+      "position": "152.365 33.2885 -144.635",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir11",
+      "done": false,
+      "position": "82.9319 25.8063 -124.642",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee04",
+      "done": false,
+      "position": "37.5572 2.46091 -157.622",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir12",
+      "done": false,
+      "position": "5.35392 9.46727 -155.421",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee03",
+      "done": false,
+      "position": "23.8182 52.1893 -237.001",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee02",
+      "done": false,
+      "position": "34.0749 20.4801 -235.207",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee01",
+      "done": false,
+      "position": "-18.6279 -8.71036 -166.651",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir13",
+      "done": false,
+      "position": "86.6198 22.7915 -124.491",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee00",
+      "done": false,
+      "position": "61.6472 6.64035 -123.329",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyAir14",
+      "done": false,
+      "position": "36.5089 16.4582 -173.015",
+      "level": "level00",
+      "type": "kippah"
+    }
+  ]
+}

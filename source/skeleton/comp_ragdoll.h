@@ -1,6 +1,5 @@
 #pragma once
 
-#include "components/comp_base.h"
 #include "PxPhysicsAPI.h"
 #include "entity/entity.h"
 #include "entity/common_msgs.h"

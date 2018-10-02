@@ -31,6 +31,15 @@
 				"type": "kinematic",
 				"group": ["scenario"],
 				"mask": ["player"]
+			},
+			"light_point": {
+				"intensity": 4,
+				"radius": 3,
+				"color" :  "0.8125 0.52 0.055 1"
+			},
+			"light_flicker": {
+				"intensityVariation": 0.5,
+				"variationSpeed": 0.5
 			}
 		}
 	}

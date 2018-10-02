@@ -1,7 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_skel_lookat.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
 #include "cal3d/cal3d.h"
 #include "cal3d2engine.h"
 #include "entity/entity_parser.h"

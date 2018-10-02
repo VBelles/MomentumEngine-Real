@@ -1,7 +1,15 @@
 [
     {
-        "name": "Origin (0,0,0)",
+        "name": "(0,0,0)",
         "pos": "0 0 0"
+    },
+    {
+        "name": "Player start",
+        "pos": "-77 -9 139"
+    },
+    {
+        "name": "Zona cristales: Inicio",
+        "pos": "-132 -6 115"
     },
     {
         "name": "Gameplay Jose: Inicio",
@@ -24,16 +32,32 @@
         "pos": "147 224 -139"
     },
     {
-        "name": "Estatua: Pie",
-        "pos": "-162 37 -19"
+        "name": "Torre: mecanismo top",
+        "pos": "158.589 120.548 -152.168"
+    },
+    {
+        "name": "Torre: mecanismo mitad",
+        "pos": "144.719 88.8488 -152.803"
+    },
+    {
+        "name": "Estatua: Top",
+        "pos": "-154 66 -25"
+    },
+    {
+        "name": "Estatua: mecanismo secreto",
+        "pos": "-220.18 3.50697 -50.9551"
+    },
+    {
+        "name": "Estatua: mecanismo móviles",
+        "pos": "-119.256 29.401 -69.9779"
     },
     {
         "name": "Cementerio",
         "pos": "24 16 67"
     },
     {
-        "name": "Plaza",
-        "pos": "31 1 -24"
+        "name": "Cementerio: mecanismo anillos",
+        "pos": "38 38 38"
     },
     {
         "name": "Islas",
@@ -44,11 +68,43 @@
         "pos": "-40 16 -10"
     },
     {
+        "name": "Ruinas centrales: mecanismo (temporal)",
+        "pos": "-89.4165 51.8902 -16.8815"
+    },
+    {
         "name": "Ruinas torre",
         "pos": "56 6 -122"
     },
     {
-        "name": "Ruinas torre top columnas",
+        "name": "Ruinas torre: top columnas",
         "pos": "18 53 -236"
+    },
+    {
+        "name": "Ruinas torre: mecanismo (temporal)",
+        "pos": "61.6959 7.31922 -106.332"
+    },
+    {
+        "name": "Centro: mecanismo",
+        "pos": "-8.83672 34.8446 -40.5476"
+    },
+    {
+        "name": "Centro: mecanismo plataformas",
+        "pos": "-122.562 44.4286 47.4459"
+    },
+    {
+        "name": "Centro: Plaza",
+        "pos": "31 1 -24"
+    },
+    {
+        "name": "Minibosque setas",
+        "pos": "294 -3.4 -143"
+    },
+    {
+        "name": "Isla detrás torre",
+        "pos": "223 13.1 -214"
+    },
+    {
+        "name": "Encima columna gorda",
+        "pos": "216 76.6 -233"
     }
 ]

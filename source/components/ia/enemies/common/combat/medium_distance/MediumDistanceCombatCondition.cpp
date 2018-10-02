@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "MediumDistanceCombatCondition.h"
 #include "components/ia/enemies/Enemy.h"
-#include "components/comp_transform.h"
 
 REGISTER_BTCONDITION("MediumDistanceCombatCondition", MediumDistanceCombatCondition);
 
@@ -27,7 +26,7 @@ bool MediumDistanceCombatCondition::testCondition(float delta) {
 	}
 }
 
-void MediumDistanceCombatCondition::load(IBehaviorTreeNew* bt, const json& j) {
+void MediumDistanceCombatCondition::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }

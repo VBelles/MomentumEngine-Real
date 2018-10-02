@@ -2,7 +2,6 @@
 #include "comp_sun.h"
 #include "entity/entity.h"
 #include "entity/entity_parser.h"
-#include "components/comp_transform.h"
 #include "components/comp_light_dir.h"
 #include "entity/common_msgs.h"
 

@@ -6,13 +6,12 @@
 #include "resources/resources_manager.h"
 #include "components/comp_light_dir.h"
 #include "components/comp_light_point.h"
-#include "components/comp_transform.h"
 #include "components/postfx/comp_render_ao.h"
 #include "ctes.h"
 
 void CDeferredRenderer::renderGBuffer() {
 	CTraceScoped gpu_scope("Deferred.GBuffer");
-
+	mtx.lock();
 	// Disable the gbuffer textures as we are going to update them
 	// Can't render to those textures and have them active in some slot...
 	CTexture::setNullTexture(TS_DEFERRED_ALBEDOS);
@@ -56,11 +55,12 @@ void CDeferredRenderer::renderGBuffer() {
 	rt_normals->activate(TS_DEFERRED_NORMALS);
 	rt_depth->activate(TS_DEFERRED_LINEAR_DEPTH);
 	rt_self_illum->activate(TS_DEFERRED_SELF_ILLUM);
+	mtx.unlock();
 }
 
 void CDeferredRenderer::renderGBufferDecals() {
 	CTraceScoped gpu_scope("Deferred.GBuffer.Decals");
-
+	mtx.lock();
 	// Disable the gbuffer textures as we are going to update them
 	// Can't render to those textures and have them active in some slot...
 	CTexture::setNullTexture(TS_DEFERRED_ALBEDOS);
@@ -89,6 +89,7 @@ void CDeferredRenderer::renderGBufferDecals() {
 	// Activate the gbuffer textures to other shaders
 	//rt_normals->activate(TS_DEFERRED_NORMALS);
 	rt_albedos->activate(TS_DEFERRED_ALBEDOS);
+	mtx.unlock();
 }
 
 bool CDeferredRenderer::create(int xres, int yres) {

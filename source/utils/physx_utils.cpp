@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "physx_utils.h"
-#include "components/comp_collider.h"
 
 namespace PhysxUtils {
 

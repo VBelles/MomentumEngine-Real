@@ -23,7 +23,7 @@ extern ID3D11ShaderResourceView* depth_shader_resource_view;
 void TCompRenderOutlines::apply() {
     if (!enabled) return;
     CTraceScoped scope("TCompRenderOutlines");
-
+	mtx.lock();
     // Upload to the GPU the how much visibe is the effect (defaults to 100%)
     cb_globals.global_shared_fx_amount = amount;
     cb_globals.updateGPU();
@@ -42,4 +42,5 @@ void TCompRenderOutlines::apply() {
     // Restore the current render target as it was
     CTexture::setNullTexture(TS_ALBEDO);
     rt->activateRT();
+	mtx.unlock();
 }

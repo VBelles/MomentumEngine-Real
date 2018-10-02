@@ -4,7 +4,6 @@
 #include "entity/common_msgs.h"
 #include "comp_player_model.h"
 #include "components/comp_tags.h"
-#include "components/comp_collider.h"
 #include "components/comp_purity.h"
 #include <algorithm>
 

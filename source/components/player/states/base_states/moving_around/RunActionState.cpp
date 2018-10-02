@@ -1,12 +1,5 @@
 #include "mcv_platform.h"
 #include "RunActionState.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_render.h"
-#include "components/comp_camera.h"
-#include "components/controllers/comp_camera_player.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 #include "modules/system_modules/slash/comp_slash.h"
 #include "modules/system_modules/particles/comp_particles.h"
 
@@ -82,7 +75,7 @@ void RunActionState::onStateEnter(IActionState * lastState) {
 	GroundedActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animation, 0.3f, 0.3f);
 	getCameraPlayer()->moveCameraCloser(false);
-	EngineParticles.launchSystem("data/particles/dust.particles", Particles::LaunchConfig{ getEntity(), "", VEC3(0, 0.15, 0) });
+	EngineParticles.launchSystem("data/particles/dust.particles", Particles::LaunchConfig{ getPlayerEntity(), "", VEC3(0, 0.15, 0) });
 
 	if (hasSlash) {
 		getTrailSlash(SlashType::LEFT_TENTACLE)->setEnable(true);

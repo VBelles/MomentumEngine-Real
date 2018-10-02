@@ -1,8 +1,5 @@
 #include "mcv_platform.h"
 #include "Enemy.h"
-#include "components/comp_transform.h"
-#include "components/comp_collider.h"
-#include "skeleton/comp_skeleton.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
 #include "components/player/comp_player_model.h"
@@ -13,7 +10,7 @@ Enemy::~Enemy() {
 void Enemy::load(const json& j) {
 	if (j.count("behavior_tree")) {
 		behaviorTreeFile = j.value("behavior_tree", "");
-		IBehaviorTreeNew::load(loadJson(behaviorTreeFile));
+		IBehaviorTree::load(loadJson(behaviorTreeFile));
 	}
 
 	onHit = false;
@@ -88,7 +85,7 @@ void Enemy::load(const json& j) {
 
 void Enemy::debugInMenu() {
 	ImGui::Text("Behavior tree file: %s\n", !behaviorTreeFile.empty() ? behaviorTreeFile.c_str() : "None");
-	IBehaviorTreeNew::debugInMenu();
+	IBehaviorTree::debugInMenu();
 
 	ImGui::Text("Estado: %s\n", current ? current->getName().c_str() : "None");
 	ImGui::Text("Hp: %f\n", hp);
@@ -128,6 +125,7 @@ void Enemy::debugInMenu() {
 		ImGui::Text("Skeleton handle is valid: %s\n", skeletonHandle.isValid() ? "true" : "false");
 		ImGui::Text("Hitboxes handle is valid: %s\n", hitboxesHandle.isValid() ? "true" : "false");
 		ImGui::Text("Power handle is valid: %s\n", powerHandle.isValid() ? "true" : "false");
+		ImGui::Text("Sound handle is valid: %s\n", soundHandle.isValid() ? "true" : "false");
 		ImGui::TreePop();
 	}
 }
@@ -138,13 +136,6 @@ void Enemy::updateGravity(float delta) {
 	velocity.y = clamp(velocity.y, -maxVerticalVelocity, maxVerticalVelocity);
 }
 
-void Enemy::updateSoundAttributes() {
-	auto transform = getTransform();
-	soundAttributes.position = toFMODVector(transform->getPosition());
-	soundAttributes.velocity = toFMODVector(velocity);
-	soundAttributes.forward = toFMODVector(transform->getFront());
-	soundAttributes.up = toFMODVector(transform->getUp());
-}
 
 void Enemy::rotateTowards(float delta, VEC3 targetPos, float rotationSpeed) {
 	float deltaYaw = getTransform()->getDeltaYawToAimTo(targetPos);
@@ -170,7 +161,6 @@ void Enemy::move(float delta) {
 			velocity.y = 0;
 		}
 	}
-	updateSoundAttributes();
 }
 
 bool Enemy::hasSuperArmor() {
@@ -209,16 +199,17 @@ TCompGivePower* Enemy::getPower() {
 	return powerHandle;
 }
 
-void Enemy::resetCurrent() {
-	current = nullptr;
+TCompSound* Enemy::getSound() {
+	return soundHandle;
 }
 
 
-void Enemy::setCurrent(std::string node) {
-	IBehaviorTreeNode* newCurrent = nullptr;
-	auto it = tree.find(node);
-	if (it != tree.end()) {
-		newCurrent = it->second;
+void Enemy::resetCurrent() {
+	if (current) {
+		auto it = actions.find(current->getName());
+		if (it != actions.end()) {
+			it->second->onExit();
+		}
+		current = nullptr;
 	}
-	current = newCurrent;
 }

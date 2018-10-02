@@ -1,10 +1,5 @@
 #include "mcv_platform.h"
 #include "JumpSquatActionState.h"
-#include "components/comp_render.h"
-#include "components/player/comp_player_model.h"
-#include "components/comp_transform.h"
-#include "skeleton/comp_skeleton.h"
-#include "components/player/states/StateManager.h"
 
 
 JumpSquatActionState::JumpSquatActionState(StateManager* stateManager) :
@@ -37,7 +32,7 @@ void JumpSquatActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	enteringVelocity = getPlayerModel()->getVelocityVector()->Length();
 	getSkeleton()->executeAction(animationSquat, 0.1f, 0.03f);
-	EngineSound.emitEvent(SOUND_JUMP);
+	getSound()->play("jump");
 }
 
 void JumpSquatActionState::onStateExit(IActionState * nextState) {
