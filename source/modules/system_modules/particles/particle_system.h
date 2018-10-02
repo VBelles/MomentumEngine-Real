@@ -16,7 +16,7 @@ namespace Particles {
 		};
 
 		struct TEmission {
-			enum EType { Point = 0, Line, Square, Box, Sphere, Circle, Cylinder, End};
+			enum EType { Point = 0, Line, Square, Box, Sphere, Circle, Cylinder, End };
 
 			EType type = Point;				// type of emissor
 			float interval = 0.f;			// generation interval
@@ -34,7 +34,7 @@ namespace Particles {
 			float velocity = 0.f;				// initial speed
 			float velocityVariation = 0.f;		// variation of the initial speed generation
 			float acceleration = 0.f;			// acceleration
-			float initialRotation = 0;			
+			float initialRotation = 0;
 			bool initialRandomRotation = false;
 			float spin = 0.f;					// rotation speed (radians)
 			VEC3 spin_axis = { 0.f, 1.f, 0.f };	// spin axis
@@ -93,7 +93,7 @@ namespace Particles {
 
 		MAT44 world;
 		VEC3 position;
-		void updateWorld();
+		AABB aabb;
 
 		LaunchConfig config;
 		int boneId = -1;
@@ -108,6 +108,8 @@ namespace Particles {
 		float               _fadeTime = 0.f;
 		CHandle             particleEntityHandle; //Handle of the entity
 
+		void updateWorld();
+
 	public:
 		CSystem(TParticleHandle handle, const TCoreSystem* core, CHandle particleHandle, LaunchConfig config);
 		bool update(float delta);
@@ -121,5 +123,7 @@ namespace Particles {
 		void debugInMenu();
 		int getNbParticles();
 		const TCoreSystem* getCore();
+		AABB getAABB();
+		void renderDebug();
 	};
 }

@@ -29,6 +29,8 @@ private:
 	VEC3                             _windVelocity = VEC3::Zero;
 	Particles::TParticleHandle		_lastHandle;
 	bool paused = false;
+	bool culling = true;
+	CHandle cullingHandle;
 
 public:
 	CModuleParticles(const std::string& name);
