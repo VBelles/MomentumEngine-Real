@@ -15,7 +15,7 @@ ButtonText: "Momentum"
 	global floater
 	try closeRolloutFloater floater catch()
 
-	local width = 218
+	local width = 218 --Default max width.
 
 	local baseHeight = 66
 	local heightPerButton = 26
@@ -513,10 +513,10 @@ ButtonText: "Momentum"
 					button btnSetRolSpd "Set" width:24 align:#left
 					spinner waitDur  "Wait dur"   type: #float across:2 align:#right
 					button btnSetWdur "Set" width:24 align:#left
-					spinner grup     "Platf group"  type: #integer across:2 align:#right range:[0, 1000, 0]
-					button btnSetGrup "Set" width:24 align:#left
-					spinner waitT    "Group wait t" type: #float   across:2 align:#right range:[0, 1000, 0]
-					button btnSetWaitT "Set" width:24 align:#left
+					spinner dir     "Platf dir"  type: #integer across:2 align:#right range:[0, 1000, 0]
+					button btnSetDir "Set" width:24 align:#left
+					multiListBox slt "Platf dir slots" items: #("1","2","3","4","5") height:5 width:70 across:2 align:#right
+					button btnSetSlot "Set" width:24 align:#left
 
 					button btnSetAll "SetAll"
 
@@ -526,8 +526,8 @@ ButtonText: "Momentum"
 					on btnSetRotSpd	pressed do (setAttribute "rotateData" #rotSpeed rotSpeed.value)
 					on btnSetRolSpd	pressed do (setAttribute "rotateData" #rolSpeed rolSpeed.value)
 					on btnSetWdur	pressed do (setAttribute "rotateData" #wait 	waitDur.value)
-					on btnSetGrup	pressed do (setAttribute "rotateData" #grup	 	grup.value)
-					on btnSetWaitT	pressed do (setAttribute "rotateData" #waitT	waitT.value)
+					on btnSetDir	pressed do (setAttribute "rotateData" #dir	 	dir.value)
+					on btnSetSlot	pressed do (setAttribute "rotateData" #slot	 	slot.selection)
 
 					on btnSetAll	pressed do (
 						setAttribute "rotateData" #x 		xRot.value
@@ -536,8 +536,8 @@ ButtonText: "Momentum"
 						setAttribute "rotateData" #rotSpeed rotSpeed.value
 						setAttribute "rotateData" #rolSpeed rolSpeed.value
 						setAttribute "rotateData" #wait 	waitDur.value
-						setAttribute "rotateData" #grup	 	grup.value
-						setAttribute "rotateData" #waitT	waitT.value
+						setAttribute "rotateData" #dir	 	dir.value
+						setAttribute "rotateData" #slot	 	slot.selection
 					)
 				)
 

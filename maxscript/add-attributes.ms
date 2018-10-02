@@ -39,12 +39,10 @@ global rotationsData = attributes rotateData (
 
 		rolSpeed type: #float   ui:rolSpeed default:0.0
 		wait 	 type: #float   ui:waitDur 	default:2
-		grup	 type: #integer ui:grup 	default:0.0
-		waitT	 type: #float   ui:waitT 	default:0.0
 
 		dir 	 type: #integer ui:plDir 	default:0
 		--https://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_461915FA_31A2_49CE_84AF_2544B782ACA3_htm
-		slot 	 type: #stringTab ui:slt tabSize:1
+		slot 	 type: #intTab ui:slt tabSize:1 tabSizeVariable:true
 	)
 	rollout params "Rotation Data" (
 		label lab1 "Rotation:"
@@ -56,11 +54,12 @@ global rotationsData = attributes rotateData (
 		label lab2 "Roll:"
 		spinner rolSpeed "Roll speed" 	   type: #float   range:[-100, 100, 0]
 		spinner waitDur  "Wait duration"   type: #float
-		spinner grup     "Platform group"  type: #integer range:[0, 1000, 0]
-		spinner waitT    "Group wait time" type: #float   range:[0, 1000, 0]
 
 		spinner plDir    "Platf director"  type: #integer range:[0, 100, 0]
-		multiListBox slt "Platf dir slot"  items: #("1", "2", "3", "4", "5") selection:#(1)
+		multiListBox slt "Platf dir slots"  items: #("1","2","3","4","5") \ 
+			height:5 width:70 align:#right
+
+		on slt selectionEnd do slot = slt.selection as array
 	)
 )
 
@@ -289,8 +288,10 @@ struct TAttributeManager (
 
 			--a[#pwrUp] returns undefined, I guess because it's a dropdownlist?
 			--so pick this manually.
+			--format "attribute: %\n" (attribute as string) --DEBUG
 			if attribute == #pwrUp then return obj.collData.pwrUp
-			if attribute == #pwrUp then return obj.collData.pwrUp
+			--if attribute == #slot then format "obj.rotateData.slot: %\n" obj.rotateData.slot --DEBUG
+			if attribute == #slot then return obj.rotateData.slot
 
 			if a[attribute] != undefined then return a[attribute].value
 		)

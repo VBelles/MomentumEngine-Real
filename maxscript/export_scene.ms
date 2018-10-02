@@ -5,7 +5,7 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
-debugMode = false
+debugMode = true
 
 escapeEnable = true --Allow abort script execution holding ESC.
 
@@ -23,7 +23,9 @@ global toAddSpikes		= #()
 
 global resources 		= #()
 
-global platfDirector	= #(#()) --#(group1, group2, etc.) | group1 = #("name1", "name2", etc.)
+global platfDirector	= #(#()) --#(slot1, slot2, etc.) | slot1 = #("name1", "name2", etc.)
+global platfDirectors 	= #(platfDirector)
+global platfDirWaits	= #()
 
 global pureOnSuffix = "pureON"
 global pureSuffix	= "pure"
@@ -800,8 +802,6 @@ struct TSceneExporter (
 		local rotSpeed = 0
 
 		local rolSpeed = 0
-		local wait 	   = 0
-		local grup 	   = 0
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
 			local xRot = attrManager.getAttrValue obj "rotateData" #x
@@ -817,10 +817,6 @@ struct TSceneExporter (
 
 			rolSpeed = attrManager.getAttrValue obj "rotateData" #rolSpeed
 			if rolSpeed == undefined then rolSpeed = 0.0
-			wait 	 = attrManager.getAttrValue obj "rotateData" #wait
-			if wait == undefined then wait = 2
-			grup 	 = attrManager.getAttrValue obj "rotateData" #grup
-			if grup == undefined then grup = 0
 		)
 		--Export only if it has rotation speed.
 		if rotSpeed > 0 then (
@@ -835,14 +831,25 @@ struct TSceneExporter (
 			fs.writeKey "roll"
 			fs.beginObj()
 				fs.writeKeyValue "speed" rolSpeed
-				fs.writeComma()
-				fs.writeKeyValue "waitDuration" wait
 			fs.endObj()
 
-			if grup > 0 then (
-				if platfDirector[grup] != undefined then (
-					append platfDirector[grup] obj.name
-				) else insertItem #(obj.name) platfDirector grup
+			local slots = #()
+			local dir = 0
+			if attrManager.hasAttribute obj "rotateData" then (
+				slots = attrManager.getAttrValue obj "rotateData" #slt
+				if slots == undefined then slots = #()
+				dir = attrManager.getAttrValue obj "rotateData" #dir
+				if dir == undefined then dir = 0
+			)
+
+			if dir > 0 then (
+				if platfDirectors[dir] != undefined then (
+					for slot in slots do (
+						if platfDirectors[dir][slot] != undefined then (
+							append platfDirectors[dir][slot] obj.name
+						) else insertItem #(obj.name) platfDirectors[dir] slot
+					)
+				) else insertItem #(#(obj.name)) platfDirectors dir
 			)
 		)
 		return rotSpeed > 0 or rolSpeed > 0
@@ -1772,10 +1779,29 @@ struct TSceneExporter (
 	-- --ENTITY: DEFAULT (exports editable mesh)--------------------------------
 	fn exportEntityDefault obj nValidObjs = (
 		if isDummyMove obj then (
-			if attrManager.hasAttribute obj "rotateData" then (
-				format "has rotate data\n"
-				local slots = attrManager.getAttrValue obj "rotateData" #slt --DEBUG
-				if slots != undefined then format "%\n" (slots as string) --DEBUG
+			local dirID = 0
+			local slotWaits = #(0.0, 0.0, 0.0, 0.0, 0.0)
+			if attrManager.hasAttribute obj "platfDirData" then (
+				dirID = attrManager.getAttrValue obj "platfDirData" #dirID
+				if dirID == undefined then dirID = 0
+				slotWaits[1] = attrManager.getAttrValue obj "platfDirData" #sl1wait
+				if slotWaits[1] == undefined then slotWaits[1] = 0.0
+				slotWaits[2] = attrManager.getAttrValue obj "platfDirData" #sl2wait
+				if slotWaits[2] == undefined then slotWaits[2] = 0.0
+				slotWaits[3] = attrManager.getAttrValue obj "platfDirData" #sl3wait
+				if slotWaits[3] == undefined then slotWaits[3] = 0.0
+				slotWaits[4] = attrManager.getAttrValue obj "platfDirData" #sl4wait
+				if slotWaits[4] == undefined then slotWaits[4] = 0.0
+				slotWaits[5] = attrManager.getAttrValue obj "platfDirData" #sl5wait
+				if slotWaits[5] == undefined then slotWaits[5] = 0.0
+			)
+
+			if dirID > 0 then (
+				if platfDirWaits[dirID] != undefined then (
+					append platfDirWaits[dirID] slotWaits
+				) else insertItem slotWaits platfDirWaits dirID
+
+				format "platfDirWaits: %\n" platfDirWaits as string --DEBUG
 			)
 		)
 
@@ -2236,53 +2262,61 @@ struct TSceneExporter (
 	),
 
 	fn exportPlatfDirector = (
-		if platfDirector.count == 0 then return false
+		if platfDirectors.count == 0 then return false
+		format "platfDirectors.count: %\n" platfDirectors.count
 
 		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
 		
 		fs.begin plDirFilePath --Create file.
 		fs.beginArray()
+
+		format "printing all elements:\n" 
+		with printAllElements on platfDirectors as string --DEBUG
+
+		local validDirectors = 0
+		for i = 1 to platfDirectors.count where
+		platfDirectors[i] != undefined and
+		platfDirectors[i][1] != undefined do (
+			local director = platfDirectors[i]
+			if validDirectors >= 1 then fs.writeComma()
+
 			beginEntity()
-			fs.writeKeyValue "name" "platform_director"
+			fs.writeKeyValue "name" ("platform_director_" + i)
 			fs.writeComma()
 			fs.writeKey "platforms_director"
 			fs.beginObj()
 				fs.writeKey "slots"
 				fs.beginArray()
-					local validPlGroups = 0
-					for i = 1 to platfDirector.count do (
-						if platfDirector[i] != undefined and 
-						   platfDirector[i][1] != undefined then (
-							format "platfDirector.count: %\n" platfDirector.count --DEBUG
-							format "platfDirector[1]: %\n" platfDirector[1] --DEBUG
-							if validPlGroups >= 1 then fs.writeComma()
-							fs.beginObj()
-								local obj = getNodeByName platfDirector[i][1]
-								local waitTime = 0
+					local validPlSlots = 0
+					format "validPlSlots: %\n" validPlSlots  --DEBUG
+					for j = 1 to director.count where
+					director[j] != undefined and
+					director[j][1] != undefined do (
+						local slot = director[j]
+						if validPlSlots >= 1 then fs.writeComma()
 
-								if attrManager.hasAttribute obj "rotateData" then (
-									waitTime = attrManager.getAttrValue obj "rotateData" #waitT
-									if waitTime == undefined then waitTime = 0
-								)
-
-								fs.writeKeyValue "wait_time" waitTime
-								fs.writeComma()
-								fs.writeKey "platforms"
-								fs.beginArray()
-								format "platfDirector[i].count: %\n" platfDirector[i].count --DEBUG
-								for j = 1 to platfDirector[i].count do (
-									if j != 1 then fs.writeComma()
-									fs.writeName platfDirector[i][j]
-								)
-								fs.endArray() --end array platforms.
-							fs.endObj() --end obj slot.
-
-							validPlGroups += 1
-						)
+						fs.beginObj()
+							fs.writeKeyValue "wait_time" platfDirWaits[i]
+							fs.writeComma()
+							fs.writeKey "platforms"
+							fs.beginArray()
+							local first = true
+							for platfName in slot do (
+								if not first then fs.writeComma()
+								fs.writeName platfName
+								first = false
+							)
+							fs.endArray() --end array platforms.
+						fs.endObj() --end obj slot.
+						validPlSlots += 1
 					)
 				fs.endArray() --end array slots.
 			fs.endObj() --end obj platforms_director.
 			endEntity()
+
+			validDirectors += 1
+		)
+
 		fs.endArray()
 		fs.end()
 	),
