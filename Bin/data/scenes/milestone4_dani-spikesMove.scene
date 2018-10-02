@@ -5,8 +5,8 @@
       "name": "Plataformeo_hex_col_005_spikes",
       "transform":
       {
-        "pos": "168.044 58.1417 172.994",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "155.23 76.2978 -242.485",
+        "rotation": "-0.461748 0.0 -0.887011 0.0"
       },
       "hierarchy":
       {
@@ -49,8 +49,8 @@
       "name": "Plataformeo_hex_col_004_spikes",
       "transform":
       {
-        "pos": "161.149 57.9047 180.246",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "165.174 76.0609 -243.608",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "hierarchy":
       {
@@ -93,8 +93,8 @@
       "name": "Plataformeo_hex_col_003_spikes",
       "transform":
       {
-        "pos": "153.102 58.1417 174.301",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "167.517 76.2978 -233.882",
+        "rotation": "-0.461748 0.0 -0.887011 0.0"
       },
       "hierarchy":
       {
@@ -137,8 +137,8 @@
       "name": "Plataformeo_hex_col_002_spikes",
       "transform":
       {
-        "pos": "146.162 57.9047 181.055",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "177.174 76.0609 -234.595",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "hierarchy":
       {
@@ -181,8 +181,8 @@
       "name": "Plataformeo_hex_col_001_spikes",
       "transform":
       {
-        "pos": "138.159 58.1417 175.608",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "179.804 76.2978 -225.278",
+        "rotation": "-0.461748 0.0 -0.887011 0.0"
       },
       "hierarchy":
       {
@@ -225,8 +225,8 @@
       "name": "Plataformeo_hex_col_000_spikes",
       "transform":
       {
-        "pos": "131.219 57.9047 182.362",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "189.462 76.0609 -225.991",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "hierarchy":
       {

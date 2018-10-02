@@ -2,6 +2,130 @@
   {
     "entity":
     {
+      "name": "dani_respawn_006",
+      "transform":
+      {
+        "pos": "207.959 73.3586 -229.881",
+        "rotation": "0.0 -0.5 0.0 -0.866025"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_006.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "220.087 83.3822 -244.866",
+        "respawn_rotation": "0.0 0.258819 0.0 -0.965926"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_respawn_005",
+      "transform":
+      {
+        "pos": "210.583 5.74889 -224.798",
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_005.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "219.543 16.3942 -230.375",
+        "respawn_rotation": "0.0 0.21644 0.0 -0.976296"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_respawn_004",
+      "transform":
+      {
+        "pos": "216.704 -26.5083 -49.823",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_004.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "228.964 1.45361 -55.527",
+        "respawn_rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_respawn_003",
+      "transform":
+      {
+        "pos": "296.178 -26.5083 -143.443",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_003.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "293.237 -2.01075 -143.299",
+        "respawn_rotation": "0.0 0.608761 0.0 -0.793353"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_respawn_002",
       "transform":
       {

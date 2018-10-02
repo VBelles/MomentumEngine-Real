@@ -2,23 +2,423 @@
   {
     "entity":
     {
-      "name": "dani_columna_piezas_grande_basa_001",
+      "name": "dani_tumba_especial_2_000",
       "transform":
       {
-        "pos": "220.971 15.5382 -215.816",
+        "pos": "146.157 67.3205 184.669",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/dani_columna_piezas_grande_basa_001.mesh",
+          "mesh": "data/meshes/dani_tumba_especial_2_000.mesh",
           "materials":
           [
-            "data/materials/m_columna_piezas.material"
+            "data/materials/m_tumba_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_tumba_especial_2_col_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_muro006",
+      "transform":
+      {
+        "pos": "168.132 50.6756 121.69",
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_muro006.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_muro000_collider002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_muro005",
+      "transform":
+      {
+        "pos": "97.0819 72.8909 180.935",
+        "rotation": "0.477714 0.477714 -0.521334 -0.521334"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_muro005.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_muro002_collider001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_rect005",
+      "transform":
+      {
+        "pos": "180.101 38.7872 124.132",
+        "rotation": "0.092296 0.092296 -0.701057 -0.701057"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_rect005.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_pasarela.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_rect000_collider003.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_rect004",
+      "transform":
+      {
+        "pos": "182.027 38.7872 116.946",
+        "rotation": "0.092296 0.092296 -0.701057 -0.701057"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_rect004.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_pasarela.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_rect000_collider002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_rect003",
+      "transform":
+      {
+        "pos": "180.101 33.8909 124.132",
+        "rotation": "0.092296 0.092296 -0.701057 -0.701057"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_rect003.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_pasarela.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_rect000_collider001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_43_001",
+      "transform":
+      {
+        "pos": "169.442 -2.73308 118.266",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_43_001.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
           ],
           "enabled": true
         }
       ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_42_001",
+      "transform":
+      {
+        "pos": "169.442 -2.73308 118.266",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_42_001.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_40_001",
+      "transform":
+      {
+        "pos": "169.442 -2.73308 118.266",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_40_001.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_39_001",
+      "transform":
+      {
+        "pos": "169.442 -2.73308 118.266",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_39_001.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_36_001",
+      "transform":
+      {
+        "pos": "169.442 -2.73308 118.266",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_36_001.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_35_001",
+      "transform":
+      {
+        "pos": "169.442 -2.73308 118.266",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_35_001.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_32_001",
+      "transform":
+      {
+        "pos": "169.442 -2.73308 118.266",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_32_001.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "roca_31_001",
+      "transform":
+      {
+        "pos": "169.442 -2.73308 118.266",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/roca_31_001.mesh",
+          "materials":
+          [
+            "data/materials/m_roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cacho_de_suelo_2_001",
+      "transform":
+      {
+        "pos": "169.779 1.98056 117.011",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cacho_de_suelo_2_001.mesh",
+          "materials":
+          [
+            "data/materials/Material_#25.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_muro003",
+      "transform":
+      {
+        "pos": "168.132 16.8909 121.69",
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_muro003.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_muro000_collider001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
     }
   },
   {
@@ -56,6 +456,28 @@
       [
         {
           "mesh": "data/meshes/dani_columna_piezas_grande_fuste_0_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_columna_piezas_grande_basa_001",
+      "transform":
+      {
+        "pos": "220.971 15.5382 -215.816",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_columna_piezas_grande_basa_001.mesh",
           "materials":
           [
             "data/materials/m_columna_piezas.material"
@@ -743,7 +1165,7 @@
       "name": "Plataformeo_hex_009",
       "transform":
       {
-        "pos": "110.22 96.8909 98.682",
+        "pos": "67.4024 96.8909 125.018",
         "rotation": "0.0 0.461749 0.0 -0.887011"
       },
       "render":
@@ -775,8 +1197,8 @@
       "name": "Plataformeo_roca_001",
       "transform":
       {
-        "pos": "112.299 20.8909 179.81",
-        "rotation": "0.0 0.67559 0.0 -0.737277"
+        "pos": "180.031 20.8909 116.67",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
       },
       "render":
       [
@@ -807,8 +1229,8 @@
       "name": "Plataformeo_roca_000",
       "transform":
       {
-        "pos": "116.844 20.8909 174.393",
-        "rotation": "0.0 0.67559 0.0 -0.737277"
+        "pos": "176.495 20.8909 110.546",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
       },
       "render":
       [
@@ -839,8 +1261,8 @@
       "name": "Plataformeo_hex_008",
       "transform":
       {
-        "pos": "115.188 17.8909 155.465",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "158.142 17.8909 105.629",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
       },
       "render":
       [
@@ -871,8 +1293,8 @@
       "name": "Plataformeo_hex_007",
       "transform":
       {
-        "pos": "114.491 14.8909 147.496",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "150.415 14.8909 103.558",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
       },
       "render":
       [
@@ -903,7 +1325,7 @@
       "name": "Plataformeo_hex_006",
       "transform":
       {
-        "pos": "124.577 69.8909 216.881",
+        "pos": "101.402 69.8909 230.309",
         "rotation": "0.0 0.461749 0.0 -0.887011"
       },
       "render":
@@ -935,8 +1357,8 @@
       "name": "trozo_terreno_6_001",
       "transform":
       {
-        "pos": "120.635 41.307 215.99",
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "pos": "155.047 49.1737 168.96",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -957,8 +1379,8 @@
       "name": "m_roca_16_trozos002",
       "transform":
       {
-        "pos": "113.271 46.0252 241.51",
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "pos": "139.399 53.8918 190.422",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -979,8 +1401,8 @@
       "name": "m_roca_14_trozos004",
       "transform":
       {
-        "pos": "139.805 41.5861 225.254",
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "pos": "169.891 49.4528 184.221",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -1001,8 +1423,8 @@
       "name": "m_roca_11_trozos007",
       "transform":
       {
-        "pos": "139.23 45.4915 212.213",
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "pos": "173.812 53.3582 171.77",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -1023,8 +1445,8 @@
       "name": "m_roca_09_trozos004",
       "transform":
       {
-        "pos": "102.235 47.711 216.532",
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "pos": "137.571 55.5777 163.175",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -1045,8 +1467,8 @@
       "name": "m_roca_08_trozos005",
       "transform":
       {
-        "pos": "137.079 45.5563 202.668",
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "pos": "175.055 53.423 162.065",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -1067,8 +1489,8 @@
       "name": "m_roca_07_trozos014",
       "transform":
       {
-        "pos": "126.882 46.3691 239.521",
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "pos": "152.869 54.2358 193.208",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
       },
       "render":
       [
@@ -1089,7 +1511,7 @@
       "name": "Plataformeo_muro002",
       "transform":
       {
-        "pos": "120.219 72.8909 167.071",
+        "pos": "77.401 72.8909 193.407",
         "rotation": "0.477714 0.477714 -0.521334 -0.521334"
       },
       "render":
@@ -1121,7 +1543,7 @@
       "name": "Plataformeo_muro001",
       "transform":
       {
-        "pos": "120.829 54.8909 174.044",
+        "pos": "97.6538 54.8909 187.472",
         "rotation": "0.477714 0.477714 -0.521334 -0.521334"
       },
       "render":
@@ -1153,8 +1575,8 @@
       "name": "Plataformeo_muro000",
       "transform":
       {
-        "pos": "111.471 16.8909 170.346",
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "pos": "170.854 16.8909 114.211",
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
       },
       "render":
       [
@@ -1185,7 +1607,7 @@
       "name": "Plataformeo_rect002",
       "transform":
       {
-        "pos": "104.729 96.8909 96.151",
+        "pos": "61.9109 96.8909 122.487",
         "rotation": "0.0 0.843391 0.0 -0.5373"
       },
       "render":
@@ -1217,8 +1639,8 @@
       "name": "Plataformeo_rect001",
       "transform":
       {
-        "pos": "178.0 57.8909 172.083",
-        "rotation": "0.0 0.67559 0.0 -0.737277"
+        "pos": "147.018 76.047 -248.187",
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
       },
       "render":
       [
@@ -1249,8 +1671,8 @@
       "name": "Plataformeo_rect000",
       "transform":
       {
-        "pos": "112.722 33.8909 181.78",
-        "rotation": "0.477714 0.477714 -0.521334 -0.521334"
+        "pos": "182.027 33.8909 116.946",
+        "rotation": "0.092296 0.092296 -0.701057 -0.701057"
       },
       "render":
       [
@@ -1633,7 +2055,7 @@
       "name": "trozo_terreno_7_001",
       "transform":
       {
-        "pos": "84.8955 -10.7873 -247.14",
+        "pos": "85.3793 0.250428 -248.056",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1655,7 +2077,7 @@
       "name": "m_roca_15_trozos004",
       "transform":
       {
-        "pos": "103.086 -25.6749 -244.366",
+        "pos": "98.113 -10.1709 -246.115",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1677,7 +2099,7 @@
       "name": "m_roca_14_trozos003",
       "transform":
       {
-        "pos": "92.6003 -20.3295 -229.955",
+        "pos": "90.7726 -6.42909 -236.027",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1699,8 +2121,8 @@
       "name": "m_roca_11_trozos005",
       "transform":
       {
-        "pos": "80.5589 -17.6373 -268.065",
-        "rotation": "0.221084 0.0 0.0 -0.975255"
+        "pos": "82.3436 -4.5446 -262.704",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
@@ -1721,7 +2143,7 @@
       "name": "m_roca_09_trozos003",
       "transform":
       {
-        "pos": "69.6124 -17.6691 -255.986",
+        "pos": "74.6811 -4.56685 -254.249",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1743,7 +2165,7 @@
       "name": "m_roca_07_trozos011",
       "transform":
       {
-        "pos": "81.1861 -25.6366 -242.593",
+        "pos": "82.7827 -10.1441 -244.873",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1765,7 +2187,7 @@
       "name": "m_roca_07_trozos010",
       "transform":
       {
-        "pos": "100.754 -18.5869 -258.278",
+        "pos": "96.4799 -5.20929 -255.853",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -6330,7 +6752,7 @@
   {
     "entity":
     {
-      "name": "dani_tumba_1_001",
+      "name": "dani_tumba_especial_1_000",
       "transform":
       {
         "pos": "29.2965 19.3425 68.6686",
@@ -6339,7 +6761,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/dani_tumba_1_001.mesh",
+          "mesh": "data/meshes/dani_tumba_especial_1_000.mesh",
           "materials":
           [
             "data/materials/m_tumba_02.material"
@@ -6349,7 +6771,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/dani_tumba_1_col_001.col_mesh",
+        "mesh_src": "data/meshes/dani_tumba_especial_1_col_000.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
