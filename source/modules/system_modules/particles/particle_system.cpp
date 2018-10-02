@@ -3,6 +3,7 @@
 #include "particle_parser.h"
 #include "render/render_objects.h"
 #include <random>
+#include "components/comp_culling.h"
 #include "skeleton/cal3d2engine.h"
 
 class CParticleResourceClass : public CResourceClass {
@@ -19,7 +20,6 @@ public:
 		assert(res);
 		return res;
 	}
-
 
 };
 
@@ -262,10 +262,12 @@ namespace Particles {
 	void CSystem::render() {
 		const CRenderTechnique* technique = _core->render.technique;
 		const CRenderMesh* particleMesh = _core->render.mesh;
-		CEntity* eCurrentCamera = EngineCameras.getCurrentBlendedCamera();
+		CEntity* eCurrentCamera = getEntityByName(GAME_CAMERA);
 		assert(technique && particleMesh && eCurrentCamera);
 		TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 		assert(camera);
+		TCompCulling* culling = camera->get<TCompCulling>();
+
 		const VEC3 cameraPos = camera->getCamera()->getPosition();
 		const VEC3 cameraUp = camera->getCamera()->getUp();
 		const VEC3 cameraForward = camera->getCamera()->getFront();
@@ -294,6 +296,15 @@ namespace Particles {
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
 					* MAT44::CreateFromQuaternion(config.rotationOffset)
 					* MAT44::CreateTranslation(particlePosition);
+			}
+
+			
+			if (culling && EngineParticles.culling) {
+				AABB pAABB;
+				particleMesh->getAABB().Transform(pAABB, cb_object.obj_world);
+				if (!culling->planes.isVisible(&pAABB)) { // Cull particle
+					continue;
+				}
 			}
 
 			int row = p.frame / frameCols;
@@ -356,8 +367,6 @@ namespace Particles {
 	const TCoreSystem * CSystem::getCore() {
 		return _core;
 	}
-
-
 
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;

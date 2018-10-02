@@ -1,71 +1,14 @@
 [
 	{
 		"entity": {
-			"name": "test_slash_1",
+			"name": "culling_test",
 			"particles": {
-				"core": [
-					"data/particles/slash/slash_mesh.particles",
-					"data/particles/slash/slash_mesh_black.particles"
-				]
-			},
-			"transform": {
-				"pos": "0 10000 0"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "fog_origin",
-			"particles": {
-				"core": "data/particles/fog.particles"
+				"core": "data/particles/culling_test.particles"
 			},
 			"transform": {
 				"pos": "0 0 0"
 			}
 		}
-	},
-	{
-		"entity": {
-			"name": "fog_mushrooms",
-			"particles": {
-				"core": "data/particles/fog.particles"
-			},
-			"transform": {
-				"pos": "264 -21 -49"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "fog_origin_2",
-			"particles": {
-				"core": "data/particles/fog.particles"
-			},
-			"transform": {
-				"pos": "21 -3 -48"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "fog_pasillo_1",
-			"particles": {
-				"core": "data/particles/fog.particles"
-			},
-			"transform": {
-				"pos": "67 -7 -173"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "fog_fallen_tower",
-			"particles": {
-				"core": "data/particles/fog.particles"
-			},
-			"transform": {
-				"pos": "3.5 -8 -164"
-			}
-		}
 	}
+
 ]

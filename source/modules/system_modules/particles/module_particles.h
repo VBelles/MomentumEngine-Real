@@ -29,10 +29,11 @@ private:
 	VEC3                             _windVelocity = VEC3::Zero;
 	Particles::TParticleHandle		_lastHandle;
 	bool paused = false;
-	bool culling = true;
 	CHandle cullingHandle;
 
 public:
+	bool culling = true;
+
 	CModuleParticles(const std::string& name);
 	bool start() override;
 	bool stop() override;
