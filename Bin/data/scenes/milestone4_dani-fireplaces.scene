@@ -2,6 +2,30 @@
   {
     "entity":
     {
+      "name": "dani_fireplace_052",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "89.3706 31.3175 -235.395",
+        "rotation": "0.0 0.0871558 0.0 -0.996195"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_051",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "91.0572 31.2488 -244.572",
+        "rotation": "0.0 0.0871558 0.0 -0.996195"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_fireplace_050",
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":
@@ -54,7 +78,7 @@
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":
       {
-        "pos": "205.838 64.7553 -220.87",
+        "pos": "206.027 64.7553 -221.197",
         "rotation": "0.0 0.258819 0.0 -0.965926"
       }
     }
