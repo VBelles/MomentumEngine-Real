@@ -167,9 +167,6 @@ namespace Particles {
 			targetPos += _core->movement.followTargetOffset;
 		}
 
-		VEC3 posLimits = VEC3(std::numeric_limits<float>::min());
-		VEC3 negLimits = VEC3(std::numeric_limits<float>::max());
-
 		auto it = _particles.begin();
 		while (it != _particles.end()) {
 			TParticle& p = *it;
@@ -229,23 +226,10 @@ namespace Particles {
 					p.frame = _core->render.initialFrame + (frame_idx % _core->render.numFrames);
 				}
 
-				// Update limits of the particles
-				if (p.position.x > posLimits.x) posLimits.x = p.position.x;
-				if (p.position.y > posLimits.y) posLimits.y = p.position.y;
-				if (p.position.z > posLimits.z) posLimits.z = p.position.z;
-
-				if (p.position.x < negLimits.x) negLimits.x = p.position.x;
-				if (p.position.y < negLimits.y) negLimits.y = p.position.y;
-				if (p.position.z < negLimits.z) negLimits.z = p.position.z;
-
 				++it;
 			}
 		}
 
-		// Update aabb
-		aabb.Center = (posLimits + negLimits) * 0.5f;
-		aabb.Extents = (posLimits - negLimits) * 0.5f;
-		AABB::CreateFromPoints(aabb, posLimits, negLimits);
 		bool canEmit = _core->emission.cyclic || _globalTime <= _core->emission.duration;
 		// check if a new batch of particles needs to be generated
 		if (canEmit) {
@@ -483,12 +467,8 @@ namespace Particles {
 		}
 	}
 
-	AABB CSystem::getAABB() {
-		return aabb;
-	}
 
 	void CSystem::renderDebug() {
-		renderWiredAABB(aabb, MAT44::Identity, VEC4(1, 0, 0, 1));
 	}
 
 

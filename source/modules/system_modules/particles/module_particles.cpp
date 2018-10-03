@@ -67,15 +67,6 @@ void CModuleParticles::render() {
 		auto& systems = p.second;
 		for (auto& system : systems) {
 			system->render();
-
-			/*if (culling) {
-				if (compCulling->planes.isVisible(&system->getAABB())) {
-					system->render();
-				}
-			}
-			else {
-				system->render();
-			}*/
 		}
 	}
 

@@ -93,7 +93,6 @@ namespace Particles {
 
 		MAT44 world;
 		VEC3 position;
-		AABB aabb;
 
 		LaunchConfig config;
 		int boneId = -1;
@@ -123,7 +122,6 @@ namespace Particles {
 		void debugInMenu();
 		int getNbParticles();
 		const TCoreSystem* getCore();
-		AABB getAABB();
 		void renderDebug();
 	};
 }
