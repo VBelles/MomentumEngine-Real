@@ -13,6 +13,7 @@ void Enemy::load(const json& j) {
 		IBehaviorTree::load(loadJson(behaviorTreeFile));
 	}
 
+	ignoreMessages = false;
 	onHit = false;
 	onOutOfBounds = false;
 	onSpawn = false;
