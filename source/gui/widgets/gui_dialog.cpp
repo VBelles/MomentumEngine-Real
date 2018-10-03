@@ -70,31 +70,49 @@ void CDialog::setText(const std::string& text, const int& size) {
 
 	if (font.getWidth(text) > textSpace.x || font.getHeight(text) > textSpace.y) {
 		std::string textFragment = "";
-		size_t delimiterPos = text.find(" ");
-		std::string line = text.substr(0, delimiterPos);
-		std::vector<std::string> words = split(text.substr(delimiterPos + 1), ' ');
-		for (std::string word : words) {
+		std::string line = "";
+		std::vector<std::string> words = split(text, ' ');
+		for (int i = 0; i < words.size(); i++) {
+			std::string word = words[i];
 			if (font.getWidth(line + word) > textSpace.x) {
-				textFragment += line + "\n";
-				line = word;
+				line += "\n";
+				if (font.getHeight(textFragment + line) > textSpace.y) {
+					textFragments.push_back(textFragment);
+					textFragment = line;
+				}
+				else {
+					textFragment += line;
+				}
+				line = "";
+			}
 
-				if (font.getHeight(textFragment + "\n") > textSpace.y) {
+			if (i > 0) line += " ";
+			line += word;
+
+			if (font.getHeight(textFragment + line) > textSpace.y) {
+				std::vector<std::string> lines = split(line, '\n');
+				if (lines.size() > 1) {
+					for (int j = 0; j < lines.size(); j++) {
+						std::string s = lines[j];
+						if (font.getHeight(textFragment + s) > textSpace.y) {
+							textFragments.push_back(textFragment);
+							textFragment = "";
+						}
+						textFragment += s;
+						if (j != lines.size() - 1) textFragment += "\n";
+					}
+					line = "";
+				}
+				else {
 					textFragments.push_back(textFragment);
 					textFragment = "";
 				}
 			}
-			else if (font.getHeight(textFragment + line + word) > textSpace.y) {
-				textFragment += line + "\n";
-				line = word;
-				textFragments.push_back(textFragment);
-				textFragment = "";
-			}
-			else {
-				line += " " + word;
-			}
 		}
 		textFragment += line;
-		textFragments.push_back(textFragment);
+		if (!textFragment.empty()) {
+			textFragments.push_back(textFragment);
+		}
 	}
 	else {
 		textFragments.push_back(text);
