@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "FastAttackActionState.h"
-#include "modules/system_modules/particles/comp_particles.h"
 
 
 FastAttackActionState::FastAttackActionState(StateManager* stateManager)

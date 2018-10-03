@@ -11,6 +11,7 @@
 #include "components/player/comp_collectable_manager.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/states/StateManager.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 class IActionState;
 struct TMsgRespawnChanged;

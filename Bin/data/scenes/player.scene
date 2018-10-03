@@ -473,8 +473,12 @@
 					{
 						"id": "fast_attack_1",
 						"core": "data/particles/slash/fast_attack_1.particles",
-						"offset": "0 1.1 0",
-						"rotation_offset": "0 1 0 0"
+						"offset": "0 1.1 0"
+					},
+					{
+						"id": "fast_attack_2",
+						"core": "data/particles/slash/fast_attack_2.particles",
+						"offset": "0 1.1 0"
 					}
 				]
 			}
