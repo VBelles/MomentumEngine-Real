@@ -6,9 +6,9 @@
 class CModuleInstancing : public IModule {
 private:
 
-	
 	struct TInstance {
 		MAT44 world;
+		//float id;
 	};
 
 	struct TInstanceBlood {
@@ -30,11 +30,11 @@ private:
 	};
 
 	struct InstanceDataAABB {
-		TInstance instanceData;
+		TInstance data;
 		AABB aabb;
 	};
 
-	std::map<std::string, std::pair<std::vector<TInstance>, std::vector<AABB>>> instancesDataMap;
+	std::map<std::string, std::vector<InstanceDataAABB>> instancesDataMap;
 
 	bool culling = true;
 

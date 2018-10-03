@@ -15,6 +15,7 @@ bool CModuleInstancing::start() {
 }
 
 void CModuleInstancing::loadInstances(const json& jInstances) {
+	static float id = 0.f;
 	for (auto& jTInstance : jInstances) {
 		std::string meshName = jTInstance.value("mesh", "");
 		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(meshName)->as<CRenderMesh>();
@@ -26,20 +27,25 @@ void CModuleInstancing::loadInstances(const json& jInstances) {
 			VEC4 rot = jData.count("rot") ? loadVEC4(jData["rot"]) : VEC4::Zero;
 			float scale = jData.value("scale", 1.f);
 			instanceData.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
+			//instanceData.id = id;
 			AABB aabb = instanceMesh->getAABB();
 			aabb.Transform(aabb, instanceData.world);
 
-			instancesDataMap[meshName].first.push_back(instanceData);
-			instancesDataMap[meshName].second.push_back(aabb);
+			instancesDataMap[meshName].push_back({ instanceData, aabb });
+			id++;
 		}
 	}
 }
 
 void CModuleInstancing::setAllInstancesData() {
 	for (auto& p : instancesDataMap) {
-		auto& instancesData = p.second.first;
+		auto& instancesDataAABB = p.second;
+		std::vector<TInstance> data;
+		for (auto& instanceDataAABB : instancesDataAABB) {
+			data.push_back(instanceDataAABB.data);
+		}
 		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(p.first)->as<CRenderMesh>();
-		instanceMesh->setInstancesData(instancesData.data(), instancesData.size(), sizeof(TInstance));
+		instanceMesh->setInstancesData(data.data(), data.size(), sizeof(TInstance));
 	}
 }
 
@@ -48,12 +54,11 @@ void CModuleInstancing::update(float delta) {
 	CEntity* cameraEntity = getEntityByName(GAME_CAMERA);
 	TCompCulling* culling = cameraEntity->get<TCompCulling>();
 	for (auto& p : instancesDataMap) {
-		auto& instancesData = p.second.first;
-		auto& aabbs = p.second.second;
+		auto& instancesDataAABB = p.second;
 		std::vector<TInstance> data;
-		for (int i = 0; i < instancesData.size(); i++) {
-			if (culling->planes.isVisible(&aabbs[i])) {
-				data.push_back(instancesData[i]);
+		for (auto& instanceDataAABB : instancesDataAABB) {
+			if (culling->planes.isVisible(&instanceDataAABB.aabb)) {
+				data.push_back(instanceDataAABB.data);
 			}
 		}
 		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(p.first)->as<CRenderMesh>();
