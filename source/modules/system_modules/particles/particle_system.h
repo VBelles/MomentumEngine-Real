@@ -34,8 +34,9 @@ namespace Particles {
 			float velocity = 0.f;				// initial speed
 			float velocityVariation = 0.f;		// variation of the initial speed generation
 			float acceleration = 0.f;			// acceleration
-			float initialRotation = 0;
-			bool initialRandomRotation = false;
+			float initialRotation = 0;			// initial rotation
+			bool initialRandomRotation = false;	// sets random rotation when emitted
+			bool initialTargetRotation = false;	// sets target rotation when emitted (only with meshes)
 			float spin = 0.f;					// rotation speed (radians)
 			VEC3 spin_axis = { 0.f, 1.f, 0.f };	// spin axis
 			float gravity = 0.f;				// gravity factor
@@ -92,7 +93,8 @@ namespace Particles {
 		VEC3 generateVelocity(const VEC3& position) const;
 
 		MAT44 world;
-		VEC3 position;
+		VEC3 targetPosition;
+		QUAT targetRotation;
 
 		LaunchConfig config;
 		int boneId = -1;

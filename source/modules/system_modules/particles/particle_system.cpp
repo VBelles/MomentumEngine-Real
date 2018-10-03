@@ -328,7 +328,7 @@ namespace Particles {
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
 			particle.frame = _core->render.initialRandomFrame ? random(0.f, _core->render.numFrames) : _core->render.initialFrame;
 			particle.rotation = _core->movement.initialRandomRotation ? random(0.f, M_PI * 2.f) : _core->movement.initialRotation;
-			particle.rotationQuat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, particle.rotation);
+			particle.rotationQuat = _core->movement.initialTargetRotation ? targetRotation : QUAT::CreateFromAxisAngle(_core->movement.spin_axis, particle.rotation);
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 			_particles.push_back(particle);
@@ -448,21 +448,20 @@ namespace Particles {
 				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->getBoneId(config.bone);
 			}
 
-			QUAT rotation;
 			VEC3 translation;
 			if (boneId != -1) { // Follow bone
 				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->getBone(boneId);
-				rotation = Cal2DX(bone->getRotationAbsolute());
+				targetRotation = Cal2DX(bone->getRotationAbsolute());
 				translation = Cal2DX(bone->getTranslationAbsolute());
 			}
 			else { // Follow transform
 				TCompTransform* e_transform = e->get<TCompTransform>();
-				rotation = e_transform->getRotation();
+				targetRotation = e_transform->getRotation();
 				translation = e_transform->getPosition();
 			}
-			position = translation + config.offset;
+			targetPosition = translation + config.offset;
 			world = MAT44::CreateTranslation(config.offset)
-				* MAT44::CreateFromQuaternion(rotation)
+				* MAT44::CreateFromQuaternion(targetRotation)
 				* MAT44::CreateTranslation(translation);
 		}
 	}

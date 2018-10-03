@@ -11,7 +11,8 @@
     "movement": {
         "spin": 1000,
         "spin_axis": "0 1 0",
-        "following": true
+        "following": true,
+        "initial_target_rotation": true
     },
     "render": {
         "mesh": "data/meshes/particles/slash.mesh",

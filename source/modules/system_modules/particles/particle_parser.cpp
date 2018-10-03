@@ -57,6 +57,7 @@ namespace Particles {
 		cps->movement.acceleration = movement.value("acceleration", cps->movement.acceleration);
 		cps->movement.initialRotation = deg2rad(movement.value("initial_rotation", rad2deg(cps->movement.initialRotation)));
 		cps->movement.initialRandomRotation = movement.value("initial_random_rotation", cps->movement.initialRandomRotation);
+		cps->movement.initialTargetRotation = movement.value("initial_target_rotation", cps->movement.initialTargetRotation);
 		cps->movement.spin = deg2rad(movement.value("spin", rad2deg(cps->movement.spin)));
 		cps->movement.spin_axis = movement.count("spin_axis") ? loadVEC3(movement["spin_axis"]) : cps->movement.spin_axis;
 		cps->movement.wind = movement.value("wind", cps->movement.wind);

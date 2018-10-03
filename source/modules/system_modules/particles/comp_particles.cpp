@@ -39,7 +39,7 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
 	launchOnStart = j.value("launch", launchOnStart);
 	fadeOut = j.value("fade_out", 0.f);
 	target = j.value("target", "");
-	launchConfig.offset = loadVEC3(j["offset"], launchConfig.offset);
+	launchConfig.offset = j.count("offset") ? loadVEC3(j["offset"]) : launchConfig.offset;
 	launchConfig.rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : launchConfig.rotationOffset;
 	launchConfig.bone = j.value("bone", "");
 	std::string core = j.value("core", "");
@@ -58,8 +58,8 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
 			system.id = jSystem.value("id", "");
 			system.core = Resources.get(jSystem.value("core", ""))->as<Particles::TCoreSystem>();
 			system.target = jSystem.value("target", target);
-			system.launchConfig.offset = loadVEC3(jSystem["offset"], system.launchConfig.offset) + launchConfig.offset;
-			system.launchConfig.rotationOffset = loadQUAT(jSystem["rotation_offset"], system.launchConfig.rotationOffset) * launchConfig.rotationOffset;
+			system.launchConfig.offset = (jSystem.count("offset") ? loadVEC3(jSystem["offset"]) : system.launchConfig.offset) + launchConfig.offset;
+			system.launchConfig.rotationOffset = (jSystem.count("rotation_offset") ? loadQUAT(jSystem["rotation_offset"]) : system.launchConfig.rotationOffset) * launchConfig.rotationOffset;
 			system.launchConfig.bone = jSystem.value("bone", launchConfig.bone);
 			system.fadeOut = jSystem.value("fade_out", fadeOut);
 			systems[system.id] = system;

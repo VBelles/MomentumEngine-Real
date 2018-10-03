@@ -16,13 +16,9 @@ typedef DirectX::BoundingBox AABB;
 #include "interpolators.h"
 
 VEC2 loadVEC2(const json& j);
-VEC2 loadVEC2(const json& j, const VEC2& defaultValue);
 VEC3 loadVEC3(const json& j);
-VEC3 loadVEC3(const json& j, const VEC3& defaultValue);
 VEC4 loadVEC4(const json& j);
-VEC4 loadVEC4(const json& j, const VEC4& defaultValue);
 QUAT loadQUAT(const json& j);
-QUAT loadQUAT(const json& j, const QUAT& defaultValue);
 
 #include "geometry/transform.h"
 
