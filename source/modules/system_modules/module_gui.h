@@ -42,6 +42,7 @@ public:
 
 	void showDialog(const std::string& text, const int& fontSize = 16);
 	void hideDialog();
+	bool isDialogActive();
 
 private:
 	CCameraGui _orthoCamera;

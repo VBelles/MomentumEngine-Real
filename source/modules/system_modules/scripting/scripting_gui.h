@@ -13,4 +13,6 @@ public:
 
 	static void showDialog(std::string text, int fontSize);
 	static void hideDialog();
+	static bool isDialogActive();
+	static bool isDialogHidden();
 };

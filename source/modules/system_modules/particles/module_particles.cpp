@@ -2,6 +2,7 @@
 #include "module_particles.h"
 #include "modules/system_modules/particles/particle_system.h"
 #include "modules/system_modules/particles/particle_parser.h"
+#include "components/comp_culling.h"
 
 CModuleParticles::CModuleParticles(const std::string& name)
 	: IModule(name)
@@ -10,6 +11,7 @@ CModuleParticles::CModuleParticles(const std::string& name)
 
 bool CModuleParticles::start() {
 	Resources.registerResourceClass(getResourceClassOf<Particles::TCoreSystem>());
+	_windVelocity = VEC3(0.f, 0.f, 20.f);
 	return true;
 }
 
@@ -55,19 +57,36 @@ void CModuleParticles::update(float delta) {
 }
 
 void CModuleParticles::render() {
+	if (culling && !cullingHandle.isValid()) {
+		CEntity* camera = getEntityByName(GAME_CAMERA);
+		if (camera) cullingHandle = camera->get<TCompCulling>();
+	}
+	TCompCulling* compCulling = cullingHandle;
+
 	for (auto& p : _activeSystems) {
 		auto& systems = p.second;
 		for (auto& system : systems) {
 			system->render();
+
+			/*if (culling) {
+				if (compCulling->planes.isVisible(&system->getAABB())) {
+					system->render();
+				}
+			}
+			else {
+				system->render();
+			}*/
 		}
 	}
 
 	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Particle Systems")) {
+			ImGui::Checkbox("Culling", &culling);
 			for (auto& p : _activeSystems) {
 				auto& systems = p.second;
 				for (auto& system : systems) {
 					system->debugInMenu();
+					system->renderDebug();
 				}
 			}
 			ImGui::TreePop();
@@ -105,18 +124,6 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 				}
 				delete ps;
 				systems.erase(it);
-			}
-		}
-	}
-}
-
-void CModuleParticles::forceEmission(Particles::TParticleHandle ph, int quantity) {
-	for (auto& p : _activeSystems) {
-		auto& systems = p.second;
-		for (auto system : systems) {
-			if (system->getHandle() == ph) {
-				system->forceEmission(quantity);
-				break;
 			}
 		}
 	}

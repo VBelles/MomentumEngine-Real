@@ -2,6 +2,7 @@
 #include "module_instancing.h"
 #include "geometry/transform.h"
 #include "entity/entity_parser.h"
+#include "components/comp_culling.h"
 
 bool CModuleInstancing::start() {
 	auto files = WindowsUtils::getAllFiles("data/instancing/", "*.json");
@@ -14,8 +15,11 @@ bool CModuleInstancing::start() {
 }
 
 void CModuleInstancing::loadInstances(const json& jInstances) {
+	static unsigned int id = 0;
 	for (auto& jTInstance : jInstances) {
 		std::string meshName = jTInstance.value("mesh", "");
+		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(meshName)->as<CRenderMesh>();
+		assert(instanceMesh);
 		//Load data
 		for (auto& jData : jTInstance["data"]) {
 			TInstance instanceData;
@@ -23,25 +27,55 @@ void CModuleInstancing::loadInstances(const json& jInstances) {
 			VEC4 rot = jData.count("rot") ? loadVEC4(jData["rot"]) : VEC4::Zero;
 			float scale = jData.value("scale", 1.f);
 			instanceData.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-			instancesDataMap[meshName].push_back(instanceData);
+			instanceData.id = id;
+			AABB aabb = instanceMesh->getAABB();
+			aabb.Transform(aabb, instanceData.world);
+
+			instancesDataMap[meshName].push_back({ instanceData, aabb });
+			id++;
 		}
 	}
 }
 
 void CModuleInstancing::setAllInstancesData() {
 	for (auto& p : instancesDataMap) {
-		auto& instancesData = p.second;
+		auto& instancesDataAABB = p.second;
+		std::vector<TInstance> data;
+		for (auto& instanceDataAABB : instancesDataAABB) {
+			data.push_back(instanceDataAABB.data);
+		}
 		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(p.first)->as<CRenderMesh>();
-		assert(instanceMesh);
-		instanceMesh->setInstancesData(instancesData.data(), instancesData.size(), sizeof(TInstance));
+		instanceMesh->setInstancesData(data.data(), data.size(), sizeof(TInstance));
 	}
 }
 
 void CModuleInstancing::update(float delta) {
-
+	if (!culling) return;
+	CEntity* cameraEntity = getEntityByName(GAME_CAMERA);
+	TCompCulling* culling = cameraEntity->get<TCompCulling>();
+	for (auto& p : instancesDataMap) {
+		auto& instancesDataAABB = p.second;
+		std::vector<TInstance> data;
+		for (auto& instanceDataAABB : instancesDataAABB) {
+			if (culling->planes.isVisible(&instanceDataAABB.aabb)) {
+				data.push_back(instanceDataAABB.data);
+			}
+		}
+		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(p.first)->as<CRenderMesh>();
+		instanceMesh->setInstancesData(data.data(), data.size(), sizeof(TInstance));
+	}
 }
 
 void CModuleInstancing::render() {
-
+	if (CApp::get().isDebug()) {
+		if (ImGui::TreeNode("Instancing")) {
+			if (ImGui::Checkbox("Culling", &culling)) {
+				if (!culling) {
+					setAllInstancesData();
+				}
+			}
+			ImGui::TreePop();
+		}
+	}
 }
 

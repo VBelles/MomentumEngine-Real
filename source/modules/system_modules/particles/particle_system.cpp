@@ -3,6 +3,7 @@
 #include "particle_parser.h"
 #include "render/render_objects.h"
 #include <random>
+#include "components/comp_culling.h"
 #include "skeleton/cal3d2engine.h"
 
 class CParticleResourceClass : public CResourceClass {
@@ -20,7 +21,6 @@ public:
 		return res;
 	}
 
-
 };
 
 void Particles::TCoreSystem::debugInMenu() {
@@ -36,7 +36,7 @@ void Particles::TCoreSystem::debugInMenu() {
 		ImGui::Text("Emission");
 		std::string types[] = { "Point", "Line", "Square", "Box", "Sphere", "Circle", "Cylinder" };
 		if (ImGui::BeginCombo("Type", types[emission.type].c_str())) {
-			for (int i = 0; i < TEmission::EType::End; i++) {
+			for (int i = 0; i < ARRAYSIZE(types); i++) {
 				if (ImGui::Selectable(types[i].c_str(), emission.type == i)) {
 					emission.type = TEmission::EType(i);
 				}
@@ -79,7 +79,7 @@ void Particles::TCoreSystem::debugInMenu() {
 		ImGui::Text("Render");
 		std::string types[] = { "Billboard", "HorizontalBillboard", "StretchedBillboard", "Mesh" };
 		if (ImGui::BeginCombo("Type", types[render.type].c_str())) {
-			for (int i = 0; i < TRender::EType::End; i++) {
+			for (int i = 0; i < ARRAYSIZE(types); i++) {
 				if (ImGui::Selectable(types[i].c_str(), render.type == i)) {
 					render.type = TRender::EType(i);
 				}
@@ -167,6 +167,9 @@ namespace Particles {
 			targetPos += _core->movement.followTargetOffset;
 		}
 
+		VEC3 posLimits = VEC3(std::numeric_limits<float>::min());
+		VEC3 negLimits = VEC3(std::numeric_limits<float>::max());
+
 		auto it = _particles.begin();
 		while (it != _particles.end()) {
 			TParticle& p = *it;
@@ -203,13 +206,15 @@ namespace Particles {
 					p.position += p.velocity * delta;
 					p.position += kWindVelocity * _core->movement.wind * delta;
 				}
-				if (!_core->render.mesh) { //Billboard particle
-					p.rotation += _core->movement.spin * delta;
-				}
-				else { //Mesh particle
+
+				if ( _core->render.type == TCoreSystem::TRender::Mesh) { //Mesh particle
 					QUAT quat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, _core->movement.spin * delta);
 					p.rotationQuat = p.rotationQuat * quat;
 				}
+				else { //Billboard particle
+					p.rotation += _core->movement.spin * delta;
+				}
+
 				if (_core->movement.ground) {
 					p.position.y = std::max(0.f, p.position.y);
 				}
@@ -224,10 +229,23 @@ namespace Particles {
 					p.frame = _core->render.initialFrame + (frame_idx % _core->render.numFrames);
 				}
 
+				// Update limits of the particles
+				if (p.position.x > posLimits.x) posLimits.x = p.position.x;
+				if (p.position.y > posLimits.y) posLimits.y = p.position.y;
+				if (p.position.z > posLimits.z) posLimits.z = p.position.z;
+
+				if (p.position.x < negLimits.x) negLimits.x = p.position.x;
+				if (p.position.y < negLimits.y) negLimits.y = p.position.y;
+				if (p.position.z < negLimits.z) negLimits.z = p.position.z;
+
 				++it;
 			}
 		}
 
+		// Update aabb
+		aabb.Center = (posLimits + negLimits) * 0.5f;
+		aabb.Extents = (posLimits - negLimits) * 0.5f;
+		AABB::CreateFromPoints(aabb, posLimits, negLimits);
 		bool canEmit = _core->emission.cyclic || _globalTime <= _core->emission.duration;
 		// check if a new batch of particles needs to be generated
 		if (canEmit) {
@@ -246,10 +264,12 @@ namespace Particles {
 	void CSystem::render() {
 		const CRenderTechnique* technique = _core->render.technique;
 		const CRenderMesh* particleMesh = _core->render.mesh;
-		CEntity* eCurrentCamera = EngineCameras.getCurrentBlendedCamera();
+		CEntity* eCurrentCamera = getEntityByName(GAME_CAMERA);
 		assert(technique && particleMesh && eCurrentCamera);
 		TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 		assert(camera);
+		TCompCulling* culling = camera->get<TCompCulling>();
+
 		const VEC3 cameraPos = camera->getCamera()->getPosition();
 		const VEC3 cameraUp = camera->getCamera()->getUp();
 		const VEC3 cameraForward = camera->getCamera()->getFront();
@@ -278,6 +298,15 @@ namespace Particles {
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
 					* MAT44::CreateFromQuaternion(config.rotationOffset)
 					* MAT44::CreateTranslation(particlePosition);
+			}
+
+			
+			if (culling && EngineParticles.culling) {
+				AABB pAABB;
+				particleMesh->getAABB().Transform(pAABB, cb_object.obj_world);
+				if (!culling->planes.isVisible(&pAABB)) { // Cull particle
+					continue;
+				}
 			}
 
 			int row = p.frame / frameCols;
@@ -315,27 +344,9 @@ namespace Particles {
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
 			particle.frame = _core->render.initialRandomFrame ? random(0.f, _core->render.numFrames) : _core->render.initialFrame;
 			particle.rotation = _core->movement.initialRandomRotation ? random(0.f, M_PI * 2.f) : _core->movement.initialRotation;
+			particle.rotationQuat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, particle.rotation);
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
-			_particles.push_back(particle);
-		}
-	}
-
-	void CSystem::forceEmission(int quantity) {
-		updateWorld();
-		for (int i = 0; i < quantity; ++i) {
-			TParticle particle;
-			particle.localPosition = generatePosition();
-			particle.position = VEC3::Transform(particle.localPosition, world);
-			particle.velocity = generateVelocity(particle.localPosition);
-			particle.color = _core->color.colors.get(0.f);
-			particle.size = _core->size.sizes.get(0.f);
-			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
-			particle.frame = _core->render.initialFrame;
-			particle.rotation = 0.f;
-			particle.lifetime = 0.f;
-			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
-
 			_particles.push_back(particle);
 		}
 	}
@@ -361,6 +372,7 @@ namespace Particles {
 
 	VEC3 CSystem::generatePosition() const {
 		const float& size = _core->emission.size;
+		const float& halfLength = _core->emission.halfLength;
 
 		switch (_core->emission.type) {
 		case TCoreSystem::TEmission::Point:
@@ -373,7 +385,7 @@ namespace Particles {
 			return VEC3(random(-size, size), 0.f, random(-size, size));
 
 		case TCoreSystem::TEmission::Box:
-			return VEC3(random(-size, size), random(-size, size), random(-size, size));
+			return VEC3(random(-size, size), random(-halfLength, halfLength), random(-size, size));
 
 		case TCoreSystem::TEmission::Sphere:
 		{
@@ -392,7 +404,7 @@ namespace Particles {
 			VEC3 dir(random(-1, 1), 0.f, random(-1, 1));
 			dir.Normalize();
 			VEC3 pos = dir * random(0.f, size);
-			pos.y = random(-size, size);
+			pos.y = random(-halfLength, halfLength);
 			return pos;
 		}
 		}
@@ -469,6 +481,14 @@ namespace Particles {
 				* MAT44::CreateFromQuaternion(rotation)
 				* MAT44::CreateTranslation(translation);
 		}
+	}
+
+	AABB CSystem::getAABB() {
+		return aabb;
+	}
+
+	void CSystem::renderDebug() {
+		renderWiredAABB(aabb, MAT44::Identity, VEC4(1, 0, 0, 1));
 	}
 
 

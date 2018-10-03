@@ -45,6 +45,7 @@ bool CModuleGUI::stop() {
 }
 
 void CModuleGUI::update(float delta) {
+	dialogController->update(delta);
 	for (auto& wdgt : _activeWidgets) {
 		wdgt->updateAll(delta);
 	}
@@ -235,4 +236,8 @@ void CModuleGUI::showDialog(const std::string& text, const int& fontSize) {
 
 void CModuleGUI::hideDialog() {
 	dialogController->hideDialog();
+}
+
+bool CModuleGUI::isDialogActive() {
+	return dialogController->isActive();
 }
