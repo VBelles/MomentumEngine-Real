@@ -14,9 +14,9 @@ private:
 	float takeActionTime = frames2sec(3);
 	float dodgeSpeed = 22.f;
 	
-	static constexpr int numberOfDodgesToStale = 4;
+	static constexpr int numberOfDodgesToStale = 2;
 	CTimer staleTimers[numberOfDodgesToStale - 1];//si abusas, te comes el lag
-	float staleTime = 2.5f;
+	float staleTime = 0.9f;
 	int staleTimerIndex = 0;
 	int currentNumberOfCloseDodges = 0;
 	bool isInterruptible = true;
