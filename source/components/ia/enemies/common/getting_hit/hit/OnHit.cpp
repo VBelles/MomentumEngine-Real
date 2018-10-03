@@ -57,6 +57,11 @@ int OnHit::execAction(float delta) {
 			entity->sendMsg(TMsgGainPower{ enemy->getEntityHandle(), enemy->getPower()->getPowerToGive() });
 			enemy->getPower()->setPowerToGive(0.f);
 		}
+
+		if (enemy->attacker != PLAYER_NAME) {
+			enemy->onDisappear = true;
+			enemy->resetCurrent();
+		}
 	}
 	enemy->gravityMultiplier = attackInfo.gravityMultiplier;
 	enemy->getHitboxes()->disableAll();

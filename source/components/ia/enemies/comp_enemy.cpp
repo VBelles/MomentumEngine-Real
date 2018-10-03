@@ -73,22 +73,26 @@ void TCompEnemy::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 }
 
 void TCompEnemy::onAttackHit(const TMsgAttackHit& msg) {
-	if (!enemy->getCollider()->toDestroy) {
+	if (!enemy->getCollider()->toDestroy
+		&& !enemy->ignoreMessages) {
 		enemy->receivedAttack = msg.info;
+		enemy->attacker = ((CEntity*)msg.attacker)->getName();
 		enemy->onHit = true;
 		enemy->resetCurrent();
 	}
 }
 
 void TCompEnemy::onOutOfBounds(const TMsgOutOfBounds& msg) {
-	if (!enemy->getCollider()->toDestroy) {
+	if (!enemy->getCollider()->toDestroy
+		&& !enemy->ignoreMessages) {
 		enemy->onOutOfBounds = true;
 		enemy->resetCurrent();
 	}
 }
 
 void TCompEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
-	if (!enemy->getCollider()->toDestroy) {
+	if (!enemy->getCollider()->toDestroy
+		&& !enemy->ignoreMessages) {
 		dbg("Damn! I've been dodged.\n");
 		if (enemy->hpGiven < enemy->maxHpToGive) {
 			enemy->getPlayerModel()->setHp(enemy->getPlayerModel()->getHp() + 1);

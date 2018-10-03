@@ -163,10 +163,11 @@
     <ClCompile Include="components\ia\enemies\common\combat\tackle_attack\OnTackleAttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\combat\tackle_attack\TackleAttackAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\death\DeathAction.cpp" />
-    <ClCompile Include="components\ia\enemies\common\death\DisappearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\disappear\DisappearAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\death\OnDeathAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\death\OnDeathCondition.cpp" />
-    <ClCompile Include="components\ia\enemies\common\death\OnDisappearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\disappear\OnDisappearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\disappear\OnDisappearCondition.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\grab\GrabAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\grab\OnGrabAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.cpp" />
@@ -528,10 +529,11 @@
     <ClInclude Include="components\ia\enemies\common\combat\tackle_attack\OnTackleAttackAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\tackle_attack\TackleAttackAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\DeathAction.h" />
-    <ClInclude Include="components\ia\enemies\common\death\DisappearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\disappear\DisappearAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\OnDeathAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\OnDeathCondition.h" />
-    <ClInclude Include="components\ia\enemies\common\death\OnDisappearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\disappear\OnDisappearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\disappear\OnDisappearCondition.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\GrabAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.h" />

@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "OnDisappearAction.h"
 #include "components/ia/enemies/Enemy.h"
+#include "components/player/comp_player_model.h"
 
 REGISTER_BTACTION("OnDisappearAction", OnDisappearAction);
 
@@ -15,9 +16,15 @@ OnDisappearAction::OnDisappearAction(Enemy* enemy, std::string animation) :
 }
 
 int OnDisappearAction::execAction(float delta) {
+	enemy->ignoreMessages = true;
 	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
 	enemy->getSound()->play("disappear");
+	if (!enemy->attackTarget.empty()) {
+		CEntity* entity = enemy->getEntityHandle();
+		enemy->getPlayerModel()->removeAttacker(entity->getName(), enemy->attackSlots);
+		enemy->attackTarget = "";
+	}
 	return Leave;
 }
 
