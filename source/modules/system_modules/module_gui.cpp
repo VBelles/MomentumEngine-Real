@@ -237,3 +237,7 @@ void CModuleGUI::showDialog(const std::string& text, const int& fontSize) {
 void CModuleGUI::hideDialog() {
 	dialogController->hideDialog();
 }
+
+bool CModuleGUI::isDialogActive() {
+	return dialogController->isActive();
+}
