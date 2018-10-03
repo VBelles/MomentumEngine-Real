@@ -2,3 +2,112 @@
   {
     "entity":
     {
+      "name": "platform_director_1",
+      "platforms_director":
+      {
+        "slots":
+        [
+          {
+            "wait_time": 0.11,
+            "platforms":
+            [
+              "nes_plataformaSpikes010",
+              "nes_plataformaSpikes008",
+              "nes_plataformaSpikes006",
+              "nes_plataformaSpikes005",
+              "nes_plataformaSpikes004",
+              "nes_plataformaSpikes001"
+            ]
+          },
+          {
+            "wait_time": 0.12,
+            "platforms":
+            [
+              "nes_plataformaSpikes009",
+              "nes_plataformaSpikes007",
+              "nes_plataformaSpikes003",
+              "nes_plataformaSpikes002",
+              "nes_plataformaSpikes000"
+            ]
+          },
+          {
+            "wait_time": 0.13,
+            "platforms":
+            [
+              "nes_plataformaSpikes008",
+              "nes_plataformaSpikes006",
+              "nes_plataformaSpikes005",
+              "nes_plataformaSpikes004",
+              "nes_plataformaSpikes001"
+            ]
+          },
+          {
+            "wait_time": 0.14,
+            "platforms":
+            [
+              "nes_plataformaSpikes007",
+              "nes_plataformaSpikes003",
+              "nes_plataformaSpikes002",
+              "nes_plataformaSpikes000"
+            ]
+          },
+          {
+            "wait_time": null,
+            "platforms":
+            [
+              "nes_plataformaSpikes010",
+              "nes_plataformaSpikes009"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "platform_director_2",
+      "platforms_director":
+      {
+        "slots":
+        [
+          {
+            "wait_time": 0.21,
+            "platforms":
+            [
+              "nes_plataformaSpikes022",
+              "nes_plataformaSpikes021",
+              "nes_plataformaSpikes020",
+              "nes_plataformaSpikes019",
+              "nes_plataformaSpikes018"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "platform_director_3",
+      "platforms_director":
+      {
+        "slots":
+        [
+          {
+            "wait_time": 0.31,
+            "platforms":
+            [
+              "nes_plataformaSpikes017",
+              "nes_plataformaSpikes016",
+              "nes_plataformaSpikes015",
+              "nes_plataformaSpikes013",
+              "nes_plataformaSpikes012",
+              "nes_plataformaSpikes011"
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

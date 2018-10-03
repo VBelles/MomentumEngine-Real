@@ -527,7 +527,7 @@ ButtonText: "Momentum"
 					on btnSetRolSpd	pressed do (setAttribute "rotateData" #rolSpeed rolSpeed.value)
 					on btnSetWdur	pressed do (setAttribute "rotateData" #wait 	waitDur.value)
 					on btnSetDir	pressed do (setAttribute "rotateData" #dir	 	dir.value)
-					on btnSetSlot	pressed do (setAttribute "rotateData" #slot	 	slot.selection)
+					on btnSetSlot	pressed do (setAttribute "rotateData" #slot	 	slt.selection)
 
 					on btnSetAll	pressed do (
 						setAttribute "rotateData" #x 		xRot.value
@@ -537,7 +537,7 @@ ButtonText: "Momentum"
 						setAttribute "rotateData" #rolSpeed rolSpeed.value
 						setAttribute "rotateData" #wait 	waitDur.value
 						setAttribute "rotateData" #dir	 	dir.value
-						setAttribute "rotateData" #slot	 	slot.selection
+						setAttribute "rotateData" #slot	 	slt.selection
 					)
 				)
 
@@ -735,7 +735,7 @@ ButtonText: "Momentum"
 					"camData":      ( rollToOpen = camParams      
 									  setAttrWinHeight = 3 + heightPerButton * 7 )
 					"collData":     ( rollToOpen = colParams      
-									  setAttrWinHeight = 3 + heightPerButton * 4 )
+									  setAttrWinHeight = 3 + heightPerButton * 6 )
 					"enemyData":    ( rollToOpen = enemyParams	  
 									  setAttrWinHeight = 3 + heightPerButton * 8 )
 					"lightData":    ( rollToOpen = lightParams    
@@ -747,7 +747,7 @@ ButtonText: "Momentum"
 					"moveData":     ( rollToOpen = moveParams	  
 									  setAttrWinHeight = 3 + heightPerButton * 6 )
 					"rotateData":   ( rollToOpen = rotationParams
-									  setAttrWinHeight = 15 + heightPerButton * 11 )
+									  setAttrWinHeight = 15 + heightPerButton * 14 )
 					"platfDirData": ( rollToOpen = platfDirParams
 									  setAttrWinHeight = 3 + heightPerButton * 9 )
 					"uniqueData":   ( rollToOpen = uniqueParams   

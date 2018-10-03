@@ -838,18 +838,37 @@ struct TSceneExporter (
 			if attrManager.hasAttribute obj "rotateData" then (
 				slots = attrManager.getAttrValue obj "rotateData" #slt
 				if slots == undefined then slots = #()
+				format "obj: % slots: %\n" obj.name slots --DEBUG
 				dir = attrManager.getAttrValue obj "rotateData" #dir
 				if dir == undefined then dir = 0
 			)
 
+/*
+if platfDirWaits.count >= dirID then (
+	platfDirWaits[dirID] = slotWaits --Overwrite.
+	format "WARNING: Overwriting platfDirWaits at \
+			index % (duplicated platform director).\n" dirID 
+) else insertItem slotWaits platfDirWaits dirID
+*/
+
 			if dir > 0 then (
-				if platfDirectors[dir] != undefined then (
+				if platfDirectors.count >= dir then (
+					--Place for director already exists.
 					for slot in slots do (
-						if platfDirectors[dir][slot] != undefined then (
+						if platfDirectors[dir] == undefined then (
+							--The director is empty: overwrite.
+
+						)
+						else --Already has data: append.
 							append platfDirectors[dir][slot] obj.name
-						) else insertItem #(obj.name) platfDirectors[dir] slot
+
+
+						/*if platfDirectors[dir][slot] != undefined then (
+							append platfDirectors[dir][slot] obj.name
+						) else insertItem #(obj.name) platfDirectors[dir] slot*/
 					)
-				) else insertItem #(#(obj.name)) platfDirectors dir
+				) else --Array isn't big enough: insert.
+					insertItem #(#(obj.name)) platfDirectors dir
 			)
 		)
 		return rotSpeed > 0 or rolSpeed > 0
@@ -1592,7 +1611,8 @@ struct TSceneExporter (
 		   objClass != FreeSpot			  	  and
 		   objClass != Omnilight			  and
 		   objClass != TargetSpot			then (
-			if objClass != Targetobject then format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
+			if objClass != Targetobject then format "Warning: invalid object % \
+				of class % in lights layer, not exported.\n" obj.name objClass
 			return false
 		)
 		if nValidObjs > 0 then fs.writeComma()
@@ -1797,11 +1817,13 @@ struct TSceneExporter (
 			)
 
 			if dirID > 0 then (
-				if platfDirWaits[dirID] != undefined then (
-					append platfDirWaits[dirID] slotWaits
+				if platfDirWaits.count >= dirID then (
+					platfDirWaits[dirID] = slotWaits --Overwrite.
+					format "WARNING: Overwriting platfDirWaits at \
+							index % (duplicated platform director).\n" dirID 
 				) else insertItem slotWaits platfDirWaits dirID
 
-				format "platfDirWaits: %\n" platfDirWaits as string --DEBUG
+				--format "platfDirWaits: %\n" platfDirWaits as string --DEBUG
 			)
 		)
 
@@ -2263,15 +2285,33 @@ struct TSceneExporter (
 
 	fn exportPlatfDirector = (
 		if platfDirectors.count == 0 then return false
-		format "platfDirectors.count: %\n" platfDirectors.count
+		format "platfDirectors.count: %\n" platfDirectors.count --DEBUG
+		format "platfDirectors[1].count: %\n" platfDirectors[1].count --DEBUG
+		format "platfDirectors[1][1].count: %\n" platfDirectors[1][1].count --DEBUG
 
 		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
 		
 		fs.begin plDirFilePath --Create file.
 		fs.beginArray()
 
-		format "printing all elements:\n" 
-		with printAllElements on platfDirectors as string --DEBUG
+		format "printing all elements:\n" --DEBUG
+				local dirN = 1
+				for d in platfDirectors do (
+					format "--director %--\n" dirN
+					local slotN = 1
+					for s in d do (
+						format "s%: %\n" slotN s
+						slotN += 1
+					)
+					dirN += 1
+				)
+				local waitN = 1
+				format "--platfDirWaits:--\n"
+				for w in platfDirWaits do (
+					format "w%: %\n" waitN w
+					waitN += 1
+				)
+		--END DEBUG
 
 		local validDirectors = 0
 		for i = 1 to platfDirectors.count where
@@ -2281,14 +2321,13 @@ struct TSceneExporter (
 			if validDirectors >= 1 then fs.writeComma()
 
 			beginEntity()
-			fs.writeKeyValue "name" ("platform_director_" + i)
+			fs.writeKeyValue "name" ("platform_director_" + i as string)
 			fs.writeComma()
 			fs.writeKey "platforms_director"
 			fs.beginObj()
 				fs.writeKey "slots"
 				fs.beginArray()
 					local validPlSlots = 0
-					format "validPlSlots: %\n" validPlSlots  --DEBUG
 					for j = 1 to director.count where
 					director[j] != undefined and
 					director[j][1] != undefined do (
@@ -2296,7 +2335,7 @@ struct TSceneExporter (
 						if validPlSlots >= 1 then fs.writeComma()
 
 						fs.beginObj()
-							fs.writeKeyValue "wait_time" platfDirWaits[i]
+							fs.writeKeyValue "wait_time" platfDirWaits[i][j]
 							fs.writeComma()
 							fs.writeKey "platforms"
 							fs.beginArray()
@@ -2477,6 +2516,7 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
 TODO: Que haya un platform director por cada grupo de plataformas que lo usen.
+TODO: Exportar point light (omnilight).
 
 NOTA: Si una capa pasa a estar vacía, no se exporta pero no se borra el
 	  archivo anterior, así que se queda basura.
