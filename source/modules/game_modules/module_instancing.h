@@ -8,7 +8,7 @@ private:
 
 	struct TInstance {
 		MAT44 world;
-		//float id;
+		unsigned int id;
 	};
 
 	struct TInstanceBlood {

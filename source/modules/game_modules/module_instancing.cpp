@@ -15,7 +15,7 @@ bool CModuleInstancing::start() {
 }
 
 void CModuleInstancing::loadInstances(const json& jInstances) {
-	static float id = 0.f;
+	static unsigned int id = 0;
 	for (auto& jTInstance : jInstances) {
 		std::string meshName = jTInstance.value("mesh", "");
 		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(meshName)->as<CRenderMesh>();
@@ -27,7 +27,7 @@ void CModuleInstancing::loadInstances(const json& jInstances) {
 			VEC4 rot = jData.count("rot") ? loadVEC4(jData["rot"]) : VEC4::Zero;
 			float scale = jData.value("scale", 1.f);
 			instanceData.world = MAT44::CreateScale(scale) * CTransform(pos, rot).asMatrix();
-			//instanceData.id = id;
+			instanceData.id = id;
 			AABB aabb = instanceMesh->getAABB();
 			aabb.Transform(aabb, instanceData.world);
 
