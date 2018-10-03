@@ -216,8 +216,10 @@
     <ClCompile Include="components\postfx\comp_render_fxaa.cpp" />
     <ClCompile Include="components\postfx\comp_render_hsv.cpp" />
     <ClCompile Include="components\postfx\comp_render_vignette.cpp" />
+    <ClCompile Include="gui\controllers\dialog_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
+    <ClCompile Include="gui\widgets\gui_dialog.cpp" />
     <ClCompile Include="gui\widgets\gui_point.cpp" />
     <ClCompile Include="gui\widgets\gui_points_bar.cpp" />
     <ClCompile Include="gui\gui_font.cpp" />
@@ -228,6 +230,7 @@
     <ClCompile Include="components\player\comp_walk_sound.cpp" />
     <ClCompile Include="modules\game_modules\module_map_menu.cpp" />
     <ClCompile Include="modules\game_modules\module_options_menu.cpp" />
+    <ClCompile Include="modules\system_modules\scripting\scripting_gui.cpp" />
     <ClCompile Include="modules\system_modules\slash\comp_slash.cpp" />
     <ClCompile Include="components\comp_sun.cpp" />
     <ClCompile Include="components\lights\comp_light_flicker.cpp" />
@@ -578,8 +581,10 @@
     <ClInclude Include="components\postfx\comp_render_fxaa.h" />
     <ClInclude Include="components\postfx\comp_render_hsv.h" />
     <ClInclude Include="components\postfx\comp_render_vignette.h" />
+    <ClInclude Include="gui\controllers\dialog_controller.h" />
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />
+    <ClInclude Include="gui\widgets\gui_dialog.h" />
     <ClInclude Include="gui\widgets\gui_point.h" />
     <ClInclude Include="gui\widgets\gui_points_bar.h" />
     <ClInclude Include="gui\gui_font.h" />
@@ -590,6 +595,7 @@
     <ClInclude Include="components\player\comp_walk_sound.h" />
     <ClInclude Include="modules\game_modules\module_map_menu.h" />
     <ClInclude Include="modules\game_modules\module_options_menu.h" />
+    <ClInclude Include="modules\system_modules\scripting\scripting_gui.h" />
     <ClInclude Include="modules\system_modules\slash\comp_slash.h" />
     <ClInclude Include="components\comp_sun.h" />
     <ClInclude Include="components\lights\comp_light_flicker.h" />

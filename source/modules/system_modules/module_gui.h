@@ -6,6 +6,7 @@
 #include "gui/gui_controller.h"
 #include "camera/camera_gui.h"
 #include "gui/gui_font.h"
+#include "gui/controllers/dialog_controller.h"
 
 class CCameraOrthographic;
 
@@ -39,6 +40,10 @@ public:
 
 	GUI::CFont& getFont(int size);
 
+	void showDialog(const std::string& text, const int& fontSize = 16);
+	void hideDialog();
+	bool isDialogActive();
+
 private:
 	CCameraGui _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;
@@ -55,4 +60,6 @@ private:
 
 	std::string fontsFile = "data/gui/fonts.json";
 	std::map<int, GUI::CFont> fonts;
+
+	GUI::CDialogController* dialogController = nullptr;
 };

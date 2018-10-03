@@ -10,6 +10,7 @@
 #include "gui/widgets/gui_map_marker.h"
 #include "gui/widgets/gui_points_bar.h"
 #include "gui/widgets/gui_point.h"
+#include "gui/widgets/gui_dialog.h"
 #include "modules/system_modules/module_uniques.h"
 
 namespace {
@@ -65,6 +66,7 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent) {
 	else if (type == "map_marker")  wdgt = parseMapMarker(data, name);
 	else if (type == "points_bar")  wdgt = parsePointsBar(data);
 	else if (type == "point")  wdgt = parsePoint(data);
+	else if (type == "dialog")  wdgt = parseDialog(data);
 	else                        wdgt = parseWidget(data);
 
 	wdgt->_name = name;
@@ -266,6 +268,18 @@ CWidget* CParser::parsePoint(const json& data) {
 
 	json jEmpty = mergeJson(data, "empty");
 	parseImageParams(wdgt->_states[CPoint::EState::ST_Empty], jEmpty);
+
+	return wdgt;
+}
+
+CWidget* CParser::parseDialog(const json& data) {
+	CDialog* wdgt = new CDialog();
+
+	parseParams(wdgt->_params, data);
+	parseImageParams(wdgt->_imageParams, data);
+	parseTextParams(wdgt->_textParams, data);
+
+	wdgt->padding = loadVEC4(data.value("padding", "0 0 0 0"));
 
 	return wdgt;
 }

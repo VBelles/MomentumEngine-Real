@@ -5,8 +5,10 @@
 
 class CModuleInstancing : public IModule {
 private:
+
 	struct TInstance {
 		MAT44 world;
+		unsigned int id;
 	};
 
 	struct TInstanceBlood {
@@ -27,7 +29,14 @@ private:
 		VEC3  pos;
 	};
 
-	std::map<std::string, std::vector<TInstance>> instancesDataMap;
+	struct InstanceDataAABB {
+		TInstance data;
+		AABB aabb;
+	};
+
+	std::map<std::string, std::vector<InstanceDataAABB>> instancesDataMap;
+
+	bool culling = true;
 
 	void loadInstances(const json & jInstances);
 public:

@@ -210,7 +210,6 @@ namespace Particles {
 				if ( _core->render.type == TCoreSystem::TRender::Mesh) { //Mesh particle
 					QUAT quat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, _core->movement.spin * delta);
 					p.rotationQuat = p.rotationQuat * quat;
-					dbg("rotating\n");
 				}
 				else { //Billboard particle
 					p.rotation += _core->movement.spin * delta;

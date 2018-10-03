@@ -2,6 +2,7 @@
 #include "gui_font.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 namespace GUI {
 	void CFont::load(std::string fileName) {
@@ -116,15 +117,20 @@ namespace GUI {
 		VEC2 gap(0, 0);
 		for (size_t i = 0; i < text.size(); ++i) {
 			char c = text[i];
+			if (c == '\n') {
+				gap.x = 0.f;
+				gap.y += lineHeight / (float)size;
+			}
+			else {
+				VEC2 minUV = VEC2(characters[c].x / (float)scaleW, characters[c].y / (float)scaleH);
+				VEC2 maxUV = minUV + VEC2(characters[c].width / (float)scaleW, characters[c].height / (float)scaleH);
+				MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
+				gap += VEC2(characters[c].xadvance / (float)size, 0.f);
 
-			VEC2 minUV = VEC2(characters[c].x / (float)scaleW, characters[c].y / (float)scaleH);
-			VEC2 maxUV = minUV + VEC2(characters[c].width / (float)scaleW, characters[c].height / (float)scaleH);
-			MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
-			gap += VEC2(characters[c].xadvance / (float)size, 0);
+				VEC2 charSize = VEC2(characters[c].width / (float)size, characters[c].height / (float)lineHeight);
 
-			VEC2 charSize = VEC2(characters[c].width / (float)size, characters[c].height / (float)lineHeight);
-
-			EngineGUI.renderText(w, fontTexture, minUV, maxUV, color, charSize);
+				EngineGUI.renderText(w, fontTexture, minUV, maxUV, color, charSize);
+			}
 		}
 	}
 
@@ -138,11 +144,29 @@ namespace GUI {
 
 	int CFont::getWidth(std::string text) {
 		int size = 0;
+		int lineSize = 0;
 
 		for (size_t i = 0; i < text.size(); ++i) {
-			size += characters[text[i]].xadvance;
+			if (text[i] == '\n') {
+				size = std::max(size, lineSize);
+				lineSize = 0;
+			}
+			else {
+				lineSize += characters[text[i]].xadvance;
+			}
 		}
+		size = std::max(size, lineSize);
 
 		return size;
+	}
+
+	int CFont::getHeight(std::string text) {
+		int lines = 0;
+
+		if (!text.empty()) {
+			lines = std::count(text.begin(), text.end(), '\n') + 1;
+		}
+
+		return lines * size;
 	}
 }

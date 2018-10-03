@@ -356,6 +356,24 @@
     <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="windows\windowsUtils.cpp" />
     <ClCompile Include="windows\app.cpp" />
+    <ClCompile Include="components\player\states\base_states\LandingHurtActionState.cpp" />
+    <ClCompile Include="gui\widgets\gui_points_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_point.cpp" />
+    <ClCompile Include="gui\gui_font.cpp" />
+    <ClCompile Include="components\comp_day_night_cycle.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionCondition.cpp" />
+    <ClCompile Include="components\ia\enemies\common\getting_hit\launch\suspension\SuspensionAction.cpp" />
+    <ClCompile Include="modules\system_modules\sound\module_sound.cpp" />
+    <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
+    <ClCompile Include="components\postfx\comp_render_fxaa.cpp" />
+    <ClCompile Include="components\postfx\comp_render_vignette.cpp" />
+    <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
+    <ClCompile Include="modules\system_modules\sound\comp_sound.cpp" />
+    <ClCompile Include="components\postfx\comp_render_hsv.cpp" />
+    <ClCompile Include="gui\widgets\gui_dialog.cpp" />
+    <ClCompile Include="gui\controllers\dialog_controller.cpp" />
+    <ClCompile Include="modules\system_modules\scripting\scripting_gui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -744,6 +762,24 @@
     <ClInclude Include="utils\variant.h" />
     <ClInclude Include="windows\windowsUtils.h" />
     <ClInclude Include="windows\app.h" />
+    <ClInclude Include="components\player\states\base_states\LandingHurtActionState.h" />
+    <ClInclude Include="gui\widgets\gui_points_bar.h" />
+    <ClInclude Include="gui\widgets\gui_point.h" />
+    <ClInclude Include="gui\gui_font.h" />
+    <ClInclude Include="components\comp_day_night_cycle.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionAction.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\OnSuspensionCondition.h" />
+    <ClInclude Include="components\ia\enemies\common\getting_hit\launch\suspension\SuspensionAction.h" />
+    <ClInclude Include="modules\system_modules\sound\module_sound.h" />
+    <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
+    <ClInclude Include="components\postfx\comp_render_fxaa.h" />
+    <ClInclude Include="components\postfx\comp_render_vignette.h" />
+    <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
+    <ClInclude Include="modules\system_modules\sound\comp_sound.h" />
+    <ClInclude Include="components\postfx\comp_render_hsv.h" />
+    <ClInclude Include="gui\widgets\gui_dialog.h" />
+    <ClInclude Include="gui\controllers\dialog_controller.h" />
+    <ClInclude Include="modules\system_modules\scripting\scripting_gui.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -2,11 +2,52 @@
   {
     "entity":
     {
+      "name": "Plataformeo_muro004",
+      "transform":
+      {
+        "pos": "167.613 51.0074 121.206",
+        "rotation": "0.0922959 0.092296 -0.701057 -0.701057"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_muro004.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/Plataformeo_muro004.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_muro004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "Plataformeo_hex_pure_002",
       "transform":
       {
-        "pos": "125.948 88.8909 106.34",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "83.7034 68.9533 145.554",
+        "rotation": "0.0 -0.0871556 0.0 -0.996195"
       },
       "render":
       [
@@ -46,8 +87,8 @@
       "name": "Plataformeo_hex_pure_001",
       "transform":
       {
-        "pos": "109.386 88.8909 117.828",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "87.1149 68.9533 165.419",
+        "rotation": "0.0 -0.0871556 0.0 -0.996195"
       },
       "render":
       [
@@ -87,8 +128,8 @@
       "name": "Plataformeo_hex_pure_000",
       "transform":
       {
-        "pos": "110.17 81.8909 126.793",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "95.5722 61.9533 168.497",
+        "rotation": "0.0 -0.0871556 0.0 -0.996195"
       },
       "render":
       [
