@@ -21,6 +21,9 @@ int OnAttackAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
 	enemy->currentAttack = attack;
+	for (auto& particle : particles) {
+		EngineParticles.launchSystem(particle, Particles::LaunchConfig{ enemy->getEntityHandle() });
+	}
 	return Leave;
 }
 
@@ -30,6 +33,11 @@ void OnAttackAction::load(IBehaviorTree* bt, const json& j) {
 
 	animation = j.value("animation", animation);
 	attack = j.value("attack", attack);
+	if (j.count("particles")) {
+		for (std::string particle : j["particles"]) {
+			particles.push_back(particle);
+		}
+	}
 }
 
 void OnAttackAction::debugInMenu() {

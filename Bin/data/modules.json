@@ -13,12 +13,12 @@
     "particles",
     "gui",
     "slash",
-    "test_instancing",
     "scripting",
     "sound",
     "pause",
     "options_menu",
-    "map_menu"
+    "map_menu",
+    "instancing"
   ],
   "render": [
     "render",
@@ -29,12 +29,12 @@
     "entities",
     "pause",
     "input",
-    "test_instancing",
     "navmesh",
     "particles",
     "gui",
     "slash",
     "scripting",
-    "sound"
+    "sound",
+    "instancing"
   ]
 }

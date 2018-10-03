@@ -48,6 +48,7 @@ void VS_Vegetation(
 , in uint   iInstancedID : SV_InstanceID  //Stream 0
 
 , in TInstanceWorldData instance_data     // Stream 1
+, in uint id: TEXCOORD6
 
 , out float4 oPos      : SV_POSITION
 , out float3 oNormal   : NORMAL0
@@ -59,7 +60,7 @@ void VS_Vegetation(
 {
   float4x4 instance_world = getWorldOfInstance(instance_data);
 
-  float unit_rand_val = ( 1 + sin( iInstancedID ) ) * 0.5f;
+  float unit_rand_val = ( 1 + sin( id ) ) * 0.5f;
 
   
 

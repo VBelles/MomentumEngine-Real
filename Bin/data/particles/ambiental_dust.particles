@@ -19,7 +19,8 @@
     "acceleration": 0.0,
     "spin": 0.0,
     "wind": 0.0,
-    "gravity": 0
+    "gravity": 0,
+    "initial_random_rotation": true
   },
   "render" : {
       "texture" : "data/textures/particles/glow.dds",

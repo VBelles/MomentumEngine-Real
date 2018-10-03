@@ -44,6 +44,7 @@ namespace Particles {
 		else if (emitterType == "cylinder")	cps->emission.type = TCoreSystem::TEmission::Cylinder;
 		else								cps->emission.type = TCoreSystem::TEmission::Point;
 		cps->emission.size = emission.value("size", cps->emission.size);
+		cps->emission.halfLength = emission.value("half_length", cps->emission.size);
 		cps->emission.angle = deg2rad(emission.value("angle", rad2deg(cps->emission.angle)));
 		cps->emission.radial = emission.value("radial", cps->emission.radial);
 		cps->emission.randomDirection = emission.value("random_direction", cps->emission.randomDirection);

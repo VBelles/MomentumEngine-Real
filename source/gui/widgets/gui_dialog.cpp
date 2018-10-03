@@ -59,29 +59,77 @@ std::vector<std::string> split(const std::string& s, char delim) {
 }
 
 void CDialog::setText(const std::string& text, const int& size) {
+	textFragments.clear();
+	currentFragment = 0;
+
 	_textParams._size = size;
 	_textParams._text = "";
 
 	CFont font = EngineGUI.getFont(_textParams._size);
-	float textWidth = font.getWidth(text);
 	VEC2 textSpace = VEC2(_params._size.x - padding.z - padding.w, _params._size.y - padding.x - padding.y);
 
-	if (textWidth > textSpace.x) {
-		size_t delimiterPos = text.find(" ");
-		std::string line = text.substr(0, delimiterPos);
-		std::vector<std::string> words = split(text.substr(delimiterPos + 1), ' ');
-		for (std::string word : words) {
+	if (font.getWidth(text) > textSpace.x || font.getHeight(text) > textSpace.y) {
+		std::string textFragment = "";
+		std::string line = "";
+		std::vector<std::string> words = split(text, ' ');
+		for (int i = 0; i < words.size(); i++) {
+			std::string word = words[i];
 			if (font.getWidth(line + word) > textSpace.x) {
-				_textParams._text += line + "\n";
-				line = word;
+				line += "\n";
+				if (font.getHeight(textFragment + line) > textSpace.y) {
+					textFragments.push_back(textFragment);
+					textFragment = line;
+				}
+				else {
+					textFragment += line;
+				}
+				line = "";
 			}
-			else {
-				line += " " + word;
+
+			if (i > 0) line += " ";
+			line += word;
+
+			if (font.getHeight(textFragment + line) > textSpace.y) {
+				std::vector<std::string> lines = split(line, '\n');
+				if (lines.size() > 1) {
+					for (int j = 0; j < lines.size(); j++) {
+						std::string s = lines[j];
+						if (font.getHeight(textFragment + s) > textSpace.y) {
+							textFragments.push_back(textFragment);
+							textFragment = "";
+						}
+						textFragment += s;
+						if (j != lines.size() - 1) textFragment += "\n";
+					}
+					line = "";
+				}
+				else {
+					textFragments.push_back(textFragment);
+					textFragment = "";
+				}
 			}
 		}
-		_textParams._text += line;
+		textFragment += line;
+		if (!textFragment.empty()) {
+			textFragments.push_back(textFragment);
+		}
 	}
 	else {
-		_textParams._text = text;
+		textFragments.push_back(text);
 	}
+
+	_textParams._text = textFragments[currentFragment];
+}
+
+void CDialog::showNext() {
+	if (currentFragment < textFragments.size() - 1) currentFragment++;
+	_textParams._text = textFragments[currentFragment];
+}
+
+int CDialog::getNumFragments() {
+	return textFragments.size();
+}
+
+int CDialog::getCurrentFragment() {
+	return currentFragment;
 }

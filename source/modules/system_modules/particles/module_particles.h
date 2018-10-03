@@ -29,8 +29,11 @@ private:
 	VEC3                             _windVelocity = VEC3::Zero;
 	Particles::TParticleHandle		_lastHandle;
 	bool paused = false;
+	CHandle cullingHandle;
 
 public:
+	bool culling = true;
+
 	CModuleParticles(const std::string& name);
 	bool start() override;
 	bool stop() override;
@@ -42,8 +45,6 @@ public:
 	Particles::CSystem* launchSystem(const Particles::TCoreSystem* cps, CHandle entity, Particles::LaunchConfig config);
 
 	void kill(Particles::TParticleHandle ph, float fadeOutTime = 0.f);
-
-	void forceEmission(Particles::TParticleHandle ph, int quantity);
 
 	const VEC3& getWindVelocity() const;
 

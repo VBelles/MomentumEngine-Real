@@ -664,6 +664,9 @@ TCompCollectableManager* TCompPlayerModel::getCollectableManager() {
 }
 
 TCompPlayerModel::~TCompPlayerModel() {
+	damageVisionTime = 0.f;
+	cb_globals.global_saturation_adjustment = damageVisionOriginalSaturationLevel;
+
 	for (int i = 0; i < NUMBER_OF_POWER_LEVELS; i++) {
 		safeDelete(powerStats[i]);
 	}
