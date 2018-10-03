@@ -63,8 +63,10 @@ Funciones:
 	int launchParticleAtBoneOffset(PARTICLE, string&entityName, string bone, float x, float y, float z)
 	void killParticle(int particle_handle, float fade_out)
 
-	void showDialog(string text, int fontSize);
-	void hideDialog();
+	void showDialog(string text, int fontSize)
+	void hideDialog()
+	bool isDialogActive()
+	bool isDialogHidden()
 
 Constantes:
 	PLAYER_NAME
