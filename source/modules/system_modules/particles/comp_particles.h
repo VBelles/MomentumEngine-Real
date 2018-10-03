@@ -13,28 +13,21 @@ private:
 		Particles::TParticleHandle particleHandle;
 	};
 
-	std::map<std::string, System> systems;						// Map of id -> system
-	std::map<Particles::TParticleHandle, std::string> launchedSystems;	// Map of handle -> id
-
-	std::vector<const Particles::TCoreSystem*> cores;
+	std::unordered_map<std::string, System> systems;								// Map of id -> system
+	std::unordered_map<Particles::TParticleHandle, std::string> launchedSystems;	// Map of handle -> id
 
 	// Global config
 	float fadeOut = 0.f;
 	std::string target;
 	Particles::LaunchConfig launchConfig;
+	bool launchOnStart = true;
 
 	//Message callbacks
 	void onAllScenesCreated(const TMsgAllScenesCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
 	void onParticleSystemDestroyed(const TMsgParticleSystemDestroyed &);
 
-	void launch();
 
-	void launch(std::string id);
-
-	void kill(std::string id);
-
-	void kill();
 
 
 public:
@@ -43,4 +36,9 @@ public:
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
+
+	void launch();
+	void launch(std::string id);
+	void kill(std::string id);
+	void kill();
 };

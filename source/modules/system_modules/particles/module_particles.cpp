@@ -110,7 +110,7 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 				ps->fadeOut(fadeOutTime);
 			}
 			else {
-				if (ps->getParticleEntityHandle().isValid()) { //Send message to entity
+				if (ps->getParticleEntityHandle().isValid()) { // Send message to entity
 					static_cast<CEntity*>(ps->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ ps->getHandle() });
 				}
 				delete ps;

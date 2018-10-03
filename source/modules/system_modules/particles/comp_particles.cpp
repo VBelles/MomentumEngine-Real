@@ -12,43 +12,71 @@ void TCompParticles::registerMsgs() {
 
 void TCompParticles::debugInMenu() {
 	ImGui::Text("Systems: %d", systems.size());
+	if (ImGui::Button("Launch all")) {
+		launch();
+	}
+	if (ImGui::Button("Kill all")) {
+		kill();
+	}
 	int sIndex = 0;
-	for (auto p : systems) {
+	for (auto& p : systems) {
 		auto& system = p.second;
 		ImGui::Text("System %d", sIndex);
-		ImGui::Text("Resource: %s", system->getCore()->getName().c_str());
-		ImGui::Text("Particles handle: %d", system->getHandle());
-		ImGui::Text("Particles count: %d", system->getNbParticles());
+		ImGui::Text("Resource: %s", system.core->getName().c_str());
+		ImGui::Text("Particles handle: %d", system.particleHandle);
+		if (ImGui::Button("Launch")) {
+			launch(system.id);
+		}
+		if (ImGui::Button("Kill")) {
+			kill(system.id);
+		}
+		//ImGui::Text("Particles count: %d", system->getNbParticles());
 		sIndex++;
 	}
 }
 
 void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
+	launchOnStart = j.value("launch", launchOnStart);
 	fadeOut = j.value("fade_out", 0.f);
 	target = j.value("target", "");
-	launchConfig.offset = j.count("offset") ? loadVEC3(j["offset"]) : launchConfig.offset;
+	launchConfig.offset = loadVEC3(j["offset"], launchConfig.offset);
 	launchConfig.rotationOffset = j.count("rotation_offset") ? loadQUAT(j["rotation_offset"]) : launchConfig.rotationOffset;
 	launchConfig.bone = j.value("bone", "");
-	for (auto& jSystem : j["system"]) {
+	std::string core = j.value("core", "");
+	if (!core.empty()) {
 		System system;
-		system.id = jSystem.value("id", "");
-		system.target = jSystem.value("target", target);
-		system.launchConfig.offset = jSystem.count("offset") ? loadVEC3(jSystem["offset"]) : system.launchConfig.offset + launchConfig.offset;
-		system.launchConfig.rotationOffset = jSystem.count("rotation_offset") ? loadQUAT(jSystem["rotation_offset"]) : system.launchConfig.rotationOffset * launchConfig.rotationOffset;
-		system.launchConfig.bone = jSystem.value("bone", launchConfig.bone);
-		system.fadeOut = jSystem.value("fade_out", fadeOut);
+		system.core = Resources.get(j.value("core", ""))->as<Particles::TCoreSystem>();
+		system.id = core;
+		system.target = target;
+		system.launchConfig = launchConfig;
+		system.fadeOut = fadeOut;
+		systems[system.id] = system;
+	}
+	if (j.count("systems")) {
+		for (auto& jSystem : j["systems"]) {
+			System system;
+			system.id = jSystem.value("id", "");
+			system.core = Resources.get(jSystem.value("core", ""))->as<Particles::TCoreSystem>();
+			system.target = jSystem.value("target", target);
+			system.launchConfig.offset = loadVEC3(jSystem["offset"], system.launchConfig.offset) + launchConfig.offset;
+			system.launchConfig.rotationOffset = loadQUAT(jSystem["rotation_offset"], system.launchConfig.rotationOffset) * launchConfig.rotationOffset;
+			system.launchConfig.bone = jSystem.value("bone", launchConfig.bone);
+			system.fadeOut = jSystem.value("fade_out", fadeOut);
+			systems[system.id] = system;
+		}
 	}
 
 }
 
 void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
 	launchConfig.targetEntity = target.empty() ? CHandle(this).getOwner() : getEntityByName(target);
-	CHandle entityHandle = CHandle(this).getOwner();
-	for (auto core : cores) {
-		Particles::CSystem* system = EngineParticles.launchSystem(core, entityHandle, launchConfig);
-		systems[system->getHandle()] = system;
+	for (auto& p : systems) {
+		auto& system = p.second;
+		system.launchConfig.targetEntity = system.target.empty() ? launchConfig.targetEntity : getEntityByName(system.target);
 	}
-
+	if (launchOnStart) {
+		launch();
+	}
 }
 
 void TCompParticles::onDestroyed(const TMsgEntityDestroyed& msg) {
@@ -70,8 +98,11 @@ void TCompParticles::onParticleSystemDestroyed(const TMsgParticleSystemDestroyed
 
 void TCompParticles::launch() {
 	CHandle entityHandle = CHandle(this).getOwner();
-	for (auto core : cores) {
-		EngineParticles.launchSystem(core, entityHandle, Particles::LaunchConfig{});
+	for (auto& p : systems) {
+		auto& system = p.second;
+		auto launchedSystem = EngineParticles.launchSystem(system.core, entityHandle, system.launchConfig);
+		system.particleHandle = launchedSystem->getHandle();
+		launchedSystems[launchedSystem->getHandle()] = system.id;
 	}
 }
 void TCompParticles::launch(std::string id) {
@@ -80,6 +111,7 @@ void TCompParticles::launch(std::string id) {
 	if (it != systems.end()) {
 		auto& system = it->second;
 		auto launchedSystem = EngineParticles.launchSystem(system.core, entityHandle, system.launchConfig);
+		system.particleHandle = launchedSystem->getHandle();
 		launchedSystems[launchedSystem->getHandle()] = system.id;
 	}
 }

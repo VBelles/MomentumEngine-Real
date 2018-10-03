@@ -404,8 +404,8 @@
 					}
 				]
 			},
-			"sound":{
-				"events":[
+			"sound": {
+				"events": [
 					{
 						"id": "attack",
 						"path": "event:/PROTA/golpes/golpe_movimiento"
@@ -465,6 +465,15 @@
 					{
 						"id": "lvl_up_3",
 						"path": "event:/PROTA/cambio de estado/cambio_3"
+					}
+				]
+			},
+			"particles": {
+				"systems":[
+					{
+						"id": "fast_attack_1",
+						"core": "data/particles/slash/fast_attack_1.particles",
+						"offset": "0 1 0"
 					}
 				]
 			}
