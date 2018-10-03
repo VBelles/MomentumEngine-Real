@@ -282,6 +282,13 @@ void CModuleRender::generateFrame() {
 		CRenderManager::get().renderCategory("textured");
 		CRenderManager::get().renderCategory("general");
 
+		// Debug render
+		{
+			PROFILE_FUNCTION("Modules");
+			CTraceScoped gpu_scope("Modules");
+			EngineModules.render();
+		}
+
 		// Apply postFX
 		CTexture* curr_rt = rt_main;
 		if (h_e_camera.isValid()) {
@@ -342,13 +349,6 @@ void CModuleRender::generateFrame() {
 		Render.startRenderInBackbuffer();
 
 		renderFullScreenQuad("dump_texture.tech", curr_rt);
-
-		// Debug render
-		{
-			PROFILE_FUNCTION("Modules");
-			CTraceScoped gpu_scope("Modules");
-			EngineModules.render();
-		}
 	}
 	{
 		PROFILE_FUNCTION("GUI");
