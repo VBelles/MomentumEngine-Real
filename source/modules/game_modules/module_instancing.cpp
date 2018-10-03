@@ -64,7 +64,11 @@ void CModuleInstancing::update(float delta) {
 void CModuleInstancing::render() {
 	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Instancing")) {
-			ImGui::Checkbox("Culling", &culling);
+			if (ImGui::Checkbox("Culling", &culling)) {
+				if (!culling) {
+					setAllInstancesData();
+				}
+			}
 			ImGui::TreePop();
 		}
 	}
