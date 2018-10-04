@@ -60,6 +60,7 @@ namespace Particles {
 			bool initialRandomFrame = false;				// ignores initialFrame
 			float frameSpeed = 0.f;							// frame change speed
 			float motionBlurAmount = 0.f;					// amount of blur for stretched particles
+			bool glow = false;
 		};
 
 		struct TSize {

@@ -41,7 +41,7 @@
 						"core": "data/particles/fire/fire_alpha.particles"
 					},
 					{
-						"id": "fire_alpha",
+						"id": "fire_glow",
 						"core": "data/particles/fire/fire_glow.particles"
 					},
 					{

@@ -25,7 +25,8 @@
     "type": "stretched_billboard",
     "motion_blur_amount": 0.025,
     "texture": "data/textures/particles/spark.dds",
-    "additive": true
+    "additive": true,
+    "glow": true
   },
   "size": {
     "scale": 0.1,

@@ -9,6 +9,7 @@ public:
 	bool stop();
 	void update(float delta);
 	void render();
+	void renderAfterBloom();
 	void renderGUI();
 
 	void registerSystemModule(IModule* mod);

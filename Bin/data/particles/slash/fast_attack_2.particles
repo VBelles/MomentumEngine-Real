@@ -18,7 +18,8 @@
         "mesh": "data/meshes/particles/slash.mesh",
         "texture": "data/textures/particles/slash/slash_mesh.dds",
         "type": "mesh",
-        "additive": true
+        "additive": true,
+        "glow": true
     },
     "size": {
         "scale": 0.04,

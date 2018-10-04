@@ -99,6 +99,7 @@ namespace Particles {
 			defaulRenderTechnique = additive ? "particles_additive.tech" : "particles.tech";
 		}
 		cps->render.technique = Resources.get(render.value("technique", defaulRenderTechnique))->as<CRenderTechnique>();
+		cps->render.glow = render.value("glow", cps->render.glow);
 
 		// color
 		const json& color = data["color"];

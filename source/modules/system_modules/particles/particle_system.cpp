@@ -95,7 +95,7 @@ void Particles::TCoreSystem::debugInMenu() {
 		ImGui::DragInt("Initial frame", &render.initialFrame);
 		ImGui::DragFloat("Frame speed", &render.frameSpeed, 0.01f);
 		if (render.type == TRender::StretchedBillboard) ImGui::DragFloat("Motion blur amount", &render.motionBlurAmount, 0.001f);
-
+		ImGui::Checkbox("Glow", &render.glow);
 	}
 }
 
@@ -286,7 +286,7 @@ namespace Particles {
 			}
 
 			
-			if (culling && EngineParticles.culling) {
+			if (_core->render.type != TCoreSystem::TRender::StretchedBillboard && culling && EngineParticles.culling) {
 				AABB pAABB;
 				particleMesh->getAABB().Transform(pAABB, cb_object.obj_world);
 				if (!culling->planes.isVisible(&pAABB)) { // Cull particle

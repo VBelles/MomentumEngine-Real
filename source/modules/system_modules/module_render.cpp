@@ -282,7 +282,6 @@ void CModuleRender::generateFrame() {
 		CRenderManager::get().renderCategory("textured");
 		CRenderManager::get().renderCategory("general");
 
-		// Debug render
 		{
 			PROFILE_FUNCTION("Modules");
 			CTraceScoped gpu_scope("Modules");
@@ -300,6 +299,8 @@ void CModuleRender::generateFrame() {
 				c_render_bloom->generateHighlights(rt_main, deferred.rt_self_illum);
 				c_render_bloom->addBloom();
 			}
+
+			EngineModules.renderAfterBloom();
 
 			// Check if we have a render_fog component
 			TCompRenderFog* c_render_fog = e_cam->get< TCompRenderFog >();
