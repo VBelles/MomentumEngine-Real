@@ -6,11 +6,10 @@
     "emission": {
         "type": "cylinder",
         "size": 0.25,
-        "half_length": 0.25,
+        "half_length": 0.65,
         "interval": 0.1,
         "count": 10,
-        "cyclic": true,
-        "duration": 1
+        "cyclic": true
     },
     "movement": {
         "spin": 500,
