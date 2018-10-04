@@ -6,7 +6,7 @@
     "emission": {
         "type": "cylinder",
         "size": 0.25,
-        "half_length": 0.65,
+        "half_length": 0.6,
         "interval": 0.1,
         "count": 10,
         "cyclic": true
