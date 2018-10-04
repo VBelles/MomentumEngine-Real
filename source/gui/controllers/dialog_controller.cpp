@@ -28,6 +28,7 @@ namespace GUI {
 	}
 
 	void CDialogController::showDialog(const std::string& text, const int& fontSize) {
+		hideDialog();
 		dialogWidget->setText(text, fontSize);
 		EngineGUI.activateWidget(widgetName);
 		dialogActive = true;
