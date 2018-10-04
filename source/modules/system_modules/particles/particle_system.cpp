@@ -281,6 +281,7 @@ namespace Particles {
 				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
 					* MAT44::CreateFromQuaternion(config.rotationOffset)
+					* MAT44::CreateFromQuaternion(initialTargetRotation)
 					* MAT44::CreateTranslation(particlePosition);
 			}
 
@@ -328,7 +329,8 @@ namespace Particles {
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
 			particle.frame = _core->render.initialRandomFrame ? random(0.f, _core->render.numFrames) : _core->render.initialFrame;
 			particle.rotation = _core->movement.initialRandomRotation ? random(0.f, M_PI * 2.f) : _core->movement.initialRotation;
-			particle.rotationQuat = _core->movement.initialTargetRotation ? targetRotation : QUAT::CreateFromAxisAngle(_core->movement.spin_axis, particle.rotation);
+			initialTargetRotation = targetRotation;
+			particle.rotationQuat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, particle.rotation);
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 			_particles.push_back(particle);

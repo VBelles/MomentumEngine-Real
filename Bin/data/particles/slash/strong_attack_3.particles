@@ -1,0 +1,36 @@
+{
+    "life": {
+        "duration": 0.1,
+        "max_particles": 1
+    },
+    "emission": {
+        "type": "point",
+        "count": 1,
+        "cyclic": false
+    },
+    "movement": {
+        "spin": 2000,
+        "spin_axis": "0 1 0",
+        "following": true,
+        "initial_target_rotation": true
+    },
+    "render": {
+        "mesh": "data/meshes/particles/slash.mesh",
+        "texture": "data/textures/particles/slash/slash_mesh.dds",
+        "type": "mesh",
+        "additive": true
+    },
+    "size": {
+        "scale": 0.04,
+        "scale_variation": 0.0,
+        "sizes": [ [1, 1] ]
+      },
+      "color": {
+        "opacity": 1.0,
+        "colors": [
+             [0.0, "1 1 1 1"],
+             [0.7, "1 1 1 1"],
+             [1.0, "1 1 1 0.4"]
+    ]
+      }
+}

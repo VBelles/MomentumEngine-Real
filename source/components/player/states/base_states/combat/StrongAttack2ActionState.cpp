@@ -73,7 +73,7 @@ void StrongAttack2ActionState::update(float delta) {
 
 	if (!isUltraSlashOut && phase == Active) {
 		isUltraSlashOut = true;
-		slash(SLASH_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(80), deg2rad(-90));
+		getParticles()->launch("air_attack");
 		getSound()->play("attack");
 	}
 }

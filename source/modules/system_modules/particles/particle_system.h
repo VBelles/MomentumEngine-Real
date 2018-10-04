@@ -95,6 +95,7 @@ namespace Particles {
 		MAT44 world;
 		VEC3 targetPosition;
 		QUAT targetRotation;
+		QUAT initialTargetRotation;
 
 		LaunchConfig config;
 		int boneId = -1;

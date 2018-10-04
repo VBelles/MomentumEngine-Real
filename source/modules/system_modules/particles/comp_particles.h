@@ -10,7 +10,7 @@ private:
 		Particles::LaunchConfig launchConfig;
 		float fadeOut = 0.f;
 		const Particles::TCoreSystem* core;
-		Particles::TParticleHandle particleHandle;
+		std::set< Particles::TParticleHandle> particleHandles;
 	};
 
 	std::unordered_map<std::string, System> systems;								// Map of id -> system
@@ -41,4 +41,7 @@ public:
 	void launch(std::string id);
 	void kill(std::string id);
 	void kill();
+
+	Particles::LaunchConfig getLaunchConfig(std::string id);
+	void setLaunchConfig(std::string id, Particles::LaunchConfig launchConfig);
 };

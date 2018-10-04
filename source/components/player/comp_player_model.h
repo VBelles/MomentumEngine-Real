@@ -52,6 +52,7 @@ private:
 	CHandle cameraRenderHandle;
 	CHandle cameraPlayerHandle;
 	CHandle hitboxesHandle;
+	CHandle particlesHandle;
 
 	VEC3 respawnPosition;
 	float respawnYaw;
@@ -193,6 +194,7 @@ public:
 	TCompSkeleton* getSkeleton();
 	TCompPowerGauge* getPowerGauge();
 	TCompSound* getSound();
+	TCompParticles* getParticles();
 	TCompCollectableManager* getCollectableManager();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }

@@ -252,3 +252,7 @@ TCompSound * IActionState::getSound() {
 TCompSlash * IActionState::getTrailSlash(SlashType type) {
 	return stateManager->getTrailSlash(type);
 }
+
+TCompParticles * IActionState::getParticles() {
+	return getPlayerModel()->getParticles();
+}

@@ -23,7 +23,10 @@ void TCompParticles::debugInMenu() {
 		auto& system = p.second;
 		ImGui::Text("System %d", sIndex);
 		ImGui::Text("Resource: %s", system.core->getName().c_str());
-		ImGui::Text("Particles handle: %d", system.particleHandle);
+		ImGui::Text("Particle handles (%d):", system.particleHandles.size());
+		for (auto particleHandle : system.particleHandles) {
+			ImGui::Text("\tHandle: %d", particleHandle);
+		}
 		if (ImGui::Button("Launch")) {
 			launch(system.id);
 		}
@@ -91,7 +94,7 @@ void TCompParticles::onParticleSystemDestroyed(const TMsgParticleSystemDestroyed
 	auto it = launchedSystems.find(msg.particleHandle);
 	if (it != launchedSystems.end()) {
 		std::string id = launchedSystems[msg.particleHandle];
-		systems[id].particleHandle = -1;
+		systems[id].particleHandles.erase(msg.particleHandle);
 		launchedSystems.erase(it);
 	}
 }
@@ -101,7 +104,7 @@ void TCompParticles::launch() {
 	for (auto& p : systems) {
 		auto& system = p.second;
 		auto launchedSystem = EngineParticles.launchSystem(system.core, entityHandle, system.launchConfig);
-		system.particleHandle = launchedSystem->getHandle();
+		system.particleHandles.insert(launchedSystem->getHandle());
 		launchedSystems[launchedSystem->getHandle()] = system.id;
 	}
 }
@@ -111,7 +114,7 @@ void TCompParticles::launch(std::string id) {
 	if (it != systems.end()) {
 		auto& system = it->second;
 		auto launchedSystem = EngineParticles.launchSystem(system.core, entityHandle, system.launchConfig);
-		system.particleHandle = launchedSystem->getHandle();
+		system.particleHandles.insert(launchedSystem->getHandle());
 		launchedSystems[launchedSystem->getHandle()] = system.id;
 	}
 }
@@ -120,14 +123,34 @@ void TCompParticles::kill(std::string id) {
 	auto it = systems.find(id);
 	if (it != systems.end()) {
 		auto& system = it->second;
-		EngineParticles.kill(system.particleHandle, system.fadeOut);
+		for (auto particleHandle : system.particleHandles) {
+			EngineParticles.kill(particleHandle, system.fadeOut);
+		}
 	}
 }
 
 void TCompParticles::kill() {
 	for (auto& p : systems) {
 		auto& system = p.second;
-		EngineParticles.kill(system.particleHandle, system.fadeOut);
+		for (auto particleHandle : system.particleHandles) {
+			EngineParticles.kill(particleHandle, system.fadeOut);
+		}
 	}
+}
+
+Particles::LaunchConfig TCompParticles::getLaunchConfig(std::string id) {
+	auto it = systems.find(id);
+	if (it != systems.end()) {
+		return it->second.launchConfig;
+	}
+	return Particles::LaunchConfig();
+}
+
+void TCompParticles::setLaunchConfig(std::string id, Particles::LaunchConfig launchConfig) {
+	auto it = systems.find(id);
+	if (it != systems.end()) {
+		it->second.launchConfig = launchConfig;
+	}
+
 }
 

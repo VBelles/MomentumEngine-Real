@@ -22,9 +22,7 @@ void FastAttackActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
-		//slash(SLASH_COUNTER_CLOCKWISE, VEC3(0, 1, 0));
-		TCompParticles* particles = getPlayerEntity()->get<TCompParticles>();
-		particles->launch("fast_attack_1");
+		getParticles()->launch("fast_attack_1");
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();

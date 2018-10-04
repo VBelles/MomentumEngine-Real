@@ -481,6 +481,18 @@
 						"core": "data/particles/slash/fast_attack_2.particles",
 						"offset": "0 1.1 0",
 						"rotation_offset": "0 1 0 0"
+					},
+					{
+						"id": "air_attack",
+						"core": "data/particles/slash/air_attack.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "0.455 -0.455 0.542 0.542"
+					},
+					{
+						"id": "strong_attack_3",
+						"core": "data/particles/slash/strong_attack_3.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "0 1 0 0"
 					}
 				]
 			}
