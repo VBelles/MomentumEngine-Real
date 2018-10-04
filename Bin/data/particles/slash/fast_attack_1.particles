@@ -9,14 +9,14 @@
         "cyclic": false
     },
     "movement": {
-        "spin": 1000,
+        "spin": -1000,
         "spin_axis": "0 1 0",
         "following": true,
         "initial_target_rotation": true
     },
     "render": {
-        "mesh": "data/meshes/particles/slash.mesh",
-        "texture": "data/textures/particles/slash/slash_mesh.dds",
+        "mesh": "data/meshes/particles/slash_inverted.mesh",
+        "texture": "data/textures/particles/slash/slash_mesh_inverted.dds",
         "type": "mesh",
         "additive": true
     },
