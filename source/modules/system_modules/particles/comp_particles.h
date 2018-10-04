@@ -9,6 +9,7 @@ private:
 		std::string target;
 		Particles::LaunchConfig launchConfig;
 		float fadeOut = 0.f;
+		bool launchOnStart;
 		const Particles::TCoreSystem* core;
 		std::set< Particles::TParticleHandle> particleHandles;
 	};
@@ -18,9 +19,9 @@ private:
 
 	// Global config
 	float fadeOut = 0.f;
+	bool launchOnStart = true;
 	std::string target;
 	Particles::LaunchConfig launchConfig;
-	bool launchOnStart = true;
 
 	//Message callbacks
 	void onAllScenesCreated(const TMsgAllScenesCreated&);

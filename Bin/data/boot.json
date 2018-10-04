@@ -47,6 +47,7 @@
     "data/scenes/platf_director.scene",
     
     "data/scenes/milestone4_andrea-0.scene",
+    "data/scenes/test_particles.scene",
     
     "data/scenes/ambiental_particles.scene"
   ],
@@ -66,8 +67,7 @@
     "data/scenes/milestone4_jose-trimesh.scene",
     "data/scenes/test_gorila.scene",
     "data/scenes/plataformeo.scene",
-    "data/scenes/plataformeo01.scene",
-    "data/scenes/test_particles.scene",            
+    "data/scenes/plataformeo01.scene",         
     "data/scenes/test_instancing.scene",
     "data/scenes/test_spikes.scene",
     "data/scenes/milestone3-0.scene",

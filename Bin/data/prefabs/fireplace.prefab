@@ -26,11 +26,12 @@
 	},
 	{
 		"entity": {
-			"name": "fire",
+			"name": "fire_effect",
 			"transform": {
+				"pos": "0 3.2 0"
 			},
 			"particles": {
-				"offset": "0 3.2 0",
+				"fade_out": 1.5,
 				"systems": [
 					{
 						"id": "fire_add",
@@ -47,24 +48,38 @@
 					{
 						"id": "fire_sparks",
 						"core": "data/particles/fire/fire_sparks.particles"
+					},
+					{
+						"id": "smoke",
+						"core": "data/particles/fire/fire_smoke_2.particles",
+						"launch": false,
+						"offset": "0 0 0"
 					}
 				]
-			}
-		}
-	},
-	{
-		"entity":
-		{
-			"name": "light",
-			"transform": {
-				"pos": "0 3.2 0"
+			},
+			"collider": {
+				"type": "box",
+				"halfExtent": "0.25 0.25 0.25",
+				"is_trigger": true,
+				"group": "scenario",
+				"mask": "player"
+			},
+			"fire": {
+				"time": 5,
+				"fire": [
+					"fire_add",
+					"fire_alpha",
+					"fire_glow",
+					"fire_sparks"
+				],
+				"smoke": "smoke"
 			},
 			"light_point": {
 				"intensity": 5,
 				"radius": 10,
-				"color" :  "0.8125 0.52 0.055 1"
+				"color": "0.8125 0.52 0.055 1"
 			},
-		    "light_flicker": {
+			"light_flicker": {
 				"intensityVariation": 0.1,
 				"variationSpeed": 0.5
 			}

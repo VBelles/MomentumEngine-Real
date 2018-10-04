@@ -107,6 +107,7 @@
     <ClCompile Include="components\comp_culling.cpp" />
     <ClCompile Include="components\comp_day_night_cycle.cpp" />
     <ClCompile Include="components\comp_door.cpp" />
+    <ClCompile Include="components\comp_fire.cpp" />
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\comp_give_power.cpp" />
@@ -473,6 +474,7 @@
     <ClInclude Include="components\comp_culling.h" />
     <ClInclude Include="components\comp_day_night_cycle.h" />
     <ClInclude Include="components\comp_door.h" />
+    <ClInclude Include="components\comp_fire.h" />
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\comp_give_power.h" />

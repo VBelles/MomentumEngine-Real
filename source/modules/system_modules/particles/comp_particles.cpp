@@ -65,6 +65,7 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
 			system.launchConfig.rotationOffset = (jSystem.count("rotation_offset") ? loadQUAT(jSystem["rotation_offset"]) : system.launchConfig.rotationOffset) * launchConfig.rotationOffset;
 			system.launchConfig.bone = jSystem.value("bone", launchConfig.bone);
 			system.fadeOut = jSystem.value("fade_out", fadeOut);
+			system.launchOnStart = jSystem.value("launch", launchOnStart);
 			systems[system.id] = system;
 		}
 	}
