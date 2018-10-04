@@ -32,13 +32,14 @@ int AttackAction::execAction(float delta) {
 	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
 		enemy->getHitboxes()->enable(enemyAttack.hitboxName);
 	}
+
 	return Stay;
 }
+
 
 void AttackAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
-
 	animation = j.value("animation", animation);
 	attack = j.value("attack", attack);
 }
@@ -46,4 +47,8 @@ void AttackAction::load(IBehaviorTree* bt, const json& j) {
 void AttackAction::debugInMenu() {
 	ImGui::Text("Animation: %s\n", animation.c_str());
 	ImGui::Text("Attack: %s\n", attack.c_str());
+}
+
+void AttackAction::onExit() {
+	enemy->killParticles(enemy->attacks[attack].particles);
 }

@@ -493,7 +493,20 @@
 						"core": "data/particles/slash/strong_attack_3.particles",
 						"offset": "0 1.1 0",
 						"rotation_offset": "0 1 0 0"
+					},
+					{
+						"id": "fast_finisher_2_right",
+						"core": "data/particles/slash/fast_attack_2.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "0.383 0.924 0 0"
+					},
+					{
+						"id": "fast_finisher_2_left",
+						"core": "data/particles/slash/fast_attack_2.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "-0.383 0.924 0 0"
 					}
+					
 				]
 			}
 		}

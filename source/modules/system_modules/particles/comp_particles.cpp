@@ -108,6 +108,7 @@ void TCompParticles::launch() {
 		launchedSystems[launchedSystem->getHandle()] = system.id;
 	}
 }
+
 void TCompParticles::launch(std::string id) {
 	CHandle entityHandle = CHandle(this).getOwner();
 	auto it = systems.find(id);
