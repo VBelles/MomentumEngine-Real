@@ -5,7 +5,7 @@ fileIn "export_mesh.ms"
 fileIn "add-attributes.ms"
 fileIn "utils.ms"
 
-debugMode = true
+debugMode = false
 
 escapeEnable = true --Allow abort script execution holding ESC.
 
@@ -796,6 +796,67 @@ struct TSceneExporter (
 		return true
 	),
 
+	-- --DEBUG ------
+	fn DEBUGprintPlatfDirs = (
+		format "printing all elements:\n"
+		local dirN = 1
+		for d in platfDirectors do (
+			local slotN = 1
+			if d != undefined then (
+				format "--director %--\n" dirN
+				for s in d do (
+					format "slot%: %\n" slotN s
+					slotN += 1
+				)
+			)
+			dirN += 1
+		)
+		dirN = 1
+		format "--platfDirWaits:--\n"
+		for dir in platfDirWaits do (
+			local waitN = 1
+			if dir != undefined then (
+				format "director%: wait [ " dirN
+				for w in dir do (
+					if w != undefined then format "slot%: % " waitN w
+					waitN += 1
+				)
+				format "]\n"
+			)
+			dirN += 1
+		)
+	),
+
+	--Add object name to the slots of its platform director.
+	fn addNameToPlatfDir obj dir slots = (
+		if dir > 0 then (
+			local objName = obj.name
+
+			--Make array of directors big enough.
+			if platfDirectors.count < dir then platfDirectors[dir] = undefined
+
+			for slot in slots do (
+				if platfDirectors[dir] == undefined then (
+					--The director is empty: overwrite.
+					--format "Trying to overwrite in empty dir [dir: % slot: %]\n" dir slot --DEBUG
+					platfDirectors[dir] = #()
+					platfDirectors[dir][slot] = #(objName)
+				) else ( --The director already has data.
+					if platfDirectors[dir][slot] == undefined then (
+						--The slot is empty: overwrite.
+						--format "Trying to overwrite in empty slot [dir: % slot: %]\n" dir slot --DEBUG
+						platfDirectors[dir][slot] = #(objName)
+					) else (
+						--The slot has data: insert (it's string).
+						--format "Trying to insert at the end of [dir: % slot: %]\n" dir slot --DEBUG
+						insertItem objName platfDirectors[dir][slot] \
+								(platfDirectors[dir][slot].count + 1)
+					)
+				)
+			)
+		)
+	),
+
 	-- --COMP: ROTATE (platform_simple)-----------------------------------------
 	fn exportPlatfRotation obj = (
 		local rotAxis = Point3 0 0 1
@@ -838,38 +899,12 @@ struct TSceneExporter (
 			if attrManager.hasAttribute obj "rotateData" then (
 				slots = attrManager.getAttrValue obj "rotateData" #slt
 				if slots == undefined then slots = #()
-				format "obj: % slots: %\n" obj.name slots --DEBUG
+				--format "obj: % slots: %\n" obj.name slots --DEBUG
 				dir = attrManager.getAttrValue obj "rotateData" #dir
 				if dir == undefined then dir = 0
 			)
 
-/*
-if platfDirWaits.count >= dirID then (
-	platfDirWaits[dirID] = slotWaits --Overwrite.
-	format "WARNING: Overwriting platfDirWaits at \
-			index % (duplicated platform director).\n" dirID 
-) else insertItem slotWaits platfDirWaits dirID
-*/
-
-			if dir > 0 then (
-				if platfDirectors.count >= dir then (
-					--Place for director already exists.
-					for slot in slots do (
-						if platfDirectors[dir] == undefined then (
-							--The director is empty: overwrite.
-
-						)
-						else --Already has data: append.
-							append platfDirectors[dir][slot] obj.name
-
-
-						/*if platfDirectors[dir][slot] != undefined then (
-							append platfDirectors[dir][slot] obj.name
-						) else insertItem #(obj.name) platfDirectors[dir] slot*/
-					)
-				) else --Array isn't big enough: insert.
-					insertItem #(#(obj.name)) platfDirectors dir
-			)
+			addNameToPlatfDir obj dir slots
 		)
 		return rotSpeed > 0 or rolSpeed > 0
 	),
@@ -1818,9 +1853,10 @@ if platfDirWaits.count >= dirID then (
 
 			if dirID > 0 then (
 				if platfDirWaits.count >= dirID then (
-					platfDirWaits[dirID] = slotWaits --Overwrite.
-					format "WARNING: Overwriting platfDirWaits at \
+					if platfDirWaits[dirID] != undefined then
+					 format "WARNING: Overwriting platfDirWaits at
 							index % (duplicated platform director).\n" dirID 
+					platfDirWaits[dirID] = slotWaits --Overwrite.
 				) else insertItem slotWaits platfDirWaits dirID
 
 				--format "platfDirWaits: %\n" platfDirWaits as string --DEBUG
@@ -2285,33 +2321,13 @@ if platfDirWaits.count >= dirID then (
 
 	fn exportPlatfDirector = (
 		if platfDirectors.count == 0 then return false
-		format "platfDirectors.count: %\n" platfDirectors.count --DEBUG
-		format "platfDirectors[1].count: %\n" platfDirectors[1].count --DEBUG
-		format "platfDirectors[1][1].count: %\n" platfDirectors[1][1].count --DEBUG
 
 		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
 		
 		fs.begin plDirFilePath --Create file.
 		fs.beginArray()
 
-		format "printing all elements:\n" --DEBUG
-				local dirN = 1
-				for d in platfDirectors do (
-					format "--director %--\n" dirN
-					local slotN = 1
-					for s in d do (
-						format "s%: %\n" slotN s
-						slotN += 1
-					)
-					dirN += 1
-				)
-				local waitN = 1
-				format "--platfDirWaits:--\n"
-				for w in platfDirWaits do (
-					format "w%: %\n" waitN w
-					waitN += 1
-				)
-		--END DEBUG
+		DEBUGprintPlatfDirs() --DEBUG
 
 		local validDirectors = 0
 		for i = 1 to platfDirectors.count where
@@ -2335,7 +2351,11 @@ if platfDirWaits.count >= dirID then (
 						if validPlSlots >= 1 then fs.writeComma()
 
 						fs.beginObj()
-							fs.writeKeyValue "wait_time" platfDirWaits[i][j]
+							local waitTime = 0
+							if platfDirWaits[i] != undefined then 
+								waitTime = platfDirWaits[i][j]
+							else format "--ERROR: Missing Platf director % used in %!\n" i slot[1]
+							fs.writeKeyValue "wait_time" waitTime
 							fs.writeComma()
 							fs.writeKey "platforms"
 							fs.beginArray()
