@@ -18,6 +18,8 @@ private:
 	int maxCoins = 144;
 	int lifePiecesPerHeart = 1;
 
+	float showChrysalisTime = 5.f;
+
 public:
 	DECL_SIBLING_ACCESS();
 

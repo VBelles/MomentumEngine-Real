@@ -1,19 +1,25 @@
 #include "mcv_platform.h"
 #include "hud_controller.h"
-#include "gui/widgets/gui_button.h"
-#include "gui/widgets/gui_text.h"
+#include "gui/gui_widget.h"
 #include "components/player/comp_player_model.h"
 #include "components/player/comp_power_gauge.h"
 
 namespace GUI {
 	CHudController::CHudController() {
-		json& j = loadJson("data/gui/hud_variables.json");
+		json& j = loadJson(hudVariablesFile);
 		for (json& jData : j) {
 			EngineGUI.getVariables().setVariant(jData);
 		}
+		chrysalisWidget = EngineGUI.getWidget(chrysalisWidgetName, true);
+		assert(chrysalisWidget);
 	}
 
 	void CHudController::update(float delta) {
+		if (chrysalisVisibleTime >= 0.f
+			&& chrysalisWidget->getParams()->_visible && timer.elapsed() > chrysalisVisibleTime) {
+			chrysalisWidget->getParams()->_visible = false;
+		}
+
 		TCompPlayerModel* playermodel = ((CEntity*)getEntityByName(PLAYER_NAME))->get<TCompPlayerModel>();
 		TCompPowerGauge* powerGauge = playermodel->getPowerGauge();
 
@@ -28,6 +34,8 @@ namespace GUI {
 		EngineGUI.getVariables().getVariant("coin_bars")->setInt(coinBars);
 		EngineGUI.getVariables().getVariant("max_coin_bars")->setInt((int)(playermodel->getMaxNumberOfCoins() / coinsPerBar));
 		EngineGUI.getVariables().getVariant("coin_progress")->setFloat(coinProgress);
+
+		EngineGUI.getVariables().getVariant("chrysalis")->setInt(playermodel->getCollectableManager()->getNumberOfChrysalis());
 
 		//EngineGUI.getVariables().getVariant("power_progress")->setFloat(powerGauge->getBarPercentage());
 		if (powerGauge->getPowerLevel() == 1) {
@@ -45,5 +53,23 @@ namespace GUI {
 			EngineGUI.getVariables().getVariant("power_progress_level2")->setFloat(1);
 			EngineGUI.getVariables().getVariant("power_progress_level3")->setFloat(powerGauge->getPowerLevelPercentage());
 		}
+	}
+
+	void CHudController::showChrysalis() {
+		chrysalisWidget->getParams()->_visible = true;
+		chrysalisVisibleTime = -1.f;
+	}
+
+	void CHudController::showChrysalis(float time) {
+		chrysalisWidget->getParams()->_visible = true;
+		if (time > 0.f) {
+			chrysalisVisibleTime = time;
+			timer.reset();
+		}
+	}
+
+	void CHudController::hideChrysalis() {
+		chrysalisWidget->getParams()->_visible = false;
+		chrysalisVisibleTime = 0.f;
 	}
 }

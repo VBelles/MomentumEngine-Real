@@ -190,7 +190,7 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	respawnPosition = getTransform()->getPosition();
 	getTransform()->getYawPitchRoll(&respawnYaw, &pitch);
 
-	renderUI->registerOnRenderUI([&]() {
+	/*renderUI->registerOnRenderUI([&]() {
 
 		bool showWindow = true;
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor { 0, 0, 0, 0 });
@@ -252,7 +252,7 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 			ImGui::End();
 		}
 
-	});
+	});*/
 
 	damageVisionOriginalSaturationLevel = cb_globals.global_saturation_adjustment;
 
