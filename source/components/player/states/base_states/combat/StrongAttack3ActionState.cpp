@@ -80,17 +80,17 @@ void StrongAttack3ActionState::update(float delta) {
 
 	if (!isUltraSlash1Out && movementTimer.elapsed() > frames2sec(18)) {
 		isUltraSlash1Out = true;
-		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
+		getParticles()->launch("strong_attack_3");
 		getSound()->play("attack");
 	}
 	if (!isUltraSlash2Out && movementTimer.elapsed() > frames2sec(25)) {
 		isUltraSlash2Out = true;
-		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
+		getParticles()->launch("strong_attack_3");
 		getSound()->play("attack");
 	}
 	if (!isUltraSlash3Out && movementTimer.elapsed() > frames2sec(32)) {
 		isUltraSlash3Out = true;
-		slash(SLASH_STRONG_3, VEC3(0, 1.3f, 0));
+		getParticles()->launch("strong_attack_3");
 		getSound()->play("attack");
 	}
 }

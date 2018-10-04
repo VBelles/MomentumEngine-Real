@@ -4,19 +4,30 @@
 
 class TCompParticles : public TCompBase {
 private:
-	std::vector<const Particles::TCoreSystem*> cores;
-	bool _launched = false;
-	float _fadeOut = 0.f;
+	struct System {
+		std::string id;
+		std::string target;
+		Particles::LaunchConfig launchConfig;
+		float fadeOut = 0.f;
+		const Particles::TCoreSystem* core;
+		std::set< Particles::TParticleHandle> particleHandles;
+	};
+
+	std::unordered_map<std::string, System> systems;								// Map of id -> system
+	std::unordered_map<Particles::TParticleHandle, std::string> launchedSystems;	// Map of handle -> id
+
+	// Global config
+	float fadeOut = 0.f;
 	std::string target;
-
-	std::map<int, Particles::CSystem*> systems;
-
 	Particles::LaunchConfig launchConfig;
+	bool launchOnStart = true;
 
 	//Message callbacks
 	void onAllScenesCreated(const TMsgAllScenesCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
 	void onParticleSystemDestroyed(const TMsgParticleSystemDestroyed &);
+
+
 
 
 public:
@@ -25,4 +36,12 @@ public:
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
+
+	void launch();
+	void launch(std::string id);
+	void kill(std::string id);
+	void kill();
+
+	Particles::LaunchConfig getLaunchConfig(std::string id);
+	void setLaunchConfig(std::string id, Particles::LaunchConfig launchConfig);
 };

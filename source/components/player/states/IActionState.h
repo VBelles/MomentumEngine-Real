@@ -45,6 +45,7 @@ protected:
 	TCompCameraPlayer* getCameraPlayer();
 	TCompSound* getSound();
 	TCompSlash* getTrailSlash(SlashType type);
+	TCompParticles * getParticles();
 
 	//Factor a baseAcceleration según el ángulo entre baseDirection y desiredDirection
 	float calculateAccelerationAccordingToDirection(VEC3 baseDirection, VEC3 desiredDirection, float baseAcceleration,

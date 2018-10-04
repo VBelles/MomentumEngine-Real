@@ -28,16 +28,26 @@
 		"entity": {
 			"name": "fire",
 			"transform": {
-				"pos": "0 0 0"
 			},
 			"particles": {
-				"target": "",
 				"offset": "0 3.2 0",
-				"core": [
-					"data/particles/fire/fire_add.particles",
-					"data/particles/fire/fire_alpha.particles",
-					"data/particles/fire/fire_glow.particles",
-					"data/particles/fire/fire_sparks.particles"
+				"systems": [
+					{
+						"id": "fire_add",
+						"core": "data/particles/fire/fire_add.particles"
+					},
+					{
+						"id": "fire_alpha",
+						"core": "data/particles/fire/fire_alpha.particles"
+					},
+					{
+						"id": "fire_glow",
+						"core": "data/particles/fire/fire_glow.particles"
+					},
+					{
+						"id": "fire_sparks",
+						"core": "data/particles/fire/fire_sparks.particles"
+					}
 				]
 			}
 		}

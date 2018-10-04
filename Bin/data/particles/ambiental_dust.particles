@@ -24,7 +24,8 @@
   },
   "render" : {
       "texture" : "data/textures/particles/glow.dds",
-      "additive": true
+      "additive": true,
+      "glow": true
   },
   "size": {
     "scale": 0.5,

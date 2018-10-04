@@ -75,6 +75,16 @@ void CModuleManager::render() {
 	}
 }
 
+void CModuleManager::renderAfterBloom() {
+	for (auto& mod : _render_modules) {
+		if (mod->toRender()) {
+			PROFILE_FUNCTION(("AfterBloom_" + mod->getName()).c_str());
+			CTraceScoped gpu_scope(("AfterBloom_" + mod->getName()).c_str());
+			mod->renderAfterBloom();
+		}
+	}
+}
+
 void CModuleManager::renderGUI() {
 	for (auto& mod : _render_modules) {
 		if (mod->isActive()) {

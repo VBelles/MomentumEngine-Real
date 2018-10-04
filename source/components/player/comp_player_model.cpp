@@ -178,6 +178,7 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	transformHandle = get<TCompTransform>();
 	colliderHandle = get<TCompCollider>();
 	soundHandle = get<TCompSound>();
+	particlesHandle = get<TCompParticles>();
 	skeletonHandle = get<TCompSkeleton>();
 	renderHandle = get<TCompRender>();
 	powerGaugeHandle = get<TCompPowerGauge>();
@@ -657,6 +658,10 @@ TCompPowerGauge* TCompPlayerModel::getPowerGauge() {
 
 TCompSound* TCompPlayerModel::getSound() {
 	return soundHandle;
+}
+
+TCompParticles* TCompPlayerModel::getParticles() {
+	return particlesHandle;
 }
 
 TCompCollectableManager* TCompPlayerModel::getCollectableManager() {

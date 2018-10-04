@@ -16,6 +16,7 @@ VEC3 loadVEC3(const json& j) {
 	return v;
 }
 
+
 VEC4 loadVEC4(const json& j) {
 	VEC4 v;
 	std::string str = j.get< std::string >();
