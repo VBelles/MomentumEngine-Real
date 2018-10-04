@@ -16,7 +16,7 @@
     },
     "render": {
         "mesh": "data/meshes/particles/slash_inverted.mesh",
-        "texture": "data/textures/particles/slash/slash_green_inverted.dds",
+        "texture": "data/textures/particles/slash/slash_violeta_inverted.dds",
         "type": "mesh",
         "additive": true,
         "glow": true

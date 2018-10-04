@@ -16,7 +16,7 @@
     },
     "render": {
         "mesh": "data/meshes/particles/slash.mesh",
-        "texture": "data/textures/particles/slash/slash_green.dds",
+        "texture": "data/textures/particles/slash/slash_violeta.dds",
         "type": "mesh",
         "additive": true,
         "glow": true
