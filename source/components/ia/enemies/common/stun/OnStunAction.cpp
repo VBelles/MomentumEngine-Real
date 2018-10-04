@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "mcv_platform.h"
 #include "OnStunAction.h"
 #include "components/ia/enemies/Enemy.h"
@@ -16,6 +17,9 @@ OnStunAction::OnStunAction(Enemy* enemy, std::string animationStart, std::string
 }
 
 int OnStunAction::execAction(float delta) {
+	if (!animationStart.empty()) {
+		enemy->stunDuration = std::max(enemy->stunDuration, enemy->getSkeleton()->getAnimationDuration(animationStart));
+	}
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
 	return Leave;

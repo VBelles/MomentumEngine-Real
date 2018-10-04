@@ -3,7 +3,12 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/texturalisa.dds",
-    "normal": "data/textures/null_normal.dds"
+    "albedo": "data/textures/root_Basecolor.dds",
+    "normal": "data/textures/root_Normal.dds",
+    "metallic": "data/textures/root_Metallic.dds",
+    "roughness": "data/textures/root_Roughness.dds",
+    "self_illum": "data/textures/root_Emissive.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

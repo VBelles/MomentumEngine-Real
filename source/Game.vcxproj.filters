@@ -270,10 +270,8 @@
     <ClCompile Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.cpp" />
-    <ClCompile Include="components\ia\enemies\common\death\DisappearAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\death\OnDeathAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\death\OnDeathCondition.cpp" />
-    <ClCompile Include="components\ia\enemies\common\death\OnDisappearAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\death\DeathAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunAction.cpp" />
     <ClCompile Include="components\ia\enemies\common\stun\OnStunCondition.cpp" />
@@ -358,6 +356,12 @@
     <ClCompile Include="components\ia\behavior_tree\IBehaviorTree.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound.cpp" />
     <ClCompile Include="components\postfx\comp_render_hsv.cpp" />
+    <ClCompile Include="gui\widgets\gui_dialog.cpp" />
+    <ClCompile Include="gui\controllers\dialog_controller.cpp" />
+    <ClCompile Include="modules\system_modules\scripting\scripting_gui.cpp" />
+    <ClCompile Include="components\ia\enemies\common\disappear\DisappearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\disappear\OnDisappearAction.cpp" />
+    <ClCompile Include="components\ia\enemies\common\disappear\OnDisappearCondition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -660,10 +664,8 @@
     <ClInclude Include="components\ia\enemies\common\bloking_break\BlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakAction.h" />
     <ClInclude Include="components\ia\enemies\common\bloking_break\OnBlockingBreakCondition.h" />
-    <ClInclude Include="components\ia\enemies\common\death\DisappearAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\OnDeathAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\OnDeathCondition.h" />
-    <ClInclude Include="components\ia\enemies\common\death\OnDisappearAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\DeathAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunAction.h" />
     <ClInclude Include="components\ia\enemies\common\stun\OnStunCondition.h" />
@@ -749,6 +751,12 @@
     <ClInclude Include="components\ia\behavior_tree\IBehaviorTree.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound.h" />
     <ClInclude Include="components\postfx\comp_render_hsv.h" />
+    <ClInclude Include="gui\widgets\gui_dialog.h" />
+    <ClInclude Include="gui\controllers\dialog_controller.h" />
+    <ClInclude Include="modules\system_modules\scripting\scripting_gui.h" />
+    <ClInclude Include="components\ia\enemies\common\disappear\DisappearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\disappear\OnDisappearAction.h" />
+    <ClInclude Include="components\ia\enemies\common\disappear\OnDisappearCondition.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

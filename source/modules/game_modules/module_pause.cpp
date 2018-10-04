@@ -2,6 +2,8 @@
 #include "module_pause.h"
 #include "gui/gui_parser.h"
 #include "modules/system_modules/scripting/scripting_player.h"
+#include "modules/system_modules/module_gui.h"
+#include "modules/game_modules/game/module_game.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -11,19 +13,11 @@ bool CModulePause::start() {
 
 	auto resumeGameCB = [&] {
 		onPausePressed();
+		CApp::get().setResetMouse(!pause);
 	};
 	auto mainMenuCB = [&]() {
-		EngineScripting.setActive(true);
-		Engine.getEntities().setActive(true);
-		CTimerFrames::get().setPaused(false);
-		CGameState* currentGamestate = EngineModules.getCurrentGameState();
-		for (auto& module : *currentGamestate) {
-			if (module != this) {
-				module->setActive(true);
-			}
-		}
-		Engine.getGUI().unregisterController(controller);
-		Engine.getGUI().unregisterWidget("test_pause_menu", true);
+		onPausePressed();
+		EngineGUI.hideDialog();
 		EngineModules.changeGameState("main_menu", true);
 	};
 	auto exitCB = []() {
@@ -49,6 +43,7 @@ void CModulePause::update(float delta) {
 	if (EngineInput["pause"].getsPressed()
 		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onPausePressed();
+		CApp::get().setResetMouse(!pause);
 	}
 }
 
@@ -56,6 +51,7 @@ void CModulePause::onPausePressed() {
 	pause = !pause;
 
 	if (pause) {
+		EngineGame->showChrysalis(0.f);
 		Engine.getGUI().registerController(controller);
 		controller->setCurrentOption(0);
 		Engine.getGUI().activateWidget("test_pause_menu");
@@ -80,9 +76,6 @@ void CModulePause::onPausePressed() {
 			module->setActive(!pause);
 		}
 	}
-
-	CApp::get().setResetMouse(!pause);
-
 }
 
 void CModulePause::render() {}

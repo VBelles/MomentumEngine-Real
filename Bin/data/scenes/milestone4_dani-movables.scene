@@ -2,11 +2,129 @@
   {
     "entity":
     {
+      "name": "dani_columna_4_2_001",
+      "transform":
+      {
+        "pos": "164.135 70.2791 157.838",
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_columna_4_2_001.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_trozo_terreno_5_000",
+      "transform":
+      {
+        "pos": "476.864 -74.1433 -400.444",
+        "rotation": "0.0 -0.965926 0.0 0.258819"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_trozo_terreno_5_000.mesh",
+          "materials":
+          [
+            "data/materials/trozo_5_baja.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_trozo_terreno_1_001",
+      "transform":
+      {
+        "pos": "-41.9637 -20.0511 -10.8652",
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_trozo_terreno_1_001.mesh",
+          "materials":
+          [
+            "data/materials/trozo_1_baja.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_trozo_terreno_3_002",
+      "transform":
+      {
+        "pos": "-520.267 -119.06 266.564",
+        "rotation": "0.0 0.608761 0.0 -0.793353"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_trozo_terreno_3_002.mesh",
+          "materials":
+          [
+            "data/materials/trozo_3_baja.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "Plataformeo_hex_005",
       "transform":
       {
-        "pos": "166.919 58.1555 173.06",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "155.23 76.3116 -242.481",
+        "rotation": "-0.461748 0.0 -0.887011 0.0"
       },
       "render":
       [
@@ -45,8 +163,8 @@
       "name": "Plataformeo_hex_004",
       "transform":
       {
-        "pos": "160.025 57.8909 180.319",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "165.177 76.047 -243.611",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
       [
@@ -85,8 +203,8 @@
       "name": "Plataformeo_hex_003",
       "transform":
       {
-        "pos": "151.976 58.1555 174.368",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "167.518 76.3116 -233.878",
+        "rotation": "-0.461748 0.0 -0.887011 0.0"
       },
       "render":
       [
@@ -125,8 +243,8 @@
       "name": "Plataformeo_hex_002",
       "transform":
       {
-        "pos": "145.039 57.8909 181.128",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "177.177 76.047 -234.597",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
       [
@@ -165,8 +283,8 @@
       "name": "Plataformeo_hex_001",
       "transform":
       {
-        "pos": "137.033 58.1555 175.675",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "179.805 76.3116 -225.274",
+        "rotation": "-0.461748 0.0 -0.887011 0.0"
       },
       "render":
       [
@@ -205,8 +323,8 @@
       "name": "Plataformeo_hex_000",
       "transform":
       {
-        "pos": "130.096 57.8909 182.435",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "189.465 76.047 -225.994",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
       [

@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "FastAttackActionState.h"
-#include "modules/system_modules/particles/comp_particles.h"
 
 
 FastAttackActionState::FastAttackActionState(StateManager* stateManager)
@@ -23,7 +22,7 @@ void FastAttackActionState::update(float delta) {
 		timer.reset();
 		getHitboxes()->disable(hitbox);
 		phase = AttackPhases::Recovery;
-		slash(SLASH_COUNTER_CLOCKWISE, VEC3(0, 1, 0));
+		getParticles()->launch("fast_attack_1");
 	}
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();

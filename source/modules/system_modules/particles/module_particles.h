@@ -25,25 +25,26 @@ struct TMsgParticleSystemDestroyed {
 
 class CModuleParticles : public IModule {
 private:
-	std::unordered_map<std::string, std::vector<Particles::CSystem*>> _activeSystems;
+	std::unordered_map<std::string, std::vector<Particles::CSystem*>> particleSystemsMap;
 	VEC3                             _windVelocity = VEC3::Zero;
 	Particles::TParticleHandle		_lastHandle;
 	bool paused = false;
 
 public:
+	bool culling = true;
+
 	CModuleParticles(const std::string& name);
 	bool start() override;
 	bool stop() override;
 	void update(float delta) override;
 	void render() override;
+	void renderAfterBloom() override;
 	void reset();
 
 	Particles::TParticleHandle launchSystem(const std::string& name, Particles::LaunchConfig config);
 	Particles::CSystem* launchSystem(const Particles::TCoreSystem* cps, CHandle entity, Particles::LaunchConfig config);
 
 	void kill(Particles::TParticleHandle ph, float fadeOutTime = 0.f);
-
-	void forceEmission(Particles::TParticleHandle ph, int quantity);
 
 	const VEC3& getWindVelocity() const;
 

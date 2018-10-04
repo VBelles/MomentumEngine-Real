@@ -2,25 +2,25 @@
   {
     "entity":
     {
-      "name": "Plataformeo_hex003_spikes_spikes",
+      "name": "dani_spikes_sueltos_005_spikes",
       "transform":
       {
-        "pos": "166.919 58.1555 173.06",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "198.441 54.9961 -233.351",
+        "rotation": "0.183013 0.183013 -0.683013 -0.683013"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -39,25 +39,25 @@
   {
     "entity":
     {
-      "name": "Plataformeo_hex008_spikes_spikes",
+      "name": "dani_spikes_sueltos_004_spikes",
       "transform":
       {
-        "pos": "130.096 57.8909 182.435",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "198.441 60.8121 -233.351",
+        "rotation": "0.183013 0.183013 -0.683013 -0.683013"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -76,25 +76,25 @@
   {
     "entity":
     {
-      "name": "Plataformeo_hex007_spikes_spikes",
+      "name": "dani_spikes_sueltos_003_spikes",
       "transform":
       {
-        "pos": "145.039 57.8909 181.128",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "207.324 72.5454 -242.282",
+        "rotation": "0.258819 0.0 -0.965926 0.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -113,25 +113,25 @@
   {
     "entity":
     {
-      "name": "Plataformeo_hex006_spikes_spikes",
+      "name": "dani_spikes_sueltos_002_spikes",
       "transform":
       {
-        "pos": "160.025 57.8909 180.319",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
+        "pos": "212.477 72.5454 -239.307",
+        "rotation": "0.258819 0.0 -0.965926 0.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -150,25 +150,25 @@
   {
     "entity":
     {
-      "name": "Plataformeo_hex005_spikes_spikes",
+      "name": "dani_spikes_sueltos_001_spikes",
       "transform":
       {
-        "pos": "137.033 58.1555 175.675",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "218.204 72.5454 -236.025",
+        "rotation": "0.258819 0.0 -0.965926 0.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,
@@ -187,25 +187,25 @@
   {
     "entity":
     {
-      "name": "Plataformeo_hex004_spikes_spikes",
+      "name": "dani_spikes_sueltos_000_spikes",
       "transform":
       {
-        "pos": "151.976 58.1555 174.368",
-        "rotation": "0.67559 0.0 -0.737277 0.0"
+        "pos": "223.169 72.5454 -233.098",
+        "rotation": "0.258819 0.0 -0.965926 0.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "mesh": "data/meshes/spikes.mesh",
           "materials":
           [
-            "data/materials/m_platform_spikes.material"
+            "data/materials/spikes.material"
           ]
         }
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
         "shape": "convex_mesh",
         "type": "kinematic",
         "is_trigger": true,

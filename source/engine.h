@@ -101,3 +101,4 @@ private:
 #define EngineUniques   CEngine::get().getUniques()
 #define EngineParticles CEngine::get().getParticles()
 #define EngineSlash		CEngine::get().getTrailSlash()
+#define EngineGame		((CModuleGame*)CEngine::get().getModules().getModule("game"))

@@ -7,7 +7,7 @@
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/fireplace_001.mesh",
+					"mesh": "data/meshes/fireplace_prefab.mesh",
 					"materials": [
 						"data/materials/m_fireplace_00.material"
 					],
@@ -15,7 +15,7 @@
 				}
 			],
 			"collider": {
-				"mesh_src": "data/meshes/fireplace_collider_001.col_mesh",
+				"mesh_src": "data/meshes/fireplace_prefab.col_mesh",
 				"shape": "convex_mesh",
 				"type": "static",
 				"group": [
@@ -28,16 +28,26 @@
 		"entity": {
 			"name": "fire",
 			"transform": {
-				"pos": "0 0 0"
 			},
 			"particles": {
-				"target": "",
-				"offset": "0 1.5 0",
-				"core": [
-					"data/particles/fire/fire_add.particles",
-					"data/particles/fire/fire_alpha.particles",
-					"data/particles/fire/fire_glow.particles",
-					"data/particles/fire/fire_sparks.particles"
+				"offset": "0 3.2 0",
+				"systems": [
+					{
+						"id": "fire_add",
+						"core": "data/particles/fire/fire_add.particles"
+					},
+					{
+						"id": "fire_alpha",
+						"core": "data/particles/fire/fire_alpha.particles"
+					},
+					{
+						"id": "fire_glow",
+						"core": "data/particles/fire/fire_glow.particles"
+					},
+					{
+						"id": "fire_sparks",
+						"core": "data/particles/fire/fire_sparks.particles"
+					}
 				]
 			}
 		}
@@ -47,15 +57,15 @@
 		{
 			"name": "light",
 			"transform": {
-				"pos": "0 1.5 0"
+				"pos": "0 3.2 0"
 			},
 			"light_point": {
-				"intensity": 3,
+				"intensity": 5,
 				"radius": 10,
 				"color" :  "0.8125 0.52 0.055 1"
 			},
 		    "light_flicker": {
-				"intensityVariation": 0.5,
+				"intensityVariation": 0.1,
 				"variationSpeed": 0.5
 			}
 		}

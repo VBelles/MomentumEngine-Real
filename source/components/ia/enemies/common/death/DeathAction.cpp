@@ -18,6 +18,7 @@ int DeathAction::execAction(float delta) {
 	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation)) {
 		return Stay;
 	}
+	enemy->onDisappear = true;
 	return Leave;
 }
 

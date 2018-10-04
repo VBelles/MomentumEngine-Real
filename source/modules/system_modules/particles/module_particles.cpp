@@ -2,6 +2,7 @@
 #include "module_particles.h"
 #include "modules/system_modules/particles/particle_system.h"
 #include "modules/system_modules/particles/particle_parser.h"
+#include "components/comp_culling.h"
 
 CModuleParticles::CModuleParticles(const std::string& name)
 	: IModule(name)
@@ -10,6 +11,7 @@ CModuleParticles::CModuleParticles(const std::string& name)
 
 bool CModuleParticles::start() {
 	Resources.registerResourceClass(getResourceClassOf<Particles::TCoreSystem>());
+	_windVelocity = VEC3(0.f, 0.f, 20.f);
 	return true;
 }
 
@@ -21,20 +23,20 @@ bool CModuleParticles::stop() {
 void CModuleParticles::reset() {
 	_lastHandle = 0;
 
-	for (auto& p : _activeSystems) {
+	for (auto& p : particleSystemsMap) {
 		auto& systems = p.second;
 		for (auto system : systems) {
 			safeDelete(system);
 		}
 		systems.clear();
 	}
-	_activeSystems.clear();
+	particleSystemsMap.clear();
 }
 
 void CModuleParticles::update(float delta) {
 	float scaled_time = delta * Engine.globalConfig.time_scale_factor;
 	if (paused) return;
-	for (auto& p : _activeSystems) {
+	for (auto& p : particleSystemsMap) {
 		auto& systems = p.second;
 		for (auto it = systems.begin(); it != systems.end();) {
 			Particles::CSystem* ps = *it;
@@ -55,22 +57,37 @@ void CModuleParticles::update(float delta) {
 }
 
 void CModuleParticles::render() {
-	for (auto& p : _activeSystems) {
+	for (auto& p : particleSystemsMap) {
 		auto& systems = p.second;
 		for (auto& system : systems) {
-			system->render();
+			if (system->getCore()->render.glow) {
+				system->render();
+			}
 		}
 	}
 
 	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Particle Systems")) {
-			for (auto& p : _activeSystems) {
+			ImGui::Checkbox("Culling", &culling);
+			for (auto& p : particleSystemsMap) {
 				auto& systems = p.second;
 				for (auto& system : systems) {
 					system->debugInMenu();
+					system->renderDebug();
 				}
 			}
 			ImGui::TreePop();
+		}
+	}
+}
+
+void CModuleParticles::renderAfterBloom() {
+	for (auto& p : particleSystemsMap) {
+		auto& systems = p.second;
+		for (auto& system : systems) {
+			if (!system->getCore()->render.glow) {
+				system->render();
+			}
 		}
 	}
 }
@@ -84,12 +101,12 @@ Particles::CSystem* CModuleParticles::launchSystem(const Particles::TCoreSystem*
 	assert(cps);
 	auto ps = new Particles::CSystem(++_lastHandle, cps, entity, config);
 	ps->launch();
-	_activeSystems[cps->render.technique->getName()].push_back(ps);
+	particleSystemsMap[cps->render.technique->getName()].push_back(ps);
 	return ps;
 }
 
 void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
-	for (auto& p : _activeSystems) {
+	for (auto& p : particleSystemsMap) {
 		auto& systems = p.second;
 		auto it = std::find_if(systems.begin(), systems.end(), [&ph](const Particles::CSystem* ps) {
 			return ps->getHandle() == ph;
@@ -100,23 +117,11 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 				ps->fadeOut(fadeOutTime);
 			}
 			else {
-				if (ps->getParticleEntityHandle().isValid()) { //Send message to entity
+				if (ps->getParticleEntityHandle().isValid()) { // Send message to entity
 					static_cast<CEntity*>(ps->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ ps->getHandle() });
 				}
 				delete ps;
 				systems.erase(it);
-			}
-		}
-	}
-}
-
-void CModuleParticles::forceEmission(Particles::TParticleHandle ph, int quantity) {
-	for (auto& p : _activeSystems) {
-		auto& systems = p.second;
-		for (auto system : systems) {
-			if (system->getHandle() == ph) {
-				system->forceEmission(quantity);
-				break;
 			}
 		}
 	}

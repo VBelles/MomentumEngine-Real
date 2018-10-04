@@ -19,6 +19,7 @@ int IdleAction::execAction(float delta) {
 	enemy->updateGravity(delta);
 	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)
 		|| (!cancelCondition.empty() && enemy->testCondition(cancelCondition, delta))) {
+		enemy->getSkeleton()->removeAction(animation, 0.1f);
 		return Leave;
 	}
 	else {

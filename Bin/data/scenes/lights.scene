@@ -36,7 +36,7 @@
 			"name": "LightDir01",
 			"transform": {
 				"pos": "0 150 0",
-				"lookat": "4 0 4"
+				"lookat": "0 0 0"
 			},
 			"light_dir": {
 				"intensity": 0,

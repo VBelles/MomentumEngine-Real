@@ -14,7 +14,7 @@ DECL_OBJ_MANAGER("local_aabb", TCompLocalAABB);
 void TCompAABB::load(const json& j, TEntityParseContext& ctx) {
 	if (j.is_object()) {
 		Center = j.count("center") ? loadVEC3(j["center"]) : VEC3::Zero;
-		Extents = j.count("half_size") ? loadVEC3(j["half_size"]): VEC3::Zero;
+		Extents = j.count("half_size") ? loadVEC3(j["half_size"]) : VEC3::Zero;
 	}
 }
 

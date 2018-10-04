@@ -44,6 +44,7 @@ namespace Particles {
 		else if (emitterType == "cylinder")	cps->emission.type = TCoreSystem::TEmission::Cylinder;
 		else								cps->emission.type = TCoreSystem::TEmission::Point;
 		cps->emission.size = emission.value("size", cps->emission.size);
+		cps->emission.halfLength = emission.value("half_length", cps->emission.size);
 		cps->emission.angle = deg2rad(emission.value("angle", rad2deg(cps->emission.angle)));
 		cps->emission.radial = emission.value("radial", cps->emission.radial);
 		cps->emission.randomDirection = emission.value("random_direction", cps->emission.randomDirection);
@@ -56,6 +57,7 @@ namespace Particles {
 		cps->movement.acceleration = movement.value("acceleration", cps->movement.acceleration);
 		cps->movement.initialRotation = deg2rad(movement.value("initial_rotation", rad2deg(cps->movement.initialRotation)));
 		cps->movement.initialRandomRotation = movement.value("initial_random_rotation", cps->movement.initialRandomRotation);
+		cps->movement.initialTargetRotation = movement.value("initial_target_rotation", cps->movement.initialTargetRotation);
 		cps->movement.spin = deg2rad(movement.value("spin", rad2deg(cps->movement.spin)));
 		cps->movement.spin_axis = movement.count("spin_axis") ? loadVEC3(movement["spin_axis"]) : cps->movement.spin_axis;
 		cps->movement.wind = movement.value("wind", cps->movement.wind);
@@ -97,6 +99,7 @@ namespace Particles {
 			defaulRenderTechnique = additive ? "particles_additive.tech" : "particles.tech";
 		}
 		cps->render.technique = Resources.get(render.value("technique", defaulRenderTechnique))->as<CRenderTechnique>();
+		cps->render.glow = render.value("glow", cps->render.glow);
 
 		// color
 		const json& color = data["color"];

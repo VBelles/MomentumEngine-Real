@@ -261,6 +261,28 @@
 						"texture": "data/textures/gui/hud/power_foreground.dds"
 					}
 				]
+			},
+			{
+				"name": "chrysalis",
+				"type": "widget",
+				"position": "1776 1000",
+				"children": [
+					{
+						"name": "chrysalis_icon",
+						"type": "image",
+						"size": "64 64",
+						"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+					},
+					{
+						"name": "chrysalis_text",
+						"type": "text",
+						"size": "64 64",
+						"position": "64 0",
+						"font_size": 32,
+						"template_text": "{{chrysalis}}",
+						"valign": "center"
+					}
+				]
 			}
 		]
 	}
