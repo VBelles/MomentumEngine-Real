@@ -3236,28 +3236,6 @@
   {
     "entity":
     {
-      "name": "root_gran_009",
-      "transform":
-      {
-        "pos": "-244.075 -6.65768 -36.5233",
-        "rotation": "-0.0717124 -0.265344 -0.184201 -0.943674"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/root_gran_009.mesh",
-          "materials":
-          [
-            "data/materials/m_roots.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "raiz_009_bombilla",
       "transform":
       {
