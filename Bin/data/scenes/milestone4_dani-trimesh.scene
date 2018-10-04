@@ -2,6 +2,40 @@
   {
     "entity":
     {
+      "name": "dani_planos_tramposos_001",
+      "transform":
+      {
+        "pos": "192.809 14.1144 -199.58",
+        "rotation": "0.270598 0.653281 -0.653282 0.270598"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_planos_tramposos_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_planos_tramposos_000",
+      "transform":
+      {
+        "pos": "64.0993 -2.16329 -208.244",
+        "rotation": "-0.690346 0.153046 -0.153046 -0.690346"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_planos_tramposos_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_columna_piezas_grande_fuste_1_col_001",
       "transform":
       {
