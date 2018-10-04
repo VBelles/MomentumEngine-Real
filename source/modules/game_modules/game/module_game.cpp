@@ -50,7 +50,7 @@ bool CModuleGame::start() {
 	EngineGUI.activateWidget("hud");
 
 	hudController = new GUI::CHudController();
-	EngineGUI.registerController(hudController);
+	//EngineGUI.registerController(hudController);
 
 	// Auto load some scenes
 	std::vector< std::string > scenes_to_auto_load = jboot["boot_scenes"];
@@ -98,7 +98,7 @@ bool CModuleGame::start() {
 
 bool CModuleGame::stop() {
 	EngineGUI.deactivateWidget("hud");
-	EngineGUI.unregisterController(hudController);
+	//EngineGUI.unregisterController(hudController);
 	safeDelete(hudController);
 	CApp::get().setDebugMode(false);
 	EngineScripting.reset();
@@ -118,6 +118,7 @@ void CModuleGame::update(float delta) {
 	}
 
 	respawner->update(delta);
+	hudController->update(delta);
 
 	if (EngineInput["free_camera"].getsPressed()) {
 		if (!EngineRender.toggleFreeCamera()) {
@@ -164,4 +165,16 @@ Respawner* CModuleGame::getRespawner() {
 
 EnemyManager* CModuleGame::getEnemyManager() {
 	return enemyManager;
+}
+
+void CModuleGame::showChrysalis() {
+	hudController->showChrysalis();
+}
+
+void CModuleGame::showChrysalis(float time) {
+	hudController->showChrysalis(time);
+}
+
+void CModuleGame::hideChrysalis() {
+	hudController->hideChrysalis();
 }

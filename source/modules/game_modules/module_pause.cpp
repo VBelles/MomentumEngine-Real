@@ -2,6 +2,7 @@
 #include "module_pause.h"
 #include "gui/gui_parser.h"
 #include "modules/system_modules/scripting/scripting_player.h"
+#include "modules/game_modules/game/module_game.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -48,6 +49,7 @@ void CModulePause::onPausePressed() {
 	pause = !pause;
 
 	if (pause) {
+		EngineGame->showChrysalis(0.f);
 		Engine.getGUI().registerController(controller);
 		controller->setCurrentOption(0);
 		Engine.getGUI().activateWidget("test_pause_menu");

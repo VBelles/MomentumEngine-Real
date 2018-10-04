@@ -10,7 +10,6 @@
 					{
 						"name" : "background01",
 						"type" : "image",
-						"visible": false,
 						"size" : "1920 1080",
 						"texture" : "data/textures/gui/menuinicio_background_01.dds",
 						"minUV" : "0.33 0",

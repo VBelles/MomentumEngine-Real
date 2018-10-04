@@ -113,6 +113,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		playerModel->setHp(playerModel->getMaxHp());
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
+		EngineGame->showChrysalis(showChrysalisTime);
 		break;
 	case Type::COIN:
 		collectable->collect();
