@@ -30,6 +30,9 @@ public:
 
 	std::string behaviorTreeFile = "";
 
+	bool ignoreMessages = false;
+
+	bool onDisappear = false;
 	bool onHit = false;
 	bool onOutOfBounds = false;
 	bool onSpawn = false;
@@ -66,6 +69,7 @@ public:
 
 	//Combat
 	AttackInfo receivedAttack;
+	std::string attacker = "";
 	float chaseFov = 0.f;
 	float fovChaseDistanceSqrd = 0.f;
 	float smallChaseRadiusSqrd = 0.f;

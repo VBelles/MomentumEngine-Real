@@ -60,7 +60,7 @@
 				"durations" : [
 					45.0, 120.0, 45.0, 120.0
 				],
-				"lerp_time" : 15,
+				"lerp_time" : 10,
 				"sky_name" : "Sky"
 			}
 		}

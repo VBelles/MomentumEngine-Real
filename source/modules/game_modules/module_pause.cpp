@@ -2,6 +2,8 @@
 #include "module_pause.h"
 #include "gui/gui_parser.h"
 #include "modules/system_modules/scripting/scripting_player.h"
+#include "modules/system_modules/module_gui.h"
+#include "modules/game_modules/game/module_game.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -15,6 +17,7 @@ bool CModulePause::start() {
 	};
 	auto mainMenuCB = [&]() {
 		onPausePressed();
+		EngineGUI.hideDialog();
 		EngineModules.changeGameState("main_menu", true);
 	};
 	auto exitCB = []() {
@@ -48,6 +51,7 @@ void CModulePause::onPausePressed() {
 	pause = !pause;
 
 	if (pause) {
+		EngineGame->showChrysalis(0.f);
 		Engine.getGUI().registerController(controller);
 		controller->setCurrentOption(0);
 		Engine.getGUI().activateWidget("test_pause_menu");

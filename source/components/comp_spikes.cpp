@@ -17,9 +17,20 @@ void TCompSpikes::update(float delta) {
 		atackInfo.damage = damage;
 		atackInfo.invulnerabilityTime = invulnerabilityTime;
 		atackInfo.stun = new AttackInfo::Stun{ stunTime };
+
+		std::set<CHandle> handlesToErase;
 		for (auto& handle : handles) {
-			CEntity* entity = handle;
-			entity->sendMsg(TMsgAttackHit{ CHandle(this), atackInfo });
+			if (handle.isValid()) {
+				CEntity* entity = handle;
+				entity->sendMsg(TMsgAttackHit{ CHandle(this).getOwner(), atackInfo });
+			}
+			else {
+				handlesToErase.insert(handle);
+			}
+		}
+		
+		for (auto& handle : handlesToErase) {
+			handles.erase(handle);
 		}
 	}
 }
@@ -37,7 +48,7 @@ void TCompSpikes::onTriggerEnter(const TMsgTriggerEnter& msg) {
 	atackInfo.damage = damage;
 	atackInfo.invulnerabilityTime = invulnerabilityTime;
 	atackInfo.stun = new AttackInfo::Stun{ stunTime };
-	entity->sendMsg(TMsgAttackHit{ CHandle(this), atackInfo });
+	entity->sendMsg(TMsgAttackHit{ CHandle(this).getOwner(), atackInfo });
 	handles.insert(msg.h_other_entity);
 }
 

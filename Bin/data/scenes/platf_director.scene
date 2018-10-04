@@ -7,26 +7,7 @@
       {
         "slots":
         [
-          {
-            "wait_time": 1.2,
-            "platforms":
-            [
-              "Plataformeo_hex_005",
-              "Plataformeo_hex_004",
-              "Plataformeo_hex_003",
-              "Plataformeo_hex_002"
-            ]
-          },
-          {
-            "wait_time": 0,
-            "platforms":
-            [
-              "dani_mariosunshine_MS004",
-              "dani_mariosunshine_MS005",
-              "dani_mariosunshine_MS004",
-              "dani_mariosunshine_MS005"
-            ]
-          }
+
         ]
       }
     }

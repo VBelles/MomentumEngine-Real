@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "IdleActionState.h"
-
+#include "modules/game_modules/game/module_game.h"
 
 IdleActionState::IdleActionState(StateManager * stateManager) :
 	GroundedActionState(stateManager, Idle) {
@@ -42,6 +42,7 @@ void IdleActionState::update(float delta) {
 
 	if (closeCameraTimer.elapsed() >= closeCameraTime) {
 		getCameraPlayer()->moveCameraCloser(true);
+		EngineGame->showChrysalis();
 	}
 }
 
@@ -53,6 +54,7 @@ void IdleActionState::onStateEnter(IActionState * lastState) {
 
 void IdleActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+	EngineGame->hideChrysalis();
 }
 
 void IdleActionState::onSpendCoinsButton() {
