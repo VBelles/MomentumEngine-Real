@@ -39,21 +39,49 @@ global rotationsData = attributes rotateData (
 
 		rolSpeed type: #float   ui:rolSpeed default:0.0
 		wait 	 type: #float   ui:waitDur 	default:2
-		grup	 type: #integer ui:grup 	default:0.0
-		waitT	 type: #float   ui:waitT 	default:0.0
+
+		dir 	 type: #integer ui:plDir 	default:0
+		--https://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_461915FA_31A2_49CE_84AF_2544B782ACA3_htm
+		slot 	 type: #intTab ui:slt default:1 tabSize:1 tabSizeVariable:true
 	)
 	rollout params "Rotation Data" (
 		label lab1 "Rotation:"
-		spinner xRot "x axis" type: #integer range:[-1, 1, 0] --min, max, initial value
-		spinner yRot "y axis" type: #integer range:[-1, 1, 0]
-		spinner zRot "z axis" type: #integer range:[-1, 1, 1]
-		spinner rotSpeed "Rotation speed" type: #float range:[-100, 100, 0]
+		spinner xRot "x axis" 			  type: #integer range:[-1, 1, 0] --min, max, initial value
+		spinner yRot "y axis" 			  type: #integer range:[-1, 1, 0]
+		spinner zRot "z axis" 			  type: #integer range:[-1, 1, 1]
+		spinner rotSpeed "Rotation speed" type: #float   range:[-100, 100, 0]
 
 		label lab2 "Roll:"
-		spinner rolSpeed "Roll speed" 	   type: #float   range:[-100, 100, 0]
-		spinner waitDur  "Wait duration"   type: #float
-		spinner grup     "Platform group"  type: #integer range:[0, 1000, 0]
-		spinner waitT    "Group wait time" type: #float   range:[0, 1000, 0]
+		spinner rolSpeed "Roll speed" 	   type: #float  range:[-100, 100, 0]
+		spinner waitDur  "Wait duration"   type: #float  range:[0, 100, 2]
+
+		spinner plDir    "Platf director"  type: #integer range:[0, 100, 0]
+		multiListBox slt "Platf dir slots"  items: #("1","2","3","4","5") \ 
+			height:5 width:70 align:#right
+
+		on slt selectionEnd do slot = slt.selection as array
+		on params open do slt.selection = (slot as Array) 
+	)
+)
+
+-- def #platfDirData
+global platfDirsData = attributes platfDirData (
+	parameters main rollout:params (
+		dirID   type: #integer ui:direcID 	default:1
+		sl1wait type: #float   ui:sl1waitT 	default:0.0
+		sl2wait type: #float   ui:sl2waitT 	default:0.0
+		sl3wait type: #float   ui:sl3waitT 	default:0.0
+		sl4wait type: #float   ui:sl4waitT 	default:0.0
+		sl5wait type: #float   ui:sl5waitT 	default:0.0
+	)
+	rollout params "Platf director Data" (
+		spinner direcID "Director ID" type: #integer range:[1, 100, 1] --min, max, initial value
+		label lab1 "Wait time:"
+		spinner sl1waitT "Slot 1" type: #float range:[0.0, 100.0, 0.0] --min, max, initial value
+		spinner sl2waitT "Slot 2" type: #float range:[0.0, 100.0, 0.0]
+		spinner sl3waitT "Slot 3" type: #float range:[0.0, 100.0, 0.0]
+		spinner sl4waitT "Slot 4" type: #float range:[0.0, 100.0, 0.0]
+		spinner sl5waitT "Slot 5" type: #float range:[0.0, 100.0, 0.0]
 	)
 )
 
@@ -151,6 +179,7 @@ global colsData = attributes collData (
 		collType type: #boolean ui:cType default:true
 		spke     type: #boolean ui:spike default:false
 		pwrUp    type: #string default:"-NONE-"
+		pwrUpSel type: #integer default:1
 	)
 	rollout params "Collider Data" (
 		checkbox cType "Tri mesh" type: #boolean align:#right
@@ -208,8 +237,11 @@ global colsData = attributes collData (
 												"WallJumpSquat", \
 												"WallJumpSquatPlummet")
 	
-		on powerUp selected i do pwrUp = powerUp.items[i]
-		on params open do powerUp.selection = findItem powerUp.items pwrUp
+		on powerUp selected i do (
+			pwrUp = powerUp.items[i]
+			pwrUpSel = powerUp.selection
+		)
+		on params open do powerUp.selection = pwrUpSel
 	)
 )
 
@@ -259,9 +291,10 @@ struct TAttributeManager (
 			local objDefs = custAttributes.getDefs obj
 			a = custAttributes.get obj idxFound
 
-			--a[#pwrUp] returns undefined, I guess because it's a dropdownlist?
-			--so pick this manually.
+			--a[#pwrUp] returns undefined for lists, so pick this manually.
+			--format "obj: % attribute: %\n" obj.name (attribute as string) --DEBUG
 			if attribute == #pwrUp then return obj.collData.pwrUp
+			if attribute == #slt then return obj.rotateData.slot
 
 			if a[attribute] != undefined then return a[attribute].value
 		)
@@ -273,6 +306,9 @@ struct TAttributeManager (
 		if idxFound != undefined then (
 			local objDefs = custAttributes.getDefs obj
 			a = custAttributes.get obj idxFound
+
+			if attribute == #pwrUp then obj.collData.pwrUpSel = newValue
+			if attribute == #slot then obj.rotateData.slot = (newValue as array)
 
 			if a[attribute] != undefined then a[attribute].value = newValue
 		)
@@ -290,6 +326,7 @@ struct TAttributeManager (
 				"mechData":     ( attrDef = mechsData	  )
 				"mechTrigData": ( attrDef = mechsTrigData )
 				"moveData":     ( attrDef = movesData	  )
+				"platfDirData": ( attrDef = platfDirsData )
 				"rotateData":   ( attrDef = rotationsData )
 				"uniqueData":   ( attrDef = uniquesData   )
 				default: ( format "ERROR: invalid attribute definition for object %.\n" obj.name )
