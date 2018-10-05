@@ -178,9 +178,10 @@ CWidget* CParser::parseOption(const json& data) {
 	COption* wdgt = new COption();
 
 	parseParams(wdgt->_params, data);
-	parseParams(wdgt->_states[CButton::EState::ST_Idle]._params, data);
-	parseImageParams(wdgt->_states[CButton::EState::ST_Idle]._imageParams, data);
-	parseTextParams(wdgt->_states[CButton::EState::ST_Idle]._textParams, data);
+	json jIdle = mergeJson(data, "idle");
+	parseParams(wdgt->_states[CButton::EState::ST_Idle]._params, jIdle);
+	parseImageParams(wdgt->_states[CButton::EState::ST_Idle]._imageParams, jIdle);
+	parseTextParams(wdgt->_states[CButton::EState::ST_Idle]._textParams, jIdle);
 
 	json jSelected = mergeJson(data, "selected");
 	parseParams(wdgt->_states[CButton::EState::ST_Selected]._params, jSelected);
