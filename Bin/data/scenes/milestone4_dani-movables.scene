@@ -2,28 +2,6 @@
   {
     "entity":
     {
-      "name": "dani_columna_4_2_001",
-      "transform":
-      {
-        "pos": "164.135 70.2791 157.838",
-        "rotation": "0.0 -0.608761 0.0 -0.793353"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_columna_4_2_001.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "dani_trozo_terreno_5_000",
       "transform":
       {
@@ -151,8 +129,7 @@
       {
         "roll":
         {
-          "speed": 7.0,
-          "waitDuration": 2.0
+          "speed": 7.0
         }
       }
     }
@@ -191,8 +168,7 @@
       {
         "roll":
         {
-          "speed": 7.0,
-          "waitDuration": 2.0
+          "speed": 7.0
         }
       }
     }
@@ -231,8 +207,7 @@
       {
         "roll":
         {
-          "speed": 7.0,
-          "waitDuration": 2.0
+          "speed": 7.0
         }
       }
     }
@@ -271,8 +246,7 @@
       {
         "roll":
         {
-          "speed": 7.0,
-          "waitDuration": 2.0
+          "speed": 7.0
         }
       }
     }
@@ -311,8 +285,7 @@
       {
         "roll":
         {
-          "speed": 7.0,
-          "waitDuration": 2.0
+          "speed": 7.0
         }
       }
     }
@@ -351,8 +324,7 @@
       {
         "roll":
         {
-          "speed": 7.0,
-          "waitDuration": 2.0
+          "speed": 7.0
         }
       }
     }

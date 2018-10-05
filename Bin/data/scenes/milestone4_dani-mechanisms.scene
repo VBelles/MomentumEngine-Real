@@ -212,7 +212,7 @@
       "name": "dani_mariosunshine_MS004",
       "transform":
       {
-        "pos": "263.911 -5.17413 -146.756",
+        "pos": "263.238 -5.15715 -146.457",
         "rotation": "-0.0100396 -0.978101 0.00817512 0.207728"
       },
       "mechanism_system":
@@ -255,8 +255,7 @@
       {
         "roll":
         {
-          "speed": 6.0,
-          "waitDuration": 3.5
+          "speed": 6.0
         }
       }
     }
@@ -310,8 +309,7 @@
       {
         "roll":
         {
-          "speed": 6.0,
-          "waitDuration": 3.5
+          "speed": 6.0
         }
       }
     }
@@ -322,7 +320,7 @@
       "name": "dani_muro_vertical_000",
       "transform":
       {
-        "pos": "261.878 6.49858 -157.984",
+        "pos": "260.299 4.98096 -157.247",
         "rotation": "0.379928 0.379928 -0.596368 -0.596368"
       },
       "mechanism_system":

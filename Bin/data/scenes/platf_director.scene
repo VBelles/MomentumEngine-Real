@@ -8,115 +8,11 @@
         "slots":
         [
           {
-            "wait_time": 2.0,
+            "wait_time": 3.5,
             "platforms":
             [
-              "nes_plataformaSpikes010",
-              "nes_plataformaSpikes008",
-              "nes_plataformaSpikes006",
-              "nes_plataformaSpikes005",
-              "nes_plataformaSpikes004",
-              "nes_plataformaSpikes001",
-              "nes_plataformaSpikes010",
-              "nes_plataformaSpikes008",
-              "nes_plataformaSpikes006",
-              "nes_plataformaSpikes005",
-              "nes_plataformaSpikes004",
-              "nes_plataformaSpikes001",
-              "nes_plataformaSpikes010",
-              "nes_plataformaSpikes008",
-              "nes_plataformaSpikes006",
-              "nes_plataformaSpikes005",
-              "nes_plataformaSpikes004",
-              "nes_plataformaSpikes001",
-              "nes_plataformaSpikes010",
-              "nes_plataformaSpikes008",
-              "nes_plataformaSpikes006",
-              "nes_plataformaSpikes005",
-              "nes_plataformaSpikes004",
-              "nes_plataformaSpikes001"
-            ]
-          },
-          {
-            "wait_time": 7.0,
-            "platforms":
-            [
-              "nes_plataformaSpikes009",
-              "nes_plataformaSpikes007",
-              "nes_plataformaSpikes003",
-              "nes_plataformaSpikes002",
-              "nes_plataformaSpikes000",
-              "nes_plataformaSpikes009",
-              "nes_plataformaSpikes007",
-              "nes_plataformaSpikes003",
-              "nes_plataformaSpikes002",
-              "nes_plataformaSpikes000",
-              "nes_plataformaSpikes009",
-              "nes_plataformaSpikes007",
-              "nes_plataformaSpikes003",
-              "nes_plataformaSpikes002",
-              "nes_plataformaSpikes000",
-              "nes_plataformaSpikes009",
-              "nes_plataformaSpikes007",
-              "nes_plataformaSpikes003",
-              "nes_plataformaSpikes002",
-              "nes_plataformaSpikes000"
-            ]
-          },
-          {
-            "wait_time": 2.0,
-            "platforms":
-            [
-              "nes_plataformaSpikes010",
-              "nes_plataformaSpikes008",
-              "nes_plataformaSpikes006",
-              "nes_plataformaSpikes005",
-              "nes_plataformaSpikes004",
-              "nes_plataformaSpikes001",
-              "nes_plataformaSpikes010",
-              "nes_plataformaSpikes008",
-              "nes_plataformaSpikes006",
-              "nes_plataformaSpikes005",
-              "nes_plataformaSpikes004",
-              "nes_plataformaSpikes001",
-              "nes_plataformaSpikes010",
-              "nes_plataformaSpikes008",
-              "nes_plataformaSpikes006",
-              "nes_plataformaSpikes005",
-              "nes_plataformaSpikes004",
-              "nes_plataformaSpikes001",
-              "nes_plataformaSpikes010",
-              "nes_plataformaSpikes008",
-              "nes_plataformaSpikes006",
-              "nes_plataformaSpikes005",
-              "nes_plataformaSpikes004",
-              "nes_plataformaSpikes001"
-            ]
-          },
-          {
-            "wait_time": 5.0,
-            "platforms":
-            [
-              "nes_plataformaSpikes009",
-              "nes_plataformaSpikes007",
-              "nes_plataformaSpikes003",
-              "nes_plataformaSpikes002",
-              "nes_plataformaSpikes000",
-              "nes_plataformaSpikes009",
-              "nes_plataformaSpikes007",
-              "nes_plataformaSpikes003",
-              "nes_plataformaSpikes002",
-              "nes_plataformaSpikes000",
-              "nes_plataformaSpikes009",
-              "nes_plataformaSpikes007",
-              "nes_plataformaSpikes003",
-              "nes_plataformaSpikes002",
-              "nes_plataformaSpikes000",
-              "nes_plataformaSpikes009",
-              "nes_plataformaSpikes007",
-              "nes_plataformaSpikes003",
-              "nes_plataformaSpikes002",
-              "nes_plataformaSpikes000"
+              "dani_mariosunshine_MS004",
+              "dani_mariosunshine_MS005"
             ]
           }
         ]
@@ -132,83 +28,39 @@
         "slots":
         [
           {
-            "wait_time": 2.0,
+            "wait_time": 0.7,
             "platforms":
             [
-              "nes_plataformaSpikes020",
-              "nes_plataformaSpikes018",
-              "nes_plataformaSpikes020",
-              "nes_plataformaSpikes018",
-              "nes_plataformaSpikes020",
-              "nes_plataformaSpikes018",
-              "nes_plataformaSpikes020",
-              "nes_plataformaSpikes018"
+              "Plataformeo_hex_004",
+              "Plataformeo_hex_002",
+              "Plataformeo_hex_000"
             ]
           },
           {
-            "wait_time": 5.0,
+            "wait_time": 1.2,
             "platforms":
             [
-              "nes_plataformaSpikes022",
-              "nes_plataformaSpikes021",
-              "nes_plataformaSpikes019",
-              "nes_plataformaSpikes022",
-              "nes_plataformaSpikes021",
-              "nes_plataformaSpikes019",
-              "nes_plataformaSpikes022",
-              "nes_plataformaSpikes021",
-              "nes_plataformaSpikes019",
-              "nes_plataformaSpikes022",
-              "nes_plataformaSpikes021",
-              "nes_plataformaSpikes019"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "platform_director_3",
-      "platforms_director":
-      {
-        "slots":
-        [
-          {
-            "wait_time": 3.0,
-            "platforms":
-            [
-              "nes_plataformaSpikes017",
-              "nes_plataformaSpikes016",
-              "nes_plataformaSpikes015",
-              "nes_plataformaSpikes012",
-              "nes_plataformaSpikes017",
-              "nes_plataformaSpikes016",
-              "nes_plataformaSpikes015",
-              "nes_plataformaSpikes012",
-              "nes_plataformaSpikes017",
-              "nes_plataformaSpikes016",
-              "nes_plataformaSpikes015",
-              "nes_plataformaSpikes012",
-              "nes_plataformaSpikes017",
-              "nes_plataformaSpikes016",
-              "nes_plataformaSpikes015",
-              "nes_plataformaSpikes012"
+              "Plataformeo_hex_004",
+              "Plataformeo_hex_002",
+              "Plataformeo_hex_000"
             ]
           },
           {
-            "wait_time": 3.0,
+            "wait_time": 0.7,
             "platforms":
             [
-              "nes_plataformaSpikes013",
-              "nes_plataformaSpikes011",
-              "nes_plataformaSpikes013",
-              "nes_plataformaSpikes011",
-              "nes_plataformaSpikes013",
-              "nes_plataformaSpikes011",
-              "nes_plataformaSpikes013",
-              "nes_plataformaSpikes011"
+              "Plataformeo_hex_005",
+              "Plataformeo_hex_003",
+              "Plataformeo_hex_001"
+            ]
+          },
+          {
+            "wait_time": 1.2,
+            "platforms":
+            [
+              "Plataformeo_hex_005",
+              "Plataformeo_hex_003",
+              "Plataformeo_hex_001"
             ]
           }
         ]
