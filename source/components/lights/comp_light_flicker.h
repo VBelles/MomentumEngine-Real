@@ -16,6 +16,7 @@ private:
 	float previousIntensity;
 	float nextIntensity;
 	float ratio;
+	bool active = true;
 
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -26,4 +27,6 @@ public:
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
+	void setActive(bool active);
+	bool isActive();
 };

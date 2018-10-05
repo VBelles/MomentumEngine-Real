@@ -20,7 +20,8 @@
 				"type": "static",
 				"group": [
 					"scenario"
-				]
+				],
+				"mask": "characters"
 			}
 		}
 	},

@@ -1,9 +1,9 @@
 #pragma once
 
-struct TCompParticles;
-struct TCompLightPoint;
+class TCompParticles;
+class TCompLightPoint;
+class TCompLightFlicker;
 
-//Fire only by player
 class TCompFire : public TCompBase {
 private:
 
@@ -11,7 +11,8 @@ private:
 	std::vector<std::string> smokeParticles;
 	CHandle particlesHandle;
 	CHandle lightHandle;
-	bool hasFire = false;
+	CHandle lightFlicker;
+	bool hasFire = true;
 	bool playerOnFire = false;
 
 	CTimer2 timer;
@@ -19,6 +20,7 @@ private:
 
 	TCompParticles* getParticles();
 	TCompLightPoint* getLight();
+	TCompLightFlicker* getLightFlicker();
 	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onPlayerEnter(const TMsgTriggerEnter& msg);
 	void onPlayerExit(const TMsgTriggerExit & msg);
