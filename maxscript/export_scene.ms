@@ -9,23 +9,8 @@ debugMode = false
 
 escapeEnable = true --Allow abort script execution holding ESC.
 
-uniqueCoins   	  = #()
-uniqueEnemies 	  = #()
-uniqueAltars  	  = #()
-uniqueTeleports   = #()
-uniqueLifePieces  = #()
-
 brokenMaps    	= #()
-
-luaMechSys		= #()
-
-toAddSpikes		= #()
-
 resources 		= #()
-
-platfDirector	= #(#()) --#(slot1, slot2, etc.) | slot1 = #("name1", "name2", etc.)
-platfDirectors 	= #(platfDirector)
-platfDirWaits	= #()
 
 pureOnSuffix  = "pureON"
 pureSuffix	  = "pure"
@@ -466,6 +451,20 @@ struct TSceneExporter (
 
 	teleportMat 	= "ambar",
 	teleportAltMat	= "giratiempo",
+
+	uniqueCoins   	  = #(),
+	uniqueEnemies 	  = #(),
+	uniqueAltars  	  = #(),
+	uniqueTeleports   = #(),
+	uniqueLifePieces  = #(),
+
+	luaMechSys		= #(),
+
+	toAddSpikes		= #(),
+
+	platfDirector	= #(#()), --#(slot1, slot2, etc.) | slot1 = #("name1", "name2", etc.)
+	platfDirectors 	= #(platfDirector),
+	platfDirWaits	= #(),
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -2365,7 +2364,9 @@ struct TSceneExporter (
 	fn exportPlatfDirector = (
 		if platfDirectors.count == 0 then return false
 
-		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
+		local ofilename = getFilenameFile maxFileName
+		local plDirFilePath = project_path + scenes_path + \
+							  ofilename + "-platf_director.scene"
 		
 		fs.begin plDirFilePath --Create file.
 		fs.beginArray()
@@ -2579,7 +2580,6 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
-TODO: Mirar cómo reiniciar las globales bien.
 
 NOTA: Si una capa pasa a estar vacía, no se exporta pero no se borra el
 	  archivo anterior, así que se queda basura.
