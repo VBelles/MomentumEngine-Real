@@ -60,3 +60,7 @@ void TackleAttackAction::debugInMenu() {
 	ImGui::DragFloat("Speed", &speed, 0.1f, 0.0f, 500.0f);
 	ImGui::DragFloat("Time", &time, 0.1f, 0.0f, 500.0f);
 }
+
+void TackleAttackAction::onExit() {
+	enemy->killParticles(enemy->attacks[attack].particles);
+}
