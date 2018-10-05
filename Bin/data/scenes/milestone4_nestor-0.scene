@@ -2,6 +2,38 @@
   {
     "entity":
     {
+      "name": "nes_plataforma_roca_051",
+      "transform":
+      {
+        "pos": "-107.236 67.639 -1.23622",
+        "rotation": "0.0 -0.6916 0.0 -0.722281"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_plataforma_roca_051.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_plataforma_roca_col_051.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_mini_006",
       "transform":
       {
@@ -674,518 +706,6 @@
   {
     "entity":
     {
-      "name": "nes_fireplace_023",
-      "transform":
-      {
-        "pos": "-218.288 0.793148 -54.4632",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_023.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_023.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_022",
-      "transform":
-      {
-        "pos": "-210.922 -4.95026 43.8622",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_022.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_022.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_021",
-      "transform":
-      {
-        "pos": "-128.048 -6.84283 113.668",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_021.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_021.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_020",
-      "transform":
-      {
-        "pos": "-103.189 -0.594792 -59.0205",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_020.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_020.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_019",
-      "transform":
-      {
-        "pos": "-114.29 6.59051 -95.6927",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_019.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_019.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_018",
-      "transform":
-      {
-        "pos": "-28.9131 -4.12312 -120.494",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_018.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_018.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_017",
-      "transform":
-      {
-        "pos": "-43.5223 3.54998 -105.443",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_017.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_017.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_016",
-      "transform":
-      {
-        "pos": "153.665 4.96258 32.4903",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_016.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_016.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_015",
-      "transform":
-      {
-        "pos": "58.3389 -6.85798 -53.1594",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_015.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_015.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_014",
-      "transform":
-      {
-        "pos": "66.9669 -1.9007 -41.1734",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_014.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_014.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_013",
-      "transform":
-      {
-        "pos": "79.5642 -1.00983 17.5602",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_013.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_013.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_012",
-      "transform":
-      {
-        "pos": "62.5125 -2.04743 23.8532",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_012.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_012.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_011",
-      "transform":
-      {
-        "pos": "-64.6001 -2.66803 66.7511",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_011.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_011.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_010",
-      "transform":
-      {
-        "pos": "-46.78 -0.802794 83.5136",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_010.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_010.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_009",
-      "transform":
-      {
-        "pos": "8.76431 -6.75836 28.1867",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_009.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_009.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_008",
-      "transform":
-      {
-        "pos": "-6.94712 -5.0152 14.4613",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_008.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_008.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_mushroom_head_043",
       "transform":
       {
@@ -1526,38 +1046,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_mushroom_body_02_collider005.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_007",
-      "transform":
-      {
-        "pos": "94.989 40.279 -8.85998",
-        "rotation": "0.0 0.422618 0.0 -0.906308"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_007.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_007.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -3557,7 +3045,7 @@
       "name": "nes_estaca_emisivo_1_003",
       "transform":
       {
-        "pos": "-20.0805 8.36332 102.774",
+        "pos": "-19.1002 8.36332 102.774",
         "rotation": "0.0 0.0 0.499297 -0.866431"
       },
       "render":
@@ -6068,102 +5556,6 @@
   {
     "entity":
     {
-      "name": "nes_fireplace_006",
-      "transform":
-      {
-        "pos": "14.8013 0.0910009 -14.5025",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_006.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_006.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_005",
-      "transform":
-      {
-        "pos": "36.2945 0.8327 -26.5541",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_005.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_005.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_004",
-      "transform":
-      {
-        "pos": "36.1636 1.41693 -2.16091",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_004.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_004.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "plaza_1_002",
       "transform":
       {
@@ -6295,7 +5687,7 @@
       "name": "plaza_atril_000",
       "transform":
       {
-        "pos": "28.8825 5.56086 -14.2977",
+        "pos": "28.8825 3.93049 -14.2977",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -9698,7 +9090,7 @@
       "transform":
       {
         "pos": "-84.25 23.001 46.2444",
-        "rotation": "0.0 0.34202 0.0 -0.939693"
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
@@ -12494,38 +11886,6 @@
   {
     "entity":
     {
-      "name": "nes_fireplace_003",
-      "transform":
-      {
-        "pos": "38.3341 43.7624 -120.259",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_003.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_003.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_plataforma_roca_001",
       "transform":
       {
@@ -13041,8 +12401,8 @@
       "name": "nes_columna_piezas_capitel_003",
       "transform":
       {
-        "pos": "36.6495 27.9741 -118.728",
-        "rotation": "0.0223123 0.169478 -0.128605 -0.976852"
+        "pos": "36.6505 28.3722 -118.728",
+        "rotation": "0.0296836 0.168344 -0.085873 -0.981532"
       },
       "render":
       [
@@ -13442,38 +12802,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_mushroom_body_02_collider001.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_002",
-      "transform":
-      {
-        "pos": "-3.59174 13.9811 -293.919",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_002.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_002.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":
@@ -14642,38 +13970,6 @@
       {
         "mesh_src": "data/meshes/nes_torre_mesh_COLLIDER015.col_mesh",
         "shape": "tri_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_fireplace_001",
-      "transform":
-      {
-        "pos": "4.63272 -7.36494 -132.103",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_fireplace_001.mesh",
-          "materials":
-          [
-            "data/materials/m_fireplace_00.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_fireplace_collider_001.col_mesh",
-        "shape": "convex_mesh",
         "type": "static",
         "group":
         [

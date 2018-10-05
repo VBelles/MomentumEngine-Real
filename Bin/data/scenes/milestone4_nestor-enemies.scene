@@ -258,7 +258,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-193.376 62.8652 47.4223",
+        "pos": "-194.798 62.8652 47.9847",
         "lookat": "-1.0 62.8652 -1.0"
       }
     }
@@ -270,7 +270,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-200.852 62.8652 45.2159",
+        "pos": "-202.274 62.8652 45.7784",
         "lookat": "-1.0 62.8652 -1.0"
       }
     }
@@ -282,7 +282,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-186.696 62.8652 49.8234",
+        "pos": "-188.118 62.8652 50.3858",
         "lookat": "-1.0 62.8652 -1.0"
       }
     }

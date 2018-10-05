@@ -2535,7 +2535,6 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
-TODO: Que haya un platform director por cada grupo de plataformas que lo usen.
 TODO: Exportar point light (omnilight).
 
 NOTA: Si una capa pasa a estar vacía, no se exporta pero no se borra el
