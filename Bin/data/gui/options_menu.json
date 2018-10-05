@@ -1,499 +1,663 @@
 [
 	{
-		"name" : "options_menu",
-		"type" : "widget",
-		"size" : "1920 1080",
-		"children" : [
+		"name": "options_menu",
+		"type": "widget",
+		"size": "1920 1080",
+		"children": [
 			{
-				"name" : "background",
-				"type" : "image",
-				"size" : "1920 1080",
-				"texture" : "data/textures/gui/menu_background.dds",
-				"minUV" : "0 0",
-				"maxUV" : "1 1"
+				"name": "background",
+				"type": "image",
+				"size": "1920 1080",
+				"texture": "data/textures/gui/menu_background.dds",
+				"minUV": "0 0",
+				"maxUV": "1 1"
 			},
 			{
-				"name" : "test_buttons",
-				"type" : "widget",
-				"position" : "10 10",
-				"children" : [
+				"name": "test_buttons",
+				"type": "widget",
+				"position": "10 10",
+				"children": [
 					{
-						"name" : "camera_speed",
-						"type" : "option",
-						"position" : "0 0",
-						"size" : "1900 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "CAMERA SPEED",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
-						"selected" : {
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+						"name": "camera_speed",
+						"type": "option",
+						"position": "0 0",
+						"size": "1900 50",
+						"idle": {
+							"size": "412 104",
+							"texture": "data/textures/gui/bt_camera_speed.dds"
 						},
-						"pressed" : {
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+						"selected": {
+							"size": "412 104",
+							"texture": "data/textures/gui/bt_camera_speed_selected.dds"
 						},
 						"previous_button": {
-							"name" : "previous",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/linux.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "previous",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/linux.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"next_button": {
-							"name" : "next",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "next",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/gui/menu_boton.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size" : "300 50",
-							"position" : "0.125 0",
-							"font_size" : 32.0,
-							"text" : "OP"
+							"size": "350 50",
+							"font_size": 64.0,
+							"text": "OP"
 						},
 						"options": [
-							["0.1", 0.1],
-							["0.2", 0.2],
-							["0.3", 0.3],
-							["0.4", 0.4],
-							["0.5", 0.5],
-							["0.6", 0.6],
-							["0.7", 0.7],
-							["0.8", 0.8],
-							["0.9", 0.9],
-							["1.0", 1.0],
-							["1.1", 1.1],
-							["1.2", 1.2],
-							["1.3", 1.3],
-							["1.4", 1.4],
-							["1.5", 1.5],
-							["1.6", 1.6],
-							["1.7", 1.7],
-							["1.8", 1.8],
-							["1.9", 1.9],
-							["2.0", 2.0],
-							["2.1", 2.1],
-							["2.2", 2.2],
-							["2.3", 2.3],
-							["2.4", 2.4],
-							["2.5", 2.5],
-							["2.6", 2.6],
-							["2.7", 2.7],
-							["2.8", 2.8],
-							["2.9", 2.9],
-							["3.0", 3.0]
+							[
+								"0.1",
+								0.1
+							],
+							[
+								"0.2",
+								0.2
+							],
+							[
+								"0.3",
+								0.3
+							],
+							[
+								"0.4",
+								0.4
+							],
+							[
+								"0.5",
+								0.5
+							],
+							[
+								"0.6",
+								0.6
+							],
+							[
+								"0.7",
+								0.7
+							],
+							[
+								"0.8",
+								0.8
+							],
+							[
+								"0.9",
+								0.9
+							],
+							[
+								"1.0",
+								1.0
+							],
+							[
+								"1.1",
+								1.1
+							],
+							[
+								"1.2",
+								1.2
+							],
+							[
+								"1.3",
+								1.3
+							],
+							[
+								"1.4",
+								1.4
+							],
+							[
+								"1.5",
+								1.5
+							],
+							[
+								"1.6",
+								1.6
+							],
+							[
+								"1.7",
+								1.7
+							],
+							[
+								"1.8",
+								1.8
+							],
+							[
+								"1.9",
+								1.9
+							],
+							[
+								"2.0",
+								2.0
+							],
+							[
+								"2.1",
+								2.1
+							],
+							[
+								"2.2",
+								2.2
+							],
+							[
+								"2.3",
+								2.3
+							],
+							[
+								"2.4",
+								2.4
+							],
+							[
+								"2.5",
+								2.5
+							],
+							[
+								"2.6",
+								2.6
+							],
+							[
+								"2.7",
+								2.7
+							],
+							[
+								"2.8",
+								2.8
+							],
+							[
+								"2.9",
+								2.9
+							],
+							[
+								"3.0",
+								3.0
+							]
 						]
 					},
 					{
-						"name" : "camera_speed_pad",
-						"type" : "option",
-						"position" : "0 60",
-						"size" : "1900 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "CAMERA SPEED PAD",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
-						"selected" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+						"name": "camera_speed_pad",
+						"type": "option",
+						"position": "0 60",
+						"size": "1900 50",
+						"idle": {
+							"size": "496 104",
+							"texture": "data/textures/gui/bt_camera_speed_pad.dds"
 						},
-						"pressed" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+						"selected": {
+							"size": "496 104",
+							"texture": "data/textures/gui/bt_camera_speed_pad_selected.dds"
 						},
 						"previous_button": {
-							"name" : "previous",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/linux.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "previous",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/linux.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"next_button": {
-							"name" : "next",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "next",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/gui/menu_boton.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size" : "300 50",
-							"position" : "0.125 0",
-							"font_size" : 32.0,
-							"text" : "OP"
+							"size": "350 50",
+							"font_size": 64.0,
+							"text": "OP"
 						},
 						"options": [
-							["0.1", 0.1],
-							["0.2", 0.2],
-							["0.3", 0.3],
-							["0.4", 0.4],
-							["0.5", 0.5],
-							["0.6", 0.6],
-							["0.7", 0.7],
-							["0.8", 0.8],
-							["0.9", 0.9],
-							["1.0", 1.0],
-							["1.1", 1.1],
-							["1.2", 1.2],
-							["1.3", 1.3],
-							["1.4", 1.4],
-							["1.5", 1.5],
-							["1.6", 1.6],
-							["1.7", 1.7],
-							["1.8", 1.8],
-							["1.9", 1.9],
-							["2.0", 2.0],
-							["2.1", 2.1],
-							["2.2", 2.2],
-							["2.3", 2.3],
-							["2.4", 2.4],
-							["2.5", 2.5],
-							["2.6", 2.6],
-							["2.7", 2.7],
-							["2.8", 2.8],
-							["2.9", 2.9],
-							["3.0", 3.0]
+							[
+								"0.1",
+								0.1
+							],
+							[
+								"0.2",
+								0.2
+							],
+							[
+								"0.3",
+								0.3
+							],
+							[
+								"0.4",
+								0.4
+							],
+							[
+								"0.5",
+								0.5
+							],
+							[
+								"0.6",
+								0.6
+							],
+							[
+								"0.7",
+								0.7
+							],
+							[
+								"0.8",
+								0.8
+							],
+							[
+								"0.9",
+								0.9
+							],
+							[
+								"1.0",
+								1.0
+							],
+							[
+								"1.1",
+								1.1
+							],
+							[
+								"1.2",
+								1.2
+							],
+							[
+								"1.3",
+								1.3
+							],
+							[
+								"1.4",
+								1.4
+							],
+							[
+								"1.5",
+								1.5
+							],
+							[
+								"1.6",
+								1.6
+							],
+							[
+								"1.7",
+								1.7
+							],
+							[
+								"1.8",
+								1.8
+							],
+							[
+								"1.9",
+								1.9
+							],
+							[
+								"2.0",
+								2.0
+							],
+							[
+								"2.1",
+								2.1
+							],
+							[
+								"2.2",
+								2.2
+							],
+							[
+								"2.3",
+								2.3
+							],
+							[
+								"2.4",
+								2.4
+							],
+							[
+								"2.5",
+								2.5
+							],
+							[
+								"2.6",
+								2.6
+							],
+							[
+								"2.7",
+								2.7
+							],
+							[
+								"2.8",
+								2.8
+							],
+							[
+								"2.9",
+								2.9
+							],
+							[
+								"3.0",
+								3.0
+							]
 						]
 					},
 					{
-						"name" : "invert_x_axis",
-						"type" : "option",
-						"position" : "0 120",
-						"size" : "1900 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "INVERT X AXIS",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
-						"selected" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+						"name": "invert_x_axis",
+						"type": "option",
+						"position": "0 120",
+						"size": "1900 50",
+						"idle": {
+							"size": "372 104",
+							"texture": "data/textures/gui/bt_invert_x_axis.dds"
 						},
-						"pressed" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+						"selected": {
+							"size": "372 104",
+							"texture": "data/textures/gui/bt_invert_x_axis_selected.dds"
 						},
 						"previous_button": {
-							"name" : "previous",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/linux.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "previous",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/linux.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"next_button": {
-							"name" : "next",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "next",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/gui/menu_boton.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size" : "300 50",
-							"position" : "0.125 0",
-							"font_size" : 32.0,
-							"text" : "OP"
+							"size": "350 50",
+							"font_size": 64.0,
+							"text": "OP"
 						},
 						"options": [
-							["NO", false],
-							["YES", true]
+							[
+								"NO",
+								false
+							],
+							[
+								"YES",
+								true
+							]
 						]
 					},
 					{
-						"name" : "invert_y_axis",
-						"type" : "option",
-						"position" : "0 180",
-						"size" : "1900 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "INVERT Y AXIS",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
-						"selected" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+						"name": "invert_y_axis",
+						"type": "option",
+						"position": "0 180",
+						"size": "1900 50",
+						"idle": {
+							"size": "372 104",
+							"texture": "data/textures/gui/bt_invert_y_axis.dds"
 						},
-						"pressed" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+						"selected": {
+							"size": "372 104",
+							"texture": "data/textures/gui/bt_invert_y_axis_selected.dds"
 						},
 						"previous_button": {
-							"name" : "previous",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/linux.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "previous",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/linux.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"next_button": {
-							"name" : "next",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "next",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/gui/menu_boton.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size" : "300 50",
-							"position" : "0.125 0",
-							"font_size" : 32.0,
-							"text" : "OP"
+							"size": "350 50",
+							"font_size": 64.0,
+							"text": "OP"
 						},
 						"options": [
-							["NO", false],
-							["YES", true]
+							[
+								"NO",
+								false
+							],
+							[
+								"YES",
+								true
+							]
 						]
 					},
 					{
-						"name" : "fullscreen",
-						"type" : "option",
-						"position" : "0 240",
-						"size" : "1900 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "FULL SCREEN",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
-						"selected" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+						"name": "fullscreen",
+						"type": "option",
+						"position": "0 240",
+						"size": "1900 50",
+						"idle": {
+							"size": "336 104",
+							"texture": "data/textures/gui/bt_full_screen.dds"
 						},
-						"pressed" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+						"selected": {
+							"size": "336 104",
+							"texture": "data/textures/gui/bt_full_screen_selected.dds"
 						},
 						"previous_button": {
-							"name" : "previous",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/linux.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "previous",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/linux.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"next_button": {
-							"name" : "next",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "next",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/gui/menu_boton.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size" : "300 50",
-							"position" : "0.125 0",
-							"font_size" : 32.0,
-							"text" : "OP"
+							"size": "350 50",
+							"font_size": 64.0,
+							"text": "OP"
 						},
 						"options": [
-							["NO", false],
-							["YES", true]
+							[
+								"NO",
+								false
+							],
+							[
+								"YES",
+								true
+							]
 						]
 					},
 					{
-						"name" : "resolution",
-						"type" : "option",
-						"position" : "0 300",
-						"size" : "1900 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "RESOLUTION",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
-						"selected" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+						"name": "resolution",
+						"type": "option",
+						"position": "0 300",
+						"size": "1900 50",
+						"idle": {
+							"size": "336 104",
+							"texture": "data/textures/gui/bt_resolution.dds"
 						},
-						"pressed" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+						"selected": {
+							"size": "336 104",
+							"texture": "data/textures/gui/bt_resolution_selected.dds"
 						},
 						"previous_button": {
-							"name" : "previous",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/linux.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "previous",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/linux.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"next_button": {
-							"name" : "next",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "next",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/gui/menu_boton.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size" : "300 50",
-							"position" : "0.125 0",
-							"font_size" : 32.0,
-							"text" : "OP"
+							"size": "350 50",
+							"font_size": 64.0,
+							"text": "OP"
 						},
 						"options": [
-							["Auto", "auto"],
-							["1280X720", "1280 720"],
-							["1920X1080", "1920 1080"],
-							["2560X1440", "2560 1440"],
-							["3840X2160", "3840 2160"],
-							["5120X2880", "5120 2880"],
-							["7680X4320", "7680 4320"]
+							[
+								"Auto",
+								"auto"
+							],
+							[
+								"1280X720",
+								"1280 720"
+							],
+							[
+								"1920X1080",
+								"1920 1080"
+							],
+							[
+								"2560X1440",
+								"2560 1440"
+							],
+							[
+								"3840X2160",
+								"3840 2160"
+							],
+							[
+								"5120X2880",
+								"5120 2880"
+							],
+							[
+								"7680X4320",
+								"7680 4320"
+							]
 						]
 					},
 					{
-						"name" : "vsync",
-						"type" : "option",
-						"position" : "0 360",
-						"size" : "1900 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "VSYNC",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
-						"selected" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+						"name": "vsync",
+						"type": "option",
+						"position": "0 360",
+						"size": "1900 50",
+						"idle": {
+							"size": "336 104",
+							"texture": "data/textures/gui/bt_vsync.dds"
 						},
-						"pressed" : {
-							"position" : "30 0",
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+						"selected": {
+							"size": "336 104",
+							"texture": "data/textures/gui/bt_vsync_selected.dds"
 						},
 						"previous_button": {
-							"name" : "previous",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/linux.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "previous",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/linux.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"next_button": {
-							"name" : "next",
-							"type" : "button",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"selected" : {
-								"font_size" : 36.0,
-								"color" : "0.2 0.2 0.2 1"
+							"name": "next",
+							"type": "button",
+							"size": "50 50",
+							"texture": "data/textures/gui/menu_boton.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
 							},
-							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size" : "300 50",
-							"position" : "0.125 0",
-							"font_size" : 32.0,
-							"text" : "OP"
+							"size": "350 50",
+							"font_size": 64.0,
+							"text": "OP"
 						},
 						"options": [
-							["NO", false],
-							["YES", true]
+							[
+								"NO",
+								false
+							],
+							[
+								"YES",
+								true
+							]
 						]
 					}
 				]

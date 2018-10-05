@@ -70,7 +70,7 @@ int OnHit::execAction(float delta) {
 	enemy->animationTimer.reset();
 
 	//Launch hit particles
-	EngineParticles.launchSystem(particles, Particles::LaunchConfig{ enemy->getEntityHandle(), "", particlesOffset });
+	enemy->getParticles()->launch("hit");
 
 	return Leave;
 }
@@ -80,8 +80,6 @@ void OnHit::load(IBehaviorTree* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
-	particles = j.value("particles", particles);
-	particlesOffset = j.count("particles_offset") ? loadVEC3(j.value("particles_offset", "")) : particlesOffset;
 }
 
 void OnHit::debugInMenu() {

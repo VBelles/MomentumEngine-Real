@@ -49,10 +49,10 @@ float4 PS_GUI_FONT(
   ) : SV_Target
 {
   float4 oColor = float4(0,0,0,0);
-  if (input.UV.x <= charSize.x && input.UV.y <= charSize.y) {
+  if (input.UV.x < charSize.x && input.UV.y < charSize.y) {
     float2 finalUV = lerp(minUV, maxUV, input.UV / charSize);
     float4 oDiffuse = txAlbedo.Sample(samLinear, finalUV);
-    oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a); 
+    oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a);
   }
   return oColor;
 }

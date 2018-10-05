@@ -12,8 +12,8 @@
 						"type": "image",
 						"size": "1920 1080",
 						"texture": "data/textures/gui/menuinicio_background_01.dds",
-						"minUV": "0.33 0",
-						"maxUV": "0.66 1",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
 						"effects": [
 							{
 								"type": "animate_uv",
@@ -26,12 +26,12 @@
 						"type": "image",
 						"size": "1920 1080",
 						"texture": "data/textures/gui/menuinicio_background_02.dds",
-						"minUV": "0.33 0",
-						"maxUV": "0.66 1",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
 						"effects": [
 							{
 								"type": "animate_uv",
-								"speed": "0.0025 0"
+								"speed": "-0.0015 0"
 							}
 						]
 					},
@@ -40,12 +40,12 @@
 						"type": "image",
 						"size": "1920 1080",
 						"texture": "data/textures/gui/menuinicio_background_03.dds",
-						"minUV": "0.33 0",
-						"maxUV": "0.66 1",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
 						"effects": [
 							{
 								"type": "animate_uv",
-								"speed": "0.005 0"
+								"speed": "0.0025 0"
 							}
 						]
 					},
@@ -54,8 +54,36 @@
 						"type": "image",
 						"size": "1920 1080",
 						"texture": "data/textures/gui/menuinicio_background_04.dds",
-						"minUV": "0.33 0",
-						"maxUV": "0.66 1",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
+						"effects": [
+							{
+								"type": "animate_uv",
+								"speed": "-0.0037 0"
+							}
+						]
+					},
+					{
+						"name": "background05",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_background_05.dds",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
+						"effects": [
+							{
+								"type": "animate_uv",
+								"speed": "0.005 0"
+							}
+						]
+					},
+					{
+						"name": "background06",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_background_06.dds",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
 						"effects": [
 							{
 								"type": "animate_uv",

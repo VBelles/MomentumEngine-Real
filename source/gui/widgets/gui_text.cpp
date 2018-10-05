@@ -11,7 +11,7 @@ void CText::render() {
 	CFont font = EngineGUI.getFont(_textParams._size);
 
 	float textWidth = font.getWidth(_textParams._text);
-	float textHeight = font.getHeight();
+	float textHeight = font.getHeight(_textParams._text);
 
 	VEC2 textSpace = _params._size;
 	VEC2 offset;

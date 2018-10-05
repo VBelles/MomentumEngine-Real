@@ -177,9 +177,24 @@
         "launch": false,
         "systems": [
           {
+            "id": "hit",
+            "core": "data/particles/hit_sparks.particles",
+            "offset": "0 0.5 0"
+          },
+          {
             "id": "area_attack",
-            "core": "data/particles/slash/dreidel_area_attack.particles",
+            "core": "data/particles/dreidel/area_attack.particles",
             "offset": "0 1.45 0"
+          },
+          {
+            "id": "spin_attack",
+            "core": "data/particles/dreidel/spin_attack.particles",
+            "offset": "0 0.7 0"
+          },
+          {
+            "id": "tackle",
+            "core": "data/particles/dreidel/tackle.particles",
+            "offset": "0 0.5 0"
           }
         ]
       }

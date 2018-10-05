@@ -52,9 +52,8 @@
 					},
 					{
 						"id": "smoke",
-						"core": "data/particles/fire/fire_smoke_2.particles",
-						"launch": false,
-						"offset": "0 0 0"
+						"core": "data/particles/fire/fire_smoke.particles",
+						"launch": false
 					}
 				]
 			},

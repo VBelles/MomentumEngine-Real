@@ -13,60 +13,48 @@
 						"name" : "resume_game",
 						"type" : "button",
 						"position" : "0 0",
-						"size" : "400 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "RESUME GAME",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
+						"size" : "360 104",
+						"texture" : "data/textures/gui/bt_resume_game.dds",
 						"selected" : {
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+							"position" : "-30 0",
+							"texture" : "data/textures/gui/bt_resume_game_selected.dds"
 						},
 						"pressed" : {
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+							"position" : "-30 0",
+							"color" : "0.8 0.8 0.8 1",
+							"texture" : "data/textures/gui/bt_resume_game_selected.dds"
 						}
 					},
 					{
 						"name" : "main_menu",
 						"type" : "button",
 						"position" : "0 80",
-						"size" : "400 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "MAIN MENU",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
+						"size" : "360 104",
+						"texture" : "data/textures/gui/bt_main_menu.dds",
 						"selected" : {
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+							"position" : "-30 80",
+							"texture" : "data/textures/gui/bt_main_menu_selected.dds"
 						},
 						"pressed" : {
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+							"position" : "-30 80",
+							"color" : "0.8 0.8 0.8 1",
+							"texture" : "data/textures/gui/bt_main_menu_selected.dds"
 						}
 					},
 					{
 						"name" : "exit_game",
 						"type" : "button",
 						"position" : "0 160",
-						"size" : "400 50",
-						"texture" : "data/textures/gui/menu_boton.dds",
-						"font_size" : 32.0,
-						"text" : "EXIT GAME",
-						"halign" : "center",
-						"valign" : "center",
-						"color" : "0.5 0.5 0.5 1",
+						"size" :"360 104",
+						"texture" : "data/textures/gui/bt_exit_game.dds",
 						"selected" : {
-							"font_size" : 36.0,
-							"color" : "1 1 1 1"
+							"position" : "-30 160",
+							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
 						},
 						"pressed" : {
-							"font_size" : 36.0,
-							"font_color" : "0.8 0.8 1 1"
+							"position" : "-30 160",
+							"color" : "0.8 0.8 0.8 1",
+							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
 						}
 					}
 				]

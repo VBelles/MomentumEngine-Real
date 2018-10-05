@@ -262,15 +262,14 @@ ButtonText: "Momentum"
 			try (
 				gc()
 				clearListener()
-				--(LayerManager.getLayerFromName $.layer.name).ishidden = false
+				local utilsManager = TUtils()
+				local selectedLayers = utilsManager.getSelectedLayers()
 
-				local selectionLayer = selection[1].layer
-				if selectionLayer == undefined then selectionLayer = $.layer
-
-				if selectionLayer != undefined then (
-					for i = 0 to LayerManager.count - 1 do (
+				if selectedLayers != undefined then (
+					for i = 0 to LayerManager.count - 1 do ( --Special indexing!
 						local currentLayer = LayerManager.getLayer i
-						if selectionLayer != currentLayer then
+						--If not found is an unselected layer, so hide it.
+						if findItem selectedLayers currentLayer == 0 then
 							currentLayer.isHidden = true
 					)
 				)
@@ -511,8 +510,6 @@ ButtonText: "Momentum"
 					label lab2 "Roll:"
 					spinner rolSpeed "Roll speed" 	   type: #float   across:2 align:#right range:[-100, 100, 0]
 					button btnSetRolSpd "Set" width:24 align:#left
-					spinner waitDur  "Wait dur"   type: #float across:2 align:#right
-					button btnSetWdur "Set" width:24 align:#left
 					spinner dir     "Platf dir"  type: #integer across:2 align:#right range:[0, 1000, 0]
 					button btnSetDir "Set" width:24 align:#left
 					multiListBox slt "Platf dir slots" items: #("1","2","3","4","5") height:5 width:70 across:2 align:#right
@@ -525,7 +522,6 @@ ButtonText: "Momentum"
 					on btnSetZrot	pressed do (setAttribute "rotateData" #z 		zRot.value)
 					on btnSetRotSpd	pressed do (setAttribute "rotateData" #rotSpeed rotSpeed.value)
 					on btnSetRolSpd	pressed do (setAttribute "rotateData" #rolSpeed rolSpeed.value)
-					on btnSetWdur	pressed do (setAttribute "rotateData" #wait 	waitDur.value)
 					on btnSetDir	pressed do (setAttribute "rotateData" #dir	 	dir.value)
 					on btnSetSlot	pressed do (setAttribute "rotateData" #slot	 	slt.selection)
 
@@ -535,7 +531,6 @@ ButtonText: "Momentum"
 						setAttribute "rotateData" #z 		zRot.value
 						setAttribute "rotateData" #rotSpeed rotSpeed.value
 						setAttribute "rotateData" #rolSpeed rolSpeed.value
-						setAttribute "rotateData" #wait 	waitDur.value
 						setAttribute "rotateData" #dir	 	dir.value
 						setAttribute "rotateData" #slot	 	slt.selection
 					)
@@ -693,8 +688,26 @@ ButtonText: "Momentum"
 				rollout lightParams "Light parameters" (
 					spinner lfov "FoV" type: #float across:2 range:[0, 1000.0, 40.0] --min, max, initial value
 					button btnSetLfov "Set" width:24 align:#left
+					group "Flicker" (
+						checkbox flick "Add flicker" type: #boolean across:2 align:#right
+						button btnSetFlick "Set" width:24 align:#left
+						spinner inVar "Int var"		 type: #float across:2 align:#right range:[0, 1000.0, 0.1]
+						button btnSetinVar "Set" width:24 align:#left
+						spinner varSpd "Var speed"	 type: #float across:2 align:#right range:[0, 1000.0, 0.5]
+						button btnSetVarSpd "Set" width:24 align:#left
+					)
+					button btnSetAll "SetAll"
 
-					on btnSetLfov pressed do (setAttribute "lightData" #fov lfov.value)
+					on btnSetLfov   pressed do (setAttribute "lightData" #fov lfov.value)
+					on btnSetFlick  pressed do (setAttribute "lightData" #fli flick.state)
+					on btnSetinVar  pressed do (setAttribute "lightData" #inV inVar.value)
+					on btnSetVarSpd pressed do (setAttribute "lightData" #vSp varSpd.value)
+					on btnSetAll   pressed do (
+						setAttribute "lightData" #fov lfov.value
+						setAttribute "lightData" #fli flick.state
+						setAttribute "lightData" #inV inVar.value
+						setAttribute "lightData" #vSp varSpd.value
+					)
 				)
 
 				rollout camParams "Camera parameters" (
@@ -739,7 +752,7 @@ ButtonText: "Momentum"
 					"enemyData":    ( rollToOpen = enemyParams	  
 									  setAttrWinHeight = 3 + heightPerButton * 8 )
 					"lightData":    ( rollToOpen = lightParams    
-									  setAttrWinHeight = 3 + heightPerButton * 2 )
+									  setAttrWinHeight = 3 + heightPerButton * 7 )
 					"mechData":     ( rollToOpen = mechParams	  
 									  setAttrWinHeight = 3 + heightPerButton * 10 )
 					"mechTrigData": ( rollToOpen = mechTrigParams 

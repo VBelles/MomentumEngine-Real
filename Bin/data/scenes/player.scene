@@ -469,7 +469,23 @@
 				]
 			},
 			"particles": {
+				"launch": false,
 				"systems":[
+					{
+						"id": "run_dust",
+						"core": "data/particles/dust.particles",
+						"offset": "0 0 0"
+					},
+					{
+						"id": "landing",
+						"core": "data/particles/player/landing.particles",
+						"offset": "0 0 0"
+					},
+					{
+						"id": "release_power",
+						"core": "data/particles/player/release_power.particles",
+						"offset": "0 0.75 0"
+					},
 					{
 						"id": "fast_attack_1",
 						"core": "data/particles/slash/fast_attack_1.particles",
@@ -505,8 +521,17 @@
 						"core": "data/particles/slash/fast_attack_2.particles",
 						"offset": "0 1.1 0",
 						"rotation_offset": "-0.383 0.924 0 0"
+					},
+					{
+						"id": "lvl_up_2",
+						"core": "data/particles/player/player_power_2.particles",
+						"offset": "0 0.4 0"
+					},
+					{
+						"id": "lvl_up_3",
+						"core": "data/particles/player/player_power_3.particles",
+						"offset": "0 0.4 0"
 					}
-					
 				]
 			}
 		}

@@ -123,11 +123,12 @@ namespace GUI {
 			}
 			else {
 				VEC2 minUV = VEC2(characters[c].x / (float)scaleW, characters[c].y / (float)scaleH);
-				VEC2 maxUV = minUV + VEC2(characters[c].width / (float)scaleW, characters[c].height / (float)scaleH);
+				VEC2 maxUV = minUV + VEC2((characters[c].width + characters[c].xoffset + spacing[0]) / (float)scaleW,
+					(characters[c].height + characters[c].yoffset + spacing[1]) / (float)scaleH);
 				MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
 				gap += VEC2(characters[c].xadvance / (float)size, 0.f);
 
-				VEC2 charSize = VEC2(characters[c].width / (float)size, characters[c].height / (float)lineHeight);
+				VEC2 charSize = VEC2(characters[c].width / (float)size, characters[c].height / (float)size);
 
 				EngineGUI.renderText(w, fontTexture, minUV, maxUV, color, charSize);
 			}

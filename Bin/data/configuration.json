@@ -1,13 +1,13 @@
 {
 	"camera": {
-		"camera_speed": 0.5,
+		"camera_speed": 1.0,
 		"camera_speed_pad": 2.0,
 		"invert_x_axis": false,
 		"invert_y_axis": false
 	},
 	"screen": {
-		"fullscreen": false,
-		"resolution": "1280 720",
+		"fullscreen": true,
+		"resolution": "1920 1080",
 		"vsync": false
 	}
 }
