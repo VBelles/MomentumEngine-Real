@@ -469,7 +469,7 @@ void TCompPlayerModel::disableClimbing() {
 }
 
 void TCompPlayerModel::onPlatform() {
-	getCollider()->controller->setSlopeLimit(cosf(deg2rad(45)));
+	getCollider()->controller->setSlopeLimit(cosf(deg2rad(55)));
 	platformChangeSlopeTimer.reset();
 	//dbg("On platform\n");
 }
