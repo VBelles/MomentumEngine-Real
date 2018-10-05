@@ -19,7 +19,7 @@ ButtonText: "Momentum"
 
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 5
+	local numberOfButtons = 6
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	/* To get desktop resolution, valid for multiple screens:
@@ -150,6 +150,8 @@ ButtonText: "Momentum"
 		
 		button btn_hideOtherLayers "Hide other layers" across:2 tooltip:"Hide all layers except selected object's layer"
 		button btn_showAllLayers "Show all layers" tooltip:"Shows all layers"
+
+		button btn_collapAllLayers "Collapse all layers" tooltip:"Collapses all layers"
 
 		fn attachElems = (
 			try (
@@ -292,6 +294,17 @@ ButtonText: "Momentum"
 			)
 		)
 
+		fn collapseAllLayers = (
+			try (
+				gc()
+				clearListener()
+				local utilsManager = TUtils()
+				utilsManager.collapseAllLayers()
+			) catch (
+				MessageBox ("Error hiding layer:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
 		on btn_attach_elems 	pressed do ( attachElems() )
 		on btn_detach_elems 	pressed do ( detachElems() )
 		on btn_check_dds 		pressed do ( checkDDS() )
@@ -303,6 +316,7 @@ ButtonText: "Momentum"
 		on btn_paste_posrot 	pressed do ( pasteNamePosRot() )
 		on btn_hideOtherLayers  pressed do ( hideAllLayersButCurrent() )
 		on btn_showAllLayers    pressed do ( showAllLayers() )
+		on btn_collapAllLayers  pressed do ( collapseAllLayers() )
 
 		-- Resize window if rollout collapses.
 		on utils rolledUp state do (
