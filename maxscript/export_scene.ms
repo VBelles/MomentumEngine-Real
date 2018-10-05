@@ -9,26 +9,26 @@ debugMode = false
 
 escapeEnable = true --Allow abort script execution holding ESC.
 
-global uniqueCoins   	= #()
-global uniqueEnemies 	= #()
-global uniqueAltars  	= #()
-global uniqueTeleports  = #()
-global uniqueLifePieces = #()
+uniqueCoins   	  = #()
+uniqueEnemies 	  = #()
+uniqueAltars  	  = #()
+uniqueTeleports   = #()
+uniqueLifePieces  = #()
 
-global brokenMaps    	= #()
+brokenMaps    	= #()
 
-global luaMechSys		= #()
+luaMechSys		= #()
 
-global toAddSpikes		= #()
+toAddSpikes		= #()
 
-global resources 		= #()
+resources 		= #()
 
-global platfDirector	= #(#()) --#(slot1, slot2, etc.) | slot1 = #("name1", "name2", etc.)
-global platfDirectors 	= #(platfDirector)
-global platfDirWaits	= #()
+platfDirector	= #(#()) --#(slot1, slot2, etc.) | slot1 = #("name1", "name2", etc.)
+platfDirectors 	= #(platfDirector)
+platfDirWaits	= #()
 
-global pureOnSuffix = "pureON"
-global pureSuffix	= "pure"
+pureOnSuffix  = "pureON"
+pureSuffix	  = "pure"
 
 --------------------------------------------------------------------------------
 struct TJsonFormatter (
@@ -2579,7 +2579,7 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
-TODO: Exportar point light (omnilight).
+TODO: Mirar cómo reiniciar las globales bien.
 
 NOTA: Si una capa pasa a estar vacía, no se exporta pero no se borra el
 	  archivo anterior, así que se queda basura.

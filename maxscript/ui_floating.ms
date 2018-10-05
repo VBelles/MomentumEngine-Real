@@ -262,15 +262,14 @@ ButtonText: "Momentum"
 			try (
 				gc()
 				clearListener()
-				--(LayerManager.getLayerFromName $.layer.name).ishidden = false
+				local utilsManager = TUtils()
+				local selectedLayers = utilsManager.getSelectedLayers()
 
-				local selectionLayer = selection[1].layer
-				if selectionLayer == undefined then selectionLayer = $.layer
-
-				if selectionLayer != undefined then (
-					for i = 0 to LayerManager.count - 1 do (
+				if selectedLayers != undefined then (
+					for i = 0 to LayerManager.count - 1 do ( --Special indexing!
 						local currentLayer = LayerManager.getLayer i
-						if selectionLayer != currentLayer then
+						--If not found is an unselected layer, so hide it.
+						if findItem selectedLayers currentLayer == 0 then
 							currentLayer.isHidden = true
 					)
 				)
