@@ -99,7 +99,7 @@ Studio::EventInstance* CModuleSound::emitEvent(const std::string& sound, const F
 	Studio::EventInstance* eventInstance = nullptr;
 	res = system->getEvent(sound.c_str(), &descriptor);
 	if (!descriptor) {
-		dbg("Event %s not found\n", sound);
+		dbg("Event %s not found\n", sound.c_str());
 		return nullptr;
 	}
 	res = descriptor->createInstance(&eventInstance);

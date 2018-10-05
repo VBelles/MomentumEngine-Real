@@ -4,7 +4,8 @@
 
 class TCompMusic : public TCompBase {
 private:
-	
+	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
+
 	//Message callbacks
 	void onEntityCreated(const TMsgEntityCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
