@@ -7,62 +7,7 @@
       {
         "slots":
         [
-          {
-            "wait_time": 3.5,
-            "platforms":
-            [
-              "dani_mariosunshine_MS004",
-              "dani_mariosunshine_MS005"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "platform_director_2",
-      "platforms_director":
-      {
-        "slots":
-        [
-          {
-            "wait_time": 0.7,
-            "platforms":
-            [
-              "Plataformeo_hex_004",
-              "Plataformeo_hex_002",
-              "Plataformeo_hex_000"
-            ]
-          },
-          {
-            "wait_time": 1.2,
-            "platforms":
-            [
-              "Plataformeo_hex_004",
-              "Plataformeo_hex_002",
-              "Plataformeo_hex_000"
-            ]
-          },
-          {
-            "wait_time": 0.7,
-            "platforms":
-            [
-              "Plataformeo_hex_005",
-              "Plataformeo_hex_003",
-              "Plataformeo_hex_001"
-            ]
-          },
-          {
-            "wait_time": 1.2,
-            "platforms":
-            [
-              "Plataformeo_hex_005",
-              "Plataformeo_hex_003",
-              "Plataformeo_hex_001"
-            ]
-          }
+
         ]
       }
     }
