@@ -48,11 +48,11 @@
     "data/scenes/platf_director.scene",
     
     "data/scenes/milestone4_andrea-0.scene",
-    "data/scenes/test_particles.scene",
     
     "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
+    "data/scenes/test_particles.scene",
     "data/scenes/prefabs-0.scene",
     "data/scenes/prefabs-trimesh.scene",
     "data/scenes/milestone4_dani-spikes.scene",
