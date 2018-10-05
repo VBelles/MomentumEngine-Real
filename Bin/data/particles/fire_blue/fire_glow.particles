@@ -11,7 +11,7 @@
         "angle": 3,
         "interval": 0.1,
         "count": 1,
-        "duration": 3
+        "cyclic": true
     },
     "movement": {
         "velocity": 1,
@@ -23,27 +23,24 @@
         "initial_random_rotation": true
     },
     "render": {
-        "texture": "data/textures/particles/fire/fire.dds",
-        "additive": false,
-        "frame_size": "0.5 0.5",
-        "num_frames": 4,
-        "initial_random_frame": true,
-        "frame_speed": 0
+        "texture": "data/textures/particles/fire/sparks.dds",
+        "additive": true
     },
     "size": {
-        "scale": 0.85,
+        "scale": 3,
         "scale_variation": 0.1,
         "sizes": [
             [0.0, 0.7],
-            [1.0, 1.5]
+            [1.0, 1]
         ]
     },
     "color": {
         "opacity": 1,
         "colors": [
-            [0.0,"0.2 0.2 0.2 0.6"],
-            [0.8," 0.2 0.2 0.2 0.2"],
-            [1,"0 0 0 0"]
+            [0.000,"1 1 1 0"],
+            [0.135,"0.38 0.83 1 0.7"],
+            [0.315,"0.082 0.36 1 1"],
+            [1.000,"0 0.1 1 0"]
         ]
     }
 }
