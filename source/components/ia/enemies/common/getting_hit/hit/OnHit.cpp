@@ -59,7 +59,7 @@ int OnHit::execAction(float delta) {
 		}
 
 		if (enemy->attacker != PLAYER_NAME) {
-			enemy->onDisappear = true;
+			enemy->ignoreMessages = true;
 			enemy->resetCurrent();
 		}
 	}
