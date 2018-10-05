@@ -34,7 +34,7 @@
 							"name": "previous",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/linux.dds",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -48,7 +48,7 @@
 							"name": "next",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/gui/menu_boton.dds",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -203,7 +203,7 @@
 							"name": "previous",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/linux.dds",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -217,7 +217,7 @@
 							"name": "next",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/gui/menu_boton.dds",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -372,7 +372,7 @@
 							"name": "previous",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/linux.dds",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -386,7 +386,7 @@
 							"name": "next",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/gui/menu_boton.dds",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -429,7 +429,7 @@
 							"name": "previous",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/linux.dds",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -443,7 +443,7 @@
 							"name": "next",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/gui/menu_boton.dds",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -486,7 +486,7 @@
 							"name": "previous",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/linux.dds",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -500,7 +500,7 @@
 							"name": "next",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/gui/menu_boton.dds",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -543,7 +543,7 @@
 							"name": "previous",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/linux.dds",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -557,7 +557,7 @@
 							"name": "next",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/gui/menu_boton.dds",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -620,7 +620,7 @@
 							"name": "previous",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/linux.dds",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
@@ -634,7 +634,7 @@
 							"name": "next",
 							"type": "button",
 							"size": "50 50",
-							"texture": "data/textures/gui/menu_boton.dds",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
