@@ -1638,6 +1638,30 @@ struct TSceneExporter (
 		return true
 	),
 
+	-- --COMP: LIGHT FLICKER----------------------------------------------------
+	fn exportLightFlick obj = (
+		if attrManager.hasAttribute obj "lightData" then (
+			local flick	= attrManager.getAttrValue obj "lightData" #fli
+			if flick == undefined then flick = false
+			if flick then (
+				local inVar = 0.1
+				local varSpd = 0.5
+				inVar  = attrManager.getAttrValue obj "lightData" #inV
+				if inVar == undefined then inVar = 0.1
+				varSpd = attrManager.getAttrValue obj "lightData" #vSp
+				if varSpd == undefined then inVar = 0.5
+
+				fs.writeComma()
+				fs.writeKey "light_flicker"
+				fs.beginObj()
+					fs.writeKeyValue "intensityVariation" inVar
+					fs.writeComma()
+					fs.writeKeyValue "variationSpeed" varSpd
+				fs.endObj()
+			)
+		)
+	),
+
 	-- --ENTITY: LIGHT (also exports child line)--------------------------------
 	fn exportEntityLight obj nValidObjs = (
 		local objClass = classOf obj
@@ -1657,35 +1681,49 @@ struct TSceneExporter (
 		-- http://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_E6767B0D_B5BA_4422_A59F_FD5673FE550E_htm
 			exportName obj
 			
+			fs.writeComma()
+			local lightType = "light_dir"
 			if objClass == TargetDirectionalLight or
 				 objClass == TargetSpot then (
-				fs.writeComma()
 				--[3] is the Transform.
 				exportTransform obj lookAtCoord:obj.Target[3].pos
+			) else (
+				exportTransform obj noRot:true
+				lightType = "light_point"
 			)
+
 			fs.writeComma()
-			fs.writeKey "light_dir"
+			fs.writeKey lightType
 			fs.beginObj()
 				fs.writeKeyValue "intensity" obj.multiplier
+				if objClass == Omnilight then (
+					fs.writeComma()
+					fs.writeKeyValue "radius" obj.DecayRadius
+				)
 				fs.writeComma()
-				fs.writeKeyValue "color" (obj.color as point3)
+				fs.writeKeyValue "color" ((obj.color as point3) / 255)
 				if obj.projector then (
 					fs.writeComma()
 					fs.writeKeyValue "projector" obj.projectorMap
 				)
-				fs.writeComma()
-				-- obj.nearAttenEnd for z_near
-				fs.writeKeyValue "z_far" obj.farAttenEnd
-				fs.writeComma()
 
-				local fov = 40
-				--Get from attribute if it exists.
-				if attrManager.hasAttribute obj "lightData" then (
-					fov	= attrManager.getAttrValue obj "lightData" #fov
-					if fov == undefined then fov = 40
+				if objClass != Omnilight then (
+					fs.writeComma()
+					-- obj.nearAttenEnd for z_near
+					fs.writeKeyValue "z_far" obj.farAttenEnd
+
+					fs.writeComma()
+					local fov = 40
+					--Get from attribute if it exists.
+					if attrManager.hasAttribute obj "lightData" then (
+						fov	= attrManager.getAttrValue obj "lightData" #fov
+						if fov == undefined then fov = 40
+					)
+					fs.writeKeyValue "fov" fov
 				)
-				fs.writeKeyValue "fov" fov
 			fs.endObj()
+
+			exportLightFlick obj --Add light flicker if it exists.
 			-- Add child spline if it exists.
 			if hasChildLine obj then exportSpline obj
 		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
@@ -1831,8 +1869,8 @@ struct TSceneExporter (
 		return true
 	),
 
-	-- --ENTITY: DEFAULT (exports editable mesh)--------------------------------
-	fn exportEntityDefault obj nValidObjs = (
+	-- --Fill platfDirectors and platfDirWaits arrays.
+	fn getPlatfDirInfo obj = (
 		if isDummyMove obj then (
 			local dirID = 0
 			local slotWaits = #(0.0, 0.0, 0.0, 0.0, 0.0)
@@ -1862,6 +1900,11 @@ struct TSceneExporter (
 				--format "platfDirWaits: %\n" platfDirWaits as string --DEBUG
 			)
 		)
+	),
+
+	-- --ENTITY: DEFAULT (exports editable mesh)--------------------------------
+	fn exportEntityDefault obj nValidObjs = (
+		getPlatfDirInfo obj
 
 		--We could copy obj and turn it into Editable_mesh, but would lose children.
 		--TODO: Copy also children and avoid the problem?
@@ -2327,7 +2370,7 @@ struct TSceneExporter (
 		fs.begin plDirFilePath --Create file.
 		fs.beginArray()
 
-		DEBUGprintPlatfDirs() --DEBUG
+		--DEBUGprintPlatfDirs() --DEBUG
 
 		local validDirectors = 0
 		for i = 1 to platfDirectors.count where
@@ -2466,6 +2509,7 @@ struct TSceneExporter (
 			if layerName == "prefabFlying" then scenePath = project_path + prefabPath + "test_enemyFlying.prefab"
 
 			-- Avoid creating scene if layer is empty or invisible.
+			-- TODO: If the scene file exists and now the layer is empty, the file should be deleted.
 			if layerObjs.count >= 1 and not layer.isHidden then (
 				format "Exporting to %\n" scenePath
 				format "Please wait...\n"
