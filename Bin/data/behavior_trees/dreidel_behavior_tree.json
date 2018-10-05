@@ -4,6 +4,31 @@
     "type": "priority",
     "children": [
       {
+        "name": "disappear",
+        "type": "sequence",
+        "condition": {
+          "type": "OnDisappearCondition"
+        },
+        "children": [
+          {
+            "name": "onDisappearAction",
+            "type": "action",
+            "action": {
+              "type": "OnDisappearAction",
+              "animation": "enemigo_bola_desaparecer"
+            }
+          },
+          {
+            "name": "disappearAction",
+            "type": "action",
+            "action": {
+              "type": "DisappearAction",
+              "animation": "enemigo_bola_desaparecer"
+            }
+          }
+        ]
+      },
+      {
         "name": "spawn",
         "type": "sequence",
         "condition": {
@@ -286,28 +311,6 @@
               "type": "DeathAction",
               "animation": "enemigo_bola_muerte"
             }
-          },
-          {
-            "name": "disappear",
-            "type": "sequence",
-            "children": [
-              {
-                "name": "onDisappearAction",
-                "type": "action",
-                "action": {
-                  "type": "OnDisappearAction",
-                  "animation": "enemigo_bola_desaparecer"
-                }
-              },
-              {
-                "name": "disappearAction",
-                "type": "action",
-                "action": {
-                  "type": "DisappearAction",
-                  "animation": "enemigo_bola_desaparecer"
-                }
-              }
-            ]
           }
         ]
       },
@@ -564,8 +567,7 @@
                         "action": {
                           "type": "OnAttackAction",
                           "animation": "enemigo_bola_ataquelento",
-                          "attack": "area_attack",
-                          "particles_offset": "0 0.4 0"
+                          "attack": "area_attack"
                         }
                       },
                       {

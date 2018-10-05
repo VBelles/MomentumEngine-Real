@@ -23,4 +23,8 @@ public:
 	void render() override;
 	Respawner* getRespawner();
 	EnemyManager * getEnemyManager();
+
+	void showChrysalis();
+	void showChrysalis(float time);
+	void hideChrysalis();
 };

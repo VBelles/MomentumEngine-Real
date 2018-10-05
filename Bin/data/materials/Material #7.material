@@ -1,13 +1,14 @@
 {
-  "technique": "pbr_mix.tech",
-  "type": "mix",
+  "technique": "pbr.tech",
   "shadows": true,
-  "textures": {},
-  "mats":
-  [
-    "data/materials/Civilization Wall.material",
-    "data/materials/Gaps.material",
-    "data/materials/Emissive.material"
-  ],
-  "mix_blend_weights": "data/textures/tower_mixmask.dds"
+  "textures":
+  {
+    "albedo": "data/textures/root_Basecolor.dds",
+    "normal": "data/textures/root_Normal.dds",
+    "metallic": "data/textures/root_Metallic.dds",
+    "roughness": "data/textures/root_Roughness.dds",
+    "self_illum": "data/textures/root_Emissive.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
 }

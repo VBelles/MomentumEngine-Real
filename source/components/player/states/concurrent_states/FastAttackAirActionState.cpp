@@ -24,6 +24,7 @@ void FastAttackAirActionState::update(float delta) {
 		getHitboxes()->enable(hitbox);
 		phase = AttackPhases::Active;
 		getSound()->play("attack");
+		getParticles()->launch("air_attack");
 	}
 
 	/*if (!isSlashOut && movementTimer.elapsed() > frames2sec(10)) {
@@ -36,10 +37,6 @@ void FastAttackAirActionState::update(float delta) {
 		getTrailSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 	}*/
 
-	if (!isUltraSlashOut && phase == AttackPhases::Active) {
-		isUltraSlashOut = true;
-		slash(SLASH_CLOCKWISE, VEC3(0, 1, 0), deg2rad(80), deg2rad(-90));
-	}
 }
 
 void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
@@ -52,7 +49,6 @@ void FastAttackAirActionState::onStateEnter(IActionState * lastState) {
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	movementTimer.reset();
 	isSlashOut = false;
-	isUltraSlashOut = false;
 }
 
 void FastAttackAirActionState::onStateExit(IActionState * nextState) {
@@ -63,7 +59,6 @@ void FastAttackAirActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->lockTurning = false;
 	getSkeleton()->removeAction(animation, 0.2f);
 	isSlashOut = false;
-	isUltraSlashOut = false;
 	//getTrailSlash(SlashType::RIGHT_FOOT)->stopEmitting();
 }
 

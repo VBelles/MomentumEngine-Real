@@ -67,7 +67,8 @@
     "light_flicker",
     "slash",
     "givePower",
-    "sound"
+    "sound",
+    "fire"
   ],
   "render_debug" : [
     "transform",

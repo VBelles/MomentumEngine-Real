@@ -178,7 +178,7 @@
         "distanceToCamera": 10,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "7 4"
+        "centeringCameraSpeed": "4 4"
       }
     }
   }

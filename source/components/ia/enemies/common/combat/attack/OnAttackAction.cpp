@@ -24,6 +24,7 @@ int OnAttackAction::execAction(float delta) {
 	for (auto& particle : particles) {
 		EngineParticles.launchSystem(particle, Particles::LaunchConfig{ enemy->getEntityHandle() });
 	}
+	enemy->launchParticles(enemy->attacks[attack].particles);
 	return Leave;
 }
 

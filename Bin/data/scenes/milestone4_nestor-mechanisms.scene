@@ -23,7 +23,6 @@
            "nes_plataforma_roca_046",
            "nes_plataforma_roca_050",
            "nes_plataforma_roca_047",
-           "nes_plataforma_roca_051",
            "nes_plataforma_roca_048",
            "nes_plataforma_roca_049"
         ]
@@ -486,53 +485,6 @@
            "-123.781 61.9051 -16.8013",
            "-136.807 61.9051 -15.0371",
            "-136.807 61.9051 -15.0371"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_plataforma_roca_051",
-      "transform":
-      {
-        "pos": "-107.236 67.639 -1.23622",
-        "rotation": "0.0 -0.691599 0.0 -0.722281"
-      },
-      "mechanism_system":
-      {
-        "number_of_mechanisms": 1
-      },
-      "activate_listener":
-      {
-        "change_render": true,
-        "change_collider": true,
-        "change_platform": true,
-        "change_animation": true,
-        "render_enabled_on_active": true,
-        "collider_enabled_on_active": true,
-        "platform_enabled_on_active": true,
-        "animation_enabled_on_active": true
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_plataforma_roca_051.mesh",
-          "materials":
-          [
-            "data/materials/platform_terrain_material.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_plataforma_roca_col_051.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
         ]
       }
     }

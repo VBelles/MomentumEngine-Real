@@ -15,11 +15,11 @@ ButtonText: "Momentum"
 	global floater
 	try closeRolloutFloater floater catch()
 
-	local width = 218
+	local width = 218 --Default max width.
 
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 4
+	local numberOfButtons = 5
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	/* To get desktop resolution, valid for multiple screens:
@@ -323,6 +323,10 @@ ButtonText: "Momentum"
 		button btn_addRotation "+ rot" across:3 tooltip:"Adds rotation attributes to selected objects"
 		button btn_delRotation "- rot" tooltip:"Deletes rotation attributes from selected objects"
 		button btn_setAttrRot "Set..." tooltip:"Sets rotation attributes to selected objects"
+
+		button btn_addPlatfDir "+ platf dir" across:3 tooltip:"Adds platform director attributes to selected objects"
+		button btn_delPlatfDir "- platf dir" tooltip:"Deletes platform director attributes from selected objects"
+		button btn_setAttrPlatfDir "Set..." tooltip:"Sets platform director attributes to selected objects"
 		
 		button btn_addMovement "+ move" across:3 tooltip:"Adds movement attributes to selected objects"
 		button btn_delMovement "- move" tooltip:"Deletes movement attributes from selected objects"
@@ -509,10 +513,10 @@ ButtonText: "Momentum"
 					button btnSetRolSpd "Set" width:24 align:#left
 					spinner waitDur  "Wait dur"   type: #float across:2 align:#right
 					button btnSetWdur "Set" width:24 align:#left
-					spinner grup     "Platf group"  type: #integer across:2 align:#right range:[0, 1000, 0]
-					button btnSetGrup "Set" width:24 align:#left
-					spinner waitT    "Group wait t" type: #float   across:2 align:#right range:[0, 1000, 0]
-					button btnSetWaitT "Set" width:24 align:#left
+					spinner dir     "Platf dir"  type: #integer across:2 align:#right range:[0, 1000, 0]
+					button btnSetDir "Set" width:24 align:#left
+					multiListBox slt "Platf dir slots" items: #("1","2","3","4","5") height:5 width:70 across:2 align:#right
+					button btnSetSlot "Set" width:24 align:#left
 
 					button btnSetAll "SetAll"
 
@@ -522,8 +526,8 @@ ButtonText: "Momentum"
 					on btnSetRotSpd	pressed do (setAttribute "rotateData" #rotSpeed rotSpeed.value)
 					on btnSetRolSpd	pressed do (setAttribute "rotateData" #rolSpeed rolSpeed.value)
 					on btnSetWdur	pressed do (setAttribute "rotateData" #wait 	waitDur.value)
-					on btnSetGrup	pressed do (setAttribute "rotateData" #grup	 	grup.value)
-					on btnSetWaitT	pressed do (setAttribute "rotateData" #waitT	waitT.value)
+					on btnSetDir	pressed do (setAttribute "rotateData" #dir	 	dir.value)
+					on btnSetSlot	pressed do (setAttribute "rotateData" #slot	 	slt.selection)
 
 					on btnSetAll	pressed do (
 						setAttribute "rotateData" #x 		xRot.value
@@ -532,8 +536,42 @@ ButtonText: "Momentum"
 						setAttribute "rotateData" #rotSpeed rotSpeed.value
 						setAttribute "rotateData" #rolSpeed rolSpeed.value
 						setAttribute "rotateData" #wait 	waitDur.value
-						setAttribute "rotateData" #grup	 	grup.value
-						setAttribute "rotateData" #waitT	waitT.value
+						setAttribute "rotateData" #dir	 	dir.value
+						setAttribute "rotateData" #slot	 	slt.selection
+					)
+				)
+
+				rollout platfDirParams "Platform director parameters" (
+					spinner direcID "Director ID" type: #integer across:2 align:#right range:[1, 100, 1] --min, max, initial value
+					button btnSetDirID "Set" width:24 align:#left
+					label lab1 "Wait time:"
+					spinner sl1waitT "Slot 1" type: #float across:2 align:#right range:[0.0, 100.0, 0.0]
+					button btnSetSl1wait "Set" width:24 align:#left
+					spinner sl2waitT "Slot 2" type: #float across:2 align:#right range:[0.0, 100.0, 0.0]
+					button btnSetSl2wait "Set" width:24 align:#left
+					spinner sl3waitT "Slot 3" type: #float across:2 align:#right range:[0.0, 100.0, 0.0]
+					button btnSetSl3wait "Set" width:24 align:#left
+					spinner sl4waitT "Slot 4" type: #float across:2 align:#right range:[0.0, 100.0, 0.0]
+					button btnSetSl4wait "Set" width:24 align:#left
+					spinner sl5waitT "Slot 5" type: #float across:2 align:#right range:[0.0, 100.0, 0.0]
+					button btnSetSl5wait "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetDirID	 pressed do (setAttribute "platfDirData" #dirID   xRot.value)
+					on btnSetSl1wait pressed do (setAttribute "platfDirData" #sl1wait sl1waitT.value)
+					on btnSetSl2wait pressed do (setAttribute "platfDirData" #sl2wait sl2waitT.value)
+					on btnSetSl3wait pressed do (setAttribute "platfDirData" #sl3wait sl3waitT.value)
+					on btnSetSl4wait pressed do (setAttribute "platfDirData" #sl4wait sl4waitT.value)
+					on btnSetSl5wait pressed do (setAttribute "platfDirData" #sl5wait sl5waitT.value)
+
+					on btnSetAll	 pressed do (
+						setAttribute "platfDirData" #dirID   xRot.value
+						setAttribute "platfDirData" #sl1wait sl1waitT.value
+						setAttribute "platfDirData" #sl2wait sl2waitT.value
+						setAttribute "platfDirData" #sl3wait sl3waitT.value
+						setAttribute "platfDirData" #sl4wait sl4waitT.value
+						setAttribute "platfDirData" #sl5wait sl5waitT.value
 					)
 				)
 
@@ -697,7 +735,7 @@ ButtonText: "Momentum"
 					"camData":      ( rollToOpen = camParams      
 									  setAttrWinHeight = 3 + heightPerButton * 7 )
 					"collData":     ( rollToOpen = colParams      
-									  setAttrWinHeight = 3 + heightPerButton * 4 )
+									  setAttrWinHeight = 3 + heightPerButton * 6 )
 					"enemyData":    ( rollToOpen = enemyParams	  
 									  setAttrWinHeight = 3 + heightPerButton * 8 )
 					"lightData":    ( rollToOpen = lightParams    
@@ -709,7 +747,9 @@ ButtonText: "Momentum"
 					"moveData":     ( rollToOpen = moveParams	  
 									  setAttrWinHeight = 3 + heightPerButton * 6 )
 					"rotateData":   ( rollToOpen = rotationParams
-									  setAttrWinHeight = 15 + heightPerButton * 11 )
+									  setAttrWinHeight = 15 + heightPerButton * 14 )
+					"platfDirData": ( rollToOpen = platfDirParams
+									  setAttrWinHeight = 3 + heightPerButton * 9 )
 					"uniqueData":   ( rollToOpen = uniqueParams   
 									  setAttrWinHeight = 3 + heightPerButton * 2 )
 					default: ( format "ERROR: invalid defName.\n" )
@@ -728,6 +768,10 @@ ButtonText: "Momentum"
 		on btn_addAttrEnemy pressed do ( addAttribute "enemyData" )
 		on btn_delAttrEnemy pressed do ( delAttribute "enemyData" )
 		on btn_setAttrEnemy pressed do ( openSetAttrWindow("enemyData") )
+
+		on btn_addPlatfDir 	   pressed do ( addAttribute "platfDirData" )
+		on btn_delPlatfDir 	   pressed do ( delAttribute "platfDirData" )
+		on btn_setAttrPlatfDir pressed do  ( openSetAttrWindow("platfDirData") )
 
 		on btn_addRotation pressed do ( addAttribute "rotateData" )
 		on btn_delRotation pressed do ( delAttribute "rotateData" )

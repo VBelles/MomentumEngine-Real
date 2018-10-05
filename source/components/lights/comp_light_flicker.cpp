@@ -30,6 +30,7 @@ void TCompLightFlicker::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 }
 
 void TCompLightFlicker::update(float dt) {
+	if (!active) return;
 	TCompLightPoint* light = lightHandle;
 	light->setIntensity(lerp(previousIntensity, nextIntensity, ratio));
 	ratio += variationSpeed * dt * ((double)rand() / (RAND_MAX)) * 2;
@@ -44,4 +45,12 @@ void TCompLightFlicker::update(float dt) {
 			nextIntensity = originalIntensity + originalIntensity * intensityVariation;
 		}
 	}
+}
+
+void TCompLightFlicker::setActive(bool active) {
+	this->active = active;
+}
+
+bool TCompLightFlicker::isActive() {
+	return active;
 }

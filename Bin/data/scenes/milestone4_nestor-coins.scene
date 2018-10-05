@@ -1304,7 +1304,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "-20.1004 13.0152 102.669"
+        "pos": "-19.1201 13.0152 102.669"
       }
     }
   },
@@ -1315,7 +1315,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "-23.0021 11.3331 102.554"
+        "pos": "-22.0218 11.3331 102.554"
       }
     }
   },

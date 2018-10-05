@@ -25,12 +25,14 @@
     "data/scenes/milestone4_dani-spikes.scene",
     "data/scenes/milestone4_dani-spikesMove.scene",
     "data/scenes/milestone4_dani-cameras_definitivas.scene",
+    "data/scenes/milestone4_dani-fireplaces.scene",
     
     "data/scenes/milestone4_nestor-0.scene",
     "data/scenes/milestone4_nestor-chrysalis.scene",
     "data/scenes/milestone4_nestor-coins.scene",
     "data/scenes/milestone4_nestor-collisions.scene",
     "data/scenes/milestone4_nestor-enemies.scene",
+    "data/scenes/milestone4_nestor-fireplaces.scene",
     "data/scenes/milestone4_nestor-life_pieces.scene",
     "data/scenes/milestone4_nestor-mechanisms.scene",
     "data/scenes/milestone4_nestor-movables.scene",
@@ -40,13 +42,17 @@
     "data/scenes/milestone4_nestor-triggers.scene",
     "data/scenes/milestone4_nestor-trimesh.scene",
     
+    "data/scenes/milestone4_miguel_raices-0.scene",
+    "data/scenes/milestone4_miguel_raices-trimesh.scene",
+
+    "data/scenes/platf_director.scene",
+    
     "data/scenes/milestone4_andrea-0.scene",
     
     "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
     "data/scenes/test_particles.scene",
-    "data/scenes/platf_director.scene",
     "data/scenes/prefabs-0.scene",
     "data/scenes/prefabs-trimesh.scene",
     "data/scenes/milestone4_dani-spikes.scene",
@@ -60,10 +66,9 @@
     "data/scenes/milestone4_jose-pure.scene",
     "data/scenes/milestone4_jose-spikes.scene",
     "data/scenes/milestone4_jose-trimesh.scene",
-    "data/scenes/milestone4_andrea-0.scene",
     "data/scenes/test_gorila.scene",
     "data/scenes/plataformeo.scene",
-    "data/scenes/plataformeo01.scene",
+    "data/scenes/plataformeo01.scene",         
     "data/scenes/test_instancing.scene",
     "data/scenes/test_spikes.scene",
     "data/scenes/milestone3-0.scene",

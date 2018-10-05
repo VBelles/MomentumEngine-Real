@@ -81,8 +81,8 @@ void FastFinisher2ActionState::update(float delta) {
 
 	if (!isUltraSlashOut && movementTimer.elapsed() > frames2sec(45)) {
 		isUltraSlashOut = true;
-		slash(SLASH_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(45));
-		slash(SLASH_COUNTER_CLOCKWISE, VEC3(0.f, 1.f, 0.f), deg2rad(0), deg2rad(0), deg2rad(-45));
+		getParticles()->launch("fast_finisher_2_right");
+		getParticles()->launch("fast_finisher_2_left");
 		getSound()->play("attack");
 	}
 }

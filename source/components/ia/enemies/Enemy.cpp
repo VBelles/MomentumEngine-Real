@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "Enemy.h"
+#include "components/player/comp_player_model.h"
 #include "components/comp_hitboxes.h"
 #include "components/comp_give_power.h"
-#include "components/player/comp_player_model.h"
 
 Enemy::~Enemy() {
 }
@@ -13,6 +13,7 @@ void Enemy::load(const json& j) {
 		IBehaviorTree::load(loadJson(behaviorTreeFile));
 	}
 
+	ignoreMessages = false;
 	onHit = false;
 	onOutOfBounds = false;
 	onSpawn = false;
@@ -74,7 +75,11 @@ void Enemy::load(const json& j) {
 		attack.attackSpawnOffset = jAttack.count("attack_spawn_offset") ? loadVEC3(jAttack["attack_spawn_offset"]) : attack.attackSpawnOffset;
 		attack.attackTargetOffset = jAttack.count("attack_target_offset") ? loadVEC3(jAttack["attack_target_offset"]) : attack.attackTargetOffset;
 		attack.attackPrefab = jAttack.value("attack_prefab", attack.attackPrefab);
-
+		if (jAttack.count("particles")) {
+			for (std::string particleId : jAttack["particles"]) {
+				attack.particles.push_back(particleId);
+			}
+		}
 		attacks[attackName] = attack;
 	}
 
@@ -126,6 +131,7 @@ void Enemy::debugInMenu() {
 		ImGui::Text("Hitboxes handle is valid: %s\n", hitboxesHandle.isValid() ? "true" : "false");
 		ImGui::Text("Power handle is valid: %s\n", powerHandle.isValid() ? "true" : "false");
 		ImGui::Text("Sound handle is valid: %s\n", soundHandle.isValid() ? "true" : "false");
+		ImGui::Text("Particles handle is valid: %s\n", particlesHandle.isValid() ? "true" : "false");
 		ImGui::TreePop();
 	}
 }
@@ -203,6 +209,10 @@ TCompSound* Enemy::getSound() {
 	return soundHandle;
 }
 
+TCompParticles* Enemy::getParticles() {
+	return particlesHandle;
+}
+
 
 void Enemy::resetCurrent() {
 	if (current) {
@@ -211,5 +221,17 @@ void Enemy::resetCurrent() {
 			it->second->onExit();
 		}
 		current = nullptr;
+	}
+}
+
+void Enemy::launchParticles(const std::vector<std::string>& particles) {
+	for (auto& particleId : particles) {
+		getParticles()->launch(particleId);
+	}
+}
+
+void Enemy::killParticles(const std::vector<std::string>& particles) {
+	for (auto& particleId : particles) {
+		getParticles()->kill(particleId);
 	}
 }

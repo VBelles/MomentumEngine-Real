@@ -43,5 +43,10 @@
         "name": "max_coin_bars",
         "type": "int",
         "value": 0
+    },
+    {
+        "name": "chrysalis",
+        "type": "int",
+        "value": 0
     }
 ]

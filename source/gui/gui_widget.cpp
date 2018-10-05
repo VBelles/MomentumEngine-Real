@@ -101,9 +101,11 @@ void CWidget::updateAll(float delta) {
 }
 
 void CWidget::renderAll() {
-	render();
-	for (auto& child : _children) {
-		child->renderAll();
+	if (_params._visible) {
+		render();
+		for (auto& child : _children) {
+			child->renderAll();
+		}
 	}
 }
 

@@ -51,7 +51,8 @@
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
-            "hitbox": "spin_attack"
+            "hitbox": "spin_attack",
+            "particles": "spin_attack"
           },
           {
             "name": "area_attack",
@@ -59,7 +60,8 @@
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
-            "hitbox": "area_attack"
+            "hitbox": "area_attack",
+            "particles": "area_attack"
           },
           {
             "name": "tackle",
@@ -67,7 +69,8 @@
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
-            "hitbox": "tackle"
+            "hitbox": "tackle",
+            "particles": "tackle"
           },
           {
             "name": "launched",
@@ -167,6 +170,26 @@
           {
             "id": "block",
             "path": "event:/PROTA/golpes/golpe_hit"
+          }
+        ]
+      },
+      "particles": {
+        "launch": false,
+        "systems": [
+          {
+            "id": "area_attack",
+            "core": "data/particles/dreidel/area_attack.particles",
+            "offset": "0 1.45 0"
+          },
+          {
+            "id": "spin_attack",
+            "core": "data/particles/dreidel/spin_attack.particles",
+            "offset": "0 0.7 0"
+          },
+          {
+            "id": "tackle",
+            "core": "data/particles/dreidel/tackle.particles",
+            "offset": "0 0.5 0"
           }
         ]
       }

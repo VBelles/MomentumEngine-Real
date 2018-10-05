@@ -404,8 +404,8 @@
 					}
 				]
 			},
-			"sound":{
-				"events":[
+			"sound": {
+				"events": [
 					{
 						"id": "attack",
 						"path": "event:/PROTA/golpes/golpe_movimiento"
@@ -466,6 +466,47 @@
 						"id": "lvl_up_3",
 						"path": "event:/PROTA/cambio de estado/cambio_3"
 					}
+				]
+			},
+			"particles": {
+				"systems":[
+					{
+						"id": "fast_attack_1",
+						"core": "data/particles/slash/fast_attack_1.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "0 1 0 0"
+					},
+					{
+						"id": "fast_attack_2",
+						"core": "data/particles/slash/fast_attack_2.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "0 1 0 0"
+					},
+					{
+						"id": "air_attack",
+						"core": "data/particles/slash/air_attack.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "0.455 -0.455 0.542 0.542"
+					},
+					{
+						"id": "strong_attack_3",
+						"core": "data/particles/slash/strong_attack_3.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "0 1 0 0"
+					},
+					{
+						"id": "fast_finisher_2_right",
+						"core": "data/particles/slash/fast_attack_2.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "0.383 0.924 0 0"
+					},
+					{
+						"id": "fast_finisher_2_left",
+						"core": "data/particles/slash/fast_attack_2.particles",
+						"offset": "0 1.1 0",
+						"rotation_offset": "-0.383 0.924 0 0"
+					}
+					
 				]
 			}
 		}

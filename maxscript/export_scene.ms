@@ -23,7 +23,9 @@ global toAddSpikes		= #()
 
 global resources 		= #()
 
-global platfDirector	= #(#())
+global platfDirector	= #(#()) --#(slot1, slot2, etc.) | slot1 = #("name1", "name2", etc.)
+global platfDirectors 	= #(platfDirector)
+global platfDirWaits	= #()
 
 global pureOnSuffix = "pureON"
 global pureSuffix	= "pure"
@@ -525,6 +527,12 @@ struct TSceneExporter (
 		else return false
 	),
 
+	fn isDummyMove obj = (
+		if classOf obj == Dummy and
+		obj.layer.name == "movables" then return true
+		else return false
+	),
+
 	fn hasGrandchild obj = (
 		if obj.children == undefined then return false
 		for child in obj.children where child.children.count > 0 do return true
@@ -788,14 +796,73 @@ struct TSceneExporter (
 		return true
 	),
 
+	-- --DEBUG ------
+	fn DEBUGprintPlatfDirs = (
+		format "printing all elements:\n"
+		local dirN = 1
+		for d in platfDirectors do (
+			local slotN = 1
+			if d != undefined then (
+				format "--director %--\n" dirN
+				for s in d do (
+					format "slot%: %\n" slotN s
+					slotN += 1
+				)
+			)
+			dirN += 1
+		)
+		dirN = 1
+		format "--platfDirWaits:--\n"
+		for dir in platfDirWaits do (
+			local waitN = 1
+			if dir != undefined then (
+				format "director%: wait [ " dirN
+				for w in dir do (
+					if w != undefined then format "slot%: % " waitN w
+					waitN += 1
+				)
+				format "]\n"
+			)
+			dirN += 1
+		)
+	),
+
+	--Add object name to the slots of its platform director.
+	fn addNameToPlatfDir obj dir slots = (
+		if dir > 0 then (
+			local objName = obj.name
+
+			--Make array of directors big enough.
+			if platfDirectors.count < dir then platfDirectors[dir] = undefined
+
+			for slot in slots do (
+				if platfDirectors[dir] == undefined then (
+					--The director is empty: overwrite.
+					--format "Trying to overwrite in empty dir [dir: % slot: %]\n" dir slot --DEBUG
+					platfDirectors[dir] = #()
+					platfDirectors[dir][slot] = #(objName)
+				) else ( --The director already has data.
+					if platfDirectors[dir][slot] == undefined then (
+						--The slot is empty: overwrite.
+						--format "Trying to overwrite in empty slot [dir: % slot: %]\n" dir slot --DEBUG
+						platfDirectors[dir][slot] = #(objName)
+					) else (
+						--The slot has data: insert (it's string).
+						--format "Trying to insert at the end of [dir: % slot: %]\n" dir slot --DEBUG
+						insertItem objName platfDirectors[dir][slot] \
+								(platfDirectors[dir][slot].count + 1)
+					)
+				)
+			)
+		)
+	),
+
 	-- --COMP: ROTATE (platform_simple)-----------------------------------------
 	fn exportPlatfRotation obj = (
 		local rotAxis = Point3 0 0 1
 		local rotSpeed = 0
 
 		local rolSpeed = 0
-		local wait 	   = 0
-		local grup 	   = 0
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "rotateData" then (
 			local xRot = attrManager.getAttrValue obj "rotateData" #x
@@ -811,10 +878,6 @@ struct TSceneExporter (
 
 			rolSpeed = attrManager.getAttrValue obj "rotateData" #rolSpeed
 			if rolSpeed == undefined then rolSpeed = 0.0
-			wait 	 = attrManager.getAttrValue obj "rotateData" #wait
-			if wait == undefined then wait = 2
-			grup 	 = attrManager.getAttrValue obj "rotateData" #grup
-			if grup == undefined then grup = 0
 		)
 		--Export only if it has rotation speed.
 		if rotSpeed > 0 then (
@@ -829,15 +892,19 @@ struct TSceneExporter (
 			fs.writeKey "roll"
 			fs.beginObj()
 				fs.writeKeyValue "speed" rolSpeed
-				fs.writeComma()
-				fs.writeKeyValue "waitDuration" wait
 			fs.endObj()
 
-			if grup > 0 then (
-				if platfDirector[grup] != undefined then (
-					append platfDirector[grup] obj.name
-				) else insertItem #(obj.name) platfDirector grup
+			local slots = #()
+			local dir = 0
+			if attrManager.hasAttribute obj "rotateData" then (
+				slots = attrManager.getAttrValue obj "rotateData" #slt
+				if slots == undefined then slots = #()
+				--format "obj: % slots: %\n" obj.name slots --DEBUG
+				dir = attrManager.getAttrValue obj "rotateData" #dir
+				if dir == undefined then dir = 0
 			)
+
+			addNameToPlatfDir obj dir slots
 		)
 		return rotSpeed > 0 or rolSpeed > 0
 	),
@@ -1579,7 +1646,8 @@ struct TSceneExporter (
 		   objClass != FreeSpot			  	  and
 		   objClass != Omnilight			  and
 		   objClass != TargetSpot			then (
-			if objClass != Targetobject then format "Warning: invalid object % of class % in lights layer, not exported.\n" obj.name objClass
+			if objClass != Targetobject then format "Warning: invalid object % \
+				of class % in lights layer, not exported.\n" obj.name objClass
 			return false
 		)
 		if nValidObjs > 0 then fs.writeComma()
@@ -1765,6 +1833,36 @@ struct TSceneExporter (
 
 	-- --ENTITY: DEFAULT (exports editable mesh)--------------------------------
 	fn exportEntityDefault obj nValidObjs = (
+		if isDummyMove obj then (
+			local dirID = 0
+			local slotWaits = #(0.0, 0.0, 0.0, 0.0, 0.0)
+			if attrManager.hasAttribute obj "platfDirData" then (
+				dirID = attrManager.getAttrValue obj "platfDirData" #dirID
+				if dirID == undefined then dirID = 0
+				slotWaits[1] = attrManager.getAttrValue obj "platfDirData" #sl1wait
+				if slotWaits[1] == undefined then slotWaits[1] = 0.0
+				slotWaits[2] = attrManager.getAttrValue obj "platfDirData" #sl2wait
+				if slotWaits[2] == undefined then slotWaits[2] = 0.0
+				slotWaits[3] = attrManager.getAttrValue obj "platfDirData" #sl3wait
+				if slotWaits[3] == undefined then slotWaits[3] = 0.0
+				slotWaits[4] = attrManager.getAttrValue obj "platfDirData" #sl4wait
+				if slotWaits[4] == undefined then slotWaits[4] = 0.0
+				slotWaits[5] = attrManager.getAttrValue obj "platfDirData" #sl5wait
+				if slotWaits[5] == undefined then slotWaits[5] = 0.0
+			)
+
+			if dirID > 0 then (
+				if platfDirWaits.count >= dirID then (
+					if platfDirWaits[dirID] != undefined then
+					 format "WARNING: Overwriting platfDirWaits at
+							index % (duplicated platform director).\n" dirID 
+					platfDirWaits[dirID] = slotWaits --Overwrite.
+				) else insertItem slotWaits platfDirWaits dirID
+
+				--format "platfDirWaits: %\n" platfDirWaits as string --DEBUG
+			)
+		)
+
 		--We could copy obj and turn it into Editable_mesh, but would lose children.
 		--TODO: Copy also children and avoid the problem?
 		if classOf obj != Editable_mesh then (
@@ -2222,53 +2320,62 @@ struct TSceneExporter (
 	),
 
 	fn exportPlatfDirector = (
-		if platfDirector.count == 0 then return false
+		if platfDirectors.count == 0 then return false
 
 		local plDirFilePath = project_path + scenes_path + "platf_director.scene"
 		
 		fs.begin plDirFilePath --Create file.
 		fs.beginArray()
+
+		DEBUGprintPlatfDirs() --DEBUG
+
+		local validDirectors = 0
+		for i = 1 to platfDirectors.count where
+		platfDirectors[i] != undefined and
+		platfDirectors[i][1] != undefined do (
+			local director = platfDirectors[i]
+			if validDirectors >= 1 then fs.writeComma()
+
 			beginEntity()
-			fs.writeKeyValue "name" "platform_director"
+			fs.writeKeyValue "name" ("platform_director_" + i as string)
 			fs.writeComma()
 			fs.writeKey "platforms_director"
 			fs.beginObj()
 				fs.writeKey "slots"
 				fs.beginArray()
-					local validPlGroups = 0
-					for i = 1 to platfDirector.count do (
-						if platfDirector[i] != undefined and 
-						   platfDirector[i][1] != undefined then (
-							format "platfDirector.count: %\n" platfDirector.count --DEBUG
-							format "platfDirector[1]: %\n" platfDirector[1] --DEBUG
-							if validPlGroups >= 1 then fs.writeComma()
-							fs.beginObj()
-								local obj = getNodeByName platfDirector[i][1]
-								local waitTime = 0
+					local validPlSlots = 0
+					for j = 1 to director.count where
+					director[j] != undefined and
+					director[j][1] != undefined do (
+						local slot = director[j]
+						if validPlSlots >= 1 then fs.writeComma()
 
-								if attrManager.hasAttribute obj "rotateData" then (
-									waitTime = attrManager.getAttrValue obj "rotateData" #waitT
-									if waitTime == undefined then waitTime = 0
-								)
-
-								fs.writeKeyValue "wait_time" waitTime
-								fs.writeComma()
-								fs.writeKey "platforms"
-								fs.beginArray()
-								format "platfDirector[i].count: %\n" platfDirector[i].count --DEBUG
-								for j = 1 to platfDirector[i].count do (
-									if j != 1 then fs.writeComma()
-									fs.writeName platfDirector[i][j]
-								)
-								fs.endArray() --end array platforms.
-							fs.endObj() --end obj slot.
-
-							validPlGroups += 1
-						)
+						fs.beginObj()
+							local waitTime = 0
+							if platfDirWaits[i] != undefined then 
+								waitTime = platfDirWaits[i][j]
+							else format "--ERROR: Missing Platf director % used in %!\n" i slot[1]
+							fs.writeKeyValue "wait_time" waitTime
+							fs.writeComma()
+							fs.writeKey "platforms"
+							fs.beginArray()
+							local first = true
+							for platfName in slot do (
+								if not first then fs.writeComma()
+								fs.writeName platfName
+								first = false
+							)
+							fs.endArray() --end array platforms.
+						fs.endObj() --end obj slot.
+						validPlSlots += 1
 					)
 				fs.endArray() --end array slots.
 			fs.endObj() --end obj platforms_director.
 			endEntity()
+
+			validDirectors += 1
+		)
+
 		fs.endArray()
 		fs.end()
 	),
@@ -2428,7 +2535,10 @@ TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
 	  para whitebox (está en función exportMaterial).
 
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
+TODO: Exportar point light (omnilight).
 
+NOTA: Si una capa pasa a estar vacía, no se exporta pero no se borra el
+	  archivo anterior, así que se queda basura.
 NOTA: En las splines hijas de las cámaras y enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos
 	  se tienen los knots por si hacen falta.

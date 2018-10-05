@@ -15,8 +15,11 @@ COption::~COption() {
 void COption::render() {
 	TOptionParams& optionParams = _states[_currentState];
 
+	VEC2 textSpace = _params._size;
+	textSpace.x -= _previous->getParams()->_size.x + _next->getParams()->_size.x + _text->getParams()->_size.x;
+
 	// render image
-	MAT44 sz = MAT44::CreateScale(_params._size.x, _params._size.y, 1.f);
+	MAT44 sz = MAT44::CreateScale(optionParams._params._size.x, optionParams._params._size.y, 1.f);
 	EngineGUI.renderTexture(sz * _absolute,
 		optionParams._imageParams._texture,
 		optionParams._imageParams._minUV,
@@ -29,8 +32,6 @@ void COption::render() {
 	float textWidth = font.getWidth(optionParams._textParams._text);
 	float textHeight = font.getHeight();
 
-	VEC2 textSpace = _params._size;
-	textSpace.x -= _previous->getParams()->_size.x + _next->getParams()->_size.x + _text->getParams()->_size.x;
 	VEC2 offset;
 	if (optionParams._textParams._hAlign == TTextParams::Center)
 		offset.x = textSpace.x * 0.5f - textWidth * 0.5f;

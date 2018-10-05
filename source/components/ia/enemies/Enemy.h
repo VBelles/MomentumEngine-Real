@@ -3,10 +3,12 @@
 #include "components/ia/behavior_tree/IBehaviorTree.h"
 #include "components/player/attack_info.h"
 #include "modules/system_modules/sound/comp_sound.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 class TCompHitboxes;
 class TCompGivePower;
 class TCompPlayerModel;
+class TCompParticles;
 
 enum EnemyAttackType {
 	Melee, Ranged
@@ -22,6 +24,7 @@ struct EnemyAttack {
 	VEC3 attackSpawnOffset = VEC3::Zero;
 	VEC3 attackTargetOffset = VEC3::Zero;
 	std::string attackPrefab = "";
+	std::vector<std::string> particles;
 };
 
 class Enemy : public IBehaviorTree {
@@ -30,6 +33,9 @@ public:
 
 	std::string behaviorTreeFile = "";
 
+	bool ignoreMessages = false;
+
+	bool onDisappear = false;
 	bool onHit = false;
 	bool onOutOfBounds = false;
 	bool onSpawn = false;
@@ -66,6 +72,7 @@ public:
 
 	//Combat
 	AttackInfo receivedAttack;
+	std::string attacker = "";
 	float chaseFov = 0.f;
 	float fovChaseDistanceSqrd = 0.f;
 	float smallChaseRadiusSqrd = 0.f;
@@ -117,6 +124,7 @@ public:
 	CHandle hitboxesHandle;
 	CHandle powerHandle;
 	CHandle soundHandle;
+	CHandle particlesHandle;
 
 	//Sound
 	FMOD_3D_ATTRIBUTES soundAttributes;
@@ -137,7 +145,10 @@ public:
 	TCompSkeleton* getSkeleton();
 	TCompHitboxes* getHitboxes();
 	TCompGivePower* getPower();
-	TCompSound * getSound();
+	TCompSound* getSound();
+	TCompParticles* getParticles();
 
 	void resetCurrent();
+	void launchParticles(const std::vector<std::string>& particles);
+	void killParticles(const std::vector<std::string>& particles);
 };

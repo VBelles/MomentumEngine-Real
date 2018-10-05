@@ -5,9 +5,6 @@
 
 struct TMsgColliderDestroyed;
 class Enemy;
-class TCompHitboxes;
-class TCompGivePower;
-class TCompPlayerModel;
 
 class TCompEnemy : public TCompBase {
 private:

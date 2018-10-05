@@ -9,7 +9,8 @@ namespace Particles {
 		VEC3 localPosition;
         VEC3 velocity;
 		float rotation = 0.f;
-		QUAT rotationQuat;
+		QUAT initialTargetRotation = QUAT::Identity;
+		QUAT rotationQuat = QUAT::Identity;
         float size = 1.f;
         float lifetime = 0.f;
         float max_lifetime = 0.f;

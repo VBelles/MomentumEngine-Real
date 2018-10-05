@@ -1,13 +1,11 @@
 [
 	{
 		"entity": {
-			"name": "culling_test",
-			"particles": {
-				"core": "data/particles/culling_test.particles"
+			"name": "fire",
+			"transform":{
+				"pos": "1 -2 1"
 			},
-			"transform": {
-				"pos": "0 0 0"
-			}
+			"prefab":"data/prefabs/fireplace.prefab"
 		}
 	}
 

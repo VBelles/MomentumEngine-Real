@@ -95,7 +95,7 @@ void Particles::TCoreSystem::debugInMenu() {
 		ImGui::DragInt("Initial frame", &render.initialFrame);
 		ImGui::DragFloat("Frame speed", &render.frameSpeed, 0.01f);
 		if (render.type == TRender::StretchedBillboard) ImGui::DragFloat("Motion blur amount", &render.motionBlurAmount, 0.001f);
-
+		ImGui::Checkbox("Glow", &render.glow);
 	}
 }
 
@@ -167,9 +167,6 @@ namespace Particles {
 			targetPos += _core->movement.followTargetOffset;
 		}
 
-		VEC3 posLimits = VEC3(std::numeric_limits<float>::min());
-		VEC3 negLimits = VEC3(std::numeric_limits<float>::max());
-
 		auto it = _particles.begin();
 		while (it != _particles.end()) {
 			TParticle& p = *it;
@@ -229,23 +226,10 @@ namespace Particles {
 					p.frame = _core->render.initialFrame + (frame_idx % _core->render.numFrames);
 				}
 
-				// Update limits of the particles
-				if (p.position.x > posLimits.x) posLimits.x = p.position.x;
-				if (p.position.y > posLimits.y) posLimits.y = p.position.y;
-				if (p.position.z > posLimits.z) posLimits.z = p.position.z;
-
-				if (p.position.x < negLimits.x) negLimits.x = p.position.x;
-				if (p.position.y < negLimits.y) negLimits.y = p.position.y;
-				if (p.position.z < negLimits.z) negLimits.z = p.position.z;
-
 				++it;
 			}
 		}
 
-		// Update aabb
-		aabb.Center = (posLimits + negLimits) * 0.5f;
-		aabb.Extents = (posLimits - negLimits) * 0.5f;
-		AABB::CreateFromPoints(aabb, posLimits, negLimits);
 		bool canEmit = _core->emission.cyclic || _globalTime <= _core->emission.duration;
 		// check if a new batch of particles needs to be generated
 		if (canEmit) {
@@ -297,11 +281,12 @@ namespace Particles {
 				cb_object.obj_world = MAT44::CreateScale(p.size * p.scale)
 					* MAT44::CreateFromQuaternion(p.rotationQuat)
 					* MAT44::CreateFromQuaternion(config.rotationOffset)
+					* MAT44::CreateFromQuaternion(p.initialTargetRotation)
 					* MAT44::CreateTranslation(particlePosition);
 			}
 
 			
-			if (culling && EngineParticles.culling) {
+			if (_core->render.type != TCoreSystem::TRender::StretchedBillboard && culling && EngineParticles.culling) {
 				AABB pAABB;
 				particleMesh->getAABB().Transform(pAABB, cb_object.obj_world);
 				if (!culling->planes.isVisible(&pAABB)) { // Cull particle
@@ -344,6 +329,7 @@ namespace Particles {
 			particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
 			particle.frame = _core->render.initialRandomFrame ? random(0.f, _core->render.numFrames) : _core->render.initialFrame;
 			particle.rotation = _core->movement.initialRandomRotation ? random(0.f, M_PI * 2.f) : _core->movement.initialRotation;
+			particle.initialTargetRotation = targetRotation;
 			particle.rotationQuat = QUAT::CreateFromAxisAngle(_core->movement.spin_axis, particle.rotation);
 			particle.lifetime = 0.f;
 			particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
@@ -464,31 +450,26 @@ namespace Particles {
 				boneId = ((TCompSkeleton*)e->get<TCompSkeleton>())->getBoneId(config.bone);
 			}
 
-			QUAT rotation;
 			VEC3 translation;
 			if (boneId != -1) { // Follow bone
 				CalBone* bone = ((TCompSkeleton*)e->get<TCompSkeleton>())->getBone(boneId);
-				rotation = Cal2DX(bone->getRotationAbsolute());
+				targetRotation = Cal2DX(bone->getRotationAbsolute());
 				translation = Cal2DX(bone->getTranslationAbsolute());
 			}
 			else { // Follow transform
 				TCompTransform* e_transform = e->get<TCompTransform>();
-				rotation = e_transform->getRotation();
+				targetRotation = e_transform->getRotation();
 				translation = e_transform->getPosition();
 			}
-			position = translation + config.offset;
+			targetPosition = translation + config.offset;
 			world = MAT44::CreateTranslation(config.offset)
-				* MAT44::CreateFromQuaternion(rotation)
+				* MAT44::CreateFromQuaternion(targetRotation)
 				* MAT44::CreateTranslation(translation);
 		}
 	}
 
-	AABB CSystem::getAABB() {
-		return aabb;
-	}
 
 	void CSystem::renderDebug() {
-		renderWiredAABB(aabb, MAT44::Identity, VEC4(1, 0, 0, 1));
 	}
 
 

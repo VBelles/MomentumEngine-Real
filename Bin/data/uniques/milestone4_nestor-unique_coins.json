@@ -2,6 +2,13 @@
   "unique_coins":
   [
     {
+      "id": "nes_coin309",
+      "done": false,
+      "position": "154.406 59.0657 -146.247",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
       "id": "nes_coin308",
       "done": false,
       "position": "66.4624 12.1307 -3.47747",
@@ -823,14 +830,14 @@
     {
       "id": "nes_coin191",
       "done": false,
-      "position": "-20.1004 13.0152 102.669",
+      "position": "-19.1201 13.0152 102.669",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "nes_coin190",
       "done": false,
-      "position": "-23.0021 11.3331 102.554",
+      "position": "-22.0218 11.3331 102.554",
       "level": "level00",
       "type": "coins"
     },
@@ -2993,14 +3000,14 @@
     {
       "id": "nes_coin191",
       "done": false,
-      "position": "-20.1004 13.0152 102.669",
+      "position": "-19.1201 13.0152 102.669",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "nes_coin190",
       "done": false,
-      "position": "-23.0021 11.3331 102.554",
+      "position": "-22.0218 11.3331 102.554",
       "level": "level00",
       "type": "coins"
     },
