@@ -40,7 +40,7 @@ void LandingActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lockFallingAttack = false;
 	getPlayerModel()->lockAirDodge = false;
-	EngineParticles.launchSystem(PARTICLES_LANDING, Particles::LaunchConfig{ getPlayerEntity()});
+	getParticles()->launch("landing");
 	getSound()->play("landing");
 }
 

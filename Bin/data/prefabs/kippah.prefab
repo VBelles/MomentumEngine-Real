@@ -135,6 +135,16 @@
             "path": "event:/PROTA/golpes/golpe_hit"
           }
         ]
+      },
+      "particles": {
+        "launch": false,
+        "systems": [
+          {
+            "id": "hit",
+            "core": "data/particles/hit_sparks.particles",
+            "offset": "0 0.5 0"
+          }
+        ]
       }
     }
   }
