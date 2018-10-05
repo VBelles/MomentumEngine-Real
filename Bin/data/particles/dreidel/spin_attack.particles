@@ -1,0 +1,38 @@
+{
+    "life": {
+        "duration": 0.12,
+        "max_particles": 100
+    },
+    "emission": {
+        "type": "cylinder",
+        "size": 0.25,
+        "half_length": 0.5,
+        "interval": 0.1,
+        "count": 10,
+        "cyclic": true
+    },
+    "movement": {
+        "spin": 500,
+        "initial_random_rotation": true,
+        "spin_axis": "0 1 0"
+    },
+    "render": {
+        "mesh": "data/meshes/particles/slash.mesh",
+        "texture": "data/textures/particles/slash/slash_mesh.dds",
+        "type": "mesh",
+        "additive": true
+    },
+    "size": {
+        "scale": 0.03,
+        "scale_variation": 0.0,
+        "sizes": [ [1, 1] ]
+      },
+      "color": {
+        "opacity": 1.0,
+        "colors": [
+             [0.0, "1 1 1 1"],
+             [0.7, "1 1 1 1"],
+             [1.0, "1 1 1 0.4"]
+    ]
+      }
+}
