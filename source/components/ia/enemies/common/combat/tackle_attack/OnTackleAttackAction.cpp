@@ -21,6 +21,7 @@ int OnTackleAttackAction::execAction(float delta) {
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	enemy->timer.reset();
 	enemy->currentAttack = attack;
+	enemy->launchParticles(enemy->attacks[attack].particles);
 	return Leave;
 }
 
