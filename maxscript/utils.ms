@@ -73,6 +73,12 @@ struct TUtils (
 		select objsToSelect --Select children so it's easy to add attributes.
 	),
 
+	fn collapseAllLayers = (
+		local sceneExplorerInstance = SceneExplorerManager.GetActiveExplorer()
+		if sceneExplorerInstance != undefined then
+			sceneExplorerInstance.CollapseAll()
+	),
+
 	-- Returns array of selected layers, including selected object's ones.
 	-- Undefined if nothing is selected.
 	fn getSelectedLayers = (
