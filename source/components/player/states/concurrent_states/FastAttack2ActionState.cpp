@@ -40,7 +40,6 @@ void FastAttack2ActionState::onStateEnter(IActionState * lastState) {
 	timer.reset();
 	getPlayerModel()->lockWalk = false;
 	getPlayerModel()->lockAttack = true;
-	EngineParticles.launchSystem(PARTICLES_PLAYER_ATTACK, { getPlayerEntity(), "Bip001 L Hand", {0.12f, 0.f, 0.f} });
 }
 
 void FastAttack2ActionState::onStateExit(IActionState * nextState) {
@@ -94,6 +93,4 @@ void FastAttack2ActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);
-	//EngineParticles.launchSystem("data/particles/player/attack_hit.particles", { getEntity(), "Bip001 L Hand", {0.4f, 0.f, 0.f} });
-
 }

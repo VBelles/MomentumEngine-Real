@@ -177,6 +177,11 @@
         "launch": false,
         "systems": [
           {
+            "id": "hit",
+            "core": "data/particles/hit_sparks.particles",
+            "offset": "0 0.5 0"
+          },
+          {
             "id": "area_attack",
             "core": "data/particles/dreidel/area_attack.particles",
             "offset": "0 1.45 0"
