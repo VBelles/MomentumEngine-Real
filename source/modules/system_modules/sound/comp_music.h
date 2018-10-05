@@ -6,6 +6,16 @@ class TCompMusic : public TCompBase {
 private:
 	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
 
+	int tempo = 107;//bpm
+	int timeSignature = 4;//numerador del 4/4
+	int milisecondsPerBeat;
+	int milisecondsPerBar;
+
+	CTimer combatTimer;
+	int combatTimeMiliseconds;
+	float combatTargetRatio;
+	float combatStartingRatio;
+	float combatRatio = 0;
 	//Message callbacks
 	void onEntityCreated(const TMsgEntityCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
@@ -15,6 +25,8 @@ public:
 	enum Combat {
 		OFF, DANGER
 	};
+
+	Combat combatState;
 
 	enum Level {
 		LEVEL_1, LEVEL_2, LEVEL_3
