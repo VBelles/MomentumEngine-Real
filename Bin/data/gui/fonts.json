@@ -1,3 +1,5 @@
 [
-	"data/gui/fonts/1.fnt"
+	"data/gui/fonts/font_simplifica_48.fnt",
+	"data/gui/fonts/font_simplifica_64.fnt",
+	"data/gui/fonts/font_simplifica_72.fnt"
 ]

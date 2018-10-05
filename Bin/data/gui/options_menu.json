@@ -36,11 +36,11 @@
 							"size": "50 50",
 							"texture": "data/textures/linux.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
@@ -50,18 +50,17 @@
 							"size": "50 50",
 							"texture": "data/textures/gui/menu_boton.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size": "300 50",
-							"position": "0.125 0",
-							"font_size": 32.0,
+							"size": "350 50",
+							"font_size": 64.0,
 							"text": "OP"
 						},
 						"options": [
@@ -206,11 +205,11 @@
 							"size": "50 50",
 							"texture": "data/textures/linux.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
@@ -220,18 +219,17 @@
 							"size": "50 50",
 							"texture": "data/textures/gui/menu_boton.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size": "300 50",
-							"position": "0.125 0",
-							"font_size": 32.0,
+							"size": "350 50",
+							"font_size": 64.0,
 							"text": "OP"
 						},
 						"options": [
@@ -376,11 +374,11 @@
 							"size": "50 50",
 							"texture": "data/textures/linux.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
@@ -390,18 +388,17 @@
 							"size": "50 50",
 							"texture": "data/textures/gui/menu_boton.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size": "300 50",
-							"position": "0.125 0",
-							"font_size": 32.0,
+							"size": "350 50",
+							"font_size": 64.0,
 							"text": "OP"
 						},
 						"options": [
@@ -434,11 +431,11 @@
 							"size": "50 50",
 							"texture": "data/textures/linux.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
@@ -448,18 +445,17 @@
 							"size": "50 50",
 							"texture": "data/textures/gui/menu_boton.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size": "300 50",
-							"position": "0.125 0",
-							"font_size": 32.0,
+							"size": "350 50",
+							"font_size": 64.0,
 							"text": "OP"
 						},
 						"options": [
@@ -492,11 +488,11 @@
 							"size": "50 50",
 							"texture": "data/textures/linux.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
@@ -506,18 +502,17 @@
 							"size": "50 50",
 							"texture": "data/textures/gui/menu_boton.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size": "300 50",
-							"position": "0.125 0",
-							"font_size": 32.0,
+							"size": "350 50",
+							"font_size": 64.0,
 							"text": "OP"
 						},
 						"options": [
@@ -550,11 +545,11 @@
 							"size": "50 50",
 							"texture": "data/textures/linux.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
@@ -564,18 +559,17 @@
 							"size": "50 50",
 							"texture": "data/textures/gui/menu_boton.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size": "300 50",
-							"position": "0.125 0",
-							"font_size": 32.0,
+							"size": "350 50",
+							"font_size": 64.0,
 							"text": "OP"
 						},
 						"options": [
@@ -628,11 +622,11 @@
 							"size": "50 50",
 							"texture": "data/textures/linux.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
@@ -642,18 +636,17 @@
 							"size": "50 50",
 							"texture": "data/textures/gui/menu_boton.dds",
 							"selected": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"color": "0.2 0.2 0.2 1"
 							},
 							"pressed": {
-								"font_size": 36.0,
+								"font_size": 64.0,
 								"font_color": "0.5 0.5 0.5 1"
 							}
 						},
 						"option_text": {
-							"size": "300 50",
-							"position": "0.125 0",
-							"font_size": 32.0,
+							"size": "350 50",
+							"font_size": 64.0,
 							"text": "OP"
 						},
 						"options": [
