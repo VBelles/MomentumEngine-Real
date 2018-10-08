@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "respawn_tuto_000",
+      "transform":
+      {
+        "pos": "-117.318 -34.7863 335.243",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn_tuto_000.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-117.619 -26.9915 321.025",
+        "respawn_rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "outOfBounds": {},
       "name": "OutOfBounds002",
       "transform":
@@ -60,7 +91,7 @@
       "name": "OutOfBoundsTutorial",
       "transform":
       {
-        "pos": "-3.38283 -53.2324 645.126",
+        "pos": "-3.38283 -61.5247 645.126",
         "rotation": "-1.0 0.0 0.0 0.0"
       },
       "collider":
@@ -137,7 +168,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-107.995 -38.109 186.053",
+        "respawn_position": "-107.065 -44.1992 192.395",
         "respawn_rotation": "0.0 -0.953717 0.0 -0.300706"
       }
     }
@@ -207,7 +238,7 @@
   {
     "entity":
     {
-      "name": "respawn_tuto_01",
+      "name": "respawn_tuto_001",
       "transform":
       {
         "pos": "-117.318 -36.2538 305.175",
@@ -215,7 +246,7 @@
       },
       "collider":
       {
-        "mesh_src": "data/meshes/respawn_tuto_01.col_mesh",
+        "mesh_src": "data/meshes/respawn_tuto_001.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",

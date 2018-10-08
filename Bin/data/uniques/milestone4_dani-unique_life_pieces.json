@@ -1,0 +1,19 @@
+{
+  "unique_life_pieces":
+  [
+    {
+      "id": "dani_life_piece_001",
+      "done": false,
+      "position": "-105.722 -33.565 363.917",
+      "level": "level00",
+      "type": "life_piece"
+    },
+    {
+      "id": "dani_life_piece_000",
+      "done": false,
+      "position": "159.784 51.4228 -76.2752",
+      "level": "level00",
+      "type": "life_piece"
+    }
+  ]
+}
