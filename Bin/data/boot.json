@@ -50,6 +50,7 @@
     
     "data/scenes/milestone4_andrea-0.scene",
     
+    "data/scenes/test_gorila.scene",
     "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
@@ -68,7 +69,6 @@
     "data/scenes/milestone4_jose-pure.scene",
     "data/scenes/milestone4_jose-spikes.scene",
     "data/scenes/milestone4_jose-trimesh.scene",
-    "data/scenes/test_gorila.scene",
     "data/scenes/plataformeo.scene",
     "data/scenes/plataformeo01.scene",         
     "data/scenes/test_instancing.scene",
