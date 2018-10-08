@@ -2,10 +2,133 @@
   {
     "entity":
     {
+      "name": "tutorial_plataforma_roca_005",
+      "transform":
+      {
+        "pos": "-67.0277 -19.4421 219.203",
+        "rotation": "0.0 -0.953717 0.0 0.300706"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tutorial_plataforma_roca_005.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/tutorial_plataforma_roca_005.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/tutorial_plataforma_roca_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tutorial_plataforma_roca_004",
+      "transform":
+      {
+        "pos": "-72.1968 -22.3852 210.531",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tutorial_plataforma_roca_004.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/tutorial_plataforma_roca_004.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/tutorial_plataforma_roca_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tutorial_plataforma_roca_003",
+      "transform":
+      {
+        "pos": "-68.2645 -24.1703 200.851",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tutorial_plataforma_roca_003.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/tutorial_plataforma_roca_003.mesh",
+          "materials":
+          [
+            "data/materials/platform_terrain_material_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/tutorial_plataforma_roca_003.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_columna_piezas_fuste_1_009",
       "transform":
       {
-        "pos": "-124.298 -48.7715 234.926",
+        "pos": "-124.298 -48.7715 262.682",
         "rotation": "-0.13211 -0.965616 0.219303 0.045144"
       },
       "render":
@@ -46,7 +169,7 @@
       "name": "dani_columna_piezas_fuste_2_010",
       "transform":
       {
-        "pos": "-126.046 -53.2578 236.159",
+        "pos": "-126.046 -53.2578 263.914",
         "rotation": "0.601449 -0.11515 -0.764321 -0.202021"
       },
       "render":
@@ -87,7 +210,7 @@
       "name": "dani_columna_piezas_basa_005",
       "transform":
       {
-        "pos": "-127.866 -57.1581 236.186",
+        "pos": "-127.866 -57.1581 263.942",
         "rotation": "0.0983326 -0.0983326 0.229385 -0.96335"
       },
       "render":
@@ -128,7 +251,7 @@
       "name": "dani_columna_piezas_fuste_1_008",
       "transform":
       {
-        "pos": "-123.777 -40.5851 232.752",
+        "pos": "-123.777 -40.5851 260.508",
         "rotation": "0.0865414 -0.881819 0.000291986 -0.46358"
       },
       "render":
@@ -169,7 +292,7 @@
       "name": "dani_columna_piezas_fuste_0_005",
       "transform":
       {
-        "pos": "-123.702 -44.4006 233.236",
+        "pos": "-123.702 -44.4006 260.992",
         "rotation": "-0.000328235 -0.989677 0.117877 0.0815151"
       },
       "render":
@@ -210,7 +333,7 @@
       "name": "dani_columna_piezas_basa_004",
       "transform":
       {
-        "pos": "-124.398 -37.1639 232.828",
+        "pos": "-124.398 -37.1639 260.583",
         "rotation": "-0.990501 -0.0432462 0.130402 -0.00569346"
       },
       "render":
@@ -251,7 +374,7 @@
       "name": "tutorial_plataforma_roca_002",
       "transform":
       {
-        "pos": "-128.783 -34.4579 240.17",
+        "pos": "-128.783 -34.4579 267.926",
         "rotation": "0.0 -0.642788 0.0 -0.766044"
       },
       "render":
@@ -292,7 +415,7 @@
       "name": "tutorial_plataforma_roca_001",
       "transform":
       {
-        "pos": "-134.989 -36.4579 247.828",
+        "pos": "-134.989 -36.4579 275.583",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":

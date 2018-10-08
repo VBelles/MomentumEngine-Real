@@ -4,14 +4,14 @@
     {
       "id": "tutorialEnemyMelee",
       "done": false,
-      "position": "-98.8553 -39.612 172.407",
+      "position": "-98.8553 -39.612 200.162",
       "level": "level00",
       "type": "dreidel"
     },
     {
       "id": "tutorialEnemyAir",
       "done": false,
-      "position": "-110.116 -42.6276 197.517",
+      "position": "-110.116 -42.6276 225.273",
       "level": "level00",
       "type": "kippah"
     },

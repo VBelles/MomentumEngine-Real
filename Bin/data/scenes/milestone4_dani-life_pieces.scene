@@ -6,7 +6,7 @@
       "prefab": "data/prefabs/lifePiece.prefab",
       "transform":
       {
-        "pos": "-105.722 -33.565 363.917",
+        "pos": "-105.722 -33.565 391.673",
         "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
