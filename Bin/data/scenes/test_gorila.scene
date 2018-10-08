@@ -6,20 +6,7 @@
         "pos": "0 0 0",
         "rotation": "0 0.766044 0 0.642788"
       },
-      "render": [
-        {
-          "mesh": "data/skeletons/gorila/gorila_baja.mesh",
-          "materials": [
-            "data/skeletons/gorila/gorila.material"
-          ]
-        }
-      ],
-      "tags": [
-        "enemy"
-      ],
-      "skeleton": {
-        "skeleton": "data/skeletons/gorila/gorila.skeleton"
-      }
+      "prefab": "data/prefabs/gorila.prefab"
     }
   }
 ]

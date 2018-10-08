@@ -12,12 +12,13 @@
 		{ "name" : "gorila_idlewar"},
 		{ "name" : "gorila_knockback"},
 		{ "name" : "gorila_stun"},
-		{ "name" : "gorila_walk"}
+		{ "name" : "gorila_walk"},
+		{ "name" : "enemigo_bola_aparecer"},
+		{ "name" : "enemigo_bola_desaparecer"}
 	],
 	"bone_ids_to_debug" : [
 		3
 	],
 		"meshes" : [
-			"gorila_baja"
 	]
 }
