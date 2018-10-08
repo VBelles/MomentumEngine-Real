@@ -21,7 +21,7 @@
 						"name": "camera_speed",
 						"type": "option",
 						"position": "0 0",
-						"size": "1900 50",
+						"size": "1900 64",
 						"idle": {
 							"size": "412 104",
 							"texture": "data/textures/gui/bt_camera_speed.dds"
@@ -33,7 +33,7 @@
 						"previous_button": {
 							"name": "previous",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -47,7 +47,7 @@
 						"next_button": {
 							"name": "next",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -59,7 +59,7 @@
 							}
 						},
 						"option_text": {
-							"size": "350 50",
+							"size": "400 64",
 							"font_size": 64.0,
 							"text": "OP"
 						},
@@ -189,8 +189,8 @@
 					{
 						"name": "camera_speed_pad",
 						"type": "option",
-						"position": "0 60",
-						"size": "1900 50",
+						"position": "0 66",
+						"size": "1900 64",
 						"idle": {
 							"size": "496 104",
 							"texture": "data/textures/gui/bt_camera_speed_pad.dds"
@@ -202,7 +202,7 @@
 						"previous_button": {
 							"name": "previous",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -216,7 +216,7 @@
 						"next_button": {
 							"name": "next",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -228,7 +228,7 @@
 							}
 						},
 						"option_text": {
-							"size": "350 50",
+							"size": "400 64",
 							"font_size": 64.0,
 							"text": "OP"
 						},
@@ -358,8 +358,8 @@
 					{
 						"name": "invert_x_axis",
 						"type": "option",
-						"position": "0 120",
-						"size": "1900 50",
+						"position": "0 132",
+						"size": "1900 64",
 						"idle": {
 							"size": "372 104",
 							"texture": "data/textures/gui/bt_invert_x_axis.dds"
@@ -371,7 +371,7 @@
 						"previous_button": {
 							"name": "previous",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -385,7 +385,7 @@
 						"next_button": {
 							"name": "next",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -397,7 +397,7 @@
 							}
 						},
 						"option_text": {
-							"size": "350 50",
+							"size": "400 64",
 							"font_size": 64.0,
 							"text": "OP"
 						},
@@ -415,8 +415,8 @@
 					{
 						"name": "invert_y_axis",
 						"type": "option",
-						"position": "0 180",
-						"size": "1900 50",
+						"position": "0 198",
+						"size": "1900 64",
 						"idle": {
 							"size": "372 104",
 							"texture": "data/textures/gui/bt_invert_y_axis.dds"
@@ -428,7 +428,7 @@
 						"previous_button": {
 							"name": "previous",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -442,7 +442,7 @@
 						"next_button": {
 							"name": "next",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -454,7 +454,7 @@
 							}
 						},
 						"option_text": {
-							"size": "350 50",
+							"size": "400 64",
 							"font_size": 64.0,
 							"text": "OP"
 						},
@@ -472,8 +472,8 @@
 					{
 						"name": "fullscreen",
 						"type": "option",
-						"position": "0 240",
-						"size": "1900 50",
+						"position": "0 264",
+						"size": "1900 64",
 						"idle": {
 							"size": "336 104",
 							"texture": "data/textures/gui/bt_full_screen.dds"
@@ -485,7 +485,7 @@
 						"previous_button": {
 							"name": "previous",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -499,7 +499,7 @@
 						"next_button": {
 							"name": "next",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -511,7 +511,7 @@
 							}
 						},
 						"option_text": {
-							"size": "350 50",
+							"size": "400 64",
 							"font_size": 64.0,
 							"text": "OP"
 						},
@@ -529,8 +529,8 @@
 					{
 						"name": "resolution",
 						"type": "option",
-						"position": "0 300",
-						"size": "1900 50",
+						"position": "0 330",
+						"size": "1900 64",
 						"idle": {
 							"size": "336 104",
 							"texture": "data/textures/gui/bt_resolution.dds"
@@ -542,7 +542,7 @@
 						"previous_button": {
 							"name": "previous",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -556,7 +556,7 @@
 						"next_button": {
 							"name": "next",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -568,7 +568,7 @@
 							}
 						},
 						"option_text": {
-							"size": "350 50",
+							"size": "400 64",
 							"font_size": 64.0,
 							"text": "OP"
 						},
@@ -606,8 +606,8 @@
 					{
 						"name": "vsync",
 						"type": "option",
-						"position": "0 360",
-						"size": "1900 50",
+						"position": "0 396",
+						"size": "1900 64",
 						"idle": {
 							"size": "336 104",
 							"texture": "data/textures/gui/bt_vsync.dds"
@@ -619,7 +619,7 @@
 						"previous_button": {
 							"name": "previous",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_izq_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -633,7 +633,7 @@
 						"next_button": {
 							"name": "next",
 							"type": "button",
-							"size": "50 50",
+							"size": "64 64",
 							"texture": "data/textures/gui/flecha_der_selected.dds",
 							"selected": {
 								"font_size": 64.0,
@@ -645,7 +645,7 @@
 							}
 						},
 						"option_text": {
-							"size": "350 50",
+							"size": "400 64",
 							"font_size": 64.0,
 							"text": "OP"
 						},
