@@ -93,6 +93,12 @@ struct TMsgGainPower {
 	DECL_MSG_ID();
 };
 
+struct TMsgLosePower {
+	CHandle attacker;
+	float power;
+	DECL_MSG_ID();
+};
+
 struct TMsgPowerLvlChange {
 	CHandle sender;
 	int powerLvl;

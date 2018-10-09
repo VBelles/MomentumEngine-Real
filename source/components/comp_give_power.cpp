@@ -13,8 +13,6 @@ void TCompGivePower::load(const json& j, TEntityParseContext& ctx) {
 	powerToGive = maxPowerToGive;
 	baseMultiplier = j.value("baseMultiplier", 1.0f);
 	resetTime = j.value("resetTime", 120.0f);
-	particles = j.value("particles", "");
-	particlesOffset = loadVEC3(j.value("particlesOffset", "0 0 0"));
 }
 
 void TCompGivePower::update(float dt) {
@@ -33,16 +31,19 @@ void TCompGivePower::onGetPower(const TMsgGetPower& msg) {
 		powerGiven = powerToGive;
 	}
 	powerToGive -= powerGiven;
-	CEntity *entity = msg.sender;
-	entity->sendMsg(TMsgGainPower{ CHandle(this).getOwner(), powerGiven });
+	CEntity* ownEntity = CHandle(this).getOwner();
+	CEntity* attackerEntity = msg.sender;
+	attackerEntity->sendMsg(TMsgGainPower{ ownEntity, powerGiven });
+	ownEntity->sendMsg(TMsgLosePower{ attackerEntity, powerGiven });
 	resetTimer.reset();
-	if (powerGiven > 0.f) {
-		EngineParticles.launchSystem(particles, Particles::LaunchConfig{ CHandle(this).getOwner(), "", particlesOffset });
-	}
 }
 
 void TCompGivePower::setStateMultiplier(float multiplier) {
 	stateMultiplier = multiplier;
+}
+
+float TCompGivePower::getStateMultiplier() {
+	return stateMultiplier;
 }
 
 void TCompGivePower::reset() {

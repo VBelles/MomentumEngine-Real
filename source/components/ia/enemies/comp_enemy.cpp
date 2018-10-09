@@ -32,6 +32,7 @@ void TCompEnemy::registerMsgs() {
 	DECL_MSG(TCompEnemy, TMsgPerfectDodged, onPerfectDodged);
 	DECL_MSG(TCompEnemy, TMsgColliderDestroyed, onColliderDestroyed);
 	DECL_MSG(TCompEnemy, TMsgHitboxEnter, onHitboxEnter);
+	DECL_MSG(TCompEnemy, TMsgLosePower, onLosePower);
 }
 
 void TCompEnemy::update(float delta) {
@@ -135,5 +136,11 @@ void TCompEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
 				((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
 			}
 		}
+	}
+}
+
+void TCompEnemy::onLosePower(const TMsgLosePower& msg) {
+	if (msg.power > 0.f && enemy->getPower()->getStateMultiplier() > 0.01f) {
+		enemy->getParticles()->launch("lose_power");
 	}
 }
