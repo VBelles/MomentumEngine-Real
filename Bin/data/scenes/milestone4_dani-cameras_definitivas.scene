@@ -2,6 +2,128 @@
   {
     "entity":
     {
+      "name": "dani_camera_004",
+      "transform":
+      {
+        "pos": "-36.0732 1.05336 260.637",
+        "lookat": "-75.6516 -45.225 163.104"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_camera_trigger_004",
+      "transform":
+      {
+        "pos": "-71.3594 -24.071 241.258",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_camera_trigger_004.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "dani_camera_004",
+        "suggestYaw": true,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 16,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "1 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_camera_003",
+      "transform":
+      {
+        "pos": "-83.0612 -31.6719 207.232",
+        "lookat": "-83.7942 -36.0018 199.469"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_camera_trigger_003",
+      "transform":
+      {
+        "pos": "-84.6668 -52.432 189.608",
+        "rotation": "0.0 -0.0436195 0.0 -0.999048"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_camera_trigger_003.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "dani_camera_003",
+        "suggestYaw": true,
+        "hasOppositeYaw": true,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 6.5,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "2.5 2.5"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_camera_002",
       "transform":
       {
@@ -117,7 +239,7 @@
         "distanceToCamera": 6,
         "changeCenteringCamera": false,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "2 4"
+        "centeringCameraSpeed": "1.5 2"
       }
     }
   },
@@ -178,7 +300,7 @@
         "distanceToCamera": 10,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "4 4"
+        "centeringCameraSpeed": "2.5 2.5"
       }
     }
   }

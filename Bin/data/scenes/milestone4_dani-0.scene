@@ -2,38 +2,6 @@
   {
     "entity":
     {
-      "name": "Plataformeo_muro016",
-      "transform":
-      {
-        "pos": "-73.0024 -20.1131 163.928",
-        "rotation": "0.368688 0.52654 -0.439385 -0.627507"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Plataformeo_muro016.mesh",
-          "materials":
-          [
-            "data/materials/m_ms_murovertical.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/Plataformeo_muro001_collider010.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "Plataformeo_muro015",
       "transform":
       {
